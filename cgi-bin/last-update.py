@@ -69,7 +69,12 @@ print "<body bgcolor=\"#FFFFFF\">"
 ###########################################################################
 ## get timestamps
 lasts = {}
-sql = "SELECT DISTINCT ON (source) source,EXTRACT(EPOCH FROM now()-timestamp) AS age,remote_url,remote_ip FROM dynpoi_update ORDER BY source ASC, timestamp DESC;"
+sql = """SELECT DISTINCT ON (source)
+                source,
+                EXTRACT(EPOCH FROM ((now() at time zone 'utc')-timestamp)) AS age,
+                remote_url,remote_ip
+         FROM dynpoi_update
+         ORDER BY source ASC, timestamp DESC;"""
 PgCursor.execute(sql)
 for res in PgCursor.fetchall():
     lasts[int(res["source"])] = res
@@ -88,9 +93,7 @@ liste = []
 for source_id in [str(y) for y in sorted([int(x) for x in sources])]:
     like = sources[source_id].get("like", source_id)
     if int(source_id) in lasts:
-        #name = lasts[int(source_id)]["remote_url"].split("/")[-1].split(".")[0].lower()
-        age  = lasts[int(source_id)]["age"] - 7200# now - time.mktime(time.strptime(str(lasts[int(source_id)]["timestamp"]),"%Y-%m-%dT%H:%M:%SZ"))
-        #txt  = "il y a %dh%02d"%(int(age/3600), int((age%3600)/60))
+        age  = lasts[int(source_id)]["age"]
         txt  = "il y a %dj, %dh, %02dm"%(int(age/86400), int(age/3600)%24, int(age/60)%60)
         
         liste.append((sources[source_id]["comment"], age, txt, source_id))
