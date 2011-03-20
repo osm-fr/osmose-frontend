@@ -29,7 +29,6 @@ PgConn    = utils.get_dbconn()
 PgCursor  = PgConn.cursor()
 form      = cgi.FieldStorage()
 username  = utils.pg_escape(form.getvalue("username", ""))
-#username="yoann"
 lang_def  = utils.allowed_languages[0]
 lang_cur  = utils.get_language()
 tpl       = open(os.path.join(utils.root_folder, "config/text.tpl")).read()
@@ -40,16 +39,47 @@ if username=="":
     print open("../index.html").read()
     sys.exit(0)
 
-PgCursor.execute("SELECT * FROM dynpoi_marker WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_user WHERE username='%s') LIMIT 500;"%(username))
+PgCursor.execute("""--
+SELECT m.*, c.title_en, c.title_fr
+FROM dynpoi_marker m
+JOIN dynpoi_class c ON m.class = c.class AND
+                       m.source = c.source
+WHERE (m.source,m.class,m.subclass,m.elems) IN (SELECT source,class,subclass,elems FROM dynpoi_user WHERE username='%s')
+ORDER BY m.class
+LIMIT 500;"""%(username))
 #PgCursor.execute("SELECT dynpoi_marker.* FROM dynpoi_user NATURAL INNER JOIN dynpoi_marker WHERE dynpoi_user.username='%s' ORDER BY dynpoi_marker.class,dynpoi_marker.subclass,dynpoi_marker.elems;"%(username))
-data = ""
+data = "<table class='byuser'>\n"
+data += "  <tr>\n"
+data += "    <th>Class</th>\n"
+data += "    <th>Titre</th>\n"
+data += "    <th>Erreur</th>\n"
+data += "    <th>Latitude</th>\n"
+data += "    <th>Longitude</th>\n"
+data += "  </tr>\n"
+
 for res in PgCursor.fetchall():
-    data += '<div class="div_text"><font size="-1">\n'
-    if res["html_"+lang_cur]:
-        data += res["html_"+lang_cur]+"\n"
+    data += "  <tr>\n"
+    data += "    <td>" + str(res["class"]) + "</td>\n"
+    data += "    <td>" + str(res["title_fr"]) + "</td>\n"
+    data += "    <td>\n"
+    if res["subtitle_"+lang_cur]:
+        data += res["subtitle_"+lang_cur]+"\n"
     else:
-        data += res["html_"+lang_def]+"\n"
-    data += '</font></div>\n'
+        data += res["subtitle_"+lang_def]+"\n"
+    data += "    </td>\n"
+    lat = str(float(res["lat"])/1000000)
+    lon = str(float(res["lon"])/1000000)
+    cl = res["class"]
+    source = res["source"]
+    item = res["item"]
+    url = "/map/cgi-bin/index.py?zoom=16&lat=%s&lon=%s&source=%s" % (lat, lon, source)
+    url = "/map/cgi-bin/index.py?zoom=16&lat=%s&lon=%s&item=%s" % (lat, lon, item)
+    data += "    <td>" + lat + "</td>\n"
+    data += "    <td>" + lon + "</td>\n"
+    data += "    <td><a href='" + url + "'>carte</a></td>\n"
+    data += "  </tr>\n"
+
+data += "</table>\n"
 
 print "Content-Type: text/html; charset=utf-8"
 print

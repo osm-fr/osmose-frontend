@@ -76,3 +76,17 @@ div.test_group h1 {
 span.check {
   font-size: 11px;
 }
+
+table.byuser {
+  border-width:1px; 
+  border-style:solid; 
+  border-color:black;
+  border-collapse: collapse;
+}
+table.byuser td {
+  border-width:1px;
+  border-style:solid; 
+  border-color:black;
+  padding-left: 5px;
+  padding-right: 5px;
+}
