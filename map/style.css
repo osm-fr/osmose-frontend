@@ -3,14 +3,17 @@ body {
   font-family: arial, helvetica, sans-serif;
 } 
 
-a.vert:link {
-  color: #55AA55;
+/* popups */
+.bulle_msg {
+  max-height: 200px;
+  overflow: auto;
 }
-a.vert:visited {
-  color: #55AA55;
-}
-a.vert:hover {
-  color: #55AA55;
+.bulle_msg div.closebubble {
+  float: right;
+  color:#EEEEEE;
+  font-weight: bold;
+  background-color: #AAAAAA;
+  margin-right: 2px;
 }
 
 .bulle_err {
@@ -29,15 +32,26 @@ a.bulle_err:hover {
 .bulle_elem {
   color: #5555FF;
 }
-a.bulle_elem:link {
+.bulle_elem a:link {
   color: #5555FF;
 }
-a.bulle_elem:visited {
+.bulle_elem a:visited {
   color: #5555FF;
 }
-a.bulle_elem:hover {
+.bulle_elem a:hover {
   color: #5555FF;
 }
+
+.bulle_verif a:link {
+  color: #55AA55;
+}
+.bulle_verif a:visited {
+  color: #55AA55;
+}
+.bulle_verif a:hover {
+  color: #55AA55;
+}
+
 
 a:link {
   color: #000000;
@@ -90,3 +104,5 @@ table.byuser td {
   padding-left: 5px;
   padding-right: 5px;
 }
+
+

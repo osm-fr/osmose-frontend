@@ -151,7 +151,8 @@ for res in PgCursor.fetchall():
     ############################################################
     ## build html
 
-    html  = "<div style=\"float:right;margin-right:20;color:#EEEEEE;font-weight:bold;background-color:#AAAAAA;\" onclick=\"closeBubble('%s');\"><b>&nbsp;X&nbsp;</b></div>"%marker_id
+    html  = "<div class=\"bulle_msg\">"
+    html += "<div class='closebubble' onclick=\"closeBubble('%s');\"><b>&nbsp;X&nbsp;</b></div>"%marker_id
     html += "<div class=\"bulle_err\">"
     html += "<b>%s</b><br>%s<br>"%(title, subtitle)
     html += "</div>"
@@ -165,30 +166,35 @@ for res in PgCursor.fetchall():
                 elems[-1][2][res["data"][2*i]] = res["data"][2*i+1]
     for e in elems:
         html += "<div class=\"bulle_elem\">"
-        html += "<b><a class=\"bulle_elem\" target=\"_blank\" href=\"http://www.openstreetmap.org/browse/%s/%s\">%s %s</a></b>"%(e[0], e[1], e[0], e[1])
-        html += " <a class=\"bulle_elem\" href=\"javascript:iFrameLoad('http://rawedit.openstreetmap.fr/edit/%s/%s');\">rawedit</a>"%(e[0], e[1])
+        html += "<b><a target=\"_blank\" href=\"http://www.openstreetmap.org/browse/%s/%s\">%s %s</a></b>"%(e[0], e[1], e[0], e[1])
+        html += " <a href=\"javascript:iFrameLoad('http://rawedit.openstreetmap.fr/edit/%s/%s');\">rawedit</a>"%(e[0], e[1])
         if e[0] == "relation" and "boundary" in e[2]:
-            html += " <a class=\"bulle_elem\" target=\"_blank\" href=\"http://analyser.openstreetmap.fr/cgi-bin/index.py?relation=%s\">analyse1</a>"%e[1]
-            html += " <a class=\"bulle_elem\" target=\"_blank\" href=\"http://osm3.crans.org/osmbin/analyse-relation?%s\">analyse2</a>"%e[1]
+            html += " <a target=\"_blank\" href=\"http://analyser.openstreetmap.fr/cgi-bin/index.py?relation=%s\">analyse1</a>"%e[1]
+            html += " <a target=\"_blank\" href=\"http://osm3.crans.org/osmbin/analyse-relation?%s\">analyse2</a>"%e[1]
         if e[0] == "node":
-            html += " <a class=\"bulle_elem\" href=\"http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/node/"+e[1]+"\" target=\"hiddenIframe\">josm</a>"
+            html += " <a href=\"http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/node/"+e[1]+"\" target=\"hiddenIframe\">josm</a>"
         if e[0] == "way":
-            html += " <a class=\"bulle_elem\" href=\"http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/way/"+e[1]+"/full\" target=\"hiddenIframe\">josm</a>"
+            html += " <a href=\"http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/way/"+e[1]+"/full\" target=\"hiddenIframe\">josm</a>"
         if e[0] == "relation":
-            html += " <a class=\"bulle_elem\" href=\"http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/relation/"+e[1]+"/full\" target=\"hiddenIframe\">josm</a>"
+            html += " <a href=\"http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/relation/"+e[1]+"/full\" target=\"hiddenIframe\">josm</a>"
         html += "<br>"
         for t in e[2].items():
             html += "<b>%s</b> = %s<br>"%(t[0], t[1])
         html += "</div>"
 
+    html += "</div>"
+
     ## bottom links
-    html += "<a class=\"vert\" href=\"http://www.openstreetmap.org/?lat=%s&lon=%s&zoom=18\" target=\"_blank\">osmlink</a> "%(lat, lon)
-    html += "<a class=\"vert\" href=\"http://www.openstreetmap.org/edit?lat=%s&lon=%s&zoom=18\" target=\"_blank\">potlatch</a> "%(lat, lon)
-    html += "<a class=\"vert\" href=\"http://localhost:8111/load_and_zoom?left=%s&bottom=%s&right=%s&top=%s&select="%(bbox[0],bbox[1],bbox[2],bbox[3])+res["elems"].replace("_",",")+"\" target=\"hiddenIframe\">josm zone</a> "
-    html += "<br>"
+    html += "<div class=\"bulle_verif\">"
+    html += "<a href=\"http://www.openstreetmap.org/?lat=%s&lon=%s&zoom=18\" target=\"_blank\">osmlink</a> "%(lat, lon)
+    html += "<a href=\"http://www.openstreetmap.org/edit?lat=%s&lon=%s&zoom=18\" target=\"_blank\">potlatch</a> "%(lat, lon)
+    html += "<a href=\"http://localhost:8111/load_and_zoom?left=%s&bottom=%s&right=%s&top=%s&select="%(bbox[0],bbox[1],bbox[2],bbox[3])+res["elems"].replace("_",",")+"\" target=\"hiddenIframe\">josm zone</a> "
+    html += "</div>"
+    html += "<div class=\"bulle_maj\">"
     html += "<b><u>%s :</u></b> "%translate[lang_cur][u"set_status"].encode("utf8")
     html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"status.py?e=%s&s=done\" target=\"hiddenIframe\">%s</a> "%(error_id, translate[lang_cur][u"done"].encode("utf8"))
     html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"status.py?e=%s&s=false\" target=\"hiddenIframe\">%s</a> "%(error_id, translate[lang_cur][u"false"].encode("utf8"))
+    html += "</div>"
     
     #html = html.replace("#CLOSE#",translate[lang][u"close"],1)
     #else:
