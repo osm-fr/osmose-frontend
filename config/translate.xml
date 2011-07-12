@@ -10,7 +10,11 @@
     <value lang="en" text="OsmOse - Open Street Map Oversight Search Engine - en"/>
     <value lang="fr" text="OsmOse - Open Street Map Oversight Search Engine - fr"/>
   </key>
-  
+
+  <key name="date">
+    <value lang="fr" text="Erreur reportée le : "/>
+    <value lang="en" text="Error reported on :"/>
+  </key>
   <key name="done">
     <value lang="fr" text="corrigé"/>
     <value lang="en" text="corrected"/>

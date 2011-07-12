@@ -98,10 +98,13 @@ SELECT dynpoi_marker.item,
        dynpoi_class.title_%s as title_def,
        dynpoi_marker.subtitle_%s as subtitle_cur,
        dynpoi_marker.subtitle_%s as subtitle_def,
-       dynpoi_marker.data
+       dynpoi_marker.data,
+       dynpoi_update_last.timestamp
 FROM dynpoi_marker
 INNER JOIN dynpoi_class
   ON dynpoi_marker.source=dynpoi_class.source AND dynpoi_marker.class=dynpoi_class.class
+INNER JOIN dynpoi_update_last
+  ON dynpoi_marker.source = dynpoi_update_last.source
 WHERE %s
 ORDER BY ABS(lat-%d)+ABS(lon-%d) ASC
 LIMIT 100;"""
@@ -147,6 +150,7 @@ for res in PgCursor.fetchall():
     marker_id = "%d-%d-%d-%s-%d" % (res["source"], res["class"], res["subclass"], res["elems"], res["marker_id"])
     title     = res["title_cur"]    or res["title_cur"]    or "no title.."
     subtitle  = res["subtitle_cur"] or res["subtitle_cur"] or ""
+    b_date    = res["timestamp"] or ""
     
     ############################################################
     ## build html
@@ -182,6 +186,7 @@ for res in PgCursor.fetchall():
             html += "<b>%s</b> = %s<br>"%(t[0], t[1])
         html += "</div>"
 
+    html += translate[lang_cur][u"date"].encode("utf8") + datetime.datetime.fromtimestamp(b_date).strftime("%Y-%m-%d")
     html += "</div>"
 
     ## bottom links
