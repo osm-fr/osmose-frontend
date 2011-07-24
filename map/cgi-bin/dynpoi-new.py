@@ -199,7 +199,11 @@ for res in PgCursor.fetchall():
     html += "<div class=\"bulle_verif\">"
     html += "<a href=\"http://www.openstreetmap.org/?lat=%s&lon=%s&zoom=18\" target=\"_blank\">osmlink</a> "%(lat, lon)
     html += "<a href=\"http://www.openstreetmap.org/edit?lat=%s&lon=%s&zoom=18\" target=\"_blank\">potlatch</a> "%(lat, lon)
-    html += "<a href=\"http://localhost:8111/load_and_zoom?left=%s&bottom=%s&right=%s&top=%s&select="%(bbox[0],bbox[1],bbox[2],bbox[3])+res["elems"].replace("_",",")+"\" target=\"hiddenIframe\">josm zone</a> "
+    minlat = float(lat) - 0.002
+    maxlat = float(lat) + 0.002
+    minlon = float(lon) - 0.002
+    maxlon = float(lon) + 0.002
+    html += "<a href=\"http://localhost:8111/load_and_zoom?left=%f&bottom=%f&right=%f&top=%f&select="%(minlon,minlat,maxlon,maxlat)+res["elems"].replace("_",",")+"\" target=\"hiddenIframe\">josm zone</a> "
     html += "</div>"
     html += "<div class=\"bulle_maj\">"
     html += "<b><u>%s :</u></b> "%translate[lang_cur][u"set_status"].encode("utf8")
