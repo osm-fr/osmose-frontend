@@ -105,7 +105,8 @@ INNER JOIN dynpoi_class
   ON dynpoi_marker.source=dynpoi_class.source AND dynpoi_marker.class=dynpoi_class.class
 INNER JOIN dynpoi_update_last
   ON dynpoi_marker.source = dynpoi_update_last.source
-WHERE %s
+WHERE %s AND
+  dynpoi_update_last.timestamp > (now() - interval '3 months')
 ORDER BY ABS(lat-%d)+ABS(lon-%d) ASC
 LIMIT 100;"""
 
