@@ -82,7 +82,8 @@ print "\t".join(["lat", "lon", "marker_id", "icon", "iconSize", "iconOffset", "h
 
 if (not user) and (not source) and (zoom < 6):
     sys.exit(0)
-    
+
+url_help = "http://wiki.openstreetmap.org/wiki/FR:Osmose/erreurs"
 lang_def = utils.allowed_languages[0]
 lang_cur = utils.get_language()
 sqlbase  = """
@@ -152,12 +153,16 @@ for res in PgCursor.fetchall():
     title     = res["title_cur"]    or res["title_cur"]    or "no title.."
     subtitle  = res["subtitle_cur"] or res["subtitle_cur"] or ""
     b_date    = res["timestamp"] or ""
+    item      = res["item"] or 0
     
     ############################################################
     ## build html
 
     html  = "<div class=\"bulle_msg\">"
-    html += "<div class='closebubble' onclick=\"closeBubble('%s');\"><b>&nbsp;X&nbsp;</b></div>"%marker_id
+    html += "<div class='closebubble'>"
+    html += "<div><a href='#' onclick=\"closeBubble('%s');return false;\"><b>&nbsp;X&nbsp;</b></a></div>"%marker_id
+    html += "<div><a target=\"_blank\" href='%s#%d'>&nbsp;?&nbsp;</a></div>" % (url_help, item)
+    html += "</div>"
     html += "<div class=\"bulle_err\">"
     html += "<b>%s</b><br>%s<br>"%(title, subtitle)
     html += "</div>"

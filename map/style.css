@@ -14,6 +14,19 @@ body {
   font-weight: bold;
   background-color: #AAAAAA;
   margin-right: 2px;
+  text-decoration:none;
+}
+.bulle_msg div.closebubble a {
+  text-decoration:none;
+}
+.bulle_msg div.closebubble a:link {
+  color: #EEEEEE;
+}
+.bulle_msg div.closebubble a:visited {
+  color: #EEEEEE;
+}
+.bulle_msg div.closebubble a:hover {
+  color: #000000;
 }
 
 .bulle_err {
