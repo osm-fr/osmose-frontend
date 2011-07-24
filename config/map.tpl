@@ -123,7 +123,7 @@
         document.myform.lon.value  = lonlat.lon
         document.myform.zoom.value =this.getZoom();
         if (document.myform.source.value == '') {
-	  if (this.getZoom()<8) {
+	  if (this.getZoom()<6) {
 	    document.getElementById('need_zoom').style.display    = 'inline';
 	    document.getElementById('action_links').style.display = 'none';
 	    document.getElementById('myform').style.display       = 'none';

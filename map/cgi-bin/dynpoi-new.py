@@ -80,7 +80,7 @@ if cki:
 print
 print "\t".join(["lat", "lon", "marker_id", "icon", "iconSize", "iconOffset", "html"])
 
-if (not user) and (not source) and (zoom < 8):
+if (not user) and (not source) and (zoom < 6):
     sys.exit(0)
     
 lang_def = utils.allowed_languages[0]
