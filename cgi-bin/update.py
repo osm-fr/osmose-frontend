@@ -31,9 +31,13 @@ if __name__ == "__main__":
     print
 
     form = cgi.FieldStorage()
+
+    if not "code" in form or not "url" in form:
+        print "FAIL"
+        sys.exit(1)
+
     code = form["code"].value
     url  = form["url"].value
-    
     #print code
     #print url
     
@@ -58,3 +62,6 @@ if __name__ == "__main__":
         #print sources[s]
         print "OK"
         sys.exit(0)
+
+    print "AUTH FAIL"
+    sys.exit(1)
