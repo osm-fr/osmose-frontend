@@ -402,6 +402,8 @@
   -
   <a href="/copyright.html">copyright</a>
   -
+  <a href="https://gitorious.org/osmose">sources</a>
+  -
   <a href="last-update.py">statistiques</a>
   </font></center>
 </div>
