@@ -3,11 +3,11 @@
 
 //base styles (not transparent)
 var all_available_styles= new Array();
-all_available_styles["osm_copy"]=["OSM.org copy (11/2008)"];
+//all_available_styles["osm_copy"]=["OSM.org copy (11/2008)"];
 all_available_styles["hiking"]=["Hiking"];
 all_available_styles["relief"]=["relief"];
-all_available_styles["corine"]=["Corine Land cover"];
-all_available_styles["test_zone"]=["test_zone"];
+//all_available_styles["corine"]=["Corine Land cover"];
+//all_available_styles["test_zone"]=["test_zone"];
 
 // overlays (transparent)
 var all_available_overlays= new Array();

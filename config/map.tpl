@@ -52,6 +52,9 @@
       
       var layerTilesAtHome = new OpenLayers.Layer.OSM.Osmarender("Osmarender");
       map.addLayer(layerTilesAtHome);
+
+//       var layerOpenSeaMap = new OpenLayers.Layer.TMS("OpenSeaMap", "http://tiles.openseamap.org/seamark/", { numZoomLevels: 18, type: 'png', getURL: getTileURL, isBaseLayer: false, displayOutsideMaxExtent: true});
+//      map.addLayer(layerOpenSeaMap);
                  
       //*****************************************************
       // Layers de beta.letuffe.org
@@ -89,6 +92,30 @@
       }
 		  
       /* Transparent overlays (must be png with alpha channel) */
+      var layerOpenSeaMap = new OpenLayers.Layer.TMS(
+              "OpenSeaMap",
+              "http://tiles.openseamap.org/seamark/",
+              { numZoomLevels: 18, 
+                type: 'png',
+                getURL: get_osm_url,
+                isBaseLayer: false,
+                visibility: false,
+                displayOutsideMaxExtent: true }
+             );
+      map.addLayer(layerOpenSeaMap);
+ 
+      var layerODBL = new OpenLayers.Layer.TMS(
+              "ODBL",
+              "http://osm.informatik.uni-leipzig.de/osm_tiles2/",
+              { numZoomLevels: 18, 
+                type: 'png',
+                getURL: get_osm_url,
+                isBaseLayer: false,
+                visibility: false,
+                displayOutsideMaxExtent: true }
+             );
+      map.addLayer(layerODBL);
+ 
       for ( var idx in all_available_overlays ) {
         var name = 'beta - ' + all_available_overlays[idx];
 	var overlay = new OpenLayers.Layer.TMS( 
