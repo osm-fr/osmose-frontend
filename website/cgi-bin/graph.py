@@ -100,7 +100,7 @@ def make_plt(the_source, the_class, the_item):
     data = get_data(the_source, the_class, the_item)
     text = get_text(the_source, the_class, the_item)
     
-    if not data:
+    if not data or len(data) < 2:
          raise SystemError("no data available")
     
     f_plt = open('data_%d_%d.plt'%(the_source, the_class), 'w')
