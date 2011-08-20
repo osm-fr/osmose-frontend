@@ -83,7 +83,7 @@ def get_marker(contour, symbole, couleur):
 
 ################################################################################
     
-marker_folder = os.path.join(utils.root_folder, "map/markers")
+marker_folder = os.path.join(utils.root_folder, "website", "map", "markers")
 commands.getstatusoutput("rm %s"%os.path.join(marker_folder,"*.png"))
 for i in all_items + [{'item': 0, 'marker_flag': 'O', 'marker_color': '#CCCCCC'}]:
     print i
