@@ -20,6 +20,9 @@ for g in utils.get_categories():
 ## K carré
 ## P plus
 ## M moins
+## F croix
+## = signe égal
+## | trait vertical
 
 def get_symb(symbole, x, y, r):
     if symbole in "O":
