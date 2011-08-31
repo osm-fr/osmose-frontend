@@ -37,12 +37,11 @@ PgCurs = PgConn.cursor()
 def get_data(the_source, the_class, the_item):
     all = []
     if the_source == -1:
-      sql =  "SELECT dynpoi_stats.source, dynpoi_stats.timestamp, SUM(dynpoi_stats.count) AS count "
       sql =  "SELECT dynpoi_stats.source, dynpoi_stats.timestamp, dynpoi_stats.count "
       sql += "FROM dynpoi_stats %s "
       sql += "WHERE 1=1 %s %s "
 #      sql += "GROUP BY dynpoi_stats.source, dynpoi_stats.timestamp "
-      sql += "ORDER BY timestamp;"
+      sql += "ORDER BY timestamp"
       if the_item == -1:
          join_item = ""
          where_item = ""
@@ -61,17 +60,30 @@ def get_data(the_source, the_class, the_item):
       last = dict() 
       prev_timestamp = 0
       for res in PgCurs.fetchall():
+        if prev_timestamp == 0:
+            prev_timestamp = res['timestamp']
+
         last[res["source"]] = res['count']
-        if (res['timestamp'] - prev_timestamp) > 7*24*3600:
+        if (res['timestamp'] - prev_timestamp) > 4*24*3600:
           sum = 0
           for v in last.itervalues():
             sum += v
-          all.append((res['timestamp'].strftime('%d/%m/%Y'), sum))
+          all.append((prev_timestamp.strftime('%d/%m/%Y'), sum))
           prev_timestamp = res['timestamp']
+
+      sum = 0
+      for v in last.itervalues():
+        sum += v
+      all.append((res['timestamp'].strftime('%d/%m/%Y'), sum))
+     
     else:
       PgCurs.execute("SELECT * FROM dynpoi_stats WHERE source=%d AND class=%d ORDER BY timestamp;"%(the_source, the_class))
       for res in PgCurs.fetchall():
         all.append((res['timestamp'].strftime('%d/%m/%Y'), res['count']))
+
+    if len(sys.argv)>1:
+        print all
+
     return all
 
 def get_text(the_source, the_class, the_item):
@@ -106,7 +118,8 @@ def make_plt(the_source, the_class, the_item):
     f_plt = open('data_%d_%d.plt'%(the_source, the_class), 'w')
     f_plt.write("set terminal png\n")
     f_plt.write("set title \"Source : %s\"\n"%get_src(the_source))
-    f_plt.write("set style data fsteps\n")
+#    f_plt.write("set style data fsteps\n")
+    f_plt.write("set style data line\n")
     f_plt.write("set timefmt \"%d/%m/%Y\"\n")
     f_plt.write("set xdata time\n")
     f_plt.write("set xrange [ \"%s\":\"%s\" ]\n"%(data[0][0], data[-1][0]))
@@ -137,14 +150,23 @@ def make_plt(the_source, the_class, the_item):
 ###########################################################################
 
 if len(sys.argv)>1:
-    print "test on source %d class %d item %d"%(int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]))
-    make_plt(int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]))
+    from optparse import OptionParser, SUPPRESS_HELP
+
+    parser = OptionParser()
+
+    parser.add_option("--source", dest="source", type="int", default=-1)
+    parser.add_option("--class", dest="class_", type="int", default=-1)
+    parser.add_option("--item", dest="item", type="int", default=-1)
+    (options, args) = parser.parse_args()
+
+    the_source = options.source
+    the_class  = options.class_
+    the_item   = options.item
+
+    print "test on source %d class %d item %d" % (the_source, the_class, the_item)
+    make_plt(the_source, the_class, the_item)
     sys.exit(0)
 
-if len(sys.argv)>1:
-    the_source = int(sys.argv[1])
-    the_class  = int(sys.argv[2])
-    the_class  = int(sys.argv[3])
 else:
     form   = cgi.FieldStorage()
     the_source = int(form.getvalue("source", "-1"))
