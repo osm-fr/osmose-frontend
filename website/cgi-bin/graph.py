@@ -36,25 +36,34 @@ PgCurs = PgConn.cursor()
 
 def get_data(the_source, the_class, the_item):
     all = []
-    if the_source == -1:
+    if the_source == -1 or the_class == -1:
       sql =  "SELECT dynpoi_stats.source, dynpoi_stats.timestamp, dynpoi_stats.count "
       sql += "FROM dynpoi_stats %s "
-      sql += "WHERE 1=1 %s %s "
+      sql += "WHERE 1=1 %s "
 #      sql += "GROUP BY dynpoi_stats.source, dynpoi_stats.timestamp "
       sql += "ORDER BY timestamp"
+
       if the_item == -1:
          join_item = ""
-         where_item = ""
+         where_sql = ""
       else:
          join_item = "JOIN dynpoi_class ON dynpoi_stats.source = dynpoi_class.source AND dynpoi_stats.class = dynpoi_class.class"
-         where_item = "AND dynpoi_class.item=%d" % the_item
+         where_sql = "AND dynpoi_class.item=%d " % the_item
 
       if the_class == -1:
-         where_class = ""
+         where_sql += ""
       else:
-         where_class = "AND dynpoi_stats.class=%d" % the_class
+         where_sql += "AND dynpoi_stats.class=%d " % the_class
 
-      sql = sql % (join_item, where_item, where_class)
+      if the_source == -1:
+         where_sql += ""
+      else:
+         where_sql += "AND dynpoi_stats.source=%d " % the_source
+
+      sql = sql % (join_item, where_sql)
+
+      if len(sys.argv)>1:
+        print sql
 
       PgCurs.execute(sql)
       last = dict() 
@@ -81,8 +90,8 @@ def get_data(the_source, the_class, the_item):
       for res in PgCurs.fetchall():
         all.append((res['timestamp'].strftime('%d/%m/%Y'), res['count']))
 
-    if len(sys.argv)>1:
-        print all
+#    if len(sys.argv)>1:
+#        print all
 
     return all
 
@@ -107,17 +116,17 @@ def get_src(the_source):
         PgCurs.execute("SELECT comment FROM dynpoi_source WHERE source=%d;"%(the_source))
         return PgCurs.fetchone()[0]
 
-def make_plt(the_source, the_class, the_item):
+def make_plt(options):
     
-    data = get_data(the_source, the_class, the_item)
-    text = get_text(the_source, the_class, the_item)
+    data = get_data(options.source, options.classe, options.item)
+    text = get_text(options.source, options.classe, options.item)
     
     if not data or len(data) < 2:
          raise SystemError("no data available")
     
-    f_plt = open('data_%d_%d.plt'%(the_source, the_class), 'w')
+    f_plt = open('data_%d_%d.plt'%(options.source, options.classe), 'w')
     f_plt.write("set terminal png\n")
-    f_plt.write("set title \"Source : %s\"\n"%get_src(the_source))
+    f_plt.write("set title \"Source : %s\"\n"%get_src(options.source))
 #    f_plt.write("set style data fsteps\n")
     f_plt.write("set style data line\n")
     f_plt.write("set timefmt \"%d/%m/%Y\"\n")
@@ -129,21 +138,21 @@ def make_plt(the_source, the_class, the_item):
     #f_plt.write("set ylabel "Concentration\nmg/l"\n")    
     f_plt.write("set grid\n")
     f_plt.write("set key left\n")
-    f_plt.write("plot 'data_%d_%d.dat' using 1:2 t '%s'\n"%(the_source, the_class, text))
+    f_plt.write("plot 'data_%d_%d.dat' using 1:2 t '%s'\n"%(options.source, options.classe, text))
     f_plt.close()
     
-    f_dat = open('data_%d_%d.dat'%(the_source, the_class), 'w')
+    f_dat = open('data_%d_%d.dat'%(options.source, options.classe), 'w')
     for x in data:
         f_dat.write("%s %d\n"%(x[0], x[1]))
     f_dat.close()
 
-    s, o = commands.getstatusoutput("gnuplot-nox data_%d_%d.plt"%(the_source, the_class))
+    s, o = commands.getstatusoutput("gnuplot-nox data_%d_%d.plt"%(options.source, options.classe))
     
     if s:
         raise SystemError("error in gnuplot generation")
     
-    os.remove("data_%d_%d.plt"%(the_source, the_class))
-    os.remove("data_%d_%d.dat"%(the_source, the_class))
+    os.remove("data_%d_%d.plt"%(options.source, options.classe))
+    os.remove("data_%d_%d.dat"%(options.source, options.classe))
     
     return o
     
@@ -155,26 +164,25 @@ if len(sys.argv)>1:
     parser = OptionParser()
 
     parser.add_option("--source", dest="source", type="int", default=-1)
-    parser.add_option("--class", dest="class_", type="int", default=-1)
+    parser.add_option("--class", dest="classe", type="int", default=-1)
     parser.add_option("--item", dest="item", type="int", default=-1)
+    parser.add_option("--not_source", dest="not_source", type="int", default=-1)
+    parser.add_option("--not_class", dest="not_class", type="int", default=-1)
+    parser.add_option("--not_item", dest="not_item", type="int", default=-1)
     (options, args) = parser.parse_args()
 
-    the_source = options.source
-    the_class  = options.class_
-    the_item   = options.item
-
-    print "test on source %d class %d item %d" % (the_source, the_class, the_item)
-    make_plt(the_source, the_class, the_item)
+    make_plt(options)
     sys.exit(0)
 
 else:
     form   = cgi.FieldStorage()
-    the_source = int(form.getvalue("source", "-1"))
-    the_class  = int(form.getvalue("class", "-1"))
-    the_item   = int(form.getvalue("item", "-1"))
+    class options:
+      source = int(form.getvalue("source", "-1"))
+      classe = int(form.getvalue("class", "-1"))
+      item   = int(form.getvalue("item", "-1"))
 
 try:
-    data = make_plt(the_source, the_class, the_item)
+    data = make_plt(options)
     print "Content-type: image/png"
     print ""
     print data
