@@ -94,11 +94,14 @@ for source_id in [str(y) for y in sorted([int(x) for x in sources])]:
     like = sources[source_id].get("like", source_id)
     if int(source_id) in lasts:
         age  = lasts[int(source_id)]["age"]
-        txt  = "il y a %dj, %dh, %02dm"%(int(age/86400), int(age/3600)%24, int(age/60)%60)
+        if age >= 0:
+            txt = "il y a %dj, %dh, %02dm"%(int(age/86400), int(age/3600)%24, int(age/60)%60)
+        else:
+            txt = "dans %dj, %dh, %02dm"%(int(-age/86400), int(-age/3600)%24, int(-age/60)%60)
         
         liste.append((sources[source_id]["comment"], age, txt, source_id))
     else:
-        liste.append((sources[source_id]["comment"], 0, "jamais généré", source_id))
+        liste.append((sources[source_id]["comment"], 1e10, "jamais généré", source_id))
 liste.sort(lambda x, y: -cmp(x[1], y[1]))
 
 #f = open("/tmp/update.sql", "w")
