@@ -54,7 +54,8 @@ if source_id==62:
 ## Other sources
 else:
     PgCursor.execute("DELETE FROM dynpoi_status WHERE source=%d AND class=%d AND subclass=%d AND elems='%s';"%(source_id,class_id,sub_class,elems))
-    PgCursor.execute("INSERT INTO dynpoi_status (source,class,subclass,elems,date,status) VALUES (%d,%d,%d,'%s',NOW(),'%s');"%(source_id,class_id,sub_class,elems,status))
+    sql = "INSERT INTO dynpoi_status SELECT source,class,subclass,elems,NOW(),'%s',subtitle_en FROM dynpoi_marker WHERE source=%d AND class=%d AND subclass=%d AND elems='%s';"%(status,source_id,class_id,sub_class,elems)
+    PgCursor.execute(sql)
     
 #PgCursor.execute("DELETE FROM dynpoi_marker WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status);")
 PgCursor.execute("DELETE FROM dynpoi_marker WHERE source=%d AND class=%d AND subclass=%d AND elems='%s';"%(source_id, class_id, sub_class, elems))
