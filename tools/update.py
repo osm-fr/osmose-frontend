@@ -76,31 +76,15 @@ def update(source, url, logger = printlogger()):
     ## parse the file
     parser.parse(f)
 
-    ## remove closed errors
-    #dbcurs.execute("SELECT status FROM dynpoi_status GROUP BY status;")
-    #sts = [x[0] for x in dbcurs.fetchall()]
-    #for st in sts:
-    #    dbcurs.execute("SELECT * FROM dynpoi_marker WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status WHERE status='%s') AND source = %d ORDER BY class,subclass,elems;"%(st, source_id))
-    #    data = ""
-    #    for res in dbcurs.fetchall():
-    #        data += '<div class="div_text"><font size="-1">\n'
-    #        if res["html_fr"]:
-    #            data += res["html_fr"]+"\n"
-    #        else:
-    #            data += res["html_en"]+"\n"
-    #        data += '</font></div>\n'
-    #    if data:
-    #        try:
-    #            f = open("/data/project/osmose/bad/%d-%s.html"%(source_id, st), "w")
-    #        except:
-    #            f = open("/dev/null", "w")
-    #        f.write(tpl.replace("#data#", data))
-    #        f.close()
-    #    else:
-    #        try:
-    #            os.remove("/data/project/osmose/bad/%d-%s.html"%(source_id, st))
-    #        except:
-    #            pass
+    ## update subtitle_en from new errors
+    dbcurs.execute("""SELECT * FROM dynpoi_marker
+                      WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status WHERE source = %s)""",
+                   (source_id, ))
+    for res in dbcurs.fetchall():
+        dbcurs.execute("""UPDATE dynpoi_status SET subtitle_en = %s
+                          WHERE source = %s AND class = %s AND subclass = %s AND elems = %s""",
+                       (res["subtitle_en"], res["source"], res["class"], res["subclass"], res["elems"]))
+
     dbcurs.execute("DELETE FROM dynpoi_marker WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status);")
     
     ## commit and close
