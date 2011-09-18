@@ -28,7 +28,6 @@ from tools import utils
 PgConn     = utils.get_dbconn()
 PgCursor   = PgConn.cursor()
 translate  = utils.translator()
-translate2 = utils.translator2()
 form       = cgi.FieldStorage()
 
 ###########################################################################
@@ -94,8 +93,8 @@ except:
     active_items = all_items
     
 dico["form"]      = u""
-dico["title"]     = translate2.get("frontend.map.title")
-dico["need_zoom"] = translate["need_zoom"]
+dico["title"]     = translate.get("frontend.map.title")
+dico["need_zoom"] = translate.get("fr.frontend.map.need_zoom")
 
 ###########################################################################
 ## formulaire

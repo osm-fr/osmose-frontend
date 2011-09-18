@@ -15,8 +15,8 @@ en.frontend.bubble.done corrected
 fr.frontend.bubble.done corrigé
 
 # frontend.bubble.false
-en.frontend.bubble.done not an error
-fr.frontend.bubble.done faux positif
+en.frontend.bubble.false not an error
+fr.frontend.bubble.false faux positif
 
 # frontend.bubble.close
 en.frontend.bubble.close close

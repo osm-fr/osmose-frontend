@@ -28,7 +28,7 @@ root_folder = os.environ["OSMOSE_ROOT"]
 sys.path.append(root_folder)
 from tools import utils
 
-translate = utils.translator()._data
+translate = utils.translator()
 PgConn    = utils.get_dbconn()
 PgCursor  = PgConn.cursor()
 
@@ -204,7 +204,7 @@ for res in PgCursor.fetchall():
             html += "<b>%s</b> = %s<br>"%(t[0], t[1])
         html += "</div>"
 
-    html += translate[lang_cur][u"date"].encode("utf8") + datetime.datetime.fromtimestamp(b_date).strftime("%Y-%m-%d")
+    html += translate.get(u"date").encode("utf8") + datetime.datetime.fromtimestamp(b_date).strftime("%Y-%m-%d")
     html += "</div>"
 
     ## bottom links
@@ -218,14 +218,10 @@ for res in PgCursor.fetchall():
     html += "<a href=\"http://localhost:8111/load_and_zoom?left=%f&bottom=%f&right=%f&top=%f&select="%(minlon,minlat,maxlon,maxlat)+res["elems"].replace("_",",")+"\" target=\"hiddenIframe\">josm zone</a> "
     html += "</div>"
     html += "<div class=\"bulle_maj\">"
-    html += "<b><u>%s :</u></b> "%translate[lang_cur][u"set_status"].encode("utf8")
-    html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"status.py?e=%s&s=done\" target=\"hiddenIframe\">%s</a> "%(error_id, translate[lang_cur][u"done"].encode("utf8"))
-    html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"status.py?e=%s&s=false\" target=\"hiddenIframe\">%s</a> "%(error_id, translate[lang_cur][u"false"].encode("utf8"))
+    html += "<b><u>%s :</u></b> " % translate.get("frontend.bubble.set_status").encode("utf8")
+    html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"status.py?e=%s&s=done\" target=\"hiddenIframe\">%s</a> "%(error_id, translate.get("frontend.bubble.done").encode("utf8"))
+    html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"status.py?e=%s&s=false\" target=\"hiddenIframe\">%s</a> "%(error_id, translate.get(u"frontend.bubble.false").encode("utf8"))
     html += "</div>"
-    
-    #html = html.replace("#CLOSE#",translate[lang][u"close"],1)
-    #else:
-    #    vals.append(u"'%s'"%utils.pg_escape(subtitle[:1000]+"[...]"))            
     
     html = "<font size=\"-1\">%s</font>"%html
     

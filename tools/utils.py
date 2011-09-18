@@ -8,8 +8,7 @@ from xml.sax import make_parser, handler
 
 root_folder       = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 allowed_languages = ["en", "fr"]
-translation_file  = os.path.join(root_folder, "config/translate.xml")
-translation_file2 = os.path.join(root_folder, "config/translate.txt")
+translation_file  = os.path.join(root_folder, "config/translate.txt")
 config_file       = os.path.join(root_folder, "config/config.xml")
 pg_user           = "osmose"
 pg_base           = "osmose"
@@ -70,35 +69,10 @@ def get_categories(lang = get_language()):
 
 class translator:
     
-    def __init__(self):
-        import xml.etree.ElementTree
-        self._lang = get_language()
-        self._data = {}
-        for l in allowed_languages:
-            self._data[l] = {}
-        xml = xml.etree.ElementTree.parse(translation_file)
-        for k in xml.findall("key"):
-            for v in k.findall("value"):
-                lang = v.attrib["lang"]
-                if lang not in self._data:
-                    self._data[lang] = {}
-                self._data[lang][k.attrib["name"]] = v.attrib["text"]
+    def __init__(self, language = get_language(), default_language = allowed_languages[0], translation = translation_file):
 
-                
-    def __getitem__(self, key):
-        if key in self._data[self._lang]:
-            return self._data[self._lang][key]
-        for l in allowed_languages:
-            if key in self._data[l]:
-                return self._data[l][key]
-        return "?"
-
-class translator2:
-    
-    def __init__(self, language = get_language(), default_language = allowed_languages[0], translation = translation_file2):
-
-        self._lang0 = language
-        self._lang1 = default_language
+        self.client_language = language
+        self.default_language = default_language
         
         self._data = {}
         for l in open(translation).readlines():
@@ -112,10 +86,10 @@ class translator2:
                 
     def get(self, item, args = None):
         
-        if "%s.%s"%(self._lang0, item) in self._data:
-            item = self._data["%s.%s"%(self._lang0, item)]
-        elif "%s.%s"%(self._lang1, item) in self._data:
-            item = self._data["%s.%s"%(self._lang1, item)]
+        if "%s.%s" % (self.client_language, item) in self._data:
+            item = self._data["%s.%s" % (self.client_language, item)]
+        elif "%s.%s" % (self.default_language, item) in self._data:
+            item = self._data["%s.%s" % (self.default_language, item)]
         else:
             item = u"no translation"
             
