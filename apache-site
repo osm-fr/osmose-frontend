@@ -1,0 +1,89 @@
+<VirtualHost *:80>
+
+        ServerAdmin chove@crans.org
+	
+	ServerName osm-osmose.crans.org
+	ServerAlias osmose.openstreetmap.fr
+	
+	SetEnv OSMOSE_ROOT /data/project/osmose/
+	
+	DocumentRoot /data/project/osmose/website/
+        <Directory />
+	        AddDefaultCharset UTF-8
+                Options FollowSymLinks Indexes MultiViews
+	        AllowOverride None
+	</Directory>
+	
+	ExpiresActive On
+	ExpiresByType image/png "access plus 1 month"
+
+        RewriteEngine On
+        RewriteRule ^/$ /map/cgi-bin/index.py [R,L]
+	
+	## /*/status.py
+	RewriteRule ^/text/cgi-bin/status.py(.*)$ /cgi-bin/status.py$1 [R,L]
+	RewriteRule ^/map/cgi-bin/status.py(.*)$  /cgi-bin/status.py$1 [R,L]
+	RewriteRule ^/bad/status.py(.*)$          /cgi-bin/status.py$1 [R,L]	
+	RewriteRule ^/user/cgi-bin/status.py(.*)$ /cgi-bin/status.py$1 [R,L]
+	
+	## anciens scripts de /map/cgi-bin/ délplacés
+	#Alias /map/cgi-bin/update.py /data/project/osmose/cgi-bin/update.py
+	RewriteRule ^/map/cgi-bin/update.py(.*)$      /cgi-bin/update.py$1 [T=application/x-httpd-cgi]
+	RewriteRule ^/map/cgi-bin/all-update.py(.*)$  /cgi-bin/allupdate.py$1 [R,L]
+	RewriteRule ^/map/cgi-bin/info.py(.*)$        /cgi-bin/info.py$1 [R,L]
+	RewriteRule ^/map/cgi-bin/last-update.py(.*)$ /cgi-bin/last-update.py$1 [R,L]
+
+	## /user/
+        RewriteRule ^/user/cgi-bin/errors.py(.*)$ http://osmose.openstreetmap.fr/text/cgi-bin/byuser.py$1 [R,L]
+        RewriteRule ^/user/cgi-bin/stats.sh$ http://osmose.openstreetmap.fr/text/cgi-bin/byuser-stats.sh [R,L]
+        RewriteRule ^/user/?$ http://osmose.openstreetmap.fr/text/$1 [R,L]
+		
+        ScriptAlias /cgi-bin/ /data/project/osmose/website/cgi-bin/
+        <Directory /data/project/osmose/website/cgi-bin/>
+                AllowOverride None
+	        Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+                Order allow,deny
+                Allow from all
+        </Directory>
+					
+        ScriptAlias /text/cgi-bin/ /data/project/osmose/website/text/cgi-bin/
+        <Directory /data/project/osmose/website/text/cgi-bin/>
+                AllowOverride None
+	        Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+                Order allow,deny
+                Allow from all
+        </Directory>
+					
+        RewriteRule ^/map/?$ /map/cgi-bin/index.py [R,L]
+        ScriptAlias /map/cgi-bin/ /data/project/osmose/website/map/cgi-bin/
+	<Directory /data/project/osmose/website/map/cgi-bin/>
+	        AllowOverride None
+		Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+                Order allow,deny
+                Allow from all
+        </Directory>
+
+        RewriteRule ^/map-test/?$ /map-test/cgi-bin/index.py [R,L]
+        ScriptAlias /map-test/cgi-bin/ /data/project/osmose/website/map-test/cgi-bin/
+	<Directory /data/project/osmose/website/map-test/cgi-bin/>
+	        AllowOverride None
+		Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+                Order allow,deny
+                Allow from all
+        </Directory>
+        Alias /map-test/ /data/project/osmose/website/map-test/static/
+
+        ScriptAlias /api/ /data/project/osmose/website/api/
+	<Directory /data/project/osmose/website/api/>
+	        AllowOverride None
+		Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+                Order allow,deny
+                Allow from all
+        </Directory>
+
+        ErrorLog /var/log/apache2/osmose-error.log
+        LogLevel warn
+        CustomLog /var/log/apache2/osmose-access.log combined
+        ServerSignature On
+
+</VirtualHost>
