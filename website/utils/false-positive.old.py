@@ -27,6 +27,9 @@ root_folder = os.environ["OSMOSE_ROOT"]
 sys.path.append(root_folder)
 from tools import utils
 
+import cgitb
+cgitb.enable()
+
 PgConn   = utils.get_dbconn()
 PgCursor = PgConn.cursor()
 
@@ -44,45 +47,21 @@ else:
     source = None
     item   = None
 
+if "false-positive" in os.environ["SCRIPT_NAME"]:
+    gen = "false-positive"
+elif "info" in os.environ["SCRIPT_NAME"]:
+    gen = "info"
+
+
 ###########################################################################
 ## page headers
 
-print "Content-Type: text/html; charset=utf-8"
-print
+utils.print_header()
 
-print "<html>"
-print "<head>"
-print "  <style type=\"text/css\">"
-print "  table"
-print "  {"
-print "    border-width: 1px 1px 1px 1px;"
-print "    border-style: solid;"
-print "    border-collapse: collapse;"
-print "  }"
-print "  td"
-print "  {"
-print "    border-width: 1px 1px 1px 1px;"
-print "    border-style: solid;"
-print "    margin: 0px;"
-print "    padding: 5px;"
-#print "    font-size: -1;"
-print "  }"
-print "  a:link {"
-print "    color: black;"
-print "  }"
-print "    a:visited {"
-print "    color: black;"
-print "  }"
-print "    a:hover {"
-print "    color: black;"
-print "  }"
-print "  </style>"
-print "</head>"
-print "<body bgcolor=\"#FFFFFF\">"
-print """
-<a href="false.py">false.py</a>
-<br>
-"""
+print "<a href=\"false-positive.py\">Accueil des faux positifs</a><br>"
+print "<a href=\"\">Faux positifs</a> <a href=\"info.py?%s\">Informations</a>" % os.environ["QUERY_STRING"]
+print "<br><br>"
+
 ###########################################################################
 
 sql = """
@@ -124,12 +103,16 @@ elif item <> None:
 else:
     sql = sql%""
 
-#print sql
-    
 ###########################################################################
 
 print "<table>"
-print "<tr bgcolor=\"#999999\"><td colspan=\"2\" align=\"center\"><b>source</b></td><td align=\"center\"><b>class</b></td><td colspan=\"3\" align=\"center\"><b>item</b></td><td align=\"center\"><b>title_en</b></td><td align=\"center\"><b>count</b></td></tr>"
+print "<tr>"
+print "  <th colspan=\"2\">source</th>"
+print "  <th>class</th>"
+print "  <th colspan=\"3\">item</th>"
+print "  <th>title_en</th>"
+print "  <th>count</th>"
+print "</tr>"
 PgCursor.execute(sql)
 num = 0
 odd = True
@@ -137,17 +120,15 @@ for res in PgCursor.fetchall():
     num += 1
     odd = not odd
     if odd:
-        print "<tr bgcolor=\"#BBBBBB\">"
+        print "<tr class='odd'>"
     else:
-        print "<tr bgcolor=\"#EEEEEE\">"        
-    print "<td width=\"60\"><a href=\"false.py?source=%d\">%d</a> <a href=\"/map/cgi-bin/index.py?source=%d\">map</a></td>"%(res[0],res[0],res[0])
+        print "<tr class='even'>"
+
+    print "<td width=\"60\"><a href=\"?source=%d\">%d</a> <a href=\"/map/?source=%d\">map</a></td>"%(res[0],res[0],res[0])
     print "<td width=\"300\">%s</td>"%res[6]
-    print "<td width=\"100\">%d <a href=\"/map/cgi-bin/index.py?source=%d-%d\">map</a> <a href=\"/cgi-bin/graph.py?source=%d&class=%d\">graph</a></td>"%(res[1], res[0], res[1], res[0], res[1])
-    if res[3] or not res[2]:
-        print "<td width=\"20\"><img src=\"/map/markers/marker-l-%d.png\"></td>"%res[2]
-    else:
-        print "<td width=\"20\"></td>"
-    print "<td width=\"70\"><a href=\"false.py?item=%d\">%d</a> <a href=\"/map/cgi-bin/index.py?item=%d\">map</a></td>"%(res[2],res[2],res[2])
+    print "<td width=\"100\">%d <a href=\"/map/?source=%d-%d\">map</a> <a href=\"graph.py?source=%d&amp;class=%d\">graph</a></td>"%(res[1], res[0], res[1], res[0], res[1])
+    print "<td title=\"%s\"><img src=\"/map/markers/marker-l-%d.png\" alt=\"%s\"></td>" % (res[2], res[2], res[2])
+    print "<td width=\"70\"><a href=\"?item=%d\">%d</a> <a href=\"/map/?item=%d\">map</a></td>"%(res[2],res[2],res[2])
     if res[3]:
         print "<td width=\"150\">%s</td>"%res[3]
     else:
@@ -157,18 +138,19 @@ for res in PgCursor.fetchall():
     print "</tr>"
 print "</table>"
 
+
 if num < 50:
     sql = """
 select
-  dynpoi_class.source,
-  dynpoi_class.class,
-  dynpoi_class.item,
-  dynpoi_item.menu_en,
-  dynpoi_class.title_en,
-  dynpoi_source.comment,
+  dynpoi_class.source AS source,
+  dynpoi_class.class AS class,
+  dynpoi_class.item AS item,
+  dynpoi_item.menu_en AS menu_en,
+  dynpoi_class.title_en AS title_en,
+  dynpoi_source.comment AS source_comment,
   dynpoi_status.elems AS elems,
-  dynpoi_status.date,
-  dynpoi_status.subtitle_en
+  dynpoi_status.date AS date,
+  dynpoi_status.subtitle_en AS subtitle_en
 from dynpoi_class
   left join dynpoi_item
     on dynpoi_class.item = dynpoi_item.item
@@ -193,26 +175,32 @@ order by
     else:
         sql = sql%""
 
+    print "<br>"
+
     print "<table>"
-    print "<tr bgcolor=\"#999999\"><td colspan=\"1\" align=\"center\"><b>source</b></td><td align=\"center\"><b>class</b></td><td colspan=\"3\" align=\"center\"><b>item</b></td><td align=\"center\"><b>elems</b></td><td align=\"center\"><b>subtitle</b><td align=\"center\"><b>date</b></td></tr>"
+    print "<tr>"
+    print "  <th colspan=\"1\">source</th>"
+    print "  <th>class</th>"
+    print "  <th colspan=\"3\">item</th>"
+    print "  <th>elems</th>"
+    print "  <th>subtitle</th>"
+    print "  <th>date</th>"
+    print "</tr>"
     PgCursor.execute(sql)
     odd = True
     for res in PgCursor.fetchall():
         num += 1
         odd = not odd
         if odd:
-            print "<tr bgcolor=\"#BBBBBB\">"
+            print "<tr class='odd'>"
         else:
-            print "<tr bgcolor=\"#EEEEEE\">"        
-        print "<td title=\"%s\"><a href=\"false.py?source=%d\">%d</a> </td>"%(res[5],res[0],res[0])
-        print "<td>%d </td>"%(res[1])
-        if res[3] or not res[2]:
-            print "<td><img src=\"/map/markers/marker-l-%d.png\"></td>"%res[2]
-        else:
-            print "<td></td>"
-        print "<td><a href=\"false.py?item=%d\">%d</a> </td>"%(res[2],res[2])
+            print "<tr class='even'>"
+        print "<td title=\"%(cmt)s\"><a href=\"?source=%(src)d\">%(src)d</a> </td>" % {"cmt": res["source_comment"], "src": res["source"]}
+        print "<td>%d</td>"%(res["class"])
+        print "<td title=\"%(item)d\"><img src=\"/map/markers/marker-l-%(item)d.png\" alt=\"%(item)d\"></td>" % {"item": res["item"]}
+        print "<td><a href=\"?item=%d\">%d</a> </td>"%(res["item"],res["item"])
         if res[3]:
-            print "<td>%s</td>"%res[3]
+            print "<td title=\"%s\">%s</td>" % (res["title_en"], res["menu_en"])
         else:
             print "<td></td>"
 
@@ -224,11 +212,12 @@ order by
                 print "<b><a target=\"_blank\" href=\"http://www.openstreetmap.org/browse/%s/%s\">%s %s</a></b>"%(m.group(1), m.group(2), m.group(1), m.group(2))
 
         print "</td>"
-        print "<td>%s</td>"%res[8]
-        print "<td>%s</td>"%res[7]
+        print "<td>%s</td>"%res["subtitle_en"]
+        date = str(res["date"])
+        print "<td>%s</td>" % date[:10]
         print "</tr>"
     print "</table>"
 
 
 ###########################################################################
-print "</body>"
+utils.print_tail()

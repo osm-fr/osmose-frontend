@@ -2,9 +2,13 @@
 ## front end
 ################################################################################
 
+# frontend.title
+en.frontend.title OsmOse - OpenStreetMap Oversight Search Engine
+fr.frontend.title OsmOse - OpenStreetMap Oversight Search Engine
+
 # frontend.map.title
-en.frontend.map.title OsmOse - OpenStreetMap Oversight Search Engine - en
-fr.frontend.map.title OsmOse - OpenStreetMap Oversight Search Engine - fr
+en.frontend.map.title OsmOse - map
+fr.frontend.map.title OsmOse - carte
 
 # frontend.map.need_zoom
 en.frontend.map.need_zoom no bubbles at this zoom factor

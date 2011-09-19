@@ -228,6 +228,6 @@ for res in PgCursor.fetchall():
     ##
     ############################################################
 
-    marker   = "../markers/marker-b-%d.png" % (res["item"])
+    marker   = "markers/marker-b-%d.png" % (res["item"])
     print "\t".join([lat, lon, marker_id, marker, "17,33", "-8,-33", html])
     

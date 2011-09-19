@@ -110,10 +110,9 @@ for categ in categories:
     dico["form"] += "\n"
     
     for err in categ["item"]:
-        dico["form"] += "<img vspace='0' src=\"../markers/marker-l-%d.png\" alt=\"\">\n"%(err["item"])
+        dico["form"] += "<img vspace='0' src=\"markers/marker-l-%d.png\" alt=\"\">\n"%(err["item"])
         dico["form"] += "<input type='checkbox' id='item%d' name='item%d' onclick='checkbox_click(this)'%s>\n"%(err["item"], err["item"], {True:" checked=\"checked\"", False:""}[err["item"] in active_items])
-        #dico["form"] += u"<span class=\"check\"><a href=\"info.py?item=%d\">%s</a> (%d)</span><br>\n"%(err["item"],err["menu"], err_cpt.get(err["item"], 0))
-        dico["form"] += u"<span class=\"check\"><a href=\"info.py?item=%d\">%s</a></span><br>\n"%(err["item"],err["menu"])
+        dico["form"] += u"<span class=\"check\"><a href=\"../utils/info.py?item=%d\">%s</a></span><br>\n"%(err["item"],err["menu"])
             
     dico["form"] += "</div>\n"
         

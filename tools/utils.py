@@ -67,6 +67,28 @@ def get_categories(lang = get_language()):
         result.append(res)
     return result
 
+###########################################################################
+## templates
+
+def print_template(filename, rules = None):
+    page = open(os.path.join(root_folder, "config", filename)).read().decode("utf8")
+    if rules:
+        for x in rules:
+            page = page.replace("#%s#"%x, rules[x].strip())
+    print page.encode("utf8")
+
+def print_header(translate = None):
+    if not translate:
+        translate = translator()
+    rules = { "title" : translate.get("frontend.title") }
+    print_template("head.tpl", rules)
+
+def print_tail():
+    print_template("tail.tpl")
+
+###########################################################################
+## translation
+
 class translator:
     
     def __init__(self, language = get_language(), default_language = allowed_languages[0], translation = translation_file):
