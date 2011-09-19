@@ -85,7 +85,16 @@ def update(source, url, logger = printlogger()):
                           WHERE source = %s AND class = %s AND subclass = %s AND elems = %s""",
                        (res["subtitle_en"], res["source"], res["class"], res["subclass"], res["elems"]))
 
-    dbcurs.execute("DELETE FROM dynpoi_marker WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status);")
+    ## remove false positive no longer present
+    dbcurs.execute("""DELETE FROM dynpoi_status
+                      WHERE (source,class,subclass,elems) NOT IN (SELECT source,class,subclass,elems FROM dynpoi_marker WHERE source = %s) AND
+                            source = %s AND
+                            date < now()-interval '7 day'""",
+                   (source_id, source_id, ))
+
+    dbcurs.execute("""DELETE FROM dynpoi_marker
+                      WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status WHERE source = %s)""",
+                   (source_id, ))
     
     ## commit and close
     dbconn.commit()
