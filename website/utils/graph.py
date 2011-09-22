@@ -39,67 +39,63 @@ PgCurs = PgConn.cursor()
 
 def get_data(options):
     all = []
-    if options.source == -1 or options.classe == -1:
-      sql =  "SELECT dynpoi_stats.source, dynpoi_stats.timestamp, dynpoi_stats.count "
-      sql += "FROM dynpoi_stats %s "
-      sql += "WHERE 1=1 %s "
-#      sql += "GROUP BY dynpoi_stats.source, dynpoi_stats.timestamp "
-      sql += "ORDER BY timestamp"
+    sql =  "SELECT dynpoi_stats.source, dynpoi_stats.class, dynpoi_stats.timestamp, dynpoi_stats.count "
+    sql += "FROM dynpoi_stats %s "
+    sql += "WHERE 1=1 %s "
+    sql += "ORDER BY timestamp"
 
-      join_item = ""
-      where_sql = ""
+    join_item = ""
+    where_sql = ""
 
-      if options.item >= 0:
-         join_item += "JOIN dynpoi_class ON dynpoi_stats.source = dynpoi_class.source AND dynpoi_stats.class = dynpoi_class.class "
-         where_sql += "AND dynpoi_class.item=%d " % options.item
+    if options.item >= 0:
+       join_item += "JOIN dynpoi_class ON dynpoi_stats.source = dynpoi_class.source AND dynpoi_stats.class = dynpoi_class.class "
+       where_sql += "AND dynpoi_class.item=%d " % options.item
 
-      if options.classe >= 0:
-         where_sql += "AND dynpoi_stats.class=%d " % options.classe
+    if options.classe >= 0:
+       where_sql += "AND dynpoi_stats.class=%d " % options.classe
 
-      if options.source >= 0:
-         where_sql += "AND dynpoi_stats.source=%d " % options.source
+    if options.source >= 0:
+       where_sql += "AND dynpoi_stats.source=%d " % options.source
 
-      if options.country:
-         join_item += "JOIN dynpoi_source ON dynpoi_stats.source = dynpoi_source.source "
-         where_sql += "AND dynpoi_source.comment LIKE '%%-%s' " % options.country
+    if options.country:
+       join_item += "JOIN dynpoi_source ON dynpoi_stats.source = dynpoi_source.source "
+       where_sql += "AND dynpoi_source.comment LIKE '%%-%s' " % options.country
 
-      sql = sql % (join_item, where_sql)
+    sql = sql % (join_item, where_sql)
 
-      if len(sys.argv)>1:
-        print sql
+    if len(sys.argv)>1:
+      print sql
 
-      PgCurs.execute(sql)
-      last = dict()
-      timestamp = 0
-      prev_timestamp = 0
-      for res in PgCurs.fetchall():
-        timestamp = res['timestamp']
-        if prev_timestamp == 0:
-            prev_timestamp = timestamp
+    PgCurs.execute(sql)
 
-        last[res["source"]] = res['count']
-        if (timestamp - prev_timestamp) > 4*24*3600:
-          sum = 0
-          for v in last.itervalues():
-            sum += v
-          all.append((prev_timestamp.strftime('%d/%m/%Y'), sum))
+    if options.source == -1:
+      delay = 4*24*3600
+    else:
+      delay = 1
+
+    last = dict()
+    timestamp = 0
+    prev_timestamp = 0
+    for res in PgCurs.fetchall():
+      timestamp = res['timestamp']
+      if prev_timestamp == 0:
           prev_timestamp = timestamp
 
-      sum = 0
-      for v in last.itervalues():
-        sum += v
-      if timestamp == 0:
-        return []
-      all.append((timestamp.strftime('%d/%m/%Y'), sum))
+      last[str(res["source"]) + "-" + str(res["class"])] = res['count']
+      if (timestamp - prev_timestamp) > delay:
+        sum = 0
+        for v in last.itervalues():
+          sum += v
+        all.append((prev_timestamp.strftime('%d/%m/%Y'), sum))
+        prev_timestamp = timestamp
+
+    sum = 0
+    for v in last.itervalues():
+      sum += v
+    if timestamp == 0:
+      return []
+    all.append((timestamp.strftime('%d/%m/%Y'), sum))
      
-    else:
-      PgCurs.execute("SELECT * FROM dynpoi_stats WHERE source=%d AND class=%d ORDER BY timestamp;"%(options.source, options.classe))
-      for res in PgCurs.fetchall():
-        all.append((res['timestamp'].strftime('%d/%m/%Y'), res['count']))
-
-#    if len(sys.argv)>1:
-#        print all
-
     return all
 
 def get_text(options):
@@ -141,7 +137,7 @@ def make_plt(options):
     f_plt.write("set xrange [ \"%s\":\"%s\" ]\n"%(data[0][0], data[-1][0]))
     f_plt.write("set format x \"%d/%m\\n%Y\"\n")
     #f_plt.write("set xlabel \"Date\nTime\"\n")
-    f_plt.write("set yrange [ %d : %d ]\n"%(100*(min([x[1] for x in data])/100),100*(max([x[1] for x in data])/100+2)))
+    f_plt.write("set yrange [ %d : %d ]\n"%(0,100*(max([x[1] for x in data])/100+2)))
     #f_plt.write("set ylabel "Concentration\nmg/l"\n")    
     f_plt.write("set grid\n")
     f_plt.write("set key left\n")
