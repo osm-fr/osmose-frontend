@@ -37,6 +37,7 @@ form    = cgi.FieldStorage()
 source  = form.getvalue("source", None)
 item    = form.getvalue("item", None)
 country = form.getvalue("country", None)
+num_points = form.getvalue("points", None)
 
 if source:
     source = int(source)
@@ -44,12 +45,21 @@ if item:
     item   = int(item)
 if country and not re.match(r"^([a-z_]+)$", country):
     country = None
+if num_points:
+    num_points = int(num_points)
+    if num_points <= 0:
+        num_points = None
+    elif num_points > 10000:
+        num_points = 10000
 
 if "info" in os.environ["SCRIPT_NAME"]:
     gen = "info"
     default_show_all = True
 elif "false-positive" in os.environ["SCRIPT_NAME"]:
     gen = "false-positive"
+    default_show_all = False
+elif "done" in os.environ["SCRIPT_NAME"]:
+    gen = "done"
     default_show_all = False
 else:
     sys.exit(0)
@@ -70,7 +80,7 @@ utils.print_header()
 
 query = os.environ["QUERY_STRING"]
 
-print "<a href=\"info.py?%s\">Informations</a> <a href=\"false-positive.py?%s\">Faux positifs</a>" % ((query,) * 2)
+print "<a href=\"info.py?%s\">Informations</a> <a href=\"done.py?%s\">Corrigé</a> <a href=\"false-positive.py?%s\">Faux positifs</a>" % ((query,) * 3)
 print "<a href=\"graph.py?%s\">Graphe</a> <a href=\"/map/?%s\">Carte</a>" % ((query,) * 2)
 print "<br><br>"
 
@@ -99,8 +109,8 @@ GROUP BY
   dynpoi_class.title_en,
   dynpoi_source.comment
 ORDER BY
-  dynpoi_class.source,
-  dynpoi_class.item;
+  dynpoi_class.item,
+  dynpoi_class.source
 """
 
 if show_all:
@@ -119,6 +129,14 @@ elif gen == "false-positive":
     opt_join = """  %s JOIN dynpoi_status
     ON dynpoi_class.source = dynpoi_status.source
     AND dynpoi_class.class = dynpoi_status.class
+    AND dynpoi_status.status = 'false'
+""" % opt_left_join
+elif gen == "done":
+    opt_count = "count(dynpoi_status.source)"
+    opt_join = """  %s JOIN dynpoi_status
+    ON dynpoi_class.source = dynpoi_status.source
+    AND dynpoi_class.class = dynpoi_status.class
+    AND dynpoi_status.status = 'done'
 """ % opt_left_join
 
 opt_where = ""
@@ -133,20 +151,26 @@ if country <> None:
 if source == None and item == None and country == None:
     if show_all:
         opt_count = "-1"
-    if gen == "info":
-        opt_join = ""
+        if gen == "info":
+            opt_join = ""
 
 sql = sql % (opt_count, opt_join, opt_where)
 
 ###########################################################################
 
-print "<table>"
+print "<table class=\"sortable\">"
+print "<thead>"
 print "<tr>"
-print "  <th colspan=\"2\">source</th>"
-print "  <th colspan=\"3\">item</th>"
+print "  <th>#</th>"
+print "  <th>source</th>"
+print "  <th></th>"
+print "  <th>#</th>"
+print "  <th>item</th>"
 print "  <th>title_en</th>"
 print "  <th>count</th>"
 print "</tr>"
+
+print "</thead>"
 PgCursor.execute(sql)
 total = 0
 odd = True
@@ -173,18 +197,27 @@ for res in PgCursor.fetchall():
     count = res["count"]
     if count == -1:
         count = "N/A"
-        total += 1000
     else:
         total += count
     print "<td><a href=\"?source=%d&amp;item=%d\">%s</a></td>" % (res["source"], res["item"], count)
     print "</tr>"
+
+if total > 0:
+    print "<tfoot>"
+    print "<tr>"
+    print "  <th colspan=\"6\">Total</th>"
+    print "  <th style=\"text-align: left\">%s</th>" % total
+    print "</tr>"
+    print "</tfoot>"
+
 print "</table>"
 ###########################################################################
 
-if total < 1000:
+if (total > 0 and total < 1000) or num_points:
     sql = """
 SELECT
   dynpoi_class.source AS source,
+  dynpoi_class.class AS class,
   dynpoi_class.item AS item,
   dynpoi_item.menu_en AS menu_en,
   dynpoi_class.title_en AS title_en,
@@ -209,23 +242,30 @@ ORDER BY
     if gen == "info":
         opt_date = "-1"
         opt_order = "subtitle_en,"
-    elif gen == "false-positive":
+    elif gen in ("false-positive", "done"):
         opt_date = "date"
         opt_order = "dynpoi_status.date DESC,"
+    if num_points:
+        sql += "LIMIT %d" % num_points
 
     sql = sql % (opt_date, opt_join, opt_where, opt_order)
 
     print "<br>"
 
-    print "<table>"
+    print "<table class=\"sortable\">"
+    print "<thead>"
     print "<tr>"
-    print "  <th colspan=\"1\">source</th>"
-    print "  <th colspan=\"3\">item</th>"
+    print "  <th title=\"source\">src</th>"
+    print "  <th title=\"class\">cl</th>"
+    print "  <th></th>"
+    print "  <th>#</th>"
+    print "  <th>item</th>"
     print "  <th>elems</th>"
     print "  <th>subtitle</th>"
     if opt_date != "-1":
         print "  <th>date</th>"
     print "</tr>"
+    print "</thead>"
     PgCursor.execute(sql)
     odd = True
     for res in PgCursor.fetchall():
@@ -235,6 +275,7 @@ ORDER BY
         else:
             print "<tr class='even'>"
         print "<td title=\"%(cmt)s\"><a href=\"?source=%(src)d\">%(src)d</a> </td>" % {"cmt": res["source_comment"], "src": res["source"]}
+        print "<td>%d</td>" % res["class"]
         print "<td title=\"%(item)d\"><img src=\"/map/markers/marker-l-%(item)d.png\" alt=\"%(item)d\"></td>" % {"item": res["item"]}
         print "<td><a href=\"?item=%d\">%d</a> </td>"%(res["item"],res["item"])
         if res[3]:
@@ -242,13 +283,19 @@ ORDER BY
         else:
             print "<td></td>"
 
-        print "<td>"
+        printed_td = False
         if res["elems"]:
             elems = res["elems"].split("_")
             for e in elems:
                 m = re.match(r"([a-z]+)([0-9]+)", e)
                 if m:
-                    print "<b><a target=\"_blank\" href=\"http://www.openstreetmap.org/browse/%s/%s\">%s %s</a></b>"%(m.group(1), m.group(2), m.group(1), m.group(2))
+                    if not printed_td:
+                        print "<td sorttable_customkey=\"%02d%s\">" % (ord(m.group(1)[0]), m.group(2))
+                        printed_td = True
+                    print "<a target=\"_blank\" href=\"http://www.openstreetmap.org/browse/%s/%s\">%s %s</a>"%(m.group(1), m.group(2), m.group(1), m.group(2))
+
+        if not printed_td:
+            print "<td>"
 
         print "</td>"
         if res["subtitle_en"]:
@@ -257,7 +304,7 @@ ORDER BY
             print "<td></td>"
         if opt_date != "-1":
             date = str(res["date"])
-            print "<td>%s</td>" % date[:10]
+            print "<td>%s&nbsp;%s</td>" % (date[:10], date[11:16])
         print "</tr>"
     print "</table>"
 
