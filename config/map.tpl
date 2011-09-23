@@ -417,6 +417,8 @@
   - -->
   <!--<a href="/clc">polygones clc</a>
   - -->
+  <a href="http://wiki.openstreetmap.org/wiki/FR:Osmose">Aide</a>
+  - 
   <a href="/text">par utilisateur</a>
   - 
   <a href="http://clc.openstreetmap.fr">clc</a>
