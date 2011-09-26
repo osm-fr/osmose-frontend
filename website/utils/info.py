@@ -286,13 +286,19 @@ ORDER BY
         printed_td = False
         if res["elems"]:
             elems = res["elems"].split("_")
+            prev_type = ""
             for e in elems:
                 m = re.match(r"([a-z]+)([0-9]+)", e)
                 if m:
                     if not printed_td:
                         print "<td sorttable_customkey=\"%02d%s\">" % (ord(m.group(1)[0]), m.group(2))
                         printed_td = True
-                    print "<a target=\"_blank\" href=\"http://www.openstreetmap.org/browse/%s/%s\">%s %s</a>"%(m.group(1), m.group(2), m.group(1), m.group(2))
+                    cur_type = m.group(1)
+                    if cur_type != prev_type:
+                        sys.stdout.write("%s&nbsp;" % cur_type[0])
+                        prev_type = cur_type
+                    sys.stdout.write("<a target=\"_blank\" href=\"http://www.openstreetmap.org/browse/%s/%s\">%s</a>&nbsp;"%(m.group(1), m.group(2), m.group(2)))
+                    sys.stdout.write("&nbsp;<a title=\"josm\" href=\"http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/%s/%s\" target=\"hiddenIframe\">(j)</a>" % (m.group(1), m.group(2)))
 
         if not printed_td:
             print "<td>"
