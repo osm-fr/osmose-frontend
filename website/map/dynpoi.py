@@ -219,8 +219,8 @@ for res in PgCursor.fetchall():
     html += "</div>"
     html += "<div class=\"bulle_maj\">"
     html += "<b><u>%s :</u></b> " % translate.get("frontend.bubble.set_status").encode("utf8")
-    html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"status.py?e=%s&s=done\" target=\"hiddenIframe\">%s</a> "%(error_id, translate.get("frontend.bubble.done").encode("utf8"))
-    html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"status.py?e=%s&s=false\" target=\"hiddenIframe\">%s</a> "%(error_id, translate.get(u"frontend.bubble.false").encode("utf8"))
+    html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"/cgi-bin/status.py?e=%s&s=done\" target=\"hiddenIframe\">%s</a> "%(error_id, translate.get("frontend.bubble.done").encode("utf8"))
+    html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"/cgi-bin/status.py?e=%s&s=false\" target=\"hiddenIframe\">%s</a> "%(error_id, translate.get(u"frontend.bubble.false").encode("utf8"))
     html += "</div>"
     
     html = "<font size=\"-1\">%s</font>"%html
