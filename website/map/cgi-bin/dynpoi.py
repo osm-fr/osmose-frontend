@@ -166,7 +166,7 @@ for res in PgCursor.fetchall():
     html  = "<div class=\"bulle_msg\">"
     html += "<div class='closebubble'>"
     html += "<div><a href='#' onclick=\"closeBubble('%s');return false;\"><b>&nbsp;X&nbsp;</b></a></div>"%marker_id
-    html += "<div><a target=\"_blank\" href='%s#%d'>&nbsp;?&nbsp;</a></div>" % (url_help, item)
+    html += "<div class=\"help\"><a target=\"_blank\" href='%s#%d'>&nbsp;?&nbsp;</a></div>" % (url_help, item)
     html += "</div>"
     html += "<div class=\"bulle_err\">"
     html += "<b>%s</b><br>%s<br>"%(title, subtitle)

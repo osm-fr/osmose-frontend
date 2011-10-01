@@ -29,6 +29,12 @@ body {
 .bulle_msg div.closebubble a:hover {
   color: #000000;
 }
+.bulle_msg div.help {
+  background-color: #0083FF;
+}
+.bulle_msg div.help a:hover {
+  color: #D1D1D1;
+}
 
 .bulle_err {
   color: #FF5555;
