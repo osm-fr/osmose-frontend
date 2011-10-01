@@ -23,33 +23,49 @@ for g in utils.get_categories():
 ## F croix
 ## = signe égal
 ## | trait vertical
+## || double trait vertical
+## :: quatre point
+## .:. quatre point en losange
 
-def get_symb(symbole, x, y, r):
+def get_symb(symbole):
     if symbole in "O":
-        return "<circle cx='"+str(x)+"' cy='"+str(y)+"' r='"+str(r)+"' style='fill:#000000;' />"
+        return "<circle cx='8' cy='8' r='3' />"
     if symbole in "L":
-        r += 1
-        return "<path style=\"fill:#000000;fill-opacity:1;\" d=\"M "+str(x)+","+str(y+r)+" L "+str(x-r)+","+str(y)+" L "+str(x)+","+str(y-r)+" L "+str(x+r)+","+str(y)+" L "+str(x)+","+str(y+r)+" z\" />"
+        return "<path d='M 8,12 L 4,8 L 8,4 L 12,8 L 8,12 z' />"
     if symbole in "K":
-        return "<path style=\"fill:#000000;fill-opacity:1;\" d=\"M "+str(x+r)+","+str(y+r)+" L "+str(x-r)+","+str(y+r)+" L "+str(x-r)+","+str(y-r)+" L "+str(x+r)+","+str(y-r)+" L "+str(x+r)+","+str(y+r)+" z\" />"
+        return "<path d='M 11,11 L 5,11 L 5,5 L 11,5 L 11,11 z' />"
     if symbole in "P":
-        l1 = "<path style=\"fill:#000000;fill-opacity:1;\" d=\"M "+str(x+r/3)+","+str(y+r)+" L "+str(x-r/3)+","+str(y+r)+" L "+str(x-r/3)+","+str(y-r)+" L "+str(x+r/3)+","+str(y-r)+" L "+str(x+r/3)+","+str(y+r)+" z\" />"
-        l2 = "<path style=\"fill:#000000;fill-opacity:1;\" d=\"M "+str(x+r)+","+str(y+r/3)+" L "+str(x-r)+","+str(y+r/3)+" L "+str(x-r)+","+str(y-r/3)+" L "+str(x+r)+","+str(y-r/3)+" L "+str(x+r)+","+str(y+r/3)+" z\" />"       
+        l1 = "<path d='M 9,11 L 7,11 L 7,5 L 9,5 L 9,11 z' />"
+        l2 = "<path d='M 11,9 L 5,9 L 5,7 L 11,7 L 11,9 z' />"
         return l1+l2
     if symbole in "F":
-        r += 1
-        l1 = "<path transform=\"rotate(-45 "+str(x)+" "+str(y)+")\" style=\"fill:#000000;fill-opacity:1;\" d=\"M "+str(x+r/3)+","+str(y+r)+" L "+str(x-r/3)+","+str(y+r)+" L "+str(x-r/3)+","+str(y-r)+" L "+str(x+r/3)+","+str(y-r)+" L "+str(x+r/3)+","+str(y+r)+" z\" />"
-        l2 = "<path transform=\"rotate(-45 "+str(x)+" "+str(y)+")\" style=\"fill:#000000;fill-opacity:1;\" d=\"M "+str(x+r)+","+str(y+r/3)+" L "+str(x-r)+","+str(y+r/3)+" L "+str(x-r)+","+str(y-r/3)+" L "+str(x+r)+","+str(y-r/3)+" L "+str(x+r)+","+str(y+r/3)+" z\" />"       
+        l1 = "<path transform='rotate(45 8 8)' d='M 9,12 L 7,12 L 7,4 L 9,4 L 9,12 z' />"
+        l2 = "<path transform='rotate(45 8 8)' d='M 12,9 L 4,9 L 4,7 L 12,7 L 12,9 z' />"
         return l1+l2
     if symbole in "M":
-        return "<path style=\"fill:#000000;fill-opacity:1;\" d=\"M "+str(x+r)+","+str(y+r/3)+" L "+str(x-r)+","+str(y+r/3)+" L "+str(x-r)+","+str(y-r/3)+" L "+str(x+r)+","+str(y-r/3)+" L "+str(x+r)+","+str(y+r/3)+" z\" />"       
+        return "<path d='M 11,9 L 5,9 L 5,7 L 11,7 L 11,9 z' />"
     if symbole in "=":
-        l1 = "<path style=\"fill:#000000;fill-opacity:1;\" d=\"M "+str(x+r)+","+str(y+r/3)+" L "+str(x-r)+","+str(y+r/3)+" L "+str(x-r)+","+str(y+r)+" L "+str(x+r)+","+str(y+r)+" L "+str(x+r)+","+str(y+r/3)+" z\" />"
-        l2 = "<path style=\"fill:#000000;fill-opacity:1;\" d=\"M "+str(x+r)+","+str(y-r/3)+" L "+str(x-r)+","+str(y-r/3)+" L "+str(x-r)+","+str(y-r)+" L "+str(x+r)+","+str(y-r)+" L "+str(x+r)+","+str(y-r/3)+" z\" />"
+        l1 = "<path d='M 11,9 L 5,9 L 5,11 L 11,11 L 11,9 z' />"
+        l2 = "<path d='M 11,7 L 5,7 L 5,5 L 11,5 L 11,7 z' />"
         return l1+l2
     if symbole in "|":
-        l1 = "<path style=\"fill:#000000;fill-opacity:1;\" d=\"M "+str(x+r/3)+","+str(y+r)+" L "+str(x-r/3)+","+str(y+r)+" L "+str(x-r/3)+","+str(y-r)+" L "+str(x+r/3)+","+str(y-r)+" L "+str(x+r/3)+","+str(y+r)+" z\" />"
-        return l1
+        return "<path d='M 9,11 L 7,11 L 7,5 L 9,5 L 9,11 z' />"
+    if symbole in "||":
+        l1 = "<path transform='rotate(90 8 8)' d='M 11,9 L 5,9 L 5,11 L 11,11 L 11,9 z' />"
+        l2 = "<path transform='rotate(90 8 8)' d='M 11,7 L 5,7 L 5,5 L 11,5 L 11,7 z' />"
+        return l1+l2
+    if symbole in "::":
+        l1 = "<path d='M 11,9 L 9,9 L 9,11 L 11,11 L 11,9 z' />"
+        l2 = "<path d='M 11,7 L 9,7 L 9,5 L 11,5 L 11,7 z' />"
+        l3 = "<path d='M 7,9 L 5,9 L 5,11 L 7,11 L 7,9 z' />"
+        l4 = "<path d='M 7,7 L 5,7 L 5,5 L 7,5 L 7,7 z' />"
+        return l1+l2+l3+l4
+    if symbole in ".:.":
+        l1 = "<path d='M 11,9 L 9,9 L 9,11 L 11,11 L 11,9 z' />"
+        l2 = "<path d='M 11,7 L 9,7 L 9,5 L 11,5 L 11,7 z' />"
+        l3 = "<path d='M 7,9 L 5,9 L 5,11 L 7,11 L 7,9 z' />"
+        l4 = "<path d='M 7,7 L 5,7 L 5,5 L 7,5 L 7,7 z' />"
+        return "<g transform='rotate(45 8 8)'>"+l1+l2+l3+l4+"</g>"
     
 ################################################################################
 ## marqueurs
@@ -61,31 +77,28 @@ def get_marker(contour, symbole, couleur):
     if contour == "M": # marqueur
         h = 32
         l = 20
-        c = "<path style=\"fill:" + couleur + ";stroke:#000000;stroke-width:.5px\" d=\"M "+str(l/2)+",1 L "+str(l-1)+","+str(h/3)+" L "+str(l/2)+","+str(h-1)+", L 1,"+str(h/3)+", L "+str(l/2)+",1 z\" />"
-        m = get_symb(symbole, l/2, h/3, 3)
+        g = "translate(2,3) scale(1,1)"
+        c = "<path style='fill:" + couleur + ";stroke:#000000;stroke-width:.5px' d='M 10,1 L 19,10 L 10,31, L 1,10, L 10,1 z' />"
+        m = get_symb(symbole)
     if contour == "L": # légende
         h = 12
         l = h
-        c = "<path style=\"fill:" + couleur + ";stroke:#000000;stroke-width:.5px\" d=\"M 0,0 L 0,"+str(h)+" L "+str(l)+","+str(h)+" L "+str(l)+",0 L 0,0 z\" />"
-        m = get_symb(symbole, l/2, h/2, 3)
+        g = "translate(-2,-2) scale(1,1)"
+        c = "<path style='fill:" + couleur + ";stroke:#000000;stroke-width:1px' d='M 0.5,0.5 L 0.5,11.5 L 11.5,11.5 L 11.5,0.5 L 0.5,0.5 z' />"
+        m = get_symb(symbole)
     if contour == "B": # bubble
-        h = 32.
-        l = 16.
-        c  = "<path style=\"fill:" + couleur + ";stroke:#000000;stroke-width:.5px\" d=\""
-        c += "M "+str(l/2)+","+str(h)+" C "
-        c += str(5*l/8)+","+str(5*h/8)+" "+str(7*l/8)+","+str(h/2)+" "+str(l)+","+str(h/4)+" "
-        c += str(l)+","+str(h/8)+" "+str(3*l/4)+","+str(0)+" "+str(l/2)+","+str(0)+" "
-        c += str(l/4)+","+str(0)+" "+str(0)+","+str(h/8)+" "+str(0)+","+str(h/4)+" "
-        c += str(l/8)+","+str(h/2)+" "+str(3*l/8)+","+str(5*h/8)+" "+str(l/2)+","+str(h)+" "
-        c += "z\" />"
-        m = get_symb(symbole, l/2, h/4, 3)
-    head  = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
-    head += "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\""+str(l+1)+"\" height=\""+str(h+1)+"\">\n"
+        h = 32
+        l = 16
+        g = "translate(0,1) scale(1,1)"
+        c = "<path style='fill:" + couleur + ";stroke:#000000;stroke-width:.5px' d='M 8,32 C 10,20 14,16 16,8 16,4 12,0 8,0 4,0 0,4 0,8 2,16 6,20 8,32 z' />"
+        m = get_symb(symbole)
+    head  = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n"
+    head += "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\""+str(l)+"\" height=\""+str(h)+"\">\n"
     tail = "</svg>"
-    return head + c + m + tail
+    return head + c + "\n<g transform='" + g + "' style='fill:#000000;'>\n" + m + "</g>\n" + tail
 
 ################################################################################
-    
+
 marker_folder = os.path.join(utils.root_folder, "website", "map", "markers")
 commands.getstatusoutput("rm %s"%os.path.join(marker_folder,"*.png"))
 for i in all_items + [{'item': 0, 'marker_flag': 'O', 'marker_color': '#CCCCCC'}]:
@@ -94,5 +107,5 @@ for i in all_items + [{'item': 0, 'marker_flag': 'O', 'marker_color': '#CCCCCC'}
         file_svg = os.path.join(marker_folder, "marker-%s-%d.svg"%(m.lower(), i["item"]))
         file_png = os.path.join(marker_folder, "marker-%s-%d.png"%(m.lower(), i["item"]))
         open(file_svg,"w").write(get_marker(m, i["marker_flag"], i["marker_color"]))
-        commands.getstatusoutput("inkscape --without-gui --file=%s --export-png=%s"%(file_svg, file_png))
+        commands.getstatusoutput("rsvg %s %s"%(file_svg, file_png))
 commands.getstatusoutput("rm %s"%os.path.join(marker_folder,"*.svg"))
