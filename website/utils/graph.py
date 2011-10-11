@@ -59,7 +59,7 @@ def get_data(options):
 
     if options.country:
        join_item += "JOIN dynpoi_source ON dynpoi_stats.source = dynpoi_source.source "
-       where_sql += "AND dynpoi_source.comment LIKE '%%-%s' " % options.country
+       where_sql += "AND dynpoi_source.comment LIKE '%%-%s%%' " % options.country
 
     sql = sql % (join_item, where_sql)
 
