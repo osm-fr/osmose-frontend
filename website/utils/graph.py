@@ -127,7 +127,10 @@ def make_plt(options):
     if not data or len(data) < 2:
          raise SystemError("no data available")
     
-    f_plt = open('/tmp/data_%d_%d.plt'%(options.source, options.classe), 'w')
+    gnuplotFilename = "/tmp/data_%i.plt"%os.getpid()
+    dataFilename = "/tmp/data_%i.dat"%os.getpid()
+
+    f_plt = open(gnuplotFilename, 'w')
     f_plt.write("set terminal png\n")
     f_plt.write("set title \"Source : %s\"\n"%get_src(options))
 #    f_plt.write("set style data fsteps\n")
@@ -141,24 +144,24 @@ def make_plt(options):
     #f_plt.write("set ylabel "Concentration\nmg/l"\n")    
     f_plt.write("set grid\n")
     f_plt.write("set key left\n")
-    f_plt.write("plot '/tmp/data_%d_%d.dat' using 1:2 t '%s'\n"%(options.source, options.classe, text))
+    f_plt.write("plot '%s' using 1:2 t '%s'\n"%(dataFilename, text))
     f_plt.close()
     
-    f_dat = open('/tmp/data_%d_%d.dat'%(options.source, options.classe), 'w')
+    f_dat = open(dataFilename, 'w')
     for x in data:
         f_dat.write("%s %d\n"%(x[0], x[1]))
     f_dat.close()
 
-    s, o = commands.getstatusoutput("gnuplot-nox /tmp/data_%d_%d.plt"%(options.source, options.classe))
+    s, o = commands.getstatusoutput("gnuplot-nox "+gnuplotFilename)
     
     if s:
         raise SystemError("error in gnuplot generation")
     
-    os.remove("/tmp/data_%d_%d.plt"%(options.source, options.classe))
-    os.remove("/tmp/data_%d_%d.dat"%(options.source, options.classe))
+    os.remove(gnuplotFilename)
+    os.remove(dataFilename)
     
     return o
-    
+
 ###########################################################################
 
 if len(sys.argv)>1:
