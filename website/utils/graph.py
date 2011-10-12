@@ -38,7 +38,6 @@ PgCurs = PgConn.cursor()
 ## get timestamps
 
 def get_data(options):
-    all = []
     sql =  "SELECT dynpoi_stats.source, dynpoi_stats.class, dynpoi_stats.timestamp, dynpoi_stats.count "
     sql += "FROM dynpoi_stats %s "
     sql += "WHERE 1=1 %s "
@@ -80,30 +79,23 @@ def get_data(options):
     else:
         delay = 1
     
-    last = dict()
+    result = []
+    last = {}
     timestamp = 0
     prev_timestamp = 0
     for res in PgCurs.fetchall():
-      timestamp = res['timestamp']
-      if prev_timestamp == 0:
-          prev_timestamp = timestamp
+        timestamp = res['timestamp']
+        if prev_timestamp == 0:
+            prev_timestamp = timestamp
+        
+        last[(res["source"],res["class"])] = res['count']
+        if (timestamp - prev_timestamp) > delay:
+            result.append((timestamp.strftime('%d/%m/%Y'), sum(last.itervalues())))
+            prev_timestamp = timestamp
 
-      last[str(res["source"]) + "-" + str(res["class"])] = res['count']
-      if (timestamp - prev_timestamp) > delay:
-        sum = 0
-        for v in last.itervalues():
-          sum += v
-        all.append((prev_timestamp.strftime('%d/%m/%Y'), sum))
-        prev_timestamp = timestamp
-
-    sum = 0
-    for v in last.itervalues():
-      sum += v
-    if timestamp == 0:
-      return []
-    all.append((timestamp.strftime('%d/%m/%Y'), sum))
-     
-    return all
+    if last:
+        result.append((timestamp.strftime('%d/%m/%Y'), sum(last.itervalues())))
+    return result
 
 def get_text(options):
     if len(options.sources)==1 and len(options.classes)==1:
