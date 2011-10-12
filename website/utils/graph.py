@@ -172,7 +172,10 @@ if len(sys.argv)>1:
     parser.add_option("--country", dest="country", type="string", default=None)
     (options, args) = parser.parse_args()
 
-    make_plt(options)
+    data = make_plt(options)
+    f = open("graph.png", "w")
+    f.write(data)
+    f.close()
     sys.exit(0)
 
 else:
