@@ -163,6 +163,7 @@ def make_plt(options):
 
 if len(sys.argv)>1:
     from optparse import OptionParser, SUPPRESS_HELP
+    start = time.clock()
 
     parser = OptionParser()
 
@@ -176,6 +177,8 @@ if len(sys.argv)>1:
     f = open("graph.png", "w")
     f.write(data)
     f.close()
+    end = time.clock()
+    print "graph.png generated in %ims"%((end-start)*1000)
     sys.exit(0)
 
 else:
