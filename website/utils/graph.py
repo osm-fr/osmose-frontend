@@ -47,15 +47,22 @@ def get_data(options):
     join_item = ""
     where_sql = ""
 
-    if options.item >= 0:
+    if len(options.items)==1:
        join_item += "JOIN dynpoi_class ON dynpoi_stats.source = dynpoi_class.source AND dynpoi_stats.class = dynpoi_class.class "
-       where_sql += "AND dynpoi_class.item=%d " % options.item
+       where_sql += "AND dynpoi_class.item=%d " % options.items[0]
+    elif len(options.items)>=1:
+       join_item += "JOIN dynpoi_class ON dynpoi_stats.source = dynpoi_class.source AND dynpoi_stats.class = dynpoi_class.class "
+       where_sql += "AND dynpoi_class.item in (%s) " % convIntsToStr(options.items)
 
-    if options.classe >= 0:
-       where_sql += "AND dynpoi_stats.class=%d " % options.classe
+    if len(options.classes)==1:
+       where_sql += "AND dynpoi_stats.class=%d " % options.classes[0]
+    elif len(options.classes)>=1:
+       where_sql += "AND dynpoi_stats.class in (%s) " % convIntsToStr(options.classes)
 
-    if options.source >= 0:
-       where_sql += "AND dynpoi_stats.source=%d " % options.source
+    if len(options.sources)==1:
+       where_sql += "AND dynpoi_stats.source=%d " % options.sources[0]
+    elif len(options.sources)>=1:
+       where_sql += "AND dynpoi_stats.source in (%s) " % convIntsToStr(options.sources)
 
     if options.country:
        join_item += "JOIN dynpoi_source ON dynpoi_stats.source = dynpoi_source.source "
@@ -68,11 +75,11 @@ def get_data(options):
 
     PgCurs.execute(sql)
 
-    if options.source == -1:
-      delay = 4*24*3600
+    if len(options.sources)!=1: 
+        delay = 1*24*3600
     else:
-      delay = 1
-
+        delay = 1
+    
     last = dict()
     timestamp = 0
     prev_timestamp = 0
@@ -99,13 +106,15 @@ def get_data(options):
     return all
 
 def get_text(options):
-    if options.source == -1:
-        if options.item == -1:
-            return ""
-        else:
-            PgCurs.execute("SELECT title_en FROM dynpoi_class WHERE class=%d AND item=%d LIMIT 1;"%(options.classe, options.item))
+    if len(options.sources)==1 and len(options.classes)==1:
+        PgCurs.execute("SELECT title_en FROM dynpoi_class WHERE source=%d AND class=%d;"%(options.sources[0], options.classes[0]))
+        
+    elif len(options.items)==1 and len(options.classes)==1:
+        PgCurs.execute("SELECT title_en FROM dynpoi_class WHERE class=%d AND item=%d LIMIT 1;"%(options.classes[0], options.items[0]))
+        
     else:
-        PgCurs.execute("SELECT title_en FROM dynpoi_class WHERE source=%d AND class=%d;"%(options.source, options.classe))
+        return ""
+    
     res = PgCurs.fetchone()
     if res:
         return res[0]
@@ -113,10 +122,10 @@ def get_text(options):
         return ""
 
 def get_src(options):
-    if options.source == -1:
+    if len(options.sources) != 1:
         return "All"
     else:
-        PgCurs.execute("SELECT comment FROM dynpoi_source WHERE source=%d;"%(options.source))
+        PgCurs.execute("SELECT comment FROM dynpoi_source WHERE source=%d;"%(options.sources[0]))
         return PgCurs.fetchone()[0]
 
 def make_plt(options):
@@ -161,7 +170,24 @@ def make_plt(options):
     os.remove(dataFilename)
     
     return o
-
+    
+    
+def convStrToInts(string):
+    """
+    Convertie une chaine en liste d'entier
+    """
+    string = string.replace(" ", "")
+    if string=="":
+        return []
+    else:
+        return [int(elt) for elt in string.split()]
+    
+def convIntsToStr(values):
+    """
+    Convertie une liste d'entier en chaine
+    """
+    return ", ".join([str(elt) for elt in values]) 
+        
 ###########################################################################
 
 if len(sys.argv)>1:
@@ -170,9 +196,9 @@ if len(sys.argv)>1:
 
     parser = OptionParser()
 
-    parser.add_option("--source", dest="source", type="int", default=-1)
-    parser.add_option("--class", dest="classe", type="int", default=-1)
-    parser.add_option("--item", dest="item", type="int", default=-1)
+    parser.add_option("--source", dest="sources", type="int", action="append", default=[])
+    parser.add_option("--class", dest="classes", type="int", action="append", default=[])
+    parser.add_option("--item", dest="items", type="int", action="append", default=[])
     parser.add_option("--country", dest="country", type="string", default=None)
     (options, args) = parser.parse_args()
 
@@ -187,9 +213,9 @@ if len(sys.argv)>1:
 else:
     form   = cgi.FieldStorage()
     class options:
-      source  = int(form.getvalue("source", "-1"))
-      classe  = int(form.getvalue("class", "-1"))
-      item    = int(form.getvalue("item", "-1"))
+      sources = convStrToInts(form.getvalue("source"))
+      classes = convStrToInts(form.getvalue("class"))
+      items   = convStrToInts(form.getvalue("item"))
       country = form.getvalue("country", None)
       if country <> None and not re.match(r"^([a-z_]+)$", country):
         country = None
