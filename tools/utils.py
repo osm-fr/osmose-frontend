@@ -23,7 +23,7 @@ def get_dbconn():
 def pg_escape(text):
     if type(text) == int:
         return str(text)
-    return text.replace(u"'", u"''").replace('\\','\\\\')
+    return text.replace(u"'", u"''").replace(u'\\',u'\\\\')
 
 def get_language():
     if "HTTP_ACCEPT_LANGUAGE" in os.environ:

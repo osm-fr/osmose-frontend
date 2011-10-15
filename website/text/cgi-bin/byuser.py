@@ -28,7 +28,7 @@ from tools import utils
 PgConn    = utils.get_dbconn()
 PgCursor  = PgConn.cursor()
 form      = cgi.FieldStorage()
-username  = utils.pg_escape(form.getvalue("username", ""))
+username  = utils.pg_escape(unicode(form.getvalue("username", ""), "utf-8"))
 lang_def  = utils.allowed_languages[0]
 lang_cur  = utils.get_language()
 tpl       = open(os.path.join(utils.root_folder, "config/text.tpl")).read()
@@ -46,7 +46,7 @@ JOIN dynpoi_class c ON m.class = c.class AND
                        m.source = c.source
 WHERE (m.source,m.class,m.subclass,m.elems) IN (SELECT source,class,subclass,elems FROM dynpoi_user WHERE username='%s')
 ORDER BY m.class
-LIMIT 500;"""%(username))
+LIMIT 500;"""%(username.encode('utf-8')))
 #PgCursor.execute("SELECT dynpoi_marker.* FROM dynpoi_user NATURAL INNER JOIN dynpoi_marker WHERE dynpoi_user.username='%s' ORDER BY dynpoi_marker.class,dynpoi_marker.subclass,dynpoi_marker.elems;"%(username))
 data = "<table class='byuser'>\n"
 data += "  <tr>\n"
