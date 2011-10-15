@@ -47,10 +47,17 @@ zoom   = int(form.getvalue("zoom", "10"))
 bbox   = form.getvalue("bbox", None)
 if bbox:
   bbox = bbox.split(",")
-  minlon = int(1000000*float(bbox[0]))
-  minlat = int(1000000*float(bbox[1]))
-  maxlon = int(1000000*float(bbox[2]))
-  maxlat = int(1000000*float(bbox[3]))
+  try:
+    minlon = int(1000000*float(bbox[0]))
+    minlat = int(1000000*float(bbox[1]))
+    maxlon = int(1000000*float(bbox[2]))
+    maxlat = int(1000000*float(bbox[3]))
+  except ValueError:
+    minlon = lon - 100000
+    minlat = lat - 100000
+    maxlon = lon + 100000
+    maxlat = lat + 100000
+
   bboxsql = "(dynpoi_marker.lat BETWEEN %d AND %d) AND (dynpoi_marker.lon BETWEEN %d and %d)"%(minlat, maxlat, minlon, maxlon)
 else:
   bboxsql = "1=1"
