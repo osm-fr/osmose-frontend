@@ -1,0 +1,77 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+#
+# Copyright 2011 Jocelyn Jaubert
+#
+# This file is part of Osmose.
+#
+# Openstreetbugs is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Openstreetbugs is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Openstreetbugs. If not, see <http://www.gnu.org/licenses/>.
+#
+
+import cgi, re, sys, os
+root_folder = os.environ["OSMOSE_ROOT"]
+sys.path.append(root_folder)
+from tools import utils
+
+print "Content-type: text/plain; Charset=UTF-8\n"
+
+form = cgi.FieldStorage()
+
+minlat = int(float(form.getfirst("b", "-180")) * 1000000)
+maxlat = int(float(form.getfirst("t", "180")) * 1000000)
+minlon = int(float(form.getfirst("l", "-90")) * 1000000)
+maxlon = int(float(form.getfirst("r", "90")) * 1000000)
+user = form.getfirst("user", "")
+
+lat = int((minlat + maxlat) / 2)
+lon = int((minlon + maxlon) / 2)
+
+err_id = form.getvalue("item", "").split(",")
+err_id = ",".join([str(int(x)) for x in err_id if x])
+
+not_err_id = form.getvalue("not_item", "").split(",")
+not_err_id = ",".join([str(int(x)) for x in not_err_id if x])
+
+sqlbase  = """
+SELECT u.username,
+       count(*) AS count
+FROM dynpoi_user u
+JOIN dynpoi_marker m ON (m.source,m.class,m.subclass,m.elems) = (u.source,u.class,u.subclass,u.elems)
+WHERE (m.lat BETWEEN %s AND %s) AND (m.lon BETWEEN %s and %s) AND """
+
+sql_arg = [minlat, maxlat, minlon, maxlon]
+
+if err_id:
+    sqlbase += "m.item IN (%s) AND " % err_id
+    sql_arg.append(err_id)
+
+if not_err_id:
+    sqlbase += "m.item NOT IN (%s) AND " % not_err_id
+
+sqlbase += """
+  1 = 1
+GROUP BY u.username
+ORDER BY u.username """
+
+PgConn    = utils.get_dbconn()
+PgCursor  = PgConn.cursor()
+PgCursor.execute(sqlbase, tuple(sql_arg))
+
+print "# username, count"
+
+num = 0
+for res in PgCursor.fetchall():
+    num += 1
+    print "'%s', %d" % (res["username"], int(res["count"]))
