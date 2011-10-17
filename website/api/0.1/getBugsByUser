@@ -102,4 +102,4 @@ for res in PgCursor.fetchall():
     b_date    = res["timestamp"] or ""
     item      = res["item"] or 0
 
-    print "'%s', '%s', '%s', %f, %f, '%s', '%s', '%s'" % (res["timestamp"], res["username"], error_id, lon, lat, title, subtitle, item)
+    print '"%s", "%s", "%s", %f, %f, "%s", "%s", "%s"' % (res["timestamp"], res["username"], error_id, lon, lat, title, subtitle, item)

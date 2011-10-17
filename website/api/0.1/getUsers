@@ -74,4 +74,4 @@ print "# username, count"
 num = 0
 for res in PgCursor.fetchall():
     num += 1
-    print "'%s', %d" % (res["username"], int(res["count"]))
+    print '"%s", %d"'% (res["username"], int(res["count"]))
