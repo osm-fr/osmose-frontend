@@ -35,12 +35,15 @@ PgCursor = PgConn.cursor()
 
 form    = cgi.FieldStorage()
 source  = form.getvalue("source", None)
+class_  = form.getvalue("class", None)
 item    = form.getvalue("item", None)
 country = form.getvalue("country", None)
 num_points = form.getvalue("points", None)
 
 if source:
     source = int(source)
+if class_:
+    class_ = int(class_)
 if item:
     item   = int(item)
 if country and not re.match(r"^([a-z_]+)$", country):
@@ -99,7 +102,7 @@ FROM dynpoi_class
     ON dynpoi_class.item = dynpoi_item.item
   LEFT JOIN dynpoi_source
     ON dynpoi_class.source = dynpoi_source.source
-  %s
+  %s %s
 WHERE 1=1
   %s
 GROUP BY
@@ -120,29 +123,31 @@ else:
 
 if gen == "info":
     opt_count = "count(dynpoi_marker.source)"
-    opt_join = """  %s JOIN dynpoi_marker
+    opt_join = """JOIN dynpoi_marker
     ON dynpoi_class.source = dynpoi_marker.source
     AND dynpoi_class.class = dynpoi_marker.class
-""" % opt_left_join
+"""
 elif gen == "false-positive":
     opt_count = "count(dynpoi_status.source)"
-    opt_join = """  %s JOIN dynpoi_status
+    opt_join = """JOIN dynpoi_status
     ON dynpoi_class.source = dynpoi_status.source
     AND dynpoi_class.class = dynpoi_status.class
     AND dynpoi_status.status = 'false'
-""" % opt_left_join
+"""
 elif gen == "done":
     opt_count = "count(dynpoi_status.source)"
-    opt_join = """  %s JOIN dynpoi_status
+    opt_join = """JOIN dynpoi_status
     ON dynpoi_class.source = dynpoi_status.source
     AND dynpoi_class.class = dynpoi_status.class
     AND dynpoi_status.status = 'done'
-""" % opt_left_join
+"""
 
 opt_where = ""
 
 if source <> None:
     opt_where += " AND dynpoi_class.source = %d" % source
+if class_ <> None:
+    opt_where += " AND dynpoi_class.class = %d" % class_
 if item <> None:
     opt_where += " AND dynpoi_class.item = %d" % item
 if country <> None:
@@ -154,7 +159,7 @@ if source == None and item == None and country == None:
         if gen == "info":
             opt_join = ""
 
-sql = sql % (opt_count, opt_join, opt_where)
+sql = sql % (opt_count, opt_left_join, opt_join, opt_where)
 
 ###########################################################################
 
