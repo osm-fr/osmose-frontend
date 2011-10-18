@@ -432,7 +432,7 @@
   -
   <a href="https://gitorious.org/osmose">sources</a>
   -
-  <a href="last-update.py">statistiques</a>
+  <a href="/utils/last-update.py">statistiques</a>
   </font></center>
 </div>
 
