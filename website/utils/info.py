@@ -157,6 +157,7 @@ if source == None and item == None and country == None:
     if show_all:
         opt_count = "-1"
         if gen == "info":
+            opt_left_join = ""
             opt_join = ""
 
 sql = sql % (opt_count, opt_left_join, opt_join, opt_where)
