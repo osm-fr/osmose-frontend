@@ -71,7 +71,7 @@ print "<body bgcolor=\"#FFFFFF\">"
 lasts = {}
 sql = """SELECT DISTINCT ON (source)
                 source,
-                EXTRACT(EPOCH FROM ((now() at time zone 'utc')-timestamp)) AS age,
+                EXTRACT(EPOCH FROM ((now())-timestamp)) AS age,
                 remote_url,remote_ip
          FROM dynpoi_update
          ORDER BY source ASC, timestamp DESC;"""
