@@ -21,6 +21,10 @@
 	ExpiresActive On
 	ExpiresByType image/png "access plus 1 month"
 
+	RewriteEngine On
+	RewriteRule ^/$ /map [R,L]
+	RewriteRule ^/map/cgi-bin/index.py$ /map [R,L]
+
 	ErrorLog /var/log/apache2/osmose-error.log
 	LogLevel warn
 	CustomLog /var/log/apache2/osmose-access.log combined
