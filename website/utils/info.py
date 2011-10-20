@@ -220,6 +220,14 @@ print "</table>"
 ###########################################################################
 
 if (total > 0 and total < 1000) or num_points:
+
+    if gen == "info":
+        opt_count = "count(dynpoi_marker.source)"
+        opt_join = """JOIN dynpoi_marker
+    ON dynpoi_class.source = dynpoi_marker.source
+    AND dynpoi_class.class = dynpoi_marker.class
+"""
+
     sql = """
 SELECT
   dynpoi_class.source AS source,
@@ -228,6 +236,8 @@ SELECT
   dynpoi_item.menu_en AS menu_en,
   dynpoi_class.title_en AS title_en,
   dynpoi_source.comment AS source_comment,
+  lat,
+  lon,
   elems AS elems,
   %s AS date,
   subtitle_en AS subtitle_en
@@ -266,6 +276,7 @@ ORDER BY
     print "  <th></th>"
     print "  <th>#</th>"
     print "  <th>item</th>"
+    print "  <th title=\"position\">pos</th>"
     print "  <th>elems</th>"
     print "  <th>subtitle</th>"
     if opt_date != "-1":
@@ -289,25 +300,36 @@ ORDER BY
         else:
             print "<td></td>"
 
+        if res["lat"] and res["lon"]:
+            lat = res["lat"] / 1000000.
+            lon = res["lon"] / 1000000.
+            print "<td><a href='/map/?zoom=13&amp;lat=%f&amp;lon=%f&amp;item=%d'>%.2f&nbsp;%.2f</a></td>" % (lat, lon, res["item"], lon, lat)
+        else:
+            print "<td></td>"
+
         printed_td = False
         if res["elems"]:
             elems = res["elems"].split("_")
-            prev_type = ""
             for e in elems:
                 m = re.match(r"([a-z]+)([0-9]+)", e)
                 if m:
                     if not printed_td:
                         print "<td sorttable_customkey=\"%02d%s\">" % (ord(m.group(1)[0]), m.group(2))
                         printed_td = True
+                    else:
+                        print "&nbsp;"
                     cur_type = m.group(1)
-                    if cur_type != prev_type:
-                        sys.stdout.write("%s&nbsp;" % cur_type[0])
-                        prev_type = cur_type
+                    sys.stdout.write("%s&nbsp;" % cur_type[0])
                     sys.stdout.write("<a target=\"_blank\" href=\"http://www.openstreetmap.org/browse/%s/%s\">%s</a>&nbsp;"%(m.group(1), m.group(2), m.group(2)))
                     sys.stdout.write("&nbsp;<a title=\"josm\" href=\"http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/%s/%s\" target=\"hiddenIframe\">(j)</a>" % (m.group(1), m.group(2)))
 
         if not printed_td:
+            minlat = lat - 0.002
+            maxlat = lat + 0.002
+            minlon = lon - 0.002
+            maxlon = lon + 0.002
             print "<td>"
+            print "<a href=\"http://localhost:8111/load_and_zoom?left=%f&bottom=%f&right=%f&top=%f"%(minlon,minlat,maxlon,maxlat) + "\">josm</a>"
 
         print "</td>"
         if res["subtitle_en"]:
