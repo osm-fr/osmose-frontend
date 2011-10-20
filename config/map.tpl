@@ -379,7 +379,7 @@
 
 <div id="incFrameBg" style="opacity:0.75;visibility:hidden;position:absolute;top:0;bottom:0;left:0;right:0;background-color:#000000;z-index:1199;"></div>
 <iframe id="incFrame" src="" width=780 height=540 scrolling="auto" style="position:absolute;z-index:1200;top:10;left:10;visibility:hidden;" frameborder="1" ></iframe>
-<img id="incFrameBt" src="../close.png" style="visibility:hidden;border:0px;position:absolute;z-index:1201;top:10;left:772;" onclick="iFrameClose();">
+<img id="incFrameBt" src="close.png" style="visibility:hidden;border:0px;position:absolute;z-index:1201;top:10;left:772;" onclick="iFrameClose();">
 <a accesskey="w" style="visibility:hidden;" href="javascript:iFrameClose();">iframeclose</a>
 
 <!--<div id="gauche" style="background-color:#FF5555;position:absolute;overflow-y:scroll;">-->
