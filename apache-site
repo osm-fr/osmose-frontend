@@ -18,6 +18,8 @@
 		DirectoryIndex index.html index.py
 	</Directory>
 
+	ScriptAlias /api/ /data/project/osmose/website/api/
+
 	ExpiresActive On
 	ExpiresByType image/png "access plus 1 month"
 
