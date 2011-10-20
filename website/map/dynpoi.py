@@ -215,7 +215,10 @@ for res in PgCursor.fetchall():
     maxlat = float(lat) + 0.002
     minlon = float(lon) - 0.002
     maxlon = float(lon) + 0.002
-    html += "<a href=\"http://localhost:8111/load_and_zoom?left=%f&bottom=%f&right=%f&top=%f&select="%(minlon,minlat,maxlon,maxlat)+res["elems"].replace("_",",")+"\" target=\"hiddenIframe\">josm zone</a> "
+    html += "<a href=\"http://localhost:8111/load_and_zoom?left=%f&bottom=%f&right=%f&top=%f"%(minlon,minlat,maxlon,maxlat)
+    if res["elems"]:
+        html += "&select=" + res["elems"].replace("_",",")
+    html += "\" target=\"hiddenIframe\">josm zone</a> "
     html += "</div>"
     html += "<div class=\"bulle_maj\">"
     html += "<b><u>%s :</u></b> " % translate.get("frontend.bubble.set_status").encode("utf8")
