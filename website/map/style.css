@@ -5,6 +5,7 @@ body {
 
 /* popups */
 .bulle_msg {
+  min-width: 200px;
   max-height: 200px;
   overflow: auto;
   word-wrap: break-word;
