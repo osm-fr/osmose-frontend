@@ -14,6 +14,10 @@ fr.frontend.map.title OsmOse - carte
 en.frontend.map.need_zoom no bubbles at this zoom factor
 fr.frontend.map.need_zoom pas de bulle à ce zoom
 
+# frontend.bubble.date
+en.frontend.bubble.date Error reported on: 
+fr.frontend.bubble.date Erreur reportée le :
+
 # frontend.bubble.done
 en.frontend.bubble.done corrected
 fr.frontend.bubble.done corrigé

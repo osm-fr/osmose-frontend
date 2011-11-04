@@ -204,7 +204,7 @@ for res in PgCursor.fetchall():
             html += "<b>%s</b> = %s<br>"%(t[0], t[1])
         html += "</div>"
 
-    html += translate.get(u"date").encode("utf8") + datetime.datetime.fromtimestamp(b_date).strftime("%Y-%m-%d")
+    html += translate.get(u"frontend.bubble.date").encode("utf8") + " " + datetime.datetime.fromtimestamp(b_date).strftime("%Y-%m-%d")
     html += "</div>"
 
     ## bottom links
