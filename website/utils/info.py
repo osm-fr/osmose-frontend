@@ -321,7 +321,11 @@ ORDER BY
                     cur_type = m.group(1)
                     sys.stdout.write("%s&nbsp;" % cur_type[0])
                     sys.stdout.write("<a target=\"_blank\" href=\"http://www.openstreetmap.org/browse/%s/%s\">%s</a>&nbsp;"%(m.group(1), m.group(2), m.group(2)))
-                    sys.stdout.write("&nbsp;<a title=\"josm\" href=\"http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/%s/%s\" target=\"hiddenIframe\">(j)</a>" % (m.group(1), m.group(2)))
+                    if cur_type == "node":
+                        full_str = ""
+                    else:
+                        full_str = "/full"
+                    sys.stdout.write("&nbsp;<a title=\"josm\" href=\"http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/%s/%s%s\" target=\"hiddenIframe\">(j)</a>" % (m.group(1), m.group(2), full_str))
 
         if not printed_td:
             minlat = lat - 0.002
