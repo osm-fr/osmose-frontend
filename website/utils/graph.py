@@ -168,11 +168,14 @@ def convStrToInts(string):
     """
     Convertie une chaine en liste d'entier
     """
+    if not string:
+        return []
+
     string = string.replace(" ", "")
     if string=="":
         return []
-    else:
-        return [int(elt) for elt in string.split()]
+
+    return [int(elt) for elt in string.split()]
     
 def convIntsToStr(values):
     """
