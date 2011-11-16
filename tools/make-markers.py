@@ -26,6 +26,8 @@ for g in utils.get_categories():
 ## || double trait vertical
 ## :: quatre point
 ## .:. quatre point en losange
+## T tiangle haut
+## t tiangle bas
 
 def get_symb(symbole):
     if symbole in "O":
@@ -66,7 +68,11 @@ def get_symb(symbole):
         l3 = "<path d='M 7,9 L 5,9 L 5,11 L 7,11 L 7,9 z' />"
         l4 = "<path d='M 7,7 L 5,7 L 5,5 L 7,5 L 7,7 z' />"
         return "<g transform='rotate(45 8 8)'>"+l1+l2+l3+l4+"</g>"
-    
+    if symbole in "T":
+        return "<path d='M 5,11 L 5,5 L 11,5 L 5,11 z' />"
+    if symbole in "t":
+        return "<path d='M 11,11 L 5,11 L 11,5 L 11,11 z' />"
+
 ################################################################################
 ## marqueurs
 
