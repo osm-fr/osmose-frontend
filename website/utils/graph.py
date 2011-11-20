@@ -26,12 +26,14 @@
 ## database connection
 
 import sys, os, time, commands, cgi, re
-from pyPgSQL import PgSQL
+root_folder = os.environ["OSMOSE_ROOT"]
+sys.path.append(root_folder)
+from tools import utils
 
 import cgitb
 cgitb.enable()
 
-PgConn = PgSQL.connect(database = 'osmose', user = 'osmose')
+PgConn = utils.get_dbconn()
 PgCurs = PgConn.cursor()
 
 ###########################################################################
