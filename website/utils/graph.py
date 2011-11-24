@@ -177,7 +177,7 @@ def convStrToInts(string):
     if string=="":
         return []
 
-    return [int(elt) for elt in string.split()]
+    return [int(elt) for elt in string.split(",")]
     
 def convIntsToStr(values):
     """
