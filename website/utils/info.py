@@ -92,6 +92,7 @@ print "<br><br>"
 sql = """
 SELECT
   dynpoi_class.source AS source,
+  dynpoi_class.class AS class,
   dynpoi_class.item AS item,
   dynpoi_item.menu_en AS menu_en,
   dynpoi_class.title_en AS title_en,
@@ -107,6 +108,7 @@ WHERE 1=1
   %s
 GROUP BY
   dynpoi_class.source,
+  dynpoi_class.class,
   dynpoi_class.item,
   dynpoi_item.menu_en,
   dynpoi_class.title_en,
@@ -169,6 +171,7 @@ print "<thead>"
 print "<tr>"
 print "  <th>#</th>"
 print "  <th>source</th>"
+print "  <th title=\"class\">cl</th>"
 print "  <th></th>"
 print "  <th>#</th>"
 print "  <th>item</th>"
@@ -192,6 +195,7 @@ for res in PgCursor.fetchall():
     analyse = "-".join(cmt_split[0:-1])
     country = cmt_split[-1]
     print "<td>%s-<a href=\"?country=%s\">%s</a></td>" % (analyse, country, country)
+    print "<td>%d</td>" % res["class"]
     print "<td title=\"%s\"><img src=\"/map/markers/marker-l-%d.png\" alt=\"%s\"></td>" % ((res["item"],) * 3)
     print "<td><a href=\"?item=%d\">%d</a>" % ((res["item"],) * 2)
     print "</td>"
@@ -211,7 +215,7 @@ for res in PgCursor.fetchall():
 if total > 0:
     print "<tfoot>"
     print "<tr>"
-    print "  <th colspan=\"6\">Total</th>"
+    print "  <th colspan=\"7\">Total</th>"
     print "  <th style=\"text-align: left\">%s</th>" % total
     print "</tr>"
     print "</tfoot>"
@@ -236,6 +240,7 @@ SELECT
   dynpoi_item.menu_en AS menu_en,
   dynpoi_class.title_en AS title_en,
   dynpoi_source.comment AS source_comment,
+  subclass,
   lat,
   lon,
   elems AS elems,
@@ -273,6 +278,7 @@ ORDER BY
     print "<tr>"
     print "  <th title=\"source\">src</th>"
     print "  <th title=\"class\">cl</th>"
+    print "  <th title=\"subclass\">s</th>"
     print "  <th></th>"
     print "  <th>#</th>"
     print "  <th>item</th>"
@@ -293,6 +299,7 @@ ORDER BY
             print "<tr class='even'>"
         print "<td title=\"%(cmt)s\"><a href=\"?source=%(src)d\">%(src)d</a> </td>" % {"cmt": res["source_comment"], "src": res["source"]}
         print "<td>%d</td>" % res["class"]
+        print "<td>%d</td>" % res["subclass"]
         print "<td title=\"%(item)d\"><img src=\"/map/markers/marker-l-%(item)d.png\" alt=\"%(item)d\"></td>" % {"item": res["item"]}
         print "<td><a href=\"?item=%d\">%d</a> </td>"%(res["item"],res["item"])
         if res[3]:
