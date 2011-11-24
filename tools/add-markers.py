@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
-all_flags = ["O", "L", "K", "P", "M", "F", "=", "|", "||", "::", ".:."]
+all_flags = ["O", "L", "K", "P", "M", "F", "=", "|", "||", "::", ".:.", "T", "t"]
 
 from pyPgSQL import PgSQL
 
 gisconn = PgSQL.Connection("dbname=%s user=%s password=%s" % ("osmose", "osmose", "-osmose-"))
 giscurs = gisconn.cursor()
 
-sql = "select dynpoi_marker.item from dynpoi_marker left join dynpoi_item on dynpoi_item.item = dynpoi_marker.item where dynpoi_item.item IS NULL group by dynpoi_marker.item;"
+sql = "select dynpoi_marker.item from dynpoi_marker left join dynpoi_item on dynpoi_item.item = dynpoi_marker.item where dynpoi_item.item IS NULL group by dynpoi_marker.item order by dynpoi_marker.item;"
 giscurs.execute(sql)
 
 for res in giscurs.fetchall():
