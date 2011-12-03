@@ -28,6 +28,8 @@ for g in utils.get_categories():
 ## .:. quatre point en losange
 ## T tiangle haut
 ## t tiangle bas
+## X sablier
+## >< sablier couche
 
 def get_symb(symbole):
     if symbole in "O":
@@ -72,6 +74,10 @@ def get_symb(symbole):
         return "<path d='M 5,11 L 5,5 L 11,5 L 5,11 z' />"
     if symbole in "t":
         return "<path d='M 11,11 L 5,11 L 11,5 L 11,11 z' />"
+    if symbole in "X":
+        return "<path d='M 11,11 L 5,11 L 11,5 L 5,5 L 11,11 z' />"
+    if symbole in "><":
+        return "<path d='M 11,11 L 11,5 L 5,11 L 5,5 L 11,11 z' />"
 
 ################################################################################
 ## marqueurs
@@ -96,7 +102,7 @@ def get_marker(contour, symbole, couleur):
         h = 32
         l = 16
         g = "translate(0,1) scale(1,1)"
-        c = "<path style='fill:" + couleur + ";stroke:#000000;stroke-width:.5px' d='M 8,32 C 10,20 14,16 16,8 16,4 12,0 8,0 4,0 0,4 0,8 2,16 6,20 8,32 z' />"
+        c = "<path style='fill:" + couleur + ";stroke:#000000;stroke-width:.5px' d='m 8,31.75 c 2,-12 7.75,-18 7.75,-23.5 0,-4 -3.5,-8 -7.75,-8 -4.25,0 -7.75,4 -7.75,8 0,5.5 5.75,11.5 7.75,23.5 z' />"
         m = get_symb(symbole)
     head  = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n"
     head += "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\""+str(l)+"\" height=\""+str(h)+"\">\n"
