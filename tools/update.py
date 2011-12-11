@@ -42,9 +42,6 @@ def update(source, url, logger = printlogger()):
     ## open connections
     dbconn = utils.get_dbconn()
     dbcurs = dbconn.cursor()
-    dbcurs.execute("DELETE FROM dynpoi_marker WHERE source = %d;"%source_id)
-    dbcurs.execute("DELETE FROM dynpoi_class WHERE source = %d;"%source_id)
-    dbcurs.execute("DELETE FROM dynpoi_user WHERE source = %d;"%source_id)
     
     ## xml parser
     parser = make_parser()
@@ -131,6 +128,12 @@ class update_parser(handler.ContentHandler):
         
     def startElement(self, name, attrs):
         if name == u"analyser":
+            self._dbcurs.execute("DELETE FROM dynpoi_marker WHERE source = %s;", (self._source_id, ))
+            self._dbcurs.execute("DELETE FROM dynpoi_class WHERE source = %s;", (self._source_id, ))
+            self._dbcurs.execute("DELETE FROM dynpoi_user WHERE source = %s;", (self._source_id, ))
+            ts = attrs.get("timestamp", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
+            self._dbcurs.execute("INSERT INTO dynpoi_update VALUES(%d, '%s', '%s', '%s');"%(self._source_id, utils.pg_escape(ts), utils.pg_escape(self._source_url), utils.pg_escape(os.environ.get('REMOTE_ADDR', ''))))
+        elif name == u"analyserChange":
             ts = attrs.get("timestamp", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
             self._dbcurs.execute("INSERT INTO dynpoi_update VALUES(%d, '%s', '%s', '%s');"%(self._source_id, utils.pg_escape(ts), utils.pg_escape(self._source_url), utils.pg_escape(os.environ.get('REMOTE_ADDR', ''))))
         elif name == u"error":
@@ -167,6 +170,11 @@ class update_parser(handler.ContentHandler):
             self._class_texts[self._class_id] = {}
         elif name == u"classtext":
             self._class_texts[self._class_id][attrs["lang"]] = attrs
+        elif name == u"delete":
+            # used by files generated with an .osc file
+            self._dbcurs.execute("""DELETE FROM dynpoi_marker
+                                    WHERE source = %s AND elems = %s""",
+                                 (self._source_id, attrs["type"] + attrs["id"]))
             
     def endElement(self, name):
         if name == u"error":
@@ -256,6 +264,8 @@ class update_parser(handler.ContentHandler):
                     title = self._class_texts[self._class_id][utils.allowed_languages[0]].get("title", u"no title")
                 keys.append("title_%s"%lang)
                 vals.append(u"'%s'"%utils.pg_escape(title))
+            self._dbcurs.execute("DELETE FROM dynpoi_class WHERE source = %s AND class = %s",
+                                 (self._source_id, self._class_id))
             sql = u"INSERT INTO dynpoi_class (" + u','.join(keys) + u") VALUES (" + u','.join(vals) + u");"
             sql = sql.encode('utf8')
             try:
