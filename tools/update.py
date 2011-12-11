@@ -58,7 +58,6 @@ def update(source, url, logger = printlogger()):
         #open(fname,'w').write(mysock.read())
         istemp = True
     else:
-        return
         fname = url
         istemp = False
             
