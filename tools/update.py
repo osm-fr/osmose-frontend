@@ -135,7 +135,7 @@ class update_parser(handler.ContentHandler):
             self._error_locations.append(dict(attrs))
         elif name == u"text":
             self._error_texts[attrs["lang"]] = attrs["value"]
-        elif name in [u"node", u"way", u"relation"]:
+        elif name in [u"node", u"way", u"relation", u"infos"]:
             self._elem = dict(attrs)
             if "user" in self._elem:
                 self._users.append(self._elem["user"])
@@ -229,7 +229,7 @@ class update_parser(handler.ContentHandler):
                 sql = sql.encode('utf8')
                 self._dbcurs.execute(sql)
 
-        if name in [u"node", u"way", u"relation"]:
+        if name in [u"node", u"way", u"relation", u"infos"]:
             self._elem[u"tag"] = self._elem_tags
             self._error_elements.append(self._elem)
             
