@@ -248,7 +248,11 @@ class update_parser(handler.ContentHandler):
                 vals.append(u"'%s'"%utils.pg_escape(title))
             sql = u"INSERT INTO dynpoi_class (" + u','.join(keys) + u") VALUES (" + u','.join(vals) + u");"
             sql = sql.encode('utf8')
-            self._dbcurs.execute(sql)
+            try:
+                self._dbcurs.execute(sql)
+            except:
+                print sql
+                raise
 
         #if name == u"analyser":
         #    
