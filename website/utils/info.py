@@ -245,7 +245,8 @@ SELECT
   lon,
   elems AS elems,
   %s AS date,
-  subtitle_en AS subtitle_en
+  subtitle_en AS subtitle_en,
+  title_en AS title_en
 FROM dynpoi_class
   LEFT JOIN dynpoi_item
     ON dynpoi_class.item = dynpoi_item.item
@@ -345,6 +346,8 @@ ORDER BY
         print "</td>"
         if res["subtitle_en"]:
             print "<td>%s</td>" % res["subtitle_en"]
+        elif res["title_en"]:
+            print "<td>%s</td>" % res["title_en"]
         else:
             print "<td></td>"
         if opt_date != "-1":
