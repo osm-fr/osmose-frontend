@@ -52,6 +52,16 @@ def update(source, url, logger = printlogger()):
         
     ## download the file if needed
     if url.startswith("http://"):
+        import socket
+        socket.setdefaulttimeout(30)
+        origGetAddrInfo = socket.getaddrinfo
+
+        def getAddrInfoWrapper(host, port, family=0, socktype=0, proto=0, flags=0):
+           return origGetAddrInfo(host, port, socket.AF_INET, socktype, proto, flags)
+
+        # replace the original socket.getaddrinfo by our version
+        socket.getaddrinfo = getAddrInfoWrapper
+
         fname =  tempfile.mktemp()
         urllib.urlretrieve(url, fname)
         #mysock = urllib.urlopen(source["url"])
