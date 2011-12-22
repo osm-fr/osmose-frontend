@@ -34,6 +34,7 @@ maxlat = int(float(form.getfirst("t", "180")) * 1000000)
 minlon = int(float(form.getfirst("l", "-90")) * 1000000)
 maxlon = int(float(form.getfirst("r", "90")) * 1000000)
 user = form.getfirst("user", "")
+num_points = form.getvalue("points", 100)
 
 lat = int((minlat + maxlat) / 2)
 lon = int((minlon + maxlon) / 2)
@@ -83,7 +84,8 @@ sqlbase += """
 ORDER BY dynpoi_update_last.timestamp DESC """
 
 if not user:
-  sqlbase += "LIMIT 100;"
+  if num_points != "all":
+    sqlbase += "LIMIT %d;" % int(num_points)
 
 PgConn    = utils.get_dbconn()
 PgCursor  = PgConn.cursor()
@@ -92,7 +94,8 @@ PgCursor.execute(sqlbase, tuple(sql_arg))
 print "# timestamp, username, error_id, lon, lat, title, subtitle, item"
 
 num = 0
-for res in PgCursor.fetchall():
+res = PgCursor.fetchone()
+while res:
     num += 1
     lat       = float(res["lat"]) / 1000000
     lon       = float(res["lon"]) / 1000000
@@ -103,3 +106,5 @@ for res in PgCursor.fetchall():
     item      = res["item"] or 0
 
     print '"%s", "%s", "%s", %f, %f, "%s", "%s", "%s"' % (res["timestamp"], res["username"], error_id, lon, lat, title, subtitle, item)
+
+    res = PgCursor.fetchone()
