@@ -129,12 +129,11 @@ class update_parser(handler.ContentHandler):
         
     def startElement(self, name, attrs):
         if name == u"analyser":
-            self._dbcurs.execute("DELETE FROM dynpoi_marker WHERE source = %s;", (self._source_id, ))
-            self._dbcurs.execute("DELETE FROM dynpoi_class WHERE source = %s;", (self._source_id, ))
-            self._dbcurs.execute("DELETE FROM dynpoi_user WHERE source = %s;", (self._source_id, ))
+            self.mode = "analyser"
             ts = attrs.get("timestamp", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
             self._dbcurs.execute("INSERT INTO dynpoi_update VALUES(%d, '%s', '%s', '%s');"%(self._source_id, utils.pg_escape(ts), utils.pg_escape(self._source_url), utils.pg_escape(os.environ.get('REMOTE_ADDR', ''))))
         elif name == u"analyserChange":
+            self.mode = "analyserChange"
             ts = attrs.get("timestamp", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
             self._dbcurs.execute("INSERT INTO dynpoi_update VALUES(%d, '%s', '%s', '%s');"%(self._source_id, utils.pg_escape(ts), utils.pg_escape(self._source_url), utils.pg_escape(os.environ.get('REMOTE_ADDR', ''))))
         elif name == u"error":
@@ -252,11 +251,11 @@ class update_parser(handler.ContentHandler):
                 sql = sql.encode('utf8')
                 self._dbcurs.execute(sql)
 
-        if name in [u"node", u"way", u"relation", u"infos"]:
+        elif name in [u"node", u"way", u"relation", u"infos"]:
             self._elem[u"tag"] = self._elem_tags
             self._error_elements.append(self._elem)
             
-        if name == u"class":
+        elif name == u"class":
             ## to remove when translated
             if "en" not in self._class_texts[self._class_id]:
                 if len(self._class_texts[self._class_id]) > 0:
@@ -285,17 +284,12 @@ class update_parser(handler.ContentHandler):
                 print sql
                 raise
 
-        #if name == u"analyser":
-        #    
-        #    self._copy_marker.close()
-        #    #s, o = commands.getstatusoutput("psql -c 'COPY dynpoi_marker FROM STDIN;' -d %s %s < %s"%(utils.pg_base, utils.pg_user, self._copy_marker_name))
-        #    #if s:
-        #    #    print o
-        #    #self._dbcurs.execute("COPY dynpoi_marker FROM '%s';"%self._copy_marker_name)
-        #    
-        #    #self._copy_user.close()
-        #    #self._dbcurs.execute("COPY dynpoi_user FROM '%s';"%self._copy_user_name)
-            
+            if self.mode == "analyser":
+                self._dbcurs.execute("DELETE FROM dynpoi_marker WHERE source = %s AND class = %s;",
+                                     (self._source_id, self._class_id))
+                self._dbcurs.execute("DELETE FROM dynpoi_user WHERE source = %s AND class = %s;",
+                                     (self._source_id, self._class_id))
+
 ###########################################################################
                         
 def show(source):
