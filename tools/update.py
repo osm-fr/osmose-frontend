@@ -126,16 +126,17 @@ class update_parser(handler.ContentHandler):
         self._copy_marker      = open(self._copy_marker_name, 'w')
         self._copy_user_name   = tempfile.mktemp()
         self._copy_user        = open(self._copy_user_name, 'w')
+        self._tstamp_updated   = False
         
     def startElement(self, name, attrs):
         if name == u"analyser":
             self.mode = "analyser"
-            ts = attrs.get("timestamp", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
-            self._dbcurs.execute("INSERT INTO dynpoi_update VALUES(%d, '%s', '%s', '%s');"%(self._source_id, utils.pg_escape(ts), utils.pg_escape(self._source_url), utils.pg_escape(os.environ.get('REMOTE_ADDR', ''))))
+            self.update_timestamp(attrs)
+
         elif name == u"analyserChange":
             self.mode = "analyserChange"
-            ts = attrs.get("timestamp", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
-            self._dbcurs.execute("INSERT INTO dynpoi_update VALUES(%d, '%s', '%s', '%s');"%(self._source_id, utils.pg_escape(ts), utils.pg_escape(self._source_url), utils.pg_escape(os.environ.get('REMOTE_ADDR', ''))))
+            self.update_timestamp(attrs)
+
         elif name == u"error":
             self._class_id        = int(attrs["class"])
             self._class_sub       = int(attrs.get("subclass", u"0"))%2147483647
@@ -289,6 +290,16 @@ class update_parser(handler.ContentHandler):
                                      (self._source_id, self._class_id))
                 self._dbcurs.execute("DELETE FROM dynpoi_user WHERE source = %s AND class = %s;",
                                      (self._source_id, self._class_id))
+
+
+    def update_timestamp(self, attrs):
+        if not self._tstamp_updated:
+            ts = attrs.get("timestamp", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
+            self._dbcurs.execute("INSERT INTO dynpoi_update VALUES(%d, '%s', '%s', '%s');" %
+                                 (self._source_id, utils.pg_escape(ts),
+                                  utils.pg_escape(self._source_url),
+                                  utils.pg_escape(os.environ.get('REMOTE_ADDR', ''))))
+            self._tstamp_updated = True
 
 ###########################################################################
                         
