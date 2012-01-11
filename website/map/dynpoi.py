@@ -58,9 +58,6 @@ if bbox:
     maxlon = lon + 100000
     maxlat = lat + 100000
 
-  bboxsql = "(dynpoi_marker.lat BETWEEN %d AND %d) AND (dynpoi_marker.lon BETWEEN %d and %d)"%(minlat, maxlat, minlon, maxlon)
-else:
-  bboxsql = "1=1"
 
 ###########################################################################
 ## page headers
@@ -118,9 +115,21 @@ INNER JOIN dynpoi_class
 INNER JOIN dynpoi_update_last
   ON dynpoi_marker.source = dynpoi_update_last.source
 WHERE %s AND
+  %s AND
   dynpoi_update_last.timestamp > (now() - interval '3 months')
 ORDER BY ABS(lat-%d)+ABS(lon-%d) ASC
-LIMIT 100;"""
+LIMIT 200;"""
+
+sqlbase_count  = """
+SELECT dynpoi_marker.source
+FROM dynpoi_marker
+INNER JOIN dynpoi_update_last
+  ON dynpoi_marker.source = dynpoi_update_last.source
+WHERE %s AND
+  %s AND
+  dynpoi_update_last.timestamp > (now() - interval '3 months')
+LIMIT 310;"""
+
 
 if source:
     sources = source.split(",")
@@ -132,32 +141,74 @@ if source:
         else:
             source2.append("(dynpoi_marker.source=%d AND dynpoi_marker.class=%d)"%(int(source[0]), int(source[1])))
     sources2 = " OR ".join(source2)
-    where = "(%s) AND (%s)"%(sources2, bboxsql)
-    sql =  sqlbase%(lang_cur, lang_def, lang_cur, lang_def, where, lat, lon)
+    where = "(%s)" % sources2
 elif user:
     sys.exit(0)
 elif err_id:
-    where = "(dynpoi_marker.item IN (%s)) AND (%s)"%(err_id,bboxsql)
-    sql =  sqlbase%(lang_cur, lang_def, lang_cur, lang_def, where, lat, lon)
+    where = "(dynpoi_marker.item IN (%s))" % err_id
 else:
-    where = "(%s)"%(bboxsql)
-    sql =  sqlbase%(lang_cur, lang_def, lang_cur, lang_def, where, lat, lon)
+    where = "1=1"
 
 ###########################################################################
 ## sql querry
 
+if bbox:
+    lat = (minlat+maxlat) / 2
+    lon = (minlon+maxlon) / 2
+
+    step = 0.001 * 1000000
+
+    num_steps = 0
+    done = False
+
+    while not done and num_steps < 10:
+
+        num_steps += 1
+        tmp_minlat = lat - step
+        tmp_maxlat = lat + step
+        tmp_minlon = lon - step
+        tmp_maxlon = lon + step
+
+        if (tmp_minlat < minlat and tmp_maxlat > maxlat and
+            tmp_minlon < minlon and tmp_maxlon > maxlon):
+            done = True
+            break
+
+        bboxsql = ("(dynpoi_marker.lat BETWEEN %d AND %d) AND (dynpoi_marker.lon BETWEEN %d and %d)" %
+                   (tmp_minlat, tmp_maxlat, tmp_minlon, tmp_maxlon))
+
+        sql = sqlbase_count % (where, bboxsql)
+        sql = sql.replace("--","+")
+        PgCursor.execute(sql)
+        results = PgCursor.fetchall()
+        num_results = len(results)
+
+        if num_results > 300:
+            step = step * 0.75
+        elif num_results >= 100:
+            done = True
+        elif num_results > 0:
+            step *= 2
+        else:
+            step *= 4
+
+else:
+    bboxsql = "1=1"
+
+sql = sqlbase % (lang_cur, lang_def, lang_cur, lang_def, where, bboxsql, lat, lon)
 sql = sql.replace("--","+")
 PgCursor.execute(sql)
-
-#try:
-#    open("/tmp/osmose-last.sql","w").write(sql+"\n")
-#except:
-#    pass
+results = PgCursor.fetchall()
+ 
+try:
+    open("/tmp/osmose-last.sql","a").write(sql+"\n")
+except:
+    pass
 
 ###########################################################################
 ## print results
 
-for res in PgCursor.fetchall():
+for res in results:
     lat       = str(float(res["lat"])/1000000)
     lon       = str(float(res["lon"])/1000000)
     error_id  = "%d-%d-%d-%s" % (res["source"], res["class"], res["subclass"], res["elems"])
