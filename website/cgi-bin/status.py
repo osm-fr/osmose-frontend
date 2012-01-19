@@ -59,6 +59,7 @@ else:
     
 #PgCursor.execute("DELETE FROM dynpoi_marker WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status);")
 PgCursor.execute("DELETE FROM dynpoi_marker WHERE source=%d AND class=%d AND subclass=%d AND elems='%s';"%(source_id, class_id, sub_class, elems))
+PgCursor.execute("DELETE FROM dynpoi_user WHERE source=%d AND class=%d AND subclass=%d AND elems='%s';"%(source_id, class_id, sub_class, elems))
 PgConn.commit()
 
 print "OK"
