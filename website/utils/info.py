@@ -356,5 +356,16 @@ ORDER BY
         print "</tr>"
     print "</table>"
 
+    if num_points and total > num_points:
+        import urlparse, urllib
+        query_dict = urlparse.parse_qs(query)
+        query_dict["points"] = 5 * num_points
+        print "<br>"
+        print "<a href='?%s'>Afficher plus d'erreurs</a>" % urllib.urlencode(query_dict, True)
+
+else:
+    print "<br>"
+    print "<a href='?%s'>Afficher quelques erreurs</a>" % (query + "&amp;points=100")
+
 ###########################################################################
 utils.print_tail()
