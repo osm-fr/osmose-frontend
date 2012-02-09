@@ -35,6 +35,7 @@ minlon = int(float(form.getfirst("l", "-90")) * 1000000)
 maxlon = int(float(form.getfirst("r", "90")) * 1000000)
 user = form.getfirst("user", "")
 num_points = form.getvalue("points", 100)
+class_ = form.getvalue("class", "")
 
 lat = int((minlat + maxlat) / 2)
 lon = int((minlon + maxlon) / 2)
@@ -64,7 +65,7 @@ INNER JOIN dynpoi_class
   ON m.source=dynpoi_class.source AND m.class=dynpoi_class.class
 INNER JOIN dynpoi_update_last
   ON m.source = dynpoi_update_last.source
-JOIN dynpoi_user u ON (m.source,m.class,m.subclass,m.elems) = (u.source,u.class,u.subclass,u.elems)
+LEFT JOIN dynpoi_user u ON (m.source,m.class,m.subclass,m.elems) = (u.source,u.class,u.subclass,u.elems)
 WHERE (m.lat BETWEEN %s AND %s) AND (m.lon BETWEEN %s and %s) AND """
 
 sql_arg = [minlat, maxlat, minlon, maxlon]
@@ -74,6 +75,10 @@ if err_id:
 
 if not_err_id:
     sqlbase += "m.item NOT IN (%s) AND " % not_err_id
+
+if class_:
+    sqlbase += "m.class IN (%s) AND "
+    sql_arg.append(class_)
 
 if user:
     sqlbase += "u.username = %s AND "
