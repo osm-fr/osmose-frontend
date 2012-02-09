@@ -97,9 +97,9 @@ sorttable = {
             sorttable.reverse(this.sorttable_tbody);
             this.className = this.className.replace('sorttable_sorted',
                                                     'sorttable_sorted_reverse');
-            this.removeChild(document.getElementById('sorttable_sortfwdind'));
+            this.removeChild(document.getElementById('sorttable_sortfwdind' + table.id));
             sortrevind = document.createElement('span');
-            sortrevind.id = "sorttable_sortrevind";
+            sortrevind.id = "sorttable_sortrevind" + table.id;
             sortrevind.innerHTML = stIsIE ? '&nbsp<font face="webdings">5</font>' : '&nbsp;&#x25B4;';
             this.appendChild(sortrevind);
             return;
@@ -110,9 +110,9 @@ sorttable = {
             sorttable.reverse(this.sorttable_tbody);
             this.className = this.className.replace('sorttable_sorted_reverse',
                                                     'sorttable_sorted');
-            this.removeChild(document.getElementById('sorttable_sortrevind'));
+            this.removeChild(document.getElementById('sorttable_sortrevind' + table.id));
             sortfwdind = document.createElement('span');
-            sortfwdind.id = "sorttable_sortfwdind";
+            sortfwdind.id = "sorttable_sortfwdind" + table.id;
             sortfwdind.innerHTML = stIsIE ? '&nbsp<font face="webdings">6</font>' : '&nbsp;&#x25BE;';
             this.appendChild(sortfwdind);
             return;
@@ -126,14 +126,14 @@ sorttable = {
               cell.className = cell.className.replace('sorttable_sorted','');
             }
           });
-          sortfwdind = document.getElementById('sorttable_sortfwdind');
+          sortfwdind = document.getElementById('sorttable_sortfwdind' + table.id);
           if (sortfwdind) { sortfwdind.parentNode.removeChild(sortfwdind); }
-          sortrevind = document.getElementById('sorttable_sortrevind');
+          sortrevind = document.getElementById('sorttable_sortrevind' + table.id);
           if (sortrevind) { sortrevind.parentNode.removeChild(sortrevind); }
           
           this.className += ' sorttable_sorted';
           sortfwdind = document.createElement('span');
-          sortfwdind.id = "sorttable_sortfwdind";
+          sortfwdind.id = "sorttable_sortfwdind" + table.id;
           sortfwdind.innerHTML = stIsIE ? '&nbsp<font face="webdings">6</font>' : '&nbsp;&#x25BE;';
           this.appendChild(sortfwdind);
 
