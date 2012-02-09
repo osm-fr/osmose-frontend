@@ -166,14 +166,14 @@ sql = sql % (opt_count, opt_left_join, opt_join, opt_where)
 
 ###########################################################################
 
-print "<table class=\"sortable\">"
+print "<table class=\"sortable\" id =\"table_source\">"
 print "<thead>"
 print "<tr>"
 print "  <th>#</th>"
 print "  <th>source</th>"
 print "  <th title=\"class\">cl</th>"
 print "  <th></th>"
-print "  <th>#</th>"
+print "  <th class=\"sorttable_sorted\">#<span id=\"sorttable_sortfwdindtable_source\">&nbsp;▾</span></th>"
 print "  <th>item</th>"
 print "  <th>title_en</th>"
 print "  <th>count</th>"
@@ -285,9 +285,12 @@ ORDER BY
     print "  <th>item</th>"
     print "  <th title=\"position\">pos</th>"
     print "  <th>elems</th>"
-    print "  <th>subtitle</th>"
     if opt_date != "-1":
-        print "  <th>date</th>"
+        print "  <th>subtitle</th>"
+    else:
+        print "  <th class=\"sorttable_sorted\">subtitle<span id=\"sorttable_sortfwdind\">&nbsp;▾</span></th>"
+    if opt_date != "-1":
+        print "  <th class=\"sorttable_sorted\">date<span id=\"sorttable_sortfwdind\">&nbsp;▾</span></th>"
     print "</tr>"
     print "</thead>"
     PgCursor.execute(sql)
