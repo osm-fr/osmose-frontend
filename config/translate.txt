@@ -33,3 +33,17 @@ fr.frontend.bubble.close fermer
 # frontend.bubble.set_status
 en.frontend.bubble.set_status change status
 fr.frontend.bubble.set_status changer le statut
+
+
+# info page
+en.utils.info.item item
+fr.utils.info.item item
+
+en.utils.info.title title
+fr.utils.info.title titre
+
+en.utils.info.count count
+fr.utils.info.count nombre
+
+en.utils.info.subtitle title
+fr.utils.info.subtitle sous-titre

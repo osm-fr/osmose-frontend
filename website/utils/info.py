@@ -89,13 +89,23 @@ print "<br><br>"
 
 ###########################################################################
 
+lang_def = utils.allowed_languages[0]
+lang_cur = utils.get_language()
+translate = utils.translator()
+
 sql = """
 SELECT
   dynpoi_class.source AS source,
   dynpoi_class.class AS class,
   dynpoi_class.item AS item,
-  dynpoi_item.menu_en AS menu_en,
-  dynpoi_class.title_en AS title_en,
+  (CASE WHEN dynpoi_item.menu_%s IS NOT NULL
+        THEN dynpoi_item.menu_%s
+        ELSE dynpoi_item.menu_%s
+   END) AS menu,
+  (CASE WHEN dynpoi_class.title_%s IS NOT NULL
+        THEN dynpoi_class.title_%s
+        ELSE dynpoi_class.title_%s
+   END) AS title,
   %s AS count,
   dynpoi_source.comment AS source_comment
 FROM dynpoi_class
@@ -110,8 +120,8 @@ GROUP BY
   dynpoi_class.source,
   dynpoi_class.class,
   dynpoi_class.item,
-  dynpoi_item.menu_en,
-  dynpoi_class.title_en,
+  menu,
+  title,
   dynpoi_source.comment
 ORDER BY
   dynpoi_class.item,
@@ -162,7 +172,7 @@ if source == None and item == None and country == None:
             opt_left_join = ""
             opt_join = ""
 
-sql = sql % (opt_count, opt_left_join, opt_join, opt_where)
+sql = sql % ((lang_cur, lang_cur, lang_def) * 2 + (opt_count, opt_left_join, opt_join, opt_where))
 
 ###########################################################################
 
@@ -174,9 +184,9 @@ print "  <th>source</th>"
 print "  <th title=\"class\">cl</th>"
 print "  <th></th>"
 print "  <th class=\"sorttable_sorted\">#<span id=\"sorttable_sortfwdindtable_source\">&nbsp;▾</span></th>"
-print "  <th>item</th>"
-print "  <th>title_en</th>"
-print "  <th>count</th>"
+print "  <th>%s</th>" % translate.get(u"utils.info.item").encode("utf8")
+print "  <th>%s</th>" % translate.get(u"utils.info.title").encode("utf8")
+print "  <th>%s</th>" % translate.get(u"utils.info.count").encode("utf8")
 print "</tr>"
 
 print "</thead>"
@@ -199,11 +209,11 @@ for res in PgCursor.fetchall():
     print "<td title=\"%s\"><img src=\"/map/markers/marker-l-%d.png\" alt=\"%s\"></td>" % ((res["item"],) * 3)
     print "<td><a href=\"?item=%d\">%d</a>" % ((res["item"],) * 2)
     print "</td>"
-    if res["menu_en"]:
-        print "<td>%s</td>" % res["menu_en"]
+    if res["menu"]:
+        print "<td>%s</td>" % res["menu"]
     else:
         print "<td></td>"
-    print "<td>%s</td>" % res["title_en"]
+    print "<td>%s</td>" % res["title"]
     count = res["count"]
     if count == -1:
         count = "N/A"
@@ -237,16 +247,24 @@ SELECT
   dynpoi_class.source AS source,
   dynpoi_class.class AS class,
   dynpoi_class.item AS item,
-  dynpoi_item.menu_en AS menu_en,
-  dynpoi_class.title_en AS title_en,
+  (CASE WHEN dynpoi_item.menu_%s IS NOT NULL
+        THEN dynpoi_item.menu_%s
+        ELSE dynpoi_item.menu_%s
+   END) AS menu,
+  (CASE WHEN dynpoi_class.title_%s IS NOT NULL
+        THEN dynpoi_class.title_%s
+        ELSE dynpoi_class.title_%s
+   END) AS title,
+  (CASE WHEN subtitle_%s IS NOT NULL
+        THEN subtitle_%s
+        ELSE subtitle_%s
+   END) AS subtitle,
   dynpoi_source.comment AS source_comment,
   subclass,
   lat,
   lon,
   elems AS elems,
-  %s AS date,
-  subtitle_en AS subtitle_en,
-  title_en AS title_en
+  %s AS date
 FROM dynpoi_class
   LEFT JOIN dynpoi_item
     ON dynpoi_class.item = dynpoi_item.item
@@ -263,14 +281,14 @@ ORDER BY
 
     if gen == "info":
         opt_date = "-1"
-        opt_order = "subtitle_en,"
+        opt_order = "subtitle,"
     elif gen in ("false-positive", "done"):
         opt_date = "date"
         opt_order = "dynpoi_status.date DESC,"
     if num_points:
         sql += "LIMIT %d" % num_points
 
-    sql = sql % (opt_date, opt_join, opt_where, opt_order)
+    sql = sql % ((lang_cur, lang_cur, lang_def) * 3 + (opt_date, opt_join, opt_where, opt_order))
 
     print "<br>"
 
@@ -286,9 +304,9 @@ ORDER BY
     print "  <th title=\"position\">pos</th>"
     print "  <th>elems</th>"
     if opt_date != "-1":
-        print "  <th>subtitle</th>"
+        print "  <th>%s</th>" % translate.get(u"utils.info.subtitle").encode("utf8")
     else:
-        print "  <th class=\"sorttable_sorted\">subtitle<span id=\"sorttable_sortfwdind\">&nbsp;▾</span></th>"
+        print "  <th class=\"sorttable_sorted\">%s<span id=\"sorttable_sortfwdind\">&nbsp;▾</span></th>" % translate.get(u"utils.info.subtitle").encode("utf8")
     if opt_date != "-1":
         print "  <th class=\"sorttable_sorted\">date<span id=\"sorttable_sortfwdind\">&nbsp;▾</span></th>"
     print "</tr>"
@@ -307,7 +325,7 @@ ORDER BY
         print "<td title=\"%(item)d\"><img src=\"/map/markers/marker-l-%(item)d.png\" alt=\"%(item)d\"></td>" % {"item": res["item"]}
         print "<td><a href=\"?item=%d\">%d</a> </td>"%(res["item"],res["item"])
         if res[3]:
-            print "<td title=\"%s\">%s</td>" % (res["title_en"], res["menu_en"])
+            print "<td title=\"%s\">%s</td>" % (res["title"], res["menu"])
         else:
             print "<td></td>"
 
@@ -347,10 +365,10 @@ ORDER BY
             print "<a href=\"http://localhost:8111/load_and_zoom?left=%f&bottom=%f&right=%f&top=%f"%(minlon,minlat,maxlon,maxlat) + "\">josm</a>"
 
         print "</td>"
-        if res["subtitle_en"]:
-            print "<td>%s</td>" % res["subtitle_en"]
-        elif res["title_en"]:
-            print "<td>%s</td>" % res["title_en"]
+        if res["subtitle"]:
+            print "<td>%s</td>" % res["subtitle"]
+        elif res["title"]:
+            print "<td>%s</td>" % res["title"]
         else:
             print "<td></td>"
         if opt_date != "-1":
