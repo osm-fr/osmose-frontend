@@ -195,7 +195,7 @@ for res in PgCursor.fetchall():
     analyse = "-".join(cmt_split[0:-1])
     country = cmt_split[-1]
     print "<td>%s-<a href=\"?country=%s\">%s</a></td>" % (analyse, country, country)
-    print "<td>%d</td>" % res["class"]
+    print "<td><a href=\"?item=%d&amp;class=%d\">%d</a></td>" % (res["item"], res["class"], res["class"])
     print "<td title=\"%s\"><img src=\"/map/markers/marker-l-%d.png\" alt=\"%s\"></td>" % ((res["item"],) * 3)
     print "<td><a href=\"?item=%d\">%d</a>" % ((res["item"],) * 2)
     print "</td>"
@@ -209,7 +209,7 @@ for res in PgCursor.fetchall():
         count = "N/A"
     else:
         total += count
-    print "<td><a href=\"?source=%d&amp;item=%d\">%s</a></td>" % (res["source"], res["item"], count)
+    print "<td><a href=\"?source=%d&amp;item=%d&amp;class=%d\">%s</a></td>" % (res["source"], res["item"], res["class"], count)
     print "</tr>"
 
 if total > 0:
