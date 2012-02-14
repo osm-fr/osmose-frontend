@@ -76,6 +76,11 @@ elif int(show_all) == 0:
 else:
     show_all = True
 
+
+lang_def = utils.allowed_languages[0]
+lang_cur = utils.get_language()
+translate = utils.translator()
+
 ###########################################################################
 ## page headers
 
@@ -89,9 +94,48 @@ print "<br><br>"
 
 ###########################################################################
 
-lang_def = utils.allowed_languages[0]
-lang_cur = utils.get_language()
-translate = utils.translator()
+print "<form method='get'>"
+
+print "<select name='country'>"
+print "<option value=''></option>"
+sql = """
+SELECT DISTINCT
+  (string_to_array(comment,'-'))[array_upper(string_to_array(comment,'-'), 1)] AS country
+FROM dynpoi_source
+ORDER BY country;"""
+PgCursor.execute(sql)
+for res in PgCursor.fetchall():
+    if country == res['country']:
+        s = " selected='yes'"
+    else:
+        s = ""
+    print "<option%s value='%s'>%s</option>" % (s, res['country'], res['country'])
+print "</select>"
+
+print "<select name='item'>"
+print "<option value=''></option>"
+sql = """
+SELECT
+  item,
+  (CASE WHEN menu_%s IS NOT NULL
+        THEN menu_%s
+        ELSE menu_%s
+   END) AS menu
+FROM dynpoi_item
+ORDER BY item;""" % (lang_cur, lang_cur, lang_def)
+PgCursor.execute(sql)
+for res in PgCursor.fetchall():
+    if item == res['item']:
+        s = " selected='yes'"
+    else:
+        s = ""
+    print "<option%s value='%s'>%s - %s</option>" % (s, res['item'], res['item'], res['menu'])
+print "</select>"
+print "<input type='submit' value='Set'/>"
+
+print "</form>"
+
+###########################################################################
 
 sql = """
 SELECT
