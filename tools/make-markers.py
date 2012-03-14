@@ -24,60 +24,76 @@ for g in utils.get_categories():
 ## = signe égal
 ## | trait vertical
 ## || double trait vertical
-## :: quatre point
-## .:. quatre point en losange
+## :: quatre points
+## .:. quatre points en losange
 ## T tiangle haut
 ## t tiangle bas
 ## X sablier
 ## >< sablier couche
+## L'
+## .l
+## [] carré vide
+## . point
 
 def get_symb(symbole):
-    if symbole in "O":
+    if symbole == "O":
         return "<circle cx='8' cy='8' r='3' />"
-    if symbole in "L":
+    if symbole == "L":
         return "<path d='M 8,12 L 4,8 L 8,4 L 12,8 L 8,12 z' />"
-    if symbole in "K":
+    if symbole == "K":
         return "<path d='M 11,11 L 5,11 L 5,5 L 11,5 L 11,11 z' />"
-    if symbole in "P":
+    if symbole == "P":
         l1 = "<path d='M 9,11 L 7,11 L 7,5 L 9,5 L 9,11 z' />"
         l2 = "<path d='M 11,9 L 5,9 L 5,7 L 11,7 L 11,9 z' />"
         return l1+l2
-    if symbole in "F":
+    if symbole == "F":
         l1 = "<path transform='rotate(45 8 8)' d='M 9,12 L 7,12 L 7,4 L 9,4 L 9,12 z' />"
         l2 = "<path transform='rotate(45 8 8)' d='M 12,9 L 4,9 L 4,7 L 12,7 L 12,9 z' />"
         return l1+l2
-    if symbole in "M":
+    if symbole == "M":
         return "<path d='M 11,9 L 5,9 L 5,7 L 11,7 L 11,9 z' />"
-    if symbole in "=":
+    if symbole == "=":
         l1 = "<path d='M 11,9 L 5,9 L 5,11 L 11,11 L 11,9 z' />"
         l2 = "<path d='M 11,7 L 5,7 L 5,5 L 11,5 L 11,7 z' />"
         return l1+l2
-    if symbole in "|":
+    if symbole == "|":
         return "<path d='M 9,11 L 7,11 L 7,5 L 9,5 L 9,11 z' />"
-    if symbole in "||":
+    if symbole == "||":
         l1 = "<path transform='rotate(90 8 8)' d='M 11,9 L 5,9 L 5,11 L 11,11 L 11,9 z' />"
         l2 = "<path transform='rotate(90 8 8)' d='M 11,7 L 5,7 L 5,5 L 11,5 L 11,7 z' />"
         return l1+l2
-    if symbole in "::":
+    if symbole == "::":
         l1 = "<path d='M 11,9 L 9,9 L 9,11 L 11,11 L 11,9 z' />"
         l2 = "<path d='M 11,7 L 9,7 L 9,5 L 11,5 L 11,7 z' />"
         l3 = "<path d='M 7,9 L 5,9 L 5,11 L 7,11 L 7,9 z' />"
         l4 = "<path d='M 7,7 L 5,7 L 5,5 L 7,5 L 7,7 z' />"
         return l1+l2+l3+l4
-    if symbole in ".:.":
+    if symbole == ".:.":
         l1 = "<path d='M 11,9 L 9,9 L 9,11 L 11,11 L 11,9 z' />"
         l2 = "<path d='M 11,7 L 9,7 L 9,5 L 11,5 L 11,7 z' />"
         l3 = "<path d='M 7,9 L 5,9 L 5,11 L 7,11 L 7,9 z' />"
         l4 = "<path d='M 7,7 L 5,7 L 5,5 L 7,5 L 7,7 z' />"
         return "<g transform='rotate(45 8 8)'>"+l1+l2+l3+l4+"</g>"
-    if symbole in "T":
+    if symbole == "T":
         return "<path d='M 5,11 L 5,5 L 11,5 L 5,11 z' />"
-    if symbole in "t":
+    if symbole == "t":
         return "<path d='M 11,11 L 5,11 L 11,5 L 11,11 z' />"
-    if symbole in "X":
+    if symbole == "X":
         return "<path d='M 11,11 L 5,11 L 11,5 L 5,5 L 11,11 z' />"
-    if symbole in "><":
+    if symbole == "><":
         return "<path d='M 11,11 L 11,5 L 5,11 L 5,5 L 11,11 z' />"
+    if symbole == "L'":
+        l1 = "<path d='M 5,5 L 11,5 L 11,7 L 7,7 L 7,11 L 5,11 z' />"
+        l2 = "<path d='M 11,11 L 9,11 L 9,9 L 11,9 z' />"
+        return l1+l2
+    if symbole == ".l":
+        l1 = "<path d='M 11,11 L 11,5 L 9,5 L 9,9 L 5,9 L 5,11 z' />"
+        l2 = "<path d='M 5,5 L 7,5 L 7,7 L 5,7 z' />"
+        return l1+l2
+    if symbole == "[]":
+        return "<path d='M 5,5 L 11,5 L 11,11 L 5,11 z M 7,7 L 7,9 L 9,9 L 9,7 z' />"
+    if symbole == ".":
+        return "<path d='M 7,7 L 7,9 L 9,9 L 9,7 z' />"
 
 ################################################################################
 ## marqueurs
