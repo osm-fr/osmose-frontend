@@ -86,9 +86,10 @@ def update(source, url, logger = printlogger()):
                       WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status WHERE source = %s)""",
                    (source_id, ))
     for res in dbcurs.fetchall():
-        dbcurs.execute("""UPDATE dynpoi_status SET subtitle_en = %s, lat = %s, lon = %s
+        dbcurs.execute("""UPDATE dynpoi_status SET subtitle_en = %s, subtitle_fr = %s,
+                          lat = %s, lon = %s
                           WHERE source = %s AND class = %s AND subclass = %s AND elems = %s""",
-                       (res["subtitle_en"], res["lat"], res["lon"],
+                       (res["subtitle_en"], res["subtitle_fr"], res["lat"], res["lon"],
                         res["source"], res["class"], res["subclass"], res["elems"]))
 
     ## remove false positive no longer present
