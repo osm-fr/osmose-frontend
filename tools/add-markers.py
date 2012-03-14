@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
-all_flags = ["O", "L", "K", "P", "M", "F", "=", "|", "||", "::", ".:.", "T", "t"]
+all_flags = ["O", "L", "K", "P", "M", "F", "=", "|", "||", "::", ".:.", "T", "t", "X", "><", "L'", "[]", "."]
 
 from pyPgSQL import PgSQL
 
@@ -25,10 +25,16 @@ for res in giscurs.fetchall():
     if m["marker_flag"] in avail_flags:
       avail_flags.remove(m["marker_flag"])
 
+  print "  missing %d" % i
   print "possible flags:", avail_flags
+
+  if len(avail_flags) == 0:
+    print "not enough available flags"
+    continue
 
   en = raw_input("English: ")
   fr = raw_input("French: ")
 
   print "insert into dynpoi_item values (%d, %d, '%s', '%s', '%s', '%s');" % (i, c, en, fr, color, avail_flags[0])
+  avail_flags.remove(avail_flags[0])
 
