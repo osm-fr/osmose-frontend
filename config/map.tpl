@@ -49,8 +49,8 @@
       var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Mapnik");
       map.addLayer(layerMapnik);
       
-      var layerTilesAtHome = new OpenLayers.Layer.OSM.Osmarender("Osmarender");
-      map.addLayer(layerTilesAtHome);
+//      var layerTilesAtHome = new OpenLayers.Layer.OSM.Osmarender("Osmarender");
+//      map.addLayer(layerTilesAtHome);
 
 //       var layerOpenSeaMap = new OpenLayers.Layer.TMS("OpenSeaMap", "http://tiles.openseamap.org/seamark/", { numZoomLevels: 18, type: 'png', getURL: getTileURL, isBaseLayer: false, displayOutsideMaxExtent: true});
 //      map.addLayer(layerOpenSeaMap);
