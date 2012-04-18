@@ -26,6 +26,8 @@
 ## database connection
 
 import sys, os, time, commands, cgi, re
+import datetime
+
 root_folder = os.environ["OSMOSE_ROOT"]
 sys.path.append(root_folder)
 from tools import utils
@@ -77,9 +79,9 @@ def get_data(options):
     PgCurs.execute(sql)
 
     if len(options.sources)!=1: 
-        delay = 1*24*3600
+        delay = datetime.timedelta(days=1)
     else:
-        delay = 1
+        delay = datetime.timedelta(seconds=1)
     
     result = []
     last = {}
@@ -155,7 +157,7 @@ def make_plt(options):
         f_dat.write("%s %d\n"%(x[0], x[1]))
     f_dat.close()
 
-    s, o = commands.getstatusoutput("gnuplot-nox "+gnuplotFilename)
+    s, o = commands.getstatusoutput("gnuplot "+gnuplotFilename)
     
     if s:
         raise SystemError("error in gnuplot generation")
@@ -226,6 +228,8 @@ try:
 except Exception, e:
     print "Content-type: text/plain"
     print ""
+    import traceback
+    traceback.print_exc(file=sys.stdout)
     print e
 
 
