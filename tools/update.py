@@ -49,6 +49,7 @@ def execute_sql(dbcurs, sql, args = None):
         if prev_sql != sql:
             prev_sql = sql
 #            print time.strftime("%H:%M:%S").decode("utf8"), sql % args
+#        print dbcurs.mogrify(sql, args)
         dbcurs.execute(sql, args)
     num_sql_run += 1
     if num_sql_run % 1000 == 0:
@@ -122,6 +123,11 @@ def update(source, url, logger = printlogger()):
     execute_sql(dbcurs, """DELETE FROM dynpoi_marker
                       WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status WHERE source = %s)""",
                    (source_id, ))
+
+    ## TODO: modify SQL above
+    execute_sql(dbcurs, """DELETE FROM marker
+                      WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status WHERE source = %s)""",
+                   (source_id, ))
     
     ## commit and close
     dbconn.commit()
@@ -172,6 +178,8 @@ class update_parser(handler.ContentHandler):
             self._elem = dict(attrs)
             if "user" in self._elem:
                 self._users.append(self._elem["user"])
+            else:
+                self._elem["user"] = None
             self._elem[u"type"] = name
             self._elem_tags = {}
         elif name == u"tag":
@@ -196,6 +204,12 @@ class update_parser(handler.ContentHandler):
             execute_sql(self._dbcurs, """DELETE FROM dynpoi_marker
                                     WHERE source = %s AND elems = %s""",
                                  (self._source_id, attrs["type"] + attrs["id"]))
+
+            execute_sql(self._dbcurs, """DELETE FROM marker
+                                    WHERE source = %s AND id IN
+                                          (SELECT id FROM marker_elem
+                                                     WHERE data_type = %s AND id = %s)""",
+                                 (self._source_id, attrs["type"][0].upper(), attrs["id"]))
             
     def endElement(self, name):
         if name == u"error":
@@ -245,6 +259,7 @@ class update_parser(handler.ContentHandler):
             
             ## sql template
             sql1 = (u"INSERT INTO dynpoi_marker (" + u','.join(keys) + u") VALUES (" + u','.join(vals) + u");").encode('utf8')
+            sql_marker = u"INSERT INTO marker (source, class, subclass, item, lat, lon, elems) VALUES (" + "%s," * 6 + "%s) RETURNING id;"
             
             ## add data at all location
             cpt = 0
@@ -264,6 +279,15 @@ class update_parser(handler.ContentHandler):
                 sql = sql.replace("#LAT2#",str(int(1000000*lat)))
                 sql = sql.replace("#LON2#",str(int(1000000*lon)))
                 execute_sql(self._dbcurs, sql)
+
+                execute_sql(self._dbcurs, sql_marker,
+                            (self._source_id, self._class_id, self._class_sub,
+                             self._class_item[self._class_id],
+                             str(int(1000000*lat)), str(int(1000000*lon)),
+                             utils.pg_escape(all_elem)
+                             ))
+                marker_id = self._dbcurs.fetchone()[0]
+
                 
             ## add for all users
             for user in self._users:
@@ -271,6 +295,17 @@ class update_parser(handler.ContentHandler):
                 sql = u"INSERT INTO dynpoi_user (source,class,subclass,elems,username) VALUES (" + u','.join(val) + u");"
                 sql = sql.encode('utf8')
                 execute_sql(self._dbcurs, sql)
+
+            ## add all elements
+            sql_elem = u"INSERT INTO marker_elem (marker_id, elem_index, data_type, id, tags, username) VALUES (" + "%s, " * 5 + "%s)"
+            num = 0
+            for elem in self._error_elements:
+                if elem["type"] in ("node", "way", "relation"):
+                    execute_sql(self._dbcurs, sql_elem,
+                                (marker_id, num, elem["type"][0].upper(), int(elem["id"]),
+                                 elem["tag"], elem["user"]))
+                    num += 1
+
 
         elif name in [u"node", u"way", u"relation", u"infos"]:
             self._elem[u"tag"] = self._elem_tags
@@ -309,6 +344,9 @@ class update_parser(handler.ContentHandler):
                 execute_sql(self._dbcurs, "DELETE FROM dynpoi_marker WHERE source = %s AND class = %s;",
                                      (self._source_id, self._class_id))
                 execute_sql(self._dbcurs, "DELETE FROM dynpoi_user WHERE source = %s AND class = %s;",
+                                     (self._source_id, self._class_id))
+
+                execute_sql(self._dbcurs, "DELETE FROM marker WHERE source = %s AND class = %s;",
                                      (self._source_id, self._class_id))
 
 
