@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS marker CASCADE;
 DROP TABLE IF EXISTS marker_elem CASCADE;
+DROP TABLE IF EXISTS marker_fix CASCADE;
 
 CREATE TABLE marker (
   id bigserial PRIMARY KEY,
@@ -21,6 +22,17 @@ CREATE TABLE marker_elem (
   tags hstore,
   username text,
   PRIMARY KEY (marker_id, elem_index)
+);
+
+CREATE TABLE marker_fix (
+  marker_id bigint references marker(id) ON DELETE CASCADE,
+  diff_index integer,
+  elem_data_type char,
+  elem_id bigint,
+  tags_create hstore,
+  tags_modify hstore,
+  tags_delete text[],
+  PRIMARY KEY (marker_id, diff_index)
 );
 
 

@@ -170,6 +170,8 @@ class update_parser(handler.ContentHandler):
             self._error_locations = []
             self._error_texts     = {}
             self._users           = []
+            self._fixes           = []
+            self.elem_mode        = "info"
         elif name == u"location":
             self._error_locations.append(dict(attrs))
         elif name == u"text":
@@ -192,7 +194,18 @@ class update_parser(handler.ContentHandler):
                 return
             if attrs["k"].startswith("TMC:"):
                 return
-            self._elem_tags[attrs["k"]] = attrs["v"]
+
+            if self.elem_mode == "info":
+               self._elem_tags[attrs["k"]] = attrs["v"]
+            elif self.elem_mode == "fix":
+               if attrs["action"] == "create":
+                  self._fix_create[attrs["k"]] = attrs["v"]
+               elif attrs["action"] == "modify":
+                  self._fix_modify[attrs["k"]] = attrs["v"]
+               elif attrs["action"] == "delete":
+                  self._fix_delete.append(attrs["k"])
+
+
         elif name == u"class":
             self._class_id    = int(attrs["id"])
             self._class_item[self._class_id] = int(attrs["item"])
@@ -210,6 +223,14 @@ class update_parser(handler.ContentHandler):
                                           (SELECT id FROM marker_elem
                                                      WHERE data_type = %s AND id = %s)""",
                                  (self._source_id, attrs["type"][0].upper(), attrs["id"]))
+
+        elif name == u"fixes":
+            self.elem_mode = "fix"
+        elif name == u"fix":
+            self._fix = []
+            self._fix_create = {}
+            self._fix_modify = {}
+            self._fix_delete = []
             
     def endElement(self, name):
         if name == u"error":
@@ -306,10 +327,28 @@ class update_parser(handler.ContentHandler):
                                  elem["tag"], elem["user"]))
                     num += 1
 
+            ## add quickfixes
+            sql_fix = u"INSERT INTO marker_fix (marker_id, diff_index, elem_data_type, elem_id, tags_create, tags_modify, tags_delete) VALUES (" + "%s, " * 6 + "%s)"
+            num = 0
+            for fix in self._fixes:
+                for elem in fix:
+                    if elem["type"] in ("node", "way", "relation"):
+                        print elem
+                        execute_sql(self._dbcurs, sql_fix,
+                                    (marker_id, num, elem["type"][0].upper(), int(elem["id"]),
+                                     elem["tags_create"], elem["tags_modify"], elem["tags_delete"]))
+                    num += 1
+
 
         elif name in [u"node", u"way", u"relation", u"infos"]:
-            self._elem[u"tag"] = self._elem_tags
-            self._error_elements.append(self._elem)
+            if self.elem_mode == "info":
+                self._elem[u"tag"] = self._elem_tags
+                self._error_elements.append(self._elem)
+            else:
+                self._elem[u"tags_create"] = self._fix_create
+                self._elem[u"tags_modify"] = self._fix_modify
+                self._elem[u"tags_delete"] = self._fix_delete
+                self._fix.append(self._elem)
             
         elif name == u"class":
             ## to remove when translated
@@ -349,6 +388,10 @@ class update_parser(handler.ContentHandler):
                 execute_sql(self._dbcurs, "DELETE FROM marker WHERE source = %s AND class = %s;",
                                      (self._source_id, self._class_id))
 
+        elif name == u"fixes":
+            self.elem_mode = "info"
+        elif name == u"fix":
+            self._fixes.append(self._fix)
 
     def update_timestamp(self, attrs):
         if not self._tstamp_updated:
