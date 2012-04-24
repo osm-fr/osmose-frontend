@@ -280,7 +280,7 @@ class update_parser(handler.ContentHandler):
             
             ## sql template
             sql1 = (u"INSERT INTO dynpoi_marker (" + u','.join(keys) + u") VALUES (" + u','.join(vals) + u");").encode('utf8')
-            sql_marker = u"INSERT INTO marker (source, class, subclass, item, lat, lon, elems) VALUES (" + "%s," * 6 + "%s) RETURNING id;"
+            sql_marker = u"INSERT INTO marker (source, class, subclass, item, lat, lon, elems, subtitle) VALUES (" + "%s," * 7 + "%s) RETURNING id;"
             
             ## add data at all location
             cpt = 0
@@ -305,7 +305,8 @@ class update_parser(handler.ContentHandler):
                             (self._source_id, self._class_id, self._class_sub,
                              self._class_item[self._class_id],
                              str(int(1000000*lat)), str(int(1000000*lon)),
-                             utils.pg_escape(all_elem)
+                             utils.pg_escape(all_elem),
+                             self._error_texts,
                              ))
                 marker_id = self._dbcurs.fetchone()[0]
 
