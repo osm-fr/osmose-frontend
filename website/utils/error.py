@@ -61,13 +61,19 @@ elif out_format == "json":
 elif out_format == "xml":
     print "Content-Type: text/xml; charset=utf-8"
     print
+    from tools import OsmSax
+    outxml = OsmSax.OsmSaxWriter(sys.stdout, "UTF-8")
     print '<?xml version="1.0" encoding="UTF-8"?>'
-    print '<error id="%d">' % err_id
+    outxml.startElement("error", { "id": str(err_id) })
 
 ###########################################################################
 
+data_type = { "N": "node",
+              "W": "way",
+              "R": "relation",
+            }
 
-def show_results(columns, res):
+def show_html_results(columns, res):
 
     print "<table class=\"sortable\" id =\"table_marker\">"
     print "<thead>"
@@ -107,7 +113,7 @@ if out_format == "html":
 elif out_format == "json":
     pass
 elif out_format == "xml":
-    print "<marker>"
+    outxml.startElement("marker")
 
 columns = [ "source", "class", "subclass", "lat", "lon", "elems", "item", "subtitle" ]
 
@@ -118,10 +124,11 @@ WHERE id = %s
 
 PgCursor.execute(sql, (err_id, ))
 for res in PgCursor.fetchall():
-    show_results(columns, res)
+    if out_format == "html":
+        show_html_results(columns, res)
 
 if out_format == "xml":
-    print "</marker>"
+    outxml.endElement("marker")
 
 ###########################################################################
 
@@ -130,7 +137,7 @@ if out_format == "html":
 elif out_format == "json":
     pass
 elif out_format == "xml":
-    print "<elems>"
+    outxml.startElement("elems")
 
 columns = [ "elem_index", "data_type", "id", "tags", "username" ]
 
@@ -142,10 +149,11 @@ ORDER BY elem_index
 
 PgCursor.execute(sql, (err_id, ))
 for res in PgCursor.fetchall():
-    show_results(columns, res)
+    if out_format == "html":
+        show_html_results(columns, res)
 
 if out_format == "xml":
-    print "</elems>"
+    outxml.endElement("elems")
 
 ###########################################################################
 
@@ -154,7 +162,7 @@ if out_format == "html":
 elif out_format == "json":
     pass
 elif out_format == "xml":
-    print "<fixes>"
+    outxml.startElement("fixes")
 
 columns = [ "diff_index", "elem_data_type", "elem_id", "tags_create", "tags_modify", "tags_delete" ]
 
@@ -166,10 +174,23 @@ ORDER BY diff_index
 
 PgCursor.execute(sql, (err_id, ))
 for res in PgCursor.fetchall():
-    show_results(columns, res)
+    if out_format == "html":
+        show_html_results(columns, res)
+
+    elif out_format == "xml":
+        outxml.startElement("fix")
+        outxml.startElement(data_type[res["elem_data_type"]], {"id": str(res["elem_id"])})
+        for (k, v) in res["tags_create"].items():
+            outxml.Element("tag", { "action": "create", "k": k, "v": v})
+        for (k, v) in res["tags_modify"].items():
+            outxml.Element("tag", { "action": "modify", "k": k, "v": v})
+        for k in res["tags_delete"]:
+            outxml.Element("tag", { "action": "delete", "k": k})
+        outxml.endElement(data_type[res["elem_data_type"]])
+        outxml.endElement("fix")
 
 if out_format == "xml":
-    print "</fixes>"
+    outxml.endElement("fixes")
 
 ###########################################################################
 if out_format == "html":
@@ -177,4 +198,4 @@ if out_format == "html":
 elif out_format == "json":
     pass
 elif out_format == "xml":
-    print "</error>"
+    outxml.endElement("error")
