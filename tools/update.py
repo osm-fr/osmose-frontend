@@ -181,7 +181,12 @@ class update_parser(handler.ContentHandler):
         if name == u"error":
             ## to remove when all in en
             if "en" not in self._error_texts:
-                self._error_texts["en"] = self._error_texts and u"no translation" or u""
+                if len(self._error_texts) > 0:
+                    for v in self._error_texts.values():
+                        pass
+                    self._error_texts["en"] = v
+                else:
+                    self._error_texts["en"] = u""
             
             ## build all_elem
             all_elem   = u""
@@ -254,7 +259,12 @@ class update_parser(handler.ContentHandler):
         if name == u"class":
             ## to remove when translated
             if "en" not in self._class_texts[self._class_id]:
-                self._class_texts[self._class_id]["en"] = {"title":u"no translation"}
+                if len(self._class_texts[self._class_id]) > 0:
+                    for v in self._class_texts[self._class_id].values():
+                        pass
+                    self._class_texts[self._class_id]["en"] = v
+                else:
+                    self._class_texts[self._class_id]["en"] = {"title":u"no translation"}
             ##
             keys = ["source", "class", "item"]
             vals = [utils.pg_escape(self._source_id), utils.pg_escape(self._class_id), utils.pg_escape(self._class_item[self._class_id])]
