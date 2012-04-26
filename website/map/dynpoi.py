@@ -85,6 +85,11 @@ if cki:
 ###########################################################################
 ## data
 
+data_type = { "N": "node",
+              "W": "way",
+              "R": "relation",
+            }
+
 print
 print "\t".join(["lat", "lon", "marker_id", "icon", "iconSize", "iconOffset", "html"])
 
@@ -95,25 +100,39 @@ url_help = "http://wiki.openstreetmap.org/wiki/FR:Osmose/erreurs"
 lang_def = utils.allowed_languages[0]
 lang_cur = utils.get_language()
 sqlbase  = """
-SELECT dynpoi_marker.item,
-       dynpoi_marker.source,
-       dynpoi_marker.class,
-       dynpoi_marker.elems,
-       dynpoi_marker.subclass,
-       dynpoi_marker.marker_id,
-       dynpoi_marker.lat,
-       dynpoi_marker.lon,
+SELECT marker.id,
+       marker.item,
+       marker.source,
+       marker.class,
+       marker.elems,
+       marker.subclass,
+       marker.lat,
+       marker.lon,
        dynpoi_class.title_%s as title_cur,
        dynpoi_class.title_%s as title_def,
-       dynpoi_marker.subtitle_%s as subtitle_cur,
-       dynpoi_marker.subtitle_%s as subtitle_def,
-       dynpoi_marker.data,
-       dynpoi_update_last.timestamp
-FROM dynpoi_marker
+       marker.subtitle->'%s' as subtitle_cur,
+       marker.subtitle->'%s' as subtitle_def,
+       dynpoi_update_last.timestamp,
+       elem0.data_type AS elem0_data_type,
+       elem0.id AS elem0_id,
+       elem0.tags AS elem0_tags,
+       elem1.data_type AS elem1_data_type,
+       elem1.id AS elem1_id,
+       elem1.tags AS elem1_tags,
+       elem2.data_type AS elem2_data_type,
+       elem2.id AS elem2_id,
+       elem2.tags AS elem2_tags
+FROM marker
 INNER JOIN dynpoi_class
-  ON dynpoi_marker.source=dynpoi_class.source AND dynpoi_marker.class=dynpoi_class.class
+  ON marker.source=dynpoi_class.source AND marker.class=dynpoi_class.class
 INNER JOIN dynpoi_update_last
-  ON dynpoi_marker.source = dynpoi_update_last.source
+  ON marker.source = dynpoi_update_last.source
+LEFT JOIN marker_elem elem0
+  ON elem0.marker_id = marker.id and elem0.elem_index = 0
+LEFT JOIN marker_elem elem1
+  ON elem1.marker_id = marker.id and elem1.elem_index = 1
+LEFT JOIN marker_elem elem2
+  ON elem2.marker_id = marker.id and elem2.elem_index = 2
 WHERE %s AND
   %s AND
   dynpoi_update_last.timestamp > (now() - interval '3 months')
@@ -121,15 +140,14 @@ ORDER BY ABS(lat-%d)+ABS(lon-%d) ASC
 LIMIT 200;"""
 
 sqlbase_count  = """
-SELECT dynpoi_marker.source
-FROM dynpoi_marker
+SELECT marker.source
+FROM marker
 INNER JOIN dynpoi_update_last
-  ON dynpoi_marker.source = dynpoi_update_last.source
+  ON marker.source = dynpoi_update_last.source
 WHERE %s AND
   %s AND
   dynpoi_update_last.timestamp > (now() - interval '3 months')
 LIMIT 310;"""
-
 
 if source:
     sources = source.split(",")
@@ -137,15 +155,15 @@ if source:
     for source in sources:
         source = source.split("-")
         if len(source)==1:
-            source2.append("(dynpoi_marker.source=%d)"%int(source[0]))
+            source2.append("(marker.source=%d)"%int(source[0]))
         else:
-            source2.append("(dynpoi_marker.source=%d AND dynpoi_marker.class=%d)"%(int(source[0]), int(source[1])))
+            source2.append("(marker.source=%d AND marker.class=%d)"%(int(source[0]), int(source[1])))
     sources2 = " OR ".join(source2)
     where = "(%s)" % sources2
 elif user:
     sys.exit(0)
 elif err_id:
-    where = "(dynpoi_marker.item IN (%s))" % err_id
+    where = "(marker.item IN (%s))" % err_id
 else:
     where = "1=1"
 
@@ -174,7 +192,7 @@ if bbox:
             done = True
             break
 
-        bboxsql = ("(dynpoi_marker.lat BETWEEN %d AND %d) AND (dynpoi_marker.lon BETWEEN %d and %d)" %
+        bboxsql = ("(marker.lat BETWEEN %d AND %d) AND (marker.lon BETWEEN %d and %d)" %
                    (tmp_minlat, tmp_maxlat, tmp_minlon, tmp_maxlon))
 
         sql = sqlbase_count % (where, bboxsql)
@@ -197,13 +215,14 @@ else:
 
 sql = sqlbase % (lang_cur, lang_def, lang_cur, lang_def, where, bboxsql, lat, lon)
 sql = sql.replace("--","+")
-PgCursor.execute(sql)
-results = PgCursor.fetchall()
- 
+
 try:
     open("/tmp/osmose-last.sql","a").write(sql+"\n")
 except:
     pass
+
+PgCursor.execute(sql)
+results = PgCursor.fetchall()
 
 ###########################################################################
 ## print results
@@ -211,8 +230,7 @@ except:
 for res in results:
     lat       = str(float(res["lat"])/1000000)
     lon       = str(float(res["lon"])/1000000)
-    error_id  = "%d-%d-%d-%s" % (res["source"], res["class"], res["subclass"], res["elems"])
-    marker_id = "%d-%d-%d-%s-%d" % (res["source"], res["class"], res["subclass"], res["elems"], res["marker_id"])
+    error_id  = res["id"]
     title     = res["title_cur"]    or res["title_cur"]    or "no title.."
     subtitle  = res["subtitle_cur"] or res["subtitle_cur"] or ""
     b_date    = res["timestamp"] or ""
@@ -223,7 +241,7 @@ for res in results:
 
     html  = "<div class=\"bulle_msg\">"
     html += "<div class='closebubble'>"
-    html += "<div><a href='#' onclick=\"closeBubble('%s');return false;\"><b>&nbsp;X&nbsp;</b></a></div>"%marker_id
+    html += "<div><a href='#' onclick=\"closeBubble('%s');return false;\"><b>&nbsp;X&nbsp;</b></a></div>" % error_id
     html += "<div class=\"help\"><a target=\"_blank\" href='%s#%d'>&nbsp;?&nbsp;</a></div>" % (url_help, item)
     html += "</div>"
     html += "<div class=\"bulle_err\">"
@@ -231,12 +249,13 @@ for res in results:
     html += "</div>"
 
     elems = []
-    if res["data"]:
-        for i in range(len(res["data"])/2):
-            if res["data"][2*i].startswith("##"):
-                elems.append([res["data"][2*i][2:], res["data"][2*i+1], {}])
-            else:
-                elems[-1][2][res["data"][2*i]] = res["data"][2*i+1]
+    if res["elem0_data_type"]:
+        elems.append((data_type[res["elem0_data_type"]], res["elem0_id"], res["elem0_tags"]))
+    if res["elem1_data_type"]:
+        elems.append((data_type[res["elem1_data_type"]], res["elem1_id"], res["elem1_tags"]))
+    if res["elem2_data_type"]:
+        elems.append((data_type[res["elem2_data_type"]], res["elem2_id"], res["elem2_tags"]))
+
     for e in elems:
         html += "<div class=\"bulle_elem\">"
         html += "<b><a target=\"_blank\" href=\"http://www.openstreetmap.org/browse/%s/%s\">%s %s</a></b>"%(e[0], e[1], e[0], e[1])
@@ -245,11 +264,9 @@ for res in results:
             html += " <a target=\"_blank\" href=\"http://analyser.openstreetmap.fr/cgi-bin/index.py?relation=%s\">analyse1</a>"%e[1]
             html += " <a target=\"_blank\" href=\"http://osm3.crans.org/osmbin/analyse-relation?%s\">analyse2</a>"%e[1]
         if e[0] == "node":
-            html += " <a href=\"http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/node/"+e[1]+"\" target=\"hiddenIframe\">josm</a>"
-        if e[0] == "way":
-            html += " <a href=\"http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/way/"+e[1]+"/full\" target=\"hiddenIframe\">josm</a>"
-        if e[0] == "relation":
-            html += " <a href=\"http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/relation/"+e[1]+"/full\" target=\"hiddenIframe\">josm</a>"
+            html += " <a href=\"http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/node/%d\" target=\"hiddenIframe\">josm</a>" % e[1]
+        if e[0] == "way" or e[0] == "relation":
+            html += " <a href=\"http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/%s/%d/full\" target=\"hiddenIframe\">josm</a>" % (e[0], e[1])
         html += "<br>"
         for t in e[2].items():
             html += "<b>%s</b> = %s<br>"%(t[0], t[1])
@@ -283,5 +300,5 @@ for res in results:
     ############################################################
 
     marker   = "markers/marker-b-%d.png" % (res["item"])
-    print "\t".join([lat, lon, marker_id, marker, "17,33", "-8,-33", html])
+    print "\t".join([lat, lon, str(error_id), marker, "17,33", "-8,-33", html])
     
