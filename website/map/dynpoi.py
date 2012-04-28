@@ -238,8 +238,8 @@ for res in results:
     lat       = str(float(res["lat"])/1000000)
     lon       = str(float(res["lon"])/1000000)
     error_id  = res["id"]
-    title     = res["title_cur"]    or res["title_cur"]    or "no title.."
-    subtitle  = res["subtitle_cur"] or res["subtitle_cur"] or ""
+    title     = res["title_cur"]    or res["title_def"]    or "no title.."
+    subtitle  = res["subtitle_cur"] or res["subtitle_def"] or ""
     b_date    = res["timestamp"] or ""
     item      = res["item"] or 0
     
