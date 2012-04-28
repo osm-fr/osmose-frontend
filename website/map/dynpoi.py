@@ -285,11 +285,11 @@ for res in results:
 
         if len(e) > 4:
             for (k, v) in e[3].items():
-                html += "<span style='color:green'> + <b>" + k + "</b> = " + v + "<br></span>"
+                html += "<div class='fix_add'> + <b>" + k + "</b> = " + v + "<br></div>"
             for (k, v) in e[4].items():
-                html += "<span style='color:orange'> ~ <b>" + k + "</b> = " + v + "<br></span>"
+                html += "<div class='fix_mod'> ~ <b>" + k + "</b> = " + v + "<br></div>"
             for k in e[5]:
-                html += "<span style='color:red'> - <b>" + k + "</b></span>"
+                html += "<div class='fix_del'> - <b>" + k + "</b></div>"
 
         for t in e[2].items():
             html += "<b>%s</b> = %s<br>"%(t[0], t[1])
