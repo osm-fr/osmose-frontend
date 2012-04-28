@@ -23,10 +23,8 @@
 import sys, os, cgi
 root_folder = os.environ["OSMOSE_ROOT"]
 sys.path.append(root_folder)
-from tools import utils
+from tools import osmose_common
 
-PgConn    = utils.get_dbconn()
-PgCursor  = PgConn.cursor()
 form      = cgi.FieldStorage()
 
 ###########################################################################
@@ -34,32 +32,14 @@ form      = cgi.FieldStorage()
 print "Content-Type: text/html; charset=utf-8"
 print
 
-err = form.getvalue("e", "").split("-")
-source_id = int(err[0])
-class_id  = int(err[1])
-sub_class = int(err[2])
-elems     = utils.pg_escape(err[3])
-
-status    = form.getvalue("s", None)
+error_id = int(form.getvalue("e", -1))
+status = form.getvalue("s", None)
 if status not in ["done","false"]:
-    sys.exit(0)
+    sys.exit(1)
+if error_id < 0:
+    sys.exit(1)
 
-## OpenStreetBugs
-if source_id==62:
-    import commands
-    s, o = commands.getstatusoutput("wget -o /dev/null -O - 'http://openstreetbugs.schokokeks.org/api/0.1/closePOIexec?id=%d'"%sub_class)
-    if o.strip() <> "ok":
-        print "ERROR UPDATING OpenStreetBugs"
-        sys.exit(1)
-## Other sources
+if osmose_common.remove_bug(error_id, "done") == 0:
+  print "OK"
 else:
-    PgCursor.execute("DELETE FROM dynpoi_status WHERE source=%d AND class=%d AND subclass=%d AND elems='%s';"%(source_id,class_id,sub_class,elems))
-    sql = "INSERT INTO dynpoi_status SELECT source,class,subclass,elems,NOW(),'%s',subtitle_en,lat,lon,subtitle_fr FROM dynpoi_marker WHERE source=%d AND class=%d AND subclass=%d AND elems='%s' LIMIT 1;"%(status,source_id,class_id,sub_class,elems)
-    PgCursor.execute(sql)
-    
-#PgCursor.execute("DELETE FROM dynpoi_marker WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status);")
-PgCursor.execute("DELETE FROM dynpoi_marker WHERE source=%d AND class=%d AND subclass=%d AND elems='%s';"%(source_id, class_id, sub_class, elems))
-PgCursor.execute("DELETE FROM dynpoi_user WHERE source=%d AND class=%d AND subclass=%d AND elems='%s';"%(source_id, class_id, sub_class, elems))
-PgConn.commit()
-
-print "OK"
+  print "FAIL"
