@@ -65,5 +65,13 @@ INSERT INTO marker_elem (marker_id, elem_index, data_type, id, tags, username)
   many_res = cur.fetchmany(1000)
 
 
+cur.execute("drop view dynpoi_update_last")
+cur.execute("""create table dynpoi_update_last as ( SELECT dynpoi_update.source, max(dynpoi_update."timestamp") AS "timestamp"
+   FROM dynpoi_update
+  GROUP BY dynpoi_update.source)""")
+cur.execute("alter table dynpoi_update_last add primary key (source)")
+
+
+
 conn.commit()
 

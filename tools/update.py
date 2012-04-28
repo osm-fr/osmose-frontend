@@ -401,6 +401,13 @@ class update_parser(handler.ContentHandler):
                                  (self._source_id, utils.pg_escape(ts),
                                   utils.pg_escape(self._source_url),
                                   utils.pg_escape(os.environ.get('REMOTE_ADDR', ''))))
+            try:
+                execute_sql(self._dbcurs, "UPDATE dynpoi_update_last SET timestamp=%s WHERE source=%s;",
+                                 (utils.pg_escape(ts), self._source_id))
+            except PgSQL.OperationalError:
+                execute_sql(self._dbcurs, "INSERT INTO dynpoi_update_last VALUES(%s, %s);",
+                                 (self._source_id, utils.pg_escape(ts)))
+
             self._tstamp_updated = True
 
 ###########################################################################
