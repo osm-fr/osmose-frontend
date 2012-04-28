@@ -121,18 +121,25 @@ SELECT marker.id,
        elem1.tags AS elem1_tags,
        elem2.data_type AS elem2_data_type,
        elem2.id AS elem2_id,
-       elem2.tags AS elem2_tags
+       elem2.tags AS elem2_tags,
+       fix0.elem_data_type AS fix0_elem_data_type,
+       fix0.elem_id AS fix0_elem_id,
+       fix0.tags_create AS fix0_tags_create,
+       fix0.tags_modify AS fix0_tags_modify,
+       fix0.tags_delete AS fix0_tags_delete
 FROM marker
 INNER JOIN dynpoi_class
   ON marker.source=dynpoi_class.source AND marker.class=dynpoi_class.class
 INNER JOIN dynpoi_update_last
   ON marker.source = dynpoi_update_last.source
 LEFT JOIN marker_elem elem0
-  ON elem0.marker_id = marker.id and elem0.elem_index = 0
+  ON elem0.marker_id = marker.id AND elem0.elem_index = 0
 LEFT JOIN marker_elem elem1
-  ON elem1.marker_id = marker.id and elem1.elem_index = 1
+  ON elem1.marker_id = marker.id AND elem1.elem_index = 1
 LEFT JOIN marker_elem elem2
-  ON elem2.marker_id = marker.id and elem2.elem_index = 2
+  ON elem2.marker_id = marker.id AND elem2.elem_index = 2
+LEFT JOIN marker_fix fix0
+  ON fix0.marker_id = marker.id AND fix0.diff_index = 0
 WHERE %s AND
   %s AND
   dynpoi_update_last.timestamp > (now() - interval '3 months')
@@ -250,11 +257,18 @@ for res in results:
 
     elems = []
     if res["elem0_data_type"]:
-        elems.append((data_type[res["elem0_data_type"]], res["elem0_id"], res["elem0_tags"]))
+        elems.append([data_type[res["elem0_data_type"]], res["elem0_id"], res["elem0_tags"]])
     if res["elem1_data_type"]:
-        elems.append((data_type[res["elem1_data_type"]], res["elem1_id"], res["elem1_tags"]))
+        elems.append([data_type[res["elem1_data_type"]], res["elem1_id"], res["elem1_tags"]])
     if res["elem2_data_type"]:
-        elems.append((data_type[res["elem2_data_type"]], res["elem2_id"], res["elem2_tags"]))
+        elems.append([data_type[res["elem2_data_type"]], res["elem2_id"], res["elem2_tags"]])
+
+    if res["fix0_elem_data_type"]:
+        for e in elems:
+            if e[0] == data_type[res["fix0_elem_data_type"]] and e[1] == res["fix0_elem_id"]:
+                e.append(res["fix0_tags_create"])
+                e.append(res["fix0_tags_modify"])
+                e.append(res["fix0_tags_delete"])
 
     for e in elems:
         html += "<div class=\"bulle_elem\">"
@@ -268,6 +282,15 @@ for res in results:
         if e[0] == "way" or e[0] == "relation":
             html += " <a href=\"http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/%s/%d/full\" target=\"hiddenIframe\">josm</a>" % (e[0], e[1])
         html += "<br>"
+
+        if len(e) > 4:
+            for (k, v) in e[3].items():
+                html += "<span style='color:green'> + <b>" + k + "</b> = " + v + "<br></span>"
+            for (k, v) in e[4].items():
+                html += "<span style='color:orange'> ~ <b>" + k + "</b> = " + v + "<br></span>"
+            for k in e[5]:
+                html += "<span style='color:red'> - <b>" + k + "</b></span>"
+
         for t in e[2].items():
             html += "<b>%s</b> = %s<br>"%(t[0], t[1])
         html += "</div>"
