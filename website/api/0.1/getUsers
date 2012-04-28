@@ -47,8 +47,8 @@ not_err_id = ",".join([str(int(x)) for x in not_err_id if x])
 sqlbase  = """
 SELECT u.username,
        count(*) AS count
-FROM dynpoi_user u
-JOIN dynpoi_marker m ON (m.source,m.class,m.subclass,m.elems) = (u.source,u.class,u.subclass,u.elems)
+FROM marker_elem u
+JOIN marker m ON m.id = u.marker_id
 WHERE (m.lat BETWEEN %s AND %s) AND (m.lon BETWEEN %s and %s) AND """
 
 sql_arg = [minlat, maxlat, minlon, maxlon]

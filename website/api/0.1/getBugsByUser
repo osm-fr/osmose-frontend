@@ -47,25 +47,26 @@ not_err_id = form.getvalue("not_item", "").split(",")
 not_err_id = ",".join([str(int(x)) for x in not_err_id if x])
 
 sqlbase  = """
-SELECT m.item,
+SELECT m.id,
+       m.item,
        m.source,
        m.class,
        m.elems,
        m.subclass,
-       m.marker_id,
        m.lat,
        m.lon,
        dynpoi_class.title_fr as title_cur,
-       m.subtitle_fr as subtitle_cur,
-       m.data,
+       dynpoi_class.title_en as title_def,
+       m.subtitle->'fr' as subtitle_cur,
+       m.subtitle->'en' as subtitle_def,
        dynpoi_update_last.timestamp,
        u.username
-FROM dynpoi_marker m
+FROM marker m
 INNER JOIN dynpoi_class
   ON m.source=dynpoi_class.source AND m.class=dynpoi_class.class
 INNER JOIN dynpoi_update_last
   ON m.source = dynpoi_update_last.source
-LEFT JOIN dynpoi_user u ON (m.source,m.class,m.subclass,m.elems) = (u.source,u.class,u.subclass,u.elems)
+LEFT JOIN marker_elem u ON m.id = u.marker_id
 WHERE (m.lat BETWEEN %s AND %s) AND (m.lon BETWEEN %s and %s) AND """
 
 sql_arg = [minlat, maxlat, minlon, maxlon]
@@ -104,10 +105,9 @@ while res:
     num += 1
     lat       = float(res["lat"]) / 1000000
     lon       = float(res["lon"]) / 1000000
-    error_id  = "%d-%d-%d-%s" % (res["source"], res["class"], res["subclass"], res["elems"])
-    title     = res["title_cur"]    or res["title_cur"]    or "no title.."
-    subtitle  = res["subtitle_cur"] or res["subtitle_cur"] or ""
-    b_date    = res["timestamp"] or ""
+    error_id  = res["id"]
+    title     = res["title_cur"]    or res["title_def"]    or "no title.."
+    subtitle  = res["subtitle_cur"] or res["subtitle_def"] or ""
     item      = res["item"] or 0
 
     print '"%s", "%s", "%s", %f, %f, "%s", "%s", "%s"' % (res["timestamp"], res["username"], error_id, lon, lat, title, subtitle, item)
