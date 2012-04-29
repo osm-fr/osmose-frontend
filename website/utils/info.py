@@ -288,7 +288,7 @@ if (total > 0 and total < 1000) or num_points:
 
     sql = """
 SELECT
-  marker.id AS marker_id,
+  %s
   dynpoi_class.source AS source,
   dynpoi_class.class AS class,
   dynpoi_class.item AS item,
@@ -325,15 +325,17 @@ ORDER BY
 """
 
     if gen == "info":
+        marker_id = "marker.id AS marker_id,"
         opt_date = "-1"
         opt_order = "subtitle,"
     elif gen in ("false-positive", "done"):
+        marker_id = ""
         opt_date = "date"
         opt_order = "dynpoi_status.date DESC,"
     if num_points:
         sql += "LIMIT %d" % num_points
 
-    sql = sql % ((lang_cur, lang_cur, lang_def) * 3 + (opt_date, opt_join, opt_where, opt_order))
+    sql = sql % ((marker_id, ) + (lang_cur, lang_cur, lang_def) * 3 + (opt_date, opt_join, opt_where, opt_order))
 
     print "<br>"
 
@@ -346,7 +348,8 @@ ORDER BY
     print "  <th></th>"
     print "  <th>#</th>"
     print "  <th>item</th>"
-    print "  <th title=\"infos sur l'erreur\">E</th>"
+    if gen == "info":
+        print "  <th title=\"infos sur l'erreur\">E</th>"
     print "  <th title=\"position\">pos</th>"
     print "  <th>elems</th>"
     if opt_date != "-1":
@@ -375,7 +378,8 @@ ORDER BY
         else:
             print "<td></td>"
 
-        print "<td title=\"erreur n°%s\"><a href='error.py?id=%s'>E</a></td>" % (res["marker_id"], res["marker_id"])
+        if gen == "info":
+            print "<td title=\"erreur n°%s\"><a href='error.py?id=%s'>E</a></td>" % (res["marker_id"], res["marker_id"])
 
         if res["lat"] and res["lon"]:
             lat = res["lat"] / 1000000.
