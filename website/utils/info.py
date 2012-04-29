@@ -178,10 +178,10 @@ else:
     opt_left_join = ""
 
 if gen == "info":
-    opt_count = "count(dynpoi_marker.source)"
-    opt_join = """JOIN dynpoi_marker
-    ON dynpoi_class.source = dynpoi_marker.source
-    AND dynpoi_class.class = dynpoi_marker.class
+    opt_count = "count(marker.source)"
+    opt_join = """JOIN marker
+    ON dynpoi_class.source = marker.source
+    AND dynpoi_class.class = marker.class
 """
 elif gen == "false-positive":
     opt_count = "count(dynpoi_status.source)"
@@ -280,14 +280,15 @@ print "</table>"
 if (total > 0 and total < 1000) or num_points:
 
     if gen == "info":
-        opt_count = "count(dynpoi_marker.source)"
-        opt_join = """JOIN dynpoi_marker
-    ON dynpoi_class.source = dynpoi_marker.source
-    AND dynpoi_class.class = dynpoi_marker.class
+        opt_count = "count(marker.source)"
+        opt_join = """JOIN marker
+    ON dynpoi_class.source = marker.source
+    AND dynpoi_class.class = marker.class
 """
 
     sql = """
 SELECT
+  marker.id AS marker_id,
   dynpoi_class.source AS source,
   dynpoi_class.class AS class,
   dynpoi_class.item AS item,
@@ -299,9 +300,9 @@ SELECT
         THEN dynpoi_class.title_%s
         ELSE dynpoi_class.title_%s
    END) AS title,
-  (CASE WHEN subtitle_%s IS NOT NULL
-        THEN subtitle_%s
-        ELSE subtitle_%s
+  (CASE WHEN subtitle ? '%s'
+        THEN subtitle->'%s'
+        ELSE subtitle->'%s'
    END) AS subtitle,
   dynpoi_source.comment AS source_comment,
   subclass,
@@ -345,6 +346,7 @@ ORDER BY
     print "  <th></th>"
     print "  <th>#</th>"
     print "  <th>item</th>"
+    print "  <th title=\"infos sur l'erreur\">E</th>"
     print "  <th title=\"position\">pos</th>"
     print "  <th>elems</th>"
     if opt_date != "-1":
@@ -368,10 +370,12 @@ ORDER BY
         print "<td>%d</td>" % res["subclass"]
         print "<td title=\"%(item)d\"><img src=\"/map/markers/marker-l-%(item)d.png\" alt=\"%(item)d\"></td>" % {"item": res["item"]}
         print "<td><a href=\"?item=%d\">%d</a> </td>"%(res["item"],res["item"])
-        if res[3]:
+        if res["menu"]:
             print "<td title=\"%s\">%s</td>" % (res["title"], res["menu"])
         else:
             print "<td></td>"
+
+        print "<td title=\"erreur n°%s\"><a href='error.py?id=%s'>E</a></td>" % (res["marker_id"], res["marker_id"])
 
         if res["lat"] and res["lon"]:
             lat = res["lat"] / 1000000.

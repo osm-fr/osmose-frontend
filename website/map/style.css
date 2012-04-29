@@ -63,6 +63,16 @@ a.bulle_err:hover {
   color: #5555FF;
 }
 
+.bulle_elem .fix_add {
+  color: green;
+}
+.bulle_elem .fix_mod {
+  color: orange;
+}
+.bulle_elem .fix_del {
+  color: red;
+}
+
 .bulle_verif a:link {
   color: #55AA55;
 }

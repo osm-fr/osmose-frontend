@@ -40,16 +40,17 @@ if username=="":
     sys.exit(0)
 
 PgCursor.execute("""--
-SELECT m.*, c.title_en, c.title_fr
-FROM dynpoi_marker m
+SELECT m.id, m.class, m.subtitle, m.lat, m.lon, m.source, m.item,
+       c.title_en, c.title_fr
+FROM marker m
 JOIN dynpoi_class c ON m.class = c.class AND
                        m.source = c.source
-WHERE (m.source,m.class,m.subclass,m.elems) IN (SELECT source,class,subclass,elems FROM dynpoi_user WHERE username='%s')
+WHERE id IN (SELECT marker_id FROM marker_elem WHERE username='%s')
 ORDER BY m.class
 LIMIT 500;"""%(username.encode('utf-8')))
-#PgCursor.execute("SELECT dynpoi_marker.* FROM dynpoi_user NATURAL INNER JOIN dynpoi_marker WHERE dynpoi_user.username='%s' ORDER BY dynpoi_marker.class,dynpoi_marker.subclass,dynpoi_marker.elems;"%(username))
 data = "<table class='byuser'>\n"
 data += "  <tr>\n"
+data += "    <th>Item</th>\n"
 data += "    <th>Class</th>\n"
 data += "    <th>Titre</th>\n"
 data += "    <th>Erreur</th>\n"
@@ -59,13 +60,16 @@ data += "  </tr>\n"
 
 for res in PgCursor.fetchall():
     data += "  <tr>\n"
+    data += "    <td>" + str(res["item"]) + "</td>\n"
     data += "    <td>" + str(res["class"]) + "</td>\n"
     data += "    <td>" + str(res["title_fr"]) + "</td>\n"
     data += "    <td>\n"
-    if res["subtitle_"+lang_cur]:
-        data += res["subtitle_"+lang_cur]+"\n"
+    if res["subtitle"] is None:
+        pass
+    elif lang_cur in res["subtitle"]:
+        data += res["subtitle"][lang_cur]+"\n"
     else:
-        data += res["subtitle_"+lang_def]+"\n"
+        data += res["subtitle"][lang_def]+"\n"
     data += "    </td>\n"
     lat = str(float(res["lat"])/1000000)
     lon = str(float(res["lon"])/1000000)

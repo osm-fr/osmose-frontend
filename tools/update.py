@@ -35,6 +35,27 @@ class printlogger:
 ###########################################################################
 ## updater
 
+num_sql_run = 0
+prev_sql = ""
+
+def execute_sql(dbcurs, sql, args = None):
+    global prev_sql, num_sql_run
+    if args == None:
+        if prev_sql != sql:
+            prev_sql = sql
+#            print time.strftime("%H:%M:%S").decode("utf8"), sql
+        dbcurs.execute(sql)
+    else:
+        if prev_sql != sql:
+            prev_sql = sql
+#            print time.strftime("%H:%M:%S").decode("utf8"), sql % args
+#        print dbcurs.mogrify(sql, args)
+        dbcurs.execute(sql, args)
+    num_sql_run += 1
+    if num_sql_run % 1000 == 0:
+        print ".",
+        sys.stdout.flush()
+
 def update(source, url, logger = printlogger()):
     
     source_id = int(source["id"])
@@ -82,24 +103,29 @@ def update(source, url, logger = printlogger()):
     parser.parse(f)
 
     ## update subtitle_en from new errors
-    dbcurs.execute("""SELECT * FROM dynpoi_marker
+    execute_sql(dbcurs, """SELECT * FROM dynpoi_marker
                       WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status WHERE source = %s)""",
                    (source_id, ))
     for res in dbcurs.fetchall():
-        dbcurs.execute("""UPDATE dynpoi_status SET subtitle_en = %s, subtitle_fr = %s,
-                          lat = %s, lon = %s
+        execute_sql(dbcurs, """UPDATE dynpoi_status SET subtitle_en = %s, subtitle_fr = %s,
+                                                        lat = %s, lon = %s
                           WHERE source = %s AND class = %s AND subclass = %s AND elems = %s""",
                        (res["subtitle_en"], res["subtitle_fr"], res["lat"], res["lon"],
                         res["source"], res["class"], res["subclass"], res["elems"]))
 
     ## remove false positive no longer present
-    dbcurs.execute("""DELETE FROM dynpoi_status
+    execute_sql(dbcurs, """DELETE FROM dynpoi_status
                       WHERE (source,class,subclass,elems) NOT IN (SELECT source,class,subclass,elems FROM dynpoi_marker WHERE source = %s) AND
                             source = %s AND
                             date < now()-interval '7 day'""",
                    (source_id, source_id, ))
 
-    dbcurs.execute("""DELETE FROM dynpoi_marker
+    execute_sql(dbcurs, """DELETE FROM dynpoi_marker
+                      WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status WHERE source = %s)""",
+                   (source_id, ))
+
+    ## TODO: modify SQL above
+    execute_sql(dbcurs, """DELETE FROM marker
                       WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status WHERE source = %s)""",
                    (source_id, ))
     
@@ -126,17 +152,17 @@ class update_parser(handler.ContentHandler):
         self._copy_marker      = open(self._copy_marker_name, 'w')
         self._copy_user_name   = tempfile.mktemp()
         self._copy_user        = open(self._copy_user_name, 'w')
+        self._tstamp_updated   = False
         
     def startElement(self, name, attrs):
         if name == u"analyser":
-            self._dbcurs.execute("DELETE FROM dynpoi_marker WHERE source = %s;", (self._source_id, ))
-            self._dbcurs.execute("DELETE FROM dynpoi_class WHERE source = %s;", (self._source_id, ))
-            self._dbcurs.execute("DELETE FROM dynpoi_user WHERE source = %s;", (self._source_id, ))
-            ts = attrs.get("timestamp", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
-            self._dbcurs.execute("INSERT INTO dynpoi_update VALUES(%d, '%s', '%s', '%s');"%(self._source_id, utils.pg_escape(ts), utils.pg_escape(self._source_url), utils.pg_escape(os.environ.get('REMOTE_ADDR', ''))))
+            self.mode = "analyser"
+            self.update_timestamp(attrs)
+
         elif name == u"analyserChange":
-            ts = attrs.get("timestamp", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
-            self._dbcurs.execute("INSERT INTO dynpoi_update VALUES(%d, '%s', '%s', '%s');"%(self._source_id, utils.pg_escape(ts), utils.pg_escape(self._source_url), utils.pg_escape(os.environ.get('REMOTE_ADDR', ''))))
+            self.mode = "analyserChange"
+            self.update_timestamp(attrs)
+
         elif name == u"error":
             self._class_id        = int(attrs["class"])
             self._class_sub       = int(attrs.get("subclass", u"0"))%2147483647
@@ -144,6 +170,8 @@ class update_parser(handler.ContentHandler):
             self._error_locations = []
             self._error_texts     = {}
             self._users           = []
+            self._fixes           = []
+            self.elem_mode        = "info"
         elif name == u"location":
             self._error_locations.append(dict(attrs))
         elif name == u"text":
@@ -152,6 +180,8 @@ class update_parser(handler.ContentHandler):
             self._elem = dict(attrs)
             if "user" in self._elem:
                 self._users.append(self._elem["user"])
+            else:
+                self._elem["user"] = None
             self._elem[u"type"] = name
             self._elem_tags = {}
         elif name == u"tag":
@@ -164,7 +194,18 @@ class update_parser(handler.ContentHandler):
                 return
             if attrs["k"].startswith("TMC:"):
                 return
-            self._elem_tags[attrs["k"]] = attrs["v"]
+
+            if self.elem_mode == "info":
+               self._elem_tags[attrs["k"]] = attrs["v"]
+            elif self.elem_mode == "fix":
+               if attrs["action"] == "create":
+                  self._fix_create[attrs["k"]] = attrs["v"]
+               elif attrs["action"] == "modify":
+                  self._fix_modify[attrs["k"]] = attrs["v"]
+               elif attrs["action"] == "delete":
+                  self._fix_delete.append(attrs["k"])
+
+
         elif name == u"class":
             self._class_id    = int(attrs["id"])
             self._class_item[self._class_id] = int(attrs["item"])
@@ -173,9 +214,23 @@ class update_parser(handler.ContentHandler):
             self._class_texts[self._class_id][attrs["lang"]] = attrs
         elif name == u"delete":
             # used by files generated with an .osc file
-            self._dbcurs.execute("""DELETE FROM dynpoi_marker
+            execute_sql(self._dbcurs, """DELETE FROM dynpoi_marker
                                     WHERE source = %s AND elems = %s""",
                                  (self._source_id, attrs["type"] + attrs["id"]))
+
+            execute_sql(self._dbcurs, """DELETE FROM marker
+                                    WHERE source = %s AND id IN
+                                          (SELECT id FROM marker_elem
+                                                     WHERE data_type = %s AND id = %s)""",
+                                 (self._source_id, attrs["type"][0].upper(), attrs["id"]))
+
+        elif name == u"fixes":
+            self.elem_mode = "fix"
+        elif name == u"fix":
+            self._fix = []
+            self._fix_create = {}
+            self._fix_modify = {}
+            self._fix_delete = []
             
     def endElement(self, name):
         if name == u"error":
@@ -225,6 +280,7 @@ class update_parser(handler.ContentHandler):
             
             ## sql template
             sql1 = (u"INSERT INTO dynpoi_marker (" + u','.join(keys) + u") VALUES (" + u','.join(vals) + u");").encode('utf8')
+            sql_marker = u"INSERT INTO marker (source, class, subclass, item, lat, lon, elems, subtitle) VALUES (" + "%s," * 7 + "%s) RETURNING id;"
             
             ## add data at all location
             cpt = 0
@@ -243,20 +299,59 @@ class update_parser(handler.ContentHandler):
                 sql = sql.replace("#LON#",str(lon))
                 sql = sql.replace("#LAT2#",str(int(1000000*lat)))
                 sql = sql.replace("#LON2#",str(int(1000000*lon)))
-                self._dbcurs.execute(sql)
+                execute_sql(self._dbcurs, sql)
+
+                execute_sql(self._dbcurs, sql_marker,
+                            (self._source_id, self._class_id, self._class_sub,
+                             self._class_item[self._class_id],
+                             str(int(1000000*lat)), str(int(1000000*lon)),
+                             utils.pg_escape(all_elem),
+                             self._error_texts,
+                             ))
+                marker_id = self._dbcurs.fetchone()[0]
+
                 
             ## add for all users
             for user in self._users:
                 val = [str(self._source_id), str(self._class_id), str(self._class_sub), "'%s'"%utils.pg_escape(all_elem), u"'%s'"%utils.pg_escape(user)]
                 sql = u"INSERT INTO dynpoi_user (source,class,subclass,elems,username) VALUES (" + u','.join(val) + u");"
                 sql = sql.encode('utf8')
-                self._dbcurs.execute(sql)
+                execute_sql(self._dbcurs, sql)
 
-        if name in [u"node", u"way", u"relation", u"infos"]:
-            self._elem[u"tag"] = self._elem_tags
-            self._error_elements.append(self._elem)
+            ## add all elements
+            sql_elem = u"INSERT INTO marker_elem (marker_id, elem_index, data_type, id, tags, username) VALUES (" + "%s, " * 5 + "%s)"
+            num = 0
+            for elem in self._error_elements:
+                if elem["type"] in ("node", "way", "relation"):
+                    execute_sql(self._dbcurs, sql_elem,
+                                (marker_id, num, elem["type"][0].upper(), int(elem["id"]),
+                                 elem["tag"], elem["user"]))
+                    num += 1
+
+            ## add quickfixes
+            sql_fix = u"INSERT INTO marker_fix (marker_id, diff_index, elem_data_type, elem_id, tags_create, tags_modify, tags_delete) VALUES (" + "%s, " * 6 + "%s)"
+            num = 0
+            for fix in self._fixes:
+                for elem in fix:
+                    if elem["type"] in ("node", "way", "relation"):
+                        print elem
+                        execute_sql(self._dbcurs, sql_fix,
+                                    (marker_id, num, elem["type"][0].upper(), int(elem["id"]),
+                                     elem["tags_create"], elem["tags_modify"], elem["tags_delete"]))
+                    num += 1
+
+
+        elif name in [u"node", u"way", u"relation", u"infos"]:
+            if self.elem_mode == "info":
+                self._elem[u"tag"] = self._elem_tags
+                self._error_elements.append(self._elem)
+            else:
+                self._elem[u"tags_create"] = self._fix_create
+                self._elem[u"tags_modify"] = self._fix_modify
+                self._elem[u"tags_delete"] = self._fix_delete
+                self._fix.append(self._elem)
             
-        if name == u"class":
+        elif name == u"class":
             ## to remove when translated
             if "en" not in self._class_texts[self._class_id]:
                 if len(self._class_texts[self._class_id]) > 0:
@@ -275,27 +370,46 @@ class update_parser(handler.ContentHandler):
                     title = self._class_texts[self._class_id][utils.allowed_languages[0]].get("title", u"no title")
                 keys.append("title_%s"%lang)
                 vals.append(u"'%s'"%utils.pg_escape(title))
-            self._dbcurs.execute("DELETE FROM dynpoi_class WHERE source = %s AND class = %s",
+            execute_sql(self._dbcurs, "DELETE FROM dynpoi_class WHERE source = %s AND class = %s",
                                  (self._source_id, self._class_id))
             sql = u"INSERT INTO dynpoi_class (" + u','.join(keys) + u") VALUES (" + u','.join(vals) + u");"
             sql = sql.encode('utf8')
             try:
-                self._dbcurs.execute(sql)
+                execute_sql(self._dbcurs, sql)
             except:
                 print sql
                 raise
 
-        #if name == u"analyser":
-        #    
-        #    self._copy_marker.close()
-        #    #s, o = commands.getstatusoutput("psql -c 'COPY dynpoi_marker FROM STDIN;' -d %s %s < %s"%(utils.pg_base, utils.pg_user, self._copy_marker_name))
-        #    #if s:
-        #    #    print o
-        #    #self._dbcurs.execute("COPY dynpoi_marker FROM '%s';"%self._copy_marker_name)
-        #    
-        #    #self._copy_user.close()
-        #    #self._dbcurs.execute("COPY dynpoi_user FROM '%s';"%self._copy_user_name)
-            
+            if self.mode == "analyser":
+                execute_sql(self._dbcurs, "DELETE FROM dynpoi_marker WHERE source = %s AND class = %s;",
+                                     (self._source_id, self._class_id))
+                execute_sql(self._dbcurs, "DELETE FROM dynpoi_user WHERE source = %s AND class = %s;",
+                                     (self._source_id, self._class_id))
+
+                execute_sql(self._dbcurs, "DELETE FROM marker WHERE source = %s AND class = %s;",
+                                     (self._source_id, self._class_id))
+
+        elif name == u"fixes":
+            self.elem_mode = "info"
+        elif name == u"fix":
+            self._fixes.append(self._fix)
+
+    def update_timestamp(self, attrs):
+        if not self._tstamp_updated:
+            ts = attrs.get("timestamp", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
+            execute_sql(self._dbcurs, "INSERT INTO dynpoi_update VALUES(%s, %s, %s, %s);",
+                                 (self._source_id, utils.pg_escape(ts),
+                                  utils.pg_escape(self._source_url),
+                                  utils.pg_escape(os.environ.get('REMOTE_ADDR', ''))))
+            try:
+                execute_sql(self._dbcurs, "UPDATE dynpoi_update_last SET timestamp=%s WHERE source=%s;",
+                                 (utils.pg_escape(ts), self._source_id))
+            except PgSQL.OperationalError:
+                execute_sql(self._dbcurs, "INSERT INTO dynpoi_update_last VALUES(%s, %s);",
+                                 (self._source_id, utils.pg_escape(ts)))
+
+            self._tstamp_updated = True
+
 ###########################################################################
                         
 def show(source):

@@ -16,8 +16,12 @@ pg_base           = "osmose"
 ################################################################################
 
 def get_dbconn():
-    from pyPgSQL import PgSQL
-    return PgSQL.connect(database = pg_base, user = pg_user)
+    import psycopg2.extras
+#    return psycopg2.connect(host="localhost", database = pg_base, user = pg_user, password = pg_pass)
+    db_string = "host='localhost' dbname='%s' user='%s' password='%s'" % (pg_base, pg_user, pg_pass)
+    conn = psycopg2.extras.DictConnection(db_string)
+    psycopg2.extras.register_hstore(conn)
+    return conn
 
 def pg_escape(text):
     if type(text) == int:

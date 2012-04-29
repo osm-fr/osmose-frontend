@@ -29,15 +29,13 @@ print "Content-type: text/plain; Charset=UTF-8\n"
 
 form = cgi.FieldStorage()
 
-error_id = form.getfirst("id", "")
+error_id = form.getfirst("id", -1)
 
-(err_source, err_class, err_subclass, err_elems) = error_id.split("-")
+if error_id < 0:
+  print "FAIL"
+  sys.exit(1)
 
-err_source = int(err_source)
-err_class = int(err_class)
-err_subclass = int(err_subclass)
-
-if osmose_common.remove_bug(err_source, err_class, err_subclass, err_elems, "done") == 0:
+if osmose_common.remove_bug(error_id, "done") == 0:
   print "OK"
 else:
   print "FAIL"

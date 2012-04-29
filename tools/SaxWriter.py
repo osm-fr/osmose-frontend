@@ -1,4 +1,3 @@
-#! /usr/bin/env python
 #-*- coding: utf-8 -*-
 
 ###########################################################################
@@ -20,36 +19,28 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, os, cgi
-osmose_root = os.environ["OSMOSE_ROOT"]
-sys.path.append(osmose_root)
-from tools import utils
+from xml.sax.saxutils import XMLGenerator, quoteattr
 
-PgConn    = utils.get_dbconn()
-PgCursor  = PgConn.cursor()
-form      = cgi.FieldStorage()
-item      = int(form.getvalue("item", "0"))
-lang_def  = utils.allowed_languages[0]
-lang_cur  = utils.get_language()
-tpl       = open(os.path.join(utils.root_folder, "config/text.tpl")).read()
+class SaxWriter(XMLGenerator):
 
-if not item:
-    print "Content-Type: text/html; charset=utf-8"
-    print
-    print "You shoud give item value"
-    sys.exit(0)
+    def __init__(self, out, enc):
+        if type(out) == str:
+            XMLGenerator.__init__(self, open(out, "w"), enc)
+        else:
+            XMLGenerator.__init__(self, out, enc)
 
-PgCursor.execute("SELECT * FROM dynpoi_marker WHERE item=%d ORDER BY class,subclass,elems;"%(item))
-data = ""
-for res in PgCursor.fetchall():
-    data += '<div class="div_text"><font size="-1">\n'
-    if res["html_"+lang_cur]:
-        data += res["html_"+lang_cur]+"\n"
-    else:
-        data += res["html_"+lang_def]+"\n"
-    data += '</font></div>\n'
+    def startElement(self, name, attrs={}):
+        self._write('<' + name)
+        for (name, value) in attrs.items():
+            self._write(' %s=%s' % (name, quoteattr(value)))
+        self._write('>\n')
 
-print "Content-Type: text/html; charset=utf-8"
-print
-#print username
-print tpl.replace("#data#", data)
+    def endElement(self, name):
+        self._write('</%s>\n' % name)
+
+    def Element(self, name, attrs={}):
+        self._write('<' + name)
+        for (name, value) in attrs.items():
+            self._write(' %s=%s' % (name, quoteattr(value)))
+        self._write(' />\n')
+
