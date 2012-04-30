@@ -197,6 +197,8 @@ if bbox:
         if (tmp_minlat < minlat and tmp_maxlat > maxlat and
             tmp_minlon < minlon and tmp_maxlon > maxlon):
             done = True
+            bboxsql = ("(marker.lat BETWEEN %d AND %d) AND (marker.lon BETWEEN %d and %d)" %
+                   (minlat, maxlat, minlon, maxlon))
             break
 
         bboxsql = ("(marker.lat BETWEEN %d AND %d) AND (marker.lon BETWEEN %d and %d)" %
