@@ -80,7 +80,7 @@ def update(source, url, logger = printlogger()):
         # replace the original socket.getaddrinfo by our version
         socket.getaddrinfo = getAddrInfoWrapper
 
-        fname =  tempfile.mktemp()
+        fname =  tempfile.mktemp(dir="/tmp/osmose/", prefix="update")
         urllib.urlretrieve(url, fname)
         #mysock = urllib.urlopen(source["url"])
         #open(fname,'w').write(mysock.read())
@@ -148,10 +148,6 @@ class update_parser(handler.ContentHandler):
         self._dbcurs           = dbcurs
         self._class_texts      = {}
         self._class_item       = {}
-        self._copy_marker_name = tempfile.mktemp()
-        self._copy_marker      = open(self._copy_marker_name, 'w')
-        self._copy_user_name   = tempfile.mktemp()
-        self._copy_user        = open(self._copy_user_name, 'w')
         self._tstamp_updated   = False
         
     def startElement(self, name, attrs):
