@@ -19,12 +19,14 @@ FROM dynpoi_marker m
 
 cur.execute(sql)
 
+num_err = 0
 many_res = cur.fetchmany(1000)
 
 while many_res:
-  print ".",
+  print num_err, "\r",
   sys.stdout.flush()
-  for res in cur.fetchmany(1000):
+  num_err += 1000
+  for res in many_res:
 
     sql_marker = """
 INSERT INTO marker (source,class,subclass,lat,lon,elems,item,subtitle)
@@ -56,22 +58,19 @@ INSERT INTO marker_elem (marker_id, elem_index, data_type, id, tags, username)
       else:
         elm_id = int(e[1])
         elm_tags = e[2]
-      print sql_elem, (err_id, num, e[0][0].upper(), elm_id, elm_tags, None)
-      print cur_mod.mogrify(sql_elem, (err_id, num, e[0][0].upper(), elm_id, elm_tags, None))
+#      print sql_elem, (err_id, num, e[0][0].upper(), elm_id, elm_tags, None)
+#      print cur_mod.mogrify(sql_elem, (err_id, num, e[0][0].upper(), elm_id, elm_tags, None))
       cur_mod.execute(sql_elem, (err_id, num, e[0][0].upper(), elm_id, elm_tags, None))
-      sys.exit()
       num += 1
 
   many_res = cur.fetchmany(1000)
 
 
-cur.execute("drop view dynpoi_update_last")
-cur.execute("""create table dynpoi_update_last as ( SELECT dynpoi_update.source, max(dynpoi_update."timestamp") AS "timestamp"
+cur_mod.execute("drop view dynpoi_update_last")
+cur_mod.execute("""create table dynpoi_update_last as ( SELECT dynpoi_update.source, max(dynpoi_update."timestamp") AS "timestamp"
    FROM dynpoi_update
   GROUP BY dynpoi_update.source)""")
-cur.execute("alter table dynpoi_update_last add primary key (source)")
-
-
+cur_mod.execute("alter table dynpoi_update_last add primary key (source)")
 
 conn.commit()
 
