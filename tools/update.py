@@ -102,20 +102,20 @@ def update(source, url, logger = printlogger()):
     ## parse the file
     parser.parse(f)
 
-    ## update subtitle_en from new errors
-    execute_sql(dbcurs, """SELECT * FROM dynpoi_marker
+    ## update subtitle from new errors
+    execute_sql(dbcurs, """SELECT * FROM marker
                       WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status WHERE source = %s)""",
                    (source_id, ))
     for res in dbcurs.fetchall():
-        execute_sql(dbcurs, """UPDATE dynpoi_status SET subtitle_en = %s, subtitle_fr = %s,
+        execute_sql(dbcurs, """UPDATE dynpoi_status SET subtitle = %s,
                                                         lat = %s, lon = %s
                           WHERE source = %s AND class = %s AND subclass = %s AND elems = %s""",
-                       (res["subtitle_en"], res["subtitle_fr"], res["lat"], res["lon"],
+                       (res["subtitle"], res["lat"], res["lon"],
                         res["source"], res["class"], res["subclass"], res["elems"]))
 
     ## remove false positive no longer present
     execute_sql(dbcurs, """DELETE FROM dynpoi_status
-                      WHERE (source,class,subclass,elems) NOT IN (SELECT source,class,subclass,elems FROM dynpoi_marker WHERE source = %s) AND
+                      WHERE (source,class,subclass,elems) NOT IN (SELECT source,class,subclass,elems FROM marker WHERE source = %s) AND
                             source = %s AND
                             date < now()-interval '7 day'""",
                    (source_id, source_id, ))
