@@ -67,7 +67,7 @@ a.bulle_err:hover {
   color: green;
 }
 .bulle_elem .fix_mod {
-  color: orange;
+  color: darkorange;
 }
 .bulle_elem .fix_del {
   color: red;
