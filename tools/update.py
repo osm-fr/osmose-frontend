@@ -330,7 +330,6 @@ class update_parser(handler.ContentHandler):
             for fix in self._fixes:
                 for elem in fix:
                     if elem["type"] in ("node", "way", "relation"):
-                        print elem
                         execute_sql(self._dbcurs, sql_fix,
                                     (marker_id, num, elem["type"][0].upper(), int(elem["id"]),
                                      elem["tags_create"], elem["tags_modify"], elem["tags_delete"]))
