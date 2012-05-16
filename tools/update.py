@@ -180,6 +180,7 @@ class update_parser(handler.ContentHandler):
                 self._elem["user"] = None
             self._elem[u"type"] = name
             self._elem_tags = {}
+
         elif name == u"tag":
             #if (self._elem[u"type"]<>"relation") or (attrs["k"] in ["type"])
             if attrs["k"].startswith("name:"):
@@ -323,6 +324,11 @@ class update_parser(handler.ContentHandler):
                                 (marker_id, num, elem["type"][0].upper(), int(elem["id"]),
                                  elem["tag"], elem["user"]))
                     num += 1
+                if elem["type"] in ("infos"):
+                    execute_sql(self._dbcurs, sql_elem,
+                                (marker_id, num, elem["type"][0].upper(), 0,
+                                 elem["tag"], elem["user"]))
+                    num += 1
 
             ## add quickfixes
             sql_fix = u"INSERT INTO marker_fix (marker_id, diff_index, elem_data_type, elem_id, tags_create, tags_modify, tags_delete) VALUES (" + "%s, " * 6 + "%s)"
@@ -426,5 +432,7 @@ if __name__ == "__main__":
         for k in sorted([int(x) for x in sources.keys()]):
             source = sources[str(k)]
             show(source)
+    elif sys.argv[1] == "--help":
+        print "usage: update.py <source number> <url>"
     else:
         update(utils.get_sources()[sys.argv[1]], sys.argv[2])
