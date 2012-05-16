@@ -7,7 +7,7 @@ from xml.sax import make_parser, handler
 ################################################################################
 
 root_folder       = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-allowed_languages = ["en", "fr"]
+allowed_languages = ["en", "fr", "nl", "de"]
 translation_file  = os.path.join(root_folder, "config/translate.txt")
 config_file       = os.path.join(root_folder, "config/config.xml")
 pg_user           = "osmose"
