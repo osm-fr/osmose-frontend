@@ -23,7 +23,6 @@
 import sys, os, time, urllib, tempfile, commands
 import utils
 from xml.sax import make_parser, handler
-tpl = open(os.path.join(utils.root_folder, "config/text.tpl")).read()
 
 ###########################################################################
 ## logger
