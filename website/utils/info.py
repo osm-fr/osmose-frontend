@@ -137,8 +137,8 @@ SELECT
   dynpoi_class.source AS source,
   dynpoi_class.class AS class,
   dynpoi_class.item AS item,
-  dynpoi_item.menu,
-  dynpoi_class.title,
+  first(dynpoi_item.menu) AS menu,
+  first(dynpoi_class.title) AS title,
   %s AS count,
   dynpoi_source.comment AS source_comment
 FROM dynpoi_class
@@ -153,8 +153,6 @@ GROUP BY
   dynpoi_class.source,
   dynpoi_class.class,
   dynpoi_class.item,
-  menu,
-  title,
   dynpoi_source.comment
 ORDER BY
   dynpoi_class.item,
@@ -307,7 +305,7 @@ ORDER BY
     if gen == "info":
         marker_id = "marker.id AS marker_id,"
         opt_date = "-1"
-        opt_order = "subtitle,"
+        opt_order = "subtitle->'en',"
     elif gen in ("false-positive", "done"):
         marker_id = ""
         opt_date = "date"
