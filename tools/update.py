@@ -207,7 +207,7 @@ class update_parser(handler.ContentHandler):
             self._class_item[self._class_id] = int(attrs["item"])
             self._class_texts[self._class_id] = {}
         elif name == u"classtext":
-            self._class_texts[self._class_id][attrs["lang"]] = attrs
+            self._class_texts[self._class_id][attrs["lang"]] = attrs["title"]
         elif name == u"delete":
             # used by files generated with an .osc file
             execute_sql(self._dbcurs, """DELETE FROM dynpoi_marker
@@ -359,23 +359,17 @@ class update_parser(handler.ContentHandler):
                         pass
                     self._class_texts[self._class_id]["en"] = v
                 else:
-                    self._class_texts[self._class_id]["en"] = {"title":u"no translation"}
+                    self._class_texts[self._class_id]["en"] = u"no translation"
             ##
-            keys = ["source", "class", "item"]
-            vals = [utils.pg_escape(self._source_id), utils.pg_escape(self._class_id), utils.pg_escape(self._class_item[self._class_id])]
-            for lang in utils.allowed_languages:
-                if lang in self._class_texts[self._class_id]:
-                    title = self._class_texts[self._class_id][lang].get("title", u"no title")
-                else:
-                    title = self._class_texts[self._class_id][utils.allowed_languages[0]].get("title", u"no title")
-                keys.append("title_%s"%lang)
-                vals.append(u"'%s'"%utils.pg_escape(title))
             execute_sql(self._dbcurs, "DELETE FROM dynpoi_class WHERE source = %s AND class = %s",
                                  (self._source_id, self._class_id))
+            keys = ["source", "class", "item", "title"]
+            vals = ["%s"] * 4
             sql = u"INSERT INTO dynpoi_class (" + u','.join(keys) + u") VALUES (" + u','.join(vals) + u");"
-            sql = sql.encode('utf8')
             try:
-                execute_sql(self._dbcurs, sql)
+                execute_sql(self._dbcurs, sql, (self._source_id, self._class_id,
+                                                self._class_item[self._class_id],
+                                                self._class_texts[self._class_id]))
             except:
                 print sql
                 raise
