@@ -1,4 +1,5 @@
-#! /bin/sh
+#! /usr/bin/env python
+#-*- coding: utf-8 -*-
 
 ###########################################################################
 ##                                                                       ##
@@ -19,6 +20,45 @@
 ##                                                                       ##
 ###########################################################################
 
-echo "Content-Type: text/plain; charset=utf-8"
-echo    
-psql -d osmose -c "SELECT count(*) as cpt , username from dynpoi_user group by username ORDER BY cpt DESC;" osmose | head -n -2
+import sys, os, cgi
+osmose_root = os.environ["OSMOSE_ROOT"]
+sys.path.append(osmose_root)
+from tools import utils
+
+PgConn    = utils.get_dbconn()
+PgCursor  = PgConn.cursor()
+
+###########################################################################
+## page headers
+
+translate = utils.translator()
+utils.print_header(translate)
+
+###########################################################################
+
+sql = """--
+SELECT count(*) AS cpt,
+       username
+FROM marker_elem
+GROUP BY username
+ORDER BY cpt DESC
+LIMIT 500;"""
+
+print "<table class='byuser'>\n"
+print "  <tr>\n"
+print "    <th>User</th>\n"
+print "    <th>Nombre</th>\n"
+print "  </tr>\n"
+
+PgCursor.execute(sql)
+
+for res in PgCursor.fetchall():
+    print "  <tr>\n"
+    print "    <td>" + str(res["cpt"]) + "</td>\n"
+    print "    <td>" + str(res["username"]) + "</td>\n"
+    print "  </tr>\n"
+
+print "</table>\n"
+
+###########################################################################
+utils.print_tail()
