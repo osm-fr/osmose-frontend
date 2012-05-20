@@ -29,9 +29,6 @@ PgConn    = utils.get_dbconn()
 PgCursor  = PgConn.cursor()
 form      = cgi.FieldStorage()
 username  = utils.pg_escape(unicode(form.getvalue("username", ""), "utf-8"))
-lang_def  = utils.allowed_languages[0]
-lang_cur  = utils.get_language()
-tpl       = open(os.path.join(utils.root_folder, "config/text.tpl")).read()
 
 if username=="":
     print "Content-Type: text/html; charset=utf-8"
@@ -39,38 +36,48 @@ if username=="":
     print open("../index.html").read()
     sys.exit(0)
 
-PgCursor.execute("""--
+###########################################################################
+## page headers
+
+translate = utils.translator()
+utils.print_header(translate)
+
+###########################################################################
+
+
+sql = """--
 SELECT m.id, m.class, m.subtitle, m.lat, m.lon, m.source, m.item,
-       c.title_en, c.title_fr
+       c.title
 FROM marker m
 JOIN dynpoi_class c ON m.class = c.class AND
                        m.source = c.source
-WHERE id IN (SELECT marker_id FROM marker_elem WHERE username='%s')
+WHERE id IN (SELECT marker_id FROM marker_elem WHERE username=%s)
 ORDER BY m.class
-LIMIT 500;"""%(username.encode('utf-8')))
-data = "<table class='byuser'>\n"
-data += "  <tr>\n"
-data += "    <th>Item</th>\n"
-data += "    <th>Class</th>\n"
-data += "    <th>Titre</th>\n"
-data += "    <th>Erreur</th>\n"
-data += "    <th>Latitude</th>\n"
-data += "    <th>Longitude</th>\n"
-data += "  </tr>\n"
+LIMIT 500;"""
+
+print "<table class='byuser'>\n"
+print "  <tr>\n"
+print "    <th>Item</th>\n"
+print "    <th>Class</th>\n"
+print "    <th>Titre</th>\n"
+print "    <th>Erreur</th>\n"
+print "    <th>Latitude</th>\n"
+print "    <th>Longitude</th>\n"
+print "  </tr>\n"
+
+PgCursor.execute(sql, (username.encode('utf-8'), ))
 
 for res in PgCursor.fetchall():
-    data += "  <tr>\n"
-    data += "    <td>" + str(res["item"]) + "</td>\n"
-    data += "    <td>" + str(res["class"]) + "</td>\n"
-    data += "    <td>" + str(res["title_fr"]) + "</td>\n"
-    data += "    <td>\n"
+    print "  <tr>\n"
+    print "    <td>" + str(res["item"]) + "</td>\n"
+    print "    <td>" + str(res["class"]) + "</td>\n"
+    print "    <td>" + translate.select(res["title"]) + "</td>\n"
+    print "    <td>\n"
     if res["subtitle"] is None:
         pass
-    elif lang_cur in res["subtitle"]:
-        data += res["subtitle"][lang_cur]+"\n"
     else:
-        data += res["subtitle"][lang_def]+"\n"
-    data += "    </td>\n"
+        print translate.select(res["subtitle"])
+    print "    </td>\n"
     lat = str(float(res["lat"])/1000000)
     lon = str(float(res["lon"])/1000000)
     cl = res["class"]
@@ -78,14 +85,12 @@ for res in PgCursor.fetchall():
     item = res["item"]
     url = "/map/cgi-bin/index.py?zoom=16&lat=%s&lon=%s&source=%s" % (lat, lon, source)
     url = "/map/cgi-bin/index.py?zoom=16&lat=%s&lon=%s&item=%s" % (lat, lon, item)
-    data += "    <td>" + lat + "</td>\n"
-    data += "    <td>" + lon + "</td>\n"
-    data += "    <td><a href='" + url + "'>carte</a></td>\n"
-    data += "  </tr>\n"
+    print "    <td>" + lat + "</td>\n"
+    print "    <td>" + lon + "</td>\n"
+    print "    <td><a href='" + url + "'>carte</a></td>\n"
+    print "  </tr>\n"
 
-data += "</table>\n"
+print "</table>\n"
 
-print "Content-Type: text/html; charset=utf-8"
-print
-#print username
-print tpl.replace("#data#", data)
+###########################################################################
+utils.print_tail()

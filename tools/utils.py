@@ -7,7 +7,7 @@ from xml.sax import make_parser, handler
 ################################################################################
 
 root_folder       = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-allowed_languages = ["en", "fr"]
+allowed_languages = ["en", "fr", "nl", "de"]
 translation_file  = os.path.join(root_folder, "config/translate.txt")
 config_file       = os.path.join(root_folder, "config/config.xml")
 pg_user           = "osmose"
@@ -36,8 +36,13 @@ def get_language():
         lg = [x.split("-")[0] for x in lg]
         lg = [x for x in lg if x in allowed_languages]
         if lg:
-            return lg[0]
-    return allowed_languages[0]
+            lg.append(allowed_languages[0])
+            res = []
+            for l in lg:
+                if not l in res:
+                    res.append(l)
+            return res
+    return allowed_languages
 
 def get_sources(lang = get_language()):
     if lang not in allowed_languages:
@@ -56,18 +61,25 @@ def get_sources(lang = get_language()):
     return config
 
 def get_categories(lang = get_language()):
-    if lang not in allowed_languages:
-        lang = allowed_languages[0]
     result = []
     conn = get_dbconn()
     curs1 = conn.cursor()
     curs2 = conn.cursor()
-    curs1.execute("SELECT categ, menu_%s, menu_%s FROM dynpoi_categ ORDER BY categ"%(lang, allowed_languages[0]))
+    curs1.execute("SELECT categ, menu FROM dynpoi_categ ORDER BY categ")
     for res1 in curs1.fetchall():
-        res = {"categ":res1[0], "menu": (res1[1] or res1[2] or "no translation").decode("utf8"), "item":[]}
-        curs2.execute("SELECT item, menu_%s, menu_%s, marker_color, marker_flag FROM dynpoi_item WHERE categ = %d ORDER BY item"%(lang, allowed_languages[0], res1[0]))
+        res = {"categ":res1[0], "menu": "no translation", "item":[]}
+        for l in lang:
+            if l in res1[1]:
+                res["menu"] = res1[1][l].decode('utf8')
+                break
+        curs2.execute("SELECT item, menu, marker_color, marker_flag FROM dynpoi_item WHERE categ = %d ORDER BY item"%res1[0])
         for res2 in curs2.fetchall():
-            res["item"].append({"item":res2[0], "menu":(res2[1] or res2[2] or "no translation").decode("utf8"), "marker_color":res2[3], "marker_flag":res2[4]})
+            res["item"].append({"item":res2[0], "menu":"no translation", "marker_color":res2[2], "marker_flag":res2[3]})
+            for l in lang:
+                if l in res2[1]:
+                    res["item"][-1]["menu"] = res2[1][l].decode('utf8')
+                    break
+
         result.append(res)
     return result
 
@@ -95,10 +107,9 @@ def print_tail():
 
 class translator:
     
-    def __init__(self, language = get_language(), default_language = allowed_languages[0], translation = translation_file):
+    def __init__(self, language = get_language(), translation = translation_file):
 
-        self.client_language = language
-        self.default_language = default_language
+        self.languages = language
         
         self._data = {}
         for l in open(translation).readlines():
@@ -111,16 +122,25 @@ class translator:
             self._data[l[0]] = l[1].strip().decode("utf8")
                 
     def get(self, item, args = None):
-        
-        if "%s.%s" % (self.client_language, item) in self._data:
-            item = self._data["%s.%s" % (self.client_language, item)]
-        elif "%s.%s" % (self.default_language, item) in self._data:
-            item = self._data["%s.%s" % (self.default_language, item)]
-        else:
-            item = u"no translation"
-            
+
+        res = u"no translation"
+
+        for l in self.languages:
+            if "%s.%s" % (l, item) in self._data:
+                res = self._data["%s.%s" % (l, item)]
+                break
+
         if args:
             for i in range(len(args)):
-                item = item.replace(u"$%d"%i, args[i])
+                res = res.replace(u"$%d"%i, args[i])
         
-        return item
+        return res
+
+    def select(self, res, no_translation = ""):
+        # res is a dictionnary of possible translations, given by a SQL query
+        if not res:
+            return ""
+        for l in self.languages:
+            if l in res:
+                return res[l]
+        return no_translation

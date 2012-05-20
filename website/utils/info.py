@@ -77,8 +77,6 @@ else:
     show_all = True
 
 
-lang_def = utils.allowed_languages[0]
-lang_cur = utils.get_language()
 translate = utils.translator()
 
 ###########################################################################
@@ -117,19 +115,16 @@ print "<option value=''></option>"
 sql = """
 SELECT
   item,
-  (CASE WHEN menu_%s IS NOT NULL
-        THEN menu_%s
-        ELSE menu_%s
-   END) AS menu
+  menu
 FROM dynpoi_item
-ORDER BY item;""" % (lang_cur, lang_cur, lang_def)
+ORDER BY item;"""
 PgCursor.execute(sql)
 for res in PgCursor.fetchall():
     if item == res['item']:
         s = " selected='yes'"
     else:
         s = ""
-    print "<option%s value='%s'>%s - %s</option>" % (s, res['item'], res['item'], res['menu'])
+    print "<option%s value='%s'>%s - %s</option>" % (s, res['item'], res['item'], translate.select(res['menu']))
 print "</select>"
 print "<input type='submit' value='Set'/>"
 
@@ -142,14 +137,8 @@ SELECT
   dynpoi_class.source AS source,
   dynpoi_class.class AS class,
   dynpoi_class.item AS item,
-  (CASE WHEN dynpoi_item.menu_%s IS NOT NULL
-        THEN dynpoi_item.menu_%s
-        ELSE dynpoi_item.menu_%s
-   END) AS menu,
-  (CASE WHEN dynpoi_class.title_%s IS NOT NULL
-        THEN dynpoi_class.title_%s
-        ELSE dynpoi_class.title_%s
-   END) AS title,
+  first(dynpoi_item.menu) AS menu,
+  first(dynpoi_class.title) AS title,
   %s AS count,
   dynpoi_source.comment AS source_comment
 FROM dynpoi_class
@@ -164,8 +153,6 @@ GROUP BY
   dynpoi_class.source,
   dynpoi_class.class,
   dynpoi_class.item,
-  menu,
-  title,
   dynpoi_source.comment
 ORDER BY
   dynpoi_class.item,
@@ -216,7 +203,7 @@ if source == None and item == None and country == None:
             opt_left_join = ""
             opt_join = ""
 
-sql = sql % ((lang_cur, lang_cur, lang_def) * 2 + (opt_count, opt_left_join, opt_join, opt_where))
+sql = sql % (opt_count, opt_left_join, opt_join, opt_where)
 
 ###########################################################################
 
@@ -254,10 +241,10 @@ for res in PgCursor.fetchall():
     print "<td><a href=\"?item=%d\">%d</a>" % ((res["item"],) * 2)
     print "</td>"
     if res["menu"]:
-        print "<td>%s</td>" % res["menu"]
+        print "<td>%s</td>" % translate.select(res["menu"])
     else:
         print "<td></td>"
-    print "<td>%s</td>" % res["title"]
+    print "<td>%s</td>" % translate.select(res["title"])
     count = res["count"]
     if count == -1:
         count = "N/A"
@@ -292,18 +279,9 @@ SELECT
   dynpoi_class.source AS source,
   dynpoi_class.class AS class,
   dynpoi_class.item AS item,
-  (CASE WHEN dynpoi_item.menu_%s IS NOT NULL
-        THEN dynpoi_item.menu_%s
-        ELSE dynpoi_item.menu_%s
-   END) AS menu,
-  (CASE WHEN dynpoi_class.title_%s IS NOT NULL
-        THEN dynpoi_class.title_%s
-        ELSE dynpoi_class.title_%s
-   END) AS title,
-  (CASE WHEN subtitle ? '%s'
-        THEN subtitle->'%s'
-        ELSE subtitle->'%s'
-   END) AS subtitle,
+  dynpoi_item.menu,
+  dynpoi_class.title,
+  subtitle,
   dynpoi_source.comment AS source_comment,
   subclass,
   lat,
@@ -327,7 +305,7 @@ ORDER BY
     if gen == "info":
         marker_id = "marker.id AS marker_id,"
         opt_date = "-1"
-        opt_order = "subtitle,"
+        opt_order = "subtitle->'en',"
     elif gen in ("false-positive", "done"):
         marker_id = ""
         opt_date = "date"
@@ -335,7 +313,7 @@ ORDER BY
     if num_points:
         sql += "LIMIT %d" % num_points
 
-    sql = sql % ((marker_id, ) + (lang_cur, lang_cur, lang_def) * 3 + (opt_date, opt_join, opt_where, opt_order))
+    sql = sql % ((marker_id, ) + (opt_date, opt_join, opt_where, opt_order))
 
     print "<br>"
 
@@ -374,7 +352,8 @@ ORDER BY
         print "<td title=\"%(item)d\"><img src=\"/map/markers/marker-l-%(item)d.png\" alt=\"%(item)d\"></td>" % {"item": res["item"]}
         print "<td><a href=\"?item=%d\">%d</a> </td>"%(res["item"],res["item"])
         if res["menu"]:
-            print "<td title=\"%s\">%s</td>" % (res["title"], res["menu"])
+            print "<td title=\"%s\">%s</td>" % (translate.select(res["title"]),
+                                                translate.select(res["menu"]))
         else:
             print "<td></td>"
 
@@ -418,9 +397,9 @@ ORDER BY
 
         print "</td>"
         if res["subtitle"]:
-            print "<td>%s</td>" % res["subtitle"]
+            print "<td>%s</td>" % translate.select(res["subtitle"])
         elif res["title"]:
-            print "<td>%s</td>" % res["title"]
+            print "<td>%s</td>" % translate.select(res["title"])
         else:
             print "<td></td>"
         if opt_date != "-1":

@@ -98,8 +98,6 @@ if (not user) and (not source) and (zoom < 6):
     sys.exit(0)
 
 url_help = "http://wiki.openstreetmap.org/wiki/FR:Osmose/erreurs"
-lang_def = utils.allowed_languages[0]
-lang_cur = utils.get_language()
 sqlbase  = """
 SELECT marker.id,
        marker.item,
@@ -109,10 +107,8 @@ SELECT marker.id,
        marker.subclass,
        marker.lat,
        marker.lon,
-       dynpoi_class.title_%s as title_cur,
-       dynpoi_class.title_%s as title_def,
-       marker.subtitle->'%s' as subtitle_cur,
-       marker.subtitle->'%s' as subtitle_def,
+       dynpoi_class.title,
+       marker.subtitle,
        dynpoi_update_last.timestamp,
        elem0.data_type AS elem0_data_type,
        elem0.id AS elem0_id,
@@ -223,7 +219,7 @@ if bbox:
 else:
     bboxsql = "1=1"
 
-sql = sqlbase % (lang_cur, lang_def, lang_cur, lang_def, where, bboxsql, lat, lon)
+sql = sqlbase % (where, bboxsql, lat, lon)
 sql = sql.replace("--","+")
 
 try:
@@ -241,8 +237,8 @@ for res in results:
     lat       = str(float(res["lat"])/1000000)
     lon       = str(float(res["lon"])/1000000)
     error_id  = res["id"]
-    title     = res["title_cur"]    or res["title_def"]    or "no title.."
-    subtitle  = res["subtitle_cur"] or res["subtitle_def"] or ""
+    title     = translate.select(res["title"])
+    subtitle  = translate.select(res["subtitle"])
     b_date    = res["timestamp"] or ""
     item      = res["item"] or 0
     
