@@ -1,0 +1,63 @@
+    0 | bâtiments se recouvrant
+ 1010 | nœud répété
+ 1030 | way 1 nœud
+ 1040 | polygone non valide
+ 1050 | rond-point à l'envers
+ 1060 | boundary intersect
+ 1070 | highway vs building
+ 1080 | noeuds orphelins
+ 1090 | types de routes disparates
+ 1100 | area=yes non fermé
+ 1110 | mauvaise connection *_link
+ 1120 | continuité rompue des highway
+ 1140 | membre inutile de relation
+ 1150 | intersection entre surfaces
+ 1160 | relation large
+ 1170 | polygone interne en double
+ 2010 | junction=roundabout
+ 2020 | ele=...
+ 2030 | oneway=
+ 2040 | source=...
+ 2050 | tag parent
+ 2060 | numéros de rue
+ 3010 | highway roundabout
+ 3020 | mauvais tag source
+ 3030 | tagwatch cleaner
+ 3031 | wikipedia
+ 3032 | liens entre tags
+ 3033 | trait d'union sur Saint
+ 3040 | tag incorrect
+ 3050 | mauvaise clé de tag
+ 3060 | valeurs similaires
+ 3070 | valeurs multiples
+ 3080 | piscine en natural=water
+ 3090 | date
+ 3091 | valeur numérique
+ 3100 | petite ferme
+ 3110 | note
+ 3120 | arbre
+ 3130 | nom avec marque
+ 4010 | abandonné
+ 4020 | sur junction=roundabout
+ 4030 | tags incompatibles
+ 4040 | ref in name
+ 4060 | seamark:fixme
+ 4070 | construction
+ 4080 | POI en double
+ 4090 | tag non-nécessaire sur node
+ 5010 | orthographe
+ 5020 | type voie
+ 5030 | 2 noms
+ 5040 | toponymie
+ 5050 | test soundex
+ 6010 | polygone ouvert
+ 6020 | way dupliqué
+ 6030 | place sans name
+ 6040 | code INSEE
+ 6050 | admin_level
+ 6060 | trou admin_level=8
+ 7010 | bâtiment géodésique
+ 7011 | monuments
+ 7020 | limite admin
+ 7030 | OpenStreetBugs
+ 7040 | lignes électriques

@@ -1,0 +1,63 @@
+    0 | overlappende gebouw
+ 1010 | gedupliceerd knooppunt
+ 1030 | way gevormd van 1 knooppunt
+ 1040 | Ongeldige veelhoek
+ 1050 | rotonde de verkeerde kant op
+ 1060 | kruispunt van de grens
+ 1070 | botsing tussen weg-en aanbouw
+ 1080 | orphan knopen
+ 1090 | plotselinge snelweg soort wijzigingen
+ 1100 | area=yes ongesloten
+ 1110 | slechte verbinding *_link
+ 1120 | defecte continuÃ¯teit van de snelweg
+ 1140 | nutteloos lid van de relatie
+ 1150 | snijpunt van oppervlakken
+ 1160 | big relatie
+ 1170 | dubbele binnen polygoon
+ 2010 | knooppunt = rotonde
+ 2020 | ele=...
+ 2030 | oneway=
+ 2040 | source=...
+ 2050 | bovenliggende code
+ 2060 | huisnummers
+ 3010 | snelweg rotonde
+ 3020 | Tag slechte bron
+ 3030 | tagwatch cleaner
+ 3031 | wikipedia
+ 3032 | meerdere tags
+ 3033 | linken naar St.
+ 3040 | Tag onjuiste
+ 3050 | tag slecht 
+ 3060 | Vergelijkbare waarden
+ 3070 | meerdere waarden
+ 3080 | zwembad water als natuurlijke
+ 3090 | datum 
+ 3091 | numerieke waarde
+ 3100 | kleine boerderij
+ 3110 | nota
+ 3120 | boom
+ 3130 | met merknaam
+ 4010 | onbruik geraakte
+ 4020 | aan knooppunt = rotonde
+ 4030 | tags onverenigbaar
+ 4040 | ref aan het interieur de naam
+ 4050 | kruimels Corine
+ 4060 | seamark:fixme
+ 4070 | bouw 
+ 4080 | dubbele POI voorwerp
+ 5010 | spelling
+ 5020 | type snelweg
+ 5030 | 2 namen
+ 5040 | plaatsnaamkunde
+ 5050 | Test soundex
+ 6010 | open veelhoek
+ 6020 | gedupliceerd weg
+ 6030 | place zonder naam
+ 6040 | INSEE-code
+ 6050 | admin_level
+ 6060 | admin_level = 8 hole
+ 7010 | geodetische gebouw
+ 7011 | monumenten
+ 7020 | administratieve grens
+ 7030 | OpenStreetBugs
+ 7040 | Hoogspanningslijnen
