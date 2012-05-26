@@ -70,7 +70,7 @@ def update(source, url, logger = printlogger()):
     ## download the file if needed
     if url.startswith("http://"):
         import socket
-        socket.setdefaulttimeout(30)
+        socket.setdefaulttimeout(60)
         origGetAddrInfo = socket.getaddrinfo
 
         def getAddrInfoWrapper(host, port, family=0, socktype=0, proto=0, flags=0):
