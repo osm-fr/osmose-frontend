@@ -25,6 +25,8 @@ root_folder = os.environ["OSMOSE_ROOT"]
 sys.path.append(root_folder)
 from tools import utils
 
+translate = utils.translator()
+
 print "Content-type: text/plain; Charset=UTF-8\n"
 
 form = cgi.FieldStorage()
@@ -55,10 +57,8 @@ SELECT m.id,
        m.subclass,
        m.lat,
        m.lon,
-       dynpoi_class.title_fr as title_cur,
-       dynpoi_class.title_en as title_def,
-       m.subtitle->'fr' as subtitle_cur,
-       m.subtitle->'en' as subtitle_def,
+       dynpoi_class.title as title,
+       m.subtitle as subtitle,
        dynpoi_update_last.timestamp,
        u.username
 FROM marker m
@@ -106,8 +106,8 @@ while res:
     lat       = float(res["lat"]) / 1000000
     lon       = float(res["lon"]) / 1000000
     error_id  = res["id"]
-    title     = res["title_cur"]    or res["title_def"]    or "no title.."
-    subtitle  = res["subtitle_cur"] or res["subtitle_def"] or ""
+    title     = translate.select(res["title_cur"])
+    subtitle  = translate.select(res["subtitle_cur"])
     item      = res["item"] or 0
 
     print '"%s", "%s", "%s", %f, %f, "%s", "%s", "%s"' % (res["timestamp"], res["username"], error_id, lon, lat, title, subtitle, item)
