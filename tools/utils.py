@@ -76,7 +76,7 @@ def get_categories(lang = get_language()):
         for res2 in curs2.fetchall():
             res["item"].append({"item":res2[0], "menu":"no translation", "marker_color":res2[2], "marker_flag":res2[3]})
             for l in lang:
-                if l in res2[1]:
+                if res2[1] and l in res2[1]:
                     res["item"][-1]["menu"] = res2[1][l].decode('utf8')
                     break
 
