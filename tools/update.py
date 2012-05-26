@@ -119,11 +119,6 @@ def update(source, url, logger = printlogger()):
                             date < now()-interval '7 day'""",
                    (source_id, source_id, ))
 
-    execute_sql(dbcurs, """DELETE FROM dynpoi_marker
-                      WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status WHERE source = %s)""",
-                   (source_id, ))
-
-    ## TODO: modify SQL above
     execute_sql(dbcurs, """DELETE FROM marker
                       WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status WHERE source = %s)""",
                    (source_id, ))
@@ -210,10 +205,6 @@ class update_parser(handler.ContentHandler):
             self._class_texts[self._class_id][attrs["lang"]] = attrs["title"]
         elif name == u"delete":
             # used by files generated with an .osc file
-            execute_sql(self._dbcurs, """DELETE FROM dynpoi_marker
-                                    WHERE source = %s AND elems = %s""",
-                                 (self._source_id, attrs["type"] + attrs["id"]))
-
             execute_sql(self._dbcurs, """DELETE FROM marker
                                     WHERE source = %s AND id IN
                                           (SELECT id FROM marker_elem
@@ -245,37 +236,7 @@ class update_parser(handler.ContentHandler):
                 all_elem  += e[u"type"] + e[u"id"] + "_"
             all_elem  = all_elem.rstrip("_")            
                 
-            ## build sql fields
-            keys = ['source', 'class', 'subclass', 'elems', 'marker_id', 'lat', 'lon', 'item ']
-            vals = [str(self._source_id), str(self._class_id), str(self._class_sub), u"'%s'"%utils.pg_escape(all_elem), '#MID#', '#LAT2#', '#LON2#', str(self._class_item[self._class_id])]
-            val2 = list(vals)
-
-            ## build data variable
-            data = []
-            for e in self._error_elements:
-                data += [u"##"+e[u"type"],e[u"id"]]
-                for t in e[u"tag"].items():
-                    data += [t[0], t[1]]
-            keys.append(u"data")
-            if data:
-                vals.append(u"ARRAY[%s]"%u",".join([u"'%s'"%utils.pg_escape(x) for x in data]))
-            else:
-                vals.append(u"NULL")
-            
-            ## localised subtitles
-            for lang in utils.allowed_languages:                    
-                keys.append("subtitle_%s"%lang)
-                if lang in self._error_texts:
-                    subtitle = self._error_texts[lang]
-                else:
-                    subtitle = self._error_texts[utils.allowed_languages[0]]
-                if len(subtitle)<1000:
-                    vals.append(u"'%s'"%utils.pg_escape(subtitle))
-                else:
-                    vals.append(u"'%s'"%utils.pg_escape(subtitle[:1000]+"[...]"))
-            
             ## sql template
-            sql1 = (u"INSERT INTO dynpoi_marker (" + u','.join(keys) + u") VALUES (" + u','.join(vals) + u");").encode('utf8')
             sql_marker = u"INSERT INTO marker (source, class, subclass, item, lat, lon, elems, subtitle) VALUES (" + "%s," * 7 + "%s) RETURNING id;"
             
             ## add data at all location
@@ -286,17 +247,6 @@ class update_parser(handler.ContentHandler):
                 lat = float(location["lat"])
                 lon = float(location["lon"])
                 
-                sql = sql1.replace("#MID#",str(cpt))
-                sql = sql.replace("#LEFT#",  str(lon-0.004))
-                sql = sql.replace("#RIGHT#", str(lon+0.004))
-                sql = sql.replace("#TOP#",   str(lat+0.003))
-                sql = sql.replace("#BOTTOM#",str(lat-0.003))
-                sql = sql.replace("#LAT#",str(lat))
-                sql = sql.replace("#LON#",str(lon))
-                sql = sql.replace("#LAT2#",str(int(1000000*lat)))
-                sql = sql.replace("#LON2#",str(int(1000000*lon)))
-                execute_sql(self._dbcurs, sql)
-
                 execute_sql(self._dbcurs, sql_marker,
                             (self._source_id, self._class_id, self._class_sub,
                              self._class_item[self._class_id],
@@ -307,13 +257,6 @@ class update_parser(handler.ContentHandler):
                 marker_id = self._dbcurs.fetchone()[0]
 
                 
-            ## add for all users
-            for user in self._users:
-                val = [str(self._source_id), str(self._class_id), str(self._class_sub), "'%s'"%utils.pg_escape(all_elem), u"'%s'"%utils.pg_escape(user)]
-                sql = u"INSERT INTO dynpoi_user (source,class,subclass,elems,username) VALUES (" + u','.join(val) + u");"
-                sql = sql.encode('utf8')
-                execute_sql(self._dbcurs, sql)
-
             ## add all elements
             sql_elem = u"INSERT INTO marker_elem (marker_id, elem_index, data_type, id, tags, username) VALUES (" + "%s, " * 5 + "%s)"
             num = 0
@@ -375,11 +318,6 @@ class update_parser(handler.ContentHandler):
                 raise
 
             if self.mode == "analyser":
-                execute_sql(self._dbcurs, "DELETE FROM dynpoi_marker WHERE source = %s AND class = %s;",
-                                     (self._source_id, self._class_id))
-                execute_sql(self._dbcurs, "DELETE FROM dynpoi_user WHERE source = %s AND class = %s;",
-                                     (self._source_id, self._class_id))
-
                 execute_sql(self._dbcurs, "DELETE FROM marker WHERE source = %s AND class = %s;",
                                      (self._source_id, self._class_id))
 

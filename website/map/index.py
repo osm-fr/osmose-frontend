@@ -36,14 +36,6 @@ form       = cgi.FieldStorage()
 categories = utils.get_categories()
 
 ###########################################################################
-## décompte des erreurs
-
-#err_cpt = {}
-#PgCursor.execute("SELECT item,count(*) FROM dynpoi_marker GROUP BY item;")
-#for res in PgCursor.fetchall():
-#    err_cpt[int(res[0])] = int(res[1])
-
-###########################################################################
 ## liste de toutes les erreurs
     
 all_items = []
