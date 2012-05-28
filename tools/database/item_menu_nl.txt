@@ -61,3 +61,4 @@
  7020 | administratieve grens
  7030 | OpenStreetBugs
  7040 | Hoogspanningslijnen
+ 7050 | postkantoor

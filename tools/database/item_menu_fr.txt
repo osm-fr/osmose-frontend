@@ -61,3 +61,4 @@
  7020 | limite admin
  7030 | OpenStreetBugs
  7040 | lignes électriques
+ 7050 | bureau de poste

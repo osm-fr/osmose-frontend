@@ -61,3 +61,4 @@
  7020 | admin boundary
  7030 | OpenStreetBugs
  7040 | power lines
+ 7050 | post office
