@@ -10,7 +10,7 @@ Content-Type: text/html; charset=utf-8
   <link rel="stylesheet" type="text/css" href="http://openlayers.org/dev/theme/default/style.css">
   <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="stylesheet" type="text/css" href="style-ol.css">
-  <script type="text/javascript" src="/OpenLayers-2.8/OpenLayers.js"></script>
+  <script type="text/javascript" src="../OpenLayers-2.8/OpenLayers.js"></script>
   <script type="text/javascript" src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script>
   <script type="text/javascript" src="DynPoi.js"></script>
   <script type="text/javascript" src="BetaStyles.js"></script>
