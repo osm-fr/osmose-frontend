@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-#-*- coding: utf8 -*-
+#-*- coding: utf-8 -*-
 
 import os, atexit
 from xml.sax import make_parser, handler
