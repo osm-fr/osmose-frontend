@@ -222,10 +222,10 @@ else:
 sql = sqlbase % (where, bboxsql, lat, lon)
 sql = sql.replace("--","+")
 
-try:
-    open("/tmp/osmose-last.sql","a").write(sql+"\n")
-except:
-    pass
+#try:
+#    open("/tmp/osmose-last.sql","a").write(sql+"\n")
+#except:
+#    pass
 
 PgCursor.execute(sql)
 results = PgCursor.fetchall()
