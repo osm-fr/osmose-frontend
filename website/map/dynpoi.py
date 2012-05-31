@@ -144,7 +144,7 @@ ORDER BY ABS(lat-%d)+ABS(lon-%d) ASC
 LIMIT 200;"""
 
 sqlbase_count  = """
-SELECT marker.source
+SELECT count(*)
 FROM marker
 INNER JOIN dynpoi_update_last
   ON marker.source = dynpoi_update_last.source
@@ -204,8 +204,7 @@ if bbox:
         sql = sqlbase_count % (where, bboxsql)
         sql = sql.replace("--","+")
         PgCursor.execute(sql)
-        results = PgCursor.fetchall()
-        num_results = len(results)
+        num_results = PgCursor.fetchone()[0]
 
         if num_results > 300:
             step = step * 0.75
