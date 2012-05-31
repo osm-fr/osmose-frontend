@@ -31,6 +31,7 @@ from tools import utils
 translate = utils.translator()
 PgConn    = utils.get_dbconn()
 PgCursor  = PgConn.cursor()
+website = "osmose.openstreetmap.fr"
 
 ###########################################################################
 ## form fields
@@ -119,12 +120,16 @@ SELECT marker.id,
        elem1.tags AS elem1_tags,
        elem2.data_type AS elem2_data_type,
        elem2.id AS elem2_id,
-       elem2.tags AS elem2_tags,
-       fix0.elem_data_type AS fix0_elem_data_type,
-       fix0.elem_id AS fix0_elem_id,
-       fix0.tags_create AS fix0_tags_create,
-       fix0.tags_modify AS fix0_tags_modify,
-       fix0.tags_delete AS fix0_tags_delete
+       elem2.tags AS elem2_tags,"""
+
+for f in xrange(5):
+    sqlbase += """fix%d.elem_data_type AS fix%d_elem_data_type,
+       fix%d.elem_id AS fix%d_elem_id,
+       fix%d.tags_create AS fix%d_tags_create,
+       fix%d.tags_modify AS fix%d_tags_modify,
+       fix%d.tags_delete AS fix%d_tags_delete,""" % (10 * (f, ))
+
+sqlbase += """0
 FROM marker
 INNER JOIN dynpoi_class
   ON marker.source=dynpoi_class.source AND marker.class=dynpoi_class.class
@@ -135,10 +140,12 @@ LEFT JOIN marker_elem elem0
 LEFT JOIN marker_elem elem1
   ON elem1.marker_id = marker.id AND elem1.elem_index = 1
 LEFT JOIN marker_elem elem2
-  ON elem2.marker_id = marker.id AND elem2.elem_index = 2
-LEFT JOIN marker_fix fix0
-  ON fix0.marker_id = marker.id AND fix0.diff_index = 0
-WHERE %s AND
+  ON elem2.marker_id = marker.id AND elem2.elem_index = 2"""
+for f in xrange(5):
+    sqlbase += """LEFT JOIN marker_fix fix%d
+  ON fix%d.marker_id = marker.id AND fix%d.diff_index = %d""" % (4 * (f, ))
+
+sqlbase += """WHERE %s AND
   %s AND
   dynpoi_update_last.timestamp > (now() - interval '3 months')
 ORDER BY ABS(lat-%d)+ABS(lon-%d) ASC
@@ -262,12 +269,13 @@ for res in results:
     if res["elem2_data_type"]:
         elems.append([data_type[res["elem2_data_type"]], res["elem2_id"], res["elem2_tags"]])
 
-    if res["fix0_elem_data_type"]:
-        for e in elems:
-            if e[0] == data_type[res["fix0_elem_data_type"]] and e[1] == res["fix0_elem_id"]:
-                e.append(res["fix0_tags_create"])
-                e.append(res["fix0_tags_modify"])
-                e.append(res["fix0_tags_delete"])
+    for f in xrange(5):
+        if res["fix%d_elem_data_type" % f]:
+            for e in elems:
+                if e[0] == data_type[res["fix%d_elem_data_type" % f]] and e[1] == res["fix%d_elem_id" % f]:
+                    e.append((res["fix%d_tags_create" % f],
+                              res["fix%d_tags_modify" % f],
+                              res["fix%d_tags_delete" % f]))
 
     for e in elems:
         html += "<div class=\"bulle_elem\">"
@@ -283,13 +291,17 @@ for res in results:
             html += " <a href=\"http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/%s/%d/full\" target=\"hiddenIframe\">josm</a>" % (e[0], e[1])
         html += "<br>"
 
-        if len(e) > 4:
-            for (k, v) in e[3].items():
-                html += "<div class='fix_add'> + <b>" + k + "</b> = " + v + "<br></div>"
-            for (k, v) in e[4].items():
-                html += "<div class='fix_mod'> ~ <b>" + k + "</b> = " + v + "<br></div>"
-            for k in e[5]:
-                html += "<div class='fix_del'> - <b>" + k + "</b></div>"
+        for i in xrange(3, len(e)):
+            html += "<div class='fix'>"
+            html += "<a class='link' href='http://localhost:8111/import?url=http://%s/utils/fix-error.py?id=%s&fix=%s' target='hiddenIframe'>josm fix</a>"%(website, error_id, i - 3)
+
+            for (k, v) in e[i][0].items():
+                html += "<div class='add'> + <b>" + k + "</b> = " + v + "<br></div>"
+            for (k, v) in e[i][1].items():
+                html += "<div class='mod'> ~ <b>" + k + "</b> = " + v + "<br></div>"
+            for k in e[i][2]:
+                html += "<div class='del'> - <b>" + k + "</b></div>"
+            html += "</div>"
 
         for t in e[2].items():
             html += "<b>%s</b> = %s<br>"%(t[0], t[1])
