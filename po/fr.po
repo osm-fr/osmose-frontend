@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-01 21:39+0200\n"
+"POT-Creation-Date: 2012-06-01 23:39+0200\n"
 "PO-Revision-Date: 2012-05-31 22:50+0200\n"
 "Last-Translator:  <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../tools/utils.py:100 ../tools/database/utils.py:100
+#: ../tools/utils.py:103 ../tools/database/utils.py:103
 msgid "OsmOse - OpenStreetMap Oversight Search Engine"
 msgstr ""
 
@@ -45,25 +45,104 @@ msgstr "OsmOse - carte"
 msgid "no bubbles at this zoom factor"
 msgstr "pas de bulle à ce zoom"
 
-#: ../website/utils/evolution.py:260 ../website/utils/done.py:218
-#: ../website/utils/info.py:218 ../website/utils/false-positive.py:218
+#: ../website/utils/evolution.py:260 ../website/utils/done.py:223
+#: ../website/utils/done.py:335 ../website/utils/info.py:223
+#: ../website/utils/info.py:335 ../website/utils/false-positive.py:223
+#: ../website/utils/false-positive.py:335
 msgid "item"
 msgstr ""
 
 #: ../website/utils/evolution.py:261 ../website/utils/evolution.py:392
-#: ../website/utils/evolution.py:394 ../website/utils/done.py:219
-#: ../website/utils/info.py:219 ../website/utils/false-positive.py:219
+#: ../website/utils/evolution.py:394 ../website/utils/done.py:224
+#: ../website/utils/info.py:224 ../website/utils/false-positive.py:224
 msgid "title"
 msgstr "titre"
 
-#: ../website/utils/evolution.py:262 ../website/utils/done.py:220
-#: ../website/utils/info.py:220 ../website/utils/false-positive.py:220
+#: ../website/utils/evolution.py:262 ../website/utils/done.py:225
+#: ../website/utils/info.py:225 ../website/utils/false-positive.py:225
 msgid "count"
 msgstr "nombre"
 
-#: ../website/utils/done.py:334 ../website/utils/done.py:336
-#: ../website/utils/info.py:334 ../website/utils/info.py:336
-#: ../website/utils/false-positive.py:334
-#: ../website/utils/false-positive.py:336
+#: ../website/utils/done.py:90 ../website/utils/info.py:90
+#: ../website/utils/false-positive.py:90
+msgid "Informations"
+msgstr "informations"
+
+#: ../website/utils/done.py:91 ../website/utils/info.py:91
+#: ../website/utils/false-positive.py:91
+msgid "Fixed"
+msgstr "Corrigés"
+
+#: ../website/utils/done.py:92 ../website/utils/info.py:92
+#: ../website/utils/false-positive.py:92
+msgid "False positives"
+msgstr "Faux positifs"
+
+#: ../website/utils/done.py:93 ../website/utils/info.py:93
+#: ../website/utils/false-positive.py:93
+msgid "Graph"
+msgstr "Graphe"
+
+#: ../website/utils/done.py:94 ../website/utils/info.py:94
+#: ../website/utils/false-positive.py:94
+msgid "Map"
+msgstr "Carte"
+
+#: ../website/utils/done.py:133 ../website/utils/info.py:133
+#: ../website/utils/false-positive.py:133
+msgid "Set"
+msgstr "Choisir"
+
+#: ../website/utils/done.py:218 ../website/utils/done.py:328
+#: ../website/utils/info.py:218 ../website/utils/info.py:328
+#: ../website/utils/false-positive.py:218
+#: ../website/utils/false-positive.py:328
+msgid "source"
+msgstr "source"
+
+#. TRANSLATORS: this should be replaced by a abbreviation for class
+#: ../website/utils/done.py:220 ../website/utils/done.py:330
+#: ../website/utils/info.py:220 ../website/utils/info.py:330
+#: ../website/utils/false-positive.py:220
+#: ../website/utils/false-positive.py:330
+msgid "class (abbreviation)"
+msgstr "cl"
+
+#. TRANSLATORS: this should be replaced by a abbreviation for subclass
+#: ../website/utils/done.py:332 ../website/utils/info.py:332
+#: ../website/utils/false-positive.py:332
+msgid "subclass (abbreviation)"
+msgstr "s"
+
+#: ../website/utils/done.py:337 ../website/utils/info.py:337
+#: ../website/utils/false-positive.py:337
+#, fuzzy
+msgid "information on error"
+msgstr "infos sur l'erreur"
+
+#: ../website/utils/done.py:338 ../website/utils/info.py:338
+#: ../website/utils/false-positive.py:338
+msgid "position"
+msgstr "position"
+
+#: ../website/utils/done.py:338 ../website/utils/info.py:338
+#: ../website/utils/false-positive.py:338
+msgid "position (abbreviation)"
+msgstr "pos"
+
+#: ../website/utils/done.py:339 ../website/utils/info.py:339
+#: ../website/utils/false-positive.py:339
+msgid "elements (abbreviation)"
+msgstr "elems"
+
+#: ../website/utils/done.py:341 ../website/utils/done.py:343
+#: ../website/utils/info.py:341 ../website/utils/info.py:343
+#: ../website/utils/false-positive.py:341
+#: ../website/utils/false-positive.py:343
 msgid "subtitle"
 msgstr "sous-titre"
+
+#: ../website/utils/done.py:345 ../website/utils/info.py:345
+#: ../website/utils/false-positive.py:345
+msgid "date"
+msgstr "date"

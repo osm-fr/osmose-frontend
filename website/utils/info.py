@@ -87,8 +87,11 @@ utils.print_header()
 
 query = os.environ["QUERY_STRING"]
 
-show(u"<a href=\"info.py?%s\">Informations</a> <a href=\"done.py?%s\">Corrigé</a> <a href=\"false-positive.py?%s\">Faux positifs</a>" % ((query,) * 3))
-show(u"<a href=\"graph.py?%s\">Graphe</a> <a href=\"/map/?%s\">Carte</a>" % ((query,) * 2))
+show(u"<a href=\"info.py?%s\">%s</a>" % (query, _("Informations")))
+show(u"<a href=\"done.py?%s\">%s</a>" % (query, _("Fixed")))
+show(u"<a href=\"false-positive.py?%s\">%s</a>" % (query, _("False positives")))
+show(u"<a href=\"graph.py?%s\">%s</a>" % (query, _("Graph")))
+show(u"<a href=\"/map/?%s\">%s</a>" % (query, _("Map")))
 show(u"<br><br>")
 
 ###########################################################################
@@ -127,7 +130,7 @@ for res in PgCursor.fetchall():
         s = ""
     show(u"<option%s value='%s'>%s - %s</option>" % (s, res['item'], res['item'], translate.select(res['menu'])))
 show(u"</select>")
-show(u"<input type='submit' value='Set'/>")
+show(u"<input type='submit' value='%s'/>" % _("Set"))
 
 show(u"</form>")
 
@@ -212,8 +215,9 @@ show(u"<table class=\"sortable\" id =\"table_source\">")
 show(u"<thead>")
 show(u"<tr>")
 show(u"  <th>#</th>")
-show(u"  <th>source</th>")
-show(u"  <th title=\"class\">cl</th>")
+show(u"  <th>%s</th>" % _("source"))
+# TRANSLATORS: this should be replaced by a abbreviation for class
+show(u"  <th title=\"class\">%s</th>" % _("class (abbreviation)"))
 show(u"  <th></th>")
 show(u"  <th class=\"sorttable_sorted\">#<span id=\"sorttable_sortfwdindtable_source\">&nbsp;▾</span></th>")
 show(u"  <th>%s</th>" % _("item"))
@@ -321,16 +325,18 @@ ORDER BY
     show(u"<table class=\"sortable\">")
     show(u"<thead>")
     show(u"<tr>")
-    show(u"  <th title=\"source\">source</th>")
-    show(u"  <th title=\"class\">cl</th>")
-    show(u"  <th title=\"subclass\">s</th>")
+    show(u"  <th title=\"source\">%s</th>" % _("source"))
+# TRANSLATORS: this should be replaced by a abbreviation for class
+    show(u"  <th title=\"class\">%s</th>" % _("class (abbreviation)"))
+# TRANSLATORS: this should be replaced by a abbreviation for subclass
+    show(u"  <th title=\"subclass\">%s</th>" % _("subclass (abbreviation)"))
     show(u"  <th></th>")
     show(u"  <th>#</th>")
-    show(u"  <th>item</th>")
+    show(u"  <th>%s</th>" % _("item"))
     if gen == "info":
-        show(u"  <th title=\"infos sur l'erreur\">E</th>")
-    show(u"  <th title=\position\">pos</th>")
-    show(u"  <th>elems</th>")
+        show(u"  <th title=\"%s\">E</th>" % _("information on error"))
+    show(u"  <th title=\"%s\">%s</th>" % (_("position"), _("position (abbreviation)")))
+    show(u"  <th>%s</th>" % _("elements (abbreviation)"))
     if opt_date != "-1":
         show(u"  <th>%s</th>" % _("subtitle"))
     else:
