@@ -78,6 +78,7 @@ else:
 
 
 translate = utils.translator()
+show = utils.show
 
 ###########################################################################
 ## page headers
@@ -86,16 +87,16 @@ utils.print_header()
 
 query = os.environ["QUERY_STRING"]
 
-print "<a href=\"info.py?%s\">Informations</a> <a href=\"done.py?%s\">Corrigé</a> <a href=\"false-positive.py?%s\">Faux positifs</a>" % ((query,) * 3)
-print "<a href=\"graph.py?%s\">Graphe</a> <a href=\"/map/?%s\">Carte</a>" % ((query,) * 2)
-print "<br><br>"
+show(u"<a href=\"info.py?%s\">Informations</a> <a href=\"done.py?%s\">Corrigé</a> <a href=\"false-positive.py?%s\">Faux positifs</a>" % ((query,) * 3))
+show(u"<a href=\"graph.py?%s\">Graphe</a> <a href=\"/map/?%s\">Carte</a>" % ((query,) * 2))
+show(u"<br><br>")
 
 ###########################################################################
 
-print "<form method='get'>"
+show(u"<form method='get'>")
 
-print "<select name='country'>"
-print "<option value=''></option>"
+show(u"<select name='country'>")
+show(u"<option value=''></option>")
 sql = """
 SELECT DISTINCT
   (string_to_array(comment,'-'))[array_upper(string_to_array(comment,'-'), 1)] AS country
@@ -107,11 +108,11 @@ for res in PgCursor.fetchall():
         s = " selected='yes'"
     else:
         s = ""
-    print "<option%s value='%s'>%s</option>" % (s, res['country'], res['country'])
-print "</select>"
+    show(u"<option%s value='%s'>%s</option>" % (s, res['country'], res['country']))
+show(u"</select>")
 
-print "<select name='item'>"
-print "<option value=''></option>"
+show(u"<select name='item'>")
+show(u"<option value=''></option>")
 sql = """
 SELECT
   item,
@@ -124,11 +125,11 @@ for res in PgCursor.fetchall():
         s = " selected='yes'"
     else:
         s = ""
-    print "<option%s value='%s'>%s - %s</option>" % (s, res['item'], res['item'], translate.select(res['menu']))
-print "</select>"
-print "<input type='submit' value='Set'/>"
+    show(u"<option%s value='%s'>%s - %s</option>" % (s, res['item'], res['item'], translate.select(res['menu'])))
+show(u"</select>")
+show(u"<input type='submit' value='Set'/>")
 
-print "</form>"
+show(u"</form>")
 
 ###########################################################################
 
@@ -207,61 +208,61 @@ sql = sql % (opt_count, opt_left_join, opt_join, opt_where)
 
 ###########################################################################
 
-print "<table class=\"sortable\" id =\"table_source\">"
-print "<thead>"
-print "<tr>"
-print "  <th>#</th>"
-print "  <th>source</th>"
-print "  <th title=\"class\">cl</th>"
-print "  <th></th>"
-print "  <th class=\"sorttable_sorted\">#<span id=\"sorttable_sortfwdindtable_source\">&nbsp;▾</span></th>"
-print "  <th>%s</th>" % _("item")
-print "  <th>%s</th>" % _("title")
-print "  <th>%s</th>" % _("count")
-print "</tr>"
+show(u"<table class=\"sortable\" id =\"table_source\">")
+show(u"<thead>")
+show(u"<tr>")
+show(u"  <th>#</th>")
+show(u"  <th>source</th>")
+show(u"  <th title=\"class\">cl</th>")
+show(u"  <th></th>")
+show(u"  <th class=\"sorttable_sorted\">#<span id=\"sorttable_sortfwdindtable_source\">&nbsp;▾</span></th>")
+show(u"  <th>%s</th>" % _("item"))
+show(u"  <th>%s</th>" % _("title"))
+show(u"  <th>%s</th>" % _("count"))
+show(u"</tr>")
 
-print "</thead>"
+show(u"</thead>")
 PgCursor.execute(sql)
 total = 0
 odd = True
 for res in PgCursor.fetchall():
     odd = not odd
     if odd:
-        print "<tr class='odd'>"
+        show(u"<tr class='odd'>")
     else:
-        print "<tr class='even'>"
+        show(u"<tr class='even'>")
 
-    print "<td><a href=\"?source=%d\">%d</a></td>" % ((res["source"],) * 2)
+    show(u"<td><a href=\"?source=%d\">%d</a></td>" % ((res["source"],) * 2))
     cmt_split = res["source_comment"].split("-")
     analyse = "-".join(cmt_split[0:-1])
     country = cmt_split[-1]
-    print "<td>%s-<a href=\"?country=%s\">%s</a></td>" % (analyse, country, country)
-    print "<td><a href=\"?item=%d&amp;class=%d\">%d</a></td>" % (res["item"], res["class"], res["class"])
-    print "<td title=\"%s\"><img src=\"/map/markers/marker-l-%d.png\" alt=\"%s\"></td>" % ((res["item"],) * 3)
-    print "<td><a href=\"?item=%d\">%d</a>" % ((res["item"],) * 2)
-    print "</td>"
+    show(u"<td>%s-<a href=\"?country=%s\">%s</a></td>" % (analyse, country, country))
+    show(u"<td><a href=\"?item=%d&amp;class=%d\">%d</a></td>" % (res["item"], res["class"], res["class"]))
+    show(u"<td title=\"%s\"><img src=\"/map/markers/marker-l-%d.png\" alt=\"%s\"></td>" % ((res["item"],) * 3))
+    show(u"<td><a href=\"?item=%d\">%d</a>" % ((res["item"],) * 2))
+    show(u"</td>")
     if res["menu"]:
-        print "<td>%s</td>" % translate.select(res["menu"])
+        show(u"<td>%s</td>" % translate.select(res["menu"]))
     else:
-        print "<td></td>"
-    print "<td>%s</td>" % translate.select(res["title"])
+        show(u"<td></td>")
+    show(u"<td>%s</td>" % translate.select(res["title"]))
     count = res["count"]
     if count == -1:
         count = "N/A"
     else:
         total += count
-    print "<td><a href=\"?source=%d&amp;item=%d&amp;class=%d\">%s</a></td>" % (res["source"], res["item"], res["class"], count)
-    print "</tr>"
+    show(u"<td><a href=\"?source=%d&amp;item=%d&amp;class=%d\">%s</a></td>" % (res["source"], res["item"], res["class"], count))
+    show(u"</tr>")
 
 if total > 0:
-    print "<tfoot>"
-    print "<tr>"
-    print "  <th colspan=\"7\">Total</th>"
-    print "  <th style=\"text-align: left\">%s</th>" % total
-    print "</tr>"
-    print "</tfoot>"
+    show(u"<tfoot>")
+    show(u"<tr>")
+    show(u"  <th colspan=\"7\">Total</th>")
+    show(u"  <th style=\"text-align: left\">%s</th>" % total)
+    show(u"</tr>")
+    show(u"</tfoot>")
 
-print "</table>"
+show(u"</table>")
 ###########################################################################
 
 if (total > 0 and total < 1000) or num_points:
@@ -315,57 +316,57 @@ ORDER BY
 
     sql = sql % ((marker_id, ) + (opt_date, opt_join, opt_where, opt_order))
 
-    print "<br>"
+    show(u"<br>")
 
-    print "<table class=\"sortable\">"
-    print "<thead>"
-    print "<tr>"
-    print "  <th title=\"source\">src</th>"
-    print "  <th title=\"class\">cl</th>"
-    print "  <th title=\"subclass\">s</th>"
-    print "  <th></th>"
-    print "  <th>#</th>"
-    print "  <th>item</th>"
+    show(u"<table class=\"sortable\">")
+    show(u"<thead>")
+    show(u"<tr>")
+    show(u"  <th title=\"source\">source</th>")
+    show(u"  <th title=\"class\">cl</th>")
+    show(u"  <th title=\"subclass\">s</th>")
+    show(u"  <th></th>")
+    show(u"  <th>#</th>")
+    show(u"  <th>item</th>")
     if gen == "info":
-        print "  <th title=\"infos sur l'erreur\">E</th>"
-    print "  <th title=\"position\">pos</th>"
-    print "  <th>elems</th>"
+        show(u"  <th title=\"infos sur l'erreur\">E</th>")
+    show(u"  <th title=\position\">pos</th>")
+    show(u"  <th>elems</th>")
     if opt_date != "-1":
-        print "  <th>%s</th>" % _("subtitle")
+        show(u"  <th>%s</th>" % _("subtitle"))
     else:
-        print "  <th class=\"sorttable_sorted\">%s<span id=\"sorttable_sortfwdind\">&nbsp;▾</span></th>" % _("subtitle")
+        show(u"  <th class=\"sorttable_sorted\">%s<span id=\"sorttable_sortfwdind\">&nbsp;▾</span></th>" % _("subtitle"))
     if opt_date != "-1":
-        print "  <th class=\"sorttable_sorted\">date<span id=\"sorttable_sortfwdind\">&nbsp;▾</span></th>"
-    print "</tr>"
-    print "</thead>"
+        show(u"  <th class=\"sorttable_sorted\">%s<span id=\"sorttable_sortfwdind\">&nbsp;▾</span></th>" % _("date"))
+    show(u"</tr>")
+    show(u"</thead>")
     PgCursor.execute(sql)
     odd = True
     for res in PgCursor.fetchall():
         odd = not odd
         if odd:
-            print "<tr class='odd'>"
+            show(u"<tr class='odd'>")
         else:
-            print "<tr class='even'>"
-        print "<td title=\"%(cmt)s\"><a href=\"?source=%(src)d\">%(src)d</a> </td>" % {"cmt": res["source_comment"], "src": res["source"]}
-        print "<td>%d</td>" % res["class"]
-        print "<td>%d</td>" % res["subclass"]
-        print "<td title=\"%(item)d\"><img src=\"/map/markers/marker-l-%(item)d.png\" alt=\"%(item)d\"></td>" % {"item": res["item"]}
-        print "<td><a href=\"?item=%d\">%d</a> </td>"%(res["item"],res["item"])
+            show(u"<tr class='even'>")
+        show(u"<td title=\"%(cmt)s\"><a href=\"?source=%(src)d\">%(src)d</a> </td>" % {"cmt": res["source_comment"], "src": res["source"]})
+        show(u"<td>%d</td>" % res["class"])
+        show(u"<td>%d</td>" % res["subclass"])
+        show(u"<td title=\"%(item)d\"><img src=\"/map/markers/marker-l-%(item)d.png\" alt=\"%(item)d\"></td>" % {"item": res["item"]})
+        show(u"<td><a href=\"?item=%d\">%d</a> </td>"%(res["item"],res["item"]))
         if res["menu"]:
-            print "<td title=\"%s\">%s</td>" % (translate.select(res["title"]),
-                                                translate.select(res["menu"]))
+            show(u"<td title=\"%s\">%s</td>" % (translate.select(res["title"]),
+                                                translate.select(res["menu"])))
         else:
-            print "<td></td>"
+            show(u"<td></td>")
 
         if gen == "info":
-            print "<td title=\"erreur n°%s\"><a href='error.py?id=%s'>E</a></td>" % (res["marker_id"], res["marker_id"])
+            show(u"<td title=\"erreur n°%s\"><a href='error.py?id=%s'>E</a></td>" % (res["marker_id"], res["marker_id"]))
 
         if res["lat"] and res["lon"]:
             lat = res["lat"] / 1000000.
             lon = res["lon"] / 1000000.
-            print "<td><a href='/map/?zoom=13&amp;lat=%f&amp;lon=%f&amp;item=%d'>%.2f&nbsp;%.2f</a></td>" % (lat, lon, res["item"], lon, lat)
+            show(u"<td><a href='/map/?zoom=13&amp;lat=%f&amp;lon=%f&amp;item=%d'>%.2f&nbsp;%.2f</a></td>" % (lat, lon, res["item"], lon, lat))
         else:
-            print "<td></td>"
+            show(u"<td></td>")
 
         printed_td = False
         if res["elems"]:
@@ -374,10 +375,10 @@ ORDER BY
                 m = re.match(r"([a-z]+)([0-9]+)", e)
                 if m:
                     if not printed_td:
-                        print "<td sorttable_customkey=\"%02d%s\">" % (ord(m.group(1)[0]), m.group(2))
+                        show(u"<td sorttable_customkey=\"%02d%s\">" % (ord(m.group(1)[0]), m.group(2)))
                         printed_td = True
                     else:
-                        print "&nbsp;"
+                        show(u"&nbsp;")
                     cur_type = m.group(1)
                     sys.stdout.write("%s&nbsp;" % cur_type[0])
                     sys.stdout.write("<a target=\"_blank\" href=\"http://www.openstreetmap.org/browse/%s/%s\">%s</a>&nbsp;"%(m.group(1), m.group(2), m.group(2)))
@@ -392,32 +393,32 @@ ORDER BY
             maxlat = lat + 0.002
             minlon = lon - 0.002
             maxlon = lon + 0.002
-            print "<td>"
-            print "<a href=\"http://localhost:8111/load_and_zoom?left=%f&bottom=%f&right=%f&top=%f"%(minlon,minlat,maxlon,maxlat) + "\">josm</a>"
+            show(u"<td>")
+            show(u"<a href=\"http://localhost:8111/load_and_zoom?left=%f&bottom=%f&right=%f&top=%f"%(minlon,minlat,maxlon,maxlat) + "\">josm</a>")
 
-        print "</td>"
+        show(u"</td>")
         if res["subtitle"]:
-            print "<td>%s</td>" % translate.select(res["subtitle"])
+            show(u"<td>%s</td>" % translate.select(res["subtitle"]))
         elif res["title"]:
-            print "<td>%s</td>" % translate.select(res["title"])
+            show(u"<td>%s</td>" % translate.select(res["title"]))
         else:
-            print "<td></td>"
+            show(u"<td></td>")
         if opt_date != "-1":
             date = str(res["date"])
-            print "<td>%s&nbsp;%s</td>" % (date[:10], date[11:16])
-        print "</tr>"
-    print "</table>"
+            show(u"<td>%s&nbsp;%s</td>" % (date[:10], date[11:16]))
+        show(u"</tr>")
+    show(u"</table>")
 
     if num_points and total > num_points:
         import urlparse, urllib
         query_dict = urlparse.parse_qs(query)
         query_dict["points"] = 5 * num_points
-        print "<br>"
-        print "<a href='?%s'>Afficher plus d'erreurs</a>" % urllib.urlencode(query_dict, True)
+        show(u"<br>")
+        show(u"<a href='?%s'>Afficher plus d'erreurs</a>" % urllib.urlencode(query_dict, True))
 
 else:
-    print "<br>"
-    print "<a href='?%s'>Afficher quelques erreurs</a>" % (query + "&amp;points=100")
+    show(u"<br>")
+    show(u"<a href='?%s'>Afficher quelques erreurs</a>" % (query + "&amp;points=100"))
 
 ###########################################################################
 utils.print_tail()

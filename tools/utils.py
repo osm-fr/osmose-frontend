@@ -86,6 +86,9 @@ def get_categories(lang = get_language()):
 ###########################################################################
 ## templates
 
+def show(s):
+    print s.encode("utf8")
+
 def print_template(filename, rules = None):
     page = open(os.path.join(root_folder, "config", filename)).read().decode("utf8")
     if rules:
@@ -123,5 +126,5 @@ class translator:
             return ""
         for l in self.languages:
             if l in res:
-                return res[l]
+                return res[l].decode("utf8")
         return no_translation
