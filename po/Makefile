@@ -10,7 +10,7 @@ PO=$(foreach l,$(LANG),$(l).po)
 all: $(PO) $(MO)
 
 osmose-frontend.pot: $(PYFILES)
-	xgettext --language=Python --keyword=_ --keyword=N_ --output=osmose-frontend.pot $(PYFILES)
+	xgettext -c --language=Python --keyword=_ --keyword=N_ --output=osmose-frontend.pot $(PYFILES)
 
 %.po: osmose-frontend.pot
 	if test -e $@; then \
@@ -20,5 +20,5 @@ osmose-frontend.pot: $(PYFILES)
 	fi;
 
 mo/%/LC_MESSAGES/osmose-frontend.mo: %.po
-	mkdir -p $(patsubst %/osmose-frontend.mo,%,$@)
+	@mkdir -p $(patsubst %/osmose-frontend.mo,%,$@)
 	msgfmt --output-file=$@ $<
