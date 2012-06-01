@@ -96,7 +96,7 @@ def print_template(filename, rules = None):
 def print_header(translate = None):
     if not translate:
         translate = translator()
-    rules = { "title" : translate.get("frontend.title") }
+    rules = { "title" : _("OsmOse - OpenStreetMap Oversight Search Engine") }
     print_template("head.tpl", rules)
 
 def print_tail():
@@ -110,31 +110,12 @@ class translator:
     def __init__(self, language = get_language(), translation = translation_file):
 
         self.languages = language
-        
-        self._data = {}
-        for l in open(translation).readlines():
-            l = l.strip()
-            if l.startswith("#"):
-                continue
-            if not l:
-                continue
-            l = l.split(" ", 1)
-            self._data[l[0]] = l[1].strip().decode("utf8")
-                
-    def get(self, item, args = None):
 
-        res = u"no translation"
-
-        for l in self.languages:
-            if "%s.%s" % (l, item) in self._data:
-                res = self._data["%s.%s" % (l, item)]
-                break
-
-        if args:
-            for i in range(len(args)):
-                res = res.replace(u"$%d"%i, args[i])
-        
-        return res
+        import gettext
+        gettext.translation('osmose-frontend',
+                            localedir=os.path.join(root_folder, "po", "mo"),
+                            languages=language
+                           ).install(unicode=1)
 
     def select(self, res, no_translation = ""):
         # res is a dictionnary of possible translations, given by a SQL query

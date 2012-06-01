@@ -1,0 +1,69 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-01 21:39+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../tools/utils.py:100 ../tools/database/utils.py:100
+msgid "OsmOse - OpenStreetMap Oversight Search Engine"
+msgstr ""
+
+#: ../website/map/dynpoi.py:297
+msgid "Error reported on: "
+msgstr ""
+
+#: ../website/map/dynpoi.py:314
+msgid "change status"
+msgstr ""
+
+#: ../website/map/dynpoi.py:315
+msgid "corrected"
+msgstr ""
+
+#: ../website/map/dynpoi.py:316
+msgid "not an error"
+msgstr ""
+
+#: ../website/map/index.py:88
+msgid "OsmOse - map"
+msgstr ""
+
+#: ../website/map/index.py:89
+msgid "no bubbles at this zoom factor"
+msgstr ""
+
+#: ../website/utils/evolution.py:260 ../website/utils/done.py:218
+#: ../website/utils/info.py:218 ../website/utils/false-positive.py:218
+msgid "item"
+msgstr ""
+
+#: ../website/utils/evolution.py:261 ../website/utils/evolution.py:392
+#: ../website/utils/evolution.py:394 ../website/utils/done.py:219
+#: ../website/utils/info.py:219 ../website/utils/false-positive.py:219
+msgid "title"
+msgstr ""
+
+#: ../website/utils/evolution.py:262 ../website/utils/done.py:220
+#: ../website/utils/info.py:220 ../website/utils/false-positive.py:220
+msgid "count"
+msgstr ""
+
+#: ../website/utils/done.py:334 ../website/utils/done.py:336
+#: ../website/utils/info.py:334 ../website/utils/info.py:336
+#: ../website/utils/false-positive.py:334
+#: ../website/utils/false-positive.py:336
+msgid "subtitle"
+msgstr ""

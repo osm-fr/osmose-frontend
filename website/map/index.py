@@ -85,8 +85,8 @@ except:
     active_items = all_items
     
 dico["form"]      = u""
-dico["title"]     = translate.get("frontend.map.title")
-dico["need_zoom"] = translate.get("fr.frontend.map.need_zoom")
+dico["title"]     = _("OsmOse - map")
+dico["need_zoom"] = _("no bubbles at this zoom factor")
 
 ###########################################################################
 ## formulaire

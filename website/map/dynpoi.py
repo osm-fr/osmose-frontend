@@ -295,7 +295,7 @@ for res in results:
             html += "<b>%s</b> = %s<br>"%(t[0], t[1])
         html += "</div>"
 
-    html += translate.get(u"frontend.bubble.date").encode("utf8") + " " + b_date.strftime("%Y-%m-%d")
+    html += _("Error reported on: ") + " " + b_date.strftime("%Y-%m-%d")
     html += "</div>"
 
     ## bottom links
@@ -312,9 +312,9 @@ for res in results:
     html += "\" target=\"hiddenIframe\">josm zone</a> "
     html += "</div>"
     html += "<div class=\"bulle_maj\">"
-    html += "<b><u>%s :</u></b> " % translate.get("frontend.bubble.set_status").encode("utf8")
-    html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"/cgi-bin/status.py?e=%s&s=done\" target=\"hiddenIframe\">%s</a> "%(error_id, translate.get("frontend.bubble.done").encode("utf8"))
-    html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"/cgi-bin/status.py?e=%s&s=false\" target=\"hiddenIframe\">%s</a> "%(error_id, translate.get(u"frontend.bubble.false").encode("utf8"))
+    html += "<b><u>%s :</u></b> " % _("change status")
+    html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"/cgi-bin/status.py?e=%s&s=done\" target=\"hiddenIframe\">%s</a> "%(error_id, _("corrected"))
+    html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"/cgi-bin/status.py?e=%s&s=false\" target=\"hiddenIframe\">%s</a> "%(error_id, _("not an error"))
     html += "</div>"
     
     html = "<font size=\"-1\">%s</font>"%html

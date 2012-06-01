@@ -215,9 +215,9 @@ print "  <th>source</th>"
 print "  <th title=\"class\">cl</th>"
 print "  <th></th>"
 print "  <th class=\"sorttable_sorted\">#<span id=\"sorttable_sortfwdindtable_source\">&nbsp;▾</span></th>"
-print "  <th>%s</th>" % translate.get(u"utils.info.item").encode("utf8")
-print "  <th>%s</th>" % translate.get(u"utils.info.title").encode("utf8")
-print "  <th>%s</th>" % translate.get(u"utils.info.count").encode("utf8")
+print "  <th>%s</th>" % _("item")
+print "  <th>%s</th>" % _("title")
+print "  <th>%s</th>" % _("count")
 print "</tr>"
 
 print "</thead>"
@@ -331,9 +331,9 @@ ORDER BY
     print "  <th title=\"position\">pos</th>"
     print "  <th>elems</th>"
     if opt_date != "-1":
-        print "  <th>%s</th>" % translate.get(u"utils.info.subtitle").encode("utf8")
+        print "  <th>%s</th>" % _("subtitle")
     else:
-        print "  <th class=\"sorttable_sorted\">%s<span id=\"sorttable_sortfwdind\">&nbsp;▾</span></th>" % translate.get(u"utils.info.subtitle").encode("utf8")
+        print "  <th class=\"sorttable_sorted\">%s<span id=\"sorttable_sortfwdind\">&nbsp;▾</span></th>" % _("subtitle")
     if opt_date != "-1":
         print "  <th class=\"sorttable_sorted\">date<span id=\"sorttable_sortfwdind\">&nbsp;▾</span></th>"
     print "</tr>"
