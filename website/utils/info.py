@@ -30,6 +30,10 @@ from tools import utils
 import cgitb
 cgitb.enable()
 
+translate = utils.translator()
+show = utils.show
+N_ = utils.N_
+
 PgConn   = utils.get_dbconn()
 PgCursor = PgConn.cursor()
 
@@ -56,12 +60,15 @@ if num_points:
         num_points = 10000
 
 if "info" in os.environ["SCRIPT_NAME"]:
+    title = N_("OsmOse - informations")
     gen = "info"
     default_show_all = True
 elif "false-positive" in os.environ["SCRIPT_NAME"]:
+    title = N_("OsmOse - false positives")
     gen = "false-positive"
     default_show_all = False
 elif "done" in os.environ["SCRIPT_NAME"]:
+    title = N_("OsmOse - fixed errors")
     gen = "done"
     default_show_all = False
 else:
@@ -77,13 +84,10 @@ else:
     show_all = True
 
 
-translate = utils.translator()
-show = utils.show
-
 ###########################################################################
 ## page headers
 
-utils.print_header()
+utils.print_header(title=title)
 
 query = os.environ["QUERY_STRING"]
 
