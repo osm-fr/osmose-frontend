@@ -322,5 +322,5 @@ for res in results:
     ############################################################
 
     marker   = "markers/marker-b-%d.png" % (res["item"])
-    print "\t".join([lat, lon, str(error_id), marker, "17,33", "-8,-33", html])
+    print "\t".join([lat, lon, str(error_id), marker, "17,33", "-8,-33", html]).encode("utf8")
     

@@ -18,8 +18,10 @@ def get_dbconn():
     import psycopg2.extras
 #    return psycopg2.connect(host="localhost", database = pg_base, user = pg_user, password = pg_pass)
     db_string = "host='localhost' dbname='%s' user='%s' password='%s'" % (pg_base, pg_user, pg_pass)
+    psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
+    psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
     conn = psycopg2.extras.DictConnection(db_string)
-    psycopg2.extras.register_hstore(conn)
+    psycopg2.extras.register_hstore(conn, unicode=True)
     return conn
 
 def pg_escape(text):
@@ -51,9 +53,9 @@ def get_sources():
     for res in curs.fetchall():
         src = {}
         src["id"]         = str(res["source"])
-        src["updatecode"] = str(res["update"])
-        src["comment"]    = str(res["comment"])
-        src["contact"]    = str(res["contact"])        
+        src["updatecode"] = res["update"]
+        src["comment"]    = res["comment"]
+        src["contact"]    = res["contact"]
         config[src["id"]] = src
     return config
 
@@ -67,14 +69,14 @@ def get_categories(lang = get_language()):
         res = {"categ":res1[0], "menu": "no translation", "item":[]}
         for l in lang:
             if l in res1[1]:
-                res["menu"] = res1[1][l].decode('utf8')
+                res["menu"] = res1[1][l]
                 break
         curs2.execute("SELECT item, menu, marker_color, marker_flag FROM dynpoi_item WHERE categ = %d ORDER BY item"%res1[0])
         for res2 in curs2.fetchall():
             res["item"].append({"item":res2[0], "menu":"no translation", "marker_color":res2[2], "marker_flag":res2[3]})
             for l in lang:
                 if res2[1] and l in res2[1]:
-                    res["item"][-1]["menu"] = res2[1][l].decode('utf8')
+                    res["item"][-1]["menu"] = res2[1][l]
                     break
 
         result.append(res)
@@ -124,5 +126,5 @@ class translator:
             return ""
         for l in self.languages:
             if l in res:
-                return res[l].decode("utf8")
+                return res[l]
         return no_translation
