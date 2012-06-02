@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-01 23:39+0200\n"
+"POT-Creation-Date: 2012-06-02 12:24+0200\n"
 "PO-Revision-Date: 2012-05-31 22:50+0200\n"
 "Last-Translator:  <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French\n"
@@ -95,7 +95,7 @@ msgstr "Choisir"
 
 #: ../website/utils/done.py:218 ../website/utils/done.py:328
 #: ../website/utils/info.py:218 ../website/utils/info.py:328
-#: ../website/utils/false-positive.py:218
+#: ../website/utils/last-update.py:87 ../website/utils/false-positive.py:218
 #: ../website/utils/false-positive.py:328
 msgid "source"
 msgstr "source"
@@ -116,7 +116,6 @@ msgstr "s"
 
 #: ../website/utils/done.py:337 ../website/utils/info.py:337
 #: ../website/utils/false-positive.py:337
-#, fuzzy
 msgid "information on error"
 msgstr "infos sur l'erreur"
 
@@ -146,3 +145,35 @@ msgstr "sous-titre"
 #: ../website/utils/false-positive.py:345
 msgid "date"
 msgstr "date"
+
+#. ##########################################################################
+#. # page headers
+#: ../website/utils/last-update.py:40
+msgid "OsmOse - last updates"
+msgstr "OsmOse - dernières mises à jour"
+
+#: ../website/utils/last-update.py:71
+#, python-format
+msgid "%dd, %dh, %02dm ago"
+msgstr "il y a %dd, %dh, %02dm"
+
+#: ../website/utils/last-update.py:73
+#, python-format
+msgid "in %dj, %dh, %02dm"
+msgstr "dans %dj, %dh, %02dm"
+
+#: ../website/utils/last-update.py:77
+msgid "never generated"
+msgstr "jamais généré"
+
+#: ../website/utils/last-update.py:88
+msgid "description"
+msgstr "description"
+
+#: ../website/utils/last-update.py:89
+msgid "last generation"
+msgstr "dernière génération"
+
+#: ../website/utils/last-update.py:90 ../website/utils/last-update.py:102
+msgid "history"
+msgstr "historique"

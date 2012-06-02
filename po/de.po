@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-01 23:39+0200\n"
+"POT-Creation-Date: 2012-06-02 12:24+0200\n"
 "PO-Revision-Date: 2012-06-01 00:14+0200\n"
 "Last-Translator:  <operon@sfr.fr>\n"
 "Language-Team: German\n"
@@ -96,7 +96,7 @@ msgstr ""
 
 #: ../website/utils/done.py:218 ../website/utils/done.py:328
 #: ../website/utils/info.py:218 ../website/utils/info.py:328
-#: ../website/utils/false-positive.py:218
+#: ../website/utils/last-update.py:87 ../website/utils/false-positive.py:218
 #: ../website/utils/false-positive.py:328
 msgid "source"
 msgstr ""
@@ -146,4 +146,37 @@ msgstr "Untertitel"
 #: ../website/utils/done.py:345 ../website/utils/info.py:345
 #: ../website/utils/false-positive.py:345
 msgid "date"
+msgstr ""
+
+#. ##########################################################################
+#. # page headers
+#: ../website/utils/last-update.py:40
+#, fuzzy
+msgid "OsmOse - last updates"
+msgstr "OsmOse - Karte"
+
+#: ../website/utils/last-update.py:71
+#, python-format
+msgid "%dd, %dh, %02dm ago"
+msgstr ""
+
+#: ../website/utils/last-update.py:73
+#, python-format
+msgid "in %dj, %dh, %02dm"
+msgstr ""
+
+#: ../website/utils/last-update.py:77
+msgid "never generated"
+msgstr ""
+
+#: ../website/utils/last-update.py:88
+msgid "description"
+msgstr ""
+
+#: ../website/utils/last-update.py:89
+msgid "last generation"
+msgstr ""
+
+#: ../website/utils/last-update.py:90 ../website/utils/last-update.py:102
+msgid "history"
 msgstr ""

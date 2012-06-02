@@ -31,42 +31,13 @@ from tools import utils
 PgConn   = utils.get_dbconn()
 PgCursor = PgConn.cursor()
 
+translate = utils.translator()
 show = utils.show
 
 ###########################################################################
 ## page headers
 
-show(u"Content-Type: text/html; charset=utf-8")
-print
-
-show(u"<html>")
-show(u"<head>")
-show(u"  <style type=\"text/css\">")
-show(u"  table")
-show(u"  {")
-show(u"    border-width: 1px 1px 1px 1px;")
-show(u"    border-style: solid;")
-show(u"    border-collapse: collapse;")
-show(u"  }")
-show(u"  td")
-show(u"  {")
-show(u"    border-width: 1px 1px 1px 1px;")
-show(u"    border-style: solid;")
-show(u"    margin: 0px;")
-show(u"    padding: 5px;")
-show(u"  }")
-show(u"  a:link {")
-show(u"    color: black;")
-show(u"  }")
-show(u"    a:visited {")
-show(u"    color: black;")
-show(u"  }")
-show(u"    a:hover {")
-show(u"    color: black;")
-show(u"  }")
-show(u"  </style>")
-show(u"</head>")
-show(u"<body bgcolor=\"#FFFFFF\">")
+utils.print_header(_("OsmOse - last updates"))
 
 ###########################################################################
 ## get timestamps
@@ -97,13 +68,13 @@ for source_id in [str(y) for y in sorted([int(x) for x in sources])]:
     if int(source_id) in lasts:
         age  = lasts[int(source_id)]["age"]
         if age >= 0:
-            txt = u"il y a %dj, %dh, %02dm"%(int(age/86400), int(age/3600)%24, int(age/60)%60)
+            txt = _("%dd, %dh, %02dm ago") % (int(age/86400), int(age/3600)%24, int(age/60)%60)
         else:
-            txt = u"dans %dj, %dh, %02dm"%(int(-age/86400), int(-age/3600)%24, int(-age/60)%60)
+            txt = _("in %dj, %dh, %02dm") % (int(-age/86400), int(-age/3600)%24, int(-age/60)%60)
         
         liste.append((sources[source_id]["comment"], age, txt, source_id))
     else:
-        liste.append((sources[source_id]["comment"], 1e10, u"jamais généré", source_id))
+        liste.append((sources[source_id]["comment"], 1e10, _("never generated"), source_id))
 liste.sort(lambda x, y: -cmp(x[1], y[1]))
 
 #f = open("/tmp/update.sql", "w")
@@ -112,7 +83,12 @@ liste.sort(lambda x, y: -cmp(x[1], y[1]))
 #f.close()
 
 show(u"<table>")
-show(u"<tr bgcolor=\"#999999\"><td><b>source</b></td><td><b>description</b></td><td><b>Dernière génération</b></td><td><b>all</b></td></tr>")
+show(u"<tr bgcolor=\"#999999\">")
+show(u"<td>%s</td>" % _("source"))
+show(u"<td>%s</td>" % _("description"))
+show(u"<td>%s</td>" % _("last generation"))
+show(u"</td><td>%s</td>" % _("history"))
+show(u"</tr>")
 odd = True
 for source in liste:
     odd = not odd
@@ -123,9 +99,9 @@ for source in liste:
     show(u"<td width=\"50\"><a href=\"info.py?source=%s\">%s</a></td>"%(source[3],source[3]))
     show(u"<td width=\"600\">%s</td>" % source[0])
     show(u"<td width=\"200\">%s</td>" % source[2])
-    show(u"<td width=\"30\"><a href=\"all-update.py?source=%s\">all</a></td>"%(source[3]))
+    show(u"<td width=\"30\"><a href=\"all-update.py?source=%s\">%s</a></td>" % (source[3], _("history")))
     show(u"</tr>")
 show(u"</table>")
 
 ###########################################################################
-show(u"</body>")
+utils.print_tail()
