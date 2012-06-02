@@ -89,6 +89,9 @@ def get_categories(lang = get_language()):
 def show(s):
     print s.encode("utf8")
 
+def N_(message):
+    return message
+
 def print_template(filename, rules = None):
     page = open(os.path.join(root_folder, "config", filename)).read().decode("utf8")
     if rules:
@@ -96,10 +99,10 @@ def print_template(filename, rules = None):
             page = page.replace("#%s#"%x, rules[x].strip())
     print page.encode("utf8")
 
-def print_header(translate = None):
+def print_header(translate = None, title = N_("OsmOse - OpenStreetMap Oversight Search Engine")):
     if not translate:
         translate = translator()
-    rules = { "title" : _("OsmOse - OpenStreetMap Oversight Search Engine") }
+    rules = { "title" : _(title) }
     print_template("head.tpl", rules)
 
 def print_tail():

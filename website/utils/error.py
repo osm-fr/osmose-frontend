@@ -37,29 +37,32 @@ form       = cgi.FieldStorage()
 err_id     = form.getvalue("id", None)
 out_format = form.getvalue("format", "html")
 
+translate = utils.translator()
+show = utils.show
+N_ = utils.N_
 
 try:
     err_id = int(err_id)
 except:
     utils.print_header()
-    print "Id '%s' is incorrect" % err_id
+    show(u"Id '%s' is incorrect" % err_id)
     sys.exit(0)
 
 if out_format not in ("html", "json", "xml"):
     utils.print_header()
-    print "Format '%s' not supported" % out_format
+    show(u"Format '%s' not supported" % out_format)
     sys.exit(0)
 
 ###########################################################################
 ## page headers
 
 if out_format == "html":
-    utils.print_header()
+    utils.print_header(title=N_("OsmOse - information on error %d") % err_id)
 elif out_format == "json":
-    print "Content-Type: application/javascript; charset=utf-8"
+    show(u"Content-Type: application/javascript; charset=utf-8")
     print
 elif out_format == "xml":
-    print "Content-Type: text/xml; charset=utf-8"
+    show(u"Content-Type: text/xml; charset=utf-8")
     print
     from tools import OsmSax
     outxml = OsmSax.OsmSaxWriter(sys.stdout, "UTF-8")
@@ -75,41 +78,41 @@ data_type = { "N": "node",
 
 def show_html_results(columns, res):
 
-    print "<table class=\"sortable\" id =\"table_marker\">"
-    print "<thead>"
-    print "<tr>"
-    print "  <th>clé</th>"
-    print "  <th>valeur</th>"
-    print "</tr>"
-    print "</thead>"
+    show(u"<table class=\"sortable\" id =\"table_marker\">")
+    show(u"<thead>")
+    show(u"<tr>")
+    show(u"  <th>%s</th>" % _("key"))
+    show(u"  <th>%s</th>" % _("value"))
+    show(u"</tr>")
+    show(u"</thead>")
 
     odd = True
     for c in columns:
         odd = not odd
         if odd:
-            print "<tr class='odd'>"
+            show(u"<tr class='odd'>")
         else:
-            print "<tr class='even'>"
+            show(u"<tr class='even'>")
 
-        print "<td>%s</td>" % c
-        print "<td>"
+        show(u"<td>%s</td>" % c)
+        show(u"<td>")
         if type(res[c]) is dict:
-            print "<table>"
+            show(u"<table>")
             for (k, v) in res[c].items():
-                print "<tr><td>%s</td><td>%s</td></tr>" % (k, v)
-            print "</table>"
+                show(u"<tr><td>%s</td><td>%s</td></tr>" % (k, v))
+            show(u"</table>")
         else:
             print res[c]
-        print "</td>"
-        print "</tr>"
+        show(u"</td>")
+        show(u"</tr>")
 
-    print "</table>"
+    show(u"</table>")
 
 
 ###########################################################################
 
 if out_format == "html":
-    print "<h2>Marqueur</h2>"
+    show(u"<h2>%s</h2>" % _("Marker"))
 elif out_format == "json":
     pass
 elif out_format == "xml":
@@ -133,7 +136,7 @@ if out_format == "xml":
 ###########################################################################
 
 if out_format == "html":
-    print "<h2>Éléments</h2>"
+    show(u"<h2>%s</h2>" % _("Elements"))
 elif out_format == "json":
     pass
 elif out_format == "xml":
@@ -158,7 +161,7 @@ if out_format == "xml":
 ###########################################################################
 
 if out_format == "html":
-    print "<h2>Corrections</h2>"
+    show(u"<h2>%s</h2>" % _("Fixes"))
 elif out_format == "json":
     pass
 elif out_format == "xml":

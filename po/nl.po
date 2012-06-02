@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-02 12:24+0200\n"
+"POT-Creation-Date: 2012-06-02 14:46+0200\n"
 "PO-Revision-Date: 2012-06-01 00:14+0200\n"
 "Last-Translator:  <operon@sfr.fr>\n"
 "Language-Team: Dutch\n"
@@ -45,106 +45,148 @@ msgstr "OsmOse - kaart"
 msgid "no bubbles at this zoom factor"
 msgstr "er geen luchtbellen meer in deze zoomfactor"
 
-#: ../website/utils/evolution.py:260 ../website/utils/done.py:223
-#: ../website/utils/done.py:335 ../website/utils/info.py:223
-#: ../website/utils/info.py:335 ../website/utils/false-positive.py:223
-#: ../website/utils/false-positive.py:335
+#: ../website/utils/evolution.py:260 ../website/utils/done.py:227
+#: ../website/utils/done.py:339 ../website/utils/info.py:227
+#: ../website/utils/info.py:339 ../website/utils/false-positive.py:227
+#: ../website/utils/false-positive.py:339
 msgid "item"
 msgstr ""
 
 #: ../website/utils/evolution.py:261 ../website/utils/evolution.py:392
-#: ../website/utils/evolution.py:394 ../website/utils/done.py:224
-#: ../website/utils/info.py:224 ../website/utils/false-positive.py:224
+#: ../website/utils/evolution.py:394 ../website/utils/done.py:228
+#: ../website/utils/info.py:228 ../website/utils/false-positive.py:228
 msgid "title"
 msgstr "Titel"
 
-#: ../website/utils/evolution.py:262 ../website/utils/done.py:225
-#: ../website/utils/info.py:225 ../website/utils/false-positive.py:225
+#: ../website/utils/evolution.py:262 ../website/utils/done.py:229
+#: ../website/utils/info.py:229 ../website/utils/false-positive.py:229
 msgid "count"
 msgstr "Zahl"
 
-#: ../website/utils/done.py:90 ../website/utils/info.py:90
-#: ../website/utils/false-positive.py:90
+#: ../website/utils/error.py:60
 #, fuzzy
-msgid "Informations"
+msgid "OsmOse - information on error"
 msgstr "vals-positieve"
 
-#: ../website/utils/done.py:91 ../website/utils/info.py:91
-#: ../website/utils/false-positive.py:91
-msgid "Fixed"
+#: ../website/utils/error.py:84
+msgid "key"
 msgstr ""
 
-#: ../website/utils/done.py:92 ../website/utils/info.py:92
-#: ../website/utils/false-positive.py:92
-msgid "False positives"
+#: ../website/utils/error.py:85
+msgid "value"
 msgstr ""
 
-#: ../website/utils/done.py:93 ../website/utils/info.py:93
-#: ../website/utils/false-positive.py:93
-msgid "Graph"
+#: ../website/utils/error.py:115
+msgid "Marker"
+msgstr ""
+
+#: ../website/utils/error.py:139
+msgid "Elements"
+msgstr ""
+
+#: ../website/utils/error.py:164
+msgid "Fixes"
+msgstr ""
+
+#: ../website/utils/done.py:63 ../website/utils/info.py:63
+#: ../website/utils/false-positive.py:63
+#, fuzzy
+msgid "OsmOse - informations"
+msgstr "vals-positieve"
+
+#: ../website/utils/done.py:67 ../website/utils/info.py:67
+#: ../website/utils/false-positive.py:67
+#, fuzzy
+msgid "OsmOse - false positives"
+msgstr "OsmOse - kaart"
+
+#: ../website/utils/done.py:71 ../website/utils/info.py:71
+#: ../website/utils/false-positive.py:71
+msgid "OsmOse - fixed errors"
 msgstr ""
 
 #: ../website/utils/done.py:94 ../website/utils/info.py:94
 #: ../website/utils/false-positive.py:94
+#, fuzzy
+msgid "Informations"
+msgstr "vals-positieve"
+
+#: ../website/utils/done.py:95 ../website/utils/info.py:95
+#: ../website/utils/false-positive.py:95
+msgid "Fixed"
+msgstr ""
+
+#: ../website/utils/done.py:96 ../website/utils/info.py:96
+#: ../website/utils/false-positive.py:96
+msgid "False positives"
+msgstr ""
+
+#: ../website/utils/done.py:97 ../website/utils/info.py:97
+#: ../website/utils/false-positive.py:97
+msgid "Graph"
+msgstr ""
+
+#: ../website/utils/done.py:98 ../website/utils/info.py:98
+#: ../website/utils/false-positive.py:98
 msgid "Map"
 msgstr ""
 
-#: ../website/utils/done.py:133 ../website/utils/info.py:133
-#: ../website/utils/false-positive.py:133
+#: ../website/utils/done.py:137 ../website/utils/info.py:137
+#: ../website/utils/false-positive.py:137
 msgid "Set"
 msgstr ""
 
-#: ../website/utils/done.py:218 ../website/utils/done.py:328
-#: ../website/utils/info.py:218 ../website/utils/info.py:328
-#: ../website/utils/last-update.py:87 ../website/utils/false-positive.py:218
-#: ../website/utils/false-positive.py:328
+#: ../website/utils/done.py:222 ../website/utils/done.py:332
+#: ../website/utils/info.py:222 ../website/utils/info.py:332
+#: ../website/utils/last-update.py:87 ../website/utils/false-positive.py:222
+#: ../website/utils/false-positive.py:332
 msgid "source"
 msgstr ""
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
-#: ../website/utils/done.py:220 ../website/utils/done.py:330
-#: ../website/utils/info.py:220 ../website/utils/info.py:330
-#: ../website/utils/false-positive.py:220
-#: ../website/utils/false-positive.py:330
+#: ../website/utils/done.py:224 ../website/utils/done.py:334
+#: ../website/utils/info.py:224 ../website/utils/info.py:334
+#: ../website/utils/false-positive.py:224
+#: ../website/utils/false-positive.py:334
 msgid "class (abbreviation)"
 msgstr ""
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: ../website/utils/done.py:332 ../website/utils/info.py:332
-#: ../website/utils/false-positive.py:332
+#: ../website/utils/done.py:336 ../website/utils/info.py:336
+#: ../website/utils/false-positive.py:336
 msgid "subclass (abbreviation)"
 msgstr ""
 
-#: ../website/utils/done.py:337 ../website/utils/info.py:337
-#: ../website/utils/false-positive.py:337
+#: ../website/utils/done.py:341 ../website/utils/info.py:341
+#: ../website/utils/false-positive.py:341
 #, fuzzy
 msgid "information on error"
 msgstr "vals-positieve"
 
-#: ../website/utils/done.py:338 ../website/utils/info.py:338
-#: ../website/utils/false-positive.py:338
+#: ../website/utils/done.py:342 ../website/utils/info.py:342
+#: ../website/utils/false-positive.py:342
 msgid "position"
 msgstr ""
 
-#: ../website/utils/done.py:338 ../website/utils/info.py:338
-#: ../website/utils/false-positive.py:338
+#: ../website/utils/done.py:342 ../website/utils/info.py:342
+#: ../website/utils/false-positive.py:342
 msgid "position (abbreviation)"
 msgstr ""
 
-#: ../website/utils/done.py:339 ../website/utils/info.py:339
-#: ../website/utils/false-positive.py:339
+#: ../website/utils/done.py:343 ../website/utils/info.py:343
+#: ../website/utils/false-positive.py:343
 msgid "elements (abbreviation)"
 msgstr ""
 
-#: ../website/utils/done.py:341 ../website/utils/done.py:343
-#: ../website/utils/info.py:341 ../website/utils/info.py:343
-#: ../website/utils/false-positive.py:341
-#: ../website/utils/false-positive.py:343
+#: ../website/utils/done.py:345 ../website/utils/done.py:347
+#: ../website/utils/info.py:345 ../website/utils/info.py:347
+#: ../website/utils/false-positive.py:345
+#: ../website/utils/false-positive.py:347
 msgid "subtitle"
 msgstr "Untertitel"
 
-#: ../website/utils/done.py:345 ../website/utils/info.py:345
-#: ../website/utils/false-positive.py:345
+#: ../website/utils/done.py:349 ../website/utils/info.py:349
+#: ../website/utils/false-positive.py:349
 msgid "date"
 msgstr ""
 
