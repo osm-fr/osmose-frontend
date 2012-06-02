@@ -8,7 +8,6 @@ from xml.sax import make_parser, handler
 
 root_folder       = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 allowed_languages = ["en", "fr", "nl", "de"]
-translation_file  = os.path.join(root_folder, "config/translate.txt")
 config_file       = os.path.join(root_folder, "config/config.xml")
 pg_user           = "osmose"
 pg_base           = "osmose"
@@ -44,9 +43,7 @@ def get_language():
             return res
     return allowed_languages
 
-def get_sources(lang = get_language()):
-    if lang not in allowed_languages:
-        lang = allowed_languages[0]
+def get_sources():
     conn = get_dbconn()
     curs = conn.cursor()
     curs.execute("SELECT source, update, comment, contact FROM dynpoi_source;")
@@ -99,9 +96,7 @@ def print_template(filename, rules = None):
             page = page.replace("#%s#"%x, rules[x].strip())
     print page.encode("utf8")
 
-def print_header(translate = None, title = N_("OsmOse - OpenStreetMap Oversight Search Engine")):
-    if not translate:
-        translate = translator()
+def print_header(title = N_("OsmOse - OpenStreetMap Oversight Search Engine")):
     rules = { "title" : _(title) }
     print_template("head.tpl", rules)
 
@@ -113,7 +108,7 @@ def print_tail():
 
 class translator:
     
-    def __init__(self, language = get_language(), translation = translation_file):
+    def __init__(self, language = get_language()):
 
         self.languages = language
 
