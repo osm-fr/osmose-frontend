@@ -24,11 +24,11 @@ Content-Type: text/html; charset=utf-8
 
 <body onload="init();" onresize="handleResize();">
 
-<iframe style="display:none;position:absolute;" id="hiddenIframe" name="hiddenIframe"></iframe>
+<iframe id="hiddenIframe" name="hiddenIframe"></iframe>
 
-<div id="incFrameBg" style="opacity:0.75;visibility:hidden;position:absolute;top:0;bottom:0;left:0;right:0;background-color:#000000;z-index:1199;"></div>
-<iframe id="incFrame" src="" width=780 height=540 scrolling="auto" style="position:absolute;z-index:1200;top:10;left:10;visibility:hidden;" frameborder="1" ></iframe>
-<img id="incFrameBt" src="close.png" style="visibility:hidden;border:0px;position:absolute;z-index:1201;top:10;left:772;" onclick="iFrameClose();">
+<div id="incFrameBg"></div>
+<iframe id="incFrame" src="" width=780 height=540 scrolling="auto" frameborder="1" ></iframe>
+<img id="incFrameBt" src="close.png" onclick="iFrameClose();">
 <a accesskey="w" style="visibility:hidden;" href="javascript:iFrameClose();">iframeclose</a>
 
 <div id="menu">
@@ -51,7 +51,7 @@ Content-Type: text/html; charset=utf-8
   </form>
 </div>
 
-<div id="map" style="position:absolute;"></div>
+<div id="map"></div>
 
 <div id="bottom_links">
   <center><font size=-1>

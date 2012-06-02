@@ -146,5 +146,37 @@ a.bulle_err:hover {
   color: #55AA55;
 }
 
+/* iframe for josm and rawedit links */
+iframe#hiddenIframe {
+  display: none;
+  position: absolute;
+}
 
+div#incFrameBg {
+  display: none;
+  position: absolute;
+  opacity: 0.75;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #000000;
+  z-index: 1199;
+}
 
+iframe#incFrame {
+  display: none;
+  position: absolute;
+  z-index: 1200;
+  top: 10;
+  left: 10;
+}
+
+img#incFrameBt {
+  display: none;
+  position: absolute;
+  border: 0px;
+  z-index: 1201;
+  top: 10;
+  left: 772;
+}

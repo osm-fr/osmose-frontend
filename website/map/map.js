@@ -330,13 +330,13 @@
     // Load URL in iFrame
     function iFrameLoad(url) {
       document.getElementById('incFrame').src = url;
-      document.getElementById('incFrame').style.visibility = null;
-      document.getElementById('incFrameBt').style.visibility = null;
-      document.getElementById('incFrameBg').style.visibility = null;
+      document.getElementById('incFrame').style.display = 'inline';
+      document.getElementById('incFrameBt').style.display = 'inline';
+      document.getElementById('incFrameBg').style.display = 'inline';
     }
     function iFrameClose(url) {
-      document.getElementById('incFrame').style.visibility   = 'hidden';
-      document.getElementById('incFrameBt').style.visibility = 'hidden';
-      document.getElementById('incFrameBg').style.visibility = 'hidden';
+      document.getElementById('incFrame').style.display   = 'none';
+      document.getElementById('incFrameBt').style.display = 'none';
+      document.getElementById('incFrameBg').style.display = 'none';
     }
  
