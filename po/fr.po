@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-02 14:46+0200\n"
+"POT-Creation-Date: 2012-06-02 18:18+0200\n"
 "PO-Revision-Date: 2012-05-31 22:50+0200\n"
 "Last-Translator:  <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../tools/utils.py:103 ../tools/database/utils.py:103
+#: ../tools/utils.py:102 ../tools/database/utils.py:102
 msgid "OsmOse - OpenStreetMap Oversight Search Engine"
 msgstr ""
 
@@ -64,9 +64,9 @@ msgid "count"
 msgstr "nombre"
 
 #: ../website/utils/error.py:60
-#, fuzzy
-msgid "OsmOse - information on error"
-msgstr "infos sur l'erreur"
+#, fuzzy, python-format
+msgid "OsmOse - information on error %d"
+msgstr "OsmOse - information sur l'erreur %d"
 
 #: ../website/utils/error.py:84
 msgid "key"
@@ -90,25 +90,23 @@ msgstr "Corrections"
 
 #: ../website/utils/done.py:63 ../website/utils/info.py:63
 #: ../website/utils/false-positive.py:63
-#, fuzzy
 msgid "OsmOse - informations"
-msgstr "informations"
+msgstr "OsmOse - informations"
 
 #: ../website/utils/done.py:67 ../website/utils/info.py:67
 #: ../website/utils/false-positive.py:67
-#, fuzzy
 msgid "OsmOse - false positives"
-msgstr "Faux positifs"
+msgstr "OsmOse - Faux positifs"
 
 #: ../website/utils/done.py:71 ../website/utils/info.py:71
 #: ../website/utils/false-positive.py:71
 msgid "OsmOse - fixed errors"
-msgstr ""
+msgstr "OsmOse - Erreurs corrigées"
 
 #: ../website/utils/done.py:94 ../website/utils/info.py:94
 #: ../website/utils/false-positive.py:94
 msgid "Informations"
-msgstr "informations"
+msgstr "Informations"
 
 #: ../website/utils/done.py:95 ../website/utils/info.py:95
 #: ../website/utils/false-positive.py:95
@@ -187,6 +185,16 @@ msgstr "sous-titre"
 #: ../website/utils/false-positive.py:349
 msgid "date"
 msgstr "date"
+
+#: ../website/utils/done.py:427 ../website/utils/info.py:427
+#: ../website/utils/false-positive.py:427
+msgid "Show more errors"
+msgstr "Afficher plus d'erreurs"
+
+#: ../website/utils/done.py:431 ../website/utils/info.py:431
+#: ../website/utils/false-positive.py:431
+msgid "Show some errors"
+msgstr "Afficher quelques erreurs"
 
 #. ##########################################################################
 #. # page headers

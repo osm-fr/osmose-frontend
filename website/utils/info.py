@@ -424,11 +424,11 @@ ORDER BY
         query_dict = urlparse.parse_qs(query)
         query_dict["points"] = 5 * num_points
         show(u"<br>")
-        show(u"<a href='?%s'>Afficher plus d'erreurs</a>" % urllib.urlencode(query_dict, True))
+        show(u"<a href='?%s'>%s</a>" % (urllib.urlencode(query_dict, True), _("Show more errors")))
 
 else:
     show(u"<br>")
-    show(u"<a href='?%s'>Afficher quelques erreurs</a>" % (query + "&amp;points=100"))
+    show(u"<a href='?%s'>%s</a>" % (query + "&amp;points=100", _("Show some errors")))
 
 ###########################################################################
 utils.print_tail()

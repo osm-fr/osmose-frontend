@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-02 14:46+0200\n"
+"POT-Creation-Date: 2012-06-02 18:18+0200\n"
 "PO-Revision-Date: 2012-06-01 00:06+0200\n"
 "Last-Translator:  <jjaubert@openstreetmap.fr>\n"
 "Language-Team: English\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../tools/utils.py:103 ../tools/database/utils.py:103
+#: ../tools/utils.py:102 ../tools/database/utils.py:102
 msgid "OsmOse - OpenStreetMap Oversight Search Engine"
 msgstr ""
 
@@ -64,7 +64,8 @@ msgid "count"
 msgstr "count"
 
 #: ../website/utils/error.py:60
-msgid "OsmOse - information on error"
+#, python-format
+msgid "OsmOse - information on error %d"
 msgstr ""
 
 #: ../website/utils/error.py:84
@@ -183,6 +184,16 @@ msgstr "subtitle"
 #: ../website/utils/done.py:349 ../website/utils/info.py:349
 #: ../website/utils/false-positive.py:349
 msgid "date"
+msgstr ""
+
+#: ../website/utils/done.py:427 ../website/utils/info.py:427
+#: ../website/utils/false-positive.py:427
+msgid "Show more errors"
+msgstr ""
+
+#: ../website/utils/done.py:431 ../website/utils/info.py:431
+#: ../website/utils/false-positive.py:431
+msgid "Show some errors"
 msgstr ""
 
 #. ##########################################################################
