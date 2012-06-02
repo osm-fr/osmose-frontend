@@ -2,6 +2,7 @@
 #-*- coding: utf-8 -*-
 
 import os, atexit
+import Cookie
 from xml.sax import make_parser, handler
 
 ################################################################################
@@ -30,19 +31,30 @@ def pg_escape(text):
     return text.replace(u"'", u"''").replace(u'\\',u'\\\\')
 
 def get_language():
-    if "HTTP_ACCEPT_LANGUAGE" in os.environ:
+    lg = None
+    if "HTTP_COOKIE" in os.environ:
+        cki = Cookie.SimpleCookie()
+        cki.load(os.environ['HTTP_COOKIE'])
+        if "lang" in cki:
+            lg = [cki.get("lang").value]
+            if not lg[0] in allowed_languages:
+                lg = None
+
+    if not lg and "HTTP_ACCEPT_LANGUAGE" in os.environ:
         lg = os.environ["HTTP_ACCEPT_LANGUAGE"]
         lg = lg.split(",")
         lg = [x.split(";")[0] for x in lg]
         lg = [x.split("-")[0] for x in lg]
         lg = [x for x in lg if x in allowed_languages]
-        if lg:
-            lg.append(allowed_languages[0])
-            res = []
-            for l in lg:
-                if not l in res:
-                    res.append(l)
-            return res
+
+    if lg:
+        lg.append(allowed_languages[0])
+        res = []
+        for l in lg:
+            if not l in res:
+                res.append(l)
+        return res
+
     return allowed_languages
 
 def get_sources():

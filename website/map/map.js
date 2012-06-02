@@ -339,4 +339,15 @@
       document.getElementById('incFrameBt').style.display = 'none';
       document.getElementById('incFrameBg').style.display = 'none';
     }
- 
+
+    function setCookie(c_name,value,exdays) {
+      var exdate=new Date();
+      exdate.setDate(exdate.getDate() + exdays);
+      var c_value=escape(value) + ((exdays==null) ? "" : "; path=/; expires="+exdate.toUTCString());
+      document.cookie=c_name + "=" + c_value;
+    }
+
+    function set_lang(lang) {
+      setCookie("lang", lang, 30);
+      window.location = document.URL;
+    }

@@ -128,6 +128,21 @@ urls.append((u"sources", "https://gitorious.org/osmose"))
 urls.append((u"statistiques", "/utils/last-update.py"))
 
 show(u"<div id='bottom_links'>")
+
+show(u"<div style='float: left'>")
+show(u"<form method='get' style='display:inline'>")
+show(u"<select name='language'>")
+show(u"<option value='' onclick='set_lang(\"\");'></option>")
+for l in utils.allowed_languages:
+  if translate.languages[0] == l:
+    s = " selected='yes'"
+  else:
+    s = ""
+  show(u"<option%s value='%s' onclick='set_lang(\"%s\");'>%s</option>" % (s, l, l, l))
+show(u"</select>")
+show(u"</form>")
+show(u"</div>")
+
 show(u"  <div id='links'>")
 for u in urls:
   show(u"<a href='%s'>%s</a> - " % (u[1], u[0]))

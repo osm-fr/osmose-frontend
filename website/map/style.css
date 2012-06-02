@@ -61,10 +61,17 @@ div#bottom_links {
   position: absolute;
   display: inline;
   width: 100%;
-  height: 20px;
+  min-height: 20px;
   left: 0px;
   bottom: 0px;
   font-size: 90%;
+
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+div#bottom_links div#links {
+  display: inline-block;
 }
 
 /* popups */
