@@ -114,10 +114,4 @@ for categ in categories:
 ## template et envoi
 
 if __name__ == "__main__":
-    print "Content-Type: text/html; charset=utf-8"
-    print
-    #print active_items
-    page = open(os.path.join(root_folder, "config/map.tpl")).read().decode("utf8")
-    for x in dico:
-        page = page.replace("#%s#"%x, dico[x].strip())
-    print page.encode("utf8")
+    utils.print_template("map.tpl", dico)
