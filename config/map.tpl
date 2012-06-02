@@ -53,28 +53,3 @@ Content-Type: text/html; charset=utf-8
 
 <div id="map"></div>
 
-<div id="bottom_links">
-  <center>
-  <a href="http://wiki.openstreetmap.org/wiki/FR:Osmose">Aide</a>
-  - 
-  <a href="/text">par utilisateur</a>
-  - 
-  <a href="http://clc.openstreetmap.fr">clc</a>
-  - 
-  <a href="http://analyser.openstreetmap.fr/">analyseur de relation</a>
-  - 
-  <a href="http://geodesie.openstreetmap.fr/">géodésie</a>
-  - 
-  <a href="http://www.openstreetmap.fr/">openstreetmap.fr</a>
-  -
-  <a href="/copyright.html">copyright</a>
-  -
-  <a href="https://gitorious.org/osmose">sources</a>
-  -
-  <a href="/utils/last-update.py">statistiques</a>
-  </center>
-</div>
-
-</body>
-</html>
-

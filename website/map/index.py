@@ -34,6 +34,7 @@ form       = cgi.FieldStorage()
 ## structure du menu
 
 categories = utils.get_categories()
+show = utils.show
 
 ###########################################################################
 ## liste de toutes les erreurs
@@ -113,5 +114,24 @@ for categ in categories:
 ###########################################################################
 ## template et envoi
 
-if __name__ == "__main__":
-    utils.print_template("map.tpl", dico)
+utils.print_template("map.tpl", dico)
+
+urls = []
+urls.append((u"Aide", "http://wiki.openstreetmap.org/wiki/FR:Osmose"))
+urls.append((u"par utilisateur", "/text"))
+urls.append((u"clc", "/clc"))
+urls.append((u"analyseur de relation", "http://analyser.openstreetmap.fr/"))
+urls.append((u"géodésie", "http://geodesie.openstreetmap.fr/"))
+urls.append((u"openstreetmap.fr", "http://www.openstreetmap.fr/"))
+urls.append((u"copyright", "/copyright"))
+urls.append((u"sources", "https://gitorious.org/osmose"))
+urls.append((u"statistiques", "/utils/last-update.py"))
+
+show(u"<div id='bottom_links'>")
+show(u"  <div id='links'>")
+for u in urls:
+  show(u"<a href='%s'>%s</a> - " % (u[1], u[0]))
+show(u"  </div>")
+show(u"</div>")
+
+utils.print_tail()
