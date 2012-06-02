@@ -311,12 +311,10 @@ for res in results:
     html += "\" target=\"hiddenIframe\">josm zone</a> "
     html += "</div>"
     html += "<div class=\"bulle_maj\">"
-    html += "<b><u>%s :</u></b> " % _("change status")
+    html += "<b>%s :</b> " % _("change status")
     html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"/cgi-bin/status.py?e=%s&s=done\" target=\"hiddenIframe\">%s</a> "%(error_id, _("corrected"))
     html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"/cgi-bin/status.py?e=%s&s=false\" target=\"hiddenIframe\">%s</a> "%(error_id, _("not an error"))
     html += "</div>"
-    
-    html = "<font size=\"-1\">%s</font>"%html
     
     ##
     ############################################################

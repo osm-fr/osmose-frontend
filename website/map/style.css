@@ -64,6 +64,7 @@ div#bottom_links {
   height: 20px;
   left: 0px;
   bottom: 0px;
+  font-size: 90%;
 }
 
 /* popups */
@@ -72,6 +73,7 @@ div#bottom_links {
   max-height: 200px;
   overflow: auto;
   word-wrap: break-word;
+  font-size: 80%;
 }
 .bulle_msg div.closebubble {
   float: right;
@@ -136,6 +138,9 @@ a.bulle_err:hover {
   color: red;
 }
 
+.bulle_verif {
+  font-size: 90%;
+}
 .bulle_verif a:link {
   color: #55AA55;
 }
@@ -144,6 +149,10 @@ a.bulle_err:hover {
 }
 .bulle_verif a:hover {
   color: #55AA55;
+}
+
+.bulle_maj {
+  font-size: 90%;
 }
 
 /* iframe for josm and rawedit links */

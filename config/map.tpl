@@ -54,7 +54,7 @@ Content-Type: text/html; charset=utf-8
 <div id="map"></div>
 
 <div id="bottom_links">
-  <center><font size=-1>
+  <center>
   <a href="http://wiki.openstreetmap.org/wiki/FR:Osmose">Aide</a>
   - 
   <a href="/text">par utilisateur</a>
@@ -72,7 +72,7 @@ Content-Type: text/html; charset=utf-8
   <a href="https://gitorious.org/osmose">sources</a>
   -
   <a href="/utils/last-update.py">statistiques</a>
-  </font></center>
+  </center>
 </div>
 
 </body>
