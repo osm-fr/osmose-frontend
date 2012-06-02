@@ -31,9 +31,7 @@ Content-Type: text/html; charset=utf-8
 <img id="incFrameBt" src="close.png" style="visibility:hidden;border:0px;position:absolute;z-index:1201;top:10;left:772;" onclick="iFrameClose();">
 <a accesskey="w" style="visibility:hidden;" href="javascript:iFrameClose();">iframeclose</a>
 
-<!--<div id="gauche" style="background-color:#FF5555;position:absolute;overflow-y:scroll;">-->
-<div id="gauche" style="position:absolute;overflow-y:scroll;">
-  <!--<center><font color="#AA0000"><b><br>!!! NE PAS UTILISER !!!<br>!!! BASE DE TEST !!!<br><br></b></font></center>-->
+<div id="menu">
   <center><div id="need_zoom">
     <br><br>#need_zoom#<br><br>
   </div></center>
@@ -51,20 +49,12 @@ Content-Type: text/html; charset=utf-8
       <input type='hidden' name='user'   value='#user#'>
       #form#
   </form>
-  <!--<br>
-  <div id="bottom_links">
-      <a id="stats" href="/cgi-bin/last-update.py">statistiques</a>
-  </div>-->
 </div>
 
 <div id="map" style="position:absolute;"></div>
 
-<div id="bas" style="background-color:#DDDDDD;position:absolute;display: none;">
+<div id="bottom_links">
   <center><font size=-1>
-  <!--<a href="osmose.py">mode texte</a>
-  - -->
-  <!--<a href="/clc">polygones clc</a>
-  - -->
   <a href="http://wiki.openstreetmap.org/wiki/FR:Osmose">Aide</a>
   - 
   <a href="/text">par utilisateur</a>

@@ -182,33 +182,21 @@
         globalHeight = document.body.clientHeight;
       }
 	      
-      var divGauche  = document.getElementById('gauche').style;
+      var divGauche  = document.getElementById('menu').style;
       var divDroite  = document.getElementById('map').style;
-      var divBas     = document.getElementById('bas').style;
       
-      if (document.myform.source.value == '') {
-        g = 280;
-      } else {
+      if (document.myform.source.value != '') {
 	g = 0;
+      
+        divGauche.width  = g + "px";
+        divGauche.height = (globalHeight - 20) + "px";
+      
+        divDroite.width  = (globalWidth - g) + "px";
+        divDroite.height = (globalHeight - 20) + "px";
+        divDroite.left   = g + "px";
+        divDroite.top    = 0 + "px";
       }
       
-      divGauche.width  = g + "px";
-      divGauche.height = (globalHeight - 20) + "px";
-      divGauche.left   = 0 + "px";
-      divGauche.top    = 0 + "px";
-      
-      divDroite.width  = (globalWidth - g) + "px";
-      divDroite.height = (globalHeight - 20) + "px";
-      divDroite.left   = g + "px";
-      divDroite.top    = 0 + "px";
-      
-      divBas.width     = globalWidth + "px";
-      divBas.height    = 20 + "px";
-      divBas.left      = 0 + "px";
-      divBas.top       = (globalHeight - 20) + "px";
-    
-      divBas.display   = 'inline';
-    
       map.setCenter(centre, zoom);
       
     }
