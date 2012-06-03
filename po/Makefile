@@ -22,3 +22,8 @@ osmose-frontend.pot: $(PYFILES)
 mo/%/LC_MESSAGES/osmose-frontend.mo: %.po
 	@mkdir -p $(patsubst %/osmose-frontend.mo,%,$@)
 	msgfmt --output-file=$@ $<
+
+statistics:
+	@for i in $(PO); do \
+	  (msgfmt --statistics --verbose -o - $$i > /dev/null) 2>&1; \
+	done
