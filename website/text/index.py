@@ -35,9 +35,9 @@ show = utils.show
 
 if username=="":
     utils.print_header(_("OsmOse - statistics for user"))
-    show(u"<form method='GET' action='byuser.py'>")
+    show(u"<form method='GET' action=''>")
     show(u"<label for='username'>%s</label>" % _("Username:"))
-    show(u"<input type='text' name='username'>")
+    show(u"<input type='text' name='username' id='username'>")
     show(u"<input type='submit'>")
     show(u"</form>")
     sys.exit(0)
@@ -88,8 +88,8 @@ for res in PgCursor.fetchall():
     cl = res["class"]
     source = res["source"]
     item = res["item"]
-    url = "/map/cgi-bin/index.py?zoom=16&lat=%s&lon=%s&source=%s" % (lat, lon, source)
-    url = "/map/cgi-bin/index.py?zoom=16&lat=%s&lon=%s&item=%s" % (lat, lon, item)
+    url = "/map/cgi-bin/index.py?zoom=16&amp;lat=%s&amp;lon=%s&amp;source=%s" % (lat, lon, source)
+    url = "/map/cgi-bin/index.py?zoom=16&amp;lat=%s&amp;lon=%s&amp;item=%s" % (lat, lon, item)
     show(u"    <td>" + lat + "</td>\n")
     show(u"    <td>" + lon + "</td>\n")
     show(u"    <td><a href='" + url + "'>%s</a></td>\n" % _("map"))

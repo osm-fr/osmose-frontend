@@ -100,7 +100,7 @@ show(u"<br><br>")
 
 ###########################################################################
 
-show(u"<form method='get'>")
+show(u"<form method='get' action=''>")
 
 show(u"<select name='country'>")
 show(u"<option value=''></option>")
@@ -135,7 +135,7 @@ for res in PgCursor.fetchall():
     show(u"<option%s value='%s'>%s - %s</option>" % (s, res['item'], res['item'], translate.select(res['menu'])))
 show(u"</select>")
 # TRANSLATORS: 'Set' is used to choose a specific country/item on tools/info.py
-show(u"<input type='submit' value='%s'/>" % _("Set"))
+show(u"<input type='submit' value='%s'>" % _("Set"))
 
 show(u"</form>")
 
@@ -231,6 +231,8 @@ show(u"  <th>%s</th>" % _("count"))
 show(u"</tr>")
 
 show(u"</thead>")
+show(u"<tbody>")
+
 PgCursor.execute(sql)
 total = 0
 odd = True
@@ -262,6 +264,8 @@ for res in PgCursor.fetchall():
         total += count
     show(u"<td><a href=\"?source=%d&amp;item=%d&amp;class=%d\">%s</a></td>" % (res["source"], res["item"], res["class"], count))
     show(u"</tr>")
+
+show(u"</tbody>")
 
 if total > 0:
     show(u"<tfoot>")
@@ -405,7 +409,7 @@ ORDER BY
             minlon = lon - 0.002
             maxlon = lon + 0.002
             show(u"<td>")
-            show(u"<a href=\"http://localhost:8111/load_and_zoom?left=%f&bottom=%f&right=%f&top=%f"%(minlon,minlat,maxlon,maxlat) + "\">josm</a>")
+            show(u"<a href=\"http://localhost:8111/load_and_zoom?left=%f&amp;bottom=%f&amp;right=%f&amp;top=%f"%(minlon,minlat,maxlon,maxlat) + "\">josm</a>")
 
         show(u"</td>")
         if res["subtitle"]:
