@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-02 18:18+0200\n"
-"PO-Revision-Date: 2012-06-01 00:14+0200\n"
-"Last-Translator:  <operon@sfr.fr>\n"
+"POT-Creation-Date: 2012-06-02 14:46+0200\n"
+"PO-Revision-Date: 2012-06-03 08:41+0100\n"
+"Last-Translator: operon <a@a.fr>\n"
 "Language-Team: Dutch\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -17,9 +17,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../tools/utils.py:102 ../tools/database/utils.py:102
+#: ../tools/utils.py:103 ../tools/database/utils.py:103
 msgid "OsmOse - OpenStreetMap Oversight Search Engine"
-msgstr ""
+msgstr "OsmOse - OpenStreetMap Oversight Search Engine"
 
 #: ../website/map/dynpoi.py:297
 msgid "Error reported on: "
@@ -50,7 +50,7 @@ msgstr "er geen luchtbellen meer in deze zoomfactor"
 #: ../website/utils/info.py:339 ../website/utils/false-positive.py:227
 #: ../website/utils/false-positive.py:339
 msgid "item"
-msgstr ""
+msgstr "item"
 
 #: ../website/utils/evolution.py:261 ../website/utils/evolution.py:392
 #: ../website/utils/evolution.py:394 ../website/utils/done.py:228
@@ -64,72 +64,68 @@ msgid "count"
 msgstr "Zahl"
 
 #: ../website/utils/error.py:60
-#, fuzzy, python-format
-msgid "OsmOse - information on error %d"
-msgstr "vals-positieve"
+msgid "OsmOse - information on error"
+msgstr "OsmOse - over de fout"
 
 #: ../website/utils/error.py:84
 msgid "key"
-msgstr ""
+msgstr "sleutel"
 
 #: ../website/utils/error.py:85
 msgid "value"
-msgstr ""
+msgstr "waarde"
 
 #: ../website/utils/error.py:115
 msgid "Marker"
-msgstr ""
+msgstr "Merkstift"
 
 #: ../website/utils/error.py:139
 msgid "Elements"
-msgstr ""
+msgstr "Elementen"
 
 #: ../website/utils/error.py:164
 msgid "Fixes"
-msgstr ""
+msgstr "correcties"
 
 #: ../website/utils/done.py:63 ../website/utils/info.py:63
 #: ../website/utils/false-positive.py:63
-#, fuzzy
 msgid "OsmOse - informations"
-msgstr "vals-positieve"
+msgstr "OsmOse -Informatie"
 
 #: ../website/utils/done.py:67 ../website/utils/info.py:67
 #: ../website/utils/false-positive.py:67
-#, fuzzy
 msgid "OsmOse - false positives"
-msgstr "OsmOse - kaart"
+msgstr "Osmose - Valse positieve"
 
 #: ../website/utils/done.py:71 ../website/utils/info.py:71
 #: ../website/utils/false-positive.py:71
 msgid "OsmOse - fixed errors"
-msgstr ""
+msgstr "Osmose - vaste fouten"
 
 #: ../website/utils/done.py:94 ../website/utils/info.py:94
 #: ../website/utils/false-positive.py:94
-#, fuzzy
 msgid "Informations"
-msgstr "vals-positieve"
+msgstr "Informatie"
 
 #: ../website/utils/done.py:95 ../website/utils/info.py:95
 #: ../website/utils/false-positive.py:95
 msgid "Fixed"
-msgstr ""
+msgstr "vast"
 
 #: ../website/utils/done.py:96 ../website/utils/info.py:96
 #: ../website/utils/false-positive.py:96
 msgid "False positives"
-msgstr ""
+msgstr "Valse positieve"
 
 #: ../website/utils/done.py:97 ../website/utils/info.py:97
 #: ../website/utils/false-positive.py:97
 msgid "Graph"
-msgstr ""
+msgstr "Grafiek"
 
 #: ../website/utils/done.py:98 ../website/utils/info.py:98
 #: ../website/utils/false-positive.py:98
 msgid "Map"
-msgstr ""
+msgstr "Maart"
 
 #: ../website/utils/done.py:137 ../website/utils/info.py:137
 #: ../website/utils/false-positive.py:137
@@ -141,7 +137,7 @@ msgstr ""
 #: ../website/utils/last-update.py:87 ../website/utils/false-positive.py:222
 #: ../website/utils/false-positive.py:332
 msgid "source"
-msgstr ""
+msgstr "oorsprong"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
 #: ../website/utils/done.py:224 ../website/utils/done.py:334
@@ -159,14 +155,13 @@ msgstr ""
 
 #: ../website/utils/done.py:341 ../website/utils/info.py:341
 #: ../website/utils/false-positive.py:341
-#, fuzzy
 msgid "information on error"
-msgstr "vals-positieve"
+msgstr "informatie over de fout"
 
 #: ../website/utils/done.py:342 ../website/utils/info.py:342
 #: ../website/utils/false-positive.py:342
 msgid "position"
-msgstr ""
+msgstr "positie"
 
 #: ../website/utils/done.py:342 ../website/utils/info.py:342
 #: ../website/utils/false-positive.py:342
@@ -188,7 +183,44 @@ msgstr "Untertitel"
 #: ../website/utils/done.py:349 ../website/utils/info.py:349
 #: ../website/utils/false-positive.py:349
 msgid "date"
-msgstr ""
+msgstr "datum"
+
+#. ##########################################################################
+#. # page headers
+#: ../website/utils/last-update.py:40
+msgid "OsmOse - last updates"
+msgstr "OsmOse - laatste updates"
+
+#: ../website/utils/last-update.py:71
+#, python-format
+msgid "%dd, %dh, %02dm ago"
+msgstr "%dd, %du, %02dm geleden"
+
+#: ../website/utils/last-update.py:73
+#, python-format
+msgid "in %dj, %dh, %02dm"
+msgstr "in %dd, %du, %02dm"
+
+#: ../website/utils/last-update.py:77
+msgid "never generated"
+msgstr "nooit gegenereerd"
+
+#: ../website/utils/last-update.py:88
+msgid "description"
+msgstr "beschrijving"
+
+#: ../website/utils/last-update.py:89
+msgid "last generation"
+msgstr "laatste generatie"
+
+#: ../website/utils/last-update.py:90 ../website/utils/last-update.py:102
+msgid "history"
+msgstr "geschiedenis"
+
+#: ../website/utils/error.py:60
+#, fuzzy, python-format
+msgid "OsmOse - information on error %d"
+msgstr "vals-positieve"
 
 #: ../website/utils/done.py:427 ../website/utils/info.py:427
 #: ../website/utils/false-positive.py:427
@@ -198,37 +230,4 @@ msgstr ""
 #: ../website/utils/done.py:431 ../website/utils/info.py:431
 #: ../website/utils/false-positive.py:431
 msgid "Show some errors"
-msgstr ""
-
-#. ##########################################################################
-#. # page headers
-#: ../website/utils/last-update.py:40
-#, fuzzy
-msgid "OsmOse - last updates"
-msgstr "OsmOse - kaart"
-
-#: ../website/utils/last-update.py:71
-#, python-format
-msgid "%dd, %dh, %02dm ago"
-msgstr ""
-
-#: ../website/utils/last-update.py:73
-#, python-format
-msgid "in %dj, %dh, %02dm"
-msgstr ""
-
-#: ../website/utils/last-update.py:77
-msgid "never generated"
-msgstr ""
-
-#: ../website/utils/last-update.py:88
-msgid "description"
-msgstr ""
-
-#: ../website/utils/last-update.py:89
-msgid "last generation"
-msgstr ""
-
-#: ../website/utils/last-update.py:90 ../website/utils/last-update.py:102
-msgid "history"
 msgstr ""

@@ -7,138 +7,137 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-02 18:18+0200\n"
-"PO-Revision-Date: 2012-06-01 00:14+0200\n"
-"Last-Translator:  <operon@sfr.fr>\n"
+"POT-Creation-Date: 2012-06-02 14:46+0200\n"
+"PO-Revision-Date: 2012-06-03 08:10+0100\n"
+"Last-Translator: operon <a@a.fr>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../tools/utils.py:102 ../tools/database/utils.py:102
+#: ../tools/utils.py:103 ../tools/database/utils.py:103
 msgid "OsmOse - OpenStreetMap Oversight Search Engine"
-msgstr ""
+msgstr "OsmOse - OpenStreetMap Oversight Search Engine"
 
 #: ../website/map/dynpoi.py:297
 msgid "Error reported on: "
-msgstr ""
+msgstr "Errore riferito: "
 
 #: ../website/map/dynpoi.py:314
 msgid "change status"
-msgstr ""
+msgstr "cambia status"
 
 #: ../website/map/dynpoi.py:315
 msgid "corrected"
-msgstr ""
+msgstr "corretto"
 
 #: ../website/map/dynpoi.py:316
 msgid "not an error"
-msgstr ""
+msgstr "non è un errore"
 
 #: ../website/map/index.py:88
 msgid "OsmOse - map"
-msgstr ""
+msgstr "OsmOse - map"
 
 #: ../website/map/index.py:89
 msgid "no bubbles at this zoom factor"
-msgstr ""
+msgstr "no bolle in questo fattore di zoom"
 
 #: ../website/utils/evolution.py:260 ../website/utils/done.py:227
 #: ../website/utils/done.py:339 ../website/utils/info.py:227
 #: ../website/utils/info.py:339 ../website/utils/false-positive.py:227
 #: ../website/utils/false-positive.py:339
 msgid "item"
-msgstr ""
+msgstr "elemento\t"
 
 #: ../website/utils/evolution.py:261 ../website/utils/evolution.py:392
 #: ../website/utils/evolution.py:394 ../website/utils/done.py:228
 #: ../website/utils/info.py:228 ../website/utils/false-positive.py:228
 msgid "title"
-msgstr ""
+msgstr "titolo"
 
 #: ../website/utils/evolution.py:262 ../website/utils/done.py:229
 #: ../website/utils/info.py:229 ../website/utils/false-positive.py:229
 msgid "count"
-msgstr ""
+msgstr "contare"
 
 #: ../website/utils/error.py:60
-#, python-format
-msgid "OsmOse - information on error %d"
-msgstr ""
+msgid "OsmOse - information on error"
+msgstr "OsmOse - informazioni in caso di errore"
 
 #: ../website/utils/error.py:84
 msgid "key"
-msgstr ""
+msgstr "chiave"
 
 #: ../website/utils/error.py:85
 msgid "value"
-msgstr ""
+msgstr "valore"
 
 #: ../website/utils/error.py:115
 msgid "Marker"
-msgstr ""
+msgstr "Marcatore"
 
 #: ../website/utils/error.py:139
 msgid "Elements"
-msgstr ""
+msgstr "Elementi"
 
 #: ../website/utils/error.py:164
 msgid "Fixes"
-msgstr ""
+msgstr "Correzioni"
 
 #: ../website/utils/done.py:63 ../website/utils/info.py:63
 #: ../website/utils/false-positive.py:63
 msgid "OsmOse - informations"
-msgstr ""
+msgstr "OsmOse - Informazioni"
 
 #: ../website/utils/done.py:67 ../website/utils/info.py:67
 #: ../website/utils/false-positive.py:67
 msgid "OsmOse - false positives"
-msgstr ""
+msgstr "Osmose - Falsi positivi"
 
 #: ../website/utils/done.py:71 ../website/utils/info.py:71
 #: ../website/utils/false-positive.py:71
 msgid "OsmOse - fixed errors"
-msgstr ""
+msgstr "OsmOse - Corretti errori"
 
 #: ../website/utils/done.py:94 ../website/utils/info.py:94
 #: ../website/utils/false-positive.py:94
 msgid "Informations"
-msgstr ""
+msgstr "Informazioni"
 
 #: ../website/utils/done.py:95 ../website/utils/info.py:95
 #: ../website/utils/false-positive.py:95
 msgid "Fixed"
-msgstr ""
+msgstr "corretto"
 
 #: ../website/utils/done.py:96 ../website/utils/info.py:96
 #: ../website/utils/false-positive.py:96
 msgid "False positives"
-msgstr ""
+msgstr "Falsi positivi"
 
 #: ../website/utils/done.py:97 ../website/utils/info.py:97
 #: ../website/utils/false-positive.py:97
 msgid "Graph"
-msgstr ""
+msgstr "Grafico"
 
 #: ../website/utils/done.py:98 ../website/utils/info.py:98
 #: ../website/utils/false-positive.py:98
 msgid "Map"
-msgstr ""
+msgstr "Mappa"
 
 #: ../website/utils/done.py:137 ../website/utils/info.py:137
 #: ../website/utils/false-positive.py:137
 msgid "Set"
-msgstr ""
+msgstr "Impostazioni"
 
 #: ../website/utils/done.py:222 ../website/utils/done.py:332
 #: ../website/utils/info.py:222 ../website/utils/info.py:332
 #: ../website/utils/last-update.py:87 ../website/utils/false-positive.py:222
 #: ../website/utils/false-positive.py:332
 msgid "source"
-msgstr ""
+msgstr "fonte"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
 #: ../website/utils/done.py:224 ../website/utils/done.py:334
@@ -157,12 +156,12 @@ msgstr ""
 #: ../website/utils/done.py:341 ../website/utils/info.py:341
 #: ../website/utils/false-positive.py:341
 msgid "information on error"
-msgstr ""
+msgstr "Informazioni in caso di errore"
 
 #: ../website/utils/done.py:342 ../website/utils/info.py:342
 #: ../website/utils/false-positive.py:342
 msgid "position"
-msgstr ""
+msgstr "posizione"
 
 #: ../website/utils/done.py:342 ../website/utils/info.py:342
 #: ../website/utils/false-positive.py:342
@@ -179,11 +178,48 @@ msgstr ""
 #: ../website/utils/false-positive.py:345
 #: ../website/utils/false-positive.py:347
 msgid "subtitle"
-msgstr ""
+msgstr "sottotitolo"
 
 #: ../website/utils/done.py:349 ../website/utils/info.py:349
 #: ../website/utils/false-positive.py:349
 msgid "date"
+msgstr "data"
+
+#. ##########################################################################
+#. # page headers
+#: ../website/utils/last-update.py:40
+msgid "OsmOse - last updates"
+msgstr "OsmOse - ultimi aggiornamenti"
+
+#: ../website/utils/last-update.py:71
+#, python-format
+msgid "%dd, %dh, %02dm ago"
+msgstr "%dg, %do, %02dm fa"
+
+#: ../website/utils/last-update.py:73
+#, python-format
+msgid "in %dj, %dh, %02dm"
+msgstr "in %dg, %do, %02dm"
+
+#: ../website/utils/last-update.py:77
+msgid "never generated"
+msgstr "mai generato"
+
+#: ../website/utils/last-update.py:88
+msgid "description"
+msgstr "\"descrizione\""
+
+#: ../website/utils/last-update.py:89
+msgid "last generation"
+msgstr "ultima generazione"
+
+#: ../website/utils/last-update.py:90 ../website/utils/last-update.py:102
+msgid "history"
+msgstr "storia"
+
+#: ../website/utils/error.py:60
+#, python-format
+msgid "OsmOse - information on error %d"
 msgstr ""
 
 #: ../website/utils/done.py:427 ../website/utils/info.py:427
@@ -194,36 +230,4 @@ msgstr ""
 #: ../website/utils/done.py:431 ../website/utils/info.py:431
 #: ../website/utils/false-positive.py:431
 msgid "Show some errors"
-msgstr ""
-
-#. ##########################################################################
-#. # page headers
-#: ../website/utils/last-update.py:40
-msgid "OsmOse - last updates"
-msgstr ""
-
-#: ../website/utils/last-update.py:71
-#, python-format
-msgid "%dd, %dh, %02dm ago"
-msgstr ""
-
-#: ../website/utils/last-update.py:73
-#, python-format
-msgid "in %dj, %dh, %02dm"
-msgstr ""
-
-#: ../website/utils/last-update.py:77
-msgid "never generated"
-msgstr ""
-
-#: ../website/utils/last-update.py:88
-msgid "description"
-msgstr ""
-
-#: ../website/utils/last-update.py:89
-msgid "last generation"
-msgstr ""
-
-#: ../website/utils/last-update.py:90 ../website/utils/last-update.py:102
-msgid "history"
 msgstr ""

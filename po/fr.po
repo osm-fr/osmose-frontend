@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-02 18:18+0200\n"
-"PO-Revision-Date: 2012-05-31 22:50+0200\n"
-"Last-Translator:  <jjaubert@openstreetmap.fr>\n"
+"POT-Creation-Date: 2012-06-02 14:46+0200\n"
+"PO-Revision-Date: 2012-06-02 22:17+0100\n"
+"Last-Translator: operon <a@a.fr>\n"
 "Language-Team: French\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -17,9 +17,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../tools/utils.py:102 ../tools/database/utils.py:102
+#: ../tools/utils.py:103 ../tools/database/utils.py:103
 msgid "OsmOse - OpenStreetMap Oversight Search Engine"
-msgstr ""
+msgstr "OsmOse - OpenStreetMap Oversight Search Engine"
 
 #: ../website/map/dynpoi.py:297
 msgid "Error reported on: "
@@ -50,7 +50,7 @@ msgstr "pas de bulle à ce zoom"
 #: ../website/utils/info.py:339 ../website/utils/false-positive.py:227
 #: ../website/utils/false-positive.py:339
 msgid "item"
-msgstr ""
+msgstr "Item"
 
 #: ../website/utils/evolution.py:261 ../website/utils/evolution.py:392
 #: ../website/utils/evolution.py:394 ../website/utils/done.py:228
@@ -64,9 +64,8 @@ msgid "count"
 msgstr "nombre"
 
 #: ../website/utils/error.py:60
-#, fuzzy, python-format
-msgid "OsmOse - information on error %d"
-msgstr "OsmOse - information sur l'erreur %d"
+msgid "OsmOse - information on error"
+msgstr "OsmOse - infos sur l'erreur"
 
 #: ../website/utils/error.py:84
 msgid "key"
@@ -101,12 +100,12 @@ msgstr "OsmOse - Faux positifs"
 #: ../website/utils/done.py:71 ../website/utils/info.py:71
 #: ../website/utils/false-positive.py:71
 msgid "OsmOse - fixed errors"
-msgstr "OsmOse - Erreurs corrigées"
+msgstr "OsmOse - Erreurs Corrigées"
 
 #: ../website/utils/done.py:94 ../website/utils/info.py:94
 #: ../website/utils/false-positive.py:94
 msgid "Informations"
-msgstr "Informations"
+msgstr "informations"
 
 #: ../website/utils/done.py:95 ../website/utils/info.py:95
 #: ../website/utils/false-positive.py:95
@@ -186,16 +185,6 @@ msgstr "sous-titre"
 msgid "date"
 msgstr "date"
 
-#: ../website/utils/done.py:427 ../website/utils/info.py:427
-#: ../website/utils/false-positive.py:427
-msgid "Show more errors"
-msgstr "Afficher plus d'erreurs"
-
-#: ../website/utils/done.py:431 ../website/utils/info.py:431
-#: ../website/utils/false-positive.py:431
-msgid "Show some errors"
-msgstr "Afficher quelques erreurs"
-
 #. ##########################################################################
 #. # page headers
 #: ../website/utils/last-update.py:40
@@ -227,3 +216,18 @@ msgstr "dernière génération"
 #: ../website/utils/last-update.py:90 ../website/utils/last-update.py:102
 msgid "history"
 msgstr "historique"
+
+#: ../website/utils/error.py:60
+#, fuzzy, python-format
+msgid "OsmOse - information on error %d"
+msgstr "OsmOse - information sur l'erreur %d"
+
+#: ../website/utils/done.py:427 ../website/utils/info.py:427
+#: ../website/utils/false-positive.py:427
+msgid "Show more errors"
+msgstr "Afficher plus d'erreurs"
+
+#: ../website/utils/done.py:431 ../website/utils/info.py:431
+#: ../website/utils/false-positive.py:431
+msgid "Show some errors"
+msgstr "Afficher quelques erreurs"
