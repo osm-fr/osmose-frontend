@@ -37,6 +37,7 @@ show = utils.show
 ###########################################################################
 ## page headers
 
+
 utils.print_header(_("OsmOse - last updates"))
 
 ###########################################################################
@@ -68,6 +69,7 @@ for source_id in [str(y) for y in sorted([int(x) for x in sources])]:
     if int(source_id) in lasts:
         age  = lasts[int(source_id)]["age"]
         if age >= 0:
+            # TRANSLATORS: days / hours / minutes since last source update, abbreviated to d / h / m
             txt = _("%dd, %dh, %02dm ago") % (int(age/86400), int(age/3600)%24, int(age/60)%60)
         else:
             txt = _("in %dj, %dh, %02dm") % (int(-age/86400), int(-age/3600)%24, int(-age/60)%60)

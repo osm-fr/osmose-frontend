@@ -102,8 +102,8 @@ for categ in categories:
     
     dico["form"] += "<h1><a href=\"javascript:toggleCategDisplay('categ%d')\">%s</a> "%(categ["categ"], categ["menu"])
     dico["form"] += "<span id=\"categ%d_count\">%d/%d</span> "%(categ["categ"], len([x for x in categ["item"] if x["item"] in active_items]), len(categ["item"]))
-    dico["form"] += "<a href=\"javascript:showHideCateg('categ%d', true)\">Tout</a> "%(categ["categ"])
-    dico["form"] += "<a href=\"javascript:showHideCateg('categ%d', false)\">Rien</a></h1>"%(categ["categ"])
+    dico["form"] += "<a href=\"javascript:showHideCateg('categ%d', true)\">%s</a> "%(categ["categ"], _("all"))
+    dico["form"] += "<a href=\"javascript:showHideCateg('categ%d', false)\">%r</a></h1>"%(categ["categ"], _("nothing"))
     dico["form"] += "\n"
     
     for err in categ["item"]:

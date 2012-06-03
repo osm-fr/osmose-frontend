@@ -97,7 +97,8 @@ print "\t".join(["lat", "lon", "marker_id", "icon", "iconSize", "iconOffset", "h
 if (not user) and (not source) and (zoom < 6):
     sys.exit(0)
 
-url_help = "http://wiki.openstreetmap.org/wiki/FR:Osmose/erreurs"
+# TRANSLATORS: link to tooltip help
+url_help = _("http://wiki.openstreetmap.org/wiki/Osmose/errors")
 sqlbase  = """
 SELECT marker.id,
        marker.item,
@@ -313,7 +314,7 @@ for res in results:
     html += "<div class=\"bulle_maj\">"
     html += "<b>%s :</b> " % _("change status")
     html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"/cgi-bin/status.py?e=%s&s=done\" target=\"hiddenIframe\">%s</a> "%(error_id, _("corrected"))
-    html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"/cgi-bin/status.py?e=%s&s=false\" target=\"hiddenIframe\">%s</a> "%(error_id, _("not an error"))
+    html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"/cgi-bin/status.py?e=%s&s=false\" target=\"hiddenIframe\">%s</a> "%(error_id, _("false positive"))
     html += "</div>"
     
     ##

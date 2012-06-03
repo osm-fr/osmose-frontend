@@ -134,6 +134,7 @@ for res in PgCursor.fetchall():
         s = ""
     show(u"<option%s value='%s'>%s - %s</option>" % (s, res['item'], res['item'], translate.select(res['menu'])))
 show(u"</select>")
+# TRANSLATORS: 'Set' is used to choose a specific country/item on tools/info.py
 show(u"<input type='submit' value='%s'/>" % _("Set"))
 
 show(u"</form>")

@@ -10,7 +10,7 @@ PO=$(foreach l,$(LANG),$(l).po)
 all: $(PO) $(MO)
 
 osmose-frontend.pot: $(PYFILES)
-	xgettext -c --language=Python --keyword=_ --keyword=N_ --output=osmose-frontend.pot $(PYFILES)
+	xgettext -cTRANSLATORS --language=Python --keyword=_ --keyword=N_ --output=osmose-frontend.pot $(PYFILES)
 
 %.po: osmose-frontend.pot
 	if test -e $@; then \

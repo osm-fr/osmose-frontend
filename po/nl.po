@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-03 12:22+0200\n"
+"POT-Creation-Date: 2012-06-03 18:46+0200\n"
 "PO-Revision-Date: 2012-06-03 08:41+0100\n"
 "Last-Translator: operon <a@a.fr>\n"
 "Language-Team: Dutch\n"
@@ -17,25 +17,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../tools/utils.py:114
+#: ../tools/utils.py:129
 msgid "OsmOse - OpenStreetMap Oversight Search Engine"
 msgstr "OsmOse - OpenStreetMap Oversight Search Engine"
 
-#: ../website/map/dynpoi.py:297
+#. TRANSLATORS: link to tooltip help
+#: ../website/map/dynpoi.py:101
+msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
+msgstr ""
+
+#: ../website/map/dynpoi.py:298
 msgid "Error reported on: "
 msgstr "Fout gemeld op:"
 
-#: ../website/map/dynpoi.py:314
+#: ../website/map/dynpoi.py:315
 msgid "change status"
 msgstr "status veranderen"
 
-#: ../website/map/dynpoi.py:315
+#: ../website/map/dynpoi.py:316
 msgid "corrected"
 msgstr "gecorrigeerd"
 
-#: ../website/map/dynpoi.py:316
-msgid "not an error"
-msgstr "vals-positieve"
+#: ../website/map/dynpoi.py:317
+#, fuzzy
+msgid "false positive"
+msgstr "Valse positieve"
 
 #: ../website/map/index.py:89
 msgid "OsmOse - map"
@@ -49,11 +55,11 @@ msgstr "er geen luchtbellen meer in deze zoomfactor"
 msgid "Select:"
 msgstr ""
 
-#: ../website/map/index.py:92
+#: ../website/map/index.py:92 ../website/map/index.py:105
 msgid "all"
 msgstr ""
 
-#: ../website/map/index.py:93
+#: ../website/map/index.py:93 ../website/map/index.py:106
 msgid "nothing"
 msgstr ""
 
@@ -176,100 +182,103 @@ msgstr "Grafiek"
 msgid "Map"
 msgstr "Maart"
 
-#: ../website/utils/info.py:137
+#. TRANSLATORS: 'Set' is used to choose a specific country/item on tools/info.py
+#: ../website/utils/info.py:138
 msgid "Set"
 msgstr ""
 
-#: ../website/utils/info.py:222 ../website/utils/info.py:332
-#: ../website/utils/last-update.py:87
+#: ../website/utils/info.py:223 ../website/utils/info.py:333
+#: ../website/utils/last-update.py:89
 msgid "source"
 msgstr "oorsprong"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
-#: ../website/utils/info.py:224 ../website/utils/info.py:334
+#: ../website/utils/info.py:225 ../website/utils/info.py:335
 msgid "class (abbreviation)"
 msgstr ""
 
-#: ../website/utils/info.py:227 ../website/utils/info.py:339
+#: ../website/utils/info.py:228 ../website/utils/info.py:340
 msgid "item"
 msgstr "item"
 
-#: ../website/utils/info.py:228
+#: ../website/utils/info.py:229
 msgid "title"
 msgstr "Titel"
 
-#: ../website/utils/info.py:229
+#: ../website/utils/info.py:230
 msgid "count"
 msgstr "Zahl"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: ../website/utils/info.py:336
+#: ../website/utils/info.py:337
 msgid "subclass (abbreviation)"
 msgstr ""
 
-#: ../website/utils/info.py:341
+#: ../website/utils/info.py:342
 msgid "information on error"
 msgstr "informatie over de fout"
 
-#: ../website/utils/info.py:342
+#: ../website/utils/info.py:343
 msgid "position"
 msgstr "positie"
 
-#: ../website/utils/info.py:342
+#: ../website/utils/info.py:343
 msgid "position (abbreviation)"
 msgstr ""
 
-#: ../website/utils/info.py:343
+#: ../website/utils/info.py:344
 msgid "elements (abbreviation)"
 msgstr ""
 
-#: ../website/utils/info.py:345 ../website/utils/info.py:347
+#: ../website/utils/info.py:346 ../website/utils/info.py:348
 msgid "subtitle"
 msgstr "Untertitel"
 
-#: ../website/utils/info.py:349
+#: ../website/utils/info.py:350
 msgid "date"
 msgstr "datum"
 
-#: ../website/utils/info.py:427
+#: ../website/utils/info.py:428
 msgid "Show more errors"
 msgstr ""
 
-#: ../website/utils/info.py:431
+#: ../website/utils/info.py:432
 msgid "Show some errors"
 msgstr ""
 
-#. ##########################################################################
-#. # page headers
-#: ../website/utils/last-update.py:40
+#: ../website/utils/last-update.py:41
 msgid "OsmOse - last updates"
 msgstr "OsmOse - laatste updates"
 
-#: ../website/utils/last-update.py:71
+#. TRANSLATORS: days / hours / minutes since last source update, abbreviated to d / h / m
+#: ../website/utils/last-update.py:73
 #, python-format
 msgid "%dd, %dh, %02dm ago"
 msgstr "%dd, %du, %02dm geleden"
 
-#: ../website/utils/last-update.py:73
+#: ../website/utils/last-update.py:75
 #, python-format
 msgid "in %dj, %dh, %02dm"
 msgstr "in %dd, %du, %02dm"
 
-#: ../website/utils/last-update.py:77
+#: ../website/utils/last-update.py:79
 msgid "never generated"
 msgstr "nooit gegenereerd"
 
-#: ../website/utils/last-update.py:88
+#: ../website/utils/last-update.py:90
 msgid "description"
 msgstr "beschrijving"
 
-#: ../website/utils/last-update.py:89
+#: ../website/utils/last-update.py:91
 msgid "last generation"
 msgstr "laatste generatie"
 
-#: ../website/utils/last-update.py:90 ../website/utils/last-update.py:102
+#: ../website/utils/last-update.py:92 ../website/utils/last-update.py:104
 msgid "history"
 msgstr "geschiedenis"
+
+#~ msgid "not an error"
+#~ msgstr "vals-positieve"
 
 #~ msgid "OsmOse - information on error"
 #~ msgstr "OsmOse - over de fout"
