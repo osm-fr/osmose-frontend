@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-03 18:46+0200\n"
+"POT-Creation-Date: 2012-06-03 19:20+0200\n"
 "PO-Revision-Date: 2012-06-01 00:06+0200\n"
 "Last-Translator:  <jjaubert@openstreetmap.fr>\n"
 "Language-Team: English\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../tools/utils.py:129
+#: ../tools/utils.py:128
 msgid "OsmOse - OpenStreetMap Oversight Search Engine"
 msgstr ""
 

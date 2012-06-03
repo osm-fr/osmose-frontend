@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-03 18:46+0200\n"
-"PO-Revision-Date: 2012-06-03 08:10+0100\n"
-"Last-Translator: operon <a@a.fr>\n"
+"POT-Creation-Date: 2012-06-03 19:20+0200\n"
+"PO-Revision-Date: 2012-06-03 17:46+0100\n"
+"Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../tools/utils.py:129
+#: ../tools/utils.py:128
 msgid "OsmOse - OpenStreetMap Oversight Search Engine"
 msgstr "OsmOse - OpenStreetMap Oversight Search Engine"
 
@@ -53,82 +53,81 @@ msgstr "no bolle in questo fattore di zoom"
 
 #: ../website/map/index.py:91
 msgid "Select:"
-msgstr ""
+msgstr "Selezionare"
 
 #: ../website/map/index.py:92 ../website/map/index.py:105
 msgid "all"
-msgstr ""
+msgstr "tutti"
 
 #: ../website/map/index.py:93 ../website/map/index.py:106
 msgid "nothing"
-msgstr ""
+msgstr "niente"
 
 #: ../website/map/index.py:94
 msgid "invert"
-msgstr ""
+msgstr "invertire"
 
 #. TRANSLATORS: link to help in appropriate language
 #: ../website/map/index.py:125
 msgid "Help"
-msgstr ""
+msgstr "Aiuto"
 
 #: ../website/map/index.py:125
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
-msgstr ""
+msgstr "http://wiki.openstreetmap.org/wiki/IT:Osmose"
 
 #: ../website/map/index.py:126
 msgid "by user"
-msgstr ""
+msgstr "dall'utente"
 
 #: ../website/map/index.py:127
 msgid "relation analyser"
-msgstr ""
+msgstr "analyzer relazioni"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
 #: ../website/map/index.py:129
 msgid "clc"
-msgstr ""
+msgstr "clc"
 
 #: ../website/map/index.py:129
 msgid "http://clc.openstreetmap.fr/"
-msgstr ""
+msgstr "http://clc.openstreetmap.fr/"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
 #: ../website/map/index.py:131
 msgid "geodesic"
-msgstr ""
+msgstr "geodetica"
 
 #: ../website/map/index.py:131
 msgid "http://geodesie.openstreetmap.fr/"
-msgstr ""
+msgstr "http://geodesie.openstreetmap.fr/"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
 #: ../website/map/index.py:133
 msgid "openstreetmap.fr"
-msgstr ""
+msgstr "openstreetmap.fr"
 
 #: ../website/map/index.py:133
 msgid "http://www.openstreetmap.fr/"
-msgstr ""
+msgstr "http://www.openstreetmap.fr/"
 
 #: ../website/map/index.py:134
 msgid "copyright"
-msgstr ""
+msgstr "copyright"
 
 #. TRANSLATORS: link to source code
 #: ../website/map/index.py:136
-#, fuzzy
 msgid "sources"
-msgstr "fonte"
+msgstr "fonti"
 
 #: ../website/map/index.py:137
 msgid "statistics"
-msgstr ""
+msgstr "Statistiche"
 
 #: ../website/utils/error.py:60
 #, python-format
 msgid "OsmOse - information on error %d"
-msgstr ""
+msgstr "Osmose - informazioni in caso di errore %d"
 
 #: ../website/utils/error.py:84
 msgid "key"
@@ -240,11 +239,11 @@ msgstr "data"
 
 #: ../website/utils/info.py:428
 msgid "Show more errors"
-msgstr ""
+msgstr "Mostra più errori"
 
 #: ../website/utils/info.py:432
 msgid "Show some errors"
-msgstr ""
+msgstr "Mostra più errori"
 
 #: ../website/utils/last-update.py:41
 msgid "OsmOse - last updates"
@@ -267,7 +266,7 @@ msgstr "mai generato"
 
 #: ../website/utils/last-update.py:90
 msgid "description"
-msgstr "\"descrizione\""
+msgstr "descrizione"
 
 #: ../website/utils/last-update.py:91
 msgid "last generation"
