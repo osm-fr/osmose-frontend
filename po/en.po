@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-03 19:20+0200\n"
+"POT-Creation-Date: 2012-06-03 20:06+0200\n"
 "PO-Revision-Date: 2012-06-03 19:26+0100\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: English\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../tools/utils.py:128
+#: ../tools/utils.py:129
 msgid "OsmOse - OpenStreetMap Oversight Search Engine"
 msgstr "OsmOse - OpenStreetMap Oversight Search Engine"
 
@@ -54,13 +54,11 @@ msgstr "no bubbles at this zoom factor"
 msgid "Select:"
 msgstr "Select:"
 
-#: ../website/map/index.py:92
-#: ../website/map/index.py:105
+#: ../website/map/index.py:92 ../website/map/index.py:105
 msgid "all"
 msgstr "all"
 
-#: ../website/map/index.py:93
-#: ../website/map/index.py:106
+#: ../website/map/index.py:93 ../website/map/index.py:106
 msgid "nothing"
 msgstr "nothing"
 
@@ -125,6 +123,63 @@ msgstr "sources"
 msgid "statistics"
 msgstr "statistics"
 
+#: ../website/text/byuser-stats.py:36
+#, fuzzy
+msgid "OsmOse - Users statistics"
+msgstr "OsmOse - false positives"
+
+#: ../website/text/byuser-stats.py:50
+msgid "Number"
+msgstr ""
+
+#: ../website/text/byuser-stats.py:51
+msgid "Username"
+msgstr ""
+
+#: ../website/text/index.py:37
+#, fuzzy
+msgid "OsmOse - statistics for user"
+msgstr "OsmOse - last updates"
+
+#: ../website/text/index.py:39
+msgid "Username:"
+msgstr ""
+
+#: ../website/text/index.py:48
+#, fuzzy, python-format
+msgid "OsmOse - statistics for user %s"
+msgstr "OsmOse - last updates"
+
+#: ../website/text/index.py:65
+msgid "Item"
+msgstr ""
+
+#: ../website/text/index.py:66
+msgid "Class"
+msgstr ""
+
+#: ../website/text/index.py:67
+#, fuzzy
+msgid "Title"
+msgstr "title"
+
+#: ../website/text/index.py:68
+msgid "Error"
+msgstr ""
+
+#: ../website/text/index.py:69
+msgid "Latitude"
+msgstr ""
+
+#: ../website/text/index.py:70
+msgid "Longitude"
+msgstr ""
+
+#: ../website/text/index.py:95
+#, fuzzy
+msgid "map"
+msgstr "Map"
+
 #: ../website/utils/error.py:60
 #, python-format
 msgid "OsmOse - information on error %d"
@@ -187,20 +242,17 @@ msgstr "Map"
 msgid "Set"
 msgstr "Set"
 
-#: ../website/utils/info.py:223
-#: ../website/utils/info.py:333
+#: ../website/utils/info.py:223 ../website/utils/info.py:333
 #: ../website/utils/last-update.py:89
 msgid "source"
 msgstr "source"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
-#: ../website/utils/info.py:225
-#: ../website/utils/info.py:335
+#: ../website/utils/info.py:225 ../website/utils/info.py:335
 msgid "class (abbreviation)"
 msgstr "class (abbreviation)"
 
-#: ../website/utils/info.py:228
-#: ../website/utils/info.py:340
+#: ../website/utils/info.py:228 ../website/utils/info.py:340
 msgid "item"
 msgstr "item"
 
@@ -233,8 +285,7 @@ msgstr "pos"
 msgid "elements (abbreviation)"
 msgstr "elems"
 
-#: ../website/utils/info.py:346
-#: ../website/utils/info.py:348
+#: ../website/utils/info.py:346 ../website/utils/info.py:348
 msgid "subtitle"
 msgstr "subtitle"
 
@@ -277,7 +328,6 @@ msgstr "description"
 msgid "last generation"
 msgstr "last generation"
 
-#: ../website/utils/last-update.py:92
-#: ../website/utils/last-update.py:104
+#: ../website/utils/last-update.py:92 ../website/utils/last-update.py:104
 msgid "history"
 msgstr "history"

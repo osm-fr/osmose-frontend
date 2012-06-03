@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-03 19:20+0200\n"
+"POT-Creation-Date: 2012-06-03 20:06+0200\n"
 "PO-Revision-Date: 2012-06-03 17:46+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: Italian\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../tools/utils.py:128
+#: ../tools/utils.py:129
 msgid "OsmOse - OpenStreetMap Oversight Search Engine"
 msgstr "OsmOse - OpenStreetMap Oversight Search Engine"
 
@@ -123,6 +123,63 @@ msgstr "fonti"
 #: ../website/map/index.py:137
 msgid "statistics"
 msgstr "Statistiche"
+
+#: ../website/text/byuser-stats.py:36
+#, fuzzy
+msgid "OsmOse - Users statistics"
+msgstr "Osmose - Falsi positivi"
+
+#: ../website/text/byuser-stats.py:50
+msgid "Number"
+msgstr ""
+
+#: ../website/text/byuser-stats.py:51
+msgid "Username"
+msgstr ""
+
+#: ../website/text/index.py:37
+#, fuzzy
+msgid "OsmOse - statistics for user"
+msgstr "OsmOse - ultimi aggiornamenti"
+
+#: ../website/text/index.py:39
+msgid "Username:"
+msgstr ""
+
+#: ../website/text/index.py:48
+#, fuzzy, python-format
+msgid "OsmOse - statistics for user %s"
+msgstr "OsmOse - ultimi aggiornamenti"
+
+#: ../website/text/index.py:65
+msgid "Item"
+msgstr ""
+
+#: ../website/text/index.py:66
+msgid "Class"
+msgstr ""
+
+#: ../website/text/index.py:67
+#, fuzzy
+msgid "Title"
+msgstr "titolo"
+
+#: ../website/text/index.py:68
+msgid "Error"
+msgstr ""
+
+#: ../website/text/index.py:69
+msgid "Latitude"
+msgstr ""
+
+#: ../website/text/index.py:70
+msgid "Longitude"
+msgstr ""
+
+#: ../website/text/index.py:95
+#, fuzzy
+msgid "map"
+msgstr "Mappa"
 
 #: ../website/utils/error.py:60
 #, python-format

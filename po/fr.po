@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-03 19:20+0200\n"
+"POT-Creation-Date: 2012-06-03 20:06+0200\n"
 "PO-Revision-Date: 2012-06-02 22:17+0100\n"
 "Last-Translator: operon <a@a.fr>\n"
 "Language-Team: French\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../tools/utils.py:128
+#: ../tools/utils.py:129
 msgid "OsmOse - OpenStreetMap Oversight Search Engine"
 msgstr "OsmOse - OpenStreetMap Oversight Search Engine"
 
@@ -122,6 +122,59 @@ msgstr "sources"
 #: ../website/map/index.py:137
 msgid "statistics"
 msgstr "statistiques"
+
+#: ../website/text/byuser-stats.py:36
+msgid "OsmOse - Users statistics"
+msgstr "OsmOse - Statistiques par utilisateur"
+
+#: ../website/text/byuser-stats.py:50
+msgid "Number"
+msgstr "Nombre"
+
+#: ../website/text/byuser-stats.py:51
+msgid "Username"
+msgstr "Utilisateur"
+
+#: ../website/text/index.py:37
+msgid "OsmOse - statistics for user"
+msgstr "OsmOse - statistiques pour un utilisateur"
+
+#: ../website/text/index.py:39
+msgid "Username:"
+msgstr "Utilisateur :"
+
+#: ../website/text/index.py:48
+#, python-format
+msgid "OsmOse - statistics for user %s"
+msgstr "OsmOse - statistiques pour l'utilisateur %s"
+
+#: ../website/text/index.py:65
+msgid "Item"
+msgstr "Item"
+
+#: ../website/text/index.py:66
+msgid "Class"
+msgstr "Classe"
+
+#: ../website/text/index.py:67
+msgid "Title"
+msgstr "Titre"
+
+#: ../website/text/index.py:68
+msgid "Error"
+msgstr "Erreur"
+
+#: ../website/text/index.py:69
+msgid "Latitude"
+msgstr "Latitude"
+
+#: ../website/text/index.py:70
+msgid "Longitude"
+msgstr "Longitude"
+
+#: ../website/text/index.py:95
+msgid "map"
+msgstr "carte"
 
 #: ../website/utils/error.py:60
 #, python-format

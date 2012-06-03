@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-03 18:46+0200\n"
+"POT-Creation-Date: 2012-06-03 20:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -121,6 +121,59 @@ msgstr ""
 
 #: ../website/map/index.py:137
 msgid "statistics"
+msgstr ""
+
+#: ../website/text/byuser-stats.py:36
+msgid "OsmOse - Users statistics"
+msgstr ""
+
+#: ../website/text/byuser-stats.py:50
+msgid "Number"
+msgstr ""
+
+#: ../website/text/byuser-stats.py:51
+msgid "Username"
+msgstr ""
+
+#: ../website/text/index.py:37
+msgid "OsmOse - statistics for user"
+msgstr ""
+
+#: ../website/text/index.py:39
+msgid "Username:"
+msgstr ""
+
+#: ../website/text/index.py:48
+#, python-format
+msgid "OsmOse - statistics for user %s"
+msgstr ""
+
+#: ../website/text/index.py:65
+msgid "Item"
+msgstr ""
+
+#: ../website/text/index.py:66
+msgid "Class"
+msgstr ""
+
+#: ../website/text/index.py:67
+msgid "Title"
+msgstr ""
+
+#: ../website/text/index.py:68
+msgid "Error"
+msgstr ""
+
+#: ../website/text/index.py:69
+msgid "Latitude"
+msgstr ""
+
+#: ../website/text/index.py:70
+msgid "Longitude"
+msgstr ""
+
+#: ../website/text/index.py:95
+msgid "map"
 msgstr ""
 
 #: ../website/utils/error.py:60
