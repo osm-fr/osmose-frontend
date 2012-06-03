@@ -2,6 +2,7 @@
 #-*- coding: utf-8 -*-
 
 import os, atexit
+import re
 import Cookie
 from xml.sax import make_parser, handler
 
@@ -103,11 +104,25 @@ def show(s):
 def N_(message):
     return message
 
+def multiple_replace(dict, text):
+
+  """ Replace in 'text' all occurences of any key in the given
+  dictionary by its corresponding value.  Returns the new tring."""
+
+  # Create a regular expression  from the dictionary keys
+  regex = re.compile("(%s)" % "|".join(map(re.escape, dict.keys())))
+
+  # For each match, look-up corresponding value in dictionary
+  return regex.sub(lambda mo: dict[mo.string[mo.start():mo.end()]], text)
+
+
 def print_template(filename, rules = None):
     page = open(os.path.join(root_folder, "config", filename)).read().decode("utf8")
     if rules:
-        for x in rules:
-            page = page.replace("#%s#"%x, rules[x].strip())
+        r = {}
+        for (k, v) in rules.iteritems():
+            r["#%s#" % k] = v
+        page = multiple_replace(r, page)
     print page.encode("utf8")
 
 def print_header(title = N_("OsmOse - OpenStreetMap Oversight Search Engine")):
