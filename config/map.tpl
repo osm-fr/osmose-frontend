@@ -36,10 +36,10 @@ Content-Type: text/html; charset=utf-8
     <br><br>#need_zoom#<br><br>
   </div></center>
   <center><div id="action_links">
-      Global : 
-      <a href="javascript:set_checkboxes(true);">Tout</a> 
-      <a href="javascript:set_checkboxes(false);">Rien</a>
-      <a href="javascript:toggle_checkboxes();">Inverser</a>
+      #check#
+      <a href="javascript:set_checkboxes(true);">#check_all#</a>
+      <a href="javascript:set_checkboxes(false);">#check_nothing#</a>
+      <a href="javascript:toggle_checkboxes();">#check_invert#</a>
   </div></center>
   <form id="myform" name="myform" action="#">
       <input type='hidden' name='lat'    value='#lat#'>

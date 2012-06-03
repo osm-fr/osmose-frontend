@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-03 11:00+0200\n"
+"POT-Creation-Date: 2012-06-03 12:22+0200\n"
 "PO-Revision-Date: 2012-06-01 00:06+0200\n"
 "Last-Translator:  <jjaubert@openstreetmap.fr>\n"
 "Language-Team: English\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../tools/utils.py:113
+#: ../tools/utils.py:114
 msgid "OsmOse - OpenStreetMap Oversight Search Engine"
 msgstr ""
 
@@ -43,6 +43,79 @@ msgstr ""
 
 #: ../website/map/index.py:90
 msgid "no bubbles at this zoom factor"
+msgstr ""
+
+#: ../website/map/index.py:91
+msgid "Select:"
+msgstr ""
+
+#: ../website/map/index.py:92
+msgid "all"
+msgstr ""
+
+#: ../website/map/index.py:93
+msgid "nothing"
+msgstr ""
+
+#: ../website/map/index.py:94
+msgid "invert"
+msgstr ""
+
+#. TRANSLATORS: link to help in appropriate language
+#: ../website/map/index.py:125
+msgid "Help"
+msgstr ""
+
+#: ../website/map/index.py:125
+msgid "http://wiki.openstreetmap.org/wiki/Osmose"
+msgstr ""
+
+#: ../website/map/index.py:126
+msgid "by user"
+msgstr ""
+
+#: ../website/map/index.py:127
+msgid "relation analyser"
+msgstr ""
+
+#. TRANSLATORS: this link can be changed to something specific to the language
+#: ../website/map/index.py:129
+msgid "clc"
+msgstr ""
+
+#: ../website/map/index.py:129
+msgid "http://clc.openstreetmap.fr/"
+msgstr ""
+
+#. TRANSLATORS: this link can be changed to something specific to the language
+#: ../website/map/index.py:131
+msgid "geodesic"
+msgstr ""
+
+#: ../website/map/index.py:131
+msgid "http://geodesie.openstreetmap.fr/"
+msgstr ""
+
+#. TRANSLATORS: this link can be changed to something specific to the language
+#: ../website/map/index.py:133
+msgid "openstreetmap.fr"
+msgstr ""
+
+#: ../website/map/index.py:133
+msgid "http://www.openstreetmap.fr/"
+msgstr ""
+
+#: ../website/map/index.py:134
+msgid "copyright"
+msgstr ""
+
+#. TRANSLATORS: link to source code
+#: ../website/map/index.py:136
+msgid "sources"
+msgstr ""
+
+#: ../website/map/index.py:137
+msgid "statistics"
 msgstr ""
 
 #: ../website/utils/error.py:60

@@ -88,6 +88,10 @@ except:
 dico["form"]      = u""
 dico["title"]     = _("OsmOse - map")
 dico["need_zoom"] = _("no bubbles at this zoom factor")
+dico["check"]         = _("Select:")
+dico["check_all"]     = _("all")
+dico["check_nothing"] = _("nothing")
+dico["check_invert"]  = _("invert")
 
 ###########################################################################
 ## formulaire
@@ -117,15 +121,20 @@ for categ in categories:
 utils.print_template("map.tpl", dico)
 
 urls = []
-urls.append((u"Aide", "http://wiki.openstreetmap.org/wiki/FR:Osmose"))
-urls.append((u"par utilisateur", "/text"))
-urls.append((u"clc", "/clc"))
-urls.append((u"analyseur de relation", "http://analyser.openstreetmap.fr/"))
-urls.append((u"géodésie", "http://geodesie.openstreetmap.fr/"))
-urls.append((u"openstreetmap.fr", "http://www.openstreetmap.fr/"))
-urls.append((u"copyright", "/copyright"))
-urls.append((u"sources", "https://gitorious.org/osmose"))
-urls.append((u"statistiques", "/utils/last-update.py"))
+# TRANSLATORS: link to help in appropriate language
+urls.append((_("Help"), _("http://wiki.openstreetmap.org/wiki/Osmose")))
+urls.append((_("by user"), "/text"))
+urls.append((_("relation analyser"), "http://analyser.openstreetmap.fr/"))
+# TRANSLATORS: this link can be changed to something specific to the language
+urls.append((_("clc"), _("http://clc.openstreetmap.fr/")))
+# TRANSLATORS: this link can be changed to something specific to the language
+urls.append((_("geodesic"), _("http://geodesie.openstreetmap.fr/")))
+# TRANSLATORS: this link can be changed to something specific to the language
+urls.append((_("openstreetmap.fr"), _("http://www.openstreetmap.fr/")))
+urls.append((_("copyright"), "/copyright"))
+# TRANSLATORS: link to source code
+urls.append((_("sources"), "https://gitorious.org/osmose"))
+urls.append((_("statistics"), "/utils/last-update.py"))
 
 show(u"<div id='bottom_links'>")
 

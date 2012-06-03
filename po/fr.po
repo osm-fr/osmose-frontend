@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-03 11:00+0200\n"
+"POT-Creation-Date: 2012-06-03 12:22+0200\n"
 "PO-Revision-Date: 2012-06-02 22:17+0100\n"
 "Last-Translator: operon <a@a.fr>\n"
 "Language-Team: French\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../tools/utils.py:113
+#: ../tools/utils.py:114
 msgid "OsmOse - OpenStreetMap Oversight Search Engine"
 msgstr "OsmOse - OpenStreetMap Oversight Search Engine"
 
@@ -45,8 +45,80 @@ msgstr "OsmOse - carte"
 msgid "no bubbles at this zoom factor"
 msgstr "pas de bulle à ce zoom"
 
+#: ../website/map/index.py:91
+msgid "Select:"
+msgstr "Sélection :"
+
+#: ../website/map/index.py:92
+msgid "all"
+msgstr "tous"
+
+#: ../website/map/index.py:93
+msgid "nothing"
+msgstr "rien"
+
+#: ../website/map/index.py:94
+msgid "invert"
+msgstr "inverser"
+
+#. TRANSLATORS: link to help in appropriate language
+#: ../website/map/index.py:125
+msgid "Help"
+msgstr "Aide"
+
+#: ../website/map/index.py:125
+msgid "http://wiki.openstreetmap.org/wiki/Osmose"
+msgstr "http://wiki.openstreetmap.org/wiki/FR:Osmose"
+
+#: ../website/map/index.py:126
+msgid "by user"
+msgstr "par utilisateur"
+
+#: ../website/map/index.py:127
+msgid "relation analyser"
+msgstr "analyseur de relation"
+
+#. TRANSLATORS: this link can be changed to something specific to the language
+#: ../website/map/index.py:129
+msgid "clc"
+msgstr "clc"
+
+#: ../website/map/index.py:129
+msgid "http://clc.openstreetmap.fr/"
+msgstr "http://clc.openstreetmap.fr/"
+
+#. TRANSLATORS: this link can be changed to something specific to the language
+#: ../website/map/index.py:131
+msgid "geodesic"
+msgstr "géodésie"
+
+#: ../website/map/index.py:131
+msgid "http://geodesie.openstreetmap.fr/"
+msgstr "http://geodesie.openstreetmap.fr/"
+
+#. TRANSLATORS: this link can be changed to something specific to the language
+#: ../website/map/index.py:133
+msgid "openstreetmap.fr"
+msgstr "openstreetmap.fr"
+
+#: ../website/map/index.py:133
+msgid "http://www.openstreetmap.fr/"
+msgstr "http://www.openstreetmap.fr/"
+
+#: ../website/map/index.py:134
+msgid "copyright"
+msgstr "copyright"
+
+#. TRANSLATORS: link to source code
+#: ../website/map/index.py:136
+msgid "sources"
+msgstr "sources"
+
+#: ../website/map/index.py:137
+msgid "statistics"
+msgstr "statistiques"
+
 #: ../website/utils/error.py:60
-#, fuzzy, python-format
 msgid "OsmOse - information on error %d"
 msgstr "OsmOse - information sur l'erreur %d"
 
