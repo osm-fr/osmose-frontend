@@ -1,5 +1,5 @@
 
-PYFILES=$(shell find .. -iname '*.py')
+PYFILES=$(shell find .. -name '*.py' -not -type l | sort)
 LANG=fr en de nl it
 
 MO=$(foreach l,$(LANG),mo/$(l)/LC_MESSAGES/osmose-frontend.mo)
