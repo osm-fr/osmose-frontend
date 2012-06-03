@@ -18,9 +18,9 @@ div#menu {
   position: absolute;
   overflow-y: scroll;
   width: 280px;
-  height: 100%;
   left: 0px;
-  top: 0px;
+  top: 25px;
+  bottom: 2px;
 }
 div#menu div#need_zoom {
   display: none;
@@ -49,8 +49,8 @@ div#menu span.check {
 /* Map */
 div#map {
   position: absolute;
-  top: 0px;
-  bottom: 20px;
+  top: 20px;
+  bottom: 0px;
   left: 280px;
   right: 0px;
 }
@@ -63,7 +63,7 @@ div#bottom_links {
   width: 100%;
   min-height: 20px;
   left: 0px;
-  bottom: 0px;
+  top: 0px;
   font-size: 90%;
 
   display: table-cell;
