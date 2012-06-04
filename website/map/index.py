@@ -144,7 +144,7 @@ show(u"<select name='language'>")
 show(u"<option value='' onclick='set_lang(\"\");'></option>")
 for l in utils.allowed_languages:
   if translate.languages[0] == l:
-    s = " selected='yes'"
+    s = " selected='selected'"
   else:
     s = ""
   show(u"<option%s value='%s' onclick='set_lang(\"%s\");'>%s</option>" % (s, l, l, l))
@@ -153,8 +153,10 @@ show(u"</form>")
 show(u"</div>")
 
 show(u"  <div id='links'>")
+s = []
 for u in urls:
-  show(u"<a href='%s'>%s</a> - " % (u[1], u[0]))
+  s.append(u"<a href='%s'>%s</a>" % (u[1], u[0]))
+show(u" - ".join(s))
 show(u"  </div>")
 show(u"</div>")
 
