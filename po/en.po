@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-04 21:34+0200\n"
+"POT-Creation-Date: 2012-06-04 22:26+0200\n"
 "PO-Revision-Date: 2012-06-04 10:05+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: English\n"
@@ -17,9 +17,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../tools/utils.py:128
+#: ../tools/utils.py:129
 msgid "OsmOse - OpenStreetMap Oversight Search Engine"
 msgstr "OsmOse - OpenStreetMap Oversight Search Engine"
+
+#: ../website/copyright.py:12
+msgid "OsmOse - copyright informations"
+msgstr "OsmOse - copyright informations"
+
+#: ../website/copyright.py:14
+msgid "Data are coming from:"
+msgstr "Data are coming from:"
+
+#: ../website/copyright.py:27 ../website/map/index.py:134
+msgid "copyright"
+msgstr "copyright"
 
 #. TRANSLATORS: link to tooltip help
 #: ../website/map/dynpoi.py:101
@@ -109,10 +121,6 @@ msgstr "openstreetmap.fr"
 #: ../website/map/index.py:133
 msgid "http://www.openstreetmap.fr/"
 msgstr "http://www.openstreetmap.fr/"
-
-#: ../website/map/index.py:134
-msgid "copyright"
-msgstr "copyright"
 
 #. TRANSLATORS: link to source code
 #: ../website/map/index.py:136

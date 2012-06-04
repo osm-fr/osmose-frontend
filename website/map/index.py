@@ -131,7 +131,7 @@ urls.append((_("clc"), _("http://clc.openstreetmap.fr/")))
 urls.append((_("geodesic"), _("http://geodesie.openstreetmap.fr/")))
 # TRANSLATORS: this link can be changed to something specific to the language
 urls.append((_("openstreetmap.fr"), _("http://www.openstreetmap.fr/")))
-urls.append((_("copyright"), "/copyright"))
+urls.append((_("copyright"), "/copyright.py"))
 # TRANSLATORS: link to source code
 urls.append((_("sources"), "https://gitorious.org/osmose"))
 urls.append((_("statistics"), "/utils/last-update.py"))
