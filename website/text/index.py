@@ -60,10 +60,10 @@ WHERE id IN (SELECT marker_id FROM marker_elem WHERE username=%s)
 ORDER BY m.class
 LIMIT 500;"""
 
-show(u"<table class='byuser'>\n")
+show(u"<table class='sortable byuser'>\n")
 show(u"  <tr>\n")
 show(u"    <th>%s</th>\n" % _("Item"))
-show(u"    <th>%s</th>\n" % _("Class"))
+show(u"    <th>%s<span id=\"sorttable_sortfwdind\">&nbsp;▾</span></th>\n" % _("Class"))
 show(u"    <th>%s</th>\n" % _("Title"))
 show(u"    <th>%s</th>\n" % _("Error"))
 show(u"    <th>%s</th>\n" % _("Latitude"))
