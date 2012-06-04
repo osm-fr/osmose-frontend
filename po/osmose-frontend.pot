@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-03 20:06+0200\n"
+"POT-Creation-Date: 2012-06-04 21:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../tools/utils.py:129
+#: ../tools/utils.py:128
 msgid "OsmOse - OpenStreetMap Oversight Search Engine"
 msgstr ""
 
@@ -238,17 +238,17 @@ msgstr ""
 msgid "Set"
 msgstr ""
 
-#: ../website/utils/info.py:223 ../website/utils/info.py:333
+#: ../website/utils/info.py:223 ../website/utils/info.py:337
 #: ../website/utils/last-update.py:89
 msgid "source"
 msgstr ""
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
-#: ../website/utils/info.py:225 ../website/utils/info.py:335
+#: ../website/utils/info.py:225 ../website/utils/info.py:339
 msgid "class (abbreviation)"
 msgstr ""
 
-#: ../website/utils/info.py:228 ../website/utils/info.py:340
+#: ../website/utils/info.py:228 ../website/utils/info.py:344
 msgid "item"
 msgstr ""
 
@@ -261,39 +261,39 @@ msgid "count"
 msgstr ""
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: ../website/utils/info.py:337
+#: ../website/utils/info.py:341
 msgid "subclass (abbreviation)"
 msgstr ""
 
-#: ../website/utils/info.py:342
+#: ../website/utils/info.py:346
 msgid "information on error"
 msgstr ""
 
-#: ../website/utils/info.py:343
+#: ../website/utils/info.py:347
 msgid "position"
 msgstr ""
 
-#: ../website/utils/info.py:343
+#: ../website/utils/info.py:347
 msgid "position (abbreviation)"
 msgstr ""
 
-#: ../website/utils/info.py:344
+#: ../website/utils/info.py:348
 msgid "elements (abbreviation)"
 msgstr ""
 
-#: ../website/utils/info.py:346 ../website/utils/info.py:348
+#: ../website/utils/info.py:350 ../website/utils/info.py:352
 msgid "subtitle"
 msgstr ""
 
-#: ../website/utils/info.py:350
+#: ../website/utils/info.py:354
 msgid "date"
 msgstr ""
 
-#: ../website/utils/info.py:428
+#: ../website/utils/info.py:432
 msgid "Show more errors"
 msgstr ""
 
-#: ../website/utils/info.py:432
+#: ../website/utils/info.py:436
 msgid "Show some errors"
 msgstr ""
 

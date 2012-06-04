@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-03 20:06+0200\n"
-"PO-Revision-Date: 2012-06-03 18:04+0100\n"
+"POT-Creation-Date: 2012-06-04 21:34+0200\n"
+"PO-Revision-Date: 2012-06-04 09:55+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: Dutch\n"
 "Language: nl\n"
@@ -17,14 +17,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../tools/utils.py:129
+#: ../tools/utils.py:128
 msgid "OsmOse - OpenStreetMap Oversight Search Engine"
 msgstr "OsmOse - OpenStreetMap Oversight Search Engine"
 
 #. TRANSLATORS: link to tooltip help
 #: ../website/map/dynpoi.py:101
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
-msgstr ""
+msgstr "http://wiki.openstreetmap.org/wiki/NL:Osmose/erreurs"
 
 #: ../website/map/dynpoi.py:298
 msgid "Error reported on: "
@@ -39,7 +39,6 @@ msgid "corrected"
 msgstr "gecorrigeerd"
 
 #: ../website/map/dynpoi.py:317
-#, fuzzy
 msgid "false positive"
 msgstr "Valse positieve"
 
@@ -126,61 +125,57 @@ msgid "statistics"
 msgstr "statistieken"
 
 #: ../website/text/byuser-stats.py:36
-#, fuzzy
 msgid "OsmOse - Users statistics"
-msgstr "Osmose - Valse positieve"
+msgstr "Osmose - Gebruikers statistieken"
 
 #: ../website/text/byuser-stats.py:50
 msgid "Number"
-msgstr ""
+msgstr "Aantal"
 
 #: ../website/text/byuser-stats.py:51
 msgid "Username"
-msgstr ""
+msgstr "Gebruikersnaam"
 
 #: ../website/text/index.py:37
-#, fuzzy
 msgid "OsmOse - statistics for user"
-msgstr "OsmOse - laatste updates"
+msgstr "OsmOse - door gebruiker"
 
 #: ../website/text/index.py:39
 msgid "Username:"
-msgstr ""
+msgstr "Gebruikersnaam:"
 
 #: ../website/text/index.py:48
-#, fuzzy, python-format
+#, python-format
 msgid "OsmOse - statistics for user %s"
-msgstr "OsmOse - laatste updates"
+msgstr "Osmose - statistieken voor gebruiker %s"
 
 #: ../website/text/index.py:65
 msgid "Item"
-msgstr ""
+msgstr "Item"
 
 #: ../website/text/index.py:66
 msgid "Class"
-msgstr ""
+msgstr "Classe"
 
 #: ../website/text/index.py:67
-#, fuzzy
 msgid "Title"
 msgstr "Titel"
 
 #: ../website/text/index.py:68
 msgid "Error"
-msgstr ""
+msgstr "Fout"
 
 #: ../website/text/index.py:69
 msgid "Latitude"
-msgstr ""
+msgstr "Latitude"
 
 #: ../website/text/index.py:70
 msgid "Longitude"
-msgstr ""
+msgstr "Longitude"
 
 #: ../website/text/index.py:95
-#, fuzzy
 msgid "map"
-msgstr "Maart"
+msgstr "Kaart"
 
 #: ../website/utils/error.py:60
 #, python-format
@@ -244,17 +239,17 @@ msgstr "Maart"
 msgid "Set"
 msgstr "van toepassing zijn"
 
-#: ../website/utils/info.py:223 ../website/utils/info.py:333
+#: ../website/utils/info.py:223 ../website/utils/info.py:337
 #: ../website/utils/last-update.py:89
 msgid "source"
 msgstr "oorsprong"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
-#: ../website/utils/info.py:225 ../website/utils/info.py:335
+#: ../website/utils/info.py:225 ../website/utils/info.py:339
 msgid "class (abbreviation)"
 msgstr ""
 
-#: ../website/utils/info.py:228 ../website/utils/info.py:340
+#: ../website/utils/info.py:228 ../website/utils/info.py:344
 msgid "item"
 msgstr "item"
 
@@ -267,39 +262,39 @@ msgid "count"
 msgstr "Zahl"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: ../website/utils/info.py:337
+#: ../website/utils/info.py:341
 msgid "subclass (abbreviation)"
 msgstr ""
 
-#: ../website/utils/info.py:342
+#: ../website/utils/info.py:346
 msgid "information on error"
 msgstr "informatie over de fout"
 
-#: ../website/utils/info.py:343
+#: ../website/utils/info.py:347
 msgid "position"
 msgstr "positie"
 
-#: ../website/utils/info.py:343
+#: ../website/utils/info.py:347
 msgid "position (abbreviation)"
 msgstr ""
 
-#: ../website/utils/info.py:344
+#: ../website/utils/info.py:348
 msgid "elements (abbreviation)"
 msgstr ""
 
-#: ../website/utils/info.py:346 ../website/utils/info.py:348
+#: ../website/utils/info.py:350 ../website/utils/info.py:352
 msgid "subtitle"
 msgstr "Untertitel"
 
-#: ../website/utils/info.py:350
+#: ../website/utils/info.py:354
 msgid "date"
 msgstr "datum"
 
-#: ../website/utils/info.py:428
+#: ../website/utils/info.py:432
 msgid "Show more errors"
 msgstr "Toon een aantal fouten"
 
-#: ../website/utils/info.py:432
+#: ../website/utils/info.py:436
 msgid "Show some errors"
 msgstr "Toon een aantal fouten"
 
