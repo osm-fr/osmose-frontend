@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-04 22:26+0200\n"
+"POT-Creation-Date: 2012-06-05 21:07+0200\n"
 "PO-Revision-Date: 2012-06-04 10:03+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: Italian\n"
@@ -157,31 +157,53 @@ msgstr "nome utente:"
 msgid "OsmOse - statistics for user %s"
 msgstr "Osmose - statistiche per utente %s"
 
-#: ../website/text/index.py:65
+#: ../website/text/index.py:67
+#, fuzzy, python-format
+msgid "User statistics for %s"
+msgstr "Osmose - statistiche per l'utente"
+
+#: ../website/text/index.py:69
+#, python-format
+msgid ""
+"This page shows errors on elements that were last modified by '%s'. This "
+"doesn't means that this user is responsible for all these errors."
+msgstr ""
+
+#: ../website/text/index.py:73
+#, python-format
+msgid "Number of found errors: %d"
+msgstr ""
+
+#: ../website/text/index.py:75
+#, python-format
+msgid "Number of found errors: more than %d"
+msgstr ""
+
+#: ../website/text/index.py:80
 msgid "Item"
 msgstr "Elemento"
 
-#: ../website/text/index.py:66
+#: ../website/text/index.py:81
 msgid "Class"
 msgstr "Classe"
 
-#: ../website/text/index.py:67
+#: ../website/text/index.py:82
 msgid "Title"
 msgstr "Titolo"
 
-#: ../website/text/index.py:68
+#: ../website/text/index.py:83
 msgid "Error"
 msgstr "Errore"
 
-#: ../website/text/index.py:69
+#: ../website/text/index.py:84
 msgid "Latitude"
 msgstr "Latitudine"
 
-#: ../website/text/index.py:70
+#: ../website/text/index.py:85
 msgid "Longitude"
 msgstr "longitudine"
 
-#: ../website/text/index.py:95
+#: ../website/text/index.py:109
 msgid "map"
 msgstr "mappa"
 

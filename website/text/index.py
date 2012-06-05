@@ -60,6 +60,21 @@ WHERE id IN (SELECT marker_id FROM marker_elem WHERE username=%s)
 ORDER BY m.class
 LIMIT 500;"""
 
+PgCursor.execute(sql, (username.encode('utf-8'), ))
+results = PgCursor.fetchall()
+count = len(results)
+
+show(u"<h1>%s</h1>" % (_("User statistics for %s") % username))
+show(u"<p>")
+show(_("This page shows errors on elements that were last modified by '%s'. This doesn't means that this user is responsible for all these errors.") % username)
+show(u"</p>")
+show(u"<p>")
+if count < 500:
+    show(_("Number of found errors: %d") % count)
+else:
+    show(_("Number of found errors: more than %d") % count)
+show(u"</p>")
+
 show(u"<table class='sortable byuser'>\n")
 show(u"  <tr>\n")
 show(u"    <th>%s</th>\n" % _("Item"))
@@ -68,11 +83,10 @@ show(u"    <th>%s</th>\n" % _("Title"))
 show(u"    <th>%s</th>\n" % _("Error"))
 show(u"    <th>%s</th>\n" % _("Latitude"))
 show(u"    <th>%s</th>\n" % _("Longitude"))
+show(u"    <th></th>\n")
 show(u"  </tr>\n")
 
-PgCursor.execute(sql, (username.encode('utf-8'), ))
-
-for res in PgCursor.fetchall():
+for res in results:
     show(u"  <tr>\n")
     show(u"    <td>" + str(res["item"]) + "</td>\n")
     show(u"    <td>" + str(res["class"]) + "</td>\n")
@@ -81,15 +95,15 @@ for res in PgCursor.fetchall():
     if res["subtitle"] is None:
         pass
     else:
-        print translate.select(res["subtitle"])
+        show(translate.select(res["subtitle"]))
     show(u"    </td>\n")
     lat = str(float(res["lat"])/1000000)
     lon = str(float(res["lon"])/1000000)
     cl = res["class"]
     source = res["source"]
     item = res["item"]
-    url = "/map/cgi-bin/index.py?zoom=16&amp;lat=%s&amp;lon=%s&amp;source=%s" % (lat, lon, source)
-    url = "/map/cgi-bin/index.py?zoom=16&amp;lat=%s&amp;lon=%s&amp;item=%s" % (lat, lon, item)
+    url = "/map/?zoom=16&amp;lat=%s&amp;lon=%s&amp;source=%s" % (lat, lon, source)
+    url = "/map/?zoom=16&amp;lat=%s&amp;lon=%s&amp;item=%s" % (lat, lon, item)
     show(u"    <td>" + lat + "</td>\n")
     show(u"    <td>" + lon + "</td>\n")
     show(u"    <td><a href='" + url + "'>%s</a></td>\n" % _("map"))
