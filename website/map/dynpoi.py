@@ -97,7 +97,8 @@ print "\t".join(["lat", "lon", "marker_id", "icon", "iconSize", "iconOffset", "h
 if (not user) and (not source) and (zoom < 6):
     sys.exit(0)
 
-url_help = "http://wiki.openstreetmap.org/wiki/FR:Osmose/erreurs"
+# TRANSLATORS: link to tooltip help
+url_help = _("http://wiki.openstreetmap.org/wiki/Osmose/errors")
 sqlbase  = """
 SELECT marker.id,
        marker.item,
@@ -144,7 +145,7 @@ ORDER BY ABS(lat-%d)+ABS(lon-%d) ASC
 LIMIT 200;"""
 
 sqlbase_count  = """
-SELECT marker.source
+SELECT count(*)
 FROM marker
 INNER JOIN dynpoi_update_last
   ON marker.source = dynpoi_update_last.source
@@ -204,8 +205,7 @@ if bbox:
         sql = sqlbase_count % (where, bboxsql)
         sql = sql.replace("--","+")
         PgCursor.execute(sql)
-        results = PgCursor.fetchall()
-        num_results = len(results)
+        num_results = PgCursor.fetchone()[0]
 
         if num_results > 300:
             step = step * 0.75
@@ -295,7 +295,7 @@ for res in results:
             html += "<b>%s</b> = %s<br>"%(t[0], t[1])
         html += "</div>"
 
-    html += translate.get(u"frontend.bubble.date").encode("utf8") + " " + b_date.strftime("%Y-%m-%d")
+    html += _("Error reported on: ") + " " + b_date.strftime("%Y-%m-%d")
     html += "</div>"
 
     ## bottom links
@@ -312,16 +312,14 @@ for res in results:
     html += "\" target=\"hiddenIframe\">josm zone</a> "
     html += "</div>"
     html += "<div class=\"bulle_maj\">"
-    html += "<b><u>%s :</u></b> " % translate.get("frontend.bubble.set_status").encode("utf8")
-    html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"/cgi-bin/status.py?e=%s&s=done\" target=\"hiddenIframe\">%s</a> "%(error_id, translate.get("frontend.bubble.done").encode("utf8"))
-    html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"/cgi-bin/status.py?e=%s&s=false\" target=\"hiddenIframe\">%s</a> "%(error_id, translate.get(u"frontend.bubble.false").encode("utf8"))
+    html += "<b>%s :</b> " % _("change status")
+    html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"/cgi-bin/status.py?e=%s&s=done\" target=\"hiddenIframe\">%s</a> "%(error_id, _("corrected"))
+    html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"/cgi-bin/status.py?e=%s&s=false\" target=\"hiddenIframe\">%s</a> "%(error_id, _("false positive"))
     html += "</div>"
-    
-    html = "<font size=\"-1\">%s</font>"%html
     
     ##
     ############################################################
 
     marker   = "markers/marker-b-%d.png" % (res["item"])
-    print "\t".join([lat, lon, str(error_id), marker, "17,33", "-8,-33", html])
+    print "\t".join([lat, lon, str(error_id), marker, "17,33", "-8,-33", html]).encode("utf8")
     

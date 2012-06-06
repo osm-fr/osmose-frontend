@@ -27,70 +27,39 @@ from tools import utils
 
 PgConn    = utils.get_dbconn()
 PgCursor  = PgConn.cursor()
-form      = cgi.FieldStorage()
-username  = utils.pg_escape(unicode(form.getvalue("username", ""), "utf-8"))
-
-if username=="":
-    print "Content-Type: text/html; charset=utf-8"
-    print
-    print open("../index.html").read()
-    sys.exit(0)
 
 ###########################################################################
 ## page headers
 
 translate = utils.translator()
-utils.print_header(translate)
+show = utils.show
+utils.print_header(_("OsmOse - Users statistics"))
 
 ###########################################################################
 
-
 sql = """--
-SELECT m.id, m.class, m.subtitle, m.lat, m.lon, m.source, m.item,
-       c.title
-FROM marker m
-JOIN dynpoi_class c ON m.class = c.class AND
-                       m.source = c.source
-WHERE id IN (SELECT marker_id FROM marker_elem WHERE username=%s)
-ORDER BY m.class
+SELECT count(*) AS cpt,
+       username
+FROM marker_elem
+GROUP BY username
+ORDER BY cpt DESC
 LIMIT 500;"""
 
-print "<table class='byuser'>\n"
-print "  <tr>\n"
-print "    <th>Item</th>\n"
-print "    <th>Class</th>\n"
-print "    <th>Titre</th>\n"
-print "    <th>Erreur</th>\n"
-print "    <th>Latitude</th>\n"
-print "    <th>Longitude</th>\n"
-print "  </tr>\n"
+show(u"<table class='byuser'>\n")
+show(u"  <tr>\n")
+show(u"    <th>%s</th>\n" % _("Number"))
+show(u"    <th>%s</th>\n" % _("Username"))
+show(u"  </tr>\n")
 
-PgCursor.execute(sql, (username.encode('utf-8'), ))
+PgCursor.execute(sql)
 
 for res in PgCursor.fetchall():
-    print "  <tr>\n"
-    print "    <td>" + str(res["item"]) + "</td>\n"
-    print "    <td>" + str(res["class"]) + "</td>\n"
-    print "    <td>" + translate.select(res["title"]) + "</td>\n"
-    print "    <td>\n"
-    if res["subtitle"] is None:
-        pass
-    else:
-        print translate.select(res["subtitle"])
-    print "    </td>\n"
-    lat = str(float(res["lat"])/1000000)
-    lon = str(float(res["lon"])/1000000)
-    cl = res["class"]
-    source = res["source"]
-    item = res["item"]
-    url = "/map/cgi-bin/index.py?zoom=16&lat=%s&lon=%s&source=%s" % (lat, lon, source)
-    url = "/map/cgi-bin/index.py?zoom=16&lat=%s&lon=%s&item=%s" % (lat, lon, item)
-    print "    <td>" + lat + "</td>\n"
-    print "    <td>" + lon + "</td>\n"
-    print "    <td><a href='" + url + "'>carte</a></td>\n"
-    print "  </tr>\n"
+    show(u"  <tr>\n")
+    show(u"    <td>" + unicode(res["cpt"]) + u"</td>\n")
+    show(u"    <td>" + unicode(res["username"]) + u"</td>\n")
+    show(u"  </tr>\n")
 
-print "</table>\n"
+show(u"</table>\n")
 
 ###########################################################################
 utils.print_tail()

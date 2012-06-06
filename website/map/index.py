@@ -34,6 +34,7 @@ form       = cgi.FieldStorage()
 ## structure du menu
 
 categories = utils.get_categories()
+show = utils.show
 
 ###########################################################################
 ## liste de toutes les erreurs
@@ -85,8 +86,12 @@ except:
     active_items = all_items
     
 dico["form"]      = u""
-dico["title"]     = translate.get("frontend.map.title")
-dico["need_zoom"] = translate.get("fr.frontend.map.need_zoom")
+dico["title"]     = _("OsmOse - map")
+dico["need_zoom"] = _("no bubbles at this zoom factor")
+dico["check"]         = _("Select:")
+dico["check_all"]     = _("all")
+dico["check_nothing"] = _("nothing")
+dico["check_invert"]  = _("invert")
 
 ###########################################################################
 ## formulaire
@@ -97,8 +102,8 @@ for categ in categories:
     
     dico["form"] += "<h1><a href=\"javascript:toggleCategDisplay('categ%d')\">%s</a> "%(categ["categ"], categ["menu"])
     dico["form"] += "<span id=\"categ%d_count\">%d/%d</span> "%(categ["categ"], len([x for x in categ["item"] if x["item"] in active_items]), len(categ["item"]))
-    dico["form"] += "<a href=\"javascript:showHideCateg('categ%d', true)\">Tout</a> "%(categ["categ"])
-    dico["form"] += "<a href=\"javascript:showHideCateg('categ%d', false)\">Rien</a></h1>"%(categ["categ"])
+    dico["form"] += "<a href=\"javascript:showHideCateg('categ%d', true)\">%s</a> "%(categ["categ"], _("all"))
+    dico["form"] += "<a href=\"javascript:showHideCateg('categ%d', false)\">%s</a></h1>"%(categ["categ"], _("nothing"))
     dico["form"] += "\n"
     
     for err in categ["item"]:
@@ -113,11 +118,46 @@ for categ in categories:
 ###########################################################################
 ## template et envoi
 
-if __name__ == "__main__":
-    print "Content-Type: text/html; charset=utf-8"
-    print
-    #print active_items
-    page = open(os.path.join(root_folder, "config/map.tpl")).read().decode("utf8")
-    for x in dico:
-        page = page.replace("#%s#"%x, dico[x].strip())
-    print page.encode("utf8")
+utils.print_template("map.tpl", dico)
+
+urls = []
+# TRANSLATORS: link to help in appropriate language
+urls.append((_("Help"), _("http://wiki.openstreetmap.org/wiki/Osmose")))
+urls.append((_("by user"), "/text"))
+urls.append((_("relation analyser"), "http://analyser.openstreetmap.fr/"))
+# TRANSLATORS: this link can be changed to something specific to the language
+urls.append((_("clc"), _("http://clc.openstreetmap.fr/")))
+# TRANSLATORS: this link can be changed to something specific to the language
+urls.append((_("geodesic"), _("http://geodesie.openstreetmap.fr/")))
+# TRANSLATORS: this link can be changed to something specific to the language
+urls.append((_("openstreetmap.fr"), _("http://www.openstreetmap.fr/")))
+urls.append((_("copyright"), "/copyright.py"))
+# TRANSLATORS: link to source code
+urls.append((_("sources"), "https://gitorious.org/osmose"))
+urls.append((_("statistics"), "/utils/last-update.py"))
+
+show(u"<div id='bottom_links'>")
+
+show(u"<div style='float: left'>")
+show(u"<form method='get' style='display:inline'>")
+show(u"<select name='language'>")
+show(u"<option value='' onclick='set_lang(\"\");'></option>")
+for l in utils.allowed_languages:
+  if translate.languages[0] == l:
+    s = " selected='selected'"
+  else:
+    s = ""
+  show(u"<option%s value='%s' onclick='set_lang(\"%s\");'>%s</option>" % (s, l, l, l))
+show(u"</select>")
+show(u"</form>")
+show(u"</div>")
+
+show(u"  <div id='links'>")
+s = []
+for u in urls:
+  s.append(u"<a href='%s'>%s</a>" % (u[1], u[0]))
+show(u" - ".join(s))
+show(u"  </div>")
+show(u"</div>")
+
+utils.print_tail()

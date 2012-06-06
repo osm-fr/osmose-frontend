@@ -7,5 +7,7 @@ Content-Type: text/html; charset=utf-8
   <title>#title#</title>
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
   <link rel="stylesheet" type="text/css" href="style.css">
-  <script src="/js/sorttable.js"></script>
+  <script src="/js/sorttable.js" type="text/javascript"></script>
 </head>
+
+<body>

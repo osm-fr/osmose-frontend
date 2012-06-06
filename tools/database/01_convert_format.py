@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-#-*- coding: utf8 -*-
+#-*- coding: utf-8 -*-
 
 import cgi, re, sys, os, psycopg2.extras
 import utils

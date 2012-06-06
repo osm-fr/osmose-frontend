@@ -1,0 +1,64 @@
+    0 | edifici, che coprono
+ 1010 | nodo ripetuto
+ 1020 | way senza nodo
+ 1030 | way di un nodo
+ 1040 | Poligono non valido
+ 1050 | Una rotatoria nel modo sbagliato
+ 1060 | boundary si intersecano
+ 1070 | intersezione tra casa e strada
+ 1080 | nodi orfani
+ 1090 | diversi tipi di strade
+ 1100 | area = yes non chiusa
+ 1110 | cattiva connessione * _link
+ 1120 | la continuità della strada rotto
+ 1140 | membro inutile della relazione
+ 1150 | intersezione tra le superfici
+ 1160 | rapporto ampia
+ 1170 | poligono interno a doppia
+ 2010 | = incrocio rotonda
+ 2020 | ele = ...
+ 2030 | oneway =
+ 2040 | source = ...
+ 2050 | Parent tag
+ 2060 | Numeri di strada
+ 3010 | highway di rotonda
+ 3020 | fonte tag bad
+ 3030 | tagwatch pulito
+ 3031 | Wikipedia
+ 3032 | collegamenti tra i tag
+ 3033 | trattino il St.
+ 3040 | tag non corretto
+ 3050 | valore tag non correttoi
+ 3060 | valori simili
+ 3070 | multivalore
+ 3080 | Nuoto in acque naturali =
+ 3090 | data
+ 3091 | valore numerico
+ 3100 | piccola azienda agricola
+ 3110 | nota
+ 3120 | albero
+ 3130 | nome depositato
+ 4010 | abbandonato
+ 4020 | su incrocio rotonda
+ 4030 | tags incompatibili
+ 4040 | ref nome 
+ 4050 | Corin briciole
+ 4060 | seamark: FIXME
+ 4070 | costruzione
+ 4080 | POI doppia
+ 5010 | ortografia
+ 5020 | tipo di percorso
+ 5030 | Due nomi
+ 5040 | toponomastica
+ 5050 | testare soundex
+ 6010 | poligono aperto
+ 6020 | way duplicato
+ 6030 | luogo senza nome
+ 6040 | Codice INSEE
+ 6050 | admin_level
+ 6060 | admin_level foro = 8
+ 7010 | costruzione geodetica
+ 7011 | Monumenti
+ 7020 | limitare l'amministratore
+ 7030 | OpenStreetBugs
+ 7040 | linee elettriche

@@ -1,14 +1,15 @@
 #! /usr/bin/env python
-#-*- coding: utf8 -*-
+#-*- coding: utf-8 -*-
 
 import os, atexit
+import re
+import Cookie
 from xml.sax import make_parser, handler
 
 ################################################################################
 
 root_folder       = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-allowed_languages = ["en", "fr", "nl", "de"]
-translation_file  = os.path.join(root_folder, "config/translate.txt")
+allowed_languages = ["en", "fr", "nl", "de", "it"]
 config_file       = os.path.join(root_folder, "config/config.xml")
 pg_user           = "osmose"
 pg_base           = "osmose"
@@ -19,8 +20,10 @@ def get_dbconn():
     import psycopg2.extras
 #    return psycopg2.connect(host="localhost", database = pg_base, user = pg_user, password = pg_pass)
     db_string = "host='localhost' dbname='%s' user='%s' password='%s'" % (pg_base, pg_user, pg_pass)
+    psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
+    psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
     conn = psycopg2.extras.DictConnection(db_string)
-    psycopg2.extras.register_hstore(conn)
+    psycopg2.extras.register_hstore(conn, unicode=True)
     return conn
 
 def pg_escape(text):
@@ -29,24 +32,33 @@ def pg_escape(text):
     return text.replace(u"'", u"''").replace(u'\\',u'\\\\')
 
 def get_language():
-    if "HTTP_ACCEPT_LANGUAGE" in os.environ:
+    lg = None
+    if "HTTP_COOKIE" in os.environ:
+        cki = Cookie.SimpleCookie()
+        cki.load(os.environ['HTTP_COOKIE'])
+        if "lang" in cki:
+            lg = [cki.get("lang").value]
+            if not lg[0] in allowed_languages:
+                lg = None
+
+    if not lg and "HTTP_ACCEPT_LANGUAGE" in os.environ:
         lg = os.environ["HTTP_ACCEPT_LANGUAGE"]
         lg = lg.split(",")
         lg = [x.split(";")[0] for x in lg]
         lg = [x.split("-")[0] for x in lg]
         lg = [x for x in lg if x in allowed_languages]
-        if lg:
-            lg.append(allowed_languages[0])
-            res = []
-            for l in lg:
-                if not l in res:
-                    res.append(l)
-            return res
+
+    if lg:
+        lg.append(allowed_languages[0])
+        res = []
+        for l in lg:
+            if not l in res:
+                res.append(l)
+        return res
+
     return allowed_languages
 
-def get_sources(lang = get_language()):
-    if lang not in allowed_languages:
-        lang = allowed_languages[0]
+def get_sources():
     conn = get_dbconn()
     curs = conn.cursor()
     curs.execute("SELECT source, update, comment, contact FROM dynpoi_source;")
@@ -54,9 +66,9 @@ def get_sources(lang = get_language()):
     for res in curs.fetchall():
         src = {}
         src["id"]         = str(res["source"])
-        src["updatecode"] = str(res["update"])
-        src["comment"]    = str(res["comment"])
-        src["contact"]    = str(res["contact"])        
+        src["updatecode"] = res["update"]
+        src["comment"]    = res["comment"]
+        src["contact"]    = res["contact"]
         config[src["id"]] = src
     return config
 
@@ -70,14 +82,14 @@ def get_categories(lang = get_language()):
         res = {"categ":res1[0], "menu": "no translation", "item":[]}
         for l in lang:
             if l in res1[1]:
-                res["menu"] = res1[1][l].decode('utf8')
+                res["menu"] = res1[1][l]
                 break
         curs2.execute("SELECT item, menu, marker_color, marker_flag FROM dynpoi_item WHERE categ = %d ORDER BY item"%res1[0])
         for res2 in curs2.fetchall():
             res["item"].append({"item":res2[0], "menu":"no translation", "marker_color":res2[2], "marker_flag":res2[3]})
             for l in lang:
                 if res2[1] and l in res2[1]:
-                    res["item"][-1]["menu"] = res2[1][l].decode('utf8')
+                    res["item"][-1]["menu"] = res2[1][l]
                     break
 
         result.append(res)
@@ -86,17 +98,35 @@ def get_categories(lang = get_language()):
 ###########################################################################
 ## templates
 
+def show(s):
+    print s.encode("utf8")
+
+def N_(message):
+    return message
+
+def multiple_replace(dict, text):
+
+  """ Replace in 'text' all occurences of any key in the given
+  dictionary by its corresponding value.  Returns the new tring."""
+
+  # Create a regular expression  from the dictionary keys
+  regex = re.compile("(%s)" % "|".join(map(re.escape, dict.keys())))
+
+  # For each match, look-up corresponding value in dictionary
+  return regex.sub(lambda mo: dict[mo.string[mo.start():mo.end()]], text)
+
+
 def print_template(filename, rules = None):
     page = open(os.path.join(root_folder, "config", filename)).read().decode("utf8")
     if rules:
-        for x in rules:
-            page = page.replace("#%s#"%x, rules[x].strip())
+        r = {}
+        for (k, v) in rules.iteritems():
+            r["#%s#" % k] = v
+        page = multiple_replace(r, page)
     print page.encode("utf8")
 
-def print_header(translate = None):
-    if not translate:
-        translate = translator()
-    rules = { "title" : translate.get("frontend.title") }
+def print_header(title = N_("OsmOse - OpenStreetMap Oversight Search Engine")):
+    rules = { "title" : _(title) }
     print_template("head.tpl", rules)
 
 def print_tail():
@@ -107,34 +137,15 @@ def print_tail():
 
 class translator:
     
-    def __init__(self, language = get_language(), translation = translation_file):
+    def __init__(self, language = get_language()):
 
         self.languages = language
-        
-        self._data = {}
-        for l in open(translation).readlines():
-            l = l.strip()
-            if l.startswith("#"):
-                continue
-            if not l:
-                continue
-            l = l.split(" ", 1)
-            self._data[l[0]] = l[1].strip().decode("utf8")
-                
-    def get(self, item, args = None):
 
-        res = u"no translation"
-
-        for l in self.languages:
-            if "%s.%s" % (l, item) in self._data:
-                res = self._data["%s.%s" % (l, item)]
-                break
-
-        if args:
-            for i in range(len(args)):
-                res = res.replace(u"$%d"%i, args[i])
-        
-        return res
+        import gettext
+        gettext.translation('osmose-frontend',
+                            localedir=os.path.join(root_folder, "po", "mo"),
+                            languages=language
+                           ).install(unicode=1)
 
     def select(self, res, no_translation = ""):
         # res is a dictionnary of possible translations, given by a SQL query

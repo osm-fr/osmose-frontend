@@ -3,12 +3,84 @@ body {
   font-family: arial, helvetica, sans-serif;
 } 
 
+a:link {
+  color: #000000;
+}
+a:visited {
+  color: #000000;
+}
+a:hover {
+  color: #000000;
+}
+
+/* Menu */
+div#menu {
+  position: absolute;
+  overflow-y: scroll;
+  width: 280px;
+  left: 0px;
+  top: 25px;
+  bottom: 2px;
+}
+div#menu div#need_zoom {
+  display: none;
+  font-size: 14px;
+  font-weight:bold;
+  color: #FF0000;
+  text-align: center;
+}
+div#menu div#action_links {
+  font-size: 10px;
+  text-align: center;
+}
+div#menu div.test_group img {
+  margin-left: 20px;
+}
+div#menu div.test_group h1 {
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+  margin: 3px;
+}
+div#menu span.check {
+  font-size: 11px;
+}
+
+/* Map */
+div#map {
+  position: absolute;
+  top: 20px;
+  bottom: 0px;
+  left: 280px;
+  right: 0px;
+}
+
+/* Bottom links */
+div#bottom_links {
+  background-color: #DDDDDD;
+  position: absolute;
+  display: inline;
+  width: 100%;
+  min-height: 20px;
+  left: 0px;
+  top: 0px;
+  font-size: 90%;
+
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+div#bottom_links div#links {
+  display: inline-block;
+}
+
 /* popups */
 .bulle_msg {
   min-width: 200px;
   max-height: 200px;
   overflow: auto;
   word-wrap: break-word;
+  font-size: 80%;
 }
 .bulle_msg div.closebubble {
   float: right;
@@ -73,6 +145,9 @@ a.bulle_err:hover {
   color: red;
 }
 
+.bulle_verif {
+  font-size: 90%;
+}
 .bulle_verif a:link {
   color: #55AA55;
 }
@@ -83,43 +158,41 @@ a.bulle_err:hover {
   color: #55AA55;
 }
 
-
-a:link {
-  color: #000000;
-}
-a:visited {
-  color: #000000;
-}
-a:hover {
-  color: #000000;
+.bulle_maj {
+  font-size: 90%;
 }
 
-div#action_links {
-  font-size: 10px;
-  text-align: center;
-}
-div#bottom_links {
-  font-size: 10px;
-  text-align: center;
-}
-div#need_zoom {
+/* iframe for josm and rawedit links */
+iframe#hiddenIframe {
   display: none;
-  font-size: 14px;
-  font-weight:bold;
-  color: #FF0000;
-  text-align: center;
-}
-div.test_group img {
-  margin-left: 20px;
-}
-div.test_group h1 {
-  height: 20px;
-  line-height: 20px;
-  font-size: 12px;
-  margin: 3px;
-}
-span.check {
-  font-size: 11px;
+  position: absolute;
 }
 
+div#incFrameBg {
+  display: none;
+  position: absolute;
+  opacity: 0.75;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #000000;
+  z-index: 1199;
+}
 
+iframe#incFrame {
+  display: none;
+  position: absolute;
+  z-index: 1200;
+  top: 10;
+  left: 10;
+}
+
+img#incFrameBt {
+  display: none;
+  position: absolute;
+  border: 0px;
+  z-index: 1201;
+  top: 10;
+  left: 772;
+}
