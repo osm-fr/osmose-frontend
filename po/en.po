@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-05 21:07+0200\n"
-"PO-Revision-Date: 2012-06-04 10:05+0100\n"
+"PO-Revision-Date: 2012-06-05 21:26+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: English\n"
 "Language: en\n"
@@ -157,9 +157,9 @@ msgid "OsmOse - statistics for user %s"
 msgstr "OsmOse - statistics for user %s"
 
 #: ../website/text/index.py:67
-#, fuzzy, python-format
+#, python-format
 msgid "User statistics for %s"
-msgstr "OsmOse - statistics for user"
+msgstr "User statistics for %s"
 
 #: ../website/text/index.py:69
 #, python-format
@@ -167,16 +167,18 @@ msgid ""
 "This page shows errors on elements that were last modified by '%s'. This "
 "doesn't means that this user is responsible for all these errors."
 msgstr ""
+"This page shows errors on elements that were last modified by '%s'. This "
+"doesn't means that this user is responsible for all these errors."
 
 #: ../website/text/index.py:73
 #, python-format
 msgid "Number of found errors: %d"
-msgstr ""
+msgstr "Number of found errors: %d"
 
 #: ../website/text/index.py:75
 #, python-format
 msgid "Number of found errors: more than %d"
-msgstr ""
+msgstr "Number of found errors: more than %d"
 
 #: ../website/text/index.py:80
 msgid "Item"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-05 21:07+0200\n"
-"PO-Revision-Date: 2012-06-04 09:55+0100\n"
+"PO-Revision-Date: 2012-06-05 21:52+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: Dutch\n"
 "Language: nl\n"
@@ -22,13 +22,12 @@ msgid "OsmOse - OpenStreetMap Oversight Search Engine"
 msgstr "OsmOse - OpenStreetMap Oversight Search Engine"
 
 #: ../website/copyright.py:12
-#, fuzzy
 msgid "OsmOse - copyright informations"
-msgstr "OsmOse -Informatie"
+msgstr "OsmOse - copyright informatie"
 
 #: ../website/copyright.py:14
 msgid "Data are coming from:"
-msgstr ""
+msgstr "De gegevens zijn afkomstig uit:"
 
 #: ../website/copyright.py:27 ../website/map/index.py:134
 msgid "copyright"
@@ -125,7 +124,6 @@ msgstr "http://www.openstreetmap.fr/"
 
 #. TRANSLATORS: link to source code
 #: ../website/map/index.py:136
-#, fuzzy
 msgid "sources"
 msgstr "oorsprong"
 
@@ -135,7 +133,7 @@ msgstr "statistieken"
 
 #: ../website/text/byuser-stats.py:36
 msgid "OsmOse - Users statistics"
-msgstr "Osmose - Gebruikers statistieken"
+msgstr "OsmOse - Gebruikers statistieken"
 
 #: ../website/text/byuser-stats.py:50
 msgid "Number"
@@ -156,12 +154,12 @@ msgstr "Gebruikersnaam:"
 #: ../website/text/index.py:48
 #, python-format
 msgid "OsmOse - statistics for user %s"
-msgstr "Osmose - statistieken voor gebruiker %s"
+msgstr "OsmOse - statistieken voor gebruiker %s"
 
 #: ../website/text/index.py:67
-#, fuzzy, python-format
+#, python-format
 msgid "User statistics for %s"
-msgstr "OsmOse - door gebruiker"
+msgstr "Gebruikers statistieken voor %s"
 
 #: ../website/text/index.py:69
 #, python-format
@@ -169,16 +167,19 @@ msgid ""
 "This page shows errors on elements that were last modified by '%s'. This "
 "doesn't means that this user is responsible for all these errors."
 msgstr ""
+"Deze pagina toont fouten op elementen die het laatst zijn gewijzigd door "
+"'%s'. Dit betekent niet betekent dat deze gebruiker is verantwoordelijk voor "
+"al deze fouten."
 
 #: ../website/text/index.py:73
 #, python-format
 msgid "Number of found errors: %d"
-msgstr ""
+msgstr "Aantal gevonden fouten: %d"
 
 #: ../website/text/index.py:75
 #, python-format
 msgid "Number of found errors: more than %d"
-msgstr ""
+msgstr "Aantal gevonden fouten: meer dan%d"
 
 #: ../website/text/index.py:80
 msgid "Item"
@@ -211,7 +212,7 @@ msgstr "Kaart"
 #: ../website/utils/error.py:60
 #, python-format
 msgid "OsmOse - information on error %d"
-msgstr "Osmose - informatie over de fout %d"
+msgstr "OsmOse - informatie over de fout %d"
 
 #: ../website/utils/error.py:84
 msgid "key"
@@ -239,11 +240,11 @@ msgstr "OsmOse -Informatie"
 
 #: ../website/utils/info.py:67
 msgid "OsmOse - false positives"
-msgstr "Osmose - Valse positieve"
+msgstr "OsmOse - Valse positieve"
 
 #: ../website/utils/info.py:71
 msgid "OsmOse - fixed errors"
-msgstr "Osmose - vaste fouten"
+msgstr "OsmOse - vaste fouten"
 
 #: ../website/utils/info.py:94
 msgid "Informations"
@@ -275,10 +276,11 @@ msgstr "van toepassing zijn"
 msgid "source"
 msgstr "oorsprong"
 
+# st for "stand"
 #. TRANSLATORS: this should be replaced by a abbreviation for class
 #: ../website/utils/info.py:225 ../website/utils/info.py:339
 msgid "class (abbreviation)"
-msgstr ""
+msgstr "st"
 
 #: ../website/utils/info.py:228 ../website/utils/info.py:344
 msgid "item"
@@ -292,10 +294,11 @@ msgstr "Titel"
 msgid "count"
 msgstr "Zahl"
 
+# sk for "subklasse"
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: ../website/utils/info.py:341
 msgid "subclass (abbreviation)"
-msgstr ""
+msgstr "sk"
 
 #: ../website/utils/info.py:346
 msgid "information on error"
@@ -305,13 +308,15 @@ msgstr "informatie over de fout"
 msgid "position"
 msgstr "positie"
 
+# li for "ligging"
 #: ../website/utils/info.py:347
 msgid "position (abbreviation)"
-msgstr ""
+msgstr "li"
 
+# el for "elementen"
 #: ../website/utils/info.py:348
 msgid "elements (abbreviation)"
-msgstr ""
+msgstr "elem"
 
 #: ../website/utils/info.py:350 ../website/utils/info.py:352
 msgid "subtitle"

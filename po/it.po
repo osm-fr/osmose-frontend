@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-05 21:07+0200\n"
-"PO-Revision-Date: 2012-06-04 10:03+0100\n"
+"PO-Revision-Date: 2012-06-05 21:50+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -22,13 +22,12 @@ msgid "OsmOse - OpenStreetMap Oversight Search Engine"
 msgstr "OsmOse - OpenStreetMap Oversight Search Engine"
 
 #: ../website/copyright.py:12
-#, fuzzy
 msgid "OsmOse - copyright informations"
-msgstr "OsmOse - Informazioni"
+msgstr "OsmOse - Informazioni sul copyright"
 
 #: ../website/copyright.py:14
 msgid "Data are coming from:"
-msgstr ""
+msgstr "I dati sono provenienti da:"
 
 #: ../website/copyright.py:27 ../website/map/index.py:134
 msgid "copyright"
@@ -134,7 +133,7 @@ msgstr "Statistiche"
 
 #: ../website/text/byuser-stats.py:36
 msgid "OsmOse - Users statistics"
-msgstr "Osmose - statistiche utenti"
+msgstr "OsmOse - statistiche utenti"
 
 #: ../website/text/byuser-stats.py:50
 msgid "Number"
@@ -146,7 +145,7 @@ msgstr "Nome utente"
 
 #: ../website/text/index.py:37
 msgid "OsmOse - statistics for user"
-msgstr "Osmose - statistiche per l'utente"
+msgstr "OsmOse - statistiche per l'utente"
 
 #: ../website/text/index.py:39
 msgid "Username:"
@@ -155,12 +154,12 @@ msgstr "nome utente:"
 #: ../website/text/index.py:48
 #, python-format
 msgid "OsmOse - statistics for user %s"
-msgstr "Osmose - statistiche per utente %s"
+msgstr "OsmOse - statistiche per utente %s"
 
 #: ../website/text/index.py:67
-#, fuzzy, python-format
+#, python-format
 msgid "User statistics for %s"
-msgstr "Osmose - statistiche per l'utente"
+msgstr "Statistiche utente per %s"
 
 #: ../website/text/index.py:69
 #, python-format
@@ -168,16 +167,19 @@ msgid ""
 "This page shows errors on elements that were last modified by '%s'. This "
 "doesn't means that this user is responsible for all these errors."
 msgstr ""
+"Questa pagina mostra gli errori su elementi che sono stati modificati da "
+"'%s'. Questo non significa che questo utente è responsabile di tutti questi "
+"errori."
 
 #: ../website/text/index.py:73
 #, python-format
 msgid "Number of found errors: %d"
-msgstr ""
+msgstr "Numero di errori riscontrati: %d"
 
 #: ../website/text/index.py:75
 #, python-format
 msgid "Number of found errors: more than %d"
-msgstr ""
+msgstr "Numero di errori rilevati: più di %d"
 
 #: ../website/text/index.py:80
 msgid "Item"
@@ -210,7 +212,7 @@ msgstr "mappa"
 #: ../website/utils/error.py:60
 #, python-format
 msgid "OsmOse - information on error %d"
-msgstr "Osmose - informazioni in caso di errore %d"
+msgstr "OsmOse - informazioni in caso di errore %d"
 
 #: ../website/utils/error.py:84
 msgid "key"
@@ -238,7 +240,7 @@ msgstr "OsmOse - Informazioni"
 
 #: ../website/utils/info.py:67
 msgid "OsmOse - false positives"
-msgstr "Osmose - Falsi positivi"
+msgstr "OsmOse - Falsi positivi"
 
 #: ../website/utils/info.py:71
 msgid "OsmOse - fixed errors"
@@ -274,10 +276,11 @@ msgstr "Impostazioni"
 msgid "source"
 msgstr "fonte"
 
+# cl for "classe"
 #. TRANSLATORS: this should be replaced by a abbreviation for class
 #: ../website/utils/info.py:225 ../website/utils/info.py:339
 msgid "class (abbreviation)"
-msgstr ""
+msgstr "cl"
 
 #: ../website/utils/info.py:228 ../website/utils/info.py:344
 msgid "item"
@@ -291,10 +294,11 @@ msgstr "titolo"
 msgid "count"
 msgstr "contare"
 
+# sot for "sottoclasse"
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: ../website/utils/info.py:341
 msgid "subclass (abbreviation)"
-msgstr ""
+msgstr "sot"
 
 #: ../website/utils/info.py:346
 msgid "information on error"
@@ -306,11 +310,11 @@ msgstr "posizione"
 
 #: ../website/utils/info.py:347
 msgid "position (abbreviation)"
-msgstr ""
+msgstr "posizione"
 
 #: ../website/utils/info.py:348
 msgid "elements (abbreviation)"
-msgstr ""
+msgstr "elementi"
 
 #: ../website/utils/info.py:350 ../website/utils/info.py:352
 msgid "subtitle"

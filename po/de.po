@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-05 21:07+0200\n"
-"PO-Revision-Date: 2012-06-04 10:16+0100\n"
+"PO-Revision-Date: 2012-06-05 21:53+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -22,13 +22,12 @@ msgid "OsmOse - OpenStreetMap Oversight Search Engine"
 msgstr "OsmOse - OpenStreetMap Oversight Search Engine"
 
 #: ../website/copyright.py:12
-#, fuzzy
 msgid "OsmOse - copyright informations"
-msgstr "Osmose - Informationen"
+msgstr "Osmose - Copyright Hinweise"
 
 #: ../website/copyright.py:14
 msgid "Data are coming from:"
-msgstr ""
+msgstr "Data komme aus:"
 
 #: ../website/copyright.py:27 ../website/map/index.py:134
 msgid "copyright"
@@ -52,9 +51,8 @@ msgid "corrected"
 msgstr "korrigiert"
 
 #: ../website/map/dynpoi.py:317
-#, fuzzy
 msgid "false positive"
-msgstr "falsch positive Ergebnisse"
+msgstr "false positive"
 
 #: ../website/map/index.py:89
 msgid "OsmOse - map"
@@ -156,12 +154,12 @@ msgstr "Benutzername:"
 #: ../website/text/index.py:48
 #, python-format
 msgid "OsmOse - statistics for user %s"
-msgstr "Osmose - Statistiken für Benutzer %s"
+msgstr "OsmOse - Statistiken für Benutzer %s"
 
 #: ../website/text/index.py:67
-#, fuzzy, python-format
+#, python-format
 msgid "User statistics for %s"
-msgstr "Osmose - Statistik für Anwender"
+msgstr "Benutzer-Statistik für %s"
 
 #: ../website/text/index.py:69
 #, python-format
@@ -169,16 +167,19 @@ msgid ""
 "This page shows errors on elements that were last modified by '%s'. This "
 "doesn't means that this user is responsible for all these errors."
 msgstr ""
+"Diese Seite zeigt Fehler auf Elemente, die zuletzt durch '%s' geändert "
+"wurden. Das bedeutet nicht bedeutet, dass diese Benutzer verantwortlich für "
+"alle dieser Fehler ist."
 
 #: ../website/text/index.py:73
 #, python-format
 msgid "Number of found errors: %d"
-msgstr ""
+msgstr "Anzahl der gefundene Fehler: %d"
 
 #: ../website/text/index.py:75
 #, python-format
 msgid "Number of found errors: more than %d"
-msgstr ""
+msgstr "Anzahl der Fehler gefunden: mehr als %d"
 
 #: ../website/text/index.py:80
 msgid "Item"
@@ -189,7 +190,6 @@ msgid "Class"
 msgstr "Klasse"
 
 #: ../website/text/index.py:82
-#, fuzzy
 msgid "Title"
 msgstr "Titel"
 
@@ -212,7 +212,7 @@ msgstr "karte"
 #: ../website/utils/error.py:60
 #, python-format
 msgid "OsmOse - information on error %d"
-msgstr "Osmose - Informationen über Fehler %d"
+msgstr "OsmOse - Informationen über Fehler %d"
 
 #: ../website/utils/error.py:84
 msgid "key"
@@ -236,11 +236,11 @@ msgstr "Fixes"
 
 #: ../website/utils/info.py:63
 msgid "OsmOse - informations"
-msgstr "Osmose - Informationen"
+msgstr "OsmOse - Informationen"
 
 #: ../website/utils/info.py:67
 msgid "OsmOse - false positives"
-msgstr "Osmose - False Positives"
+msgstr "OsmOse - False Positives"
 
 #: ../website/utils/info.py:71
 msgid "OsmOse - fixed errors"
@@ -276,10 +276,11 @@ msgstr "Setzen"
 msgid "source"
 msgstr "Quelle"
 
+# kl for "Klasse"
 #. TRANSLATORS: this should be replaced by a abbreviation for class
 #: ../website/utils/info.py:225 ../website/utils/info.py:339
 msgid "class (abbreviation)"
-msgstr ""
+msgstr "kl"
 
 #: ../website/utils/info.py:228 ../website/utils/info.py:344
 msgid "item"
@@ -293,10 +294,11 @@ msgstr "Titel"
 msgid "count"
 msgstr "Zahl"
 
+# unt for "Unterklasse"
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: ../website/utils/info.py:341
 msgid "subclass (abbreviation)"
-msgstr ""
+msgstr "unt"
 
 #: ../website/utils/info.py:346
 msgid "information on error"
@@ -308,11 +310,11 @@ msgstr "position"
 
 #: ../website/utils/info.py:347
 msgid "position (abbreviation)"
-msgstr "Standpunkt (Abkürzung)"
+msgstr "Standpunkt"
 
 #: ../website/utils/info.py:348
 msgid "elements (abbreviation)"
-msgstr "Elemente (Abkürzung)"
+msgstr "Elemente"
 
 #: ../website/utils/info.py:350 ../website/utils/info.py:352
 msgid "subtitle"
@@ -332,7 +334,7 @@ msgstr "Zeigen Sie einige Fehler"
 
 #: ../website/utils/last-update.py:41
 msgid "OsmOse - last updates"
-msgstr "Osmose - Letzte Updates"
+msgstr "OsmOse - Letzte Updates"
 
 #. TRANSLATORS: days / hours / minutes since last source update, abbreviated to d / h / m
 #: ../website/utils/last-update.py:73
