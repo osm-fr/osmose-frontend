@@ -269,13 +269,23 @@ for res in results:
     if res["elem2_data_type"]:
         elems.append([data_type[res["elem2_data_type"]], res["elem2_id"], res["elem2_tags"]])
 
+    new_elems = []
     for f in xrange(5):
         if res["fix%d_elem_data_type" % f]:
+            found = False
             for e in elems:
                 if e[0] == data_type[res["fix%d_elem_data_type" % f]] and e[1] == res["fix%d_elem_id" % f]:
                     e.append((res["fix%d_tags_create" % f],
                               res["fix%d_tags_modify" % f],
-                              res["fix%d_tags_delete" % f]))
+                              res["fix%d_tags_delete" % f],
+                              f))
+                    found = True
+                    break
+            if not found:
+                new_elems.append((res["fix%d_tags_create" % f],
+                                  res["fix%d_tags_modify" % f],
+                                  res["fix%d_tags_delete" % f],
+                                  f))
 
     for e in elems:
         html += "<div class=\"bulle_elem\">"
@@ -293,7 +303,7 @@ for res in results:
 
         for i in xrange(3, len(e)):
             html += "<div class='fix'>"
-            html += "<a class='link' href='http://localhost:8111/import?url=http://%s/utils/fix-error.py?id=%s&fix=%s' target='hiddenIframe'>josm fix</a>"%(website, error_id, i - 3)
+            html += "<a class='link' href='http://localhost:8111/import?url=http://%s/utils/fix-error.py?id=%s&fix=%s' target='hiddenIframe'>josm fix</a>"%(website, error_id, e[i][3])
 
             for (k, v) in e[i][0].items():
                 html += "<div class='add'> + <b>" + k + "</b> = " + v + "<br></div>"
@@ -305,6 +315,21 @@ for res in results:
 
         for t in e[2].items():
             html += "<b>%s</b> = %s<br>"%(t[0], t[1])
+        html += "</div>"
+
+    for e in new_elems:
+        html += "<div class=\"bulle_elem\">"
+        html += "<div class='fix'>"
+        html += "<a class='link' href='http://localhost:8111/import?url=http://%s/utils/fix-error.py?id=%s&fix=%s' target='hiddenIframe'>josm fix</a>"%(website, error_id, e[3])
+
+        for (k, v) in e[0].items():
+            html += "<div class='add'> + <b>" + k + "</b> = " + v + "<br></div>"
+        for (k, v) in e[1].items():
+            html += "<div class='mod'> ~ <b>" + k + "</b> = " + v + "<br></div>"
+        for k in e[2]:
+            html += "<div class='del'> - <b>" + k + "</b></div>"
+        html += "</div>"
+
         html += "</div>"
 
     html += _("Error reported on: ") + " " + b_date.strftime("%Y-%m-%d")
