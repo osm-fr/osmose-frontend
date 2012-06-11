@@ -36,8 +36,9 @@ def remove_bug(error_id, status):
                           WHERE source=%s AND class=%s AND subclass=%s AND elems=%s;""",
                        (source_id,class_id,sub_class,elems))
       PgCursor.execute("""INSERT INTO dynpoi_status
+                            (source,class,subclass,elems,date,status,lat,lon,subtitle)
                           SELECT source,class,subclass,elems,NOW(),%s,
-                                 '',lat,lon,'',subtitle
+                                 lat,lon,subtitle
                           FROM marker
                           WHERE id = %s""",
                        (status,error_id))
