@@ -135,6 +135,8 @@ INNER JOIN dynpoi_class
   ON marker.source=dynpoi_class.source AND marker.class=dynpoi_class.class
 INNER JOIN dynpoi_update_last
   ON marker.source = dynpoi_update_last.source
+JOIN dynpoi_item
+  ON marker.item = dynpoi_item.item
 LEFT JOIN marker_elem elem0
   ON elem0.marker_id = marker.id AND elem0.elem_index = 0
 LEFT JOIN marker_elem elem1
