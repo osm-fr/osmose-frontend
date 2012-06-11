@@ -125,6 +125,7 @@ if res:
                         res["elem_data_type"], res["elem_id"],
                         res["tags_create"], res["tags_modify"], res["tags_delete"])
     osm_read.CopyTo(o)
+    os.remove(elem_file)
 
 else:
     print "Status: 412 Precondition Failed"
