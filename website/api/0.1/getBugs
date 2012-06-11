@@ -26,6 +26,7 @@ sys.path.append(root_folder)
 from tools import utils
 
 translate = utils.translator()
+show = utils.show
 
 print "Content-type: text/javascript; Charset=UTF-8\n"
 
@@ -81,4 +82,4 @@ for res in PgCursor.fetchall():
     text      = title
     if subtitle:
         text += " - <br>" + subtitle
-    print "putAJAXMarker('%s', %f, %f, '%s', '%s');" % (error_id, lon, lat, text, item)
+    show(u"putAJAXMarker('%s', %f, %f, '%s', '%s');" % (error_id, lon, lat, text, item))
