@@ -58,7 +58,7 @@
  6050 | admin_level     
  6060 | admin_level Loch = 8
  7010 | Gebäude geodätische        
- 7011 | Denkmäler       
  7020 | begrenzen Admin
  7030 | OpenStreetBugs
  7040 | Stromleitungen
+ 8010 | Denkmäler

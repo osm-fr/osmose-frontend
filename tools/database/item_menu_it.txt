@@ -58,7 +58,7 @@
  6050 | admin_level
  6060 | admin_level foro = 8
  7010 | costruzione geodetica
- 7011 | Monumenti
  7020 | limitare l'amministratore
  7030 | OpenStreetBugs
  7040 | linee elettriche
+ 8010 | Monumenti

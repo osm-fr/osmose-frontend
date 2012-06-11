@@ -57,8 +57,8 @@
  6050 | admin_level
  6060 | admin_level=8 hole
  7010 | geodesic building
- 7011 | monuments
  7020 | admin boundary
  7030 | OpenStreetBugs
  7040 | power lines
  7050 | post office
+ 8010 | monuments
