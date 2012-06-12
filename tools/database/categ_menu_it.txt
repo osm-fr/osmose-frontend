@@ -1,0 +1,9 @@
+     10 | strutturale
+     20 | Tags mancanti
+     30 | tag Bad
+     40 | Tags rimozione
+     50 | Tags nome
+     60 | amministrativo
+     70 | Aggiungi alla mappa
+     80 | Integrazione
+

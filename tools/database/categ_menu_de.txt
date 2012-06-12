@@ -1,0 +1,8 @@
+     10 | Structural
+     20 | Tags fehlen
+     30 | Bad-Tag
+     40 | Tags entfernen
+     50 | Tags Namen
+     60 | Administration
+     70 | zur Karte hinzufügen
+     80 | Integration

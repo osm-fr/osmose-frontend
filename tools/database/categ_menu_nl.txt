@@ -1,0 +1,9 @@
+     10 | Structurele
+     20 | Tags vermist
+     30 | Bad tag
+     40 | Tags verwijderen
+     50 | Tags naam
+     60 | Administratieve
+     70 | Toevoegen aan Kaart
+     80 | Integratie
+
