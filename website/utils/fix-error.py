@@ -110,22 +110,43 @@ res = PgCursor.fetchall()
 if res:
     print "Content-Type: text/xml; charset=utf-8"
     print
-    print '<?xml version="1.0" encoding="UTF-8"?>'
     res = res[0]
-    elem_file =  tempfile.mktemp(dir=temp_path, prefix="fix")
-    elem_url = os.path.join(remote_url,
-                            data_type[res["elem_data_type"]],
-                            str(res["elem_id"])
-                           )
-    if res["elem_data_type"] == "W":
-        elem_url = os.path.join(elem_url, "full")
-    (filename, headers) = urllib.urlretrieve(elem_url, elem_file)
-    osm_read = OsmSax.OsmSaxReader(elem_file)
-    o = OsmSaxFixWriter(sys.stdout, "utf8",
-                        res["elem_data_type"], res["elem_id"],
-                        res["tags_create"], res["tags_modify"], res["tags_delete"])
-    osm_read.CopyTo(o)
-    os.remove(elem_file)
+    if res["elem_id"] > 0:
+        elem_file =  tempfile.mktemp(dir=temp_path, prefix="fix")
+        elem_url = os.path.join(remote_url,
+                                data_type[res["elem_data_type"]],
+                                str(res["elem_id"])
+                               )
+        if res["elem_data_type"] == "W":
+            elem_url = os.path.join(elem_url, "full")
+        (filename, headers) = urllib.urlretrieve(elem_url, elem_file)
+        osm_read = OsmSax.OsmSaxReader(elem_file)
+        o = OsmSaxFixWriter(sys.stdout, "UTF-8",
+                            res["elem_data_type"], res["elem_id"],
+                            res["tags_create"], res["tags_modify"], res["tags_delete"])
+        o.startDocument()
+        osm_read.CopyTo(o)
+        os.remove(elem_file)
+
+    else:
+        # create new object
+        data = {}
+        data["id"] = -1
+        data["tag"] = {}
+        for (k, v) in res["tags_create"].iteritems():
+            data["tag"][k] = v
+        sql = "SELECT lat, lon FROM marker WHERE id = %s"
+        PgCursor.execute(sql, (err_id, ))
+        res2 = PgCursor.fetchall()
+        data["lat"] = res2[0]["lat"] / 1000000.
+        data["lon"] = res2[0]["lon"] / 1000000.
+
+        if res["elem_data_type"] == 'N':
+            print OsmSax.NodeToXml(data, full=True)
+        elif res["elem_data_type"] == 'W':
+            print OsmSax.WayToXml(data, full=True)
+        elif res["elem_data_type"] == 'R':
+            print OsmSax.RelationToXml(data, full=True)
 
 else:
     print "Status: 412 Precondition Failed"
