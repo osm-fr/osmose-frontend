@@ -1,0 +1,9 @@
+    10 | Structure
+    20 | Missing tags
+    30 | Bad tag
+    40 | Tags to remove
+    50 | Tags name
+    60 | Administrative
+    70 | To map
+    80 | Integration
+

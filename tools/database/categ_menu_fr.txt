@@ -1,0 +1,9 @@
+    10 | Structurel
+    20 | Tags manquants
+    30 | Mauvais tag
+    40 | Tags à retirer
+    50 | Tags name
+    60 | Administratif
+    70 | A mapper
+    80 | Intégration
+
