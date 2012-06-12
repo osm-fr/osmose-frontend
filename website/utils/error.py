@@ -102,7 +102,7 @@ def show_html_results(columns, res):
                 show(u"<tr><td>%s</td><td>%s</td></tr>" % (k, v))
             show(u"</table>")
         else:
-            print res[c]
+            show(unicode(res[c]))
         show(u"</td>")
         show(u"</tr>")
 
