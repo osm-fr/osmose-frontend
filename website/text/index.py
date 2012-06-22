@@ -56,6 +56,8 @@ SELECT m.id, m.class, m.subtitle, m.lat, m.lon, m.source, m.item,
 FROM marker m
 JOIN dynpoi_class c ON m.class = c.class AND
                        m.source = c.source
+JOIN dynpoi_item
+  ON m.item = dynpoi_item.item
 WHERE id IN (SELECT marker_id FROM marker_elem WHERE username=%s)
 ORDER BY m.class
 LIMIT 500;"""
