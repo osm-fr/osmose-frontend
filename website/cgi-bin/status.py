@@ -39,7 +39,7 @@ if status not in ["done","false"]:
 if error_id < 0:
     sys.exit(1)
 
-if osmose_common.remove_bug(error_id, "done") == 0:
+if osmose_common.remove_bug(error_id, status) == 0:
   print "OK"
 else:
   print "FAIL"
