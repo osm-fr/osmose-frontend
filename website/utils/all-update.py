@@ -100,6 +100,8 @@ for res in PgCursor.fetchall():
     url = url.replace("http://osm4.crans.org", "http://osm4")
     url = url.replace("http://osm5.univ-nantes.fr", "http://osm5")
     url = url.replace("http://osm6.univ-nantes.fr", "http://osm6")
+    url = url.replace("http://osm7.pole-aquinetic.fr", "http://osm7")
+    url = url.replace("http://osm8.pole-aquinetic.fr", "http://osm8")
     print "<td width=\"800\">%s</td>"%url
     print "<td width=\"200\">%s</td>"%res[1]
     print "</tr>"
