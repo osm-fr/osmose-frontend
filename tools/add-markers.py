@@ -39,6 +39,6 @@ for res in giscurs.fetchall():
 #  en = raw_input("English: ")
 #  fr = raw_input("French: ")
 
-  print "insert into dynpoi_item values (%d, %d, '', '', '%s', '%s');" % (i, c, color, avail_flags[0])
+  print "insert into dynpoi_item values (%d, %d, '%s', '%s');" % (i, c, color, avail_flags[0])
   avail_flags.remove(avail_flags[0])
 
