@@ -47,6 +47,16 @@ Content-Type: text/html; charset=utf-8
       <input type='hidden' name='zoom'   value='#zoom#'>
       <input type='hidden' name='source' value='#source#'>
       <input type='hidden' name='user'   value='#user#'>
+      <center>
+      <select name='level' onclick='javascript:pois.loadText();'>
+        <option value=""#level_all#>#level_all_str#</option>
+        <option value="1"#level1#>1</option>
+        <option value="2"#level2#>2</option>
+        <option value="1,2"#level1,2#>1+2</option>
+        <option value="3"#level3#>3</option>
+        <option value="1,2,3"#level1,2,3#>1+2+3</option>
+      </select>
+      </center>
       #form#
   </form>
 </div>

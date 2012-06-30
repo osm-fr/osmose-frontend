@@ -44,8 +44,13 @@ err_id = form.getvalue("item", "").split(",")
 err_id = ",".join([str(int(x)) for x in err_id if x])
 source = form.getvalue("source", "")
 user   = form.getvalue("user", "")
+level  = form.getvalue("level", None)
 zoom   = int(form.getvalue("zoom", "10"))
 bbox   = form.getvalue("bbox", None)
+if level:
+  level = level.split(",")
+  level = ",".join([str(int(x)) for x in level if x])
+
 if bbox:
   bbox = bbox.split(",")
   try:
@@ -157,8 +162,13 @@ sqlbase_count  = """
 SELECT count(*)
 FROM marker
 INNER JOIN dynpoi_update_last
-  ON marker.source = dynpoi_update_last.source
-WHERE %s AND
+  ON marker.source = dynpoi_update_last.source """
+
+if level:
+    sqlbase_count += """INNER JOIN dynpoi_class
+  ON marker.source=dynpoi_class.source AND marker.class=dynpoi_class.class """
+
+sqlbase_count += """WHERE %s AND
   %s AND
   dynpoi_update_last.timestamp > (now() - interval '3 months')
 LIMIT 310;"""
@@ -180,6 +190,9 @@ elif err_id:
     where = "(marker.item IN (%s))" % err_id
 else:
     where = "1=1"
+
+if level:
+    where += " AND dynpoi_class.level IN (%s)" % level
 
 ###########################################################################
 ## sql querry

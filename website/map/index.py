@@ -55,6 +55,18 @@ dico["lon"]    = "2.75"
 dico["zoom"]   = "6"
 dico["source"] = form.getvalue("source", "")
 dico["user"]   = form.getvalue("user", "")
+level = form.getvalue("level", "")
+dico["level_all"] = ""
+dico["level1"] = ""
+dico["level2"] = ""
+dico["level3"] = ""
+dico["level1,2"] = ""
+dico["level1,2,3"] = ""
+if level == "":
+    dico["level_all"] = " selected"
+elif level in ("1", "2", "3", "1,2", "1,2,3"):
+    dico["level%s" % level] = " selected"
+
 active_items   = all_items
 
 # valeurs du cookie
@@ -92,6 +104,7 @@ dico["check"]         = _("Select:")
 dico["check_all"]     = _("all")
 dico["check_nothing"] = _("nothing")
 dico["check_invert"]  = _("invert")
+dico["level_all_str"] = _("all levels")
 
 ###########################################################################
 ## formulaire

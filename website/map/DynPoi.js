@@ -128,7 +128,8 @@ OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
                          + "&zoom="   + document.myform.zoom.value
 			 + "&source=" + document.myform.source.value        
 			 + "&user="   + document.myform.user.value        
-			 + "&item="   + ch        
+			 + "&item="   + ch   
+                         + "&level=" + document.myform.level.value
                          + "&bbox="   + bbox;
 
 	    var permalink = plk.element;

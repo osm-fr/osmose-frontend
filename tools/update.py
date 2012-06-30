@@ -200,9 +200,13 @@ class update_parser(handler.ContentHandler):
         elif name == u"class":
             self._class_id    = int(attrs["id"])
             self._class_item[self._class_id] = int(attrs["item"])
-            self._class_texts[self._class_id] = {}
+            if "level" in attrs:
+                self._class_level = int(attrs["level"])
+            else:
+                self._class_level = 2
+            self._class_texts = {}
         elif name == u"classtext":
-            self._class_texts[self._class_id][attrs["lang"]] = attrs["title"]
+            self._class_texts[attrs["lang"]] = attrs["title"]
         elif name == u"delete":
             # used by files generated with an .osc file
             execute_sql(self._dbcurs, """DELETE FROM marker
@@ -296,23 +300,24 @@ class update_parser(handler.ContentHandler):
             
         elif name == u"class":
             ## to remove when translated
-            if "en" not in self._class_texts[self._class_id]:
-                if len(self._class_texts[self._class_id]) > 0:
-                    for v in self._class_texts[self._class_id].values():
+            if "en" not in self._class_texts:
+                if len(self._class_texts) > 0:
+                    for v in self._class_texts.values():
                         pass
-                    self._class_texts[self._class_id]["en"] = v
+                    self._class_texts["en"] = v
                 else:
-                    self._class_texts[self._class_id]["en"] = u"no translation"
+                    self._class_texts["en"] = u"no translation"
             ##
             execute_sql(self._dbcurs, "DELETE FROM dynpoi_class WHERE source = %s AND class = %s",
                                  (self._source_id, self._class_id))
-            keys = ["source", "class", "item", "title"]
-            vals = ["%s"] * 4
+            keys = ["source", "class", "item", "title", "level"]
+            vals = ["%s"] * 5
             sql = u"INSERT INTO dynpoi_class (" + u','.join(keys) + u") VALUES (" + u','.join(vals) + u");"
             try:
                 execute_sql(self._dbcurs, sql, (self._source_id, self._class_id,
                                                 self._class_item[self._class_id],
-                                                self._class_texts[self._class_id]))
+                                                self._class_texts,
+                                                self._class_level))
             except:
                 print sql
                 raise
