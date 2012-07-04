@@ -88,6 +88,7 @@ def show_html_results(columns, res):
 
     odd = True
     for c in columns:
+        c = c.split(".")[-1]
         odd = not odd
         if odd:
             show(u"<tr class='odd'>")
@@ -118,10 +119,11 @@ elif out_format == "json":
 elif out_format == "xml":
     outxml.startElement("marker")
 
-columns = [ "source", "class", "subclass", "lat", "lon", "elems", "item", "subtitle" ]
+columns = [ "marker.source", "marker.class", "subclass", "lat", "lon", "elems", "marker.item", "subtitle", "title" ]
 
 sql = "SELECT " + ", ".join(columns) + """
 FROM marker
+LEFT JOIN dynpoi_class on marker.class = dynpoi_class.class AND marker.source = dynpoi_class.source
 WHERE id = %s
 """
 
