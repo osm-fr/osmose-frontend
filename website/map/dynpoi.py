@@ -82,6 +82,9 @@ cki["lastLon"]['path']    = '/'
 cki["lastZoom"] = form.getvalue("zoom", "0")
 cki["lastZoom"]['expires'] = (datetime.datetime.now() + datetime.timedelta(days=365)).strftime("%a, %d %b %Y %H:00:00 GMT")
 cki["lastZoom"]['path']    = '/'
+cki["lastLevel"] = form.getvalue("level", "1")
+cki["lastLevel"]['expires'] = (datetime.datetime.now() + datetime.timedelta(days=365)).strftime("%a, %d %b %Y %H:00:00 GMT")
+cki["lastLevel"]['path']    = '/'
 cki["lastItem"] = form.getvalue("item", "")
 cki["lastItem"]['expires'] = (datetime.datetime.now() + datetime.timedelta(days=365)).strftime("%a, %d %b %Y %H:00:00 GMT")
 cki["lastItem"]['path']    = '/'

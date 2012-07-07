@@ -53,19 +53,9 @@ dico = {}
 dico["lat"]    = "46.97"
 dico["lon"]    = "2.75"
 dico["zoom"]   = "6"
+level          = "1"
 dico["source"] = form.getvalue("source", "")
 dico["user"]   = form.getvalue("user", "")
-level = form.getvalue("level", "")
-dico["level_all"] = ""
-dico["level1"] = ""
-dico["level2"] = ""
-dico["level3"] = ""
-dico["level1,2"] = ""
-dico["level1,2,3"] = ""
-if level == "":
-    dico["level_all"] = " selected"
-elif level in ("1", "2", "3", "1,2", "1,2,3"):
-    dico["level%s" % level] = " selected"
 
 active_items   = all_items
 
@@ -79,6 +69,8 @@ if "lastLon" in cki:
     dico["lon"] = cki.get("lastLon").value
 if "lastZoom" in cki:
     dico["zoom"] = cki.get("lastZoom").value
+if "lastLevel" in cki:
+    level = cki.get("lastLevel").value
 if "lastItem" in cki:
     active_items = cki.get("lastItem").value.split(",")
     
@@ -89,6 +81,8 @@ if form.getvalue("lon", None):
     dico["lon"]  = form.getvalue("lon", None)
 if form.getvalue("zoom", None):
     dico["zoom"] = form.getvalue("zoom", None)
+if form.getvalue("level", None):
+    level = form.getvalue("level", None)
 if form.getvalue("item", None):
     active_items = form.getvalue("item", None).split(",")
 
@@ -96,7 +90,16 @@ try:
     active_items = [int(x) for x in active_items if x]
 except:
     active_items = all_items
-    
+
+
+for l in ("_all", "1", "2", "3", "1,2", "1,2,3"):
+    dico["level%s" % l] = ""
+
+if level == "":
+    dico["level1"] = " selected"
+elif level in ("1", "2", "3", "1,2", "1,2,3"):
+    dico["level%s" % level] = " selected"
+
 dico["form"]      = u""
 dico["title"]     = _("OsmOse - map")
 dico["need_zoom"] = _("no bubbles at this zoom factor")
