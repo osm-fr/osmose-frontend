@@ -135,6 +135,7 @@ OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
 	    var permalink = plk.element;
 	    // var permalink = document.getElementsByClassName('olControlPermalink')[0].firstChild;
 	    permalink.href = permalink.href.replace(/&item=[-0-9,]*/,'').replace(/\?item=[-0-9,]*&?/,'?') + "&item=" + ch;
+	    permalink.href = permalink.href.replace(/&level=[-0-9,]*/,'').replace(/\?level=[-0-9,]*&?/,'?') + "&level=" + document.myform.level.value;
 	    
             var onFail = function(e) {
                 this.events.triggerEvent("loadend");
