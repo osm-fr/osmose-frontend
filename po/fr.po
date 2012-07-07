@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-06 19:43+0200\n"
+"POT-Creation-Date: 2012-07-07 18:45+0200\n"
 "PO-Revision-Date: 2012-06-02 22:17+0100\n"
 "Last-Translator: operon <a@a.fr>\n"
 "Language-Team: French\n"
@@ -29,105 +29,112 @@ msgstr "OsmOse - informations de copyright"
 msgid "Data are coming from:"
 msgstr "Les données proviennent de :"
 
-#: ../website/copyright.py:27 ../website/map/index.py:134
+#: ../website/copyright.py:27 ../website/map2/index.py:145
+#: ../website/map/index.py:150
 msgid "copyright"
 msgstr "copyright"
 
 #. TRANSLATORS: link to tooltip help
-#: ../website/map/dynpoi.py:101
+#: ../website/map2/dynpoi.py:105 ../website/map/dynpoi.py:110
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/FR:Osmose/erreurs"
 
-#: ../website/map/dynpoi.py:298
+#: ../website/map2/dynpoi.py:348 ../website/map/dynpoi.py:353
 msgid "Error reported on: "
 msgstr "Erreur reportée le :"
 
-#: ../website/map/dynpoi.py:315
+#: ../website/map2/dynpoi.py:365 ../website/map/dynpoi.py:370
 msgid "change status"
 msgstr "changer le statut"
 
-#: ../website/map/dynpoi.py:316
+#: ../website/map2/dynpoi.py:366 ../website/map/dynpoi.py:371
 msgid "corrected"
 msgstr "corrigé"
 
-#: ../website/map/dynpoi.py:317
+#: ../website/map2/dynpoi.py:367 ../website/map/dynpoi.py:372
 msgid "false positive"
 msgstr "faux positif"
 
-#: ../website/map/index.py:89
+#: ../website/map2/index.py:99 ../website/map/index.py:104
 msgid "OsmOse - map"
 msgstr "OsmOse - carte"
 
-#: ../website/map/index.py:90
+#: ../website/map2/index.py:100 ../website/map/index.py:105
 msgid "no bubbles at this zoom factor"
 msgstr "pas de bulle à ce zoom"
 
-#: ../website/map/index.py:91
+#: ../website/map2/index.py:101 ../website/map/index.py:106
 msgid "Select:"
 msgstr "Sélection :"
 
-#: ../website/map/index.py:92 ../website/map/index.py:105
+#: ../website/map2/index.py:102 ../website/map2/index.py:116
+#: ../website/map/index.py:107 ../website/map/index.py:121
 msgid "all"
 msgstr "tous"
 
-#: ../website/map/index.py:93 ../website/map/index.py:106
+#: ../website/map2/index.py:103 ../website/map2/index.py:117
+#: ../website/map/index.py:108 ../website/map/index.py:122
 msgid "nothing"
 msgstr "rien"
 
-#: ../website/map/index.py:94
+#: ../website/map2/index.py:104 ../website/map/index.py:109
 msgid "invert"
 msgstr "inverser"
 
+#: ../website/map2/index.py:105 ../website/map/index.py:110
+msgid "all levels"
+msgstr "tous les niveaux"
+
 #. TRANSLATORS: link to help in appropriate language
-#: ../website/map/index.py:125
+#: ../website/map2/index.py:136 ../website/map/index.py:141
 msgid "Help"
 msgstr "Aide"
 
-#: ../website/map/index.py:125
+#: ../website/map2/index.py:136 ../website/map/index.py:141
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/FR:Osmose"
 
-#: ../website/map/index.py:126
+#: ../website/map2/index.py:137 ../website/map/index.py:142
 msgid "by user"
 msgstr "par utilisateur"
 
-#: ../website/map/index.py:127
+#: ../website/map2/index.py:138 ../website/map/index.py:143
 msgid "relation analyser"
 msgstr "analyseur de relation"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../website/map/index.py:129
+#: ../website/map2/index.py:140 ../website/map/index.py:145
 msgid "clc"
 msgstr "clc"
 
-#: ../website/map/index.py:129
+#: ../website/map2/index.py:140 ../website/map/index.py:145
 msgid "http://clc.openstreetmap.fr/"
 msgstr "http://clc.openstreetmap.fr/"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../website/map/index.py:131
+#: ../website/map2/index.py:142 ../website/map/index.py:147
 msgid "geodesic"
 msgstr "géodésie"
 
-#: ../website/map/index.py:131
+#: ../website/map2/index.py:142 ../website/map/index.py:147
 msgid "http://geodesie.openstreetmap.fr/"
 msgstr "http://geodesie.openstreetmap.fr/"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../website/map/index.py:133
+#: ../website/map2/index.py:144 ../website/map/index.py:149
 msgid "openstreetmap.fr"
 msgstr "openstreetmap.fr"
 
-#: ../website/map/index.py:133
+#: ../website/map2/index.py:144 ../website/map/index.py:149
 msgid "http://www.openstreetmap.fr/"
 msgstr "http://www.openstreetmap.fr/"
 
 #. TRANSLATORS: link to source code
-#: ../website/map/index.py:136
+#: ../website/map2/index.py:147 ../website/map/index.py:152
 msgid "sources"
 msgstr "sources"
 
-#: ../website/map/index.py:137
+#: ../website/map2/index.py:148 ../website/map/index.py:153
 msgid "statistics"
 msgstr "statistiques"
 
@@ -156,12 +163,12 @@ msgstr "Utilisateur :"
 msgid "OsmOse - statistics for user %s"
 msgstr "OsmOse - statistiques pour l'utilisateur %s"
 
-#: ../website/text/index.py:67
+#: ../website/text/index.py:69
 #, python-format
 msgid "User statistics for %s"
 msgstr "Statistiques pour l'utilisateur %s"
 
-#: ../website/text/index.py:69
+#: ../website/text/index.py:71
 #, python-format
 msgid ""
 "This page shows errors on elements that were last modified by '%s'. This "
@@ -171,41 +178,45 @@ msgstr ""
 "dernière fois par '%s'. Cela ne signifie pas que cet utilisateur est "
 "responsable pour toutes ces erreurs."
 
-#: ../website/text/index.py:73
+#: ../website/text/index.py:75
 #, python-format
 msgid "Number of found errors: %d"
 msgstr "Nombre d'erreurs trouvées : %d"
 
-#: ../website/text/index.py:75
+#: ../website/text/index.py:77
 #, python-format
 msgid "Number of found errors: more than %d"
 msgstr "Nombre d'erreurs trouvées : plus que %d"
 
-#: ../website/text/index.py:80
+#: ../website/text/index.py:82
 msgid "Item"
 msgstr "Item"
 
-#: ../website/text/index.py:81
+#: ../website/text/index.py:83
 msgid "Class"
 msgstr "Classe"
 
-#: ../website/text/index.py:82
+#: ../website/text/index.py:84
+msgid "Level"
+msgstr "Niveau"
+
+#: ../website/text/index.py:85
 msgid "Title"
 msgstr "Titre"
 
-#: ../website/text/index.py:83
+#: ../website/text/index.py:86
 msgid "Error"
 msgstr "Erreur"
 
-#: ../website/text/index.py:84
+#: ../website/text/index.py:87
 msgid "Latitude"
 msgstr "Latitude"
 
-#: ../website/text/index.py:85
+#: ../website/text/index.py:88
 msgid "Longitude"
 msgstr "Longitude"
 
-#: ../website/text/index.py:109
+#: ../website/text/index.py:114
 msgid "map"
 msgstr "carte"
 
@@ -222,15 +233,15 @@ msgstr "clé"
 msgid "value"
 msgstr "valeur"
 
-#: ../website/utils/error.py:115
+#: ../website/utils/error.py:116
 msgid "Marker"
 msgstr "Marqueurs"
 
-#: ../website/utils/error.py:139
+#: ../website/utils/error.py:141
 msgid "Elements"
 msgstr "Éléments"
 
-#: ../website/utils/error.py:164
+#: ../website/utils/error.py:166
 msgid "Fixes"
 msgstr "Corrections"
 
@@ -271,17 +282,17 @@ msgstr "Carte"
 msgid "Set"
 msgstr "Choisir"
 
-#: ../website/utils/info.py:223 ../website/utils/info.py:337
+#: ../website/utils/info.py:223 ../website/utils/info.py:338
 #: ../website/utils/last-update.py:89
 msgid "source"
 msgstr "source"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
-#: ../website/utils/info.py:225 ../website/utils/info.py:339
+#: ../website/utils/info.py:225 ../website/utils/info.py:340
 msgid "class (abbreviation)"
 msgstr "cl"
 
-#: ../website/utils/info.py:228 ../website/utils/info.py:344
+#: ../website/utils/info.py:228 ../website/utils/info.py:347
 msgid "item"
 msgstr "Item"
 
@@ -294,39 +305,44 @@ msgid "count"
 msgstr "nombre"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: ../website/utils/info.py:341
+#: ../website/utils/info.py:342
 msgid "subclass (abbreviation)"
 msgstr "s"
 
-#: ../website/utils/info.py:346
+#. TRANSLATORS: this should be replaced by a abbreviation for subclass
+#: ../website/utils/info.py:344
+msgid "level (abbreviation)"
+msgstr "l"
+
+#: ../website/utils/info.py:349
 msgid "information on error"
 msgstr "infos sur l'erreur"
 
-#: ../website/utils/info.py:347
+#: ../website/utils/info.py:350
 msgid "position"
 msgstr "position"
 
-#: ../website/utils/info.py:347
+#: ../website/utils/info.py:350
 msgid "position (abbreviation)"
 msgstr "pos"
 
-#: ../website/utils/info.py:348
+#: ../website/utils/info.py:351
 msgid "elements (abbreviation)"
 msgstr "elems"
 
-#: ../website/utils/info.py:350 ../website/utils/info.py:352
+#: ../website/utils/info.py:353 ../website/utils/info.py:355
 msgid "subtitle"
 msgstr "sous-titre"
 
-#: ../website/utils/info.py:354
+#: ../website/utils/info.py:357
 msgid "date"
 msgstr "date"
 
-#: ../website/utils/info.py:432
+#: ../website/utils/info.py:436
 msgid "Show more errors"
 msgstr "Afficher plus d'erreurs"
 
-#: ../website/utils/info.py:436
+#: ../website/utils/info.py:440
 msgid "Show some errors"
 msgstr "Afficher quelques erreurs"
 

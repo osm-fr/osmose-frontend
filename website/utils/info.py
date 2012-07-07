@@ -293,6 +293,7 @@ SELECT
   dynpoi_class.source AS source,
   dynpoi_class.class AS class,
   dynpoi_class.item AS item,
+  dynpoi_class.level AS level,
   dynpoi_item.menu,
   dynpoi_class.title,
   subtitle,
@@ -339,6 +340,8 @@ ORDER BY
     show(u"  <th title=\"class\">%s</th>" % _("class (abbreviation)"))
 # TRANSLATORS: this should be replaced by a abbreviation for subclass
     show(u"  <th title=\"subclass\">%s</th>" % _("subclass (abbreviation)"))
+# TRANSLATORS: this should be replaced by a abbreviation for subclass
+    show(u"  <th title=\"level\">%s</th>" % _("level (abbreviation)"))
     show(u"  <th></th>")
     show(u"  <th>#</th>")
     show(u"  <th>%s</th>" % _("item"))
@@ -365,6 +368,7 @@ ORDER BY
         show(u"<td title=\"%(cmt)s\"><a href=\"?source=%(src)d\">%(src)d</a> </td>" % {"cmt": res["source_comment"], "src": res["source"]})
         show(u"<td>%d</td>" % res["class"])
         show(u"<td>%d</td>" % res["subclass"])
+        show(u"<td>%d</td>" % res["level"])
         show(u"<td title=\"%(item)d\"><img src=\"/map/markers/marker-l-%(item)d.png\" alt=\"%(item)d\"></td>" % {"item": res["item"]})
         show(u"<td><a href=\"?item=%d\">%d</a> </td>"%(res["item"],res["item"]))
         if res["menu"]:
@@ -379,7 +383,7 @@ ORDER BY
         if res["lat"] and res["lon"]:
             lat = res["lat"] / 1000000.
             lon = res["lon"] / 1000000.
-            show(u"<td><a href='/map/?zoom=13&amp;lat=%f&amp;lon=%f&amp;item=%d'>%.2f&nbsp;%.2f</a></td>" % (lat, lon, res["item"], lon, lat))
+            show(u"<td><a href='/map/?zoom=13&amp;lat=%f&amp;lon=%f&amp;item=%d&amp;level=%d'>%.2f&nbsp;%.2f</a></td>" % (lat, lon, res["item"], res["level"], lon, lat))
         else:
             show(u"<td></td>")
 

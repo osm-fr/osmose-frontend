@@ -52,7 +52,7 @@ utils.print_header(_("OsmOse - statistics for user %s") % username)
 
 sql = """--
 SELECT m.id, m.class, m.subtitle, m.lat, m.lon, m.source, m.item,
-       c.title
+       c.title, c.level
 FROM marker m
 JOIN dynpoi_class c ON m.class = c.class AND
                        m.source = c.source
@@ -81,6 +81,7 @@ show(u"<table class='sortable byuser'>\n")
 show(u"  <tr>\n")
 show(u"    <th>%s</th>\n" % _("Item"))
 show(u"    <th>%s<span id=\"sorttable_sortfwdind\">&nbsp;▾</span></th>\n" % _("Class"))
+show(u"    <th>%s</th>\n" % _("Level"))
 show(u"    <th>%s</th>\n" % _("Title"))
 show(u"    <th>%s</th>\n" % _("Error"))
 show(u"    <th>%s</th>\n" % _("Latitude"))
@@ -92,6 +93,7 @@ for res in results:
     show(u"  <tr>\n")
     show(u"    <td>" + str(res["item"]) + "</td>\n")
     show(u"    <td>" + str(res["class"]) + "</td>\n")
+    show(u"    <td>" + str(res["level"]) + "</td>\n")
     show(u"    <td>" + translate.select(res["title"]) + "</td>\n")
     show(u"    <td>\n")
     if res["subtitle"] is None:
@@ -104,8 +106,9 @@ for res in results:
     cl = res["class"]
     source = res["source"]
     item = res["item"]
-    url = "/map/?zoom=16&amp;lat=%s&amp;lon=%s&amp;source=%s" % (lat, lon, source)
-    url = "/map/?zoom=16&amp;lat=%s&amp;lon=%s&amp;item=%s" % (lat, lon, item)
+    level = res["level"]
+#    url = "/map/?zoom=16&amp;lat=%s&amp;lon=%s&amp;source=%s" % (lat, lon, source)
+    url = "/map/?zoom=16&amp;lat=%s&amp;lon=%s&amp;item=%s&amp;level=%d" % (lat, lon, item, level)
     show(u"    <td>" + lat + "</td>\n")
     show(u"    <td>" + lon + "</td>\n")
     show(u"    <td><a href='" + url + "'>%s</a></td>\n" % _("map"))
