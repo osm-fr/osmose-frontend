@@ -43,7 +43,7 @@ lon    = int(float(form.getvalue("lon", "0"))*1000000)
 err_id = form.getvalue("item", "").split(",")
 err_id = ",".join([str(int(x)) for x in err_id if x])
 source = form.getvalue("source", "")
-user   = form.getvalue("user", "")
+user   = utils.pg_escape(unicode(form.getvalue("user", "")))
 level  = form.getvalue("level", None)
 zoom   = int(form.getvalue("zoom", "10"))
 bbox   = form.getvalue("bbox", None)
@@ -150,7 +150,11 @@ LEFT JOIN marker_elem elem2
   ON elem2.marker_id = marker.id AND elem2.elem_index = 2"""
 for f in xrange(5):
     sqlbase += """LEFT JOIN marker_fix fix%d
-  ON fix%d.marker_id = marker.id AND fix%d.diff_index = %d""" % (4 * (f, ))
+  ON fix%d.marker_id = marker.id AND fix%d.diff_index = %d """ % (4 * (f, ))
+
+if user:
+    sqlbase += """INNER JOIN marker_elem
+  ON marker.id = marker_elem.marker_id AND marker_elem.username = '%s' """ % user
 
 sqlbase += """WHERE %s AND
   %s AND
@@ -164,9 +168,13 @@ FROM marker
 INNER JOIN dynpoi_update_last
   ON marker.source = dynpoi_update_last.source """
 
+if user:
+    sqlbase_count += """INNER JOIN marker_elem
+  ON marker.id = marker_elem.marker_id AND marker_elem.username = '%s' """ % user
+
 if level:
     sqlbase_count += """INNER JOIN dynpoi_class
-  ON marker.source=dynpoi_class.source AND marker.class=dynpoi_class.class """
+  ON marker.source = dynpoi_class.source AND marker.class = dynpoi_class.class """
 
 sqlbase_count += """WHERE %s AND
   %s AND
@@ -184,8 +192,6 @@ if source:
             source2.append("(marker.source=%d AND marker.class=%d)"%(int(source[0]), int(source[1])))
     sources2 = " OR ".join(source2)
     where = "(%s)" % sources2
-elif user:
-    sys.exit(0)
 elif err_id:
     where = "(marker.item IN (%s))" % err_id
 else:
