@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-07 18:45+0200\n"
+"POT-Creation-Date: 2012-07-11 12:43+0200\n"
 "PO-Revision-Date: 2012-06-05 21:50+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: Italian\n"
@@ -39,19 +39,19 @@ msgstr "copyright"
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/IT:Osmose/erreurs"
 
-#: ../website/map2/dynpoi.py:348 ../website/map/dynpoi.py:353
+#: ../website/map2/dynpoi.py:348 ../website/map/dynpoi.py:359
 msgid "Error reported on: "
 msgstr "Errore riferito: "
 
-#: ../website/map2/dynpoi.py:365 ../website/map/dynpoi.py:370
+#: ../website/map2/dynpoi.py:365 ../website/map/dynpoi.py:376
 msgid "change status"
 msgstr "cambia status"
 
-#: ../website/map2/dynpoi.py:366 ../website/map/dynpoi.py:371
+#: ../website/map2/dynpoi.py:366 ../website/map/dynpoi.py:377
 msgid "corrected"
 msgstr "corretto"
 
-#: ../website/map2/dynpoi.py:367 ../website/map/dynpoi.py:372
+#: ../website/map2/dynpoi.py:367 ../website/map/dynpoi.py:378
 msgid "false positive"
 msgstr "falsi positivi"
 
@@ -154,21 +154,35 @@ msgstr "Nome utente"
 msgid "OsmOse - statistics for user"
 msgstr "OsmOse - statistiche per l'utente"
 
+#: ../website/text/index.py:38
+#, fuzzy
+msgid "User statistics"
+msgstr "Statistiche utente"
+
 #: ../website/text/index.py:39
+msgid ""
+"Osmose allows you to control your own errors.<br>By entering your OSM "
+"username in the following form, you will be able to see errors that are "
+"attached to your username. Note that the algorithm that attaches errors to "
+"username is not perfect, as Osmose only checks the last contributor of the "
+"relevant erroneous elements."
+msgstr ""
+
+#: ../website/text/index.py:42
 msgid "Username:"
 msgstr "nome utente:"
 
-#: ../website/text/index.py:48
+#: ../website/text/index.py:51
 #, python-format
 msgid "OsmOse - statistics for user %s"
 msgstr "OsmOse - statistiche per utente %s"
 
-#: ../website/text/index.py:69
+#: ../website/text/index.py:72
 #, python-format
 msgid "User statistics for %s"
 msgstr "Statistiche utente per %s"
 
-#: ../website/text/index.py:71
+#: ../website/text/index.py:74
 #, python-format
 msgid ""
 "This page shows errors on elements that were last modified by '%s'. This "
@@ -178,45 +192,49 @@ msgstr ""
 "'%s'. Questo non significa che questo utente è responsabile di tutti questi "
 "errori."
 
-#: ../website/text/index.py:75
+#: ../website/text/index.py:78
 #, python-format
 msgid "Number of found errors: %d"
 msgstr "Numero di errori riscontrati: %d"
 
-#: ../website/text/index.py:77
+#: ../website/text/index.py:80
 #, python-format
 msgid "Number of found errors: more than %d"
 msgstr "Numero di errori rilevati: più di %d"
 
 #: ../website/text/index.py:82
+msgid "Show errors on a map"
+msgstr ""
+
+#: ../website/text/index.py:87
 msgid "Item"
 msgstr "Elemento"
 
-#: ../website/text/index.py:83
+#: ../website/text/index.py:88
 msgid "Class"
 msgstr "Classe"
 
-#: ../website/text/index.py:84
+#: ../website/text/index.py:89
 msgid "Level"
 msgstr ""
 
-#: ../website/text/index.py:85
+#: ../website/text/index.py:90
 msgid "Title"
 msgstr "Titolo"
 
-#: ../website/text/index.py:86
+#: ../website/text/index.py:91
 msgid "Error"
 msgstr "Errore"
 
-#: ../website/text/index.py:87
+#: ../website/text/index.py:92
 msgid "Latitude"
 msgstr "Latitudine"
 
-#: ../website/text/index.py:88
+#: ../website/text/index.py:93
 msgid "Longitude"
 msgstr "longitudine"
 
-#: ../website/text/index.py:114
+#: ../website/text/index.py:119
 msgid "map"
 msgstr "mappa"
 
