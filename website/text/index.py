@@ -35,6 +35,9 @@ show = utils.show
 
 if username=="":
     utils.print_header(_("OsmOse - statistics for user"))
+    show(u"<h1>%s</h1>" % (_("User statistics")))
+    show(_("Osmose allows you to control your own errors.<br>By entering your OSM username in the following form, you will be able to see errors that are attached to your username. Note that the algorithm that attaches errors to username is not perfect, as Osmose only checks the last contributor of the relevant erroneous elements."))
+    show(u"<br><br>\n")
     show(u"<form method='GET' action=''>")
     show(u"<label for='username'>%s</label>" % _("Username:"))
     show(u"<input type='text' name='username' id='username'>")
@@ -75,6 +78,8 @@ if count < 500:
     show(_("Number of found errors: %d") % count)
 else:
     show(_("Number of found errors: more than %d") % count)
+show(u" - ")
+show(u"<a href='/map/?user=%s'>%s</a>" % (username, _("Show errors on a map")))
 show(u"</p>")
 
 show(u"<table class='sortable byuser'>\n")
