@@ -61,4 +61,5 @@
  7030 | OpenStreetBugs
  7040 | Hoogspanningslijnen
  7050 | postkantoor
+ 7060 |
  8010 | monumenten

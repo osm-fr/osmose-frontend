@@ -61,4 +61,6 @@
  7020 | limitare l'amministratore
  7030 | OpenStreetBugs
  7040 | linee elettriche
+ 7050 |
+ 7060 |
  8010 | Monumenti

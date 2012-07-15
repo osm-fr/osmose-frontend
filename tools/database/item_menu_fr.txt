@@ -61,6 +61,7 @@
  7030 | OpenStreetBugs
  7040 | lignes électriques
  7050 | bureau de poste
+ 7060 | changement pour ODbl
  8010 | monuments
  8020 | postes
  8030 | écoles

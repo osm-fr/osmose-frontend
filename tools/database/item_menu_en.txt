@@ -61,6 +61,7 @@
  7030 | OpenStreetBugs
  7040 | power lines
  7050 | post office
+ 7060 | ODbl migration change
  8010 | monuments
  8020 | post offices
  8030 | schools

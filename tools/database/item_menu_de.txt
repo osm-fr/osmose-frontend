@@ -61,4 +61,6 @@
  7020 | begrenzen Admin
  7030 | OpenStreetBugs
  7040 | Stromleitungen
+ 7050 |
+ 7060 |
  8010 | Denkmäler
