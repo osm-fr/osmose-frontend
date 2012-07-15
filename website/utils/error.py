@@ -119,11 +119,12 @@ elif out_format == "json":
 elif out_format == "xml":
     outxml.startElement("marker")
 
-columns = [ "marker.source", "marker.class", "subclass", "lat", "lon", "elems", "marker.item", "subtitle", "title" ]
+columns = [ "marker.source", "marker.class", "subclass", "lat", "lon", "elems", "marker.item", "subtitle", "title", "level", "timestamp" ]
 
 sql = "SELECT " + ", ".join(columns) + """
 FROM marker
 LEFT JOIN dynpoi_class on marker.class = dynpoi_class.class AND marker.source = dynpoi_class.source
+LEFT JOIN dynpoi_update_last on marker.source = dynpoi_update_last.source
 WHERE id = %s
 """
 
