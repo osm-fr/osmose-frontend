@@ -38,7 +38,7 @@
 //      map.addLayer(layerOpenSeaMap);
                  
       //*****************************************************
-      // Layers de beta.letuffe.org
+      // Layers de layers.openstreetmap.fr
 
       function get_osm_url (bounds) {
         var res = this.map.getResolution();
@@ -58,10 +58,10 @@
       /* Base layers inclusion */
       var layers = [];
       for ( var idx in all_available_styles ) {
-        var name = 'beta - ' + all_available_styles[idx];
+        var name = 'layers - ' + all_available_styles[idx];
         var l = new OpenLayers.Layer.TMS(
 	  name,
-	  ["http://beta.letuffe.org/tiles/renderer.py/"+idx+"/"],
+	  ["http://layers.openstreetmap.fr/tiles/renderer.py/"+idx+"/"],
 	  { type:'jpeg',
 	    getURL: get_osm_url,
             transitionEffect: 'resize',
@@ -73,6 +73,11 @@
       }
 		  
       /* Transparent overlays (must be png with alpha channel) */
+      pois = new OpenLayers.Layer.DynPoi("Erreurs Osmose", {
+        location:"dynpoi.py",
+        projection: new OpenLayers.Projection("EPSG:4326")} );
+      map.addLayer(pois);
+ 
       var layerOpenSeaMap = new OpenLayers.Layer.TMS(
               "OpenSeaMap",
               "http://tiles.openseamap.org/seamark/",
@@ -98,10 +103,10 @@
       map.addLayer(layerODBL);
  
       for ( var idx in all_available_overlays ) {
-        var name = 'beta - ' + all_available_overlays[idx];
+        var name = 'layers - ' + all_available_overlays[idx];
 	var overlay = new OpenLayers.Layer.TMS( 
           name, 
-	  ["http://beta.letuffe.org/tiles/renderer.py/"+idx+"/"],
+	  ["http://layers.openstreetmap.fr/tiles/renderer.py/"+idx+"/"],
 	  { type:'png',
 	    getURL: get_osm_url, 
             displayOutsideMaxExtent: true,
@@ -116,11 +121,7 @@
 
       //******************************************************
       
-      pois = new OpenLayers.Layer.DynPoi("Erreurs Osmose", {
-        location:"dynpoi.py",
-        projection: new OpenLayers.Projection("EPSG:4326")} );
-      map.addLayer(pois);
-      
+     
       var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
       map.setCenter(lonLat, zoom);
 
