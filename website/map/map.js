@@ -58,7 +58,7 @@
       /* Base layers inclusion */
       var layers = [];
       for ( var idx in all_available_styles ) {
-        var name = 'layers - ' + all_available_styles[idx];
+        var name = all_available_styles[idx];
         var l = new OpenLayers.Layer.TMS(
 	  name,
 	  ["http://layers.openstreetmap.fr/tiles/renderer.py/"+idx+"/"],
@@ -103,7 +103,7 @@
       map.addLayer(layerODBL);
  
       for ( var idx in all_available_overlays ) {
-        var name = 'layers - ' + all_available_overlays[idx];
+        var name = all_available_overlays[idx];
 	var overlay = new OpenLayers.Layer.TMS( 
           name, 
 	  ["http://layers.openstreetmap.fr/tiles/renderer.py/"+idx+"/"],
