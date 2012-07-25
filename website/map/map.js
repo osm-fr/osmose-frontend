@@ -73,11 +73,6 @@
       }
 		  
       /* Transparent overlays (must be png with alpha channel) */
-      pois = new OpenLayers.Layer.DynPoi("Erreurs Osmose", {
-        location:"dynpoi.py",
-        projection: new OpenLayers.Projection("EPSG:4326")} );
-      map.addLayer(pois);
- 
       var layerOpenSeaMap = new OpenLayers.Layer.TMS(
               "OpenSeaMap",
               "http://tiles.openseamap.org/seamark/",
@@ -117,7 +112,13 @@
         layers.push(overlay);
       }
       
-      map.addLayers(layers);	  
+      map.addLayers(layers);
+
+      /* Must be the last layers so that markers are above any other layers */
+      pois = new OpenLayers.Layer.DynPoi("Erreurs Osmose", {
+        location:"dynpoi.py",
+        projection: new OpenLayers.Projection("EPSG:4326")} );
+      map.addLayer(pois);
 
       //******************************************************
       
