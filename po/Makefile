@@ -1,5 +1,5 @@
 
-PYFILES=$(shell find .. -name '*.py' -not -type l | sort)
+PYFILES=$(shell find ../website ../tools -name '*.py' -not -type l | sort)
 LANG=fr en de nl it
 
 MO=$(foreach l,$(LANG),mo/$(l)/LC_MESSAGES/osmose-frontend.mo)
@@ -10,7 +10,7 @@ PO=$(foreach l,$(LANG),$(l).po)
 all: $(PO) $(MO)
 
 osmose-frontend.pot: $(PYFILES)
-	xgettext -cTRANSLATORS --language=Python --keyword=_ --keyword=N_ --output=osmose-frontend.pot $(PYFILES)
+	LANG=C xgettext -cTRANSLATORS --language=Python --keyword=_ --keyword=N_ --output=osmose-frontend.pot $(PYFILES)
 
 %.po: osmose-frontend.pot
 	if test -e $@; then \

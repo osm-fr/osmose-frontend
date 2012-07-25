@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-11 12:43+0200\n"
+"POT-Creation-Date: 2012-07-27 21:11+0200\n"
 "PO-Revision-Date: 2012-06-05 21:50+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: Italian\n"
@@ -30,7 +30,7 @@ msgid "Data are coming from:"
 msgstr "I dati sono provenienti da:"
 
 #: ../website/copyright.py:27 ../website/map2/index.py:145
-#: ../website/map/index.py:150
+#: ../website/map/index.py:173
 msgid "copyright"
 msgstr "copyright"
 
@@ -68,12 +68,12 @@ msgid "Select:"
 msgstr "Selezionare"
 
 #: ../website/map2/index.py:102 ../website/map2/index.py:116
-#: ../website/map/index.py:107 ../website/map/index.py:121
+#: ../website/map/index.py:107 ../website/map/index.py:123
 msgid "all"
 msgstr "tutti"
 
 #: ../website/map2/index.py:103 ../website/map2/index.py:117
-#: ../website/map/index.py:108 ../website/map/index.py:122
+#: ../website/map/index.py:108 ../website/map/index.py:124
 msgid "nothing"
 msgstr "niente"
 
@@ -86,55 +86,55 @@ msgid "all levels"
 msgstr ""
 
 #. TRANSLATORS: link to help in appropriate language
-#: ../website/map2/index.py:136 ../website/map/index.py:141
+#: ../website/map2/index.py:136 ../website/map/index.py:164
 msgid "Help"
 msgstr "Aiuto"
 
-#: ../website/map2/index.py:136 ../website/map/index.py:141
+#: ../website/map2/index.py:136 ../website/map/index.py:164
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/IT:Osmose"
 
-#: ../website/map2/index.py:137 ../website/map/index.py:142
+#: ../website/map2/index.py:137 ../website/map/index.py:165
 msgid "by user"
 msgstr "dall'utente"
 
-#: ../website/map2/index.py:138 ../website/map/index.py:143
+#: ../website/map2/index.py:138 ../website/map/index.py:166
 msgid "relation analyser"
 msgstr "analyzer relazioni"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../website/map2/index.py:140 ../website/map/index.py:145
+#: ../website/map2/index.py:140 ../website/map/index.py:168
 msgid "clc"
 msgstr "clc"
 
-#: ../website/map2/index.py:140 ../website/map/index.py:145
+#: ../website/map2/index.py:140 ../website/map/index.py:168
 msgid "http://clc.openstreetmap.fr/"
 msgstr "http://clc.openstreetmap.fr/"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../website/map2/index.py:142 ../website/map/index.py:147
+#: ../website/map2/index.py:142 ../website/map/index.py:170
 msgid "geodesic"
 msgstr "geodetica"
 
-#: ../website/map2/index.py:142 ../website/map/index.py:147
+#: ../website/map2/index.py:142 ../website/map/index.py:170
 msgid "http://geodesie.openstreetmap.fr/"
 msgstr "http://geodesie.openstreetmap.fr/"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../website/map2/index.py:144 ../website/map/index.py:149
+#: ../website/map2/index.py:144 ../website/map/index.py:172
 msgid "openstreetmap.fr"
 msgstr "openstreetmap.fr"
 
-#: ../website/map2/index.py:144 ../website/map/index.py:149
+#: ../website/map2/index.py:144 ../website/map/index.py:172
 msgid "http://www.openstreetmap.fr/"
 msgstr "http://www.openstreetmap.fr/"
 
 #. TRANSLATORS: link to source code
-#: ../website/map2/index.py:147 ../website/map/index.py:152
+#: ../website/map2/index.py:147 ../website/map/index.py:175
 msgid "sources"
 msgstr "fonti"
 
-#: ../website/map2/index.py:148 ../website/map/index.py:153
+#: ../website/map2/index.py:148 ../website/map/index.py:176
 msgid "statistics"
 msgstr "Statistiche"
 
@@ -255,11 +255,11 @@ msgstr "valore"
 msgid "Marker"
 msgstr "Marcatore"
 
-#: ../website/utils/error.py:141
+#: ../website/utils/error.py:142
 msgid "Elements"
 msgstr "Elementi"
 
-#: ../website/utils/error.py:166
+#: ../website/utils/error.py:167
 msgid "Fixes"
 msgstr "Correzioni"
 
@@ -372,14 +372,12 @@ msgstr "OsmOse - ultimi aggiornamenti"
 
 #. TRANSLATORS: days / hours / minutes since last source update, abbreviated to d / h / m
 #: ../website/utils/last-update.py:73
-#, python-format
-msgid "%dd, %dh, %02dm ago"
-msgstr "%dg, %do, %02dm fa"
+msgid "{day}d, {hour}h, {minute}m ago"
+msgstr "{day}g, {hour}o, {minute}m fa"
 
 #: ../website/utils/last-update.py:75
-#, python-format
-msgid "in %dj, %dh, %02dm"
-msgstr "in %dg, %do, %02dm"
+msgid "in {day}d, {hour}h, {minute}m"
+msgstr "in {day}g, {hour}o, {minute}m"
 
 #: ../website/utils/last-update.py:79
 msgid "never generated"
@@ -396,6 +394,12 @@ msgstr "ultima generazione"
 #: ../website/utils/last-update.py:92 ../website/utils/last-update.py:104
 msgid "history"
 msgstr "storia"
+
+#~ msgid "%dd, %dh, %02dm ago"
+#~ msgstr "%dg, %do, %02dm fa"
+
+#~ msgid "in %dj, %dh, %02dm"
+#~ msgstr "in %dg, %do, %02dm"
 
 #~ msgid "not an error"
 #~ msgstr "non è un errore"
