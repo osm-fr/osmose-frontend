@@ -70,9 +70,9 @@ for source_id in [str(y) for y in sorted([int(x) for x in sources])]:
         age  = lasts[int(source_id)]["age"]
         if age >= 0:
             # TRANSLATORS: days / hours / minutes since last source update, abbreviated to d / h / m
-            txt = _("%dd, %dh, %02dm ago") % (int(age/86400), int(age/3600)%24, int(age/60)%60)
+            txt = _("{day}d, {hour}h, {minute}m ago").format(day=int(age/86400), hour=int(age/3600)%24, minute=int(age/60)%60)
         else:
-            txt = _("in %dj, %dh, %02dm") % (int(-age/86400), int(-age/3600)%24, int(-age/60)%60)
+            txt = _("in {day}d, {hour}h, {minute}m").format(day=int(-age/86400), hour=int(-age/3600)%24, minute=int(-age/60)%60)
         
         liste.append((sources[source_id]["comment"], age, txt, source_id))
     else:
