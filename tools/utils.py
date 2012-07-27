@@ -84,9 +84,9 @@ def get_categories(lang = get_language()):
             if l in res1[1]:
                 res["menu"] = res1[1][l]
                 break
-        curs2.execute("SELECT item, menu, marker_color, marker_flag FROM dynpoi_item WHERE categ = %d ORDER BY item"%res1[0])
+        curs2.execute("SELECT item, menu, marker_color, marker_flag, levels FROM dynpoi_item WHERE categ = %d ORDER BY item"%res1[0])
         for res2 in curs2.fetchall():
-            res["item"].append({"item":res2[0], "menu":"no translation", "marker_color":res2[2], "marker_flag":res2[3]})
+            res["item"].append({"item":res2[0], "menu":"no translation", "marker_color":res2[2], "marker_flag":res2[3], "levels": res2["levels"]})
             for l in lang:
                 if res2[1] and l in res2[1]:
                     res["item"][-1]["menu"] = res2[1][l]

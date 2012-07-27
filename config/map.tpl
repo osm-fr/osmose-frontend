@@ -19,6 +19,8 @@ Content-Type: text/html; charset=utf-8
     var lat=#lat#;
     var lon=#lon#;
     var zoom=#zoom#;
+    var item_levels = {};
+    #item_levels#;
   </script>
 </head>
 
@@ -48,7 +50,8 @@ Content-Type: text/html; charset=utf-8
       <input type='hidden' name='source' value='#source#'>
       <input type='hidden' name='user'   value='#user#'>
       <center>
-      <select name='level' onclick='javascript:pois.loadText();'>
+      <label for='level'>Level choice</label>
+      <select id='level' onclick='javascript:change_level();'>
         <option value=""#level_all#>#level_all_str#</option>
         <option value="1"#level1#>1</option>
         <option value="2"#level2#>2</option>

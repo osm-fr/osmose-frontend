@@ -29,6 +29,9 @@ div#menu div#need_zoom {
   color: #FF0000;
   text-align: center;
 }
+div#menu form {
+  font-size: 10px;
+}
 div#menu div#action_links {
   font-size: 10px;
   text-align: center;
@@ -42,8 +45,22 @@ div#menu div.test_group h1 {
   font-size: 12px;
   margin: 3px;
 }
-div#menu span.check {
+div#menu div.test_group ul {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+div#menu div.test_group li {
+  background-repeat: no-repeat;
+  background-position: 2px 2px;
+  padding-left: 16px; 
   font-size: 11px;
+}
+div#menu div.test_group li div {
+  float: right;
+  width: 3ex;
+  font-family: monospace;
+  padding-right: 2ex;
 }
 
 /* Map */

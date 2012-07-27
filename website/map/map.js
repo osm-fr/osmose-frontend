@@ -147,6 +147,7 @@
       });
       
       handleResize();
+      change_level_display();
 
     }
 
@@ -326,6 +327,38 @@
         }
       }
       updateCountTestsSpan(d);
+      pois.loadText();
+    }
+
+    // Change level
+    function change_item_display(l, enable) {
+      disabled = !enable;
+      hidden = enable ? null : "hidden";
+      color = enable ? "black" : "#999999";
+      for (var i = 0; i < item_levels[l].length; ++i) {
+        var el = document.getElementById('item' + item_levels[l][i]);
+        el.style.visibility=hidden;
+//        el.disabled=disabled;
+        el = document.getElementById('item_desc' + item_levels[l][i]);
+        el.style.color=color;
+        el = el.getElementsByTagName('a')[0];
+        el.style.color=color;
+      }
+    }
+
+    function change_level_display() {
+      var new_level = document.getElementById('level').value;
+
+      if (new_level == "") {
+        change_item_display("1,2,3", true);
+      } else {
+        change_item_display("1,2,3", false);
+        change_item_display(new_level, true);
+      }
+    }
+
+    function change_level() {
+      change_level_display();
       pois.loadText();
     }
     

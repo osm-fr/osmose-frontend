@@ -109,6 +109,8 @@ dico["check_nothing"] = _("nothing")
 dico["check_invert"]  = _("invert")
 dico["level_all_str"] = _("all levels")
 
+dico["item_levels"] = u""
+
 ###########################################################################
 ## formulaire
 
@@ -121,16 +123,37 @@ for categ in categories:
     dico["form"] += "<a href=\"javascript:showHideCateg('categ%d', true)\">%s</a> "%(categ["categ"], _("all"))
     dico["form"] += "<a href=\"javascript:showHideCateg('categ%d', false)\">%s</a></h1>"%(categ["categ"], _("nothing"))
     dico["form"] += "\n"
+    dico["form"] += "<ul>"
     
     for err in categ["item"]:
-        dico["form"] += "<img vspace='0' src=\"markers/marker-l-%d.png\" alt=\"\">\n"%(err["item"])
+        dico["form"] += "<li style='background-image: url(markers/marker-l-%d.png)' id='item_desc%d'>" % (err["item"], err["item"])
         dico["form"] += "<input type='checkbox' id='item%d' name='item%d' onclick='checkbox_click(this)'%s>\n"%(err["item"], err["item"], {True:" checked=\"checked\"", False:""}[err["item"] in active_items])
-        dico["form"] += u"<span class=\"check\"><a href=\"../utils/info.py?item=%d\">%s</a></span><br>\n"%(err["item"],err["menu"])
+        s_l = ["."] * 3
+        for l in err["levels"]:
+            s_l[l-1] = str(l)
+        dico["form"] += u"<a href=\"../utils/info.py?item=%d\">%s</a><div>%s</div>\n"%(err["item"],err["menu"], "".join(s_l))
+        dico["form"] += u"</li>"
             
+    dico["form"] += "</ul>"
     dico["form"] += "</div>\n"
         
     dico["form"] += "\n"
-    
+
+levels = {"1": set(), "2": set(), "3": set()}
+
+for categ in categories:
+    for err in categ["item"]:
+        for l in err["levels"]:
+            levels[str(l)].add(err["item"])
+
+levels["1,2"] = levels["1"] | levels["2"]
+levels["1,2,3"] = levels["1,2"] | levels["3"]
+
+for (l, i) in levels.iteritems():
+    dico["item_levels"] += "item_levels[\"%s\"] = %s;\n" % (l, list(i))
+
+
+
 ###########################################################################
 ## template et envoi
 
