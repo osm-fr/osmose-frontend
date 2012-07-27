@@ -26,6 +26,7 @@ sys.path.append(root_folder)
 from tools import utils
 
 translate = utils.translator()
+show = utils.show
 
 print "Content-type: text/plain; Charset=UTF-8\n"
 
@@ -106,10 +107,10 @@ while res:
     lat       = float(res["lat"]) / 1000000
     lon       = float(res["lon"]) / 1000000
     error_id  = res["id"]
-    title     = translate.select(res["title_cur"])
-    subtitle  = translate.select(res["subtitle_cur"])
+    title     = translate.select(res["title"])
+    subtitle  = translate.select(res["subtitle"])
     item      = res["item"] or 0
 
-    print '"%s", "%s", "%s", %f, %f, "%s", "%s", "%s"' % (res["timestamp"], res["username"], error_id, lon, lat, title, subtitle, item)
+    show(u'"%s", "%s", "%s", %f, %f, "%s", "%s", "%s"' % (res["timestamp"], res["username"], error_id, lon, lat, title, subtitle, item))
 
     res = PgCursor.fetchone()
