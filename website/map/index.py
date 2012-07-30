@@ -179,14 +179,14 @@ show(u"<div id='bottom_links'>")
 
 show(u"<div style='float: left'>")
 show(u"<form method='get' style='display:inline'>")
-show(u"<select name='language'>")
-show(u"<option value='' onclick='set_lang(\"\");'></option>")
+show(u"<select name='language' onchange='set_lang(this.value)'>")
+show(u"<option value=''></option>")
 for l in utils.allowed_languages:
   if translate.languages[0] == l:
     s = " selected='selected'"
   else:
     s = ""
-  show(u"<option%s value='%s' onclick='set_lang(\"%s\");'>%s</option>" % (s, l, l, l))
+  show(u"<option%s value='%s'>%s</option>" % (s, l, l))
 show(u"</select>")
 show(u"</form>")
 show(u"</div>")
