@@ -15,6 +15,8 @@
  1150 | Schnittpunkt zwischen Oberflächen     
  1160 | signifikante beziehung
  1170 | Innenvielkant doppelt
+ 1180 | Zweimal Zyklus-Weg
+ 1190 | ungefähre Bahn
  2010 | Kreisverkehr=  Kreuzung
  2020 | ele=...
  2030 | oneway= 

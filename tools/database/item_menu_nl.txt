@@ -14,6 +14,8 @@
  1150 | snijpunt van oppervlakken
  1160 | big relatie
  1170 | dubbele binnen polygoon
+ 1180 | twee keer per cyclus-weg
+ 1190 | benaderen spoorweg
  2010 | knooppunt = rotonde
  2020 | ele=...
  2030 | oneway=

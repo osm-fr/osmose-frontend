@@ -15,6 +15,8 @@
  1150 | intersezione tra le superfici
  1160 | rapporto ampia
  1170 | poligono interno a doppia
+ 1180 | per due volte il ciclo-way
+ 1190 | ferroviaria approssimativa
  2010 | = incrocio rotonda
  2020 | ele = ...
  2030 | oneway =

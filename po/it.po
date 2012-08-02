@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-27 21:11+0200\n"
-"PO-Revision-Date: 2012-06-05 21:50+0100\n"
+"POT-Creation-Date: 2012-08-02 23:26+0200\n"
+"PO-Revision-Date: 2012-08-02 14:22+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -29,112 +29,109 @@ msgstr "OsmOse - Informazioni sul copyright"
 msgid "Data are coming from:"
 msgstr "I dati sono provenienti da:"
 
-#: ../website/copyright.py:27 ../website/map2/index.py:145
-#: ../website/map/index.py:173
+#: ../website/copyright.py:27 ../website/map/index.py:173
 msgid "copyright"
 msgstr "copyright"
 
 #. TRANSLATORS: link to tooltip help
-#: ../website/map2/dynpoi.py:105 ../website/map/dynpoi.py:110
+#: ../website/map/dynpoi.py:110
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/IT:Osmose/erreurs"
 
-#: ../website/map2/dynpoi.py:348 ../website/map/dynpoi.py:359
+#: ../website/map/dynpoi.py:359
 msgid "Error reported on: "
 msgstr "Errore riferito: "
 
-#: ../website/map2/dynpoi.py:365 ../website/map/dynpoi.py:376
+#: ../website/map/dynpoi.py:376
 msgid "change status"
 msgstr "cambia status"
 
-#: ../website/map2/dynpoi.py:366 ../website/map/dynpoi.py:377
+#: ../website/map/dynpoi.py:377
 msgid "corrected"
 msgstr "corretto"
 
-#: ../website/map2/dynpoi.py:367 ../website/map/dynpoi.py:378
+#: ../website/map/dynpoi.py:378
 msgid "false positive"
 msgstr "falsi positivi"
 
-#: ../website/map2/index.py:99 ../website/map/index.py:104
+#: ../website/map/index.py:104
 msgid "OsmOse - map"
 msgstr "OsmOse - map"
 
-#: ../website/map2/index.py:100 ../website/map/index.py:105
+#: ../website/map/index.py:105
 msgid "no bubbles at this zoom factor"
 msgstr "no bolle in questo fattore di zoom"
 
-#: ../website/map2/index.py:101 ../website/map/index.py:106
+#: ../website/map/index.py:106
 msgid "Select:"
 msgstr "Selezionare"
 
-#: ../website/map2/index.py:102 ../website/map2/index.py:116
 #: ../website/map/index.py:107 ../website/map/index.py:123
 msgid "all"
 msgstr "tutti"
 
-#: ../website/map2/index.py:103 ../website/map2/index.py:117
 #: ../website/map/index.py:108 ../website/map/index.py:124
 msgid "nothing"
 msgstr "niente"
 
-#: ../website/map2/index.py:104 ../website/map/index.py:109
+#: ../website/map/index.py:109
 msgid "invert"
 msgstr "invertire"
 
-#: ../website/map2/index.py:105 ../website/map/index.py:110
+#: ../website/map/index.py:110
 msgid "all levels"
-msgstr ""
+msgstr "tutti i livelli"
 
 #. TRANSLATORS: link to help in appropriate language
-#: ../website/map2/index.py:136 ../website/map/index.py:164
+#: ../website/map/index.py:164
 msgid "Help"
 msgstr "Aiuto"
 
-#: ../website/map2/index.py:136 ../website/map/index.py:164
+#: ../website/map/index.py:164
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/IT:Osmose"
 
-#: ../website/map2/index.py:137 ../website/map/index.py:165
+#: ../website/map/index.py:165
 msgid "by user"
 msgstr "dall'utente"
 
-#: ../website/map2/index.py:138 ../website/map/index.py:166
+#: ../website/map/index.py:166
 msgid "relation analyser"
 msgstr "analyzer relazioni"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../website/map2/index.py:140 ../website/map/index.py:168
+#: ../website/map/index.py:168
 msgid "clc"
 msgstr "clc"
 
-#: ../website/map2/index.py:140 ../website/map/index.py:168
+#: ../website/map/index.py:168
 msgid "http://clc.openstreetmap.fr/"
 msgstr "http://clc.openstreetmap.fr/"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../website/map2/index.py:142 ../website/map/index.py:170
+#: ../website/map/index.py:170
 msgid "geodesic"
 msgstr "geodetica"
 
-#: ../website/map2/index.py:142 ../website/map/index.py:170
+#: ../website/map/index.py:170
 msgid "http://geodesie.openstreetmap.fr/"
 msgstr "http://geodesie.openstreetmap.fr/"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../website/map2/index.py:144 ../website/map/index.py:172
+#: ../website/map/index.py:172
 msgid "openstreetmap.fr"
 msgstr "openstreetmap.fr"
 
-#: ../website/map2/index.py:144 ../website/map/index.py:172
+#: ../website/map/index.py:172
 msgid "http://www.openstreetmap.fr/"
 msgstr "http://www.openstreetmap.fr/"
 
 #. TRANSLATORS: link to source code
-#: ../website/map2/index.py:147 ../website/map/index.py:175
+#: ../website/map/index.py:175
 msgid "sources"
 msgstr "fonti"
 
-#: ../website/map2/index.py:148 ../website/map/index.py:176
+#: ../website/map/index.py:176
 msgid "statistics"
 msgstr "Statistiche"
 
@@ -155,7 +152,6 @@ msgid "OsmOse - statistics for user"
 msgstr "OsmOse - statistiche per l'utente"
 
 #: ../website/text/index.py:38
-#, fuzzy
 msgid "User statistics"
 msgstr "Statistiche utente"
 
@@ -167,6 +163,11 @@ msgid ""
 "username is not perfect, as Osmose only checks the last contributor of the "
 "relevant erroneous elements."
 msgstr ""
+"Osmose permette di controllare i propri errori. <br> Inserendo la tua "
+"username OSM il seguente modulo, sarete in grado di vedere gli errori che "
+"sono attaccati al vostro nome utente. Si noti che l'algoritmo che si attacca "
+"errori nome utente non è perfetto, come Osmose controlla solo il contributo "
+"dell'ultimo dei pertinenti elementi errati. "
 
 #: ../website/text/index.py:42
 msgid "Username:"
@@ -204,7 +205,7 @@ msgstr "Numero di errori rilevati: più di %d"
 
 #: ../website/text/index.py:82
 msgid "Show errors on a map"
-msgstr ""
+msgstr "Mostra errori sulla mappa"
 
 #: ../website/text/index.py:87
 msgid "Item"
@@ -216,7 +217,7 @@ msgstr "Classe"
 
 #: ../website/text/index.py:89
 msgid "Level"
-msgstr ""
+msgstr "Livello"
 
 #: ../website/text/index.py:90
 msgid "Title"
@@ -329,10 +330,11 @@ msgstr "contare"
 msgid "subclass (abbreviation)"
 msgstr "sot"
 
+# Liv pour livello
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: ../website/utils/info.py:344
 msgid "level (abbreviation)"
-msgstr ""
+msgstr "Liv"
 
 #: ../website/utils/info.py:349
 msgid "information on error"
@@ -373,11 +375,11 @@ msgstr "OsmOse - ultimi aggiornamenti"
 #. TRANSLATORS: days / hours / minutes since last source update, abbreviated to d / h / m
 #: ../website/utils/last-update.py:73
 msgid "{day}d, {hour}h, {minute}m ago"
-msgstr "{day}g, {hour}o, {minute}m fa"
+msgstr ""
 
 #: ../website/utils/last-update.py:75
 msgid "in {day}d, {hour}h, {minute}m"
-msgstr "in {day}g, {hour}o, {minute}m"
+msgstr ""
 
 #: ../website/utils/last-update.py:79
 msgid "never generated"
