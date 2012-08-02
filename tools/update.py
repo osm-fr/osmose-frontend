@@ -79,7 +79,10 @@ def update(source, url, logger = printlogger()):
         # replace the original socket.getaddrinfo by our version
         socket.getaddrinfo = getAddrInfoWrapper
 
-        fname =  tempfile.mktemp(dir="/tmp/osmose/", prefix="update")
+        tmp_path = "/tmp/osmose/"
+        if not os.path.exists(tmp_path):
+            os.makedirs(tmp_path)
+        fname =  tempfile.mktemp(dir=tmp_path, prefix="update")
         urllib.urlretrieve(url, fname)
         #mysock = urllib.urlopen(source["url"])
         #open(fname,'w').write(mysock.read())
