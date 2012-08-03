@@ -228,15 +228,6 @@ class update_parser(handler.ContentHandler):
             
     def endElement(self, name):
         if name == u"error":
-            ## to remove when all in en
-            if "en" not in self._error_texts:
-                if len(self._error_texts) > 0:
-                    for v in self._error_texts.values():
-                        pass
-                    self._error_texts["en"] = v
-                else:
-                    self._error_texts["en"] = u""
-            
             ## build all_elem
             all_elem   = u""
             for e in self._error_elements:
@@ -302,15 +293,6 @@ class update_parser(handler.ContentHandler):
                 self._fix.append(self._elem)
             
         elif name == u"class":
-            ## to remove when translated
-            if "en" not in self._class_texts:
-                if len(self._class_texts) > 0:
-                    for v in self._class_texts.values():
-                        pass
-                    self._class_texts["en"] = v
-                else:
-                    self._class_texts["en"] = u"no translation"
-            ##
             execute_sql(self._dbcurs, "DELETE FROM dynpoi_class WHERE source = %s AND class = %s",
                                  (self._source_id, self._class_id))
             keys = ["source", "class", "item", "title", "level"]
