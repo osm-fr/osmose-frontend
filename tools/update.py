@@ -168,7 +168,7 @@ class update_parser(handler.ContentHandler):
         elif name == u"location":
             self._error_locations.append(dict(attrs))
         elif name == u"text":
-            self._error_texts[attrs["lang"]] = attrs["value"]
+            self._error_texts[attrs["lang"]] = attrs["value"].replace("\n", "%%")
         elif name in [u"node", u"way", u"relation", u"infos"]:
             self._elem = dict(attrs)
             if "user" in self._elem:
