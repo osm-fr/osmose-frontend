@@ -103,10 +103,10 @@ def get_data(options):
 
 def get_text(options):
     if len(options.sources)==1 and len(options.classes)==1:
-        PgCurs.execute("SELECT title_en FROM dynpoi_class WHERE source=%d AND class=%d;"%(options.sources[0], options.classes[0]))
+        PgCurs.execute("SELECT title->'en' FROM dynpoi_class WHERE source=%s AND class=%s;", (options.sources[0], options.classes[0]))
         
     elif len(options.items)==1 and len(options.classes)==1:
-        PgCurs.execute("SELECT title_en FROM dynpoi_class WHERE class=%d AND item=%d LIMIT 1;"%(options.classes[0], options.items[0]))
+        PgCurs.execute("SELECT title->'en' FROM dynpoi_class WHERE class=%s AND item=%s LIMIT 1;", (options.classes[0], options.items[0]))
         
     else:
         return ""
@@ -121,7 +121,7 @@ def get_src(options):
     if len(options.sources) != 1:
         return "All"
     else:
-        PgCurs.execute("SELECT comment FROM dynpoi_source WHERE source=%d;"%(options.sources[0]))
+        PgCurs.execute("SELECT comment FROM dynpoi_source WHERE source=%s;", (options.sources[0]))
         return PgCurs.fetchone()[0]
 
 def make_plt(options):
