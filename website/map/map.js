@@ -1,6 +1,8 @@
     var pois=null;
     var map=null;
     var plk=null;
+    /* used to store old zoom factore to triger events when "going above" treshold */
+    var oldzoom = -1;
     
     //----------------------------------------//
     // init map function                      //
@@ -12,7 +14,7 @@
           new OpenLayers.Control.Navigation(),
           new OpenLayers.Control.PanZoomBar(),
           new OpenLayers.Control.LayerSwitcher(),
-	  new OpenLayers.Control.Attribution(),
+	  /* new OpenLayers.Control.Attribution(), */
           new OpenLayers.Control.MousePosition()],
 
 	  maxExtent: new OpenLayers.Bounds(-20037508,-20037508,20037508,20037508),
@@ -155,24 +157,29 @@
         var lonlat = pos.transform(this.getProjectionObject(), new OpenLayers.Projection("EPSG:4326"));
         document.myform.lat.value  = lonlat.lat
         document.myform.lon.value  = lonlat.lon
-        document.myform.zoom.value =this.getZoom();
+        document.myform.zoom.value = this.getZoom();
         if (document.myform.source.value == '') {
-	  if (this.getZoom()<6) {
-	    document.getElementById('need_zoom').style.display    = 'inline';
-	    document.getElementById('action_links').style.display = 'none';
-	    document.getElementById('myform').style.display       = 'none';
-	  } else {
-	    document.getElementById('need_zoom').style.display    = 'none';
-	    document.getElementById('action_links').style.display = 'inline';
-	    document.getElementById('myform').style.display       = 'inline';
+	  if (this.getZoom() >= 6) {
+	    pois.loadText();
 	  }
+	  if (this.getZoom()<6 && oldzoom >= 6) {
+	    $("div#need_zoom").show();
+	    $("div#action_links").hide();
+	    $("div#tests").hide();
+	  } else if (this.getZoom()>=6 && oldzoom<6) {
+	    $("div#need_zoom").hide();
+	    $("div#action_links").show();
+	    if ( $("div#menu").css('height') != '20px') {
+	      console.log('showing tests');
+	      $("div#tests").fadeIn();
+	    }
+	  }
+	  oldzoom = this.getZoom();
 	}
-        pois.loadText();
       });
       
       handleResize();
       change_level_display();
-
     }
 
     function resizeMap() {
@@ -297,6 +304,19 @@
       pois.loadText();
     }
 
+    function toggleMenu() {
+      if ($("div#menu").css('height') == '20px') {
+	$("div#menu").css('height', '95%');
+	$("div#tests").show();
+	$("#togglemenu").html('-');
+      } else {
+	$("div#menu").css('height', '20px');
+	$("div#tests").hide();
+	$("#togglemenu").html('+');
+      }
+      // $("div#menu").animate( { height: '=20px' }, 1000 );
+    }
+
     // Update checkbox count
     function updateCountTestsSpan(d) {
       boxes = d.getElementsByTagName('input');
@@ -319,16 +339,14 @@
 
     // Show or hide a group of tests
     function toggleCategDisplay(id) {
-      d = document.getElementById(id);
-      if (d.style.height == '20px') {
-        // show
-        d.style.height = null;
-        d.style.overflow = null;
+      if ( $("div#"+id).children('ul').is(':visible') ) {
+        $("div#"+id).children('ul').slideUp(200);
+        $("div#"+id).children('h1').addClass('folded');
       } else {
-        // hide
-        d.style.height = '20px';
-        d.style.overflow = 'hidden';
+        $("div#"+id).children('ul').slideDown(200);
+        $("div#"+id).children('h1').removeClass('folded');
       }
+      return; 
     }
 
     // Show or hide an element
@@ -359,15 +377,18 @@
       disabled = !enable;
       hidden = enable ? null : "hidden";
       color = enable ? "black" : "#999999";
-      for (var i = 0; i < item_levels[l].length; ++i) {
-        var el = document.getElementById('item' + item_levels[l][i]);
-        el.style.visibility=hidden;
-//        el.disabled=disabled;
-        el = document.getElementById('item_desc' + item_levels[l][i]);
-        el.style.color=color;
-        el = el.getElementsByTagName('a')[0];
-        el.style.color=color;
-      }
+      $("div#tests li").each( function () {
+	  id = parseInt($(this).attr('id').replace(/item_desc/, ''));
+	  if (jQuery.inArray( id, item_levels[l]) >= 0) {
+		if ( $("#item_desc"+id).is(':hidden') ) {
+			$("#item_desc"+id).slideDown();
+		}
+	  } else {
+		if ( $("#item_desc"+id).is(':visible') ) {
+			$("#item_desc"+id).slideUp();
+		}
+	  }
+	  } );
     }
 
     function change_level_display() {
@@ -376,14 +397,14 @@
       if (new_level == "") {
         change_item_display("1,2,3", true);
       } else {
-        change_item_display("1,2,3", false);
+        // change_item_display("1,2,3", false);
         change_item_display(new_level, true);
       }
     }
 
     function change_level() {
-      change_level_display();
       pois.loadText();
+      change_level_display();
     }
     
     // Load URL in iFrame
@@ -406,7 +427,8 @@
       document.cookie=c_name + "=" + c_value;
     }
 
-    function set_lang(lang) {
+    function set_lang(select) {
+      var lang = $(select).val();
       setCookie("lang", lang, 30);
-      window.location = document.URL;
+      window.location.reload();
     }
