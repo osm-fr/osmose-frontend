@@ -144,13 +144,12 @@ INNER JOIN dynpoi_class
 INNER JOIN dynpoi_update_last
   ON marker.source = dynpoi_update_last.source
 JOIN dynpoi_item
-  ON marker.item = dynpoi_item.item
-LEFT JOIN marker_elem elem0
-  ON elem0.marker_id = marker.id AND elem0.elem_index = 0
-LEFT JOIN marker_elem elem1
-  ON elem1.marker_id = marker.id AND elem1.elem_index = 1
-LEFT JOIN marker_elem elem2
-  ON elem2.marker_id = marker.id AND elem2.elem_index = 2"""
+  ON marker.item = dynpoi_item.item """
+
+for f in xrange(3):
+    sqlbase += """LEFT JOIN marker_elem elem%d
+  ON elem%d.marker_id = marker.id AND elem%d.elem_index = %d """ % (4 *(f, ))
+
 for f in xrange(5):
     sqlbase += """LEFT JOIN marker_fix fix%d
   ON fix%d.marker_id = marker.id AND fix%d.diff_index = %d """ % (4 * (f, ))
