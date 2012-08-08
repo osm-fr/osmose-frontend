@@ -154,10 +154,6 @@ for f in xrange(5):
     sqlbase += """LEFT JOIN marker_fix fix%d
   ON fix%d.marker_id = marker.id AND fix%d.diff_index = %d """ % (4 * (f, ))
 
-if user:
-    sqlbase += """INNER JOIN marker_elem
-  ON marker.id = marker_elem.marker_id AND marker_elem.username = '%s' """ % user
-
 sqlbase += """WHERE %s AND
   %s AND
   dynpoi_update_last.timestamp > (now() - interval '3 months')
@@ -202,6 +198,16 @@ else:
 if level:
     where += " AND dynpoi_class.level IN (%s)" % level
 
+where_count = where
+
+if user:
+    where += " AND ("
+    s = []
+    for f in xrange(3):
+        s.append("elem%d.username = '%s'" % (f, user))
+    where += " OR ".join(s)
+    where += ")"
+
 ###########################################################################
 ## sql querry
 
@@ -232,7 +238,7 @@ if bbox:
         bboxsql = ("(marker.lat BETWEEN %d AND %d) AND (marker.lon BETWEEN %d and %d)" %
                    (tmp_minlat, tmp_maxlat, tmp_minlon, tmp_maxlon))
 
-        sql = sqlbase_count % (where, bboxsql)
+        sql = sqlbase_count % (where_count, bboxsql)
         sql = sql.replace("--","+")
         PgCursor.execute(sql)
         num_results = PgCursor.fetchone()[0]
