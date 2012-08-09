@@ -112,6 +112,8 @@ if res:
     print
     res = res[0]
     if res["elem_id"] > 0:
+        if not os.path.exists(temp_path):
+            os.makedirs(temp_path)
         elem_file =  tempfile.mktemp(dir=temp_path, prefix="fix")
         elem_url = os.path.join(remote_url,
                                 data_type[res["elem_data_type"]],
