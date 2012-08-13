@@ -28,24 +28,30 @@
       plk = new OpenLayers.Control.Permalink("permalink");
       map.addControl(plk);	    
 
-      var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Mapnik");
+      var layerMapnik = new OpenLayers.Layer.OSM(
+          "Mapnik",
+          ["http://a.tile.openstreetmap.org/${z}/${x}/${y}.png",
+           "http://b.tile.openstreetmap.org/${z}/${x}/${y}.png",
+           "http://c.tile.openstreetmap.org/${z}/${x}/${y}.png" ],
+          {transitionEffect: 'resize',
+          });
       map.addLayer(layerMapnik);
 
-      var layerMapquest = new OpenLayers.Layer.XYZ( 
-          "MapQuest Open", 
-          ["http://otile1.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png", "http://otile2.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png", "http://otile3.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png" ],
-          {type:'png',
-	  transitionEffect: 'resize',
-          displayOutsideMaxExtent: true }, {'buffer':0} );
+      var layerMapquest = new OpenLayers.Layer.OSM(
+          "MapQuest Open",
+          ["http://otile1.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png",
+           "http://otile2.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png",
+           "http://otile3.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png" ],
+          {transitionEffect: 'resize',
+          });
       layerMapquest.attribution += " - Tiles Courtesy of <a href=\"http://www.mapquest.com/\" target=\"_blank\">MapQuest</a> <img src=\"http://developer.mapquest.com/content/osm/mq_logo.png\">";
       map.addLayer(layerMapquest);
 
-      var layerOPNVKarte = new OpenLayers.Layer.XYZ( 
-          "ÖPNV Karte", 
+      var layerOPNVKarte = new OpenLayers.Layer.OSM(
+          "ÖPNV Karte",
           ["http://tile.memomaps.de/tilegen/${z}/${x}/${y}.png"],
-          {type:'png',
-	  transitionEffect: 'resize',
-          displayOutsideMaxExtent: true }, {'buffer':0} );
+          {transitionEffect: 'resize',
+          });
       map.addLayer(layerOPNVKarte);
 
 //      var layerTilesAtHome = new OpenLayers.Layer.OSM.Osmarender("Osmarender");
