@@ -285,6 +285,7 @@ for res in results:
     html += "<div class='closebubble'>"
     html += "<div><a href='#' onclick=\"closeBubble('%s');return false;\"><b>&nbsp;X&nbsp;</b></a></div>" % error_id
     html += "<div class=\"help\"><a target=\"_blank\" href='%s#%d'>&nbsp;?&nbsp;</a></div>" % (url_help, item)
+    html += "<div class=\"error-link\"><a target=\"_blank\" href='..//utils/error.py?id=%s'>&nbsp;E&nbsp;</a></div>" % error_id
     html += "</div>"
     html += "<div class=\"bulle_err\">"
     html += "<b>%s</b><br>%s<br>"%(title, subtitle)
