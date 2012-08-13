@@ -30,12 +30,29 @@
 
       var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Mapnik");
       map.addLayer(layerMapnik);
-      
+
+      var layerMapquest = new OpenLayers.Layer.XYZ( 
+          "MapQuest Open", 
+          ["http://otile1.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png", "http://otile2.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png", "http://otile3.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png" ],
+          {type:'png',
+	  transitionEffect: 'resize',
+          displayOutsideMaxExtent: true }, {'buffer':0} );
+      map.addLayer(layerMapquest);
+
+      var layerOPNVKarte = new OpenLayers.Layer.XYZ( 
+          "ÖPNV Karte", 
+          ["http://tile.memomaps.de/tilegen/${z}/${x}/${y}.png"],
+          {type:'png',
+	  transitionEffect: 'resize',
+          displayOutsideMaxExtent: true }, {'buffer':0} );
+      map.addLayer(layerOPNVKarte);
+
 //      var layerTilesAtHome = new OpenLayers.Layer.OSM.Osmarender("Osmarender");
 //      map.addLayer(layerTilesAtHome);
 
 //       var layerOpenSeaMap = new OpenLayers.Layer.TMS("OpenSeaMap", "http://tiles.openseamap.org/seamark/", { numZoomLevels: 18, type: 'png', getURL: getTileURL, isBaseLayer: false, displayOutsideMaxExtent: true});
 //      map.addLayer(layerOpenSeaMap);
+
                  
       //*****************************************************
       // Layers de layers.openstreetmap.fr
