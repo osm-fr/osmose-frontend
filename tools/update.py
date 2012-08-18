@@ -146,7 +146,10 @@ class update_parser(handler.ContentHandler):
         self._class_texts      = {}
         self._class_item       = {}
         self._tstamp_updated   = False
-        
+
+    def setDocumentLocator(self, locator):
+        self.locator = locator
+
     def startElement(self, name, attrs):
         if name == u"analyser":
             self.mode = "analyser"
@@ -238,6 +241,9 @@ class update_parser(handler.ContentHandler):
             sql_marker = u"INSERT INTO marker (source, class, subclass, item, lat, lon, elems, subtitle) VALUES (" + "%s," * 7 + "%s) RETURNING id;"
             
             ## add data at all location
+            if len(self._error_locations) == 0:
+                print "No location on error found on line %d" % self.locator.getLineNumber()
+
             cpt = 0
             for location in self._error_locations:
                 cpt += 1
