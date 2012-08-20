@@ -12,6 +12,7 @@ root_folder       = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 allowed_languages = ["en", "fr", "nl", "de", "it"]
 config_file       = os.path.join(root_folder, "config/config.xml")
 pg_user           = "osmose"
+pg_pass           = ""
 pg_base           = "osmose"
 
 ################################################################################
