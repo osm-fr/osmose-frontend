@@ -10,12 +10,12 @@
  1100 | area=yes non fermé
  1110 | mauvaise connection *_link
  1120 | continuité rompue des highway
- 1140 | membre inutile de relation
+ 1140 | tag ou rôle manquant
  1150 | intersection entre surfaces
  1160 | relation large
  1170 | polygone interne en double
  1180 | double voie cyclable
- 1190 | chemin de fer approximatif
+ 1190 | voie approximative
  2010 | junction=roundabout
  2020 | ele=...
  2030 | oneway=
@@ -39,7 +39,7 @@
  3110 | note
  3120 | arbre
  3130 | nom avec marque
- 3130 | typo dans un tag
+ 3150 | typo dans un tag
  4010 | abandonné
  4020 | sur junction=roundabout
  4030 | tags incompatibles
@@ -68,5 +68,5 @@
  7070 | école non intégrée
  8010 | monument
  8020 | poste
- 8021 | poste non intégrée
+ 8021 | poste, intégration possible
  8030 | école

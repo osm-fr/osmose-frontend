@@ -1,6 +1,5 @@
     0 | edifici, che coprono
  1010 | nodo ripetuto
- 1020 | way senza nodo
  1030 | way di un nodo
  1040 | Poligono non valido
  1050 | Una rotatoria nel modo sbagliato
@@ -11,12 +10,12 @@
  1100 | area = yes non chiusa
  1110 | cattiva connessione * _link
  1120 | la continuità della strada rotto
- 1140 | membro inutile della relazione
+ 1140 |
  1150 | intersezione tra le superfici
  1160 | rapporto ampia
  1170 | poligono interno a doppia
  1180 | per due volte il ciclo-way
- 1190 | ferroviaria approssimativa
+ 1190 |
  2010 | = incrocio rotonda
  2020 | ele = ...
  2030 | oneway =
@@ -40,14 +39,15 @@
  3110 | nota
  3120 | albero
  3130 | nome depositato
+ 3150 |
  4010 | abbandonato
  4020 | su incrocio rotonda
  4030 | tags incompatibili
  4040 | ref nome 
- 4050 | Corin briciole
  4060 | seamark: FIXME
  4070 | costruzione
  4080 | POI doppia
+ 4090
  5010 | ortografia
  5020 | tipo di percorso
  5030 | Due nomi
@@ -65,4 +65,8 @@
  7040 | linee elettriche
  7050 |
  7060 |
+ 7070 |
  8010 | Monumenti
+ 8020 |
+ 8021 |
+ 8030 |

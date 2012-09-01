@@ -1,6 +1,5 @@
     0 | überlappenden Gebäude
  1010 | wiederholt Knoten
- 1020 | So ein Knoten
  1030 | Route zu einem Knoten
  1040 | Ungültige Polygon
  1050 | Kreisverkehr in die falsche Richtung
@@ -11,15 +10,15 @@
  1100 | nicht geschlossene Fläche
  1110 | schlechte Verbindung * _link
  1120 | gebrochener Kontinuität Straße
- 1140 | nutzlos Mitglied der beziehung
- 1150 | Schnittpunkt zwischen Oberflächen     
+ 1140 |
+ 1150 | Schnittpunkt zwischen Oberflächen
  1160 | signifikante beziehung
  1170 | Innenvielkant doppelt
  1180 | Zweimal Zyklus-Weg
- 1190 | ungefähre Bahn
+ 1190 |
  2010 | Kreisverkehr=  Kreuzung
  2020 | ele=...
- 2030 | oneway= 
+ 2030 | oneway=
  2040 | source=...
  2050 | Übergeordnetes Tag
  2060 | Hausnummern
@@ -29,40 +28,45 @@
  3031 | wikipedia
  3032 | Verbindungen zwischen den Tags
  3033 | Bindestrich auf der St.
- 3040 | falsche Tag   
+ 3040 | falsche Tag
  3050 |
  3060 | ähnliche Werte
- 3070 | mehrere Werte 
- 3080 | Schwimmbad Wasser = natürliche 
+ 3070 | mehrere Werte
+ 3080 | Schwimmbad Wasser = natürliche
  3090 | Datum
  3091 | numerischen Wert
- 3100 | kleinen Bauernhof    
+ 3100 | kleinen Bauernhof
  3110 | beachten
  3120 | Baum
- 3130 | mit Markennamen                        
- 4010 | stillgelegten                     
- 4020 | am Kreisverkehr = Kreuzung  
+ 3130 | mit Markennamen
+ 3150 |
+ 4010 | stillgelegten
+ 4020 | am Kreisverkehr = Kreuzung
  4030 | Tags unvereinbar
  4040 | Referenz im Namen Felder
- 4050 | Corine Krümel
- 4060 | seamark:fixme 
+ 4060 | seamark:fixme
  4070 | Bau
  4080 | POI-Doppel
- 5010 | Rechtschreibung       
+ 4090 |
+ 5010 | Rechtschreibung
  5020 | Art der Straße
  5030 | Zwei Namen
- 5040 | Toponymie        
- 5050 | testen soundex               
- 6010 | offene Polygon     
+ 5040 | Toponymie
+ 5050 | testen soundex
+ 6010 | offene Polygon
  6020 | Doppel-Straße
  6030 | Platz ohne Namen
- 6040 | INSEE-Code   
- 6050 | admin_level     
+ 6040 | INSEE-Code
+ 6050 | admin_level
  6060 | admin_level Loch = 8
- 7010 | Gebäude geodätische        
+ 7010 | Gebäude geodätische
  7020 | begrenzen Admin
  7030 | OpenStreetBugs
  7040 | Stromleitungen
  7050 |
  7060 |
+ 7070 |
  8010 | Denkmäler
+ 8020 |
+ 8021 |
+ 8030 |

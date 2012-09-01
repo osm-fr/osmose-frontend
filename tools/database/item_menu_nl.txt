@@ -10,12 +10,12 @@
  1100 | area=yes ongesloten
  1110 | slechte verbinding *_link
  1120 | defecte continuÃ¯teit van de snelweg
- 1140 | nutteloos lid van de relatie
+ 1140 |
  1150 | snijpunt van oppervlakken
  1160 | big relatie
  1170 | dubbele binnen polygoon
  1180 | twee keer per cyclus-weg
- 1190 | benaderen spoorweg
+ 1190 |
  2010 | knooppunt = rotonde
  2020 | ele=...
  2030 | oneway=
@@ -39,14 +39,15 @@
  3110 | nota
  3120 | boom
  3130 | met merknaam
+ 3150 |
  4010 | onbruik geraakte
  4020 | aan knooppunt = rotonde
  4030 | tags onverenigbaar
  4040 | ref aan het interieur de naam
- 4050 | kruimels Corine
  4060 | seamark:fixme
  4070 | bouw 
  4080 | dubbele POI voorwerp
+ 4090 |
  5010 | spelling
  5020 | type snelweg
  5030 | 2 namen
@@ -64,4 +65,8 @@
  7040 | Hoogspanningslijnen
  7050 | postkantoor
  7060 |
+ 7070 |
  8010 | monumenten
+ 8020 |
+ 8021 |
+ 8030 |
