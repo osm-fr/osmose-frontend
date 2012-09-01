@@ -39,6 +39,7 @@
  3110 | note
  3120 | tree
  3130 | brand in name
+ 3130 | typo in tag
  4010 | disused
  4020 | on junction=roundabout
  4030 | incompatible tags
@@ -64,6 +65,8 @@
  7040 | power lines
  7050 | post office
  7060 | ODbl migration change
- 8010 | monuments
- 8020 | post offices
- 8030 | schools
+ 7070 | school, not integrated
+ 8010 | monument
+ 8020 | post office
+ 8021 | post office, not integrated
+ 8030 | school

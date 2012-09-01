@@ -39,6 +39,7 @@
  3110 | note
  3120 | arbre
  3130 | nom avec marque
+ 3130 | typo dans un tag
  4010 | abandonné
  4020 | sur junction=roundabout
  4030 | tags incompatibles
@@ -64,6 +65,8 @@
  7040 | lignes électriques
  7050 | bureau de poste
  7060 | changement pour ODbl
- 8010 | monuments
- 8020 | postes
- 8030 | écoles
+ 7070 | école non intégrée
+ 8010 | monument
+ 8020 | poste
+ 8021 | poste non intégrée
+ 8030 | école
