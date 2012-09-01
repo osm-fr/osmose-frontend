@@ -10,7 +10,10 @@ PO=$(foreach l,$(LANG),$(l).po)
 all: $(PO) $(MO)
 
 osmose-frontend.pot: $(PYFILES)
-	LANG=C xgettext -cTRANSLATORS --language=Python --keyword=_ --keyword=N_ --output=osmose-frontend.pot $(PYFILES)
+	LANG=C xgettext -cTRANSLATORS --language=Python --keyword=_ --keyword=N_ --output=osmose-frontend.pot.tmp $(PYFILES)
+	diff -I ".*POT-Creation-Date:.*" osmose-frontend.pot osmose-frontend.pot.tmp || cp osmose-frontend.pot.tmp osmose-frontend.pot
+	touch osmose-frontend.pot
+	rm osmose-frontend.pot.tmp
 
 %.po: osmose-frontend.pot
 	if test -e $@; then \
