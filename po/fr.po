@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-02 23:26+0200\n"
+"POT-Creation-Date: 2012-09-01 18:15+0200\n"
 "PO-Revision-Date: 2012-06-02 22:17+0100\n"
 "Last-Translator: operon <a@a.fr>\n"
 "Language-Team: French\n"
@@ -38,19 +38,19 @@ msgstr "copyright"
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/FR:Osmose/erreurs"
 
-#: ../website/map/dynpoi.py:359
+#: ../website/map/dynpoi.py:365
 msgid "Error reported on: "
 msgstr "Erreur reportée le :"
 
-#: ../website/map/dynpoi.py:376
+#: ../website/map/dynpoi.py:382
 msgid "change status"
 msgstr "changer le statut"
 
-#: ../website/map/dynpoi.py:377
+#: ../website/map/dynpoi.py:383
 msgid "corrected"
 msgstr "corrigé"
 
-#: ../website/map/dynpoi.py:378
+#: ../website/map/dynpoi.py:384
 msgid "false positive"
 msgstr "faux positif"
 
