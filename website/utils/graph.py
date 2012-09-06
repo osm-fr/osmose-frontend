@@ -121,7 +121,7 @@ def get_src(options):
     if len(options.sources) != 1:
         return "All"
     else:
-        PgCurs.execute("SELECT comment FROM dynpoi_source WHERE source=%s;", (options.sources[0]))
+        PgCurs.execute("SELECT comment FROM dynpoi_source WHERE source=%s;", (options.sources[0], ))
         return PgCurs.fetchone()[0]
 
 def make_plt(options):
