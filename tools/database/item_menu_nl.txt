@@ -16,6 +16,7 @@
  1170 | dubbele binnen polygoon
  1180 | twee keer per cyclus-weg
  1190 |
+ 1200 |
  2010 | knooppunt = rotonde
  2020 | ele=...
  2030 | oneway=
@@ -40,6 +41,7 @@
  3120 | boom
  3130 | met merknaam
  3150 |
+ 3160 |
  4010 | onbruik geraakte
  4020 | aan knooppunt = rotonde
  4030 | tags onverenigbaar
@@ -48,6 +50,7 @@
  4070 | bouw 
  4080 | dubbele POI voorwerp
  4090 |
+ 4100 |
  5010 | spelling
  5020 | type snelweg
  5030 | 2 namen

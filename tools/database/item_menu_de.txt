@@ -16,6 +16,7 @@
  1170 | Innenvielkant doppelt
  1180 | Zweimal Zyklus-Weg
  1190 |
+ 1200 |
  2010 | Kreisverkehr=  Kreuzung
  2020 | ele=...
  2030 | oneway=
@@ -40,6 +41,7 @@
  3120 | Baum
  3130 | mit Markennamen
  3150 |
+ 3160 |
  4010 | stillgelegten
  4020 | am Kreisverkehr = Kreuzung
  4030 | Tags unvereinbar
@@ -48,6 +50,7 @@
  4070 | Bau
  4080 | POI-Doppel
  4090 |
+ 4100 |
  5010 | Rechtschreibung
  5020 | Art der Straße
  5030 | Zwei Namen

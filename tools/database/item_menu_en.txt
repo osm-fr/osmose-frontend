@@ -16,6 +16,7 @@
  1170 | double inner polygon
  1180 | double cycleway
  1190 | approximate way
+ 1200 | 1-member relation
  2010 | junction=roundabout
  2020 | ele=...
  2030 | oneway=...
@@ -40,6 +41,7 @@
  3120 | tree
  3130 | brand in name
  3150 | typo in tag
+ 3160 | incorrect "lanes"
  4010 | disused
  4020 | on junction=roundabout
  4030 | incompatible tags
@@ -48,6 +50,7 @@
  4070 | construction
  4080 | duplicate object
  4090 | unwanted tag on node
+ 4100 | incorrect "designation"
  5010 | orthograph
  5020 | way type
  5030 | two names

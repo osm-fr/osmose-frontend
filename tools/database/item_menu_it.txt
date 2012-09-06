@@ -16,6 +16,7 @@
  1170 | poligono interno a doppia
  1180 | per due volte il ciclo-way
  1190 |
+ 1200 |
  2010 | = incrocio rotonda
  2020 | ele = ...
  2030 | oneway =
@@ -40,6 +41,7 @@
  3120 | albero
  3130 | nome depositato
  3150 |
+ 3160 |
  4010 | abbandonato
  4020 | su incrocio rotonda
  4030 | tags incompatibili
@@ -47,7 +49,8 @@
  4060 | seamark: FIXME
  4070 | costruzione
  4080 | POI doppia
- 4090
+ 4090 |
+ 4100 |
  5010 | ortografia
  5020 | tipo di percorso
  5030 | Due nomi
