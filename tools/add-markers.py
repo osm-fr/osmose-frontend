@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
-all_flags = ["O", "L", "K", "P", "M", "F", "=", "|", "||", "::", ".:.", "T", "t", "X", "><", "L''", "[]", "."]
+all_flags = ["O", "L", "K", "P", "M", "F", "=", "|", "||", "::", ".:.", "T", "t", "X", "><", "L'", "[]", "."]
 
 from pyPgSQL import PgSQL
 
@@ -39,6 +39,6 @@ for res in giscurs.fetchall():
 #  en = raw_input("English: ")
 #  fr = raw_input("French: ")
 
-  print "insert into dynpoi_item values (%d, %d, '%s', '%s', NULL, ARRAY[1, 2, 3]);" % (i, c, color, avail_flags[0])
+  print "insert into dynpoi_item values (%d, %d, '%s', '%s', NULL, ARRAY[1, 2, 3]);" % (i, c, color, avail_flags[0].replace("'", "''"))
   avail_flags.remove(avail_flags[0])
 
