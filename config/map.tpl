@@ -6,6 +6,7 @@ Content-Type: text/html; charset=utf-8
 <head>
   <title>#title#</title>
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+  <meta name="description" content="Contrôle, vérification et correction d'erreurs d'OpenStreetMap">
   <link rel="stylesheet" type="text/css" href="http://openlayers.org/dev/theme/default/style.css">
   <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="stylesheet" type="text/css" href="style-ol.css">
