@@ -24,6 +24,8 @@ import sys, os, time, urllib, tempfile, commands
 import utils
 from xml.sax import make_parser, handler
 
+show = utils.show
+
 ###########################################################################
 ## logger
 
@@ -339,16 +341,16 @@ class update_parser(handler.ContentHandler):
 
 ###########################################################################
                         
-def show(source):
-    print "source #%s"%source["id"]
+def print_source(source):
+    show(u"source #%s"%source["id"])
     for k in source:
         if k == "id":
             continue
         if type(source[k])== list:
             for e in source[k]:
-                print "   %-10s = %s"%(k, e)
+                show(u"   %-10s = %s"%(k, e))
         else:
-            print "   %-10s = %s"%(k, source[k])
+            show(u"   %-10s = %s"%(k, source[k]))
 
 ###########################################################################
             
@@ -357,8 +359,8 @@ if __name__ == "__main__":
     if len(sys.argv) == 1:
         for k in sorted([int(x) for x in sources.keys()]):
             source = sources[str(k)]
-            show(source)
+            print_source(source)
     elif sys.argv[1] == "--help":
-        print "usage: update.py <source number> <url>"
+        show(u"usage: update.py <source number> <url>")
     else:
         update(utils.get_sources()[sys.argv[1]], sys.argv[2])
