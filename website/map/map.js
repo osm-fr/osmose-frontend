@@ -85,7 +85,7 @@
         var name = all_available_styles[idx];
         var l = new OpenLayers.Layer.TMS(
 	  name,
-	  ["http://layers.openstreetmap.fr/tiles/renderer.py/"+idx+"/"],
+	  ["http://a.layers.openstreetmap.fr/"+idx+"/"],
 	  { type:'jpeg',
 	    getURL: get_osm_url,
             transitionEffect: 'resize',
