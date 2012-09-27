@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-01 18:15+0200\n"
+"POT-Creation-Date: 2012-09-27 22:14+0200\n"
 "PO-Revision-Date: 2012-06-05 21:26+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: English\n"
@@ -29,7 +29,7 @@ msgstr "OsmOse - copyright informations"
 msgid "Data are coming from:"
 msgstr "Data are coming from:"
 
-#: ../website/copyright.py:27 ../website/map/index.py:173
+#: ../website/copyright.py:27
 msgid "copyright"
 msgstr "copyright"
 
@@ -63,8 +63,8 @@ msgid "no bubbles at this zoom factor"
 msgstr "no bubbles at this zoom factor"
 
 #: ../website/map/index.py:106
-msgid "Select:"
-msgstr "Select:"
+msgid "Show:"
+msgstr ""
 
 #: ../website/map/index.py:107 ../website/map/index.py:123
 msgid "all"
@@ -92,17 +92,17 @@ msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
 #: ../website/map/index.py:165
-msgid "by user"
-msgstr "by user"
+msgid "Errors by user"
+msgstr "Errors by user"
 
 #: ../website/map/index.py:166
-msgid "relation analyser"
-msgstr "relation analyser"
+msgid "Relation analyser"
+msgstr "Relation analyser"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
 #: ../website/map/index.py:168
-msgid "clc"
-msgstr "clc"
+msgid "CLC"
+msgstr "CLC"
 
 #: ../website/map/index.py:168
 msgid "http://clc.openstreetmap.fr/"
@@ -110,8 +110,8 @@ msgstr "http://clc.openstreetmap.fr/"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
 #: ../website/map/index.py:170
-msgid "geodesic"
-msgstr "geodesic"
+msgid "Geodesic"
+msgstr "Geodesic"
 
 #: ../website/map/index.py:170
 msgid "http://geodesie.openstreetmap.fr/"
@@ -126,14 +126,18 @@ msgstr "openstreetmap.fr"
 msgid "http://www.openstreetmap.fr/"
 msgstr "http://www.openstreetmap.fr/"
 
+#: ../website/map/index.py:173
+msgid "Copyright"
+msgstr "Copyright"
+
 #. TRANSLATORS: link to source code
 #: ../website/map/index.py:175
-msgid "sources"
-msgstr "sources"
+msgid "Sources"
+msgstr "Sources"
 
 #: ../website/map/index.py:176
-msgid "statistics"
-msgstr "statistics"
+msgid "Statistics"
+msgstr "Statistics"
 
 #: ../website/text/byuser-stats.py:36
 msgid "OsmOse - Users statistics"
@@ -392,6 +396,12 @@ msgstr "last generation"
 #: ../website/utils/last-update.py:92 ../website/utils/last-update.py:104
 msgid "history"
 msgstr "history"
+
+#~ msgid "Select:"
+#~ msgstr "Select:"
+
+#~ msgid "clc"
+#~ msgstr "clc"
 
 #~ msgid "%dd, %dh, %02dm ago"
 #~ msgstr "%dd, %dh, %02dm ago"

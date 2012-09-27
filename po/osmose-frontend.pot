@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-01 18:15+0200\n"
+"POT-Creation-Date: 2012-09-27 22:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Data are coming from:"
 msgstr ""
 
-#: ../website/copyright.py:27 ../website/map/index.py:173
+#: ../website/copyright.py:27
 msgid "copyright"
 msgstr ""
 
@@ -63,7 +63,7 @@ msgid "no bubbles at this zoom factor"
 msgstr ""
 
 #: ../website/map/index.py:106
-msgid "Select:"
+msgid "Show:"
 msgstr ""
 
 #: ../website/map/index.py:107 ../website/map/index.py:123
@@ -92,16 +92,16 @@ msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr ""
 
 #: ../website/map/index.py:165
-msgid "by user"
+msgid "Errors by user"
 msgstr ""
 
 #: ../website/map/index.py:166
-msgid "relation analyser"
+msgid "Relation analyser"
 msgstr ""
 
 #. TRANSLATORS: this link can be changed to something specific to the language
 #: ../website/map/index.py:168
-msgid "clc"
+msgid "CLC"
 msgstr ""
 
 #: ../website/map/index.py:168
@@ -110,7 +110,7 @@ msgstr ""
 
 #. TRANSLATORS: this link can be changed to something specific to the language
 #: ../website/map/index.py:170
-msgid "geodesic"
+msgid "Geodesic"
 msgstr ""
 
 #: ../website/map/index.py:170
@@ -126,13 +126,17 @@ msgstr ""
 msgid "http://www.openstreetmap.fr/"
 msgstr ""
 
+#: ../website/map/index.py:173
+msgid "Copyright"
+msgstr ""
+
 #. TRANSLATORS: link to source code
 #: ../website/map/index.py:175
-msgid "sources"
+msgid "Sources"
 msgstr ""
 
 #: ../website/map/index.py:176
-msgid "statistics"
+msgid "Statistics"
 msgstr ""
 
 #: ../website/text/byuser-stats.py:36
