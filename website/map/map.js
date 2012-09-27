@@ -169,7 +169,7 @@
 	  } else if (this.getZoom()>=6 && oldzoom<6) {
 	    $("div#need_zoom").hide();
 	    $("div#action_links").show();
-	    if ( $("div#menu").css('height') != '20px') {
+	    if ( $("div#menu").css('height') != '') {
 	      console.log('showing tests');
 	      $("div#tests").fadeIn();
 	    }
@@ -305,12 +305,12 @@
     }
 
     function toggleMenu() {
-      if ($("div#menu").css('height') == '20px') {
+      if ($("div#menu").css('height') == '') {
 	$("div#menu").css('height', '95%');
 	$("div#tests").show();
 	$("#togglemenu").html('-');
       } else {
-	$("div#menu").css('height', '20px');
+	$("div#menu").css('height', '');
 	$("div#tests").hide();
 	$("#togglemenu").html('+');
       }
