@@ -266,17 +266,48 @@ img#incFrameBt {
 }
 
 /* error levels */
-div.level-123 { float: right; width: 48px; height: 16px; background: url('images/level-123.png'); }
-div.level-12_ { float: right; width: 48px; height: 16px; background: url('images/level-12_.png'); }
-div.level-1__ { float: right; width: 48px; height: 16px; background: url('images/level-1__.png'); }
-div.level-_2_ { float: right; width: 48px; height: 16px; background: url('images/level-_2_.png'); }
-div.level-__3 { float: right; width: 48px; height: 16px; background: url('images/level-__3.png'); }
+div.test_group div.level {
+  float: right;
+  width: 48px;
+  height: 16px;
+}
+div.level-123 {
+  background: url('images/level-123.png');
+}
+div.level-12_ {
+  background: url('images/level-12_.png');
+}
+div.level-1__ {
+  background: url('images/level-1__.png');
+}
+div.level-_2_ {
+  background: url('images/level-_2_.png');
+}
+div.level-__3 {
+  background: url('images/level-__3.png');
+}
 
-option.level-123 { padding-left: 50px; background: url('images/level-123.png') top left no-repeat; height: 16px; }
-option.level-1__ { padding-left: 50px; background: url('images/level-1__.png') top left no-repeat; height: 16px; }
-option.level-12_ { padding-left: 50px; background: url('images/level-12_.png') top left no-repeat; height: 16px; }
-option.level-_2_ { padding-left: 50px; background: url('images/level-_2_.png') top left no-repeat; height: 16px; }
-option.level-__3 { padding-left: 50px; background: url('images/level-__3.png') top left no-repeat; height: 16px; }
+select#level option {
+  padding-left: 50px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-position: top left;
+}
+option.level-123 {
+  background: url('images/level-123.png');
+}
+option.level-1__ {
+  background: url('images/level-1__.png');
+}
+option.level-12_ {
+  background: url('images/level-12_.png');
+}
+option.level-_2_ {
+  background: url('images/level-_2_.png');
+}
+option.level-__3 {
+  background: url('images/level-__3.png');
+}
 
 .olControlMousePosition {
   position: absolute;
