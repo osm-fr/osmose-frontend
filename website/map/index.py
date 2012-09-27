@@ -132,7 +132,7 @@ for categ in categories:
             s_l[l-1] = str(l)
         dico["form"] += u"<li style='background-image: url(markers/marker-l-%d.png)' id='item_desc%d'>\n" % (err["item"], err["item"])
         dico["form"] += u"  <input type='checkbox' id='item%d' name='item%d' onclick='checkbox_click(this)'%s>\n"%(err["item"], err["item"], {True:" checked=\"checked\"", False:""}[err["item"] in active_items])
-        dico["form"] += u"  <a tarrget=\"_blank\" href=\"../utils/info.py?item=%d\">%s</a>\n"%(err["item"],err["menu"])
+        dico["form"] += u"  <a target=\"_blank\" href=\"../utils/info.py?item=%d\">%s</a>\n"%(err["item"],err["menu"])
 	dico["form"] += u"  <div class=\"level level-%s\">&nbsp;</div>\n"%("".join(s_l))
         dico["form"] += u"</li>\n"
             
