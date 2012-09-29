@@ -152,6 +152,8 @@
       var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
       map.setCenter(lonLat, zoom);
 
+      $("div#menu").data('opened', false);
+
       map.events.register("moveend", map, function() {
         var pos = this.getCenter().clone();
         var lonlat = pos.transform(this.getProjectionObject(), new OpenLayers.Projection("EPSG:4326"));
@@ -169,7 +171,7 @@
 	  } else if (this.getZoom()>=6 && oldzoom<6) {
 	    $("div#need_zoom").hide();
 	    $("div#action_links").show();
-	    if ( $("div#menu").css('height') != '') {
+	    if ($("div#menu").data('opened')) {
 	      console.log('showing tests');
 	      $("div#tests").fadeIn();
 	    }
@@ -305,11 +307,13 @@
     }
 
     function toggleMenu() {
-      if ($("div#menu").css('height') == '') {
-	$("div#menu").css('height', '95%');
+      if (! $("div#menu").data('opened')) {
+        $("div#menu").data('opened', true);
+	$("div#menu").css('height', '90%');
 	$("div#tests").show();
 	$("#togglemenu").html('-');
       } else {
+        $("div#menu").data('opened', false);
 	$("div#menu").css('height', '');
 	$("div#tests").hide();
 	$("#togglemenu").html('+');
