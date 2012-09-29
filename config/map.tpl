@@ -45,20 +45,22 @@ Content-Type: text/html; charset=utf-8
   <input type='hidden' name='user'   value='#user#'>
     <div id="need_zoom">#need_zoom#</div>
     <div id="action_links">
+      <span id="level-span">
+        <label for='level'>#severity#</label>
+        <select id='level' onclick='javascript:change_level();'>
+          <option class="level-1__" value="1"#level1#>1 only</option>
+          <option class="level-12_" value="1,2"#level1,2#>1+2 only</option>
+          <option class="level-123" value="1,2,3"#level1,2,3#>all severity</option>
+          <option disabled="disabled"></option>
+          <option class="level-_2_" value="2"#level2#>2 only</option>
+          <option class="level-__3" value="3"#level3#>3 only</option> 
+        </select>
+      </span>
+      <br>
       #check#
       <a href="javascript:set_checkboxes(true);">#check_all#</a>
       <a href="javascript:set_checkboxes(false);">#check_nothing#</a>
       <a href="javascript:toggle_checkboxes();">#check_invert#</a>
-      &nbsp;-&nbsp;
-      <label for='level'>#severity#</label>
-      <select id='level' onclick='javascript:change_level();'>
-        <option class="level-1__" value="1"#level1#>1 only</option>
-        <option class="level-12_" value="1,2"#level1,2#>1+2 only</option>
-        <option class="level-123" value="1,2,3"#level1,2,3#>all severity</option>
-	<option disabled="disabled"></option>
-        <option class="level-_2_" value="2"#level2#>2 only</option>
-        <option class="level-__3" value="3"#level3#>3 only</option> 
-      </select>
     </div>
   <div id="tests" >
   #form#

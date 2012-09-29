@@ -62,6 +62,7 @@ div#menu form {
 div#menu div#action_links {
   font-size: 10px;
   text-align: center;
+  padding-left: 20px;
 }
 div#menu div.test_group img {
   margin-left: 20px;
@@ -94,6 +95,9 @@ div#menu div.test_group li {
 }
 div#menu div.test_group li:hover {
   background-color: #ffc;
+}
+span#level-span {
+  white-space: nowrap;
 }
 select#level {
   font-size: 10px;
