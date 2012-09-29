@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-27 22:14+0200\n"
+"POT-Creation-Date: 2012-09-27 22:56+0200\n"
 "PO-Revision-Date: 2012-06-02 22:17+0100\n"
 "Last-Translator: operon <a@a.fr>\n"
 "Language-Team: French\n"
@@ -66,11 +66,11 @@ msgstr "pas de bulle à ce zoom"
 msgid "Show:"
 msgstr ""
 
-#: ../website/map/index.py:107 ../website/map/index.py:123
+#: ../website/map/index.py:107 ../website/map/index.py:124
 msgid "all"
 msgstr "tous"
 
-#: ../website/map/index.py:108 ../website/map/index.py:124
+#: ../website/map/index.py:108 ../website/map/index.py:125
 msgid "nothing"
 msgstr "rien"
 
@@ -82,62 +82,70 @@ msgstr "inverser"
 msgid "all levels"
 msgstr "tous"
 
+#: ../website/map/index.py:111
+msgid "Severity"
+msgstr ""
+
 #. TRANSLATORS: link to help in appropriate language
-#: ../website/map/index.py:164
+#: ../website/map/index.py:166
 msgid "Help"
 msgstr "Aide"
 
-#: ../website/map/index.py:164
+#: ../website/map/index.py:166
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/FR:Osmose"
 
-#: ../website/map/index.py:165
+#: ../website/map/index.py:167
 msgid "Errors by user"
 msgstr "Erreurs par utilisateur"
 
-#: ../website/map/index.py:166
+#: ../website/map/index.py:168
 msgid "Relation analyser"
 msgstr "Analyseur de relation"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../website/map/index.py:168
+#: ../website/map/index.py:170
 msgid "CLC"
 msgstr "CLC"
 
-#: ../website/map/index.py:168
+#: ../website/map/index.py:170
 msgid "http://clc.openstreetmap.fr/"
 msgstr "http://clc.openstreetmap.fr/"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../website/map/index.py:170
+#: ../website/map/index.py:172
 msgid "Geodesic"
 msgstr "Géodésie"
 
-#: ../website/map/index.py:170
+#: ../website/map/index.py:172
 msgid "http://geodesie.openstreetmap.fr/"
 msgstr "http://geodesie.openstreetmap.fr/"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../website/map/index.py:172
+#: ../website/map/index.py:174
 msgid "openstreetmap.fr"
 msgstr "openstreetmap.fr"
 
-#: ../website/map/index.py:172
+#: ../website/map/index.py:174
 msgid "http://www.openstreetmap.fr/"
 msgstr "http://www.openstreetmap.fr/"
 
-#: ../website/map/index.py:173
+#: ../website/map/index.py:175
 msgid "Copyright"
 msgstr "Copyright"
 
 #. TRANSLATORS: link to source code
-#: ../website/map/index.py:175
+#: ../website/map/index.py:177
 msgid "Sources"
 msgstr "Sources"
 
-#: ../website/map/index.py:176
+#: ../website/map/index.py:178
 msgid "Statistics"
 msgstr "Statistiques"
+
+#: ../website/map/index.py:184
+msgid "Change language:"
+msgstr ""
 
 #: ../website/text/byuser-stats.py:36
 msgid "OsmOse - Users statistics"
