@@ -18,11 +18,12 @@
  1190 |
  1200 |
  2010 | = incrocio rotonda
- 2020 | ele = ...
- 2030 | oneway =
- 2040 | source = ...
+ 2020 | ele=...
+ 2030 | oneway=...
+ 2040 | source=...
  2050 | Parent tag
  2060 | Numeri di strada
+ 2080 | highway=...
  3010 | highway di rotonda
  3020 | fonte tag bad
  3030 | tagwatch pulito
@@ -42,6 +43,7 @@
  3130 | nome depositato
  3150 |
  3160 |
+ 3170 |
  4010 | abbandonato
  4020 | su incrocio rotonda
  4030 | tags incompatibili
@@ -69,7 +71,9 @@
  7050 |
  7060 |
  7070 |
+ 7090 |
  8010 | Monumenti
  8020 |
  8021 |
  8030 |
+ 8040 |

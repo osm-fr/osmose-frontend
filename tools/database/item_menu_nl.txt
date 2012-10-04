@@ -19,10 +19,11 @@
  1200 |
  2010 | knooppunt = rotonde
  2020 | ele=...
- 2030 | oneway=
+ 2030 | oneway=...
  2040 | source=...
  2050 | bovenliggende code
  2060 | huisnummers
+ 2080 | highway=...
  3010 | snelweg rotonde
  3020 | Tag slechte bron
  3030 | tagwatch cleaner
@@ -42,6 +43,7 @@
  3130 | met merknaam
  3150 |
  3160 |
+ 3170 |
  4010 | onbruik geraakte
  4020 | aan knooppunt = rotonde
  4030 | tags onverenigbaar
@@ -69,7 +71,9 @@
  7050 | postkantoor
  7060 |
  7070 |
+ 7090 |
  8010 | monumenten
  8020 |
  8021 |
  8030 |
+ 8040 |

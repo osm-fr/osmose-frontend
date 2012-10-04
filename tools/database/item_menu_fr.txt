@@ -13,16 +13,17 @@
  1140 | tag ou rôle manquant
  1150 | intersection entre surfaces
  1160 | relation large
- 1170 | polygone interne en double
+ 1170 | multipolygone
  1180 | double voie cyclable
  1190 | voie approximative
  1200 | relation à 1 membre
  2010 | junction=roundabout
  2020 | ele=...
- 2030 | oneway=
+ 2030 | oneway=...
  2040 | source=...
  2050 | tag parent
  2060 | numéros de rue
+ 2080 | highway=...
  3010 | highway roundabout
  3020 | mauvais tag source
  3030 | tagwatch cleaner
@@ -42,6 +43,7 @@
  3130 | nom avec marque
  3150 | typo dans un tag
  3160 | "lanes" incorrectes
+ 3170 | rôle de relation
  4010 | abandonné
  4020 | sur junction=roundabout
  4030 | tags incompatibles
@@ -69,7 +71,9 @@
  7050 | bureau de poste
  7060 | changement pour ODbl
  7070 | école non intégrée
+ 7090 | passage à niveau
  8010 | monument
  8020 | poste
  8021 | poste, intégration possible
  8030 | école
+ 8040 | station RATP

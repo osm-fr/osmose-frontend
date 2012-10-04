@@ -13,7 +13,7 @@
  1140 | missign tag or role
  1150 | surface intersection
  1160 | big relation
- 1170 | double inner polygon
+ 1170 | multipolygon
  1180 | double cycleway
  1190 | approximate way
  1200 | 1-member relation
@@ -23,6 +23,7 @@
  2040 | source=...
  2050 | parent tag
  2060 | street numbers
+ 2080 | highway=...
  3010 | highway roundabout
  3020 | bad source tag
  3030 | tagwatch cleaner
@@ -42,6 +43,7 @@
  3130 | brand in name
  3150 | typo in tag
  3160 | incorrect "lanes"
+ 3170 | relation role
  4010 | disused
  4020 | on junction=roundabout
  4030 | incompatible tags
@@ -69,7 +71,9 @@
  7050 | post office
  7060 | ODbl migration change
  7070 | school, not integrated
+ 7090 | crossing
  8010 | monument
  8020 | post office
  8021 | post office, could be integrated
  8030 | school
+ 8040 | french railway station
