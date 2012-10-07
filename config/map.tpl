@@ -48,12 +48,12 @@ Content-Type: text/html; charset=utf-8
       <span id="level-span">
         <label for='level'>#severity#</label>
         <select id='level' onclick='javascript:change_level();'>
-          <option class="level-1__" value="1"#level1#>1 only</option>
-          <option class="level-12_" value="1,2"#level1,2#>1+2 only</option>
-          <option class="level-123" value="1,2,3"#level1,2,3#>all severity</option>
+          <option class="level-1__" value="1"#level1#>#level1_desc#</option>
+          <option class="level-12_" value="1,2"#level1,2#>#level1,2_desc#</option>
+          <option class="level-123" value="1,2,3"#level1,2,3#>#level1,2,3_desc#</option>
           <option disabled="disabled"></option>
-          <option class="level-_2_" value="2"#level2#>2 only</option>
-          <option class="level-__3" value="3"#level3#>3 only</option> 
+          <option class="level-_2_" value="2"#level2#>#level2_desc#</option>
+          <option class="level-__3" value="3"#level3#>#level3_desc#</option> 
         </select>
       </span>
       <br>

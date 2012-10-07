@@ -112,6 +112,12 @@ dico["severity"] = _("Severity")
 
 dico["item_levels"] = u""
 
+dico["level1_desc"] = _("1 only")
+dico["level1,2_desc"] = _("1+2 only")
+dico["level1,2,3_desc"] = _("all severity")
+dico["level2_desc"] = _("2 only")
+dico["level3_desc"] = _("3 only")
+
 ###########################################################################
 ## formulaire
 
