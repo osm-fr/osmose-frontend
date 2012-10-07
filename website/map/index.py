@@ -185,8 +185,7 @@ urls.append((_("Statistics"), "/utils/last-update.py"))
 
 show(u"<div id='bottom_links'>")
 
-show(u"<div style='float: left'>")
-show(u"<form method='get' style='display:inline; margin-right: 30px;'>")
+show(u"<form method='get' style='display:inline; margin-right: 30px;' action=''>")
 show(_("Change language:"))
 show(u"<select onchange=\"set_lang(this)\" name='language'>")
 show(u"<option value=''></option>")
@@ -198,14 +197,11 @@ for l in utils.allowed_languages:
   show(u"<option%s value='%s'>%s</option>" % (s, l, l))
 show(u"</select>")
 show(u"</form>")
-# show(u"</div>")
-# 
-# show(u"  <div id='links'>")
+
 s = []
 for u in urls:
   s.append(u"<a href='%s'>%s</a>" % (u[1], u[0]))
 show(u" &mdash; ".join(s))
-# show(u"  </div>")
 show(u"</div>")
 
 utils.print_tail()

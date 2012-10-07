@@ -134,9 +134,6 @@ div#bottom_links {
   text-align: center;
   z-index: 1000;
 }
-div#bottom_links div#links {
-  display: inline-block;
-}
 
 /* popups */
 .bulle_msg {

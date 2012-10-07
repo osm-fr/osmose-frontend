@@ -15,7 +15,7 @@ Content-Type: text/html; charset=utf-8
   <script type="text/javascript" src="DynPoi.js"></script>
   <script type="text/javascript" src="BetaStyles.js"></script>
   <script type="text/javascript" src="map.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
   <script type="text/javascript">
     var lat=#lat#;
