@@ -43,7 +43,7 @@ a#togglemenu {
 }
 div#tests {
   overflow-y: auto;
-  height: 97%;
+  height: 93%;
   display: none;
 }
 div#menu div#need_zoom {
@@ -110,20 +110,18 @@ select#level {
 
 /* Map */
 div#map {
-  /* position: absolute;
-  top: 20px;
+  position: absolute;
+  top: 23px;
   bottom: 0px;
-  left: 280px;
-  right: 0px; */
-  width: 100%;
-  height: 100%;
-  margin-top: 23px;
+  left: 0px;
+  right: 0px;
 }
 
 /* Bottom links */
 div#bottom_links {
   background-color: #DDDDDD;
   position: absolute;
+  height: 23px;
   width: 100%;
   left: 0px;
   top: 0px;
