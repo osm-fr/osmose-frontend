@@ -64,7 +64,7 @@ msgstr "pas de bulle à ce zoom"
 
 #: ../website/map/index.py:106
 msgid "Show:"
-msgstr ""
+msgstr "Afficher :"
 
 #: ../website/map/index.py:107 ../website/map/index.py:124
 msgid "all"
@@ -84,7 +84,7 @@ msgstr "tous"
 
 #: ../website/map/index.py:111
 msgid "Severity"
-msgstr ""
+msgstr "Gravité"
 
 #. TRANSLATORS: link to help in appropriate language
 #: ../website/map/index.py:166
@@ -145,7 +145,7 @@ msgstr "Statistiques"
 
 #: ../website/map/index.py:184
 msgid "Change language:"
-msgstr ""
+msgstr "Changer la langue :"
 
 #: ../website/text/byuser-stats.py:36
 msgid "OsmOse - Users statistics"
