@@ -152,7 +152,8 @@
       var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
       map.setCenter(lonLat, zoom);
 
-      $("div#menu").data('opened', false);
+      $("div#menu").data('opened', true);
+      $("div#menu").css('height', '90%');
 
       map.events.register("moveend", map, function() {
         var pos = this.getCenter().clone();

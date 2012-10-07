@@ -36,7 +36,7 @@ Content-Type: text/html; charset=utf-8
 <a accesskey="w" style="display: none; visibility:hidden;" href="javascript:iFrameClose();">iframeclose</a>
 
 <div id="menu">
-  <a id="togglemenu" href="javascript:toggleMenu()">+</a>
+  <a id="togglemenu" href="javascript:toggleMenu()">-</a>
   <form id="myform" name="myform" action="#">
   <input type='hidden' name='lat'    value='#lat#'>
   <input type='hidden' name='lon'    value='#lon#'>

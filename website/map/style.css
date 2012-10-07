@@ -44,7 +44,6 @@ a#togglemenu {
 div#tests {
   overflow-y: auto;
   height: 93%;
-  display: none;
 }
 div#menu div#need_zoom {
   display: none;
@@ -126,7 +125,7 @@ div#bottom_links {
   left: 0px;
   top: 0px;
   opacity: 0.8;
-  font-size: 10px;
+  font-size: 13px;
 
   vertical-align: middle;
   text-align: center;
