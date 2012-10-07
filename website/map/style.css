@@ -66,14 +66,17 @@ div#menu div.test_group img {
 }
 div#menu div.test_group h1 {
   height: 20px;
-  line-height: 20px;
   font-size: 12px;
   margin: 0px;
   margin-top: 5px;
-  padding-left: 20px;
-  background: url('images/folder_open.png') no-repeat left 3px; 
 }
-div#menu div.test_group h1.folded {
+div#menu div.test_group h1 a:first-child {
+  display: inline-block;
+  background: url('images/folder_open.png') no-repeat left 3px; 
+  padding-left: 20px;
+  line-height: 20px;
+}
+div#menu div.test_group h1.folded a:first-child {
   background: url('images/folder.png') no-repeat left 3px; 
 }
 div#menu div.test_group ul {
