@@ -361,13 +361,9 @@
       $("div#tests li").each( function () {
 	  id = parseInt($(this).attr('id').replace(/item_desc/, ''));
 	  if (jQuery.inArray( id, item_levels[l]) >= 0) {
-		if ( $("#item_desc"+id).is(':hidden') ) {
-			$("#item_desc"+id).slideDown();
-		}
+		$("#item_desc"+id).show();
 	  } else {
-		if ( $("#item_desc"+id).is(':visible') ) {
-			$("#item_desc"+id).slideUp();
-		}
+		$("#item_desc"+id).hide();
 	  }
 	  } );
     }
