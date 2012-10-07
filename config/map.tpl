@@ -32,8 +32,7 @@ Content-Type: text/html; charset=utf-8
 
 <div id="incFrameBg"></div>
 <iframe id="incFrame" src="" width=780 height=540 scrolling="auto" frameborder="1" ></iframe>
-<img id="incFrameBt" src="close.png" onclick="iFrameClose();">
-<a accesskey="w" style="display: none; visibility:hidden;" href="javascript:iFrameClose();">iframeclose</a>
+<a accesskey="w" href="javascript:iFrameClose();"><img id="incFrameBt" src="images/close.png"></a>
 
 <div id="menu">
   <a id="togglemenu" href="javascript:toggleMenu()">-</a>
