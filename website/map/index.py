@@ -108,8 +108,15 @@ dico["check_all"]     = _("all")
 dico["check_nothing"] = _("nothing")
 dico["check_invert"]  = _("invert")
 dico["level_all_str"] = _("all levels")
+dico["severity"] = _("Severity")
 
 dico["item_levels"] = u""
+
+dico["level1_desc"] = _("1 only")
+dico["level1,2_desc"] = _("1+2 only")
+dico["level1,2,3_desc"] = _("all severity")
+dico["level2_desc"] = _("2 only")
+dico["level3_desc"] = _("3 only")
 
 ###########################################################################
 ## formulaire
@@ -123,16 +130,17 @@ for categ in categories:
     dico["form"] += "<a href=\"javascript:showHideCateg('categ%d', true)\">%s</a> "%(categ["categ"], _("all"))
     dico["form"] += "<a href=\"javascript:showHideCateg('categ%d', false)\">%s</a></h1>"%(categ["categ"], _("nothing"))
     dico["form"] += "\n"
-    dico["form"] += "<ul>"
+    dico["form"] += "<ul>\n"
     
     for err in categ["item"]:
-        dico["form"] += "<li style='background-image: url(markers/marker-l-%d.png)' id='item_desc%d'>" % (err["item"], err["item"])
-        dico["form"] += "<input type='checkbox' id='item%d' name='item%d' onclick='checkbox_click(this)'%s>\n"%(err["item"], err["item"], {True:" checked=\"checked\"", False:""}[err["item"] in active_items])
-        s_l = ["."] * 3
+        s_l = ["_"] * 3
         for l in err["levels"]:
             s_l[l-1] = str(l)
-        dico["form"] += u"<a href=\"../utils/info.py?item=%d\">%s</a><div>%s</div>\n"%(err["item"],err["menu"], "".join(s_l))
-        dico["form"] += u"</li>"
+        dico["form"] += u"<li style='background-image: url(markers/marker-l-%d.png)' id='item_desc%d'>\n" % (err["item"], err["item"])
+        dico["form"] += u"  <input type='checkbox' id='item%d' name='item%d' onclick='checkbox_click(this)'%s>\n"%(err["item"], err["item"], {True:" checked=\"checked\"", False:""}[err["item"] in active_items])
+        dico["form"] += u"  <a target=\"_blank\" href=\"../utils/info.py?item=%d\">%s</a>\n"%(err["item"],err["menu"])
+	dico["form"] += u"  <div class=\"level level-%s\">&nbsp;</div>\n"%("".join(s_l))
+        dico["form"] += u"</li>\n"
             
     dico["form"] += "</ul>"
     dico["form"] += "</div>\n"
@@ -177,9 +185,9 @@ urls.append((_("Statistics"), "/utils/last-update.py"))
 
 show(u"<div id='bottom_links'>")
 
-show(u"<div style='float: left'>")
-show(u"<form method='get' style='display:inline'>")
-show(u"<select name='language' onchange='set_lang(this.value)'>")
+show(u"<form method='get' style='display:inline; margin-right: 30px;' action=''>")
+show(_("Change language:"))
+show(u"<select onchange=\"set_lang(this)\" name='language'>")
 show(u"<option value=''></option>")
 for l in utils.allowed_languages:
   if translate.languages[0] == l:
@@ -189,14 +197,11 @@ for l in utils.allowed_languages:
   show(u"<option%s value='%s'>%s</option>" % (s, l, l))
 show(u"</select>")
 show(u"</form>")
-show(u"</div>")
 
-show(u"  <div id='links'>")
 s = []
 for u in urls:
   s.append(u"<a href='%s'>%s</a>" % (u[1], u[0]))
-show(u" - ".join(s))
-show(u"  </div>")
+show(u" &mdash; ".join(s))
 show(u"</div>")
 
 utils.print_tail()
