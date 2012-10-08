@@ -137,24 +137,22 @@
         document.myform.lat.value  = lonlat.lat
         document.myform.lon.value  = lonlat.lon
         document.myform.zoom.value = this.getZoom();
-        if (document.myform.source.value == '') {
-	  if (this.getZoom() >= 6) {
-	    pois.loadText();
-	  }
-	  if (this.getZoom()<6 && oldzoom >= 6) {
-	    $("div#need_zoom").show();
-	    $("div#action_links").hide();
-	    $("div#tests").hide();
-	  } else if (this.getZoom()>=6 && oldzoom<6) {
-	    $("div#need_zoom").hide();
-	    $("div#action_links").show();
-	    if ($("div#menu").data('opened')) {
-	      console.log('showing tests');
-	      $("div#tests").fadeIn();
-	    }
-	  }
-	  oldzoom = this.getZoom();
+	if (this.getZoom() >= 6) {
+	  pois.loadText();
 	}
+	if (this.getZoom()<6 && oldzoom >= 6) {
+	  $("div#need_zoom").show();
+	  $("div#action_links").hide();
+	  $("div#tests").hide();
+	} else if (this.getZoom()>=6 && oldzoom<6) {
+	  $("div#need_zoom").hide();
+	  $("div#action_links").show();
+	  if ($("div#menu").data('opened')) {
+	    console.log('showing tests');
+	    $("div#tests").fadeIn();
+	  }
+	}
+	oldzoom = this.getZoom();
       });
       
       handleResize();
@@ -199,15 +197,7 @@
       var divDroite  = document.getElementById('map').style;
       
       if (document.myform.source.value != '') {
-	g = 0;
-      
-        divGauche.width  = g + "px";
-        divGauche.height = (globalHeight - 20) + "px";
-      
-        divDroite.width  = (globalWidth - g) + "px";
-        divDroite.height = (globalHeight - 20) + "px";
-        divDroite.left   = g + "px";
-        divDroite.top    = 0 + "px";
+        closeMenu();
       }
       
       map.setCenter(centre, zoom);
@@ -283,6 +273,13 @@
       pois.loadText();
     }
 
+    function closeMenu() {
+        $("div#menu").data('opened', false);
+	$("div#menu").css('height', '');
+	$("div#tests").hide();
+	$("#togglemenu").html('+');
+    }
+
     function toggleMenu() {
       if (! $("div#menu").data('opened')) {
         $("div#menu").data('opened', true);
@@ -290,12 +287,8 @@
 	$("div#tests").show();
 	$("#togglemenu").html('-');
       } else {
-        $("div#menu").data('opened', false);
-	$("div#menu").css('height', '');
-	$("div#tests").hide();
-	$("#togglemenu").html('+');
+        closeMenu();
       }
-      // $("div#menu").animate( { height: '=20px' }, 1000 );
     }
 
     // Update checkbox count
