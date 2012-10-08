@@ -1,6 +1,6 @@
 Content-Type: text/html; charset=utf-8
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!doctype html>
 <html>
 
 <head>

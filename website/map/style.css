@@ -55,6 +55,7 @@ div#menu div#need_zoom {
 div#menu form {
   font-size: 10px;
   margin:0px;
+  height: 100%;
 }
 div#menu div#action_links {
   font-size: 10px;
