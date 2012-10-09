@@ -14,7 +14,7 @@ giscurs.execute(sql)
 prev_cat = ""
 
 for res in giscurs.fetchall():
-  print res
+#  print res
   i = int(res[0])
   c = int(i / 1000) * 10
   if prev_cat != c:
@@ -24,13 +24,13 @@ for res in giscurs.fetchall():
   sql = "select item, marker_color, marker_flag from dynpoi_item where categ = %s"
   giscurs.execute(sql, (c,))
   for m in giscurs.fetchall():
-    print m
+#    print m
     color = m["marker_color"]
     if m["marker_flag"] in avail_flags:
       avail_flags.remove(m["marker_flag"])
 
-  print "  missing %d" % i
-  print "possible flags:", avail_flags
+#  print "  missing %d" % i
+#  print "possible flags:", avail_flags
 
   if len(avail_flags) == 0:
     print "not enough available flags"
