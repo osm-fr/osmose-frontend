@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-07 18:43+0200\n"
+"POT-Creation-Date: 2012-10-09 21:50+0200\n"
 "PO-Revision-Date: 2012-08-02 14:19+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: German\n"
@@ -170,7 +170,7 @@ msgstr "Quellen"
 msgid "Statistics"
 msgstr "Statistik"
 
-#: ../website/map/index.py:190
+#: ../website/map/index.py:189
 msgid "Change language:"
 msgstr ""
 
