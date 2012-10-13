@@ -1,19 +1,15 @@
 #! /usr/bin/env python
 #-*- coding: utf-8 -*-
 
-import os, atexit
-import re
-import Cookie
-from xml.sax import make_parser, handler
+import os, re, Cookie
 
 ################################################################################
 
-root_folder       = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 allowed_languages = ["en", "fr", "nl", "de", "it"]
-config_file       = os.path.join(root_folder, "config/config.xml")
 pg_user           = "osmose"
-pg_pass           = ""
+pg_pass           = "clostAdtoi"
 pg_base           = "osmose"
+website           = "osmose.openstreetmap.fr"
 
 ################################################################################
 
@@ -32,33 +28,6 @@ def pg_escape(text):
         return str(text)
     return text.replace(u"'", u"''").replace(u'\\',u'\\\\')
 
-def get_language():
-    lg = None
-    if "HTTP_COOKIE" in os.environ:
-        cki = Cookie.SimpleCookie()
-        cki.load(os.environ['HTTP_COOKIE'])
-        if "lang" in cki:
-            lg = [cki.get("lang").value]
-            if not lg[0] in allowed_languages:
-                lg = None
-
-    if not lg and "HTTP_ACCEPT_LANGUAGE" in os.environ:
-        lg = os.environ["HTTP_ACCEPT_LANGUAGE"]
-        lg = lg.split(",")
-        lg = [x.split(";")[0] for x in lg]
-        lg = [x.split("-")[0] for x in lg]
-        lg = [x for x in lg if x in allowed_languages]
-
-    if lg:
-        lg.append(allowed_languages[0])
-        res = []
-        for l in lg:
-            if not l in res:
-                res.append(l)
-        return res
-
-    return allowed_languages
-
 def get_sources():
     conn = get_dbconn()
     curs = conn.cursor()
@@ -73,7 +42,7 @@ def get_sources():
         config[src["id"]] = src
     return config
 
-def get_categories(lang = get_language()):
+def get_categories(lang):
     result = []
     conn = get_dbconn()
     curs1 = conn.cursor()
@@ -96,57 +65,16 @@ def get_categories(lang = get_language()):
         result.append(res)
     return result
 
-###########################################################################
-## templates
-
 def show(s):
     print s.encode("utf8")
-
-def N_(message):
-    return message
-
-def multiple_replace(dict, text):
-
-  """ Replace in 'text' all occurences of any key in the given
-  dictionary by its corresponding value.  Returns the new tring."""
-
-  # Create a regular expression  from the dictionary keys
-  regex = re.compile("(%s)" % "|".join(map(re.escape, dict.keys())))
-
-  # For each match, look-up corresponding value in dictionary
-  return regex.sub(lambda mo: dict[mo.string[mo.start():mo.end()]], text)
-
-
-def print_template(filename, rules = None):
-    page = open(os.path.join(root_folder, "config", filename)).read().decode("utf8")
-    if rules:
-        r = {}
-        for (k, v) in rules.iteritems():
-            r["#%s#" % k] = v
-        page = multiple_replace(r, page)
-    print page.encode("utf8")
-
-def print_header(title = N_("OsmOse - OpenStreetMap Oversight Search Engine")):
-    rules = { "title" : _(title) }
-    print_template("head.tpl", rules)
-
-def print_tail():
-    print_template("tail.tpl")
 
 ###########################################################################
 ## translation
 
 class translator:
-    
-    def __init__(self, language = get_language()):
 
+    def __init__(self, language):
         self.languages = language
-
-        import gettext
-        gettext.translation('osmose-frontend',
-                            localedir=os.path.join(root_folder, "po", "mo"),
-                            languages=language
-                           ).install(unicode=1)
 
     def select(self, res, no_translation = ""):
         # res is a dictionnary of possible translations, given by a SQL query
