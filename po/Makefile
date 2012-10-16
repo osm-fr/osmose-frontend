@@ -1,6 +1,6 @@
 
-PYFILES=$(shell find .. -name '*.py' -not -type l)
-TPLFILES=$(shell find ../views -name '*.tpl')
+PYFILES=$(shell find .. -name '*.py' -not -type l | sort)
+TPLFILES=$(shell find ../views -name '*.tpl' | sort)
 LANG=fr en de nl it
 
 MO=$(foreach l,$(LANG),mo/$(l)/LC_MESSAGES/osmose-frontend.mo)

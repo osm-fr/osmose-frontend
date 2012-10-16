@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-12 17:03+0200\n"
+"POT-Creation-Date: 2012-10-15 20:38+0200\n"
 "PO-Revision-Date: 2012-06-05 21:26+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: English\n"
@@ -16,84 +16,6 @@ msgstr ""
 "Content-Type: text/plain; charset=ASCII\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#. TRANSLATORS: link to help in appropriate language
-#: ../map.py:74
-msgid "Help"
-msgstr "Help"
-
-#: ../map.py:74
-msgid "http://wiki.openstreetmap.org/wiki/Osmose"
-msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
-
-#: ../map.py:75
-msgid "Errors by user"
-msgstr "Errors by user"
-
-#: ../map.py:76
-msgid "Relation analyser"
-msgstr "Relation analyser"
-
-#. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:78
-msgid "CLC"
-msgstr "CLC"
-
-#: ../map.py:78
-msgid "http://clc.openstreetmap.fr/"
-msgstr "http://clc.openstreetmap.fr/"
-
-#. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:80
-msgid "Geodesic"
-msgstr "Geodesic"
-
-#: ../map.py:80
-msgid "http://geodesie.openstreetmap.fr/"
-msgstr "http://geodesie.openstreetmap.fr/"
-
-#. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:82
-msgid "openstreetmap.fr"
-msgstr "openstreetmap.fr"
-
-#: ../map.py:82
-msgid "http://www.openstreetmap.fr/"
-msgstr "http://www.openstreetmap.fr/"
-
-#: ../map.py:83
-msgid "Copyright"
-msgstr "Copyright"
-
-#. TRANSLATORS: link to source code
-#: ../map.py:85
-msgid "Sources"
-msgstr "Sources"
-
-#: ../map.py:86
-msgid "Statistics"
-msgstr "Statistics"
-
-#. TRANSLATORS: link to tooltip help
-#: ../map.py:142
-msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
-msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
-
-#: ../map.py:417
-msgid "Error reported on: "
-msgstr "Error reported on: "
-
-#: ../map.py:434
-msgid "change status"
-msgstr "change status"
-
-#: ../map.py:435
-msgid "corrected"
-msgstr "corrected"
-
-#: ../map.py:436
-msgid "false positive"
-msgstr "false positive"
 
 #. TRANSLATORS: days / hours / minutes since last source update, abbreviated to d / h / m
 #: ../control.py:56
@@ -108,209 +30,119 @@ msgstr "in {day}j,{hour}h, {minute}m"
 msgid "never generated"
 msgstr "never generated"
 
-#: ../errors.py:70 tmp.tpl:3
+#: ../errors.py:80 tmp.tpl:44
 msgid "False positives"
 msgstr "False positives"
 
-#: ../errors.py:74
+#: ../errors.py:84
 msgid "Fixed errors"
 msgstr "Fixed errors"
 
-#: ../errors.py:78 tmp.tpl:1
+#: ../errors.py:88 tmp.tpl:42
 msgid "Informations"
 msgstr "Informations"
 
-#: tmp.tpl:2
-msgid "Fixed"
-msgstr "Fixed"
+#. TRANSLATORS: link to help in appropriate language
+#: ../map.py:77
+msgid "Help"
+msgstr "Help"
 
-#: tmp.tpl:4
-msgid "Graph"
-msgstr "Graph"
+#: ../map.py:77
+msgid "http://wiki.openstreetmap.org/wiki/Osmose"
+msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
-#: tmp.tpl:5 tmp.tpl:31
-msgid "Map"
-msgstr "Map"
+#: ../map.py:78
+msgid "Errors by user"
+msgstr "Errors by user"
 
-#. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
-#: tmp.tpl:7
-msgid "Set"
-msgstr "Set"
+#: ../map.py:79
+msgid "Relation analyser"
+msgstr "Relation analyser"
 
-#: tmp.tpl:8 tmp.tpl:15 tmp.tpl:47 tmp.tpl:53
-msgid "source"
-msgstr "source"
+#. TRANSLATORS: this link can be changed to something specific to the language
+#: ../map.py:81
+msgid "CLC"
+msgstr "CLC"
 
-#. TRANSLATORS: this should be replaced by a abbreviation for class
-#: tmp.tpl:10 tmp.tpl:17
-msgid "class (abbreviation)"
-msgstr "cl"
+#: ../map.py:81
+msgid "http://clc.openstreetmap.fr/"
+msgstr "http://clc.openstreetmap.fr/"
 
-#: tmp.tpl:11 tmp.tpl:22
-msgid "item"
-msgstr "item"
+#. TRANSLATORS: this link can be changed to something specific to the language
+#: ../map.py:83
+msgid "Geodesic"
+msgstr "Geodesic"
 
-#: tmp.tpl:12
-msgid "title"
-msgstr "title"
+#: ../map.py:83
+msgid "http://geodesie.openstreetmap.fr/"
+msgstr "http://geodesie.openstreetmap.fr/"
 
-#: tmp.tpl:13
-msgid "count"
-msgstr "count"
+#. TRANSLATORS: this link can be changed to something specific to the language
+#: ../map.py:85
+msgid "openstreetmap.fr"
+msgstr "openstreetmap.fr"
 
-#: tmp.tpl:14
-msgid "Total"
-msgstr "Total"
+#: ../map.py:85
+msgid "http://www.openstreetmap.fr/"
+msgstr "http://www.openstreetmap.fr/"
 
-#. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: tmp.tpl:19
-msgid "subclass (abbreviation)"
-msgstr "s"
+#: ../map.py:86
+msgid "Copyright"
+msgstr "Copyright"
 
-#. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: tmp.tpl:21
-msgid "level (abbreviation)"
-msgstr "l"
+#. TRANSLATORS: link to source code
+#: ../map.py:88
+msgid "Sources"
+msgstr "Sources"
 
-#: tmp.tpl:23
-msgid "information on error"
-msgstr "information on error"
+#: ../map.py:89
+msgid "Statistics"
+msgstr "Statistics"
 
-#: tmp.tpl:24
-msgid "position (abbreviation)"
-msgstr "pos"
+#. TRANSLATORS: link to tooltip help
+#: ../map.py:140
+msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
+msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
-#: tmp.tpl:25
-msgid "elements (abbreviation)"
-msgstr "elems"
+#: ../map.py:415
+msgid "Error reported on: "
+msgstr "Error reported on: "
 
-#: tmp.tpl:26 tmp.tpl:27
-msgid "subtitle"
-msgstr "subtitle"
+#: ../map.py:432
+msgid "change status"
+msgstr "change status"
 
-#: tmp.tpl:28
-msgid "date"
-msgstr "date"
+#: ../map.py:433
+msgid "corrected"
+msgstr "corrected"
 
-#: tmp.tpl:29
-msgid "Show more errors"
-msgstr "Show more errors"
+#: ../map.py:434
+msgid "false positive"
+msgstr "false positive"
 
-#: tmp.tpl:30
-msgid "Show some errors"
-msgstr "Show some errors"
-
-#: tmp.tpl:32
-msgid "no bubbles at this zoom factor"
-msgstr "no bubbles at this zoom factor"
-
-#: tmp.tpl:33
-msgid "Severity"
-msgstr "Severity"
-
-#: tmp.tpl:34
-msgid "1 only"
-msgstr "1 only"
-
-#: tmp.tpl:35
-msgid "1+2 only"
-msgstr "1+2 only"
-
-#: tmp.tpl:36
-msgid "all severity"
-msgstr "all severity"
-
-#: tmp.tpl:37
-msgid "2 only"
-msgstr "2 only"
-
-#: tmp.tpl:38
-msgid "3 only"
-msgstr "3 only"
-
-#: tmp.tpl:39
-msgid "Select:"
-msgstr "Select:"
-
-#: tmp.tpl:40 tmp.tpl:43
-msgid "all"
-msgstr "all"
-
-#: tmp.tpl:41 tmp.tpl:44
-msgid "nothing"
-msgstr "nothing"
-
-#: tmp.tpl:42
-msgid "invert"
-msgstr "invert"
-
-#: tmp.tpl:45
-msgid "Change language:"
-msgstr "Change language:"
-
-#: tmp.tpl:46
-msgid "Last updates"
-msgstr "Last updates"
-
-#: tmp.tpl:48
-msgid "description"
-msgstr "description"
-
-#: tmp.tpl:49
-msgid "last generation"
-msgstr "last generation"
-
-#: tmp.tpl:50 tmp.tpl:51
-msgid "history"
-msgstr "history"
-
-#: tmp.tpl:52
-msgid "Update"
-msgstr "Update"
-
-#: tmp.tpl:54
-msgid "remote url"
-msgstr "remote url"
-
-#: tmp.tpl:55
-msgid "timestamp"
-msgstr "timestamp"
-
-#: tmp.tpl:56
-msgid "Copyright informations"
-msgstr "Copyright informations"
-
-#: tmp.tpl:57
-msgid "Data are coming from:"
-msgstr "Data are coming from:"
-
-#: tmp.tpl:58
-msgid "copyright"
-msgstr "copyright"
-
-#: tmp.tpl:59
+#: tmp.tpl:1
 msgid "Users statistics"
 msgstr "Users statistics"
 
-#: tmp.tpl:60
+#: tmp.tpl:2
 msgid "Number"
 msgstr "Number"
 
-#: tmp.tpl:61
+#: tmp.tpl:3
 msgid "Username"
 msgstr "Username"
 
-#: tmp.tpl:62
+#: tmp.tpl:4
 #, python-format
 msgid "Statistics for user %s"
 msgstr "statistics for user %s"
 
-#: tmp.tpl:63
+#: tmp.tpl:5
 #, python-format
 msgid "User statistics for %s"
 msgstr "User statistics for %s"
 
-#: tmp.tpl:64
+#: tmp.tpl:6
 #, python-format
 msgid ""
 "This page shows errors on elements that were last modified by '%s'. This "
@@ -319,65 +151,65 @@ msgstr ""
 "This page shows errors on elements that were last modified by '%s'. This "
 "doesn't means that this user is responsible for all these errors."
 
-#: tmp.tpl:65
+#: tmp.tpl:7
 #, python-format
 msgid "Number of found errors: %d"
 msgstr "Number of found errors: %d"
 
-#: tmp.tpl:66
+#: tmp.tpl:8
 #, python-format
 msgid "Number of found errors: more than %d"
 msgstr "Number of found errors: more than %d"
 
-#: tmp.tpl:67
+#: tmp.tpl:9
 msgid "Show errors on a map"
 msgstr "Show errors on a map"
 
-#: tmp.tpl:68
+#: tmp.tpl:10
 msgid "Item"
 msgstr "Item"
 
-#: tmp.tpl:69
+#: tmp.tpl:11
 msgid "Class"
 msgstr "Class"
 
-#: tmp.tpl:70
+#: tmp.tpl:12
 msgid "Level"
 msgstr "Level"
 
-#: tmp.tpl:71
+#: tmp.tpl:13
 msgid "Title"
 msgstr "Title"
 
-#: tmp.tpl:72
+#: tmp.tpl:14
 msgid "Error"
 msgstr "Error"
 
-#: tmp.tpl:73
+#: tmp.tpl:15
 msgid "Latitude"
 msgstr "Latitude"
 
-#: tmp.tpl:74
+#: tmp.tpl:16
 msgid "Longitude"
 msgstr "Longitude"
 
-#: tmp.tpl:75
+#: tmp.tpl:17
 msgid "map"
 msgstr "map"
 
-#: tmp.tpl:76
+#: tmp.tpl:18
 msgid "Statistics for user"
 msgstr "Statistics for user"
 
-#: tmp.tpl:77
+#: tmp.tpl:19
 msgid "User statistics"
 msgstr "User statistics"
 
-#: tmp.tpl:78
+#: tmp.tpl:20
 msgid "Osmose allows you to control your own errors."
 msgstr "Osmose allows you to control your own errors."
 
-#: tmp.tpl:79
+#: tmp.tpl:21
 msgid ""
 "By entering your OSM username in the following form, you will be able to see "
 "errors that are attached to your username. Note that the algorithm that "
@@ -389,58 +221,226 @@ msgstr ""
 "attaches errors to username is not perfect, as Osmose only checks the last "
 "contributor of the relevant erroneous elements."
 
-#: tmp.tpl:80
+#: tmp.tpl:22
 msgid "Username:"
 msgstr "Username:"
 
-#: tmp.tpl:81
+#: tmp.tpl:23
+msgid "Last updates"
+msgstr "Last updates"
+
+#: tmp.tpl:24 tmp.tpl:30 tmp.tpl:49 tmp.tpl:56
+msgid "source"
+msgstr "source"
+
+#: tmp.tpl:25
+msgid "description"
+msgstr "description"
+
+#: tmp.tpl:26
+msgid "last generation"
+msgstr "last generation"
+
+#: tmp.tpl:27 tmp.tpl:28
+msgid "history"
+msgstr "history"
+
+#: tmp.tpl:29
+msgid "Update"
+msgstr "Update"
+
+#: tmp.tpl:31
+msgid "remote url"
+msgstr "remote url"
+
+#: tmp.tpl:32
+msgid "timestamp"
+msgstr "timestamp"
+
+#: tmp.tpl:33
+msgid "Copyright informations"
+msgstr "Copyright informations"
+
+#: tmp.tpl:34
+msgid "Data are coming from:"
+msgstr "Data are coming from:"
+
+#: tmp.tpl:35
+msgid "copyright"
+msgstr "copyright"
+
+#: tmp.tpl:36
 #, python-format
 msgid "Information on error %d"
 msgstr "information on error %d"
 
-#: tmp.tpl:82
+#: tmp.tpl:37
 msgid "key"
 msgstr "key"
 
-#: tmp.tpl:83
+#: tmp.tpl:38
 msgid "value"
 msgstr "value"
 
-#: tmp.tpl:84
+#: tmp.tpl:39
 msgid "Marker"
 msgstr "Marker"
 
-#: tmp.tpl:85
+#: tmp.tpl:40
 msgid "Elements"
 msgstr "Elements"
 
-#: tmp.tpl:86
+#: tmp.tpl:41
 msgid "Fixes"
 msgstr "Fixes"
 
-#: tmp.tpl:87
+#: tmp.tpl:43
+msgid "Fixed"
+msgstr "Fixed"
+
+#: tmp.tpl:45
+msgid "Graph"
+msgstr "Graph"
+
+#: tmp.tpl:46 tmp.tpl:78
+msgid "Map"
+msgstr "Map"
+
+#. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
+#: tmp.tpl:48
+msgid "Set"
+msgstr "Set"
+
+#. TRANSLATORS: this should be replaced by a abbreviation for class
+#: tmp.tpl:51 tmp.tpl:58
+msgid "class (abbreviation)"
+msgstr "cl"
+
+#: tmp.tpl:52 tmp.tpl:63
+msgid "item"
+msgstr "item"
+
+#: tmp.tpl:53
+msgid "title"
+msgstr "title"
+
+#: tmp.tpl:54
+msgid "count"
+msgstr "count"
+
+#: tmp.tpl:55
+msgid "Total"
+msgstr "Total"
+
+#. TRANSLATORS: this should be replaced by a abbreviation for subclass
+#: tmp.tpl:60
+msgid "subclass (abbreviation)"
+msgstr "s"
+
+#. TRANSLATORS: this should be replaced by a abbreviation for subclass
+#: tmp.tpl:62
+msgid "level (abbreviation)"
+msgstr "l"
+
+#: tmp.tpl:64
+msgid "information on error"
+msgstr "information on error"
+
+#: tmp.tpl:65
+msgid "position (abbreviation)"
+msgstr "pos"
+
+#: tmp.tpl:66
+msgid "elements (abbreviation)"
+msgstr "elems"
+
+#: tmp.tpl:67 tmp.tpl:68
+msgid "subtitle"
+msgstr "subtitle"
+
+#: tmp.tpl:69
+msgid "date"
+msgstr "date"
+
+#: tmp.tpl:70
+msgid "Show more errors"
+msgstr "Show more errors"
+
+#: tmp.tpl:71
+msgid "Show some errors"
+msgstr "Show some errors"
+
+#: tmp.tpl:72
 msgid "OpenStreetMap Oversight Search Engine"
 msgstr "OpenStreetMap Oversight Search Engine"
 
-#: tmp.tpl:88
+#: tmp.tpl:73
 msgid "Map of errors"
 msgstr "Map of errors"
 
-#: tmp.tpl:89
+#: tmp.tpl:74
 msgid "Help on OSM wiki"
 msgstr "Help on OSM wiki"
 
-#: tmp.tpl:90
+#: tmp.tpl:75
 msgid "Information on error database"
 msgstr "information on error database"
 
-#: tmp.tpl:91
+#: tmp.tpl:76
 msgid "False positives list"
 msgstr "False positives list"
 
-#: tmp.tpl:92
+#: tmp.tpl:77
 msgid "Last analysis updates"
 msgstr "Last analysis updates"
+
+#: tmp.tpl:79
+msgid "no bubbles at this zoom factor"
+msgstr "no bubbles at this zoom factor"
+
+#: tmp.tpl:80
+msgid "Severity"
+msgstr "Severity"
+
+#: tmp.tpl:81
+msgid "1 only"
+msgstr "1 only"
+
+#: tmp.tpl:82
+msgid "1+2 only"
+msgstr "1+2 only"
+
+#: tmp.tpl:83
+msgid "all severity"
+msgstr "all severity"
+
+#: tmp.tpl:84
+msgid "2 only"
+msgstr "2 only"
+
+#: tmp.tpl:85
+msgid "3 only"
+msgstr "3 only"
+
+#: tmp.tpl:86
+msgid "Select:"
+msgstr "Select:"
+
+#: tmp.tpl:87 tmp.tpl:90
+msgid "all"
+msgstr "all"
+
+#: tmp.tpl:88 tmp.tpl:91
+msgid "nothing"
+msgstr "nothing"
+
+#: tmp.tpl:89
+msgid "invert"
+msgstr "invert"
+
+#: tmp.tpl:92
+msgid "Change language:"
+msgstr "Change language:"
 
 #~ msgid "OsmOse - statistics for user %s"
 #~ msgstr "OsmOse - statistics for user %s"
