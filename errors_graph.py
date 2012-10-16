@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import time, sys, datetime
+import time, sys, datetime, os, commands
 
 
 def get_data(db, options):
@@ -119,7 +119,7 @@ def make_plt(db, options):
 
     f_plt = open(gnuplotFilename, 'w')
     f_plt.write("set terminal png\n")
-    f_plt.write("set title \"Source : %s\"\n"%get_src(options))
+    f_plt.write("set title \"Source : %s\"\n"%get_src(db, options))
 #    f_plt.write("set style data fsteps\n")
     f_plt.write("set style data line\n")
     f_plt.write("set timefmt \"%d/%m/%Y\"\n")
