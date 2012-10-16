@@ -54,7 +54,7 @@ class PgSQLPoolPlugin(object):
     api  = 2
 
     def __init__(self, dsn=None, autocommit=True, dictrows=True,
-            keyword='db', minconn=10, maxconn=100):
+            keyword='db', minconn=10, maxconn=50):
          self.dsn = dsn
          self.autocommit = autocommit
          self.dictrows = dictrows
