@@ -28,7 +28,7 @@ import errors_graph
 
 
 def int_list(s):
-    map(lambda x: int(x), filter(lambda x: x and x!='',s).split(','))
+    return map(lambda x: int(x), filter(lambda x: x and x!='',s).split(','))
 
 @route('/errors/graph.png')
 def graph(db):
