@@ -277,6 +277,12 @@ div.level-123 {
 div.level-12_ {
   background: url('../images/level-12_.png');
 }
+div.level-1_3 {
+  background: url('../images/level-1_3.png');
+}
+div.level-_23 {
+  background: url('../images/level-_23.png');
+}
 div.level-1__ {
   background: url('../images/level-1__.png');
 }
@@ -296,11 +302,17 @@ select#level option {
 option.level-123 {
   background: url('../images/level-123.png');
 }
-option.level-1__ {
-  background: url('../images/level-1__.png');
-}
 option.level-12_ {
   background: url('../images/level-12_.png');
+}
+option.level-1_3 {
+  background: url('../images/level-1_3.png');
+}
+option.level-_23 {
+  background: url('../images/level-_23.png');
+}
+option.level-1__ {
+  background: url('../images/level-1__.png');
 }
 option.level-_2_ {
   background: url('../images/level-_2_.png');
