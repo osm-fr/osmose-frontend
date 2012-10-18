@@ -7,16 +7,10 @@
     <th>{{_("value")}}</th>
 </tr>
 </thead>
-%    odd = True
 %    i = 0
 %    for c in columns:
 %        c = c.split(".")[-1]
-%        odd = not odd
-%        if odd:
-<tr class='odd'>
-%        else:
-<tr class='even'>
-%        end
+<tr>
     <td>{{c}}</td>
     <td>
 %        if type(res[i]) is dict:

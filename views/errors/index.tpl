@@ -53,14 +53,8 @@
 </tr>
 </thead>
 <tbody>
-%odd = True
 %for res in errors_groups:
-%    odd = not odd
-%    if odd:
-<tr class='odd'>
-%    else:
-<tr class='even'>
-%    end
+<tr>
     <td><a href="?source={{res["source"]}}">{{res["source"]}}</a></td>
 %    cmt_split = res["source_comment"].split("-")
 %    analyse = "-".join(cmt_split[0:-1])
@@ -122,14 +116,8 @@
 %    end
 </tr>
 </thead>
-%    odd = True
 %    for res in errors:
-%        odd = not odd
-%        if odd:
-<tr class='odd'>
-%        else:
-<tr class='even'>
-%        end
+<tr>
     <td title="{{res["source_comment"]}}"><a href="?source={{res["source"]}}">{{res["source"]}}</a></td>
     <td>{{res["class"]}}</td>
     <td>{{res["subclass"]}}</td>

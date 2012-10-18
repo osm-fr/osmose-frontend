@@ -154,10 +154,6 @@ sorttable = {
 	        
 	        tb = this.sorttable_tbody;
 	        for (var j=0; j<row_array.length; j++) {
-                  if (j % 2)
-                    row_array[j][1].className = "odd";
-                  else
-                    row_array[j][1].className = "even";
 	          tb.appendChild(row_array[j][1]);
 	        }
 	        
@@ -253,10 +249,6 @@ sorttable = {
     }
     var pos = 0;
     for (var i=newrows.length-1; i>=0; i--) {
-       if (pos % 2)
-         newrows[i].className = "odd";
-       else
-         newrows[i].className = "even";
        tbody.appendChild(newrows[i]);
        pos ++;
     }

@@ -25,19 +25,13 @@
   </style>
 
 <table>
-<tr bgcolor="#999999">
+<tr>
     <th width="50">{{_("source")}}</td>
     <th width="800">{{_("remote url")}}</td>
     <th width="200">{{_("timestamp")}}</td>
 </tr>
-%odd = True
 %for res in liste:
-%    odd = not odd
-%    if odd:
-    <tr bgcolor="#BBBBBB">
-%    else:
-    <tr bgcolor="#EEEEEE">
-%     end
+<tr>
     <td><a href="../../errors?source={{res[0]}}">{{res[0]}}</a></td>
 %    url = res[2]
 %    url = url.replace("http://cedric.dumez-viou.fr", "http://cdv")
