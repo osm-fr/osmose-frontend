@@ -33,9 +33,11 @@ def byUser():
 @route('/byuser/<username>')
 def byUser(db, lang, username=None):
     username = username or request.params.username
+    item = request.params.get('item', type=int)
     if not username:
         return template('byuser/index')
     else:
+        params = [username]
         sql = """
 SELECT
     m.id,
@@ -56,12 +58,17 @@ FROM
         m.item = dynpoi_item.item
 WHERE
     id IN (SELECT marker_id FROM marker_elem WHERE username=%s)
+"""
+        if item:
+            sql += "AND m.item = %s "
+            params.append(item)
+        sql += """
 ORDER BY
     m.class
 LIMIT 500
 """
 
-        db.execute(sql, (username,))
+        db.execute(sql, params)
         results = db.fetchall()
         count = len(results)
         return template('byuser/byuser', username=username, count=count, results=results, translate=utils.translator(lang))
