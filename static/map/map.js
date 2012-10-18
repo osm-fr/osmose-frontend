@@ -293,7 +293,7 @@ function updateCountTestsSpan(d) {
 
 // Click on a checkbox
 function checkbox_click(cb) {
-    updateCountTestsSpan(cb.parentNode);
+    updateCountTestsSpan(cb.parentNode.parentNode.parentNode);
     pois.loadText();
 }
 
