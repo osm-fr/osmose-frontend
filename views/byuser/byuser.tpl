@@ -1,4 +1,4 @@
-%rebase layout title=(_("Statistics for user %s") % username), css='css/byuser/style.css'
+%rebase layout title=(_("Statistics for user %s") % username)
 <h1>{{_("User statistics for %s") % username}}</h1>
 <p>{{_("This page shows errors on elements that were last modified by '%s'. This doesn't means that this user is responsible for all these errors.") % username}}</p>
 <p>
@@ -11,7 +11,7 @@
 <a href='/map/?user={{username}}'>{{_("Show errors on a map")}}</a>
 </p>
 
-<table class='sortable byuser'>
+<table class='sortable'>
   <tr>
     <th>{{_("Item")}}</th>
     <th>{{_("Class")}}<span id="sorttable_sortfwdind">&nbsp;▾</span></th>

@@ -1,29 +1,4 @@
 %rebase layout title=_("Update")
-  <style type="text/css">
-  table
-  {
-    border-width: 1px 1px 1px 1px;
-    border-style: solid;
-    border-collapse: collapse;
-  }
-  td
-  {
-    border-width: 1px 1px 1px 1px;
-    border-style: solid;
-    margin: 0px;
-    padding: 5px;
-  }
-  a:link {
-    color: black;
-  }
-    a:visited {
-    color: black;
-  }
-    a:hover {
-    color: black;
-  }
-  </style>
-
 <table>
 <tr>
     <th width="50">{{_("source")}}</td>
