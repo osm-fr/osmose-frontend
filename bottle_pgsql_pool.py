@@ -114,7 +114,7 @@ class PgSQLPoolPlugin(object):
                 raise
             finally:
                 if con:
-                    con.close()
+                    self.pool.putconn(con)
             return rv
 
         # Replace the route callback with the wrapped one.
