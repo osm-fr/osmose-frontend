@@ -1,4 +1,4 @@
-%rebase layout title=_("Information on error %d") % err_id
+%rebase layout title=_("Information on error %d") % err_id, favicon="../images/markers/marker-l-%s.png" % marker[0]['item']
 %def show_html_results(columns, res):
 <table class="sortable" id ="table_marker">
 <thead>

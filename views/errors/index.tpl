@@ -1,4 +1,11 @@
-%rebase layout title=title
+%favicon=None
+%for res in items:
+%    if item == res['item']:
+%        title += ' - ' + translate.select(res['menu'])
+%        favicon = "../images/markers/marker-l-%s.png" % res["item"]
+%    end
+%end
+%rebase layout title=title, favicon=favicon
 %import re
 <a href=".?{{query}}">{{_("Informations")}}</a>
 <a href="done?{{query}}">{{_("Fixed")}}</a>
