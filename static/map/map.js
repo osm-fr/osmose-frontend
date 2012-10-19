@@ -46,6 +46,14 @@ function init() {
     });
     map.addLayer(layerOPNVKarte);
 
+    var bing = new OpenLayers.Layer.Bing({
+        transitionEffect: 'resize',
+        name: "Bing",
+        type: "Aerial",
+        key: "AmQcQsaJ4WpRqn2_k0rEToboqaM1ind8HMmM0XwKwW9R8bChmHEbczHwjnjFpuNP",
+    });
+    map.addLayer(bing);
+
     //var layerTilesAtHome = new OpenLayers.Layer.OSM.Osmarender("Osmarender");
     //map.addLayer(layerTilesAtHome);
 
