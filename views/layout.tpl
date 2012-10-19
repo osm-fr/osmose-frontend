@@ -12,6 +12,9 @@
 %end
   <link rel="icon" type="image/png" href="{{favicon}}" />
   <script src="{{get_url('static', filename='js/sorttable.js')}}" type="text/javascript"></script>
+%if 'rss' in locals() and rss:
+  <link href="{{rss}}" rel="alternate" type="application/rss+xml" title="Osmose - {{title or ''}}" />
+%end
 </head>
 %include
 <body>
