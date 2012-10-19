@@ -1,6 +1,9 @@
-%rebase layout title=(_("Statistics for user %s") % username)
+%from tools import utils
+%rss="http://"+utils.website+"/byuser/"+username+".rss"
+%rebase layout title=(_("Statistics for user %s") % username), rss=rss
 <h1>{{_("User statistics for %s") % username}}</h1>
 <p>{{_("This page shows errors on elements that were last modified by '%s'. This doesn't means that this user is responsible for all these errors.") % username}}</p>
+<p><a href="{{rss}}">{{_("This list is also available via rss.")}}</a></p>
 <p>
 %if count < 500:
     {{_("Number of found errors: %d") % count}}
