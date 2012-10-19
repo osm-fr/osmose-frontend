@@ -201,7 +201,7 @@ OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
             data.marker_id = feature.attributes.marker_id;
 
             var markerFeature = new OpenLayers.Feature(thisObject, location, data);
-            markerFeature.popupClass = OpenLayers.Class(OpenLayers.Popup.FramedCloud);
+            markerFeature.popupClass = OpenLayers.Popup.FramedCloud;
 
             thisObject.features.push(markerFeature);
             var marker = markerFeature.createMarker();
