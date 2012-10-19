@@ -6,7 +6,8 @@
   <!-- <link rel="stylesheet" type="text/css" href="http://openlayers.org/dev/theme/default/style.css"> -->
   <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/style.css')}}">
   <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/style-ol.css')}}">
-  <script type="text/javascript" src="{{get_url('static', filename='/OpenLayers-2.8/OpenLayers.js')}}"></script>
+  <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/OpenLayers/theme/default/style.css')}}">
+  <script type="text/javascript" src="{{get_url('static', filename='/OpenLayers/OpenLayers.js')}}"></script>
   <script type="text/javascript" src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script>
   <script type="text/javascript" src="{{get_url('static', filename='/map/DynPoi.js')}}"></script>
   <script type="text/javascript" src="{{get_url('static', filename='/map/BetaStyles.js')}}"></script>

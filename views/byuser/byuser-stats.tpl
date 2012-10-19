@@ -1,5 +1,5 @@
-%rebase layout title=_("Users statistics"), css='css/byuser/style.css'
-<table class='byuser'>
+%rebase layout title=_("Users statistics")
+<table>
   <tr>
     <th>{{_("Number")}}</th>
     <th>{{_("Username")}}</th>

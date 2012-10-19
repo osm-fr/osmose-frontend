@@ -68,6 +68,8 @@ def index(db, lang):
     num_points = request.params.get('points', type=int)
     show_all = request.params.get('all')
 
+    if country == '':
+        country = None
     if country and not re.match(r"^([a-z_]+)$", country):
         country = None
 

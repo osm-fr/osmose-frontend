@@ -12,10 +12,10 @@ th {
   margin: 0px;
   padding: 5px;
 }
-tr.odd {
+tr:nth-child(even) {
   background-color: #BBBBBB;
 }
-tr.even {
+tr:nth-child(odd) {
   background-color: #EEEEEE;
 }
 td {

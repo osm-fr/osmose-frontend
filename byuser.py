@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, request, template, redirect
+from bottle import route, request, template, redirect, response
 from tools import utils
 
 
@@ -31,11 +31,14 @@ def byUser():
 
 @route('/byuser/')
 @route('/byuser/<username>')
-def byUser(db, lang, username=None):
+@route('/byuser/<username>.<format:ext>')
+def byUser(db, lang, username=None, format=None):
     username = username or request.params.username
+    item = request.params.get('item', type=int)
     if not username:
         return template('byuser/index')
     else:
+        params = [username]
         sql = """
 SELECT
     m.id,
@@ -46,25 +49,35 @@ SELECT
     m.source,
     m.item,
     c.title,
-    c.level
+    c.level,
+    dynpoi_update_last.timestamp
 FROM
     marker m
     JOIN dynpoi_class c ON
         m.class = c.class AND
         m.source = c.source
-    JOIN dynpoi_item ON
-        m.item = dynpoi_item.item
+    JOIN dynpoi_update_last ON
+        m.source = dynpoi_update_last.source
 WHERE
     id IN (SELECT marker_id FROM marker_elem WHERE username=%s)
+"""
+        if item:
+            sql += "AND m.item = %s "
+            params.append(item)
+        sql += """
 ORDER BY
-    m.class
+    dynpoi_update_last.timestamp DESC
 LIMIT 500
 """
 
-        db.execute(sql, (username,))
+        db.execute(sql, params)
         results = db.fetchall()
         count = len(results)
-        return template('byuser/byuser', username=username, count=count, results=results, translate=utils.translator(lang))
+        if format == 'rss':
+            response.content_type = "application/rss+xml"
+            return template('byuser/byuser.rss', username=username, count=count, results=results, translate=utils.translator(lang))
+        else:
+            return template('byuser/byuser', username=username, count=count, results=results, translate=utils.translator(lang))
 
 
 @route('/byuser-stats')

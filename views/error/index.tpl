@@ -1,4 +1,4 @@
-%rebase layout title=_("Information on error %d") % err_id
+%rebase layout title=_("Information on error %d") % err_id, favicon="../images/markers/marker-l-%s.png" % marker[0]['item']
 %def show_html_results(columns, res):
 <table class="sortable" id ="table_marker">
 <thead>
@@ -7,16 +7,10 @@
     <th>{{_("value")}}</th>
 </tr>
 </thead>
-%    odd = True
 %    i = 0
 %    for c in columns:
 %        c = c.split(".")[-1]
-%        odd = not odd
-%        if odd:
-<tr class='odd'>
-%        else:
-<tr class='even'>
-%        end
+<tr>
     <td>{{c}}</td>
     <td>
 %        if type(res[i]) is dict:

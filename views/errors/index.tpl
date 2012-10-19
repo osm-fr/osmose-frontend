@@ -1,4 +1,11 @@
-%rebase layout title=title
+%favicon=None
+%for res in items:
+%    if item == res['item']:
+%        title += ' - ' + translate.select(res['menu'])
+%        favicon = "../images/markers/marker-l-%s.png" % res["item"]
+%    end
+%end
+%rebase layout title=title, favicon=favicon
 %import re
 <a href=".?{{query}}">{{_("Informations")}}</a>
 <a href="done?{{query}}">{{_("Fixed")}}</a>
@@ -53,14 +60,8 @@
 </tr>
 </thead>
 <tbody>
-%odd = True
 %for res in errors_groups:
-%    odd = not odd
-%    if odd:
-<tr class='odd'>
-%    else:
-<tr class='even'>
-%    end
+<tr>
     <td><a href="?source={{res["source"]}}">{{res["source"]}}</a></td>
 %    cmt_split = res["source_comment"].split("-")
 %    analyse = "-".join(cmt_split[0:-1])
@@ -122,14 +123,8 @@
 %    end
 </tr>
 </thead>
-%    odd = True
 %    for res in errors:
-%        odd = not odd
-%        if odd:
-<tr class='odd'>
-%        else:
-<tr class='even'>
-%        end
+<tr>
     <td title="{{res["source_comment"]}}"><a href="?source={{res["source"]}}">{{res["source"]}}</a></td>
     <td>{{res["class"]}}</td>
     <td>{{res["subclass"]}}</td>

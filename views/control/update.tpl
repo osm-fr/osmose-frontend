@@ -1,43 +1,12 @@
 %rebase layout title=_("Update")
-  <style type="text/css">
-  table
-  {
-    border-width: 1px 1px 1px 1px;
-    border-style: solid;
-    border-collapse: collapse;
-  }
-  td
-  {
-    border-width: 1px 1px 1px 1px;
-    border-style: solid;
-    margin: 0px;
-    padding: 5px;
-  }
-  a:link {
-    color: black;
-  }
-    a:visited {
-    color: black;
-  }
-    a:hover {
-    color: black;
-  }
-  </style>
-
 <table>
-<tr bgcolor="#999999">
+<tr>
     <th width="50">{{_("source")}}</td>
     <th width="800">{{_("remote url")}}</td>
     <th width="200">{{_("timestamp")}}</td>
 </tr>
-%odd = True
 %for res in liste:
-%    odd = not odd
-%    if odd:
-    <tr bgcolor="#BBBBBB">
-%    else:
-    <tr bgcolor="#EEEEEE">
-%     end
+<tr>
     <td><a href="../../errors?source={{res[0]}}">{{res[0]}}</a></td>
 %    url = res[2]
 %    url = url.replace("http://cedric.dumez-viou.fr", "http://cdv")
