@@ -314,7 +314,16 @@ OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
                 this.popup.panMapIfOutOfView = false; //document.myform.autopan.checked;
                 this.popup.minSize = new OpenLayers.Size(180, 30);
                 this.popup.maxSize = new OpenLayers.Size(280, 300);
-                map.addPopup(this.popup);
+                OpenLayers.Request.GET({
+                    url: 'marker/' + this.popup.feature.data.marker_id,
+                    success: function (ajaxRequest) {
+                        this.popup.setContentHTML(ajaxRequest.responseText);
+                        if (this.popup == this.activePopup) {
+                            map.addPopup(this.popup);
+                        }
+                    },
+                    scope: this
+                });
             } else {
                 this.popup.toggle();
             }
@@ -325,6 +334,7 @@ OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
 
     onOutHandler: function (evt) {
         if (!this.clicked && this.activePopup != null) this.activePopup.hide();
+        this.activePopup = null;
         OpenLayers.Event.stop(evt);
     },
 

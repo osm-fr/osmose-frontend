@@ -131,10 +131,79 @@ def markers(db, lang):
     response.set_cookie('lastLevel', str(level), expires=expires, path=path)
     response.set_cookie('lastItem', request.params.item, expires=expires, path=path)
 
-    data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
-
     if (not user) and (not source) and (zoom < 6):
         return
+
+    sqlbase  = """
+    SELECT
+        marker.id,
+        marker.item,
+        marker.lat,
+        marker.lon
+    FROM
+        marker
+        JOIN dynpoi_class ON
+            marker.source = dynpoi_class.source AND
+            marker.class = dynpoi_class.class
+        JOIN dynpoi_update_last ON
+            marker.source = dynpoi_update_last.source
+        JOIN dynpoi_item ON
+            marker.item = dynpoi_item.item
+    WHERE
+        %s AND
+        (marker.lat BETWEEN %d AND %d) AND (marker.lon BETWEEN %d AND %d) AND
+        dynpoi_update_last.timestamp > (now() - interval '3 months')
+    ORDER BY
+        point(marker.lat, marker.lon) <-> point(%d, %d)
+    LIMIT 200
+    """
+
+    if source:
+        sources = source.split(",")
+        source2 = []
+        for source in sources:
+            source = source.split("-")
+            if len(source)==1:
+                source2.append("(marker.source=%d)"%int(source[0]))
+            else:
+                source2.append("(marker.source=%d AND marker.class=%d)"%(int(source[0]), int(source[1])))
+        sources2 = " OR ".join(source2)
+        where = "(%s)" % sources2
+    elif err_id:
+        where = "(marker.item IN (%s))" % err_id
+    else:
+        where = "1=1"
+
+    if level:
+        where += " AND dynpoi_class.level IN (%s)" % level
+
+    if user:
+        where += " AND ("
+        s = []
+        for f in xrange(3):
+            s.append("elem%d.username = '%s'" % (f, user))
+        where += " OR ".join(s)
+        where += ")"
+
+    db.execute(sqlbase % (where, minlat, maxlat, minlon, maxlon, lat, lon)) # FIXME pas de %
+    results = db.fetchall()
+
+    out = ["\t".join(["lat", "lon", "marker_id", "icon", "iconSize", "iconOffset", "html"])]
+    for res in results:
+        lat       = str(float(res["lat"])/1000000)
+        lon       = str(float(res["lon"])/1000000)
+        error_id  = res["id"]
+        item      = res["item"] or 0
+        marker = "../images/markers/marker-b-%d.png" % (res["item"])
+        out.append("\t".join([lat, lon, str(error_id), marker, "17,33", "-8,-33", "plop"]).encode("utf8"))
+
+    response.content_type = "text/plain; charset=utf-8"
+    return "\n".join(out)
+
+
+@route('/map/marker/<id:int>')
+def markers(db, lang, id):
+    data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
 
     # TRANSLATORS: link to tooltip help
     url_help = _("http://wiki.openstreetmap.org/wiki/Osmose/errors")
@@ -198,62 +267,15 @@ def markers(db, lang):
 
     sqlbase += """
     WHERE
-        %s AND %s AND
-        dynpoi_update_last.timestamp > (now() - interval '3 months')
-    ORDER BY
-        point(marker.lat, marker.lon) <-> point(%d, %d)
-    LIMIT 200
+        marker.id = %s
     """
 
-    if source:
-        sources = source.split(",")
-        source2 = []
-        for source in sources:
-            source = source.split("-")
-            if len(source)==1:
-                source2.append("(marker.source=%d)"%int(source[0]))
-            else:
-                source2.append("(marker.source=%d AND marker.class=%d)"%(int(source[0]), int(source[1])))
-        sources2 = " OR ".join(source2)
-        where = "(%s)" % sources2
-    elif err_id:
-        where = "(marker.item IN (%s))" % err_id
-    else:
-        where = "1=1"
-
-    if level:
-        where += " AND dynpoi_class.level IN (%s)" % level
-
-    if user:
-        where += " AND ("
-        s = []
-        for f in xrange(3):
-            s.append("elem%d.username = '%s'" % (f, user))
-        where += " OR ".join(s)
-        where += ")"
-
-
-    ## sql querry
-    if bbox:
-        lat = (minlat+maxlat) / 2
-        lon = (minlon+maxlon) / 2
-        bboxsql = ("(marker.lat BETWEEN %d AND %d) AND (marker.lon BETWEEN %d and %d)" % (minlat, maxlat, minlon, maxlon))
-    else:
-        bboxsql = "1=1"
-
-    sql = sqlbase % (where, bboxsql, lat, lon)
-    sql = sql.replace("--","+")
-
-
-    db.execute(sql)
-    results = db.fetchall()
-
-    out = ["\t".join(["lat", "lon", "marker_id", "icon", "iconSize", "iconOffset", "html"])]
+    db.execute(sqlbase, (id,) )
+    res = db.fetchone()
 
     translate = utils.translator(lang)
 
-    ## print results
-    for res in results:
+    try:
         lat       = str(float(res["lat"])/1000000)
         lon       = str(float(res["lon"])/1000000)
         error_id  = res["id"]
@@ -366,10 +388,8 @@ def markers(db, lang):
         html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"../error/%s/false\" target=\"hiddenIframe\">%s</a> "%(error_id, _("false positive"))
         html += "</div>"
 
-        ##
+        out = html.encode("utf8")
+    except:
+        pass
 
-        marker = "../images/markers/marker-b-%d.png" % (res["item"])
-        out.append("\t".join([lat, lon, str(error_id), marker, "17,33", "-8,-33", html]).encode("utf8"))
-
-    response.content_type = "text/plain; charset=utf-8"
-    return "\n".join(out)
+    return out
