@@ -134,7 +134,7 @@ def markers(db, lang):
     data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
 
     if (not user) and (not source) and (zoom < 6):
-        sys.exit(0)
+        return
 
     # TRANSLATORS: link to tooltip help
     url_help = _("http://wiki.openstreetmap.org/wiki/Osmose/errors")
