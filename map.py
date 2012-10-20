@@ -275,121 +275,38 @@ def markers(db, lang, id):
 
     translate = utils.translator(lang)
 
-    try:
-        lat       = str(float(res["lat"])/1000000)
-        lon       = str(float(res["lon"])/1000000)
-        error_id  = res["id"]
-        title     = translate.select(res["title"])
-        subtitle  = translate.select(res["subtitle"])
-        b_date    = res["timestamp"] or ""
-        item      = res["item"] or 0
+    lat       = str(float(res["lat"])/1000000)
+    lon       = str(float(res["lon"])/1000000)
+    error_id  = res["id"]
+    title     = translate.select(res["title"])
+    subtitle  = translate.select(res["subtitle"])
+    b_date    = res["timestamp"] or ""
+    item      = res["item"] or 0
 
-        ## build html
-        html  = "<div class=\"bulle_msg\">"
-        html += "<div class='closebubble'>"
-        html += "<div><a href='#' onclick=\"closeBubble('%s');return false;\"><b>&nbsp;X&nbsp;</b></a></div>" % error_id
-        html += "<div class=\"help\"><a target=\"_blank\" href='%s#%d'>&nbsp;?&nbsp;</a></div>" % (url_help, item)
-        html += "<div class=\"error-link\"><a target=\"_blank\" href='../error/%s'>&nbsp;E&nbsp;</a></div>" % error_id
-        html += "</div>"
-        html += "<div class=\"bulle_err\">"
-        html += "<b>%s</b><br>%s<br>"%(title, subtitle)
-        html += "</div>"
+    elems = []
+    if res["elem0_data_type"]:
+        elems.append([data_type[res["elem0_data_type"]], res["elem0_id"], res["elem0_tags"]])
+    if res["elem1_data_type"]:
+        elems.append([data_type[res["elem1_data_type"]], res["elem1_id"], res["elem1_tags"]])
+    if res["elem2_data_type"]:
+        elems.append([data_type[res["elem2_data_type"]], res["elem2_id"], res["elem2_tags"]])
 
-        elems = []
-        if res["elem0_data_type"]:
-            elems.append([data_type[res["elem0_data_type"]], res["elem0_id"], res["elem0_tags"]])
-        if res["elem1_data_type"]:
-            elems.append([data_type[res["elem1_data_type"]], res["elem1_id"], res["elem1_tags"]])
-        if res["elem2_data_type"]:
-            elems.append([data_type[res["elem2_data_type"]], res["elem2_id"], res["elem2_tags"]])
-
-        new_elems = []
-        for f in xrange(5):
-            if res["fix%d_elem_data_type" % f]:
-                found = False
-                for e in elems:
-                    if e[0] == data_type[res["fix%d_elem_data_type" % f]] and e[1] == res["fix%d_elem_id" % f]:
-                        e.append((res["fix%d_tags_create" % f],
+    new_elems = []
+    for f in xrange(5):
+        if res["fix%d_elem_data_type" % f]:
+            found = False
+            for e in elems:
+                if e[0] == data_type[res["fix%d_elem_data_type" % f]] and e[1] == res["fix%d_elem_id" % f]:
+                    e.append((res["fix%d_tags_create" % f],
+                              res["fix%d_tags_modify" % f],
+                              res["fix%d_tags_delete" % f],
+                              f))
+                    found = True
+                    break
+            if not found:
+                new_elems.append((res["fix%d_tags_create" % f],
                                   res["fix%d_tags_modify" % f],
                                   res["fix%d_tags_delete" % f],
                                   f))
-                        found = True
-                        break
-                if not found:
-                    new_elems.append((res["fix%d_tags_create" % f],
-                                      res["fix%d_tags_modify" % f],
-                                      res["fix%d_tags_delete" % f],
-                                      f))
 
-        for e in elems:
-            html += "<div class=\"bulle_elem\">"
-            if e[0] != "infos":
-                html += "<b><a target=\"_blank\" href=\"http://www.openstreetmap.org/browse/%s/%s\">%s %s</a></b>"%(e[0], e[1], e[0], e[1])
-                html += " <a href=\"javascript:iFrameLoad('http://rawedit.openstreetmap.fr/edit/%s/%s');\">rawedit</a>"%(e[0], e[1])
-            if e[0] == "relation" and "boundary" in e[2]:
-                html += " <a target=\"_blank\" href=\"http://analyser.openstreetmap.fr/cgi-bin/index.py?relation=%s\">analyse1</a>"%e[1]
-                html += " <a target=\"_blank\" href=\"http://osm3.crans.org/osmbin/analyse-relation?%s\">analyse2</a>"%e[1]
-            if e[0] == "node":
-                html += " <a href=\"http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/node/%d\" target=\"hiddenIframe\">josm</a>" % e[1]
-            if e[0] == "way" or e[0] == "relation":
-                html += " <a href=\"http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/%s/%d/full\" target=\"hiddenIframe\">josm</a>" % (e[0], e[1])
-            html += "<br>"
-
-            for i in xrange(3, len(e)):
-                html += "<div class='fix'>"
-                html += "<a class='link' href='http://localhost:8111/import?url=http://%s/error/%s/fix/%s' target='hiddenIframe'>josm fix</a>"%(utils.website, error_id, e[i][3])
-
-                for (k, v) in e[i][0].items():
-                    html += "<div class='add'> + <b>" + k + "</b> = " + v + "<br></div>"
-                for (k, v) in e[i][1].items():
-                    html += "<div class='mod'> ~ <b>" + k + "</b> = " + v + "<br></div>"
-                for k in e[i][2]:
-                    html += "<div class='del'> - <b>" + k + "</b></div>"
-                html += "</div>"
-
-            for t in e[2].items():
-                html += "<b>%s</b> = %s<br>"%(t[0], t[1])
-            html += "</div>"
-
-        for e in new_elems:
-            html += "<div class=\"bulle_elem\">"
-            html += "<div class='fix'>"
-            html += "<a class='link' href='http://localhost:8111/import?url=http://%s/error/%s/fix/%s' target='hiddenIframe'>josm fix</a>"%(utils.website, error_id, e[3])
-
-            for (k, v) in e[0].items():
-                html += "<div class='add'> + <b>" + k + "</b> = " + v + "<br></div>"
-            for (k, v) in e[1].items():
-                html += "<div class='mod'> ~ <b>" + k + "</b> = " + v + "<br></div>"
-            for k in e[2]:
-                html += "<div class='del'> - <b>" + k + "</b></div>"
-            html += "</div>"
-
-            html += "</div>"
-
-        html += _("Error reported on: ") + " " + b_date.strftime("%Y-%m-%d")
-        html += "</div>"
-
-        ## bottom links
-        html += "<div class=\"bulle_verif\">"
-        html += "<a href=\"http://www.openstreetmap.org/?lat=%s&lon=%s&zoom=18\" target=\"_blank\">osmlink</a> "%(lat, lon)
-        html += "<a href=\"http://www.openstreetmap.org/edit?lat=%s&lon=%s&zoom=18\" target=\"_blank\">potlatch</a> "%(lat, lon)
-        minlat = float(lat) - 0.002
-        maxlat = float(lat) + 0.002
-        minlon = float(lon) - 0.002
-        maxlon = float(lon) + 0.002
-        html += "<a href=\"http://localhost:8111/load_and_zoom?left=%f&bottom=%f&right=%f&top=%f"%(minlon,minlat,maxlon,maxlat)
-        if res["elems"]:
-            html += "&select=" + res["elems"].replace("_",",")
-        html += "\" target=\"hiddenIframe\">josm zone</a> "
-        html += "</div>"
-        html += "<div class=\"bulle_maj\">"
-        html += "<b>%s :</b> " % _("change status")
-        html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"../error/%s/done\" target=\"hiddenIframe\">%s</a> "%(error_id, _("corrected"))
-        html += "<a onclick=\"setTimeout('pois.loadText();',2000);\" href=\"../error/%s/false\" target=\"hiddenIframe\">%s</a> "%(error_id, _("false positive"))
-        html += "</div>"
-
-        out = html.encode("utf8")
-    except:
-        pass
-
-    return out
+    return template('map/popup', lat=lat, lon=lon, error_id=error_id, title=title, subtitle=subtitle, b_date=b_date, item=item, elems=elems, new_elems=new_elems, reselems=res["elems"], url_help=url_help)
