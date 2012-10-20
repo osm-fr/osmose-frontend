@@ -200,39 +200,10 @@ def markers(db, lang):
     WHERE
         %s AND %s AND
         dynpoi_update_last.timestamp > (now() - interval '3 months')
-    ORDER BY ABS(lat-%d)+ABS(lon-%d) ASC
+    ORDER BY
+        point(marker.lat, marker.lon) <-> point(%d, %d)
     LIMIT 200
     """
-
-    sqlbase_count  = """
-    SELECT
-        count(*)
-    FROM
-        marker
-        JOIN dynpoi_update_last ON
-            marker.source = dynpoi_update_last.source
-    """
-
-    if user:
-        sqlbase_count += """
-        JOIN marker_elem ON
-            marker.id = marker_elem.marker_id AND
-            marker_elem.username = '%s'
-        """ % user
-
-    if level:
-        sqlbase_count += """
-        JOIN dynpoi_class ON
-            marker.source = dynpoi_class.source AND
-            marker.class = dynpoi_class.class
-        """
-
-    sqlbase_count += """
-        WHERE
-            %s AND %s AND
-            dynpoi_update_last.timestamp > (now() - interval '3 months')
-        LIMIT 310
-        """
 
     if source:
         sources = source.split(",")
@@ -253,8 +224,6 @@ def markers(db, lang):
     if level:
         where += " AND dynpoi_class.level IN (%s)" % level
 
-    where_count = where
-
     if user:
         where += " AND ("
         s = []
@@ -268,44 +237,7 @@ def markers(db, lang):
     if bbox:
         lat = (minlat+maxlat) / 2
         lon = (minlon+maxlon) / 2
-
-        step = 0.001 * 1000000
-
-        num_steps = 0
-        done = False
-
-        while not done and num_steps < 10:
-
-            num_steps += 1
-            tmp_minlat = lat - step
-            tmp_maxlat = lat + step
-            tmp_minlon = lon - step
-            tmp_maxlon = lon + step
-
-            if (tmp_minlat < minlat and tmp_maxlat > maxlat and
-                tmp_minlon < minlon and tmp_maxlon > maxlon):
-                done = True
-                bboxsql = ("(marker.lat BETWEEN %d AND %d) AND (marker.lon BETWEEN %d and %d)" %
-                       (minlat, maxlat, minlon, maxlon))
-                break
-
-            bboxsql = ("(marker.lat BETWEEN %d AND %d) AND (marker.lon BETWEEN %d and %d)" %
-                       (tmp_minlat, tmp_maxlat, tmp_minlon, tmp_maxlon))
-
-            sql = sqlbase_count % (where_count, bboxsql)
-            sql = sql.replace("--","+")
-            db.execute(sql)
-            num_results = db.fetchone()[0]
-
-            if num_results > 300:
-                step = step * 0.75
-            elif num_results >= 100:
-                done = True
-            elif num_results > 0:
-                step *= 2
-            else:
-                step *= 4
-
+        bboxsql = ("(marker.lat BETWEEN %d AND %d) AND (marker.lon BETWEEN %d and %d)" % (minlat, maxlat, minlon, maxlon))
     else:
         bboxsql = "1=1"
 
