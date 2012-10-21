@@ -23,6 +23,7 @@
 from bottle import route, request, template, response, redirect
 from tools import utils
 import datetime
+import json
 
 
 @route('/map')
@@ -309,7 +310,8 @@ def markers(db, lang, id):
                                   res["fix%d_tags_delete" % f],
                                   f])
 
-    return {
+    response.content_type = "application/json"
+    return json.dumps({
         "lat":lat, "lon":lon,
         "error_id":error_id,
         "title":title, "subtitle":subtitle,
@@ -318,4 +320,4 @@ def markers(db, lang, id):
         "elems":elems, "new_elems":new_elems,
         "elems_id":res["elems"].replace("_",","),
         "url_help":url_help
-    }
+    })
