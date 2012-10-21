@@ -316,6 +316,6 @@ def markers(db, lang, id):
         "b_date":b_date.strftime("%Y-%m-%d"),
         "item":item,
         "elems":elems, "new_elems":new_elems,
-        "reselems":res["elems"],
+        "elems_id":res["elems"].replace("_",","),
         "url_help":url_help
     }
