@@ -309,4 +309,4 @@ def markers(db, lang, id):
                                   res["fix%d_tags_delete" % f],
                                   f))
 
-    return template('map/popup', lat=lat, lon=lon, error_id=error_id, title=title, subtitle=subtitle, b_date=b_date, item=item, elems=elems, new_elems=new_elems, reselems=res["elems"], url_help=url_help)
+    return template('map/popup', lat=lat, lon=lon, error_id=error_id, title=title, subtitle=subtitle, b_date=b_date, item=item, elems=elems, new_elems=new_elems, reselems=res["elems"], url_help=url_help, utils=utils)
