@@ -1,3 +1,4 @@
+<div id="popup-{{error_id}}">
 <div class="bulle_msg">
 <div class="closebubble">
     <div><a href="#" onclick="closeBubble('{{error_id}}');return false;"><b>&nbsp;X&nbsp;</b></a></div>
@@ -80,4 +81,5 @@ if reselems:
 <b>{{_("change status")}} :</b>
 <a onclick="setTimeout('pois.loadText();',2000);" href="../error/{{error_id}}/done" target="hiddenIframe">{{ _("corrected")}}</a>
 <a onclick="setTimeout('pois.loadText();',2000);" href="../error/{{error_id}}/false" target="hiddenIframe">{{_("false positive")}}</a>
+</div>
 </div>

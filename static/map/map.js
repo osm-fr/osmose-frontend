@@ -223,17 +223,6 @@ function repaintIcon(error_id, state, error_type) {
     else if (state[2].checked) feature.marker.icon.setUrl("img/zapdevil.png");
 }
 
-function closeBubble(marker_id) {
-    var i = 0;
-    var len = pois.features.length;
-    var feature = null;
-    while (i < len && feature == null) {
-        if (pois.features[i].data.marker_id == marker_id) feature = pois.features[i];
-        i++;
-    }
-    feature.marker.events.triggerEvent("mousedown");
-}
-
 //----------------------------------------//
 // function for left menu                 //
 //----------------------------------------//

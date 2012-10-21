@@ -73,14 +73,44 @@ OpenLayers.Format.DynPoiFormat = OpenLayers.Class(OpenLayers.Format, {
     CLASS_NAME: "OpenLayers.Format.DynPoiFormat"
 });
 
+function generateBubble(marker_id, text) {
+    var s;
+    s  = "<div id=\"popup-" + marker_id + "\">";
+    s += "<div class=\"bulle_msg\">";
+    s += "<div class=\"closebubble\">";
+    s += "<div><a href=\"#\" onclick=\"closeBubble('" + marker_id + "');return false;\"><b>&nbsp;X&nbsp;</b></a></div>"
+    s += "</div>"
+    s += "<div class=\"bulle_err\">";
+    s += text;
+    s += "</div>";
+    s += "<div class=\"bulle_elem\">"
+    s += text;
+    s += "</div>";
+    s += "</div>";
+    s += "<div class=\"bulle_verif\">"
+    s += text;
+    s += "</div>";
+    s += "<div class=\"bulle_maj\">"
+    s += text;
+    s += "</div>";
+    s += "</div>";
+    return s
+}
+
+
+function closeBubble(marker_id) {
+    var b = $("div#popup-" + marker_id).parent().parent().parent();
+    b.hide();
+}
+
 OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
 
     location: null,
     features: null,
     formatOptions: null,
     selectedFeature: null,
-    activePopup: null,
-    activeFeature: null,
+    downloaded: false,
+    activePopup: false,
     clicked: false,
     marker_ids: {},
 
@@ -279,13 +309,12 @@ OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
     },
 
     onClickHandler: function (evt) {
-        this.activeFeature = this;
-        if (this.clicked && this.activePopup == this.popup) {
-            this.activePopup.hide();
+        if (this.clicked && this.activePopup) {
+            this.popup.hide();
             this.clicked = false;
-        } else if ((this.clicked && !this.activePopup == this.popup) || !this.clicked) {
-            if (this.activePopup != null) {
-                this.activePopup.hide();
+        } else if ((this.clicked && !this.activePopup) || !this.clicked) {
+            if (this.activePopup) {
+                this.popup.hide();
             }
             if (this.popup == null) {
                 this.popup = this.createPopup();
@@ -297,44 +326,49 @@ OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
             } else {
                 this.popup.toggle();
             }
-            this.activePopup = this.popup;
+            this.activePopup = true;
             this.clicked = true;
         }
         OpenLayers.Event.stop(evt);
     },
 
     onHOverHandler: function (evt) {
-        if (!this.clicked) {
-            if (this.activePopup != null) {
-                this.activePopup.hide();
-            }
-            if (this.popup == null) {
-                this.popup = this.createPopup();
-                this.popup.autoSize = true;
-                this.popup.panMapIfOutOfView = false; //document.myform.autopan.checked;
-                this.popup.minSize = new OpenLayers.Size(180, 30);
-                this.popup.maxSize = new OpenLayers.Size(280, 300);
-                OpenLayers.Request.GET({
-                    url: 'marker/' + this.popup.feature.data.marker_id,
-                    success: function (ajaxRequest) {
-                        this.popup.setContentHTML(ajaxRequest.responseText);
-                        if (this.popup == this.activePopup) {
-                            map.addPopup(this.popup);
-                        }
-                    },
-                    scope: this
-                });
-            } else {
-                this.popup.toggle();
-            }
-            this.activePopup = this.popup;
+        if (this.popup && ! this.popup.visible()) {
+            // fix attributes if popup was manually closed
+            this.clicked = false;
         }
+        if (this.popup == null || ! this.downloaded) {
+            this.popup = this.createPopup();
+            this.popup.autoSize = true;
+            this.popup.panMapIfOutOfView = false; //document.myform.autopan.checked;
+            this.popup.minSize = new OpenLayers.Size(180, 30);
+            this.popup.maxSize = new OpenLayers.Size(280, 300);
+            map.addPopup(this.popup);
+            var content = generateBubble(this.popup.feature.data.marker_id, "downloading");
+            this.popup.setContentHTML(content);
+            OpenLayers.Request.GET({
+                url: 'marker/' + this.popup.feature.data.marker_id,
+                success: function (ajaxRequest) {
+                    this.popup.setContentHTML(ajaxRequest.responseText);
+                    this.downloaded = true;
+                },
+                failure: function (ajaxRequest) {
+                    var content = generateBubble(this.popup.feature.data.marker_id, "error " + ajaxRequest.status);
+                    this.popup.setContentHTML(content);
+                },
+                scope: this
+            });
+        }
+        this.popup.show();
+        this.activePopup = true;
         OpenLayers.Event.stop(evt);
     },
 
     onOutHandler: function (evt) {
-        if (!this.clicked && this.activePopup != null) this.activePopup.hide();
-        this.activePopup = null;
+        if (!this.clicked) {
+            this.popup.hide();
+        }
+        this.activePopup = false;
         OpenLayers.Event.stop(evt);
     },
 
