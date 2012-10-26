@@ -103,6 +103,11 @@ function closeBubble(marker_id) {
     b.hide();
 }
 
+function fixBubbleHeigth(id) {
+  var height = $("div#popup-" + id + " .bulle_verif").height() + $("div#popup-" + id + " .bulle_maj").height();
+  $("div#popup-" + id + " .bulle_msg").height($("div#popup-" + id).parent().height() - height);
+}
+
 OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
 
     location: null,
@@ -354,6 +359,9 @@ OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
                     var content = Mustache.render(template, resp);
                     this.popup.setContentHTML(content);
                     this.downloaded = true;
+
+                    fixBubbleHeigth(this.popup.feature.data.marker_id);
+
                 },
                 failure: function (ajaxRequest) {
                     var content = generateBubble(this.popup.feature.data.marker_id, "error " + ajaxRequest.status);
