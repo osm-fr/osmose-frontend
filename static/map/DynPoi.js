@@ -349,7 +349,10 @@ OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
             OpenLayers.Request.GET({
                 url: 'marker/' + this.popup.feature.data.marker_id,
                 success: function (ajaxRequest) {
-                    this.popup.setContentHTML(ajaxRequest.responseText);
+                    var template = $('#popupTpl').html();
+                    var resp = JSON.parse(ajaxRequest.responseText);
+                    var content = Mustache.render(template, resp);
+                    this.popup.setContentHTML(content);
                     this.downloaded = true;
                 },
                 failure: function (ajaxRequest) {

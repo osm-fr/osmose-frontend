@@ -284,34 +284,59 @@ def markers(db, lang, id):
     b_date    = res["timestamp"] or ""
     item      = res["item"] or 0
 
+    def expand_tags(tags, short = False):
+      t = []
+      if short:
+        for k in tags:
+          t.append({"k": k})
+      else:
+        for (k, v) in tags.items():
+          t.append({"k": k, "v": v})
+      return t
+
     elems = []
-    if res["elem0_data_type"]:
-        elems.append([data_type[res["elem0_data_type"]], res["elem0_id"], res["elem0_tags"]])
-    if res["elem1_data_type"]:
-        elems.append([data_type[res["elem1_data_type"]], res["elem1_id"], res["elem1_tags"]])
-    if res["elem2_data_type"]:
-        elems.append([data_type[res["elem2_data_type"]], res["elem2_id"], res["elem2_tags"]])
+    for e in xrange(3):
+      elem = "elem%d_" % e
+      if res[elem + "data_type"]:
+        tmp_elem = {data_type[res[elem + "data_type"]]: True,
+                    "type": data_type[res[elem + "data_type"]],
+                    "id": res[elem + "id"],
+                    "tags": expand_tags(res[elem + "tags"]),
+                    "fixes": [],
+                   }
+        for f in xrange(5):
+          fix = "fix%d_" % f
+          if (res[fix + "elem_data_type"] and
+              res[fix + "elem_data_type"] == res[elem + "data_type"] and
+              res[fix + "elem_id"] == res[elem + "id"]):
+            tmp_elem["fixes"].append({"add": expand_tags(res[fix + "tags_create"]),
+                                      "mod": expand_tags(res[fix + "tags_modify"]),
+                                      "del": expand_tags(res[fix + "tags_delete"], True),
+                                     })
+        elems.append(tmp_elem)
+
 
     new_elems = []
     for f in xrange(5):
-        if res["fix%d_elem_data_type" % f]:
+        fix = "fix%d_" % f
+        if res[fix + "elem_data_type"]:
             found = False
             for e in elems:
-                if e[0] == data_type[res["fix%d_elem_data_type" % f]] and e[1] == res["fix%d_elem_id" % f]:
-                    e.append([res["fix%d_tags_create" % f],
-                              res["fix%d_tags_modify" % f],
-                              res["fix%d_tags_delete" % f],
-                              f])
+                if (e["type"] == data_type[res[fix + "elem_data_type"]] and
+                    e["id"] == res[fix + "elem_id"]):
+
                     found = True
                     break
             if not found:
-                new_elems.append([res["fix%d_tags_create" % f],
-                                  res["fix%d_tags_modify" % f],
-                                  res["fix%d_tags_delete" % f],
-                                  f])
+                new_elems.append({"add": expand_tags(res[fix + "tags_create"]),
+                                  "mod": expand_tags(res[fix + "tags_modify"]),
+                                  "del": expand_tags(res[fix + "tags_delete"], True),
+                                 })
+
 
     response.content_type = "application/json"
     return json.dumps({
+        "website": utils.website,
         "lat":lat, "lon":lon,
         "error_id":error_id,
         "title":title, "subtitle":subtitle,

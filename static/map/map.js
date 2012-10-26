@@ -152,6 +152,12 @@ function init() {
 
     handleResize();
     change_level_display();
+
+     $.ajax({
+         url: $("#popupTpl").attr("src")
+     }).done(function( html ) {
+         $("#popupTpl").html(html);
+     });
 }
 
 function resizeMap() {

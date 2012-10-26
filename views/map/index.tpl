@@ -7,11 +7,14 @@
   <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/style.css')}}">
   <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/style-ol.css')}}">
   <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/OpenLayers/theme/default/style.css')}}">
+  <script id="popupTpl" type="text/template" src="{{get_url('static', filename='/tpl/popup.tpl')}}"></script>
+
   <script type="text/javascript" src="{{get_url('static', filename='/OpenLayers/OpenLayers.js')}}"></script>
   <script type="text/javascript" src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script>
   <script type="text/javascript" src="{{get_url('static', filename='/map/DynPoi.js')}}"></script>
   <script type="text/javascript" src="{{get_url('static', filename='/map/BetaStyles.js')}}"></script>
   <script type="text/javascript" src="{{get_url('static', filename='/map/map.js')}}"></script>
+  <script type="text/javascript" src="{{get_url('static', filename='/js/mustache.js')}}"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script type="text/javascript">
     var lat={{lat}};
