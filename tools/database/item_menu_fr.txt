@@ -78,9 +78,11 @@
  7100 | gare
  7110 | TMC
  8010 | monument
+ 8011 | monument, intégration possible
  8020 | poste
  8021 | poste, intégration possible
  8030 | école
+ 8031 | école, intégration possible
  8040 | station RATP
  8050 | gare
  8051 | gare, intégration possible

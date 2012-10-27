@@ -78,9 +78,11 @@
  7100 | train station
  7110 | TMC
  8010 | monument
+ 8011 | monument, could be integrated
  8020 | post office
  8021 | post office, could be integrated
  8030 | school
+ 8031 | school, could be integrated
  8040 | french railway station
  8050 | train station
  8051 | train station, could be integrated
