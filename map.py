@@ -309,7 +309,8 @@ def markers(db, lang, id):
           if (res[fix + "elem_data_type"] and
               res[fix + "elem_data_type"] == res[elem + "data_type"] and
               res[fix + "elem_id"] == res[elem + "id"]):
-            tmp_elem["fixes"].append({"add": expand_tags(res[fix + "tags_create"]),
+            tmp_elem["fixes"].append({"num": f,
+                                      "add": expand_tags(res[fix + "tags_create"]),
                                       "mod": expand_tags(res[fix + "tags_modify"]),
                                       "del": expand_tags(res[fix + "tags_delete"], True),
                                      })
@@ -328,7 +329,8 @@ def markers(db, lang, id):
                     found = True
                     break
             if not found:
-                new_elems.append({"add": expand_tags(res[fix + "tags_create"]),
+                new_elems.append({"num": f,
+                                  "add": expand_tags(res[fix + "tags_create"]),
                                   "mod": expand_tags(res[fix + "tags_modify"]),
                                   "del": expand_tags(res[fix + "tags_delete"], True),
                                  })
