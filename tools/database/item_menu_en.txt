@@ -17,6 +17,7 @@
  1180 | double cycleway
  1190 | approximate way
  1200 | 1-member relation
+ 1210 | not-connected cycleway
  1220 | waterway
  2010 | junction=roundabout
  2020 | ele=...
@@ -87,3 +88,4 @@
  8050 | train station
  8051 | train station, could be integrated
  8060 | crossing
+ 8080 | postal address, could be integrated

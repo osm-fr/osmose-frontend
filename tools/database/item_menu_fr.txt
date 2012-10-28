@@ -17,6 +17,7 @@
  1180 | double voie cyclable
  1190 | voie approximative
  1200 | relation à 1 membre
+ 1210 | voie cyclable non connectée
  1220 | cours d'eau
  2010 | junction=roundabout
  2020 | ele=...
@@ -87,3 +88,4 @@
  8050 | gare
  8051 | gare, intégration possible
  8060 | passage à niveau
+ 8080 | adresse, intégration possible
