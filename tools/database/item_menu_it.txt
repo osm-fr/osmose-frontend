@@ -17,6 +17,8 @@
  1180 | per due volte il ciclo-way
  1190 |
  1200 |
+ 1210 |
+ 1220 |
  2010 | = incrocio rotonda
  2020 | ele=...
  2030 | oneway=...
@@ -65,15 +67,25 @@
  6050 | admin_level
  6060 | admin_level foro = 8
  7010 | costruzione geodetica
+ 7011 |
  7020 | limitare l'amministratore
  7030 | OpenStreetBugs
  7040 | linee elettriche
  7050 |
  7060 |
  7070 |
+ 7080 | Monumenti
  7090 |
+ 7100 |
+ 7110 | TMC
  8010 | Monumenti
+ 8011 |
  8020 |
  8021 |
  8030 |
+ 8031 |
  8040 |
+ 8050 |
+ 8051 |
+ 8060 |
+ 8080 |
