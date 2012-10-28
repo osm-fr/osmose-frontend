@@ -340,6 +340,8 @@ def markers(db, lang, id):
     return json.dumps({
         "website": utils.website,
         "lat":lat, "lon":lon,
+        "minlat": float(lat) - 0.002, "maxlat": float(lat) + 0.002,
+        "minlon": float(lon) - 0.002, "maxlon": float(lon) + 0.002,
         "error_id":error_id,
         "title":title, "subtitle":subtitle,
         "b_date":b_date.strftime("%Y-%m-%d"),
