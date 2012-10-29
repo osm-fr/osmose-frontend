@@ -20,76 +20,83 @@
 ##                                                                       ##
 ###########################################################################
 
-import time, sys, datetime, os, commands
+import time, sys, datetime, StringIO, os, tempfile
+os.environ['MPLCONFIGDIR'] = tempfile.mkdtemp()
+import matplotlib
+# Force matplotlib to not use any Xwindows backend.
+matplotlib.use('Agg')
+import pylab
+from matplotlib.dates import YearLocator, MonthLocator, DateFormatter
 
 
 def get_data(db, options):
-    sql =  "SELECT dynpoi_stats.source, dynpoi_stats.class, dynpoi_stats.timestamp, dynpoi_stats.count "
-    sql += "FROM dynpoi_stats %s "
-    sql += "WHERE 1=1 %s "
-    sql += "ORDER BY timestamp"
+    sql = """
+SELECT
+    date,
+    SUM(count)
+FROM (
+SELECT
+    date_trunc('day', dynpoi_stats.timestamp) AS date,
+    AVG(dynpoi_stats.count) AS count
+FROM
+    dynpoi_stats
+    %s
+WHERE 1=1
+    %s
+GROUP BY
+    dynpoi_stats.source,
+    dynpoi_stats.class,
+    date
+) AS t
+GROUP BY
+    date
+ORDER BY
+    date
+"""
 
     join_item = ""
     where_sql = ""
 
-    if len(options.items)==1:
-       join_item += "JOIN dynpoi_class ON dynpoi_stats.source = dynpoi_class.source AND dynpoi_stats.class = dynpoi_class.class "
-       where_sql += "AND dynpoi_class.item=%d " % options.items[0]
-    elif len(options.items)>=1:
-       join_item += "JOIN dynpoi_class ON dynpoi_stats.source = dynpoi_class.source AND dynpoi_stats.class = dynpoi_class.class "
-       where_sql += "AND dynpoi_class.item in (%s) " % convIntsToStr(options.items)
+    if len(options.items)>=1:
+        join_item += """
+    JOIN dynpoi_class ON
+        dynpoi_stats.source = dynpoi_class.source AND
+        dynpoi_stats.class = dynpoi_class.class AND
+        dynpoi_class.item in (%s)
+        """ % convIntsToStr(options.items)
 
-    if len(options.classes)==1:
-       where_sql += "AND dynpoi_stats.class=%d " % options.classes[0]
-    elif len(options.classes)>=1:
-       where_sql += "AND dynpoi_stats.class in (%s) " % convIntsToStr(options.classes)
+    if len(options.classes)>=1:
+        where_sql += "AND dynpoi_stats.class in (%s) " % convIntsToStr(options.classes)
 
-    if len(options.sources)==1:
-       where_sql += "AND dynpoi_stats.source=%d " % options.sources[0]
-    elif len(options.sources)>=1:
-       where_sql += "AND dynpoi_stats.source in (%s) " % convIntsToStr(options.sources)
+    if len(options.sources)>=1:
+        where_sql += "AND dynpoi_stats.source in (%s) " % convIntsToStr(options.sources)
 
     if options.country:
-       join_item += "JOIN dynpoi_source ON dynpoi_stats.source = dynpoi_source.source "
-       where_sql += "AND dynpoi_source.comment LIKE '%%-%s%%' " % options.country
+        join_item += """
+    JOIN dynpoi_source ON
+        dynpoi_stats.source = dynpoi_source.source AND
+        dynpoi_source.comment LIKE '%%-%s%%'
+        """ % options.country
 
     sql = sql % (join_item, where_sql)
 
     if len(sys.argv)>1:
       print sql
 
-    db.execute(sql)
-
-    if len(options.sources)!=1:
-        delay = datetime.timedelta(days=1)
-    else:
-        delay = datetime.timedelta(seconds=1)
-
     result = []
-    last = {}
-    timestamp = 0
-    prev_timestamp = 0
-    for res in db.fetchall():
-        timestamp = res['timestamp']
-        if prev_timestamp == 0:
-            prev_timestamp = timestamp
-
-        last[(res["source"],res["class"])] = res['count']
-        if (timestamp - prev_timestamp) > delay:
-            result.append((timestamp.strftime('%d/%m/%Y'), sum(last.itervalues())))
-            prev_timestamp = timestamp
-
-    if last:
-        result.append((timestamp.strftime('%d/%m/%Y'), sum(last.itervalues())))
+    db.execute(sql)
+    for r in db.fetchall():
+        result.append((r[0],r[1]))
     return result
+
 
 def get_text(db, options):
     if len(options.sources)==1 and len(options.classes)==1:
         db.execute("SELECT title->'en' FROM dynpoi_class WHERE source=%s AND class=%s;", (options.sources[0], options.classes[0]))
-
     elif len(options.items)==1 and len(options.classes)==1:
         db.execute("SELECT title->'en' FROM dynpoi_class WHERE class=%s AND item=%s LIMIT 1;", (options.classes[0], options.items[0]))
-
+    elif len(options.items)==1:
+        db.execute("SELECT menu->'en' FROM dynpoi_item WHERE item=%s LIMIT 1;", (options.items[0],))
     else:
         return ""
 
@@ -99,6 +106,7 @@ def get_text(db, options):
     else:
         return ""
 
+
 def get_src(db, options):
     if len(options.sources) != 1:
         return "All"
@@ -106,62 +114,6 @@ def get_src(db, options):
         db.execute("SELECT comment FROM dynpoi_source WHERE source=%s;", (options.sources[0], ))
         return db.fetchone()[0]
 
-def make_plt(db, options):
-
-    data = get_data(db, options)
-    text = get_text(db, options)
-
-    if not data or len(data) < 2:
-         raise SystemError("no data available")
-
-    gnuplotFilename = "/tmp/data_%i.plt"%os.getpid()
-    dataFilename = "/tmp/data_%i.dat"%os.getpid()
-
-    f_plt = open(gnuplotFilename, 'w')
-    f_plt.write("set terminal png\n")
-    f_plt.write("set title \"Source : %s\"\n"%get_src(db, options))
-#    f_plt.write("set style data fsteps\n")
-    f_plt.write("set style data line\n")
-    f_plt.write("set timefmt \"%d/%m/%Y\"\n")
-    f_plt.write("set xdata time\n")
-    f_plt.write("set xrange [ \"%s\":\"%s\" ]\n"%(data[0][0], data[-1][0]))
-    f_plt.write("set format x \"%d/%m\\n%Y\"\n")
-    #f_plt.write("set xlabel \"Date\nTime\"\n")
-    f_plt.write("set yrange [ %d : %d ]\n"%(0,100*(max([x[1] for x in data])/100+2)))
-    #f_plt.write("set ylabel "Concentration\nmg/l"\n")
-    f_plt.write("set grid\n")
-    f_plt.write("set key left\n")
-    f_plt.write("plot '%s' using 1:2 t '%s'\n"%(dataFilename, text))
-    f_plt.close()
-
-    f_dat = open(dataFilename, 'w')
-    for x in data:
-        f_dat.write("%s %d\n"%(x[0], x[1]))
-    f_dat.close()
-
-    s, o = commands.getstatusoutput("gnuplot "+gnuplotFilename)
-
-    if s:
-        raise SystemError("error in gnuplot generation")
-
-    os.remove(gnuplotFilename)
-    os.remove(dataFilename)
-
-    return o
-
-
-def convStrToInts(string):
-    """
-    Convertie une chaine en liste d'entier
-    """
-    if not string:
-        return []
-
-    string = string.replace(" ", "")
-    if string=="":
-        return []
-
-    return [int(elt) for elt in string.split(",")]
 
 def convIntsToStr(values):
     """
@@ -170,12 +122,49 @@ def convIntsToStr(values):
     return ", ".join([str(elt) for elt in values])
 
 
+def make_plt(db, options, format):
+    data = get_data(db, options)
+    text = get_text(db, options)
+    src = get_src(db, options)
+    return plot(data, text+' '+src, format)
+
+
+def plot(data, title, format):
+    months   = MonthLocator()  # every month
+    days     = MonthLocator()  # every days
+    monthsFmt = DateFormatter('%Y-%m')
+
+    dates = [q[0] for q in data]
+    opens = [q[1] for q in data]
+
+    fig = pylab.figure()
+    ax = fig.add_subplot(111)
+    ax.plot_date(dates, opens, '-', color='r')
+
+    ax.set_title(title)
+
+    # format the ticks
+    ax.xaxis.set_major_locator(months)
+    ax.xaxis.set_major_formatter(monthsFmt)
+    ax.xaxis.set_minor_locator(days)
+    ax.autoscale_view()
+
+    # format the coords message box
+    ax.fmt_ydata = lambda x: '$%1.2f'%x
+    ax.grid(True)
+
+    fig.autofmt_xdate()
+
+    buf = StringIO.StringIO()
+    pylab.savefig(buf, format = format)
+    return buf.getvalue()
+
+
 if __name__ == "__main__":
     from optparse import OptionParser, SUPPRESS_HELP
     start = time.clock()
 
     parser = OptionParser()
-
     parser.add_option("--source", dest="sources", type="int", action="append", default=[])
     parser.add_option("--class", dest="classes", type="int", action="append", default=[])
     parser.add_option("--item", dest="items", type="int", action="append", default=[])

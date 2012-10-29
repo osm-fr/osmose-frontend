@@ -30,8 +30,8 @@ import errors_graph
 def int_list(s):
     return map(lambda x: int(x), filter(lambda x: x and x!='',s).split(','))
 
-@route('/errors/graph.png')
-def graph(db):
+@route('/errors/graph.<format:ext>')
+def graph(db, format='png'):
     class options:
         sources = request.params.get('sources', type=int_list, default=[])
         classes = request.params.get('class', type=int_list, default=[])
@@ -41,8 +41,8 @@ def graph(db):
             country = None
 
     try:
-        data = errors_graph.make_plt(db, options)
-        response.content_type = "image/png"
+        data = errors_graph.make_plt(db, options, format)
+        response.content_type = {'png':'image/png', 'svg':'image/svg+xml', 'pdf':'application/pdf'}[format]
         return data
     except Exception, e:
         response.content_type = "text/plain"
