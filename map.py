@@ -26,6 +26,14 @@ import datetime
 import json
 
 
+def check_items(items, all_items):
+    if not items or items == 'xxxx':
+        return all_items
+    else:
+        items = items.split(',')
+        return filter(lambda i: str(i) in items or str(i)[0]+'xxx' in items, all_items)
+
+
 @route('/map')
 def index_redirect():
     redirect("map/")
@@ -39,19 +47,13 @@ def index(db, lang):
     level  = request.params.get('level', default=(request.get_cookie("lastLevel") or "1"))
     source = request.params.get('source', default='')
     user   = request.params.get('user', default='')
-    active_items = request.params.get('item', default=(request.get_cookie("lastItem") or None))
 
-    if active_items:
-        try:
-            active_items = [int(x) for x in active_items if x]
-        except:
-            active_items = None
-
-    if not active_items:
-        active_items = []
-        db.execute("SELECT item FROM dynpoi_item GROUP BY item;")
-        for res in db.fetchall():
-            active_items.append(int(res[0]))
+    active_items = request.params.get('item', default=request.get_cookie("lastItem"))
+    all_items = []
+    db.execute("SELECT item FROM dynpoi_item GROUP BY item;")
+    for res in db.fetchall():
+        all_items.append(int(res[0]))
+    active_items = check_items(active_items, all_items)
 
     level_selected = {}
     for l in ("_all", "1", "2", "3", "1,2", "1,2,3"):
@@ -99,8 +101,7 @@ def index(db, lang):
 def markers(db, lang):
     lat    = int(request.params.get('lat', type=float, default=0)*1000000)
     lon    = int(request.params.get('lon', type=float, default=0)*1000000)
-    err_id = request.params.get('item', default='').split(',')
-    err_id = ','.join([str(int(x)) for x in err_id if x])
+    item   = request.params.get('item')
     source = request.params.get('source', default='')
     user   = utils.pg_escape(unicode(request.params.get('user', default='')))
     level  = request.params.get('level', default='1')
@@ -170,8 +171,26 @@ def markers(db, lang):
                 source2.append("(marker.source=%d AND marker.class=%d)"%(int(source[0]), int(source[1])))
         sources2 = " OR ".join(source2)
         where = "(%s)" % sources2
-    elif err_id:
-        where = "(marker.item IN (%s))" % err_id
+    elif item:
+        if item == 'xxxx':
+            where = "1=1"
+        else:
+            where = []
+            l = []
+            for i in item.split(','):
+                try:
+                    if 'xxx' in i:
+                        where.append("marker.item/1000 = %s" % int(i[0]))
+                    else:
+                        l.append(str(int(i)))
+                except:
+                    pass
+            if l != []:
+                where.append("marker.item IN (%s)" % ','.join(l))
+            if where != []:
+                where = "(%s)" % ' OR '.join(where)
+            else:
+                where = "1=1"
     else:
         where = "1=1"
 

@@ -135,11 +135,20 @@ OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
 
             // items list
             var ch = "";
-            for (var i = 0; i < document.myform.elements.length; ++i) {
-                var el = document.myform.elements[i];
-                if (el.type == "checkbox" && el.name.match(/item[-0-9]+/) != null) {
-                    if (el.checked) ch += el.name.substr(4) + ',';
-                }
+            if ($(".test_group :checkbox:not(:checked)").length == 0) {
+                ch = "xxxx";
+            } else {
+                $(".test_group").each(function() {
+                    var id = this.id;
+                    v = $("h1 span", this).text().split("/");
+                    if (v[0] == v[1]) {
+                        ch += id.substring(5,6) + "xxx,";
+                    } else {
+                        $(":checked", this).each(function() {
+                            ch += this.name.substr(4) + ",";
+                        })
+                    }
+                })
             }
             ch = ch.replace(/,$/, '');
 
@@ -159,8 +168,8 @@ OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
 
             var permalink = plk.element;
             // var permalink = document.getElementsByClassName('olControlPermalink')[0].firstChild;
-            permalink.href = permalink.href.replace(/&item=[-0-9,]*/, '').replace(/\?item=[-0-9,]*&?/, '?') + "&item=" + ch;
-            permalink.href = permalink.href.replace(/&level=[-0-9,]*/, '').replace(/\?level=[-0-9,]*&?/, '?') + "&level=" + document.myform.level.value;
+            permalink.href = permalink.href.replace(/&item=[-0-9x,]*/, '').replace(/\?item=[-0-9x,]*&?/, '?') + "&item=" + ch;
+            permalink.href = permalink.href.replace(/&level=[-0-9x,]*/, '').replace(/\?level=[-0-9x,]*&?/, '?') + "&level=" + document.myform.level.value;
 
             var onFail = function (e) {
                 this.events.triggerEvent("loadend");
