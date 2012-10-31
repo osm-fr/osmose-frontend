@@ -26,7 +26,7 @@ import matplotlib
 # Force matplotlib to not use any Xwindows backend.
 matplotlib.use('Agg')
 import pylab
-from matplotlib.dates import YearLocator, MonthLocator, DateFormatter
+from matplotlib.dates import YearLocator, MonthLocator, DayLocator, DateFormatter
 
 
 def get_data(db, options):
@@ -130,9 +130,6 @@ def make_plt(db, options, format):
 
 
 def plot(data, title, format):
-    months   = MonthLocator()  # every month
-    days     = MonthLocator()  # every days
-    monthsFmt = DateFormatter('%Y-%m')
 
     dates = [q[0] for q in data]
     opens = [q[1] for q in data]
@@ -144,9 +141,17 @@ def plot(data, title, format):
     ax.set_title(title)
 
     # format the ticks
-    ax.xaxis.set_major_locator(months)
-    ax.xaxis.set_major_formatter(monthsFmt)
-    ax.xaxis.set_minor_locator(days)
+    if dates[-1] - dates[0] > datetime.timedelta(days=365*3):
+        ax.xaxis.set_major_locator(YearLocator())
+        ax.xaxis.set_major_formatter(DateFormatter('%Y'))
+        ax.xaxis.set_minor_locator(MonthLocator())
+    elif dates[-1] - dates[0] > datetime.timedelta(weeks=10):
+        ax.xaxis.set_major_locator(MonthLocator())
+        ax.xaxis.set_major_formatter(DateFormatter('%Y-%m'))
+        ax.xaxis.set_minor_locator(DayLocator())
+    else:
+        ax.xaxis.set_major_locator(DayLocator())
+        ax.xaxis.set_major_formatter(DateFormatter('%Y-%m-%d'))
     ax.autoscale_view()
 
     # format the coords message box
