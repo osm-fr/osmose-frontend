@@ -19,12 +19,13 @@ div#menu {
   border: solid 1px black;
   background: white;
   position: absolute;
-  width: 330px;
+  width: 270px;
   left: 50px;
   top: 30px;
   z-index: 1000;
   padding: 5px;
   padding-top: 8px;
+  padding-right: 0px;
   opacity: 0.9;
 }
 a#togglemenu {
@@ -271,26 +272,32 @@ div.test_group div.level {
   width: 48px;
   height: 16px;
 }
-div.level-123 {
-  background: url('../images/level-123.png');
+div.test_group div.level div {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  direction: rtl;
 }
-div.level-12_ {
-  background: url('../images/level-12_.png');
+div.test_group div.level div span {
+  display: none;
 }
-div.level-1_3 {
-  background: url('../images/level-1_3.png');
+div.test_group div.level div:hover span {
+  display: block;
+  padding: 5px;
+  z-index: 20;
+  overflow: visible;
 }
-div.level-_23 {
-  background: url('../images/level-_23.png');
+div.level-1 {
+  background: url('../images/level-123.png') no-repeat;
+  background-position:0px 0px;
 }
-div.level-1__ {
-  background: url('../images/level-1__.png');
+div.level-2 {
+  background: url('../images/level-123.png') no-repeat;
+  background-position:-16px 0px;
 }
-div.level-_2_ {
-  background: url('../images/level-_2_.png');
-}
-div.level-__3 {
-  background: url('../images/level-__3.png');
+div.level-3 {
+  background: url('../images/level-123.png') no-repeat;
+  background-position:-32px 0px;
 }
 
 select#level option {
