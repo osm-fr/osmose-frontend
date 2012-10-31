@@ -336,10 +336,7 @@ function showHideCateg(id, showhide) {
 }
 
 // Change level
-function change_item_display(l, enable) {
-    disabled = !enable;
-    hidden = enable ? null : "hidden";
-    color = enable ? "black" : "#999999";
+function change_item_display(l) {
     $("div#tests li").each(function () {
         id = parseInt($(this).attr('id').replace(/item_desc/, ''));
         if (jQuery.inArray(id, item_levels[l]) >= 0) {
@@ -352,12 +349,10 @@ function change_item_display(l, enable) {
 
 function change_level_display() {
     var new_level = document.getElementById('level').value;
-
     if (new_level == "") {
-        change_item_display("1,2,3", true);
+        change_item_display("1,2,3");
     } else {
-        // change_item_display("1,2,3", false);
-        change_item_display(new_level, true);
+        change_item_display(new_level);
     }
 }
 
