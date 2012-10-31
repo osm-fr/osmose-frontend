@@ -210,14 +210,13 @@ def markers(db, lang):
     db.execute(sqlbase % (where, minlat, maxlat, minlon, maxlon, lat, lon)) # FIXME pas de %
     results = db.fetchall()
 
-    out = ["\t".join(["lat", "lon", "marker_id", "icon", "iconSize", "iconOffset", "html"])]
+    out = ["\t".join(["lat", "lon", "marker_id", "item"])]
     for res in results:
         lat       = str(float(res["lat"])/1000000)
         lon       = str(float(res["lon"])/1000000)
         error_id  = res["id"]
         item      = res["item"] or 0
-        marker = "../images/markers/marker-b-%d.png" % (res["item"])
-        out.append("\t".join([lat, lon, str(error_id), marker, "17,33", "-8,-33", "plop"]).encode("utf8"))
+        out.append("\t".join([lat, lon, str(error_id), str(item)]))
 
     response.content_type = "text/plain; charset=utf-8"
     return "\n".join(out)
