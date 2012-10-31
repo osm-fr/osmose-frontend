@@ -27,7 +27,7 @@ import json
 
 
 def check_items(items, all_items):
-    if not items or items == 'xxxx':
+    if items == None or items == 'xxxx':
         return all_items
     else:
         items = items.split(',')
@@ -171,8 +171,10 @@ def markers(db, lang):
                 source2.append("(marker.source=%d AND marker.class=%d)"%(int(source[0]), int(source[1])))
         sources2 = " OR ".join(source2)
         where = "(%s)" % sources2
-    elif item:
-        if item == 'xxxx':
+    elif item != None:
+        if item == '':
+            where = "1=2"
+        elif item == 'xxxx':
             where = "1=1"
         else:
             where = []
