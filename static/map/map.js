@@ -345,6 +345,14 @@ function change_item_display(l) {
             $("#item_desc" + id).hide();
         }
     });
+    ll = l.split(',')
+    for (var i=1 ; i<=3 ; i++) {
+        if (ll.indexOf(i.toString())>=0) {
+            $(".level-"+i).removeClass("disabled");
+        } else {
+            $(".level-"+i).addClass("disabled");
+        }
+    }
 }
 
 function change_level_display() {

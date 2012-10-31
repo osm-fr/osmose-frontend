@@ -288,16 +288,28 @@ div.test_group div.level div:hover span {
   overflow: visible;
 }
 div.level-1 {
-  background: url('../images/level-123.png') no-repeat;
+  background: url('../images/levels.png') no-repeat;
   background-position:0px 0px;
 }
 div.level-2 {
-  background: url('../images/level-123.png') no-repeat;
+  background: url('../images/levels.png') no-repeat;
   background-position:-16px 0px;
 }
 div.level-3 {
-  background: url('../images/level-123.png') no-repeat;
+  background: url('../images/levels.png') no-repeat;
   background-position:-32px 0px;
+}
+div.level-1.disabled {
+  background: url('../images/levels.png') no-repeat;
+  background-position:0px -16px;
+}
+div.level-2.disabled {
+  background: url('../images/levels.png') no-repeat;
+  background-position:-16px -16px;
+}
+div.level-3.disabled {
+  background: url('../images/levels.png') no-repeat;
+  background-position:-32px -16px;
 }
 
 select#level option {
