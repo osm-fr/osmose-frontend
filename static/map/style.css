@@ -352,3 +352,13 @@ option.level-__3 {
   bottom: 40px;
   font-size: 11px;
 }
+
+.delay-normal {
+    background: green;
+}
+.delay-warning {
+    background: orange;
+}
+.delay-error {
+    background: red;
+}

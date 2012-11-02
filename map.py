@@ -93,8 +93,45 @@ def index(db, lang):
 
     allowed_languages = utils.allowed_languages
 
+    sql = """
+SELECT
+    age
+FROM
+    (
+    SELECT DISTINCT ON (source)
+        source,
+        EXTRACT(EPOCH FROM ((now())-timestamp)) AS age
+    FROM
+        dynpoi_update
+    ORDER BY
+        source ASC,
+        timestamp DESC
+    ) AS delay
+ORDER BY
+    age
+LIMIT
+    1 OFFSET (SELECT COUNT(*)/2 FROM
+    (
+    SELECT DISTINCT ON (source)
+        source,
+        EXTRACT(EPOCH FROM ((now())-timestamp)) AS age
+    FROM
+        dynpoi_update
+    ORDER BY
+        source ASC,
+        timestamp DESC
+    ) AS delay
+)
+;
+"""
+    db.execute(sql)
+    delay = db.fetchone()
+    if delay:
+        delay = delay[0]/60/60/24
+
     return template('map/index', categories=categories, lat=lat, lon=lon, zoom=zoom, source=source, user=user,
-        levels=levels, level_selected=level_selected, active_items=active_items, urls=urls, allowed_languages=allowed_languages, translate=utils.translator(lang))
+        levels=levels, level_selected=level_selected, active_items=active_items, urls=urls, delay=delay,
+        allowed_languages=allowed_languages, translate=utils.translator(lang))
 
 
 @route('/map/markers')

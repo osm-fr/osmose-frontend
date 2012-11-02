@@ -114,6 +114,10 @@
 %for u in urls:
  &mdash; <a href='{{u[1]}}'>{{u[0]}}</a>
 %end
+
+%delay_status = "normal" if delay < 1.1 else "warning" if delay < 1.6 else "error"
+%delay = "%0.2f" % delay
+<span class="delay-{{delay_status}}">{{_("Delay: %sd") % delay}}</span>
 </div>
 
 </doby>
