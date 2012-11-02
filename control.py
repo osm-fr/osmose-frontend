@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, request, response, template
+from bottle import route, request, response, template, post
 from tools import utils
 from tools import update
 import os
@@ -84,8 +84,8 @@ def update(lang):
     return out
 
 
-@route('/control/send-update')
-@route('/cgi-bin/update.py') # Backward compatibility
+@post('/control/send-update')
+@post('/cgi-bin/update.py') # Backward compatibility
 def send_update():
     code = request.params.get('code')
     url = request.params.get('url')
