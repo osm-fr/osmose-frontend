@@ -1,4 +1,5 @@
 %rebase layout title=_("Last updates")
+<p>{{_("Median delay : ")}} {{liste[len(liste)/2][2]}}</p>
 <table>
 <tr>
     <th width="50">{{_("source")}}</th>

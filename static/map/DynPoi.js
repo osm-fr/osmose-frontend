@@ -45,17 +45,11 @@ OpenLayers.Format.DynPoiFormat = OpenLayers.Class(OpenLayers.Format, {
                             geometry.x = parseFloat(vals[valIndex]);
                             attributes['lon'] = geometry.x;
                             set = true;
-                        } else if (columns[valIndex] == 'image' || columns[valIndex] == 'icon') style['externalGraphic'] = vals[valIndex];
-                        else if (columns[valIndex] == 'iconSize') {
-                            var size = vals[valIndex].split(',');
-                            style['graphicWidth'] = parseFloat(size[0]);
-                            style['graphicHeight'] = parseFloat(size[1]);
-                        } else if (columns[valIndex] == 'iconOffset') {
-                            var offset = vals[valIndex].split(',');
-                            style['graphicXOffset'] = parseFloat(offset[0]);
-                            style['graphicYOffset'] = parseFloat(offset[1]);
-                        } else if (columns[valIndex] == 'marker_id') attributes['marker_id'] = vals[valIndex];
-                        else if (columns[valIndex] == 'html') attributes['html'] = vals[valIndex];
+                        } else if (columns[valIndex] == 'item') {
+                            style['item'] = vals[valIndex];
+                        } else if (columns[valIndex] == 'marker_id') {
+                            attributes['marker_id'] = vals[valIndex];
+                        }
                     }
                 }
                 if (set) {
@@ -135,11 +129,20 @@ OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
 
             // items list
             var ch = "";
-            for (var i = 0; i < document.myform.elements.length; ++i) {
-                var el = document.myform.elements[i];
-                if (el.type == "checkbox" && el.name.match(/item[-0-9]+/) != null) {
-                    if (el.checked) ch += el.name.substr(4) + ',';
-                }
+            if ($(".test_group :checkbox:not(:checked)").length == 0) {
+                ch = "xxxx";
+            } else {
+                $(".test_group").each(function() {
+                    var id = this.id;
+                    v = $("h1 span", this).text().split("/");
+                    if (v[0] == v[1]) {
+                        ch += id.substring(5,6) + "xxx,";
+                    } else {
+                        $(":checked", this).each(function() {
+                            ch += this.name.substr(4) + ",";
+                        })
+                    }
+                })
             }
             ch = ch.replace(/,$/, '');
 
@@ -159,8 +162,8 @@ OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
 
             var permalink = plk.element;
             // var permalink = document.getElementsByClassName('olControlPermalink')[0].firstChild;
-            permalink.href = permalink.href.replace(/&item=[-0-9,]*/, '').replace(/\?item=[-0-9,]*&?/, '?') + "&item=" + ch;
-            permalink.href = permalink.href.replace(/&level=[-0-9,]*/, '').replace(/\?level=[-0-9,]*&?/, '?') + "&level=" + document.myform.level.value;
+            permalink.href = permalink.href.replace(/&item=[-0-9x,]*/, '').replace(/\?item=[-0-9x,]*&?/, '?') + "&item=" + ch;
+            permalink.href = permalink.href.replace(/&level=[-0-9x,]*/, '').replace(/\?level=[-0-9x,]*&?/, '?') + "&level=" + document.myform.level.value;
 
             var onFail = function (e) {
                 this.events.triggerEvent("loadend");
@@ -194,43 +197,9 @@ OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
             var iconSize, iconOffset;
 
             location = new OpenLayers.LonLat(feature.geometry.x, feature.geometry.y);
-
-            if (feature.style.graphicWidth && feature.style.graphicHeight) {
-                iconSize = new OpenLayers.Size(feature.style.graphicWidth, feature.style.graphicHeight);
-            }
-
-            // FIXME: At the moment, we only use this if we have an
-            // externalGraphic, because icon has no setOffset API Method.
-            /**
-             * FIXME FIRST!!
-             * The Text format does all sorts of parseFloating
-             * The result of a parseFloat for a bogus string is NaN. That
-             * means the three possible values here are undefined, NaN, or a
-             * number. The previous check was an identity check for null. This
-             * means it was failing for all undefined or NaN. A slightly better
-             * check is for undefined. An even better check is to see if the
-             * value is a number (see #1441).
-             */
-            if (feature.style.graphicXOffset !== undefined && feature.style.graphicYOffset !== undefined) {
-                iconOffset = new OpenLayers.Pixel(feature.style.graphicXOffset, feature.style.graphicYOffset);
-            }
-
-            if (feature.style.externalGraphic != null) {
-                data.icon = new OpenLayers.Icon(feature.style.externalGraphic, iconSize, iconOffset);
-            } else {
-                data.icon = OpenLayers.Marker.defaultIcon();
-                // allows for the case where the image url is not
-                // specified but the size is. use a default icon
-                // but change the size
-                if (iconSize != null) {
-                    data.icon.setSize(iconSize);
-                }
-            }
-
-            if (feature.attributes.comment == null) feature.attributes.comment = "";
-            if (feature.attributes.marker_id != null) {
-                data['popupContentHTML'] = feature.attributes.html;
-            }
+            iconSize = new OpenLayers.Size(17,33);
+            iconOffset = new OpenLayers.Pixel(-8,-33);
+            data.icon = new OpenLayers.Icon("../images/markers/marker-b-"+feature.style.item+".png", iconSize, iconOffset);
 
             data['overflow'] = feature.attributes.overflow || "auto";
             data.marker_id = feature.attributes.marker_id;

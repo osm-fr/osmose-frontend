@@ -70,14 +70,20 @@
     <a href="javascript:showHideCateg('categ{{categ["categ"]}}', false)">{{_("nothing")}}</a></h1>
     <ul>
 %    for err in categ["item"]:
-%        s_l = ["_"] * 3
-%        for l in err["levels"]:
-%            s_l[l-1] = str(l)
-%        end
         <li style='background-image: url(../images/markers/marker-l-{{err["item"]}}.png)' id='item_desc{{err["item"]}}'>
+            <div class="level">\\
+%        p = 0
+%        for i in [1,2,3]:
+%            if i in err["levels"]:
+<div class="level-{{i}}"><span>{{err["number"][p] if err["number"] and len(err["number"]) > p else 0}}</span></div>\\
+%                p += 1
+%            else:
+<div></div>\\
+%            end
+%        end
+            </div>
             <input type='checkbox' id='item{{err["item"]}}' name='item{{err["item"]}}' onclick='checkbox_click(this)' {{ {True:" checked=\"checked\"", False:""}[err["item"] in active_items]}}>
             <a target="_blank" href="../errors/?item={{err["item"]}}">{{err["menu"]}}</a>
-            <div class="level level-{{"".join(s_l)}}">&nbsp;</div>
         </li>
 %    end
     </ul>
