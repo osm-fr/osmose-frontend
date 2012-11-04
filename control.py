@@ -29,36 +29,30 @@ import sys
 @route('/control/update')
 def updates(db):
     db.execute("""
-SELECT DISTINCT ON (source)
-    source,
-    EXTRACT(EPOCH FROM ((now())-timestamp)) AS age,
-    remote_url,
-    remote_ip
+SELECT DISTINCT ON (dynpoi_source.source)
+    dynpoi_source.source,
+    EXTRACT(EPOCH FROM ((now())-dynpoi_update.timestamp)) AS age,
+    dynpoi_source.comment
 FROM
-    dynpoi_update
+    dynpoi_source
+    LEFT JOIN dynpoi_update ON
+        dynpoi_source.source = dynpoi_update.source
 ORDER BY
-    source ASC,
-    timestamp DESC
+    dynpoi_source.source ASC,
+    dynpoi_update.timestamp DESC
 """)
-    lasts = {}
-    for res in db.fetchall():
-        lasts[int(res["source"])] = res
-
-    sources = utils.get_sources()
-
     liste = []
-    for source_id in [str(y) for y in sorted([int(x) for x in sources])]:
-        like = sources[source_id].get("like", source_id)
-        if int(source_id) in lasts:
-            age  = lasts[int(source_id)]["age"]
+    for res in db.fetchall():
+        source, age, comment = res
+        if age:
             if age >= 0:
                 # TRANSLATORS: days / hours / minutes since last source update, abbreviated to d / h / m
                 txt = _("{day}d, {hour}h, {minute}m ago").format(day=int(age/86400), hour=int(age/3600)%24, minute=int(age/60)%60)
             else:
                 txt = _("in {day}d, {hour}h, {minute}m").format(day=int(-age/86400), hour=int(-age/3600)%24, minute=int(-age/60)%60)
-            liste.append((sources[source_id]["comment"], age, txt, source_id))
+            liste.append((comment, age, txt, source))
         else:
-            liste.append((sources[source_id]["comment"], 1e10, _("never generated"), source_id))
+            liste.append((comment, 1e10, _("never generated"), source))
     liste.sort(lambda x, y: -cmp(x[1], y[1]))
 
     return template('control/updates', liste=liste)
