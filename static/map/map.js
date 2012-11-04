@@ -133,7 +133,7 @@ function init() {
         document.myform.lon.value = lonlat.lon
         document.myform.zoom.value = this.getZoom();
         if (this.getZoom() >= 6) {
-            pois.loadText();
+            updateURL();
         }
         if (this.getZoom() < 6 && oldzoom >= 6) {
             $("div#need_zoom").show();
@@ -245,7 +245,7 @@ function set_checkboxes(new_value) {
     for (i = 0; i < groupes.length; i++) {
         updateCountTestsSpan(groupes[i]);
     }
-    pois.loadText();
+    updateURL();
 }
 
 // Toggle value for all checkboxes
@@ -260,7 +260,7 @@ function toggle_checkboxes() {
     for (i = 0; i < groupes.length; i++) {
         updateCountTestsSpan(groupes[i]);
     }
-    pois.loadText();
+    updateURL();
 }
 
 function closeMenu() {
@@ -297,7 +297,7 @@ function updateCountTestsSpan(d) {
 // Click on a checkbox
 function checkbox_click(cb) {
     updateCountTestsSpan(cb.parentNode.parentNode.parentNode);
-    pois.loadText();
+    updateURL();
 }
 
 // Show or hide a group of tests
@@ -332,7 +332,7 @@ function showHideCateg(id, showhide) {
         }
     }
     updateCountTestsSpan(d);
-    pois.loadText();
+    updateURL();
 }
 
 // Change level
@@ -365,7 +365,7 @@ function change_level_display() {
 }
 
 function change_level() {
-    pois.loadText();
+    updateURL();
     change_level_display();
 }
 
@@ -394,4 +394,45 @@ function set_lang(select) {
     var lang = $(select).val();
     setCookie("lang", lang, 30);
     window.location.reload();
+}
+
+function updateURL() {
+    // items list
+    var ch = "";
+    if ($(".test_group :checkbox:not(:checked)").length == 0) {
+        ch = "xxxx";
+    } else {
+        $(".test_group").each(function() {
+            var id = this.id;
+            v = $("h1 span", this).text().split("/");
+            if (v[0] == v[1]) {
+                ch += id.substring(5,6) + "xxx,";
+            } else {
+                $(":checked", this).each(function() {
+                    ch += this.name.substr(4) + ",";
+                })
+            }
+        })
+    }
+    ch = ch.replace(/,$/, '');
+
+    // rebuild the link for downloading points text file according to current form settings
+    var bbox = map.getExtent();
+    bbox = bbox.transform(map.getProjectionObject(), new OpenLayers.Projection("EPSG:4326"))
+    bbox = bbox.toBBOX();
+    var params =
+        "?lat=" + document.myform.lat.value +
+        "&lon=" + document.myform.lon.value +
+        "&zoom=" + document.myform.zoom.value +
+        "&source=" + document.myform.source.value +
+        "&user=" + document.myform.user.value +
+        "&item=" + ch +
+        "&level=" + document.myform.level.value +
+        "&bbox=" + bbox;
+
+    var permalink = plk.element;
+    permalink.href = permalink.href.replace(/&item=[-0-9x,]*/, '').replace(/\?item=[-0-9x,]*&?/, '?') + "&item=" + ch;
+    permalink.href = permalink.href.replace(/&level=[-0-9x,]*/, '').replace(/\?level=[-0-9x,]*&?/, '?') + "&level=" + document.myform.level.value;
+
+    pois.loadText(params);
 }

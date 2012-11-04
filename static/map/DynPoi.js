@@ -124,46 +124,8 @@ OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
         this.features = null;
     },
 
-    loadText: function () {
+    loadText: function (params) {
         if (this.location != null) {
-
-            // items list
-            var ch = "";
-            if ($(".test_group :checkbox:not(:checked)").length == 0) {
-                ch = "xxxx";
-            } else {
-                $(".test_group").each(function() {
-                    var id = this.id;
-                    v = $("h1 span", this).text().split("/");
-                    if (v[0] == v[1]) {
-                        ch += id.substring(5,6) + "xxx,";
-                    } else {
-                        $(":checked", this).each(function() {
-                            ch += this.name.substr(4) + ",";
-                        })
-                    }
-                })
-            }
-            ch = ch.replace(/,$/, '');
-
-            // rebuild the link for downloading points text file according to current form settings
-            var bbox = map.getExtent();
-            bbox = bbox.transform(map.getProjectionObject(), new OpenLayers.Projection("EPSG:4326"))
-            bbox = bbox.toBBOX();
-            var poiloc = this.location +
-                "?lat=" + document.myform.lat.value +
-                "&lon=" + document.myform.lon.value +
-                "&zoom=" + document.myform.zoom.value +
-                "&source=" + document.myform.source.value +
-                "&user=" + document.myform.user.value +
-                "&item=" + ch +
-                "&level=" + document.myform.level.value +
-                "&bbox=" + bbox;
-
-            var permalink = plk.element;
-            // var permalink = document.getElementsByClassName('olControlPermalink')[0].firstChild;
-            permalink.href = permalink.href.replace(/&item=[-0-9x,]*/, '').replace(/\?item=[-0-9x,]*&?/, '?') + "&item=" + ch;
-            permalink.href = permalink.href.replace(/&level=[-0-9x,]*/, '').replace(/\?level=[-0-9x,]*&?/, '?') + "&level=" + document.myform.level.value;
 
             var onFail = function (e) {
                 this.events.triggerEvent("loadend");
@@ -171,21 +133,20 @@ OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
 
             this.events.triggerEvent("loadstart");
             OpenLayers.Request.GET({
-                url: poiloc,
+                url: this.location + params,
                 success: this.parseData,
                 failure: onFail,
                 scope: this
             });
 
             this.loaded = true;
-
         }
     },
 
     moveTo: function (bounds, zoomChanged, minor) {
         OpenLayers.Layer.Markers.prototype.moveTo.apply(this, arguments);
         if (this.visibility && !this.loaded) {
-            this.loadText();
+            updateURL();
         }
     },
 
