@@ -54,10 +54,14 @@ class PgSQLPlugin(object):
 
     def __init__(self, dsn=None, autocommit=True, dictrows=True,
             keyword='db'):
-         self.dsn = dsn
-         self.autocommit = autocommit
-         self.dictrows = dictrows
-         self.keyword = keyword
+        self.dsn = dsn
+        self.autocommit = autocommit
+        self.dictrows = dictrows
+        self.keyword = keyword
+        #con = psycopg2.connect(dsn)
+        self.con = psycopg2.extras.DictConnection(dsn)
+        psycopg2.extras.register_hstore(self.con, unicode=True)
+        # Using DictCursor lets us return result as a dictionary instead of the default list
 
     def setup(self, app):
         ''' Make sure that other installed plugins don't affect the same
@@ -71,7 +75,6 @@ class PgSQLPlugin(object):
     def apply(self, callback, route):
         # Override global configuration with route-specific values.
         conf = route.config.get('pgsql') or {}
-        dsn = conf.get('dsn', self.dsn)
         autocommit = conf.get('autocommit', self.autocommit)
         dictrows = conf.get('dictrows', self.dictrows)
         keyword = conf.get('keyword', self.keyword)
@@ -83,17 +86,11 @@ class PgSQLPlugin(object):
             return callback
 
         def wrapper(*args, **kwargs):
-            # Connect to the database
-            con = None
             try:
-                #con = psycopg2.connect(dsn)
-                con = psycopg2.extras.DictConnection(dsn)
-                psycopg2.extras.register_hstore(con, unicode=True)
-                # Using DictCursor lets us return result as a dictionary instead of the default list
                 if dictrows:
-                    cur = con.cursor(cursor_factory=psycopg2.extras.DictCursor)
+                    cur = self.con.cursor(cursor_factory=psycopg2.extras.DictCursor)
                 else:
-                    cur = con.cursor()
+                    cur = self.con.cursor()
             except HTTPResponse, e:
                 raise HTTPError(500, "Database Error", e)
 
@@ -103,19 +100,16 @@ class PgSQLPlugin(object):
             try:
                 rv = callback(*args, **kwargs)
                 if autocommit:
-                    con.commit()
+                    self.con.commit()
             except psycopg2.ProgrammingError, e:
-                con.rollback()
+                self.con.rollback()
                 raise HTTPError(500, "Database Error", e)
             except HTTPError, e:
                 raise
             except HTTPResponse, e:
                 if autocommit:
-                    con.commit()
+                    self.con.commit()
                 raise
-            finally:
-                if con:
-                    con.close()
             return rv
 
         # Replace the route callback with the wrapped one.
