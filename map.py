@@ -181,13 +181,9 @@ def markers(db, lang):
         marker.lon
     FROM
         marker
-        JOIN dynpoi_class ON
-            marker.source = dynpoi_class.source AND
-            marker.class = dynpoi_class.class
         JOIN dynpoi_update_last ON
             marker.source = dynpoi_update_last.source
-        JOIN dynpoi_item ON
-            marker.item = dynpoi_item.item
+        %s
     WHERE
         %s AND
         (marker.lat BETWEEN %d AND %d) AND (marker.lon BETWEEN %d AND %d) AND
@@ -197,6 +193,7 @@ def markers(db, lang):
     LIMIT 200
     """
 
+    join = ""
     if source:
         sources = source.split(",")
         source2 = []
@@ -234,17 +231,21 @@ def markers(db, lang):
         where = "1=1"
 
     if level:
+        join += """
+        JOIN dynpoi_class ON
+            marker.source = dynpoi_class.source AND
+            marker.class = dynpoi_class.class
+        """
         where += " AND dynpoi_class.level IN (%s)" % level
 
     if user:
-        where += " AND ("
-        s = []
-        for f in xrange(3):
-            s.append("elem%d.username = '%s'" % (f, user))
-        where += " OR ".join(s)
-        where += ")"
+        join += """
+        JOIN marker_elem ON
+            marker_elem.marker_id = marker.id
+        """
+        where += " AND marker_elem.username = '%s'" % user
 
-    db.execute(sqlbase % (where, minlat, maxlat, minlon, maxlon, lat, lon)) # FIXME pas de %
+    db.execute(sqlbase % (join, where, minlat, maxlat, minlon, maxlon, lat, lon)) # FIXME pas de %
     results = db.fetchall()
 
     out = ["\t".join(["lat", "lon", "marker_id", "item"])]
