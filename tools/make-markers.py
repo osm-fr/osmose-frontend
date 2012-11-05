@@ -9,7 +9,7 @@ import utils, commands, sys, os
 ################################################################################
 
 all_items = []
-for g in utils.get_categories():
+for g in utils.get_categories("en"):
     all_items += g["item"]
 
 ################################################################################
@@ -127,7 +127,7 @@ def get_marker(contour, symbole, couleur):
 
 ################################################################################
 
-marker_folder = os.path.join(utils.root_folder, "website", "map", "markers")
+marker_folder = os.path.join("..", "static", "images", "markers")
 commands.getstatusoutput("rm %s"%os.path.join(marker_folder,"*.png"))
 for i in all_items:
     print i
