@@ -22,9 +22,9 @@
 
 from bottle import route, request, response, template, post
 from tools import utils
-from tools import update
+import tools.update
 import os
-
+import sys
 
 @route('/control/update')
 def updates(db):
@@ -100,7 +100,7 @@ def send_update():
         if sources[s].get("updatecode", 0) <> code:
             continue
         try:
-            update.update(sources[s], url)
+            tools.update.update(sources[s], url)
         except:
             import traceback
             from cStringIO import StringIO
