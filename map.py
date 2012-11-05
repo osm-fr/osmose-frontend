@@ -24,6 +24,9 @@ from bottle import route, request, template, response, redirect
 from tools import utils
 import datetime
 import json
+import math, StringIO
+from PIL import Image
+import ImageDraw
 
 
 def check_items(items, all_items):
@@ -134,6 +137,146 @@ LIMIT
         allowed_languages=allowed_languages, translate=utils.translator(lang))
 
 
+def build_where_item(item, table):
+    if item == '':
+        where = "1=2"
+    elif item == None or item == 'xxxx':
+        where = "1=1"
+    else:
+        where = []
+        l = []
+        for i in item.split(','):
+            try:
+                if 'xxx' in i:
+                    where.append("%s.item/1000 = %s" % (table, int(i[0])))
+                else:
+                    l.append(str(int(i)))
+            except:
+                pass
+        if l != []:
+            where.append("%s.item IN (%s)" % (table, ','.join(l)))
+        if where != []:
+            where = "(%s)" % ' OR '.join(where)
+        else:
+            where = "1=1"
+    return where
+
+
+def build_param(source, item, level, user):
+    join = ""
+    if source:
+        sources = source.split(",")
+        source2 = []
+        for source in sources:
+            source = source.split("-")
+            if len(source)==1:
+                source2.append("(marker.source=%d)"%int(source[0]))
+            else:
+                source2.append("(marker.source=%d AND marker.class=%d)"%(int(source[0]), int(source[1])))
+        sources2 = " OR ".join(source2)
+        where = "(%s)" % sources2
+    elif item != None:
+        where = build_where_item(item, "marker")
+    else:
+        where = "1=1"
+
+    if level:
+        join += """
+        JOIN dynpoi_class ON
+            marker.source = dynpoi_class.source AND
+            marker.class = dynpoi_class.class
+        """
+        where += " AND dynpoi_class.level IN (%s)" % level
+
+    if user:
+        join += """
+        JOIN marker_elem ON
+            marker_elem.marker_id = marker.id
+        """
+        where += " AND marker_elem.username = '%s'" % user
+
+    return (join, where)
+
+
+def num2deg(xtile, ytile, zoom):
+    n = 2.0 ** zoom
+    lon_deg = xtile / n * 360.0 - 180.0
+    lat_rad = math.atan(math.sinh(math.pi * (1 - 2 * ytile / n)))
+    lat_deg = math.degrees(lat_rad)
+    return (lat_deg, lon_deg)
+
+@route('/map/heat/<z:int>/<x:int>/<y:int>.png')
+def heat(db, z, x, y):
+    x2,y1 = num2deg(x,y,z)
+    x1,y2 = num2deg(x+1,y+1,z)
+
+    item   = request.params.get('item')
+    source = request.params.get('source', default='')
+    user   = utils.pg_escape(unicode(request.params.get('user', default='')))
+    level  = request.params.get('level', default='1')
+
+    COUNT=32
+
+    items = build_where_item(item, "dynpoi_item")
+
+    db.execute("""
+SELECT
+    SUM((SELECT SUM(t) FROM UNNEST(number) t))
+FROM
+    dynpoi_item
+WHERE
+""" + items)
+    max = db.fetchone()
+    if max and max[0]:
+        max = float(max[0])
+    else:
+        # FIXME redirect empty tile
+        max = 0
+
+    join, where = build_param(source, item, level, user)
+
+    db.execute("""
+SELECT
+    COUNT(*),
+    (((lon-%(y1)s))*%(count)s/(%(y2)s-%(y1)s)-0.5)::int AS latn,
+    (((lat-%(x1)s))*%(count)s/(%(x2)s-%(x1)s)-0.5)::int AS lonn
+FROM
+    marker
+""" + join + """
+WHERE
+""" + where + """ AND
+    lat>%(x1)s::int AND
+    lon>%(y1)s::int AND
+    lat<%(x2)s::int AND
+    lon<%(y2)s::int
+GROUP BY
+    latn,
+    lonn
+""", {"x1":x1*10e5, "y1":y1*10e5, "x2":x2*10e5, "y2":y2*10e5, "count":COUNT})
+    im = Image.new("RGB", (256,256), "#ff0000")
+    draw = ImageDraw.Draw(im)
+
+    transparent_area = (0,0,256,256)
+    mask = Image.new('L', im.size, color=255)
+    mask_draw = ImageDraw.Draw(mask)
+    mask_draw.rectangle(transparent_area, fill=0)
+
+    for row in db.fetchall():
+        count, x, y = row
+        count = int(math.log(count) / math.log(max / ((z-4+1+math.sqrt(COUNT))**2)) * 255)
+        count = 255 if count > 255 else count
+        r = [(x*256/COUNT,(COUNT-1-y)*256/COUNT), ((x+1)*256/COUNT-1,((COUNT-1-y+1)*256/COUNT-1))]
+        mask_draw.rectangle(r, fill=count)
+
+    im.putalpha(mask)
+    del draw
+
+    buf = StringIO.StringIO()
+    im.save(buf, 'PNG')
+    response.content_type = 'image/png'
+    return buf.getvalue()
+
+
 @route('/map/markers')
 def markers(db, lang):
     lat    = int(request.params.get('lat', type=float, default=0)*1000000)
@@ -193,58 +336,7 @@ def markers(db, lang):
     LIMIT 200
     """
 
-    join = ""
-    if source:
-        sources = source.split(",")
-        source2 = []
-        for source in sources:
-            source = source.split("-")
-            if len(source)==1:
-                source2.append("(marker.source=%d)"%int(source[0]))
-            else:
-                source2.append("(marker.source=%d AND marker.class=%d)"%(int(source[0]), int(source[1])))
-        sources2 = " OR ".join(source2)
-        where = "(%s)" % sources2
-    elif item != None:
-        if item == '':
-            where = "1=2"
-        elif item == 'xxxx':
-            where = "1=1"
-        else:
-            where = []
-            l = []
-            for i in item.split(','):
-                try:
-                    if 'xxx' in i:
-                        where.append("marker.item/1000 = %s" % int(i[0]))
-                    else:
-                        l.append(str(int(i)))
-                except:
-                    pass
-            if l != []:
-                where.append("marker.item IN (%s)" % ','.join(l))
-            if where != []:
-                where = "(%s)" % ' OR '.join(where)
-            else:
-                where = "1=1"
-    else:
-        where = "1=1"
-
-    if level:
-        join += """
-        JOIN dynpoi_class ON
-            marker.source = dynpoi_class.source AND
-            marker.class = dynpoi_class.class
-        """
-        where += " AND dynpoi_class.level IN (%s)" % level
-
-    if user:
-        join += """
-        JOIN marker_elem ON
-            marker_elem.marker_id = marker.id
-        """
-        where += " AND marker_elem.username = '%s'" % user
-
+    join, where = build_param(source, item, level, user)
     db.execute(sqlbase % (join, where, minlat, maxlat, minlon, maxlon, lat, lon)) # FIXME pas de %
     results = db.fetchall()
 
