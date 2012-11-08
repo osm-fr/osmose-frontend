@@ -85,7 +85,9 @@
  8030 | school
  8031 | school, could be integrated
  8040 | french railway station
+ 8041 | french railway station, could be integrated
  8050 | train station
  8051 | train station, could be integrated
  8060 | crossing
+ 8070 | geodesic point
  8080 | postal address, could be integrated
