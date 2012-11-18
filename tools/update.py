@@ -245,6 +245,7 @@ class update_parser(handler.ContentHandler):
             ## add data at all location
             if len(self._error_locations) == 0:
                 print "No location on error found on line %d" % self.locator.getLineNumber()
+                return
 
             cpt = 0
             for location in self._error_locations:
