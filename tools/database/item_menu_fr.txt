@@ -85,7 +85,9 @@
  8030 | école
  8031 | école, intégration possible
  8040 | station RATP
+ 8041 | station RATP, intégration possible
  8050 | gare
  8051 | gare, intégration possible
  8060 | passage à niveau
+ 8070 | point géodésique manquant
  8080 | adresse, intégration possible
