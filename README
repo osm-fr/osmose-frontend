@@ -8,6 +8,8 @@ on a map.
 Dependencies
 ------------
   python > 2.6 recommended
+  python-psycopg2 > 2.4
+  python-matplotlib
   apache2
   libapache2-mod-wsgi
   postgresql-9.1
