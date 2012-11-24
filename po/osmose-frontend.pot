@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-24 18:45+0100\n"
+"POT-Creation-Date: 2012-11-24 19:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgstr ""
 msgid "never generated"
 msgstr ""
 
-#: ../errors.py:82 tmp.tpl:49
+#: ../errors.py:82 tmp.tpl:48
 msgid "False positives"
 msgstr ""
 
@@ -38,7 +38,7 @@ msgstr ""
 msgid "Fixed errors"
 msgstr ""
 
-#: ../errors.py:90 tmp.tpl:47
+#: ../errors.py:90 tmp.tpl:46
 msgid "Informations"
 msgstr ""
 
@@ -100,7 +100,7 @@ msgid "Statistics"
 msgstr ""
 
 #. TRANSLATORS: link to tooltip help
-#: ../map.py:359
+#: ../map.py:365
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr ""
 
@@ -151,17 +151,17 @@ msgstr ""
 msgid "Show errors on a map"
 msgstr ""
 
-#: tmp.tpl:14 tmp.tpl:57 tmp.tpl:68
+#: tmp.tpl:14 tmp.tpl:56 tmp.tpl:67
 msgid "item"
 msgstr ""
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
-#: tmp.tpl:15 tmp.tpl:56 tmp.tpl:63
+#: tmp.tpl:15 tmp.tpl:55 tmp.tpl:62
 msgid "class (abbreviation)"
 msgstr ""
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: tmp.tpl:16 tmp.tpl:67
+#: tmp.tpl:16 tmp.tpl:66
 msgid "level (abbreviation)"
 msgstr ""
 
@@ -173,11 +173,11 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: tmp.tpl:19 tmp.tpl:69
+#: tmp.tpl:19 tmp.tpl:68
 msgid "information on error"
 msgstr ""
 
-#: tmp.tpl:20 tmp.tpl:70
+#: tmp.tpl:20 tmp.tpl:69
 msgid "position (abbreviation)"
 msgstr ""
 
@@ -205,206 +205,222 @@ msgstr ""
 msgid "Username:"
 msgstr ""
 
-#: tmp.tpl:26 tmp.tpl:27
+#: tmp.tpl:26
 msgid "Last updates"
 msgstr ""
 
-#: tmp.tpl:28
+#: tmp.tpl:27
 msgid "Median delay:"
 msgstr ""
 
-#: tmp.tpl:29 tmp.tpl:35 tmp.tpl:54 tmp.tpl:61
+#: tmp.tpl:28 tmp.tpl:34 tmp.tpl:53 tmp.tpl:60
 msgid "source"
 msgstr ""
 
-#: tmp.tpl:30
+#: tmp.tpl:29
 msgid "description"
 msgstr ""
 
-#: tmp.tpl:31
+#: tmp.tpl:30
 msgid "last generation"
 msgstr ""
 
-#: tmp.tpl:32 tmp.tpl:33
+#: tmp.tpl:31 tmp.tpl:32
 msgid "history"
 msgstr ""
 
-#: tmp.tpl:34
+#: tmp.tpl:33
 msgid "Update"
 msgstr ""
 
-#: tmp.tpl:36
+#: tmp.tpl:35
 msgid "remote url"
 msgstr ""
 
-#: tmp.tpl:37
+#: tmp.tpl:36
 msgid "timestamp"
 msgstr ""
 
-#: tmp.tpl:38
+#: tmp.tpl:37
 msgid "Copyright informations"
 msgstr ""
 
-#: tmp.tpl:39
+#: tmp.tpl:38
 msgid "Data are coming from:"
 msgstr ""
 
-#: tmp.tpl:40
+#: tmp.tpl:39
 msgid "copyright"
 msgstr ""
 
-#: tmp.tpl:41
+#: tmp.tpl:40
 #, python-format
 msgid "Information on error %d"
 msgstr ""
 
-#: tmp.tpl:42
+#: tmp.tpl:41
 msgid "key"
 msgstr ""
 
-#: tmp.tpl:43
+#: tmp.tpl:42
 msgid "value"
 msgstr ""
 
-#: tmp.tpl:44
+#: tmp.tpl:43
 msgid "Marker"
 msgstr ""
 
-#: tmp.tpl:45
+#: tmp.tpl:44
 msgid "Elements"
 msgstr ""
 
-#: tmp.tpl:46
+#: tmp.tpl:45
 msgid "Fixes"
 msgstr ""
 
-#: tmp.tpl:48
+#: tmp.tpl:47
 msgid "Fixed"
 msgstr ""
 
-#: tmp.tpl:50
+#: tmp.tpl:49
 msgid "Graph"
 msgstr ""
 
-#: tmp.tpl:51 tmp.tpl:83
+#: tmp.tpl:50 tmp.tpl:82
 msgid "Map"
 msgstr ""
 
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
-#: tmp.tpl:53
+#: tmp.tpl:52
 msgid "Set"
 msgstr ""
 
-#: tmp.tpl:58
+#: tmp.tpl:57
 msgid "title"
 msgstr ""
 
-#: tmp.tpl:59
+#: tmp.tpl:58
 msgid "count"
 msgstr ""
 
-#: tmp.tpl:60
+#: tmp.tpl:59
 msgid "Total"
 msgstr ""
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: tmp.tpl:65
+#: tmp.tpl:64
 msgid "subclass (abbreviation)"
 msgstr ""
 
-#: tmp.tpl:71
+#: tmp.tpl:70
 msgid "elements (abbreviation)"
 msgstr ""
 
-#: tmp.tpl:72 tmp.tpl:73
+#: tmp.tpl:71 tmp.tpl:72
 msgid "subtitle"
 msgstr ""
 
-#: tmp.tpl:74
+#: tmp.tpl:73
 msgid "date"
 msgstr ""
 
-#: tmp.tpl:75
+#: tmp.tpl:74
 msgid "Show more errors"
 msgstr ""
 
-#: tmp.tpl:76
+#: tmp.tpl:75
 msgid "Show some errors"
 msgstr ""
 
-#: tmp.tpl:77
+#: tmp.tpl:76
 msgid "OpenStreetMap Oversight Search Engine"
 msgstr ""
 
-#: tmp.tpl:78
+#: tmp.tpl:77
 msgid "Map of errors"
 msgstr ""
 
-#: tmp.tpl:79
+#: tmp.tpl:78
 msgid "Help on OSM wiki"
 msgstr ""
 
-#: tmp.tpl:80
+#: tmp.tpl:79
 msgid "Information on error database"
 msgstr ""
 
-#: tmp.tpl:81
+#: tmp.tpl:80
 msgid "False positives list"
 msgstr ""
 
-#: tmp.tpl:82
+#: tmp.tpl:81
 msgid "Last analysis updates"
 msgstr ""
 
-#: tmp.tpl:84
+#: tmp.tpl:83
 msgid "no bubbles at this zoom factor"
 msgstr ""
 
-#: tmp.tpl:85
+#: tmp.tpl:84
 msgid "Severity"
 msgstr ""
 
-#: tmp.tpl:86
+#: tmp.tpl:85
 msgid "1 only"
 msgstr ""
 
-#: tmp.tpl:87
+#: tmp.tpl:86
 msgid "1+2 only"
 msgstr ""
 
-#: tmp.tpl:88
+#: tmp.tpl:87
 msgid "all severity"
 msgstr ""
 
-#: tmp.tpl:89
+#: tmp.tpl:88
 msgid "2 only"
 msgstr ""
 
-#: tmp.tpl:90
+#: tmp.tpl:89
 msgid "3 only"
 msgstr ""
 
-#: tmp.tpl:91
+#: tmp.tpl:90
 msgid "Select:"
 msgstr ""
 
-#: tmp.tpl:92 tmp.tpl:95
+#: tmp.tpl:91 tmp.tpl:94
 msgid "all"
 msgstr ""
 
-#: tmp.tpl:93 tmp.tpl:96
+#: tmp.tpl:92 tmp.tpl:95
 msgid "nothing"
 msgstr ""
 
-#: tmp.tpl:94
+#: tmp.tpl:93
 msgid "invert"
 msgstr ""
 
-#: tmp.tpl:97
+#: tmp.tpl:96
 msgid "Change language:"
 msgstr ""
 
-#: tmp.tpl:98
+#: tmp.tpl:97
 #, python-format
 msgid "Delay: %sd"
+msgstr ""
+
+#: tmp.tpl:98
+msgid "Error reported on: "
+msgstr ""
+
+#: tmp.tpl:99
+msgid "change status"
+msgstr ""
+
+#: tmp.tpl:100
+msgid "corrected"
+msgstr ""
+
+#: tmp.tpl:101
+msgid "false positive"
 msgstr ""

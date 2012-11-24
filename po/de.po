@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-05 17:31+0100\n"
+"POT-Creation-Date: 2012-11-24 19:00+0100\n"
 "PO-Revision-Date: 2012-08-02 14:19+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: German\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANSLATORS: days / hours / minutes since last source update, abbreviated to d / h / m
-#: ../control.py:56
+#: ../control.py:50
 msgid "{day}d, {hour}h, {minute}m ago"
 msgstr ""
 
-#: ../control.py:58
+#: ../control.py:52
 msgid "in {day}d, {hour}h, {minute}m"
 msgstr ""
 
-#: ../control.py:61
+#: ../control.py:55
 msgid "never generated"
 msgstr "nie generiert"
 
@@ -43,70 +43,70 @@ msgid "Informations"
 msgstr "Informationen"
 
 #. TRANSLATORS: link to help in appropriate language
-#: ../map.py:80
+#: ../map.py:83
 msgid "Help"
 msgstr "Hilfe"
 
-#: ../map.py:80
+#: ../map.py:83
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/DE:Osmose"
 
-#: ../map.py:81
+#: ../map.py:84
 #, fuzzy
 msgid "Errors by user"
 msgstr "Fehler von user"
 
-#: ../map.py:82
+#: ../map.py:85
 #, fuzzy
 msgid "Relation analyser"
 msgstr "Analyzer-Relation"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:84
+#: ../map.py:87
 msgid "CLC"
 msgstr ""
 
-#: ../map.py:84
+#: ../map.py:87
 msgid "http://clc.openstreetmap.fr/"
 msgstr "http://clc.openstreetmap.fr/"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:86
+#: ../map.py:89
 #, fuzzy
 msgid "Geodesic"
 msgstr "Geodätische"
 
-#: ../map.py:86
+#: ../map.py:89
 msgid "http://geodesie.openstreetmap.fr/"
 msgstr "http://geodesie.openstreetmap.fr/"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:88
+#: ../map.py:91
 msgid "openstreetmap.fr"
 msgstr "openstreetmap.fr"
 
-#: ../map.py:88
+#: ../map.py:91
 msgid "http://www.openstreetmap.fr/"
 msgstr "http://www.openstreetmap.fr/"
 
-#: ../map.py:89
+#: ../map.py:92
 #, fuzzy
 msgid "Copyright"
 msgstr "Copyright"
 
 #. TRANSLATORS: link to source code
-#: ../map.py:91
+#: ../map.py:94
 #, fuzzy
 msgid "Sources"
 msgstr "Quellen"
 
-#: ../map.py:92
+#: ../map.py:95
 #, fuzzy
 msgid "Statistics"
 msgstr "Statistik"
 
 #. TRANSLATORS: link to tooltip help
-#: ../map.py:230
+#: ../map.py:365
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/DE:Osmose/erreurs"
 
@@ -230,7 +230,7 @@ msgid "Last updates"
 msgstr "Letzte Updates"
 
 #: tmp.tpl:27
-msgid "Median delay : "
+msgid "Median delay:"
 msgstr ""
 
 #: tmp.tpl:28 tmp.tpl:34 tmp.tpl:53 tmp.tpl:60
@@ -430,17 +430,26 @@ msgstr "umkehren"
 msgid "Change language:"
 msgstr ""
 
-#~ msgid "Error reported on: "
-#~ msgstr "Buchungsdatum der Fehler:"
+#: tmp.tpl:97
+#, python-format
+msgid "Delay: %sd"
+msgstr ""
 
-#~ msgid "change status"
-#~ msgstr "ändern Sie den Status"
+#: tmp.tpl:98
+msgid "Error reported on: "
+msgstr "Buchungsdatum der Fehler:"
 
-#~ msgid "corrected"
-#~ msgstr "korrigiert"
+#: tmp.tpl:99
+msgid "change status"
+msgstr "ändern Sie den Status"
 
-#~ msgid "false positive"
-#~ msgstr "false positive"
+#: tmp.tpl:100
+msgid "corrected"
+msgstr "korrigiert"
+
+#: tmp.tpl:101
+msgid "false positive"
+msgstr "false positive"
 
 #~ msgid "Item"
 #~ msgstr "Artikel"
