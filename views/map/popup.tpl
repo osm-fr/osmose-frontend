@@ -34,7 +34,7 @@
       <br>
   <%#fixes%>
       <div class="fix">
-        <a class="link" href="http://localhost:8111/import?url=http://<%website%>/error/<%error_id%>/fix/<%num%>" target="hiddenIframe">josm fix</a>
+        <a class="link" href="http://localhost:8111/import?url=http://{{website}}/error/<%error_id%>/fix/<%num%>" target="hiddenIframe">josm fix</a>
     <%#add%>
         <div class="add"> + <b><%k%></b> = <%v%></div>
     <%/add%>
@@ -54,7 +54,7 @@
 <%#new_elems%>
     <div class="bulle_elem">
       <div class="fix">
-        <a class="link" href="http://localhost:8111/import?url=http://<%website%>/error/<%error_id%>/fix/<%num%>" target="hiddenIframe">josm fix</a>
+        <a class="link" href="http://localhost:8111/import?url=http://{{website}}/error/<%error_id%>/fix/<%num%>" target="hiddenIframe">josm fix</a>
   <%#add%>
         <div class="add"> + <b><%k%></b> = <%v%></div>
   <%/add%>

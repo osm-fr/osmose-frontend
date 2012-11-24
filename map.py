@@ -353,7 +353,8 @@ def markers(db, lang):
 @route('/tpl/popup.tpl')
 def popup_template(db, lang):
 
-    return template('map/popup', mustache_delimiter="{{=<% %>=}}")
+    return template('map/popup', mustache_delimiter="{{=<% %>=}}",
+                                 website=utils.website)
 
 
 @route('/map/marker/<id:int>')
@@ -492,7 +493,6 @@ def markers(db, lang, id):
 
     response.content_type = "application/json"
     return json.dumps({
-        "website": utils.website,
         "lat":lat, "lon":lon,
         "minlat": float(lat) - 0.002, "maxlat": float(lat) + 0.002,
         "minlon": float(lon) - 0.002, "maxlon": float(lon) + 0.002,
