@@ -435,10 +435,15 @@ function updateURL() {
         "&user=" + document.myform.user.value +
         "&item=" + ch +
         "&level=" + document.myform.level.value;
-
     pois.loadText(params);
 
     if (heat.visibility) {
+        var params =
+            "?zoom=" + document.myform.zoom.value +
+            "&source=" + document.myform.source.value +
+            "&user=" + document.myform.user.value +
+            "&item=" + ch +
+            "&level=" + document.myform.level.value;
         var url = "heat/${z}/${x}/${y}.png" + params;
         if (heat.url != url) {
             heat.setUrl(url);
