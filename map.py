@@ -350,6 +350,11 @@ def markers(db, lang):
     response.content_type = "text/plain; charset=utf-8"
     return "\n".join(out)
 
+@route('/tpl/popup.tpl')
+def popup_template(db, lang):
+
+    return template('map/popup', mustache_delimiter="{{=<% %>=}}")
+
 
 @route('/map/marker/<id:int>')
 def markers(db, lang, id):
