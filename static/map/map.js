@@ -423,23 +423,22 @@ function updateURL() {
     }
     ch = ch.replace(/,$/, '');
 
-    // rebuild the link for downloading points text file according to current form settings
-    var bbox = map.getExtent();
-    bbox = bbox.transform(map.getProjectionObject(), new OpenLayers.Projection("EPSG:4326"))
-    bbox = bbox.toBBOX();
-
     var permalink = plk.element;
     permalink.href = permalink.href.replace(/&item=[-0-9x,]*/, '').replace(/\?item=[-0-9x,]*&?/, '?') + "&item=" + ch;
     permalink.href = permalink.href.replace(/&level=[-0-9x,]*/, '').replace(/\?level=[-0-9x,]*&?/, '?') + "&level=" + document.myform.level.value;
 
+    var params =
+        "?lat=" + document.myform.lat.value +
+        "&lon=" + document.myform.lon.value +
+        "&zoom=" + document.myform.zoom.value +
+        "&source=" + document.myform.source.value +
+        "&user=" + document.myform.user.value +
+        "&item=" + ch +
+        "&level=" + document.myform.level.value;
+
     pois.loadText(params);
 
     if (heat.visibility) {
-        var params =
-            "?source=" + document.myform.source.value +
-            "&user=" + document.myform.user.value +
-            "&item=" + ch +
-            "&level=" + document.myform.level.value;
         var url = "heat/${z}/${x}/${y}.png" + params;
         if (heat.url != url) {
             heat.setUrl(url);
