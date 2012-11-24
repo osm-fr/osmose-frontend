@@ -4,6 +4,7 @@ var plk = null;
 /* used to store old zoom factore to triger events when "going above" treshold */
 var oldzoom = -1;
 var heat = null;
+var poisParams = null;
 
 //----------------------------------------//
 // init map function                      //
@@ -427,7 +428,7 @@ function updateURL() {
     permalink.href = permalink.href.replace(/&item=[-0-9x,]*/, '').replace(/\?item=[-0-9x,]*&?/, '?') + "&item=" + ch;
     permalink.href = permalink.href.replace(/&level=[-0-9x,]*/, '').replace(/\?level=[-0-9x,]*&?/, '?') + "&level=" + document.myform.level.value;
 
-    var params =
+    poisParams =
         "?lat=" + document.myform.lat.value +
         "&lon=" + document.myform.lon.value +
         "&zoom=" + document.myform.zoom.value +
@@ -435,12 +436,11 @@ function updateURL() {
         "&user=" + document.myform.user.value +
         "&item=" + ch +
         "&level=" + document.myform.level.value;
-    pois.loadText(params);
+    pois.loadText(poisParams);
 
     if (heat.visibility) {
         var params =
-            "?zoom=" + document.myform.zoom.value +
-            "&source=" + document.myform.source.value +
+            "?source=" + document.myform.source.value +
             "&user=" + document.myform.user.value +
             "&item=" + ch +
             "&level=" + document.myform.level.value;
@@ -451,4 +451,8 @@ function updateURL() {
             heat.redraw();
         }
     }
+}
+
+function poisUpdate() {
+    pois.loadText(poisParams);
 }
