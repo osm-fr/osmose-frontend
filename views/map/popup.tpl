@@ -76,8 +76,8 @@
   </div>
   <div class="bulle_maj">
     <b>{{_("change status")}} :</b>
-    <a onclick="setTimeout('pois.loadText();',2000);" href="../error/<%error_id%>/done" target="hiddenIframe">{{_("corrected")}}</a>
-    <a onclick="setTimeout('pois.loadText();',2000);" href="../error/<%error_id%>/false" target="hiddenIframe">{{_("false positive")}}</a>
+    <a onclick="setTimeout('poisUpdate();',2000);" href="../error/<%error_id%>/done" target="hiddenIframe">{{_("corrected")}}</a>
+    <a onclick="setTimeout('poisUpdate();',2000);" href="../error/<%error_id%>/false" target="hiddenIframe">{{_("false positive")}}</a>
 </div>
 
 </div>
