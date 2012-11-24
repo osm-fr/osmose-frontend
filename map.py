@@ -329,7 +329,6 @@ def markers(db, lang):
         %s
     WHERE
         %s AND
-        (marker.lat BETWEEN %d AND %d) AND (marker.lon BETWEEN %d AND %d) AND
         dynpoi_update_last.timestamp > (now() - interval '3 months')
     ORDER BY
         point(marker.lat, marker.lon) <-> point(%d, %d)
@@ -337,7 +336,7 @@ def markers(db, lang):
     """
 
     join, where = build_param(source, item, level, user)
-    db.execute(sqlbase % (join, where, minlat, maxlat, minlon, maxlon, lat, lon)) # FIXME pas de %
+    db.execute(sqlbase % (join, where, lat, lon)) # FIXME pas de %
     results = db.fetchall()
 
     out = ["\t".join(["lat", "lon", "marker_id", "item"])]
