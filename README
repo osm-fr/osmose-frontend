@@ -18,6 +18,6 @@ Dependencies
 Initialisation
 --------------
   (cd po && make)                            # to generate translation files
-  git submodule --init update                # to get Mustache javascript library
+  git submodule update --init                # to get Mustache javascript library
   psql -c "CREATE EXTENSION hstore"
   psql -f tools/database/schema_generate.sh  # for postgresql database tables
