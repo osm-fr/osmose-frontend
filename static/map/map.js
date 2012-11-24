@@ -55,12 +55,6 @@ function init() {
     });
     map.addLayer(bing);
 
-    heat = new OpenLayers.Layer.OSM("Heatmap", ["heat/${z}/${x}/${y}.png"], {
-        transitionEffect: 'resize',
-        isBaseLayer: false,
-    });
-    map.addLayer(heat);
-
     //var layerTilesAtHome = new OpenLayers.Layer.OSM.Osmarender("Osmarender");
     //map.addLayer(layerTilesAtHome);
 
@@ -117,8 +111,14 @@ function init() {
 
     map.addLayers(layers);
 
+    heat = new OpenLayers.Layer.OSM("Osmose Errors Heatmap", ["heat/${z}/${x}/${y}.png"], {
+        transitionEffect: 'resize',
+        isBaseLayer: false,
+    });
+    map.addLayer(heat);
+
     /* Must be the last layers so that markers are above any other layers */
-    pois = new OpenLayers.Layer.DynPoi("Erreurs Osmose", {
+    pois = new OpenLayers.Layer.DynPoi("Osmose Errors", {
         location: "markers",
         projection: new OpenLayers.Projection("EPSG:4326")
     });
