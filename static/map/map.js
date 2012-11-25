@@ -4,6 +4,7 @@ var plk = null;
 /* used to store old zoom factore to triger events when "going above" treshold */
 var oldzoom = -1;
 var heat = null;
+var poisParams = null;
 
 //----------------------------------------//
 // init map function                      //
@@ -54,12 +55,6 @@ function init() {
         key: "AmQcQsaJ4WpRqn2_k0rEToboqaM1ind8HMmM0XwKwW9R8bChmHEbczHwjnjFpuNP",
     });
     map.addLayer(bing);
-
-    heat = new OpenLayers.Layer.OSM("Heatmap", ["heat/${z}/${x}/${y}.png"], {
-        transitionEffect: 'resize',
-        isBaseLayer: false,
-    });
-    map.addLayer(heat);
 
     //var layerTilesAtHome = new OpenLayers.Layer.OSM.Osmarender("Osmarender");
     //map.addLayer(layerTilesAtHome);
@@ -117,8 +112,14 @@ function init() {
 
     map.addLayers(layers);
 
+    heat = new OpenLayers.Layer.OSM("Osmose Errors Heatmap", ["heat/${z}/${x}/${y}.png"], {
+        transitionEffect: 'resize',
+        isBaseLayer: false,
+    });
+    map.addLayer(heat);
+
     /* Must be the last layers so that markers are above any other layers */
-    pois = new OpenLayers.Layer.DynPoi("Erreurs Osmose", {
+    pois = new OpenLayers.Layer.DynPoi("Osmose Errors", {
         location: "markers",
         projection: new OpenLayers.Projection("EPSG:4326")
     });
@@ -427,7 +428,7 @@ function updateURL() {
     permalink.href = permalink.href.replace(/&item=[-0-9x,]*/, '').replace(/\?item=[-0-9x,]*&?/, '?') + "&item=" + ch;
     permalink.href = permalink.href.replace(/&level=[-0-9x,]*/, '').replace(/\?level=[-0-9x,]*&?/, '?') + "&level=" + document.myform.level.value;
 
-    var params =
+    poisParams =
         "?lat=" + document.myform.lat.value +
         "&lon=" + document.myform.lon.value +
         "&zoom=" + document.myform.zoom.value +
@@ -435,10 +436,14 @@ function updateURL() {
         "&user=" + document.myform.user.value +
         "&item=" + ch +
         "&level=" + document.myform.level.value;
-
-    pois.loadText(params);
+    pois.loadText(poisParams);
 
     if (heat.visibility) {
+        var params =
+            "?source=" + document.myform.source.value +
+            "&user=" + document.myform.user.value +
+            "&item=" + ch +
+            "&level=" + document.myform.level.value;
         var url = "heat/${z}/${x}/${y}.png" + params;
         if (heat.url != url) {
             heat.setUrl(url);
@@ -446,4 +451,8 @@ function updateURL() {
             heat.redraw();
         }
     }
+}
+
+function poisUpdate() {
+    pois.loadText(poisParams);
 }
