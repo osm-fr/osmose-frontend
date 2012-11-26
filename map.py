@@ -326,6 +326,8 @@ def markers(db, lang):
         marker
         JOIN dynpoi_update_last ON
             marker.source = dynpoi_update_last.source
+        JOIN dynpoi_item ON
+            marker.item = dynpoi_item.item
         %s
     WHERE
         %s AND
@@ -403,8 +405,6 @@ def markers(db, lang, id):
             marker.class = dynpoi_class.class
         JOIN dynpoi_update_last ON
             marker.source = dynpoi_update_last.source
-        JOIN dynpoi_item ON
-            marker.item = dynpoi_item.item
     """
 
     for f in xrange(3):
