@@ -67,7 +67,7 @@ OpenLayers.Format.DynPoiFormat = OpenLayers.Class(OpenLayers.Format, {
     CLASS_NAME: "OpenLayers.Format.DynPoiFormat"
 });
 
-function generateBubble(marker_id, text) {
+function generateBubble(marker_id, title, message) {
     var s;
     s  = "<div id=\"popup-" + marker_id + "\">";
     s += "<div class=\"bulle_msg\">";
@@ -75,20 +75,22 @@ function generateBubble(marker_id, text) {
     s += "<div><a href=\"#\" onclick=\"closeBubble('" + marker_id + "');return false;\"><b>&nbsp;X&nbsp;</b></a></div>"
     s += "</div>"
     s += "<div class=\"bulle_err\">";
-    s += text;
+    s += title;
     s += "</div>";
     s += "<div class=\"bulle_elem\">"
-    s += text;
     s += "</div>";
     s += "</div>";
     s += "<div class=\"bulle_verif\">"
-    s += text;
+    s += message;
     s += "</div>";
     s += "<div class=\"bulle_maj\">"
-    s += text;
     s += "</div>";
     s += "</div>";
     return s
+}
+
+function generateBubbleDownload(marker_id) {
+    return generateBubble(marker_id, "", "<center><img src='../images/throbbler.gif' alt='downloading'></center>");
 }
 
 
@@ -279,7 +281,7 @@ OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
             this.popup.minSize = new OpenLayers.Size(180, 30);
             this.popup.maxSize = new OpenLayers.Size(280, 300);
             map.addPopup(this.popup);
-            var content = generateBubble(this.popup.feature.data.marker_id, "downloading");
+            var content = generateBubbleDownload(this.popup.feature.data.marker_id);
             this.popup.setContentHTML(content);
             OpenLayers.Request.GET({
                 url: 'marker/' + this.popup.feature.data.marker_id,
@@ -294,7 +296,7 @@ OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
 
                 },
                 failure: function (ajaxRequest) {
-                    var content = generateBubble(this.popup.feature.data.marker_id, "error " + ajaxRequest.status);
+                    var content = generateBubble(this.popup.feature.data.marker_id, "Error", "error " + ajaxRequest.status);
                     this.popup.setContentHTML(content);
                 },
                 scope: this
