@@ -3,10 +3,9 @@
   <title>Osmose - {{_("Map")}}</title>
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
   <meta name="description" content="Contrôle, vérification et correction d'erreurs d'OpenStreetMap">
-  <!-- <link rel="stylesheet" type="text/css" href="http://openlayers.org/dev/theme/default/style.css"> -->
+  <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/OpenLayers/theme/default/style.css')}}">
   <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/style.css')}}">
   <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/style-ol.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/OpenLayers/theme/default/style.css')}}">
   <script id="popupTpl" type="text/template" src="{{get_url('static', filename='/tpl/popup.tpl')}}"></script>
 
   <script type="text/javascript" src="{{get_url('static', filename='/OpenLayers/OpenLayers.js')}}"></script>
