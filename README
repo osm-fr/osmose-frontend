@@ -7,9 +7,9 @@ on a map.
 
 Dependencies
 ------------
-  python > 2.6 recommended
-  python-psycopg2 > 2.4
-  python-matplotlib > 1.1
+  python >= 2.6 recommended
+  python-psycopg2 >= 2.4
+  python-matplotlib >= 1.1
   python-imaging
   apache2
   libapache2-mod-wsgi
