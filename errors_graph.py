@@ -26,7 +26,7 @@ import matplotlib
 # Force matplotlib to not use any Xwindows backend.
 matplotlib.use('Agg')
 import matplotlib.pyplot
-from matplotlib.dates import YearLocator, MonthLocator, DayLocator, DateFormatter
+import matplotlib.dates
 
 
 def get_data(db, options):
@@ -142,6 +142,14 @@ def plot(data, title, format):
     # format the coords message box
     ax.fmt_ydata = lambda x: '$%1.2f'%x
     ax.grid(True)
+
+    locator = matplotlib.dates.AutoDateLocator()
+    locator.set_axis(ax.xaxis)
+    locator.refresh()
+    formatter = matplotlib.dates.AutoDateFormatter(locator)
+    formatter.scaled[30.] = '%Y-%m'
+    formatter.scaled[1.0] = '%Y-%m-%d'
+    ax.xaxis.set_major_formatter(formatter)
 
     fig.autofmt_xdate()
 
