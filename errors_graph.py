@@ -25,7 +25,7 @@ os.environ['MPLCONFIGDIR'] = tempfile.mkdtemp()
 import matplotlib
 # Force matplotlib to not use any Xwindows backend.
 matplotlib.use('Agg')
-import pylab
+import matplotlib.pyplot
 from matplotlib.dates import YearLocator, MonthLocator, DayLocator, DateFormatter
 
 
@@ -133,7 +133,7 @@ def plot(data, title, format):
     dates = [q[0] for q in data]
     opens = [q[1] for q in data]
 
-    fig = pylab.figure()
+    fig = matplotlib.pyplot.figure()
     ax = fig.add_subplot(111)
     ax.plot_date(dates, opens, '-', color='r')
     ax.set_title(title)
@@ -146,7 +146,8 @@ def plot(data, title, format):
     fig.autofmt_xdate()
 
     buf = StringIO.StringIO()
-    pylab.savefig(buf, format = format)
+    fig.savefig(buf, format = format)
+    matplotlib.pyplot.close(fig)
     return buf.getvalue()
 
 
