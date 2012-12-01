@@ -20,11 +20,11 @@ msgstr ""
 #. TRANSLATORS: days / hours / minutes since last source update, abbreviated to d / h / m
 #: ../control.py:50
 msgid "{day}d, {hour}h, {minute}m ago"
-msgstr ""
+msgstr "vor {day} Tagen, {hour}h, {minute}m"
 
 #: ../control.py:52
 msgid "in {day}d, {hour}h, {minute}m"
-msgstr ""
+msgstr "in {day} Tagen, {hour}h, {minute}m"
 
 #: ../control.py:55
 msgid "never generated"
@@ -36,7 +36,7 @@ msgstr "falsch positive Ergebnisse"
 
 #: ../errors.py:86
 msgid "Fixed errors"
-msgstr "Fehler behoben "
+msgstr "behobene Fehler"
 
 #: ../errors.py:90 tmp.tpl:46
 msgid "Informations"
@@ -54,12 +54,12 @@ msgstr "http://wiki.openstreetmap.org/wiki/DE:Osmose"
 #: ../map.py:84
 #, fuzzy
 msgid "Errors by user"
-msgstr "Fehler von user"
+msgstr "Fehler vom Benutzer"
 
 #: ../map.py:85
 #, fuzzy
 msgid "Relation analyser"
-msgstr "Analyzer-Relation"
+msgstr "Relation-Analyse"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
 #: ../map.py:87
@@ -103,7 +103,7 @@ msgstr "Quellen"
 #: ../map.py:95
 #, fuzzy
 msgid "Statistics"
-msgstr "Statistik"
+msgstr "Statistiken"
 
 #. TRANSLATORS: link to tooltip help
 #: ../map.py:367
@@ -113,22 +113,22 @@ msgstr "http://wiki.openstreetmap.org/wiki/DE:Osmose/erreurs"
 #: tmp.tpl:1 tmp.tpl:7
 #, fuzzy, python-format
 msgid "Statistics for user %s"
-msgstr "statistik für Anwender"
+msgstr "Statistik für den Benutzer %s"
 
 #: tmp.tpl:2 tmp.tpl:11
 #, python-format
 msgid "Number of found errors: %d"
-msgstr "Anzahl der gefundene Fehler: %d"
+msgstr "Anzahl der gefundenen Fehler: %d"
 
 #: tmp.tpl:3 tmp.tpl:12
 #, python-format
 msgid "Number of found errors: more than %d"
-msgstr "Anzahl der Fehler gefunden: mehr als %d"
+msgstr "Anzahl der gefundenen Fehler: mehr als %d"
 
 #: tmp.tpl:4
 #, fuzzy
 msgid "Users statistics"
-msgstr "Benutzer-Statistik"
+msgstr "Benutzerstatistiken"
 
 #: tmp.tpl:5
 msgid "Number"
@@ -141,7 +141,7 @@ msgstr "Benutzername"
 #: tmp.tpl:8
 #, python-format
 msgid "User statistics for %s"
-msgstr "Benutzer-Statistik für %s"
+msgstr "Benutzerstatistiken für %s"
 
 #: tmp.tpl:9
 #, python-format
@@ -150,8 +150,8 @@ msgid ""
 "doesn't means that this user is responsible for all these errors."
 msgstr ""
 "Diese Seite zeigt Fehler auf Elemente, die zuletzt durch '%s' geändert "
-"wurden. Das bedeutet nicht bedeutet, dass diese Benutzer verantwortlich für "
-"alle dieser Fehler ist."
+"wurden. Das bedeutet nicht unbedingt, dass dieser Benutzer für all"
+"diese Fehler verantwortlich ist."
 
 #: tmp.tpl:10
 msgid "This list is also available via rss."
@@ -187,7 +187,7 @@ msgstr "Fehler"
 
 #: tmp.tpl:19 tmp.tpl:68
 msgid "information on error"
-msgstr "Informationen über Fehler"
+msgstr "Informationen über den Fehler"
 
 #: tmp.tpl:20 tmp.tpl:69
 msgid "position (abbreviation)"
@@ -196,15 +196,15 @@ msgstr "Standpunkt"
 #: tmp.tpl:21
 #, fuzzy
 msgid "Statistics for user"
-msgstr "statistik für Anwender"
+msgstr "Statistiken für den Anwender"
 
 #: tmp.tpl:22
 msgid "User statistics"
-msgstr "Benutzer-Statistik"
+msgstr "Benutzerstatistiken"
 
 #: tmp.tpl:23
 msgid "Osmose allows you to control your own errors."
-msgstr ""
+msgstr "Osmose ermöglicht es Ihnen, Ihre eigenen Fehler zu kontrollieren."
 
 #: tmp.tpl:24
 #, fuzzy
@@ -214,12 +214,12 @@ msgid ""
 "attaches errors to username is not perfect, as Osmose only checks the last "
 "contributor of the relevant erroneous elements."
 msgstr ""
-"Osmose ermöglicht Ihnen, Ihre eigenen Fehler zu kontrollieren. <br> Mit der "
-"Eingabe Ihrer OSM Benutzernamen in das folgende Formular aus, sind Sie in "
-"der Lage, Fehler, die zu Ihren Benutzernamen angehängt sind zu sehen. "
-"Beachten Sie, dass der Algorithmus, der Fehler beimisst Benutzername ist "
-"nicht perfekt, als Osmose prüft nur die letzte Beitragszahler der relevanten "
-"fehlerhaften Elemente. "
+"Osmose ermöglicht Ihnen, Ihre eigenen Fehler zu kontrollieren. <br> Mit der " 
+"Eingabe Ihres OSM Benutzernamens in das folgende Formular, sind Sie in "
+"der Lage, Fehler zu sehen, die Ihnen zugewiesen sind. Beachten Sie, "
+"dass der Algorithmus, der Fehler Benutzern zuweist nicht perfekt ist, "
+"weil Osmose nur den letzten Beiträger der relevanten fehlerhaften "
+"Elementen prüft. "
 
 #: tmp.tpl:25
 msgid "Username:"
@@ -231,7 +231,7 @@ msgstr "Letzte Updates"
 
 #: tmp.tpl:27
 msgid "Median delay:"
-msgstr ""
+msgstr "mittlere Verzögerung"
 
 #: tmp.tpl:28 tmp.tpl:34 tmp.tpl:53 tmp.tpl:60
 msgid "source"
@@ -239,11 +239,11 @@ msgstr "Quelle"
 
 #: tmp.tpl:29
 msgid "description"
-msgstr "description"
+msgstr "Beschreibung"
 
 #: tmp.tpl:30
 msgid "last generation"
-msgstr "letzte Generation"
+msgstr "letzte Generierung"
 
 #: tmp.tpl:31 tmp.tpl:32
 msgid "history"
@@ -251,7 +251,7 @@ msgstr "Geschichte"
 
 #: tmp.tpl:33
 msgid "Update"
-msgstr ""
+msgstr "Update"
 
 #: tmp.tpl:35
 msgid "remote url"
@@ -259,25 +259,25 @@ msgstr ""
 
 #: tmp.tpl:36
 msgid "timestamp"
-msgstr ""
+msgstr "Zeitstempel"
 
 #: tmp.tpl:37
 #, fuzzy
 msgid "Copyright informations"
-msgstr "Informationen"
+msgstr "Informationeni zum Urheberrecht"
 
 #: tmp.tpl:38
 msgid "Data are coming from:"
-msgstr "Data komme aus:"
+msgstr "Daten kommen aus:"
 
 #: tmp.tpl:39
 msgid "copyright"
-msgstr "copyright"
+msgstr "Copyright"
 
 #: tmp.tpl:40
 #, fuzzy, python-format
 msgid "Information on error %d"
-msgstr "Informationen über Fehler %d"
+msgstr "Informationen über den Fehler %d"
 
 #: tmp.tpl:41
 msgid "key"
@@ -297,7 +297,7 @@ msgstr "Elemente"
 
 #: tmp.tpl:45
 msgid "Fixes"
-msgstr "Fixes"
+msgstr "Korrekturen"
 
 #: tmp.tpl:47
 msgid "Fixed"
@@ -322,11 +322,11 @@ msgstr "Titel"
 
 #: tmp.tpl:58
 msgid "count"
-msgstr "Zahl"
+msgstr "Anzahl"
 
 #: tmp.tpl:59
 msgid "Total"
-msgstr ""
+msgstr "Summe"
 
 # unt for "Unterklasse"
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
@@ -362,16 +362,16 @@ msgstr "OsmOse - OpenStreetMap Oversight Search Engine"
 #: tmp.tpl:77
 #, fuzzy
 msgid "Map of errors"
-msgstr "Mehr Fehler"
+msgstr "Fehlerkarte"
 
 #: tmp.tpl:78
 msgid "Help on OSM wiki"
-msgstr ""
+msgstr "Hilfe im OSM-Wiki"
 
 #: tmp.tpl:79
 #, fuzzy
 msgid "Information on error database"
-msgstr "Informationen über Fehler"
+msgstr "Informationen über Fehlerdatenbank"
 
 #: tmp.tpl:80
 #, fuzzy
@@ -380,11 +380,11 @@ msgstr "falsch positive Ergebnisse"
 
 #: tmp.tpl:81
 msgid "Last analysis updates"
-msgstr ""
+msgstr "Letzte Analyse"
 
 #: tmp.tpl:83
 msgid "no bubbles at this zoom factor"
-msgstr "keine Blasen an dieser Zoom-Faktor"
+msgstr "keine Blasen bei diesem Zoom-Faktor"
 
 #: tmp.tpl:84
 msgid "Severity"
@@ -392,11 +392,11 @@ msgstr ""
 
 #: tmp.tpl:85
 msgid "1 only"
-msgstr ""
+msgstr "nur 1"
 
 #: tmp.tpl:86
 msgid "1+2 only"
-msgstr ""
+msgstr "nur 1+2"
 
 #: tmp.tpl:87
 msgid "all severity"
@@ -404,11 +404,11 @@ msgstr ""
 
 #: tmp.tpl:88
 msgid "2 only"
-msgstr ""
+msgstr "nur 2"
 
 #: tmp.tpl:89
 msgid "3 only"
-msgstr ""
+msgstr "nur 3"
 
 #: tmp.tpl:90
 msgid "Select:"
@@ -428,12 +428,12 @@ msgstr "umkehren"
 
 #: tmp.tpl:96
 msgid "Change language:"
-msgstr ""
+msgstr "Sprache ändern:"
 
 #: tmp.tpl:97
 #, python-format
 msgid "Delay: %sd"
-msgstr ""
+msgstr "Verzögerung: %sd"
 
 #: tmp.tpl:98
 msgid "Error reported on: "
@@ -449,7 +449,7 @@ msgstr "korrigiert"
 
 #: tmp.tpl:101
 msgid "false positive"
-msgstr "false positive"
+msgstr "falscher positive"
 
 #~ msgid "Item"
 #~ msgstr "Artikel"
@@ -467,7 +467,7 @@ msgstr "false positive"
 #~ msgstr "Länge"
 
 #~ msgid "map"
-#~ msgstr "karte"
+#~ msgstr "Karte"
 
 #~ msgid "OsmOse - statistics for user %s"
 #~ msgstr "OsmOse - Statistiken für Benutzer %s"
@@ -479,7 +479,7 @@ msgstr "false positive"
 #~ msgstr "Alle Level"
 
 #~ msgid "OsmOse - Users statistics"
-#~ msgstr "Osmose - Nutzer die Statistik"
+#~ msgstr "Osmose - Benutzerstatistiken"
 
 #~ msgid "OsmOse - information on error %d"
 #~ msgstr "OsmOse - Informationen über Fehler %d"
@@ -488,16 +488,16 @@ msgstr "false positive"
 #~ msgstr "OsmOse - Informationen"
 
 #~ msgid "OsmOse - false positives"
-#~ msgstr "OsmOse - False Positives"
+#~ msgstr "OsmOse - falsche Positiven"
 
 #~ msgid "position"
-#~ msgstr "position"
+#~ msgstr "Lage"
 
 #~ msgid "clc"
 #~ msgstr "clc"
 
 #~ msgid "%dd, %dh, %02dm ago"
-#~ msgstr "%dt, %ds, %02dm seit"
+#~ msgstr "vor %dt, %ds, %02dm"
 
 #~ msgid "in %dj, %dh, %02dm"
 #~ msgstr "in %dt, %ds, %02dm"
