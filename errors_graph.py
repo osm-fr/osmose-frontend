@@ -130,30 +130,15 @@ def make_plt(db, options, format):
 
 
 def plot(data, title, format):
-
     dates = [q[0] for q in data]
     opens = [q[1] for q in data]
 
     fig = pylab.figure()
     ax = fig.add_subplot(111)
     ax.plot_date(dates, opens, '-', color='r')
-
     ax.set_title(title)
-
     # format the ticks
-    if dates[-1] - dates[0] > datetime.timedelta(days=365*3):
-        ax.xaxis.set_major_locator(YearLocator())
-        ax.xaxis.set_major_formatter(DateFormatter('%Y'))
-        ax.xaxis.set_minor_locator(MonthLocator())
-    elif dates[-1] - dates[0] > datetime.timedelta(weeks=10):
-        ax.xaxis.set_major_locator(MonthLocator())
-        ax.xaxis.set_major_formatter(DateFormatter('%Y-%m'))
-        ax.xaxis.set_minor_locator(DayLocator())
-    else:
-        ax.xaxis.set_major_locator(DayLocator())
-        ax.xaxis.set_major_formatter(DateFormatter('%Y-%m-%d'))
     ax.autoscale_view()
-
     # format the coords message box
     ax.fmt_ydata = lambda x: '$%1.2f'%x
     ax.grid(True)
