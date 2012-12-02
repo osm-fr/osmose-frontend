@@ -50,8 +50,8 @@
           <option class="level-12_" value="1,2"{{level_selected['1,2']}}>{{_("1+2 only")}}</option>
           <option class="level-123" value="1,2,3"{{level_selected['1,2,3']}}>{{_("all severity")}}</option>
           <option disabled="disabled"></option>
-          <option class="level-_2_" value="2"{{level_selected['2']}}#>{{_("2 only")}}</option>
-          <option class="level-__3" value="3"{{level_selected['3']}}#>{{_("3 only")}}</option>
+          <option class="level-_2_" value="2"{{level_selected['2']}}>{{_("2 only")}}</option>
+          <option class="level-__3" value="3"{{level_selected['3']}}>{{_("3 only")}}</option>
         </select>
       </span>
       <br>

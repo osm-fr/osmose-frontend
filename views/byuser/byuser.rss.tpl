@@ -16,7 +16,7 @@
 {{results[0]["timestamp"].ctime()}}\\
 %end
 </lastBuildDate>
-    <link>{{utils.website}}/byuser/{{username}}</link>
+    <link>http://{{utils.website}}/byuser/{{username}}</link>
 %for res in results:
     <item>
         <title>{{translate.select(res["title"])}}</title>
@@ -25,18 +25,24 @@
         {{translate.select(res["subtitle"])}}
 %    end
         item={{res["item"]}}, class={{res["class"]}}, level={{res["level"]}}
+        {{'<a href="http://%s/error/%s">E</a>' % (utils.website, res['id'])}}
+%    lat = float(res["lat"])/1000000.
+%    lon = float(res["lon"])/1000000.
+%    minlat = lat - 0.002
+%    maxlat = lat + 0.002
+%    minlon = lon - 0.002
+%    maxlon = lon + 0.002
+        {{'<a href="http://localhost:8111/load_and_zoom?left=%s&amp;bottom=%s&amp;right=%s&amp;top=%s">josm</a>' % (minlon, minlat, maxlon, maxlat)}}
         </description>
         <category>{{res["item"]}}</category>
         <pubDate>{{res["timestamp"].ctime()}}</pubDate>
-%    lat = float(res["lat"])/1000000.
-%    lon = float(res["lon"])/1000000.
 %    cl = res["class"]
 %    source = res["source"]
 %    item = res["item"]
 %    level = res["level"]
 %    lat_s = "%.2f" % lat
 %    lon_s = "%.2f" % lon
-        <link>{{utils.website}}/map/?zoom=16&amp;lat={{lat}}&amp;lon={{lon}}&amp;item={{item}}&amp;level={{level}}</link>
+        <link>http://{{utils.website}}/map/?zoom=16&amp;lat={{lat}}&amp;lon={{lon}}&amp;item={{item}}&amp;level={{level}}</link>
     </item>
 %end
 </channel>

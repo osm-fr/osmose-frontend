@@ -7,7 +7,7 @@
 </tr>
 %for res in liste:
 <tr>
-    <td><a href="../../errors?source={{res[0]}}">{{res[0]}}</a></td>
+    <td><a href="../../errors/?source={{res[0]}}">{{res[0]}}</a></td>
 %    url = res[2]
 %    url = url.replace("http://cedric.dumez-viou.fr", "http://cdv")
 %    url = url.replace("http://osm1.crans.org", "http://osm1")
