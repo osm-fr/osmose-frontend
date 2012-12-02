@@ -63,9 +63,9 @@ def index(db, lang):
         level_selected[l] = ""
 
     if level == "":
-        level_selected["1"] = " selected"
+        level_selected["1"] = " selected=\"selected\""
     elif level in ("1", "2", "3", "1,2", "1,2,3"):
-        level_selected[level] = " selected"
+        level_selected[level] = " selected=\"selected\""
 
     categories = utils.get_categories(lang)
 
