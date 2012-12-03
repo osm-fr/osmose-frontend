@@ -35,7 +35,6 @@
         {{'<a href="http://localhost:8111/load_and_zoom?left=%s&amp;bottom=%s&amp;right=%s&amp;top=%s">josm</a>' % (minlon, minlat, maxlon, maxlat)}}
         </description>
         <category>{{res["item"]}}</category>
-        <pubDate>{{res["timestamp"].ctime()}}</pubDate>
 %    cl = res["class"]
 %    source = res["source"]
 %    item = res["item"]
