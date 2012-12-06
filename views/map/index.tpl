@@ -46,12 +46,12 @@
       <span id="level-span">
         <label for='level'>{{_("Severity")}}</label>
         <select id='level' onclick='change_level();'>
-          <option class="level-1__" value="1"{{level_selected['1']}}>{{_("1 only")}}</option>
-          <option class="level-12_" value="1,2"{{level_selected['1,2']}}>{{_("1+2 only")}}</option>
-          <option class="level-123" value="1,2,3"{{level_selected['1,2,3']}}>{{_("all severity")}}</option>
+          <option class="level-1__" value="1"{{!level_selected['1']}}>{{_("1 only")}}</option>
+          <option class="level-12_" value="1,2"{{!level_selected['1,2']}}>{{_("1+2 only")}}</option>
+          <option class="level-123" value="1,2,3"{{!level_selected['1,2,3']}}>{{_("all severity")}}</option>
           <option disabled="disabled"></option>
-          <option class="level-_2_" value="2"{{level_selected['2']}}>{{_("2 only")}}</option>
-          <option class="level-__3" value="3"{{level_selected['3']}}>{{_("3 only")}}</option>
+          <option class="level-_2_" value="2"{{!level_selected['2']}}>{{_("2 only")}}</option>
+          <option class="level-__3" value="3"{{!level_selected['3']}}>{{_("3 only")}}</option>
         </select>
       </span>
       <br>
@@ -81,7 +81,7 @@
 %            end
 %        end
             </div>
-            <input type='checkbox' id='item{{err["item"]}}' name='item{{err["item"]}}' onclick='checkbox_click(this)' {{ {True:" checked=\"checked\"", False:""}[err["item"] in active_items]}}>
+            <input type='checkbox' id='item{{err["item"]}}' name='item{{err["item"]}}' onclick='checkbox_click(this)' {{! {True:" checked=\"checked\"", False:""}[err["item"] in active_items]}}>
             <a target="_blank" href="../errors/?item={{err["item"]}}">{{err["menu"]}}</a>
         </li>
 %    end
@@ -105,7 +105,7 @@
 %    else:
 %        s = ""
 %    end
-    <option{{s}} value='{{l}}'>{{l}}</option>
+    <option{{!s}} value='{{l}}'>{{l}}</option>
 %end
 </select>
 </form>
