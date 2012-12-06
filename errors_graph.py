@@ -108,11 +108,15 @@ def get_text(db, options):
 
 
 def get_src(db, options):
-    if len(options.sources) != 1:
-        return "All"
-    else:
+    if len(options.sources) == 1:
         db.execute("SELECT comment FROM dynpoi_source WHERE source=%s;", (options.sources[0], ))
         return db.fetchone()[0]
+
+    elif options.country:
+        return str(options.country)
+
+    else:
+        return "All"
 
 
 def convIntsToStr(values):
