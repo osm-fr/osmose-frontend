@@ -33,7 +33,7 @@ def int_list(s):
 @route('/errors/graph.<format:ext>')
 def graph(db, format='png'):
     class options:
-        sources = request.params.get('sources', type=int_list, default=[])
+        sources = request.params.get('source', type=int_list, default=[])
         classes = request.params.get('class', type=int_list, default=[])
         items   = request.params.get('item', type=int_list, default=[])
         country = request.params.get('country')
