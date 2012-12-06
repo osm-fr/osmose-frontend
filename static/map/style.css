@@ -253,8 +253,8 @@ iframe#incFrame {
   display: none;
   position: absolute;
   z-index: 1200;
-  top: 10;
-  left: 10;
+  top: 10px;
+  left: 10px;
 }
 
 img#incFrameBt {
@@ -262,8 +262,8 @@ img#incFrameBt {
   position: absolute;
   border: 0px;
   z-index: 1201;
-  top: 10;
-  left: 772;
+  top: 10px;
+  left: 772px;
 }
 
 /* error levels */
