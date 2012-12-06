@@ -31,7 +31,7 @@
 
 <div id="incFrameBg"></div>
 <iframe id="incFrame" src="" width=780 height=540 scrolling="auto" frameborder="1" ></iframe>
-<a accesskey="w" href="javascript:iFrameClose();"><img id="incFrameBt" src="../images/close.png"></a>
+<a accesskey="w" href="javascript:iFrameClose();"><img id="incFrameBt" src="../images/close.png" alt="close menu"></a>
 
 <div id="menu">
   <a id="togglemenu" href="javascript:toggleMenu()">-</a>
