@@ -119,5 +119,5 @@
 <span class="delay-{{delay_status}}">{{_("Delay: %sd") % delay}}</span>
 </div>
 
-</doby>
+</body>
 </html>
