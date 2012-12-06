@@ -81,6 +81,7 @@ def update(lang):
 @post('/control/send-update')
 @post('/cgi-bin/update.py') # Backward compatibility
 def send_update():
+    src = request.params.get('src', default=None)
     code = request.params.get('code')
     url = request.params.get('url')
 
@@ -91,7 +92,9 @@ def send_update():
 
     sources = utils.get_sources()
     for s in sources:
-        if sources[s].get("updatecode", 0) <> code:
+        if src and sources[s]["comment"] != src:
+            continue
+        if sources[s]["updatecode"] != code:
             continue
         try:
             tools.update.update(sources[s], url)
