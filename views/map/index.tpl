@@ -45,7 +45,7 @@
     <div id="action_links">
       <span id="level-span">
         <label for='level'>{{_("Severity")}}</label>
-        <select id='level' onclick='javascript:change_level();'>
+        <select id='level' onclick='change_level();'>
           <option class="level-1__" value="1"{{level_selected['1']}}>{{_("1 only")}}</option>
           <option class="level-12_" value="1,2"{{level_selected['1,2']}}>{{_("1+2 only")}}</option>
           <option class="level-123" value="1,2,3"{{level_selected['1,2,3']}}>{{_("all severity")}}</option>
