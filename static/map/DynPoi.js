@@ -99,9 +99,25 @@ function closeBubble(marker_id) {
     b.hide();
 }
 
+var prev_height_popup_bottom = 0;
+
 function fixBubbleHeigth(id) {
-  var height = $("div#popup-" + id + " .bulle_verif").height() + $("div#popup-" + id + " .bulle_maj").height();
-  $("div#popup-" + id + " .bulle_msg").height($("div#popup-" + id).parent().height() - height);
+  var height = $("div#popup-" + id + " .bulle_verif").height() +
+               $("div#popup-" + id + " .bulle_maj").height();
+  // it can happen that height is 0, if the browser didn't yet reflow the
+  // popup. So we try to pick a better value, so that the scrollbar is on
+  // bulle_msg instead of the whole popup.
+  if (height == 0) {
+    if (prev_height_popup_bottom == 0) {
+      height = 32;
+    } else {
+      height = prev_height_popup_bottom;
+    }
+  } else {
+    prev_height_popup_bottom = height;
+  }
+  var parent_height = $("div#popup-" + id).parent().height();
+  $("div#popup-" + id + " .bulle_msg").height(parent_height - height);
 }
 
 OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
@@ -292,7 +308,8 @@ OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
                     this.popup.setContentHTML(content);
                     this.downloaded = true;
 
-                    fixBubbleHeigth(this.popup.feature.data.marker_id);
+                    var marker_id = this.popup.feature.data.marker_id;
+                    fixBubbleHeigth(marker_id);
 
                 },
                 failure: function (ajaxRequest) {
