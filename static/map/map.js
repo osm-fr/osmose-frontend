@@ -115,6 +115,7 @@ function init() {
     heat = new OpenLayers.Layer.OSM("Osmose Errors Heatmap", ["heat/${z}/${x}/${y}.png"], {
         transitionEffect: 'resize',
         isBaseLayer: false,
+        visibility: false
     });
     map.addLayer(heat);
 
