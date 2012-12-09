@@ -1,0 +1,24 @@
+Frontend part of Osmose tool
+============================
+
+This is the part of osmose [http://osmose.openstreetmap.fr] that shows errors
+on a map.
+
+
+Dependencies
+------------
+  python >= 2.6 recommended
+  python-psycopg2 >= 2.4
+  python-matplotlib >= 1.1
+  python-imaging
+  apache2
+  libapache2-mod-wsgi
+  postgresql-9.1
+  postgresql-contrib-9.1                     # for hstore extension
+
+Initialisation
+--------------
+  (cd po && make)                            # to generate translation files
+  git submodule update --init                # to get Mustache javascript library
+  psql -c "CREATE EXTENSION hstore"
+  psql -f tools/database/schema_generate.sh  # for postgresql database tables

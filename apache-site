@@ -1,15 +1,23 @@
 <VirtualHost *:80>
 
-	ServerAdmin chove@crans.org
+	ServerAdmin jjaubert@openstreetmap.fr
 
 	ServerName osm-osmose.crans.org
 	ServerAlias osmose.openstreetmap.fr
+	ServerAlias dev.osmose.openstreetmap.fr
 
-	SetEnv OSMOSE_ROOT /data/project/osmose/
+	WSGIScriptAlias / /data/project/osmose/frontend/osmose.wsgi
 
-	DocumentRoot /data/project/osmose/website/
+	DocumentRoot /data/project/osmose/frontend/static/
 
-	<Directory /data/project/osmose/website/>
+	Alias /css /data/project/osmose/frontend/static/css
+	Alias /images /data/project/osmose/frontend/static/images
+	Alias /js /data/project/osmose/frontend/static/js
+	Alias /OpenLayers-2.8 /data/project/osmose/frontend/static/OpenLayers-2.8
+	Alias /robots.txt /data/project/osmose/frontend/static/robots.txt
+	Alias /favicon.ico /data/project/osmose/frontend/static/favicon.ico
+
+	<Directory /data/project/osmose/frontend/static/>
 		AddDefaultCharset UTF-8
 		AddHandler cgi-script .py
 		Options FollowSymLinks Indexes MultiViews
@@ -17,8 +25,6 @@
 		AllowOverride None
 		DirectoryIndex index.html index.py
 	</Directory>
-
-	ScriptAlias /api/ /data/project/osmose/website/api/
 
 	ExpiresActive On
 	ExpiresByType image/png "access plus 1 month"

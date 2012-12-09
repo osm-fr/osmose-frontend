@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /utils/error.py
-Disallow: /utils/fix-error.py
-Disallow: /utils/graph.py

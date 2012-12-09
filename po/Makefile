@@ -1,5 +1,6 @@
 
-PYFILES=$(shell find ../website ../tools -name '*.py' -not -type l | sort)
+PYFILES=$(shell find .. -name '*.py' -not -type l | sort)
+TPLFILES=$(shell find ../views -name '*.tpl' | sort)
 LANG=fr en de nl it
 
 MO=$(foreach l,$(LANG),mo/$(l)/LC_MESSAGES/osmose-frontend.mo)
@@ -9,16 +10,17 @@ PO=$(foreach l,$(LANG),$(l).po)
 
 all: $(PO) $(MO)
 
-osmose-frontend.pot: $(PYFILES)
-	LANG=C xgettext -cTRANSLATORS --language=Python --keyword=_ --keyword=N_ --output=osmose-frontend.pot.tmp $(PYFILES)
-	diff -I ".*POT-Creation-Date:.*" osmose-frontend.pot osmose-frontend.pot.tmp || cp osmose-frontend.pot.tmp osmose-frontend.pot
-	touch osmose-frontend.pot
-	rm osmose-frontend.pot.tmp
+tmp.tpl: $(TPLFILES)
+	egrep -h "_\([\"']|TRANSLATORS" $(TPLFILES) | sed -e 's/.*_[(]"\([^"]\+\)"[)].*/_("\1")/g' -e "s/.*_[(]'\([^']\+\)'[)].*/_('\1')/g" -e 's/^%#/#/' > tmp.tpl
+
+osmose-frontend.pot: $(PYFILES) tmp.tpl
+	LANG=C xgettext -cTRANSLATORS --language=Python --keyword=_ --output=$@.tmp $(PYFILES) tmp.tpl
+	diff -I ".*POT-Creation-Date:.*" $@ $@.tmp || cp $@.tmp $@
 
 %.po: osmose-frontend.pot
 	if test -e $@; then \
 	  msgmerge -o $@ $@ $<; \
-        else \
+	else \
 	  msginit --locale=$(patsubst %.po,%,$@) --input=$< --output=$@; \
 	fi;
 
