@@ -44,28 +44,43 @@ def index_redirect():
 @route('/map/')
 def index(db, lang):
     # valeurs par défaut
-    lat    = request.params.get('lat', type=float, default=(request.get_cookie("lastLat") or "46.97"))
-    lon    = request.params.get('lon', type=float, default=(request.get_cookie("lastLon") or "2.75"))
-    zoom   = request.params.get('zoom', type=int, default=(request.get_cookie("lastZoom") or "6"))
-    level  = request.params.get('level', default=(request.get_cookie("lastLevel") or "1"))
-    source = request.params.get('source', default='')
-    user   = request.params.get('user', default='')
+    params = { "lat":    46.97,
+               "lon":    2.75,
+               "zoom":   6,
+               "item":   None,
+               "level":  1,
+               "source": '',
+               "user":   '',
+             }
 
-    active_items = request.params.get('item', default=request.get_cookie("lastItem"))
+    for p in ["lat", "lon", "zoom", "item", "level"]:
+        if request.cookies.get("last_" + p, default=None):
+            params[p] = request.cookies.get("last_" + p)
+
+    for p in ["lat", "lon", "zoom", "item", "level", "source", "user"]:
+        if request.params.get(p, default=None):
+            params[p] = request.params.get(p)
+
+    for p in ["lat", "lon"]:
+        params[p] = float(params[p])
+
+    for p in ["zoom"]:
+        params[p] = int(params[p])
+
     all_items = []
     db.execute("SELECT item FROM dynpoi_item GROUP BY item;")
     for res in db.fetchall():
         all_items.append(int(res[0]))
-    active_items = check_items(active_items, all_items)
+    active_items = check_items(params["item"], all_items)
 
     level_selected = {}
     for l in ("_all", "1", "2", "3", "1,2", "1,2,3"):
         level_selected[l] = ""
 
-    if level == "":
+    if params["level"] == "":
         level_selected["1"] = " selected=\"selected\""
-    elif level in ("1", "2", "3", "1,2", "1,2,3"):
-        level_selected[level] = " selected=\"selected\""
+    elif params["level"] in ("1", "2", "3", "1,2", "1,2,3"):
+        level_selected[params["level"]] = " selected=\"selected\""
 
     categories = utils.get_categories(lang)
 
@@ -132,7 +147,8 @@ LIMIT
     if delay:
         delay = delay[0]/60/60/24
 
-    return template('map/index', categories=categories, lat=lat, lon=lon, zoom=zoom, source=source, user=user,
+    return template('map/index', categories=categories, lat=params["lat"], lon=params["lon"], zoom=params["zoom"],
+        source=params["source"], user=params["user"],
         levels=levels, level_selected=level_selected, active_items=active_items, urls=urls, delay=delay,
         allowed_languages=allowed_languages, translate=utils.translator(lang))
 
@@ -307,11 +323,11 @@ def markers(db, lang):
 
     expires = datetime.datetime.now() + datetime.timedelta(days=365)
     path = '/'.join(request.fullpath.split('/')[0:-1])
-    response.set_cookie('lastLat', str(lat/1000000), expires=expires, path=path)
-    response.set_cookie('lastLon', str(lon/1000000), expires=expires, path=path)
-    response.set_cookie('lastZoom', str(zoom), expires=expires, path=path)
-    response.set_cookie('lastLevel', str(level), expires=expires, path=path)
-    response.set_cookie('lastItem', request.params.item, expires=expires, path=path)
+    response.set_cookie('last_lat', str(lat/1000000.), expires=expires, path=path)
+    response.set_cookie('last_lon', str(lon/1000000.), expires=expires, path=path)
+    response.set_cookie('last_zoom', str(zoom), expires=expires, path=path)
+    response.set_cookie('last_level', str(level), expires=expires, path=path)
+    response.set_cookie('last_item', request.params.item, expires=expires, path=path)
 
     if (not user) and (not source) and (zoom < 6):
         return
