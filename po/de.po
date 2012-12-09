@@ -150,8 +150,8 @@ msgid ""
 "doesn't means that this user is responsible for all these errors."
 msgstr ""
 "Diese Seite zeigt Fehler auf Elemente, die zuletzt durch '%s' geändert "
-"wurden. Das bedeutet nicht unbedingt, dass dieser Benutzer für all "
-"diese Fehler verantwortlich ist."
+"wurden. Das bedeutet nicht unbedingt, dass dieser Benutzer für all diese "
+"Fehler verantwortlich ist."
 
 #: tmp.tpl:10
 msgid "This list is also available via rss."
