@@ -113,33 +113,19 @@ def index(db, lang):
 
     sql = """
 SELECT
-    age
+    EXTRACT(EPOCH FROM ((now())-ts)) AS age
 FROM
     (
-    SELECT DISTINCT ON (source)
-        source,
-        EXTRACT(EPOCH FROM ((now())-timestamp)) AS age
-    FROM
-        dynpoi_update
-    ORDER BY
-        source ASC,
-        timestamp DESC
+    SELECT timestamp AS ts
+    FROM dynpoi_update_last
+    ORDER BY timestamp DESC
     ) AS delay
 ORDER BY
     age
 LIMIT
-    1 OFFSET (SELECT COUNT(*)/2 FROM
-    (
-    SELECT DISTINCT ON (source)
-        source,
-        EXTRACT(EPOCH FROM ((now())-timestamp)) AS age
-    FROM
-        dynpoi_update
-    ORDER BY
-        source ASC,
-        timestamp DESC
-    ) AS delay
-)
+    1
+OFFSET
+    (SELECT COUNT(*)/2 FROM dynpoi_update_last)
 ;
 """
     db.execute(sql)

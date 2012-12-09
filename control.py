@@ -29,17 +29,16 @@ import sys
 @route('/control/update')
 def updates(db):
     db.execute("""
-SELECT DISTINCT ON (dynpoi_source.source)
+SELECT
     dynpoi_source.source,
-    EXTRACT(EPOCH FROM ((now())-dynpoi_update.timestamp)) AS age,
+    EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp)) AS age,
     dynpoi_source.comment
 FROM
     dynpoi_source
-    LEFT JOIN dynpoi_update ON
-        dynpoi_source.source = dynpoi_update.source
+    LEFT JOIN dynpoi_update_last ON
+        dynpoi_source.source = dynpoi_update_last.source
 ORDER BY
-    dynpoi_source.source ASC,
-    dynpoi_update.timestamp DESC
+    dynpoi_update_last.timestamp DESC
 """)
     liste = []
     for res in db.fetchall():
