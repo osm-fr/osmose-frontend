@@ -32,15 +32,18 @@ function init() {
     plk = new OpenLayers.Control.Permalink("permalink");
     map.addControl(plk);
 
+    var osm_attribution = '© les contributeurs d’<a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
+
     var layerMapnik = new OpenLayers.Layer.OSM("Mapnik", ["http://a.tile.openstreetmap.org/${z}/${x}/${y}.png", "http://b.tile.openstreetmap.org/${z}/${x}/${y}.png", "http://c.tile.openstreetmap.org/${z}/${x}/${y}.png"], {
         transitionEffect: 'resize',
+        attribution: osm_attribution,
     });
     map.addLayer(layerMapnik);
 
     var layerMapquest = new OpenLayers.Layer.OSM("MapQuest Open", ["http://otile1.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png", "http://otile2.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png", "http://otile3.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png"], {
         transitionEffect: 'resize',
+        attribution: osm_attribution + " - Tiles Courtesy of <a href=\"http://www.mapquest.com/\" target=\"_blank\">MapQuest</a> <img src=\"http://developer.mapquest.com/content/osm/mq_logo.png\">",
     });
-    layerMapquest.attribution += " - Tiles Courtesy of <a href=\"http://www.mapquest.com/\" target=\"_blank\">MapQuest</a> <img src=\"http://developer.mapquest.com/content/osm/mq_logo.png\">";
     map.addLayer(layerMapquest);
 
     var layerOPNVKarte = new OpenLayers.Layer.OSM("ÖPNV Karte", ["http://tile.memomaps.de/tilegen/${z}/${x}/${y}.png"], {
@@ -105,7 +108,8 @@ function init() {
             displayOutsideMaxExtent: true,
             'buffer': 1,
             isBaseLayer: false,
-            visibility: false
+            visibility: false,
+            attribution: osm_attribution,
         });
         layers.push(overlay);
     }
