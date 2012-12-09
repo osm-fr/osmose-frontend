@@ -101,7 +101,7 @@ def get_text(db, options):
         return ""
 
     res = db.fetchone()
-    if res:
+    if res and res[0]:
         return res[0]
     else:
         return ""
