@@ -31,7 +31,7 @@ def display(db, err_id=None, format=None):
     if not err_id:
         abort(401, "Id is incorect.")
 
-    columns_marker = [ "marker.source", "marker.class", "subclass", "lat", "lon", "elems", "marker.item", "subtitle", "title", "level", "timestamp" ]
+    columns_marker = [ "marker.source", "marker.class", "subclass", "ROUND(lat/1000000., 8) AS lat", "ROUND(lon/1000000., 8) AS lon", "elems", "marker.item", "subtitle", "title", "level", "timestamp" ]
     sql = "SELECT " + ", ".join(columns_marker) + """
 FROM marker
 LEFT JOIN dynpoi_class on marker.class = dynpoi_class.class AND marker.source = dynpoi_class.source

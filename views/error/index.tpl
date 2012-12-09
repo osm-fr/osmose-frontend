@@ -9,7 +9,7 @@
 </thead>
 %    i = 0
 %    for c in columns:
-%        c = c.split(".")[-1]
+%        c = c.split(" ")[-1]
 <tr>
     <td>{{c}}</td>
     <td>
