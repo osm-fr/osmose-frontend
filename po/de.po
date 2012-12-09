@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-01 20:42+0100\n"
+"POT-Creation-Date: 2012-12-09 15:04+0100\n"
 "PO-Revision-Date: 2012-08-02 14:19+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: German\n"
@@ -43,70 +43,70 @@ msgid "Informations"
 msgstr "Informationen"
 
 #. TRANSLATORS: link to help in appropriate language
-#: ../map.py:83
+#: ../map.py:98
 msgid "Help"
 msgstr "Hilfe"
 
-#: ../map.py:83
+#: ../map.py:98
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/DE:Osmose"
 
-#: ../map.py:84
+#: ../map.py:99
 #, fuzzy
 msgid "Errors by user"
 msgstr "Fehler vom Benutzer"
 
-#: ../map.py:85
+#: ../map.py:100
 #, fuzzy
 msgid "Relation analyser"
 msgstr "Relation-Analyse"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:87
+#: ../map.py:102
 msgid "CLC"
 msgstr ""
 
-#: ../map.py:87
+#: ../map.py:102
 msgid "http://clc.openstreetmap.fr/"
 msgstr "http://clc.openstreetmap.fr/"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:89
+#: ../map.py:104
 #, fuzzy
 msgid "Geodesic"
 msgstr "Geodätische"
 
-#: ../map.py:89
+#: ../map.py:104
 msgid "http://geodesie.openstreetmap.fr/"
 msgstr "http://geodesie.openstreetmap.fr/"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:91
+#: ../map.py:106
 msgid "openstreetmap.fr"
 msgstr "openstreetmap.fr"
 
-#: ../map.py:91
+#: ../map.py:106
 msgid "http://www.openstreetmap.fr/"
 msgstr "http://www.openstreetmap.fr/"
 
-#: ../map.py:92
+#: ../map.py:107
 #, fuzzy
 msgid "Copyright"
 msgstr "Copyright"
 
 #. TRANSLATORS: link to source code
-#: ../map.py:94
+#: ../map.py:109
 #, fuzzy
 msgid "Sources"
 msgstr "Quellen"
 
-#: ../map.py:95
+#: ../map.py:110
 #, fuzzy
 msgid "Statistics"
 msgstr "Statistiken"
 
 #. TRANSLATORS: link to tooltip help
-#: ../map.py:367
+#: ../map.py:383
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/DE:Osmose/erreurs"
 
