@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-09 15:04+0100\n"
+"POT-Creation-Date: 2012-12-10 23:18+0100\n"
 "PO-Revision-Date: 2012-06-05 21:26+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: English\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANSLATORS: days / hours / minutes since last source update, abbreviated to d / h / m
-#: ../control.py:50
+#: ../control.py:49
 msgid "{day}d, {hour}h, {minute}m ago"
 msgstr "{day}d, {hour}h, {minute}m ago"
 
-#: ../control.py:52
+#: ../control.py:51
 msgid "in {day}d, {hour}h, {minute}m"
 msgstr "in {day}j,{hour}h, {minute}m"
 
-#: ../control.py:55
+#: ../control.py:54
 msgid "never generated"
 msgstr "never generated"
 
@@ -100,7 +100,7 @@ msgid "Statistics"
 msgstr "Statistics"
 
 #. TRANSLATORS: link to tooltip help
-#: ../map.py:383
+#: ../map.py:369
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
