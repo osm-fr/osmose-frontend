@@ -182,7 +182,7 @@ def build_param(source, item, level, user):
     else:
         where = "1=1"
 
-    if level:
+    if level and level != "(1,2,3)":
         join += """
         JOIN dynpoi_class ON
             marker.source = dynpoi_class.source AND
