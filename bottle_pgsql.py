@@ -52,7 +52,7 @@ class PgSQLPlugin(object):
     name = 'pgsql'
     api  = 2
 
-    def __init__(self, dsn=None, autocommit=True, dictrows=True,
+    def __init__(self, dsn=None, autocommit=False, dictrows=True,
             keyword='db'):
         self.dsn = dsn
         self.autocommit = autocommit
