@@ -163,12 +163,12 @@
 %                    cur_type = m.group(1)
         {{cur_type[0]}}&nbsp;
         <a target="_blank" href="http://www.openstreetmap.org/browse/{{m.group(1)}}/{{m.group(2)}}">{{m.group(2)}}</a>&nbsp;
-%                    if cur_type == "node":
-%                        full_str = ""
+        &nbsp;
+%                    if cur_type == "relation":
+        <a title="josm" href="http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/relation/{{m.group(2)}}/full" target="hiddenIframe">(j)</a>
 %                    else:
-%                        full_str = "/full"
+        <a title="josm" href="http://localhost:8111/load_object?objects={{cur_type[0]}}{{m.group(2)}}" target="hiddenIframe">(j)</a>
 %                    end
-        &nbsp;<a title="josm" href="http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/{{m.group(1)}}/{{m.group(2)}}{{full_str}}" target="hiddenIframe">(j)</a>
 %                end
 %            end
 %        end

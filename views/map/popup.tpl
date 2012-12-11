@@ -23,10 +23,10 @@
       <a target="_blank" href="http://osm3.crans.org/osmbin/analyse-relation?<%id%>">analyse2</a>
   <%/relation%>
   <%#node%>
-      <a href="http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/node/<%id%>" target="hiddenIframe">josm</a>
+      <a href="http://localhost:8111/load_object?objects=n<%id%>" target="hiddenIframe">josm</a>
   <%/node%>
   <%#way%>
-      <a href="http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/<%type%>/<%id%>/full" target="hiddenIframe">josm</a>
+      <a href="http://localhost:8111/load_object?objects=w<%id%>" target="hiddenIframe">josm</a>
   <%/way%>
   <%#relation%>
       <a href="http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/<%type%>/<%id%>/full" target="hiddenIframe">josm</a>
