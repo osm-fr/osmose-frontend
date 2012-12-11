@@ -37,7 +37,7 @@ class GettextPlugin(object):
             lang = [x.split("-")[0] for x in lang]
             lang = [x for x in lang if x in self.allowed_languages]
 
-        if lang[0]:
+        if len(lang) > 0 and lang[0]:
             lang.append(self.allowed_languages[0])
             res = []
             for l in lang:
