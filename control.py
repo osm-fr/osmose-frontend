@@ -42,7 +42,7 @@ ORDER BY
 """)
     liste = []
     for res in db.fetchall():
-        source, age, comment = res
+        (source, age, comment) = (res[0], res[1], res[2])
         if age:
             if age >= 0:
                 # TRANSLATORS: days / hours / minutes since last source update, abbreviated to d / h / m
