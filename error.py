@@ -71,7 +71,7 @@ ORDER BY diff_index
 
 
 @route('/error/<err_id:int>/<status:re:(done|false)>')
-def status(db, err_id=None, status=None):
+def status(err_id=None, status=None):
     if not err_id:
         abort(401, "Id is incorect.")
 
