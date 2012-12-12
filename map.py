@@ -162,6 +162,7 @@ def build_where_item(item, table):
 
 def build_param(source, item, level, user):
     join = ""
+    where = []
     if source:
         sources = source.split(",")
         source2 = []
@@ -172,11 +173,9 @@ def build_param(source, item, level, user):
             else:
                 source2.append("(marker.source=%d AND marker.class=%d)"%(int(source[0]), int(source[1])))
         sources2 = " OR ".join(source2)
-        where = "(%s)" % sources2
+        where.append("(%s)" % sources2)
     elif item != None:
-        where = build_where_item(item, "marker")
-    else:
-        where = "1=1"
+        where.append(build_where_item(item, "marker"))
 
     if level and level != "(1,2,3)":
         join += """
@@ -184,16 +183,16 @@ def build_param(source, item, level, user):
             marker.source = dynpoi_class.source AND
             marker.class = dynpoi_class.class
         """
-        where += " AND dynpoi_class.level IN (%s)" % level
+        where.append("dynpoi_class.level IN (%s)" % level)
 
     if user:
         join += """
         JOIN marker_elem ON
             marker_elem.marker_id = marker.id
         """
-        where += " AND marker_elem.username = '%s'" % user
+        where.append("marker_elem.username = '%s'" % user)
 
-    return (join, where)
+    return (join, " AND ".join(where))
 
 
 def num2deg(xtile, ytile, zoom):
