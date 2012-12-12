@@ -52,10 +52,12 @@ class PgSQLPlugin(object):
     name = 'pgsql'
     api  = 2
 
-    def __init__(self, dsn=None, autocommit=False, dictrows=True,
-            keyword='db'):
+    def __init__(self, dsn=None, autocommit=False, autorollback=True,
+                 dictrows=True,
+                 keyword='db'):
         self.dsn = dsn
         self.autocommit = autocommit
+        self.autorollback = autorollback
         self.dictrows = dictrows
         self.keyword = keyword
         #con = psycopg2.connect(dsn)
@@ -76,6 +78,7 @@ class PgSQLPlugin(object):
         # Override global configuration with route-specific values.
         conf = route.config.get('pgsql') or {}
         autocommit = conf.get('autocommit', self.autocommit)
+        autorollback = conf.get('autorollback', self.autorollback)
         dictrows = conf.get('dictrows', self.dictrows)
         keyword = conf.get('keyword', self.keyword)
 
@@ -101,6 +104,8 @@ class PgSQLPlugin(object):
                 rv = callback(*args, **kwargs)
                 if autocommit:
                     self.con.commit()
+                if autorollback:
+                    self.con.rollback()
             except psycopg2.ProgrammingError, e:
                 self.con.rollback()
                 raise HTTPError(500, "Database Error", e)
