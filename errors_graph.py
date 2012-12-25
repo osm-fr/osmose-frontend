@@ -75,11 +75,15 @@ ORDER BY
         where_sql += "AND dynpoi_stats.source in (%s) " % convIntsToStr(options.sources)
 
     if options.country:
+        if options.country[-1] == "*":
+            country = options.country[:-2] + "%"
+        else:
+            country = options.country
         join_item += """
     JOIN dynpoi_source ON
         dynpoi_stats.source = dynpoi_source.source AND
-        dynpoi_source.comment LIKE '%%-%s%%'
-        """ % options.country
+        dynpoi_source.comment LIKE '%%-%s'
+        """ % country
 
     sql = sql % (join_item, where_sql)
 

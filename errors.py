@@ -38,7 +38,7 @@ def graph(db, format='png'):
         items   = request.params.get('item', type=int_list, default=[])
         levels  = request.params.get('level', type=int_list, default=[])
         country = request.params.get('country')
-        if country <> None and not re.match(r"^([a-z_]+)$", country):
+        if country <> None and not re.match(r"^([a-z_]+(\*|))$", country):
             country = None
 
     try:
