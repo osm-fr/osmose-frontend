@@ -40,6 +40,11 @@ def index():
 def copyright(name=None):
     return {}
 
+@route('/translation')
+@view('translation')
+def translation(name=None):
+    return {}
+
 @error(404)
 @view('404')
 def error404(error):
