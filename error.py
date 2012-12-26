@@ -41,6 +41,9 @@ WHERE id = %s
     db.execute(sql, (err_id, ))
     marker = db.fetchall()
 
+    if not marker:
+        abort(410, "Id is not present in database.")
+
     columns_elements = [ "elem_index", "data_type", "id", "tags", "username" ]
     sql = "SELECT " + ", ".join(columns_elements) + """
 FROM marker_elem
