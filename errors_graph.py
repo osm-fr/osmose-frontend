@@ -57,13 +57,16 @@ ORDER BY
     join_item = ""
     where_sql = ""
 
-    if len(options.items)>=1:
+    if len(options.items)>=1 or len(options.levels)>=1:
         join_item += """
     JOIN dynpoi_class ON
         dynpoi_stats.source = dynpoi_class.source AND
-        dynpoi_stats.class = dynpoi_class.class AND
-        dynpoi_class.item in (%s)
-        """ % convIntsToStr(options.items)
+        dynpoi_stats.class = dynpoi_class.class """
+
+        if len(options.items)>=1:
+            join_item += "AND dynpoi_class.item in (%s) " % convIntsToStr(options.items)
+        if len(options.levels)>=1:
+            join_item += "AND dynpoi_class.level in (%s) " % convIntsToStr(options.levels)
 
     if len(options.classes)>=1:
         where_sql += "AND dynpoi_stats.class in (%s) " % convIntsToStr(options.classes)
@@ -171,6 +174,7 @@ if __name__ == "__main__":
     parser.add_option("--source", dest="sources", type="int", action="append", default=[])
     parser.add_option("--class", dest="classes", type="int", action="append", default=[])
     parser.add_option("--item", dest="items", type="int", action="append", default=[])
+    parser.add_option("--level", dest="levels", type="int", action="append", default=[])
     parser.add_option("--country", dest="country", type="string", default=None)
     (options, args) = parser.parse_args()
 
