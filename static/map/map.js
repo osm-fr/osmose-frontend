@@ -406,8 +406,7 @@ function setCookie(c_name, value, exdays) {
 
 function set_lang(select) {
     var lang = $(select).val();
-    setCookie("lang", lang, 30);
-    window.location.reload();
+    window.location.href = "../" + lang + "/map/" + window.location.search;
 }
 
 function updateURL() {
