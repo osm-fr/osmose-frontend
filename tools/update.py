@@ -222,8 +222,8 @@ class update_parser(handler.ContentHandler):
             # used by files generated with an .osc file
             execute_sql(self._dbcurs, """DELETE FROM marker
                                     WHERE source = %s AND id IN
-                                          (SELECT id FROM marker_elem
-                                                     WHERE data_type = %s AND id = %s)""",
+                                          (SELECT marker_id FROM marker_elem
+                                           WHERE data_type = %s AND id = %s)""",
                                  (self._source_id, attrs["type"][0].upper(), attrs["id"]))
 
         elif name == u"fixes":
