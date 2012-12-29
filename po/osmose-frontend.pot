@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-12 21:55+0100\n"
+"POT-Creation-Date: 2012-12-29 22:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,15 +30,15 @@ msgstr ""
 msgid "never generated"
 msgstr ""
 
-#: ../errors.py:82 tmp.tpl:48
+#: ../errors.py:83 tmp.tpl:48
 msgid "False positives"
 msgstr ""
 
-#: ../errors.py:86
+#: ../errors.py:87
 msgid "Fixed errors"
 msgstr ""
 
-#: ../errors.py:90 tmp.tpl:46
+#: ../errors.py:91 tmp.tpl:46
 msgid "Informations"
 msgstr ""
 
