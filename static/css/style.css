@@ -33,3 +33,9 @@ a:visited {
 a:hover {
   color: black;
 }
+
+/* iframe for josm and rawedit links */
+iframe#hiddenIframe {
+  display: none;
+  position: absolute;
+}

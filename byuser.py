@@ -58,6 +58,8 @@ FROM
         m.source = c.source
     JOIN dynpoi_update_last ON
         m.source = dynpoi_update_last.source
+    JOIN dynpoi_item ON
+        m.item = dynpoi_item.item
 WHERE
     id IN (SELECT marker_id FROM marker_elem WHERE username=%s)
 """

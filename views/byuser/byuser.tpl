@@ -46,14 +46,16 @@
 %    maxlat = lat + 0.002
 %    minlon = lon - 0.002
 %    maxlon = lon + 0.002
-    <td><a href="http://localhost:8111/load_and_zoom?left={{minlon}}&amp;bottom={{minlat}}&amp;right={{maxlon}}&amp;top={{maxlat}}">josm</a></td>
+    <td><a href="http://localhost:8111/load_and_zoom?left={{minlon}}&amp;bottom={{minlat}}&amp;right={{maxlon}}&amp;top={{maxlat}}" target="hiddenIframe">josm</a></td>
 %    cl = res["class"]
 %    source = res["source"]
 %    item = res["item"]
 %    level = res["level"]
 %    lat_s = "%.2f" % lat
 %    lon_s = "%.2f" % lon
-    <td><a href='/map/?zoom=16&amp;lat={{lat}}&amp;lon={{lon}}&amp;item={{item}}&amp;level={{level}}'>{{lon_s}}&nbsp{{lat_s}}</a></td>
+    <td><a href="/map/?zoom=16&amp;lat={{lat}}&amp;lon={{lon}}&amp;item={{item}}&amp;level={{level}}" target="hiddenIframe">{{lon_s}}&nbsp{{lat_s}}</a></td>
   </tr>
 %end
 </table>
+
+<iframe id="hiddenIframe" name="hiddenIframe"></iframe>
