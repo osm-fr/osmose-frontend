@@ -207,3 +207,5 @@
 %else:
 <a href="?{{query}}&amp;points=100">{{_("Show some errors")}}</a>
 %end
+
+<iframe id="hiddenIframe" name="hiddenIframe"></iframe>
