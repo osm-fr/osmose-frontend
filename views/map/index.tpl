@@ -95,29 +95,29 @@
 
 <div id="map"></div>
 
-<div id='bottom_links'>
-<form method='get' style='display:inline; margin-right: 30px;' action=''>
-{{_("Change language:")}}
-<select onchange="set_lang(this)" name='language'>
-    <option value=''></option>
+<div id='top_links'>
+<ul id="topmenu">
+<li><a href='#'>{{_("Change language:")}}</a>
+<ul class="submenu">
 %for l in allowed_languages:
 %    if translate.languages[0] == l:
-%        s = " selected='selected'"
+%        s = " class='bold'"
 %    else:
 %        s = ""
 %    end
-    <option{{!s}} value='{{l}}'>{{l}}</option>
+  <li{{!s}}><a href="{{"http://" + website + "/" + l + "/map/"}}">{{l}}</a></li>
 %end
-</select>
-</form>
+</ul>
+</li>
 
 %for u in urls:
- &mdash; <a href='{{u[1]}}'>{{u[0]}}</a>
+ <li><a href="{{u[1]}}">{{u[0]}}</a></li>
 %end
 
 %delay_status = "normal" if delay < 1.1 else "warning" if delay < 1.6 else "error"
 %delay = "%0.2f" % delay
-<span class="delay-{{delay_status}}">{{_("Delay: %sd") % delay}}</span>
+<li><a href="../control/update" class="delay-{{delay_status}}">{{_("Delay: %sd") % delay}}</a></li>
+</ul>
 </div>
 
 </body>
