@@ -22,12 +22,14 @@
 
 from bottle import route, request, template, response, redirect
 from tools import utils
+from tools import tag2link
 import datetime
 import json
 import math, StringIO
 from PIL import Image
 import ImageDraw
 
+t2l = tag2link.tag2link("tools/tag2link_sources.xml")
 
 def check_items(items, all_items):
     if items == None or items == 'xxxx':
@@ -436,24 +438,32 @@ def markers(db, lang, id):
     b_date    = res["timestamp"] or ""
     item      = res["item"] or 0
 
-    def expand_tags(tags, short = False):
+    def expand_tags(tags, links, short = False):
       t = []
       if short:
         for k in tags:
           t.append({"k": k})
       else:
         for (k, v) in tags.items():
-          t.append({"k": k, "v": v})
+          if links and links.has_key(k):
+            t.append({"k": k, "v": v, "vlink": links[k]})
+          else:
+            t.append({"k": k, "v": v})
       return t
 
     elems = []
     for e in xrange(3):
       elem = "elem%d_" % e
       if res[elem + "data_type"]:
+        tags = res[elem + "tags"]
+        try:
+            links = t2l.checkTags(tags)
+        except:
+            links = {}
         tmp_elem = {data_type[res[elem + "data_type"]]: True,
                     "type": data_type[res[elem + "data_type"]],
                     "id": res[elem + "id"],
-                    "tags": expand_tags(res[elem + "tags"]),
+                    "tags": expand_tags(tags, links),
                     "fixes": [],
                    }
         for f in xrange(5):
@@ -462,9 +472,9 @@ def markers(db, lang, id):
               res[fix + "elem_data_type"] == res[elem + "data_type"] and
               res[fix + "elem_id"] == res[elem + "id"]):
             tmp_elem["fixes"].append({"num": f,
-                                      "add": expand_tags(res[fix + "tags_create"]),
-                                      "mod": expand_tags(res[fix + "tags_modify"]),
-                                      "del": expand_tags(res[fix + "tags_delete"], True),
+                                      "add": expand_tags(res[fix + "tags_create"], {}),
+                                      "mod": expand_tags(res[fix + "tags_modify"], {}),
+                                      "del": expand_tags(res[fix + "tags_delete"], {}, True),
                                      })
         elems.append(tmp_elem)
 
@@ -482,9 +492,9 @@ def markers(db, lang, id):
                     break
             if not found:
                 new_elems.append({"num": f,
-                                  "add": expand_tags(res[fix + "tags_create"]),
-                                  "mod": expand_tags(res[fix + "tags_modify"]),
-                                  "del": expand_tags(res[fix + "tags_delete"], True),
+                                  "add": expand_tags(res[fix + "tags_create"], {}),
+                                  "mod": expand_tags(res[fix + "tags_modify"], {}),
+                                  "del": expand_tags(res[fix + "tags_delete"], {}, True),
                                  })
 
 

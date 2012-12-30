@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+//    JOSM tag2link plugin.
+//    Copyright (C) 2011 Don-vip & FrViPofm
+//
+//    This program is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation, either version 3 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+<tag2link>
+
+    <!-- Global --> 
+
+    <source name="Common">
+        <rule>
+            <condition k="(contact:)?website" />
+            <link name="View website" href="%v%" />
+        </rule>
+        <rule>
+            <condition k="url" />
+            <link name="View URL" href="%v%" />
+        </rule>
+        <rule>
+            <condition k="(contact:)?email" v="[^@]+@[^@]+" />
+            <link name="Send Email" href="mailto:%v%" />
+        </rule>
+    </source>
+    
+    <source name="Wikipedia">
+        <rule>
+            <condition k="wikipedia(?::(\p{Lower}{2,}))?" v="(?:(\p{Lower}{2,}):)?(.*)" />
+            <link name="View %name% article" href="http://%k.1:v.1:en%.wikipedia.org/wiki/%v.2:v.1%" />
+        </rule>
+    </source>
+
+    <source name="WHC">
+        <rule>
+            <condition k="ref:whc" v="[0-9-]+" />
+            <link name="View UNESCO sheet" href="http://whc.unesco.org/%lang(en,fr):en%/list/%v%" />
+        </rule>
+    </source>
+    
+    <!-- Only for France --> 
+    
+    <source name="SANDRE" country-code="FR">
+        <rule>
+            <condition k="ref:(FR:)?sandre" v="[A-Z0-9-]{8}" />
+            <link name="View %name% sheet of river" href="http://services.sandre.eaufrance.fr/Courdo/Fiche/client/fiche_courdo.php?CdSandre=%v%" />
+        </rule>
+    </source>
+    
+    <source name="INSEE" country-code="FR">
+        <rule>
+            <condition k="admin_level" v="8"/>
+            <condition k="ref:(FR:)?INSEE" v="(\p{Digit}{2})(\p{Digit}{3})" id="ref"/>
+            <link name="View %name% municipality sheet" href="http://www.insee.fr/fr/methodes/nomenclatures/cog/fichecommunale.asp?codedep=%ref.v.1%&amp;codecom=%ref.v.2%" />
+        </rule>
+        <rule>
+            <condition k="political_division" v="FR:canton"/>
+            <condition k="ref:(FR:)?INSEE" v="(\p{Digit}{2})(\p{Digit}{2})" id="ref"/>
+            <link name="View %name% map of municipalities" href="http://www.insee.fr/fr/methodes/nomenclatures/cog/carte_comcan.asp?codecan=%ref.v%" />
+            <link name="View %name% list of municipalities" href="http://www.insee.fr/fr/methodes/nomenclatures/cog/comcan.asp?codedep={ref.v.1}&amp;codecan=%ref.v.2%" />
+        </rule>
+        <rule>
+            <condition k="admin_level" v="7"/>
+            <condition k="ref:(FR:)?INSEE" v="(\p{Digit}{2})(\p{Digit}{1})" id="ref"/>
+            <link name="View %name% map of cantons" href="http://www.insee.fr/fr/methodes/nomenclatures/cog/carte_canarr.asp?codearr=%ref.v%" />
+            <link name="View %name% list of cantons" href="http://www.insee.fr/fr/methodes/nomenclatures/cog/canarr.asp?codedep=%ref.v.1%&amp;codearr=%ref.v.2%" />
+        </rule>
+        <rule>
+            <condition k="admin_level" v="6"/>
+            <condition k="ref:(FR:)?INSEE" v="\p{Digit}{2}" id="ref"/>
+            <link name="View %name% map of arrondissements" href="http://www.insee.fr/fr/methodes/nomenclatures/cog/carte_arrdep.asp?codedep=%ref.v%" />
+            <link name="View %name% list of arrondissements" href="http://www.insee.fr/fr/methodes/nomenclatures/cog/arrdep.asp?codedep=%ref.v%" />
+        </rule>
+        <rule>
+            <condition k="admin_level" v="4"/>
+            <condition k="ref:(FR:)?INSEE" v="\p{Digit}{2}" id="ref"/>
+            <link name="View %name% map of departments" href="http://www.insee.fr/fr/methodes/nomenclatures/cog/carte_depreg.asp?codereg=%ref.v%" />
+            <link name="View %name% list of departments" href="http://www.insee.fr/fr/methodes/nomenclatures/cog/depreg.asp?codereg=%ref.v%" />
+        </rule>
+        <rule>
+            <condition k="admin_level" v="2"/>
+            <condition k="name" v="France*"/>
+            <link name="View %name% map of regions" href="http://www.insee.fr/fr/methodes/nomenclatures/cog/carte_regions.asp" />
+            <link name="View %name% list of regions" href="http://www.insee.fr/fr/methodes/nomenclatures/cog/region.asp" />
+        </rule>
+    </source>
+    
+    <source name="CEF" country-code="FR">
+        <rule>
+            <condition k="ref:(FR:)?CEF" v="[A-Z0-9_]{8}" />
+            <link name="View %name% sheet of church" href="http://www.messesinfo.catholique.fr/public/fiche.php?valcode=%v%" />
+        </rule>
+    </source>
+
+    <source name="MHS" country-code="FR">
+        <rule>
+            <condition k="ref:(FR:)?mhs" v="\p{Upper}{2}\p{Digit}{8}" />
+            <link name="View Mérimée sheet of monument" href="http://www.culture.gouv.fr/public/mistral/mersri_fr?ACTION=CHERCHER&amp;FIELD_1=REF&amp;VALUE_1=%v%" />
+        </rule>
+        <rule>
+            <condition k="ref:(FR:)?INSEE" v="\p{Digit}{5}" />
+            <link name="View Mérimée list for this municipality" href="http://www.culture.gouv.fr/public/mistral/merimee_fr?ACTION=CHERCHER&amp;FIELD_1=cmer1&amp;VALUE_1=%v%" />
+        </rule>
+    </source>
+
+    <source name="IGN" country-code="FR">
+		<!-- 
+		http://geodesie.ign.fr/fiches/index.php?module=e&action=fichepdf&source=carte&sit_no=4509302&geo_cid=0&lambda=1.90024744&phi=48.03041621
+		 -->
+        <rule>
+            <condition k="man_made" v="survey_point" />
+            <condition k="source" v="©IGN .*" />
+            <condition k="ref" v="(\p{Digit}{7}) - ." id="ref" />
+            <link name="View %name% sheet of geodesic site" href="http://geodesie.ign.fr/fiches/index.php?module=e&amp;action=fichepdf&amp;source=carte&amp;sit_no=%ref.v.1%" />
+            <!-- <link name="View %name% sheet of geodesic site" href="http://geodesie.ign.fr/fiches/index.php?module=e&amp;action=visugeod" method="POST" >
+                <param  name="h_panier"  value="pdf" />
+                <param  name="%ref.v.1%" value="on" />
+                <header name="Content-type" value="application/x-www-form-urlencoded" />
+            </link>-->
+        </rule>
+        <rule>
+            <condition k="site" v="geodesic" />
+            <condition k="source" v="©IGN .*" />
+            <condition k="ref" v="\p{Digit}{7}" id="ref" />
+            <link name="View %name% sheet of geodesic site" href="http://geodesie.ign.fr/fiches/index.php?module=e&amp;action=fichepdf&amp;source=carte&amp;sit_no=%ref.v.1%" />
+        </rule>
+    </source>
+
+    <source name="Education Nationale" country-code="FR">
+        <rule>
+            <condition k="ref:(FR:)?UAI" />
+            <link name="View UAI sheet of school/college" href="http://www.education.gouv.fr/bce/avancee/fiche.php?NUMERO_UAI=%v%&amp;type_info=UAI_all" />
+        </rule>
+    </source>
+    
+</tag2link>

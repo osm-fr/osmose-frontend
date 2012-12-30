@@ -47,7 +47,11 @@
       </div>
   <%/fixes%>
   <%#tags%>
-      <b><%k%></b> = <%v%><br>
+      <b><%k%></b> =
+      <%#vlink%><a href="<%vlink%>" target="_blank"><%/vlink%>
+      <%v%>
+      <%#vlink%></a><%/vlink%>
+      <br>
   <%/tags%>
     </div>
 <%/elems%>
