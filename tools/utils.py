@@ -5,7 +5,7 @@ import os, re, Cookie
 
 ################################################################################
 
-allowed_languages = ["en", "fr", "nl", "de", "it"]
+allowed_languages = ["en", "fr", "de", "it", "nl", "sw"]
 pg_user           = "osmose"
 pg_pass           = "clostAdtoi"
 pg_base           = "osmose"

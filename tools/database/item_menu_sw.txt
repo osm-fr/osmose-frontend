@@ -1,0 +1,93 @@
+    0 | majengo kufunika
+ 1010 | unaorudiwa nodi
+ 1030 | way 1 fundo
+ 1040 | batili poligoni
+ 1050 | kupokezana nyuma
+ 1060 | mpaka intersect
+ 1070 | barabara intersection jengo
+ 1080 | yatima nodes
+ 1090 | disparate aina ya barabara
+ 1100 | area=yes unclosed
+ 1110 | mbaya uhusiano * _link
+ 1120 | kuvunjika mwendelezo wa barabara
+ 1140 | tag kukosa au jukumu
+ 1150 | intersection kati ya nyuso
+ 1160 |
+ 1170 | multipolygon
+ 1180 | dual bikeway
+ 1190 | rough njia
+ 1200 | 1 mwanachama uhusiano
+ 1210 | si kushikamana bikeway
+ 1220 | mito
+ 2010 | makutano = mzunguko
+ 2020 | ele = ...
+ 2030 | oneway = ...
+ 2040 | source = ...
+ 2050 | Mzazi tag
+ 2060 | mitaani idadi
+ 2080 | highway = ...
+ 3010 | highway roundabout
+ 3020 | mbaya tag chanzo
+ 3030 | Tagwatch safi
+ 3031 | wikipedia
+ 3032 | kiungo tags
+ 3033 | kiungo kwa Saint
+ 3040 | tag sahihi
+ 3050 | mbaya muhimu tag
+ 3060 | sawa maadili
+ 3070 | multivalued
+ 3080 | asili = maji bwawa
+ 3090 | tarehe
+ 3091 | namba
+ 3100 | mashamba madogo
+ 3110 | rating
+ 3120 | mti
+ 3130 | brand jina na
+ 3150 | typo katika tag
+ 3160 | "lane" sahihi
+ 3170 | uhusiano jukumu
+ 4010 | kutelekezwa
+ 4020 | junction=roundabout
+ 4030 | Tags yasiokubaliana
+ 4040 | ref jina katika
+ 4060 | seamark: fixme
+ 4070 | Ujenzi
+ 4080 | POI mbili
+ 4090 | tag juu ya nodi unnecessary
+ 4100 | "designation" sahihi
+ 5010 | spelling
+ 5020 | aina njia
+ 5030 | 2 majina
+ 5040 | toponymy
+ 5050 | soundex mtihani
+ 6010 | wazi poligoni
+ 6020 | Njia zinajirudia
+ 6030 | mahali bila jina
+ 6040 | code INSEE
+ 6050 | admin_level
+ 6060 | admin_level shimo = 8
+ 7010 | jengo geodesic
+ 7011 | umbo jengo
+ 7020 | admin kikomo
+ 7030 | OpenStreetBugs
+ 7040 | powerlines
+ 7050 | ofisi ya posta
+ 7060 | ODbL kwa ajili ya mabadiliko
+ 7070 | Shule siyo shirikishi
+ 7080 | monument
+ 7090 | Reli kuvuka
+ 7100 | Railway Station
+ 7110 | TMC
+ 8010 | monument
+ 8011 | monument iwezekanavyo ushirikiano
+ 8020 | ofisi ya posta
+ 8021 | ofisi ya posta, ushirikiano iwezekanavyo
+ 8030 | Shule
+ 8031 | shule ushirikiano iwezekanavyo
+ 8040 | kituo cha RATP
+ 8041 | kituo cha RATP iwezekanavyo ushirikiano
+ 8050 | Kituo cha
+ 8051 | kituo cha iwezekanavyo ushirikiano
+ 8060 | Crossing
+ 8070 | geodesic uhakika kukosa
+ 8080 | anuani iwezekanavyo ushirikiano
