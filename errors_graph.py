@@ -184,7 +184,7 @@ if __name__ == "__main__":
     parser.add_option("--country", dest="country", type="string", default=None)
     (options, args) = parser.parse_args()
 
-    data = make_plt(None, options)
+    data = make_plt(None, options, "png")
     f = open("graph.png", "w")
     f.write(data)
     f.close()
