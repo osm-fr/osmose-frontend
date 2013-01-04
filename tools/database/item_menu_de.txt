@@ -1,93 +1,93 @@
-    0 | überlappenden Gebäude
- 1010 | wiederholt Knoten
- 1030 | Route zu einem Knoten
- 1040 | Ungültige Polygon
- 1050 | Kreisverkehr in die falsche Richtung
- 1060 | Grenze schneiden
- 1070 | Kollision zwischen Straße Hauswand
- 1080 | verwaisten Knoten
- 1090 | plötzliche Autobahn Typänderung
- 1100 | nicht geschlossene Fläche
- 1110 | schlechte Verbindung * _link
- 1120 | gebrochener Kontinuität Straße
- 1140 |
- 1150 | Schnittpunkt zwischen Oberflächen
- 1160 | signifikante beziehung
- 1170 | Innenvielkant doppelt
- 1180 | Zweimal Zyklus-Weg
- 1190 |
- 1200 |
- 1210 |
- 1220 |
- 2010 | Kreisverkehr=  Kreuzung
+    0 | überlappende Gebäude
+ 1010 | mehrfache Knoten
+ 1030 | Wege mit nur einem Knoten
+ 1040 | Ungültige Polygone
+ 1050 | Kreisverkehre mit falscher Richtung
+ 1060 | sich schneidende Begrenzungen
+ 1070 | Straßen schneiden Gebäude
+ 1080 | verwaiste Knoten
+ 1090 | Typ der Straßen ändert sich
+ 1100 | nicht-geschlossene Flächen
+ 1110 | schlechte Verbindungen *_link
+ 1120 | unterbrochene Straßen
+ 1140 | Tag oder Role fehlt
+ 1150 | schneidende Flächen
+ 1160 | Große Relationen
+ 1170 | Multipolygone
+ 1180 | Zweifach-umlaufender Wege
+ 1190 | Ungefährer Wegverlauf
+ 1200 | Relationen mit nur 1 Mitglied
+ 1210 | Radwege ohne Verbindung
+ 1220 | Wasserläufe
+ 2010 | junction=roundabout
  2020 | ele=...
  2030 | oneway=...
  2040 | source=...
  2050 | Übergeordnetes Tag
  2060 | Hausnummern
  2080 | highway=...
- 3010 | Straße Kreisverkehr
- 3020 | schlechte Quelle-Tag
- 3030 | Tagwatch Reiniger
- 3031 | wikipedia
+ 3010 | Kreisverkehr
+ 3020 | ungeeigneter source-Tag
+ 3030 | Tagwatch-Bereinigung
+ 3031 | Wikipedia
  3032 | Verbindungen zwischen den Tags
- 3033 | Bindestrich auf der St.
- 3040 | falsche Tag
- 3050 |
+ 3033 | Bindestrich bei Saint
+ 3040 | falscher Tag
+ 3050 | falscher Wert
  3060 | ähnliche Werte
- 3070 | mehrere Werte
- 3080 | Schwimmbad Wasser = natürliche
+ 3070 | mehrfache Werte
+ 3080 | Schwimmbad mit natural=water
  3090 | Datum
- 3091 | numerischen Wert
- 3100 | kleinen Bauernhof
- 3110 | beachten
+ 3091 | Zahlenwert
+ 3100 | kleiner Bauernhof
+ 3110 | note
  3120 | Baum
- 3130 | mit Markennamen
- 3150 |
- 3160 |
- 3170 |
- 4010 | stillgelegten
- 4020 | am Kreisverkehr = Kreuzung
- 4030 | Tags unvereinbar
- 4040 | Referenz im Namen Felder
+ 3130 | Name enthält Markennamen
+ 3150 | Schreibfehler im Tag
+ 3160 | Fehler bei "lanes"
+ 3170 | Role der Relation
+ 4010 | stillgelegt
+ 4020 | auf junction=roundabout
+ 4030 | unvereinbare Tags
+ 4040 | ref und name verwechselt
  4060 | seamark:fixme
- 4070 | Bau
- 4080 | POI-Doppel
- 4090 |
- 4100 |
+ 4070 | im Bau
+ 4080 | doppelter POI
+ 4090 | unnötiger Tag am Knoten
+ 4100 | falsche "designation"
  5010 | Rechtschreibung
  5020 | Art der Straße
  5030 | Zwei Namen
  5040 | Toponymie
  5050 | testen soundex
- 6010 | offene Polygon
- 6020 | Doppel-Straße
+ 6010 | offenes Polygon
+ 6020 | doppelte Straße
  6030 | Platz ohne Namen
  6040 | INSEE-Code
  6050 | admin_level
- 6060 | admin_level Loch = 8
- 7010 | Gebäude geodätische
- 7011 |
- 7020 | begrenzen Admin
+ 6060 | Loch admin_level=8
+ 7010 | Gebäude bei Vermessungspunkt
+ 7011 | Gebäudeform
+ 7020 | Verwaltungsgrenze
  7030 | OpenStreetBugs
  7040 | Stromleitungen
- 7050 |
- 7060 |
- 7070 |
- 7080 |
- 7090 |
- 7100 |
+ 7050 | Postamt
+ 7060 | Änderung wegen ODbl
+ 7070 | nicht-eingetragene Schule
+ 7080 | Denkmal
+ 7090 | Höhengleicher Übergang
+ 7100 | Bahnhof
  7110 | TMC
- 8010 | Denkmäler
- 8011 |
- 8020 |
- 8021 |
- 8030 |
- 8031 |
- 8040 |
- 8041 |
- 8050 |
- 8051 |
- 8060 |
- 8070 |
- 8080 | 
+ 8010 | Denkmal
+ 8011 | Denkmal, Eintragung möglich
+ 8020 | Postfiliale
+ 8021 | Postfiliale, Eintragung möglich
+ 8030 | Schule
+ 8031 | Schule, Eintragung möglich
+ 8040 | Schnellbahnstation
+ 8041 | Schnellbahnstation, Eintragung möglich
+ 8050 | Bahnhof
+ 8051 | Bahnhof, Eintragung möglich
+ 8060 | Höhengleicher Übergang
+ 8070 | fehlender geodätischer Punkt
+ 8080 | Adresse, Eintragung möglich

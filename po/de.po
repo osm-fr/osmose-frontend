@@ -28,7 +28,7 @@ msgstr "in {day} Tagen, {hour}h, {minute}m"
 
 #: ../control.py:54
 msgid "never generated"
-msgstr "nie generiert"
+msgstr "nie erzeugt"
 
 #: ../errors.py:83 tmp.tpl:48
 msgid "False positives"
@@ -52,14 +52,12 @@ msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/DE:Osmose"
 
 #: ../map.py:101
-#, fuzzy
 msgid "Errors by user"
-msgstr "Fehler vom Benutzer"
+msgstr "Fehler eines Benutzers"
 
 #: ../map.py:102
-#, fuzzy
 msgid "Relation analyser"
-msgstr "Relation-Analyse"
+msgstr "Analyse von Relationen"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
 #: ../map.py:104
@@ -83,27 +81,24 @@ msgstr "http://geodesie.openstreetmap.fr/"
 #. TRANSLATORS: this link can be changed to something specific to the language
 #: ../map.py:108
 msgid "openstreetmap.fr"
-msgstr "openstreetmap.fr"
+msgstr "openstreetmap.de"
 
 #: ../map.py:108
 msgid "http://www.openstreetmap.fr/"
-msgstr "http://www.openstreetmap.fr/"
+msgstr "http://www.openstreetmap.de/"
 
 #: ../map.py:109
-#, fuzzy
 msgid "Copyright"
 msgstr "Copyright"
 
 #. TRANSLATORS: link to source code
 #: ../map.py:111
-#, fuzzy
 msgid "Sources"
-msgstr "Quellen"
+msgstr "Quellcode"
 
 #: ../map.py:112
-#, fuzzy
 msgid "Statistics"
-msgstr "Statistiken"
+msgstr "Statistik"
 
 #. TRANSLATORS: link to tooltip help
 #: ../map.py:366
@@ -149,17 +144,17 @@ msgid ""
 "This page shows errors on elements that were last modified by '%s'. This "
 "doesn't means that this user is responsible for all these errors."
 msgstr ""
-"Diese Seite zeigt Fehler auf Elemente, die zuletzt durch '%s' geändert "
+"Diese Seite zeigt Fehler bei Elementen, die zuletzt durch '%s' geändert "
 "wurden. Das bedeutet nicht unbedingt, dass dieser Benutzer für all diese "
 "Fehler verantwortlich ist."
 
 #: tmp.tpl:10
 msgid "This list is also available via rss."
-msgstr ""
+msgstr "Diese Liste ist auch als RSS verfügbar."
 
 #: tmp.tpl:13
 msgid "Show errors on a map"
-msgstr "Zeigen Sie Fehler auf einer Karte"
+msgstr "Fehler auf einer Karte anzeigen"
 
 #: tmp.tpl:14 tmp.tpl:56 tmp.tpl:67
 msgid "item"
@@ -169,7 +164,7 @@ msgstr "Meldung"
 #. TRANSLATORS: this should be replaced by a abbreviation for class
 #: tmp.tpl:15 tmp.tpl:55 tmp.tpl:62
 msgid "class (abbreviation)"
-msgstr "kl"
+msgstr "Kl."
 
 # Eb. pour Ebene
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
@@ -191,12 +186,11 @@ msgstr "Informationen über den Fehler"
 
 #: tmp.tpl:20 tmp.tpl:69
 msgid "position (abbreviation)"
-msgstr "Standpunkt"
+msgstr "Pos."
 
 #: tmp.tpl:21
-#, fuzzy
 msgid "Statistics for user"
-msgstr "Statistiken für den Anwender"
+msgstr "Statistik für den Benutzer"
 
 #: tmp.tpl:22
 msgid "User statistics"
@@ -207,18 +201,16 @@ msgid "Osmose allows you to control your own errors."
 msgstr "Osmose ermöglicht es Ihnen, Ihre eigenen Fehler zu kontrollieren."
 
 #: tmp.tpl:24
-#, fuzzy
 msgid ""
 "By entering your OSM username in the following form, you will be able to see "
 "errors that are attached to your username. Note that the algorithm that "
 "attaches errors to username is not perfect, as Osmose only checks the last "
 "contributor of the relevant erroneous elements."
 msgstr ""
-"Osmose ermöglicht Ihnen, Ihre eigenen Fehler zu kontrollieren. <br> Mit der "
-"Eingabe Ihres OSM Benutzernamens in das folgende Formular, sind Sie in der "
-"Lage, Fehler zu sehen, die Ihnen zugewiesen sind. Beachten Sie, dass der "
-"Algorithmus, der Fehler Benutzern zuweist nicht perfekt ist, weil Osmose nur "
-"den letzten Beiträger der relevanten fehlerhaften Elementen prüft. "
+"Nach Eingabe Ihres OSM-Benutzernamens in das folgende Formular sehen Sie "
+"die Fehler, die Ihnen zugewiesen sind. Beachten Sie, dass der Algorithmus,"
+"der Fehler Benutzern zuordnet, nicht perfekt ist, weil Osmose nur "
+"die letzte Änderung der fehlerhaften Elemente berücksichtigt. "
 
 #: tmp.tpl:25
 msgid "Username:"
@@ -230,7 +222,7 @@ msgstr "Letzte Updates"
 
 #: tmp.tpl:27
 msgid "Median delay:"
-msgstr "mittlere Verzögerung"
+msgstr "mittlere Verzögerung:"
 
 #: tmp.tpl:28 tmp.tpl:34 tmp.tpl:53 tmp.tpl:60
 msgid "source"
@@ -242,11 +234,11 @@ msgstr "Beschreibung"
 
 #: tmp.tpl:30
 msgid "last generation"
-msgstr "letzte Generierung"
+msgstr "letzte Erzeugung"
 
 #: tmp.tpl:31 tmp.tpl:32
 msgid "history"
-msgstr "Geschichte"
+msgstr "Verlauf"
 
 #: tmp.tpl:33
 msgid "Update"
@@ -261,20 +253,18 @@ msgid "timestamp"
 msgstr "Zeitstempel"
 
 #: tmp.tpl:37
-#, fuzzy
 msgid "Copyright informations"
-msgstr "Informationeni zum Urheberrecht"
+msgstr "Informationen zum Urheberrecht"
 
 #: tmp.tpl:38
 msgid "Data are coming from:"
-msgstr "Daten kommen aus:"
+msgstr "Die Daten stammen von:"
 
 #: tmp.tpl:39
 msgid "copyright"
 msgstr "Copyright"
 
 #: tmp.tpl:40
-#, fuzzy, python-format
 msgid "Information on error %d"
 msgstr "Informationen über den Fehler %d"
 
@@ -313,7 +303,7 @@ msgstr "Karte"
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
 #: tmp.tpl:52
 msgid "Set"
-msgstr "Setzen"
+msgstr "Auswählen"
 
 #: tmp.tpl:57
 msgid "title"
@@ -347,11 +337,11 @@ msgstr "Datum"
 
 #: tmp.tpl:74
 msgid "Show more errors"
-msgstr "Mehr Fehler"
+msgstr "Weitere Fehler anzeigen"
 
 #: tmp.tpl:75
 msgid "Show some errors"
-msgstr "Zeigen Sie einige Fehler"
+msgstr "Einige Fehler anzeigen"
 
 #: tmp.tpl:76
 #, fuzzy
@@ -368,14 +358,12 @@ msgid "Help on OSM wiki"
 msgstr "Hilfe im OSM-Wiki"
 
 #: tmp.tpl:79
-#, fuzzy
 msgid "Information on error database"
-msgstr "Informationen über Fehlerdatenbank"
+msgstr "Informationen zur Fehlerdatenbank"
 
 #: tmp.tpl:80
-#, fuzzy
 msgid "False positives list"
-msgstr "falsch positive Ergebnisse"
+msgstr "falsch-positive Ergebnisse"
 
 #: tmp.tpl:81
 msgid "Last analysis updates"
@@ -383,11 +371,11 @@ msgstr "Letzte Analyse"
 
 #: tmp.tpl:83
 msgid "no bubbles at this zoom factor"
-msgstr "keine Blasen bei diesem Zoom-Faktor"
+msgstr "keine Markierungen bei diesem Zoom-Faktor"
 
 #: tmp.tpl:84
 msgid "Severity"
-msgstr ""
+msgstr "Fehler der Grade"
 
 #: tmp.tpl:85
 msgid "1 only"
@@ -399,7 +387,7 @@ msgstr "nur 1+2"
 
 #: tmp.tpl:87
 msgid "all severity"
-msgstr ""
+msgstr "alle Grade"
 
 #: tmp.tpl:88
 msgid "2 only"
@@ -419,11 +407,11 @@ msgstr "alle"
 
 #: tmp.tpl:92 tmp.tpl:95
 msgid "nothing"
-msgstr "nichts"
+msgstr "keine"
 
 #: tmp.tpl:93
 msgid "invert"
-msgstr "umkehren"
+msgstr "Auswahl umkehren"
 
 #: tmp.tpl:96
 msgid "Change language:"
@@ -436,11 +424,11 @@ msgstr "Verzögerung: %sd"
 
 #: tmp.tpl:98
 msgid "Error reported on: "
-msgstr "Buchungsdatum der Fehler:"
+msgstr "Fehler berichtet am:"
 
 #: tmp.tpl:99
 msgid "change status"
-msgstr "ändern Sie den Status"
+msgstr "Status ändern"
 
 #: tmp.tpl:100
 msgid "corrected"
