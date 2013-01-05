@@ -59,6 +59,20 @@ function init() {
     });
     map.addLayer(bing);
 
+    var layerWhite = new OpenLayers.Layer.XYZ(
+        "White background",
+        ["http://a.layers.openstreetmap.fr/blanc.png"],
+        {
+            attribution: "",
+            sphericalMercator: true,
+            wrapDateLine: true,
+            transitionEffect: "resize",
+            buffer: 0,
+        }
+    );
+    map.addLayer(layerWhite);
+
+
     //var layerTilesAtHome = new OpenLayers.Layer.OSM.Osmarender("Osmarender");
     //map.addLayer(layerTilesAtHome);
 

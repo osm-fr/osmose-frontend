@@ -8,7 +8,7 @@ var all_available_styles= new Array();
 //all_available_styles["relief"]=["relief"];
 //all_available_styles["corine"]=["Corine Land cover"];
 //all_available_styles["test_zone"]=["test_zone"];
-all_available_styles["blanc"]=["White background"];
+//all_available_styles["blanc"]=["White background"];
 
 // overlays (transparent)
 var all_available_overlays= new Array();
