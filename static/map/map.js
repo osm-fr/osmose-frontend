@@ -82,28 +82,15 @@ function init() {
     //*****************************************************
     // Layers de layers.openstreetmap.fr
 
-    function get_osm_url(bounds) {
-        var res = this.map.getResolution();
-        var x = Math.round((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
-        var y = Math.round((this.maxExtent.top - bounds.top) / (res * this.tileSize.h));
-        var z = this.map.getZoom();
-        var limit = Math.pow(2, z);
-        if (y < 0 || y >= limit) {
-            return null;
-        } else {
-            // x = ((x % limit) + limit) % limit;
-            return this.url + z + "/" + x + "/" + y + "." + this.type;
-        }
-    }
-
     /* Base layers inclusion */
     var layers = [];
     for (var idx in all_available_styles) {
         var name = all_available_styles[idx];
-        var l = new OpenLayers.Layer.TMS(
-        name, ["http://a.layers.openstreetmap.fr/" + idx + "/"], {
-            type: 'jpeg',
-            getURL: get_osm_url,
+        var l = new OpenLayers.Layer.XYZ(
+        name, ["http://a.layers.openstreetmap.fr/" + idx + "/${z}/${x}/${y}.png",
+               "http://b.layers.openstreetmap.fr/" + idx + "/${z}/${x}/${y}.png",
+               "http://c.layers.openstreetmap.fr/" + idx + "/${z}/${x}/${y}.png"], {
+            type: 'png',
             transitionEffect: 'resize',
             displayOutsideMaxExtent: true
         }, {
@@ -115,10 +102,10 @@ function init() {
     /* Transparent overlays (must be png with alpha channel) */
     for (var idx in all_available_overlays) {
         var name = all_available_overlays[idx];
-        var overlay = new OpenLayers.Layer.TMS(
-        name, ["http://layers.openstreetmap.fr/tiles/renderer.py/" + idx + "/"], {
-            type: 'png',
-            getURL: get_osm_url,
+        var overlay = new OpenLayers.Layer.XYZ(
+        name, ["http://a.layers.openstreetmap.fr/" + idx + "/${z}/${x}/${y}.png",
+               "http://b.layers.openstreetmap.fr/" + idx + "/${z}/${x}/${y}.png",
+               "http://c.layers.openstreetmap.fr/" + idx + "/${z}/${x}/${y}.png"], {
             displayOutsideMaxExtent: true,
             'buffer': 1,
             isBaseLayer: false,
