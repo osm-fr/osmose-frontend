@@ -4,6 +4,7 @@ table {
   border-collapse: collapse;
 }
 th {
+  color: black;
   background-color: #999999;
   font: bold;
   text-align: center;
@@ -12,8 +13,11 @@ th {
   margin: 0px;
   padding: 5px;
 }
+tr {
+  color: black;
+}
 tr:nth-child(even) {
-  background-color: #BBBBBB;
+  background-color: #CCCCCC;
 }
 tr:nth-child(odd) {
   background-color: #EEEEEE;
