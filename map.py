@@ -176,7 +176,8 @@ def build_param(source, item, level, user):
                 source2.append("(marker.source=%d AND marker.class=%d)"%(int(source[0]), int(source[1])))
         sources2 = " OR ".join(source2)
         where.append("(%s)" % sources2)
-    elif item != None:
+
+    if item:
         where.append(build_where_item(item, "marker"))
 
     if level and level != "(1,2,3)":
