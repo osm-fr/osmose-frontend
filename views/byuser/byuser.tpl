@@ -53,7 +53,7 @@
 %    level = res["level"]
 %    lat_s = "%.2f" % lat
 %    lon_s = "%.2f" % lon
-    <td><a href="/map/?zoom=16&amp;lat={{lat}}&amp;lon={{lon}}&amp;item={{item}}&amp;level={{level}}" target="hiddenIframe">{{lon_s}}&nbsp{{lat_s}}</a></td>
+    <td><a href="/map/?zoom=16&amp;lat={{lat}}&amp;lon={{lon}}&amp;item={{item}}&amp;level={{level}}" target="hiddenIframe">{{lon_s}}&nbsp;{{lat_s}}</a></td>
   </tr>
 %end
 </table>
