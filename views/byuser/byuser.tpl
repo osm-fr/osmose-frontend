@@ -30,7 +30,7 @@
 %for res in results:
   <tr>
     <td title="{{res["item"]}}"><img src="../images/markers/marker-l-{{res["item"]}}.png" alt="{{res["item"]}}"></td>
-    <td>{{res["item"]}}</td>
+    <td><a href="?username={{username}}&amp;item={{res["item"]}}">{{res["item"]}}</a></td>
     <td>{{res["class"]}}</td>
     <td>{{res["level"]}}</td>
     <td>{{translate.select(res["title"])}}</td>
