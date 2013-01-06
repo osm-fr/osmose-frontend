@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-01 22:41+0100\n"
+"POT-Creation-Date: 2013-01-06 21:05+0100\n"
 "PO-Revision-Date: 2012-10-11 22:17+0100\n"
 "Last-Translator: operon\n"
 "Language-Team: Swahili\n"
@@ -102,7 +102,7 @@ msgid "Statistics"
 msgstr "Takwimu"
 
 #. TRANSLATORS: link to tooltip help
-#: ../map.py:366
+#: ../map.py:367
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/SW:Osmose/erreurs"
 

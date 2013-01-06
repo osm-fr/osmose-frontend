@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-01 22:41+0100\n"
+"POT-Creation-Date: 2013-01-06 21:05+0100\n"
 "PO-Revision-Date: 2012-08-02 14:19+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: German\n"
@@ -101,7 +101,7 @@ msgid "Statistics"
 msgstr "Statistik"
 
 #. TRANSLATORS: link to tooltip help
-#: ../map.py:366
+#: ../map.py:367
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/DE:Osmose/erreurs"
 
@@ -207,10 +207,10 @@ msgid ""
 "attaches errors to username is not perfect, as Osmose only checks the last "
 "contributor of the relevant erroneous elements."
 msgstr ""
-"Nach Eingabe Ihres OSM-Benutzernamens in das folgende Formular sehen Sie "
-"die Fehler, die Ihnen zugewiesen sind. Beachten Sie, dass der Algorithmus,"
-"der Fehler Benutzern zuordnet, nicht perfekt ist, weil Osmose nur "
-"die letzte Änderung der fehlerhaften Elemente berücksichtigt. "
+"Nach Eingabe Ihres OSM-Benutzernamens in das folgende Formular sehen Sie die "
+"Fehler, die Ihnen zugewiesen sind. Beachten Sie, dass der Algorithmus,der "
+"Fehler Benutzern zuordnet, nicht perfekt ist, weil Osmose nur die letzte "
+"Änderung der fehlerhaften Elemente berücksichtigt. "
 
 #: tmp.tpl:25
 msgid "Username:"
@@ -265,6 +265,7 @@ msgid "copyright"
 msgstr "Copyright"
 
 #: tmp.tpl:40
+#, python-format
 msgid "Information on error %d"
 msgstr "Informationen über den Fehler %d"
 
