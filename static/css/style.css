@@ -28,14 +28,8 @@ td {
   margin: 0px;
   padding: 5px;
 }
-a:link {
-  color: black;
-}
-a:visited {
-  color: black;
-}
-a:hover {
-  color: black;
+table a {
+  text-decoration: none;
 }
 
 /* iframe for josm and rawedit links */
