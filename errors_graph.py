@@ -21,6 +21,7 @@
 ###########################################################################
 
 import time, sys, datetime, StringIO, os, tempfile
+from datetime import timedelta
 os.environ['MPLCONFIGDIR'] = tempfile.mkdtemp()
 import matplotlib
 # Force matplotlib to not use any Xwindows backend.
@@ -140,6 +141,14 @@ def make_plt(db, options, format):
     return plot(data, text+' '+src, format)
 
 
+class AutoDateLocatorDay(matplotlib.dates.AutoDateLocator):
+    def get_locator(self, dmin, dmax):
+        if dmax-dmin <= timedelta(days=5):
+            return matplotlib.dates.AutoDateLocator.get_locator(self, dmax-timedelta(days=5), dmax)
+        else:
+            return matplotlib.dates.AutoDateLocator.get_locator(self, dmin, dmax)
+
+
 def plot(data, title, format):
     dates = [q[0] for q in data]
     opens = [q[1] for q in data]
@@ -156,7 +165,7 @@ def plot(data, title, format):
     ax.fmt_ydata = lambda x: '$%1.2f'%x
     ax.grid(True)
 
-    locator = matplotlib.dates.AutoDateLocator()
+    locator = AutoDateLocatorDay()
     locator.set_axis(ax.xaxis)
     locator.refresh()
     formatter = matplotlib.dates.AutoDateFormatter(locator)
