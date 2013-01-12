@@ -25,10 +25,10 @@ def update_pass(comment, update, contact="Jocelyn Jaubert <jocelyn@osm1.crans.or
     print "failure on comment=%s update=%s" % (comment, update)
     raise
 
-  if dbcurs.rowcount == 0:
+#  if dbcurs.rowcount == 0:
     # try to update name for an analyse for a given password
-    dbcurs.execute("UPDATE dynpoi_source SET comment=%s WHERE update=%s;",
-                   (comment, update))
+#    dbcurs.execute("UPDATE dynpoi_source SET comment=%s WHERE update=%s;",
+#                   (comment, update))
 
   if dbcurs.rowcount == 0:
     # otherwise, create a new entry in database
