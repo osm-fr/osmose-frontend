@@ -159,7 +159,11 @@ def plot(data, title, format):
     ax.set_title(title)
     # format the ticks
     ax.relim()
-    ax.set_ylim(bottom=0)
+    if len(opens) > 1:
+       ytop = float(max(opens)) * 1.05 + 1
+    else:
+       ytop = None
+    ax.set_ylim(bottom=0, top=ytop)
     ax.autoscale_view()
     # format the coords message box
     ax.fmt_ydata = lambda x: '$%1.2f'%x
