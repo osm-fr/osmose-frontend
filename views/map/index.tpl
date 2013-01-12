@@ -105,7 +105,7 @@
 %    else:
 %        s = ""
 %    end
-  <li{{!s}}><a href="{{"http://" + website + "/" + l + "/map/"}}">{{l}}</a></li>
+  <li{{!s}}><a href="{{"http://" + website + "/" + l + request.path + "?" + request.query_string}}">{{l}}</a></li>
 %end
 </ul>
 </li>
