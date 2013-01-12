@@ -29,5 +29,4 @@ all_available_overlays["boundary_political"]=["boundary=political"];
 all_available_overlays["boundary_election"]=["boundary=election"];
 all_available_overlays["voirie-cadastre"]=["Voirie/Cadastre"];
 all_available_overlays["noref-notertiary"]=["No ref without tertiary"];
-all_available_overlays["test_zone"]=["Test zone"];
 
