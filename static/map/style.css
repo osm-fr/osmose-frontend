@@ -352,6 +352,13 @@ option.level-__3 {
   bottom: 40px;
   font-size: 11px;
 }
+.olControlAttribution {
+  font-size: smaller;
+  left: 3px;
+  bottom: 0em;
+  position: absolute;
+  display: block;
+}
 
 .delay-normal {
     background: green;
