@@ -52,6 +52,7 @@ def index(db, lang):
                "item":   None,
                "level":  1,
                "source": '',
+               "class":  '',
                "user":   '',
              }
 
@@ -59,7 +60,7 @@ def index(db, lang):
         if request.cookies.get("last_" + p, default=None):
             params[p] = request.cookies.get("last_" + p)
 
-    for p in ["lat", "lon", "zoom", "item", "level", "source", "user"]:
+    for p in ["lat", "lon", "zoom", "item", "level", "source", "user", "class"]:
         if request.params.get(p, default=None):
             params[p] = request.params.get(p)
 
@@ -132,7 +133,7 @@ OFFSET
         delay = delay[0]/60/60/24
 
     return template('map/index', categories=categories, lat=params["lat"], lon=params["lon"], zoom=params["zoom"],
-        source=params["source"], user=params["user"],
+        source=params["source"], user=params["user"], classs=params["class"],
         levels=levels, level_selected=level_selected, active_items=active_items, urls=urls, delay=delay,
         allowed_languages=allowed_languages, translate=utils.translator(lang))
 
@@ -162,7 +163,7 @@ def build_where_item(item, table):
     return where
 
 
-def build_param(source, item, level, user):
+def build_param(source, item, level, user, classs):
     join = ""
     where = []
     if source:
@@ -195,6 +196,9 @@ def build_param(source, item, level, user):
         """
         where.append("marker_elem.username = '%s'" % user)
 
+    if classs:
+        where.append("marker.class = %d"%int(classs))
+
     return (join, " AND ".join(where))
 
 
@@ -212,6 +216,7 @@ def heat(db, z, x, y):
 
     item   = request.params.get('item')
     source = request.params.get('source', default='')
+    classs = request.params.get('class', default='')
     user   = utils.pg_escape(unicode(request.params.get('user', default='')))
     level  = request.params.get('level', default='1')
 
@@ -233,7 +238,7 @@ WHERE
         # FIXME redirect empty tile
         max = 0
 
-    join, where = build_param(source, item, level, user)
+    join, where = build_param(source, item, level, user, classs)
 
     db.execute("""
 SELECT
@@ -283,6 +288,7 @@ def markers(db, lang):
     lon    = int(request.params.get('lon', type=float, default=0)*1000000)
     item   = request.params.get('item')
     source = request.params.get('source', default='')
+    classs = request.params.get('class', default='')
     user   = utils.pg_escape(unicode(request.params.get('user', default='')))
     level  = request.params.get('level', default='1')
     zoom   = request.params.get('zoom', type=int, default=10)
@@ -337,7 +343,7 @@ def markers(db, lang):
     LIMIT 200
     """
 
-    join, where = build_param(source, item, level, user)
+    join, where = build_param(source, item, level, user, classs)
     db.execute(sqlbase % (join, where, lat, lon)) # FIXME pas de %
     results = db.fetchall()
 

@@ -439,6 +439,7 @@ function updateURL() {
         "&lon=" + document.myform.lon.value +
         "&zoom=" + document.myform.zoom.value +
         "&source=" + document.myform.source.value +
+        "&class=" + document.myform.class.value +
         "&user=" + document.myform.user.value +
         "&item=" + ch +
         "&level=" + document.myform.level.value;
@@ -447,6 +448,7 @@ function updateURL() {
     if (heat.visibility) {
         var params =
             "?source=" + document.myform.source.value +
+            "&class=" + document.myform.class.value +
             "&user=" + document.myform.user.value +
             "&item=" + ch +
             "&level=" + document.myform.level.value;
