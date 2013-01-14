@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-06 21:05+0100\n"
+"POT-Creation-Date: 2013-01-14 20:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,64 +43,64 @@ msgid "Informations"
 msgstr ""
 
 #. TRANSLATORS: link to help in appropriate language
-#: ../map.py:100
+#: ../map.py:101
 msgid "Help"
 msgstr ""
 
-#: ../map.py:100
+#: ../map.py:101
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr ""
 
-#: ../map.py:101
+#: ../map.py:102
 msgid "Errors by user"
 msgstr ""
 
-#: ../map.py:102
+#: ../map.py:103
 msgid "Relation analyser"
 msgstr ""
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:104
+#: ../map.py:105
 msgid "CLC"
 msgstr ""
 
-#: ../map.py:104
+#: ../map.py:105
 msgid "http://clc.openstreetmap.fr/"
 msgstr ""
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:106
+#: ../map.py:107
 msgid "Geodesic"
 msgstr ""
 
-#: ../map.py:106
+#: ../map.py:107
 msgid "http://geodesie.openstreetmap.fr/"
 msgstr ""
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:108
+#: ../map.py:109
 msgid "openstreetmap.fr"
 msgstr ""
 
-#: ../map.py:108
+#: ../map.py:109
 msgid "http://www.openstreetmap.fr/"
 msgstr ""
 
-#: ../map.py:109
+#: ../map.py:110
 msgid "Copyright"
 msgstr ""
 
 #. TRANSLATORS: link to source code
-#: ../map.py:111
+#: ../map.py:112
 msgid "Sources"
 msgstr ""
 
-#: ../map.py:112
+#: ../map.py:113
 msgid "Statistics"
 msgstr ""
 
 #. TRANSLATORS: link to tooltip help
-#: ../map.py:367
+#: ../map.py:373
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr ""
 
