@@ -25,6 +25,7 @@ from tools import utils
 import tools.update
 import os
 import sys
+from collections import defaultdict
 
 @route('/control/update')
 def updates(db):
@@ -55,6 +56,51 @@ ORDER BY
     liste.sort(lambda x, y: -cmp(x[1], y[1]))
 
     return template('control/updates', liste=liste)
+
+
+@route('/control/update_matrix')
+def updates(db):
+    db.execute("""
+SELECT DISTINCT ON (source)
+    source,
+    EXTRACT(EPOCH FROM ((now())-timestamp)) AS age,
+    comment
+FROM
+    dynpoi_source
+    NATURAL JOIN dynpoi_update
+ORDER BY
+    source ASC,
+    timestamp DESC
+""")
+
+    keys = defaultdict(int)
+    matrix = defaultdict(dict)
+    stats_analyser = {}
+    stats_country = {}
+    for res in db.fetchall():
+        (source, age, comment) = (res[0], res[1], res[2])
+        analyser = '-'.join(comment.split('-')[0:-1])
+        country = comment.split('-')[-1]
+        keys[country] += 1
+        matrix[analyser][country] = (comment, age/60/60/24, source)
+    for analyser in matrix:
+        min = max = None
+        for country in matrix[analyser]:
+            v = matrix[analyser][country][1]
+            min = v if not min or v < min else min
+            max = v if not max or v > max else max
+            if not stats_country.has_key(country):
+                min_c = v
+                max_c = v
+            else:
+                (min_c, max_c) = stats_country[country]
+                min_c = v if v < min_c else min_c
+                max_c = v if v > max_c else max_c
+            stats_country[country] = [min_c, max_c]
+        stats_analyser[analyser] = [min, max]
+    keys = sorted(keys.keys())
+
+    return template('control/updates_matrix', keys=keys, matrix=matrix, stats_analyser=stats_analyser, stats_country=stats_country)
 
 
 @route('/control/update/<source:int>')

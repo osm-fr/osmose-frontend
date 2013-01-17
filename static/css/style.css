@@ -37,3 +37,21 @@ iframe#hiddenIframe {
   display: none;
   position: absolute;
 }
+
+th.country {
+  height: 15em;
+  vertical-align: bottom;
+}
+th.country .rotate-90 {
+  transform: rotate(-90deg);
+  max-width: 1.5em;
+}
+.delay-normal {
+    background: green;
+}
+.delay-warning {
+    background: orange;
+}
+.delay-error {
+    background: red;
+}
