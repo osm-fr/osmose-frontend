@@ -1,9 +1,9 @@
 %rebase layout title=_("Update")
 <table>
 <tr>
-    <th width="50">{{_("source")}}</td>
-    <th width="800">{{_("remote url")}}</td>
-    <th width="200">{{_("timestamp")}}</td>
+    <th>{{_("source")}}</td>
+    <th style="min-width: 800px">{{_("remote url")}}</td>
+    <th>{{_("timestamp")}}</td>
 </tr>
 %for res in liste:
 <tr>

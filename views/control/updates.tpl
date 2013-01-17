@@ -2,10 +2,10 @@
 <p>{{_("Median delay:")}} {{liste[len(liste)/2][2]}}</p>
 <table>
 <tr>
-    <th width="50">{{_("source")}}</th>
-    <th width="600">{{_("description")}}</th>
-    <th width="200">{{_("last generation")}}</th>
-    <th width="30">{{_("history")}}</th>
+    <th>{{_("source")}}</th>
+    <th style="min-width: 600px">{{_("description")}}</th>
+    <th style="min-width: 200px">{{_("last generation")}}</th>
+    <th>{{_("history")}}</th>
 </tr>
 %for source in liste:
 <tr>
