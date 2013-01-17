@@ -126,7 +126,7 @@ def update(lang):
 @post('/control/send-update')
 @post('/cgi-bin/update.py') # Backward compatibility
 def send_update():
-    src = request.params.get('src', default=None)
+    src = request.params.get('source', default=None)
     code = request.params.get('code')
     url = request.params.get('url')
 
