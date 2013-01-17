@@ -147,7 +147,9 @@ def index(db, lang):
         dynpoi_source.comment
     ORDER BY
         dynpoi_class.item,
-        dynpoi_class.source
+        dynpoi_class.source,
+        dynpoi_class.class,
+        dynpoi_source.comment
     """
 
     if show_all:
