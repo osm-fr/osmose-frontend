@@ -44,6 +44,10 @@ th.country {
 }
 th.country .rotate-90 {
   transform: rotate(-90deg);
+  -moz-transform:rotate(-90deg); /* Firefox */
+  -ms-transform:rotate(-90deg); /* IE 9 */
+  -o-transform:rotate(-90deg); /* Opera */
+  -webkit-transform:rotate(-90deg); /* Safari and Chrome */
   max-width: 1.5em;
 }
 .delay-normal {
