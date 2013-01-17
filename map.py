@@ -41,7 +41,11 @@ def check_items(items, all_items):
 
 @route('/map')
 def index_redirect():
-    redirect("map/")
+    new_url = "map/"
+    if request.query_string:
+        new_url += "?"
+        new_url += request.query_string
+    redirect(new_url)
 
 @route('/map/')
 def index(db, lang):
