@@ -25,7 +25,7 @@
 </tr>
 <tr>
 %for k in keys:
-%    col('th', stats_country[k][0])
+%    col('th', stats_country[k][1])
 {{"%0.1f"%stats_country[k][1]}}</th>
 %end
 </tr>
