@@ -13,6 +13,7 @@
 <table>
 <tr>
     <th colspan="4" rowspan="4"/>
+%keys = sorted(keys, key=lambda k: -stats_country[k][1])
 %for k in keys:
     <th class="country"><div class="rotate-90"><a href="../errors/?country={{k}}">{{k}}</a></div></th>
 %end
@@ -25,7 +26,7 @@
 %    end
 </tr>
 %end
-%for r in sorted(matrix.keys()):
+%for r in sorted(matrix.keys(), key=lambda k: -stats_analyser[k][1]):
 <tr>
     <th style="text-align: left">{{r}}</th>
 %    for i in range(0,3):
