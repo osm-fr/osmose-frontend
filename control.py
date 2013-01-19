@@ -85,19 +85,28 @@ ORDER BY
         matrix[analyser][country] = (comment, age/60/60/24, source)
     for analyser in matrix:
         min = max = None
+        sum = 0
         for country in matrix[analyser]:
             v = matrix[analyser][country][1]
             min = v if not min or v < min else min
             max = v if not max or v > max else max
+            sum += v
             if not stats_country.has_key(country):
                 min_c = v
+                sum_c = v
                 max_c = v
+                n_c = 1
             else:
-                (min_c, max_c) = stats_country[country]
+                (min_c, sum_c, max_c, n_c) = stats_country[country]
                 min_c = v if v < min_c else min_c
                 max_c = v if v > max_c else max_c
-            stats_country[country] = [min_c, max_c]
-        stats_analyser[analyser] = [min, max]
+                sum_c += v
+                n_c += 1
+            stats_country[country] = [min_c, sum_c, max_c, n_c]
+        stats_analyser[analyser] = [min, sum/len(matrix[analyser]), max]
+    avg_country = {}
+    for country in stats_country:
+        stats_country[country][1] = stats_country[country][1]/stats_country[country][3]
     keys = sorted(keys.keys())
 
     return template('control/updates_matrix', keys=keys, matrix=matrix, stats_analyser=stats_analyser, stats_country=stats_country)
