@@ -1,8 +1,8 @@
 %rebase layout title=_("Last updates")
 %def col(t, v):
-%            if v > 4:
+%            if v > 4.05:
     <{{t}} class="delay-error">\\
-%            elif v > 2:
+%            elif v > 2.05:
     <{{t}} class="delay-warning">\\
 %            else:
     <{{t}}>\\
