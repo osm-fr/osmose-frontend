@@ -67,6 +67,10 @@ OpenLayers.Format.DynPoiFormat = OpenLayers.Class(OpenLayers.Format, {
     CLASS_NAME: "OpenLayers.Format.DynPoiFormat"
 });
 
+function jq( myid ) {
+  return "#" + myid.replace( /(:|\.)/g, "\\$1" );
+}
+
 function generateBubble(marker_id, title, message) {
     var s;
     s  = "<div id=\"popup-" + marker_id + "\">";
@@ -97,6 +101,16 @@ function generateBubbleDownload(marker_id) {
 function closeBubble(marker_id) {
     var b = $("div#popup-" + marker_id).parent().parent().parent();
     b.hide();
+}
+
+function destroyMarker(marker_id) {
+    var b = $("div#popup-" + marker_id).parent().parent().parent();
+    var feature = b.data("feature");
+    var marker = feature.marker;
+    var layer = feature.layer;
+    feature.destroyPopup();
+    layer.removeMarker(marker);
+    marker.destroy();
 }
 
 var prev_height_popup_bottom = 0;
@@ -299,6 +313,8 @@ OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
             map.addPopup(this.popup);
             var content = generateBubbleDownload(this.popup.feature.data.marker_id);
             this.popup.setContentHTML(content);
+            var p = $( jq(this.popup.id))
+            p.data("feature", this);
             OpenLayers.Request.GET({
                 url: 'marker/' + this.popup.feature.data.marker_id,
                 success: function (ajaxRequest) {
