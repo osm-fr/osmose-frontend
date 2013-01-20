@@ -35,6 +35,7 @@ def byUser():
 def byUser(db, lang, username=None, format=None):
     username = username or request.params.username
     item = request.params.get('item', type=int)
+    level = request.params.get('level', type=int)
     if not username:
         return template('byuser/index')
     else:
@@ -66,6 +67,9 @@ WHERE
         if item:
             sql += "AND m.item = %s "
             params.append(item)
+        if level:
+            sql += "AND c.level = %s "
+            params.append(level)
         sql += """
 ORDER BY
     dynpoi_update_last.timestamp DESC
