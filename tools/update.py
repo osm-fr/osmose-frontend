@@ -307,14 +307,15 @@ class update_parser(handler.ContentHandler):
         elif name == u"class":
             execute_sql(self._dbcurs, "DELETE FROM dynpoi_class WHERE source = %s AND class = %s",
                                  (self._source_id, self._class_id))
-            keys = ["source", "class", "item", "title", "level"]
-            vals = ["%s"] * 5
+            keys = ["source", "class", "item", "title", "level", "timestamp"]
+            vals = ["%s"] * 6
             sql = u"INSERT INTO dynpoi_class (" + u','.join(keys) + u") VALUES (" + u','.join(vals) + u");"
             try:
                 execute_sql(self._dbcurs, sql, (self._source_id, self._class_id,
                                                 self._class_item[self._class_id],
                                                 self._class_texts,
-                                                self._class_level))
+                                                self._class_level,
+                                                utils.pg_escape(self.ts)))
             except:
                 print sql
                 raise
@@ -329,17 +330,18 @@ class update_parser(handler.ContentHandler):
             self._fixes.append(self._fix)
 
     def update_timestamp(self, attrs):
+        self.ts = attrs.get("timestamp", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
+
         if not self._tstamp_updated:
-            ts = attrs.get("timestamp", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
             execute_sql(self._dbcurs, "INSERT INTO dynpoi_update VALUES(%s, %s, %s, %s);",
-                                 (self._source_id, utils.pg_escape(ts),
+                                 (self._source_id, utils.pg_escape(self.ts),
                                   utils.pg_escape(self._source_url),
                                   utils.pg_escape(os.environ.get('REMOTE_ADDR', ''))))
             execute_sql(self._dbcurs, "UPDATE dynpoi_update_last SET timestamp=%s WHERE source=%s;",
-                                 (utils.pg_escape(ts), self._source_id))
+                                 (utils.pg_escape(self.ts), self._source_id))
             if self._dbcurs.rowcount == 0:
                 execute_sql(self._dbcurs, "INSERT INTO dynpoi_update_last VALUES(%s, %s);",
-                                 (self._source_id, utils.pg_escape(ts)))
+                                 (self._source_id, utils.pg_escape(self.ts)))
 
             self._tstamp_updated = True
 

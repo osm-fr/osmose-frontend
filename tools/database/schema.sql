@@ -4,10 +4,9 @@
 
 SET statement_timeout = 0;
 SET client_encoding = 'UTF8';
-SET standard_conforming_strings = off;
+SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
-SET escape_string_warning = off;
 
 SET search_path = public, pg_catalog;
 
@@ -34,7 +33,8 @@ CREATE TABLE dynpoi_class (
     class bigint,
     item integer,
     title hstore,
-    level integer
+    level integer,
+    "timestamp" timestamp without time zone
 );
 
 
@@ -61,8 +61,7 @@ CREATE TABLE dynpoi_source (
     source integer NOT NULL,
     update character varying(128),
     contact character varying(256),
-    comment character varying(1024),
-    updated boolean
+    comment character varying(1024)
 );
 
 
@@ -170,8 +169,8 @@ CREATE TABLE marker_fix (
 CREATE SEQUENCE marker_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -224,13 +223,7 @@ ALTER TABLE dynpoi_item CLUSTER ON dynpoi_item_pkey;
 ALTER TABLE ONLY dynpoi_source
     ADD CONSTRAINT dynpoi_source_pkey PRIMARY KEY (source);
 
-
---
--- Name: dynpoi_source_update_unique; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY dynpoi_source
-    ADD CONSTRAINT dynpoi_source_update_unique UNIQUE (update);
+ALTER TABLE dynpoi_source CLUSTER ON dynpoi_source_pkey;
 
 
 --
@@ -300,6 +293,13 @@ ALTER TABLE marker CLUSTER ON marker_pkey;
 
 
 --
+-- Name: dynpoi_source_comment; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX dynpoi_source_comment ON dynpoi_source USING btree (comment);
+
+
+--
 -- Name: dynpoi_source_comment_unique; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -327,6 +327,13 @@ ALTER TABLE dynpoi_class CLUSTER ON idx_dynpoi_class_class;
 --
 
 CREATE INDEX idx_dynpoi_class_item ON dynpoi_class USING btree (item);
+
+
+--
+-- Name: idx_dynpoi_class_level; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX idx_dynpoi_class_level ON dynpoi_class USING btree (level);
 
 
 --
@@ -386,6 +393,13 @@ CREATE INDEX idx_marker_lat ON marker USING btree (lat);
 
 
 --
+-- Name: idx_marker_lat_lon; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX idx_marker_lat_lon ON marker USING btree (lat, lon);
+
+
+--
 -- Name: idx_marker_lon; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -404,6 +418,13 @@ CREATE INDEX idx_marker_source_class ON marker USING btree (source, class);
 --
 
 CREATE INDEX idx_marker_source_class_subclass_lat_lon_elems ON marker USING btree (source, class, subclass, lat, lon, elems);
+
+
+--
+-- Name: marker_geom; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX marker_geom ON marker USING gist (point((lat)::double precision, (lon)::double precision));
 
 
 --
