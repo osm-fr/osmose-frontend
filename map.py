@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, request, template, response, redirect
+from bottle import route, request, template, response, redirect, abort
 from tools import utils
 from tools import tag2link
 import datetime
@@ -438,6 +438,9 @@ def markers(db, lang, id):
 
     db.execute(sqlbase, (id,) )
     res = db.fetchone()
+
+    if not res:
+        abort(410, "Id is not present in database.")
 
     translate = utils.translator(lang)
 
