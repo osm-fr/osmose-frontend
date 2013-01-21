@@ -71,7 +71,7 @@ def index(db, lang):
 
     if country == '':
         country = None
-    if country and not re.match(r"^([a-z_]+)$", country):
+    if country and not re.match(r"^([a-z_]+)(\*|)$", country):
         country = None
 
     if num_points <= 0:
@@ -190,6 +190,8 @@ def index(db, lang):
     if item <> None:
         opt_where += " AND dynpoi_class.item = %s" % item
     if country <> None:
+        if country[-1] == "*":
+            country = country[:-2] + "%"
         opt_where += " AND dynpoi_source.comment LIKE '%%%s'" % ("-" + country)
 
     if source == None and item == None and country == None:
