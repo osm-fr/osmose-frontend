@@ -1,0 +1,5 @@
+*.pyc
+
+po/mo
+po/osmose-frontend.pot.tmp
+po/tmp.tpl
