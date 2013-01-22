@@ -13,6 +13,9 @@ from tools import utils
 
 app = bottle.default_app()
 
+for l in utils.allowed_languages:
+    app.mount('/' + l, app)
+
 from bottle import SimpleTemplate
 SimpleTemplate.defaults["get_url"] = app.get_url
 

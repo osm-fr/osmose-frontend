@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-20 15:57+0100\n"
+"POT-Creation-Date: 2013-01-21 20:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -100,7 +100,7 @@ msgid "Statistics"
 msgstr ""
 
 #. TRANSLATORS: link to tooltip help
-#: ../map.py:377
+#: ../map.py:378
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr ""
 

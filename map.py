@@ -139,7 +139,8 @@ OFFSET
     return template('map/index', categories=categories, lat=params["lat"], lon=params["lon"], zoom=params["zoom"],
         source=params["source"], user=params["user"], classs=params["class"],
         levels=levels, level_selected=level_selected, active_items=active_items, urls=urls, delay=delay,
-        allowed_languages=allowed_languages, translate=utils.translator(lang))
+        allowed_languages=allowed_languages, translate=utils.translator(lang),
+        website=utils.website, request=request)
 
 
 def build_where_item(item, table):

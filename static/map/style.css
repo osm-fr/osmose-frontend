@@ -13,6 +13,10 @@ a:hover {
   color: #000000;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 /* Menu */
 div#menu {
   border-radius: 10px;
@@ -26,7 +30,7 @@ div#menu {
   padding: 5px;
   padding-top: 8px;
   padding-right: 0px;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 a#togglemenu {
   position: absolute;
@@ -121,21 +125,77 @@ div#map {
   right: 0px;
 }
 
-/* Bottom links */
-div#bottom_links {
+/* Top menu */
+div#top_links {
   background-color: #DDDDDD;
   position: absolute;
   height: 23px;
   width: 100%;
   left: 0px;
   top: 0px;
-  opacity: 0.8;
+  opacity: 0.9;
   font-size: 13px;
 
   vertical-align: middle;
   text-align: center;
   z-index: 1000;
 }
+
+#topmenu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#topmenu li {
+  float: left;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+#topmenu li a:link,
+#topmenu li a:visited {
+  display: block;
+  margin: 0;
+  padding: 4px 8px;
+  border-right: 1px solid #fff;
+  text-decoration: none;
+}
+#topmenu li a:hover { background-color: #B0B0B0; }
+#topmenu li a:active { background-color: #B0B0B0; }
+ 
+#topmenu .submenu {
+  display: none;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+#topmenu .submenu li {
+  float: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-top: 1px solid #003453;
+  border-right: 1px solid #003453;
+}
+#topmenu .submenu li a:link,
+#topmenu .submenu li a:visited {
+  display: block;
+  margin: 0;
+  border: 0;
+  text-decoration: none;
+  background: #DDDDDD;
+}
+#topmenu .submenu li a:hover {
+  background-image: none;
+  background-color: #B0B0B0;
+}
+ 
+#topmenu li:hover > .submenu { display: block; }
 
 /* popups */
 .bulle_msg {
@@ -361,11 +421,11 @@ option.level-__3 {
 }
 
 .delay-normal {
-    background: green;
+    background: green !important;
 }
 .delay-warning {
-    background: orange;
+    background: orange !important;
 }
 .delay-error {
-    background: red;
+    background: red !important;
 }

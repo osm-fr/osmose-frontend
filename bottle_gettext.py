@@ -26,9 +26,19 @@ class GettextPlugin(object):
         self.cache = {}
 
     def get_language(self):
-        lang = [request.get_cookie('lang')]
-        if lang[0] and lang[0] not in self.allowed_languages:
-            lang = [None]
+        lang = [None]
+
+        if len(request.script_name) > 3:
+            lang = [request.script_name[-3:-1], self.allowed_languages[0]]
+            if lang[0] not in self.allowed_languages:
+                lang = [None]
+            else:
+                return (lang, False)
+
+        if not lang[0]:
+            lang = [request.get_cookie('lang')]
+            if lang[0] not in self.allowed_languages:
+                lang = [None]
 
         if not lang[0] and request.get_header('Accept-Language'):
             lang = request.get_header('Accept-Language')
@@ -43,16 +53,32 @@ class GettextPlugin(object):
             for l in lang:
                 if not l in res:
                     res.append(l)
-            return res
+            return (res, True)
         else:
-            return self.allowed_languages
+            return (self.allowed_languages, True)
 
     def apply(self, callback, route):
         conf = route.config.get('pgsql') or {}
         keyword = conf.get('keyword', self.keyword)
 
         def wrapper(*args, **kwargs):
-            language = self.get_language()
+            (language, redirect) = self.get_language()
+
+            if redirect:
+                from tools import utils
+                from bottle import redirect
+                url = request.urlparts
+                new_url = []
+                new_url.append(url[0])
+                new_url.append("://")
+                new_url.append(utils.website)
+                new_url.append("/" + language[0])
+                new_url.append(request.fullpath)
+                if url[3]:
+                    new_url.append("?")
+                    new_url.append(url[3])
+                redirect("".join(new_url))
+                return
 
             # Setup Gettext
             k = ','.join(language)
