@@ -58,8 +58,14 @@ class GettextPlugin(object):
             return (self.allowed_languages, True)
 
     def apply(self, callback, route):
-        conf = route.config.get('pgsql') or {}
+        conf = route.config.get('gettext') or {}
         keyword = conf.get('keyword', self.keyword)
+
+        # Test if the original callback accepts a 'lang' keyword.
+        # Ignore it if it does not need a gettext handle.
+        args = inspect.getargspec(route.callback)[0]
+        if keyword not in args:
+            return callback
 
         def wrapper(*args, **kwargs):
             (language, redirect) = self.get_language()
@@ -90,8 +96,7 @@ class GettextPlugin(object):
             gt.install(unicode=1)
 
             # Add the language as a keyword argument.
-            if keyword in inspect.getargspec(route.callback)[0]:
-                kwargs[keyword] = language
+            kwargs[keyword] = language
 
             return callback(*args, **kwargs)
 
