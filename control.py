@@ -28,7 +28,7 @@ import sys
 from collections import defaultdict
 
 @route('/control/update')
-def updates(db):
+def updates(db, lang):
     db.execute("""
 SELECT
     dynpoi_source.source,
@@ -59,7 +59,7 @@ ORDER BY
 
 
 @route('/control/update_matrix')
-def updates(db):
+def updates(db, lang):
     db.execute("""
 SELECT DISTINCT ON (source)
     source,
