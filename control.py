@@ -67,7 +67,7 @@ SELECT DISTINCT ON (source)
     comment
 FROM
     dynpoi_source
-    NATURAL JOIN dynpoi_update
+    NATURAL JOIN dynpoi_update_last
 ORDER BY
     source ASC,
     timestamp DESC
