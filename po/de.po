@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-21 20:16+0100\n"
+"POT-Creation-Date: 2013-01-27 20:52+0100\n"
 "PO-Revision-Date: 2012-08-02 14:19+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: German\n"
@@ -44,64 +44,58 @@ msgstr "Informationen"
 
 #. TRANSLATORS: link to help in appropriate language
 #: ../map.py:105
-msgid "Help"
-msgstr "Hilfe"
-
-#: ../map.py:105
-msgid "http://wiki.openstreetmap.org/wiki/Osmose"
-msgstr "http://wiki.openstreetmap.org/wiki/DE:Osmose"
-
-#: ../map.py:106
 msgid "Errors by user"
 msgstr "Fehler eines Benutzers"
 
-#: ../map.py:107
+#: ../map.py:106
 msgid "Relation analyser"
 msgstr "Analyse von Relationen"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:109
+#: ../map.py:108
 msgid "CLC"
 msgstr ""
 
-#: ../map.py:109
+#: ../map.py:108
 msgid "http://clc.openstreetmap.fr/"
 msgstr "http://clc.openstreetmap.fr/"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:111
-#, fuzzy
-msgid "Geodesic"
-msgstr "Geodätische"
-
-#: ../map.py:111
-msgid "http://geodesie.openstreetmap.fr/"
-msgstr "http://geodesie.openstreetmap.fr/"
-
-#. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:113
+#: ../map.py:110
 msgid "openstreetmap.fr"
 msgstr "openstreetmap.de"
 
-#: ../map.py:113
+#: ../map.py:110
 msgid "http://www.openstreetmap.fr/"
 msgstr "http://www.openstreetmap.de/"
 
-#: ../map.py:114
-msgid "Copyright"
-msgstr "Copyright"
-
 #. TRANSLATORS: link to source code
-#: ../map.py:116
-msgid "Sources"
-msgstr "Quellcode"
-
-#: ../map.py:117
+#: ../map.py:112
 msgid "Statistics"
 msgstr "Statistik"
 
+#: ../map.py:115
+msgid "Help on wiki"
+msgstr "Hilfe im wiki"
+
+#: ../map.py:115
+msgid "http://wiki.openstreetmap.org/wiki/Osmose"
+msgstr "http://wiki.openstreetmap.org/wiki/DE:Osmose"
+
+#: ../map.py:116
+msgid "Copyright"
+msgstr "Copyright"
+
+#: ../map.py:117
+msgid "Sources"
+msgstr "Quellcode"
+
+#: ../map.py:118
+msgid "Translation"
+msgstr ""
+
 #. TRANSLATORS: link to tooltip help
-#: ../map.py:378
+#: ../map.py:379
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/DE:Osmose/erreurs"
 
@@ -415,108 +409,117 @@ msgid "invert"
 msgstr "Auswahl umkehren"
 
 #: tmp.tpl:97
-msgid "Change language:"
-msgstr "Sprache ändern:"
+msgid "Change language"
+msgstr "Sprache ändern"
 
 #: tmp.tpl:98
+msgid "Help"
+msgstr "Hilfe"
+
+#: tmp.tpl:99
 #, python-format
 msgid "Delay: %sd"
 msgstr "Verzögerung: %sd"
 
-#: tmp.tpl:99
+#: tmp.tpl:100
 msgid "Error reported on: "
 msgstr "Fehler berichtet am:"
 
-#: tmp.tpl:100
+#: tmp.tpl:101
 msgid "change status"
 msgstr "Status ändern"
 
-#: tmp.tpl:101
+#: tmp.tpl:102
 msgid "corrected"
 msgstr "korrigiert"
 
-#: tmp.tpl:102
+#: tmp.tpl:103
 msgid "false positive"
 msgstr "falscher positive"
 
-#: tmp.tpl:103 tmp.tpl:104
+#: tmp.tpl:104 tmp.tpl:105
 msgid "How to help translation"
 msgstr ""
 
-#: tmp.tpl:105
+#: tmp.tpl:106
 msgid ""
 "OsmOse tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
 msgstr ""
 
-#: tmp.tpl:106
+#: tmp.tpl:107
 msgid ""
 "To make OsmOse a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr ""
 
-#: tmp.tpl:107
+#: tmp.tpl:108
 msgid "Recent translation needs"
 msgstr ""
 
-#: tmp.tpl:108
+#: tmp.tpl:109
 msgid ""
 "European countries: German and Italian in Switzerland and Dutch in Belgium"
 msgstr ""
 
-#: tmp.tpl:109
+#: tmp.tpl:110
 msgid ""
 "Countries covered by HOT: Wolof in Senegal, Arabic in Chad and Cameroon, "
 "Swahili in Kenya, Kirundi in Burundi, and Malagasy in Madagascar"
 msgstr ""
 
-#: tmp.tpl:110
+#: tmp.tpl:111
 msgid "Pages to translate"
 msgstr ""
 
-#: tmp.tpl:111
+#: tmp.tpl:112
 msgid "Wiki pages"
 msgstr ""
 
-#: tmp.tpl:112
-#, fuzzy
-msgid "OsmOse main page"
-msgstr "OsmOse - Karte"
-
 #: tmp.tpl:113
+msgid "OsmOse main page"
+msgstr ""
+
+#: tmp.tpl:114
 #, fuzzy
 msgid "Documentation on reported errors"
 msgstr "Informationen über den Fehler"
 
-#: tmp.tpl:114
-#, fuzzy
-msgid "OsmOse pages"
-msgstr "OsmOse - Karte"
-
 #: tmp.tpl:115
-msgid "Translation status"
+msgid "OsmOse pages"
 msgstr ""
 
 #: tmp.tpl:116
-msgid "Source code for translations (.po files)"
+msgid "Translation status"
 msgstr ""
 
 #: tmp.tpl:117
+msgid "Source code for translations (.po files)"
+msgstr ""
+
+#: tmp.tpl:118
 msgid ""
 "Source code for translations (database files for menu) - categ_menu_en.txt "
 "and item_menu_en.txt are the reference ones."
 msgstr ""
 
-#: tmp.tpl:118
+#: tmp.tpl:119
 msgid "Bug tracking system"
 msgstr ""
 
-#: tmp.tpl:119
+#: tmp.tpl:120
 msgid ""
 "<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
 "issue with translations, or erroneous analyses."
 msgstr ""
+
+#, fuzzy
+#~ msgid "Geodesic"
+#~ msgstr "Geodätische"
+
+#~ msgid "http://geodesie.openstreetmap.fr/"
+#~ msgstr "http://geodesie.openstreetmap.fr/"
 
 #~ msgid "Item"
 #~ msgstr "Artikel"
