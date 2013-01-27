@@ -133,9 +133,9 @@ def index(db, lang):
         dynpoi_source.comment AS source_comment
     FROM
         dynpoi_class
-        LEFT JOIN dynpoi_item ON 
+        JOIN dynpoi_item ON
             dynpoi_class.item = dynpoi_item.item
-        LEFT JOIN dynpoi_source ON
+        JOIN dynpoi_source ON
             dynpoi_class.source = dynpoi_source.source
         %s %s
     WHERE 1=1
@@ -237,9 +237,9 @@ def index(db, lang):
             %s AS date
         FROM
             dynpoi_class
-            LEFT JOIN dynpoi_item ON
+            JOIN dynpoi_item ON
                 dynpoi_class.item = dynpoi_item.item
-            LEFT JOIN dynpoi_source ON
+            JOIN dynpoi_source ON
                 dynpoi_class.source = dynpoi_source.source
             %s
         WHERE 1=1
