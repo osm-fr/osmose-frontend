@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-21 20:16+0100\n"
+"POT-Creation-Date: 2013-01-27 20:52+0100\n"
 "PO-Revision-Date: 2012-10-11 22:17+0100\n"
 "Last-Translator: frodrigo <frodrigo@openstreetmap.fr>\n"
 "Language-Team: French\n"
@@ -46,63 +46,58 @@ msgstr "Informations"
 
 #. TRANSLATORS: link to help in appropriate language
 #: ../map.py:105
-msgid "Help"
-msgstr "Aide"
-
-#: ../map.py:105
-msgid "http://wiki.openstreetmap.org/wiki/Osmose"
-msgstr "http://wiki.openstreetmap.org/wiki/FR:Osmose"
-
-#: ../map.py:106
 msgid "Errors by user"
 msgstr "Erreurs par utilisateur"
 
-#: ../map.py:107
+#: ../map.py:106
 msgid "Relation analyser"
 msgstr "Analyseur de relation"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:109
+#: ../map.py:108
 msgid "CLC"
 msgstr "CLC"
 
-#: ../map.py:109
+#: ../map.py:108
 msgid "http://clc.openstreetmap.fr/"
 msgstr "http://clc.openstreetmap.fr/"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:111
-msgid "Geodesic"
-msgstr "Géodésie"
-
-#: ../map.py:111
-msgid "http://geodesie.openstreetmap.fr/"
-msgstr "http://geodesie.openstreetmap.fr/"
-
-#. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:113
+#: ../map.py:110
 msgid "openstreetmap.fr"
 msgstr "openstreetmap.fr"
 
-#: ../map.py:113
+#: ../map.py:110
 msgid "http://www.openstreetmap.fr/"
 msgstr "http://www.openstreetmap.fr/"
 
-#: ../map.py:114
-msgid "Copyright"
-msgstr "Copyright"
-
 #. TRANSLATORS: link to source code
-#: ../map.py:116
-msgid "Sources"
-msgstr "Sources"
-
-#: ../map.py:117
+#: ../map.py:112
 msgid "Statistics"
 msgstr "Statistiques"
 
+#: ../map.py:115
+msgid "Help on wiki"
+msgstr "Aide sur le wiki"
+
+#: ../map.py:115
+msgid "http://wiki.openstreetmap.org/wiki/Osmose"
+msgstr "http://wiki.openstreetmap.org/wiki/FR:Osmose"
+
+#: ../map.py:116
+msgid "Copyright"
+msgstr "Copyright"
+
+#: ../map.py:117
+msgid "Sources"
+msgstr "Sources"
+
+#: ../map.py:118
+msgid "Translation"
+msgstr "Traduction"
+
 #. TRANSLATORS: link to tooltip help
-#: ../map.py:378
+#: ../map.py:379
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/FR:Osmose/erreurs"
 
@@ -410,35 +405,39 @@ msgid "invert"
 msgstr "inverser"
 
 #: tmp.tpl:97
-msgid "Change language:"
-msgstr "Changer la langue :"
+msgid "Change language"
+msgstr "Changer la langue"
 
 #: tmp.tpl:98
+msgid "Help"
+msgstr "Aide"
+
+#: tmp.tpl:99
 #, python-format
 msgid "Delay: %sd"
 msgstr "Délai : %sj"
 
-#: tmp.tpl:99
+#: tmp.tpl:100
 msgid "Error reported on: "
 msgstr "Erreur reportée le :"
 
-#: tmp.tpl:100
+#: tmp.tpl:101
 msgid "change status"
 msgstr "changer le statut"
 
-#: tmp.tpl:101
+#: tmp.tpl:102
 msgid "corrected"
 msgstr "corrigé"
 
-#: tmp.tpl:102
+#: tmp.tpl:103
 msgid "false positive"
 msgstr "faux positif"
 
-#: tmp.tpl:103 tmp.tpl:104
+#: tmp.tpl:104 tmp.tpl:105
 msgid "How to help translation"
 msgstr "Comment améliorer les traductions"
 
-#: tmp.tpl:105
+#: tmp.tpl:106
 msgid ""
 "OsmOse tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
@@ -448,7 +447,7 @@ msgstr ""
 "voudrions couvrir d'autres languages. Nous couvrons actuellement la majorité "
 "des langues utilisées dans les pays couverts par les analyses."
 
-#: tmp.tpl:106
+#: tmp.tpl:107
 msgid ""
 "To make OsmOse a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
@@ -456,18 +455,18 @@ msgstr ""
 "Afin de rendre OsmOse un outil international, nous avons besoin de votre "
 "aide pour améliorer les traductions actuelles, et en ajouter d'autres"
 
-#: tmp.tpl:107
+#: tmp.tpl:108
 msgid "Recent translation needs"
 msgstr "Besoin récents de traduction"
 
-#: tmp.tpl:108
+#: tmp.tpl:109
 msgid ""
 "European countries: German and Italian in Switzerland and Dutch in Belgium"
 msgstr ""
 "Pays européens : allemand et italien pour la Suisse, et flamand pour la "
 "Belgique"
 
-#: tmp.tpl:109
+#: tmp.tpl:110
 msgid ""
 "Countries covered by HOT: Wolof in Senegal, Arabic in Chad and Cameroon, "
 "Swahili in Kenya, Kirundi in Burundi, and Malagasy in Madagascar"
@@ -476,35 +475,35 @@ msgstr ""
 "Cameroun, swahili pour le Kenya, kirundi pour le Burundi, et malgache pour "
 "le Madagascar"
 
-#: tmp.tpl:110
+#: tmp.tpl:111
 msgid "Pages to translate"
 msgstr "Pages à traduire"
 
-#: tmp.tpl:111
+#: tmp.tpl:112
 msgid "Wiki pages"
 msgstr "Pages du Wiki"
 
-#: tmp.tpl:112
+#: tmp.tpl:113
 msgid "OsmOse main page"
 msgstr "Page principale sur OsmOse"
 
-#: tmp.tpl:113
+#: tmp.tpl:114
 msgid "Documentation on reported errors"
 msgstr "Documentation sur les erreurs reportées"
 
-#: tmp.tpl:114
+#: tmp.tpl:115
 msgid "OsmOse pages"
 msgstr "Pages d'OsmOse"
 
-#: tmp.tpl:115
+#: tmp.tpl:116
 msgid "Translation status"
 msgstr "Statut actuel des traductions"
 
-#: tmp.tpl:116
+#: tmp.tpl:117
 msgid "Source code for translations (.po files)"
 msgstr "Code source des traductions (fichiers .po)"
 
-#: tmp.tpl:117
+#: tmp.tpl:118
 msgid ""
 "Source code for translations (database files for menu) - categ_menu_en.txt "
 "and item_menu_en.txt are the reference ones."
@@ -512,17 +511,23 @@ msgstr ""
 "Code source des traductions (fichiers de base de donnée pour le menu) - "
 "categ_menu_en.txt et item_menu_en.txt sont les fichiers de référence."
 
-#: tmp.tpl:118
+#: tmp.tpl:119
 msgid "Bug tracking system"
 msgstr "Suivi des bugs"
 
-#: tmp.tpl:119
+#: tmp.tpl:120
 msgid ""
 "<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
 "issue with translations, or erroneous analyses."
 msgstr ""
 "<a href='http://trac.openstreetmap.fr'>Trac</a> est utilisé pour reporter "
 "tout problèmes avec les traductions, ou des analyses erronées."
+
+#~ msgid "Geodesic"
+#~ msgstr "Géodésie"
+
+#~ msgid "http://geodesie.openstreetmap.fr/"
+#~ msgstr "http://geodesie.openstreetmap.fr/"
 
 #~ msgid "Item"
 #~ msgstr "Item"
