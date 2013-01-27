@@ -102,19 +102,20 @@ def index(db, lang):
 
     urls = []
     # TRANSLATORS: link to help in appropriate language
-    urls.append((_("Help"), _("http://wiki.openstreetmap.org/wiki/Osmose")))
     urls.append((_("Errors by user"), "../byuser/"))
     urls.append((_("Relation analyser"), "http://analyser.openstreetmap.fr/"))
     # TRANSLATORS: this link can be changed to something specific to the language
     urls.append((_("CLC"), _("http://clc.openstreetmap.fr/")))
     # TRANSLATORS: this link can be changed to something specific to the language
-    urls.append((_("Geodesic"), _("http://geodesie.openstreetmap.fr/")))
-    # TRANSLATORS: this link can be changed to something specific to the language
     urls.append((_("openstreetmap.fr"), _("http://www.openstreetmap.fr/")))
-    urls.append((_("Copyright"), "../copyright"))
     # TRANSLATORS: link to source code
-    urls.append((_("Sources"), "https://gitorious.org/osmose"))
     urls.append((_("Statistics"), "../control/update"))
+
+    helps = []
+    helps.append((_("Help on wiki"), _("http://wiki.openstreetmap.org/wiki/Osmose")))
+    helps.append((_("Copyright"), "../copyright"))
+    helps.append((_("Sources"), "https://gitorious.org/osmose"))
+    helps.append((_("Translation"), "../translation"))
 
     allowed_languages = utils.allowed_languages
 
@@ -138,7 +139,7 @@ OFFSET
 
     return template('map/index', categories=categories, lat=params["lat"], lon=params["lon"], zoom=params["zoom"],
         source=params["source"], user=params["user"], classs=params["class"],
-        levels=levels, level_selected=level_selected, active_items=active_items, urls=urls, delay=delay,
+        levels=levels, level_selected=level_selected, active_items=active_items, urls=urls, helps=helps, delay=delay,
         allowed_languages=allowed_languages, translate=utils.translator(lang),
         website=utils.website, request=request)
 

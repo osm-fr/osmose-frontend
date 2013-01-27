@@ -97,7 +97,7 @@
 
 <div id='top_links'>
 <ul id="topmenu">
-<li><a href='#'>{{_("Change language:")}}</a>
+<li><a href='#'>{{_("Change language")}} ▼</a>
 <ul class="submenu">
 %for l in allowed_languages:
 %    if translate.languages[0] == l:
@@ -113,6 +113,14 @@
 %for u in urls:
  <li><a href="{{u[1]}}">{{u[0]}}</a></li>
 %end
+
+<li><a href='#'>{{_("Help")}} ▼</a>
+<ul class="submenu">
+%for u in helps:
+ <li><a href="{{u[1]}}">{{u[0]}}</a></li>
+%end
+</ul>
+</li>
 
 %delay_status = "normal" if delay < 1.1 else "warning" if delay < 1.6 else "error"
 %delay = "%0.2f" % delay
