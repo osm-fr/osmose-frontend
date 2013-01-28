@@ -1,16 +1,6 @@
 body {
   margin: 0;
   font-family: arial, helvetica, sans-serif;
-} 
-
-a:link {
-  color: #000000;
-}
-a:visited {
-  color: #000000;
-}
-a:hover {
-  color: #000000;
 }
 
 .bold {
@@ -291,12 +281,6 @@ a.bulle_err:hover {
   font-size: 90%;
 }
 
-/* iframe for josm and rawedit links */
-iframe#hiddenIframe {
-  display: none;
-  position: absolute;
-}
-
 div#incFrameBg {
   display: none;
   position: absolute;
@@ -418,14 +402,4 @@ option.level-__3 {
   bottom: 0em;
   position: absolute;
   display: block;
-}
-
-.delay-normal {
-    background: green !important;
-}
-.delay-warning {
-    background: orange !important;
-}
-.delay-error {
-    background: red !important;
 }

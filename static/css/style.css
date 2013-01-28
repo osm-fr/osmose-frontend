@@ -32,6 +32,19 @@ table a {
   text-decoration: none;
 }
 
+a {
+  text-decoration: underline;
+}
+a:link {
+  color: #000000;
+}
+a:visited {
+  color: dark-purple;
+}
+a:hover {
+  color: #000000;
+}
+
 /* iframe for josm and rawedit links */
 iframe#hiddenIframe {
   display: none;
@@ -50,12 +63,13 @@ th.country .rotate-90 {
   -webkit-transform:rotate(-90deg); /* Safari and Chrome */
   max-width: 1.5em;
 }
+
 .delay-normal {
-    background: green;
+    background: green !important;
 }
 .delay-warning {
-    background: orange;
+    background: orange !important;
 }
 .delay-error {
-    background: red;
+    background: red !important;
 }
