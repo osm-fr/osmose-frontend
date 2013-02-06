@@ -316,7 +316,7 @@ OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
             var p = $( jq(this.popup.id))
             p.data("feature", this);
             OpenLayers.Request.GET({
-                url: 'marker/' + this.popup.feature.data.marker_id,
+                url: '../api/0.2/error/' + this.popup.feature.data.marker_id,
                 success: function (ajaxRequest) {
                     var template = $('#popupTpl').html();
                     var resp = JSON.parse(ajaxRequest.responseText);
