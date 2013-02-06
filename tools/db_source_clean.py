@@ -26,7 +26,7 @@ sources = [int(x) for x in utils.get_sources().keys()]
 dbconn  = utils.get_dbconn()
 dbcurs  = dbconn.cursor()
 
-tables  = ["dynpoi_class", "dynpoi_marker", "dynpoi_status", "dynpoi_update", "dynpoi_user"]
+tables  = ["dynpoi_class", "marker", "dynpoi_status", "dynpoi_update"]
 for t in tables:
     dbcurs.execute("SELECT source FROM %s GROUP BY source;"%t)
     for res in dbcurs.fetchall():
