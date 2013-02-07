@@ -33,9 +33,9 @@ def _errors(db, lang, params):
     results = query._gets(db, params)
 
     if not params.full:
-        out = ["\t".join(["lat", "lon", "error_id", "item"])]
+        out = [["lat", "lon", "error_id", "item"]]
     else:
-        out = ["\t".join(["lat", "lon", "error_id", "item", "source", "classs", "elems", "subclass", "subtitle", "title", "level", "update", "username"])]
+        out = [["lat", "lon", "error_id", "item", "source", "classs", "elems", "subclass", "subtitle", "title", "level", "update", "username"]]
 
     translate = utils.translator(lang)
 
@@ -46,7 +46,7 @@ def _errors(db, lang, params):
         item      = res["item"] or 0
 
         if not params.full:
-            out.append("\t".join([lat, lon, str(error_id), str(item)]))
+            out.append([lat, lon, str(error_id), str(item)])
         else:
             source    = res["source"]
             classs    = res["class"]
@@ -57,16 +57,15 @@ def _errors(db, lang, params):
             level     = res["level"]
             update    = res["timestamp"]
             username  = (res["username"] or "").decode('utf-8')
-            out.append("\t".join([lat, lon, str(error_id), str(item), str(source), str(classs), str(elems), str(subclass), subtitle, title, str(level), str(update), username]))
+            out.append([lat, lon, str(error_id), str(item), str(source), str(classs), str(elems), str(subclass), subtitle, title, str(level), str(update), username])
 
-    return "\n".join(out)
+    return out
 
 
 @route('/api/0.2/errors')
 def errors(db, lang):
     params = query._params()
-    response.content_type = "text/plain; charset=utf-8"
-    return _errors(db, lang, params)
+    return {"errors": _errors(db, lang, params)}
 
 
 def int_list(s):

@@ -21,7 +21,6 @@
 
 from bottle import route, request, template, response, abort
 import StringIO, os, tempfile, urllib2
-import json
 
 from tools import osmose_common
 from tools import utils
@@ -29,7 +28,7 @@ from tools import utils
 
 def _get(db, err_id):
     columns_marker = ["marker.item", "marker.source", "marker.class", "marker.elems", "marker.subclass",
-        "ROUND(marker.lat/1000000.) AS lat", "ROUND(marker.lon/1000000.) AS lon",
+        "ROUND(marker.lat/1000000., 8) AS lat", "ROUND(marker.lon/1000000., 8) AS lon",
         "dynpoi_class.title", "marker.subtitle", "dynpoi_update_last.timestamp"]
     sql = "SELECT " + ",".join(columns_marker) + """
     FROM
@@ -158,9 +157,7 @@ def markers(db, lang, err_id):
                                   "del": expand_tags(fix["tags_delete"], {}, True),
                                  })
 
-
-    response.content_type = "application/json"
-    return json.dumps({
+    return {
         "lat":lat, "lon":lon,
         "minlat": float(lat) - 0.002, "maxlat": float(lat) + 0.002,
         "minlon": float(lon) - 0.002, "maxlon": float(lon) + 0.002,
@@ -171,13 +168,13 @@ def markers(db, lang, err_id):
         "elems":elems, "new_elems":new_elems,
         "elems_id":marker["elems"].replace("_",","),
         "url_help":url_help
-    })
+    }
 
 
 @route('/api/0.2/error/<err_id:int>/<status:re:(done|false)>')
 def status(err_id, status):
     if osmose_common.remove_bug(err_id, status) == 0:
-        abort(202, "OK")
+        abort(200, "OK")
     else:
         abort(410, "FAIL")
 

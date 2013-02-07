@@ -50,11 +50,13 @@ def _build_where_item(item, table):
     return where
 
 
-def _build_param(bbox, source, item, level, username, classs, country, active, status, forceTable=[]):
+def _build_param(bbox, source, item, level, username, classs, country, active, status, forceTable=[], stats=False):
     join = ""
     where = ["1=1"]
 
-    if status in ("done", "false"):
+    if stats:
+        join += "dynpoi_stats AS marker"
+    elif status in ("done", "false"):
         join += "dynpoi_status AS marker"
         where.append("marker.status = '%s'" % status)
     else:

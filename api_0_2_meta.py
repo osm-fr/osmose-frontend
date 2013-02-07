@@ -40,11 +40,7 @@ def _items(db, lang):
 
 @route('/api/0.2/meta/items')
 def items(db, lang):
-    response.content_type = "text/plain; charset=utf-8"
-    ret = ""
-    for item in _items(db, lang):
-        ret += ",".join(map(lambda x: str(x), item)) + "\n"
-    return ret
+    return {"items": _items(db, lang)}
 
 
 def _countries(db, lang):
@@ -62,8 +58,4 @@ def _countries(db, lang):
 
 @route('/api/0.2/meta/countries')
 def items(db, lang):
-    response.content_type = "text/plain; charset=utf-8"
-    ret = ""
-    for item in _countries(db, lang):
-        ret += ",".join(item) + "\n"
-    return ret
+    return {"countries": map(lambda x: x[0], _countries(db, lang))}

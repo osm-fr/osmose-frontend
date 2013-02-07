@@ -35,27 +35,25 @@ def byUser():
 @route('/byuser/<username>.<format:ext>')
 @route('/api/0.2/user/<username>')
 def user(db, lang, username=None, format=None):
-    params = api_0_2._params()
-    params.user = username or params.user
+    params = query._params()
+    params.username = username or params.username
     params.limit = 500
     params.full = True
 
-    if not params.user:
+    if not params.username:
         return template('byuser/index')
 
     results = query._gets(db, params)
     count = len(results)
-    if request.path.startswith("/api") or format == "csv":
-        response.content_type = 'text/plain; Charset=UTF-8'
-        content = "" # TODO CSV propre
+    if request.path.startswith("/api") or format == "json":
         for res in results:
-            content += ','.join(results)
-        return content
+            res["timestamp"] = str(res["timestamp"])
+        return {"byusers": results}
     elif format == 'rss':
         response.content_type = "application/rss+xml"
-        return template('byuser/byuser.rss', username=params.user, count=count, results=results, translate=utils.translator(lang))
+        return template('byuser/byuser.rss', username=params.username, count=count, results=results, translate=utils.translator(lang))
     else:
-        return template('byuser/byuser', username=params.user, count=count, results=results, translate=utils.translator(lang))
+        return template('byuser/byuser', username=params.username, count=count, results=results, translate=utils.translator(lang))
 
 
 def _users(db):
@@ -70,8 +68,4 @@ def byuser_stats(db):
 
 @route('/api/0.2/users')
 def users(db):
-    response.content_type = 'text/plain; Charset=UTF-8'
-    content = "# username, count\n"
-    for res in _users(db):
-        content += '"%s",%d"\n' % (res["username"], int(res["count"]))
-    return content
+    return {"users": _users(db)}

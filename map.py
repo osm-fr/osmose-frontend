@@ -243,12 +243,9 @@ def markers(db, lang):
     response.set_cookie('last_level', str(params.level), expires=expires, path=path)
     response.set_cookie('last_item', params.item, expires=expires, path=path)
 
-    response.content_type = "text/plain; charset=utf-8"
     return errors._errors(db, lang, params)
 
 
 @route('/tpl/popup.tpl')
 def popup_template(lang):
-
-    return template('map/popup', mustache_delimiter="{{=<% %>=}}",
-                                 website=utils.website)
+    return template('map/popup', mustache_delimiter="{{=<% %>=}}", website=utils.website)
