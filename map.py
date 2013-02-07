@@ -58,14 +58,14 @@ def index(db, lang):
                "level":  1,
                "source": '',
                "class":  '',
-               "user":   '',
+               "username":   '',
              }
 
     for p in ["lat", "lon", "zoom", "item", "level"]:
         if request.cookies.get("last_" + p, default=None):
             params[p] = request.cookies.get("last_" + p)
 
-    for p in ["lat", "lon", "zoom", "item", "level", "source", "user", "class"]:
+    for p in ["lat", "lon", "zoom", "item", "level", "source", "username", "class"]:
         if request.params.get(p, default=None):
             params[p] = request.params.get(p)
 
@@ -139,7 +139,7 @@ OFFSET
         delay = delay[0]/60/60/24
 
     return template('map/index', categories=categories, lat=params["lat"], lon=params["lon"], zoom=params["zoom"],
-        source=params["source"], user=params["user"], classs=params["class"],
+        source=params["source"], username=params["username"], classs=params["class"],
         levels=levels, level_selected=level_selected, active_items=active_items, urls=urls, helps=helps, delay=delay,
         allowed_languages=allowed_languages, translate=utils.translator(lang),
         website=utils.website, request=request)
@@ -157,11 +157,11 @@ def heat(db, z, x, y):
     x2,y1 = num2deg(x,y,z)
     x1,y2 = num2deg(x+1,y+1,z)
 
-    item   = request.params.get('item')
-    source = request.params.get('source', default='')
-    classs = request.params.get('class', default='')
-    user   = utils.pg_escape(unicode(request.params.get('user', default='')))
-    level  = request.params.get('level', default='1')
+    item     = request.params.get('item')
+    source   = request.params.get('source', default='')
+    classs   = request.params.get('class', default='')
+    username = utils.pg_escape(unicode(request.params.get('username', default='')))
+    level    = request.params.get('level', default='1')
 
     COUNT=32
 
@@ -181,7 +181,7 @@ WHERE
         # FIXME redirect empty tile
         max = 0
 
-    join, where = errors._build_param(source, item, level, user, classs)
+    join, where = errors._build_param(source, item, level, username, classs)
 
     db.execute("""
 SELECT
@@ -229,7 +229,7 @@ GROUP BY
 def markers(db, lang):
     params = query._params()
 
-    if (not params.user) and (not params.source) and (params.zoom < 6):
+    if (not params.username) and (not params.source) and (params.zoom < 6):
         return
 
     params.limit = 200
@@ -243,7 +243,7 @@ def markers(db, lang):
     response.set_cookie('last_level', str(params.level), expires=expires, path=path)
     response.set_cookie('last_item', params.item, expires=expires, path=path)
 
-    return errors._errors(db, lang, params)
+    return {"errors": errors._errors(db, lang, params)}
 
 
 @route('/tpl/popup.tpl')
