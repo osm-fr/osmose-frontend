@@ -1,15 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import utils, commands, sys, os
+import utils, query_meta, commands, sys, os
 #import commands, sys
 #sys.path.append("../cgi-src")
 #from index import menu_groupes, menu_autres
 
 ################################################################################
 
+conn = utils.get_dbconn()
+db = conn.cursor()
 all_items = []
-for g in utils.get_categories("en"):
+for g in query_meta._categories(db, "en"):
     all_items += g["item"]
 
 ################################################################################

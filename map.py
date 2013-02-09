@@ -24,6 +24,7 @@ from bottle import route, request, template, response, redirect, abort
 from tools import utils
 from tools import tag2link
 from tools import query
+from tools import query_meta
 import errors
 import datetime
 import math, StringIO
@@ -90,7 +91,7 @@ def index(db, lang):
     elif params["level"] in ("1", "2", "3", "1,2", "1,2,3"):
         level_selected[params["level"]] = " selected=\"selected\""
 
-    categories = utils.get_categories(lang)
+    categories = query_meta._categories(db, lang)
 
     levels = {"1": set(), "2": set(), "3": set()}
     for categ in categories:
@@ -243,7 +244,7 @@ def markers(db, lang):
     response.set_cookie('last_level', str(params.level), expires=expires, path=path)
     response.set_cookie('last_item', params.item, expires=expires, path=path)
 
-    return {"errors": errors._errors(db, lang, params)}
+    return errors._errors(db, lang, params)
 
 
 @route('/tpl/popup.tpl')

@@ -23,9 +23,9 @@
 from bottle import route, request, template, response, abort, redirect
 from tools import utils
 from tools import query
+from tools import query_meta
 import StringIO, re
 
-import api_0_2_meta
 import errors_graph
 
 
@@ -33,9 +33,9 @@ def _errors(db, lang, params):
     results = query._gets(db, params)
 
     if not params.full:
-        out = [["lat", "lon", "error_id", "item"]]
+        out = { "errors": [], "description": ["lat", "lon", "error_id", "item"]}
     else:
-        out = [["lat", "lon", "error_id", "item", "source", "classs", "elems", "subclass", "subtitle", "title", "level", "update", "username"]]
+        out = { "errors": [], "description": ["lat", "lon", "error_id", "item", "source", "classs", "elems", "subclass", "subtitle", "title", "level", "update", "username"]}
 
     translate = utils.translator(lang)
 
@@ -46,7 +46,7 @@ def _errors(db, lang, params):
         item      = res["item"] or 0
 
         if not params.full:
-            out.append([lat, lon, str(error_id), str(item)])
+            out["errors"].append([lat, lon, str(error_id), str(item)])
         else:
             source    = res["source"]
             classs    = res["class"]
@@ -57,7 +57,7 @@ def _errors(db, lang, params):
             level     = res["level"]
             update    = res["timestamp"]
             username  = (res["username"] or "").decode('utf-8')
-            out.append([lat, lon, str(error_id), str(item), str(source), str(classs), str(elems), str(subclass), subtitle, title, str(level), str(update), username])
+            out["errors"].append([lat, lon, str(error_id), str(item), str(source), str(classs), str(elems), str(subclass), subtitle, title, str(level), str(update), username])
 
     return out
 
@@ -65,7 +65,7 @@ def _errors(db, lang, params):
 @route('/api/0.2/errors')
 def errors(db, lang):
     params = query._params()
-    return {"errors": _errors(db, lang, params)}
+    return _errors(db, lang, params)
 
 
 def int_list(s):
@@ -113,8 +113,8 @@ def index(db, lang):
         title = _("Informations")
         gen = "info"
 
-    countries = api_0_2_meta._countries(db, lang)
-    items = api_0_2_meta._items(db, lang)
+    countries = query_meta._countries(db, lang)
+    items = query_meta._items(db, lang)
 
     params = query._params()
     limit = request.params.get('limit', type=int)

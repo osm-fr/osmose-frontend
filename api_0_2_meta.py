@@ -21,41 +21,19 @@
 ###########################################################################
 
 from bottle import route, response
-from tools import utils
-
-
-def _items(db, lang):
-    sql = """
-    SELECT
-        item,
-        menu
-    FROM
-        dynpoi_item
-    ORDER BY
-        item
-    """
-    db.execute(sql)
-    return db.fetchall()
+from tools import query_meta
 
 
 @route('/api/0.2/meta/items')
 def items(db, lang):
-    return {"items": _items(db, lang)}
-
-
-def _countries(db, lang):
-    sql = """
-    SELECT DISTINCT
-        (string_to_array(comment,'-'))[array_upper(string_to_array(comment,'-'), 1)] AS country
-    FROM
-        dynpoi_source
-    ORDER BY
-        country
-    """
-    db.execute(sql)
-    return db.fetchall()
+    return {"items": query_meta._items(db, lang)}
 
 
 @route('/api/0.2/meta/countries')
 def items(db, lang):
-    return {"countries": map(lambda x: x[0], _countries(db, lang))}
+    return {"countries": map(lambda x: x[0], query_meta._countries(db, lang))}
+
+
+@route('/api/0.2/meta/categories')
+def items(db, lang):
+    return {"categories": query_meta._categories(db, lang)}
