@@ -18,7 +18,7 @@ OpenLayers.Format.DynPoiFormat = OpenLayers.Class(OpenLayers.Format, {
         OpenLayers.Format.prototype.initialize.apply(this, [options]);
     },
 
-    read: function (text) {
+    read: function (json) {
         var obj = JSON && JSON.parse(json) || $.parseJSON(json);
         var columns = obj.description;
         var features = [];
@@ -41,7 +41,7 @@ OpenLayers.Format.DynPoiFormat = OpenLayers.Class(OpenLayers.Format, {
                         set = true;
                     } else if (columns[valIndex] == 'item') {
                         style['item'] = vals[valIndex];
-                    } else if (columns[valIndex] == 'marker_id') {
+                    } else if (columns[valIndex] == 'error_id') {
                         attributes['marker_id'] = vals[valIndex];
                     }
                 }

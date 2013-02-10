@@ -157,7 +157,6 @@ function init() {
             $("div#need_zoom").hide();
             $("div#action_links").show();
             if ($("div#menu").data('opened')) {
-                console.log('showing tests');
                 $("div#tests").fadeIn();
             }
         }
