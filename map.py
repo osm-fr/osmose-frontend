@@ -158,15 +158,9 @@ def heat(db, z, x, y):
     x2,y1 = num2deg(x,y,z)
     x1,y2 = num2deg(x+1,y+1,z)
 
-    item     = request.params.get('item')
-    source   = request.params.get('source', default='')
-    classs   = request.params.get('class', default='')
-    username = utils.pg_escape(unicode(request.params.get('username', default='')))
-    level    = request.params.get('level', default='1')
-
-    COUNT=32
-
-    items = errors._build_where_item(item, "dynpoi_item")
+    params = query._params()
+    params.bbox = [int(x1*10e5), int(y1*10e5), int(x2*10e5), int(y2*10e5)]
+    items = query._build_where_item(params.item, "dynpoi_item")
 
     db.execute("""
 SELECT
@@ -182,26 +176,24 @@ WHERE
         # FIXME redirect empty tile
         max = 0
 
-    join, where = errors._build_param(source, item, level, username, classs)
+    join, where = query._build_param(params.bbox, params.source, params.item, params.level, params.username, params.classs, params.country, params.active, params.status)
 
-    db.execute("""
+    COUNT=32
+
+    sql = """
 SELECT
     COUNT(*),
     (((lon-%(y1)s))*%(count)s/(%(y2)s-%(y1)s)-0.5)::int AS latn,
     (((lat-%(x1)s))*%(count)s/(%(x2)s-%(x1)s)-0.5)::int AS lonn
 FROM
-    marker
 """ + join + """
 WHERE
-""" + where + """ AND
-    lat>%(x1)s::int AND
-    lon>%(y1)s::int AND
-    lat<%(x2)s::int AND
-    lon<%(y2)s::int
+""" + where + """
 GROUP BY
     latn,
     lonn
-""", {"x1":x1*10e5, "y1":y1*10e5, "x2":x2*10e5, "y2":y2*10e5, "count":COUNT})
+"""
+    db.execute(sql, {"x1":x1*10e5, "y1":y1*10e5, "x2":x2*10e5, "y2":y2*10e5, "count":COUNT})
     im = Image.new("RGB", (256,256), "#ff0000")
     draw = ImageDraw.Draw(im)
 
