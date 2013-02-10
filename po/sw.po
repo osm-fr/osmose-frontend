@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-28 21:00+0100\n"
+"POT-Creation-Date: 2013-02-10 20:54+0100\n"
 "PO-Revision-Date: 2012-10-11 22:17+0100\n"
 "Last-Translator: operon\n"
 "Language-Team: Swahili\n"
@@ -32,75 +32,75 @@ msgstr "kutoka{day}siku, {hour}masaa, {minute}dakika"
 msgid "never generated"
 msgstr "kamwe yanayotokana"
 
-#: ../errors.py:83 tmp.tpl:52
+#. TRANSLATORS: link to tooltip help
+#: ../error.py:92
+msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
+msgstr "http://wiki.openstreetmap.org/wiki/SW:Osmose/erreurs"
+
+#: ../errors.py:107 tmp.tpl:52
 msgid "False positives"
 msgstr "uongo chanya"
 
-#: ../errors.py:87
+#: ../errors.py:110
 msgid "Fixed errors"
 msgstr "makosa kusahihishwa"
 
-#: ../errors.py:91 tmp.tpl:50
+#: ../errors.py:113 tmp.tpl:50
 msgid "Informations"
 msgstr "Habari"
 
 #. TRANSLATORS: link to help in appropriate language
-#: ../map.py:105
+#: ../map.py:107
 msgid "Errors by user"
 msgstr "Mtumiaji makosa"
 
-#: ../map.py:106
+#: ../map.py:108
 msgid "Relation analyser"
 msgstr "Analyzer uhusiano"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:108
+#: ../map.py:110
 msgid "CLC"
 msgstr "CLC"
 
-#: ../map.py:108
+#: ../map.py:110
 msgid "http://clc.openstreetmap.fr/"
 msgstr "http://clc.openstreetmap.fr/"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:110
+#: ../map.py:112
 msgid "openstreetmap.fr"
 msgstr "openstreetmap.fr"
 
-#: ../map.py:110
+#: ../map.py:112
 msgid "http://www.openstreetmap.fr/"
 msgstr "http://www.openstreetmap.fr/"
 
 #. TRANSLATORS: link to source code
-#: ../map.py:112
+#: ../map.py:114
 msgid "Statistics"
 msgstr "Takwimu"
 
-#: ../map.py:115
+#: ../map.py:117
 #, fuzzy
 msgid "Help on wiki"
 msgstr "Msaada kwenye wiki"
 
-#: ../map.py:115
+#: ../map.py:117
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/SW:Osmose"
 
-#: ../map.py:116
+#: ../map.py:118
 msgid "Copyright"
 msgstr "Copyright"
 
-#: ../map.py:117
+#: ../map.py:119
 msgid "Sources"
 msgstr "Chanzo"
 
-#: ../map.py:118
+#: ../map.py:120
 msgid "Translation"
 msgstr ""
-
-#. TRANSLATORS: link to tooltip help
-#: ../map.py:379
-msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
-msgstr "http://wiki.openstreetmap.org/wiki/SW:Osmose/erreurs"
 
 #: tmp.tpl:1 tmp.tpl:7
 #, python-format
