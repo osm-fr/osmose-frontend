@@ -48,7 +48,8 @@ def user(db, lang, username=None, format=None):
     if request.path.startswith("/api") or format == "json":
         for res in results:
             res["timestamp"] = str(res["timestamp"])
-        return {"byusers": results}
+            res["date"] = str(res["date"])
+        return {"byusers": results, "desception": ["id", "item", "lat", "lon", "source", "class", "elems", "subclass", "subtitle", "comment", "title", "level", "timestamp", "menu", "username", "date"]}
     elif format == 'rss':
         response.content_type = "application/rss+xml"
         return template('byuser/byuser.rss', username=params.username, count=count, results=results, translate=utils.translator(lang))
