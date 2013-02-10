@@ -1,4 +1,4 @@
-%rebase layout title=_("Information on error %d") % err_id, favicon="../images/markers/marker-l-%s.png" % marker[0]['item']
+%rebase layout title=_("Information on error %d") % err_id, favicon="../images/markers/marker-l-%s.png" % marker['item']
 %def show_html_results(columns, res):
 <table class="sortable" id ="table_marker">
 <thead>
@@ -30,9 +30,7 @@
 %end
 
 <h2>{{_("Marker")}}</h2>
-%for i in marker:
-%    show_html_results(columns_marker, i)
-%end
+%show_html_results(columns_marker, marker)
 
 <h2>{{_("Elements")}}</h2>
 %for i in elements:

@@ -22,9 +22,50 @@
 
 from bottle import route, request, template, response, abort, redirect
 from tools import utils
+from tools import query
+from tools import query_meta
 import StringIO, re
 
 import errors_graph
+
+
+def _errors(db, lang, params):
+    results = query._gets(db, params)
+
+    if not params.full:
+        out = { "errors": [], "description": ["lat", "lon", "error_id", "item"]}
+    else:
+        out = { "errors": [], "description": ["lat", "lon", "error_id", "item", "source", "classs", "elems", "subclass", "subtitle", "title", "level", "update", "username"]}
+
+    translate = utils.translator(lang)
+
+    for res in results:
+        lat       = str(float(res["lat"])/1000000)
+        lon       = str(float(res["lon"])/1000000)
+        error_id  = res["id"]
+        item      = res["item"] or 0
+
+        if not params.full:
+            out["errors"].append([lat, lon, str(error_id), str(item)])
+        else:
+            source    = res["source"]
+            classs    = res["class"]
+            elems     = res["elems"]
+            subclass  = res["subclass"]
+            subtitle  = translate.select(res["subtitle"])
+            title     = translate.select(res["title"])
+            level     = res["level"]
+            update    = res["timestamp"]
+            username  = (res["username"] or "").decode('utf-8')
+            out["errors"].append([lat, lon, str(error_id), str(item), str(source), str(classs), str(elems), str(subclass), subtitle, title, str(level), str(update), username])
+
+    return out
+
+
+@route('/api/0.2/errors')
+def errors(db, lang):
+    params = query._params()
+    return _errors(db, lang, params)
 
 
 def int_list(s):
@@ -62,210 +103,49 @@ def index_redirect():
 @route('/errors/done')
 @route('/errors/false-positive')
 def index(db, lang):
-    source  = request.params.get('source', type=int)
-    class_  = request.params.get('class', type=int)
-    item    = request.params.get('item', type=int)
-    country = request.params.get('country')
-    num_points = request.params.get('points', type=int)
-    show_all = request.params.get('all')
-
-    if country == '':
-        country = None
-    if country and not re.match(r"^([a-z_]+)(\*|)$", country):
-        country = None
-
-    if num_points <= 0:
-        num_points = None
-    elif num_points > 10000:
-        num_points = 10000
-
     if request.path.endswith("false-positive"):
         title = _("False positives")
         gen = "false-positive"
-        default_show_all = False
     elif request.path.endswith("done"):
         title = _("Fixed errors")
         gen = "done"
-        default_show_all = False
     else:
         title = _("Informations")
         gen = "info"
-        default_show_all = True
 
-    if show_all == None:
-        show_all = default_show_all
-    elif int(show_all) == 0:
-        show_all = False
-    else:
-        show_all = True
+    countries = query_meta._countries(db, lang)
+    items = query_meta._items(db, lang)
 
-    sql = """
-    SELECT DISTINCT
-        (string_to_array(comment,'-'))[array_upper(string_to_array(comment,'-'), 1)] AS country
-    FROM
-        dynpoi_source
-    ORDER BY
-        country
-    """
-    db.execute(sql)
-    countries = db.fetchall()
+    params = query._params()
+    limit = request.params.get('limit', type=int)
+    if limit >= 0 and params.limit <= 10000:
+        params.limit = limit
+    params.status = {"info":"open", "false-positive": "false", "done":"done"}[gen]
 
-    sql = """
-    SELECT
-        item,
-        menu
-    FROM
-        dynpoi_item
-    ORDER BY
-        item
-    """
-    db.execute(sql)
-    items = db.fetchall()
+    errors_groups = query._count(db, params, [
+        "dynpoi_class.item",
+        "dynpoi_class.source",
+        "dynpoi_class.class",
+        "dynpoi_source.comment"],
+        ["dynpoi_item"], [
+        "first(dynpoi_item.menu) AS menu",
+        "first(dynpoi_class.title) AS title"],
+        orderBy = True)
 
-    sql = """
-    SELECT
-        dynpoi_class.source AS source,
-        dynpoi_class.class AS class,
-        dynpoi_class.item AS item,
-        first(dynpoi_item.menu) AS menu,
-        first(dynpoi_class.title) AS title,
-        %s AS count,
-        dynpoi_source.comment AS source_comment
-    FROM
-        dynpoi_class
-        JOIN dynpoi_item ON
-            dynpoi_class.item = dynpoi_item.item
-        JOIN dynpoi_source ON
-            dynpoi_class.source = dynpoi_source.source
-        %s %s
-    WHERE 1=1
-        %s
-    GROUP BY
-        dynpoi_class.source,
-        dynpoi_class.class,
-        dynpoi_class.item,
-        dynpoi_source.comment
-    ORDER BY
-        dynpoi_class.item,
-        dynpoi_class.source,
-        dynpoi_class.class,
-        dynpoi_source.comment
-    """
-
-    if show_all:
-        opt_left_join = "LEFT"
-    else:
-        opt_left_join = ""
-
-    if gen == "info":
-        opt_count = "count(marker.source)"
-        opt_join = """
-        JOIN marker ON
-            dynpoi_class.source = marker.source AND
-            dynpoi_class.class = marker.class
-        """
-    elif gen == "false-positive":
-        opt_count = "count(dynpoi_status.source)"
-        opt_join = """
-        JOIN dynpoi_status ON
-            dynpoi_class.source = dynpoi_status.source AND
-            dynpoi_class.class = dynpoi_status.class AND
-            dynpoi_status.status = 'false'
-        """
-    elif gen == "done":
-        opt_count = "count(dynpoi_status.source)"
-        opt_join = """
-        JOIN dynpoi_status ON
-            dynpoi_class.source = dynpoi_status.source AND
-            dynpoi_class.class = dynpoi_status.class AND
-            dynpoi_status.status = 'done'
-        """
-
-    opt_where = ""
-
-    if source <> None:
-        opt_where += " AND dynpoi_class.source = %s" % source
-    if class_ <> None:
-        opt_where += " AND dynpoi_class.class = %s" % class_
-    if item <> None:
-        opt_where += " AND dynpoi_class.item = %s" % item
-    if country <> None:
-        if country[-1] == "*":
-            country = country[:-2] + "%"
-        opt_where += " AND dynpoi_source.comment LIKE '%%%s'" % ("-" + country)
-
-    if source == None and item == None and country == None:
-        if show_all:
-            opt_count = "-1"
-            if gen == "info":
-                opt_left_join = ""
-                opt_join = ""
-
-    sql = sql % (opt_count, opt_left_join, opt_join, opt_where)
-
-    db.execute(sql)
-    errors_groups = db.fetchall()
     total = 0
     for res in errors_groups:
         if res["count"] != -1:
             total += res["count"]
 
-    if (total > 0 and total < 1000) or num_points:
-        if gen == "info":
-            opt_count = "count(marker.source)"
-            opt_join = """
-            JOIN marker ON
-                dynpoi_class.source = marker.source AND
-                dynpoi_class.class = marker.class
-            """
-
-        sql = """
-        SELECT
-            %s
-            dynpoi_class.source AS source,
-            dynpoi_class.class AS class,
-            dynpoi_class.item AS item,
-            dynpoi_class.level AS level,
-            dynpoi_item.menu,
-            dynpoi_class.title,
-            subtitle,
-            dynpoi_source.comment AS source_comment,
-            subclass,
-            lat,
-            lon,
-            elems AS elems,
-            %s AS date
-        FROM
-            dynpoi_class
-            JOIN dynpoi_item ON
-                dynpoi_class.item = dynpoi_item.item
-            JOIN dynpoi_source ON
-                dynpoi_class.source = dynpoi_source.source
-            %s
-        WHERE 1=1
-            %s
-        ORDER BY
-            %s
-            dynpoi_class.item,
-            dynpoi_class.source
-        """
-
-        if gen == "info":
-            marker_id = "marker.id AS marker_id,"
-            opt_date = "-1"
-            opt_order = "subtitle->'en',"
-        elif gen in ("false-positive", "done"):
-            marker_id = ""
+    if (total > 0 and total < 1000) or params.limit:
+        params.full = True
+        errors = query._gets(db, params)
+        if gen in ("false-positive", "done"):
             opt_date = "date"
-            opt_order = "dynpoi_status.date DESC,"
-        if num_points:
-            sql += "LIMIT %d" % num_points
-
-        sql = sql % ((marker_id, ) + (opt_date, opt_join, opt_where, opt_order))
-        db.execute(sql)
-        errors = db.fetchall()
+        else:
+            opt_date = "-1"
     else:
         opt_date = None
         errors = None
 
-    return template('errors/index', countries=countries, items=items, errors_groups=errors_groups, total=total, errors=errors, query=request.query_string, country=country, item=item, translate=utils.translator(lang), gen=gen, opt_date=opt_date, title=title)
+    return template('errors/index', countries=countries, items=items, errors_groups=errors_groups, total=total, errors=errors, query=request.query_string, country=params.country, item=params.item, translate=utils.translator(lang), gen=gen, opt_date=opt_date, title=title)

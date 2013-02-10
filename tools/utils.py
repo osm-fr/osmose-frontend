@@ -42,29 +42,6 @@ def get_sources():
         config[src["id"]] = src
     return config
 
-def get_categories(lang):
-    result = []
-    conn = get_dbconn()
-    curs1 = conn.cursor()
-    curs2 = conn.cursor()
-    curs1.execute("SELECT categ, menu FROM dynpoi_categ ORDER BY categ")
-    for res1 in curs1.fetchall():
-        res = {"categ":res1[0], "menu": "no translation", "item":[]}
-        for l in lang:
-            if l in res1[1]:
-                res["menu"] = res1[1][l]
-                break
-        curs2.execute("SELECT item, menu, marker_color, marker_flag, levels, number FROM dynpoi_item WHERE categ = %d ORDER BY item"%res1[0])
-        for res2 in curs2.fetchall():
-            res["item"].append({"item":res2[0], "menu":"no translation", "marker_color":res2[2], "marker_flag":res2[3], "levels":res2["levels"], "number":res2["number"]})
-            for l in lang:
-                if res2[1] and l in res2[1]:
-                    res["item"][-1]["menu"] = res2[1][l]
-                    break
-
-        result.append(res)
-    return result
-
 def show(s):
     print s.encode("utf8")
 

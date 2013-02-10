@@ -9,7 +9,7 @@
 %for res in results:
   <tr>
     <td>{{i}}</td>
-    <td>{{res["cpt"]}}</td>
+    <td>{{res["count"]}}</td>
     <td><a href="byuser/{{res["username"]}}">{{res["username"]}}</a></td>
   </tr>
 %    i += 1
