@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-10 20:54+0100\n"
+"POT-Creation-Date: 2013-02-14 23:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,15 +35,15 @@ msgstr ""
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr ""
 
-#: ../errors.py:107 tmp.tpl:52
+#: ../errors.py:110 tmp.tpl:52
 msgid "False positives"
 msgstr ""
 
-#: ../errors.py:110
+#: ../errors.py:113
 msgid "Fixed errors"
 msgstr ""
 
-#: ../errors.py:113 tmp.tpl:50
+#: ../errors.py:116 tmp.tpl:50
 msgid "Informations"
 msgstr ""
 

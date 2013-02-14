@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-10 20:54+0100\n"
+"POT-Creation-Date: 2013-02-14 23:05+0100\n"
 "PO-Revision-Date: 2012-10-11 22:17+0100\n"
 "Last-Translator: operon\n"
 "Language-Team: Swahili\n"
@@ -37,15 +37,15 @@ msgstr "kamwe yanayotokana"
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/SW:Osmose/erreurs"
 
-#: ../errors.py:107 tmp.tpl:52
+#: ../errors.py:110 tmp.tpl:52
 msgid "False positives"
 msgstr "uongo chanya"
 
-#: ../errors.py:110
+#: ../errors.py:113
 msgid "Fixed errors"
 msgstr "makosa kusahihishwa"
 
-#: ../errors.py:113 tmp.tpl:50
+#: ../errors.py:116 tmp.tpl:50
 msgid "Informations"
 msgstr "Habari"
 
