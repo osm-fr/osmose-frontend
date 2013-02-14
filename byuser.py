@@ -49,7 +49,7 @@ def user(db, lang, username=None, format=None):
         for res in results:
             res["timestamp"] = str(res["timestamp"])
             res["date"] = str(res["date"])
-        return {"byusers": results, "desception": ["id", "item", "lat", "lon", "source", "class", "elems", "subclass", "subtitle", "comment", "title", "level", "timestamp", "menu", "username", "date"]}
+        return {"byusers": results, "description": ["id", "item", "lat", "lon", "source", "class", "elems", "subclass", "subtitle", "comment", "title", "level", "timestamp", "menu", "username", "date"]}
     elif format == 'rss':
         response.content_type = "application/rss+xml"
         return template('byuser/byuser.rss', username=params.username, count=count, results=results, translate=utils.translator(lang))
