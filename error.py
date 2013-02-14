@@ -85,7 +85,7 @@ def display(db, err_id):
 
 
 @route('/api/0.2/error/<err_id:int>')
-def markers(db, lang, err_id):
+def error(db, lang, err_id):
     data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
 
     # TRANSLATORS: link to tooltip help
