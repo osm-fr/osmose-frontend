@@ -24,6 +24,7 @@ from bottle import route, request, template, response, abort, redirect
 from tools import utils
 from tools import query
 from tools import query_meta
+from tools.OrderedDict import OrderedDict
 import StringIO, re
 
 import errors_graph
@@ -31,11 +32,13 @@ import errors_graph
 
 def _errors(db, lang, params):
     results = query._gets(db, params)
+    out = OrderedDict()
 
     if not params.full:
-        out = { "errors": [], "description": ["lat", "lon", "error_id", "item"]}
+        out["description"] = ["lat", "lon", "error_id", "item"]
     else:
-        out = { "errors": [], "description": ["lat", "lon", "error_id", "item", "source", "classs", "elems", "subclass", "subtitle", "title", "level", "update", "username"]}
+        out["description"] = ["lat", "lon", "error_id", "item", "source", "classs", "elems", "subclass", "subtitle", "title", "level", "update", "username"]
+    out["errors"] = []
 
     translate = utils.translator(lang)
 

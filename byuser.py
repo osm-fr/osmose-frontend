@@ -23,6 +23,7 @@
 from bottle import route, request, template, redirect, response
 from tools import utils
 from tools import query
+from tools.OrderedDict import OrderedDict
 
 
 @route('/byuser')
@@ -46,13 +47,18 @@ def user(db, lang, username=None, format=None):
     results = query._gets(db, params)
     count = len(results)
     if request.path.startswith("/api") or format == "json":
+        out = OrderedDict()
+        out["description"] = ["id", "item", "lat", "lon", "source", "class", "elems", "subclass", "subtitle", "comment", "title", "level", "timestamp", "menu", "username", "date"]
         for res in results:
             res["timestamp"] = str(res["timestamp"])
             res["date"] = str(res["date"])
-        return {"byusers": results, "description": ["id", "item", "lat", "lon", "source", "class", "elems", "subclass", "subtitle", "comment", "title", "level", "timestamp", "menu", "username", "date"]}
+        out["byusers"] = results
+        return out
+
     elif format == 'rss':
         response.content_type = "application/rss+xml"
         return template('byuser/byuser.rss', username=params.username, count=count, results=results, translate=utils.translator(lang))
+
     else:
         return template('byuser/byuser', username=params.username, count=count, results=results, translate=utils.translator(lang))
 
@@ -69,4 +75,7 @@ def byuser_stats(db):
 
 @route('/api/0.2/users')
 def users(db):
-    return {"users": _users(db)}
+    out = OrderedDict()
+    out["description"] = ["username", "count"]
+    out["users"] = _users(db)
+    return out
