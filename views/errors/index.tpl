@@ -32,7 +32,6 @@
 %for res in items:
     <option\\
 %    if str(item) == str(res['item']):
-%        print "plop"
  selected='selected'\\
 %    end
  value='{{res['item']}}'>{{res['item']}} - {{translate.select(res['menu'])}}</option>
