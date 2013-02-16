@@ -19,24 +19,23 @@
 <select name='country'>
     <option value=''></option>
 %for res in countries:
+    <option\\
 %    if country == res['country']:
-%        s = " selected='yes'"
-%    else:
-%        s = ""
+ selected='selected'\\
 %    end
-    <option{{s}} value='{{res['country']}}'>{{res['country']}}</option>
+ value='{{res['country']}}'>{{res['country']}}</option>
 %end
 </select>
 
 <select name='item'>
     <option value=''></option>
 %for res in items:
-%    if item == res['item']:
-%        s = " selected='yes'"
-%    else:
-%        s = ""
+    <option\\
+%    if str(item) == str(res['item']):
+%        print "plop"
+ selected='selected'\\
 %    end
-    <option{{s}} value='{{res['item']}}'>{{res['item']}} - {{translate.select(res['menu'])}}</option>
+ value='{{res['item']}}'>{{res['item']}} - {{translate.select(res['menu'])}}</option>
 %end
 </select>
 
