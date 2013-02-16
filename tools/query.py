@@ -96,7 +96,7 @@ def _build_param(bbox, source, item, level, username, classs, country, active, s
     else:
         itemField = "marker"
 
-    if "dynpoi_class" in tables:
+    if "dynpoi_class" in tables or "dynpoi_source" in tables:
         join += """
         JOIN dynpoi_class ON
             marker.source = dynpoi_class.source AND
