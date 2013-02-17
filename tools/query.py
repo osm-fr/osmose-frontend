@@ -91,7 +91,7 @@ def _build_param(bbox, source, item, level, username, classs, country, active, s
         if username:
             tables.append("marker_elem")
 
-    if "dynpoi_class" in tables:
+    if "dynpoi_class" in tables or "dynpoi_source" in tables:
         itemField = "dynpoi_class"
     else:
         itemField = "marker"
