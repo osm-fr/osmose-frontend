@@ -11,7 +11,7 @@
     {{_("Number of found errors: more than %d") % count}}
 %end
  - 
-<a href='/map/?user={{username}}'>{{_("Show errors on a map")}}</a>
+<a href='/map/?username={{username}}'>{{_("Show errors on a map")}}</a>
 </p>
 
 <table class='sortable'>
