@@ -63,7 +63,8 @@ def _categories(db, lang):
         JOIN dynpoi_item ON
             dynpoi_categ.categ = dynpoi_item.categ
     ORDER BY
-        categ
+        categ,
+        item
     """
     result = []
     db.execute(sql)
