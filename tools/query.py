@@ -244,12 +244,9 @@ def _gets(db, params):
             forceTable = ["dynpoi_class", "dynpoi_source"]
     else:
         forceTable = []
-    print forceTable
 
     join, where = _build_param(params.bbox, params.source, params.item, params.level, params.username, params.classs, params.country, params.active, params.status, forceTable=forceTable)
     sql = sqlbase % (join, where, params.limit)
-    print sql
-    print params.active
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()
 
@@ -286,7 +283,6 @@ def _count(db, params, by, extraFrom=[], extraFields=[], orderBy=False):
 
     join, where = _build_param(params.bbox, params.source, params.item, params.level, params.username, params.classs, params.country, params.active, params.status, forceTable=byTable)
     sql = sqlbase % (select, join, where, groupBy, order, params.limit)
-    print sql
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()
 
