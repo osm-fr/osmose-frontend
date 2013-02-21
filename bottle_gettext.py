@@ -7,7 +7,7 @@ __license__ = 'MIT'
 
 ### CUT HERE (see setup.py)
 
-from bottle import request
+from bottle import request, response
 import gettext, inspect
 
 
@@ -28,6 +28,10 @@ class GettextPlugin(object):
     def get_language(self):
         lang = [None]
 
+        # Remove old no longer used cookie 'lang'
+        if request.get_cookie('lang'):
+            response.delete_cookie('lang', path="/")
+
         if len(request.script_name) > 3:
             lang = [request.script_name[-3:-1], self.allowed_languages[0]]
             if lang[0] not in self.allowed_languages:
@@ -35,7 +39,7 @@ class GettextPlugin(object):
             else:
                 return (lang, False)
 
-        if not lang[0]:
+        if not lang[0] and request.get_cookie('lang'):
             lang = [request.get_cookie('lang')]
             if lang[0] not in self.allowed_languages:
                 lang = [None]
