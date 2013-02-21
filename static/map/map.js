@@ -157,7 +157,6 @@ function init() {
             $("div#need_zoom").hide();
             $("div#action_links").show();
             if ($("div#menu").data('opened')) {
-                console.log('showing tests');
                 $("div#tests").fadeIn();
             }
         }
@@ -439,7 +438,7 @@ function updateURL() {
         "&zoom=" + document.myform.zoom.value +
         "&source=" + document.myform.source.value +
         "&class=" + document.myform.class.value +
-        "&user=" + document.myform.user.value +
+        "&username=" + document.myform.username.value +
         "&item=" + ch +
         "&level=" + document.myform.level.value;
     pois.loadText(poisParams);
@@ -448,7 +447,7 @@ function updateURL() {
         var params =
             "?source=" + document.myform.source.value +
             "&class=" + document.myform.class.value +
-            "&user=" + document.myform.user.value +
+            "&username=" + document.myform.username.value +
             "&item=" + ch +
             "&level=" + document.myform.level.value;
         var url = "heat/${z}/${x}/${y}.png" + params;

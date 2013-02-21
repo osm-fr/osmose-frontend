@@ -28,65 +28,36 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot
 import matplotlib.dates
+from tools import query
 
 
 def get_data(db, options):
-    sql = """
+    sqlbase = """
 SELECT
     date,
     SUM(count)
 FROM (
-SELECT
-    date_trunc('day', dynpoi_stats.timestamp) AS date,
-    AVG(dynpoi_stats.count) AS count
-FROM
-    dynpoi_stats
-    %s
-WHERE 1=1
-    %s
-GROUP BY
-    dynpoi_stats.source,
-    dynpoi_stats.class,
-    date
-) AS t
+    SELECT
+        date_trunc('day', marker.timestamp) AS date,
+        AVG(marker.count) AS count
+    FROM
+        %s
+    WHERE
+        %s
+    GROUP BY
+        marker.source,
+        marker.class,
+        date
+    ) AS t
 GROUP BY
     date
 ORDER BY
     date
 """
 
-    join_item = ""
-    where_sql = ""
-
-    if len(options.items)>=1 or len(options.levels)>=1:
-        join_item += """
-    JOIN dynpoi_class ON
-        dynpoi_stats.source = dynpoi_class.source AND
-        dynpoi_stats.class = dynpoi_class.class """
-
-        if len(options.items)>=1:
-            join_item += "AND dynpoi_class.item in (%s) " % convIntsToStr(options.items)
-        if len(options.levels)>=1:
-            join_item += "AND dynpoi_class.level in (%s) " % convIntsToStr(options.levels)
-
-    if len(options.classes)>=1:
-        where_sql += "AND dynpoi_stats.class in (%s) " % convIntsToStr(options.classes)
-
-    if len(options.sources)>=1:
-        where_sql += "AND dynpoi_stats.source in (%s) " % convIntsToStr(options.sources)
-
-    if options.country:
-        if options.country[-1] == "*":
-            country = options.country[:-2] + "%"
-        else:
-            country = options.country
-        join_item += """
-    JOIN dynpoi_source ON
-        dynpoi_stats.source = dynpoi_source.source AND
-        dynpoi_source.comment LIKE '%%-%s'
-        """ % country
-
-    sql = sql % (join_item, where_sql)
+    params = query._params()
+    join, where = query._build_param(None, params.source, params.item, params.level, None, params.classs, params.country, params.active, None, stats=True)
+    sql = sqlbase % (join, where)
 
     if len(sys.argv)>1:
       print sql

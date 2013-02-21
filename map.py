@@ -23,8 +23,10 @@
 from bottle import route, request, template, response, redirect, abort
 from tools import utils
 from tools import tag2link
+from tools import query
+from tools import query_meta
+import errors
 import datetime
-import json
 import math, StringIO
 from PIL import Image
 import ImageDraw
@@ -57,14 +59,14 @@ def index(db, lang):
                "level":  1,
                "source": '',
                "class":  '',
-               "user":   '',
+               "username":   '',
              }
 
     for p in ["lat", "lon", "zoom", "item", "level"]:
         if request.cookies.get("last_" + p, default=None):
             params[p] = request.cookies.get("last_" + p)
 
-    for p in ["lat", "lon", "zoom", "item", "level", "source", "user", "class"]:
+    for p in ["lat", "lon", "zoom", "item", "level", "source", "username", "class"]:
         if request.params.get(p, default=None):
             params[p] = request.params.get(p)
 
@@ -89,7 +91,7 @@ def index(db, lang):
     elif params["level"] in ("1", "2", "3", "1,2", "1,2,3"):
         level_selected[params["level"]] = " selected=\"selected\""
 
-    categories = utils.get_categories(lang)
+    categories = query_meta._categories(db, lang)
 
     levels = {"1": set(), "2": set(), "3": set()}
     for categ in categories:
@@ -138,74 +140,10 @@ OFFSET
         delay = delay[0]/60/60/24
 
     return template('map/index', categories=categories, lat=params["lat"], lon=params["lon"], zoom=params["zoom"],
-        source=params["source"], user=params["user"], classs=params["class"],
+        source=params["source"], username=params["username"], classs=params["class"],
         levels=levels, level_selected=level_selected, active_items=active_items, urls=urls, helps=helps, delay=delay,
         allowed_languages=allowed_languages, translate=utils.translator(lang),
         website=utils.website, request=request)
-
-
-def build_where_item(item, table):
-    if item == '':
-        where = "1=2"
-    elif item == None or item == 'xxxx':
-        where = "1=1"
-    else:
-        where = []
-        l = []
-        for i in item.split(','):
-            try:
-                if 'xxx' in i:
-                    where.append("%s.item/1000 = %s" % (table, int(i[0])))
-                else:
-                    l.append(str(int(i)))
-            except:
-                pass
-        if l != []:
-            where.append("%s.item IN (%s)" % (table, ','.join(l)))
-        if where != []:
-            where = "(%s)" % ' OR '.join(where)
-        else:
-            where = "1=1"
-    return where
-
-
-def build_param(source, item, level, user, classs):
-    join = ""
-    where = []
-    if source:
-        sources = source.split(",")
-        source2 = []
-        for source in sources:
-            source = source.split("-")
-            if len(source)==1:
-                source2.append("(marker.source=%d)"%int(source[0]))
-            else:
-                source2.append("(marker.source=%d AND marker.class=%d)"%(int(source[0]), int(source[1])))
-        sources2 = " OR ".join(source2)
-        where.append("(%s)" % sources2)
-
-    if item:
-        where.append(build_where_item(item, "marker"))
-
-    if level and level != "(1,2,3)":
-        join += """
-        JOIN dynpoi_class ON
-            marker.source = dynpoi_class.source AND
-            marker.class = dynpoi_class.class
-        """
-        where.append("dynpoi_class.level IN (%s)" % level)
-
-    if user:
-        join += """
-        JOIN marker_elem ON
-            marker_elem.marker_id = marker.id
-        """
-        where.append("marker_elem.username = '%s'" % user)
-
-    if classs:
-        where.append("marker.class = %d"%int(classs))
-
-    return (join, " AND ".join(where))
 
 
 def num2deg(xtile, ytile, zoom):
@@ -220,15 +158,9 @@ def heat(db, z, x, y):
     x2,y1 = num2deg(x,y,z)
     x1,y2 = num2deg(x+1,y+1,z)
 
-    item   = request.params.get('item')
-    source = request.params.get('source', default='')
-    classs = request.params.get('class', default='')
-    user   = utils.pg_escape(unicode(request.params.get('user', default='')))
-    level  = request.params.get('level', default='1')
-
-    COUNT=32
-
-    items = build_where_item(item, "dynpoi_item")
+    params = query._params()
+    params.bbox = [int(x1*10e5), int(y1*10e5), int(x2*10e5), int(y2*10e5)]
+    items = query._build_where_item(params.item, "dynpoi_item")
 
     db.execute("""
 SELECT
@@ -244,26 +176,24 @@ WHERE
         # FIXME redirect empty tile
         max = 0
 
-    join, where = build_param(source, item, level, user, classs)
+    join, where = query._build_param(params.bbox, params.source, params.item, params.level, params.username, params.classs, params.country, params.active, params.status)
 
-    db.execute("""
+    COUNT=32
+
+    sql = """
 SELECT
     COUNT(*),
     (((lon-%(y1)s))*%(count)s/(%(y2)s-%(y1)s)-0.5)::int AS latn,
     (((lat-%(x1)s))*%(count)s/(%(x2)s-%(x1)s)-0.5)::int AS lonn
 FROM
-    marker
 """ + join + """
 WHERE
-""" + where + """ AND
-    lat>%(x1)s::int AND
-    lon>%(y1)s::int AND
-    lat<%(x2)s::int AND
-    lon<%(y2)s::int
+""" + where + """
 GROUP BY
     latn,
     lonn
-""", {"x1":x1*10e5, "y1":y1*10e5, "x2":x2*10e5, "y2":y2*10e5, "count":COUNT})
+"""
+    db.execute(sql, {"x1":x1*10e5, "y1":y1*10e5, "x2":x2*10e5, "y2":y2*10e5, "count":COUNT})
     im = Image.new("RGB", (256,256), "#ff0000")
     draw = ImageDraw.Draw(im)
 
@@ -290,240 +220,25 @@ GROUP BY
 
 @route('/map/markers')
 def markers(db, lang):
-    lat    = int(request.params.get('lat', type=float, default=0)*1000000)
-    lon    = int(request.params.get('lon', type=float, default=0)*1000000)
-    item   = request.params.get('item')
-    source = request.params.get('source', default='')
-    classs = request.params.get('class', default='')
-    user   = utils.pg_escape(unicode(request.params.get('user', default='')))
-    level  = request.params.get('level', default='1')
-    zoom   = request.params.get('zoom', type=int, default=10)
-    bbox   = request.params.get('bbox')
+    params = query._params()
 
-    if level:
-        level = level.split(",")
-        level = ",".join([str(int(x)) for x in level if x])
+    if (not params.username) and (not params.source) and (params.zoom < 6):
+        return
 
-    if bbox:
-        bbox = bbox.split(",")
-        try:
-            minlon = int(1000000*float(bbox[0]))
-            minlat = int(1000000*float(bbox[1]))
-            maxlon = int(1000000*float(bbox[2]))
-            maxlat = int(1000000*float(bbox[3]))
-        except ValueError:
-            minlon = lon - 100000
-            minlat = lat - 100000
-            maxlon = lon + 100000
-            maxlat = lat + 100000
+    params.limit = 200
+    params.full = False
 
     expires = datetime.datetime.now() + datetime.timedelta(days=365)
     path = '/'.join(request.fullpath.split('/')[0:-1])
-    response.set_cookie('last_lat', str(lat/1000000.), expires=expires, path=path)
-    response.set_cookie('last_lon', str(lon/1000000.), expires=expires, path=path)
-    response.set_cookie('last_zoom', str(zoom), expires=expires, path=path)
-    response.set_cookie('last_level', str(level), expires=expires, path=path)
-    response.set_cookie('last_item', request.params.item, expires=expires, path=path)
+    response.set_cookie('last_lat', str(params.lat/1000000.), expires=expires, path=path)
+    response.set_cookie('last_lon', str(params.lon/1000000.), expires=expires, path=path)
+    response.set_cookie('last_zoom', str(params.zoom), expires=expires, path=path)
+    response.set_cookie('last_level', str(params.level), expires=expires, path=path)
+    response.set_cookie('last_item', params.item, expires=expires, path=path)
 
-    if (not user) and (not source) and (zoom < 6):
-        return
+    return errors._errors(db, lang, params)
 
-    sqlbase  = """
-    SELECT
-        marker.id,
-        marker.item,
-        marker.lat,
-        marker.lon
-    FROM
-        marker
-        JOIN dynpoi_update_last ON
-            marker.source = dynpoi_update_last.source
-        JOIN dynpoi_item ON
-            marker.item = dynpoi_item.item
-        %s
-    WHERE
-        %s AND
-        dynpoi_update_last.timestamp > (now() - interval '3 months')
-    ORDER BY
-        point(marker.lat, marker.lon) <-> point(%d, %d)
-    LIMIT 200
-    """
-
-    join, where = build_param(source, item, level, user, classs)
-    db.execute(sqlbase % (join, where, lat, lon)) # FIXME pas de %
-    results = db.fetchall()
-
-    out = ["\t".join(["lat", "lon", "marker_id", "item"])]
-    for res in results:
-        lat       = str(float(res["lat"])/1000000)
-        lon       = str(float(res["lon"])/1000000)
-        error_id  = res["id"]
-        item      = res["item"] or 0
-        out.append("\t".join([lat, lon, str(error_id), str(item)]))
-
-    response.content_type = "text/plain; charset=utf-8"
-    return "\n".join(out)
 
 @route('/tpl/popup.tpl')
 def popup_template(lang):
-
-    return template('map/popup', mustache_delimiter="{{=<% %>=}}",
-                                 website=utils.website)
-
-
-@route('/map/marker/<id:int>')
-def markers(db, lang, id):
-    data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
-
-    # TRANSLATORS: link to tooltip help
-    url_help = _("http://wiki.openstreetmap.org/wiki/Osmose/errors")
-    sqlbase  = """
-    SELECT marker.id,
-       marker.item,
-       marker.source,
-       marker.class,
-       marker.elems,
-       marker.subclass,
-       marker.lat,
-       marker.lon,
-       dynpoi_class.title,
-       marker.subtitle,
-       dynpoi_update_last.timestamp,
-       elem0.data_type AS elem0_data_type,
-       elem0.id AS elem0_id,
-       elem0.tags AS elem0_tags,
-       elem1.data_type AS elem1_data_type,
-       elem1.id AS elem1_id,
-       elem1.tags AS elem1_tags,
-       elem2.data_type AS elem2_data_type,
-       elem2.id AS elem2_id,
-       elem2.tags AS elem2_tags,
-    """
-
-    for f in xrange(5):
-        sqlbase += """
-        fix%d.elem_data_type AS fix%d_elem_data_type,
-        fix%d.elem_id AS fix%d_elem_id,
-        fix%d.tags_create AS fix%d_tags_create,
-        fix%d.tags_modify AS fix%d_tags_modify,
-        fix%d.tags_delete AS fix%d_tags_delete,
-        """ % (10 * (f, ))
-
-    sqlbase += """0
-    FROM
-        marker
-        JOIN dynpoi_class ON
-            marker.source = dynpoi_class.source AND
-            marker.class = dynpoi_class.class
-        JOIN dynpoi_update_last ON
-            marker.source = dynpoi_update_last.source
-    """
-
-    for f in xrange(3):
-        sqlbase += """
-        LEFT JOIN marker_elem elem%d ON
-            elem%d.marker_id = marker.id AND
-            elem%d.elem_index = %d
-    """ % (4 *(f, ))
-
-    for f in xrange(5):
-        sqlbase += """
-        LEFT JOIN marker_fix fix%d ON
-            fix%d.marker_id = marker.id AND
-            fix%d.diff_index = %d
-    """ % (4 * (f, ))
-
-    sqlbase += """
-    WHERE
-        marker.id = %s
-    """
-
-    db.execute(sqlbase, (id,) )
-    res = db.fetchone()
-
-    if not res:
-        abort(410, "Id is not present in database.")
-
-    translate = utils.translator(lang)
-
-    lat       = str(float(res["lat"])/1000000)
-    lon       = str(float(res["lon"])/1000000)
-    error_id  = res["id"]
-    title     = translate.select(res["title"])
-    subtitle  = translate.select(res["subtitle"])
-    b_date    = res["timestamp"] or ""
-    item      = res["item"] or 0
-
-    def expand_tags(tags, links, short = False):
-      t = []
-      if short:
-        for k in tags:
-          t.append({"k": k})
-      else:
-        for (k, v) in tags.items():
-          if links and links.has_key(k):
-            t.append({"k": k, "v": v, "vlink": links[k]})
-          else:
-            t.append({"k": k, "v": v})
-      return t
-
-    elems = []
-    for e in xrange(3):
-      elem = "elem%d_" % e
-      if res[elem + "data_type"]:
-        tags = res[elem + "tags"]
-        try:
-            links = t2l.checkTags(tags)
-        except:
-            links = {}
-        tmp_elem = {data_type[res[elem + "data_type"]]: True,
-                    "type": data_type[res[elem + "data_type"]],
-                    "id": res[elem + "id"],
-                    "tags": expand_tags(tags, links),
-                    "fixes": [],
-                   }
-        for f in xrange(5):
-          fix = "fix%d_" % f
-          if (res[fix + "elem_data_type"] and
-              res[fix + "elem_data_type"] == res[elem + "data_type"] and
-              res[fix + "elem_id"] == res[elem + "id"]):
-            tmp_elem["fixes"].append({"num": f,
-                                      "add": expand_tags(res[fix + "tags_create"], {}),
-                                      "mod": expand_tags(res[fix + "tags_modify"], {}),
-                                      "del": expand_tags(res[fix + "tags_delete"], {}, True),
-                                     })
-        elems.append(tmp_elem)
-
-
-    new_elems = []
-    for f in xrange(5):
-        fix = "fix%d_" % f
-        if res[fix + "elem_data_type"]:
-            found = False
-            for e in elems:
-                if (e["type"] == data_type[res[fix + "elem_data_type"]] and
-                    e["id"] == res[fix + "elem_id"]):
-
-                    found = True
-                    break
-            if not found:
-                new_elems.append({"num": f,
-                                  "add": expand_tags(res[fix + "tags_create"], {}),
-                                  "mod": expand_tags(res[fix + "tags_modify"], {}),
-                                  "del": expand_tags(res[fix + "tags_delete"], {}, True),
-                                 })
-
-
-    response.content_type = "application/json"
-    return json.dumps({
-        "lat":lat, "lon":lon,
-        "minlat": float(lat) - 0.002, "maxlat": float(lat) + 0.002,
-        "minlon": float(lon) - 0.002, "maxlon": float(lon) + 0.002,
-        "error_id":error_id,
-        "title":title, "subtitle":subtitle,
-        "b_date":b_date.strftime("%Y-%m-%d"),
-        "item":item,
-        "elems":elems, "new_elems":new_elems,
-        "elems_id":res["elems"].replace("_",","),
-        "url_help":url_help
-    })
+    return template('map/popup', mustache_delimiter="{{=<% %>=}}", website=utils.website)

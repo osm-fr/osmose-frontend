@@ -19,24 +19,22 @@
 <select name='country'>
     <option value=''></option>
 %for res in countries:
+    <option\\
 %    if country == res['country']:
-%        s = " selected='yes'"
-%    else:
-%        s = ""
+ selected='selected'\\
 %    end
-    <option{{s}} value='{{res['country']}}'>{{res['country']}}</option>
+ value='{{res['country']}}'>{{res['country']}}</option>
 %end
 </select>
 
 <select name='item'>
     <option value=''></option>
 %for res in items:
-%    if item == res['item']:
-%        s = " selected='yes'"
-%    else:
-%        s = ""
+    <option\\
+%    if str(item) == str(res['item']):
+ selected='selected'\\
 %    end
-    <option{{s}} value='{{res['item']}}'>{{res['item']}} - {{translate.select(res['menu'])}}</option>
+ value='{{res['item']}}'>{{res['item']}} - {{translate.select(res['menu'])}}</option>
 %end
 </select>
 
@@ -63,7 +61,7 @@
 %for res in errors_groups:
 <tr>
     <td><a href="?source={{res["source"]}}">{{res["source"]}}</a></td>
-%    cmt_split = res["source_comment"].split("-")
+%    cmt_split = res["comment"].split("-")
 %    analyse = "-".join(cmt_split[0:-1])
 %    country = cmt_split[-1]
     <td>{{analyse}}-<a href="?country={{country}}">{{country}}</a></td>
@@ -125,7 +123,7 @@
 </thead>
 %    for res in errors:
 <tr>
-    <td title="{{res["source_comment"]}}"><a href="?source={{res["source"]}}">{{res["source"]}}</a></td>
+    <td title="{{res["comment"]}}"><a href="?source={{res["source"]}}">{{res["source"]}}</a></td>
     <td>{{res["class"]}}</td>
     <td>{{res["subclass"]}}</td>
     <td>{{res["level"]}}</td>
@@ -137,7 +135,7 @@
     <td></td>
 %        end
 %        if gen == "info":
-    <td title="erreur n°{{res["marker_id"]}}"><a href="../error/{{res["marker_id"]}}">E</a></td>
+    <td title="erreur n°{{res["id"]}}"><a href="../error/{{res["id"]}}">E</a></td>
 %        end
 %        if res["lat"] and res["lon"]:
 %            lat = res["lat"] / 1000000.
@@ -197,15 +195,15 @@
 </table>
 %    import urlparse, urllib
 %    query_dict = urlparse.parse_qs(query)
-%    points = int((query_dict.has_key("points") and query_dict["points"][0])) or 20
-%    if points < total:
-%        points *= 5
+%    limit = int((query_dict.has_key("limits") and query_dict["limit"][0])) or 20
+%    if limit < total:
+%        limit *= 5
 %    end
-%    query_dict["points"] = points
+%    query_dict["limit"] = limit
 <br>
 <a href="?{{urllib.urlencode(query_dict, True)}}">{{_("Show more errors")}}</a>
 %else:
-<a href="?{{query}}&amp;points=100">{{_("Show some errors")}}</a>
+<a href="?{{query}}&amp;limit=100">{{_("Show some errors")}}</a>
 %end
 
 <iframe id="hiddenIframe" name="hiddenIframe"></iframe>

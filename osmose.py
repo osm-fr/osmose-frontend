@@ -34,19 +34,19 @@ def ext_filter(config):
 app.router.add_filter('ext', ext_filter)
 
 @route('/', name='root')
-@view('index')
-def index():
-    return {}
+def index(lang):
+    translate = utils.translator(lang)
+    return template('index')
 
 @route('/copyright')
-@view('copyright')
-def copyright(name=None):
-    return {}
+def copyright(lang, name=None):
+    translate = utils.translator(lang)
+    return template('copyright')
 
 @route('/translation')
-@view('translation')
-def translation(name=None):
-    return {}
+def translation(lang, name=None):
+    translate = utils.translator(lang)
+    return template('translation')
 
 @error(404)
 @view('404')
@@ -54,6 +54,7 @@ def error404(error):
     return {}
 
 import api_0_1
+import api_0_2_meta
 import byuser
 import control
 import error

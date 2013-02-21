@@ -18,47 +18,40 @@ OpenLayers.Format.DynPoiFormat = OpenLayers.Class(OpenLayers.Format, {
         OpenLayers.Format.prototype.initialize.apply(this, [options]);
     },
 
-    read: function (text) {
-        var lines = text.split('\n');
-        var columns;
+    read: function (json) {
+        var obj = JSON && JSON.parse(json) || $.parseJSON(json);
+        var columns = obj.description;
         var features = [];
-        for (var lcv = 0; lcv < (lines.length - 1); lcv++) {
-            var currLine = lines[lcv].replace(/^\s*/, '').replace(/\s*$/, '');
-
-            if (!columns) {
-                //First line is columns
-                columns = currLine.split('\t');
-            } else {
-                var vals = currLine.split('\t');
-                var geometry = new OpenLayers.Geometry.Point(0, 0);
-                var attributes = {};
-                var style = {};
-                var icon, iconSize, iconOffset, overflow;
-                var set = false;
-                for (var valIndex = 0; valIndex < vals.length; valIndex++) {
-                    if (vals[valIndex]) {
-                        if (columns[valIndex] == 'lat') {
-                            geometry.y = parseFloat(vals[valIndex]);
-                            attributes['lat'] = geometry.y;
-                            set = true;
-                        } else if (columns[valIndex] == 'lon') {
-                            geometry.x = parseFloat(vals[valIndex]);
-                            attributes['lon'] = geometry.x;
-                            set = true;
-                        } else if (columns[valIndex] == 'item') {
-                            style['item'] = vals[valIndex];
-                        } else if (columns[valIndex] == 'marker_id') {
-                            attributes['marker_id'] = vals[valIndex];
-                        }
+        for (var i in obj.errors) {
+            var vals = obj.errors[i];
+            var geometry = new OpenLayers.Geometry.Point(0, 0);
+            var attributes = {};
+            var style = {};
+            var icon, iconSize, iconOffset, overflow;
+            var set = false;
+            for (var valIndex = 0; valIndex < vals.length; valIndex++) {
+                if (vals[valIndex]) {
+                    if (columns[valIndex] == 'lat') {
+                        geometry.y = parseFloat(vals[valIndex]);
+                        attributes['lat'] = geometry.y;
+                        set = true;
+                    } else if (columns[valIndex] == 'lon') {
+                        geometry.x = parseFloat(vals[valIndex]);
+                        attributes['lon'] = geometry.x;
+                        set = true;
+                    } else if (columns[valIndex] == 'item') {
+                        style['item'] = vals[valIndex];
+                    } else if (columns[valIndex] == 'error_id') {
+                        attributes['marker_id'] = vals[valIndex];
                     }
                 }
-                if (set) {
-                    if (this.internalProjection && this.externalProjection) {
-                        geometry.transform(this.externalProjection, this.internalProjection);
-                    }
-                    var feature = new OpenLayers.Feature.Vector(geometry, attributes, style);
-                    features.push(feature);
+            }
+            if (set) {
+                if (this.internalProjection && this.externalProjection) {
+                    geometry.transform(this.externalProjection, this.internalProjection);
                 }
+                var feature = new OpenLayers.Feature.Vector(geometry, attributes, style);
+                features.push(feature);
             }
         }
         return features;
@@ -316,7 +309,7 @@ OpenLayers.Layer.DynPoi = OpenLayers.Class(OpenLayers.Layer.Markers, {
             var p = $( jq(this.popup.id))
             p.data("feature", this);
             OpenLayers.Request.GET({
-                url: 'marker/' + this.popup.feature.data.marker_id,
+                url: '../api/0.2/error/' + this.popup.feature.data.marker_id,
                 success: function (ajaxRequest) {
                     var template = $('#popupTpl').html();
                     var resp = JSON.parse(ajaxRequest.responseText);

@@ -34,7 +34,7 @@
       <br>
   <%#fixes%>
       <div class="fix">
-        <a class="link" href="http://localhost:8111/import?url=http://{{website}}/error/<%error_id%>/fix/<%num%>" target="hiddenIframe">josm fix</a>
+        <a class="link" href="http://localhost:8111/import?url=http://{{website}}/api/0.2/error/<%error_id%>/fix/<%num%>" target="hiddenIframe">josm fix</a>
     <%#add%>
         <div class="add"> + <b><%k%></b> = <%v%></div>
     <%/add%>
@@ -58,7 +58,7 @@
 <%#new_elems%>
     <div class="bulle_elem">
       <div class="fix">
-        <a class="link" href="http://localhost:8111/import?url=http://{{website}}/error/<%error_id%>/fix/<%num%>" target="hiddenIframe">josm fix</a>
+        <a class="link" href="http://localhost:8111/import?url=http://{{website}}/api/0.2/error/<%error_id%>/fix/<%num%>" target="hiddenIframe">josm fix</a>
   <%#add%>
         <div class="add"> + <b><%k%></b> = <%v%></div>
   <%/add%>
@@ -80,8 +80,8 @@
   </div>
   <div class="bulle_maj">
     <b>{{_("change status")}} :</b>
-    <a onclick="setTimeout('destroyMarker(\'<%error_id%>\');',200);" href="../error/<%error_id%>/done" target="hiddenIframe">{{_("corrected")}}</a>
-    <a onclick="setTimeout('destroyMarker(\'<%error_id%>\');',200);" href="../error/<%error_id%>/false" target="hiddenIframe">{{_("false positive")}}</a>
+    <a onclick="setTimeout('destroyMarker(\'<%error_id%>\');',200);" href="../api/0.2/error/<%error_id%>/done" target="hiddenIframe">{{_("corrected")}}</a>
+    <a onclick="setTimeout('destroyMarker(\'<%error_id%>\');',200);" href="../api/0.2/error/<%error_id%>/false" target="hiddenIframe">{{_("false positive")}}</a>
 </div>
 
 </div>

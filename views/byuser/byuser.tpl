@@ -11,7 +11,7 @@
     {{_("Number of found errors: more than %d") % count}}
 %end
  - 
-<a href='/map/?user={{username}}'>{{_("Show errors on a map")}}</a>
+<a href='/map/?username={{username}}'>{{_("Show errors on a map")}}</a>
 </p>
 
 <table class='sortable'>
@@ -40,8 +40,8 @@
 %    end
     </td>
     <td title="erreur n°{{res["id"]}}"><a href="../error/{{res["id"]}}">E</a></td>
-%    lat = float(res["lat"])/1000000.
-%    lon = float(res["lon"])/1000000.
+%    lat = float(res["lat"] or 0)/1000000.
+%    lon = float(res["lon"] or 0)/1000000.
 %    minlat = lat - 0.002
 %    maxlat = lat + 0.002
 %    minlon = lon - 0.002

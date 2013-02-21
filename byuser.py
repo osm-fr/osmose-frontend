@@ -22,6 +22,8 @@
 
 from bottle import route, request, template, redirect, response
 from tools import utils
+from tools import query
+from tools.OrderedDict import OrderedDict
 
 
 @route('/byuser')
@@ -32,73 +34,48 @@ def byUser():
 @route('/byuser/')
 @route('/byuser/<username>')
 @route('/byuser/<username>.<format:ext>')
-def byUser(db, lang, username=None, format=None):
-    username = username or request.params.username
-    item = request.params.get('item', type=int)
-    level = request.params.get('level', type=int)
-    if not username:
-        return template('byuser/index')
-    else:
-        params = [username]
-        sql = """
-SELECT
-    m.id,
-    m.class,
-    m.subtitle,
-    m.lat,
-    m.lon,
-    m.source,
-    m.item,
-    c.title,
-    c.level,
-    dynpoi_update_last.timestamp
-FROM
-    marker m
-    JOIN dynpoi_class c ON
-        m.class = c.class AND
-        m.source = c.source
-    JOIN dynpoi_update_last ON
-        m.source = dynpoi_update_last.source
-    JOIN dynpoi_item ON
-        m.item = dynpoi_item.item
-WHERE
-    id IN (SELECT marker_id FROM marker_elem WHERE username=%s)
-"""
-        if item:
-            sql += "AND m.item = %s "
-            params.append(item)
-        if level:
-            sql += "AND c.level = %s "
-            params.append(level)
-        sql += """
-ORDER BY
-    dynpoi_update_last.timestamp DESC
-LIMIT 500
-"""
+@route('/api/0.2/user/<username>')
+def user(db, lang, username=None, format=None):
+    params = query._params()
+    params.username = username or params.username
+    params.limit = 500
+    params.full = True
 
-        db.execute(sql, params)
-        results = db.fetchall()
-        count = len(results)
-        if format == 'rss':
-            response.content_type = "application/rss+xml"
-            return template('byuser/byuser.rss', username=username, count=count, results=results, translate=utils.translator(lang))
-        else:
-            return template('byuser/byuser', username=username, count=count, results=results, translate=utils.translator(lang))
+    if not params.username:
+        return template('byuser/index')
+
+    results = query._gets(db, params)
+    count = len(results)
+    if request.path.startswith("/api") or format == "json":
+        out = OrderedDict()
+        out["description"] = ["id", "item", "lat", "lon", "source", "class", "elems", "subclass", "subtitle", "comment", "title", "level", "timestamp", "menu", "username", "date"]
+        for res in results:
+            res["timestamp"] = str(res["timestamp"])
+            res["date"] = str(res["date"])
+        out["byusers"] = results
+        return out
+
+    elif format == 'rss':
+        response.content_type = "application/rss+xml"
+        return template('byuser/byuser.rss', username=params.username, count=count, results=results, translate=utils.translator(lang))
+
+    else:
+        return template('byuser/byuser', username=params.username, count=count, results=results, translate=utils.translator(lang))
+
+
+def _users(db):
+    params = query._params()
+    return query._count(db, params, ["marker_elem.username"])
 
 
 @route('/byuser-stats')
 def byuser_stats(db):
-    sql = """
-SELECT
-    count(*) AS cpt,
-    username
-FROM
-    marker_elem
-GROUP BY
-    username
-ORDER BY
-    cpt DESC
-LIMIT 500
-"""
-    db.execute(sql)
-    return template('byuser/byuser-stats', results=db.fetchall())
+    return template('byuser/byuser-stats', results=_users(db))
+
+
+@route('/api/0.2/users')
+def users(db):
+    out = OrderedDict()
+    out["description"] = ["username", "count"]
+    out["users"] = _users(db)
+    return out
