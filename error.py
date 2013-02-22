@@ -75,7 +75,7 @@ def _get(db, err_id):
 
 
 @route('/error/<err_id:int>')
-def display(db, err_id):
+def display(db, lang, err_id):
     (marker, columns_marker, elements, columns_elements, fix, columns_fix) = _get(db, err_id)
 
     return template('error/index', err_id=err_id,
