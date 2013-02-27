@@ -127,8 +127,8 @@ def _build_param(bbox, source, item, level, username, classs, country, active, s
         where.append("marker.class = %d"%int(classs))
 
     if bbox:
-        where.append("marker.lat BETWEEN %s AND %s" % (bbox[0], bbox[2]))
-        where.append("marker.lon BETWEEN %s AND %s" % (bbox[1], bbox[3]))
+        where.append("marker.lat BETWEEN %s AND %s" % (bbox[1], bbox[3]))
+        where.append("marker.lon BETWEEN %s AND %s" % (bbox[0], bbox[2]))
 
     if country:
         if country[-1] == "*":
@@ -169,6 +169,10 @@ def _params():
     if params.bbox:
         try:
             params.bbox = map(lambda x: int(float(x) * 1000000), params.bbox.split(','))
+            if not params.lat or params.lat==0:
+                params.lat = (params.bbox[1] + params.bbox[3]) / 2
+            if not params.lon or params.lon==0:
+                params.lon = (params.bbox[0] + params.bbox[2]) / 2
         except:
             params.bbox = None
     if params.limit > 500:
@@ -229,7 +233,7 @@ def _gets(db, params):
         %s --AND
 --        dynpoi_update_last.timestamp > (now() - interval '3 months')
     """
-    if request.params.lat and request.params.lon:
+    if params.lat and params.lon:
         sqlbase += """
     ORDER BY
         point(marker.lat, marker.lon) <-> point(%d, %d)""" % (params.lat, params.lon)

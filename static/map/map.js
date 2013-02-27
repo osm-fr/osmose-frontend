@@ -143,8 +143,6 @@ function init() {
     map.events.register("moveend", map, function () {
         var pos = this.getCenter().clone();
         var lonlat = pos.transform(this.getProjectionObject(), new OpenLayers.Projection("EPSG:4326"));
-        document.myform.lat.value = lonlat.lat
-        document.myform.lon.value = lonlat.lon
         document.myform.zoom.value = this.getZoom();
         if (this.getZoom() >= 6) {
             updateURL();
@@ -432,9 +430,12 @@ function updateURL() {
     permalink.href = permalink.href.replace(/&item=[-0-9x,]*/, '').replace(/\?item=[-0-9x,]*&?/, '?') + "&item=" + ch;
     permalink.href = permalink.href.replace(/&level=[-0-9x,]*/, '').replace(/\?level=[-0-9x,]*&?/, '?') + "&level=" + document.myform.level.value;
 
+    var bbox = map.getExtent();
+    bbox = bbox.transform(map.getProjectionObject(), new OpenLayers.Projection("EPSG:4326"))
+    bbox = bbox.toBBOX();
+
     poisParams =
-        "?lat=" + document.myform.lat.value +
-        "&lon=" + document.myform.lon.value +
+        "?bbox=" + bbox +
         "&zoom=" + document.myform.zoom.value +
         "&source=" + document.myform.source.value +
         "&class=" + document.myform.class.value +
