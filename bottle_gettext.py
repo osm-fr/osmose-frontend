@@ -79,14 +79,14 @@ class GettextPlugin(object):
                 from bottle import redirect
                 url = request.urlparts
                 new_url = []
-                new_url.append(url[0])
+                new_url.append(url.scheme)
                 new_url.append("://")
                 new_url.append(utils.website)
                 new_url.append("/" + language[0])
                 new_url.append(request.fullpath)
-                if url[3]:
+                if url.query:
                     new_url.append("?")
-                    new_url.append(url[3])
+                    new_url.append(url.query)
                 redirect("".join(new_url))
                 return
 
