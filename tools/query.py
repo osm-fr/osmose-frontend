@@ -77,8 +77,12 @@ def _build_param(bbox, source, item, level, username, classs, country, active, s
     tables = list(forceTable)
     tablesLeft = []
 
-    if item:
-        tables.append("dynpoi_class")
+    if join.startswith("marker"):
+        itemField = "marker"
+    else:
+        if item:
+            tables.append("dynpoi_class")
+        itemField = "dynpoi_class"
     if level and level != "1,2,3":
         tables.append("dynpoi_class")
     if country:
@@ -90,11 +94,6 @@ def _build_param(bbox, source, item, level, username, classs, country, active, s
             tableLeft.append("dynpoi_item")
         if username:
             tables.append("marker_elem")
-
-    if "dynpoi_class" in tables or "dynpoi_source" in tables:
-        itemField = "dynpoi_class"
-    else:
-        itemField = "marker"
 
     if "dynpoi_class" in tables or "dynpoi_source" in tables:
         join += """
