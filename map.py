@@ -159,7 +159,7 @@ def heat(db, z, x, y):
     x1,y2 = num2deg(x+1,y+1,z)
 
     params = query._params()
-    params.bbox = [int(x1*10e5), int(y1*10e5), int(x2*10e5), int(y2*10e5)]
+    params.bbox = [int(y1*10e5), int(x1*10e5), int(y2*10e5), int(x2*10e5)]
     items = query._build_where_item(params.item, "dynpoi_item")
 
     db.execute("""
