@@ -88,10 +88,9 @@ def _build_param(bbox, source, item, level, username, classs, country, active, s
     if country:
         tables.append("dynpoi_source")
     if not status in ("done", "false"):
-        if active and active != "all":
-            tables.append("dynpoi_item")
-        elif not active:
-            tableLeft.append("dynpoi_item")
+        tables.append("dynpoi_item")
+        if not active or active == "all":
+            tablesLeft.append("dynpoi_item")
         if username:
             tables.append("marker_elem")
 
@@ -108,8 +107,8 @@ def _build_param(bbox, source, item, level, username, classs, country, active, s
 
     if "dynpoi_item" in tables:
         join += """
-        JOIN dynpoi_item ON
-            %s.item = dynpoi_item.item""" % itemField
+        %sJOIN dynpoi_item ON
+            %s.item = dynpoi_item.item""" % ("LEFT " if "dynpoi_item" in tablesLeft else "", itemField)
 
     if "marker_elem" in tables:
         join += """
