@@ -42,6 +42,7 @@
   <input type='hidden' name='zoom' value='{{zoom}}'>
   <input type='hidden' name='source' value='{{source}}'>
   <input type='hidden' name='class' value='{{classs}}'>
+  <input type='hidden' name='active' value='{{active}}'>
   <input type='hidden' name='username' value='{{username}}'>
     <div id="need_zoom">{{_("no bubbles at this zoom factor")}}</div>
     <div id="action_links">
@@ -63,6 +64,7 @@
       <a href="javascript:toggle_checkboxes();">{{_("invert")}}</a>
     </div>
   <div id="tests" >
+%it = set()
 %for categ in categories:
     <div class="test_group" id="categ{{categ["categ"]}}">
     <h1><a href="javascript:toggleCategDisplay('categ{{categ["categ"]}}')">{{categ["menu"]}}</a>
@@ -71,6 +73,7 @@
     <a href="javascript:showHideCateg('categ{{categ["categ"]}}', false)">{{_("nothing")}}</a></h1>
     <ul>
 %    for err in categ["item"]:
+%        it.add(err["item"])
         <li style='background-image: url(../images/markers/marker-l-{{err["item"]}}.png)' id='item_desc{{err["item"]}}'>
             <div class="level">\\
 %        p = 0
@@ -85,6 +88,20 @@
             </div>
             <input type='checkbox' id='item{{err["item"]}}' name='item{{err["item"]}}' onclick='checkbox_click(this)' {{! {True:" checked=\"checked\"", False:""}[err["item"] in active_items]}}>
             <a target="_blank" href="../errors/?item={{err["item"]}}">{{err["menu"]}}</a>
+        </li>
+%    end
+    </ul>
+    </div>
+%end
+%unactiveItem = set(active_items) - it
+%if unactiveItem:
+    <div class="test_group" id="categUnactiveItem" style="display: none">
+    <h1><span id="categUnactiveItem_count">1/0</span></h1>
+    <ul>
+%    for item in unactiveItem:
+        <li id='item_desc{{item}}'>
+            <input type='checkbox' id='{{item}}' name='item{{item}}' onclick='checkbox_click(this)' checked="checked">
+            <a target="_blank" href="../errors/?item={{err["item"]}}">{{item}}</a>
         </li>
 %    end
     </ul>

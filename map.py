@@ -38,7 +38,14 @@ def check_items(items, all_items):
         return all_items
     else:
         items = items.split(',')
-        return filter(lambda i: str(i) in items or str(i)[0]+'xxx' in items, all_items)
+        it = filter(lambda i: str(i)[0]+'xxx' in items, all_items)
+        for i in items:
+            try:
+                n = int(i)
+                it.append(n)
+            except:
+                pass
+        return it
 
 
 @route('/map')
@@ -66,7 +73,7 @@ def index(db, lang):
         if request.cookies.get("last_" + p, default=None):
             params[p] = request.cookies.get("last_" + p)
 
-    for p in ["lat", "lon", "zoom", "item", "level", "source", "username", "class"]:
+    for p in ["lat", "lon", "zoom", "item", "active", "level", "source", "username", "class"]:
         if request.params.get(p, default=None):
             params[p] = request.params.get(p)
 
@@ -75,6 +82,9 @@ def index(db, lang):
 
     for p in ["zoom"]:
         params[p] = int(params[p])
+
+    if not params.has_key("active"):
+        params["active"] = ""
 
     all_items = []
     db.execute("SELECT item FROM dynpoi_item GROUP BY item;")
@@ -141,7 +151,7 @@ OFFSET
 
     return template('map/index', categories=categories, lat=params["lat"], lon=params["lon"], zoom=params["zoom"],
         source=params["source"], username=params["username"], classs=params["class"],
-        levels=levels, level_selected=level_selected, active_items=active_items, urls=urls, helps=helps, delay=delay,
+        levels=levels, level_selected=level_selected, active_items=active_items, active=params["active"], urls=urls, helps=helps, delay=delay,
         allowed_languages=allowed_languages, translate=utils.translator(lang),
         website=utils.website, request=request)
 
