@@ -91,3 +91,4 @@
  8060 | Höhengleicher Übergang
  8070 | fehlender geodätischer Punkt
  8080 | Adresse, Eintragung möglich
+ 8101 |

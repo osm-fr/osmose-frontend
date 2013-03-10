@@ -91,3 +91,4 @@
  8060 | passage à niveau
  8070 | point géodésique manquant
  8080 | adresse, intégration possible
+ 8101 | Wikipédia, intégration possible

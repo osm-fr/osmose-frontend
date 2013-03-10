@@ -91,3 +91,4 @@
  8060 | crossing
  8070 | geodesic point
  8080 | postal address, could be integrated
+ 8101 | Wikipédia, could be integrated
