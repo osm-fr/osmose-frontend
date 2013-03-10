@@ -87,7 +87,7 @@ def _build_param(bbox, source, item, level, username, classs, country, active, s
         tables.append("dynpoi_class")
     if country:
         tables.append("dynpoi_source")
-    if not status in ("done", "false"):
+    if not stats and not status in ("done", "false"):
         tables.append("dynpoi_item")
         if not active or active == "all":
             tablesLeft.append("dynpoi_item")
