@@ -73,7 +73,7 @@ def index(db, lang):
         if request.cookies.get("last_" + p, default=None):
             params[p] = request.cookies.get("last_" + p)
 
-    for p in ["lat", "lon", "zoom", "item", "active", "level", "source", "username", "class"]:
+    for p in ["lat", "lon", "zoom", "item", "useDevItem", "level", "source", "username", "class"]:
         if request.params.get(p, default=None):
             params[p] = request.params.get(p)
 
@@ -83,8 +83,8 @@ def index(db, lang):
     for p in ["zoom"]:
         params[p] = int(params[p])
 
-    if not params.has_key("active"):
-        params["active"] = ""
+    if not params.has_key("useDevItem"):
+        params["useDevItem"] = ""
 
     all_items = []
     db.execute("SELECT item FROM dynpoi_item GROUP BY item;")
@@ -151,7 +151,7 @@ OFFSET
 
     return template('map/index', categories=categories, lat=params["lat"], lon=params["lon"], zoom=params["zoom"],
         source=params["source"], username=params["username"], classs=params["class"],
-        levels=levels, level_selected=level_selected, active_items=active_items, active=params["active"], urls=urls, helps=helps, delay=delay,
+        levels=levels, level_selected=level_selected, active_items=active_items, useDevItem=params["useDevItem"], urls=urls, helps=helps, delay=delay,
         allowed_languages=allowed_languages, translate=utils.translator(lang),
         website=utils.website, request=request)
 
@@ -186,7 +186,7 @@ WHERE
         # FIXME redirect empty tile
         max = 0
 
-    join, where = query._build_param(params.bbox, params.source, params.item, params.level, params.username, params.classs, params.country, params.active, params.status)
+    join, where = query._build_param(params.bbox, params.source, params.item, params.level, params.username, params.classs, params.country, params.useDevItem, params.status)
 
     COUNT=32
 

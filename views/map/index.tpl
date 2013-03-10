@@ -42,7 +42,7 @@
   <input type='hidden' name='zoom' value='{{zoom}}'>
   <input type='hidden' name='source' value='{{source}}'>
   <input type='hidden' name='class' value='{{classs}}'>
-  <input type='hidden' name='active' value='{{active}}'>
+  <input type='hidden' name='useDevItem' value='{{useDevItem}}'>
   <input type='hidden' name='username' value='{{username}}'>
     <div id="need_zoom">{{_("no bubbles at this zoom factor")}}</div>
     <div id="action_links">
