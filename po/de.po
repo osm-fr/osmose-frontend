@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-14 23:05+0100\n"
+"POT-Creation-Date: 2013-03-10 17:25+0100\n"
 "PO-Revision-Date: 2012-08-02 14:19+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: German\n"
@@ -48,54 +48,54 @@ msgid "Informations"
 msgstr "Informationen"
 
 #. TRANSLATORS: link to help in appropriate language
-#: ../map.py:107
+#: ../map.py:117
 msgid "Errors by user"
 msgstr "Fehler eines Benutzers"
 
-#: ../map.py:108
+#: ../map.py:118
 msgid "Relation analyser"
 msgstr "Analyse von Relationen"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:110
+#: ../map.py:120
 msgid "CLC"
 msgstr ""
 
-#: ../map.py:110
+#: ../map.py:120
 msgid "http://clc.openstreetmap.fr/"
 msgstr "http://clc.openstreetmap.fr/"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:112
+#: ../map.py:122
 msgid "openstreetmap.fr"
 msgstr "openstreetmap.de"
 
-#: ../map.py:112
+#: ../map.py:122
 msgid "http://www.openstreetmap.fr/"
 msgstr "http://www.openstreetmap.de/"
 
 #. TRANSLATORS: link to source code
-#: ../map.py:114
+#: ../map.py:124
 msgid "Statistics"
 msgstr "Statistik"
 
-#: ../map.py:117
+#: ../map.py:127
 msgid "Help on wiki"
 msgstr "Hilfe im wiki"
 
-#: ../map.py:117
+#: ../map.py:127
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/DE:Osmose"
 
-#: ../map.py:118
+#: ../map.py:128
 msgid "Copyright"
 msgstr "Copyright"
 
-#: ../map.py:119
+#: ../map.py:129
 msgid "Sources"
 msgstr "Quellcode"
 
-#: ../map.py:120
+#: ../map.py:130
 msgid "Translation"
 msgstr ""
 
