@@ -441,6 +441,7 @@ function updateURL() {
         "&class=" + document.myform.class.value +
         "&username=" + document.myform.username.value +
         "&item=" + ch +
+        "&useDevItem=" + document.myform.useDevItem.value +
         "&level=" + document.myform.level.value;
     pois.loadText(poisParams);
 
@@ -450,6 +451,7 @@ function updateURL() {
             "&class=" + document.myform.class.value +
             "&username=" + document.myform.username.value +
             "&item=" + ch +
+            "&useDevItem=" + document.myform.useDevItem.value +
             "&level=" + document.myform.level.value;
         var url = "heat/${z}/${x}/${y}.png" + params;
         if (heat.url != url) {

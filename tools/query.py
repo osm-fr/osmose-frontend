@@ -50,7 +50,7 @@ def _build_where_item(item, table):
     return where
 
 
-def _build_param(bbox, source, item, level, username, classs, country, active, status, forceTable=[], stats=False):
+def _build_param(bbox, source, item, level, username, classs, country, useDevItem, status, forceTable=[], stats=False):
     join = ""
     where = ["1=1"]
 
@@ -87,11 +87,10 @@ def _build_param(bbox, source, item, level, username, classs, country, active, s
         tables.append("dynpoi_class")
     if country:
         tables.append("dynpoi_source")
-    if not status in ("done", "false"):
-        if active and active != "all":
-            tables.append("dynpoi_item")
-        elif not active:
-            tableLeft.append("dynpoi_item")
+    if not stats and not status in ("done", "false"):
+        tables.append("dynpoi_item")
+        if useDevItem:
+            tablesLeft.append("dynpoi_item")
         if username:
             tables.append("marker_elem")
 
@@ -108,8 +107,8 @@ def _build_param(bbox, source, item, level, username, classs, country, active, s
 
     if "dynpoi_item" in tables:
         join += """
-        JOIN dynpoi_item ON
-            %s.item = dynpoi_item.item""" % itemField
+        %sJOIN dynpoi_item ON
+            %s.item = dynpoi_item.item""" % ("LEFT " if "dynpoi_item" in tablesLeft else "", itemField)
 
     if "marker_elem" in tables:
         join += """
@@ -134,7 +133,7 @@ def _build_param(bbox, source, item, level, username, classs, country, active, s
             country = country[:-2] + "%"
         where.append("dynpoi_source.comment LIKE '%%%s'" % ("-" + country))
 
-    if not status in ("done", "false") and not active:
+    if not status in ("done", "false") and useDevItem == True:
         where.append("dynpoi_item.item IS NULL")
 
     if not status in ("done", "false") and username:
@@ -157,7 +156,7 @@ def _params():
         zoom     = request.params.get('zoom', type=int, default=10)
         limit    = request.params.get('limit', type=int, default=100)
         country  = request.params.get('country', default=None)
-        active   = request.params.get('active', default=True)
+        useDevItem= request.params.get('useDevItem', default=False)
         status   = request.params.get('status', default="open")
 
     params = Params()
@@ -178,8 +177,12 @@ def _params():
         params.limit = 500
     if params.country and not re.match(r"^([a-z_]+)(\*|)$", params.country):
         params.country = None
-    if params.active == "false":
-        params.active = False
+    if params.useDevItem == "true":
+        params.useDevItem = True
+    elif params.useDevItem == "all":
+        pass
+    else:
+        params.useDevItem = False
 
     return params
 
@@ -248,7 +251,7 @@ def _gets(db, params):
     else:
         forceTable = []
 
-    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.username, params.classs, params.country, params.active, params.status, forceTable=forceTable)
+    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.username, params.classs, params.country, params.useDevItem, params.status, forceTable=forceTable)
     sql = sqlbase % (join, where, params.limit)
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()
@@ -284,7 +287,7 @@ def _count(db, params, by, extraFrom=[], extraFields=[], orderBy=False):
     else:
         order = "count DESC"
 
-    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.username, params.classs, params.country, params.active, params.status, forceTable=byTable)
+    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.username, params.classs, params.country, params.useDevItem, params.status, forceTable=byTable)
     sql = sqlbase % (select, join, where, groupBy, order, params.limit)
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()
