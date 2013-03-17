@@ -68,17 +68,17 @@ def execute_sql(dbcurs, sql, args = None):
         sys.stdout.flush()
 
 def update(source, url, logger = printlogger()):
-    
+
     source_id = int(source["id"])
-        
+
     ## open connections
     dbconn = utils.get_dbconn()
     dbcurs = dbconn.cursor()
-    
+
     ## xml parser
     parser = make_parser()
     parser.setContentHandler(update_parser(source_id, source, url, dbcurs))
-        
+
     ## download the file if needed
     if url.startswith("http://"):
         socket.setdefaulttimeout(60)
@@ -95,7 +95,7 @@ def update(source, url, logger = printlogger()):
     else:
         fname = url
         istemp = False
-            
+
     ## open the file
     if url.endswith(".bz2"):
         import bz2
@@ -105,7 +105,7 @@ def update(source, url, logger = printlogger()):
         f = gzip.open(fname)
     else:
         f = open(fname)
-        
+
     ## parse the file
     parser.parse(f)
 
@@ -130,11 +130,11 @@ def update(source, url, logger = printlogger()):
     execute_sql(dbcurs, """DELETE FROM marker
                       WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status WHERE source = %s)""",
                    (source_id, ))
-    
+
     ## commit and close
     dbconn.commit()
     dbconn.close()
-    
+
     ## close and delete
     f.close()
     del f
@@ -142,7 +142,7 @@ def update(source, url, logger = printlogger()):
         os.remove(fname)
 
 class update_parser(handler.ContentHandler):
-    
+
     def __init__(self, source_id, source_data, source_url, dbcurs):
         self._source_id        = source_id
         self._source_data      = source_data
@@ -233,18 +233,18 @@ class update_parser(handler.ContentHandler):
             self._fix_create = {}
             self._fix_modify = {}
             self._fix_delete = []
-            
+
     def endElement(self, name):
         if name == u"error":
             ## build all_elem
             all_elem   = u""
             for e in self._error_elements:
                 all_elem  += e[u"type"] + e[u"id"] + "_"
-            all_elem  = all_elem.rstrip("_")            
-                
+            all_elem  = all_elem.rstrip("_")
+
             ## sql template
             sql_marker = u"INSERT INTO marker (source, class, subclass, item, lat, lon, elems, subtitle) VALUES (" + "%s," * 7 + "%s) RETURNING id;"
-            
+
             ## add data at all location
             if len(self._error_locations) == 0:
                 print "No location on error found on line %d" % self.locator.getLineNumber()
@@ -266,7 +266,6 @@ class update_parser(handler.ContentHandler):
                              ))
                 marker_id = self._dbcurs.fetchone()[0]
 
-                
             ## add all elements
             sql_elem = u"INSERT INTO marker_elem (marker_id, elem_index, data_type, id, tags, username) VALUES (" + "%s, " * 5 + "%s)"
             num = 0
@@ -303,7 +302,7 @@ class update_parser(handler.ContentHandler):
                 self._elem[u"tags_modify"] = self._fix_modify
                 self._elem[u"tags_delete"] = self._fix_delete
                 self._fix.append(self._elem)
-            
+
         elif name == u"class":
             execute_sql(self._dbcurs, "DELETE FROM dynpoi_class WHERE source = %s AND class = %s",
                                  (self._source_id, self._class_id))
@@ -346,7 +345,7 @@ class update_parser(handler.ContentHandler):
             self._tstamp_updated = True
 
 ###########################################################################
-                        
+
 def print_source(source):
     show(u"source #%s"%source["id"])
     for k in source:
@@ -359,7 +358,7 @@ def print_source(source):
             show(u"   %-10s = %s"%(k, source[k]))
 
 ###########################################################################
-            
+
 if __name__ == "__main__":
     sources = utils.get_sources()
     if len(sys.argv) == 1:

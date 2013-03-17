@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, request, template, response, redirect, abort
+from bottle import route, request, template, response, redirect, abort, static_file
 from tools import utils
 from tools import tag2link
 from tools import query
@@ -66,14 +66,15 @@ def index(db, lang):
                "level":  1,
                "source": '',
                "class":  '',
-               "username":   '',
+               "username": '',
+               "country": '',
              }
 
     for p in ["lat", "lon", "zoom", "item", "level"]:
         if request.cookies.get("last_" + p, default=None):
             params[p] = request.cookies.get("last_" + p)
 
-    for p in ["lat", "lon", "zoom", "item", "useDevItem", "level", "source", "username", "class"]:
+    for p in ["lat", "lon", "zoom", "item", "useDevItem", "level", "source", "username", "class", "country"]:
         if request.params.get(p, default=None):
             params[p] = request.params.get(p)
 
@@ -148,9 +149,11 @@ OFFSET
     delay = db.fetchone()
     if delay:
         delay = delay[0]/60/60/24
+    else:
+        delay = 0
 
     return template('map/index', categories=categories, lat=params["lat"], lon=params["lon"], zoom=params["zoom"],
-        source=params["source"], username=params["username"], classs=params["class"],
+        source=params["source"], username=params["username"], classs=params["class"], country=params["country"],
         levels=levels, level_selected=level_selected, active_items=active_items, useDevItem=params["useDevItem"], urls=urls, helps=helps, delay=delay,
         allowed_languages=allowed_languages, translate=utils.translator(lang),
         website=utils.website, request=request)
@@ -183,10 +186,12 @@ WHERE
     if max and max[0]:
         max = float(max[0])
     else:
-        # FIXME redirect empty tile
-        max = 0
+        response.content_type = 'image/png'
+        return static_file("images/tile-empty.png", root='static')
 
     join, where = query._build_param(params.bbox, params.source, params.item, params.level, params.username, params.classs, params.country, params.useDevItem, params.status)
+    join = join.replace("%", "%%")
+    where = where.replace("%", "%%")
 
     COUNT=32
 

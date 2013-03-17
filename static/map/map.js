@@ -434,25 +434,26 @@ function updateURL() {
     bbox = bbox.transform(map.getProjectionObject(), new OpenLayers.Projection("EPSG:4326"))
     bbox = bbox.toBBOX();
 
-    poisParams =
-        "?bbox=" + bbox +
-        "&zoom=" + document.myform.zoom.value +
-        "&source=" + document.myform.source.value +
-        "&class=" + document.myform.class.value +
-        "&username=" + document.myform.username.value +
-        "&item=" + ch +
-        "&useDevItem=" + document.myform.useDevItem.value +
+    var params =
+        "?item=" + ch +
         "&level=" + document.myform.level.value;
+    if(document.myform.source.value)
+        params += "&source=" + document.myform.source.value;
+    if(document.myform.class.value)
+        params += "&class=" + document.myform.class.value;
+    if(document.myform.username.value)
+        params += "&username=" + document.myform.username.value;
+    if(document.myform.useDevItem.value)
+        params += "&useDevItem=" + document.myform.useDevItem.value;
+    if(document.myform.country.value)
+        params += "&country=" + document.myform.country.value;
+
+    poisParams = params +
+        "&bbox=" + bbox +
+        "&zoom=" + document.myform.zoom.value;
     pois.loadText(poisParams);
 
     if (heat.visibility) {
-        var params =
-            "?source=" + document.myform.source.value +
-            "&class=" + document.myform.class.value +
-            "&username=" + document.myform.username.value +
-            "&item=" + ch +
-            "&useDevItem=" + document.myform.useDevItem.value +
-            "&level=" + document.myform.level.value;
         var url = "heat/${z}/${x}/${y}.png" + params;
         if (heat.url != url) {
             heat.setUrl(url);
