@@ -130,8 +130,8 @@ def _build_param(bbox, source, item, level, username, classs, country, useDevIte
 
     if country:
         if country[-1] == "*":
-            country = country[:-2] + "%"
-        where.append("dynpoi_source.comment LIKE '%%%s'" % ("-" + country))
+            country = country[:-1] + "%"
+        where.append("dynpoi_source.comment LIKE '%%%s'" % country)
 
     if not status in ("done", "false") and useDevItem == True:
         where.append("dynpoi_item.item IS NULL")

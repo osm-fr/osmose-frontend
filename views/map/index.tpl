@@ -44,6 +44,7 @@
   <input type='hidden' name='class' value='{{classs}}'>
   <input type='hidden' name='useDevItem' value='{{useDevItem}}'>
   <input type='hidden' name='username' value='{{username}}'>
+  <input type='hidden' name='country' value='{{country}}'>
     <div id="need_zoom">{{_("no bubbles at this zoom factor")}}</div>
     <div id="action_links">
       <span id="level-span">
