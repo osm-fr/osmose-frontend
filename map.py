@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, request, template, response, redirect, abort
+from bottle import route, request, template, response, redirect, abort, static_file
 from tools import utils
 from tools import tag2link
 from tools import query
@@ -186,8 +186,8 @@ WHERE
     if max and max[0]:
         max = float(max[0])
     else:
-        # FIXME redirect empty tile
-        max = 0
+        response.content_type = 'image/png'
+        return static_file("images/tile-empty.png", root='static')
 
     join, where = query._build_param(params.bbox, params.source, params.item, params.level, params.username, params.classs, params.country, params.useDevItem, params.status)
     join = join.replace("%", "%%")
