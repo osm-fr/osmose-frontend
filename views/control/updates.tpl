@@ -1,5 +1,5 @@
 %rebase layout title=_("Last updates")
-<p>{{_("Median delay:")}} {{liste[len(liste)/2][2]}}</p>
+<p>{{_("Median delay:")}} {{(liste[len(liste)/2][2]) if len(liste)>0 else ""}}</p>
 <table>
 <tr>
     <th>{{_("source")}}</th>

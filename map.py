@@ -148,6 +148,8 @@ OFFSET
     delay = db.fetchone()
     if delay:
         delay = delay[0]/60/60/24
+    else:
+        delay = 0
 
     return template('map/index', categories=categories, lat=params["lat"], lon=params["lon"], zoom=params["zoom"],
         source=params["source"], username=params["username"], classs=params["class"],
