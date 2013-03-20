@@ -81,7 +81,7 @@ def update(source, url, logger = printlogger()):
 
     ## download the file if needed
     if url.startswith("http://"):
-        socket.setdefaulttimeout(60)
+        socket.setdefaulttimeout(180)
 
 
         tmp_path = "/tmp/osmose/"
