@@ -138,8 +138,8 @@
     <td title="erreur n°{{res["id"]}}"><a href="../error/{{res["id"]}}">E</a></td>
 %        end
 %        if res["lat"] and res["lon"]:
-%            lat = res["lat"] / 1000000.
-%            lon = res["lon"] / 1000000.
+%            lat = res["lat"]
+%            lon = res["lon"]
 %            lat_s = "%.2f" % lat
 %            lon_s = "%.2f" % lon
     <td><a href="/map/?zoom=13&amp;lat={{lat}}&amp;lon={{lon}}&amp;item={{res["item"]}}&amp;level={{res["level"]}}">{{lon_s}}&nbsp;{{lat_s}}</a></td>

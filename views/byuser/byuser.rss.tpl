@@ -26,8 +26,8 @@
 %    end
         item={{res["item"]}}, class={{res["class"]}}, level={{res["level"]}}
         {{'<a href="http://%s/error/%s">E</a>' % (utils.website, res['id'])}}
-%    lat = float(res["lat"])/1000000.
-%    lon = float(res["lon"])/1000000.
+%    lat = res["lat"]
+%    lon = res["lon"]
 %    minlat = lat - 0.002
 %    maxlat = lat + 0.002
 %    minlon = lon - 0.002

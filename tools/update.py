@@ -260,7 +260,7 @@ class update_parser(handler.ContentHandler):
                 execute_sql(self._dbcurs, sql_marker,
                             (self._source_id, self._class_id, self._class_sub,
                              self._class_item[self._class_id],
-                             str(int(1000000*lat)), str(int(1000000*lon)),
+                             lat, lon,
                              utils.pg_escape(all_elem),
                              self._error_texts,
                              ))

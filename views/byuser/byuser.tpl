@@ -40,8 +40,8 @@
 %    end
     </td>
     <td title="erreur n°{{res["id"]}}"><a href="../error/{{res["id"]}}">E</a></td>
-%    lat = float(res["lat"] or 0)/1000000.
-%    lon = float(res["lon"] or 0)/1000000.
+%    lat = res["lat"] or 0
+%    lon = res["lon"] or 0
 %    minlat = lat - 0.002
 %    maxlat = lat + 0.002
 %    minlon = lon - 0.002

@@ -28,7 +28,7 @@ from tools import utils
 
 def _get(db, err_id):
     columns_marker = ["marker.item", "marker.source", "marker.class", "marker.elems", "marker.subclass",
-        "ROUND(marker.lat/1000000., 8) AS lat", "ROUND(marker.lon/1000000., 8) AS lon",
+        "marker.lat", "marker.lon",
         "dynpoi_class.title", "marker.subtitle", "dynpoi_update_last.timestamp"]
     sql = "SELECT " + ",".join(columns_marker) + """
     FROM
@@ -224,8 +224,8 @@ WHERE marker_id = %s AND diff_index = %s
             sql = "SELECT lat, lon FROM marker WHERE id = %s"
             db.execute(sql, (err_id, ))
             res2 = db.fetchone()
-            data["lat"] = res2["lat"] / 1000000.
-            data["lon"] = res2["lon"] / 1000000.
+            data["lat"] = res2["lat"]
+            data["lon"] = res2["lon"]
 
             if res["elem_data_type"] == 'N':
                 return OsmSax.NodeToXml(data, full=True)

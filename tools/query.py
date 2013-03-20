@@ -144,8 +144,8 @@ def _build_param(bbox, source, item, level, username, classs, country, useDevIte
 
 def _params():
     class Params:
-        lat      = int(request.params.get('lat', type=float, default=0)*1000000)
-        lon      = int(request.params.get('lon', type=float, default=0)*1000000)
+        lat      = request.params.get('lat', type=float, default=0)
+        lon      = request.params.get('lon', type=float, default=0)
         bbox     = request.params.get('bbox', default=None)
         item     = request.params.get('item')
         source   = request.params.get('source', default='')
@@ -166,7 +166,7 @@ def _params():
         params.level = ",".join([str(int(x)) for x in params.level if x])
     if params.bbox:
         try:
-            params.bbox = map(lambda x: int(float(x) * 1000000), params.bbox.split(','))
+            params.bbox = map(lambda x: float(x), params.bbox.split(','))
             if not params.lat or params.lat==0:
                 params.lat = (params.bbox[1] + params.bbox[3]) / 2
             if not params.lon or params.lon==0:
@@ -238,7 +238,7 @@ def _gets(db, params):
     if params.lat and params.lon:
         sqlbase += """
     ORDER BY
-        point(marker.lat, marker.lon) <-> point(%d, %d)""" % (params.lat, params.lon)
+        point(marker.lat, marker.lon) <-> point(%f, %f)""" % (params.lat, params.lon)
     sqlbase += """
     LIMIT
         %s"""

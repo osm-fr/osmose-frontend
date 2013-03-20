@@ -38,10 +38,10 @@ def closePOIexec(id = None):
 
 
 def bboxRequest2Clause():
-    minlat = request.params.get("b", type=float, default=-90) * 1000000
-    maxlat = request.params.get("t", type=float, default=90) * 1000000
-    minlon = request.params.get("l", type=float, default=-180) * 1000000
-    maxlon = request.params.get("r", type=float, default=180) * 1000000
+    minlat = request.params.get("b", type=float, default=-90)
+    maxlat = request.params.get("t", type=float, default=90)
+    minlon = request.params.get("l", type=float, default=-180)
+    maxlon = request.params.get("r", type=float, default=180)
     lat = int((minlat + maxlat) / 2)
     lon = int((minlon + maxlon) / 2)
     clause = []
@@ -98,8 +98,8 @@ LIMIT 100
     translate = utils.translator(lang)
 
     def each(res):
-        lat       = float(res["lat"]) / 1000000
-        lon       = float(res["lon"]) / 1000000
+        lat       = res["lat"]
+        lon       = res["lon"]
         error_id  = res["id"]
         title     = translate.select(res["title"])
         subtitle  = translate.select(res["subtitle"])
@@ -163,8 +163,8 @@ ORDER BY
     translate = utils.translator(lang)
 
     def each(res):
-        lat       = float(res["lat"]) / 1000000
-        lon       = float(res["lon"]) / 1000000
+        lat       = res["lat"]
+        lon       = res["lon"]
         error_id  = res["id"]
         title     = translate.select(res["title"])
         subtitle  = translate.select(res["subtitle"])

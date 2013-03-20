@@ -245,8 +245,8 @@ def markers(db, lang):
 
     expires = datetime.datetime.now() + datetime.timedelta(days=365)
     path = '/'.join(request.fullpath.split('/')[0:-1])
-    response.set_cookie('last_lat', str(params.lat/1000000.), expires=expires, path=path)
-    response.set_cookie('last_lon', str(params.lon/1000000.), expires=expires, path=path)
+    response.set_cookie('last_lat', str(params.lat), expires=expires, path=path)
+    response.set_cookie('last_lon', str(params.lon), expires=expires, path=path)
     response.set_cookie('last_zoom', str(params.zoom), expires=expires, path=path)
     response.set_cookie('last_level', str(params.level), expires=expires, path=path)
     response.set_cookie('last_item', params.item, expires=expires, path=path)

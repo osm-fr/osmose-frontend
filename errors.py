@@ -43,13 +43,13 @@ def _errors(db, lang, params):
     translate = utils.translator(lang)
 
     for res in results:
-        lat       = str(float(res["lat"])/1000000)
-        lon       = str(float(res["lon"])/1000000)
+        lat       = res["lat"]
+        lon       = res["lon"]
         error_id  = res["id"]
         item      = res["item"] or 0
 
         if not params.full:
-            out["errors"].append([lat, lon, str(error_id), str(item)])
+            out["errors"].append([str(lat), str(lon), str(error_id), str(item)])
         else:
             source    = res["source"]
             classs    = res["class"]
@@ -60,7 +60,7 @@ def _errors(db, lang, params):
             level     = res["level"]
             update    = res["timestamp"]
             username  = (res["username"] or "").decode('utf-8')
-            out["errors"].append([lat, lon, str(error_id), str(item), str(source), str(classs), str(elems), str(subclass), subtitle, title, str(level), str(update), username])
+            out["errors"].append([str(lat), str(lon), str(error_id), str(item), str(source), str(classs), str(elems), str(subclass), subtitle, title, str(level), str(update), username])
 
     return out
 
