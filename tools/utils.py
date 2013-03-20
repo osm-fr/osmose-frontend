@@ -2,6 +2,7 @@
 #-*- coding: utf-8 -*-
 
 import os, re, Cookie
+import datetime
 
 ################################################################################
 
@@ -44,6 +45,20 @@ def get_sources():
 
 def show(s):
     print s.encode("utf8")
+
+def str_to_datetime(s):
+    patterns = [
+                "%Y-%m-%d",
+                "%Y-%m",
+                "%Y"
+               ]
+    for p in patterns:
+        try:
+            return datetime.datetime.strptime(s, p)
+        except ValueError:
+            pass
+
+    raise ValueError
 
 ###########################################################################
 ## translation

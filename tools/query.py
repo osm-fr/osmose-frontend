@@ -50,7 +50,8 @@ def _build_where_item(item, table):
     return where
 
 
-def _build_param(bbox, source, item, level, username, classs, country, useDevItem, status, forceTable=[], stats=False):
+def _build_param(bbox, source, item, level, username, classs, country, useDevItem, status, forceTable=[],
+                 stats=False, start_date=None, end_date=None):
     join = ""
     where = ["1=1"]
 
@@ -139,6 +140,12 @@ def _build_param(bbox, source, item, level, username, classs, country, useDevIte
     if not status in ("done", "false") and username:
         where.append("marker_elem.username = '%s'" % username)
 
+    if stats:
+        if start_date:
+            where.append("marker.timestamp > '%s'" % start_date.isoformat())
+        if end_date:
+            where.append("marker.timestamp < '%s'" % end_date.isoformat())
+
     return (join, " AND\n        ".join(where))
 
 
@@ -158,6 +165,8 @@ def _params():
         country  = request.params.get('country', default=None)
         useDevItem= request.params.get('useDevItem', default=False)
         status   = request.params.get('status', default="open")
+        start_date = request.params.get('start_date', default=None)
+        end_date = request.params.get('end_date', default=None)
 
     params = Params()
 
@@ -183,6 +192,10 @@ def _params():
         pass
     else:
         params.useDevItem = False
+    if params.start_date:
+        params.start_date = utils.str_to_datetime(params.start_date)
+    if params.end_date:
+        params.end_date = utils.str_to_datetime(params.end_date)
 
     return params
 
