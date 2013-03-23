@@ -126,8 +126,10 @@ def update():
 
 @route('/control/lang')
 def update(lang):
-    out = request.headers['Accept-Language'] + "\n"
-    out += "\n".join(lang)
+    out = "Accept-Language: " + request.headers['Accept-Language'] + "\n"
+    if request.get_cookie('lang'):
+        out += "Cookie: " + request.get_cookie('lang') + "\n"
+    out += "Chosen languages: " + (",".join(lang)) + "\n"
     response.content_type = "text/plain; charset=utf-8"
     return out
 
