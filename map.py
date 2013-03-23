@@ -172,7 +172,7 @@ def heat(db, z, x, y):
     x1,y2 = num2deg(x+1,y+1,z)
 
     params = query._params()
-    params.bbox = [int(y1*10e5), int(x1*10e5), int(y2*10e5), int(x2*10e5)]
+    params.bbox = [y1, x1, y2, x2]
     items = query._build_where_item(params.item, "dynpoi_item")
 
     db.execute("""
@@ -208,7 +208,7 @@ GROUP BY
     latn,
     lonn
 """
-    db.execute(sql, {"x1":x1*10e5, "y1":y1*10e5, "x2":x2*10e5, "y2":y2*10e5, "count":COUNT})
+    db.execute(sql, {"x1":x1, "y1":y1, "x2":x2, "y2":y2, "count":COUNT})
     im = Image.new("RGB", (256,256), "#ff0000")
     draw = ImageDraw.Draw(im)
 
