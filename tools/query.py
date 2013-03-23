@@ -157,7 +157,7 @@ def _params():
         item     = request.params.get('item')
         source   = request.params.get('source', default='')
         classs   = request.params.get('class', default='')
-        username = utils.pg_escape(unicode(request.params.get('username', default='')))
+        username = utils.pg_escape(request.params.get('username', default='').decode('utf-8'))
         level    = request.params.get('level', default='1,2,3')
         full     = request.params.get('full', default=False)
         zoom     = request.params.get('zoom', type=int, default=10)
