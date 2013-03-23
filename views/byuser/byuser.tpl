@@ -42,10 +42,10 @@
     <td title="erreur n°{{res["id"]}}"><a href="../error/{{res["id"]}}">E</a></td>
 %    lat = res["lat"] or 0
 %    lon = res["lon"] or 0
-%    minlat = lat - 0.002
-%    maxlat = lat + 0.002
-%    minlon = lon - 0.002
-%    maxlon = lon + 0.002
+%    minlat = float(lat) - 0.002
+%    maxlat = float(lat) + 0.002
+%    minlon = float(lon) - 0.002
+%    maxlon = float(lon) + 0.002
     <td><a href="http://localhost:8111/load_and_zoom?left={{minlon}}&amp;bottom={{minlat}}&amp;right={{maxlon}}&amp;top={{maxlat}}" target="hiddenIframe">josm</a></td>
 %    cl = res["class"]
 %    source = res["source"]

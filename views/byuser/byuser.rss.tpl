@@ -28,10 +28,10 @@
         {{'<a href="http://%s/error/%s">E</a>' % (utils.website, res['id'])}}
 %    lat = res["lat"]
 %    lon = res["lon"]
-%    minlat = lat - 0.002
-%    maxlat = lat + 0.002
-%    minlon = lon - 0.002
-%    maxlon = lon + 0.002
+%    minlat = float(lat) - 0.002
+%    maxlat = float(lat) + 0.002
+%    minlon = float(lon) - 0.002
+%    maxlon = float(lon) + 0.002
         {{'<a href="http://localhost:8111/load_and_zoom?left=%s&amp;bottom=%s&amp;right=%s&amp;top=%s">josm</a>' % (minlon, minlat, maxlon, maxlat)}}
         </description>
         <category>{{res["item"]}}</category>
