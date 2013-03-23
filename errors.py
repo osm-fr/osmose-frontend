@@ -120,10 +120,8 @@ def index(db, lang):
     items = query_meta._items(db, lang)
 
     params = query._params()
-    limit = request.params.get('limit', type=int)
-    if limit >= 0 and params.limit <= 10000:
-        params.limit = limit
     params.status = {"info":"open", "false-positive": "false", "done":"done"}[gen]
+    params.limit = None
 
     errors_groups = query._count(db, params, [
         "dynpoi_class.item",
@@ -139,6 +137,10 @@ def index(db, lang):
     for res in errors_groups:
         if res["count"] != -1:
             total += res["count"]
+
+    limit = request.params.get('limit', type=int)
+    if limit >= 0 and params.limit <= 10000:
+        params.limit = limit
 
     if (total > 0 and total < 1000) or params.limit:
         params.full = True

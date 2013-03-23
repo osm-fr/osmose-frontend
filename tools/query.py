@@ -291,8 +291,6 @@ def _count(db, params, by, extraFrom=[], extraFields=[], orderBy=False):
         %s
     ORDER BY
         %s
-    LIMIT
-        %s
     """
 
     select = ",\n        ".join(by+extraFields)
@@ -301,9 +299,11 @@ def _count(db, params, by, extraFrom=[], extraFields=[], orderBy=False):
         order = groupBy
     else:
         order = "count DESC"
+    if params.limit:
+        sqlbase += " LIMIT %s" % params.limit
 
     join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, forceTable=byTable)
-    sql = sqlbase % (select, join, where, groupBy, order, params.limit)
+    sql = sqlbase % (select, join, where, groupBy, order)
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()
 
