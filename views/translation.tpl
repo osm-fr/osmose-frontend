@@ -1,4 +1,3 @@
-%from tools import utils
 %rebase layout title=(_("How to help translation"))
 <h1>{{_("How to help translation")}}</h1>
 <p>{{_("OsmOse tool is mainly developped by french people, and we aim to add more languages. We currently cover almost all the languages used by countries covered by analyses.")}}</p>

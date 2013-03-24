@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-%from tools import utils
-%from datetime import datetime
 <rss version="2.0">
 <channel>
     <title>Osmose - {{username}}</title>
@@ -16,7 +14,7 @@
 {{results[0]["timestamp"].ctime()}}\\
 %end
 </lastBuildDate>
-    <link>http://{{utils.website}}/byuser/{{username}}</link>
+    <link>http://{{website}}/byuser/{{username}}</link>
 %for res in results:
     <item>
         <title>{{translate.select(res["title"])}}</title>
@@ -25,7 +23,7 @@
         {{translate.select(res["subtitle"])}}
 %    end
         item={{res["item"]}}, class={{res["class"]}}, level={{res["level"]}}
-        {{'<a href="http://%s/error/%s">E</a>' % (utils.website, res['id'])}}
+        {{'<a href="http://%s/error/%s">E</a>' % (website, res['id'])}}
 %    lat = res["lat"]
 %    lon = res["lon"]
 %    minlat = float(lat) - 0.002
@@ -41,7 +39,7 @@
 %    level = res["level"]
 %    lat_s = "%.2f" % lat
 %    lon_s = "%.2f" % lon
-        <link>http://{{utils.website}}/map/?zoom=16&amp;lat={{lat}}&amp;lon={{lon}}&amp;item={{item}}&amp;level={{level}}</link>
+        <link>http://{{website}}/map/?zoom=16&amp;lat={{lat}}&amp;lon={{lon}}&amp;item={{item}}&amp;level={{level}}</link>
     </item>
 %end
 </channel>

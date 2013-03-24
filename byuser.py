@@ -58,10 +58,10 @@ def user(db, lang, username=None, format=None):
 
     elif format == 'rss':
         response.content_type = "application/rss+xml"
-        return template('byuser/byuser.rss', username=params.username, count=count, results=results, translate=utils.translator(lang))
+        return template('byuser/byuser.rss', username=params.username, count=count, results=results, translate=utils.translator(lang), website=utils.website)
 
     else:
-        return template('byuser/byuser', username=params.username, count=count, results=results, translate=utils.translator(lang))
+        return template('byuser/byuser', username=params.username, count=count, results=results, translate=utils.translator(lang), website=utils.website)
 
 
 def _users(db):
