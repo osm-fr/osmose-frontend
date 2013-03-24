@@ -37,7 +37,8 @@ def byUser():
 @route('/api/0.2/user/<username>')
 def user(db, lang, username=None, format=None):
     params = query._params()
-    params.username = username or params.username
+    if username:
+        params.username = username.decode("utf-8")
     params.limit = 500
     params.full = True
 
