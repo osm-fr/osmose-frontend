@@ -189,7 +189,7 @@ WHERE
         response.content_type = 'image/png'
         return static_file("images/tile-empty.png", root='static')
 
-    join, where = query._build_param(params.bbox, params.source, params.item, params.level, params.username, params.classs, params.country, params.useDevItem, params.status)
+    join, where = query._build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status)
     join = join.replace("%", "%%")
     where = where.replace("%", "%%")
 
@@ -237,7 +237,7 @@ GROUP BY
 def markers(db, lang):
     params = query._params()
 
-    if (not params.username) and (not params.source) and (params.zoom < 6):
+    if (not params.users) and (not params.source) and (params.zoom < 6):
         return
 
     params.limit = 200

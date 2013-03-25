@@ -50,7 +50,7 @@ def _build_where_item(item, table):
     return where
 
 
-def _build_param(bbox, source, item, level, username, classs, country, useDevItem, status, forceTable=[],
+def _build_param(bbox, source, item, level, users, classs, country, useDevItem, status, forceTable=[],
                  stats=False, start_date=None, end_date=None):
     join = ""
     where = ["1=1"]
@@ -92,7 +92,7 @@ def _build_param(bbox, source, item, level, username, classs, country, useDevIte
         tables.append("dynpoi_item")
         if useDevItem:
             tablesLeft.append("dynpoi_item")
-        if username:
+        if users:
             tables.append("marker_elem")
 
     if "dynpoi_class" in tables or "dynpoi_source" in tables:
@@ -137,8 +137,8 @@ def _build_param(bbox, source, item, level, username, classs, country, useDevIte
     if not status in ("done", "false") and useDevItem == True:
         where.append("dynpoi_item.item IS NULL")
 
-    if not status in ("done", "false") and username:
-        where.append("marker_elem.username = '%s'" % username)
+    if not status in ("done", "false") and users:
+        where.append("marker_elem.username IN ('%s')" % "','".join(users))
 
     if stats:
         if start_date:
@@ -157,7 +157,7 @@ def _params():
         item     = request.params.get('item')
         source   = request.params.get('source', default='')
         classs   = request.params.get('class', default='')
-        username = utils.pg_escape(request.params.get('username', default='').decode('utf-8'))
+        users    = utils.pg_escape(request.params.get('username', default='').decode('utf-8'))
         level    = request.params.get('level', default='1,2,3')
         full     = request.params.get('full', default=False)
         zoom     = request.params.get('zoom', type=int, default=10)
@@ -182,6 +182,8 @@ def _params():
                 params.lon = (params.bbox[0] + params.bbox[2]) / 2
         except:
             params.bbox = None
+    if params.users:
+        params.users = params.users.split(",")
     if params.limit > 500:
         params.limit = 500
     if params.country and not re.match(r"^([a-z_]+)(\*|)$", params.country):
@@ -264,7 +266,7 @@ def _gets(db, params):
     else:
         forceTable = []
 
-    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.username, params.classs, params.country, params.useDevItem, params.status, forceTable=forceTable)
+    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, forceTable=forceTable)
     sql = sqlbase % (join, where, params.limit)
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()
@@ -300,7 +302,7 @@ def _count(db, params, by, extraFrom=[], extraFields=[], orderBy=False):
     else:
         order = "count DESC"
 
-    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.username, params.classs, params.country, params.useDevItem, params.status, forceTable=byTable)
+    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, forceTable=byTable)
     sql = sqlbase % (select, join, where, groupBy, order, params.limit)
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()
