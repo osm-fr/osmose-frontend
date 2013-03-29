@@ -38,7 +38,7 @@ def byUser():
 def user(db, lang, username=None, format=None):
     params = query._params()
     if username:
-        params.users = username.decode("utf-8").split(",")
+        params.users = utils.pg_escape(username.decode("utf-8")).split(",")
     params.limit = 500
     params.full = True
     username = ",".join(params.users)
