@@ -116,7 +116,7 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
         JOIN marker_elem ON
             marker_elem.marker_id = marker.id"""
 
-    if item:
+    if item != None:
         where.append(_build_where_item(item, itemField))
 
     if level != "1,2,3":
