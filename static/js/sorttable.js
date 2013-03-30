@@ -89,7 +89,7 @@ sorttable = {
 	      // make it clickable to sort
 	      headrow[i].sorttable_columnindex = i;
 	      headrow[i].sorttable_tbody = table.tBodies[0];
-	      dean_addEvent(headrow[i],"click", function(e) {
+	      dean_addEvent(headrow[i],"click", sorttable.innerSortFunction = function(e) {
 
           if (this.className.search(/\bsorttable_sorted\b/) != -1) {
             // if we're already sorted by this column, just 
@@ -202,7 +202,9 @@ sorttable = {
     // this is *not* a generic getInnerText function; it's special to sorttable.
     // for example, you can override the cell text with a customkey attribute.
     // it also gets .value for <input> fields.
-    
+
+    if (!node) return "";
+
     hasInputs = (typeof node.getElementsByTagName == 'function') &&
                  node.getElementsByTagName('input').length;
     
@@ -247,10 +249,8 @@ sorttable = {
     for (var i=0; i<tbody.rows.length; i++) {
       newrows[newrows.length] = tbody.rows[i];
     }
-    var pos = 0;
     for (var i=newrows.length-1; i>=0; i--) {
        tbody.appendChild(newrows[i]);
-       pos ++;
     }
     delete newrows;
   },
