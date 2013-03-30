@@ -114,10 +114,10 @@
 %    if opt_date != "-1":
     <th>{{_("subtitle")}}</th>
 %    else:
-    <th class="sorttable_sorted">{{_("subtitle")}}<span id="sorttable_sortfwdind">&nbsp;▾</span></th>
+    <th>{{_("subtitle")}}</th>
 %    end
 %    if opt_date != "-1":
-    <th class="sorttable_sorted">{{_("date")}}<span id="sorttable_sortfwdind">&nbsp;▾</span></th>
+    <th>{{_("date")}}</th>
 %    end
 </tr>
 </thead>
