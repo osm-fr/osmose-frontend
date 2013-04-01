@@ -216,6 +216,8 @@ class update_parser(handler.ContentHandler):
             else:
                 self._class_level = 2
             self._class_texts = {}
+            if "tag" in attrs:
+                self._class_tags = attrs["tag"].split(",")
         elif name == u"classtext":
             self._class_texts[attrs["lang"]] = attrs["title"]
         elif name == u"delete":
@@ -306,14 +308,15 @@ class update_parser(handler.ContentHandler):
         elif name == u"class":
             execute_sql(self._dbcurs, "DELETE FROM dynpoi_class WHERE source = %s AND class = %s",
                                  (self._source_id, self._class_id))
-            keys = ["source", "class", "item", "title", "level", "timestamp"]
-            vals = ["%s"] * 6
+            keys = ["source", "class", "item", "title", "level", "tags", "timestamp"]
+            vals = ["%s"] * 7
             sql = u"INSERT INTO dynpoi_class (" + u','.join(keys) + u") VALUES (" + u','.join(vals) + u");"
             try:
                 execute_sql(self._dbcurs, sql, (self._source_id, self._class_id,
                                                 self._class_item[self._class_id],
                                                 self._class_texts,
                                                 self._class_level,
+                                                self._class_tags,
                                                 utils.pg_escape(self.ts)))
             except:
                 print sql

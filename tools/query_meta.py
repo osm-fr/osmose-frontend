@@ -83,3 +83,21 @@ def _categories(db, lang):
                 break
 
     return result
+
+
+def _tags(db, lang):
+    sql = """
+    SELECT DISTINCT
+        tag
+    FROM
+        (
+        SELECT
+            unnest(tags) AS tag
+        FROM
+            dynpoi_class
+        ) AS t
+    ORDER BY
+        tag
+    """
+    db.execute(sql)
+    return map(lambda x: x[0], db.fetchall())

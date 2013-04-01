@@ -1,0 +1,1 @@
+ALTER TABLE dynpoi_class ADD COLUMN tags VARCHAR(255)[];

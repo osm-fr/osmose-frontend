@@ -37,3 +37,8 @@ def items(db, lang):
 @route('/api/0.2/meta/categories')
 def items(db, lang):
     return {"categories": query_meta._categories(db, lang)}
+
+
+@route('/api/0.2/meta/tags')
+def items(db, lang):
+    return {"tags": query_meta._tags(db, lang)}

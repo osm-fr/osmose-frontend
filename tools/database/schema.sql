@@ -34,6 +34,7 @@ CREATE TABLE dynpoi_class (
     item integer,
     title hstore,
     level integer,
+    tags character varying(16)[],
     "timestamp" timestamp without time zone
 );
 
