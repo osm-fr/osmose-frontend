@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-09 23:02+0200\n"
+"POT-Creation-Date: 2013-04-09 23:09+0200\n"
 "PO-Revision-Date: 2012-10-11 22:17+0100\n"
 "Last-Translator: operon\n"
 "Language-Team: Swahili\n"
@@ -37,7 +37,7 @@ msgstr "kamwe yanayotokana"
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/SW:Osmose/erreurs"
 
-#: ../errors.py:110 tmp.tpl:52
+#: ../errors.py:110 tmp.tpl:45
 msgid "False positives"
 msgstr "uongo chanya"
 
@@ -45,7 +45,7 @@ msgstr "uongo chanya"
 msgid "Fixed errors"
 msgstr "makosa kusahihishwa"
 
-#: ../errors.py:116 tmp.tpl:50
+#: ../errors.py:116 tmp.tpl:43
 msgid "Informations"
 msgstr "Habari"
 
@@ -152,49 +152,19 @@ msgstr "Orodha hii inapatikana kupitia RSS."
 msgid "Show errors on a map"
 msgstr "Kuonyesha makosa kwenye ramani"
 
-#: tmp.tpl:14 tmp.tpl:60 tmp.tpl:71
-msgid "item"
-msgstr "Item"
-
-#. TRANSLATORS: this should be replaced by a abbreviation for class
-#: tmp.tpl:15 tmp.tpl:59 tmp.tpl:66
-msgid "class (abbreviation)"
-msgstr "cl"
-
-#. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: tmp.tpl:16 tmp.tpl:70
-msgid "level (abbreviation)"
-msgstr "l"
-
-#: tmp.tpl:17
-msgid "Title"
-msgstr "Kichwa"
-
-#: tmp.tpl:18
-msgid "Error"
-msgstr "Hitilafu"
-
-#: tmp.tpl:19 tmp.tpl:72
-msgid "information on error"
-msgstr "habari juu ya makosa ya"
-
-#: tmp.tpl:20 tmp.tpl:73
-msgid "position (abbreviation)"
-msgstr "pos"
-
-#: tmp.tpl:21
+#: tmp.tpl:14
 msgid "Statistics for user"
 msgstr "Takwimu kwa mtumiaji"
 
-#: tmp.tpl:22
+#: tmp.tpl:15
 msgid "User statistics"
 msgstr "Takwimu kwa mtumiaji"
 
-#: tmp.tpl:23
+#: tmp.tpl:16
 msgid "Osmose allows you to control your own errors."
 msgstr "Osmosis utapata kudhibiti yako mwenyewe makosa"
 
-#: tmp.tpl:24
+#: tmp.tpl:17
 msgid ""
 "By entering your OSM username in the following form, you will be able to see "
 "errors that are attached to your username. Note that the algorithm that "
@@ -205,323 +175,350 @@ msgstr ""
 "ifahamike kwamba algorithm kuunganishaÃ kosa user si kamili, osmosis "
 "inachukua katika akauntimchangiaji wa mwisho kwa kipengele kosa."
 
-#: tmp.tpl:25
+#: tmp.tpl:18
 msgid "Username:"
 msgstr "Mtumiaji :"
 
-#: tmp.tpl:26 tmp.tpl:27
+#: tmp.tpl:19 tmp.tpl:20
 msgid "Last updates"
 msgstr ""
 
-#: tmp.tpl:28
+#: tmp.tpl:21
 msgid "Median delay:"
 msgstr "Wastani wakati :"
 
-#: tmp.tpl:29 tmp.tpl:35 tmp.tpl:57 tmp.tpl:64
+#: tmp.tpl:22 tmp.tpl:28 tmp.tpl:50 tmp.tpl:58
 msgid "source"
 msgstr "Chanzo"
 
-#: tmp.tpl:30
+#: tmp.tpl:23
 msgid "description"
 msgstr "maelezo"
 
-#: tmp.tpl:31
+#: tmp.tpl:24
 msgid "last generation"
 msgstr "mwisho wa kizazi"
 
-#: tmp.tpl:32 tmp.tpl:33
+#: tmp.tpl:25 tmp.tpl:26
 msgid "history"
 msgstr "kihistoria"
 
-#: tmp.tpl:34
+#: tmp.tpl:27
 msgid "Update"
 msgstr ""
 
-#: tmp.tpl:36
+#: tmp.tpl:29
 msgid "remote url"
 msgstr ""
 
-#: tmp.tpl:37
+#: tmp.tpl:30
 msgid "timestamp"
 msgstr ""
 
-#: tmp.tpl:38
+#: tmp.tpl:31
 msgid "Copyright informations"
 msgstr "Copyright Taarifa"
 
-#: tmp.tpl:39
+#: tmp.tpl:32
 msgid "License"
 msgstr ""
 
-#: tmp.tpl:40
+#: tmp.tpl:33
 msgid "Authors"
 msgstr ""
 
-#: tmp.tpl:41
+#: tmp.tpl:34
 msgid "And contributors"
 msgstr ""
 
-#: tmp.tpl:42
+#: tmp.tpl:35
 msgid "Data are coming from"
 msgstr "Data ni kutoka"
 
-#: tmp.tpl:43
+#: tmp.tpl:36
 msgid "copyright"
 msgstr "copyright"
 
-#: tmp.tpl:44
+#: tmp.tpl:37
 #, python-format
 msgid "Information on error %d"
 msgstr "Habari juu ya makosa ya %d"
 
-#: tmp.tpl:45
+#: tmp.tpl:38
 msgid "key"
 msgstr "ufunguo"
 
-#: tmp.tpl:46
+#: tmp.tpl:39
 msgid "value"
 msgstr "ufunguo"
 
-#: tmp.tpl:47
+#: tmp.tpl:40
 msgid "Marker"
 msgstr ""
 
-#: tmp.tpl:48
+#: tmp.tpl:41
 msgid "Elements"
 msgstr "vipengele"
 
-#: tmp.tpl:49
+#: tmp.tpl:42
 msgid "Fixes"
 msgstr "Masahihisho"
 
-#: tmp.tpl:51
+#: tmp.tpl:44
 msgid "Fixed"
 msgstr "Fixed"
 
-#: tmp.tpl:53
+#: tmp.tpl:46
 msgid "Graph"
 msgstr "Graph"
 
-#: tmp.tpl:54 tmp.tpl:86
+#: tmp.tpl:47 tmp.tpl:77
 msgid "Map"
 msgstr "Ramani"
 
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
-#: tmp.tpl:56
+#: tmp.tpl:49
 msgid "Set"
 msgstr "Chagua"
 
-#: tmp.tpl:61
+#. TRANSLATORS: this should be replaced by a abbreviation for class
+#: tmp.tpl:52 tmp.tpl:60
+msgid "class (abbreviation)"
+msgstr "cl"
+
+#: tmp.tpl:53 tmp.tpl:65
+msgid "item"
+msgstr "Item"
+
+#: tmp.tpl:54
 msgid "title"
 msgstr "cheo"
 
-#: tmp.tpl:62
+#: tmp.tpl:55
 msgid "count"
 msgstr "idadi"
 
-#: tmp.tpl:63
+#: tmp.tpl:56
 msgid "Total"
 msgstr "Jumla ya"
 
-#. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: tmp.tpl:68
-msgid "subclass (abbreviation)"
-msgstr "s"
-
-#: tmp.tpl:74
-msgid "elements (abbreviation)"
-msgstr "elems"
-
-#: tmp.tpl:75 tmp.tpl:76
-msgid "subtitle"
-msgstr "subtitle"
-
-#: tmp.tpl:77
-msgid "date"
-msgstr "tarehe"
-
-#: tmp.tpl:78
-msgid "Show more errors"
-msgstr "View makosa zaidi"
-
-#: tmp.tpl:79
+#: tmp.tpl:57
 msgid "Show some errors"
 msgstr "Onyesha baadhi ya makosa"
 
-#: tmp.tpl:80
+#. TRANSLATORS: this should be replaced by a abbreviation for subclass
+#: tmp.tpl:62
+msgid "subclass (abbreviation)"
+msgstr "s"
+
+#. TRANSLATORS: this should be replaced by a abbreviation for subclass
+#: tmp.tpl:64
+msgid "level (abbreviation)"
+msgstr "l"
+
+#: tmp.tpl:66
+msgid "information on error"
+msgstr "habari juu ya makosa ya"
+
+#: tmp.tpl:67
+msgid "position (abbreviation)"
+msgstr "pos"
+
+#: tmp.tpl:68
+msgid "elements (abbreviation)"
+msgstr "elems"
+
+#: tmp.tpl:69
+msgid "subtitle"
+msgstr "subtitle"
+
+#: tmp.tpl:70
+msgid "date"
+msgstr "tarehe"
+
+#: tmp.tpl:71
 msgid "OpenStreetMap Oversight Search Engine"
 msgstr "OpenStreetMap Oversight Search Engine"
 
-#: tmp.tpl:81
+#: tmp.tpl:72
 msgid "Map of errors"
 msgstr ""
 
-#: tmp.tpl:82
+#: tmp.tpl:73
 msgid "Help on OSM wiki"
 msgstr "Msaada kwenye OSM wiki"
 
-#: tmp.tpl:83
+#: tmp.tpl:74
 msgid "Information on error database"
 msgstr "Taarifa juu ya msingi wa data kosa"
 
-#: tmp.tpl:84
+#: tmp.tpl:75
 msgid "False positives list"
 msgstr "Orodha ya Positives uongo"
 
-#: tmp.tpl:85
+#: tmp.tpl:76
 msgid "Last analysis updates"
 msgstr ""
 
-#: tmp.tpl:87
+#: tmp.tpl:78
 msgid "no bubbles at this zoom factor"
 msgstr "hakuna Bubble kwa zoom"
 
-#: tmp.tpl:88
+#: tmp.tpl:79
 msgid "Severity"
 msgstr "ukali"
 
-#: tmp.tpl:89
+#: tmp.tpl:80
 msgid "1 only"
 msgstr "1 tu"
 
-#: tmp.tpl:90
+#: tmp.tpl:81
 msgid "1+2 only"
 msgstr "1+2 tu"
 
-#: tmp.tpl:91
+#: tmp.tpl:82
 msgid "all severity"
 msgstr "wote ukali"
 
-#: tmp.tpl:92
+#: tmp.tpl:83
 msgid "2 only"
 msgstr "2 tu"
 
-#: tmp.tpl:93
+#: tmp.tpl:84
 msgid "3 only"
 msgstr "3 tu"
 
-#: tmp.tpl:94
+#: tmp.tpl:85
 msgid "Select:"
 msgstr "kuchaguliwa :"
 
-#: tmp.tpl:95 tmp.tpl:98
+#: tmp.tpl:86 tmp.tpl:89
 msgid "all"
 msgstr "wote"
 
-#: tmp.tpl:96 tmp.tpl:99
+#: tmp.tpl:87 tmp.tpl:90
 msgid "nothing"
 msgstr "chochote"
 
-#: tmp.tpl:97
+#: tmp.tpl:88
 msgid "invert"
 msgstr ""
 
-#: tmp.tpl:100
+#: tmp.tpl:91
 #, fuzzy
 msgid "Change language"
 msgstr "Mabadiliko ya Lugha"
 
-#: tmp.tpl:101
+#: tmp.tpl:92
 msgid "Help"
 msgstr "Misaada"
 
-#: tmp.tpl:102
+#: tmp.tpl:93
 #, python-format
 msgid "Delay: %sd"
 msgstr "Delay: %sj"
 
-#: tmp.tpl:103
+#: tmp.tpl:94
 msgid "Error reported on: "
 msgstr "Hitilafu kuahirishwa :"
 
-#: tmp.tpl:104
+#: tmp.tpl:95
 msgid "change status"
 msgstr "kubadili hali"
 
-#: tmp.tpl:105
+#: tmp.tpl:96
 msgid "corrected"
 msgstr "corrected"
 
-#: tmp.tpl:106
+#: tmp.tpl:97
 msgid "false positive"
 msgstr "uongo chanya"
 
-#: tmp.tpl:107 tmp.tpl:108
+#: tmp.tpl:98 tmp.tpl:99
 msgid "How to help translation"
 msgstr ""
 
-#: tmp.tpl:109
+#: tmp.tpl:100
 msgid ""
 "OsmOse tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
 msgstr ""
 
-#: tmp.tpl:110
+#: tmp.tpl:101
 msgid ""
 "To make OsmOse a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr ""
 
-#: tmp.tpl:111
+#: tmp.tpl:102
 msgid "Recent translation needs"
 msgstr ""
 
-#: tmp.tpl:112
+#: tmp.tpl:103
 msgid ""
 "European countries: German and Italian in Switzerland and Dutch in Belgium"
 msgstr ""
 
-#: tmp.tpl:113
+#: tmp.tpl:104
 msgid ""
 "Countries covered by HOT: Wolof in Senegal, Arabic in Chad and Cameroon, "
 "Swahili in Kenya, Kirundi in Burundi, and Malagasy in Madagascar"
 msgstr ""
 
-#: tmp.tpl:114
+#: tmp.tpl:105
 msgid "Pages to translate"
 msgstr ""
 
-#: tmp.tpl:115
+#: tmp.tpl:106
 msgid "Wiki pages"
 msgstr ""
 
-#: tmp.tpl:116
+#: tmp.tpl:107
 msgid "OsmOse main page"
 msgstr ""
 
-#: tmp.tpl:117
+#: tmp.tpl:108
 #, fuzzy
 msgid "Documentation on reported errors"
 msgstr "habari juu ya makosa ya"
 
-#: tmp.tpl:118
+#: tmp.tpl:109
 msgid "OsmOse pages"
 msgstr ""
 
-#: tmp.tpl:119
+#: tmp.tpl:110
 msgid "Translation status"
 msgstr ""
 
-#: tmp.tpl:120
+#: tmp.tpl:111
 msgid "Source code for translations (.po files)"
 msgstr ""
 
-#: tmp.tpl:121
+#: tmp.tpl:112
 msgid ""
 "Source code for translations (database files for menu) - categ_menu_en.txt "
 "and item_menu_en.txt are the reference ones."
 msgstr ""
 
-#: tmp.tpl:122
+#: tmp.tpl:113
 msgid "Bug tracking system"
 msgstr ""
 
-#: tmp.tpl:123
+#: tmp.tpl:114
 msgid ""
 "<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
 "issue with translations, or erroneous analyses."
 msgstr ""
+
+#~ msgid "Title"
+#~ msgstr "Kichwa"
+
+#~ msgid "Error"
+#~ msgstr "Hitilafu"
+
+#~ msgid "Show more errors"
+#~ msgstr "View makosa zaidi"
 
 #~ msgid "Geodesic"
 #~ msgstr "geodesy"

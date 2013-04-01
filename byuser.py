@@ -46,23 +46,23 @@ def user(db, lang, username=None, format=None):
     if not params.users:
         return template('byuser/index')
 
-    results = query._gets(db, params)
-    count = len(results)
+    errors = query._gets(db, params)
+    count = len(errors)
     if request.path.startswith("/api") or format == "json":
         out = OrderedDict()
         out["description"] = ["id", "item", "lat", "lon", "source", "class", "elems", "subclass", "subtitle", "comment", "title", "level", "timestamp", "menu", "username", "date"]
-        for res in results:
+        for res in errors:
             res["timestamp"] = str(res["timestamp"])
             res["date"] = str(res["date"])
-        out["byusers"] = results
+        out["byusers"] = errors
         return out
 
     elif format == 'rss':
         response.content_type = "application/rss+xml"
-        return template('byuser/byuser.rss', username=username, users=params.users, count=count, results=results, translate=utils.translator(lang), website=utils.website)
+        return template('byuser/byuser.rss', username=username, users=params.users, count=count, errors=errors, translate=utils.translator(lang), website=utils.website)
 
     else:
-        return template('byuser/byuser', username=username, users=params.users, count=count, results=results, translate=utils.translator(lang), website=utils.website)
+        return template('byuser/byuser', username=username, users=params.users, count=count, errors=errors, translate=utils.translator(lang), website=utils.website)
 
 
 def _users(db):
