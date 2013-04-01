@@ -22,7 +22,6 @@
 
 from bottle import route, request, template, response, redirect, abort, static_file
 from tools import utils
-from tools import tag2link
 from tools import query
 from tools import query_meta
 import errors
@@ -31,7 +30,6 @@ import math, StringIO
 from PIL import Image
 import ImageDraw
 
-t2l = tag2link.tag2link("tools/tag2link_sources.xml")
 
 def check_items(items, all_items):
     if items == None or items == 'xxxx':
