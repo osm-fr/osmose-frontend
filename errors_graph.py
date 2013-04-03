@@ -56,7 +56,7 @@ ORDER BY
 """
 
     params = query._params()
-    join, where = query._build_param(None, params.source, params.item, params.level, None, params.classs, params.country, params.useDevItem, None, stats=True, start_date=params.start_date, end_date=params.end_date)
+    join, where = query._build_param(None, params.source, params.item, params.level, None, params.classs, params.country, params.useDevItem, None, None, stats=True, start_date=params.start_date, end_date=params.end_date)
     sql = sqlbase % (join, where)
 
     if len(sys.argv)>1:

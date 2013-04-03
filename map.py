@@ -74,7 +74,7 @@ def index(db, lang):
         if request.cookies.get("last_" + p, default=None):
             params[p] = request.cookies.get("last_" + p)
 
-    for p in ["lat", "lon", "zoom", "item", "useDevItem", "level", "source", "username", "class", "country"]:
+    for p in ["lat", "lon", "zoom", "item", "useDevItem", "level", "source", "username", "class", "country", "tags"]:
         if request.params.get(p, default=None):
             params[p] = request.params.get(p)
 
@@ -153,7 +153,7 @@ OFFSET
         delay = 0
 
     return template('map/index', categories=categories, lat=params["lat"], lon=params["lon"], zoom=params["zoom"],
-        source=params["source"], username=params["username"], classs=params["class"], country=params["country"],
+        source=params["source"], username=params["username"], classs=params["class"], country=params["country"], tags=params["tags"],
         levels=levels, level_selected=level_selected, active_items=active_items, useDevItem=params["useDevItem"], urls=urls, helps=helps, delay=delay,
         allowed_languages=allowed_languages, translate=utils.translator(lang),
         website=utils.website, request=request)
@@ -189,7 +189,7 @@ WHERE
         response.content_type = 'image/png'
         return static_file("images/tile-empty.png", root='static')
 
-    join, where = query._build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status)
+    join, where = query._build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags)
     join = join.replace("%", "%%")
     where = where.replace("%", "%%")
 

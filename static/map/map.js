@@ -447,6 +447,8 @@ function updateURL() {
         params += "&useDevItem=" + document.myform.useDevItem.value;
     if(document.myform.country.value)
         params += "&country=" + document.myform.country.value;
+    if(document.myform.tags.value)
+        params += "&tags=" + document.myform.tags.value;
 
     poisParams = params +
         "&bbox=" + bbox +
