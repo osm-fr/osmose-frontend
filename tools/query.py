@@ -254,9 +254,10 @@ def _gets(db, params):
         sqlbase += """
     ORDER BY
         point(marker.lat, marker.lon) <-> point(%f, %f)""" % (params.lat, params.lon)
-    sqlbase += """
+    if params.limit:
+        sqlbase += """
     LIMIT
-        %s"""
+        %s""" % params.limit
 
     if params.full:
         if not params.status in ("done", "false"):
@@ -267,7 +268,7 @@ def _gets(db, params):
         forceTable = []
 
     join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, forceTable=forceTable)
-    sql = sqlbase % (join, where, params.limit)
+    sql = sqlbase % (join, where)
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()
 
