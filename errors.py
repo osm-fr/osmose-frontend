@@ -138,9 +138,9 @@ def index(db, lang):
         if res["count"] != -1:
             total += res["count"]
 
-    limit = request.params.get('limit', type=int)
-    if limit >= 0 and params.limit <= 10000:
-        params.limit = limit
+    params.limit = request.params.get('limit', type=int, default=100)
+    if params.limit > 10000:
+        params.limit = 10000
 
     if (total > 0 and total < 1000) or params.limit:
         params.full = True
