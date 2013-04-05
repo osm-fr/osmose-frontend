@@ -28,7 +28,7 @@
 </select>
 
 <select name='item'>
-    <option value=''></option>
+    <option value='xxxx'></option>
 %for res in items:
     <option\\
 %    if str(item) == str(res['item']):
