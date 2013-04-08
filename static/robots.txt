@@ -1,3 +1,8 @@
 User-agent: *
-Disallow: /error/*
+Disallow: /error/
+Disallow: /errors/
 Disallow: /map/markers
+Disallow: /*/error/
+Disallow: /*/errors/
+Disallow: /*/map/markers
+
