@@ -68,6 +68,7 @@ def index(db, lang):
                "class":  '',
                "username": '',
                "country": '',
+               "tags":    '',
              }
 
     for p in ["lat", "lon", "zoom", "item", "level"]:
