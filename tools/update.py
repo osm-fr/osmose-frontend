@@ -218,6 +218,9 @@ class update_parser(handler.ContentHandler):
             self._class_texts = {}
             if "tag" in attrs:
                 self._class_tags = attrs["tag"].split(",")
+            else:
+                self._class_tags = []
+
         elif name == u"classtext":
             self._class_texts[attrs["lang"]] = attrs["title"]
         elif name == u"delete":
