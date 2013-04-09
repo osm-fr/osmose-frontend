@@ -44,6 +44,7 @@ def remove_bug(error_id, status):
                        (status,error_id))
 
   PgCursor.execute("DELETE FROM marker WHERE id = %s;", (error_id, ))
+  PgCursor.execute("UPDATE dynpoi_class SET count = count - 1 WHERE source = %s AND class = %s;", (source_id, class_id))
   PgConn.commit()
 
   return 0

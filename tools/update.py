@@ -131,6 +131,13 @@ def update(source, url, logger = printlogger()):
                       WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status WHERE source = %s)""",
                    (source_id, ))
 
+    execute_sql(dbcurs, """UPDATE dynpoi_class
+                      SET count = (SELECT count(*) FROM marker
+                                   WHERE marker.source = dynpoi_class.source AND
+                                         marker.class = dynpoi_class.class)
+                      WHERE dynpoi_class.source = %s""",
+                   (source_id, ))
+
     ## commit and close
     dbconn.commit()
     dbconn.close()
