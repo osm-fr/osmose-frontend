@@ -29,13 +29,14 @@ CREATE TABLE dynpoi_categ (
 --
 
 CREATE TABLE dynpoi_class (
-    source integer,
-    class bigint,
+    source integer NOT NULL,
+    class bigint NOT NULL,
     item integer,
     title hstore,
     level integer,
-    tags character varying(16)[],
-    "timestamp" timestamp without time zone
+    "timestamp" timestamp without time zone,
+    tags character varying(255)[],
+    count integer
 );
 
 
@@ -89,8 +90,8 @@ CREATE TABLE dynpoi_status (
     elems character varying(128) NOT NULL,
     date timestamp with time zone,
     status character varying(128),
-    lat integer,
-    lon integer,
+    lat numeric(9,7),
+    lon numeric(10,7),
     subtitle hstore
 );
 
@@ -126,8 +127,8 @@ CREATE TABLE marker (
     source integer,
     class integer,
     subclass integer,
-    lat integer,
-    lon integer,
+    lat numeric(9,7),
+    lon numeric(10,7),
     elems text,
     item integer,
     subtitle hstore
@@ -197,6 +198,14 @@ ALTER TABLE ONLY dynpoi_categ
     ADD CONSTRAINT dynpoi_categ_pkey PRIMARY KEY (categ);
 
 ALTER TABLE dynpoi_categ CLUSTER ON dynpoi_categ_pkey;
+
+
+--
+-- Name: dynpoi_class_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY dynpoi_class
+    ADD CONSTRAINT dynpoi_class_pkey PRIMARY KEY (source, class);
 
 
 --
@@ -345,13 +354,6 @@ CREATE INDEX idx_dynpoi_class_source ON dynpoi_class USING btree (source);
 
 
 --
--- Name: idx_dynpoi_class_source_class; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX idx_dynpoi_class_source_class ON dynpoi_class USING btree (source, class);
-
-
---
 -- Name: idx_dynpoi_update_source; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -429,6 +431,22 @@ CREATE INDEX marker_geom ON marker USING gist (point((lat)::double precision, (l
 
 
 --
+-- Name: dynpoi_class_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY dynpoi_class
+    ADD CONSTRAINT dynpoi_class_source_fkey FOREIGN KEY (source) REFERENCES dynpoi_source(source);
+
+
+--
+-- Name: dynpoi_status_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY dynpoi_status
+    ADD CONSTRAINT dynpoi_status_source_fkey FOREIGN KEY (source) REFERENCES dynpoi_source(source);
+
+
+--
 -- Name: marker_elem_marker_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -442,6 +460,14 @@ ALTER TABLE ONLY marker_elem
 
 ALTER TABLE ONLY marker_fix
     ADD CONSTRAINT marker_fix_marker_id_fkey FOREIGN KEY (marker_id) REFERENCES marker(id) ON DELETE CASCADE;
+
+
+--
+-- Name: marker_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY marker
+    ADD CONSTRAINT marker_source_fkey FOREIGN KEY (source) REFERENCES dynpoi_source(source);
 
 
 --
