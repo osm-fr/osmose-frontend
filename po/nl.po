@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-08 21:06+0200\n"
+"POT-Creation-Date: 2013-04-09 23:02+0200\n"
 "PO-Revision-Date: 2012-08-02 14:24+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: Dutch\n"
@@ -31,7 +31,7 @@ msgid "never generated"
 msgstr "nooit gegenereerd"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:92
+#: ../error.py:95
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/NL:Osmose/erreurs"
 
@@ -48,59 +48,59 @@ msgid "Informations"
 msgstr "Informatie"
 
 #. TRANSLATORS: link to help in appropriate language
-#: ../map.py:119
+#: ../map.py:117
 #, fuzzy
 msgid "Errors by user"
 msgstr "Fouten door de gebruiker"
 
-#: ../map.py:120
+#: ../map.py:118
 #, fuzzy
 msgid "Relation analyser"
 msgstr "Relatie analyser"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:122
+#: ../map.py:120
 msgid "CLC"
 msgstr "CLC"
 
-#: ../map.py:122
+#: ../map.py:120
 msgid "http://clc.openstreetmap.fr/"
 msgstr "http://clc.openstreetmap.fr/"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:124
+#: ../map.py:122
 msgid "openstreetmap.fr"
 msgstr "openstreetmap.fr"
 
-#: ../map.py:124
+#: ../map.py:122
 msgid "http://www.openstreetmap.fr/"
 msgstr "http://www.openstreetmap.fr/"
 
 #. TRANSLATORS: link to source code
-#: ../map.py:126
+#: ../map.py:124
 #, fuzzy
 msgid "Statistics"
 msgstr "Statistieken"
 
-#: ../map.py:129
+#: ../map.py:127
 msgid "Help on wiki"
 msgstr ""
 
-#: ../map.py:129
+#: ../map.py:127
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/NL:Osmose"
 
-#: ../map.py:130
+#: ../map.py:128
 #, fuzzy
 msgid "Copyright"
 msgstr "Copyright"
 
-#: ../map.py:131
+#: ../map.py:129
 #, fuzzy
 msgid "Sources"
 msgstr "Oorsprong"
 
-#: ../map.py:132
+#: ../map.py:130
 msgid "Translation"
 msgstr ""
 
