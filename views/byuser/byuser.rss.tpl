@@ -10,12 +10,12 @@
 %end
     </description>
     <lastBuildDate>\\
-%if len(results) > 0:
-{{results[0]["timestamp"].ctime()}}\\
+%if len(errors) > 0:
+{{errors[0]["timestamp"].ctime()}}\\
 %end
 </lastBuildDate>
     <link>http://{{website}}/byuser/{{username}}</link>
-%for res in results:
+%for res in errors:
     <item>
         <title>{{translate.select(res["title"])}}</title>
         <description>
