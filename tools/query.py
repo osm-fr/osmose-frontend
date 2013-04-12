@@ -51,11 +51,13 @@ def _build_where_item(item, table):
 
 
 def _build_param(bbox, source, item, level, users, classs, country, useDevItem, status, tags, forceTable=[],
-                 stats=False, start_date=None, end_date=None):
+                 summary=False, stats=False, start_date=None, end_date=None):
     join = ""
     where = ["1=1"]
 
-    if stats:
+    if summary:
+        join += "dynpoi_class AS marker"
+    elif stats:
         join += "dynpoi_stats AS marker"
     elif status in ("done", "false"):
         join += "dynpoi_status AS marker"
@@ -283,15 +285,20 @@ def _gets(db, params):
 
 def _count(db, params, by, extraFrom=[], extraFields=[], orderBy=False):
     params.full = False
+
+    if params.bbox or params.users or (params.status in ("done", "false")):
+        summary = False
+        countField = [ "count(*) AS count" ]
+    else:
+        summary = True
+        countField = [ "SUM(marker.count) AS count" ]
+
     byTable = set(map(lambda x: x.split('.')[0], by) + extraFrom)
     sqlbase  = """
     SELECT
-        %s,
-        count(*) AS count
+        %s
     FROM
         %s
-        JOIN dynpoi_update_last ON
-            marker.source = dynpoi_update_last.source
     WHERE
         %s
     GROUP BY
@@ -300,7 +307,7 @@ def _count(db, params, by, extraFrom=[], extraFields=[], orderBy=False):
         %s
     """
 
-    select = ",\n        ".join(by+extraFields)
+    select = ",\n        ".join(by+extraFields+countField)
     groupBy = ",\n        ".join(by)
     if orderBy:
         order = groupBy
@@ -309,7 +316,7 @@ def _count(db, params, by, extraFrom=[], extraFields=[], orderBy=False):
     if params.limit:
         sqlbase += " LIMIT %s" % params.limit
 
-    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, forceTable=byTable)
+    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, summary=summary, forceTable=byTable)
     sql = sqlbase % (select, join, where, groupBy, order)
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()
