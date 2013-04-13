@@ -455,10 +455,10 @@ function updateURL() {
         "&zoom=" + document.myform.zoom.value;
     pois.loadText(poisParams);
 
-    if (heat.visibility) {
-        var url = "heat/${z}/${x}/${y}.png" + params;
-        if (heat.url != url) {
-            heat.setUrl(url);
+    var url = "heat/${z}/${x}/${y}.png" + params;
+    if (heat.url != url) {
+        heat.setUrl(url);
+        if (heat.visibility) {
             heat.clearGrid();
             heat.redraw();
         }
