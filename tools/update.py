@@ -313,21 +313,29 @@ class update_parser(handler.ContentHandler):
                 self._fix.append(self._elem)
 
         elif name == u"class":
-            execute_sql(self._dbcurs, "DELETE FROM dynpoi_class WHERE source = %s AND class = %s",
-                                 (self._source_id, self._class_id))
             keys = ["source", "class", "item", "title", "level", "tags", "timestamp"]
-            vals = ["%s"] * 7
-            sql = u"INSERT INTO dynpoi_class (" + u','.join(keys) + u") VALUES (" + u','.join(vals) + u");"
-            execute_sql(self._dbcurs, sql, (self._source_id, self._class_id,
-                                            self._class_item[self._class_id],
-                                            self._class_texts,
-                                            self._class_level,
-                                            self._class_tags,
-                                            utils.pg_escape(self.ts)))
-
+            vals = [self._source_id, self._class_id,
+                    self._class_item[self._class_id],
+                    self._class_texts,
+                    self._class_level,
+                    self._class_tags,
+                    utils.pg_escape(self.ts),
+                   ]
             if self.mode == "analyser":
                 execute_sql(self._dbcurs, "DELETE FROM marker WHERE source = %s AND class = %s;",
                                      (self._source_id, self._class_id))
+
+                execute_sql(self._dbcurs, "DELETE FROM dynpoi_class WHERE source = %s AND class = %s",
+                                     (self._source_id, self._class_id))
+                sql  = u"INSERT INTO dynpoi_class (" + u','.join(keys) + u") "
+                sql += u"VALUES (" + (u','.join(["%s"] * len(keys))) + u");"
+
+            else:
+                sql  = u"UPDATE dynpoi_class SET " + (u' = %s, '.join(keys)) + u" = %s "
+                sql += u"WHERE source = %s AND class = %s;"
+                vals += [self._source_id, self._class_id]
+
+            execute_sql(self._dbcurs, sql, vals)
 
         elif name == u"fixes":
             self.elem_mode = "info"
