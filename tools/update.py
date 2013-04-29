@@ -51,17 +51,14 @@ prev_sql = ""
 
 def execute_sql(dbcurs, sql, args = None):
     global prev_sql, num_sql_run
-    if args == None:
-        if prev_sql != sql:
-            prev_sql = sql
-#            print time.strftime("%H:%M:%S").decode("utf8"), sql
-        dbcurs.execute(sql)
-    else:
-        if prev_sql != sql:
-            prev_sql = sql
-#            print time.strftime("%H:%M:%S").decode("utf8"), sql % args
-#        print dbcurs.mogrify(sql, args)
-        dbcurs.execute(sql, args)
+    try:
+        if args == None:
+            dbcurs.execute(sql)
+        else:
+            dbcurs.execute(sql, args)
+    except:
+        print sql, args
+        raise
     num_sql_run += 1
     if num_sql_run % 1000 == 0:
         print ".",
@@ -321,16 +318,12 @@ class update_parser(handler.ContentHandler):
             keys = ["source", "class", "item", "title", "level", "tags", "timestamp"]
             vals = ["%s"] * 7
             sql = u"INSERT INTO dynpoi_class (" + u','.join(keys) + u") VALUES (" + u','.join(vals) + u");"
-            try:
-                execute_sql(self._dbcurs, sql, (self._source_id, self._class_id,
-                                                self._class_item[self._class_id],
-                                                self._class_texts,
-                                                self._class_level,
-                                                self._class_tags,
-                                                utils.pg_escape(self.ts)))
-            except:
-                print sql
-                raise
+            execute_sql(self._dbcurs, sql, (self._source_id, self._class_id,
+                                            self._class_item[self._class_id],
+                                            self._class_texts,
+                                            self._class_level,
+                                            self._class_tags,
+                                            utils.pg_escape(self.ts)))
 
             if self.mode == "analyser":
                 execute_sql(self._dbcurs, "DELETE FROM marker WHERE source = %s AND class = %s;",
