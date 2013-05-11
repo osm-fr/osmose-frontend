@@ -181,6 +181,7 @@ class update_parser(handler.ContentHandler):
             self._error_locations.append(dict(attrs))
         elif name == u"text":
             self._error_texts[attrs["lang"]] = attrs["value"].replace("\n", "%%")
+
         elif name in [u"node", u"way", u"relation", u"infos"]:
             self._elem = dict(attrs)
             if "user" in self._elem:
@@ -189,6 +190,11 @@ class update_parser(handler.ContentHandler):
                 self._elem["user"] = None
             self._elem[u"type"] = name
             self._elem_tags = {}
+
+            if self.elem_mode == "fix":
+                self._fix_create = {}
+                self._fix_modify = {}
+                self._fix_delete = []
 
         elif name == u"tag":
             #if (self._elem[u"type"]<>"relation") or (attrs["k"] in ["type"])
@@ -299,7 +305,7 @@ class update_parser(handler.ContentHandler):
                         execute_sql(self._dbcurs, sql_fix,
                                     (marker_id, num, elem["type"][0].upper(), int(elem["id"]),
                                      elem["tags_create"], elem["tags_modify"], elem["tags_delete"]))
-                    num += 1
+                num += 1
 
 
         elif name in [u"node", u"way", u"relation", u"infos"]:
