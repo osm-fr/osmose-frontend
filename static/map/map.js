@@ -72,6 +72,11 @@ function init() {
     );
     map.addLayer(layerWhite);
 
+    var layerMapnikOsmfr = new OpenLayers.Layer.OSM("Mapnik-osmfr", ["http://a.tile.openstreetmap.fr/osmfr/${z}/${x}/${y}.png", "http://b.tile.openstreetmap.fr/osmfr/${z}/${x}/${y}.png", "http://c.tile.openstreetmap.fr/osmfr/${z}/${x}/${y}.png"], {
+        transitionEffect: 'resize',
+        attribution: osm_attribution,
+    });
+    map.addLayer(layerMapnikOsmfr);
 
     //var layerTilesAtHome = new OpenLayers.Layer.OSM.Osmarender("Osmarender");
     //map.addLayer(layerTilesAtHome);
