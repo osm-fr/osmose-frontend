@@ -13,6 +13,7 @@ db = conn.cursor()
 all_items = []
 for g in query_meta._categories(db, "en"):
     all_items += g["item"]
+#all_items = [{"item":9999, "marker_flag":"=-", "marker_color":"#ff0000"}] # Test
 
 ################################################################################
 ## symboles
@@ -36,6 +37,9 @@ for g in query_meta._categories(db, "en"):
 ## .l
 ## [] carré vide
 ## . point
+## '. deux petit carrés
+## / diagonale
+## =-
 
 def get_symb(symbole):
     if symbole == "O":
@@ -96,6 +100,17 @@ def get_symb(symbole):
         return "<path d='M 5,5 L 11,5 L 11,11 L 5,11 z M 7,7 L 7,9 L 9,9 L 9,7 z' />"
     if symbole == ".":
         return "<path d='M 7,7 L 7,9 L 9,9 L 9,7 z' />"
+    if symbole == "'.":
+        l1 = "<path d='M 11,8 L 8,8 L 8,11 L 11,11 L 11,8 z' />"
+        l2 = "<path d='M 8,8 L 5,8 L 5,5 L 8,5 L 8,8 z' />"
+        return l1+l2
+    if symbole == "/":
+        return "<path transform='rotate(45 8 8)' d='M 9,12 L 7,12 L 7,4 L 9,4 L 9,12 z' />"
+    if symbole == "=-":
+        l1 = "<path d='M 11,9 L 8,9 L 8,7 L 11,7 L 11,9 z' />"
+        l2 = "<path d='M 8,7 L 5,7 L 5,5 L 8,5 L 8,7 z' />"
+        l3 = "<path d='M 8,11 L 5,11 L 5,9 L 8,9 L 8,11 z' />"
+        return l1+l2+l3
 
 ################################################################################
 ## marqueurs
