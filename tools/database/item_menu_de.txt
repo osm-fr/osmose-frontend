@@ -26,6 +26,7 @@
  2050 | Übergeordnetes Tag
  2060 | Hausnummern
  2080 | highway=...
+ 2090 |
  3010 | Kreisverkehr
  3020 | ungeeigneter source-Tag
  3030 | Tagwatch-Bereinigung
@@ -46,6 +47,7 @@
  3150 | Schreibfehler im Tag
  3160 | Fehler bei "lanes"
  3170 | Role der Relation
+ 3180 |
  4010 | stillgelegt
  4020 | auf junction=roundabout
  4030 | unvereinbare Tags
@@ -68,6 +70,7 @@
  6060 | Loch admin_level=8
  7010 | Gebäude bei Vermessungspunkt
  7011 | Gebäudeform
+ 7012 |
  7020 | Verwaltungsgrenze
  7030 | OpenStreetBugs
  7040 | Stromleitungen
@@ -78,6 +81,8 @@
  7090 | Höhengleicher Übergang
  7100 | Bahnhof
  7110 | TMC
+ 7120 |
+ 7130 |
  8010 | Denkmal
  8011 | Denkmal, Eintragung möglich
  8020 | Postfiliale

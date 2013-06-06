@@ -17,7 +17,7 @@
  1180 | double cycleway
  1190 | approximate way
  1200 | 1-member relation
- 1210 | not-connected cycleway
+ 1210 | not-connected highway/cycleway
  1220 | waterway
  2010 | junction=roundabout
  2020 | ele=...
@@ -26,6 +26,7 @@
  2050 | parent tag
  2060 | street numbers
  2080 | highway=...
+ 2090 | highway crossing
  3010 | highway roundabout
  3020 | bad source tag
  3030 | tagwatch cleaner
@@ -46,6 +47,7 @@
  3150 | typo in tag
  3160 | incorrect "lanes"
  3170 | relation role
+ 3180 | relation type=restriction
  4010 | disused
  4020 | on junction=roundabout
  4030 | incompatible tags
@@ -68,6 +70,7 @@
  6060 | admin_level=8 hole
  7010 | geodesic building
  7011 | building shape
+ 7012 | bridge to tag
  7020 | admin boundary
  7030 | OpenStreetBugs
  7040 | power lines
@@ -78,6 +81,8 @@
  7090 | crossing
  7100 | train station
  7110 | TMC
+ 7120 | relation type=boundary
+ 7130 | tunnel/bridge
  8010 | monument
  8011 | monument, could be integrated
  8020 | post office

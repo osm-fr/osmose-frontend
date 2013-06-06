@@ -26,6 +26,7 @@
  2050 | Mzazi tag
  2060 | mitaani idadi
  2080 | highway = ...
+ 2090 |
  3010 | highway roundabout
  3020 | mbaya tag chanzo
  3030 | Tagwatch safi
@@ -46,6 +47,7 @@
  3150 | typo katika tag
  3160 | "lane" sahihi
  3170 | uhusiano jukumu
+ 3180 |
  4010 | kutelekezwa
  4020 | junction=roundabout
  4030 | Tags yasiokubaliana
@@ -68,6 +70,7 @@
  6060 | admin_level shimo = 8
  7010 | jengo geodesic
  7011 | umbo jengo
+ 7012 |
  7020 | admin kikomo
  7030 | OpenStreetBugs
  7040 | powerlines
@@ -78,6 +81,8 @@
  7090 | Reli kuvuka
  7100 | Railway Station
  7110 | TMC
+ 7120 |
+ 7130 |
  8010 | monument
  8011 | monument iwezekanavyo ushirikiano
  8020 | ofisi ya posta

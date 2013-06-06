@@ -26,6 +26,7 @@
  2050 | Parent tag
  2060 | Numeri di strada
  2080 | highway=...
+ 2090 |
  3010 | highway di rotonda
  3020 | fonte tag bad
  3030 | tagwatch pulito
@@ -46,6 +47,7 @@
  3150 |
  3160 |
  3170 |
+ 3180 |
  4010 | abbandonato
  4020 | su incrocio rotonda
  4030 | tags incompatibili
@@ -68,6 +70,7 @@
  6060 | admin_level foro = 8
  7010 | costruzione geodetica
  7011 |
+ 7012 |
  7020 | limitare l'amministratore
  7030 | OpenStreetBugs
  7040 | linee elettriche
@@ -78,6 +81,8 @@
  7090 |
  7100 |
  7110 | TMC
+ 7120 |
+ 7130 |
  8010 | Monumenti
  8011 |
  8020 |

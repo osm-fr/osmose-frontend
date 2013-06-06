@@ -26,6 +26,7 @@
  2050 | bovenliggende code
  2060 | huisnummers
  2080 | highway=...
+ 2090 |
  3010 | snelweg rotonde
  3020 | Tag slechte bron
  3030 | tagwatch cleaner
@@ -46,6 +47,7 @@
  3150 |
  3160 |
  3170 |
+ 3180 |
  4010 | onbruik geraakte
  4020 | aan knooppunt = rotonde
  4030 | tags onverenigbaar
@@ -68,6 +70,7 @@
  6060 | admin_level = 8 hole
  7010 | geodetische gebouw
  7011 |
+ 7012 |
  7020 | administratieve grens
  7030 | OpenStreetBugs
  7040 | Hoogspanningslijnen
@@ -78,6 +81,8 @@
  7090 |
  7100 |
  7110 | TMC
+ 7120 |
+ 7130 |
  8010 | monumenten
  8011 |
  8020 |
