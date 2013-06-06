@@ -335,13 +335,18 @@ class update_parser(handler.ContentHandler):
                                      (self._source_id, self._class_id))
                 sql  = u"INSERT INTO dynpoi_class (" + u','.join(keys) + u") "
                 sql += u"VALUES (" + (u','.join(["%s"] * len(keys))) + u");"
+                execute_sql(self._dbcurs, sql, vals)
 
             else:
                 sql  = u"UPDATE dynpoi_class SET " + (u' = %s, '.join(keys)) + u" = %s "
                 sql += u"WHERE source = %s AND class = %s;"
-                vals += [self._source_id, self._class_id]
+                ch_vals = vals + [self._source_id, self._class_id]
+                execute_sql(self._dbcurs, sql, ch_vals)
 
-            execute_sql(self._dbcurs, sql, vals)
+                if self._dbcurs.rowcount == 0:
+                    sql  = u"INSERT INTO dynpoi_class (" + u','.join(keys) + u") "
+                    sql += u"VALUES (" + (u','.join(["%s"] * len(keys))) + u");"
+                    execute_sql(self._dbcurs, sql, vals)
 
         elif name == u"fixes":
             self.elem_mode = "info"
