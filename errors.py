@@ -59,7 +59,7 @@ def _errors(db, lang, params):
             title     = translate.select(res["title"])
             level     = res["level"]
             update    = res["timestamp"]
-            username  = (res["username"] or "").decode('utf-8')
+            username  = res["username"] or ""
             out["errors"].append([str(lat), str(lon), str(error_id), str(item), str(source), str(classs), str(elems), str(subclass), subtitle, title, str(level), str(update), username])
 
     return out
