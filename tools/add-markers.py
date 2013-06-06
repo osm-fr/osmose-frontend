@@ -3,17 +3,17 @@
 
 all_flags = ["O", "L", "K", "P", "M", "F", "=", "|", "||", "::", ".:.", "T", "t", "X", "><", "L'", "[]", ".", ".l"]
 
-from pyPgSQL import PgSQL
+import utils
 
-gisconn = PgSQL.Connection("dbname=%s user=%s password=%s" % ("osmose", "osmose", "-osmose-"))
-giscurs = gisconn.cursor()
+dbconn = utils.get_dbconn()
+dbcurs = dbconn.cursor()
 
 sql = "select marker.item from marker left join dynpoi_item on dynpoi_item.item = marker.item where dynpoi_item.item IS NULL group by marker.item order by marker.item;"
-giscurs.execute(sql)
+dbcurs.execute(sql)
 
 prev_cat = ""
 
-for res in giscurs.fetchall():
+for res in dbcurs.fetchall():
 #  print res
   i = int(res[0])
   c = int(i / 1000) * 10
@@ -22,8 +22,8 @@ for res in giscurs.fetchall():
       avail_flags = all_flags[:]
 
   sql = "select item, marker_color, marker_flag from dynpoi_item where categ = %s"
-  giscurs.execute(sql, (c,))
-  for m in giscurs.fetchall():
+  dbcurs.execute(sql, (c,))
+  for m in dbcurs.fetchall():
 #    print m
     color = m["marker_color"]
     if m["marker_flag"] in avail_flags:
@@ -33,7 +33,7 @@ for res in giscurs.fetchall():
 #  print "possible flags:", avail_flags
 
   if len(avail_flags) == 0:
-    print "not enough available flags"
+    print "not enough available flags for item=%d" % i
     continue
 
 #  en = raw_input("English: ")
