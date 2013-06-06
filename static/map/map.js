@@ -46,7 +46,7 @@ function init() {
     });
     map.addLayer(layerMapquest);
 
-    var layerOPNVKarte = new OpenLayers.Layer.OSM("ÖPNV Karte", ["http://tile.memomaps.de/tilegen/${z}/${x}/${y}.png"], {
+    var layerOPNVKarte = new OpenLayers.Layer.XYZ("ÖPNV Karte", ["http://tile.memomaps.de/tilegen/${z}/${x}/${y}.png"], {
         transitionEffect: 'resize',
     });
     map.addLayer(layerOPNVKarte);
@@ -72,7 +72,7 @@ function init() {
     );
     map.addLayer(layerWhite);
 
-    var layerMapnikOsmfr = new OpenLayers.Layer.OSM("Mapnik-osmfr", ["http://a.tile.openstreetmap.fr/osmfr/${z}/${x}/${y}.png", "http://b.tile.openstreetmap.fr/osmfr/${z}/${x}/${y}.png", "http://c.tile.openstreetmap.fr/osmfr/${z}/${x}/${y}.png"], {
+    var layerMapnikOsmfr = new OpenLayers.Layer.XYZ("Mapnik-osmfr", ["http://a.tile.openstreetmap.fr/osmfr/${z}/${x}/${y}.png", "http://b.tile.openstreetmap.fr/osmfr/${z}/${x}/${y}.png", "http://c.tile.openstreetmap.fr/osmfr/${z}/${x}/${y}.png"], {
         transitionEffect: 'resize',
         attribution: osm_attribution,
     });
