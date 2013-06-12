@@ -37,7 +37,7 @@ def _errors(db, lang, params):
     if not params.full:
         out["description"] = ["lat", "lon", "error_id", "item"]
     else:
-        out["description"] = ["lat", "lon", "error_id", "item", "source", "classs", "elems", "subclass", "subtitle", "title", "level", "update", "username"]
+        out["description"] = ["lat", "lon", "error_id", "item", "source", "class", "elems", "subclass", "subtitle", "title", "level", "update", "username"]
     out["errors"] = []
 
     translate = utils.translator(lang)
