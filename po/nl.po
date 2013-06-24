@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-11 20:42+0200\n"
+"POT-Creation-Date: 2013-06-24 23:32+0200\n"
 "PO-Revision-Date: 2012-08-02 14:24+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: Dutch\n"
@@ -35,7 +35,7 @@ msgstr "nooit gegenereerd"
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/NL:Osmose/erreurs"
 
-#: ../errors.py:110 tmp.tpl:45
+#: ../errors.py:110 tmp.tpl:52
 msgid "False positives"
 msgstr "Valse positieve"
 
@@ -43,7 +43,7 @@ msgstr "Valse positieve"
 msgid "Fixed errors"
 msgstr "Vaste fouten"
 
-#: ../errors.py:116 tmp.tpl:43
+#: ../errors.py:116 tmp.tpl:50
 msgid "Informations"
 msgstr "Informatie"
 
@@ -82,25 +82,33 @@ msgstr "http://www.openstreetmap.fr/"
 msgid "Statistics"
 msgstr "Statistieken"
 
-#: ../map.py:127
-msgid "Help on wiki"
+#: ../map.py:127 tmp.tpl:19
+msgid "Contact"
 msgstr ""
 
 #: ../map.py:127
+msgid "../contact"
+msgstr ""
+
+#: ../map.py:128
+msgid "Help on wiki"
+msgstr ""
+
+#: ../map.py:128
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/NL:Osmose"
 
-#: ../map.py:128
+#: ../map.py:129
 #, fuzzy
 msgid "Copyright"
 msgstr "Copyright"
 
-#: ../map.py:129
+#: ../map.py:130
 #, fuzzy
 msgid "Sources"
 msgstr "Oorsprong"
 
-#: ../map.py:130
+#: ../map.py:131
 msgid "Translation"
 msgstr ""
 
@@ -187,348 +195,380 @@ msgstr ""
 msgid "Username:"
 msgstr "Gebruikersnaam:"
 
-#: tmp.tpl:19 tmp.tpl:20
+#: tmp.tpl:20
+msgid "Bug tracker"
+msgstr ""
+
+#: tmp.tpl:21
+msgid ""
+"Bug should be reported on <a href='http://trac.openstreetmap.fr'>trac</a>. "
+"The component to pick should be osmose-frontend for issues around the "
+"website, and osmose-backend for issues on the reported errors, or for "
+"suggestion for new analyses."
+msgstr ""
+
+#: tmp.tpl:22
+msgid "Providing patches"
+msgstr ""
+
+#: tmp.tpl:23
+msgid ""
+"Patches can be provided via merge requests on gitorious or github. This is "
+"the prefered way to handle patches."
+msgstr ""
+
+#: tmp.tpl:24
+msgid "Contacting maintainers"
+msgstr ""
+
+#: tmp.tpl:25
+#, python-format
+msgid ""
+"We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
+msgstr ""
+
+#: tmp.tpl:26 tmp.tpl:27
 msgid "Last updates"
 msgstr "Laatste updates"
 
-#: tmp.tpl:21
+#: tmp.tpl:28
 msgid "Median delay:"
 msgstr ""
 
-#: tmp.tpl:22 tmp.tpl:28 tmp.tpl:50 tmp.tpl:59
+#: tmp.tpl:29 tmp.tpl:35 tmp.tpl:57 tmp.tpl:66
 msgid "source"
 msgstr "oorsprong"
 
-#: tmp.tpl:23
+#: tmp.tpl:30
 msgid "description"
 msgstr "beschrijving"
 
-#: tmp.tpl:24
+#: tmp.tpl:31
 msgid "last generation"
 msgstr "laatste generatie"
 
-#: tmp.tpl:25 tmp.tpl:26
+#: tmp.tpl:32 tmp.tpl:33
 msgid "history"
 msgstr "geschiedenis"
 
-#: tmp.tpl:27
+#: tmp.tpl:34
 #, fuzzy
 msgid "Update"
 msgstr "datum"
 
-#: tmp.tpl:29
+#: tmp.tpl:36
 msgid "remote url"
 msgstr ""
 
-#: tmp.tpl:30
+#: tmp.tpl:37
 msgid "timestamp"
 msgstr ""
 
-#: tmp.tpl:31
+#: tmp.tpl:38
 #, fuzzy
 msgid "Copyright informations"
 msgstr "copyright informatie"
 
-#: tmp.tpl:32
+#: tmp.tpl:39
 msgid "License"
 msgstr ""
 
-#: tmp.tpl:33
+#: tmp.tpl:40
 msgid "Authors"
 msgstr ""
 
-#: tmp.tpl:34
+#: tmp.tpl:41
 msgid "And contributors"
 msgstr ""
 
-#: tmp.tpl:35
+#: tmp.tpl:42
 msgid "Data are coming from"
 msgstr "De gegevens zijn afkomstig uit"
 
-#: tmp.tpl:36
+#: tmp.tpl:43
 msgid "copyright"
 msgstr "copyright"
 
-#: tmp.tpl:37
+#: tmp.tpl:44
 #, python-format
 msgid "Information on error %d"
 msgstr ""
 
-#: tmp.tpl:38
+#: tmp.tpl:45
 msgid "key"
 msgstr "sleutel"
 
-#: tmp.tpl:39
+#: tmp.tpl:46
 msgid "value"
 msgstr "waarde"
 
-#: tmp.tpl:40
+#: tmp.tpl:47
 msgid "Marker"
 msgstr "Merkstift"
 
-#: tmp.tpl:41
+#: tmp.tpl:48
 msgid "Elements"
 msgstr "Elementen"
 
-#: tmp.tpl:42
+#: tmp.tpl:49
 msgid "Fixes"
 msgstr "correcties"
 
-#: tmp.tpl:44
+#: tmp.tpl:51
 msgid "Fixed"
 msgstr "vast"
 
-#: tmp.tpl:46
+#: tmp.tpl:53
 msgid "Graph"
 msgstr "Grafiek"
 
-#: tmp.tpl:47 tmp.tpl:78
+#: tmp.tpl:54 tmp.tpl:85
 msgid "Map"
 msgstr "Maart"
 
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
-#: tmp.tpl:49
+#: tmp.tpl:56
 msgid "Set"
 msgstr "van toepassing zijn"
 
 # st for "stand"
 #. TRANSLATORS: this should be replaced by a abbreviation for class
-#: tmp.tpl:52 tmp.tpl:61
+#: tmp.tpl:59 tmp.tpl:68
 msgid "class (abbreviation)"
 msgstr "st"
 
-#: tmp.tpl:53 tmp.tpl:66
+#: tmp.tpl:60 tmp.tpl:73
 msgid "item"
 msgstr "item"
 
-#: tmp.tpl:54
+#: tmp.tpl:61
 msgid "title"
 msgstr "Titel"
 
-#: tmp.tpl:55
+#: tmp.tpl:62
 msgid "count"
 msgstr "Zahl"
 
-#: tmp.tpl:56
+#: tmp.tpl:63
 msgid "Total"
 msgstr ""
 
-#: tmp.tpl:57
+#: tmp.tpl:64
 msgid "Show more errors"
 msgstr "Toon een aantal fouten"
 
-#: tmp.tpl:58
+#: tmp.tpl:65
 msgid "Show some errors"
 msgstr "Toon een aantal fouten"
 
 # sk for "subklasse"
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: tmp.tpl:63
+#: tmp.tpl:70
 msgid "subclass (abbreviation)"
 msgstr "sk"
 
 # Niv pour niveaus"
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: tmp.tpl:65
+#: tmp.tpl:72
 msgid "level (abbreviation)"
 msgstr "Niv"
 
-#: tmp.tpl:67
+#: tmp.tpl:74
 msgid "information on error"
 msgstr "informatie over de fout"
 
 # li for "ligging"
-#: tmp.tpl:68
+#: tmp.tpl:75
 msgid "position (abbreviation)"
 msgstr "li"
 
 # el for "elementen"
-#: tmp.tpl:69
+#: tmp.tpl:76
 msgid "elements (abbreviation)"
 msgstr "elem"
 
-#: tmp.tpl:70
+#: tmp.tpl:77
 msgid "subtitle"
 msgstr "Untertitel"
 
-#: tmp.tpl:71
+#: tmp.tpl:78
 msgid "date"
 msgstr "datum"
 
-#: tmp.tpl:72
+#: tmp.tpl:79
 #, fuzzy
 msgid "OpenStreetMap Oversight Search Engine"
 msgstr "OpenStreetMap Oversight Search Engine"
 
-#: tmp.tpl:73
+#: tmp.tpl:80
 #, fuzzy
 msgid "Map of errors"
 msgstr "Toon een aantal fouten"
 
-#: tmp.tpl:74
+#: tmp.tpl:81
 msgid "Help on OSM wiki"
 msgstr ""
 
-#: tmp.tpl:75
+#: tmp.tpl:82
 #, fuzzy
 msgid "Information on error database"
 msgstr "informatie over de fout"
 
-#: tmp.tpl:76
+#: tmp.tpl:83
 #, fuzzy
 msgid "False positives list"
 msgstr "Valse positieve"
 
-#: tmp.tpl:77
+#: tmp.tpl:84
 msgid "Last analysis updates"
 msgstr ""
 
-#: tmp.tpl:79
+#: tmp.tpl:86
 msgid "no bubbles at this zoom factor"
 msgstr "er geen luchtbellen meer in deze zoomfactor"
 
-#: tmp.tpl:80
+#: tmp.tpl:87
 msgid "Severity"
 msgstr ""
 
-#: tmp.tpl:81
+#: tmp.tpl:88
 msgid "1 only"
 msgstr ""
 
-#: tmp.tpl:82
+#: tmp.tpl:89
 msgid "1+2 only"
 msgstr ""
 
-#: tmp.tpl:83
+#: tmp.tpl:90
 #, fuzzy
 msgid "all severity"
 msgstr "Alle niveaus"
 
-#: tmp.tpl:84
+#: tmp.tpl:91
 msgid "2 only"
 msgstr ""
 
-#: tmp.tpl:85
+#: tmp.tpl:92
 msgid "3 only"
 msgstr ""
 
-#: tmp.tpl:86
+#: tmp.tpl:93
 msgid "Select:"
 msgstr "Siezen"
 
-#: tmp.tpl:87 tmp.tpl:90
+#: tmp.tpl:94 tmp.tpl:97
 msgid "all"
 msgstr "alle"
 
-#: tmp.tpl:88 tmp.tpl:91
+#: tmp.tpl:95 tmp.tpl:98
 msgid "nothing"
 msgstr "niets"
 
-#: tmp.tpl:89
+#: tmp.tpl:96
 msgid "invert"
 msgstr "omkeren"
 
-#: tmp.tpl:92
+#: tmp.tpl:99
 msgid "Change language"
 msgstr ""
 
-#: tmp.tpl:93
+#: tmp.tpl:100
 msgid "Help"
 msgstr "Helpen"
 
-#: tmp.tpl:94
+#: tmp.tpl:101
 #, python-format
 msgid "Delay: %sd"
 msgstr ""
 
-#: tmp.tpl:95
+#: tmp.tpl:102
 msgid "Error reported on: "
 msgstr "Fout gemeld op:"
 
-#: tmp.tpl:96
+#: tmp.tpl:103
 msgid "change status"
 msgstr "status veranderen"
 
-#: tmp.tpl:97
+#: tmp.tpl:104
 msgid "corrected"
 msgstr "gecorrigeerd"
 
-#: tmp.tpl:98
+#: tmp.tpl:105
 msgid "false positive"
 msgstr "Valse positieve"
 
-#: tmp.tpl:99 tmp.tpl:100
+#: tmp.tpl:106 tmp.tpl:107
 msgid "How to help translation"
 msgstr ""
 
-#: tmp.tpl:101
+#: tmp.tpl:108
 msgid ""
 "OsmOse tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
 msgstr ""
 
-#: tmp.tpl:102
+#: tmp.tpl:109
 msgid ""
 "To make OsmOse a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr ""
 
-#: tmp.tpl:103
+#: tmp.tpl:110
 msgid "Recent translation needs"
 msgstr ""
 
-#: tmp.tpl:104
+#: tmp.tpl:111
 msgid ""
 "European countries: German and Italian in Switzerland and Dutch in Belgium"
 msgstr ""
 
-#: tmp.tpl:105
+#: tmp.tpl:112
 msgid ""
 "Countries covered by HOT: Wolof in Senegal, Arabic in Chad and Cameroon, "
 "Swahili in Kenya, Kirundi in Burundi, and Malagasy in Madagascar"
 msgstr ""
 
-#: tmp.tpl:106
+#: tmp.tpl:113
 msgid "Pages to translate"
 msgstr ""
 
-#: tmp.tpl:107
+#: tmp.tpl:114
 msgid "Wiki pages"
 msgstr ""
 
-#: tmp.tpl:108
+#: tmp.tpl:115
 msgid "OsmOse main page"
 msgstr ""
 
-#: tmp.tpl:109
+#: tmp.tpl:116
 #, fuzzy
 msgid "Documentation on reported errors"
 msgstr "informatie over de fout"
 
-#: tmp.tpl:110
+#: tmp.tpl:117
 msgid "OsmOse pages"
 msgstr ""
 
-#: tmp.tpl:111
+#: tmp.tpl:118
 msgid "Translation status"
 msgstr ""
 
-#: tmp.tpl:112
+#: tmp.tpl:119
 msgid "Source code for translations (.po files)"
 msgstr ""
 
-#: tmp.tpl:113
+#: tmp.tpl:120
 msgid ""
 "Source code for translations (database files for menu) - categ_menu_en.txt "
 "and item_menu_en.txt are the reference ones."
 msgstr ""
 
-#: tmp.tpl:114
+#: tmp.tpl:121
 msgid "Bug tracking system"
 msgstr ""
 
-#: tmp.tpl:115
+#: tmp.tpl:122
 msgid ""
 "<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
 "issue with translations, or erroneous analyses."
