@@ -26,7 +26,7 @@
 %end
   </script>
 </head>
-<body onload="init();" onresize="handleResize();">
+<body onresize="handleResize();">
 
 <iframe id="hiddenIframe" name="hiddenIframe"></iframe>
 
@@ -147,6 +147,10 @@
 <li><a href="../control/update" class="delay-{{delay_status}}">{{_("Delay: %sd") % delay}}</a></li>
 </ul>
 </div>
+
+<script type="text/javascript">
+init();
+</script>
 
 </body>
 </html>
