@@ -124,6 +124,7 @@ def index(db, lang):
     urls.append((_("Statistics"), "../control/update"))
 
     helps = []
+    helps.append((_("Contact"), _("../contact")))
     helps.append((_("Help on wiki"), _("http://wiki.openstreetmap.org/wiki/Osmose")))
     helps.append((_("Copyright"), "../copyright"))
     helps.append((_("Sources"), "https://gitorious.org/osmose"))

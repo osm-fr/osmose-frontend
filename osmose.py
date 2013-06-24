@@ -38,6 +38,11 @@ def index(lang):
     translate = utils.translator(lang)
     return template('index')
 
+@route('/contact')
+def contact(lang, name=None):
+    translate = utils.translator(lang)
+    return template('contact')
+
 @route('/copyright')
 def copyright(lang, name=None):
     translate = utils.translator(lang)
