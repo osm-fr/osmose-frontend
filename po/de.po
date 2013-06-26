@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:32+0200\n"
+"POT-Creation-Date: 2013-06-26 20:19+0200\n"
 "PO-Revision-Date: 2012-08-02 14:19+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: German\n"
@@ -31,7 +31,7 @@ msgid "never generated"
 msgstr "nie erzeugt"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:95
+#: ../error.py:93
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/DE:Osmose/erreurs"
 
