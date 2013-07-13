@@ -11,14 +11,28 @@ Dependencies
   python-psycopg2 >= 2.4
   python-matplotlib >= 1.1
   python-imaging
+  librsvg2-bin                     # to generate markers with rsvg
   apache2
   libapache2-mod-wsgi
   postgresql-9.1
-  postgresql-contrib-9.1                     # for hstore extension
+  postgresql-contrib-9.1           # for hstore extension
 
 Initialisation
 --------------
+
+ - as postgres user
+  createdb osmose_frontend
+  psql osmose_frontend -c "CREATE EXTENSION hstore"
+  psql osmose_frontend -c "GRANT CREATE ON DATABASE osmose_frontend TO osmose;"
+  psql osmose_frontend -f /usr/share/postgresql/9.1/contrib/postgis-1.5/postgis.sql
+  psql osmose_frontend -f /usr/share/postgresql/9.1/contrib/postgis-1.5/spatial_ref_sys.sql
+
+ - as default user
   (cd po && make)                            # to generate translation files
   git submodule update --init                # to get Mustache javascript library
-  psql -c "CREATE EXTENSION hstore"
-  psql -f tools/database/schema_generate.sh  # for postgresql database tables
+  psql -f tools/database/schema.sql          # for postgresql database tables
+
+ - when some errors are in the database, to get translations
+  (cd tools/database/ && ./categ_menu_update.sh && ./item_menu_update.sh)
+
+ - add "tools/cron.sh" to crontab, to run once per day
