@@ -92,7 +92,8 @@ CREATE TABLE dynpoi_status (
     status character varying(128),
     lat numeric(9,7),
     lon numeric(10,7),
-    subtitle hstore
+    subtitle hstore,
+    id bigint
 );
 
 
@@ -156,8 +157,8 @@ CREATE TABLE marker_elem (
 CREATE TABLE marker_fix (
     marker_id bigint NOT NULL,
     diff_index integer NOT NULL,
-    elem_data_type character(1),
-    elem_id bigint,
+    elem_data_type character(1) NOT NULL,
+    elem_id bigint NOT NULL,
     tags_create hstore,
     tags_modify hstore,
     tags_delete text[]
@@ -287,9 +288,7 @@ ALTER TABLE marker_elem CLUSTER ON marker_elem_pkey;
 --
 
 ALTER TABLE ONLY marker_fix
-    ADD CONSTRAINT marker_fix_pkey PRIMARY KEY (marker_id, diff_index);
-
-ALTER TABLE marker_fix CLUSTER ON marker_fix_pkey;
+    ADD CONSTRAINT marker_fix_pkey PRIMARY KEY (marker_id, diff_index, elem_data_type, elem_id);
 
 
 --
@@ -300,13 +299,6 @@ ALTER TABLE ONLY marker
     ADD CONSTRAINT marker_pkey PRIMARY KEY (id);
 
 ALTER TABLE marker CLUSTER ON marker_pkey;
-
-
---
--- Name: dynpoi_source_comment; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE UNIQUE INDEX dynpoi_source_comment ON dynpoi_source USING btree (comment);
 
 
 --
@@ -444,6 +436,14 @@ ALTER TABLE ONLY dynpoi_class
 
 ALTER TABLE ONLY dynpoi_status
     ADD CONSTRAINT dynpoi_status_source_fkey FOREIGN KEY (source) REFERENCES dynpoi_source(source);
+
+
+--
+-- Name: marker_class_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY marker
+    ADD CONSTRAINT marker_class_fkey FOREIGN KEY (source, class) REFERENCES dynpoi_class(source, class);
 
 
 --
