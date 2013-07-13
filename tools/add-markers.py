@@ -21,7 +21,7 @@ for res in dbcurs.fetchall():
       prev_cat = c
       avail_flags = all_flags[:]
 
-  sql = "select item, marker_color, marker_flag from dynpoi_item where categ = %s"
+  sql = "select item, marker_color, marker_flag from dynpoi_item where categ = %s order by item"
   dbcurs.execute(sql, (c,))
   for m in dbcurs.fetchall():
 #    print m
