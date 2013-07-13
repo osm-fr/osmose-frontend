@@ -2,18 +2,15 @@
 
 	ServerAdmin jjaubert@openstreetmap.fr
 
-	ServerName osm-osmose.crans.org
-	ServerAlias osmose.openstreetmap.fr
-	ServerAlias dev.osmose.openstreetmap.fr
+	ServerName osmose.openstreetmap.fr
+	ServerAlias osmose.openstreetmap.lu
 
 	WSGIScriptAlias / /data/project/osmose/frontend/osmose.wsgi
+	WSGIDaemonProcess osmose processes=2 threads=15 user=osmose group=osmose
+	WSGIProcessGroup osmose
 
 	DocumentRoot /data/project/osmose/frontend/static/
 
-	Alias /css /data/project/osmose/frontend/static/css
-	Alias /images /data/project/osmose/frontend/static/images
-	Alias /js /data/project/osmose/frontend/static/js
-	Alias /OpenLayers-2.8 /data/project/osmose/frontend/static/OpenLayers-2.8
 	Alias /robots.txt /data/project/osmose/frontend/static/robots.txt
 	Alias /favicon.ico /data/project/osmose/frontend/static/favicon.ico
 
@@ -27,10 +24,40 @@
 	</Directory>
 
 	ExpiresActive On
-	ExpiresByType image/png "access plus 1 month"
+	ExpiresDefault "access plus 1 week"
+	<LocationMatch /[a-z]*/api>
+		ExpiresActive Off
+	</LocationMatch>
+	<LocationMatch /[a-z]*/byuser>
+		ExpiresDefault "access plus 5 minutes"
+	</LocationMatch>
+	<LocationMatch /[a-z]*/control>
+		ExpiresDefault "access plus 5 minutes"
+	</LocationMatch>
+	<LocationMatch /[a-z]*/error>
+		ExpiresActive Off
+	</LocationMatch>
+	<LocationMatch /[a-z]*/errors>
+		ExpiresDefault "access plus 5 minutes"
+	</LocationMatch>
+	<LocationMatch /[a-z]*/map>
+		ExpiresActive Off
+	</LocationMatch>
+	<LocationMatch /[a-z]*/map/heat>
+		ExpiresDefault "access plus 1 day"
+	</LocationMatch>
+	<LocationMatch /[a-z]*/map/marker>
+		ExpiresActive Off
+	</LocationMatch>
+	<LocationMatch /[a-z]*/map/markers>
+		ExpiresActive Off
+	</LocationMatch>
 
 	RewriteEngine On
-	RewriteRule ^/$ /map [R,L]
+#	RewriteCond %{REQUEST_URI} !/maintenance.html$
+#	RewriteRule !^maintenance.html$ maintenance.html [R=302,L]
+
+	RewriteRule ^/$ /map/ [R,L]
 	RewriteRule ^/map/cgi-bin/index.py$ /map [R,L]
 
 	ErrorLog /var/log/apache2/osmose-error.log
