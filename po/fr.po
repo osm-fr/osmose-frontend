@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-26 20:19+0200\n"
+"POT-Creation-Date: 2013-07-14 10:10+0200\n"
 "PO-Revision-Date: 2012-10-11 22:17+0100\n"
 "Last-Translator: frodrigo <frodrigo@openstreetmap.fr>\n"
 "Language-Team: French\n"
@@ -83,11 +83,7 @@ msgstr "Statistiques"
 
 #: ../map.py:127 tmp.tpl:19
 msgid "Contact"
-msgstr ""
-
-#: ../map.py:127
-msgid "../contact"
-msgstr ""
+msgstr "Contact"
 
 #: ../map.py:128
 msgid "Help on wiki"
@@ -188,7 +184,6 @@ msgid "Username:"
 msgstr "Utilisateur :"
 
 #: tmp.tpl:20
-#, fuzzy
 msgid "Bug tracker"
 msgstr "Suivi des bugs"
 
@@ -199,26 +194,30 @@ msgid ""
 "website, and osmose-backend for issues on the reported errors, or for "
 "suggestion for new analyses."
 msgstr ""
+"Les bugs doivent être reporté sur <a href='http://trac.openstreetmap.fr'>trac</ a>. "
+"Le composant de choisir doit être osmose-frontend pour les problèmes du site web, "
+"et osmose-backend pour les problèmes ou demandes sur les erreurs signalées."
 
 #: tmp.tpl:22
 msgid "Providing patches"
-msgstr ""
+msgstr "Proposer des correctifs"
 
 #: tmp.tpl:23
 msgid ""
 "Patches can be provided via merge requests on gitorious or github. This is "
 "the prefered way to handle patches."
 msgstr ""
+"Les patchs peuvent être proposé de préférence par des merge requests sur gitorious ou github."
 
 #: tmp.tpl:24
 msgid "Contacting maintainers"
-msgstr ""
+msgstr "Contacter les mainteneurs"
 
 #: tmp.tpl:25
 #, python-format
 msgid ""
 "We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
-msgstr ""
+msgstr "Nous pouvons être contacté directement par email à <a href='mailto:%s'>%s</a>."
 
 #: tmp.tpl:26 tmp.tpl:27
 msgid "Last updates"

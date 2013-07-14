@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-26 20:19+0200\n"
+"POT-Creation-Date: 2013-07-14 10:10+0200\n"
 "PO-Revision-Date: 2013-06-25 23:35+0200\n"
 "Last-Translator: Jocelyn Jaubert <jocelyn.jaubert@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -81,10 +81,6 @@ msgstr ""
 
 #: ../map.py:127 tmp.tpl:19
 msgid "Contact"
-msgstr ""
-
-#: ../map.py:127
-msgid "../contact"
 msgstr ""
 
 #: ../map.py:128
