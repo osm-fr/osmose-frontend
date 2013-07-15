@@ -194,9 +194,10 @@ msgid ""
 "website, and osmose-backend for issues on the reported errors, or for "
 "suggestion for new analyses."
 msgstr ""
-"Les bugs doivent être reporté sur <a href='http://trac.openstreetmap.fr'>trac</ a>. "
-"Le composant de choisir doit être osmose-frontend pour les problèmes du site web, "
-"et osmose-backend pour les problèmes ou demandes sur les erreurs signalées."
+"Les bugs doivent être reporté sur <a href='http://trac.openstreetmap."
+"fr'>trac</ a>. Le composant de choisir doit être osmose-frontend pour les "
+"problèmes du site web, et osmose-backend pour les problèmes ou demandes sur "
+"les erreurs signalées."
 
 #: tmp.tpl:22
 msgid "Providing patches"
@@ -207,7 +208,8 @@ msgid ""
 "Patches can be provided via merge requests on gitorious or github. This is "
 "the prefered way to handle patches."
 msgstr ""
-"Les patchs peuvent être proposé de préférence par des merge requests sur gitorious ou github."
+"Les patchs peuvent être proposé de préférence par des merge requests sur "
+"gitorious ou github."
 
 #: tmp.tpl:24
 msgid "Contacting maintainers"
@@ -217,7 +219,9 @@ msgstr "Contacter les mainteneurs"
 #, python-format
 msgid ""
 "We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
-msgstr "Nous pouvons être contacté directement par email à <a href='mailto:%s'>%s</a>."
+msgstr ""
+"Nous pouvons être contacté directement par email à <a href='mailto:%s'>%s</"
+"a>."
 
 #: tmp.tpl:26 tmp.tpl:27
 msgid "Last updates"

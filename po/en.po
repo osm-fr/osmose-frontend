@@ -216,7 +216,8 @@ msgstr "Contacting maintainers"
 #, python-format
 msgid ""
 "We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
-msgstr "We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
+msgstr ""
+"We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
 
 #: tmp.tpl:26 tmp.tpl:27
 msgid "Last updates"
