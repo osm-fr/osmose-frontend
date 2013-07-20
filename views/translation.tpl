@@ -18,8 +18,9 @@
 
 <h3>{{_("OsmOse pages")}}</h3>
 <ul>
-<li><a href="{{_("control/i18n")}}">{{_("Translation status")}}</a></li>
-<li><a href="{{_("http://gitorious.org/osmose/frontend/trees/master/po")}}">{{_("Source code for translations (.po files)")}}</a></li>
+<li><a href="{{_("control/i18n")}}">{{_("Translation status of frontend")}}</a></li>
+<li><a href="{{_("http://gitorious.org/osmose/frontend/trees/master/po")}}">{{_("Source code for translations of frontend (.po files)")}}</a></li>
+<li><a href="{{_("http://gitorious.org/osmose/backend/trees/master/po")}}">{{_("Source code for translations of backend (.po files)")}}</a></li>
 <li><a href="{{_("https://gitorious.org/osmose/frontend/trees/master/tools/database")}}">{{_("Source code for translations (database files for menu) - categ_menu_en.txt and item_menu_en.txt are the reference ones.")}}</a></li>
 </ul>
 
