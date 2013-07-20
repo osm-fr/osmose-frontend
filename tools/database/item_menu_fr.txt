@@ -19,6 +19,7 @@
  1200 | relation à 1 membre
  1210 | voie non connectée
  1220 | cours d'eau
+ 1230 | géométrie dupliquée
  2010 | junction=roundabout
  2020 | ele=...
  2030 | oneway=...
@@ -27,6 +28,7 @@
  2060 | numéros de rue
  2080 | highway=...
  2090 | croisement de routes
+ 2100 | pharmacie
  3010 | highway roundabout
  3020 | mauvais tag source
  3030 | tagwatch cleaner
@@ -46,8 +48,10 @@
  3130 | nom avec marque
  3150 | typo dans un tag
  3160 | "lanes" incorrectes
+ 3161 | voie de parking
  3170 | rôle de relation
  3180 | relation type=restriction
+ 3190 | code postal
  4010 | abandonné
  4020 | sur junction=roundabout
  4030 | tags incompatibles
@@ -68,6 +72,7 @@
  6040 | code INSEE
  6050 | admin_level
  6060 | trou admin_level=8
+ 6070 | hors des frontières
  7010 | bâtiment géodésique
  7011 | forme bâtiment
  7012 | pont à qualifier
@@ -97,3 +102,4 @@
  8070 | point géodésique manquant
  8080 | adresse, intégration possible
  8101 | Wikipédia, intégration possible
+ 8110 | service public
