@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-14 10:10+0200\n"
+"POT-Creation-Date: 2013-07-20 19:21+0200\n"
 "PO-Revision-Date: 2012-10-11 22:17+0100\n"
 "Last-Translator: frodrigo <frodrigo@openstreetmap.fr>\n"
 "Language-Team: French\n"
@@ -194,8 +194,8 @@ msgid ""
 "website, and osmose-backend for issues on the reported errors, or for "
 "suggestion for new analyses."
 msgstr ""
-"Les bugs doivent être reporté sur <a href='http://trac.openstreetmap."
-"fr'>trac</ a>. Le composant de choisir doit être osmose-frontend pour les "
+"Les bugs devraient être reportés sur <a href='http://trac.openstreetmap."
+"fr'>trac</a>. Le composant à choisir devrait être osmose-frontend pour les "
 "problèmes du site web, et osmose-backend pour les problèmes ou demandes sur "
 "les erreurs signalées."
 
@@ -491,7 +491,7 @@ msgid ""
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
 msgstr ""
-"l'outil OsmOse est principalement développé par des français, et nous "
+"L'outil OsmOse est principalement développé par des français, et nous "
 "voudrions couvrir d'autres languages. Nous couvrons actuellement la majorité "
 "des langues utilisées dans les pays couverts par les analyses."
 
@@ -501,7 +501,7 @@ msgid ""
 "current translations, and add new translations"
 msgstr ""
 "Afin de rendre OsmOse un outil international, nous avons besoin de votre "
-"aide pour améliorer les traductions actuelles, et en ajouter d'autres"
+"aide pour améliorer les traductions actuelles, et en ajouter d'autres."
 
 #: tmp.tpl:110
 msgid "Recent translation needs"
@@ -544,14 +544,18 @@ msgid "OsmOse pages"
 msgstr "Pages d'OsmOse"
 
 #: tmp.tpl:118
-msgid "Translation status"
-msgstr "Statut actuel des traductions"
+msgid "Translation status of frontend"
+msgstr "Statut actuel des traductions sur le frontend"
 
 #: tmp.tpl:119
-msgid "Source code for translations (.po files)"
-msgstr "Code source des traductions (fichiers .po)"
+msgid "Source code for translations of frontend (.po files)"
+msgstr "Code source des traductions du frontend (fichiers .po)"
 
 #: tmp.tpl:120
+msgid "Source code for translations of backend (.po files)"
+msgstr "Code source des traductions du backend (fichiers .po)"
+
+#: tmp.tpl:121
 msgid ""
 "Source code for translations (database files for menu) - categ_menu_en.txt "
 "and item_menu_en.txt are the reference ones."
@@ -559,11 +563,11 @@ msgstr ""
 "Code source des traductions (fichiers de base de donnée pour le menu) - "
 "categ_menu_en.txt et item_menu_en.txt sont les fichiers de référence."
 
-#: tmp.tpl:121
+#: tmp.tpl:122
 msgid "Bug tracking system"
 msgstr "Suivi des bugs"
 
-#: tmp.tpl:122
+#: tmp.tpl:123
 msgid ""
 "<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
 "issue with translations, or erroneous analyses."

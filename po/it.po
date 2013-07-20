@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-14 10:10+0200\n"
+"POT-Creation-Date: 2013-07-20 19:21+0200\n"
 "PO-Revision-Date: 2012-08-02 14:22+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: Italian\n"
@@ -541,24 +541,28 @@ msgid "OsmOse pages"
 msgstr ""
 
 #: tmp.tpl:118
-msgid "Translation status"
+msgid "Translation status of frontend"
 msgstr ""
 
 #: tmp.tpl:119
-msgid "Source code for translations (.po files)"
+msgid "Source code for translations of frontend (.po files)"
 msgstr ""
 
 #: tmp.tpl:120
+msgid "Source code for translations of backend (.po files)"
+msgstr ""
+
+#: tmp.tpl:121
 msgid ""
 "Source code for translations (database files for menu) - categ_menu_en.txt "
 "and item_menu_en.txt are the reference ones."
 msgstr ""
 
-#: tmp.tpl:121
+#: tmp.tpl:122
 msgid "Bug tracking system"
 msgstr ""
 
-#: tmp.tpl:122
+#: tmp.tpl:123
 msgid ""
 "<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
 "issue with translations, or erroneous analyses."
