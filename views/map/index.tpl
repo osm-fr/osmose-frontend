@@ -15,7 +15,7 @@
   <script type="text/javascript" src="{{get_url('static', filename='/map/BetaStyles.js')}}"></script>
   <script type="text/javascript" src="{{get_url('static', filename='/map/map.js')}}"></script>
   <script type="text/javascript" src="{{get_url('static', filename='/js/mustache.js')}}"></script>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="{{get_url('static', filename='/js/jquery-1.7.2.min.js')}}"></script>
   <script type="text/javascript">
     var lat={{lat}};
     var lon={{lon}};
