@@ -6,3 +6,24 @@ Disallow: /*/error/
 Disallow: /*/errors/
 Disallow: /*/map/markers
 
+Disallow: /de/error/
+Disallow: /de/errors/
+Disallow: /de/map/markers
+Disallow: /en/error/
+Disallow: /en/errors/
+Disallow: /en/map/markers
+Disallow: /es/error/
+Disallow: /es/errors/
+Disallow: /es/map/markers
+Disallow: /fr/error/
+Disallow: /fr/errors/
+Disallow: /fr/map/markers
+Disallow: /it/error/
+Disallow: /it/errors/
+Disallow: /it/map/markers
+Disallow: /nl/error/
+Disallow: /nl/errors/
+Disallow: /nl/map/markers
+Disallow: /sw/error/
+Disallow: /sw/errors/
+Disallow: /sw/map/markers
