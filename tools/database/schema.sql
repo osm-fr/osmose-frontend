@@ -98,6 +98,25 @@ CREATE TABLE dynpoi_status (
 
 
 --
+-- Name: dynpoi_status_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE dynpoi_status_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: dynpoi_status_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE dynpoi_status_id_seq OWNED BY dynpoi_status.id;
+
+
+--
 -- Name: dynpoi_update; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -188,6 +207,13 @@ ALTER SEQUENCE marker_id_seq OWNED BY marker.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY dynpoi_status ALTER COLUMN id SET DEFAULT nextval('dynpoi_status_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY marker ALTER COLUMN id SET DEFAULT nextval('marker_id_seq'::regclass);
 
 
@@ -245,6 +271,14 @@ ALTER TABLE ONLY dynpoi_stats
     ADD CONSTRAINT dynpoi_stats_pkey PRIMARY KEY (source, class, "timestamp");
 
 ALTER TABLE dynpoi_stats CLUSTER ON dynpoi_stats_pkey;
+
+
+--
+-- Name: dynpoi_status_id; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY dynpoi_status
+    ADD CONSTRAINT dynpoi_status_id UNIQUE (id);
 
 
 --
