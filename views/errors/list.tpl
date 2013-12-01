@@ -12,9 +12,7 @@
     <th></th>
     <th>#</th>
     <th>{{_("item")}}</th>
-%if gen == "info":
     <th title="{{_("information on error")}}">E</th>
-%end
     <th title="{{_("position")}}">{{_("position (abbreviation)")}}</th>
     <th>{{_("elements (abbreviation)")}}</th>
     <th>{{_("subtitle")}}</th>
@@ -36,9 +34,7 @@
 %    else:
     <td></td>
 %    end
-%    if gen == "info":
-    <td title="erreur n°{{res["id"]}}"><a href="../error/{{res["id"]}}">E</a></td>
-%    end
+    <td title="erreur n°{{res["id"]}}"><a href="../{{gen}}/{{res["id"]}}">E</a></td>
 %    if res["lat"] and res["lon"]:
 %        lat = res["lat"]
 %        lon = res["lon"]

@@ -114,13 +114,13 @@ def index(db, lang):
         gen = "done"
     else:
         title = _("Informations")
-        gen = "info"
+        gen = "error"
 
     countries = query_meta._countries(db, lang)
     items = query_meta._items(db, lang)
 
     params = query._params()
-    params.status = {"info":"open", "false-positive": "false", "done":"done"}[gen]
+    params.status = {"error":"open", "false-positive": "false", "done":"done"}[gen]
     params.limit = None
 
     errors_groups = query._count(db, params, [

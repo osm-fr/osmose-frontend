@@ -90,7 +90,7 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
         tables.append("dynpoi_class")
     if country:
         tables.append("dynpoi_source")
-    if not stats and not status in ("done", "false"):
+    if not stats:
         tables.append("dynpoi_item")
         if useDevItem:
             tablesLeft.append("dynpoi_item")
@@ -212,19 +212,17 @@ def _params():
 
 def _gets(db, params):
     sqlbase = """
-    SELECT"""
+    SELECT
+        marker.id AS id,"""
     if not params.status in ("done", "false"):
         sqlbase += """
-        marker.id,
         marker.item,"""
     elif params.full:
         sqlbase += """
-        -1 AS id,
         dynpoi_class.item,"""
     else:
         sqlbase += """
-        -1 AS id,
-        -1 AS item,"""
+        dynpoi_class.item,"""
     sqlbase += """
         marker.lat,
         marker.lon"""
@@ -238,15 +236,14 @@ def _gets(db, params):
         dynpoi_source.comment,
         dynpoi_class.title,
         dynpoi_class.level,
-        dynpoi_update_last.timestamp"""
+        dynpoi_update_last.timestamp,
+        dynpoi_item.menu"""
         if not params.status in ("done", "false"):
             sqlbase += """,
-        dynpoi_item.menu,
         marker_elem.username,
         -1 AS date"""
         else:
             sqlbase += """,
-        '' AS menu,
         '' AS username,
         marker.date"""
     sqlbase += """
