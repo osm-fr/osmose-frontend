@@ -19,6 +19,9 @@
 %if opt_date != "-1":
     <th>{{_("date")}}</th>
 %end
+%if gen == "false-positive":
+    <th title="{{_("delete error")}}">X</th>
+%end
 </tr>
 </thead>
 %for res in errors:
@@ -88,7 +91,12 @@
 %        date = str(res["date"])
     <td>{{date[:10]}}&nbsp;{{date[11:16]}}</td>
 %    end
+%    if gen == "false-positive":
+    <td title="{{_("delete error #%d") % res["id"]}}"><a href="#" class="err_delete" id="delete={{gen}}={{res["id"]}}">X</a></td>
+%    end
 </tr>
 %end
 </table>
+<script type="text/javascript" src="{{get_url('static', filename='/js/jquery-1.7.2.min.js')}}"></script>
+<script src="{{get_url('static', filename='js/err_delete.js')}}" type="text/javascript"></script>
 <iframe id="hiddenIframe" name="hiddenIframe"></iframe>
