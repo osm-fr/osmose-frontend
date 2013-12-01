@@ -65,6 +65,7 @@ import control
 import error
 import errors
 import map
+import false_positive
 
 @route('/<filename:path>', name='static')
 def static(filename):
