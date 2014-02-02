@@ -28,7 +28,7 @@ import errors
 import datetime
 import math, StringIO
 from PIL import Image
-import ImageDraw
+from PIL import ImageDraw
 
 
 def check_items(items, all_items):
