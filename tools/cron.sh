@@ -2,7 +2,7 @@
 
 set -e
 
-DATABASE=osmose
+DATABASE=osmose_frontend
 
 psql -d $DATABASE -c "DELETE FROM dynpoi_status WHERE date < now()-interval '7 day' AND status = 'done';"
 

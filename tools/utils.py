@@ -9,7 +9,7 @@ import datetime
 allowed_languages = ["en", "fr", "de", "es", "it", "nl", "sw"]
 pg_user           = "osmose"
 pg_pass           = "clostAdtoi"
-pg_base           = "osmose"
+pg_base           = "osmose_frontend"
 website           = "osmose.openstreetmap.fr"
 
 ################################################################################
