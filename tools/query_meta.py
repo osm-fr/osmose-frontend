@@ -62,6 +62,8 @@ def _categories(db, lang):
         dynpoi_categ
         JOIN dynpoi_item ON
             dynpoi_categ.categ = dynpoi_item.categ
+    WHERE
+        NOT dynpoi_item.levels = '{}'
     ORDER BY
         categ,
         item
