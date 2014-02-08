@@ -34,15 +34,6 @@ class printlogger:
     def log(self, text):
         print text
 
-
-origGetAddrInfo = socket.getaddrinfo
-
-def getAddrInfoWrapper(host, port, family=0, socktype=0, proto=0, flags=0):
-   return origGetAddrInfo(host, port, socket.AF_INET, socktype, proto, flags)
-
-# replace the original socket.getaddrinfo by our version
-socket.getaddrinfo = getAddrInfoWrapper
-
 ###########################################################################
 ## updater
 
