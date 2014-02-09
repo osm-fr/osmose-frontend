@@ -8,33 +8,21 @@ body {
 }
 
 /* Menu */
-div#menu {
-  border-radius: 10px;
-  border: solid 1px black;
-  background: white;
-  position: absolute;
-  width: 270px;
-  left: 50px;
-  top: 30px;
-  z-index: 1000;
-  padding: 5px;
-  padding-top: 8px;
-  padding-right: 0px;
-  opacity: 0.95;
-}
 a#togglemenu {
   position: absolute;
-  top: 5px;
-  left: 3px;
-  background: darkBlue;
-  color: white;
-  width: 20px;
   display: block;
-  border-radius: 10px;
-  text-align: center;
-  vertical-align: middle;
-  text-decoration: none;
+  background-color: #FFFFFF;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+  color: #000000;
   font-weight: bold;
+  line-height: 26px;
+  text-align: center;
+  text-decoration: none;
+  height: 26px;
+  width: 26px;
+  top: 5px;
+  left: 5px;
 }
 div#tests {
   overflow-y: auto;

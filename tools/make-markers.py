@@ -153,4 +153,5 @@ for i in all_items:
         file_png = os.path.join(marker_folder, "marker-%s-%d.png"%(m.lower(), i["item"]))
         open(file_svg,"w").write(get_marker(m, i["marker_flag"], i["marker_color"]))
         commands.getstatusoutput("rsvg %s %s"%(file_svg, file_png))
+        #commands.getstatusoutput("rsvg-convert %s > %s"%(file_svg, file_png))
 commands.getstatusoutput("rm %s"%os.path.join(marker_folder,"*.svg"))

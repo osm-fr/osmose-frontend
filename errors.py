@@ -30,6 +30,19 @@ import StringIO, re
 import errors_graph
 
 
+def _errors_geo(db, lang, params):
+    results = query._gets(db, params)
+    translate = utils.translator(lang)
+
+    features = []
+
+    for res in results:
+        properties = {"error_id": res["id"], "item": res["item"] or 0}
+        features.append({"type": "Feature", "geometry": {"type": "Point", "coordinates": [float(res["lon"]), float(res["lat"])]}, "properties": properties})
+
+    return {"type": "FeatureCollection", "features": features}
+
+
 def _errors(db, lang, params):
     results = query._gets(db, params)
     out = OrderedDict()

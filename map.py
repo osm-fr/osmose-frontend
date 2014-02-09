@@ -147,6 +147,7 @@ OFFSET
 """
     db.execute(sql)
     delay = db.fetchone()
+    delay = 0
     if delay:
         delay = delay[0]/60/60/24
     else:
@@ -251,7 +252,7 @@ def markers(db, lang):
     response.set_cookie('last_level', str(params.level), expires=expires, path=path)
     response.set_cookie('last_item', params.item, expires=expires, path=path)
 
-    return errors._errors(db, lang, params)
+    return errors._errors_geo(db, lang, params)
 
 
 @route('/tpl/popup.tpl')

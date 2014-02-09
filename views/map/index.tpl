@@ -5,17 +5,24 @@
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
   <meta name="description" content="Contrôle, vérification et correction d'erreurs d'OpenStreetMap">
   <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='css/style.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/OpenLayers/theme/default/style.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/leaflet/leaflet.css')}}" />
+  <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/leaflet-sidebar/src/L.Control.Sidebar.css')}}">
   <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/style.css')}}">
   <script id="popupTpl" type="text/template" src="{{get_url('static', filename='/tpl/popup.tpl')}}"></script>
-
-  <script type="text/javascript" src="{{get_url('static', filename='/OpenLayers/OpenLayers.js')}}"></script>
-  <script type="text/javascript" src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/DynPoi.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/BetaStyles.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/map.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/js/mustache.js')}}"></script>
   <script type="text/javascript" src="{{get_url('static', filename='/js/jquery-1.7.2.min.js')}}"></script>
+  <script type="text/javascript" src="{{get_url('static', filename='/js/mustache.js')}}"></script>
+  <script type="text/javascript" src="{{get_url('static', filename='/map/leaflet/leaflet-src.js')}}"></script>
+  <script type="text/javascript" src="{{get_url('static', filename='/map/leaflet-plugins/control/Permalink.js')}}"></script>
+  <script type="text/javascript" src="{{get_url('static', filename='/map/leaflet-plugins/control/Permalink.Layer.js')}}"></script>
+  <script type="text/javascript" src="{{get_url('static', filename='/map/Permalink.Overlay.js')}}"></script>
+  <script type="text/javascript" src="{{get_url('static', filename='/map/Permalink.Item.js')}}"></script>
+  <script type="text/javascript" src="{{get_url('static', filename='/map/leaflet-plugins/layer/tile/Bing.js')}}"></script>
+  <script type="text/javascript" src="{{get_url('static', filename='/map/layers.js')}}"></script>
+  <script type="text/javascript" src="{{get_url('static', filename='/map/leaflet-sidebar/src/L.Control.Sidebar.js')}}"></script>
+  <script type="text/javascript" src="{{get_url('static', filename='/map/Osmose.Menu.js')}}"></script>
+  <script type="text/javascript" src="{{get_url('static', filename='/map/Osmose.Marker.js')}}"></script>
+  <script type="text/javascript" src="{{get_url('static', filename='/map/map.js')}}"></script>
+  <script type="text/javascript" src="{{get_url('static', filename='/map/menu.js')}}"></script>
   <script type="text/javascript">
     var lat={{lat}};
     var lon={{lon}};
@@ -26,7 +33,7 @@
 %end
   </script>
 </head>
-<body onresize="handleResize();">
+<body>
 
 <iframe id="hiddenIframe" name="hiddenIframe"></iframe>
 
@@ -35,7 +42,7 @@
 <a accesskey="w" href="javascript:iFrameClose();"><img id="incFrameBt" src="../images/close.png" alt="close menu"></a>
 
 <div id="menu">
-  <a id="togglemenu" href="javascript:toggleMenu()">-</a>
+  <a id="togglemenu">-</a>
   <form id="myform" name="myform" action="#">
   <input type='hidden' name='lat' value='{{lat}}'>
   <input type='hidden' name='lon' value='{{lon}}'>
@@ -50,7 +57,7 @@
     <div id="action_links">
       <span id="level-span">
         <label for='level'>{{_("Severity")}}</label>
-        <select id='level' onclick='change_level();'>
+        <select id='level'>
           <option class="level-1__" value="1"{{!level_selected['1']}}>{{_("1 only")}}</option>
           <option class="level-12_" value="1,2"{{!level_selected['1,2']}}>{{_("1+2 only")}}</option>
           <option class="level-123" value="1,2,3"{{!level_selected['1,2,3']}}>{{_("all severity")}}</option>
@@ -61,18 +68,18 @@
       </span>
       <br>
       {{_("Select:")}}
-      <a href="javascript:set_checkboxes(true);">{{_("all")}}</a>
-      <a href="javascript:set_checkboxes(false);">{{_("nothing")}}</a>
-      <a href="javascript:toggle_checkboxes();">{{_("invert")}}</a>
+      <a href="#" class="toggleAllItem" data-view="all">{{_("all")}}</a>
+      <a href="#" class="toggleAllItem" data-view="nothing">{{_("nothing")}}</a>
+      <a href="#" class="invertAllItem">{{_("invert")}}</a>
     </div>
   <div id="tests" >
 %it = set()
 %for categ in categories:
     <div class="test_group" id="categ{{categ["categ"]}}">
-    <h1><a href="javascript:toggleCategDisplay('categ{{categ["categ"]}}')">{{categ["menu"]}}</a>
-    <span id="categ{{categ["categ"]}}_count">{{len([x for x in categ["item"] if x["item"] in active_items])}}/{{len(categ["item"])}}</span>
-    <a href="javascript:showHideCateg('categ{{categ["categ"]}}', true)">{{_("all")}}</a>
-    <a href="javascript:showHideCateg('categ{{categ["categ"]}}', false)">{{_("nothing")}}</a></h1>
+    <h1><a href="#" class="toggleCateg">{{categ["menu"]}}</a>
+    <span class="count">{{len([x for x in categ["item"] if x["item"] in active_items])}}/{{len(categ["item"])}}</span>
+    <a href="#" class="toggleAllItem" data-view="all">{{_("all")}}</a>
+    <a href="#" class="toggleAllItem" data-view="nothing">{{_("nothing")}}</a></h1>
     <ul>
 %    for err in categ["item"]:
 %        it.add(err["item"])
@@ -88,7 +95,7 @@
 %            end
 %        end
             </div>
-            <input type='checkbox' id='item{{err["item"]}}' name='item{{err["item"]}}' onclick='checkbox_click(this)' {{! {True:" checked=\"checked\"", False:""}[err["item"] in active_items]}}>
+            <input type='checkbox' id='item{{err["item"]}}' name='item{{err["item"]}}' {{! {True:" checked=\"checked\"", False:""}[err["item"] in active_items]}}>
             <a target="_blank" href="../errors/?item={{err["item"]}}">{{err["menu"]}}</a>
         </li>
 %    end
@@ -102,7 +109,7 @@
     <ul>
 %    for item in unactiveItem:
         <li id='item_desc{{item}}'>
-            <input type='checkbox' id='{{item}}' name='item{{item}}' onclick='checkbox_click(this)' checked="checked">
+            <input type='checkbox' id='{{item}}' name='item{{item}}' checked="checked">
             <a target="_blank" href="../errors/?item={{err["item"]}}">{{item}}</a>
         </li>
 %    end
@@ -149,7 +156,9 @@
 </div>
 
 <script type="text/javascript">
-init();
+$(function() {
+  init_map();
+});
 </script>
 
 </body>
