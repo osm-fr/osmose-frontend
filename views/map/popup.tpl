@@ -2,7 +2,6 @@
 <div id="popup-<%error_id%>">
   <div class="bulle_msg">
     <div class="closebubble">
-      <div><a href="#" onclick="closeBubble('<%error_id%>');return false;"><b>&nbsp;X&nbsp;</b></a></div>
       <div class="help"><a target="_blank" href='<%url_help%>#<%item%>'>&nbsp;?&nbsp;</a></div>
       <div class="error-link"><a target="_blank" href="../error/<%error_id%>">&nbsp;E&nbsp;</a></div>
     </div>
