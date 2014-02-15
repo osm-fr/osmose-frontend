@@ -263,13 +263,13 @@ div#incFrameBg {
   left: 0;
   right: 0;
   background-color: #000000;
-  z-index: 1199;
+  z-index: 2999;
 }
 
 iframe#incFrame {
   display: none;
   position: absolute;
-  z-index: 1200;
+  z-index: 3000;
   top: 10px;
   left: 10px;
 }
@@ -278,7 +278,7 @@ img#incFrameBt {
   display: none;
   position: absolute;
   border: 0px;
-  z-index: 1201;
+  z-index: 3001;
   top: 10px;
   left: 772px;
 }
