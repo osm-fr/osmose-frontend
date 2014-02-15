@@ -117,8 +117,6 @@ def index(db, lang):
     urls.append((_("Errors by user"), "../byuser/"))
     urls.append((_("Relation analyser"), "http://analyser.openstreetmap.fr/"))
     # TRANSLATORS: this link can be changed to something specific to the language
-    urls.append((_("CLC"), _("http://clc.openstreetmap.fr/")))
-    # TRANSLATORS: this link can be changed to something specific to the language
     urls.append((_("openstreetmap.fr"), _("http://www.openstreetmap.fr/")))
     # TRANSLATORS: link to source code
     urls.append((_("Statistics"), "../control/update"))
