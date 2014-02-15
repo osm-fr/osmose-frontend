@@ -19,6 +19,7 @@ function init_map() {
     position: 'left'
   });
   map.addControl(menu);
+  map.addControl(new OsmoseMenuToggle(menu));
   menu.show();
 
   var osmoseLayer = new OsmoseErrors(menu);

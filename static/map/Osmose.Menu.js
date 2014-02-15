@@ -1,11 +1,14 @@
 OsmoseMenu = L.Control.Sidebar.extend({
 
+  options: {
+    closeButton: false,
+  },
+
   includes: L.Mixin.Events,
 
   initialize: function (placeholder, options) {
     this._$container = $("#"+placeholder);
 
-    this._openMenu();
     this._countItemAll();
     this._change_level();
 
@@ -25,32 +28,8 @@ OsmoseMenu = L.Control.Sidebar.extend({
     $("#level").click(function() {
       self._change_level();
     });
-    $("#togglemenu").click(function() {
-      self._toggleMenu();
-    });
 
     L.Control.Sidebar.prototype.initialize.call(this, placeholder, options);
-  },
-
-  // Menu
-  _openMenu: function () {
-    this._$container.data('opened', true);
-    $("div#tests").show();
-    $("#togglemenu").html('-');
-  },
-
-  _closeMenu: function () {
-    this._$container.data('opened', false);
-    $("div#tests").hide();
-    $("#togglemenu").html('+');
-  },
-
-  _toggleMenu: function () {
-    if (!this._$container.data('opened')) {
-      this._openMenu();
-    } else {
-      this._closeMenu();
-    }
   },
 
   // Update checkbox count
@@ -179,5 +158,52 @@ OsmoseMenu = L.Control.Sidebar.extend({
       item: ch,
       level: document.myform.level.value,
     };
+  },
+});
+
+
+OsmoseMenuToggle = L.Control.extend({
+
+  options: {
+    position: 'topleft',
+    menuText: 'M',
+    menuTitle: 'Menu'
+  },
+
+  initialize: function (menu, options) {
+    L.Control.prototype.initialize.call(this, options);
+    this._menu = menu;
+  },
+
+
+  onAdd: function (map) {
+    var menuName = 'leaflet-control-menu-toggle',
+      container = L.DomUtil.create('div', menuName + ' leaflet-bar');
+    this._map = map;
+    this._zoomInButton = this._createButton(this.options.menuText, this.options.menuTitle, menuName + '-in', container, this._menuToggle, this);
+    return container;
+  },
+
+  _menuToggle: function () {
+    this._menu.toggle();
+  },
+
+  _createButton: function (html, title, className, container, fn, context) {
+    var link = L.DomUtil.create('a', className, container);
+    link.innerHTML = html;
+    link.href = '#';
+    link.title = title;
+
+    var stop = L.DomEvent.stopPropagation;
+
+    L.DomEvent
+      .on(link, 'click', stop)
+      .on(link, 'mousedown', stop)
+      .on(link, 'dblclick', stop)
+      .on(link, 'click', L.DomEvent.preventDefault)
+      .on(link, 'click', fn, context)
+      .on(link, 'click', this._refocusOnMap, context);
+
+    return link;
   },
 });

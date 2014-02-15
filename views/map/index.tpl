@@ -43,7 +43,6 @@
 <a accesskey="w" href="javascript:iFrameClose();"><img id="incFrameBt" src="../images/close.png" alt="close menu"></a>
 
 <div id="menu">
-  <a id="togglemenu">-</a>
   <form id="myform" name="myform" action="#">
   <input type='hidden' name='lat' value='{{lat}}'>
   <input type='hidden' name='lon' value='{{lon}}'>
