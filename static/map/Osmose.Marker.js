@@ -39,6 +39,8 @@ OsmoseMarker = L.GeoJSON.extend({
   },
 
   _onEachFeature: function (featureData, layer) {
-    layer.bindPopup("");
+    layer.bindPopup('').on('mouseover', function (e) {
+      layer.openPopup();
+    });
   },
 });
