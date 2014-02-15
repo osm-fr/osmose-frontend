@@ -10,11 +10,6 @@ function init_map() {
     layers: layers[0]
   });
 
-  var scale = L.control.scale({
-    position: 'bottomright'
-  });
-  map.addControl(scale);
-
   var menu = new OsmoseMenu('menu', {
     position: 'left'
   });
@@ -33,6 +28,11 @@ function init_map() {
     menu: menu
   });
   map.addControl(permalink);
+
+  var scale = L.control.scale({
+    position: 'bottomright'
+  });
+  map.addControl(scale);
 
   function getUrlVars() {
     var vars = [], hash;
