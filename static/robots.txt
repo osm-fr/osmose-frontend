@@ -6,6 +6,7 @@ Disallow: /*/error/
 Disallow: /*/errors/
 Disallow: /*/map/markers
 
+User-agent: *
 Disallow: /de/error/
 Disallow: /de/errors/
 Disallow: /de/map/markers
