@@ -7,6 +7,7 @@
   <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='css/style.css')}}">
   <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/leaflet/leaflet.css')}}" />
   <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/leaflet-sidebar/src/L.Control.Sidebar.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/leaflet-control-geocoder/Control.Geocoder.css')}}">
   <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/style.css')}}">
   <script id="popupTpl" type="text/template" src="{{get_url('static', filename='/tpl/popup.tpl')}}"></script>
   <script type="text/javascript" src="{{get_url('static', filename='/js/jquery-1.7.2.min.js')}}"></script>
@@ -19,6 +20,7 @@
   <script type="text/javascript" src="{{get_url('static', filename='/map/leaflet-plugins/layer/tile/Bing.js')}}"></script>
   <script type="text/javascript" src="{{get_url('static', filename='/map/layers.js')}}"></script>
   <script type="text/javascript" src="{{get_url('static', filename='/map/leaflet-sidebar/src/L.Control.Sidebar.js')}}"></script>
+  <script type="text/javascript" src="{{get_url('static', filename='/map/leaflet-control-geocoder/Control.Geocoder.js')}}"></script>
   <script type="text/javascript" src="{{get_url('static', filename='/map/Osmose.Menu.js')}}"></script>
   <script type="text/javascript" src="{{get_url('static', filename='/map/Osmose.Marker.js')}}"></script>
   <script type="text/javascript" src="{{get_url('static', filename='/map/Osmose.Errors.js')}}"></script>

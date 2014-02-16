@@ -376,3 +376,10 @@ option.level-__3 {
   position: absolute;
   display: block;
 }
+
+ul.leaflet-control-geocoder-alternatives {
+  width: 60vw;
+}
+.leaflet-control-geocoder-alternatives a:hover, .leaflet-control-geocoder-selected {
+  background-color: inherit;
+}

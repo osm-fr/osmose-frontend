@@ -34,6 +34,13 @@ function init_map() {
   });
   map.addControl(scale);
 
+  var geocode = L.Control.geocoder({showResultIcons: true})
+  geocode.markGeocode = function(result) {
+    this._map.fitBounds(result.bbox);
+    return this;
+  };
+  map.addControl(geocode);
+
   function getUrlVars() {
     var vars = [], hash;
     var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
