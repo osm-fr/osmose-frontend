@@ -8,23 +8,23 @@ OsmoseErrors = L.LayerGroup.extend({
     this._updateOsmoseLayerBind = this._updateOsmoseLayer.bind(this);
   },
 
-  onAdd: function(map) {
+  onAdd: function (map) {
     this._map = map;
     map.on('moveend', this._updateOsmoseLayerBind, this);
     this._menu.on('itemchanged', this._updateOsmoseLayerBind, this);
     this._updateOsmoseLayer();
   },
 
-  onRemove: function(map) {
+  onRemove: function (map) {
     map.off('moveend', this._updateOsmoseLayerBind, this);
-    this._menu.off('itemchanged',  this._updateOsmoseLayerBind, this);
+    this._menu.off('itemchanged', this._updateOsmoseLayerBind, this);
     this.clearLayers();
   },
 
   _updateOsmoseLayer: function () {
     if (this._map.getZoom() >= 6) {
       var urlPart = this._menu.urlPart(),
-	params = {
+        params = {
           item: urlPart.item,
           level: urlPart.level,
           bbox: this._map.getBounds().toBBoxString(),

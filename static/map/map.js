@@ -34,20 +34,23 @@ function init_map() {
   });
   map.addControl(scale);
 
-  var geocode = L.Control.geocoder({showResultIcons: true})
-  geocode.markGeocode = function(result) {
+  var geocode = L.Control.geocoder({
+    showResultIcons: true
+  })
+  geocode.markGeocode = function (result) {
     this._map.fitBounds(result.bbox);
     return this;
   };
   map.addControl(geocode);
 
   function getUrlVars() {
-    var vars = [], hash;
+    var vars = [],
+      hash;
     var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-    for(var i = 0; i < hashes.length; i++) {
-        hash = hashes[i].split('=');
-        vars.push(hash[0]);
-        vars[hash[0]] = hash[1];
+    for (var i = 0; i < hashes.length; i++) {
+      hash = hashes[i].split('=');
+      vars.push(hash[0]);
+      vars[hash[0]] = hash[1];
     }
     return vars;
   }

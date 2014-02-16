@@ -49,7 +49,7 @@ OsmoseMarker = L.GeoJSON.extend({
       if (layer.click) {
         layer.closePopup();
       } else {
-      layer.click = true;
+        layer.click = true;
         layer.openPopup();
       }
     }).on('popupclose', function (e) {

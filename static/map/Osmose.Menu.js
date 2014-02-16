@@ -7,25 +7,25 @@ OsmoseMenu = L.Control.Sidebar.extend({
   includes: L.Mixin.Events,
 
   initialize: function (placeholder, options) {
-    this._$container = $("#"+placeholder);
+    this._$container = $("#" + placeholder);
 
     this._countItemAll();
     this._change_level();
 
     var self = this;
-    $("div#tests input[type='checkbox']").change(function() {
+    $("div#tests input[type='checkbox']").change(function () {
       self._checkbox_click(this);
     });
-    $(".toggleAllItem").click(function() {
+    $(".toggleAllItem").click(function () {
       self._toggleAllItem(this);
     });
-    $(".invertAllItem").click(function() {
+    $(".invertAllItem").click(function () {
       self._invertAllItem();
     });
-    $(".toggleCateg").click(function() {
+    $(".toggleCateg").click(function () {
       self._toggleCateg(this);
     });
-    $("#level").click(function() {
+    $("#level").click(function () {
       self._change_level();
     });
 
@@ -36,8 +36,8 @@ OsmoseMenu = L.Control.Sidebar.extend({
   _countItem: function (test_group) {
     var count_checked = 0,
       count_tests = 0;
-    $.each($("input[type='checkbox']", test_group), function(index, checkbox) {
-      if($(checkbox).is(':checked')) {
+    $.each($("input[type='checkbox']", test_group), function (index, checkbox) {
+      if ($(checkbox).is(':checked')) {
         count_checked++;
       }
       count_tests++;
@@ -47,7 +47,7 @@ OsmoseMenu = L.Control.Sidebar.extend({
 
   _countItemAll: function () {
     var self = this;
-    $(".test_group").each( function(i, group) {
+    $(".test_group").each(function (i, group) {
       self._countItem(group);
     });
   },
@@ -74,13 +74,13 @@ OsmoseMenu = L.Control.Sidebar.extend({
   _toggleAllItem: function (link) {
     var test_group = $(link).closest(".test_group, body"),
       checkbox = $("input[type='checkbox']", test_group);
-    if($(link).data().view == "all"){
+    if ($(link).data().view == "all") {
       checkbox.attr('checked', true);
     } else {
       checkbox.attr('checked', false);
     }
 
-    if(test_group.prop("tagName") == "BODY") {
+    if (test_group.prop("tagName") == "BODY") {
       this._countItemAll(test_group);
     } else {
       this._countItem(test_group);
@@ -90,7 +90,7 @@ OsmoseMenu = L.Control.Sidebar.extend({
 
   // Invert item check
   _invertAllItem: function () {
-    $("input[type='checkbox']").each( function() {
+    $("input[type='checkbox']").each(function () {
       $(this).attr('checked', !$(this).attr('checked'));
     });
 
@@ -120,14 +120,16 @@ OsmoseMenu = L.Control.Sidebar.extend({
 
   _change_level: function change_level() {
     var new_level = $("#level").val();
-    this._change_item_display(new_level? new_level : "1,2,3");
+    this._change_item_display(new_level ? new_level : "1,2,3");
 
     this._itemChanged();
   },
 
   _itemChanged: function () {
     this._urlPart = this._buildUrlPart();
-    this.fire('itemchanged', {urlPart: this._urlPart});
+    this.fire('itemchanged', {
+      urlPart: this._urlPart
+    });
   },
 
   urlPart: function () {
