@@ -25,8 +25,8 @@ OsmoseMarker = L.GeoJSON.extend({
         url: '../api/0.2/error/' + featureData.properties.error_id,
         dataType: 'json',
         success: function (data) {
-          var template = $('#popupTpl').html();
-          var content = Mustache.render(template, data);
+          var template = $('#popupTpl').html(),
+            content = Mustache.render(template, data);
           popup.popup.setContent(content);
         },
         error: function (jqXHR, textStatus, errorThrown) {

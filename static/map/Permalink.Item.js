@@ -18,7 +18,10 @@ L.Control.Permalink.include({
 
   _set_items: function (e) {
     var p = e.params;
-    if (!this.options.layers || !p.items) return;
-    this.options.menu.setitems(p.items);
+    if (!this.options.layers || !p.items) {
+      return;
+    } else {
+      this.options.menu.setitems(p.items);
+    }
   }
 });

@@ -1,6 +1,6 @@
 OsmoseErrors = L.LayerGroup.extend({
 
-  menu: null,
+  _menu: null,
 
   initialize: function (menu) {
     L.LayerGroup.prototype.initialize.call(this);

@@ -36,7 +36,7 @@ function init_map() {
 
   var geocode = L.Control.geocoder({
     showResultIcons: true
-  })
+  });
   geocode.markGeocode = function (result) {
     this._map.fitBounds(result.bbox);
     return this;

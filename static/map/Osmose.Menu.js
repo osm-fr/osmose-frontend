@@ -101,8 +101,8 @@ OsmoseMenu = L.Control.Sidebar.extend({
   // Change level
   _change_item_display: function (l) {
     $("div#tests li").each(function () {
-      var id = parseInt($(this).attr('id').replace(/item_desc/, ''));
-      if (jQuery.inArray(id, item_levels[l]) >= 0) {
+      var id = parseInt($(this).attr('id').replace(/item_desc/, ''), 10);
+      if ($.inArray(id, item_levels[l]) >= 0) {
         $("#item_desc" + id).show();
       } else {
         $("#item_desc" + id).hide();
@@ -120,7 +120,7 @@ OsmoseMenu = L.Control.Sidebar.extend({
 
   _change_level: function change_level() {
     var new_level = $("#level").val();
-    this._change_item_display(new_level ? new_level : "1,2,3");
+    this._change_item_display(new_level || "1,2,3");
 
     this._itemChanged();
   },
@@ -143,16 +143,16 @@ OsmoseMenu = L.Control.Sidebar.extend({
       ch = "xxxx";
     } else {
       $(".test_group").each(function () {
-        var id = this.id;
-        v = $("h1 span", this).text().split("/");
+        var id = this.id,
+          v = $("h1 span", this).text().split("/");
         if (v[0] == v[1]) {
           ch += id.substring(5, 6) + "xxx,";
         } else {
           $(":checked", this).each(function () {
             ch += this.name.substr(4) + ",";
-          })
+          });
         }
-      })
+      });
     }
     ch = ch.replace(/,$/, '');
 
