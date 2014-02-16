@@ -9,6 +9,12 @@
 	color: transparent;
 }
 
+.leaflet-touch .leaflet-control-geocoder-form input {
+        box-shadow: none;
+        border: 2px solid rgba(0,0,0,0.2);
+        background-clip: padding-box;
+}
+
 .leaflet-control-geocoder-form input {
 	background-image: url(images/geocoder.png);
 	background-repeat: no-repeat;
@@ -17,6 +23,12 @@
 	width: 26px;
 	height: 26px;
 	transition: all 0.125s ease-in;
+}
+
+.leaflet-touch .leaflet-control-geocoder-form input {
+        width: 34px;
+        height: 34px;
+        line-height: 30px;
 }
 
 .leaflet-control-geocoder-throbber input {
@@ -28,6 +40,10 @@
 	padding-left: 8px;
 	padding-right: 26px;
 	color: #000;
+}
+
+.leaflet-touch .leaflet-control-geocoder-expanded input, .leaflet-touch .leaflet-control-geocoder-error {
+	width: 200px;
 }
 
 .leaflet-control-geocoder-form input:focus {

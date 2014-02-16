@@ -104,6 +104,12 @@ div#top_links {
   z-index: 2000;
 }
 
+.leaflet-touch + div#top_links {
+    box-shadow: none;
+    border-bottom: 2px solid rgba(0,0,0,0.2);
+    background-clip: padding-box;
+}
+
 #topmenu {
   list-style-type: none;
   margin: 0;
