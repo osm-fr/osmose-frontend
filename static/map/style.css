@@ -389,3 +389,49 @@ ul.leaflet-control-geocoder-alternatives {
 .leaflet-control-geocoder-alternatives a:hover, .leaflet-control-geocoder-selected {
   background-color: inherit;
 }
+
+.leaflet-sidebar > .leaflet-control {
+    padding: 8px 0 5px 5px;
+}
+
+@media(min-width:768px) and (max-width:991px){
+    .leaflet-sidebar {
+        width: 270px;
+    }
+
+    .leaflet-sidebar.left.visible ~ .leaflet-left {
+        left: 270px;
+    }
+
+    .leaflet-sidebar.right.visible ~ .leaflet-right {
+        right: 270px;
+    }
+}
+
+@media(min-width:992px) and (max-width:1199px){
+    .leaflet-sidebar {
+        width: 285px;
+    }
+
+    .leaflet-sidebar.left.visible ~ .leaflet-left {
+        left: 285px;
+    }
+
+    .leaflet-sidebar.right.visible ~ .leaflet-right {
+        right: 285px;
+    }
+}
+
+@media(min-width:1200px){
+    .leaflet-sidebar {
+        width: 300px;
+    }
+
+    .leaflet-sidebar.left.visible ~ .leaflet-left {
+        left: 300px;
+    }
+
+    .leaflet-sidebar.right.visible ~ .leaflet-right {
+        right: 300px;
+    }
+}
