@@ -145,7 +145,6 @@ OFFSET
 """
     db.execute(sql)
     delay = db.fetchone()
-    delay = 0
     if delay:
         delay = delay[0]/60/60/24
     else:
