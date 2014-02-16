@@ -399,6 +399,10 @@ option.level-__3 {
   display: block;
 }
 
+.leaflet-popup-content {
+  font-size: 13px;
+}
+
 ul.leaflet-control-geocoder-alternatives {
   width: 60vw;
 }

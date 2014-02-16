@@ -17,7 +17,29 @@ OsmoseMarker = L.GeoJSON.extend({
       }),
     });
 
-    marker.on('popupopen', function (popup) {
+    return marker;
+  },
+
+  _onEachFeature: function (featureData, layer) {
+    layer.bindPopup('',{
+      maxWidth: 280,
+      autoPan: false
+    }).on('mouseover', function (e) {
+      layer.openPopup();
+    }).on('mouseout', function (e) {
+      if (!layer.click) {
+        layer.closePopup();
+      }
+    }).off('click').on('click', function (e) {
+      if (layer.click) {
+        layer.closePopup();
+      } else {
+        layer.click = true;
+        layer.openPopup();
+      }
+    }).on('popupclose', function (e) {
+      layer.click = false;
+    }).on('popupopen', function (popup) {
       popup.popup.setContent("<center><img src='../images/throbbler.gif' alt='downloading'></center>");
       popup.popup.update();
 
@@ -33,27 +55,6 @@ OsmoseMarker = L.GeoJSON.extend({
           popup.popup.setContent(textStatus);
         },
       });
-    });
-
-    return marker;
-  },
-
-  _onEachFeature: function (featureData, layer) {
-    layer.bindPopup('').on('mouseover', function (e) {
-      layer.openPopup();
-    }).on('mouseout', function (e) {
-      if (!layer.click) {
-        layer.closePopup();
-      }
-    }).off('click').on('click', function (e) {
-      if (layer.click) {
-        layer.closePopup();
-      } else {
-        layer.click = true;
-        layer.openPopup();
-      }
-    }).on('popupclose', function (e) {
-      layer.click = false;
     });
   },
 });
