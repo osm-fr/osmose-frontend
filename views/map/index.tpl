@@ -4,6 +4,7 @@
   <title>Osmose - {{_("Map")}}</title>
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
   <meta name="description" content="Contrôle, vérification et correction d'erreurs d'OpenStreetMap">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='css/style.css')}}">
   <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/leaflet/leaflet.css')}}" />
   <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/leaflet-sidebar/src/L.Control.Sidebar.css')}}">
