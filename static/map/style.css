@@ -172,7 +172,6 @@ div#top_links {
   max-height: 200px;
   overflow: auto;
   word-wrap: break-word;
-  font-size: 80%;
 }
 .bulle_msg div.closebubble {
   float: right;
@@ -381,10 +380,6 @@ option.level-__3 {
   bottom: 0em;
   position: absolute;
   display: block;
-}
-
-.leaflet-popup-content {
-  font-size: 13px;
 }
 
 ul.leaflet-control-geocoder-alternatives {
