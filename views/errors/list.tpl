@@ -12,14 +12,15 @@
     <th></th>
     <th>#</th>
     <th>{{_("item")}}</th>
-%if gen == "info":
     <th title="{{_("information on error")}}">E</th>
-%end
     <th title="{{_("position")}}">{{_("position (abbreviation)")}}</th>
     <th>{{_("elements (abbreviation)")}}</th>
     <th>{{_("subtitle")}}</th>
 %if opt_date != "-1":
     <th>{{_("date")}}</th>
+%end
+%if gen == "false-positive":
+    <th title="{{_("delete error")}}">X</th>
 %end
 </tr>
 </thead>
@@ -36,9 +37,7 @@
 %    else:
     <td></td>
 %    end
-%    if gen == "info":
-    <td title="erreur n°{{res["id"]}}"><a href="../error/{{res["id"]}}">E</a></td>
-%    end
+    <td title="erreur n°{{res["id"]}}"><a href="../{{gen}}/{{res["id"]}}">E</a></td>
 %    if res["lat"] and res["lon"]:
 %        lat = res["lat"]
 %        lon = res["lon"]
@@ -92,7 +91,12 @@
 %        date = str(res["date"])
     <td>{{date[:10]}}&nbsp;{{date[11:16]}}</td>
 %    end
+%    if gen == "false-positive":
+    <td title="{{_("delete error #%d") % res["id"]}}"><a href="#" class="err_delete" id="delete={{gen}}={{res["id"]}}">X</a></td>
+%    end
 </tr>
 %end
 </table>
+<script type="text/javascript" src="{{get_url('static', filename='/js/jquery-1.7.2.min.js')}}"></script>
+<script src="{{get_url('static', filename='js/err_delete.js')}}" type="text/javascript"></script>
 <iframe id="hiddenIframe" name="hiddenIframe"></iframe>

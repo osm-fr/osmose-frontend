@@ -90,7 +90,7 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
         tables.append("dynpoi_class")
     if country:
         tables.append("dynpoi_source")
-    if not stats and not status in ("done", "false"):
+    if not stats:
         tables.append("dynpoi_item")
         if useDevItem:
             tablesLeft.append("dynpoi_item")
@@ -147,6 +147,11 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
             where.append("marker.timestamp > '%s'" % start_date.isoformat())
         if end_date:
             where.append("marker.timestamp < '%s'" % end_date.isoformat())
+    elif status in ("done", "false"):
+        if start_date:
+            where.append("marker.date > '%s'" % start_date.isoformat())
+        if end_date:
+            where.append("marker.date < '%s'" % end_date.isoformat())
 
     if tags:
         where.append("dynpoi_class.tags::text[] && ARRAY['%s']" % "','".join(map(utils.pg_escape, tags)))
@@ -212,19 +217,17 @@ def _params():
 
 def _gets(db, params):
     sqlbase = """
-    SELECT"""
+    SELECT
+        marker.id AS id,"""
     if not params.status in ("done", "false"):
         sqlbase += """
-        marker.id,
         marker.item,"""
     elif params.full:
         sqlbase += """
-        -1 AS id,
         dynpoi_class.item,"""
     else:
         sqlbase += """
-        -1 AS id,
-        -1 AS item,"""
+        dynpoi_class.item,"""
     sqlbase += """
         marker.lat,
         marker.lon"""
@@ -238,15 +241,14 @@ def _gets(db, params):
         dynpoi_source.comment,
         dynpoi_class.title,
         dynpoi_class.level,
-        dynpoi_update_last.timestamp"""
+        dynpoi_update_last.timestamp,
+        dynpoi_item.menu"""
         if not params.status in ("done", "false"):
             sqlbase += """,
-        dynpoi_item.menu,
         marker_elem.username,
         -1 AS date"""
         else:
             sqlbase += """,
-        '' AS menu,
         '' AS username,
         marker.date"""
     sqlbase += """
@@ -275,7 +277,7 @@ def _gets(db, params):
     else:
         forceTable = []
 
-    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, forceTable=forceTable)
+    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, forceTable=forceTable, start_date=params.start_date, end_date=params.end_date)
     sql = sqlbase % (join, where)
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()
@@ -316,7 +318,7 @@ def _count(db, params, by, extraFrom=[], extraFields=[], orderBy=False):
     if params.limit:
         sqlbase += " LIMIT %s" % params.limit
 
-    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, summary=summary, forceTable=byTable)
+    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, summary=summary, forceTable=byTable, start_date=params.start_date, end_date=params.end_date)
     sql = sqlbase % (select, join, where, groupBy, order)
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()
