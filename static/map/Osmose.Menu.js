@@ -28,8 +28,16 @@ OsmoseMenu = L.Control.Sidebar.extend({
     $("#level").click(function () {
       self._change_level();
     });
+    $("#togglemenu").click(function() {
+      self._toggleMenu();
+    });
 
     L.Control.Sidebar.prototype.initialize.call(this, placeholder, options);
+  },
+
+  // Menu
+  _toggleMenu: function () {
+    this.toggle();
   },
 
   // Update checkbox count

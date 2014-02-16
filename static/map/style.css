@@ -8,6 +8,22 @@ body {
 }
 
 /* Menu */
+a#togglemenu {
+  position: absolute;
+  display: block;
+  background-color: #FFFFFF;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+  color: #000000;
+  font-weight: bold;
+  line-height: 26px;
+  text-align: center;
+  text-decoration: none;
+  height: 26px;
+  width: 26px;
+  top: 5px;
+  left: 5px;
+}
 div#tests {
   overflow-y: auto;
   height: 93%;
