@@ -34,6 +34,9 @@ function init_map() {
   });
   map.addControl(scale);
 
+  var location = L.control.location();
+  map.addControl(location);
+
   var geocode = L.Control.geocoder({
     showResultIcons: true
   });
