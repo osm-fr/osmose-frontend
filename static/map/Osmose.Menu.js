@@ -176,7 +176,7 @@ OsmoseMenuToggle = L.Control.extend({
 
   options: {
     position: 'topleft',
-    menuText: 'M',
+    menuText: '',
     menuTitle: 'Menu'
   },
 
@@ -200,6 +200,8 @@ OsmoseMenuToggle = L.Control.extend({
 
   _createButton: function (html, title, className, container, fn, context) {
     var link = L.DomUtil.create('a', className, container);
+    link.style = 'background-image: url(/images/menu.png)'; // Firefox
+    link.style['background-image'] = 'url(/images/menu.png)'; // Chrome
     link.innerHTML = html;
     link.href = '#';
     link.title = title;
