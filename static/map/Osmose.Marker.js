@@ -21,7 +21,7 @@ OsmoseMarker = L.GeoJSON.extend({
   },
 
   _onEachFeature: function (featureData, layer) {
-    layer.bindPopup('',{
+    layer.bindPopup('', {
       maxWidth: 280,
       autoPan: false
     }).on('mouseover', function (e) {
@@ -39,22 +39,27 @@ OsmoseMarker = L.GeoJSON.extend({
       }
     }).on('popupclose', function (e) {
       layer.click = false;
-    }).on('popupopen', function (popup) {
-      popup.popup.setContent("<center><img src='../images/throbbler.gif' alt='downloading'></center>");
-      popup.popup.update();
+    }).on('popupopen', function (e) {
+      e.popup.setContent("<center><img src='../images/throbbler.gif' alt='downloading'></center>");
+      e.popup.update();
 
-      $.ajax({
-        url: '../api/0.2/error/' + featureData.properties.error_id,
-        dataType: 'json',
-        success: function (data) {
-          var template = $('#popupTpl').html(),
-            content = Mustache.render(template, data);
-          popup.popup.setContent(content);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-          popup.popup.setContent(textStatus);
-        },
-      });
+      setTimeout(function () {
+        if (e.popup._isOpen) {
+          // Popup still open, so download content
+          $.ajax({
+            url: '../api/0.2/error/' + featureData.properties.error_id,
+            dataType: 'json',
+            success: function (data) {
+              var template = $('#popupTpl').html(),
+                content = Mustache.render(template, data);
+              e.popup.setContent(content);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              e.popup.setContent(textStatus);
+            },
+          });
+        }
+      }, 100);
     });
   },
 });
