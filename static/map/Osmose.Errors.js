@@ -2,6 +2,8 @@ OsmoseErrors = L.LayerGroup.extend({
 
   _menu: null,
 
+  _onMap: false,
+
   initialize: function (menu) {
     L.LayerGroup.prototype.initialize.call(this);
     this._menu = menu;
@@ -12,12 +14,14 @@ OsmoseErrors = L.LayerGroup.extend({
     this._map = map;
     map.on('moveend', this._updateOsmoseLayerBind, this);
     this._menu.on('itemchanged', this._updateOsmoseLayerBind, this);
+    this._onMap = true;
     this._updateOsmoseLayer();
   },
 
   onRemove: function (map) {
     map.off('moveend', this._updateOsmoseLayerBind, this);
     this._menu.off('itemchanged', this._updateOsmoseLayerBind, this);
+    this._onMap = false;
     this.clearLayers();
   },
 
@@ -37,7 +41,9 @@ OsmoseErrors = L.LayerGroup.extend({
         dataType: 'json'
       }).done(function (data) {
         self.clearLayers();
-        self.addLayer(new OsmoseMarker(data));
+        if (self._onMap) {
+          self.addLayer(new OsmoseMarker(data));
+        }
       });
     }
   },
