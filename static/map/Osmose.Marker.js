@@ -1,9 +1,12 @@
 OsmoseMarker = L.GeoJSON.extend({
 
+  _options: {},
+
   initialize: function (data, options) {
+    this._options = options;
     L.GeoJSON.prototype.initialize.call(this, data, {
-      pointToLayer: this._pointToLayer,
-      onEachFeature: this._onEachFeature,
+      pointToLayer: this._pointToLayer.bind(this),
+      onEachFeature: this._onEachFeature.bind(this),
     });
   },
 
@@ -21,7 +24,9 @@ OsmoseMarker = L.GeoJSON.extend({
   },
 
   _onEachFeature: function (featureData, layer) {
-    layer.bindPopup('', {
+    var self = this;
+    layer.error_id = featureData.properties.error_id;
+    layer.bindPopup(null, {
       maxWidth: 280,
       autoPan: false
     }).on('mouseover', function (e) {
@@ -37,29 +42,35 @@ OsmoseMarker = L.GeoJSON.extend({
         layer.click = true;
         layer.openPopup();
       }
+    }).on('add', function (e) {
+      if (layer.error_id == self._options.error_id) {
+        layer.setPopupContent(self._options.content).openPopup();
+      }
     }).on('popupclose', function (e) {
       layer.click = false;
     }).on('popupopen', function (e) {
-      e.popup.setContent("<center><img src='../images/throbbler.gif' alt='downloading'></center>");
-      e.popup.update();
+      if (!e.popup.getContent()) {
+        e.popup.setContent("<center><img src='../images/throbbler.gif' alt='downloading'></center>");
+        e.popup.update();
 
-      setTimeout(function () {
-        if (e.popup._isOpen) {
-          // Popup still open, so download content
-          $.ajax({
-            url: '../api/0.2/error/' + featureData.properties.error_id,
-            dataType: 'json',
-            success: function (data) {
-              var template = $('#popupTpl').html(),
-                content = Mustache.render(template, data);
-              e.popup.setContent(content);
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-              e.popup.setContent(textStatus);
-            },
-          });
-        }
-      }, 100);
+        setTimeout(function () {
+          if (e.popup._isOpen) {
+            // Popup still open, so download content
+            $.ajax({
+              url: '../api/0.2/error/' + featureData.properties.error_id,
+              dataType: 'json',
+              success: function (data) {
+                var template = $('#popupTpl').html(),
+                  content = Mustache.render(template, data);
+                e.popup.setContent(content);
+              },
+              error: function (jqXHR, textStatus, errorThrown) {
+                e.popup.setContent(textStatus);
+              },
+            });
+          }
+        }, 100);
+      }
     });
   },
 });
