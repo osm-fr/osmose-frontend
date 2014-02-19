@@ -70,15 +70,11 @@ function init_map() {
 
   map.on('zoomend', function (e) {
     if (map.getZoom() < 6) {
-      $("div#need_zoom").show();
-      $("div#action_links").hide();
-      $("div#tests").hide();
+      $("#need_zoom").show();
+      $("#action_links, #tests").hide();
     } else {
-      $("div#need_zoom").hide();
-      $("div#action_links").show();
-      if ($("div#menu").data('opened')) {
-        $("div#tests").fadeIn();
-      }
+      $("#need_zoom").hide();
+      $("#action_links, #tests").show();
     }
   });
 }
