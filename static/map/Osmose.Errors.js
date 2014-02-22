@@ -37,6 +37,13 @@ OsmoseErrors = L.LayerGroup.extend({
         },
         url = L.Util.getParamString(params),
         self = this;
+      this._map.spin(true, {
+        length: 50,
+        radius: 50,
+        width: 20,
+        direction: -1,
+        color: '#fff',
+      });
       $.ajax({
         url: 'markers' + url,
         dataType: 'json'
@@ -59,6 +66,7 @@ OsmoseErrors = L.LayerGroup.extend({
           });
           self.addLayer(self._osmoseMarker);
         }
+        self._map.spin(false);
       });
     }
   },

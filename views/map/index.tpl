@@ -22,6 +22,8 @@
   <script type="text/javascript" src="{{get_url('static', filename='/map/layers.js')}}"></script>
   <script type="text/javascript" src="{{get_url('static', filename='/map/leaflet-sidebar/src/L.Control.Sidebar.js')}}"></script>
   <script type="text/javascript" src="{{get_url('static', filename='/map/leaflet-control-geocoder/Control.Geocoder.js')}}"></script>
+  <script type="text/javascript" src="{{get_url('static', filename='/map/Leaflet.Spin/spin.js')}}"></script>
+  <script type="text/javascript" src="{{get_url('static', filename='/map/Leaflet.Spin/leaflet.spin.js')}}"></script>
   <script type="text/javascript" src="{{get_url('static', filename='/map/Location.js')}}"></script>
   <script type="text/javascript" src="{{get_url('static', filename='/map/Osmose.Menu.js')}}"></script>
   <script type="text/javascript" src="{{get_url('static', filename='/map/Osmose.Heatmap.js')}}"></script>
