@@ -15,7 +15,7 @@
     <div class="bulle_elem">
   <%^infos%>
       <b><a target="_blank" href="http://www.openstreetmap.org/browse/<%type%>/<%id%>"><%type%> <%id%></a></b>
-      <a href="javascript:iFrameLoad('http://rawedit.openstreetmap.fr/edit/<%type%>/<%id%>');">rawedit</a>
+      <a href="#" onclick="window.open('http://rawedit.openstreetmap.fr/edit/<%type%>/<%id%>','rawedit','height=360,width=710');">rawedit</a>
   <%/infos%>
   <%#relation%>
       <a target="_blank" href="http://analyser.openstreetmap.fr/cgi-bin/index.py?relation=<%id%>">analyse1</a>

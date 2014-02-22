@@ -259,35 +259,6 @@ a.bulle_err:hover {
   font-size: 90%;
 }
 
-div#incFrameBg {
-  display: none;
-  position: absolute;
-  opacity: 0.75;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #000000;
-  z-index: 2999;
-}
-
-iframe#incFrame {
-  display: none;
-  position: absolute;
-  z-index: 3000;
-  top: 10px;
-  left: 10px;
-}
-
-img#incFrameBt {
-  display: none;
-  position: absolute;
-  border: 0px;
-  z-index: 3001;
-  top: 10px;
-  left: 772px;
-}
-
 /* error levels */
 div.test_group div.level {
   float: right;

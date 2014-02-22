@@ -42,13 +42,7 @@
   </script>
 </head>
 <body>
-
 <iframe id="hiddenIframe" name="hiddenIframe"></iframe>
-
-<div id="incFrameBg"></div>
-<iframe id="incFrame" src="" width=780 height=540 scrolling="auto" frameborder="1" ></iframe>
-<a accesskey="w" href="javascript:iFrameClose();"><img id="incFrameBt" src="../images/close.png" alt="close menu"></a>
-
 <div id="menu">
   <a href="#" id="togglemenu">-</a>
   <form id="myform" name="myform" action="#">
