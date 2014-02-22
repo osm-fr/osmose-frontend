@@ -29,5 +29,4 @@ var mapOverlay = {
   'boundary=election': L.tileLayer(urlOsmFr, {layer: 'boundary_election', attribution: attributionOsmFr}),
   'Voirie/Cadastre': L.tileLayer(urlOsmFr, {layer: 'voirie-cadastre', attribution: attributionOsmFr}),
   'No ref without tertiary': L.tileLayer(urlOsmFr, {layer: 'noref-notertiary', attribution: attributionOsmFr}),
-  'Osmose Errors Heatmap': L.tileLayer('heat/{z}/{x}/{y}.png'),
 };
