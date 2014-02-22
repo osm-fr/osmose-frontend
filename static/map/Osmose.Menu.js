@@ -80,7 +80,7 @@ OsmoseMenu = L.Control.Sidebar.extend({
 
   // Check or uncheck a categ of tests.
   _toggleAllItem: function (link) {
-    var test_group = $(link).closest(".test_group, body"),
+    var test_group = $(link).closest(".test_group, #myform"),
       checkbox = $("input[type='checkbox']", test_group);
     if ($(link).data().view == "all") {
       checkbox.attr('checked', true);
@@ -88,7 +88,7 @@ OsmoseMenu = L.Control.Sidebar.extend({
       checkbox.attr('checked', false);
     }
 
-    if (test_group.prop("tagName") == "BODY") {
+    if (test_group.prop("tagName") == "FORM") {
       this._countItemAll(test_group);
     } else {
       this._countItem(test_group);
