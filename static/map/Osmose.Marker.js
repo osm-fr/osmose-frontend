@@ -68,6 +68,8 @@ OsmoseMarker = L.GeoJSON.extend({
                 e.popup.setContent(textStatus);
               },
             });
+          } else {
+            e.popup.setContent(null);
           }
         }, 100);
       }
