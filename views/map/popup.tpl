@@ -79,8 +79,8 @@
   </div>
   <div class="bulle_maj">
     <b>{{_("change status")}} :</b>
-    <a onclick="setTimeout('destroyMarker(\'<%error_id%>\');',200);" href="../api/0.2/error/<%error_id%>/done" target="hiddenIframe">{{_("corrected")}}</a>
-    <a onclick="setTimeout('destroyMarker(\'<%error_id%>\');',200);" href="../api/0.2/error/<%error_id%>/false" target="hiddenIframe">{{_("false positive")}}</a>
+    <a class="closePopup" href="../api/0.2/error/<%error_id%>/done" target="hiddenIframe">{{_("corrected")}}</a>
+    <a class="closePopup" href="../api/0.2/error/<%error_id%>/false" target="hiddenIframe">{{_("false positive")}}</a>
 </div>
 
 </div>

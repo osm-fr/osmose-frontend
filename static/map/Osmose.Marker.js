@@ -61,8 +61,14 @@ OsmoseMarker = L.GeoJSON.extend({
               dataType: 'json',
               success: function (data) {
                 var template = $('#popupTpl').html(),
-                  content = Mustache.render(template, data);
-                e.popup.setContent(content);
+                  content = $(Mustache.render(template, data));
+                content.on('click', '.closePopup', function() {
+                  setTimeout(function () {
+                    layer.closePopup();
+                    self.removeLayer(layer);
+                  }, 200);
+                });
+                e.popup.setContent(content[0]);
               },
               error: function (jqXHR, textStatus, errorThrown) {
                 e.popup.setContent(textStatus);
