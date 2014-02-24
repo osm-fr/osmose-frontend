@@ -18,18 +18,22 @@ OsmoseMenu = L.Control.Sidebar.extend({
     });
     $(".toggleAllItem").click(function () {
       self._toggleAllItem(this);
+      return false;
     });
     $(".invertAllItem").click(function () {
       self._invertAllItem();
+      return false;
     });
     $(".toggleCateg").click(function () {
       self._toggleCateg(this);
+      return false;
     });
     $("#level").click(function () {
       self._change_level();
     });
     $("#togglemenu").click(function() {
       self._toggleMenu();
+      return false;
     });
 
     L.Control.Sidebar.prototype.initialize.call(this, placeholder, options);
