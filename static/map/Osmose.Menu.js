@@ -2,6 +2,7 @@ OsmoseMenu = L.Control.Sidebar.extend({
 
   options: {
     closeButton: false,
+    autoPan: false,
   },
 
   includes: L.Mixin.Events,
