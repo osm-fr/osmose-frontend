@@ -28,7 +28,7 @@ OsmoseMenu = L.Control.Sidebar.extend({
       self._toggleCateg(this);
       return false;
     });
-    $("#level").click(function () {
+    $("#level").change(function () {
       self._change_level();
     });
     $("#togglemenu").click(function() {
