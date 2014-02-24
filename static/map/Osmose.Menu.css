@@ -1,0 +1,177 @@
+/* Menu */
+div#tests {
+  overflow-y: auto;
+}
+div#menu div#need_zoom {
+  display: none;
+  font-size: 14px;
+  font-weight:bold;
+  color: #FF0000;
+  text-align: center;
+}
+div#menu form {
+  margin: 0px;
+  height: 100%;
+}
+div#menu div#action_links {
+  font-size: 10px;
+  text-align: center;
+}
+.leaflet-touch div#menu div#action_links {
+  font-size: inherit;
+}
+div#menu div.test_group img {
+  margin-left: 20px;
+}
+div#menu div.test_group h1 {
+  font-size: 12px;
+  margin: 0px;
+  margin-top: 5px;
+}
+.leaflet-touch div#menu div.test_group h1 {
+  font-size: 100%;
+}
+div#menu div.test_group h1 a:first-child {
+  display: inline-block;
+  background: url('../images/folder_open.png') no-repeat left 3px; 
+  padding-left: 20px;
+  line-height: 20px;
+}
+div#menu div.test_group h1.folded a:first-child {
+  background: url('../images/folder.png') no-repeat left 3px; 
+}
+div#menu div.test_group ul {
+  list-style-type: none;
+  margin: 0px;
+  padding-left: 0px;
+}
+div#menu div.test_group li {
+  background-repeat: no-repeat;
+  background-position: 2px 2px;
+  padding-left: 16px; 
+  font-size: 11px;
+}
+.leaflet-touch div#menu div.test_group li {
+  font-size: inherit;
+}
+div#menu div.test_group li:hover {
+  background-color: #ffc;
+}
+span#level-span {
+  white-space: nowrap;
+}
+
+/* error levels */
+div.test_group div.level {
+  float: right;
+  width: 48px;
+  height: 16px;
+}
+div.test_group div.level div {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  direction: rtl;
+}
+div.test_group div.level div span {
+  display: none;
+}
+div.test_group div.level div:hover span {
+  display: block;
+  padding: 5px;
+  z-index: 20;
+  overflow: visible;
+}
+div.level-1 {
+  background: url('../images/levels.png') no-repeat;
+  background-position:0px 0px;
+}
+div.level-2 {
+  background: url('../images/levels.png') no-repeat;
+  background-position:-16px 0px;
+}
+div.level-3 {
+  background: url('../images/levels.png') no-repeat;
+  background-position:-32px 0px;
+}
+div.level-1.disabled {
+  background: url('../images/levels.png') no-repeat;
+  background-position:0px -16px;
+}
+div.level-2.disabled {
+  background: url('../images/levels.png') no-repeat;
+  background-position:-16px -16px;
+}
+div.level-3.disabled {
+  background: url('../images/levels.png') no-repeat;
+  background-position:-32px -16px;
+}
+
+select#level option {
+  padding-left: 50px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-position: top left;
+}
+option.level-123 {
+  background: url('../images/level-123.png');
+}
+option.level-12_ {
+  background: url('../images/level-12_.png');
+}
+option.level-1_3 {
+  background: url('../images/level-1_3.png');
+}
+option.level-_23 {
+  background: url('../images/level-_23.png');
+}
+option.level-1__ {
+  background: url('../images/level-1__.png');
+}
+option.level-_2_ {
+  background: url('../images/level-_2_.png');
+}
+option.level-__3 {
+  background: url('../images/level-__3.png');
+}
+
+.leaflet-sidebar > .leaflet-control {
+  padding: 8px 0 5px 5px;
+}
+
+@media(max-width:767px) {
+  a#togglemenu {
+    position: absolute;
+    display: block;
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    color: #000000;
+    font-weight: bold;
+    line-height: 26px;
+    text-align: center;
+    text-decoration: none;
+    height: 26px;
+    width: 26px;
+    top: 5px;
+    left: 5px;
+  }
+}
+
+@media(min-width:768px) and (max-width:991px) {
+  a#togglemenu, #menu-statistics {
+    display: none;
+  }
+}
+
+@media(min-width:992px) and (max-width:1199px) {
+  a#togglemenu {
+    display: none;
+  }
+}
+
+@media(min-width:1200px) {
+  a#togglemenu {
+    display: none;
+  }
+}
