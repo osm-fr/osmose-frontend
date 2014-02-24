@@ -98,7 +98,7 @@ OsmoseMenu = L.Control.Sidebar.extend({
 
   // Invert item check
   _invertAllItem: function () {
-    $("input[type='checkbox']").each(function () {
+    $("#myform input[type='checkbox']").each(function () {
       $(this).attr('checked', !$(this).attr('checked'));
     });
 
