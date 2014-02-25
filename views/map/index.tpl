@@ -37,8 +37,12 @@
     var lon={{lon}};
     var zoom={{zoom}};
     var item_levels = {};
-%for (l, i) in levels.iteritems():
+%for (l, i) in item_levels.iteritems():
     item_levels["{{l}}"] = {{list(i)}};
+%end
+    var item_tags = {};
+%for (t, i) in item_tags.iteritems():
+    item_tags["{{t}}"] = {{list(i)}};
 %end
   </script>
 </head>
@@ -55,7 +59,6 @@
   <input type='hidden' name='useDevItem' value='{{useDevItem}}'>
   <input type='hidden' name='username' value='{{username}}'>
   <input type='hidden' name='country' value='{{country}}'>
-  <input type='hidden' name='tags' value='{{tags}}'>
     <div id="need_zoom">{{_("no bubbles at this zoom factor")}}</div>
     <div id="action_links">
       <span id="level-span">
@@ -67,6 +70,16 @@
           <option disabled="disabled"></option>
           <option class="level-_2_" value="2"{{!level_selected['2']}}>{{_("2 only")}}</option>
           <option class="level-__3" value="3"{{!level_selected['3']}}>{{_("3 only")}}</option>
+        </select>
+      </span>
+      <br>
+      <span id="tags-span">
+        <label for='tags'>{{_("Topic")}}</label>
+        <select id='tags'>
+          <option value=""></option>
+%for tag in tags:
+          <option value="{{tag}}" {{!tags_selected[tag]}}>{{_(tag)}}</option>
+%end
         </select>
       </span>
       <br>

@@ -86,6 +86,15 @@ def index(db, lang):
     if not params.has_key("useDevItem"):
         params["useDevItem"] = ""
 
+    tags = query_meta._tags(db, lang)
+    tags_selected = {}
+    tags_params = params["tags"].split(',')
+    for t in tags:
+      if t in tags_params:
+        tags_selected[t] = " selected=\"selected\""
+      else:
+        tags_selected[t] = ""
+
     all_items = []
     db.execute("SELECT item FROM dynpoi_item GROUP BY item;")
     for res in db.fetchall():
@@ -103,14 +112,20 @@ def index(db, lang):
 
     categories = query_meta._categories(db, lang)
 
-    levels = {"1": set(), "2": set(), "3": set()}
+    item_tags = {}
+    item_levels = {"1": set(), "2": set(), "3": set()}
     for categ in categories:
         for err in categ["item"]:
             for l in err["levels"]:
-                levels[str(l)].add(err["item"])
+                item_levels[str(l)].add(err["item"])
+            if err["tags"]:
+                for t in err["tags"]:
+                    if not item_tags.has_key(t):
+                        item_tags[t] = set()
+                    item_tags[t].add(err["item"])
 
-    levels["1,2"] = levels["1"] | levels["2"]
-    levels["1,2,3"] = levels["1,2"] | levels["3"]
+    item_levels["1,2"] = item_levels["1"] | item_levels["2"]
+    item_levels["1,2,3"] = item_levels["1,2"] | item_levels["3"]
 
     urls = []
     # TRANSLATORS: link to help in appropriate language
@@ -151,9 +166,11 @@ OFFSET
         delay = 0
 
     return template('map/index', categories=categories, lat=params["lat"], lon=params["lon"], zoom=params["zoom"],
-        source=params["source"], username=params["username"], classs=params["class"], country=params["country"], tags=params["tags"],
-        levels=levels, level_selected=level_selected, active_items=active_items, useDevItem=params["useDevItem"], urls=urls, helps=helps, delay=delay,
-        allowed_languages=allowed_languages, translate=utils.translator(lang),
+        source=params["source"], username=params["username"], classs=params["class"], country=params["country"],
+        item_tags=item_tags, tags_selected=tags_selected, tags=tags,
+        item_levels=item_levels, level_selected=level_selected,
+        active_items=active_items, useDevItem=params["useDevItem"],
+        urls=urls, helps=helps, delay=delay, allowed_languages=allowed_languages, translate=utils.translator(lang),
         website=utils.website, request=request)
 
 

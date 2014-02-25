@@ -29,7 +29,7 @@ OsmoseMenu = L.Control.Sidebar.extend({
       self._toggleCateg(this);
       return false;
     });
-    $("#level").change(function () {
+    $("#level, #tags").change(function () {
       self._change_level();
     });
     $("#togglemenu").click(function () {
@@ -112,10 +112,10 @@ OsmoseMenu = L.Control.Sidebar.extend({
   },
 
   // Change level
-  _change_item_display: function (l) {
+  _change_item_display: function (l, tag) {
     $("div#tests li").each(function () {
       var id = parseInt($(this).attr('id').replace(/item_desc/, ''), 10);
-      if ($.inArray(id, item_levels[l]) >= 0) {
+      if ($.inArray(id, item_levels[l]) >= 0 && (!(tag in item_tags) || $.inArray(id, item_tags[tag]) >= 0)) {
         $("#item_desc" + id).show();
       } else {
         $("#item_desc" + id).hide();
@@ -133,7 +133,8 @@ OsmoseMenu = L.Control.Sidebar.extend({
 
   _change_level: function change_level() {
     var new_level = $("#level").val();
-    this._change_item_display(new_level || "1,2,3");
+      new_tag = $("#tags").val();
+    this._change_item_display(new_level || "1,2,3", new_tag);
 
     this._itemChanged();
   },
@@ -172,6 +173,7 @@ OsmoseMenu = L.Control.Sidebar.extend({
     return {
       item: ch,
       level: document.myform.level.value,
+      tags: document.myform.tags.value,
     };
   },
 
