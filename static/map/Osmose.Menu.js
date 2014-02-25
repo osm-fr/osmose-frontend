@@ -32,7 +32,7 @@ OsmoseMenu = L.Control.Sidebar.extend({
     $("#level").change(function () {
       self._change_level();
     });
-    $("#togglemenu").click(function() {
+    $("#togglemenu").click(function () {
       self._toggleMenu();
       return false;
     });
@@ -86,7 +86,7 @@ OsmoseMenu = L.Control.Sidebar.extend({
   // Check or uncheck a categ of tests.
   _toggleAllItem: function (link) {
     var test_group = $(link).closest(".test_group, #myform"),
-      checkbox = $("input[type='checkbox']", test_group);
+      checkbox = $((test_group.prop("tagName") != "FORM" ? "" : ".test_group:not(#categUnactiveItem) ") + "input[type='checkbox']", test_group);
     if ($(link).data().view == "all") {
       checkbox.attr('checked', true);
     } else {
@@ -103,7 +103,7 @@ OsmoseMenu = L.Control.Sidebar.extend({
 
   // Invert item check
   _invertAllItem: function () {
-    $("#myform input[type='checkbox']").each(function () {
+    $("#myform .test_group:not(#categUnactiveItem) input[type='checkbox']").each(function () {
       $(this).attr('checked', !$(this).attr('checked'));
     });
 
@@ -152,10 +152,10 @@ OsmoseMenu = L.Control.Sidebar.extend({
   _buildUrlPart: function () {
     // items list
     var ch = "";
-    if ($(".test_group :checkbox:not(:checked)").length == 0) {
+    if ($(".test_group:not(#categUnactiveItem) :checkbox:not(:checked)").length == 0) {
       ch = "xxxx";
     } else {
-      $(".test_group").each(function () {
+      $(".test_group:not(#categUnactiveItem)").each(function () {
         var id = this.id,
           v = $("h1 span", this).text().split("/");
         if (v[0] == v[1]) {
