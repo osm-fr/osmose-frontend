@@ -165,13 +165,21 @@ OFFSET
     else:
         delay = 0
 
+    try:
+        user = request.session['user']['osm']['user']['@display_name']
+        user_error_count = ''
+    except KeyError:
+        user = None
+        user_error_count = None
+
     return template('map/index', categories=categories, lat=params["lat"], lon=params["lon"], zoom=params["zoom"],
         source=params["source"], username=params["username"], classs=params["class"], country=params["country"],
         item_tags=item_tags, tags_selected=tags_selected, tags=tags,
         item_levels=item_levels, level_selected=level_selected,
         active_items=active_items, useDevItem=params["useDevItem"],
         urls=urls, helps=helps, delay=delay, allowed_languages=allowed_languages, translate=utils.translator(lang),
-        website=utils.website, request=request)
+        website=utils.website, request=request,
+        user=user, user_error_count=user_error_count)
 
 
 def num2deg(xtile, ytile, zoom):

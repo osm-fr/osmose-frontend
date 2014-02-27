@@ -168,6 +168,14 @@
 %delay_status = "normal" if delay < 1.1 else "warning" if delay < 1.6 else "error"
 %delay = "%0.2f" % delay
 <li id="menu-delay"><a href="../control/update" class="delay-{{delay_status}}">{{_("Delay: %sd") % delay}}</a></li>
+
+<li id="menu-user">
+%if user:
+  <a href="../byuser/{{user}}">{{user}} ({{user_error_count}})</a>
+%else:
+  <a href="../login">{{_("Login")}}</a>
+%end
+</li>
 </ul>
 </div>
 

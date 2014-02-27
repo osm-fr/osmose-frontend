@@ -7,11 +7,16 @@
 #
 
 import bottle
-from bottle import route, view, template, error
+from bottle import route, view, template, error, redirect, request, hook
+from tools import utils, oauth, xmldict
+import beaker.middleware
 
-from tools import utils
 
 app = bottle.default_app()
+
+@hook('before_request')
+def setup_request():
+    request.session = request.environ['beaker.session']
 
 for l in utils.allowed_languages:
     app.mount('/' + l, app)
@@ -53,6 +58,25 @@ def translation(lang, name=None):
     translate = utils.translator(lang)
     return template('translation')
 
+@route('/login')
+def translation(lang, name=None):
+    (url, oauth_tokens) = oauth.fetch_request_token()
+    request.session['oauth_tokens'] = oauth_tokens
+    redirect(url)
+
+@route('/oauth')
+def oauth_(lang, name=None):
+    try:
+        oauth_tokens = request.session['oauth_tokens']
+        oauth_tokens = oauth.fetch_access_token(oauth_tokens, request)
+        request.session['oauth_tokens'] = oauth_tokens
+        user_request = oauth.get(oauth_tokens, 'http://api.openstreetmap.org/api/0.6/user/details')
+        if user_request:
+            request.session['user'] = xmldict.xml_to_dict(user_request)
+    except:
+        pass
+    redirect('map')
+
 @error(404)
 @view('404')
 def error404(error):
@@ -70,3 +94,11 @@ import false_positive
 @route('/<filename:path>', name='static')
 def static(filename):
     return bottle.static_file(filename, root='static')
+
+
+session_opts = {
+    'session.type': 'file',
+    'session.data_dir': './session/',
+    'session.auto': True,
+}
+app = beaker.middleware.SessionMiddleware(app, session_opts)
