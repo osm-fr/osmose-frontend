@@ -1,3 +1,6 @@
 [submodule "externals/mustache.js"]
 	path = externals/mustache.js
 	url = https://github.com/janl/mustache.js
+[submodule "externals/webassets"]
+	path = externals/webassets
+	url = https://github.com/miracle2k/webassets.git
