@@ -4,3 +4,6 @@
 [submodule "externals/webassets"]
 	path = externals/webassets
 	url = https://github.com/miracle2k/webassets.git
+[submodule "externals/rauth"]
+	path = externals/rauth
+	url = https://github.com/litl/rauth.git
