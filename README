@@ -12,7 +12,6 @@ Dependencies
   python-matplotlib >= 1.1
   requests >= 2.2
   beaker >= 1.6
-  cssutils >= 1.0
   python-imaging
   librsvg2-bin                     # to generate markers with rsvg
   apache2

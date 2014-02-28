@@ -4,7 +4,7 @@
 from webassets import Environment, Bundle
 
 environment = Environment('static', '')
-#environment().debug = True
+#environment.debug = True
 
 css_map_bundle = Bundle(
     'css/style.css',
@@ -13,7 +13,7 @@ css_map_bundle = Bundle(
     'map/leaflet-control-geocoder/Control.Geocoder.css',
     'map/style.css',
     'map/Osmose.Menu.css',
-    filters='cssrewrite,cssutils', output='gen/map-%(version)s.css')
+    filters='cssrewrite,cssmin', output='gen/map-%(version)s.css')
 environment.register('css_map', css_map_bundle)
 
 js_map_bundle = Bundle(

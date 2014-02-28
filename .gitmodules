@@ -7,3 +7,6 @@
 [submodule "externals/rauth"]
 	path = externals/rauth
 	url = https://github.com/litl/rauth.git
+[submodule "externals/cssmin"]
+	path = externals/cssmin
+	url = https://github.com/zacharyvoase/cssmin.git
