@@ -171,7 +171,12 @@
 
 <li id="menu-user">
 %if user:
-  <a href="../byuser/{{user}}">{{user}} ({{user_error_count}})</a>
+  <a href="../byuser/{{user}}">{{user}} ({{user_error_count[1]+user_error_count[2]+user_error_count[3]}}) ▼</a>
+  <ul class="submenu">
+    <li><a href="../byuser/{{user}}?level=1">{{_("Level %s errors (%s)") % (1, user_error_count[1])}}</a></li>
+    <li><a href="../byuser/{{user}}?level=2">{{_("Level %s errors (%s)") % (2, user_error_count[2])}}</a></li>
+    <li><a href="../byuser/{{user}}?level=3">{{_("Level %s errors (%s)") % (3, user_error_count[3])}}</a></li>
+  </ul>
 %else:
   <a href="../login">{{_("Login")}}</a>
 %end

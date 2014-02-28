@@ -24,6 +24,7 @@ from bottle import route, request, template, response, redirect, abort, static_f
 from tools import utils
 from tools import query
 from tools import query_meta
+import byuser
 import errors
 import datetime
 import math, StringIO
@@ -167,7 +168,7 @@ OFFSET
 
     try:
         user = request.session['user']['osm']['user']['@display_name']
-        user_error_count = ''
+        user_error_count = byuser._user_count(db, user)
     except KeyError:
         user = None
         user_error_count = None

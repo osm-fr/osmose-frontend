@@ -65,6 +65,38 @@ def user(db, lang, username=None, format=None):
         return template('byuser/byuser', username=username, users=params.users, count=count, errors=errors, translate=utils.translator(lang), website=utils.website)
 
 
+def _user_count(db, username=None):
+    params = query._params()
+    if username:
+        params.users = utils.pg_escape(username.decode("utf-8")).split(",")
+
+    if not params.users:
+        return
+
+    res = query._count(db, params, ['dynpoi_class.level'], ['dynpoi_class.level'])
+    ret = {1:0, 2:0, 3:0}
+    for (l, c) in res:
+        ret[l] = c
+
+    return ret
+
+
+@route('/byuser_count/<username>')
+@route('/byuser_count/<username>.<format:ext>')
+@route('/api/0.2/user_count/<username>')
+def user_count(db, lang, username=None, format=None):
+    count = _user_count(db, username)
+    if request.path.startswith("/api") or format == "json":
+        return count
+
+    elif format == 'rss':
+        response.content_type = "application/rss+xml"
+        return template('byuser/byuser_count.rss', username=username, count=count, translate=utils.translator(lang), website=utils.website)
+
+    else:
+        return count
+
+
 def _users(db):
     params = query._params()
     return query._count(db, params, ["marker_elem.username"])
