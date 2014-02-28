@@ -21,9 +21,7 @@
 ###########################################################################
 
 from bottle import route, request, template, response, redirect, abort, static_file
-from tools import utils
-from tools import query
-from tools import query_meta
+from tools import utils, query, query_meta, assets
 import byuser
 import errors
 import datetime
@@ -179,7 +177,7 @@ OFFSET
         item_levels=item_levels, level_selected=level_selected,
         active_items=active_items, useDevItem=params["useDevItem"],
         urls=urls, helps=helps, delay=delay, allowed_languages=allowed_languages, translate=utils.translator(lang),
-        website=utils.website, request=request,
+        website=utils.website, request=request, assets=assets.environment,
         user=user, user_error_count=user_error_count)
 
 

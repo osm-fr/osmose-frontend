@@ -5,33 +5,13 @@
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
   <meta name="description" content="Contrôle, vérification et correction d'erreurs d'OpenStreetMap">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='css/style.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/leaflet/leaflet.css')}}" />
-  <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/leaflet-sidebar/src/L.Control.Sidebar.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/leaflet-control-geocoder/Control.Geocoder.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/style.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/Osmose.Menu.css')}}">
+%for css in assets['css_map'].urls():
+  <link rel="stylesheet" type="text/css" href="{{get_url('static', filename=css)}}">
+%end
   <script id="popupTpl" type="text/template" src="{{get_url('static', filename='/tpl/popup.tpl')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/js/jquery-1.7.2.min.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/js/mustache.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/leaflet/leaflet-src.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/leaflet-plugins/control/Permalink.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/leaflet-plugins/control/Permalink.Layer.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/Permalink.Overlay.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/Permalink.Item.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/leaflet-plugins/layer/tile/Bing.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/layers.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/leaflet-sidebar/src/L.Control.Sidebar.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/leaflet-control-geocoder/Control.Geocoder.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/Leaflet.Spin/spin.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/Leaflet.Spin/leaflet.spin.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/Location.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/Osmose.Menu.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/Osmose.Heatmap.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/Osmose.Marker.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/Osmose.Errors.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/map.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/menu.js')}}"></script>
+%for js in assets['js_map'].urls():
+  <script type="text/javascript" src="{{get_url('static', filename=js)}}"></script>
+%end
   <script type="text/javascript">
     var lat={{lat}};
     var lon={{lon}};
