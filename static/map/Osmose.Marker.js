@@ -16,7 +16,7 @@ OsmoseMarker = L.GeoJSON.extend({
         iconUrl: "../images/markers/marker-b-" + featureData.properties.item + ".png",
         iconSize: [17, 33],
         iconAnchor: [8, 33],
-        popupAnchor: [0, -33],
+        popupAnchor: [0, -41],
       }),
     });
 
