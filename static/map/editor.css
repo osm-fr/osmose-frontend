@@ -1,0 +1,43 @@
+#editor .same span {
+  color: white;
+}
+#editor .add, #editor .add input[type="text"] {
+  color: green;
+}
+#editor .mod, #editor .mod input[type="text"] {
+  color: darkorange;
+}
+#editor .del, #editor .del input[type="text"] {
+  text-decoration: line-through;
+  color: red;
+}
+
+
+#editor span {
+  display: inline-block;
+  background: black;
+  font-weight: bold;
+  width: 5%;
+  text-align: center;
+}
+
+#editor .tags {
+  border: solid 1px gray;
+  background: #EEE;
+}
+
+#editor input[type="text"] {
+  font-family: monospace;
+  background: #EEE;
+  border: none;
+  width: 95%;
+}
+
+#editor .old {
+  font-style: italic;
+  text-decoration: line-through;
+}
+
+#editor #validate {
+  float: right;
+}

@@ -2,8 +2,9 @@ OsmoseMarker = L.GeoJSON.extend({
 
   _options: {},
 
-  initialize: function (data, options) {
+  initialize: function (data, editor, options) {
     this._options = options;
+    this._editor = editor;
     L.GeoJSON.prototype.initialize.call(this, data, {
       pointToLayer: this._pointToLayer.bind(this),
       onEachFeature: this._onEachFeature.bind(this),
@@ -67,6 +68,9 @@ OsmoseMarker = L.GeoJSON.extend({
                     layer.closePopup();
                     self.removeLayer(layer);
                   }, 200);
+                });
+                content.on('click', '.edit', function() {
+                  self._editor.edit(this.getAttribute('data-error'), this.getAttribute('data-type'), this.getAttribute('data-id'));
                 });
                 e.popup.setContent(content[0]);
               },

@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" href="{{get_url('static', filename=css)}}">
 %end
   <script id="popupTpl" type="text/template" src="{{get_url('static', filename='/tpl/popup.tpl')}}"></script>
+  <script id="editorTpl" type="text/template" src="{{get_url('static', filename='/tpl/editor.tpl')}}"></script>
 %for js in assets['js_map'].urls():
   <script type="text/javascript" src="{{get_url('static', filename=js)}}"></script>
 %end
@@ -173,6 +174,8 @@ $(function() {
   init_map();
 });
 </script>
+
+<div id="editor"></div>
 
 </body>
 </html>

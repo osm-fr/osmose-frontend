@@ -16,6 +16,7 @@
   <%^infos%>
       <b><a target="_blank" href="http://www.openstreetmap.org/browse/<%type%>/<%id%>"><%type%> <%id%></a></b>
       <a href="#" onclick="window.open('http://rawedit.openstreetmap.fr/edit/<%type%>/<%id%>','rawedit','height=360,width=710');">rawedit</a>
+      <a href="#" class="edit" data-type="<%type%>" data-id="<%id%>" data-error="<%error_id%>">edit</a>
   <%/infos%>
   <%#relation%>
       <a target="_blank" href="http://analyser.openstreetmap.fr/cgi-bin/index.py?relation=<%id%>">analyse1</a>
@@ -33,6 +34,7 @@
       <br>
   <%#fixes%>
       <div class="fix">
+        <a href="#" class="link fix" data-error="<%error_id%>" data-fix="<%num%>">fix</a>
         <a class="link" href="http://localhost:8111/import?url=http://{{website}}/api/0.2/error/<%error_id%>/fix/<%num%>" target="hiddenIframe">josm fix</a>
     <%#add%>
         <div class="add"> + <b><%k%></b> = <%v%></div>

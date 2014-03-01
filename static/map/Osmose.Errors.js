@@ -4,18 +4,17 @@ OsmoseErrors = L.LayerGroup.extend({
 
   _params: {},
 
+  _editor: null,
+
   _onMap: false,
 
   _osmoseMarker: null,
 
-  _updating: false,
-
-  _updatePending: false,
-
-  initialize: function (menu, params) {
+  initialize: function (menu, params, editor) {
     L.LayerGroup.prototype.initialize.call(this);
     this._menu = menu;
     this._params = params;
+    this._editor = editor;
   },
 
   onAdd: function (map) {
@@ -68,7 +67,7 @@ OsmoseErrors = L.LayerGroup.extend({
         }
         self.clearLayers();
         if (self._onMap) {
-          self._osmoseMarker = new OsmoseMarker(data, {
+          self._osmoseMarker = new OsmoseMarker(data, self._editor, {
             error_id: error_id,
             content: content
           });

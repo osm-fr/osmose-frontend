@@ -19,8 +19,13 @@ function init_map() {
   map.addControl(new OsmoseMenuToggle(menu));
   menu.show();
 
+  var editor = new OsmoseEditor('editor', {
+    position: 'right'
+  });
+  map.addControl(editor);
+
   mapOverlay['Osmose Errors Heatmap'] = new OsmoseHeatmap(menu);
-  var osmoseLayer = new OsmoseErrors(menu, urlVars);
+  var osmoseLayer = new OsmoseErrors(menu, urlVars, editor);
   mapOverlay['Osmose Errors'] = osmoseLayer;
   var layers = L.control.layers(mapBases, mapOverlay);
   map.addControl(layers);
@@ -57,6 +62,12 @@ function init_map() {
     url: $("#popupTpl").attr("src")
   }).done(function (html) {
     $("#popupTpl").html(html);
+  });
+
+  $.ajax({
+    url: $("#editorTpl").attr("src")
+  }).done(function (html) {
+    $("#editorTpl").html(html);
   });
 
   map.on('zoomend', function (e) {
