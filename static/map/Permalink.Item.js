@@ -18,8 +18,8 @@ L.Control.Permalink.include({
 
   _set_items: function (e) {
     var p = e.params;
-    if (this.options.menu && (p.item || p.level)) {
-      this.options.menu.setItems(p.item, p.level);
+    if (this.options.menu && (p.item || p.level || p.tags != undefined || p.fixable)) {
+      this.options.menu.setItems(p.item, p.level, p.tags, p.fixable);
     }
   }
 });

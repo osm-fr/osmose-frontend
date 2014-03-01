@@ -66,13 +66,14 @@ def index(db, lang):
                "username": '',
                "country": '',
                "tags":    '',
+               "fixable": None,
              }
 
-    for p in ["lat", "lon", "zoom", "item", "level"]:
+    for p in ["lat", "lon", "zoom", "item", "level", "tags", "fixable"]:
         if request.cookies.get("last_" + p, default=None):
             params[p] = request.cookies.get("last_" + p)
 
-    for p in ["lat", "lon", "zoom", "item", "useDevItem", "level", "source", "username", "class", "country", "tags"]:
+    for p in ["lat", "lon", "zoom", "item", "useDevItem", "level", "source", "username", "class", "country", "tags", "fixable"]:
         if request.params.get(p, default=None):
             params[p] = request.params.get(p)
 
@@ -93,6 +94,11 @@ def index(db, lang):
         tags_selected[t] = " selected=\"selected\""
       else:
         tags_selected[t] = ""
+
+    if params["fixable"] and params["fixable"] == "true":
+      fixable_checked = " checked=\"checked\""
+    else:
+      fixable_checked = ""
 
     all_items = []
     db.execute("SELECT item FROM dynpoi_item GROUP BY item;")
@@ -173,7 +179,7 @@ OFFSET
 
     return template('map/index', categories=categories, lat=params["lat"], lon=params["lon"], zoom=params["zoom"],
         source=params["source"], username=params["username"], classs=params["class"], country=params["country"],
-        item_tags=item_tags, tags_selected=tags_selected, tags=tags,
+        item_tags=item_tags, tags_selected=tags_selected, tags=tags, fixable_checked=fixable_checked,
         item_levels=item_levels, level_selected=level_selected,
         active_items=active_items, useDevItem=params["useDevItem"],
         urls=urls, helps=helps, delay=delay, allowed_languages=allowed_languages, translate=utils.translator(lang),
@@ -271,7 +277,9 @@ def markers(db, lang):
     response.set_cookie('last_lon', str(params.lon), expires=expires, path=path)
     response.set_cookie('last_zoom', str(params.zoom), expires=expires, path=path)
     response.set_cookie('last_level', str(params.level), expires=expires, path=path)
-    response.set_cookie('last_item', params.item, expires=expires, path=path)
+    response.set_cookie('last_item', str(params.item), expires=expires, path=path)
+    response.set_cookie('last_tags', str(','.join(params.tags)) if params.tags else '', expires=expires, path=path)
+    response.set_cookie('last_fixable', str('true' if params.fixable else 'false'), expires=expires, path=path)
 
     return errors._errors_geo(db, lang, params)
 

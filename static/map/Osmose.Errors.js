@@ -47,6 +47,8 @@ OsmoseErrors = L.LayerGroup.extend({
       });
       this._params.item = urlPart.item;
       this._params.level =  urlPart.level;
+      this._params.tags = urlPart.tags;
+      this._params.fixable = urlPart.fixable;
       this._params.bbox = this._map.getBounds().toBBoxString();
       this._params.zoom = this._map.getZoom();
       url = L.Util.getParamString(this._params);

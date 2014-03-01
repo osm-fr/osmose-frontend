@@ -29,7 +29,7 @@ OsmoseMenu = L.Control.Sidebar.extend({
       self._toggleCateg(this);
       return false;
     });
-    $("#level, #tags").change(function () {
+    $("#level, #tags, #fixable").change(function () {
       self._change_level();
     });
     $("#togglemenu").click(function () {
@@ -112,7 +112,7 @@ OsmoseMenu = L.Control.Sidebar.extend({
   },
 
   // Change level
-  _change_item_display: function (l, tag) {
+  _change_item_display: function (l, tag, fixable) {
     $("div#tests li").each(function () {
       var id = parseInt($(this).attr('id').replace(/item_desc/, ''), 10);
       if ($.inArray(id, item_levels[l]) >= 0 && (!(tag in item_tags) || $.inArray(id, item_tags[tag]) >= 0)) {
@@ -132,9 +132,10 @@ OsmoseMenu = L.Control.Sidebar.extend({
   },
 
   _change_level: function change_level() {
-    var new_level = $("#level").val();
-      new_tag = $("#tags").val();
-    this._change_item_display(new_level || "1,2,3", new_tag);
+    var new_level = document.myform.level.value,
+      new_tag = document.myform.tags.value,
+      fixable = document.myform.fixable.checked;
+    this._change_item_display(new_level || "1,2,3", new_tag, fixable);
 
     this._itemChanged();
   },
@@ -174,10 +175,11 @@ OsmoseMenu = L.Control.Sidebar.extend({
       item: ch,
       level: document.myform.level.value,
       tags: document.myform.tags.value,
+      fixable: document.myform.fixable.checked,
     };
   },
 
-  setItems: function (items, levels) {
+  setItems: function (items, levels, tags, fixable) {
     if (items) {
       var checkbox = $(".test_group:not(#categUnactiveItem) :checkbox");
       checkbox.attr('checked', false);
@@ -191,6 +193,14 @@ OsmoseMenu = L.Control.Sidebar.extend({
 
     if (levels) {
       document.myform.level.value = levels;
+    }
+
+    if (tags != undefined) {
+      document.myform.tags.value = tags;
+    }
+
+    if (fixable) {
+      document.myform.fixable.checked = fixable == 'true';
     }
 
     this._countItemAll();
