@@ -7,7 +7,7 @@ on a map.
 
 Dependencies
 ------------
-  python >= 2.6 recommended
+  python >= 2.6 recommended and < 3
   python-psycopg2 >= 2.4
   python-matplotlib >= 1.1
   python-imaging
@@ -28,10 +28,10 @@ Initialisation
   psql osmose_frontend -f /usr/share/postgresql/9.1/contrib/postgis-1.5/postgis.sql
   psql osmose_frontend -f /usr/share/postgresql/9.1/contrib/postgis-1.5/spatial_ref_sys.sql
 
- - as default user
-  (cd po && make)                            # to generate translation files
-  git submodule update --init                # to get Mustache javascript library
-  psql -f tools/database/schema.sql          # for postgresql database tables
+ - check db parameter into tools/utils.py and as default user
+  (cd po && make)                                       # to generate translation files
+  git submodule update --init                           # to get Mustache javascript library
+  psql osmose_frontend -f tools/database/schema.sql     # for postgresql database tables
 
  - when some errors are in the database, to get translations
   (cd tools/database/ && ./categ_menu_update.sh && ./item_menu_update.sh)

@@ -2,7 +2,6 @@
 <div id="popup-<%error_id%>">
   <div class="bulle_msg">
     <div class="closebubble">
-      <div><a href="#" onclick="closeBubble('<%error_id%>');return false;"><b>&nbsp;X&nbsp;</b></a></div>
       <div class="help"><a target="_blank" href='<%url_help%>#<%item%>'>&nbsp;?&nbsp;</a></div>
       <div class="error-link"><a target="_blank" href="../error/<%error_id%>">&nbsp;E&nbsp;</a></div>
     </div>
@@ -16,7 +15,7 @@
     <div class="bulle_elem">
   <%^infos%>
       <b><a target="_blank" href="http://www.openstreetmap.org/browse/<%type%>/<%id%>"><%type%> <%id%></a></b>
-      <a href="javascript:iFrameLoad('http://rawedit.openstreetmap.fr/edit/<%type%>/<%id%>');">rawedit</a>
+      <a href="#" onclick="window.open('http://rawedit.openstreetmap.fr/edit/<%type%>/<%id%>','rawedit','height=360,width=710');">rawedit</a>
   <%/infos%>
   <%#relation%>
       <a target="_blank" href="http://analyser.openstreetmap.fr/cgi-bin/index.py?relation=<%id%>">analyse1</a>
@@ -80,8 +79,8 @@
   </div>
   <div class="bulle_maj">
     <b>{{_("change status")}} :</b>
-    <a onclick="setTimeout('destroyMarker(\'<%error_id%>\');',200);" href="../api/0.2/error/<%error_id%>/done" target="hiddenIframe">{{_("corrected")}}</a>
-    <a onclick="setTimeout('destroyMarker(\'<%error_id%>\');',200);" href="../api/0.2/error/<%error_id%>/false" target="hiddenIframe">{{_("false positive")}}</a>
+    <a class="closePopup" href="../api/0.2/error/<%error_id%>/done" target="hiddenIframe">{{_("corrected")}}</a>
+    <a class="closePopup" href="../api/0.2/error/<%error_id%>/false" target="hiddenIframe">{{_("false positive")}}</a>
 </div>
 
 </div>

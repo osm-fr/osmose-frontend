@@ -28,7 +28,7 @@ import errors
 import datetime
 import math, StringIO
 from PIL import Image
-import ImageDraw
+from PIL import ImageDraw
 
 
 def check_items(items, all_items):
@@ -114,14 +114,12 @@ def index(db, lang):
 
     urls = []
     # TRANSLATORS: link to help in appropriate language
-    urls.append((_("Errors by user"), "../byuser/"))
-    urls.append((_("Relation analyser"), "http://analyser.openstreetmap.fr/"))
+    urls.append(("byuser", _("Errors by user"), "../byuser/"))
+    urls.append(("relation_analyser", _("Relation analyser"), "http://analyser.openstreetmap.fr/"))
     # TRANSLATORS: this link can be changed to something specific to the language
-    urls.append((_("CLC"), _("http://clc.openstreetmap.fr/")))
-    # TRANSLATORS: this link can be changed to something specific to the language
-    urls.append((_("openstreetmap.fr"), _("http://www.openstreetmap.fr/")))
+    urls.append(("openstreetmapfr", _("openstreetmap.fr"), _("http://www.openstreetmap.fr/")))
     # TRANSLATORS: link to source code
-    urls.append((_("Statistics"), "../control/update"))
+    urls.append(("statistics", _("Statistics"), "../control/update"))
 
     helps = []
     helps.append((_("Contact"), "../contact"))
@@ -147,7 +145,7 @@ OFFSET
 """
     db.execute(sql)
     delay = db.fetchone()
-    if delay:
+    if delay and delay[0]:
         delay = delay[0]/60/60/24
     else:
         delay = 0
@@ -251,7 +249,7 @@ def markers(db, lang):
     response.set_cookie('last_level', str(params.level), expires=expires, path=path)
     response.set_cookie('last_item', params.item, expires=expires, path=path)
 
-    return errors._errors(db, lang, params)
+    return errors._errors_geo(db, lang, params)
 
 
 @route('/tpl/popup.tpl')

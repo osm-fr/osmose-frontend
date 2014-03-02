@@ -119,23 +119,31 @@ def get_symb(symbole):
 ## L légende
 
 def get_marker(contour, symbole, couleur):
-    if contour == "M": # marqueur
-        h = 32
-        l = 20
-        g = "translate(2,3) scale(1,1)"
-        c = "<path style='fill:" + couleur + ";stroke:#000000;stroke-width:.5px' d='M 10,1 L 19,10 L 10,31, L 1,10, L 10,1 z' />"
-        m = get_symb(symbole)
+    dark_color = "#%0.2X%0.2X%0.2X" % (int(couleur[1:3], 16)*0.5, int(couleur[3:5], 16)*0.5, int(couleur[5:7], 16)*0.5)
+    mid_color = "#%0.2X%0.2X%0.2X" % (int(couleur[1:3], 16)*0.75, int(couleur[3:5], 16)*0.75, int(couleur[5:7], 16)*0.75)
     if contour == "L": # légende
         h = 12
         l = h
         g = "translate(-2,-2) scale(1,1)"
-        c = "<path style='fill:" + couleur + ";stroke:#000000;stroke-width:1px' d='M 0.5,0.5 L 0.5,11.5 L 11.5,11.5 L 11.5,0.5 L 0.5,0.5 z' />"
+        c = "<defs id='defs'><linearGradient id='gradient' x1='6' y1='12' x2='6' y2='0' gradientUnits='userSpaceOnUse'>"
+        c += "<stop style='stop-color:" + mid_color + "' offset='0' />"
+        c += "<stop style='stop-color:" + couleur + "' offset='1' />"
+        c += "</linearGradient></defs>"
+        c += "<path style='fill:url(#gradient);' d='M 0.5,0.5 L 0.5,11.5 L 11.5,11.5 L 11.5,0.5 L 0.5,0.5 z' />"
+        c += "<path style='fill:none;stroke:" + mid_color + ";stroke-width:1px' d='M 1.5,1.5 L 1.5,10.5 L 10.5,10.5 L 10.5,1.5 L 1.5,1.5 z' />"
+        c += "<path style='fill:none;stroke:#000000;stroke-width:1px' d='M 0.5,0.5 L 0.5,11.5 L 11.5,11.5 L 11.5,0.5 L 0.5,0.5 z' />"
         m = get_symb(symbole)
     if contour == "B": # bubble
         h = 32
         l = 16
         g = "translate(0,1) scale(1,1)"
-        c = "<path style='fill:" + couleur + ";stroke:#000000;stroke-width:.5px' d='m 8,31.75 c 2,-12 7.75,-18 7.75,-23.5 0,-4 -3.5,-8 -7.75,-8 -4.25,0 -7.75,4 -7.75,8 0,5.5 5.75,11.5 7.75,23.5 z' />"
+        c = "<defs id='defs'><linearGradient id='gradient' x1='8' y1='32' x2='8' y2='0' gradientUnits='userSpaceOnUse'>"
+        c += "<stop style='stop-color:" + dark_color + "' offset='0' />"
+        c += "<stop style='stop-color:" + couleur + "' offset='1' />"
+        c += "</linearGradient></defs>"
+        c += "<path style='fill:url(#gradient)' d='m 8,31.75 c 2,-12 7.75,-18 7.75,-23.5 0,-4 -3.5,-8 -7.75,-8 -4.25,0 -7.75,4 -7.75,8 0,5.5 5.75,11.5 7.75,23.5 z' />"
+        c += "<path style='fill:none;stroke:" + mid_color + ";stroke-width:.75px' d='m 8,0.5 c -4.0986579,0 -7.5,3.8907009 -7.5,7.75 0,2.665945 1.4044222,5.527256 3.09375,9.21875 1.5774956,3.44712 3.3559017,7.676923 4.40625,13.125 1.0503483,-5.448077 2.828754,-9.67788 4.40625,-13.125 C 14.095578,13.777256 15.5,10.915945 15.5,8.25 15.5,4.3907009 12.098658,0.5 8,0.5 z' />"
+        c += "<path style='fill:none;stroke:#000000;stroke-width:.5px' d='m 8,31.75 c 2,-12 7.75,-18 7.75,-23.5 0,-4 -3.5,-8 -7.75,-8 -4.25,0 -7.75,4 -7.75,8 0,5.5 5.75,11.5 7.75,23.5 z' />"
         m = get_symb(symbole)
     head  = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n"
     head += "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\""+str(l)+"\" height=\""+str(h)+"\">\n"
@@ -148,9 +156,10 @@ marker_folder = os.path.join("..", "static", "images", "markers")
 commands.getstatusoutput("rm %s"%os.path.join(marker_folder,"*.png"))
 for i in all_items:
     print i
-    for m in "MLB":
+    for m in "LB":
         file_svg = os.path.join(marker_folder, "marker-%s-%d.svg"%(m.lower(), i["item"]))
         file_png = os.path.join(marker_folder, "marker-%s-%d.png"%(m.lower(), i["item"]))
         open(file_svg,"w").write(get_marker(m, i["marker_flag"], i["marker_color"]))
         commands.getstatusoutput("rsvg %s %s"%(file_svg, file_png))
+        #commands.getstatusoutput("rsvg-convert %s > %s"%(file_svg, file_png))
 commands.getstatusoutput("rm %s"%os.path.join(marker_folder,"*.svg"))

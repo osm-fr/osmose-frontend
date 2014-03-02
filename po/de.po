@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-20 19:21+0200\n"
+"POT-Creation-Date: 2014-03-02 22:15+0100\n"
 "PO-Revision-Date: 2012-08-02 14:19+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: German\n"
@@ -19,10 +19,12 @@ msgstr ""
 
 #. TRANSLATORS: days / hours / minutes since last source update, abbreviated to d / h / m
 #: ../control.py:50
+#, python-brace-format
 msgid "{day}d, {hour}h, {minute}m ago"
 msgstr "vor {day} Tagen, {hour}h, {minute}m"
 
 #: ../control.py:52
+#, python-brace-format
 msgid "in {day}d, {hour}h, {minute}m"
 msgstr "in {day} Tagen, {hour}h, {minute}m"
 
@@ -31,19 +33,19 @@ msgid "never generated"
 msgstr "nie erzeugt"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:93
+#: ../error.py:93 ../false_positive.py:66
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/DE:Osmose/erreurs"
 
-#: ../errors.py:110 tmp.tpl:52
+#: ../errors.py:123 tmp.tpl:52
 msgid "False positives"
 msgstr "falsch positive Ergebnisse"
 
-#: ../errors.py:113
+#: ../errors.py:126
 msgid "Fixed errors"
 msgstr "behobene Fehler"
 
-#: ../errors.py:116 tmp.tpl:50
+#: ../errors.py:129 tmp.tpl:50
 msgid "Informations"
 msgstr "Informationen"
 
@@ -58,48 +60,39 @@ msgstr "Analyse von Relationen"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
 #: ../map.py:120
-msgid "CLC"
-msgstr ""
-
-#: ../map.py:120
-msgid "http://clc.openstreetmap.fr/"
-msgstr "http://clc.openstreetmap.fr/"
-
-#. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:122
 msgid "openstreetmap.fr"
 msgstr "openstreetmap.de"
 
-#: ../map.py:122
+#: ../map.py:120
 msgid "http://www.openstreetmap.fr/"
 msgstr "http://www.openstreetmap.de/"
 
 #. TRANSLATORS: link to source code
-#: ../map.py:124
+#: ../map.py:122
 msgid "Statistics"
 msgstr "Statistik"
 
-#: ../map.py:127 tmp.tpl:19
+#: ../map.py:125 tmp.tpl:19
 msgid "Contact"
 msgstr ""
 
-#: ../map.py:128
+#: ../map.py:126
 msgid "Help on wiki"
 msgstr "Hilfe im wiki"
 
-#: ../map.py:128
+#: ../map.py:126
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/DE:Osmose"
 
-#: ../map.py:129
+#: ../map.py:127
 msgid "Copyright"
 msgstr "Copyright"
 
-#: ../map.py:130
+#: ../map.py:128
 msgid "Sources"
 msgstr "Quellcode"
 
-#: ../map.py:131
+#: ../map.py:129
 msgid "Translation"
 msgstr ""
 
@@ -274,20 +267,20 @@ msgstr "Die Daten stammen von"
 msgid "copyright"
 msgstr "Copyright"
 
-#: tmp.tpl:44
+#: tmp.tpl:44 tmp.tpl:81
 #, python-format
 msgid "Information on error %d"
 msgstr "Informationen über den Fehler %d"
 
-#: tmp.tpl:45
+#: tmp.tpl:45 tmp.tpl:82
 msgid "key"
 msgstr "Schlüssel"
 
-#: tmp.tpl:46
+#: tmp.tpl:46 tmp.tpl:83
 msgid "value"
 msgstr "Wert"
 
-#: tmp.tpl:47
+#: tmp.tpl:47 tmp.tpl:84
 msgid "Marker"
 msgstr "Markierung"
 
@@ -307,7 +300,7 @@ msgstr "Fehler behoben "
 msgid "Graph"
 msgstr "Graph"
 
-#: tmp.tpl:54 tmp.tpl:85
+#: tmp.tpl:54 tmp.tpl:91
 msgid "Map"
 msgstr "Karte"
 
@@ -379,184 +372,196 @@ msgid "date"
 msgstr "Datum"
 
 #: tmp.tpl:79
+msgid "delete error"
+msgstr ""
+
+#: tmp.tpl:80
+#, python-format
+msgid "delete error #%d"
+msgstr ""
+
+#: tmp.tpl:85
 #, fuzzy
 msgid "OpenStreetMap Oversight Search Engine"
 msgstr "OsmOse - OpenStreetMap Oversight Search Engine"
 
-#: tmp.tpl:80
+#: tmp.tpl:86
 #, fuzzy
 msgid "Map of errors"
 msgstr "Fehlerkarte"
 
-#: tmp.tpl:81
+#: tmp.tpl:87
 msgid "Help on OSM wiki"
 msgstr "Hilfe im OSM-Wiki"
 
-#: tmp.tpl:82
+#: tmp.tpl:88
 msgid "Information on error database"
 msgstr "Informationen zur Fehlerdatenbank"
 
-#: tmp.tpl:83
+#: tmp.tpl:89
 msgid "False positives list"
 msgstr "falsch-positive Ergebnisse"
 
-#: tmp.tpl:84
+#: tmp.tpl:90
 msgid "Last analysis updates"
 msgstr "Letzte Analyse"
 
-#: tmp.tpl:86
+#: tmp.tpl:92
 msgid "no bubbles at this zoom factor"
 msgstr "keine Markierungen bei diesem Zoom-Faktor"
 
-#: tmp.tpl:87
+#: tmp.tpl:93
 msgid "Severity"
 msgstr "Fehler der Grade"
 
-#: tmp.tpl:88
+#: tmp.tpl:94
 msgid "1 only"
 msgstr "nur 1"
 
-#: tmp.tpl:89
+#: tmp.tpl:95
 msgid "1+2 only"
 msgstr "nur 1+2"
 
-#: tmp.tpl:90
+#: tmp.tpl:96
 msgid "all severity"
 msgstr "alle Grade"
 
-#: tmp.tpl:91
+#: tmp.tpl:97
 msgid "2 only"
 msgstr "nur 2"
 
-#: tmp.tpl:92
+#: tmp.tpl:98
 msgid "3 only"
 msgstr "nur 3"
 
-#: tmp.tpl:93
+#: tmp.tpl:99
 msgid "Select:"
 msgstr "Wählen Sie:"
 
-#: tmp.tpl:94 tmp.tpl:97
+#: tmp.tpl:100 tmp.tpl:103
 msgid "all"
 msgstr "alle"
 
-#: tmp.tpl:95 tmp.tpl:98
+#: tmp.tpl:101 tmp.tpl:104
 msgid "nothing"
 msgstr "keine"
 
-#: tmp.tpl:96
+#: tmp.tpl:102
 msgid "invert"
 msgstr "Auswahl umkehren"
 
-#: tmp.tpl:99
+#: tmp.tpl:105
 msgid "Change language"
 msgstr "Sprache ändern"
 
-#: tmp.tpl:100
+#: tmp.tpl:106
 msgid "Help"
 msgstr "Hilfe"
 
-#: tmp.tpl:101
+#: tmp.tpl:107
 #, python-format
 msgid "Delay: %sd"
 msgstr "Verzögerung: %sd"
 
-#: tmp.tpl:102
+#: tmp.tpl:108
 msgid "Error reported on: "
 msgstr "Fehler berichtet am:"
 
-#: tmp.tpl:103
+#: tmp.tpl:109
 msgid "change status"
 msgstr "Status ändern"
 
-#: tmp.tpl:104
+#: tmp.tpl:110
 msgid "corrected"
 msgstr "korrigiert"
 
-#: tmp.tpl:105
+#: tmp.tpl:111
 msgid "false positive"
 msgstr "falscher positive"
 
-#: tmp.tpl:106 tmp.tpl:107
+#: tmp.tpl:112 tmp.tpl:113
 msgid "How to help translation"
 msgstr ""
 
-#: tmp.tpl:108
+#: tmp.tpl:114
 msgid ""
 "OsmOse tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
 msgstr ""
 
-#: tmp.tpl:109
+#: tmp.tpl:115
 msgid ""
 "To make OsmOse a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr ""
 
-#: tmp.tpl:110
+#: tmp.tpl:116
 msgid "Recent translation needs"
 msgstr ""
 
-#: tmp.tpl:111
+#: tmp.tpl:117
 msgid ""
 "European countries: German and Italian in Switzerland and Dutch in Belgium"
 msgstr ""
 
-#: tmp.tpl:112
+#: tmp.tpl:118
 msgid ""
 "Countries covered by HOT: Wolof in Senegal, Arabic in Chad and Cameroon, "
 "Swahili in Kenya, Kirundi in Burundi, and Malagasy in Madagascar"
 msgstr ""
 
-#: tmp.tpl:113
+#: tmp.tpl:119
 msgid "Pages to translate"
 msgstr ""
 
-#: tmp.tpl:114
+#: tmp.tpl:120
 msgid "Wiki pages"
 msgstr ""
 
-#: tmp.tpl:115
+#: tmp.tpl:121
 msgid "OsmOse main page"
 msgstr ""
 
-#: tmp.tpl:116
+#: tmp.tpl:122
 #, fuzzy
 msgid "Documentation on reported errors"
 msgstr "Informationen über den Fehler"
 
-#: tmp.tpl:117
+#: tmp.tpl:123
 msgid "OsmOse pages"
 msgstr ""
 
-#: tmp.tpl:118
+#: tmp.tpl:124
 msgid "Translation status of frontend"
 msgstr ""
 
-#: tmp.tpl:119
+#: tmp.tpl:125
 msgid "Source code for translations of frontend (.po files)"
 msgstr ""
 
-#: tmp.tpl:120
+#: tmp.tpl:126
 msgid "Source code for translations of backend (.po files)"
 msgstr ""
 
-#: tmp.tpl:121
+#: tmp.tpl:127
 msgid ""
 "Source code for translations (database files for menu) - categ_menu_en.txt "
 "and item_menu_en.txt are the reference ones."
 msgstr ""
 
-#: tmp.tpl:122
+#: tmp.tpl:128
 msgid "Bug tracking system"
 msgstr ""
 
-#: tmp.tpl:123
+#: tmp.tpl:129
 msgid ""
 "<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
 "issue with translations, or erroneous analyses."
 msgstr ""
+
+#~ msgid "http://clc.openstreetmap.fr/"
+#~ msgstr "http://clc.openstreetmap.fr/"
 
 #~ msgid "Title"
 #~ msgstr "Titel"
