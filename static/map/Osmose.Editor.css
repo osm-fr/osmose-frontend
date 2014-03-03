@@ -1,3 +1,17 @@
+.leaflet-sidebar > #editor {
+  padding: 5px;
+}
+
+#editor h1 {
+  margin: 0;
+}
+
+#editor a {
+  display: block;
+  text-align: right;
+  font-size: 80%;
+}
+
 #editor .same span {
   color: white;
 }
@@ -12,8 +26,12 @@
   color: red;
 }
 
+#editor .tags {
+  border: solid 1px gray;
+  background: #EEE;
+}
 
-#editor span {
+#editor .line span:first-child {
   display: inline-block;
   background: black;
   font-weight: bold;
@@ -21,23 +39,26 @@
   text-align: center;
 }
 
-#editor .tags {
-  border: solid 1px gray;
-  background: #EEE;
-}
-
 #editor input[type="text"] {
   font-family: monospace;
   background: #EEE;
   border: none;
   width: 95%;
+  padding-left: 5px;
 }
 
 #editor .old {
+  position: absolute;
+  right: 0;
   font-style: italic;
+  font-family: monospace;
   text-decoration: line-through;
 }
 
-#editor #validate {
+#editor #buttons {
   float: right;
+}
+
+#menu-editor-save {
+  background: green;
 }

@@ -166,6 +166,11 @@
   <a href="../login">{{_("Login")}}</a>
 %end
 </li>
+
+<li id="menu-editor-save" style="display:none">
+  <a href="#">{{_("Save")}} (<span id="menu-editor-save-number"></span>)</a>
+</li>
+
 </ul>
 </div>
 

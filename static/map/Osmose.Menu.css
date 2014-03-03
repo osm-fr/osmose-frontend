@@ -135,7 +135,7 @@ option.level-__3 {
   background: url('../images/level-__3.png');
 }
 
-.leaflet-sidebar > .leaflet-control {
+.leaflet-sidebar > #menu {
   padding: 8px 0 5px 5px;
 }
 

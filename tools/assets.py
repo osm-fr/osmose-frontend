@@ -11,7 +11,7 @@ css_map_bundle = Bundle(
     'map/leaflet/leaflet.css',
     'map/leaflet-sidebar/src/L.Control.Sidebar.css',
     'map/leaflet-control-geocoder/Control.Geocoder.css',
-    'map/editor.css',
+    'map/Osmose.Editor.css',
     'map/style.css',
     'map/Osmose.Menu.css',
     filters='cssrewrite,cssmin', output='gen/map-%(version)s.css')
