@@ -429,7 +429,33 @@ class OsmSaxWriter(XMLGenerator):
             m[u"ref"] = str(m[u"ref"])
             self.Element("member", m)
         self.endElement("relation")
-      
+
+class OsmDictWriter:
+
+    def __init__(self):
+        self.data = {
+            'node': [],
+            'way': [],
+            'relation': []
+        }
+
+    def begin(self):
+        pass
+
+    def end(self):
+        pass
+
+    def NodeCreate(self, data):
+        if data:
+            self.data[u'node'].append(data)
+
+    def WayCreate(self, data):
+        if data:
+            self.data[u'way'].append(data)
+
+    def RelationCreate(self, data):
+        if data:
+            self.data[u'relation'].append(data)
 
 def NodeToXml(data, full = False):
     o = cStringIO.StringIO()

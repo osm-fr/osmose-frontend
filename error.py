@@ -20,11 +20,12 @@
 ###########################################################################
 
 from bottle import route, request, template, response, abort
-import StringIO, os, tempfile, urllib2
+import StringIO, os, tempfile
 
 from tools import osmose_common
 from tools import utils
 from tools import tag2link
+from tools import OsmSax
 
 t2l = tag2link.tag2link("tools/tag2link_sources.xml")
 
@@ -83,6 +84,38 @@ def display(db, lang, err_id):
         marker=marker, columns_marker=columns_marker,
         elements=elements, columns_elements=columns_elements,
         fix=fix, columns_fix=columns_fix)
+
+
+@route('/api/0.2/error/<err_id:int>/fresh_elems')
+def fresh_elems(db, lang, err_id):
+    (marker, columns_marker, elements, columns_elements, fix, columns_fix) = _get(db, err_id)
+
+    data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
+
+    def expand_tags(tags):
+      t = []
+      for (k, v) in tags.items():
+        t.append({"k": k, "v": v})
+      return t
+
+    elems = []
+    for elem in elements:
+      if elem["data_type"]:
+        fresh_elem = utils.fetch_osm_elem(data_type[elem["data_type"]], elem["id"])
+
+        if len(fresh_elem) > 0:
+            tmp_elem = {data_type[elem["data_type"]]: True,
+                    "type": data_type[elem["data_type"]],
+                    "id": elem["id"],
+                    "version": fresh_elem["version"],
+                    "tags": expand_tags(fresh_elem[u'tag']),
+                   }
+            elems.append(tmp_elem)
+
+    return {
+        "error_id":err_id,
+        "elems":elems,
+    }
 
 
 @route('/api/0.2/error/<err_id:int>')
@@ -183,8 +216,6 @@ def status(err_id, status):
 @route('/api/0.2/error/<err_id:int>/fix')
 @route('/api/0.2/error/<err_id:int>/fix/<fix_num:int>')
 def fix(db, err_id, fix_num=0):
-    remote_url = "http://api.openstreetmap.fr/api/0.6"
-
     data_type = {"N": "node", "W": "way", "R": "relation"}
 
     columns = [ "diff_index", "elem_data_type", "elem_id", "tags_create", "tags_modify", "tags_delete" ]
@@ -198,19 +229,13 @@ WHERE marker_id = %s AND diff_index = %s
     if res:
         response.content_type = 'text/xml; charset=utf-8'
         if res["elem_id"] > 0:
-            elem_url = os.path.join(remote_url,
-                                    data_type[res["elem_data_type"]],
-                                    str(res["elem_id"])
-                                   )
-            if res["elem_data_type"] == "W":
-                elem_url = os.path.join(elem_url, "full")
-            elem_io = urllib2.urlopen(elem_url)
-            osm_read = OsmSax.OsmSaxReader(elem_io)
             out = StringIO.StringIO()
             o = OsmSaxFixWriter(out, "UTF-8",
                                 res["elem_data_type"], res["elem_id"],
                                 res["tags_create"], res["tags_modify"], res["tags_delete"])
             o.startDocument()
+
+            osm_read = utils.fetch_osm_data(data_type[res["elem_data_type"]], res["elem_id"])
             osm_read.CopyTo(o)
 
             return out.getvalue()
@@ -239,9 +264,6 @@ WHERE marker_id = %s AND diff_index = %s
         abort(412, "Precondition Failed")
         #print "No error found"
 
-
-
-from tools import OsmSax
 
 class OsmSaxFixWriter(OsmSax.OsmSaxWriter):
 
