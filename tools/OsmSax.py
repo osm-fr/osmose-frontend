@@ -19,7 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import re, commands, sys, os, time, bz2, xml, gzip, cStringIO
+import re, bz2, gzip, cStringIO
 from xml.sax import make_parser, handler
 from xml.sax.saxutils import XMLGenerator, quoteattr
 
@@ -48,6 +48,9 @@ class dummyout:
 
 ###########################################################################
 
+class OsmSaxNotXMLFile(Exception):
+    pass
+
 class OsmSaxReader(handler.ContentHandler):
 
     def log(self, txt):
@@ -56,6 +59,12 @@ class OsmSaxReader(handler.ContentHandler):
     def __init__(self, filename, logger = dummylog()):
         self._filename = filename
         self._logger   = logger
+
+        # check if file begins with an xml tag
+        f = self._GetFile()
+        line = f.readline()
+        if not line.startswith("<?xml"):
+            raise OsmSaxNotXMLFile, "File %s is not XML" % filename
         
     def _GetFile(self):
         if isinstance(self._filename, basestring):
@@ -87,6 +96,8 @@ class OsmSaxReader(handler.ContentHandler):
             attrs[u"lon"] = float(attrs[u"lon"])
             if u"version" in attrs:
                 attrs[u"version"] = int(attrs[u"version"])
+            if u"user" in attrs:
+                attrs[u"user"] = unicode(attrs[u"user"])
             self._data = attrs
             self._tags = {}
         elif name == u"way":
@@ -96,6 +107,8 @@ class OsmSaxReader(handler.ContentHandler):
             attrs["id"] = int(attrs["id"])
             if u"version" in attrs:
                 attrs[u"version"] = int(attrs[u"version"])
+            if u"user" in attrs:
+                attrs[u"user"] = unicode(attrs[u"user"])
             self._data = attrs
             self._tags = {}
             self._nodes = []
@@ -106,6 +119,8 @@ class OsmSaxReader(handler.ContentHandler):
             attrs["id"] = int(attrs["id"])
             if u"version" in attrs:
                 attrs[u"version"] = int(attrs[u"version"])
+            if u"user" in attrs:
+                attrs[u"user"] = unicode(attrs[u"user"])
             self._data = attrs
             self._members = []
             self._tags = {}
@@ -114,10 +129,10 @@ class OsmSaxReader(handler.ContentHandler):
         elif name == u"tag":
             self._tags[attrs["k"]] = attrs["v"]
         elif name == u"member":
+            attrs["type"] = attrs["type"]
             attrs["ref"] = int(attrs["ref"])
+            attrs["role"] = attrs["role"]
             self._members.append(attrs)
-        elif name == u"osm":
-            self._output.begin()
 
     def endElement(self, name):
         if name == u"node":
@@ -143,8 +158,6 @@ class OsmSaxReader(handler.ContentHandler):
             except:
                 print self._data
                 raise
-        elif name == u"osm":
-            self._output.end()
 
 ###########################################################################
 
@@ -360,26 +373,19 @@ class OsmSaxWriter(XMLGenerator):
             XMLGenerator.__init__(self, out, enc)
     
     def startElement(self, name, attrs):
-        self._write('<' + name)
+        self._write(u'<' + name)
         for (name, value) in attrs.items():
-            self._write(' %s=%s' % (name, quoteattr(value)))
-        self._write('>\n')
+            self._write(u' %s=%s' % (name, quoteattr(value)))
+        self._write(u'>\n')
         
     def endElement(self, name):
-        self._write('</%s>\n' % name)
+        self._write(u'</%s>\n' % name)
     
     def Element(self, name, attrs):
-        self._write('<' + name)
+        self._write(u'<' + name)
         for (name, value) in attrs.items():
-            self._write(' %s=%s' % (name, quoteattr(value)))
-        self._write(' />\n')
-
-    def begin(self):
-        self.startElement("osm", { "version": "0.6",
-                                   "generator": "OsmSax" })
-
-    def end(self):
-        self.endElement("osm")
+            self._write(u' %s=%s' % (name, quoteattr(value)))
+        self._write(u' />\n')
 
     def NodeCreate(self, data):
         if not data:
@@ -418,7 +424,7 @@ def NodeToXml(data, full = False):
     w = OsmSaxWriter(o, "UTF-8")
     if full:
         w.startDocument()
-        w.startElement("osm", {"version": "0.6"})
+        w.startElement("osm", {})
     if data:
         w.NodeCreate(data)
     if full:
@@ -430,7 +436,7 @@ def WayToXml(data, full = False):
     w = OsmSaxWriter(o, "UTF-8")
     if full:
         w.startDocument()
-        w.startElement("osm", {"version": "0.6"})
+        w.startElement("osm", {})
     if data:
         w.WayCreate(data)
     if full:
@@ -442,9 +448,45 @@ def RelationToXml(data, full = False):
     w = OsmSaxWriter(o, "UTF-8")
     if full:
         w.startDocument()
-        w.startElement("osm", {"version": "0.6"})
+        w.startElement("osm", {})
     if data:
         w.RelationCreate(data)
     if full:
         w.endElement("osm")
     return o.getvalue()
+
+
+###########################################################################
+import unittest
+
+class TestCountObjects:
+    def __init__(self):
+        self.num_nodes = 0
+        self.num_ways = 0
+        self.num_rels = 0
+
+    def NodeCreate(self, data):
+        self.num_nodes += 1
+
+    def WayCreate(self, data):
+        self.num_ways += 1
+
+    def RelationCreate(self, data):
+        self.num_rels += 1
+
+class Test(unittest.TestCase):
+    def test1(self):
+        i1 = OsmSaxReader("tests/saint_barthelemy.osm.bz2")
+        o1 = TestCountObjects()
+        i1.CopyTo(o1)
+        self.assertEquals(o1.num_nodes, 8076)
+        self.assertEquals(o1.num_ways, 625)
+        self.assertEquals(o1.num_rels, 16)
+
+    def test2(self):
+        i1 = OsmSaxReader("tests/saint_barthelemy.osm.gz")
+        o1 = TestCountObjects()
+        i1.CopyTo(o1)
+        self.assertEquals(o1.num_nodes, 8076)
+        self.assertEquals(o1.num_ways, 625)
+        self.assertEquals(o1.num_rels, 16)
