@@ -19,6 +19,7 @@ environment.register('css_map', css_map_bundle)
 
 js_map_bundle = Bundle(
     'js/jquery-1.7.2.js',
+    'js/jquery-ui-1.10.4.dialog.js',
     'js/mustache.js',
     'map/leaflet/leaflet-src.js',
     'map/leaflet-plugins/control/Permalink.js',

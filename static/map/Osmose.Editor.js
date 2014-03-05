@@ -9,6 +9,8 @@ OsmoseEditor = L.Control.Sidebar.extend({
 
   _editedObjectStack: {},
 
+  _deletedObjectStack: {},
+
   initialize: function (placeholder, options) {
     this._$container = $("#" + placeholder);
 
@@ -23,7 +25,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
   edit: function (error, type, id) {
     var self = this;
     $.ajax({
-      url: '../api/0.2/error/' + error,
+      url: '../api/0.2/error/' + error + '/fresh_elems',
       dataType: 'json'
     }).done(function (data) {
       var template = $('#editorTpl').html(),
@@ -50,15 +52,44 @@ OsmoseEditor = L.Control.Sidebar.extend({
   },
 
   _save: function (e) {
-    var self = this;
-    $.ajax({
-      url: "../editor/save",
-      type: "POST",
-      data: JSON.stringify(self._editedObjectStack),
-    }).done(function () {
-      alert("Save OK"); //////////////////// TODO
-    }).fail(function () {
-      alert("Save Fail"); ////////////////// TODO
+    var self = this,
+      dialog = $('#dialog_editor_save_popup');
+
+    dialog.find('#editor-edited-count').text(Object.keys(this._editedObjectStack).length);
+    dialog.find('#editor-deleted-count').text(Object.keys(this._deletedObjectStack).length);
+
+    dialog.dialog({
+      modal: true,
+      buttons: [{
+        text: dialog.attr('data-button_cancel'),
+        click: function () {
+          $(this).dialog('close');
+        }
+      }, {
+        text: dialog.attr('data-button_save'),
+        click: function () {
+          var t = this;
+          $.ajax({
+            url: '../editor/save',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+              comment: document.forms.editor_save_form.elements.comment.value,
+              source: document.forms.editor_save_form.elements.source.value,
+              type: document.forms.editor_save_form.elements.type.value,
+              edited: self._editedObjectStack,
+              deleted: self._deletedObjectStack
+            }),
+          }).done(function () {
+            self._editedObjectStack = {};
+            self._deletedObjectStack = {};
+            self._count_touched();
+            $(t).dialog('close');
+          }).fail(function (xhr, err) {
+            alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+          });
+        },
+      }]
     });
   },
 
@@ -75,11 +106,17 @@ OsmoseEditor = L.Control.Sidebar.extend({
       }
     });
     this.hide();
-    var n = Object.keys(this._editedObjectStack).length,
+    this._count_touched();
+  },
+
+  _count_touched: function () {
+    var n = Object.keys(this._editedObjectStack).length + Object.keys(this._deletedObjectStack).length,
       es = $("#menu-editor-save");
     if (n > 0) {
       es.show();
       es.find("#menu-editor-save-number").text(Object.keys(this._editedObjectStack).length);
+    } else {
+      es.hide();
     }
   },
 
@@ -108,14 +145,15 @@ OsmoseEditor = L.Control.Sidebar.extend({
     var cur_value = e.target.value.trim();
     if (cur_value.indexOf("=") < 0 || cur_value.startsWith("=") || cur_value.endsWith("=")) {
       cur_value = "";
-    }
-
-    var edited_key = e.target.dataset.key;
-    if (!edited_key && cur_value.indexOf("=") >= 0) {
-      var edited = cur_value.split("=");
-      edited_key = edited[0].trim();
-      $("input[type='text'][data-key='" + edited_key + "'", this._$container).attr('data-key', null);
-      e.target.dataset.key = edited_key;
+    } else {
+      var edited = cur_value.split("="),
+        k = edited[0].trim();
+        edited_key = e.target.dataset.key;
+      if (!edited_key || k != edited_key) {
+        edited_key = k;
+        $("input[type='text'][data-key='" + edited_key + "'", this._$container).attr('data-key', null);
+        e.target.dataset.key = edited_key;
+      }
     }
 
     var tags = $(e.target).closest(".tags");

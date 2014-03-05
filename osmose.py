@@ -97,6 +97,7 @@ import error
 import errors
 import map
 import false_positive
+import editor
 
 @route('/<filename:path>', name='static')
 def static(filename):
