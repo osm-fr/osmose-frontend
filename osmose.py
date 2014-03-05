@@ -59,7 +59,9 @@ def translation(lang, name=None):
     return template('translation')
 
 @route('/login')
-def translation(lang, name=None):
+def login(lang, name=None):
+    if request.session.has_key('user'):
+        del request.session['user'] # logout
     (url, oauth_tokens) = oauth.fetch_request_token()
     request.session['oauth_tokens'] = oauth_tokens
     redirect(url)
@@ -68,11 +70,16 @@ def translation(lang, name=None):
 def oauth_(lang, name=None):
     try:
         oauth_tokens = request.session['oauth_tokens']
-        oauth_tokens = oauth.fetch_access_token(oauth_tokens, request)
+        oauth_tokens = oauth.fetch_access_token(request.session['oauth_tokens'], request)
         request.session['oauth_tokens'] = oauth_tokens
-        user_request = oauth.get(oauth_tokens, 'http://api.openstreetmap.org/api/0.6/user/details')
-        if user_request:
-            request.session['user'] = xmldict.xml_to_dict(user_request)
+        try:
+            user_request = oauth.get(oauth_tokens, utils.remote_url + 'api/0.6/user/details')
+            if user_request:
+                request.session['user'] = xmldict.xml_to_dict(user_request)
+        except:
+            pass
+        if not request.session.has_key('user'):
+            request.session['user'] = {'user': {'osm': {'user': {'@display_name': '[user name]'}}}}
     except:
         pass
     redirect('map')

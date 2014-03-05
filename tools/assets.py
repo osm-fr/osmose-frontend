@@ -4,7 +4,7 @@
 from webassets import Environment, Bundle
 
 environment = Environment('static', '')
-#environment.debug = True
+environment.debug = True
 
 css_map_bundle = Bundle(
     'css/style.css',

@@ -13,6 +13,7 @@ pg_pass           = "clostAdtoi"
 pg_base           = "osmose_frontend"
 website           = "osmose.openstreetmap.fr"
 
+remote_url        = "http://api.openstreetmap.org/"
 remote_url_read   = "http://api.openstreetmap.fr/"
 remote_url_write  = "http://api.openstreetmap.org/"
 
