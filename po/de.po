@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-02 22:15+0100\n"
+"POT-Creation-Date: 2014-03-02 22:29+0100\n"
 "PO-Revision-Date: 2012-08-02 14:19+0100\n"
 "Last-Translator: operon <operon@sfr.fr>\n"
 "Language-Team: German\n"
@@ -19,12 +19,10 @@ msgstr ""
 
 #. TRANSLATORS: days / hours / minutes since last source update, abbreviated to d / h / m
 #: ../control.py:50
-#, python-brace-format
 msgid "{day}d, {hour}h, {minute}m ago"
 msgstr "vor {day} Tagen, {hour}h, {minute}m"
 
 #: ../control.py:52
-#, python-brace-format
 msgid "in {day}d, {hour}h, {minute}m"
 msgstr "in {day} Tagen, {hour}h, {minute}m"
 
