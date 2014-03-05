@@ -7,9 +7,9 @@ OsmoseEditor = L.Control.Sidebar.extend({
 
   includes: L.Mixin.Events,
 
-  _editedObjectStack: {},
+  _modifiyObjectStack: {},
 
-  _deletedObjectStack: {},
+  _deleteObjectStack: {},
 
   initialize: function (placeholder, options) {
     this._$container = $("#" + placeholder);
@@ -23,9 +23,13 @@ OsmoseEditor = L.Control.Sidebar.extend({
   },
 
   edit: function (error, type, id) {
+    this.show();
+    if (this._$container.data().user != "True") {
+      return;
+    }
+
+    this._$container.html("<center><img src='../images/throbbler.gif' alt='downloading'></center>");
     var self = this;
-    self._$container.html("<center><img src='../images/throbbler.gif' alt='downloading'></center>");
-    self.show();
     $.ajax({
       url: '../api/0.2/error/' + error + '/fresh_elems',
       dataType: 'json'
@@ -49,6 +53,8 @@ OsmoseEditor = L.Control.Sidebar.extend({
         $('.tags[data-type="' + elem.type + '"][data-id="' + elem.id + '"]', self._$container).data('reftags', reftags);
       });
       $('form .tags[data-type="' + type + '"][data-id="' + id + '"] input[type="text"]:last', self._$container).focus();
+    }).fail(function (xhr, err) {
+      self._$container.html("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
     });
   },
 
@@ -56,8 +62,8 @@ OsmoseEditor = L.Control.Sidebar.extend({
     var self = this,
       dialog = $('#dialog_editor_save_popup');
 
-    dialog.find('#editor-edited-count').text(Object.keys(this._editedObjectStack).length);
-    dialog.find('#editor-deleted-count').text(Object.keys(this._deletedObjectStack).length);
+    dialog.find('#editor-modify-count').text(Object.keys(this._modifiyObjectStack).length);
+    dialog.find('#editor-delete-count').text(Object.keys(this._deleteObjectStack).length);
 
     dialog.dialog({
       modal: true,
@@ -75,15 +81,18 @@ OsmoseEditor = L.Control.Sidebar.extend({
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({
-              comment: document.forms.editor_save_form.elements.comment.value,
-              source: document.forms.editor_save_form.elements.source.value,
-              type: document.forms.editor_save_form.elements.type.value,
-              edited: self._editedObjectStack,
-              deleted: self._deletedObjectStack
+              tag: {
+                  comment: document.forms.editor_save_form.elements.comment.value,
+                  source: document.forms.editor_save_form.elements.source.value,
+                  type: document.forms.editor_save_form.elements.type.value
+              },
+              reuse_changeset: document.forms.editor_save_form.elements.reuse_changeset.checked,
+              modify: self._modifiyObjectStack,
+              delete: self._deleteObjectStack
             }),
           }).done(function () {
-            self._editedObjectStack = {};
-            self._deletedObjectStack = {};
+            self._modifiyObjectStack = {};
+            self._deleteObjectStack = {};
             self._count_touched();
             $(t).dialog('close');
           }).fail(function (xhr, err) {
@@ -102,8 +111,8 @@ OsmoseEditor = L.Control.Sidebar.extend({
     var self = this;
     $.each(this._extractData(), function (i, e) {
       if (e.touched) {
-        self._editedObjectStack[i] = e;
-        delete self._editedObjectStack[i]['touched'];
+        self._modifiyObjectStack[i] = e;
+        delete self._modifiyObjectStack[i]['touched'];
       }
     });
     this.hide();
@@ -111,11 +120,11 @@ OsmoseEditor = L.Control.Sidebar.extend({
   },
 
   _count_touched: function () {
-    var n = Object.keys(this._editedObjectStack).length + Object.keys(this._deletedObjectStack).length,
+    var n = Object.keys(this._modifiyObjectStack).length + Object.keys(this._deleteObjectStack).length,
       es = $("#menu-editor-save");
     if (n > 0) {
       es.show();
-      es.find("#menu-editor-save-number").text(Object.keys(this._editedObjectStack).length);
+      es.find("#menu-editor-save-number").text(Object.keys(this._modifiyObjectStack).length);
     } else {
       es.hide();
     }
@@ -137,7 +146,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
         id: eee.dataset.id,
         version: eee.dataset.version,
         touched: eee.dataset.touched == "true",
-        tags: elem
+        tag: elem
       };
     });
     return data;
@@ -159,7 +168,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
     }
 
     var tags = $(e.target).closest(".tags");
-    this._build(tags.data('type'), tags.data('id'), tags.data('reftags'), this._extractData()[tags.data('type') + tags.data('id')].tags);
+    this._build(tags.data('type'), tags.data('id'), tags.data('reftags'), this._extractData()[tags.data('type') + tags.data('id')].tag);
   },
 
   _build: function (type, id, reftags, data) {
@@ -169,7 +178,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
     var del = $('.del', tags);
     del.empty();
     $.each(reftags, function (e) {
-      if (!data[e]) {
+      if (data[e] == undefined) {
         var value = $('<div/>').text(e + '=' + reftags[e]).html(),
           key = $('<div/>').text(e).html();
         del.append($('<span class="line"><span>-</span><input type="text" name="tags_del[]" value="' + value + '" data-key="' + key + '"/><a href="#">×</a></span>'));
@@ -180,7 +189,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
     var same = $('.same', tags);
     same.empty();
     $.each(reftags, function (e) {
-      if (data[e] && data[e] == reftags[e]) {
+      if (data[e] != undefined && data[e] == reftags[e]) {
         var value = $('<div/>').text(e + '=' + reftags[e]).html(),
           key = $('<div/>').text(e).html();
         same.append($('<span class="line"><span>=</span><input type="text" name="tags_del[]" value="' + value + '" data-key="' + key + '"/><a href="#">×</a></span>'));
@@ -190,7 +199,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
     var mod = $('.mod', tags);
     mod.empty();
     $.each(reftags, function (e) {
-      if (data[e] && data[e] != reftags[e]) {
+      if (data[e] != undefined && data[e] != reftags[e]) {
         var value = $('<div/>').text(e + '=' + data[e]).html(),
           key = $('<div/>').text(e).html(),
           old = $('<div/>').text(reftags[e]).html();
@@ -202,7 +211,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
     var add = $('.add', tags);
     add.empty();
     $.each(data, function (e) {
-      if (!reftags[e]) {
+      if (reftags[e] == undefined) {
         var value = $('<div/>').text(e + '=' + data[e]).html(),
           key = $('<div/>').text(e).html();
         add.append($('<span class="line"><span>+</span><input type="text" name="tags_add[]" value="' + value + '" data-key="' + key + '"/><a href="#">×</a></span>'));

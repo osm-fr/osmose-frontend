@@ -180,17 +180,19 @@ $(function() {
 });
 </script>
 
-<div id="editor"></div>
+<div id="editor" data-user="{{not not user}}"><p>{{_("You must be logged in order to use the tag editor")}}</p><a href="../login">{{_("Login")}}</a></div>
 
 <div id="dialog_editor_save_popup" title="{{_("Save changeset")}}" data-button_cancel="{{_("Cancel")}}" data-button_save="{{_("Save")}}" style="display:none">
-  <p>{{_("Objects edited:")}}&nbsp;<span id="editor-edited-count"></span></p>
-  <p>{{_("Objects deleted:")}}&nbsp;<span id="editor-deleted-count"></span></p>
+  <p>{{_("Objects edited:")}}&nbsp;<span id="editor-modify-count"></span></p>
+  <p>{{_("Objects deleted:")}}&nbsp;<span id="editor-delete-count"></span></p>
   <form id="editor_save_form">
-    <label for="comment">{{_("Comment")}}</label><input type="text" name="comment" id="comment" value="{{_("Fix with Osmose")}}">
+    <label for="comment">{{_("Comment")}}</label><input type="text" name="comment" id="comment" value="{{_("Fix with Osmose")}}"/>
     <br/><br/>
-    <label for="source">{{_("Source")}}</label><input type="text" name="source" id="source" value="Osmose">
+    <label for="source">{{_("Source")}}</label><input type="text" name="source" id="source" value="Osmose"/>
     <br/><br/>
-    <label for="type">{{_("Type")}}</label><input type="text" name="type" id="type" value="fix">
+    <label for="type">{{_("Type")}}</label><input type="text" name="type" id="type" value="fix"/>
+    <br/><br/>
+    <input type="checkbox" name="reuse_changeset" id="reuse_changeset" checked="checked"/><label for="reuse_changeset">{{_("Reuse changeset")}}</label>
   </form>
 </div>
 
