@@ -182,7 +182,7 @@ $(function() {
 
 <div id="editor"></div>
 
-<div id="dialog_editor_save_popup" title="{{_("Save changeset")}}" data-button_cancel="{{_("Cancel")}}" data-button_save="{{_("Save")}}">
+<div id="dialog_editor_save_popup" title="{{_("Save changeset")}}" data-button_cancel="{{_("Cancel")}}" data-button_save="{{_("Save")}}" style="display:none">
   <p>{{_("Objects edited:")}}&nbsp;<span id="editor-edited-count"></span></p>
   <p>{{_("Objects deleted:")}}&nbsp;<span id="editor-deleted-count"></span></p>
   <form id="editor_save_form">

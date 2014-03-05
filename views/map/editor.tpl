@@ -3,7 +3,7 @@
 <form>
   <%#elems%>
   <a target="_blank" href="http://www.openstreetmap.org/browse/<%type%>/<%id%>"><%type%> <%id%></a>
-  <div class="tags" data-type="<%type%>" data-id="<%id%>">
+  <div class="tags" data-type="<%type%>" data-id="<%id%>" data-version="<%version%>">
     <div class="del">
     </div>
     <div class="same">

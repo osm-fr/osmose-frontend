@@ -24,6 +24,8 @@ OsmoseEditor = L.Control.Sidebar.extend({
 
   edit: function (error, type, id) {
     var self = this;
+    self._$container.html("<center><img src='../images/throbbler.gif' alt='downloading'></center>");
+    self.show();
     $.ajax({
       url: '../api/0.2/error/' + error + '/fresh_elems',
       dataType: 'json'
@@ -47,7 +49,6 @@ OsmoseEditor = L.Control.Sidebar.extend({
         $('.tags[data-type="' + elem.type + '"][data-id="' + elem.id + '"]', self._$container).data('reftags', reftags);
       });
       $('form .tags[data-type="' + type + '"][data-id="' + id + '"] input[type="text"]:last', self._$container).focus();
-      self.show();
     });
   },
 
@@ -134,6 +135,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
       data[eee.dataset.type + eee.dataset.id] = {
         type: eee.dataset.type,
         id: eee.dataset.id,
+        version: eee.dataset.version,
         touched: eee.dataset.touched == "true",
         tags: elem
       };
@@ -170,7 +172,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
       if (!data[e]) {
         var value = $('<div/>').text(e + '=' + reftags[e]).html(),
           key = $('<div/>').text(e).html();
-        del.append($('<span class="line"><span>-</span><input type="text" name="tags_del[]" value="' + value + '" data-key="' + key + '"/></span>'));
+        del.append($('<span class="line"><span>-</span><input type="text" name="tags_del[]" value="' + value + '" data-key="' + key + '"/><a href="#">×</a></span>'));
         touched = true;
       }
     });
@@ -181,7 +183,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
       if (data[e] && data[e] == reftags[e]) {
         var value = $('<div/>').text(e + '=' + reftags[e]).html(),
           key = $('<div/>').text(e).html();
-        same.append($('<span class="line"><span>=</span><input type="text" name="tags_del[]" value="' + value + '" data-key="' + key + '"/></span>'));
+        same.append($('<span class="line"><span>=</span><input type="text" name="tags_del[]" value="' + value + '" data-key="' + key + '"/><a href="#">×</a></span>'));
       }
     });
 
@@ -192,7 +194,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
         var value = $('<div/>').text(e + '=' + data[e]).html(),
           key = $('<div/>').text(e).html(),
           old = $('<div/>').text(reftags[e]).html();
-        mod.append($('<span class="line"><span>~</span><input type="text" name="tags_mod[]" value="' + value + '" data-key="' + key + '"/><span class="old">(' + old + ')</span></span>'));
+        mod.append($('<span class="line"><span>~</span><input type="text" name="tags_mod[]" value="' + value + '" data-key="' + key + '" title="' + old + '"/><a href="#">×</a></span>'));
         touched = true;
       }
     });
@@ -203,7 +205,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
       if (!reftags[e]) {
         var value = $('<div/>').text(e + '=' + data[e]).html(),
           key = $('<div/>').text(e).html();
-        add.append($('<span class="line"><span>+</span><input type="text" name="tags_add[]" value="' + value + '" data-key="' + key + '"/></span>'));
+        add.append($('<span class="line"><span>+</span><input type="text" name="tags_add[]" value="' + value + '" data-key="' + key + '"/><a href="#">×</a></span>'));
         touched = true;
       }
     });
@@ -218,6 +220,26 @@ OsmoseEditor = L.Control.Sidebar.extend({
     $("input[type='text']", tags).keypress(function (e) {
       self._keypress(e);
     });
+    $("a", tags).click(function (e) {
+      self._delete_tag(e);
+      return false;
+    });
+  },
+
+  _delete_tag: function(e) {
+    var action = $(e.target).closest('div'),
+      span = $(e.target).closest('span'),
+      input = span.find('input').get()[0],
+      tags = $(e.target).closest(".tags"),
+      reftags = tags.data('reftags');
+    if (action.hasClass('del')) {
+      span.appendTo(tags.find('.add'));
+    } else if (action.hasClass('mod')) {
+      input.value = input.dataset.key + '=' + reftags[input.dataset.key];
+    } else if(action.hasClass('same') || action.hasClass('add')) {
+      input.value = '';
+    }
+    this._change({target: input});
   },
 
   _keypress: function (e) {
@@ -228,8 +250,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
       var inputs = $(e.target).closest('form').find("input[type='text']");
       inputs.eq(inputs.index(e.target) + 1).focus();
     } else if (e.key == "Backspace" && e.ctrlKey) { // Ctrl + Backspace
-      e.target.value = '';
-      this._change(e);
+      this._delete_tag(e);
     }
   },
 });
