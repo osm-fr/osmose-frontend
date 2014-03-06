@@ -72,6 +72,7 @@ OsmoseErrors = L.LayerGroup.extend({
           });
           self.addLayer(self._osmoseMarker);
         }
+      }).always(function () {
         self._map.spin(false);
       });
     }
