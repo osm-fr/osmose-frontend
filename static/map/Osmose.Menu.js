@@ -190,6 +190,9 @@ OsmoseMenu = L.Control.Sidebar.extend({
     if (levels) {
       document.myform.level.value = levels;
     }
+
+    this._countItemAll();
+    this._itemChanged();
   },
 });
 
