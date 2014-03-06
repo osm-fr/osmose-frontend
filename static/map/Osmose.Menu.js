@@ -174,6 +174,23 @@ OsmoseMenu = L.Control.Sidebar.extend({
       level: document.myform.level.value,
     };
   },
+
+  setItems: function (items, levels) {
+    if (items) {
+      var checkbox = $(".test_group:not(#categUnactiveItem) :checkbox");
+      checkbox.attr('checked', false);
+      $.each(items.split(','), function (i, item) {
+        item = new RegExp('item' + item.replace(/x/g, '.'));
+        checkbox.filter(function () {
+          return item.test(this.id);
+        }).attr('checked', true);
+      });
+    }
+
+    if (levels) {
+      document.myform.level.value = levels;
+    }
+  },
 });
 
 
