@@ -10,7 +10,7 @@
 <a href="done?{{query}}">{{_("Fixed")}}</a>
 <a href="false-positive?{{query}}">{{_("False positives")}}</a>
 <a href="graph.png?{{query}}">{{_("Graph")}}</a>
-<a href="../map/?{{query}}">{{_("Map")}}</a>
+<a href="../map/#{{query}}">{{_("Map")}}</a>
 <br><br>
 
 <form method='get' action=''>

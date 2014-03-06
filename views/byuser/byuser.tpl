@@ -10,7 +10,7 @@
     {{_("Number of found errors: more than %d") % count}}
 %end
  - 
-<a href='../map/?username={{username}}'>{{_("Show errors on a map")}}</a>
+<a href='../map/#username={{username}}'>{{_("Show errors on a map")}}</a>
 </p>
 
 %include views/errors/list.tpl errors=errors, gen="info", opt_date="-1", translate=translate
