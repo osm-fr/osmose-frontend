@@ -1,4 +1,6 @@
 function init_map() {
+  var urlVars = getUrlVars();
+
   var layers = [];
   $.each(mapBases, function (name, layer) {
     layers.push(layer);
@@ -18,7 +20,7 @@ function init_map() {
   menu.show();
 
   mapOverlay['Osmose Errors Heatmap'] = new OsmoseHeatmap(menu);
-  var osmoseLayer = new OsmoseErrors(menu);
+  var osmoseLayer = new OsmoseErrors(menu, urlVars);
   mapOverlay['Osmose Errors'] = osmoseLayer;
   var layers = L.control.layers(mapBases, mapOverlay);
   map.addControl(layers);
@@ -47,19 +49,7 @@ function init_map() {
   };
   map.addControl(geocode);
 
-  function getUrlVars() {
-    var vars = [],
-      hash;
-    var hashes = window.location.href.slice(window.location.href.indexOf('#') + 1).split('&');
-    for (var i = 0; i < hashes.length; i++) {
-      hash = hashes[i].split('=');
-      vars.push(hash[0]);
-      vars[hash[0]] = hash[1];
-    }
-    return vars;
-  }
-
-  if (!getUrlVars()['overlays']) {
+  if (!urlVars['overlays']) {
     map.addLayer(osmoseLayer);
   }
 

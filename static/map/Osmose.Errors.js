@@ -2,13 +2,20 @@ OsmoseErrors = L.LayerGroup.extend({
 
   _menu: null,
 
+  _params: {},
+
   _onMap: false,
 
   _osmoseMarker: null,
 
-  initialize: function (menu) {
+  _updating: false,
+
+  _updatePending: false,
+
+  initialize: function (menu, params) {
     L.LayerGroup.prototype.initialize.call(this);
     this._menu = menu;
+    this._params = params;
   },
 
   onAdd: function (map) {
@@ -29,13 +36,7 @@ OsmoseErrors = L.LayerGroup.extend({
   _updateOsmoseLayer: function () {
     if (this._map.getZoom() >= 6) {
       var urlPart = this._menu.urlPart(),
-        params = {
-          item: urlPart.item,
-          level: urlPart.level,
-          bbox: this._map.getBounds().toBBoxString(),
-          zoom: this._map.getZoom()
-        },
-        url = L.Util.getParamString(params),
+        url = null,
         self = this;
       this._map.spin(true, {
         length: 50,
@@ -44,6 +45,11 @@ OsmoseErrors = L.LayerGroup.extend({
         direction: -1,
         color: '#fff',
       });
+      this._params.item = urlPart.item;
+      this._params.level =  urlPart.level;
+      this._params.bbox = this._map.getBounds().toBBoxString();
+      this._params.zoom = this._map.getZoom();
+      url = L.Util.getParamString(this._params);
       $.ajax({
         url: 'markers' + url,
         dataType: 'json'
