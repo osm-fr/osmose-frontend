@@ -69,8 +69,8 @@ OsmoseMarker = L.GeoJSON.extend({
                     self.removeLayer(layer);
                   }, 200);
                 });
-                content.on('click', '.edit', function() {
-                  self._editor.edit(this.getAttribute('data-error'), this.getAttribute('data-type'), this.getAttribute('data-id'));
+                content.on('click', '.editor_edit, .editor_fix', function() {
+                  self._editor.edit(this.getAttribute('data-error'), this.getAttribute('data-type'), this.getAttribute('data-id'), this.getAttribute('data-fix'));
                 });
                 e.popup.setContent(content[0]);
               },

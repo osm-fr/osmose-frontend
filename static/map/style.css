@@ -158,7 +158,7 @@ a.bulle_err:hover {
 .bulle_elem .fix {
   border: solid 1px lightgray;
 }
-.bulle_elem .fix .link {
+.bulle_elem .fix_links {
   float: right;
 }
 .bulle_elem .fix .add {

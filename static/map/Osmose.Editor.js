@@ -22,7 +22,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
     L.Control.Sidebar.prototype.initialize.call(this, placeholder, options);
   },
 
-  edit: function (error, type, id) {
+  edit: function (error, type, id, fix) {
     this.show();
     if (this._$container.data().user != "True") {
       return;
@@ -31,7 +31,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
     this._$container.html("<center><img src='../images/throbbler.gif' alt='downloading'></center>");
     var self = this;
     $.ajax({
-      url: '../api/0.2/error/' + error + '/fresh_elems',
+      url: '../api/0.2/error/' + error + '/fresh_elems' + (fix ? '/' + fix : ''),
       dataType: 'json'
     }).done(function (data) {
       var template = $('#editorTpl').html(),
@@ -49,7 +49,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
         $.each(elem.tags, function (i, e) {
           reftags[e.k] = e.v;
         });
-        self._build(elem.type, elem.id, reftags, reftags);
+        self._build(elem.type, elem.id, reftags, (data.fix && data.fix[elem.type + elem.id]) || reftags);
         $('.tags[data-type="' + elem.type + '"][data-id="' + elem.id + '"]', self._$container).data('reftags', reftags);
       });
       $('form .tags[data-type="' + type + '"][data-id="' + id + '"] input[type="text"]:last', self._$container).focus();

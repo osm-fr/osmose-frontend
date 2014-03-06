@@ -20,7 +20,7 @@
 ###########################################################################
 
 from bottle import route, request, template, response, abort
-import StringIO, os, tempfile
+import StringIO, os, tempfile, copy
 
 from tools import osmose_common
 from tools import utils
@@ -87,7 +87,8 @@ def display(db, lang, err_id):
 
 
 @route('/api/0.2/error/<err_id:int>/fresh_elems')
-def fresh_elems(db, lang, err_id):
+@route('/api/0.2/error/<err_id:int>/fresh_elems/<fix_num:int>')
+def fresh_elems(db, lang, err_id, fix_num=None):
     (marker, columns_marker, elements, columns_elements, fix, columns_fix) = _get(db, err_id)
 
     data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
@@ -98,7 +99,7 @@ def fresh_elems(db, lang, err_id):
         t.append({"k": k, "v": v})
       return t
 
-    elems = []
+    elems = {}
     for elem in elements:
       if elem["data_type"]:
         fresh_elem = utils.fetch_osm_elem(data_type[elem["data_type"]], elem["id"])
@@ -108,14 +109,38 @@ def fresh_elems(db, lang, err_id):
                     "type": data_type[elem["data_type"]],
                     "id": elem["id"],
                     "version": fresh_elem["version"],
-                    "tags": expand_tags(fresh_elem[u'tag']),
+                    "tags": fresh_elem[u'tag'],
                    }
-            elems.append(tmp_elem)
+            elems[data_type[elem["data_type"]] + str(elem["id"])] = tmp_elem
 
-    return {
-        "error_id":err_id,
-        "elems":elems,
-    }
+    if fix_num != None:
+        res = _get_fix(db, err_id, fix_num)
+        tid = data_type[res["elem_data_type"]] + str(res["elem_id"])
+        fix_elem_tags = copy.copy(elems[tid]["tags"])
+        for k in res["tags_delete"]:
+            if fix_elem_tags.has_key(k):
+                del fix_elem_tags[k]
+        for (k, v) in res["tags_create"].items():
+            fix_elem_tags[k] = v
+        for (k, v) in res["tags_modify"].items():
+            fix_elem_tags[k] = v
+
+        ret = {
+            "error_id": err_id,
+            "elems": elems.values(),
+            "fix": {tid: fix_elem_tags}
+        }
+
+    else:
+        ret = {
+            "error_id": err_id,
+            "elems": elems.values()
+        }
+
+    for elem in ret['elems']:
+        elem["tags"] = expand_tags(elem["tags"])
+
+    return ret
 
 
 @route('/api/0.2/error/<err_id:int>')
@@ -213,11 +238,7 @@ def status(err_id, status):
         abort(410, "FAIL")
 
 
-@route('/api/0.2/error/<err_id:int>/fix')
-@route('/api/0.2/error/<err_id:int>/fix/<fix_num:int>')
-def fix(db, err_id, fix_num=0):
-    data_type = {"N": "node", "W": "way", "R": "relation"}
-
+def _get_fix(db, err_id, fix_num):
     columns = [ "diff_index", "elem_data_type", "elem_id", "tags_create", "tags_modify", "tags_delete" ]
     sql = "SELECT " + ", ".join(columns) + """
 FROM marker_fix
@@ -225,7 +246,13 @@ WHERE marker_id = %s AND diff_index = %s
 """
 
     db.execute(sql, (err_id, fix_num))
-    res = db.fetchone()
+    return db.fetchone()
+
+
+@route('/api/0.2/error/<err_id:int>/fix')
+@route('/api/0.2/error/<err_id:int>/fix/<fix_num:int>')
+def fix(db, err_id, fix_num=0):
+    res = _get_fix(db, err_id, fix_num)
     if res:
         response.content_type = 'text/xml; charset=utf-8'
         if res["elem_id"] > 0:
@@ -235,6 +262,7 @@ WHERE marker_id = %s AND diff_index = %s
                                 res["tags_create"], res["tags_modify"], res["tags_delete"])
             o.startDocument()
 
+            data_type = {"N": "node", "W": "way", "R": "relation"}
             osm_read = utils.fetch_osm_data(data_type[res["elem_data_type"]], res["elem_id"])
             osm_read.CopyTo(o)
 
