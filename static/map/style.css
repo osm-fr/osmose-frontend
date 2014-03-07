@@ -188,6 +188,10 @@ a.bulle_err:hover {
   font-size: 90%;
 }
 
+.leaflet-touch .josm {
+  display: none;
+}
+
 ul.leaflet-control-geocoder-alternatives {
   width: 60vw;
 }

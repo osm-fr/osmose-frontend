@@ -21,20 +21,20 @@
       <a target="_blank" href="http://osm8.openstreetmap.fr/~osmbin/analyse-relation-open.py?<%id%>">analyse2</a>
   <%/relation%>
   <%#node%>
-      <a href="http://localhost:8111/load_object?objects=n<%id%>" target="hiddenIframe">josm</a>
+      <a href="http://localhost:8111/load_object?objects=n<%id%>" target="hiddenIframe" class="josm">josm</a>
   <%/node%>
   <%#way%>
-      <a href="http://localhost:8111/load_object?objects=w<%id%>" target="hiddenIframe">josm</a>
+      <a href="http://localhost:8111/load_object?objects=w<%id%>" target="hiddenIframe" class="josm">josm</a>
   <%/way%>
   <%#relation%>
-      <a href="http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/<%type%>/<%id%>/full" target="hiddenIframe">josm</a>
+      <a href="http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/<%type%>/<%id%>/full" target="hiddenIframe" class="josm">josm</a>
   <%/relation%>
       <a href="#" class="editor_edit" data-type="<%type%>" data-id="<%id%>" data-error="<%error_id%>">edit</a>
       <br>
   <%#fixes%>
       <div class="fix">
         <div class="fix_links">
-            <a href="http://localhost:8111/import?url=http://{{website}}/api/0.2/error/<%error_id%>/fix/<%num%>" target="hiddenIframe">josm fix</a>
+            <a href="http://localhost:8111/import?url=http://{{website}}/api/0.2/error/<%error_id%>/fix/<%num%>" target="hiddenIframe" class="josm">josm fix</a>
             <a href="#" class="editor_fix" data-type="<%type%>" data-id="<%id%>" data-error="<%error_id%>" data-fix="<%num%>">fix</a>
         </div>
     <%#add%>
@@ -60,7 +60,7 @@
 <%#new_elems%>
     <div class="bulle_elem">
       <div class="fix">
-        <a class="link" href="http://localhost:8111/import?url=http://{{website}}/api/0.2/error/<%error_id%>/fix/<%num%>" target="hiddenIframe">josm fix</a>
+        <a class="link" href="http://localhost:8111/import?url=http://{{website}}/api/0.2/error/<%error_id%>/fix/<%num%>" target="hiddenIframe" class="josm">josm fix</a>
   <%#add%>
         <div class="add"> + <b><%k%></b> = <%v%></div>
   <%/add%>
@@ -78,7 +78,7 @@
   <div class="bulle_verif">
     <a href="http://www.openstreetmap.org/?lat=<%lat%>&lon=<%lon%>&zoom=18" target="_blank">osmlink</a>
     <a href="http://www.openstreetmap.org/edit?lat=<%lat%>&lon=<%lon%>&zoom=18" target="_blank">potlatch</a>
-    <a href="http://localhost:8111/load_and_zoom?left=<%minlon%>&bottom=<%minlat%>&right=<%maxlon%>&top=<%maxlat%>&select=<%elems_id%>" target="hiddenIframe">josm zone</a>
+    <a href="http://localhost:8111/load_and_zoom?left=<%minlon%>&bottom=<%minlat%>&right=<%maxlon%>&top=<%maxlat%>&select=<%elems_id%>" target="hiddenIframe" class="josm">josm zone</a>
   </div>
   <div class="bulle_maj">
     <b>{{_("change status")}} :</b>
