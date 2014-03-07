@@ -90,15 +90,15 @@ OsmoseEditor = L.Control.Sidebar.extend({
             contentType: 'application/json',
             data: JSON.stringify({
               tag: {
-                  comment: document.forms.editor_save_form.elements.comment.value,
-                  source: document.forms.editor_save_form.elements.source.value,
-                  type: document.forms.editor_save_form.elements.type.value
+                comment: document.forms.editor_save_form.elements.comment.value,
+                source: document.forms.editor_save_form.elements.source.value,
+                type: document.forms.editor_save_form.elements.type.value
               },
               reuse_changeset: document.forms.editor_save_form.elements.reuse_changeset.checked,
               modify: self._modifiyObjectStack,
               delete: self._deleteObjectStack
             }),
-            beforeSend: function() {
+            beforeSend: function () {
               t.dialog_content = dialog.html();
               dialog.html("<center><img src='../images/throbbler.gif' alt='downloading'></center>");
               dialog.parent().find('.ui-dialog-buttonpane').hide();
@@ -127,7 +127,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
     $.each(this._extractData(), function (i, e) {
       if (e.touched) {
         self._modifiyObjectStack[i] = e;
-        delete self._modifiyObjectStack[i]['touched'];
+        delete self._modifiyObjectStack[i].touched;
       }
     });
     this.hide();
@@ -173,7 +173,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
       cur_value = "";
     } else {
       var edited = cur_value.split("="),
-        k = edited[0].trim();
+        k = edited[0].trim(),
         edited_key = e.target.dataset.key;
       if (!edited_key || k != edited_key) {
         edited_key = k;
@@ -250,7 +250,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
     });
   },
 
-  _delete_tag: function(e) {
+  _delete_tag: function (e) {
     var action = $(e.target).closest('div'),
       span = $(e.target).closest('span'),
       input = span.find('input').get()[0],
@@ -260,10 +260,12 @@ OsmoseEditor = L.Control.Sidebar.extend({
       span.appendTo(tags.find('.add'));
     } else if (action.hasClass('mod')) {
       input.value = input.dataset.key + '=' + reftags[input.dataset.key];
-    } else if(action.hasClass('same') || action.hasClass('add')) {
+    } else if (action.hasClass('same') || action.hasClass('add')) {
       input.value = '';
     }
-    this._change({target: input});
+    this._change({
+      target: input
+    });
   },
 
   _keypress: function (e) {

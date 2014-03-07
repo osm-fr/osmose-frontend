@@ -45,7 +45,7 @@ OsmoseErrors = L.LayerGroup.extend({
         color: '#fff',
       });
       this._params.item = urlPart.item;
-      this._params.level =  urlPart.level;
+      this._params.level = urlPart.level;
       this._params.tags = urlPart.tags;
       this._params.fixable = urlPart.fixable;
       this._params.bbox = this._map.getBounds().toBBoxString();
@@ -56,9 +56,9 @@ OsmoseErrors = L.LayerGroup.extend({
         dataType: 'json'
       }).done(function (data) {
         var content = null,
-         error_id = null;
+          error_id = null;
         if (self._onMap && self._osmoseMarker) {
-          self._osmoseMarker.eachLayer (function (layer) {
+          self._osmoseMarker.eachLayer(function (layer) {
             if (layer.getPopup() && layer.getPopup()._isOpen) {
               error_id = layer.error_id;
               content = layer.getPopup().getContent();

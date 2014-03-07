@@ -54,7 +54,7 @@ function init_map() {
   };
   map.addControl(geocode);
 
-  if (!urlVars['overlays']) {
+  if (!urlVars.overlays) {
     map.addLayer(osmoseLayer);
   }
 

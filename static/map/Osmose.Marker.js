@@ -63,13 +63,13 @@ OsmoseMarker = L.GeoJSON.extend({
               success: function (data) {
                 var template = $('#popupTpl').html(),
                   content = $(Mustache.render(template, data));
-                content.on('click', '.closePopup', function() {
+                content.on('click', '.closePopup', function () {
                   setTimeout(function () {
                     layer.closePopup();
                     self.removeLayer(layer);
                   }, 200);
                 });
-                content.on('click', '.editor_edit, .editor_fix', function() {
+                content.on('click', '.editor_edit, .editor_fix', function () {
                   self._editor.edit(self, layer, this.getAttribute('data-error'), this.getAttribute('data-type'), this.getAttribute('data-id'), this.getAttribute('data-fix'));
                 });
                 e.popup.setContent(content[0]);
