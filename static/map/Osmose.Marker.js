@@ -70,7 +70,7 @@ OsmoseMarker = L.GeoJSON.extend({
                   }, 200);
                 });
                 content.on('click', '.editor_edit, .editor_fix', function() {
-                  self._editor.edit(this.getAttribute('data-error'), this.getAttribute('data-type'), this.getAttribute('data-id'), this.getAttribute('data-fix'));
+                  self._editor.edit(self, layer, this.getAttribute('data-error'), this.getAttribute('data-type'), this.getAttribute('data-id'), this.getAttribute('data-fix'));
                 });
                 e.popup.setContent(content[0]);
               },

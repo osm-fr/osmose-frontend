@@ -22,7 +22,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
     L.Control.Sidebar.prototype.initialize.call(this, placeholder, options);
   },
 
-  edit: function (error, type, id, fix) {
+  edit: function (errors, layer, error, type, id, fix) {
     this.show();
     if (this._$container.data().user != "True") {
       return;
@@ -42,7 +42,11 @@ OsmoseEditor = L.Control.Sidebar.extend({
       });
       $("#corrected", self._$container).click(function () {
         self._validate(this);
-        $("#popup-" + error + " .corrected").click();
+        $.ajax({
+          url: '../api/0.2/error/' + error + '/done'
+        }).done(function (data) {
+          errors.removeLayer(layer);
+        });
       });
       $("#cancel", self._$container).click(function () {
         self._cancel(this);
