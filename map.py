@@ -170,10 +170,14 @@ OFFSET
     else:
         delay = 0
 
-    try:
-        user = request.session['user']['osm']['user']['@display_name']
-        user_error_count = byuser._user_count(db, user)
-    except KeyError:
+    if request.session.has_key('user'):
+        if request.session['user']:
+            user = request.session['user']['osm']['user']['@display_name']
+            user_error_count = byuser._user_count(db, user)
+        else:
+            user = '[user name]'
+            user_error_count = {1: 0, 2: 0, 3: 0}
+    else:
         user = None
         user_error_count = None
 

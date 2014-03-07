@@ -66,6 +66,12 @@ def login(lang, name=None):
     request.session['oauth_tokens'] = oauth_tokens
     redirect(url)
 
+@route('/logout')
+def login(lang, name=None):
+    if request.session.has_key('user'):
+        del request.session['user']
+    redirect('map')
+
 @route('/oauth')
 def oauth_(lang, name=None):
     try:
@@ -75,11 +81,11 @@ def oauth_(lang, name=None):
         try:
             user_request = oauth.get(oauth_tokens, utils.remote_url + 'api/0.6/user/details')
             if user_request:
-                request.session['user'] = xmldict.xml_to_dict(user_request)
-        except:
+                request.session['user'] = xmldict.xml_to_dict(user_request.encode('utf-8'))
+        except Exception as e:
             pass
         if not request.session.has_key('user'):
-            request.session['user'] = {'user': {'osm': {'user': {'@display_name': '[user name]'}}}}
+            request.session['user'] = None
     except:
         pass
     redirect('map')

@@ -161,6 +161,7 @@
     <li><a href="../byuser/{{user}}?level=1">{{_("Level %s errors (%s)") % (1, user_error_count[1])}}</a></li>
     <li><a href="../byuser/{{user}}?level=2">{{_("Level %s errors (%s)") % (2, user_error_count[2])}}</a></li>
     <li><a href="../byuser/{{user}}?level=3">{{_("Level %s errors (%s)") % (3, user_error_count[3])}}</a></li>
+    <li><a href="../logout">{{_("Logout")}}</a></li>
   </ul>
 %else:
   <a href="../login">{{_("Login")}}</a>
