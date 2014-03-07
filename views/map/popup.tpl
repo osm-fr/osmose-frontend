@@ -9,7 +9,6 @@
       <b><% title %></b>
       <br>
       <%subtitle%>
-      <br>
     </div>
 <%#elems%>
     <div class="bulle_elem">
@@ -83,8 +82,8 @@
   </div>
   <div class="bulle_maj">
     <b>{{_("change status")}} :</b>
-    <a class="closePopup" href="../api/0.2/error/<%error_id%>/done" target="hiddenIframe">{{_("corrected")}}</a>
-    <a class="closePopup" href="../api/0.2/error/<%error_id%>/false" target="hiddenIframe">{{_("false positive")}}</a>
+    <a class="closePopup corrected" href="../api/0.2/error/<%error_id%>/done" target="hiddenIframe">{{_("corrected")}}</a>
+    <a class="closePopup false_positive" href="../api/0.2/error/<%error_id%>/false" target="hiddenIframe">{{_("false positive")}}</a>
 </div>
 
 </div>

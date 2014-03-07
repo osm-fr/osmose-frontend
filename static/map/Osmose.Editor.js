@@ -40,6 +40,10 @@ OsmoseEditor = L.Control.Sidebar.extend({
       $("#validate", self._$container).click(function () {
         self._validate(this);
       });
+      $("#corrected", self._$container).click(function () {
+        self._validate(this);
+        $("#popup-" + error + " .corrected").click();
+      });
       $("#cancel", self._$container).click(function () {
         self._cancel(this);
       });
@@ -90,12 +94,19 @@ OsmoseEditor = L.Control.Sidebar.extend({
               modify: self._modifiyObjectStack,
               delete: self._deleteObjectStack
             }),
+            beforeSend: function() {
+              t.dialog_content = dialog.html();
+              dialog.html("<center><img src='../images/throbbler.gif' alt='downloading'></center>");
+              dialog.parent().find('.ui-dialog-buttonpane').hide();
+            },
           }).done(function () {
             self._modifiyObjectStack = {};
             self._deleteObjectStack = {};
             self._count_touched();
             $(t).dialog('close');
           }).fail(function (xhr, err) {
+            dialog.html(t.dialog_content);
+            dialog.parent().find('.ui-dialog-buttonpane').show();
             alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
           });
         },

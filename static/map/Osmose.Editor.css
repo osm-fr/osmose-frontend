@@ -68,7 +68,7 @@
   background: green;
 }
 
-#editor_save_form br + label, #editor_save_form form + label {
+#editor_save_form br + label, #editor_save_form label:first-child {
   display: inline-block;
   text-align: right;
   width: 30%;
