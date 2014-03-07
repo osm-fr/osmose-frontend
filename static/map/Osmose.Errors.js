@@ -78,4 +78,8 @@ OsmoseErrors = L.LayerGroup.extend({
       });
     }
   },
+
+  corrected: function (layer) {
+    this._osmoseMarker.corrected(layer);
+  },
 });

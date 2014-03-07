@@ -70,7 +70,7 @@ OsmoseMarker = L.GeoJSON.extend({
                   }, 200);
                 });
                 content.on('click', '.editor_edit, .editor_fix', function () {
-                  self._editor.edit(self, layer, this.getAttribute('data-error'), this.getAttribute('data-type'), this.getAttribute('data-id'), this.getAttribute('data-fix'));
+                  self._editor.edit(layer, this.getAttribute('data-error'), this.getAttribute('data-type'), this.getAttribute('data-id'), this.getAttribute('data-fix'));
                 });
                 e.popup.setContent(content[0]);
               },
@@ -84,5 +84,19 @@ OsmoseMarker = L.GeoJSON.extend({
         }, 100);
       }
     });
+  },
+
+  corrected: function (layer) {
+    if (this.hasLayer(layer)) {
+      this.removeLayer(layer);
+    } else {
+      var self = this;
+      this.eachLayer(function (l) {
+        if (l.error_id == layer.error_id) {
+          self.removeLayer(l);
+          return;
+        }
+      });
+    }
   },
 });

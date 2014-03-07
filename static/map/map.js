@@ -27,6 +27,8 @@ function init_map() {
   mapOverlay['Osmose Errors Heatmap'] = new OsmoseHeatmap(menu);
   var osmoseLayer = new OsmoseErrors(menu, urlVars, editor);
   mapOverlay['Osmose Errors'] = osmoseLayer;
+  editor.errors = osmoseLayer;
+
   var layers = L.control.layers(mapBases, mapOverlay);
   map.addControl(layers);
 
