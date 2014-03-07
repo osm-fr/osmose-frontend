@@ -45,6 +45,7 @@
   border: none;
   width: 90%;
   padding-left: 5px;
+  margin: 0px
 }
 
 #editor input[type="text"]:focus {
@@ -74,7 +75,7 @@
   width: 30%;
 }
 
-#editor_save_form input {
+#editor_save_form input[type="text"] {
   width: 70%
 }
 

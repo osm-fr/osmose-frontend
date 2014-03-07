@@ -169,7 +169,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
 
   _change: function (e) {
     var cur_value = e.target.value.trim();
-    if (cur_value.indexOf("=") < 0 || cur_value.startsWith("=") || cur_value.endsWith("=")) {
+    if (cur_value.indexOf("=") < 0 || cur_value[0] == "=" || cur_value[cur_value.length - 1] == "=") {
       cur_value = "";
     } else {
       var edited = cur_value.split("="),
