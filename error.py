@@ -104,7 +104,7 @@ def fresh_elems(db, lang, err_id, fix_num=None):
       if elem["data_type"]:
         fresh_elem = utils.fetch_osm_elem(data_type[elem["data_type"]], elem["id"])
 
-        if len(fresh_elem) > 0:
+        if fresh_elem and len(fresh_elem) > 0:
             tmp_elem = {data_type[elem["data_type"]]: True,
                     "type": data_type[elem["data_type"]],
                     "id": elem["id"],
@@ -116,26 +116,30 @@ def fresh_elems(db, lang, err_id, fix_num=None):
     if fix_num != None:
         res = _get_fix(db, err_id, fix_num)
         tid = data_type[res["elem_data_type"]] + str(res["elem_id"])
-        fix_elem_tags = copy.copy(elems[tid]["tags"])
-        for k in res["tags_delete"]:
-            if fix_elem_tags.has_key(k):
-                del fix_elem_tags[k]
-        for (k, v) in res["tags_create"].items():
-            fix_elem_tags[k] = v
-        for (k, v) in res["tags_modify"].items():
-            fix_elem_tags[k] = v
+        if elems.has_key(tid):
+            fix_elem_tags = copy.copy(elems[tid]["tags"])
+            for k in res["tags_delete"]:
+                if fix_elem_tags.has_key(k):
+                    del fix_elem_tags[k]
+            for (k, v) in res["tags_create"].items():
+                fix_elem_tags[k] = v
+            for (k, v) in res["tags_modify"].items():
+                fix_elem_tags[k] = v
 
-        ret = {
-            "error_id": err_id,
-            "elems": elems.values(),
-            "fix": {tid: fix_elem_tags}
-        }
+            ret = {
+                "error_id": err_id,
+                "elems": elems.values(),
+                "fix": {tid: fix_elem_tags}
+            }
 
-    else:
-        ret = {
-            "error_id": err_id,
-            "elems": elems.values()
-        }
+            for elem in ret['elems']:
+                elem["tags"] = expand_tags(elem["tags"])
+            return ret
+
+    ret = {
+        "error_id": err_id,
+        "elems": elems.values()
+    }
 
     for elem in ret['elems']:
         elem["tags"] = expand_tags(elem["tags"])
