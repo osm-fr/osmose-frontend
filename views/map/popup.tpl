@@ -60,7 +60,9 @@
 <%#new_elems%>
     <div class="bulle_elem">
       <div class="fix">
-        <a class="link" href="http://localhost:8111/import?url=http://{{website}}/api/0.2/error/<%error_id%>/fix/<%num%>" target="hiddenIframe" class="josm">josm fix</a>
+        <div class="fix_links">
+          <a href="http://localhost:8111/import?url=http://{{website}}/api/0.2/error/<%error_id%>/fix/<%num%>" target="hiddenIframe" class="josm">josm fix</a>
+        </div>
   <%#add%>
         <div class="add"> + <b><%k%></b> = <%v%></div>
   <%/add%>
