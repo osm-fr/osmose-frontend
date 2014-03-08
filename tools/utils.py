@@ -89,15 +89,18 @@ def fetch_osm_data(type, id, full=True):
     elem_url = os.path.join(remote_url_read + 'api/0.6/', type, str(id))
     if type == "way" and full:
         elem_url = os.path.join(elem_url, "full")
-    elem_io = urllib2.urlopen(elem_url)
-    osm_read = OsmSax.OsmSaxReader(elem_io)
-
-    return osm_read
+    try:
+        elem_io = urllib2.urlopen(elem_url)
+        osm_read = OsmSax.OsmSaxReader(elem_io)
+        return osm_read
+    except:
+        pass
 
 def fetch_osm_elem(type, id):
     osmdw = OsmSax.OsmDictWriter()
     osm_read = fetch_osm_data(type, id, full=False)
-    osm_read.CopyTo(osmdw)
-    elem = osmdw.data[type]
-    if len(elem) > 0:
-        return elem[0]
+    if osm_read:
+        osm_read.CopyTo(osmdw)
+        elem = osmdw.data[type]
+        if len(elem) > 0:
+            return elem[0]

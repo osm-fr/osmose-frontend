@@ -35,7 +35,11 @@ OsmoseEditor = L.Control.Sidebar.extend({
           self.saveDialog.html("<center><img src='../images/throbbler.gif' alt='downloading'></center>");
           self.saveDialog.parent().find('.ui-dialog-buttonpane').hide();
 
-          self._upload();
+          var comment = document.forms.editor_save_form.elements.comment.value,
+            source = document.forms.editor_save_form.elements.source.value,
+            type = document.forms.editor_save_form.elements.type.value
+            reuse_changeset = document.forms.editor_save_form.elements.reuse_changeset.checked;
+          self._upload(comment, source, type, reuse_changeset);
 
           self.saveDialog.html(dialog_content);
           self.saveDialog.parent().find('.ui-dialog-buttonpane').show();
@@ -90,7 +94,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
     });
   },
 
-  _upload: function () {
+  _upload: function (comment, source, type, reuse_changeset) {
     $.ajax({
       url: '../editor/save',
       type: 'POST',
