@@ -29,7 +29,12 @@ function init_map() {
   mapOverlay['Osmose Errors'] = osmoseLayer;
   editor.errors = osmoseLayer;
 
-  var layers = L.control.layers(mapBases, mapOverlay);
+  var layers;
+  if ($(window).height() < 640) {
+    layers = L.control.selectLayers(mapBases, mapOverlay);
+  } else {
+    layers = L.control.layers(mapBases, mapOverlay);
+  }
   map.addControl(layers);
 
   var permalink = new L.Control.Permalink({

@@ -10,3 +10,9 @@
 [submodule "externals/cssmin"]
 	path = externals/cssmin
 	url = https://github.com/zacharyvoase/cssmin.git
+[submodule "externals/Leaflet.ActiveLayers"]
+	path = externals/Leaflet.ActiveLayers
+	url = https://github.com/vogdb/Leaflet.ActiveLayers.git
+[submodule "externals/SelectLayersControl"]
+	path = externals/SelectLayersControl
+	url = https://github.com/vogdb/SelectLayersControl.git
