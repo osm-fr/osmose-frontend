@@ -133,6 +133,8 @@ class OsmSaxReader(handler.ContentHandler):
             attrs["ref"] = int(attrs["ref"])
             attrs["role"] = attrs["role"]
             self._members.append(attrs)
+        elif name == u"osm":
+            self._output.begin()
 
     def endElement(self, name):
         if name == u"node":
@@ -158,6 +160,8 @@ class OsmSaxReader(handler.ContentHandler):
             except:
                 print self._data
                 raise
+        elif name == u"osm":
+            self._output.end()
 
 ###########################################################################
 
@@ -387,6 +391,13 @@ class OsmSaxWriter(XMLGenerator):
             self._write(u' %s=%s' % (name, quoteattr(value)))
         self._write(u' />\n')
 
+    def begin(self):
+        self.startElement("osm", { "version": "0.6",
+                                   "generator": "OsmSax" })
+
+    def end(self):
+        self.endElement("osm")
+
     def NodeCreate(self, data):
         if not data:
             return
@@ -419,6 +430,7 @@ class OsmSaxWriter(XMLGenerator):
             self.Element("member", m)
         self.endElement("relation")
       
+
 def NodeToXml(data, full = False):
     o = cStringIO.StringIO()
     w = OsmSaxWriter(o, "UTF-8")
@@ -464,6 +476,12 @@ class TestCountObjects:
         self.num_nodes = 0
         self.num_ways = 0
         self.num_rels = 0
+
+    def begin(self):
+        pass
+
+    def end(self):
+        pass
 
     def NodeCreate(self, data):
         self.num_nodes += 1
