@@ -55,7 +55,7 @@
       </span>
       <br>
       <span id="fixable-span">
-        <label for='tags'>{{_("Fixable")}}</label>
+        <label for='fixable'>{{_("Fixable")}}</label>
         <input type="checkbox" name="fixable" id="fixable" value="true"{{fixable_checked}} title="{{_("Show only markers with correction suggestions")}}"/>
       </span>
       <span id="tags-span">

@@ -31,14 +31,14 @@ OsmoseEditor = L.Control.Sidebar.extend({
       }, {
         text: self.saveDialog.attr('data-button_save'),
         click: function () {
-          var dialog_content = self.saveDialog.html();
-          self.saveDialog.html("<center><img src='../images/throbbler.gif' alt='downloading'></center>");
-          self.saveDialog.parent().find('.ui-dialog-buttonpane').hide();
-
-          var comment = document.forms.editor_save_form.elements.comment.value,
+          var dialog_content = self.saveDialog.html(),
+            comment = document.forms.editor_save_form.elements.comment.value,
             source = document.forms.editor_save_form.elements.source.value,
             type = document.forms.editor_save_form.elements.type.value
             reuse_changeset = document.forms.editor_save_form.elements.reuse_changeset.checked;
+          self.saveDialog.html("<center><img src='../images/throbbler.gif' alt='downloading'></center>");
+          self.saveDialog.parent().find('.ui-dialog-buttonpane').hide();
+
           self._upload(comment, source, type, reuse_changeset);
 
           self.saveDialog.html(dialog_content);
@@ -95,17 +95,18 @@ OsmoseEditor = L.Control.Sidebar.extend({
   },
 
   _upload: function (comment, source, type, reuse_changeset) {
+    var self = this;
     $.ajax({
       url: '../editor/save',
       type: 'POST',
       contentType: 'application/json',
       data: JSON.stringify({
         tag: {
-          comment: document.forms.editor_save_form.elements.comment.value,
-          source: document.forms.editor_save_form.elements.source.value,
-          type: document.forms.editor_save_form.elements.type.value
+          comment: comment,
+          source: source,
+          type: type
         },
-        reuse_changeset: document.forms.editor_save_form.elements.reuse_changeset.checked,
+        reuse_changeset: reuse_changeset,
         modify: self._modifiyObjectStack,
         delete: self._deleteObjectStack
       }),
@@ -113,7 +114,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
       self._modifiyObjectStack = {};
       self._deleteObjectStack = {};
       self._count_touched();
-      this.saveDialog.dialog('close');
+      self.saveDialog.dialog('close');
     }).fail(function (xhr, err) {
       alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
     });
