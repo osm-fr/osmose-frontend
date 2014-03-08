@@ -19,6 +19,30 @@ OsmoseEditor = L.Control.Sidebar.extend({
       self._save(this);
     });
 
+    this.saveDialog = $('#dialog_editor_save_popup');
+    this.saveDialog.dialog({
+      autoOpen: false,
+      modal: true,
+      buttons: [{
+        text: self.saveDialog.attr('data-button_cancel'),
+        click: function () {
+          self.saveDialog.dialog('close');
+        }
+      }, {
+        text: self.saveDialog.attr('data-button_save'),
+        click: function () {
+          var dialog_content = self.saveDialog.html();
+          self.saveDialog.html("<center><img src='../images/throbbler.gif' alt='downloading'></center>");
+          self.saveDialog.parent().find('.ui-dialog-buttonpane').hide();
+
+          self._upload();
+
+          self.saveDialog.html(dialog_content);
+          self.saveDialog.parent().find('.ui-dialog-buttonpane').show();
+        },
+      }]
+    });
+
     L.Control.Sidebar.prototype.initialize.call(this, placeholder, options);
   },
 
@@ -66,56 +90,35 @@ OsmoseEditor = L.Control.Sidebar.extend({
     });
   },
 
-  _save: function (e) {
-    var self = this,
-      dialog = $('#dialog_editor_save_popup');
-
-    dialog.find('#editor-modify-count').text(Object.keys(this._modifiyObjectStack).length);
-    dialog.find('#editor-delete-count').text(Object.keys(this._deleteObjectStack).length);
-
-    dialog.dialog({
-      modal: true,
-      buttons: [{
-        text: dialog.attr('data-button_cancel'),
-        click: function () {
-          $(this).dialog('close');
-        }
-      }, {
-        text: dialog.attr('data-button_save'),
-        click: function () {
-          var t = this;
-          $.ajax({
-            url: '../editor/save',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({
-              tag: {
-                comment: document.forms.editor_save_form.elements.comment.value,
-                source: document.forms.editor_save_form.elements.source.value,
-                type: document.forms.editor_save_form.elements.type.value
-              },
-              reuse_changeset: document.forms.editor_save_form.elements.reuse_changeset.checked,
-              modify: self._modifiyObjectStack,
-              delete: self._deleteObjectStack
-            }),
-            beforeSend: function () {
-              t.dialog_content = dialog.html();
-              dialog.html("<center><img src='../images/throbbler.gif' alt='downloading'></center>");
-              dialog.parent().find('.ui-dialog-buttonpane').hide();
-            },
-          }).done(function () {
-            self._modifiyObjectStack = {};
-            self._deleteObjectStack = {};
-            self._count_touched();
-            $(t).dialog('close');
-          }).fail(function (xhr, err) {
-            dialog.html(t.dialog_content);
-            dialog.parent().find('.ui-dialog-buttonpane').show();
-            alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
-          });
+  _upload: function () {
+    $.ajax({
+      url: '../editor/save',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        tag: {
+          comment: document.forms.editor_save_form.elements.comment.value,
+          source: document.forms.editor_save_form.elements.source.value,
+          type: document.forms.editor_save_form.elements.type.value
         },
-      }]
+        reuse_changeset: document.forms.editor_save_form.elements.reuse_changeset.checked,
+        modify: self._modifiyObjectStack,
+        delete: self._deleteObjectStack
+      }),
+    }).done(function () {
+      self._modifiyObjectStack = {};
+      self._deleteObjectStack = {};
+      self._count_touched();
+      this.saveDialog.dialog('close');
+    }).fail(function (xhr, err) {
+      alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
     });
+  },
+
+  _save: function (e) {
+    this.saveDialog.find('#editor-modify-count').text(Object.keys(this._modifiyObjectStack).length);
+    this.saveDialog.find('#editor-delete-count').text(Object.keys(this._deleteObjectStack).length);
+    this.saveDialog.dialog('open');
   },
 
   _cancel: function (e) {
