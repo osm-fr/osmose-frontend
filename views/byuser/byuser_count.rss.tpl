@@ -6,13 +6,13 @@
     <lastBuildDate></lastBuildDate>
     <link>http://{{website}}/byuser/{{username}}</link>
     <item>
-        <title>{{_("Number of level 1 errors: %d") % count[1]}}</title>
+        <title>{{_("Number of level %d errors: %d") % (1, count[1])}}</title>
     </item>
     <item>
-        <title>{{_("Number of level 2 errors: %d") % count[2]}}</title>
+        <title>{{_("Number of level %d errors: %d") % (2, count[2])}}</title>
     </item>
     <item>
-        <title>{{_("Number of level 3 errors: %d") % count[3]}}</title>
+        <title>{{_("Number of level %d errors: %d") % (3, count[3])}}</title>
     </item>
 </channel>
 </rss>
