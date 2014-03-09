@@ -56,7 +56,11 @@
       <br>
       <span id="fixable-span">
         <label for='fixable'>{{_("Fixable")}}</label>
-        <input type="checkbox" name="fixable" id="fixable" value="true"{{fixable_checked}} title="{{_("Show only markers with correction suggestions")}}"/>
+        <select id="fixable" title="{{_("Show only markers with correction suggestions")}}">
+          <option value=""></option>
+          <option value="online"{{!fixable_selected['online']}}>{{_("Online")}}</option>
+          <option value="josm"{{!fixable_selected['josm']}}>JOSM</option>
+        </select>
       </span>
       <span id="tags-span">
         <label for='tags'>{{_("Topic")}}</label>

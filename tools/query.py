@@ -156,7 +156,9 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
     if tags:
         where.append("dynpoi_class.tags::text[] && ARRAY['%s']" % "','".join(map(utils.pg_escape, tags)))
 
-    if fixable:
+    if fixable == 'online':
+        where.append("EXISTS (SELECT 1 FROM marker_fix WHERE marker_fix.marker_id = marker.id AND elem_id != 0)")
+    elif fixable == 'josm':
         where.append("EXISTS (SELECT 1 FROM marker_fix WHERE marker_fix.marker_id = marker.id)")
 
     return (join, " AND\n        ".join(where))
@@ -215,10 +217,6 @@ def _params():
         params.end_date = utils.str_to_datetime(params.end_date)
     if params.tags:
         params.tags = params.tags.split(",")
-    if params.fixable == "true":
-        params.fixable = True
-    else:
-        params.fixable = False
 
     return params
 

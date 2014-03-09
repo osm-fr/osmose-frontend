@@ -134,7 +134,7 @@ OsmoseMenu = L.Control.Sidebar.extend({
   _change_level: function change_level() {
     var new_level = document.myform.level.value,
       new_tag = document.myform.tags.value,
-      fixable = document.myform.fixable.checked;
+      fixable = document.myform.fixable.value;
     this._change_item_display(new_level || "1,2,3", new_tag, fixable);
 
     this._itemChanged();
@@ -175,7 +175,7 @@ OsmoseMenu = L.Control.Sidebar.extend({
       item: ch,
       level: document.myform.level.value,
       tags: document.myform.tags.value,
-      fixable: document.myform.fixable.checked,
+      fixable: document.myform.fixable.value,
     };
   },
 
@@ -199,8 +199,8 @@ OsmoseMenu = L.Control.Sidebar.extend({
       document.myform.tags.value = tags;
     }
 
-    if (fixable) {
-      document.myform.fixable.checked = fixable == 'true';
+    if (fixable != undefined) {
+      document.myform.fixable.value = fixable;
     }
 
     this._countItemAll();
