@@ -15,7 +15,7 @@ tmp.tpl: $(TPLFILES)
 
 osmose-frontend.pot: $(PYFILES) tmp.tpl
 	LANG=C xgettext -cTRANSLATORS --language=Python --keyword=_ --output=$@.tmp $(PYFILES) tmp.tpl
-	diff -I ".*POT-Creation-Date:.*" $@ $@.tmp || cp $@.tmp $@
+	diff -I ".*POT-Creation-Date:.*" -I "^#, python-brace-format" $@ $@.tmp || cp $@.tmp $@
 
 %.po: osmose-frontend.pot
 	if test -e $@; then \
