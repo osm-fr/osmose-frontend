@@ -105,7 +105,7 @@ msgstr "Statistiques pour l'utilisateur %s"
 
 #: tmp.tpl:2 tmp.tpl:3 tmp.tpl:4
 msgid "Number of level {level} errors: {count}"
-msgstr "Nombre d'erreurs de niveau {level} trouvées : {count}"
+msgstr "Nombre d'erreurs de gravité {level} trouvées : {count}"
 
 #: tmp.tpl:6 tmp.tpl:15
 #, python-format
@@ -506,7 +506,7 @@ msgstr "Délai : %sj"
 #: tmp.tpl:120 tmp.tpl:121 tmp.tpl:122
 #, python-format
 msgid "Level %d errors (%d)"
-msgstr "Erreurs de niveau %d (%d)"
+msgstr "Erreurs de gravité %d (%d)"
 
 #: tmp.tpl:123
 msgid "Logout"
