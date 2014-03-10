@@ -1,0 +1,1 @@
+/home/fred/Documents/osm/osmose/frodrigo-osmose-frontend/tools/database/utils.py
