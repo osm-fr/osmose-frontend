@@ -3,13 +3,13 @@
  1030 | way 1 nœud
  1040 | polygone non valide
  1050 | rond-point à l'envers
- 1060 | boundary intersect
- 1070 | highway vs building
+ 1060 | croisement de frontières
+ 1070 | intersection voie bâtiment
  1080 | noeuds orphelins
  1090 | types de routes disparates
  1100 | area=yes non fermé
- 1110 | mauvaise connection *_link
- 1120 | continuité rompue des highway
+ 1110 | mauvaise connexion *_link
+ 1120 | continuité rompue des highways
  1140 | tag ou rôle manquant
  1150 | intersection entre surfaces
  1160 | relation large
@@ -20,19 +20,19 @@
  1210 | voie non connectée
  1220 | cours d'eau
  1230 | géométrie dupliquée
- 2010 | junction=roundabout
- 2020 | ele=...
- 2030 | oneway=...
- 2040 | source=...
+ 2010 | mauvais rond-point
+ 2020 | altitude manquant
+ 2030 | sens unique
+ 2040 | source manquant
  2050 | tag parent
  2060 | numéros de rue
- 2080 | highway=...
+ 2080 | highway manquant
  2090 | croisement de routes
  2100 | pharmacie
  3010 | highway roundabout
  3020 | mauvais tag source
  3030 | tagwatch cleaner
- 3031 | wikipedia
+ 3031 | wikipédia
  3032 | liens entre tags
  3033 | trait d'union sur Saint
  3040 | tag incorrect
@@ -47,20 +47,20 @@
  3120 | arbre
  3130 | nom avec marque
  3150 | typo dans un tag
- 3160 | "lanes" incorrectes
+ 3160 | lanes incorrectes
  3161 | voie de parking
  3170 | rôle de relation
  3180 | relation type=restriction
  3190 | code postal
  4010 | abandonné
- 4020 | sur junction=roundabout
+ 4020 | junction=roundabout
  4030 | tags incompatibles
  4040 | ref in name
  4060 | seamark:fixme
  4070 | construction
  4080 | POI en double
  4090 | tag non-nécessaire sur node
- 4100 | "designation" incorrecte
+ 4100 | designation incorrecte
  5010 | orthographe
  5020 | type voie
  5030 | 2 noms
@@ -74,7 +74,7 @@
  6060 | trou admin_level=8
  6070 | hors des frontières
  7010 | bâtiment géodésique
- 7011 | forme bâtiment
+ 7011 | bâtiment spéciaux
  7012 | pont à qualifier
  7020 | limite admin
  7030 | OpenStreetBugs
