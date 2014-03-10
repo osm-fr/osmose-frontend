@@ -53,6 +53,7 @@ function init_map() {
   map.addControl(location);
 
   var geocode = L.Control.geocoder({
+    position: 'topleft',
     showResultIcons: true
   });
   geocode.markGeocode = function (result) {
