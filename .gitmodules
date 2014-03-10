@@ -16,3 +16,6 @@
 [submodule "externals/SelectLayersControl"]
 	path = externals/SelectLayersControl
 	url = https://github.com/vogdb/SelectLayersControl.git
+[submodule "externals/leaflet-control-geocoder"]
+	path = externals/leaflet-control-geocoder
+	url = https://github.com/perliedman/leaflet-control-geocoder.git
