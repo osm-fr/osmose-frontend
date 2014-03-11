@@ -468,7 +468,7 @@ msgstr "Afficher uniquement les marqueurs avec suggestion de correction"
 
 #: tmp.tpl:109
 msgid "Online"
-msgstr "Enligne"
+msgstr "En ligne"
 
 #: tmp.tpl:110
 msgid "Topic"
