@@ -39,10 +39,10 @@ OsmoseEditor = L.Control.Sidebar.extend({
           self.saveDialog.html("<center><img src='../images/throbbler.gif' alt='downloading'></center>");
           self.saveDialog.parent().find('.ui-dialog-buttonpane').hide();
 
-          self._upload(comment, source, type, reuse_changeset);
-
-          self.saveDialog.html(dialog_content);
-          self.saveDialog.parent().find('.ui-dialog-buttonpane').show();
+          self._upload(comment, source, type, reuse_changeset, function () {
+            self.saveDialog.html(dialog_content);
+            self.saveDialog.parent().find('.ui-dialog-buttonpane').show();
+          });
         },
       }]
     });
@@ -94,7 +94,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
     });
   },
 
-  _upload: function (comment, source, type, reuse_changeset) {
+  _upload: function (comment, source, type, reuse_changeset, always) {
     var self = this;
     $.ajax({
       url: '../editor/save',
@@ -117,7 +117,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
       self.saveDialog.dialog('close');
     }).fail(function (xhr, err) {
       alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
-    });
+    }).always(always);
   },
 
   _save: function (e) {
