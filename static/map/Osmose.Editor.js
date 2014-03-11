@@ -124,6 +124,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
     this.saveDialog.find('#editor-modify-count').text(Object.keys(this._modifiyObjectStack).length);
     this.saveDialog.find('#editor-delete-count').text(Object.keys(this._deleteObjectStack).length);
     this.saveDialog.dialog('open');
+    this.saveDialog.parent().find('button:last').focus();
   },
 
   _cancel: function (e) {
