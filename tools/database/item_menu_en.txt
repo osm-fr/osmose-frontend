@@ -94,8 +94,8 @@
  8021 | post office, could be integrated
  8030 | school
  8031 | school, could be integrated
- 8040 | french railway station
- 8041 | french railway station, could be integrated
+ 8040 | public transport
+ 8041 | public transport, could be integrated
  8050 | train station
  8051 | train station, could be integrated
  8060 | crossing

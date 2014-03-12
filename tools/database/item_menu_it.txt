@@ -94,8 +94,8 @@
  8021 | ufficio postale da integrare
  8030 | scuola
  8031 | scuola da integrare
- 8040 | stazione ferroviaria francese
- 8041 | stazione ferroviaria francese da integrare
+ 8040 | trasporto pubblico
+ 8041 | trasporto pubblico da integrare
  8050 | stazione dei treni
  8051 | stazione dei treni da integrare
  8060 | passaggio ferroviario

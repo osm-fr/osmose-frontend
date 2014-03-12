@@ -94,8 +94,8 @@
  8021 | poste, intégration possible
  8030 | école
  8031 | école, intégration possible
- 8040 | station RATP
- 8041 | station RATP, intégration possible
+ 8040 | Transport en commun
+ 8041 | Transport en commun, intégration possible
  8050 | gare
  8051 | gare, intégration possible
  8060 | passage à niveau
