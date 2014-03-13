@@ -114,5 +114,6 @@ session_opts = {
     'session.type': 'file',
     'session.data_dir': './session/',
     'session.auto': True,
+    'session.cookie_expires': False,
 }
 app = beaker.middleware.SessionMiddleware(app, session_opts)
