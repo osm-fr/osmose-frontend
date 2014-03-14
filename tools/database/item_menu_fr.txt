@@ -88,8 +88,8 @@
  7110 | TMC
  7120 | relation type=boundary
  7130 | tunnel/pont
- 8010 | monument
- 8011 | monument, intégration possible
+ 8010 | monument, musée
+ 8011 | monument, musée, intégration possible
  8020 | poste
  8021 | poste, intégration possible
  8030 | école
@@ -103,3 +103,13 @@
  8080 | adresse, intégration possible
  8101 | Wikipédia, intégration possible
  8110 | service public
+ 8120 | recyclage
+ 8121 | recyclage, intégration possible
+ 8130 | parking
+ 8131 | parking, intégration possible
+ 8140 | hergement
+ 8141 | hergement, intégration possible
+ 8150 | parking vélo
+ 8151 | parking vélo, intégration possible
+ 8160 | vélopartage
+ 8161 | vélopartage, intégration possible
