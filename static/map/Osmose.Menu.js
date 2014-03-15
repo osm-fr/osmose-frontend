@@ -140,7 +140,7 @@ OsmoseMenu = L.Control.Sidebar.extend({
     this._itemChanged();
   },
 
-  _itemChanged: function (skipBuildUrl = false) {
+  _itemChanged: function (skipBuildUrl) {
     if (!skipBuildUrl) {
       this._urlPart = this._buildUrlPart();
     }
