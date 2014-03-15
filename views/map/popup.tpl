@@ -34,8 +34,8 @@
   <%#fixes%>
       <div class="fix">
         <div class="fix_links">
-            <a href="http://localhost:8111/import?url=http://{{website}}/api/0.2/error/<%error_id%>/fix/<%num%>" target="hiddenIframe" class="josm">josm fix</a>
-            <a href="#" class="editor_fix" data-type="<%type%>" data-id="<%id%>" data-error="<%error_id%>" data-fix="<%num%>">fix</a>
+            <a href="http://localhost:8111/import?url=http://{{website}}/api/0.2/error/<%error_id%>/fix/<%num%>" target="hiddenIframe" class="josm">fix-josm</a>
+            <a href="#" class="editor_fix" data-type="<%type%>" data-id="<%id%>" data-error="<%error_id%>" data-fix="<%num%>">fix-edit</a>
         </div>
     <%#add%>
         <div class="add"> + <b><%k%></b> = <%v%></div>
@@ -61,7 +61,7 @@
     <div class="bulle_elem">
       <div class="fix">
         <div class="fix_links">
-          <a href="http://localhost:8111/import?url=http://{{website}}/api/0.2/error/<%error_id%>/fix/<%num%>" target="hiddenIframe" class="josm">josm fix</a>
+          <a href="http://localhost:8111/import?url=http://{{website}}/api/0.2/error/<%error_id%>/fix/<%num%>" target="hiddenIframe" class="josm">fix-josm</a>
         </div>
   <%#add%>
         <div class="add"> + <b><%k%></b> = <%v%></div>
