@@ -67,9 +67,6 @@ OsmoseEditor = L.Control.Sidebar.extend({
       self._$container.html(content);
       $("#validate", self._$container).click(function () {
         self._validate(this);
-      });
-      $("#corrected", self._$container).click(function () {
-        self._validate(this);
         $.ajax({
           url: '../api/0.2/error/' + error + '/done'
         }).done(function (data) {
