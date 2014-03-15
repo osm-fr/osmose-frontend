@@ -140,8 +140,10 @@ OsmoseMenu = L.Control.Sidebar.extend({
     this._itemChanged();
   },
 
-  _itemChanged: function () {
-    this._urlPart = this._buildUrlPart();
+  _itemChanged: function (skipBuildUrl = false) {
+    if (!skipBuildUrl) {
+      this._urlPart = this._buildUrlPart();
+    }
     this.fire('itemchanged', {
       urlPart: this._urlPart
     });
@@ -204,7 +206,20 @@ OsmoseMenu = L.Control.Sidebar.extend({
     }
 
     this._countItemAll();
-    this._itemChanged();
+    this._urlPart = {};
+    if (items) {
+        this._urlPart.item =  items;
+    }
+    if (levels) {
+      this._urlPart.level = levels;
+    }
+    if (tags) {
+      this._urlPart.tags = tags;
+    }
+    if (fixable) {
+      this._urlPart.fixable = fixable;
+    };
+    this._itemChanged(true);
   },
 });
 

@@ -44,10 +44,26 @@ OsmoseErrors = L.LayerGroup.extend({
         direction: -1,
         color: '#fff',
       });
-      this._params.item = urlPart.item;
-      this._params.level = urlPart.level;
-      this._params.tags = urlPart.tags;
-      this._params.fixable = urlPart.fixable;
+      if (urlPart.item) {
+        this._params.item = urlPart.item;
+      } else {
+        delete this._params.item;
+      }
+      if (urlPart.level) {
+        this._params.level = urlPart.level;
+      } else {
+        delete this._params.level;
+      }
+      if (urlPart.tags) {
+        this._params.tags = urlPart.tags;
+      } else {
+        delete this._params.tags;
+      }
+      if (urlPart.fixable) {
+        this._params.fixable = urlPart.fixable;
+      } else {
+        delete this._params.fixable;
+      }
       this._params.bbox = this._map.getBounds().toBBoxString();
       this._params.zoom = this._map.getZoom();
       url = L.Util.getParamString(this._params);
