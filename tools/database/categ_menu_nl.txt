@@ -1,7 +1,7 @@
-     10 | Structurele
-     20 | Tags vermist
-     30 | Bad tag
-     40 | Tags verwijderen
+     10 | Structureel
+     20 | Ontbrekende tags
+     30 | Verkeerde tag
+     40 | Tags te verwijderen
      50 | Tags naam
      60 | Administratieve
      70 | Toevoegen aan Kaart

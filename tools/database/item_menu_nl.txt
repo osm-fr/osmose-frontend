@@ -1,6 +1,6 @@
     0 | overlappende gebouw
  1010 | dubbele knooppunt
- 1030 | way gevormd van 1 knooppunt
+ 1030 | weg gevormd van 1 knooppunt
  1040 | ongeldige polygoon
  1050 | omgekeerde rotonde
  1060 | kruising van de grens
@@ -80,7 +80,7 @@
  7040 | Hoogspanningslijnen
  7050 | postkantoor
  7060 | ODbL wijzigingen
- 7070 | niet geintegreerd
+ 7070 | school, niet geintegreerd
  7080 | monumenten
  7090 | overgang
  7100 | trein station
