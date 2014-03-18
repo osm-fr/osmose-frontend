@@ -1,5 +1,5 @@
 
-PYFILES=$(shell find .. -name '*.py' -not -type l | sort)
+PYFILES=$(shell find .. -name '*.py' -not -type l -not -path '*/externals/*' | sort)
 TPLFILES=$(shell find ../views -name '*.tpl' | sort)
 LANG=fr en de es nl it sw
 

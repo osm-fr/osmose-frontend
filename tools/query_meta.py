@@ -57,7 +57,8 @@ def _categories(db, lang):
         dynpoi_item.marker_color,
         dynpoi_item.marker_flag,
         dynpoi_item.levels,
-        dynpoi_item.number
+        dynpoi_item.number,
+        dynpoi_item.tags
     FROM
         dynpoi_categ
         JOIN dynpoi_item ON
@@ -78,7 +79,7 @@ def _categories(db, lang):
                 if l in res["categ_menu"]:
                     ret["menu"] = res["categ_menu"][l]
                     break
-        ret["item"].append({"item":res["item"], "menu":"no translation", "marker_color":res["marker_color"], "marker_flag":res["marker_flag"], "levels":res["levels"], "number":res["number"]})
+        ret["item"].append({"item":res["item"], "menu":"no translation", "marker_color":res["marker_color"], "marker_flag":res["marker_flag"], "levels":res["levels"], "number":res["number"], "tags":res["tags"]})
         for l in lang:
             if res["menu"] and l in res["menu"]:
                 ret["item"][-1]["menu"] = res["menu"][l]
@@ -98,6 +99,8 @@ def _tags(db, lang):
         FROM
             dynpoi_class
         ) AS t
+    WHERE
+        tag != ''
     ORDER BY
         tag
     """

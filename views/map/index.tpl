@@ -5,40 +5,25 @@
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
   <meta name="description" content="Contrôle, vérification et correction d'erreurs d'OpenStreetMap">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='css/style.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/leaflet/leaflet.css')}}" />
-  <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/leaflet-sidebar/src/L.Control.Sidebar.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/leaflet-control-geocoder/Control.Geocoder.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/style.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{get_url('static', filename='/map/Osmose.Menu.css')}}">
+%for css in assets['css_map'].urls():
+  <link rel="stylesheet" type="text/css" href="{{get_url('static', filename=css)}}">
+%end
   <script id="popupTpl" type="text/template" src="{{get_url('static', filename='/tpl/popup.tpl')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/js/jquery-1.7.2.min.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/js/mustache.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/leaflet/leaflet-src.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/leaflet-plugins/control/Permalink.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/leaflet-plugins/control/Permalink.Layer.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/Permalink.Overlay.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/Permalink.Item.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/leaflet-plugins/layer/tile/Bing.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/layers.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/leaflet-sidebar/src/L.Control.Sidebar.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/leaflet-control-geocoder/Control.Geocoder.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/Leaflet.Spin/spin.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/Leaflet.Spin/leaflet.spin.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/Location.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/Osmose.Menu.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/Osmose.Heatmap.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/Osmose.Marker.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/Osmose.Errors.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/map.js')}}"></script>
-  <script type="text/javascript" src="{{get_url('static', filename='/map/menu.js')}}"></script>
+  <script id="editorTpl" type="text/template" src="{{get_url('static', filename='/tpl/editor.tpl')}}"></script>
+%for js in assets['js_map'].urls():
+  <script type="text/javascript" src="{{get_url('static', filename=js)}}"></script>
+%end
   <script type="text/javascript">
     var lat={{lat}};
     var lon={{lon}};
     var zoom={{zoom}};
     var item_levels = {};
-%for (l, i) in levels.iteritems():
+%for (l, i) in item_levels.iteritems():
     item_levels["{{l}}"] = {{list(i)}};
+%end
+    var item_tags = {};
+%for (t, i) in item_tags.iteritems():
+    item_tags["{{t}}"] = {{list(i)}};
 %end
   </script>
 </head>
@@ -55,7 +40,6 @@
   <input type='hidden' name='useDevItem' value='{{useDevItem}}'>
   <input type='hidden' name='username' value='{{username}}'>
   <input type='hidden' name='country' value='{{country}}'>
-  <input type='hidden' name='tags' value='{{tags}}'>
     <div id="need_zoom">{{_("no bubbles at this zoom factor")}}</div>
     <div id="action_links">
       <span id="level-span">
@@ -67,6 +51,24 @@
           <option disabled="disabled"></option>
           <option class="level-_2_" value="2"{{!level_selected['2']}}>{{_("2 only")}}</option>
           <option class="level-__3" value="3"{{!level_selected['3']}}>{{_("3 only")}}</option>
+        </select>
+      </span>
+      <br>
+      <span id="fixable-span">
+        <label for='fixable'>{{_("Fixable")}}</label>
+        <select id="fixable" title="{{_("Show only markers with correction suggestions")}}">
+          <option value=""></option>
+          <option value="online"{{!fixable_selected['online']}}>{{_("Online")}}</option>
+          <option value="josm"{{!fixable_selected['josm']}}>JOSM</option>
+        </select>
+      </span>
+      <span id="tags-span">
+        <label for='tags'>{{_("Topic")}}</label>
+        <select id='tags'>
+          <option value=""></option>
+%for tag in tags:
+          <option value="{{tag}}" {{!tags_selected[tag]}}>{{_(tag)}}</option>
+%end
         </select>
       </span>
       <br>
@@ -155,6 +157,25 @@
 %delay_status = "normal" if delay < 1.1 else "warning" if delay < 1.6 else "error"
 %delay = "%0.2f" % delay
 <li id="menu-delay"><a href="../control/update" class="delay-{{delay_status}}">{{_("Delay: %sd") % delay}}</a></li>
+
+<li id="menu-user">
+%if user:
+  <a href="../byuser/{{user}}">{{user}} ({{user_error_count[1]+user_error_count[2]+user_error_count[3]}}) ▼</a>
+  <ul class="submenu">
+    <li><a href="../byuser/{{user}}?level=1">{{_("Level %d errors (%d)") % (1, user_error_count[1])}}</a></li>
+    <li><a href="../byuser/{{user}}?level=2">{{_("Level %d errors (%d)") % (2, user_error_count[2])}}</a></li>
+    <li><a href="../byuser/{{user}}?level=3">{{_("Level %d errors (%d)") % (3, user_error_count[3])}}</a></li>
+    <li><a href="../logout">{{_("Logout")}}</a></li>
+  </ul>
+%else:
+  <a href="../login">{{_("Login")}}</a>
+%end
+</li>
+
+<li id="menu-editor-save" style="display:none">
+  <a href="#">{{_("Save")}} (<span id="menu-editor-save-number"></span>)</a>
+</li>
+
 </ul>
 </div>
 
@@ -163,6 +184,22 @@ $(function() {
   init_map();
 });
 </script>
+
+<div id="editor" data-user="{{not not user}}"><p>{{_("You must be logged in order to use the tag editor")}}</p><a href="../login">{{_("Login")}}</a></div>
+
+<div id="dialog_editor_save_popup" title="{{_("Save changeset")}}" data-button_cancel="{{_("Cancel")}}" data-button_save="{{_("Save")}}" style="display:none">
+  <p>{{_("Objects edited:")}}&nbsp;<span id="editor-modify-count"></span></p>
+  <p>{{_("Objects deleted:")}}&nbsp;<span id="editor-delete-count"></span></p>
+  <form id="editor_save_form">
+    <label for="comment">{{_("Comment")}}</label><input type="text" name="comment" id="comment" value="{{_("Fix with Osmose")}}"/>
+    <br/><br/>
+    <label for="source">{{_("Source")}}</label><input type="text" name="source" id="source" value="Osmose"/>
+    <br/><br/>
+    <label for="type">{{_("Type")}}</label><input type="text" name="type" id="type" value="fix"/>
+    <br/><br/>
+    <input type="checkbox" name="reuse_changeset" id="reuse_changeset" checked="checked"/><label for="reuse_changeset">{{_("Reuse changeset")}}</label>
+  </form>
+</div>
 
 </body>
 </html>

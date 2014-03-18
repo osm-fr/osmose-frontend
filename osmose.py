@@ -7,11 +7,16 @@
 #
 
 import bottle
-from bottle import route, view, template, error
+from bottle import route, view, template, error, redirect, request, hook
+from tools import utils, oauth, xmldict
+import beaker.middleware
 
-from tools import utils
 
 app = bottle.default_app()
+
+@hook('before_request')
+def setup_request():
+    request.session = request.environ['beaker.session']
 
 for l in utils.allowed_languages:
     app.mount('/' + l, app)
@@ -53,6 +58,38 @@ def translation(lang, name=None):
     translate = utils.translator(lang)
     return template('translation')
 
+@route('/login')
+def login(lang, name=None):
+    if request.session.has_key('user'):
+        del request.session['user'] # logout
+    (url, oauth_tokens) = oauth.fetch_request_token()
+    request.session['oauth_tokens'] = oauth_tokens
+    redirect(url)
+
+@route('/logout')
+def login(lang, name=None):
+    if request.session.has_key('user'):
+        del request.session['user']
+    redirect('map')
+
+@route('/oauth')
+def oauth_(lang, name=None):
+    try:
+        oauth_tokens = request.session['oauth_tokens']
+        oauth_tokens = oauth.fetch_access_token(request.session['oauth_tokens'], request)
+        request.session['oauth_tokens'] = oauth_tokens
+        try:
+            user_request = oauth.get(oauth_tokens, utils.remote_url + 'api/0.6/user/details')
+            if user_request:
+                request.session['user'] = xmldict.xml_to_dict(user_request.encode('utf-8'))
+        except Exception as e:
+            pass
+        if not request.session.has_key('user'):
+            request.session['user'] = None
+    except:
+        pass
+    redirect('map')
+
 @error(404)
 @view('404')
 def error404(error):
@@ -66,7 +103,17 @@ import error
 import errors
 import map
 import false_positive
+import editor
 
 @route('/<filename:path>', name='static')
 def static(filename):
     return bottle.static_file(filename, root='static')
+
+
+session_opts = {
+    'session.type': 'file',
+    'session.data_dir': './session/',
+    'session.auto': True,
+    'session.cookie_expires': False,
+}
+app = beaker.middleware.SessionMiddleware(app, session_opts)

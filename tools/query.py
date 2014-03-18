@@ -50,7 +50,7 @@ def _build_where_item(item, table):
     return where
 
 
-def _build_param(bbox, source, item, level, users, classs, country, useDevItem, status, tags, forceTable=[],
+def _build_param(bbox, source, item, level, users, classs, country, useDevItem, status, tags, fixable, forceTable=[],
                  summary=False, stats=False, start_date=None, end_date=None):
     join = ""
     where = ["1=1"]
@@ -156,6 +156,11 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
     if tags:
         where.append("dynpoi_class.tags::text[] && ARRAY['%s']" % "','".join(map(utils.pg_escape, tags)))
 
+    if fixable == 'online':
+        where.append("EXISTS (SELECT 1 FROM marker_fix WHERE marker_fix.marker_id = marker.id AND elem_id != 0)")
+    elif fixable == 'josm':
+        where.append("EXISTS (SELECT 1 FROM marker_fix WHERE marker_fix.marker_id = marker.id)")
+
     return (join, " AND\n        ".join(where))
 
 
@@ -178,6 +183,7 @@ def _params():
         start_date = request.params.get('start_date', default=None)
         end_date = request.params.get('end_date', default=None)
         tags     = request.params.get('tags', default=None)
+        fixable  = request.params.get('fixable', default=None)
 
     params = Params()
 
@@ -257,8 +263,8 @@ def _gets(db, params):
         JOIN dynpoi_update_last ON
             marker.source = dynpoi_update_last.source
     WHERE
-        %s --AND
---        dynpoi_update_last.timestamp > (now() - interval '3 months')
+        %s AND
+        dynpoi_update_last.timestamp > (now() - interval '3 months')
     """
     if params.lat and params.lon:
         sqlbase += """
@@ -277,7 +283,7 @@ def _gets(db, params):
     else:
         forceTable = []
 
-    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, forceTable=forceTable, start_date=params.start_date, end_date=params.end_date)
+    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, forceTable=forceTable, start_date=params.start_date, end_date=params.end_date)
     sql = sqlbase % (join, where)
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()
@@ -318,7 +324,7 @@ def _count(db, params, by, extraFrom=[], extraFields=[], orderBy=False):
     if params.limit:
         sqlbase += " LIMIT %s" % params.limit
 
-    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, summary=summary, forceTable=byTable, start_date=params.start_date, end_date=params.end_date)
+    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, summary=summary, forceTable=byTable, start_date=params.start_date, end_date=params.end_date)
     sql = sqlbase % (select, join, where, groupBy, order)
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()

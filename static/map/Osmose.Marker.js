@@ -2,8 +2,9 @@ OsmoseMarker = L.GeoJSON.extend({
 
   _options: {},
 
-  initialize: function (data, options) {
+  initialize: function (data, editor, options) {
     this._options = options;
+    this._editor = editor;
     L.GeoJSON.prototype.initialize.call(this, data, {
       pointToLayer: this._pointToLayer.bind(this),
       onEachFeature: this._onEachFeature.bind(this),
@@ -62,11 +63,14 @@ OsmoseMarker = L.GeoJSON.extend({
               success: function (data) {
                 var template = $('#popupTpl').html(),
                   content = $(Mustache.render(template, data));
-                content.on('click', '.closePopup', function() {
+                content.on('click', '.closePopup', function () {
                   setTimeout(function () {
                     layer.closePopup();
                     self.removeLayer(layer);
                   }, 200);
+                });
+                content.on('click', '.editor_edit, .editor_fix', function () {
+                  self._editor.edit(layer, this.getAttribute('data-error'), this.getAttribute('data-type'), this.getAttribute('data-id'), this.getAttribute('data-fix'));
                 });
                 e.popup.setContent(content[0]);
               },
@@ -80,5 +84,19 @@ OsmoseMarker = L.GeoJSON.extend({
         }, 100);
       }
     });
+  },
+
+  corrected: function (layer) {
+    if (this.hasLayer(layer)) {
+      this.removeLayer(layer);
+    } else {
+      var self = this;
+      this.eachLayer(function (l) {
+        if (l.error_id == layer.error_id) {
+          self.removeLayer(l);
+          return;
+        }
+      });
+    }
   },
 });

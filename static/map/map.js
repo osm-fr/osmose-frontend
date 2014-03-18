@@ -19,10 +19,22 @@ function init_map() {
   map.addControl(new OsmoseMenuToggle(menu));
   menu.show();
 
+  var editor = new OsmoseEditor('editor', {
+    position: 'right'
+  });
+  map.addControl(editor);
+
   mapOverlay['Osmose Errors Heatmap'] = new OsmoseHeatmap(menu);
-  var osmoseLayer = new OsmoseErrors(menu, urlVars);
+  var osmoseLayer = new OsmoseErrors(menu, urlVars, editor);
   mapOverlay['Osmose Errors'] = osmoseLayer;
-  var layers = L.control.layers(mapBases, mapOverlay);
+  editor.errors = osmoseLayer;
+
+  var layers;
+  if ($(window).height() < 640) {
+    layers = L.control.selectLayers(mapBases, mapOverlay);
+  } else {
+    layers = L.control.layers(mapBases, mapOverlay);
+  }
   map.addControl(layers);
 
   var permalink = new L.Control.Permalink({
@@ -41,6 +53,7 @@ function init_map() {
   map.addControl(location);
 
   var geocode = L.Control.geocoder({
+    position: 'topleft',
     showResultIcons: true
   });
   geocode.markGeocode = function (result) {
@@ -49,7 +62,7 @@ function init_map() {
   };
   map.addControl(geocode);
 
-  if (!urlVars['overlays']) {
+  if (!urlVars.overlays) {
     map.addLayer(osmoseLayer);
   }
 
@@ -57,6 +70,12 @@ function init_map() {
     url: $("#popupTpl").attr("src")
   }).done(function (html) {
     $("#popupTpl").html(html);
+  });
+
+  $.ajax({
+    url: $("#editorTpl").attr("src")
+  }).done(function (html) {
+    $("#editorTpl").html(html);
   });
 
   map.on('zoomend', function (e) {

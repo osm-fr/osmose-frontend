@@ -21,9 +21,8 @@
 ###########################################################################
 
 from bottle import route, request, template, response, redirect, abort, static_file
-from tools import utils
-from tools import query
-from tools import query_meta
+from tools import utils, query, query_meta, assets
+import byuser
 import errors
 import datetime
 import math, StringIO
@@ -67,13 +66,14 @@ def index(db, lang):
                "username": '',
                "country": '',
                "tags":    '',
+               "fixable": None,
              }
 
-    for p in ["lat", "lon", "zoom", "item", "level"]:
+    for p in ["lat", "lon", "zoom", "item", "level", "tags", "fixable"]:
         if request.cookies.get("last_" + p, default=None):
             params[p] = request.cookies.get("last_" + p)
 
-    for p in ["lat", "lon", "zoom", "item", "useDevItem", "level", "source", "username", "class", "country", "tags"]:
+    for p in ["lat", "lon", "zoom", "item", "useDevItem", "level", "source", "username", "class", "country", "tags", "fixable"]:
         if request.params.get(p, default=None):
             params[p] = request.params.get(p)
 
@@ -85,6 +85,19 @@ def index(db, lang):
 
     if not params.has_key("useDevItem"):
         params["useDevItem"] = ""
+
+    tags = query_meta._tags(db, lang)
+    tags_selected = {}
+    tags_params = params["tags"].split(',')
+    for t in tags:
+      if t in tags_params:
+        tags_selected[t] = " selected=\"selected\""
+      else:
+        tags_selected[t] = ""
+
+    fixable_selected = {}
+    fixable_selected['online'] = " selected=\"selected\"" if params["fixable"] and params["fixable"] == "online" else ""
+    fixable_selected['josm'] = " selected=\"selected\"" if params["fixable"] and params["fixable"] == "josm" else ""
 
     all_items = []
     db.execute("SELECT item FROM dynpoi_item GROUP BY item;")
@@ -103,14 +116,20 @@ def index(db, lang):
 
     categories = query_meta._categories(db, lang)
 
-    levels = {"1": set(), "2": set(), "3": set()}
+    item_tags = {}
+    item_levels = {"1": set(), "2": set(), "3": set()}
     for categ in categories:
         for err in categ["item"]:
             for l in err["levels"]:
-                levels[str(l)].add(err["item"])
+                item_levels[str(l)].add(err["item"])
+            if err["tags"]:
+                for t in err["tags"]:
+                    if not item_tags.has_key(t):
+                        item_tags[t] = set()
+                    item_tags[t].add(err["item"])
 
-    levels["1,2"] = levels["1"] | levels["2"]
-    levels["1,2,3"] = levels["1,2"] | levels["3"]
+    item_levels["1,2"] = item_levels["1"] | item_levels["2"]
+    item_levels["1,2,3"] = item_levels["1,2"] | item_levels["3"]
 
     urls = []
     # TRANSLATORS: link to help in appropriate language
@@ -150,11 +169,25 @@ OFFSET
     else:
         delay = 0
 
+    if request.session.has_key('user'):
+        if request.session['user']:
+            user = request.session['user']['osm']['user']['@display_name']
+            user_error_count = byuser._user_count(db, user)
+        else:
+            user = '[user name]'
+            user_error_count = {1: 0, 2: 0, 3: 0}
+    else:
+        user = None
+        user_error_count = None
+
     return template('map/index', categories=categories, lat=params["lat"], lon=params["lon"], zoom=params["zoom"],
-        source=params["source"], username=params["username"], classs=params["class"], country=params["country"], tags=params["tags"],
-        levels=levels, level_selected=level_selected, active_items=active_items, useDevItem=params["useDevItem"], urls=urls, helps=helps, delay=delay,
-        allowed_languages=allowed_languages, translate=utils.translator(lang),
-        website=utils.website, request=request)
+        source=params["source"], username=params["username"], classs=params["class"], country=params["country"],
+        item_tags=item_tags, tags_selected=tags_selected, tags=tags, fixable_selected=fixable_selected,
+        item_levels=item_levels, level_selected=level_selected,
+        active_items=active_items, useDevItem=params["useDevItem"],
+        urls=urls, helps=helps, delay=delay, allowed_languages=allowed_languages, translate=utils.translator(lang),
+        website=utils.website, request=request, assets=assets.environment,
+        user=user, user_error_count=user_error_count)
 
 
 def num2deg(xtile, ytile, zoom):
@@ -247,7 +280,9 @@ def markers(db, lang):
     response.set_cookie('last_lon', str(params.lon), expires=expires, path=path)
     response.set_cookie('last_zoom', str(params.zoom), expires=expires, path=path)
     response.set_cookie('last_level', str(params.level), expires=expires, path=path)
-    response.set_cookie('last_item', params.item, expires=expires, path=path)
+    response.set_cookie('last_item', str(params.item), expires=expires, path=path)
+    response.set_cookie('last_tags', str(','.join(params.tags)) if params.tags else '', expires=expires, path=path)
+    response.set_cookie('last_fixable', str(params.fixable) if params.fixable else '', expires=expires, path=path)
 
     return errors._errors_geo(db, lang, params)
 
@@ -255,3 +290,7 @@ def markers(db, lang):
 @route('/tpl/popup.tpl')
 def popup_template(lang):
     return template('map/popup', mustache_delimiter="{{=<% %>=}}", website=utils.website)
+
+@route('/tpl/editor.tpl')
+def editor_template(lang):
+    return template('map/editor', mustache_delimiter="{{=<% %>=}}")

@@ -10,6 +10,8 @@ Dependencies
   python >= 2.6 recommended and < 3
   python-psycopg2 >= 2.4
   python-matplotlib >= 1.1
+  python-requests >= 2.0
+  python-beaker >= 1.6
   python-imaging
   librsvg2-bin                     # to generate markers with rsvg
   apache2

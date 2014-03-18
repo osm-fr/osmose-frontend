@@ -2,7 +2,8 @@
 #-*- coding: utf-8 -*-
 
 import os, re, Cookie
-import datetime
+import datetime, urllib2
+import OsmSax
 
 ################################################################################
 
@@ -11,6 +12,10 @@ pg_user           = "osmose"
 pg_pass           = "clostAdtoi"
 pg_base           = "osmose_frontend"
 website           = "osmose.openstreetmap.fr"
+
+remote_url        = "http://api.openstreetmap.org/"
+remote_url_read   = "http://api.openstreetmap.fr/"
+remote_url_write  = "http://api.openstreetmap.org/"
 
 ################################################################################
 
@@ -76,3 +81,26 @@ class translator:
             if l in res:
                 return res[l]
         return no_translation
+
+###########################################################################
+## API
+
+def fetch_osm_data(type, id, full=True):
+    elem_url = os.path.join(remote_url_read + 'api/0.6/', type, str(id))
+    if type == "way" and full:
+        elem_url = os.path.join(elem_url, "full")
+    try:
+        elem_io = urllib2.urlopen(elem_url)
+        osm_read = OsmSax.OsmSaxReader(elem_io)
+        return osm_read
+    except:
+        pass
+
+def fetch_osm_elem(type, id):
+    osmdw = OsmSax.OsmDictWriter()
+    osm_read = fetch_osm_data(type, id, full=False)
+    if osm_read:
+        osm_read.CopyTo(osmdw)
+        elem = osmdw.data[type]
+        if len(elem) > 0:
+            return elem[0]

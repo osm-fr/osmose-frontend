@@ -4,18 +4,17 @@ OsmoseErrors = L.LayerGroup.extend({
 
   _params: {},
 
+  _editor: null,
+
   _onMap: false,
 
   _osmoseMarker: null,
 
-  _updating: false,
-
-  _updatePending: false,
-
-  initialize: function (menu, params) {
+  initialize: function (menu, params, editor) {
     L.LayerGroup.prototype.initialize.call(this);
     this._menu = menu;
     this._params = params;
+    this._editor = editor;
   },
 
   onAdd: function (map) {
@@ -45,8 +44,26 @@ OsmoseErrors = L.LayerGroup.extend({
         direction: -1,
         color: '#fff',
       });
-      this._params.item = urlPart.item;
-      this._params.level =  urlPart.level;
+      if (urlPart.item) {
+        this._params.item = urlPart.item;
+      } else {
+        delete this._params.item;
+      }
+      if (urlPart.level) {
+        this._params.level = urlPart.level;
+      } else {
+        delete this._params.level;
+      }
+      if (urlPart.tags) {
+        this._params.tags = urlPart.tags;
+      } else {
+        delete this._params.tags;
+      }
+      if (urlPart.fixable) {
+        this._params.fixable = urlPart.fixable;
+      } else {
+        delete this._params.fixable;
+      }
       this._params.bbox = this._map.getBounds().toBBoxString();
       this._params.zoom = this._map.getZoom();
       url = L.Util.getParamString(this._params);
@@ -55,9 +72,9 @@ OsmoseErrors = L.LayerGroup.extend({
         dataType: 'json'
       }).done(function (data) {
         var content = null,
-         error_id = null;
+          error_id = null;
         if (self._onMap && self._osmoseMarker) {
-          self._osmoseMarker.eachLayer (function (layer) {
+          self._osmoseMarker.eachLayer(function (layer) {
             if (layer.getPopup() && layer.getPopup()._isOpen) {
               error_id = layer.error_id;
               content = layer.getPopup().getContent();
@@ -66,7 +83,7 @@ OsmoseErrors = L.LayerGroup.extend({
         }
         self.clearLayers();
         if (self._onMap) {
-          self._osmoseMarker = new OsmoseMarker(data, {
+          self._osmoseMarker = new OsmoseMarker(data, self._editor, {
             error_id: error_id,
             content: content
           });
@@ -76,5 +93,9 @@ OsmoseErrors = L.LayerGroup.extend({
         self._map.spin(false);
       });
     }
+  },
+
+  corrected: function (layer) {
+    this._osmoseMarker.corrected(layer);
   },
 });

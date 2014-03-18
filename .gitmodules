@@ -1,3 +1,21 @@
 [submodule "externals/mustache.js"]
 	path = externals/mustache.js
 	url = https://github.com/janl/mustache.js
+[submodule "externals/webassets"]
+	path = externals/webassets
+	url = https://github.com/miracle2k/webassets.git
+[submodule "externals/rauth"]
+	path = externals/rauth
+	url = https://github.com/litl/rauth.git
+[submodule "externals/cssmin"]
+	path = externals/cssmin
+	url = https://github.com/zacharyvoase/cssmin.git
+[submodule "externals/Leaflet.ActiveLayers"]
+	path = externals/Leaflet.ActiveLayers
+	url = https://github.com/vogdb/Leaflet.ActiveLayers.git
+[submodule "externals/SelectLayersControl"]
+	path = externals/SelectLayersControl
+	url = https://github.com/vogdb/SelectLayersControl.git
+[submodule "externals/leaflet-control-geocoder"]
+	path = externals/leaflet-control-geocoder
+	url = https://github.com/perliedman/leaflet-control-geocoder.git

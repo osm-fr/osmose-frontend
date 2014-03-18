@@ -29,7 +29,7 @@ OsmoseMenu = L.Control.Sidebar.extend({
       self._toggleCateg(this);
       return false;
     });
-    $("#level").change(function () {
+    $("#level, #tags, #fixable").change(function () {
       self._change_level();
     });
     $("#togglemenu").click(function () {
@@ -112,10 +112,10 @@ OsmoseMenu = L.Control.Sidebar.extend({
   },
 
   // Change level
-  _change_item_display: function (l) {
+  _change_item_display: function (l, tag, fixable) {
     $("div#tests li").each(function () {
       var id = parseInt($(this).attr('id').replace(/item_desc/, ''), 10);
-      if ($.inArray(id, item_levels[l]) >= 0) {
+      if ($.inArray(id, item_levels[l]) >= 0 && (!(tag in item_tags) || $.inArray(id, item_tags[tag]) >= 0)) {
         $("#item_desc" + id).show();
       } else {
         $("#item_desc" + id).hide();
@@ -132,14 +132,18 @@ OsmoseMenu = L.Control.Sidebar.extend({
   },
 
   _change_level: function change_level() {
-    var new_level = $("#level").val();
-    this._change_item_display(new_level || "1,2,3");
+    var new_level = document.myform.level.value,
+      new_tag = document.myform.tags.value,
+      fixable = document.myform.fixable.value;
+    this._change_item_display(new_level || "1,2,3", new_tag, fixable);
 
     this._itemChanged();
   },
 
-  _itemChanged: function () {
-    this._urlPart = this._buildUrlPart();
+  _itemChanged: function (skipBuildUrl) {
+    if (!skipBuildUrl) {
+      this._urlPart = this._buildUrlPart();
+    }
     this.fire('itemchanged', {
       urlPart: this._urlPart
     });
@@ -172,10 +176,12 @@ OsmoseMenu = L.Control.Sidebar.extend({
     return {
       item: ch,
       level: document.myform.level.value,
+      tags: document.myform.tags.value,
+      fixable: document.myform.fixable.value,
     };
   },
 
-  setItems: function (items, levels) {
+  setItems: function (items, levels, tags, fixable) {
     if (items) {
       var checkbox = $(".test_group:not(#categUnactiveItem) :checkbox");
       checkbox.attr('checked', false);
@@ -191,8 +197,29 @@ OsmoseMenu = L.Control.Sidebar.extend({
       document.myform.level.value = levels;
     }
 
+    if (tags != undefined) {
+      document.myform.tags.value = tags;
+    }
+
+    if (fixable != undefined) {
+      document.myform.fixable.value = fixable;
+    }
+
     this._countItemAll();
-    this._itemChanged();
+    this._urlPart = {};
+    if (items) {
+        this._urlPart.item =  items;
+    }
+    if (levels) {
+      this._urlPart.level = levels;
+    }
+    if (tags) {
+      this._urlPart.tags = tags;
+    }
+    if (fixable) {
+      this._urlPart.fixable = fixable;
+    };
+    this._itemChanged(true);
   },
 });
 
