@@ -89,8 +89,8 @@
  8021 | Postfiliale, Eintragung möglich
  8030 | Schule
  8031 | Schule, Eintragung möglich
- 8040 | Schnellbahnstation
- 8041 | Schnellbahnstation, Eintragung möglich
+ 8040 | Öffentlichen verkehrsmitteln
+ 8041 | Öffentlichen verkehrsmitteln, Eintragung möglich
  8050 | Bahnhof
  8051 | Bahnhof, Eintragung möglich
  8060 | Höhengleicher Übergang

@@ -3,13 +3,13 @@
  1030 | way 1 nœud
  1040 | polygone non valide
  1050 | rond-point à l'envers
- 1060 | boundary intersect
- 1070 | highway vs building
+ 1060 | croisement de frontières
+ 1070 | intersection d'objects
  1080 | noeuds orphelins
  1090 | types de routes disparates
  1100 | area=yes non fermé
- 1110 | mauvaise connection *_link
- 1120 | continuité rompue des highway
+ 1110 | mauvaise connexion *_link
+ 1120 | continuité rompue des highways
  1140 | tag ou rôle manquant
  1150 | intersection entre surfaces
  1160 | relation large
@@ -20,19 +20,19 @@
  1210 | voie non connectée
  1220 | cours d'eau
  1230 | géométrie dupliquée
- 2010 | junction=roundabout
- 2020 | ele=...
- 2030 | oneway=...
- 2040 | source=...
+ 2010 | mauvais rond-point
+ 2020 | altitude
+ 2030 | sens unique
+ 2040 | source
  2050 | tag parent
  2060 | numéros de rue
- 2080 | highway=...
+ 2080 | highway
  2090 | croisement de routes
  2100 | pharmacie
  3010 | highway roundabout
  3020 | mauvais tag source
  3030 | tagwatch cleaner
- 3031 | wikipedia
+ 3031 | wikipédia
  3032 | liens entre tags
  3033 | trait d'union sur Saint
  3040 | tag incorrect
@@ -47,20 +47,20 @@
  3120 | arbre
  3130 | nom avec marque
  3150 | typo dans un tag
- 3160 | "lanes" incorrectes
+ 3160 | lanes incorrectes
  3161 | voie de parking
  3170 | rôle de relation
  3180 | relation type=restriction
  3190 | code postal
  4010 | abandonné
- 4020 | sur junction=roundabout
+ 4020 | junction=roundabout
  4030 | tags incompatibles
  4040 | ref in name
  4060 | seamark:fixme
  4070 | construction
  4080 | POI en double
  4090 | tag non-nécessaire sur node
- 4100 | "designation" incorrecte
+ 4100 | designation incorrecte
  5010 | orthographe
  5020 | type voie
  5030 | 2 noms
@@ -71,10 +71,10 @@
  6030 | place sans name
  6040 | code INSEE
  6050 | admin_level
- 6060 | trou admin_level=8
+ 6060 | anomalie de frontières
  6070 | hors des frontières
  7010 | bâtiment géodésique
- 7011 | forme bâtiment
+ 7011 | bâtiment spéciaux
  7012 | pont à qualifier
  7020 | limite admin
  7030 | OpenStreetBugs
@@ -88,14 +88,14 @@
  7110 | TMC
  7120 | relation type=boundary
  7130 | tunnel/pont
- 8010 | monument
- 8011 | monument, intégration possible
+ 8010 | monument, musée
+ 8011 | monument, musée, intégration possible
  8020 | poste
  8021 | poste, intégration possible
  8030 | école
  8031 | école, intégration possible
- 8040 | station RATP
- 8041 | station RATP, intégration possible
+ 8040 | Transport en commun
+ 8041 | Transport en commun, intégration possible
  8050 | gare
  8051 | gare, intégration possible
  8060 | passage à niveau
@@ -103,3 +103,13 @@
  8080 | adresse, intégration possible
  8101 | Wikipédia, intégration possible
  8110 | service public
+ 8120 | recyclage
+ 8121 | recyclage, intégration possible
+ 8130 | parking
+ 8131 | parking, intégration possible
+ 8140 | hergement
+ 8141 | hergement, intégration possible
+ 8150 | parking vélo
+ 8151 | parking vélo, intégration possible
+ 8160 | vélopartage
+ 8161 | vélopartage, intégration possible

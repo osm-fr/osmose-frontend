@@ -1,99 +1,104 @@
     0 | overlappende gebouw
- 1010 | gedupliceerd knooppunt
- 1030 | way gevormd van 1 knooppunt
- 1040 | Ongeldige veelhoek
- 1050 | rotonde de verkeerde kant op
- 1060 | kruispunt van de grens
- 1070 | botsing tussen weg-en aanbouw
- 1080 | orphan knopen
- 1090 | plotselinge snelweg soort wijzigingen
+ 1010 | dubbele knooppunt
+ 1030 | weg gevormd van 1 knooppunt
+ 1040 | ongeldige polygoon
+ 1050 | omgekeerde rotonde
+ 1060 | kruising van de grens
+ 1070 | kruising tussen weg en een gebouw
+ 1080 | alleenstaande knopen
+ 1090 | plotselinge verandering van soort weg
  1100 | area=yes ongesloten
- 1110 | slechte verbinding *_link
- 1120 | defecte continuÃ¯teit van de snelweg
- 1140 |
- 1150 | snijpunt van oppervlakken
- 1160 | big relatie
- 1170 | dubbele binnen polygoon
- 1180 | twee keer per cyclus-weg
- 1190 |
- 1200 |
- 1210 |
- 1220 |
- 2010 | knooppunt = rotonde
- 2020 | ele=...
- 2030 | oneway=...
- 2040 | source=...
+ 1110 | verkeerde *_link verbinding
+ 1120 | verbroken continuïteit van de weg
+ 1140 | tag of role ontbreekt
+ 1150 | kruising tussen gebieden
+ 1160 | grote relatie
+ 1170 | multipolygoon
+ 1180 | dubbele fietspad
+ 1190 | te scherpe weg
+ 1200 | 1 lid relatie
+ 1210 | niet verbonden weg/fietspad
+ 1220 | waterweg
+ 1230 | dubbele geometrie
+ 2010 | Slecht rotonde
+ 2020 | Hoogte ontbreekt
+ 2030 | eenrichtingsverkeer
+ 2040 | ontbrekende bron
  2050 | bovenliggende code
  2060 | huisnummers
- 2080 | highway=...
- 2090 |
- 3010 | snelweg rotonde
- 3020 | Tag slechte bron
+ 2080 | highway ontbreekt
+ 2090 | Kruising van wegen
+ 2100 | Apotheker
+ 3010 | weg op rotonde
+ 3020 | Verkeerde bron tag
  3030 | tagwatch cleaner
  3031 | wikipedia
  3032 | meerdere tags
  3033 | linken naar St.
- 3040 | Tag onjuiste
- 3050 | tag slecht 
+ 3040 | onjuiste tag
+ 3050 | verkeerde key tag
  3060 | Vergelijkbare waarden
  3070 | meerdere waarden
- 3080 | zwembad water als natuurlijke
- 3090 | datum 
+ 3080 | zwembad als natural=water
+ 3090 | datum
  3091 | numerieke waarde
  3100 | kleine boerderij
  3110 | nota
  3120 | boom
  3130 | met merknaam
- 3150 |
- 3160 |
- 3170 |
- 3180 |
- 4010 | onbruik geraakte
- 4020 | aan knooppunt = rotonde
+ 3150 | typefout in tag
+ 3160 | onjuiste "rijstroken"
+ 3161 | parkeerstrook
+ 3170 | role relatie
+ 3180 | relatie type=restriction
+ 4010 | niet meer gebruikt
+ 4020 | junction=roundabout
  4030 | tags onverenigbaar
- 4040 | ref aan het interieur de naam
+ 4040 | ref in naam
  4060 | seamark:fixme
- 4070 | bouw 
- 4080 | dubbele POI voorwerp
- 4090 |
- 4100 |
+ 4070 | constructie
+ 4080 | dubbele POI
+ 4090 | tag niet nodig op node
+ 4100 | verkeerde "designation"
  5010 | spelling
- 5020 | type snelweg
+ 5020 | type van weg
  5030 | 2 namen
  5040 | plaatsnaamkunde
  5050 | Test soundex
- 6010 | open veelhoek
+ 6010 | open multipolygoon
  6020 | gedupliceerd weg
- 6030 | place zonder naam
+ 6030 | plaats zonder naam
  6040 | INSEE-code
  6050 | admin_level
- 6060 | admin_level = 8 hole
- 7010 | geodetische gebouw
- 7011 |
- 7012 |
+ 6060 | leegte admin_level=8
+ 6070 | buiten de grenzen
+ 7010 | geografische gebouw
+ 7011 | vorm van een gebouw
+ 7012 | brug tag
  7020 | administratieve grens
  7030 | OpenStreetBugs
  7040 | Hoogspanningslijnen
  7050 | postkantoor
- 7060 |
- 7070 |
+ 7060 | ODbL wijzigingen
+ 7070 | school, niet geintegreerd
  7080 | monumenten
- 7090 |
- 7100 |
+ 7090 | overgang
+ 7100 | trein station
  7110 | TMC
- 7120 |
- 7130 |
+ 7120 | relatie type=boundary
+ 7130 | tunnel/brug
  8010 | monumenten
- 8011 |
- 8020 |
- 8021 |
+ 8011 | monumenten, mogelijk invoegen
+ 8020 | postkantoor
+ 8021 | postkantoor, mogelijk invoegen
  8030 |
- 8031 |
- 8040 |
- 8041 |
- 8050 |
- 8051 |
- 8060 |
- 8070 |
- 8080 |
- 8101 |
+ 8031 | school, mogelijk invoegen
+ 8040 | franse trein station
+ 8041 | franse trein station, mogelijk invoegen
+ 8050 | trein station
+ 8051 | trein station, mogelijk invoegen
+ 8060 | overweg
+ 8070 | geodesic punt ontbreekt
+ 8080 | adres, mogelijk invoegen
+ 8101 | Wikipédia, mogelijk invoegen
+ 8110 | openbare dienst
