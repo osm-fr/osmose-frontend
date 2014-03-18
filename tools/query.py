@@ -115,7 +115,7 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
 
     if "marker_elem" in tables:
         join += """
-        JOIN marker_elem ON
+        LEFT JOIN marker_elem ON
             marker_elem.marker_id = marker.id"""
 
     if item != None:
