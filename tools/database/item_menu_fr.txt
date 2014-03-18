@@ -4,7 +4,7 @@
  1040 | polygone non valide
  1050 | rond-point à l'envers
  1060 | croisement de frontières
- 1070 | intersection voie bâtiment
+ 1070 | intersection d'objects
  1080 | noeuds orphelins
  1090 | types de routes disparates
  1100 | area=yes non fermé
@@ -21,12 +21,12 @@
  1220 | cours d'eau
  1230 | géométrie dupliquée
  2010 | mauvais rond-point
- 2020 | altitude manquant
+ 2020 | altitude
  2030 | sens unique
- 2040 | source manquant
+ 2040 | source
  2050 | tag parent
  2060 | numéros de rue
- 2080 | highway manquant
+ 2080 | highway
  2090 | croisement de routes
  2100 | pharmacie
  3010 | highway roundabout
@@ -71,7 +71,7 @@
  6030 | place sans name
  6040 | code INSEE
  6050 | admin_level
- 6060 | trou admin_level=8
+ 6060 | anomalie de frontières
  6070 | hors des frontières
  7010 | bâtiment géodésique
  7011 | bâtiment spéciaux
