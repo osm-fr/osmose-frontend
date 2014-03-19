@@ -75,7 +75,7 @@
  7030 | OpenStreetBugs
  7040 | Stromleitungen
  7050 | Postamt
- 7060 | Änderung wegen ODbl
+ 7060 | Änderung wegen ODbL
  7070 | nicht-eingetragene Schule
  7080 | Denkmal
  7090 | Höhengleicher Übergang

@@ -80,7 +80,7 @@
  7030 | OpenStreetBugs
  7040 | linee elettriche
  7050 | ref ufficio postale
- 7060 | modifiche per migrazione ODbl
+ 7060 | modifiche per migrazione ODbL
  7070 | ref edificio scolastico
  7080 | monumento
  7090 | attraversamento pedonale

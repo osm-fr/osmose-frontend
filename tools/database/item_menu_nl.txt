@@ -100,6 +100,6 @@
  8051 | trein station, mogelijk invoegen
  8060 | overweg
  8070 | geodesic punt ontbreekt
- 8080 | adres, mogelijk invoegen
+ 8080 | adres
  8101 | wikipedia, mogelijk invoegen
  8110 | openbare dienst

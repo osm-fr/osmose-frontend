@@ -80,7 +80,7 @@
  7030 | OpenStreetBugs
  7040 | power lines
  7050 | post office
- 7060 | ODbl migration change
+ 7060 | ODbL migration change
  7070 | school, not integrated
  7080 | monument
  7090 | crossing
@@ -98,10 +98,10 @@
  8041 | public transport, could be integrated
  8050 | train station
  8051 | train station, could be integrated
- 8060 | crossing
+ 8060 | level crossing
  8070 | geodesic point
- 8080 | postal address, could be integrated
- 8101 | Wikipédia, could be integrated
+ 8080 | postal address
+ 8101 | wikipédia, could be integrated
  8110 | public service
  8120 | recycling
  8121 | recycling, could be integrated

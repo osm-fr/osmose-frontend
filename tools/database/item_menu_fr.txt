@@ -80,7 +80,7 @@
  7030 | OpenStreetBugs
  7040 | lignes électriques
  7050 | bureau de poste
- 7060 | changement pour ODbl
+ 7060 | changement pour ODbL
  7070 | école non intégrée
  7080 | monument
  7090 | passage à niveau
@@ -94,13 +94,13 @@
  8021 | poste, intégration possible
  8030 | école
  8031 | école, intégration possible
- 8040 | Transport en commun
- 8041 | Transport en commun, intégration possible
+ 8040 | transport en commun
+ 8041 | transport en commun, intégration possible
  8050 | gare
  8051 | gare, intégration possible
  8060 | passage à niveau
  8070 | point géodésique manquant
- 8080 | adresse, intégration possible
+ 8080 | adresse
  8101 | Wikipédia, intégration possible
  8110 | service public
  8120 | recyclage
