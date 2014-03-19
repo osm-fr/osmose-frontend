@@ -220,7 +220,7 @@ WHERE
         response.content_type = 'image/png'
         return static_file("images/tile-empty.png", root='static')
 
-    join, where = query._build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags)
+    join, where = query._build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable)
     join = join.replace("%", "%%")
     where = where.replace("%", "%%")
 
