@@ -198,7 +198,7 @@ msgstr ""
 
 #: tmp.tpl:26
 msgid "Providing patches"
-msgstr "Voorzien van patches""
+msgstr "Voorzien van patches"
 
 #: tmp.tpl:27
 msgid ""
