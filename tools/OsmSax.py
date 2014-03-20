@@ -462,7 +462,7 @@ def NodeToXml(data, full = False):
     w = OsmSaxWriter(o, "UTF-8")
     if full:
         w.startDocument()
-        w.startElement("osm", {})
+        w.startElement("osm", {"version": "0.6"})
     if data:
         w.NodeCreate(data)
     if full:
@@ -474,7 +474,7 @@ def WayToXml(data, full = False):
     w = OsmSaxWriter(o, "UTF-8")
     if full:
         w.startDocument()
-        w.startElement("osm", {})
+        w.startElement("osm", {"version": "0.6"})
     if data:
         w.WayCreate(data)
     if full:
@@ -486,7 +486,7 @@ def RelationToXml(data, full = False):
     w = OsmSaxWriter(o, "UTF-8")
     if full:
         w.startDocument()
-        w.startElement("osm", {})
+        w.startElement("osm", {"version": "0.6"})
     if data:
         w.RelationCreate(data)
     if full:
