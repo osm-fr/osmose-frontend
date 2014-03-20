@@ -113,3 +113,5 @@
  8151 | parking vélo, intégration possible
  8160 | vélopartage
  8161 | vélopartage, intégration possible
+ 8170 | sport
+ 8171 | sport, intégration possible

@@ -113,3 +113,5 @@
  8151 | cycle parking, could be integrated
  8160 | transport sharing
  8161 | transport sharing, could be integrated
+ 8170 | sport
+ 8171 | sport, could be integrated
