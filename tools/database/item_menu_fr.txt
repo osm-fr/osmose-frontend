@@ -4,7 +4,7 @@
  1040 | polygone non valide
  1050 | rond-point à l'envers
  1060 | croisement de frontières
- 1070 | intersection d'objects
+ 1070 | intersection d'objets
  1080 | noeuds orphelins
  1090 | types de routes disparates
  1100 | area=yes non fermé
@@ -107,8 +107,8 @@
  8121 | recyclage, intégration possible
  8130 | parking
  8131 | parking, intégration possible
- 8140 | hergement
- 8141 | hergement, intégration possible
+ 8140 | hébergement
+ 8141 | hébergement, intégration possible
  8150 | parking vélo
  8151 | parking vélo, intégration possible
  8160 | vélopartage
