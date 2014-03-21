@@ -91,9 +91,9 @@ def parsewiki(lang):
                 accu[key] = {'text': '', 'class': {}}
                 line = line.strip()
             if line.startswith("* " + classs[lang] + " "):
-                dclass = line[len("* " + classs[lang] + " "):].split(":", 1)
-                nclass = int(dclass[0].strip())
-                accu[key]['class'][nclass] = dclass[1].strip()
+                dclass = line[len("* " + classs[lang] + " "):].split(" : ", 1)
+                nclass = int(dclass[0].split(' ')[0].strip())
+                accu[key]['class'][nclass] = dclass[1].strip() if len(dclass)> 1 else ""
             elif key:
                 accu[key]['text'] += line + "\n"
         else:
@@ -115,9 +115,11 @@ def parsewiki(lang):
                 errors[categ][item] = {'item': {'text': item, 'class': {}}}
             if not errors[categ][item].get('label'):
                 errors[categ][item]['label'] = {'text': None, 'class': {}}
-            errors[categ][item]['label']['text'] = ref[categ]['item'][item]['menu'].encode('utf-8')
+            errors[categ][item]['label']['text'] = ref[categ]['item'][item]['menu'].encode('utf-8') if ref[categ]['item'][item]['menu'] else ""
             val = errors[categ][item]
             for k in ('item', 'label', 'only_for', 'detail', 'fix', 'trap', 'image'):
+                if k != 'image' and not val.has_key(k):
+                    val[k] = {'text': '', 'class': {}}
                 if val.has_key(k):
                     print ("| %s=%s" % (k, val[k]['text'])).strip()
                     if len(ref[categ]['item'][item]['class'].keys()) > 1:
