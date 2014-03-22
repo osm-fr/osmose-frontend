@@ -172,7 +172,7 @@ OFFSET
     if request.session.has_key('user'):
         if request.session['user']:
             user = request.session['user']['osm']['user']['@display_name']
-            user_error_count = byuser._user_count(db, user)
+            user_error_count = byuser._user_count(db, user.encode('utf-8'))
         else:
             user = '[user name]'
             user_error_count = {1: 0, 2: 0, 3: 0}
