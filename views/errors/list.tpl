@@ -37,7 +37,8 @@
 %    else:
     <td></td>
 %    end
-    <td title="erreur n°{{res["id"]}}"><a href="../{{gen}}/{{res["id"]}}">E</a></td>
+%    e = gen if gen in ('error', 'false-positive') else 'error'
+    <td title="erreur n°{{res["id"]}}"><a href="../{{e}}/{{res["id"]}}">E</a></td>
 %    if res["lat"] and res["lon"]:
 %        lat = res["lat"]
 %        lon = res["lon"]
