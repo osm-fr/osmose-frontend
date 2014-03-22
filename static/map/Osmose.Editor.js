@@ -47,6 +47,8 @@ OsmoseEditor = L.Control.Sidebar.extend({
       }]
     });
 
+    $(window).on('beforeunload', this._beforeunload.bind(this));
+
     L.Control.Sidebar.prototype.initialize.call(this, placeholder, options);
   },
 
@@ -89,6 +91,13 @@ OsmoseEditor = L.Control.Sidebar.extend({
     }).fail(function (xhr, err) {
       self._$container.html("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
     });
+  },
+
+  _beforeunload: function () {
+    var n = Object.keys(this._modifiyObjectStack).length + Object.keys(this._deleteObjectStack).length;
+    if (n > 0) {
+      return "Quit ?";
+    }
   },
 
   _upload: function (comment, source, type, reuse_changeset, always) {
