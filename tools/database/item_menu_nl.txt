@@ -103,3 +103,8 @@
  8080 | adres
  8101 | wikipedia, mogelijk invoegen
  8110 | openbare dienst
+ 8131 | parking, kan toegevoegd worden
+ 8140 | accommodatie
+ 8150 | fiets parking
+ 8160 | fietsverhuur
+ 8170 | sport
