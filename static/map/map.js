@@ -12,6 +12,9 @@ function init_map() {
     layers: layers[0]
   });
 
+  var coverage = new OsmoseCoverage('/osmose-coverage.json');
+  mapOverlay['Coverage'] = coverage;
+
   var menu = new OsmoseMenu('menu', {
     position: 'left'
   });
