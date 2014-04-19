@@ -60,7 +60,7 @@
  4070 | construction
  4080 | duplicate object
  4090 | unwanted tag on node
- 4100 | incorrect "designation"
+ 4100 | bad usage
  5010 | orthograph
  5020 | way type
  5030 | two names
@@ -83,7 +83,7 @@
  7060 | ODbL migration change
  7070 | school, not integrated
  7080 | monument
- 7090 | crossing
+ 7090 | node on ways
  7100 | train station
  7110 | TMC
  7120 | relation type=boundary

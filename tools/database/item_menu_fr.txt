@@ -60,7 +60,7 @@
  4070 | construction
  4080 | POI en double
  4090 | tag non-nécessaire sur node
- 4100 | designation incorrecte
+ 4100 | mauvaise utilisation
  5010 | orthographe
  5020 | type voie
  5030 | 2 noms
@@ -83,7 +83,7 @@
  7060 | changement pour ODbL
  7070 | école non intégrée
  7080 | monument
- 7090 | passage à niveau
+ 7090 | nœud sur chemins
  7100 | gare
  7110 | TMC
  7120 | relation type=boundary
