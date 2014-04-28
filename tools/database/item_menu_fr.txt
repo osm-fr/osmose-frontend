@@ -77,7 +77,6 @@
  7011 | bâtiment spéciaux
  7012 | pont à qualifier
  7020 | limite admin
- 7030 | OpenStreetBugs
  7040 | lignes électriques
  7050 | bureau de poste
  7060 | changement pour ODbL

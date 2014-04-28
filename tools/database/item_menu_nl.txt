@@ -77,7 +77,6 @@
  7011 | vorm van een gebouw
  7012 | brug tag
  7020 | administratieve grens
- 7030 | OpenStreetBugs
  7040 | hoogspanningslijnen
  7050 | postkantoor
  7060 | ODbL wijzigingen

@@ -77,7 +77,6 @@
  7011 | forma edificio
  7012 | specificare ponte
  7020 | limite amministrativo
- 7030 | OpenStreetBugs
  7040 | linee elettriche
  7050 | ref ufficio postale
  7060 | modifiche per migrazione ODbL

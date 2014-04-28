@@ -22,26 +22,16 @@ def remove_bug(error_id, status):
   if not source_id:
       return -1
 
-  ## OpenStreetBugs
-  if source_id == 62:
-      import commands
-      s, o = commands.getstatusoutput("wget -o /dev/null -O - 'http://openstreetbugs.schokokeks.org/api/0.1/closePOIexec?id=%d'"%sub_class)
-      if o.strip() <> "ok":
-          print "ERROR UPDATING OpenStreetBugs"
-          sys.exit(1)
-
-  ## Other sources
-  else:
-      PgCursor.execute("""DELETE FROM dynpoi_status
-                          WHERE source=%s AND class=%s AND subclass=%s AND elems=%s;""",
-                       (source_id,class_id,sub_class,elems))
-      PgCursor.execute("""INSERT INTO dynpoi_status
-                            (id,source,class,subclass,elems,date,status,lat,lon,subtitle)
-                          SELECT id,source,class,subclass,elems,NOW(),%s,
-                                 lat,lon,subtitle
-                          FROM marker
-                          WHERE id = %s""",
-                       (status,error_id))
+  PgCursor.execute("""DELETE FROM dynpoi_status
+                      WHERE source=%s AND class=%s AND subclass=%s AND elems=%s;""",
+                   (source_id,class_id,sub_class,elems))
+  PgCursor.execute("""INSERT INTO dynpoi_status
+                        (id,source,class,subclass,elems,date,status,lat,lon,subtitle)
+                      SELECT id,source,class,subclass,elems,NOW(),%s,
+                             lat,lon,subtitle
+                      FROM marker
+                      WHERE id = %s""",
+                   (status,error_id))
 
   PgCursor.execute("DELETE FROM marker WHERE id = %s;", (error_id, ))
   PgCursor.execute("UPDATE dynpoi_class SET count = count - 1 WHERE source = %s AND class = %s;", (source_id, class_id))

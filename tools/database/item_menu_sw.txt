@@ -72,7 +72,6 @@
  7011 | umbo jengo
  7012 |
  7020 | admin kikomo
- 7030 | OpenStreetBugs
  7040 | powerlines
  7050 | ofisi ya posta
  7060 | ODbL kwa ajili ya mabadiliko

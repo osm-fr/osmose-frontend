@@ -77,7 +77,6 @@
  7011 | building shape
  7012 | bridge to tag
  7020 | admin boundary
- 7030 | OpenStreetBugs
  7040 | power lines
  7050 | post office
  7060 | ODbL migration change

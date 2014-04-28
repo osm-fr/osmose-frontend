@@ -72,7 +72,6 @@
  7011 | Gebäudeform
  7012 |
  7020 | Verwaltungsgrenze
- 7030 | OpenStreetBugs
  7040 | Stromleitungen
  7050 | Postamt
  7060 | Änderung wegen ODbL
