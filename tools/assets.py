@@ -32,8 +32,6 @@ js_map_bundle = Bundle(
     'map/leaflet.select-layers.min.js',
     'map/leaflet-sidebar/src/L.Control.Sidebar.js',
     'map/leaflet-control-geocoder/Control.Geocoder.js',
-    'map/Leaflet.Spin/spin.js',
-    'map/Leaflet.Spin/leaflet.spin.js',
     'map/Location.js',
     'map/Osmose.Menu.js',
     'map/Osmose.Editor.js',
@@ -41,6 +39,7 @@ js_map_bundle = Bundle(
     'map/Osmose.Heatmap.js',
     'map/Osmose.Marker.js',
     'map/Osmose.Errors.js',
+    'map/Osmose.Spin.js',
     'map/map.js',
     'map/menu.js',
     filters='rjsmin', output='gen/map-%(version)s.js')
