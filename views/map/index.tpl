@@ -125,7 +125,11 @@
 </form>
 </div>
 
-<div id="map"></div>
+<div id="map">
+  <div id="spinner">
+    <img src='../images/throbbler-big.gif' alt='downloading'>
+  </div>
+</div>
 
 <div id='top_links'>
 <ul id="topmenu">

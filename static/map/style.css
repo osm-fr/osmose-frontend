@@ -15,6 +15,14 @@ div#map {
   left: 0px;
   right: 0px;
 }
+div#map div#spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -175px;
+  margin-left: -175px;
+  z-index: 2000;
+}
 
 /* Top menu */
 div#top_links {
