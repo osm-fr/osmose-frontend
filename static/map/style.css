@@ -19,8 +19,8 @@ div#map div#spinner {
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -175px;
-  margin-left: -175px;
+  margin-top: -128px;
+  margin-left: -128px;
   z-index: 2000;
 }
 
