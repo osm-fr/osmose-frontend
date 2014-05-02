@@ -1,34 +1,38 @@
-# French translations for PACKAGE package.
-# Copyright (C) 2012 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-#  <jjaubert@openstreetmap.fr>, 2012.
-#  operon, 2012.
-#  <frodrigo@openstreetmap.fr>, 2012.
-#
+# OsmOse frontend
+# Copyright (C) 2014
+# This file is distributed under the same license as the osmose-frontend package.
+# 
+# Translators:
+#  <frodrigo@openstreetmap.fr>, 2012
+# JocelynJ <jjaubert@openstreetmap.fr>, 2012
+# JocelynJ <jjaubert@openstreetmap.fr>, 2014
+#  operon, 2012
+# operon, 2014
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2012-10-11 22:17+0100\n"
-"Last-Translator: frodrigo <frodrigo@openstreetmap.fr>\n"
-"Language-Team: French\n"
-"Language: fr\n"
+"PO-Revision-Date: 2014-05-02 18:28+0000\n"
+"Last-Translator: JocelynJ <jjaubert@openstreetmap.fr>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#. TRANSLATORS: days / hours / minutes since last source update, abbreviated to d / h / m
+#. TRANSLATORS: days / hours / minutes since last source update, abbreviated
+#. to d / h / m
 #: ../control.py:50
 #, python-brace-format
 msgid "{day}d, {hour}h, {minute}m ago"
-msgstr "il y a {day}d, {hour}h, {minute}m"
+msgstr "il y a {day}j, {hour}h, {minute}min"
 
 #: ../control.py:52
 #, python-brace-format
 msgid "in {day}d, {hour}h, {minute}m"
-msgstr "dans {day}j, {hour}h, {minute}m"
+msgstr "dans {day}j, {hour}h, {minute}min"
 
 #: ../control.py:55
 msgid "never generated"
@@ -128,7 +132,7 @@ msgstr "Nombre"
 
 #: tmp.tpl:10
 msgid "Username"
-msgstr "Utilisateur"
+msgstr "Nom d'utilisateur"
 
 #: tmp.tpl:12
 #, python-format
@@ -140,10 +144,7 @@ msgstr "Statistiques pour l'utilisateur %s"
 msgid ""
 "This page shows errors on elements that were last modified by '%s'. This "
 "doesn't means that this user is responsible for all these errors."
-msgstr ""
-"Cette page liste les erreurs sur des éléments qui ont été modifiés pour la "
-"dernière fois par '%s'. Cela ne signifie pas que cet utilisateur est "
-"responsable pour toutes ces erreurs."
+msgstr "Cette page liste les erreurs sur des éléments qui ont été modifiés pour la dernière fois par '%s'. Cela ne signifie pas que cet utilisateur est responsable pour toutes ces erreurs."
 
 #: tmp.tpl:14
 msgid "This list is also available via rss."
@@ -167,15 +168,11 @@ msgstr "Osmose vous permet de contrôler vos propres erreurs"
 
 #: tmp.tpl:21
 msgid ""
-"By entering your OSM username in the following form, you will be able to see "
-"errors that are attached to your username. Note that the algorithm that "
+"By entering your OSM username in the following form, you will be able to see"
+" errors that are attached to your username. Note that the algorithm that "
 "attaches errors to username is not perfect, as Osmose only checks the last "
 "contributor of the relevant erroneous elements."
-msgstr ""
-"En entrant votre identifiant de contributeur OSM, vous pouvez consulter les "
-"erreurs qui y sont rattachées. À noter que l'algorithme de rattachement "
-"d'une erreur à un utilisateur n'est pas parfait, Osmose ne prend en compte "
-"que le dernier contributeur de l'élément fautif."
+msgstr "En entrant votre identifiant de contributeur OSM, vous pouvez consulter les erreurs qui y sont rattachées. À noter que l'algorithme de rattachement d'une erreur à un utilisateur n'est pas parfait, Osmose ne prend en compte que le dernier contributeur de l'élément fautif."
 
 #: tmp.tpl:22
 msgid "Username:"
@@ -191,11 +188,7 @@ msgid ""
 "The component to pick should be osmose-frontend for issues around the "
 "website, and osmose-backend for issues on the reported errors, or for "
 "suggestion for new analyses."
-msgstr ""
-"Les bugs devraient être reportés sur <a href='http://trac.openstreetmap."
-"fr'>trac</a>. Le composant à choisir devrait être osmose-frontend pour les "
-"problèmes du site web, et osmose-backend pour les problèmes ou demandes sur "
-"les erreurs signalées."
+msgstr "Les bugs devraient être reportés sur <a href='http://trac.openstreetmap.fr'>trac</a>. Le composant à choisir devrait être osmose-frontend pour les problèmes du site web, et osmose-backend pour les problèmes ou demandes sur les erreurs signalées."
 
 #: tmp.tpl:26
 msgid "Providing patches"
@@ -205,31 +198,27 @@ msgstr "Proposer des correctifs"
 msgid ""
 "Patches can be provided via merge requests on gitorious or github. This is "
 "the prefered way to handle patches."
-msgstr ""
-"Les patchs peuvent être proposé de préférence par des merge requests sur "
-"gitorious ou github."
+msgstr "Les patchs peuvent être proposé de préférence par des merge requests sur gitorious ou github."
 
 #: tmp.tpl:28
 msgid "Development"
-msgstr ""
+msgstr "Développement"
 
 #: tmp.tpl:29
 msgid ""
-"Development of Osmose is made as free software by <a href='../"
-"copyright'>volunteers</a>."
-msgstr ""
+"Development of Osmose is made as free software by <a "
+"href='../copyright'>volunteers</a>."
+msgstr "Le développement d'Osmose est effectué avec des  logiciels libres <a href='../copyright'>par des bénévoles</a>."
 
 #: tmp.tpl:30
 msgid "Contacting maintainers"
-msgstr "Contacter les mainteneurs"
+msgstr "Contacter les développeurs"
 
 #: tmp.tpl:31
 #, python-format
 msgid ""
 "We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
-msgstr ""
-"Nous pouvons être contacté directement par email à <a href='mailto:%s'>%s</"
-"a>."
+msgstr "Nous pouvons être contacté directement par email à <a href='mailto:%s'>%s</a>."
 
 #: tmp.tpl:32 tmp.tpl:33
 msgid "Last updates"
@@ -576,18 +565,13 @@ msgid ""
 "OsmOse tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
-msgstr ""
-"L'outil OsmOse est principalement développé par des français, et nous "
-"voudrions couvrir d'autres languages. Nous couvrons actuellement la majorité "
-"des langues utilisées dans les pays couverts par les analyses."
+msgstr "L'outil OsmOse est principalement développé par des français, et nous voudrions couvrir d'autres langues. Nous couvrons actuellement la majorité des langues utilisées dans les pays couverts par les analyses."
 
 #: tmp.tpl:142
 msgid ""
 "To make OsmOse a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
-msgstr ""
-"Afin de rendre OsmOse un outil international, nous avons besoin de votre "
-"aide pour améliorer les traductions actuelles, et en ajouter d'autres."
+msgstr "Afin de rendre OsmOse un outil international, nous avons besoin de votre aide pour améliorer les traductions actuelles, et en ajouter d'autres."
 
 #: tmp.tpl:143
 msgid "Recent translation needs"
@@ -596,18 +580,13 @@ msgstr "Besoin récents de traduction"
 #: tmp.tpl:144
 msgid ""
 "European countries: German and Italian in Switzerland and Dutch in Belgium"
-msgstr ""
-"Pays européens : allemand et italien pour la Suisse, et flamand pour la "
-"Belgique"
+msgstr "Pays européens : allemand et italien pour la Suisse, et flamand pour la Belgique"
 
 #: tmp.tpl:145
 msgid ""
 "Countries covered by HOT: Wolof in Senegal, Arabic in Chad and Cameroon, "
 "Swahili in Kenya, Kirundi in Burundi, and Malagasy in Madagascar"
-msgstr ""
-"Pays couverts par HOT : wolof pour le Sénégal, arabe pour le Tchad et le "
-"Cameroun, swahili pour le Kenya, kirundi pour le Burundi, et malgache pour "
-"le Madagascar"
+msgstr "Pays couverts par HOT : wolof pour le Sénégal, arabe pour le Tchad et le Cameroun, swahili pour le Kenya, kirundi pour le Burundi, et malgache pour le Madagascar"
 
 #: tmp.tpl:146
 msgid "Pages to translate"
@@ -645,9 +624,7 @@ msgstr "Code source des traductions du backend (fichiers .po)"
 msgid ""
 "Source code for translations (database files for menu) - categ_menu_en.txt "
 "and item_menu_en.txt are the reference ones."
-msgstr ""
-"Code source des traductions (fichiers de base de donnée pour le menu) - "
-"categ_menu_en.txt et item_menu_en.txt sont les fichiers de référence."
+msgstr "Code source des traductions (fichiers de base de donnée pour le menu) - categ_menu_en.txt et item_menu_en.txt sont les fichiers de référence."
 
 #: tmp.tpl:155
 msgid "Bug tracking system"
@@ -657,84 +634,4 @@ msgstr "Suivi des bugs"
 msgid ""
 "<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
 "issue with translations, or erroneous analyses."
-msgstr ""
-"<a href='http://trac.openstreetmap.fr'>Trac</a> est utilisé pour reporter "
-"tout problèmes avec les traductions, ou des analyses erronées."
-
-#~ msgid "Valid & Corrected"
-#~ msgstr "Valider & Corrigé"
-
-#~ msgid "CLC"
-#~ msgstr "CLC"
-
-#~ msgid "http://clc.openstreetmap.fr/"
-#~ msgstr "http://clc.openstreetmap.fr/"
-
-#~ msgid "Title"
-#~ msgstr "Titre"
-
-#~ msgid "Error"
-#~ msgstr "Erreur"
-
-#~ msgid "Geodesic"
-#~ msgstr "Géodésie"
-
-#~ msgid "http://geodesie.openstreetmap.fr/"
-#~ msgstr "http://geodesie.openstreetmap.fr/"
-
-#~ msgid "Item"
-#~ msgstr "Item"
-
-#~ msgid "Class"
-#~ msgstr "Classe"
-
-#~ msgid "Level"
-#~ msgstr "Niveau"
-
-#~ msgid "Latitude"
-#~ msgstr "Latitude"
-
-#~ msgid "Longitude"
-#~ msgstr "Longitude"
-
-#~ msgid "map"
-#~ msgstr "carte"
-
-#~ msgid "OsmOse - statistics for user %s"
-#~ msgstr "OsmOse - statistiques pour l'utilisateur %s"
-
-#~ msgid "Show:"
-#~ msgstr "Afficher :"
-
-#~ msgid "all levels"
-#~ msgstr "tous"
-
-#~ msgid "OsmOse - Users statistics"
-#~ msgstr "OsmOse - Statistiques par utilisateur"
-
-#~ msgid "OsmOse - information on error %d"
-#~ msgstr "OsmOse - information sur l'erreur %d"
-
-#~ msgid "OsmOse - informations"
-#~ msgstr "OsmOse - informations"
-
-#~ msgid "OsmOse - false positives"
-#~ msgstr "OsmOse - Faux positifs"
-
-#~ msgid "position"
-#~ msgstr "position"
-
-#~ msgid "clc"
-#~ msgstr "clc"
-
-#~ msgid "%dd, %dh, %02dm ago"
-#~ msgstr "il y a %dd, %dh, %02dm"
-
-#~ msgid "in %dj, %dh, %02dm"
-#~ msgstr "dans %dj, %dh, %02dm"
-
-#~ msgid "not an error"
-#~ msgstr "faux positif"
-
-#~ msgid "OsmOse - information on error"
-#~ msgstr "OsmOse - infos sur l'erreur"
+msgstr "<a href='http://trac.openstreetmap.fr'>Trac</a> est utilisé pour reporter tout problèmes avec les traductions, ou des analyses erronées."
