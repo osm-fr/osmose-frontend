@@ -3,7 +3,9 @@ L.SpinMapMixin = {
         if (!!state) {
             // start spinning !
             if (!this._spinner) {
-                this._spinner = new Spinner(options).spin(this._container);
+                this._spinner = true;
+                $("div#spinner").html("<img src='../images/throbbler-big.gif' alt='downloading'>");
+                $("div#spinner").show()
                 this._spinning = 0;
             }
             this._spinning++;
@@ -13,7 +15,8 @@ L.SpinMapMixin = {
             if (this._spinning <= 0) {
                 // end spinning !
                 if (this._spinner) {
-                    this._spinner.stop();
+                    $("div#spinner").hide()
+                    $("div#spinner").html("");
                     this._spinner = null;
                 }
             }
