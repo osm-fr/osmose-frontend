@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2014-05-02 18:28+0000\n"
+"PO-Revision-Date: 2014-05-03 20:25+0000\n"
 "Last-Translator: JocelynJ <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr "nooit gegenereerd"
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/NL:Osmose/erreurs"
 
-#: ../errors.py:123 tmp.tpl:58
+#: ../errors.py:123 tmp.tpl:58 tmp.tpl:59
 msgid "False positives"
 msgstr "Valse melding"
 
@@ -47,7 +47,7 @@ msgstr "Valse melding"
 msgid "Fixed errors"
 msgstr "Herstelde fouten"
 
-#: ../errors.py:129 tmp.tpl:56
+#: ../errors.py:129 tmp.tpl:56 tmp.tpl:57
 msgid "Informations"
 msgstr "Informatie"
 
@@ -206,428 +206,437 @@ msgid ""
 "href='../copyright'>volunteers</a>."
 msgstr "Osmose is ontwikkeld als free software door <a href='../copyright'>vrijwilligers</a>."
 
-#: tmp.tpl:30
+#: tmp.tpl:30 tmp.tpl:31
 msgid "Contacting maintainers"
 msgstr "Contact opnemen met beheerders"
 
-#: tmp.tpl:31
+#: tmp.tpl:31 tmp.tpl:32
 #, python-format
 msgid ""
 "We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
 msgstr "Wij zijn te bereiken via email <a href='mailto:%s'>%s</a>."
 
-#: tmp.tpl:32 tmp.tpl:33
+#: tmp.tpl:32 tmp.tpl:33 tmp.tpl:34
 msgid "Last updates"
 msgstr "Laatste updates"
 
-#: tmp.tpl:34
+#: tmp.tpl:34 tmp.tpl:35
 msgid "Median delay:"
 msgstr "Median delay:"
 
-#: tmp.tpl:35 tmp.tpl:41 tmp.tpl:63 tmp.tpl:72
+#: tmp.tpl:35 tmp.tpl:41 tmp.tpl:63 tmp.tpl:72 tmp.tpl:36 tmp.tpl:42
+#: tmp.tpl:64 tmp.tpl:73
 msgid "source"
 msgstr "bron"
 
-#: tmp.tpl:36
+#: tmp.tpl:36 tmp.tpl:37
 msgid "description"
 msgstr "beschrijving"
 
-#: tmp.tpl:37
+#: tmp.tpl:37 tmp.tpl:38
 msgid "last generation"
 msgstr "laatst gegenereerd"
 
-#: tmp.tpl:38 tmp.tpl:39
+#: tmp.tpl:38 tmp.tpl:39 tmp.tpl:40
 msgid "history"
 msgstr "geschiedenis"
 
-#: tmp.tpl:40
+#: tmp.tpl:40 tmp.tpl:41
 msgid "Update"
 msgstr "Update"
 
-#: tmp.tpl:42
+#: tmp.tpl:42 tmp.tpl:43
 msgid "remote url"
 msgstr "remote url"
 
-#: tmp.tpl:43
+#: tmp.tpl:43 tmp.tpl:44
 msgid "timestamp"
 msgstr "timestamp"
 
-#: tmp.tpl:44
+#: tmp.tpl:44 tmp.tpl:45
 msgid "Copyright informations"
 msgstr ""
 
-#: tmp.tpl:45
+#: tmp.tpl:45 tmp.tpl:46
 msgid "License"
 msgstr "License"
 
-#: tmp.tpl:46
+#: tmp.tpl:46 tmp.tpl:47
 msgid "Authors"
 msgstr "Auteurs"
 
-#: tmp.tpl:47
+#: tmp.tpl:47 tmp.tpl:48
 msgid "And contributors"
 msgstr "En bijdragers"
 
-#: tmp.tpl:48
+#: tmp.tpl:48 tmp.tpl:49
 msgid "Data are coming from"
 msgstr "De gegevens zijn afkomstig uit"
 
-#: tmp.tpl:49
+#: tmp.tpl:49 tmp.tpl:50
 msgid "copyright"
 msgstr "copyright"
 
-#: tmp.tpl:50 tmp.tpl:87
+#: tmp.tpl:50 tmp.tpl:87 tmp.tpl:51 tmp.tpl:88
 #, python-format
 msgid "Information on error %d"
 msgstr "Informatie over fout %d"
 
-#: tmp.tpl:51 tmp.tpl:88
+#: tmp.tpl:51 tmp.tpl:88 tmp.tpl:52 tmp.tpl:89
 msgid "key"
 msgstr "key"
 
-#: tmp.tpl:52 tmp.tpl:89
+#: tmp.tpl:52 tmp.tpl:89 tmp.tpl:53 tmp.tpl:90
 msgid "value"
 msgstr "waarde"
 
-#: tmp.tpl:53 tmp.tpl:90
+#: tmp.tpl:53 tmp.tpl:90 tmp.tpl:54 tmp.tpl:91
 msgid "Marker"
 msgstr "Marker"
 
-#: tmp.tpl:54
+#: tmp.tpl:54 tmp.tpl:55
 msgid "Elements"
 msgstr "Elementen"
 
-#: tmp.tpl:55
+#: tmp.tpl:55 tmp.tpl:56
 msgid "Fixes"
 msgstr "correcties"
 
-#: tmp.tpl:57
+#: tmp.tpl:57 tmp.tpl:58
 msgid "Fixed"
 msgstr "Hersteld"
 
-#: tmp.tpl:59
+#: tmp.tpl:59 tmp.tpl:60
 msgid "Graph"
 msgstr "Grafiek"
 
-#: tmp.tpl:60 tmp.tpl:100
+#: tmp.tpl:60 tmp.tpl:100 tmp.tpl:61 tmp.tpl:101
 msgid "Map"
 msgstr "Kaart"
 
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
-#: tmp.tpl:62
+#: tmp.tpl:62 tmp.tpl:63
 msgid "Set"
 msgstr "toepassen"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
-#: tmp.tpl:65 tmp.tpl:74
+#: tmp.tpl:65 tmp.tpl:74 tmp.tpl:66 tmp.tpl:75
 msgid "class (abbreviation)"
 msgstr "st"
 
-#: tmp.tpl:66 tmp.tpl:79
+#: tmp.tpl:66 tmp.tpl:79 tmp.tpl:67 tmp.tpl:80
 msgid "item"
 msgstr "item"
 
-#: tmp.tpl:67
+#: tmp.tpl:67 tmp.tpl:68
 msgid "title"
 msgstr "Titel"
 
-#: tmp.tpl:68
+#: tmp.tpl:68 tmp.tpl:69
 msgid "count"
 msgstr "Aantal"
 
-#: tmp.tpl:69
+#: tmp.tpl:69 tmp.tpl:70
 msgid "Total"
 msgstr "Totaal"
 
-#: tmp.tpl:70
+#: tmp.tpl:70 tmp.tpl:71
 msgid "Show more errors"
 msgstr "Toon meer fouten"
 
-#: tmp.tpl:71
+#: tmp.tpl:71 tmp.tpl:72
 msgid "Show some errors"
 msgstr "Toon een aantal fouten"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: tmp.tpl:76
+#: tmp.tpl:76 tmp.tpl:77
 msgid "subclass (abbreviation)"
 msgstr "sk"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: tmp.tpl:78
+#: tmp.tpl:78 tmp.tpl:79
 msgid "level (abbreviation)"
 msgstr "Niv"
 
-#: tmp.tpl:80
+#: tmp.tpl:80 tmp.tpl:81
 msgid "information on error"
 msgstr "informatie over de fout"
 
-#: tmp.tpl:81
+#: tmp.tpl:81 tmp.tpl:82
 msgid "position (abbreviation)"
 msgstr "li"
 
-#: tmp.tpl:82
+#: tmp.tpl:82 tmp.tpl:83
 msgid "elements (abbreviation)"
 msgstr "elem"
 
-#: tmp.tpl:83
+#: tmp.tpl:83 tmp.tpl:84
 msgid "subtitle"
 msgstr "Ondertitel"
 
-#: tmp.tpl:84
+#: tmp.tpl:84 tmp.tpl:85
 msgid "date"
 msgstr "datum"
 
-#: tmp.tpl:85
+#: tmp.tpl:85 tmp.tpl:86
 msgid "delete error"
 msgstr "verwijder fout"
 
-#: tmp.tpl:86
+#: tmp.tpl:86 tmp.tpl:87
 #, python-format
 msgid "delete error #%d"
 msgstr "verwijder fout #%d"
 
-#: tmp.tpl:91
+#: tmp.tpl:91 tmp.tpl:92
 msgid "OpenStreetMap Oversight Search Engine"
 msgstr ""
 
-#: tmp.tpl:92
+#: tmp.tpl:92 tmp.tpl:93
 msgid "Map of errors"
 msgstr ""
 
-#: tmp.tpl:93
+#: tmp.tpl:93 tmp.tpl:94
 msgid "Help on OSM wiki"
 msgstr "Helpen met OSM wiki"
 
-#: tmp.tpl:94
+#: tmp.tpl:94 tmp.tpl:95
 msgid "Information on error database"
 msgstr "Informatie over de fout database"
 
-#: tmp.tpl:95
+#: tmp.tpl:95 tmp.tpl:96
 msgid "False positives list"
 msgstr "Valse melding lijst"
 
-#: tmp.tpl:96
+#: tmp.tpl:96 tmp.tpl:97
 msgid "Last analysis updates"
 msgstr "Laatste update analyse"
 
-#: tmp.tpl:97
+#: tmp.tpl:97 tmp.tpl:98
 msgid "Tags Editor"
 msgstr "Tags Editor"
 
-#: tmp.tpl:98
+#: tmp.tpl:98 tmp.tpl:99
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: tmp.tpl:99
+#: tmp.tpl:99 tmp.tpl:100
 msgid "Valid"
 msgstr "Geldig"
 
-#: tmp.tpl:101
+#: tmp.tpl:101 tmp.tpl:102
 msgid "no bubbles at this zoom factor"
 msgstr "er is geen gedetailleerd informatie meer in deze zoomfactor"
 
-#: tmp.tpl:102
+#: tmp.tpl:102 tmp.tpl:103
 msgid "Severity"
 msgstr "Niveaus"
 
-#: tmp.tpl:103
+#: tmp.tpl:103 tmp.tpl:104
 msgid "1 only"
 msgstr "1 alleen"
 
-#: tmp.tpl:104
+#: tmp.tpl:104 tmp.tpl:105
 msgid "1+2 only"
 msgstr "1+2 alleen"
 
-#: tmp.tpl:105
+#: tmp.tpl:105 tmp.tpl:106
 msgid "all severity"
 msgstr ""
 
-#: tmp.tpl:106
+#: tmp.tpl:106 tmp.tpl:107
 msgid "2 only"
 msgstr "2 alleen"
 
-#: tmp.tpl:107
+#: tmp.tpl:107 tmp.tpl:108
 msgid "3 only"
 msgstr "3 alleen"
 
-#: tmp.tpl:108
+#: tmp.tpl:108 tmp.tpl:109
 msgid "Fixable"
 msgstr "Herstelbaar"
 
-#: tmp.tpl:109
+#: tmp.tpl:109 tmp.tpl:110
 msgid "Show only markers with correction suggestions"
 msgstr "Toon alleen markers met correctie suggesties"
 
-#: tmp.tpl:110
+#: tmp.tpl:110 tmp.tpl:111
 msgid "Online"
 msgstr "Online"
 
-#: tmp.tpl:111
+#: tmp.tpl:111 tmp.tpl:112
 msgid "Topic"
 msgstr "Topic"
 
-#: tmp.tpl:112
+#: tmp.tpl:112 tmp.tpl:113
 msgid "Select:"
 msgstr "Kiezen:"
 
-#: tmp.tpl:113 tmp.tpl:116
+#: tmp.tpl:113 tmp.tpl:116 tmp.tpl:114 tmp.tpl:117
 msgid "all"
 msgstr "alle"
 
-#: tmp.tpl:114 tmp.tpl:117
+#: tmp.tpl:114 tmp.tpl:117 tmp.tpl:115 tmp.tpl:118
 msgid "nothing"
 msgstr "niets"
 
-#: tmp.tpl:115
+#: tmp.tpl:115 tmp.tpl:116
 msgid "invert"
 msgstr "omkeren"
 
-#: tmp.tpl:118
+#: tmp.tpl:118 tmp.tpl:119
 msgid "Change language"
 msgstr "Taal kiezen"
 
-#: tmp.tpl:119
+#: tmp.tpl:119 tmp.tpl:120
 msgid "Help"
 msgstr "Helpen"
 
-#: tmp.tpl:120
+#: tmp.tpl:120 tmp.tpl:121
 #, python-format
 msgid "Delay: %sd"
 msgstr "Vertraging: %sd"
 
-#: tmp.tpl:121 tmp.tpl:122 tmp.tpl:123
+#: tmp.tpl:121 tmp.tpl:122 tmp.tpl:123 tmp.tpl:124
 #, python-format
 msgid "Level %d errors (%d)"
 msgstr "Level %d fouten (%d)"
 
-#: tmp.tpl:124
+#: tmp.tpl:124 tmp.tpl:125
 msgid "Logout"
 msgstr "Afmelden"
 
-#: tmp.tpl:125 tmp.tpl:127
+#: tmp.tpl:125 tmp.tpl:127 tmp.tpl:126 tmp.tpl:128
 msgid "Login"
 msgstr "Aanmelden"
 
-#: tmp.tpl:126 tmp.tpl:128
+#: tmp.tpl:126 tmp.tpl:128 tmp.tpl:127 tmp.tpl:129
 msgid "Save"
 msgstr "Bewaren"
 
-#: tmp.tpl:129
+#: tmp.tpl:129 tmp.tpl:130
 msgid "Objects edited:"
 msgstr "Objecten bewerkt:"
 
-#: tmp.tpl:130
+#: tmp.tpl:130 tmp.tpl:131
 msgid "Objects deleted:"
 msgstr "Objecten verwijderd:"
 
-#: tmp.tpl:131
+#: tmp.tpl:131 tmp.tpl:132
 msgid "Fix with Osmose"
 msgstr "Hersteld met Osmose"
 
-#: tmp.tpl:132
+#: tmp.tpl:132 tmp.tpl:133
 msgid "Source"
 msgstr "Sources code"
 
-#: tmp.tpl:133
+#: tmp.tpl:133 tmp.tpl:134
 msgid "Type"
 msgstr "Type"
 
-#: tmp.tpl:134
+#: tmp.tpl:134 tmp.tpl:135
 msgid "Reuse changeset"
 msgstr ""
 
-#: tmp.tpl:135
+#: tmp.tpl:135 tmp.tpl:136
 msgid "Error reported on: "
 msgstr "Fout gemeld op:"
 
-#: tmp.tpl:136
+#: tmp.tpl:136 tmp.tpl:137
 msgid "change status"
 msgstr "status veranderen"
 
-#: tmp.tpl:137
+#: tmp.tpl:137 tmp.tpl:138
 msgid "corrected"
 msgstr "hersteld"
 
-#: tmp.tpl:138
+#: tmp.tpl:138 tmp.tpl:139
 msgid "false positive"
 msgstr "valse melding"
 
-#: tmp.tpl:139 tmp.tpl:140
+#: tmp.tpl:139 tmp.tpl:140 tmp.tpl:141
 msgid "How to help translation"
 msgstr "Hoe met vertaling helpen"
 
-#: tmp.tpl:141
+#: tmp.tpl:141 tmp.tpl:142
 msgid ""
 "OsmOse tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
 msgstr "OsmOse tool is hoofdzakelijk ontwikkeld door fransen, en we willen graag meer talen toevoegen. Momenteel dekken wij bijna alle talen die door de landen worden gebruikt gedekt door analyses."
 
-#: tmp.tpl:142
+#: tmp.tpl:142 tmp.tpl:143
 msgid ""
 "To make OsmOse a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr "Om van OsmOse een multi-lingual tool te maken, hebben we je hulp nodig om de vertalingen te verbeteren, en nieuwe vertalingen toe te voegen"
 
-#: tmp.tpl:143
+#: tmp.tpl:143 tmp.tpl:144
 msgid "Recent translation needs"
 msgstr "Recente vertaling nodig"
 
-#: tmp.tpl:144
+#: tmp.tpl:144 tmp.tpl:145
 msgid ""
 "European countries: German and Italian in Switzerland and Dutch in Belgium"
 msgstr "Europese landen: Duits en Italiaans in Zwitserland en Nederlands in Belgie"
 
-#: tmp.tpl:145
+#: tmp.tpl:145 tmp.tpl:146
 msgid ""
 "Countries covered by HOT: Wolof in Senegal, Arabic in Chad and Cameroon, "
 "Swahili in Kenya, Kirundi in Burundi, and Malagasy in Madagascar"
 msgstr "Landen gedekt door HOT: Wolof in Senegal, Arabich in Chad and Cameroon, Swahili in Kenya, Kirundi in Burundi, en Malagasy in Madagascar"
 
-#: tmp.tpl:146
+#: tmp.tpl:146 tmp.tpl:147
 msgid "Pages to translate"
 msgstr "Pagina's om te vertalen"
 
-#: tmp.tpl:147
+#: tmp.tpl:147 tmp.tpl:148
 msgid "Wiki pages"
 msgstr "Wiki pagina's"
 
-#: tmp.tpl:148
+#: tmp.tpl:148 tmp.tpl:149
 msgid "OsmOse main page"
 msgstr "OsmOse hoofd pagina"
 
-#: tmp.tpl:149
+#: tmp.tpl:149 tmp.tpl:150
 msgid "Documentation on reported errors"
 msgstr "informatie over de gemelde fout"
 
-#: tmp.tpl:150
+#: tmp.tpl:150 tmp.tpl:151
 msgid "OsmOse pages"
 msgstr "OsmOse pagina's"
 
-#: tmp.tpl:151
+#: tmp.tpl:151 tmp.tpl:152
 msgid "Translation status of frontend"
 msgstr "Status vertaling van frontend"
 
-#: tmp.tpl:152
+#: tmp.tpl:152 tmp.tpl:153
 msgid "Source code for translations of frontend (.po files)"
 msgstr "Source code voor vertaling van frontend (.po files)"
 
-#: tmp.tpl:153
+#: tmp.tpl:153 tmp.tpl:154
 msgid "Source code for translations of backend (.po files)"
 msgstr "Source code voor vertaling van backend (.po files)"
 
-#: tmp.tpl:154
+#: tmp.tpl:154 tmp.tpl:155
 msgid ""
 "Source code for translations (database files for menu) - categ_menu_en.txt "
 "and item_menu_en.txt are the reference ones."
 msgstr "Source code voor vertaling (database files voor menu) - categ_menu_en.txt en item_menu_en.txt zijn de referenties."
 
-#: tmp.tpl:155
+#: tmp.tpl:155 tmp.tpl:156
 msgid "Bug tracking system"
 msgstr "Bug tracking system"
 
-#: tmp.tpl:156
+#: tmp.tpl:156 tmp.tpl:157
 msgid ""
 "<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
 "issue with translations, or erroneous analyses."
 msgstr "<a href='http://trac.openstreetmap.fr'>Trac</a> kan gebruikt worden om elke probleem met de vertaling, of foutieve analyses te melden."
+
+#: tmp.tpl:30
+msgid ""
+"Adding new functionality of <em>Osmose Editor</em>, initial support of "
+"mobile device and improvement of documentation was funded by region of "
+"Aquitaine, France; part of the OpenAquiMap project leading by <em>Les Petits"
+" Dbrouillards d'Aquitaine</em>."
+msgstr ""
