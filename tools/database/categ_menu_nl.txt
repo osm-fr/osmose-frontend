@@ -1,9 +1,0 @@
-     10 | Structureel
-     20 | Ontbrekende tags
-     30 | Verkeerde tag
-     40 | Tags te verwijderen
-     50 | Tags naam
-     60 | Administratieve
-     70 | Toevoegen aan Kaart
-     80 | Integratie
-

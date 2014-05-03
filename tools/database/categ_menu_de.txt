@@ -1,8 +1,0 @@
-     10 | Struktur
-     20 | fehlende Tags
-     30 | ungeeignete Tags
-     40 | zu entfernende Tags
-     50 | Namen
-     60 | Administration
-     70 | zur Karte hinzuzufügen
-     80 | Integration

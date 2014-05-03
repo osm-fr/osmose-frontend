@@ -1,0 +1,8 @@
+    10 | _("Structure")
+    20 | _("Missing tags")
+    30 | _("Bad tag")
+    40 | _("Tags to remove")
+    50 | _("Tags name")
+    60 | _("Administrative")
+    70 | _("To map")
+    80 | _("Integration")

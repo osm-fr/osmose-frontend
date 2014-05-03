@@ -1,9 +1,0 @@
-     10 | Strutture
-     20 | Tag mancanti
-     30 | Tag errati
-     40 | Tag da rimuovere
-     50 | Tag name
-     60 | Amministrativi
-     70 | Aggiungi alla mappa
-     80 | Integrazione
-
