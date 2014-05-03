@@ -13,6 +13,7 @@ tmp.tpl: $(TPLFILES)
 	egrep -h "_\( ?u?[\"']|TRANSLATORS" $(TPLFILES) | sed -e 's/.*_[(] \?u\?"\([^"]\+\)"[)].*/_("\1")/g' -e "s/.*_[(]'\([^']\+\)'[)].*/_('\1')/g" -e 's/^%#/#/' > tmp.tpl
 
 osmose-frontend.pot: $(PYFILES) tmp.tpl
+	sed -i "s/^#: .*//" osmose-frontend.pot
 	LANG=C xgettext --join-existing -cTRANSLATORS --language=Python \
           --keyword=_ --omit-header --from-code UTF-8 \
           --output=$@ $(PYFILES) tmp.tpl
