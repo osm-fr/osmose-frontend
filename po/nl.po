@@ -640,3 +640,342 @@ msgid ""
 "Aquitaine, France; part of the OpenAquiMap project leading by <em>Les Petits"
 " Dbrouillards d'Aquitaine</em>."
 msgstr ""
+
+msgid "Structure"
+msgstr "Structureel"
+
+msgid "Missing tags"
+msgstr "Ontbrekende tags"
+
+msgid "Bad tag"
+msgstr "Verkeerde tag"
+
+msgid "Tags to remove"
+msgstr "Tags te verwijderen"
+
+msgid "Tags name"
+msgstr "Tags naam"
+
+msgid "Administrative"
+msgstr "Administratieve"
+
+msgid "To map"
+msgstr "Toevoegen aan Kaart"
+
+msgid "Integration"
+msgstr "Integratie"
+
+msgid "overlapping building"
+msgstr "overlappende gebouw"
+
+msgid "duplicated node"
+msgstr "dubbele knooppunt"
+
+msgid "way one node"
+msgstr "weg gevormd van 1 knooppunt"
+
+msgid "invalid polygon"
+msgstr "ongeldige polygoon"
+
+msgid "reverse roundabout"
+msgstr "omgekeerde rotonde"
+
+msgid "boundary intersect"
+msgstr "kruising van de grens"
+
+msgid "objects overlap"
+msgstr "kruising tussen weg en een gebouw"
+
+msgid "orphan nodes"
+msgstr "alleenstaande knopen"
+
+msgid "sudden highway type change"
+msgstr "plotselinge verandering van weg type"
+
+msgid "unclosed area"
+msgstr "area=yes ongesloten"
+
+msgid "bad *_link highway"
+msgstr "verkeerde *_link verbinding"
+
+msgid "broken highway continuity"
+msgstr "onderbroken weg"
+
+msgid "missign tag or role"
+msgstr "tag of role ontbreekt"
+
+msgid "surface intersection"
+msgstr "kruising tussen gebieden"
+
+msgid "big relation"
+msgstr "grote relatie"
+
+msgid "multipolygon"
+msgstr "multipolygoon"
+
+msgid "double cycleway"
+msgstr "dubbele fietspad"
+
+msgid "approximate way"
+msgstr "te scherpe weg"
+
+msgid "1-member relation"
+msgstr "relatie met 1 lid"
+
+msgid "not-connected highway/cycleway"
+msgstr "niet verbonden weg/fietspad"
+
+msgid "waterway"
+msgstr "waterweg"
+
+msgid "duplicate geometry"
+msgstr "dubbele geometrie"
+
+msgid "junction=roundabout"
+msgstr "slecht rotonde"
+
+msgid "elevation"
+msgstr "hoogte ontbreekt"
+
+msgid "oneway"
+msgstr "eenrichtingsverkeer"
+
+msgid "parent tag"
+msgstr "bovenliggende code"
+
+msgid "street numbers"
+msgstr "huisnummers"
+
+msgid "highway"
+msgstr "highway ontbreekt"
+
+msgid "highway crossing"
+msgstr "kruising van wegen"
+
+msgid "pharmacy"
+msgstr "apotheker"
+
+msgid "highway roundabout"
+msgstr "aangesloten weg op rotonde"
+
+msgid "bad source tag"
+msgstr "verkeerde bron tag"
+
+msgid "tagwatch cleaner"
+msgstr "tagwatch cleaner"
+
+msgid "wikipedia"
+msgstr "wikipedia"
+
+msgid "multiple tags"
+msgstr "meerdere tags"
+
+msgid "saint hyphen"
+msgstr "linken naar St."
+
+msgid "incorrect tag"
+msgstr "onjuiste tag"
+
+msgid "bad tag key"
+msgstr "verkeerde key tag"
+
+msgid "similar values"
+msgstr "vergelijkbare waarden"
+
+msgid "multiple values"
+msgstr "meerdere waarden"
+
+msgid "swimming pool as natural=water"
+msgstr "zwembad als natural=water"
+
+msgid "numeric value"
+msgstr "numerieke waarde"
+
+msgid "small farm"
+msgstr "kleine boerderij"
+
+msgid "note"
+msgstr "nota"
+
+msgid "tree"
+msgstr "boom"
+
+msgid "brand in name"
+msgstr "met merknaam"
+
+msgid "typo in tag"
+msgstr "typefout in tag"
+
+msgid "incorrect \"lanes\""
+msgstr "onjuiste \"rijstroken\""
+
+msgid "parking lane"
+msgstr "parkeerstrook"
+
+msgid "relation role"
+msgstr "role relatie"
+
+msgid "relation type=restriction"
+msgstr "relatie type=restriction"
+
+msgid "postcode"
+msgstr "postcode"
+
+msgid "disused"
+msgstr "niet meer gebruikt"
+
+msgid "on junction=roundabout"
+msgstr "junction=roundabout"
+
+msgid "incompatible tags"
+msgstr "onverenigbaar tags"
+
+msgid "ref in name"
+msgstr "ref in naam"
+
+msgid "seamark:fixme"
+msgstr "seamark:fixme"
+
+msgid "construction"
+msgstr "constructie"
+
+msgid "duplicate object"
+msgstr "dubbele POI"
+
+msgid "unwanted tag on node"
+msgstr "onnodig tag op node"
+
+msgid "bad usage"
+msgstr "verkeerde \"designation\""
+
+msgid "orthograph"
+msgstr "spelling"
+
+msgid "way type"
+msgstr "type van weg"
+
+msgid "two names"
+msgstr "2 namen"
+
+msgid "toponymy"
+msgstr "plaatsnaamkunde"
+
+msgid "test soundex"
+msgstr "test soundex"
+
+msgid "open polygon"
+msgstr "open multipolygoon"
+
+msgid "duplicated way"
+msgstr "gedupliceerd weg"
+
+msgid "place without name"
+msgstr "plaats zonder naam"
+
+msgid "INSEE code"
+msgstr "INSEE-code"
+
+msgid "admin_level"
+msgstr "admin_level"
+
+msgid "erroneous boundary"
+msgstr "leegte admin_level=8"
+
+msgid "out of boundary"
+msgstr "buiten de grenzen"
+
+msgid "geodesic building"
+msgstr "geografische gebouw"
+
+msgid "building shape"
+msgstr "vorm van een gebouw"
+
+msgid "bridge to tag"
+msgstr "brug tag"
+
+msgid "admin boundary"
+msgstr "administratieve grens"
+
+msgid "power lines"
+msgstr "hoogspanningslijnen"
+
+msgid "post office"
+msgstr "postkantoor"
+
+msgid "ODbL migration change"
+msgstr "ODbL wijzigingen"
+
+msgid "school, not integrated"
+msgstr "school, niet geintegreerd"
+
+msgid "monument"
+msgstr "monumenten"
+
+msgid "node on ways"
+msgstr "overgang"
+
+msgid "train station"
+msgstr "trein station"
+
+msgid "TMC"
+msgstr "TMC"
+
+msgid "relation type=boundary"
+msgstr "relatie type=boundary"
+
+msgid "tunnel/bridge"
+msgstr "tunnel/brug"
+
+msgid "monument, museum"
+msgstr "monumenten"
+
+msgid "monument, museum, could be integrated"
+msgstr "monumenten, mogelijk invoegen"
+
+msgid "post office, could be integrated"
+msgstr "postkantoor, mogelijk invoegen"
+
+msgid "school"
+msgstr "school"
+
+msgid "school, could be integrated"
+msgstr "school, mogelijk invoegen"
+
+msgid "public transport"
+msgstr "franse trein station"
+
+msgid "public transport, could be integrated"
+msgstr "franse trein station, mogelijk invoegen"
+
+msgid "train station, could be integrated"
+msgstr "trein station, mogelijk invoegen"
+
+msgid "level crossing"
+msgstr "overweg"
+
+msgid "geodesic point"
+msgstr "geodesic punt ontbreekt"
+
+msgid "postal address"
+msgstr "adres"
+
+msgid "wikipédia, could be integrated"
+msgstr "wikipedia, mogelijk invoegen"
+
+msgid "public service"
+msgstr "openbare dienst"
+
+msgid "parking, could be integrated"
+msgstr "parking, kan toegevoegd worden"
+
+msgid "accommodation"
+msgstr "accommodatie"
+
+msgid "cycle parking"
+msgstr "fiets parking"
+
+msgid "transport sharing"
+msgstr "fietsverhuur"
+
+msgid "sport"
+msgstr "sport"

@@ -1,6 +1,7 @@
 
 PYFILES=$(shell find .. -name '*.py' -not -type l -not -path '*/externals/*' | sort)
 TPLFILES=$(shell find ../views -name '*.tpl' | sort)
+DBFILES=../tools/database/categ_menu.txt ../tools/database/item_menu.txt
 
 PO:=$(wildcard *.po)
 MO:=$(patsubst %.po,mo/%/LC_MESSAGES/osmose-frontend.mo,$(PO))
@@ -12,11 +13,11 @@ all: osmose-frontend.pot %.po mo
 tmp.tpl: $(TPLFILES)
 	egrep -h "_\( ?u?[\"']|TRANSLATORS" $(TPLFILES) | sed -e 's/.*_[(] \?u\?"\([^"]\+\)"[)].*/_("\1")/g' -e "s/.*_[(]'\([^']\+\)'[)].*/_('\1')/g" -e 's/^%#/#/' > tmp.tpl
 
-osmose-frontend.pot: $(PYFILES) tmp.tpl
+osmose-frontend.pot: $(PYFILES) tmp.tpl $(DBFILES)
 	sed -i "s/^#: .*//" osmose-frontend.pot
 	LANG=C xgettext --join-existing -cTRANSLATORS --language=Python \
           --keyword=_ --omit-header --from-code UTF-8 \
-          --output=$@ $(PYFILES) tmp.tpl
+          --output=$@ $(PYFILES) tmp.tpl $(DBFILES)
 
 %.po:
 	tx pull -a --minimum-perc=75

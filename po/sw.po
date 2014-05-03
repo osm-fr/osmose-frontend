@@ -721,3 +721,282 @@ msgstr ""
 
 #~ msgid "OsmOse - information on error"
 #~ msgstr "OsmOse - kosa habari "
+
+msgid "Structure"
+msgstr "kimuundo"
+
+msgid "Missing tags"
+msgstr "Tags kukosa"
+
+msgid "Tags to remove"
+msgstr "Tags kuondolewa"
+
+msgid "Tags name"
+msgstr "Tags jina"
+
+msgid "Administrative"
+msgstr "Utawala"
+
+msgid "To map"
+msgstr "ramani"
+
+msgid "overlapping building"
+msgstr "majengo kufunika"
+
+msgid "duplicated node"
+msgstr "unaorudiwa nodi"
+
+msgid "way one node"
+msgstr "way 1 fundo"
+
+msgid "invalid polygon"
+msgstr "batili poligoni"
+
+msgid "reverse roundabout"
+msgstr "kupokezana nyuma"
+
+msgid "boundary intersect"
+msgstr "mpaka intersect"
+
+msgid "objects overlap"
+msgstr "barabara intersection jengo"
+
+msgid "orphan nodes"
+msgstr "yatima nodes"
+
+msgid "sudden highway type change"
+msgstr "disparate aina ya barabara"
+
+msgid "unclosed area"
+msgstr "area=yes unclosed"
+
+msgid "bad *_link highway"
+msgstr "mbaya uhusiano * _link"
+
+msgid "broken highway continuity"
+msgstr "kuvunjika mwendelezo wa barabara"
+
+msgid "missign tag or role"
+msgstr "tag kukosa au jukumu"
+
+msgid "surface intersection"
+msgstr "intersection kati ya nyuso"
+
+msgid "multipolygon"
+msgstr "multipolygon"
+
+msgid "double cycleway"
+msgstr "dual bikeway"
+
+msgid "approximate way"
+msgstr "rough njia"
+
+msgid "1-member relation"
+msgstr "1 mwanachama uhusiano"
+
+msgid "not-connected highway/cycleway"
+msgstr "si kushikamana bikeway"
+
+msgid "waterway"
+msgstr "mito"
+
+msgid "junction=roundabout"
+msgstr "makutano = mzunguko"
+
+msgid "elevation"
+msgstr "ele = ..."
+
+msgid "oneway"
+msgstr "oneway = ..."
+
+msgid "parent tag"
+msgstr "Mzazi tag"
+
+msgid "street numbers"
+msgstr "mitaani idadi"
+
+msgid "highway"
+msgstr "highway = ..."
+
+msgid "highway roundabout"
+msgstr "highway roundabout"
+
+msgid "bad source tag"
+msgstr "mbaya tag chanzo"
+
+msgid "tagwatch cleaner"
+msgstr "Tagwatch safi"
+
+msgid "wikipedia"
+msgstr "wikipedia"
+
+msgid "multiple tags"
+msgstr "kiungo tags"
+
+msgid "saint hyphen"
+msgstr "kiungo kwa Saint"
+
+msgid "incorrect tag"
+msgstr "tag sahihi"
+
+msgid "bad tag key"
+msgstr "mbaya muhimu tag"
+
+msgid "similar values"
+msgstr "sawa maadili"
+
+msgid "multiple values"
+msgstr "multivalued"
+
+msgid "swimming pool as natural=water"
+msgstr "asili = maji bwawa"
+
+msgid "numeric value"
+msgstr "namba"
+
+msgid "small farm"
+msgstr "mashamba madogo"
+
+msgid "note"
+msgstr "rating"
+
+msgid "tree"
+msgstr "mti"
+
+msgid "brand in name"
+msgstr "brand jina na"
+
+msgid "typo in tag"
+msgstr "typo katika tag"
+
+msgid "incorrect \"lanes\""
+msgstr "\"lane\" sahihi"
+
+msgid "relation role"
+msgstr "uhusiano jukumu"
+
+msgid "disused"
+msgstr "kutelekezwa"
+
+msgid "on junction=roundabout"
+msgstr "junction=roundabout"
+
+msgid "incompatible tags"
+msgstr "Tags yasiokubaliana"
+
+msgid "ref in name"
+msgstr "ref jina katika"
+
+msgid "seamark:fixme"
+msgstr "seamark: fixme"
+
+msgid "construction"
+msgstr "Ujenzi"
+
+msgid "duplicate object"
+msgstr "POI mbili"
+
+msgid "unwanted tag on node"
+msgstr "tag juu ya nodi unnecessary"
+
+msgid "bad usage"
+msgstr "\"designation\" sahihi"
+
+msgid "orthograph"
+msgstr "spelling"
+
+msgid "way type"
+msgstr "aina njia"
+
+msgid "two names"
+msgstr "2 majina"
+
+msgid "toponymy"
+msgstr "toponymy"
+
+msgid "test soundex"
+msgstr "soundex mtihani"
+
+msgid "open polygon"
+msgstr "wazi poligoni"
+
+msgid "duplicated way"
+msgstr "Njia zinajirudia"
+
+msgid "place without name"
+msgstr "mahali bila jina"
+
+msgid "INSEE code"
+msgstr "code INSEE"
+
+msgid "admin_level"
+msgstr "admin_level"
+
+msgid "erroneous boundary"
+msgstr "admin_level shimo = 8"
+
+msgid "geodesic building"
+msgstr "jengo geodesic"
+
+msgid "building shape"
+msgstr "umbo jengo"
+
+msgid "admin boundary"
+msgstr "admin kikomo"
+
+msgid "power lines"
+msgstr "powerlines"
+
+msgid "post office"
+msgstr "ofisi ya posta"
+
+msgid "ODbL migration change"
+msgstr "ODbL kwa ajili ya mabadiliko"
+
+msgid "school, not integrated"
+msgstr "Shule siyo shirikishi"
+
+msgid "monument"
+msgstr "monument"
+
+msgid "node on ways"
+msgstr "Reli kuvuka"
+
+msgid "train station"
+msgstr "Railway Station"
+
+msgid "TMC"
+msgstr "TMC"
+
+msgid "monument, museum"
+msgstr "monument"
+
+msgid "monument, museum, could be integrated"
+msgstr "monument iwezekanavyo ushirikiano"
+
+msgid "post office, could be integrated"
+msgstr "ofisi ya posta, ushirikiano iwezekanavyo"
+
+msgid "school"
+msgstr "Shule"
+
+msgid "school, could be integrated"
+msgstr "shule ushirikiano iwezekanavyo"
+
+msgid "public transport"
+msgstr "kituo cha RATP"
+
+msgid "public transport, could be integrated"
+msgstr "kituo cha RATP iwezekanavyo ushirikiano"
+
+msgid "train station, could be integrated"
+msgstr "kituo cha iwezekanavyo ushirikiano"
+
+msgid "level crossing"
+msgstr "Crossing"
+
+msgid "geodesic point"
+msgstr "geodesic uhakika kukosa"
+
+msgid "postal address"
+msgstr "anuani iwezekanavyo ushirikiano"

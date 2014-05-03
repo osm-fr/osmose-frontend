@@ -640,3 +640,327 @@ msgid ""
 "Aquitaine, France; part of the OpenAquiMap project leading by <em>Les Petits"
 " Dbrouillards d'Aquitaine</em>."
 msgstr ""
+
+msgid "Structure"
+msgstr "Strutture"
+
+msgid "Missing tags"
+msgstr "Tag mancanti"
+
+msgid "Bad tag"
+msgstr "Tag errati"
+
+msgid "Tags to remove"
+msgstr "Tag da rimuovere"
+
+msgid "Tags name"
+msgstr "Tag name"
+
+msgid "Administrative"
+msgstr "Amministrativi"
+
+msgid "To map"
+msgstr "Aggiungi alla mappa"
+
+msgid "Integration"
+msgstr "Integrazione"
+
+msgid "overlapping building"
+msgstr "edifici sovrapposti"
+
+msgid "duplicated node"
+msgstr "nodo duplicato"
+
+msgid "way one node"
+msgstr "way di un nodo"
+
+msgid "invalid polygon"
+msgstr "poligono non valido"
+
+msgid "reverse roundabout"
+msgstr "rotatoria inversa"
+
+msgid "boundary intersect"
+msgstr "confini che si intersecano"
+
+msgid "objects overlap"
+msgstr "edificio vs strada"
+
+msgid "orphan nodes"
+msgstr "nodi orfani"
+
+msgid "sudden highway type change"
+msgstr "cambio improvviso di strade ----"
+
+msgid "unclosed area"
+msgstr "area non chiusa"
+
+msgid "bad *_link highway"
+msgstr "cattiva classificazione *_link"
+
+msgid "broken highway continuity"
+msgstr "classificazione discontinua"
+
+msgid "missign tag or role"
+msgstr "tag o ruolo mancante"
+
+msgid "surface intersection"
+msgstr "intersezione tra superfici"
+
+msgid "big relation"
+msgstr "relazione ampia"
+
+msgid "multipolygon"
+msgstr "multipoligono"
+
+msgid "double cycleway"
+msgstr "ciclabile doppia"
+
+msgid "approximate way"
+msgstr "way approssimativa"
+
+msgid "1-member relation"
+msgstr "relazione con un solo membro"
+
+msgid "not-connected highway/cycleway"
+msgstr "cliclabile non connessa ad highway"
+
+msgid "waterway"
+msgstr "corso d'acqua"
+
+msgid "duplicate geometry"
+msgstr "geometria duplicata"
+
+msgid "junction=roundabout"
+msgstr "junction=roundabout"
+
+msgid "elevation"
+msgstr "ele=..."
+
+msgid "oneway"
+msgstr "oneway=..."
+
+msgid "parent tag"
+msgstr "tag genitore"
+
+msgid "street numbers"
+msgstr "numero civico"
+
+msgid "highway"
+msgstr "highway=..."
+
+msgid "highway crossing"
+msgstr "attraversamento pedonale"
+
+msgid "pharmacy"
+msgstr "farmacia"
+
+msgid "highway roundabout"
+msgstr "classificazione rotatoria"
+
+msgid "bad source tag"
+msgstr "source tag sbagliato"
+
+msgid "tagwatch cleaner"
+msgstr "segnalazioni tagwatch"
+
+msgid "wikipedia"
+msgstr "Wikipedia"
+
+msgid "multiple tags"
+msgstr "collegamenti tra i tag"
+
+msgid "saint hyphen"
+msgstr "trattino su Saint"
+
+msgid "incorrect tag"
+msgstr "tag non corretto"
+
+msgid "bad tag key"
+msgstr "chiave non corretta"
+
+msgid "similar values"
+msgstr "valori simili"
+
+msgid "multiple values"
+msgstr "valori multipli"
+
+msgid "swimming pool as natural=water"
+msgstr "piscine come natural=water"
+
+msgid "numeric value"
+msgstr "valore numerico"
+
+msgid "small farm"
+msgstr "piccola azienda agricola"
+
+msgid "note"
+msgstr "nota"
+
+msgid "tree"
+msgstr "albero"
+
+msgid "brand in name"
+msgstr "marchio in name"
+
+msgid "typo in tag"
+msgstr "tag errato"
+
+msgid "incorrect \"lanes\""
+msgstr "lanes non corretto"
+
+msgid "parking lane"
+msgstr "parking lane"
+
+msgid "relation role"
+msgstr "ruolo di relazione"
+
+msgid "relation type=restriction"
+msgstr "relazione type=restriction"
+
+msgid "postcode"
+msgstr "postcode"
+
+msgid "disused"
+msgstr "abbandonato"
+
+msgid "on junction=roundabout"
+msgstr "tag su rotatoria"
+
+msgid "incompatible tags"
+msgstr "tag incompatibili"
+
+msgid "ref in name"
+msgstr "ref in name"
+
+msgid "seamark:fixme"
+msgstr "seamark: fixme"
+
+msgid "construction"
+msgstr "costruzione"
+
+msgid "duplicate object"
+msgstr "oggetto duplicato"
+
+msgid "unwanted tag on node"
+msgstr "tag non necessario su nodo"
+
+msgid "bad usage"
+msgstr "designation non corretto"
+
+msgid "orthograph"
+msgstr "ortografia"
+
+msgid "way type"
+msgstr "tipo di percorso"
+
+msgid "two names"
+msgstr "due nomi"
+
+msgid "toponymy"
+msgstr "toponomastica"
+
+msgid "test soundex"
+msgstr "testare soundex"
+
+msgid "open polygon"
+msgstr "poligono aperto"
+
+msgid "duplicated way"
+msgstr "way duplicata"
+
+msgid "place without name"
+msgstr "luogo senza nome"
+
+msgid "INSEE code"
+msgstr "codice INSEE"
+
+msgid "admin_level"
+msgstr "admin_level"
+
+msgid "erroneous boundary"
+msgstr "buco admin_level = 8"
+
+msgid "out of boundary"
+msgstr "fuori dai confini"
+
+msgid "geodesic building"
+msgstr "costruzione geodetica"
+
+msgid "building shape"
+msgstr "forma edificio"
+
+msgid "bridge to tag"
+msgstr "specificare ponte"
+
+msgid "admin boundary"
+msgstr "limite amministrativo"
+
+msgid "power lines"
+msgstr "linee elettriche"
+
+msgid "post office"
+msgstr "ref ufficio postale"
+
+msgid "ODbL migration change"
+msgstr "modifiche per migrazione ODbL"
+
+msgid "school, not integrated"
+msgstr "ref edificio scolastico"
+
+msgid "monument"
+msgstr "monumento"
+
+msgid "node on ways"
+msgstr "attraversamento pedonale"
+
+msgid "train station"
+msgstr "stazione ferroviaria"
+
+msgid "TMC"
+msgstr "TMC"
+
+msgid "relation type=boundary"
+msgstr "relazione type=boundary"
+
+msgid "tunnel/bridge"
+msgstr "tunnel/bridge"
+
+msgid "monument, museum"
+msgstr "monumento"
+
+msgid "monument, museum, could be integrated"
+msgstr "monument da integrare"
+
+msgid "post office, could be integrated"
+msgstr "ufficio postale da integrare"
+
+msgid "school"
+msgstr "scuola"
+
+msgid "school, could be integrated"
+msgstr "scuola da integrare"
+
+msgid "public transport"
+msgstr "trasporto pubblico"
+
+msgid "public transport, could be integrated"
+msgstr "trasporto pubblico da integrare"
+
+msgid "train station, could be integrated"
+msgstr "stazione dei treni da integrare"
+
+msgid "level crossing"
+msgstr "passaggio ferroviario"
+
+msgid "geodesic point"
+msgstr "punto geodetico"
+
+msgid "postal address"
+msgstr "indirizzo da integrare"
+
+msgid "wikipédia, could be integrated"
+msgstr "Wikipedia da integrare"
+
+msgid "public service"
+msgstr "public service"
