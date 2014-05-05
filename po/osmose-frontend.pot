@@ -561,70 +561,37 @@ msgid ""
 "covered by analyses."
 msgstr ""
 
-#: tmp.tpl:143
+#: tmp.tpl:144
 msgid ""
 "To make OsmOse a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr ""
 
-#: tmp.tpl:144
-msgid "Recent translation needs"
-msgstr ""
-
 #: tmp.tpl:145
-msgid ""
-"European countries: German and Italian in Switzerland and Dutch in Belgium"
-msgstr ""
-
-#: tmp.tpl:146
-msgid ""
-"Countries covered by HOT: Wolof in Senegal, Arabic in Chad and Cameroon, "
-"Swahili in Kenya, Kirundi in Burundi, and Malagasy in Madagascar"
-msgstr ""
-
-#: tmp.tpl:147
 msgid "Pages to translate"
 msgstr ""
 
-#: tmp.tpl:148
+#: tmp.tpl:149
 msgid "Wiki pages"
 msgstr ""
 
-#: tmp.tpl:149
+#: tmp.tpl:150
 msgid "OsmOse main page"
 msgstr ""
 
-#: tmp.tpl:150
+#: tmp.tpl:151
 msgid "Documentation on reported errors"
 msgstr ""
 
-#: tmp.tpl:151
+#: tmp.tpl:146
 msgid "OsmOse pages"
 msgstr ""
 
-#: tmp.tpl:152
-msgid "Translation status of frontend"
-msgstr ""
-
-#: tmp.tpl:153
-msgid "Source code for translations of frontend (.po files)"
-msgstr ""
-
-#: tmp.tpl:154
-msgid "Source code for translations of backend (.po files)"
-msgstr ""
-
 #: tmp.tpl:155
-msgid ""
-"Source code for translations (database files for menu) - categ_menu_en.txt "
-"and item_menu_en.txt are the reference ones."
-msgstr ""
-
-#: tmp.tpl:156
 msgid "Bug tracking system"
 msgstr ""
 
-#: tmp.tpl:157
+#: tmp.tpl:156
 msgid ""
 "<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
 "issue with translations, or erroneous analyses."
@@ -1116,4 +1083,34 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:116
 msgid "sport, could be integrated"
+msgstr ""
+
+#: tmp.tpl:148
+msgid "Translation progress: osmose"
+msgstr ""
+
+#: tmp.tpl:152
+msgid "For new language or countries"
+msgstr ""
+
+#: tmp.tpl:154
+#, python-format
+msgid ""
+"For new countries, we can be contacted through a direct email to <a "
+"href='mailto:%s'>%s</a>."
+msgstr ""
+
+#: tmp.tpl:143
+#, python-format
+msgid "The <a href='%s'>country coverage is available</a>."
+msgstr ""
+
+#: tmp.tpl:153
+#, python-format
+msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
+msgstr ""
+
+#: tmp.tpl:147
+#, python-format
+msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr ""

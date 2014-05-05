@@ -1,28 +1,34 @@
 %rebase layout title=(_("How to help translation"))
 <h1>{{_("How to help translation")}}</h1>
-<p>{{_("OsmOse tool is mainly developped by french people, and we aim to add more languages. We currently cover almost all the languages used by countries covered by analyses.")}}</p>
+<p>{{_("OsmOse tool is mainly developped by french people, and we aim to add more languages. We currently cover almost all the languages used by countries covered by analyses.")}}
+{{!_("The <a href='%s'>country coverage is available</a>.") % "map/#zoom=2&lat=37&lon=-25.9&layer=Mapnik&overlays=FFFFFFFFFFFFFFFFFTFF&item=xxxx&level=1%2C2%2C3&tags=&fixable=" }}
 <p>{{_("To make OsmOse a real multi-lingual tool, we need your help to improve current translations, and add new translations")}}</p>
 
-<h2>{{_("Recent translation needs")}}</h2>
-<ul>
-<li>{{_("European countries: German and Italian in Switzerland and Dutch in Belgium")}}</li>
-<li>{{_("Countries covered by HOT: Wolof in Senegal, Arabic in Chad and Cameroon, Swahili in Kenya, Kirundi in Burundi, and Malagasy in Madagascar")}}</li>
-</ul>
 
 <h2>{{_("Pages to translate")}}</h2>
+<h3>{{_("OsmOse pages")}}</h3>
+<ul>
+<li>{{!_("Translation is done on <a href='%s'>Transifex</a>.") % "http://www.transifex.com/projects/p/osmose/"}}</a></li>
+</ul>
+<div style="transifex-chart">
+  <a target="_blank" style="text-decoration:none; color:black; font-size:66%" href="https://www.transifex.com/projects/p/osmose" title="See more information on Transifex.com">{{_("Translation progress: osmose")}}</a><br/>
+  <a target="_blank" href="https://www.transifex.com/projects/p/osmose/"><img border="0" src="https://www.transifex.com/projects/p/osmose/chart/image_png"/></a><br/>
+  <a target="_blank" href="https://www.transifex.com/projects/p/osmose/"><img border="0" src="https://ds0k0en9abmn1.cloudfront.net/static/charts/images/tx-logo-micro.646b0065fce6.png"/></a>
+</div>
+
 <h3>{{_("Wiki pages")}}</h3>
 <ul>
 <li><a href="{{_("http://wiki.openstreetmap.org/wiki/Osmose")}}">{{_("OsmOse main page")}}</a></li>
 <li><a href="{{_("http://wiki.openstreetmap.org/wiki/Osmose/erreurs")}}">{{_("Documentation on reported errors")}}</a></li>
 </ul>
 
-<h3>{{_("OsmOse pages")}}</h3>
+<h2>{{_("For new language or countries")}}</h2>
 <ul>
-<li><a href="{{_("control/i18n")}}">{{_("Translation status of frontend")}}</a></li>
-<li><a href="{{_("http://gitorious.org/osmose/frontend/trees/master/po")}}">{{_("Source code for translations of frontend (.po files)")}}</a></li>
-<li><a href="{{_("http://gitorious.org/osmose/backend/trees/master/po")}}">{{_("Source code for translations of backend (.po files)")}}</a></li>
-<li><a href="{{_("https://gitorious.org/osmose/frontend/trees/master/tools/database")}}">{{_("Source code for translations (database files for menu) - categ_menu_en.txt and item_menu_en.txt are the reference ones.")}}</a></li>
+<li>{{!_("You can create a new language directly on <a href='%s'>Transifex.</a>") % "http://www.transifex.com/projects/p/osmose/"}}</a></li>
+<li>{{!_("For new countries, we can be contacted through a direct email to <a href='mailto:%s'>%s</a>.") % (2 * ("osmose-contact@openstreetmap.fr".replace('@', '&#x40;'), ))}}</li>
+</li>
 </ul>
+
 
 <h2>{{_("Bug tracking system")}}</h2>
 <ul>
