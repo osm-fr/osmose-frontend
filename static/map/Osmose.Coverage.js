@@ -9,6 +9,7 @@ OsmoseCoverage = L.GeoJSON.extend({
   },
 
   onAdd: function (map, insertAtTheBottom) {
+    this._map = map;
     if (this._geojson === null) {
       this.fetchData();
     }
@@ -18,11 +19,14 @@ OsmoseCoverage = L.GeoJSON.extend({
 
   fetchData: function () {
     var self = this;
+    this._map.spin(true);
     $.ajax({
       'url': this._geojson_url
     }).done(function (data) {
       self.addData(data);
       self._geojson = data;
+    }).always(function () {
+      self._map.spin(false);
     });
   },
 });
