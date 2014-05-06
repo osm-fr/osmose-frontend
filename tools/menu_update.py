@@ -39,7 +39,7 @@ dbcurs = dbconn.cursor()
 types = ("categ", "item")
 
 for typ in types:
-  sql = "update dynpoi_" + typ + " set menu = coalesce(menu, hstore(%s,''))|| hstore(%s, %s) where categ = %s;"
+  sql = "update dynpoi_" + typ + " set menu = coalesce(menu, hstore(%s,''))|| hstore(%s, %s) where " + typ + " = %s;"
 
   for line in codecs.open("database/" + typ + "_menu.txt", "r", "utf-8"):
     (item, s) = line.split("|")
