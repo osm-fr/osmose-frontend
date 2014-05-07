@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2014-05-03 21:17+0000\n"
-"Last-Translator: JocelynJ <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2014-05-06 21:08+0000\n"
+"Last-Translator: operon\n"
 "Language-Team: French (http://www.transifex.com/projects/p/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -570,70 +570,37 @@ msgid ""
 "covered by analyses."
 msgstr "L'outil OsmOse est principalement développé par des français, et nous voudrions couvrir d'autres langues. Nous couvrons actuellement la majorité des langues utilisées dans les pays couverts par les analyses."
 
-#: tmp.tpl:143
+#: tmp.tpl:144
 msgid ""
 "To make OsmOse a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr "Afin de rendre OsmOse un outil international, nous avons besoin de votre aide pour améliorer les traductions actuelles, et en ajouter d'autres."
 
-#: tmp.tpl:144
-msgid "Recent translation needs"
-msgstr "Besoin récents de traduction"
-
 #: tmp.tpl:145
-msgid ""
-"European countries: German and Italian in Switzerland and Dutch in Belgium"
-msgstr "Pays européens : allemand et italien pour la Suisse, et flamand pour la Belgique"
-
-#: tmp.tpl:146
-msgid ""
-"Countries covered by HOT: Wolof in Senegal, Arabic in Chad and Cameroon, "
-"Swahili in Kenya, Kirundi in Burundi, and Malagasy in Madagascar"
-msgstr "Pays couverts par HOT : wolof pour le Sénégal, arabe pour le Tchad et le Cameroun, swahili pour le Kenya, kirundi pour le Burundi, et malgache pour le Madagascar"
-
-#: tmp.tpl:147
 msgid "Pages to translate"
 msgstr "Pages à traduire"
 
-#: tmp.tpl:148
+#: tmp.tpl:149
 msgid "Wiki pages"
 msgstr "Pages du Wiki"
 
-#: tmp.tpl:149
+#: tmp.tpl:150
 msgid "OsmOse main page"
 msgstr "Page principale sur OsmOse"
 
-#: tmp.tpl:150
+#: tmp.tpl:151
 msgid "Documentation on reported errors"
 msgstr "Documentation sur les erreurs reportées"
 
-#: tmp.tpl:151
+#: tmp.tpl:146
 msgid "OsmOse pages"
 msgstr "Pages d'OsmOse"
 
-#: tmp.tpl:152
-msgid "Translation status of frontend"
-msgstr "Statut actuel des traductions sur le frontend"
-
-#: tmp.tpl:153
-msgid "Source code for translations of frontend (.po files)"
-msgstr "Code source des traductions du frontend (fichiers .po)"
-
-#: tmp.tpl:154
-msgid "Source code for translations of backend (.po files)"
-msgstr "Code source des traductions du backend (fichiers .po)"
-
 #: tmp.tpl:155
-msgid ""
-"Source code for translations (database files for menu) - categ_menu_en.txt "
-"and item_menu_en.txt are the reference ones."
-msgstr "Code source des traductions (fichiers de base de donnée pour le menu) - categ_menu_en.txt et item_menu_en.txt sont les fichiers de référence."
-
-#: tmp.tpl:156
 msgid "Bug tracking system"
 msgstr "Suivi des bugs"
 
-#: tmp.tpl:157
+#: tmp.tpl:156
 msgid ""
 "<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
 "issue with translations, or erroneous analyses."
@@ -645,7 +612,7 @@ msgid ""
 "mobile device and improvement of documentation was funded by region of "
 "Aquitaine, France; part of the OpenAquiMap project leading by <em>Les Petits"
 " Débrouillards d'Aquitaine</em>."
-msgstr ""
+msgstr "Ajout d'une nouvelle fonctionnalité l'<em>Osmose Editor</em>, Prise en compte des équipements mobiles et amélioration de la documentation financé par la région Aquitaine; France;  dans le cadre du projet OpenAquiMap et mené par <em>Les Petits Débrouillards d'Aquitaine</em>."
 
 #: ../tools/database/categ_menu.txt:1
 msgid "Structure"
@@ -697,7 +664,7 @@ msgstr "polygone non valide"
 
 #: ../tools/database/item_menu.txt:5
 msgid "reverse roundabout"
-msgstr "rond-point à l'envers"
+msgstr "giratoire à l'envers"
 
 #: ../tools/database/item_menu.txt:6
 msgid "boundary intersect"
@@ -769,7 +736,7 @@ msgstr "géométrie dupliquée"
 
 #: ../tools/database/item_menu.txt:23
 msgid "junction=roundabout"
-msgstr "mauvais rond-point"
+msgstr "mauvais giratoire"
 
 #: ../tools/database/item_menu.txt:24
 msgid "elevation"
@@ -801,7 +768,7 @@ msgstr "pharmacie"
 
 #: ../tools/database/item_menu.txt:32
 msgid "highway roundabout"
-msgstr "highway roundabout"
+msgstr "voie giratoire"
 
 #: ../tools/database/item_menu.txt:33
 msgid "bad source tag"
@@ -845,7 +812,7 @@ msgstr "piscine en natural=water"
 
 #: ../tools/database/item_menu.txt:44
 msgid "numeric value"
-msgstr ""
+msgstr "Valeur numérique"
 
 #: ../tools/database/item_menu.txt:45
 msgid "small farm"
@@ -869,7 +836,7 @@ msgstr "typo dans un tag"
 
 #: ../tools/database/item_menu.txt:50
 msgid "incorrect "
-msgstr ""
+msgstr "incorrecte"
 
 #: ../tools/database/item_menu.txt:51
 msgid "parking lane"
@@ -1073,7 +1040,7 @@ msgstr "adresse"
 
 #: ../tools/database/item_menu.txt:103
 msgid "wikipedia, could be integrated"
-msgstr ""
+msgstr "Wikipedia, peut-être intégré"
 
 #: ../tools/database/item_menu.txt:104
 msgid "public service"
@@ -1126,3 +1093,33 @@ msgstr "sport"
 #: ../tools/database/item_menu.txt:116
 msgid "sport, could be integrated"
 msgstr "sport, intégration possible"
+
+#: tmp.tpl:148
+msgid "Translation progress: osmose"
+msgstr "Progression de la traduction : Osmose"
+
+#: tmp.tpl:152
+msgid "For new language or countries"
+msgstr "Pour de nouvelles langues ou pays"
+
+#: tmp.tpl:154
+#, python-format
+msgid ""
+"For new countries, we can be contacted through a direct email to <a "
+"href='mailto:%s'>%s</a>."
+msgstr "Pour de nouveaux pays, vous pouvez nous contacter directement par email <a href='mailto:%s'>%s</a>."
+
+#: tmp.tpl:143
+#, python-format
+msgid "The <a href='%s'>country coverage is available</a>."
+msgstr "La <a href='%s'>carte des pays analysés est disponible</a>."
+
+#: tmp.tpl:153
+#, python-format
+msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
+msgstr "Vous pouvez créer une nouvelle langue directement sur <a href='%s'>Transifex.</a>"
+
+#: tmp.tpl:147
+#, python-format
+msgid "Translation is done on <a href='%s'>Transifex</a>."
+msgstr "Traduction disponible sur  <a href='%s'>Transifex</a>."
