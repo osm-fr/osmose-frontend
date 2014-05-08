@@ -138,7 +138,7 @@ def index(db, lang, format=None):
     params.status = {"error":"open", "false-positive": "false", "done":"done"}[gen]
     params.limit = None
 
-    if format == None:
+    if format == None and params.item:
         errors_groups = query._count(db, params, [
             "dynpoi_class.item",
             "dynpoi_class.source",
@@ -154,7 +154,7 @@ def index(db, lang, format=None):
             if res["count"] != -1:
                 total += res["count"]
     else:
-        errors_groups = None
+        errors_groups = []
         total = 0
 
     params.limit = request.params.get('limit', type=int, default=100)
