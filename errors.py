@@ -111,14 +111,13 @@ def graph(db, format='png'):
 
 
 @route('/errors')
-def index_redirect():
-    redirect("errors/")
-
-
+@route('/errors.<format:ext>')
 @route('/errors/')
 @route('/errors/done')
+@route('/errors/done.<format:ext>')
 @route('/errors/false-positive')
-def index(db, lang):
+@route('/errors/false-positive.<format:ext>')
+def index(db, lang, format=None):
     if request.path.endswith("false-positive"):
         title = _("False positives")
         gen = "false-positive"
@@ -129,27 +128,34 @@ def index(db, lang):
         title = _("Informations")
         gen = "error"
 
-    countries = query_meta._countries(db, lang)
+    if not format in ('rss',):
+        format = None
+
+    countries = query_meta._countries(db, lang) if format == None else None
     items = query_meta._items(db, lang)
 
     params = query._params()
     params.status = {"error":"open", "false-positive": "false", "done":"done"}[gen]
     params.limit = None
 
-    errors_groups = query._count(db, params, [
-        "dynpoi_class.item",
-        "dynpoi_class.source",
-        "dynpoi_class.class",
-        "dynpoi_source.comment"],
-        ["dynpoi_item"], [
-        "first(dynpoi_item.menu) AS menu",
-        "first(dynpoi_class.title) AS title"],
-        orderBy = True)
+    if format == None:
+        errors_groups = query._count(db, params, [
+            "dynpoi_class.item",
+            "dynpoi_class.source",
+            "dynpoi_class.class",
+            "dynpoi_source.comment"],
+            ["dynpoi_item"], [
+            "first(dynpoi_item.menu) AS menu",
+            "first(dynpoi_class.title) AS title"],
+            orderBy = True)
 
-    total = 0
-    for res in errors_groups:
-        if res["count"] != -1:
-            total += res["count"]
+        total = 0
+        for res in errors_groups:
+            if res["count"] != -1:
+                total += res["count"]
+    else:
+        errors_groups = None
+        total = 0
 
     params.limit = request.params.get('limit', type=int, default=100)
     if params.limit > 10000:
@@ -166,4 +172,10 @@ def index(db, lang):
         opt_date = None
         errors = None
 
-    return template('errors/index', countries=countries, items=items, errors_groups=errors_groups, total=total, errors=errors, query=request.query_string, country=params.country, item=params.item, translate=utils.translator(lang), gen=gen, opt_date=opt_date, title=title)
+    if format == 'rss':
+        response.content_type = 'application/rss+xml'
+        tpl = 'errors/list.rss'
+    else:
+        tpl = 'errors/index'
+
+    return template(tpl, countries=countries, items=items, errors_groups=errors_groups, total=total, errors=errors, query=request.query_string, country=params.country, item=params.item, translate=utils.translator(lang), gen=gen, opt_date=opt_date, title=title, website=utils.website)
