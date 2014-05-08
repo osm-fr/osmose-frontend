@@ -150,6 +150,17 @@
  <li id="menu-{{u[0]}}"><a href="{{u[2]}}">{{u[1]}}</a></li>
 %end
 
+<li id="menu-export"><a href='#'>{{_("Export")}} ▼</a>
+<ul class="submenu">
+  <li><a href="../errors" target="_blank">{{_("Html list")}}</a></li>
+  <!--<li><a href="{{"http://" + website + "/errors.osm"}}" target="hiddenIframe">JOSM</a></li>-->
+  <li><a href="../errors.rss" target="_blank">RSS</a></li>
+  <li><a href="../errors.gpx">.gpx</a></li>
+  <!--<li><a href="../errors.osm">.osm</a></li>-->
+  <li><a href="../api/0.2/errors" target="_blank">Json</a></li>
+  <li><a href="markers" target="_blank">GeoJson</a></li>
+</ul>
+
 <li id="menu-help"><a href='#'>{{_("Help")}} ▼</a>
 <ul class="submenu">
 %for u in helps:

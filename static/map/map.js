@@ -22,6 +22,8 @@ function init_map() {
   map.addControl(new OsmoseMenuToggle(menu));
   menu.show();
 
+  new OsmoseExport(map, menu);
+
   var editor = new OsmoseEditor('editor', {
     position: 'right'
   });
