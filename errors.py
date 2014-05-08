@@ -128,7 +128,7 @@ def index(db, lang, format=None):
         title = _("Informations")
         gen = "error"
 
-    if not format in ('rss',):
+    if not format in ('rss', 'gpx'):
         format = None
 
     countries = query_meta._countries(db, lang) if format == None else None
@@ -175,6 +175,9 @@ def index(db, lang, format=None):
     if format == 'rss':
         response.content_type = 'application/rss+xml'
         tpl = 'errors/list.rss'
+    elif format == 'gpx':
+        response.content_type = 'application/gpx+xml'
+        tpl = 'errors/list.gpx'
     else:
         tpl = 'errors/index'
 

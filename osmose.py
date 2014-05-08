@@ -30,9 +30,9 @@ import bottle_gettext, os
 app.install(bottle_gettext.Plugin('osmose-frontend', os.path.join("po", "mo"), utils.allowed_languages))
 
 def ext_filter(config):
-    regexp = r'html|json|xml|rss|png|svg|pdf'
+    regexp = r'html|json|xml|rss|png|svg|pdf|gpx'
     def to_python(match):
-        return match if match in ('html', 'json', 'xml', 'rss', 'png', 'svg', 'pdf') else 'html'
+        return match if match in ('html', 'json', 'xml', 'rss', 'png', 'svg', 'pdf', 'gpx') else 'html'
     def to_url(ext):
         return ext
     return regexp, to_python, to_url
