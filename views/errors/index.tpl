@@ -1,6 +1,6 @@
 %favicon=None
 %for res in items:
-%    if item == res['item']:
+%    if item == str(res["item"]):
 %        title += ' - ' + translate.select(res['menu'])
 %        favicon = "../images/markers/marker-l-%s.png" % res["item"]
 %    end
