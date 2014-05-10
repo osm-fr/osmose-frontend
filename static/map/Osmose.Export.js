@@ -10,6 +10,7 @@ OsmoseExport = L.Class.extend({
     this._map.on('moveend', this._setUrl, this);
     this._menu = menu;
     this._menu.on('itemchanged', this._setUrl, this);
+    this._setUrl();
   },
 
   _setUrl: function (e) {
