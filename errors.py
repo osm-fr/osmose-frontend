@@ -128,7 +128,7 @@ def index(db, lang, format=None):
         title = _("Informations")
         gen = "error"
 
-    if not format in ('rss', 'gpx'):
+    if not format in ('rss', 'gpx', 'josm'):
         format = None
 
     countries = query_meta._countries(db, lang) if format == None else None
@@ -178,6 +178,20 @@ def index(db, lang, format=None):
     elif format == 'gpx':
         response.content_type = 'application/gpx+xml'
         tpl = 'errors/list.gpx'
+    elif format == 'josm':
+        objects = []
+        for res in errors:
+            if res["elems"]:
+                elems = res["elems"].split("_")
+                for e in elems:
+                    m = re.match(r"([a-z]+)([0-9]+)", e)
+                    if m:
+                        cur_type = m.group(1)
+                        objects.append(cur_type[0] + m.group(2))
+
+        response.status = 302
+        response.set_header('Location', 'http://localhost:8111/load_object?objects=%s' % ','.join(objects))
+        return
     else:
         tpl = 'errors/index'
 

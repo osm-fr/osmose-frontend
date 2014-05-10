@@ -153,10 +153,9 @@
 <li id="menu-export"><a href='#'>{{_("Export")}} ▼</a>
 <ul class="submenu">
   <li><a href="../errors" target="_blank">{{_("Html list")}}</a></li>
-  <!--<li><a href="{{"http://" + website + "/errors.osm"}}" target="hiddenIframe">JOSM</a></li>-->
+  <li><a href="../errors.josm" target="hiddenIframe">JOSM</a></li>
   <li><a href="../errors.rss" target="_blank">RSS</a></li>
   <li><a href="../errors.gpx">.gpx</a></li>
-  <!--<li><a href="../errors.osm">.osm</a></li>-->
   <li><a href="../api/0.2/errors" target="_blank">Json</a></li>
   <li><a href="markers" target="_blank">GeoJson</a></li>
 </ul>
