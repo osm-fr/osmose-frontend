@@ -1,5 +1,5 @@
 L.SpinMapMixin = {
-    spin: function (state, options) {
+    spin: function (state) {
         if (!!state) {
             // start spinning !
             if (!this._spinner) {
