@@ -1,11 +1,12 @@
 %favicon=None
 %for res in items:
-%    if item == res['item']:
+%    if item == str(res["item"]):
 %        title += ' - ' + translate.select(res['menu'])
 %        favicon = "../images/markers/marker-l-%s.png" % res["item"]
 %    end
 %end
-%rebase layout title=title, favicon=favicon
+%rss="http://"+website+"/errors.rss?%s" % query
+%rebase layout title=title, favicon=favicon, rss=rss
 <a href=".?{{query}}">{{_("Informations")}}</a>
 <a href="done?{{query}}">{{_("Fixed")}}</a>
 <a href="false-positive?{{query}}">{{_("False positives")}}</a>

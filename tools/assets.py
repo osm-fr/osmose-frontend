@@ -40,6 +40,7 @@ js_map_bundle = Bundle(
     'map/Osmose.Marker.js',
     'map/Osmose.Errors.js',
     'map/Osmose.Spin.js',
+    'map/Osmose.Export.js',
     'map/map.js',
     'map/menu.js',
     filters='rjsmin', output='gen/map-%(version)s.js')

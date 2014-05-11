@@ -1,0 +1,73 @@
+%import re
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+%for res in items:
+%    if item == str(res["item"]):
+%        title += ' - ' + translate.select(res['menu'])
+%    end
+%end
+    <title>Osmose{{title}}</title>
+    <lastBuildDate>\\
+%if len(errors) > 0:
+{{errors[0]["timestamp"].ctime()}}\\
+%end
+</lastBuildDate>
+    <link>http://{{website}}/errors/?{{query}}</link>
+
+%for res in errors:
+%    if res["lat"] and res["lon"]:
+%        lat = res["lat"]
+%        lon = res["lon"]
+%        lat_s = "%.2f" % lat
+%        lon_s = "%.2f" % lon
+<item>
+    <title>\\
+%    if res["menu"]:
+{{translate.select(res["menu"])}} - \\
+%    end
+%    if res["subtitle"]:
+{{translate.select(res["subtitle"])}}\\
+%    elif res["title"]:
+{{translate.select(res["title"])}}\\
+%    end
+</title>
+    <description>
+      {{res["item"]}}({{res["level"]}})/{{res["class"]}}/{{res["subclass"]}} E{{res["id"]}}
+%    e = gen if gen in ('error', 'false-positive') else 'error'
+%    printed_td = False
+%    if res["elems"]:
+%        elems = res["elems"].split("_")
+%        for e in elems:
+%            m = re.match(r"([a-z]+)([0-9]+)", e)
+%            if m:
+%                if not printed_td:
+%                    printed_td = True
+%                end
+%                cur_type = m.group(1)
+      http://www.openstreetmap.org/browse/{{m.group(1)}}/{{m.group(2)}}
+%                if cur_type == "relation":
+      http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/relation/{{m.group(2)}}/full
+%                else:
+      http://localhost:8111/load_object?objects={{cur_type[0]}}{{m.group(2)}}
+%                end
+%            end
+%        end
+%    end
+%    if not printed_td:
+%        minlat = float(lat) - 0.002
+%        maxlat = float(lat) + 0.002
+%        minlon = float(lon) - 0.002
+%        maxlon = float(lon) + 0.002
+      http://localhost:8111/load_and_zoom?left={{minlon}}&amp;bottom={{minlat}}&amp;right={{maxlon}}&amp;top={{maxlat}}
+%    end
+    </description>
+    <category>{{res["item"]}}</category>
+    <link>\\
+http://{{website}}/map/#zoom=13&amp;lat={{lat}}&amp;lon={{lon}}&amp;item={{res["item"]}}&amp;level={{res["level"]}}\\
+%    end
+</link>
+</item>
+%end
+</channel>
+</rss>

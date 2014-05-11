@@ -37,13 +37,7 @@ OsmoseErrors = L.LayerGroup.extend({
       var urlPart = this._menu.urlPart(),
         url = null,
         self = this;
-      this._map.spin(true, {
-        length: 50,
-        radius: 50,
-        width: 20,
-        direction: -1,
-        color: '#fff',
-      });
+      this._map.spin(true);
       if (urlPart.item) {
         this._params.item = urlPart.item;
       } else {

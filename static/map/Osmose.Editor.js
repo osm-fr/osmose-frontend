@@ -47,7 +47,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
       }]
     });
 
-    $(window).on('beforeunload', this._beforeunload.bind(this));
+    $(window).on('beforeunload', L.Util.bind(this._beforeunload, this));
 
     L.Control.Sidebar.prototype.initialize.call(this, placeholder, options);
   },
@@ -114,7 +114,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
         },
         reuse_changeset: reuse_changeset,
         modify: self._modifiyObjectStack,
-        delete: self._deleteObjectStack
+        'delete': self._deleteObjectStack
       }),
     }).done(function () {
       self._modifiyObjectStack = {};

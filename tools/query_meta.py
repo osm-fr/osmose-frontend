@@ -75,6 +75,7 @@ def _categories(db, lang):
         if result == [] or result[-1]["categ"] != res["categ"]:
             ret = {"categ":res["categ"], "menu": "no translation", "item": []}
             result.append(ret)
+            ret["menu_lang"] = {k: v for k, v in res["categ_menu"].iteritems() if v}
             for l in lang:
                 if l in res["categ_menu"]:
                     ret["menu"] = res["categ_menu"][l]
