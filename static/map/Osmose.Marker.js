@@ -6,8 +6,8 @@ OsmoseMarker = L.GeoJSON.extend({
     this._options = options;
     this._editor = editor;
     L.GeoJSON.prototype.initialize.call(this, data, {
-      pointToLayer: this._pointToLayer.bind(this),
-      onEachFeature: this._onEachFeature.bind(this),
+      pointToLayer: L.Util.bind(this._pointToLayer, this),
+      onEachFeature: L.Util.bind(this._onEachFeature, this),
     });
   },
 
