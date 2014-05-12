@@ -8,13 +8,10 @@
 %    end
 %end
     <title>Osmose{{title}}</title>
-    <lastBuildDate>\\
 %if len(errors) > 0:
-{{errors[0]["timestamp"].ctime()}}\\
+    <lastBuildDate>{{errors[0]["timestamp"].ctime()}}</lastBuildDate>
 %end
-</lastBuildDate>
     <link>http://{{website}}/errors/?{{query}}</link>
-
 %for res in errors:
 %    if res["lat"] and res["lon"]:
 %        lat = res["lat"]
@@ -63,11 +60,9 @@
 %    end
     </description>
     <category>{{res["item"]}}</category>
-    <link>\\
-http://{{website}}/map/#zoom=13&amp;lat={{lat}}&amp;lon={{lon}}&amp;item={{res["item"]}}&amp;level={{res["level"]}}\\
-%    end
-</link>
+    <link>http://{{website}}/map/#zoom=13&amp;lat={{lat}}&amp;lon={{lon}}&amp;item={{res["item"]}}&amp;level={{res["level"]}}</link>
 </item>
+%end
 %end
 </channel>
 </rss>

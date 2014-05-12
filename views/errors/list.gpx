@@ -7,11 +7,9 @@
 %    end
 %end
     <name>Osmose{{title}}</name>
-    <time>\\
 %if len(errors) > 0:
-{{errors[0]["timestamp"].ctime()}}\\
+    <time>{{errors[0]["timestamp"].ctime()}}</time>
 %end
-</time>
     <link>http://{{website}}/errors/?{{query}}</link>
 %for res in errors:
 %    if res["lat"] and res["lon"]:
@@ -60,10 +58,8 @@
       http://localhost:8111/load_and_zoom?left={{minlon}}&amp;bottom={{minlat}}&amp;right={{maxlon}}&amp;top={{maxlat}}
 %    end
     </desc>
-    <link>\\
-http://{{website}}/map/#zoom=13&amp;lat={{lat}}&amp;lon={{lon}}&amp;item={{res["item"]}}&amp;level={{res["level"]}}\\
-%    end
-</link>
+    <link>http://{{website}}/map/#zoom=13&amp;lat={{lat}}&amp;lon={{lon}}&amp;item={{res["item"]}}&amp;level={{res["level"]}}</link>
 </wpt>
+%end
 %end
 </gpx>
