@@ -4,13 +4,14 @@
 # 
 # Translators:
 # endro, 2014
+# endro, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2014-05-11 18:57+0000\n"
-"Last-Translator: JocelynJ <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2014-05-12 10:20+0000\n"
+"Last-Translator: endro\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -409,7 +410,7 @@ msgstr "Lista fałszywych alarmów"
 
 #: tmp.tpl:98
 msgid "Last analysis updates"
-msgstr "Ostatnia atualizacja analizy"
+msgstr "Ostatnia aktualizacja błędów"
 
 #: tmp.tpl:99
 msgid "Tags Editor"
@@ -1120,12 +1121,12 @@ msgstr "Tłumaczenia są zarządzane na <a href='%s'>Transifex</a>."
 
 #: tmp.tpl:87
 msgid "error n°"
-msgstr ""
+msgstr "Błąd n°"
 
 #: tmp.tpl:121
 msgid "Export"
-msgstr ""
+msgstr "Eksport"
 
 #: tmp.tpl:122
 msgid "Html list"
-msgstr ""
+msgstr "Lista html"
