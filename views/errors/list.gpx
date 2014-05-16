@@ -1,6 +1,10 @@
 %import re
 <?xml version="1.0" encoding="UTF-8"?>
-<gpx>
+<gpx version="1.0" creator="http://osmose.openstreetmap.fr"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://www.topografix.com/GPX/1/0"
+xsi:schemaLocation="http://www.topografix.com/GPX/1/0
+http://www.topografix.com/GPX/1/0/gpx.xsd">
 %for res in items:
 %    if item == str(res["item"]):
 %        title += ' - ' + translate.select(res['menu'])
@@ -8,9 +12,9 @@
 %end
     <name>Osmose{{title}}</name>
 %if len(errors) > 0:
-    <time>{{errors[0]["timestamp"].ctime()}}</time>
+    <time>{{errors[0]["timestamp"].strftime("%Y-%m-%d %H:%M:%S")}}</time>
 %end
-    <link>http://{{website}}/errors/?{{query}}</link>
+    <url>http://{{website}}/errors/?{{query}}</url>
 %for res in errors:
 %    if res["lat"] and res["lon"]:
 %        lat = res["lat"]
@@ -58,7 +62,7 @@
       http://localhost:8111/load_and_zoom?left={{minlon}}&amp;bottom={{minlat}}&amp;right={{maxlon}}&amp;top={{maxlat}}
 %    end
     </desc>
-    <link>http://{{website}}/map/#zoom=13&amp;lat={{lat}}&amp;lon={{lon}}&amp;item={{res["item"]}}&amp;level={{res["level"]}}</link>
+    <url>http://{{website}}/map/#zoom=13&amp;lat={{lat}}&amp;lon={{lon}}&amp;item={{res["item"]}}&amp;level={{res["level"]}}</url>
 </wpt>
 %end
 %end
