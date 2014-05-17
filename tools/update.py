@@ -188,16 +188,6 @@ class update_parser(handler.ContentHandler):
                 self._fix_delete = []
 
         elif name == u"tag":
-            #if (self._elem[u"type"]<>"relation") or (attrs["k"] in ["type"])
-            if attrs["k"].startswith("name:"):
-                return
-            if attrs["k"].startswith("is_in:"):
-                return            
-            if attrs["k"].startswith("tiger:"):
-                return
-            if attrs["k"].startswith("TMC:"):
-                return
-
             if self.elem_mode == "info":
                self._elem_tags[attrs["k"]] = attrs["v"]
             elif self.elem_mode == "fix":
