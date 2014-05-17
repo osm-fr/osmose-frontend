@@ -109,11 +109,11 @@ def update(source, url, logger = printlogger()):
                         res["source"], res["class"], res["subclass"], res["elems"]))
 
     ## remove false positive no longer present
-    execute_sql(dbcurs, """DELETE FROM dynpoi_status
-                      WHERE (source,class,subclass,elems) NOT IN (SELECT source,class,subclass,elems FROM marker WHERE source = %s) AND
-                            source = %s AND
-                            date < now()-interval '7 day'""",
-                   (source_id, source_id, ))
+#    execute_sql(dbcurs, """DELETE FROM dynpoi_status
+#                      WHERE (source,class,subclass,elems) NOT IN (SELECT source,class,subclass,elems FROM marker WHERE source = %s) AND
+#                            source = %s AND
+#                            date < now()-interval '7 day'""",
+#                   (source_id, source_id, ))
 
     execute_sql(dbcurs, """DELETE FROM marker
                       WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status WHERE source = %s)""",
