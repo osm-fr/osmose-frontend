@@ -13,7 +13,7 @@ http://www.topografix.com/GPX/1/0/gpx.xsd">
     <name>Osmose {{title}}</name>
     <url>http://{{website}}/errors/?{{query}}</url>
 %if len(errors) > 0:
-    <time>{{errors[0]["timestamp"].strftime("%Y-%m-%d")}}</time>
+    <time>{{errors[0]["timestamp"].strftime("%Y-%m-%dT%H:%M:%SZ")}}</time>
 %end
 %for res in errors:
 %    if res["lat"] and res["lon"]:
