@@ -10,11 +10,11 @@ http://www.topografix.com/GPX/1/0/gpx.xsd">
 %        title += ' - ' + translate.select(res['menu'])
 %    end
 %end
-    <name>Osmose{{title}}</name>
-%if len(errors) > 0:
-    <time>{{errors[0]["timestamp"].strftime("%Y-%m-%d %H:%M:%S")}}</time>
-%end
+    <name>Osmose {{title}}</name>
     <url>http://{{website}}/errors/?{{query}}</url>
+%if len(errors) > 0:
+    <time>{{errors[0]["timestamp"].strftime("%Y-%m-%d")}}</time>
+%end
 %for res in errors:
 %    if res["lat"] and res["lon"]:
 %        lat = res["lat"]
@@ -23,16 +23,21 @@ http://www.topografix.com/GPX/1/0/gpx.xsd">
 %        lon_s = "%.2f" % lon
 <wpt lat="{{lat}}" lon="{{lon}}">
     <name>\\
+%    if res["subtitle"]:
+{{translate.select(res["subtitle"])[:30]}}\\
+%    elif res["title"]:
+{{translate.select(res["title"])[:30]}}\\
+%    end
+</name>
+    <desc>\\
 %    if res["menu"]:
 {{translate.select(res["menu"])}} - \\
 %    end
 %    if res["subtitle"]:
-{{translate.select(res["subtitle"])}}\\
+{{translate.select(res["subtitle"])}}
 %    elif res["title"]:
-{{translate.select(res["title"])}}\\
+{{translate.select(res["title"])}}
 %    end
-</name>
-    <desc>
       {{res["item"]}}({{res["level"]}})/{{res["class"]}}/{{res["subclass"]}} E{{res["id"]}}
 %    e = gen if gen in ('error', 'false-positive') else 'error'
 %    printed_td = False
