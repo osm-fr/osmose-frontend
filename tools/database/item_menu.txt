@@ -20,6 +20,7 @@
  1210 | _("not-connected highway/cycleway")
  1220 | _("waterway")
  1230 | _("duplicate geometry")
+ 1240 | _("one-node way")
  2010 | _("junction=roundabout")
  2020 | _("elevation")
  2030 | _("oneway")
@@ -114,3 +115,4 @@
  8161 | _("transport sharing, could be integrated")
  8170 | _("sport")
  8171 | _("sport, could be integrated")
+ 8180 | _("toilets")
