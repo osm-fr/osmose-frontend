@@ -20,7 +20,7 @@ osmose-frontend.pot: $(PYFILES) tmp.tpl $(DBFILES)
           --output=$@ $(PYFILES) tmp.tpl $(DBFILES)
 
 %.po:
-	tx pull -a --minimum-perc=75
+	tx pull -a --minimum-perc=30
 
 mo: $(MO)
 
