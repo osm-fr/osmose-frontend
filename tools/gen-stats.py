@@ -24,8 +24,6 @@ import sys, os, time, urllib, tempfile, commands
 import datetime
 import utils
 from xml.sax import make_parser, handler
-translate = utils.translator()._data
-tpl = open(os.path.join(utils.root_folder, "config/text.tpl")).read()
 
 ###########################################################################
 ## logger

@@ -31,22 +31,24 @@ class OsmoseTranslation:
                 out[l] = self.trans[l][str] % args
         return out
 
-t = OsmoseTranslation()
+if __name__ == "__main__":
 
-dbconn = utils.get_dbconn()
-dbcurs = dbconn.cursor()
+  t = OsmoseTranslation()
 
-types = ("categ", "item")
+  dbconn = utils.get_dbconn()
+  dbcurs = dbconn.cursor()
 
-for typ in types:
-  sql = "update dynpoi_" + typ + " set menu = coalesce(menu, hstore(%s,''))|| hstore(%s, %s) where " + typ + " = %s;"
+  types = ("categ", "item")
 
-  for line in codecs.open("database/" + typ + "_menu.txt", "r", "utf-8"):
-    (item, s) = line.split("|")
-    item = int(item)
-    s = s.strip()[3:-2]
-    translations = t.translate(s)
-    for (l, s) in translations.iteritems():
-      dbcurs.execute(sql, (l, l, s, item))
+  for typ in types:
+    sql = "update dynpoi_" + typ + " set menu = coalesce(menu, hstore(%s,''))|| hstore(%s, %s) where " + typ + " = %s;"
 
-dbconn.commit()
+    for line in codecs.open("database/" + typ + "_menu.txt", "r", "utf-8"):
+      (item, s) = line.split("|")
+      item = int(item)
+      s = s.strip()[3:-2]
+      translations = t.translate(s)
+      for (l, s) in translations.iteritems():
+        dbcurs.execute(sql, (l, l, s, item))
+
+  dbconn.commit()

@@ -22,13 +22,15 @@
 
 import utils
 
-sources = [int(x) for x in utils.get_sources().keys()]
-dbconn  = utils.get_dbconn()
-dbcurs  = dbconn.cursor()
+if __name__ == "__main__":
 
-tables  = ["dynpoi_class", "marker", "dynpoi_status", "dynpoi_update"]
-for t in tables:
-    dbcurs.execute("SELECT source FROM %s GROUP BY source;"%t)
-    for res in dbcurs.fetchall():
-        if res[0] not in sources:
-            print "DELETE FROM %s WHERE source = %d;"%(t, res[0])
+    sources = [int(x) for x in utils.get_sources().keys()]
+    dbconn  = utils.get_dbconn()
+    dbcurs  = dbconn.cursor()
+
+    tables  = ["dynpoi_class", "marker", "dynpoi_status", "dynpoi_update"]
+    for t in tables:
+        dbcurs.execute("SELECT source FROM %s GROUP BY source;"%t)
+        for res in dbcurs.fetchall():
+            if res[0] not in sources:
+                print "DELETE FROM %s WHERE source = %d;"%(t, res[0])

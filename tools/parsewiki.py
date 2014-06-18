@@ -129,4 +129,7 @@ def parsewiki(lang):
             print "}}\n"
         print "|}\n"
 
-parsewiki('nl')
+
+if __name__ == "__main__":
+
+    parsewiki('nl')

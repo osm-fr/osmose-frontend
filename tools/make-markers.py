@@ -7,15 +7,6 @@ import utils, query_meta, commands, sys, os
 #from index import menu_groupes, menu_autres
 
 ################################################################################
-
-conn = utils.get_dbconn()
-db = conn.cursor()
-all_items = []
-for g in query_meta._categories(db, "en"):
-    all_items += g["item"]
-#all_items = [{"item":9999, "marker_flag":"=-", "marker_color":"#ff0000"}] # Test
-
-################################################################################
 ## symboles
 
 ## O point
@@ -152,14 +143,24 @@ def get_marker(contour, symbole, couleur):
 
 ################################################################################
 
-marker_folder = os.path.join("..", "static", "images", "markers")
-commands.getstatusoutput("rm %s"%os.path.join(marker_folder,"*.png"))
-for i in all_items:
-    print i
-    for m in "LB":
-        file_svg = os.path.join(marker_folder, "marker-%s-%d.svg"%(m.lower(), i["item"]))
-        file_png = os.path.join(marker_folder, "marker-%s-%d.png"%(m.lower(), i["item"]))
-        open(file_svg,"w").write(get_marker(m, i["marker_flag"], i["marker_color"]))
-        commands.getstatusoutput("rsvg %s %s"%(file_svg, file_png))
-        #commands.getstatusoutput("rsvg-convert %s > %s"%(file_svg, file_png))
-commands.getstatusoutput("rm %s"%os.path.join(marker_folder,"*.svg"))
+if __name__ == "__main__":
+
+    conn = utils.get_dbconn()
+    db = conn.cursor()
+    all_items = []
+    for g in query_meta._categories(db, "en"):
+        all_items += g["item"]
+    #all_items = [{"item":9999, "marker_flag":"=-", "marker_color":"#ff0000"}] # Test
+
+
+    marker_folder = os.path.join("..", "static", "images", "markers")
+    commands.getstatusoutput("rm %s"%os.path.join(marker_folder,"*.png"))
+    for i in all_items:
+        print i
+        for m in "LB":
+            file_svg = os.path.join(marker_folder, "marker-%s-%d.svg"%(m.lower(), i["item"]))
+            file_png = os.path.join(marker_folder, "marker-%s-%d.png"%(m.lower(), i["item"]))
+            open(file_svg,"w").write(get_marker(m, i["marker_flag"], i["marker_color"]))
+            commands.getstatusoutput("rsvg %s %s"%(file_svg, file_png))
+            #commands.getstatusoutput("rsvg-convert %s > %s"%(file_svg, file_png))
+    commands.getstatusoutput("rm %s"%os.path.join(marker_folder,"*.svg"))

@@ -5,40 +5,42 @@ all_flags = ["O", "L", "K", "P", "M", "F", "=", "|", "||", "::", ".:.", "T", "t"
 
 import utils
 
-dbconn = utils.get_dbconn()
-dbcurs = dbconn.cursor()
+if __name__ == "__main__":
 
-sql = "select marker.item from marker left join dynpoi_item on dynpoi_item.item = marker.item where dynpoi_item.item IS NULL group by marker.item order by marker.item;"
-dbcurs.execute(sql)
+  dbconn = utils.get_dbconn()
+  dbcurs = dbconn.cursor()
 
-prev_cat = ""
+  sql = "select marker.item from marker left join dynpoi_item on dynpoi_item.item = marker.item where dynpoi_item.item IS NULL group by marker.item order by marker.item;"
+  dbcurs.execute(sql)
 
-for res in dbcurs.fetchall():
-#  print res
-  i = int(res[0])
-  c = int(i / 1000) * 10
-  if prev_cat != c:
-      prev_cat = c
-      avail_flags = all_flags[:]
+  prev_cat = ""
 
-  sql = "select item, marker_color, marker_flag from dynpoi_item where categ = %s order by item"
-  dbcurs.execute(sql, (c,))
-  for m in dbcurs.fetchall():
-#    print m
-    color = m["marker_color"]
-    if m["marker_flag"] in avail_flags:
-      avail_flags.remove(m["marker_flag"])
+  for res in dbcurs.fetchall():
+  #  print res
+    i = int(res[0])
+    c = int(i / 1000) * 10
+    if prev_cat != c:
+        prev_cat = c
+        avail_flags = all_flags[:]
 
-#  print "  missing %d" % i
-#  print "possible flags:", avail_flags
+    sql = "select item, marker_color, marker_flag from dynpoi_item where categ = %s order by item"
+    dbcurs.execute(sql, (c,))
+    for m in dbcurs.fetchall():
+  #    print m
+      color = m["marker_color"]
+      if m["marker_flag"] in avail_flags:
+        avail_flags.remove(m["marker_flag"])
 
-  if len(avail_flags) == 0:
-    print "not enough available flags for item=%d" % i
-    continue
+  #  print "  missing %d" % i
+  #  print "possible flags:", avail_flags
 
-#  en = raw_input("English: ")
-#  fr = raw_input("French: ")
+    if len(avail_flags) == 0:
+      print "not enough available flags for item=%d" % i
+      continue
 
-  print "insert into dynpoi_item values (%d, %d, '%s', '%s', NULL, ARRAY[1, 2, 3]);" % (i, c, color, avail_flags[0].replace("'", "''"))
-  avail_flags.remove(avail_flags[0])
+  #  en = raw_input("English: ")
+  #  fr = raw_input("French: ")
+
+    print "insert into dynpoi_item values (%d, %d, '%s', '%s', NULL, ARRAY[1, 2, 3]);" % (i, c, color, avail_flags[0].replace("'", "''"))
+    avail_flags.remove(avail_flags[0])
 
