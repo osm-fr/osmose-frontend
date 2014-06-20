@@ -4,14 +4,15 @@
 # 
 # Translators:
 # frodrigo <fred.rodrigo@gmail.com>, 2014
+# Lorenzo Beltrami <lorenzo.beba@gmail.com>, 2014
 # operon, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2014-06-09 21:17+0000\n"
-"Last-Translator: frodrigo <fred.rodrigo@gmail.com>\n"
+"PO-Revision-Date: 2014-06-17 08:29+0000\n"
+"Last-Translator: Lorenzo Beltrami <lorenzo.beba@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/osmose/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -93,7 +94,7 @@ msgstr "Copyright"
 
 #: ../map.py:147
 msgid "Sources"
-msgstr ""
+msgstr "Sorgenti"
 
 #: ../map.py:148
 msgid "Translation"
@@ -107,7 +108,7 @@ msgstr "Statistiche per l'utente %s"
 #: tmp.tpl:2 tmp.tpl:3 tmp.tpl:4
 #, python-brace-format
 msgid "Number of level {level} errors: {count}"
-msgstr ""
+msgstr "Numero di errori di livello {level}: {count}"
 
 #: tmp.tpl:6 tmp.tpl:15
 #, python-format
@@ -195,17 +196,17 @@ msgstr "Fornire patch"
 msgid ""
 "Patches can be provided via merge requests on gitorious or github. This is "
 "the prefered way to handle patches."
-msgstr "Patch possono essere fornite con richieste di merge su gitorious o github. Questo è il modo preferito per gestire patch."
+msgstr "Le patch possono essere fornite con richiesta di merge su gitorious o github. Questo è il metodo preferito per la gestione delle patch."
 
 #: tmp.tpl:28
 msgid "Development"
-msgstr ""
+msgstr "Sviluppo"
 
 #: tmp.tpl:29
 msgid ""
 "Development of Osmose is made as free software by <a "
 "href='../copyright'>volunteers</a>."
-msgstr ""
+msgstr "Lo sviluppo di Osmose viene effettuato sottoforma di free software da <a href='../copyright'>volontari</a>."
 
 #: tmp.tpl:31
 msgid "Contacting maintainers"
@@ -252,7 +253,7 @@ msgstr "url remoto"
 
 #: tmp.tpl:44
 msgid "timestamp"
-msgstr ""
+msgstr "data e ora"
 
 #: tmp.tpl:45
 msgid "Copyright informations"
@@ -410,19 +411,19 @@ msgstr "Lista dei falsi positivi"
 
 #: tmp.tpl:98
 msgid "Last analysis updates"
-msgstr ""
+msgstr "Ultimi aggiornamenti analisi"
 
 #: tmp.tpl:99
 msgid "Tags Editor"
-msgstr ""
+msgstr "Editor dei tag"
 
 #: tmp.tpl:100
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #: tmp.tpl:101
 msgid "Valid"
-msgstr ""
+msgstr "Correggi"
 
 #: tmp.tpl:103
 msgid "no bubbles at this zoom factor"
@@ -454,19 +455,19 @@ msgstr "3 solamente"
 
 #: tmp.tpl:110
 msgid "Fixable"
-msgstr ""
+msgstr "Correggibile"
 
 #: tmp.tpl:111
 msgid "Show only markers with correction suggestions"
-msgstr ""
+msgstr "Visualizza solo marcatori con suggerimenti di correzione"
 
 #: tmp.tpl:112
 msgid "Online"
-msgstr ""
+msgstr "Online"
 
 #: tmp.tpl:113
 msgid "Topic"
-msgstr ""
+msgstr "Argomento"
 
 #: tmp.tpl:114
 msgid "Select:"
@@ -500,43 +501,43 @@ msgstr "Ritardo: %sd"
 #: tmp.tpl:125 tmp.tpl:126 tmp.tpl:127
 #, python-format
 msgid "Level %d errors (%d)"
-msgstr ""
+msgstr "Errori livello %d (%d)"
 
 #: tmp.tpl:128
 msgid "Logout"
-msgstr ""
+msgstr "Esci"
 
 #: tmp.tpl:129 tmp.tpl:131
 msgid "Login"
-msgstr ""
+msgstr "Login"
 
 #: tmp.tpl:130 tmp.tpl:132
 msgid "Save"
-msgstr ""
+msgstr "Salva"
 
 #: tmp.tpl:133
 msgid "Objects edited:"
-msgstr ""
+msgstr "Oggetti modificati:"
 
 #: tmp.tpl:134
 msgid "Objects deleted:"
-msgstr ""
+msgstr "Oggetti eliminati:"
 
 #: tmp.tpl:135
 msgid "Fix with Osmose"
-msgstr ""
+msgstr "Correggi con Osmose"
 
 #: tmp.tpl:136
 msgid "Source"
-msgstr ""
+msgstr "Fonte"
 
 #: tmp.tpl:137
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #: tmp.tpl:138
 msgid "Reuse changeset"
-msgstr ""
+msgstr "Riutilizza changeset"
 
 #: tmp.tpl:139
 msgid "Error reported on: "
@@ -593,7 +594,7 @@ msgstr "Pagine OsmOse"
 
 #: tmp.tpl:158
 msgid "Bug tracking system"
-msgstr ""
+msgstr "Sistema di bug tracking"
 
 #: tmp.tpl:159
 msgid ""
@@ -607,7 +608,7 @@ msgid ""
 "mobile device and improvement of documentation was funded by region of "
 "Aquitaine, France; part of the OpenAquiMap project leading by <em>Les Petits"
 " Débrouillards d'Aquitaine</em>."
-msgstr ""
+msgstr "La regione dell'Aquitania (Francia) ha finanziato l'aggiunta delle nuove funzionalità dell'<em>Osmose Editor</em>, il supporto iniziale per dispositivi mobile e il potenziamento della documentazione; parte del progetto OpenAquiMap è guidato da <em>Les Petits Débrouillards d'Aquitaine</em>."
 
 #: ../tools/database/categ_menu.txt:1
 msgid "Structure"
@@ -675,7 +676,7 @@ msgstr "nodi orfani"
 
 #: ../tools/database/item_menu.txt:9
 msgid "sudden highway type change"
-msgstr "cambio improvviso di strade ----"
+msgstr "cambio improvviso di strade"
 
 #: ../tools/database/item_menu.txt:10
 msgid "unclosed area"
@@ -827,11 +828,11 @@ msgstr "marchio in name"
 
 #: ../tools/database/item_menu.txt:50
 msgid "typo in tag"
-msgstr "tag errato"
+msgstr "errore tipografico nel tag"
 
 #: ../tools/database/item_menu.txt:51
 msgid "incorrect "
-msgstr ""
+msgstr "non corretto"
 
 #: ../tools/database/item_menu.txt:52
 msgid "parking lane"
@@ -1035,7 +1036,7 @@ msgstr "indirizzo da integrare"
 
 #: ../tools/database/item_menu.txt:104
 msgid "wikipedia, could be integrated"
-msgstr ""
+msgstr "wikipedia da integrare"
 
 #: ../tools/database/item_menu.txt:105
 msgid "public service"
@@ -1043,98 +1044,98 @@ msgstr "public service"
 
 #: ../tools/database/item_menu.txt:106
 msgid "recycling"
-msgstr ""
+msgstr "riciclaggio"
 
 #: ../tools/database/item_menu.txt:107
 msgid "recycling, could be integrated"
-msgstr ""
+msgstr "riciclaggio da integrare"
 
 #: ../tools/database/item_menu.txt:108
 msgid "parking"
-msgstr ""
+msgstr "parcheggi"
 
 #: ../tools/database/item_menu.txt:109
 msgid "parking, could be integrated"
-msgstr ""
+msgstr "parcheggi da integrare"
 
 #: ../tools/database/item_menu.txt:110
 msgid "accommodation"
-msgstr ""
+msgstr "alloggi"
 
 #: ../tools/database/item_menu.txt:111
 msgid "accommodation, could be integrated"
-msgstr ""
+msgstr "alloggi da integrare"
 
 #: ../tools/database/item_menu.txt:112
 msgid "cycle parking"
-msgstr ""
+msgstr "parcheggi bici"
 
 #: ../tools/database/item_menu.txt:113
 msgid "cycle parking, could be integrated"
-msgstr ""
+msgstr "parcheggi bici da integrare"
 
 #: ../tools/database/item_menu.txt:114
 msgid "transport sharing"
-msgstr ""
+msgstr "trasporti condivisi"
 
 #: ../tools/database/item_menu.txt:115
 msgid "transport sharing, could be integrated"
-msgstr ""
+msgstr "trasporti condivisi da integrare"
 
 #: ../tools/database/item_menu.txt:116
 msgid "sport"
-msgstr ""
+msgstr "sport"
 
 #: ../tools/database/item_menu.txt:117
 msgid "sport, could be integrated"
-msgstr ""
+msgstr "sport da integrare"
 
 #: tmp.tpl:151
 msgid "Translation progress: osmose"
-msgstr ""
+msgstr "Stato traduzione: osmose"
 
 #: tmp.tpl:155
 msgid "For new language or countries"
-msgstr ""
+msgstr "Nuove lingue o nazioni"
 
 #: tmp.tpl:157
 #, python-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
 "href='mailto:%s'>%s</a>."
-msgstr ""
+msgstr "Per ulteriori nazioni possiamo essere contattati con un'e-mail a <a href='mailto:%s'>%s</a>."
 
 #: tmp.tpl:146
 #, python-format
 msgid "The <a href='%s'>country coverage is available</a>."
-msgstr ""
+msgstr "È disponibile la <a href='%s'>copertura delle nazioni</a>."
 
 #: tmp.tpl:156
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
-msgstr ""
+msgstr "È possibile creare una nuova lingua direttamente su <a href='%s'>Transifex</a>."
 
 #: tmp.tpl:150
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
-msgstr ""
+msgstr "La traduzione viene effettuata su <a href='%s'>Transifex</a>."
 
 #: tmp.tpl:87
 msgid "error n°"
-msgstr ""
+msgstr "errore n°"
 
 #: tmp.tpl:121
 msgid "Export"
-msgstr ""
+msgstr "Esporta"
 
 #: tmp.tpl:122
 msgid "Html list"
-msgstr ""
+msgstr "Lista HTML"
 
 #: ../tools/database/item_menu.txt:23
 msgid "one-node way"
-msgstr ""
+msgstr "way con un solo nodo"
 
 #: ../tools/database/item_menu.txt:118
 msgid "toilets"
-msgstr ""
+msgstr "toilette"
