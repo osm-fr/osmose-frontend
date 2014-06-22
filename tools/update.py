@@ -364,6 +364,67 @@ def print_source(source):
             show(u"   %-10s = %s"%(k, source[k]))
 
 ###########################################################################
+import unittest
+
+class Test(unittest.TestCase):
+
+    def setUp(self):
+        utils.pg_base = "osmose_test"
+        utils.pg_pass = "-osmose-"
+
+        self.dbconn = utils.get_dbconn()
+        self.dbcurs = self.dbconn.cursor()
+        self.dbcurs.execute(open("tools/database/drop.sql", "r").read())
+        self.dbcurs.execute(open("tools/database/schema.sql", "r").read())
+        self.dbcurs.execute("INSERT INTO dynpoi_source (update, comment, source, contact) VALUES (%s, %s, %s, %s);",
+                       ("xx1", "xx1", 1, "xxx"))
+        self.dbcurs.execute("INSERT INTO dynpoi_source (update, comment, source, contact) VALUES (%s, %s, %s, %s);",
+                       ("xx2", "xx2", 2, "xxx"))
+        self.dbconn.commit()
+
+    def tearDown(self):
+        self.dbconn.close()
+
+
+    def check_num_marker(self, num):
+        self.dbcurs.execute("SELECT count(*) FROM marker")
+        cur_num = self.dbcurs.fetchone()[0]
+        self.assertEquals(num, cur_num)
+
+
+    def test(self):
+        self.check_num_marker(0)
+        update({"id": 1}, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
+        self.check_num_marker(50)
+
+    def test_update(self):
+        self.check_num_marker(0)
+        update({"id": 1}, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-05-20.xml.bz2")
+        self.check_num_marker(48)
+
+        update({"id": 1}, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
+        self.check_num_marker(50)
+
+
+    def test_duplicate_update(self):
+        import psycopg2
+        self.check_num_marker(0)
+        update({"id": 1}, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
+        self.check_num_marker(50)
+
+        with self.assertRaises(psycopg2.IntegrityError) as cm:
+            update({"id": 1}, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
+        self.check_num_marker(50)
+
+    def test_two_sources(self):
+        self.check_num_marker(0)
+        update({"id": 1}, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
+        self.check_num_marker(50)
+
+        update({"id": 2}, "tests/Analyser_Osmosis_Broken_Highway_Level_Continuity-france_reunion-2014-06-11.xml.bz2")
+        self.check_num_marker(50+99)
+
+###########################################################################
 
 if __name__ == "__main__":
     sources = utils.get_sources()
