@@ -88,6 +88,7 @@
  7110 | _("TMC")
  7120 | _("relation type=boundary")
  7130 | _("tunnel/bridge")
+ 7140 | _("transport sharing, not integrated")
  8010 | _("monument, museum")
  8011 | _("monument, museum, could be integrated")
  8020 | _("post office")
