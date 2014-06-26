@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2014-06-17 08:29+0000\n"
+"PO-Revision-Date: 2014-06-24 14:45+0000\n"
 "Last-Translator: Lorenzo Beltrami <lorenzo.beba@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/osmose/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -382,12 +382,12 @@ msgstr "data"
 
 #: tmp.tpl:86
 msgid "delete error"
-msgstr ""
+msgstr "cancella errore"
 
 #: tmp.tpl:88
 #, python-format
 msgid "delete error #%d"
-msgstr ""
+msgstr "cancella errore #%d"
 
 #: tmp.tpl:93
 msgid "OpenStreetMap Oversight Search Engine"
