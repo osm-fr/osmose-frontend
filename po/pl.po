@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2014-06-26 20:03+0000\n"
+"PO-Revision-Date: 2014-07-20 18:35+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -1141,4 +1141,12 @@ msgstr "toalety"
 
 #: ../tools/database/item_menu.txt:91
 msgid "transport sharing, not integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:120
+msgid "police"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:121
+msgid "police, could be integrated"
 msgstr ""

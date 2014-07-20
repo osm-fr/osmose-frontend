@@ -1138,3 +1138,11 @@ msgstr ""
 #: ../tools/database/item_menu.txt:91
 msgid "transport sharing, not integrated"
 msgstr ""
+
+#: ../tools/database/item_menu.txt:120
+msgid "police"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:121
+msgid "police, could be integrated"
+msgstr ""
