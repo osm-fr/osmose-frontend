@@ -117,3 +117,5 @@
  8170 | _("sport")
  8171 | _("sport, could be integrated")
  8180 | _("toilets")
+ 8190 | _("police")
+ 8191 | _("police, could be integrated")
