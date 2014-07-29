@@ -3,13 +3,15 @@
 # This file is distributed under the same license as the osmose-frontend package.
 # 
 # Translators:
+# kla <kl-o@freemail.hu>, 2014
+# nagy_balint <nagy_balint@freemail.hu>, 2014
 # nagy_balint <nagy_balint@freemail.hu>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2014-07-27 14:19+0000\n"
+"PO-Revision-Date: 2014-07-29 16:20+0000\n"
 "Last-Translator: nagy_balint <nagy_balint@freemail.hu>\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +30,7 @@ msgstr "{day} nap, {hour} óra, {minute} perccel ezelőtt"
 #: ../control.py:52
 #, python-brace-format
 msgid "in {day}d, {hour}h, {minute}m"
-msgstr ""
+msgstr "{day} nap, {hour} óra, {minute} perc múlva"
 
 #: ../control.py:55
 msgid "never generated"
@@ -58,7 +60,7 @@ msgstr "Hibák felhasználónként"
 
 #: ../map.py:137
 msgid "Relation analyser"
-msgstr "Kapcsolat ellenőrző"
+msgstr "Kapcsolatellenőrző"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
 #: ../map.py:139
@@ -106,7 +108,7 @@ msgstr "%s statisztikája"
 #: tmp.tpl:2 tmp.tpl:3 tmp.tpl:4
 #, python-brace-format
 msgid "Number of level {level} errors: {count}"
-msgstr "{count} darab {level} szintű hiba"
+msgstr "{count} darab {level}. szintű hiba"
 
 #: tmp.tpl:6 tmp.tpl:15
 #, python-format
@@ -152,11 +154,11 @@ msgstr "Hibák mutatása térképen."
 
 #: tmp.tpl:18
 msgid "Statistics for user"
-msgstr ""
+msgstr "Felhasználói statisztika"
 
 #: tmp.tpl:19
 msgid "User statistics"
-msgstr ""
+msgstr "Felhasználói statisztika"
 
 #: tmp.tpl:20
 msgid "Osmose allows you to control your own errors."
@@ -176,7 +178,7 @@ msgstr "Felhasználónév:"
 
 #: tmp.tpl:24
 msgid "Bug tracker"
-msgstr "Hiba kereső"
+msgstr "Hibakereső"
 
 #: tmp.tpl:25
 msgid ""
@@ -184,7 +186,7 @@ msgid ""
 "The component to pick should be osmose-frontend for issues around the "
 "website, and osmose-backend for issues on the reported errors, or for "
 "suggestion for new analyses."
-msgstr ""
+msgstr "A hibát a <a href='http://trac.openstreetmap.fr'>trac</a> oldalon kell jelezni. A hiba típus osmose-frontend kell hogy legyen a weboldallal kapcsolatos hibáknál és osmose-backend az analizátor által jelzett hibák vagy az analizátorral kapcsolatos javaslatok esetén"
 
 #: tmp.tpl:26
 msgid "Providing patches"
@@ -208,7 +210,7 @@ msgstr "Az Osmose-t ingyenes szoftverként fejlesztették a <a href='../copyrigh
 
 #: tmp.tpl:31
 msgid "Contacting maintainers"
-msgstr ""
+msgstr "Kapcsolatfelvétel a karbantatókkal"
 
 #: tmp.tpl:32
 #, python-format
@@ -222,7 +224,7 @@ msgstr "Utolsó frissítések"
 
 #: tmp.tpl:35
 msgid "Median delay:"
-msgstr ""
+msgstr "Átlagos késedelm"
 
 #: tmp.tpl:36 tmp.tpl:42 tmp.tpl:64 tmp.tpl:73
 #: ../tools/database/item_menu.txt:27
@@ -292,11 +294,11 @@ msgstr "érték"
 
 #: tmp.tpl:54 tmp.tpl:92
 msgid "Marker"
-msgstr ""
+msgstr "Jelölő"
 
 #: tmp.tpl:55
 msgid "Elements"
-msgstr ""
+msgstr "Elemek"
 
 #: tmp.tpl:56
 msgid "Fixes"
@@ -322,7 +324,7 @@ msgstr ""
 #. TRANSLATORS: this should be replaced by a abbreviation for class
 #: tmp.tpl:66 tmp.tpl:75
 msgid "class (abbreviation)"
-msgstr ""
+msgstr "oszt."
 
 #: tmp.tpl:67 tmp.tpl:80
 msgid "item"
@@ -334,7 +336,7 @@ msgstr "cím"
 
 #: tmp.tpl:69
 msgid "count"
-msgstr ""
+msgstr "db."
 
 #: tmp.tpl:70
 msgid "Total"
@@ -351,12 +353,12 @@ msgstr "Néhány hiba mutatása"
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: tmp.tpl:77
 msgid "subclass (abbreviation)"
-msgstr "alcsoport (rövidítés)"
+msgstr "alcsop."
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: tmp.tpl:79
 msgid "level (abbreviation)"
-msgstr "szint (rövidítés)"
+msgstr "szint"
 
 #: tmp.tpl:81
 msgid "information on error"
@@ -364,11 +366,11 @@ msgstr "információ a hibáról"
 
 #: tmp.tpl:82
 msgid "position (abbreviation)"
-msgstr "pozíció (rövidítés)"
+msgstr "poz."
 
 #: tmp.tpl:83
 msgid "elements (abbreviation)"
-msgstr "elemekt (rövidítés)"
+msgstr "el."
 
 #: tmp.tpl:84
 msgid "subtitle"
@@ -413,7 +415,7 @@ msgstr "Utolsó analízis frissítés"
 
 #: tmp.tpl:99
 msgid "Tags Editor"
-msgstr ""
+msgstr "Cinkeszerkesztő"
 
 #: tmp.tpl:100
 msgid "Cancel"
@@ -425,31 +427,31 @@ msgstr "Érvényes"
 
 #: tmp.tpl:103
 msgid "no bubbles at this zoom factor"
-msgstr ""
+msgstr "Nincsenek jelölők ezen a nagyítási szinten"
 
 #: tmp.tpl:104
 msgid "Severity"
-msgstr "Súlyosság"
+msgstr "Hibaszint"
 
 #: tmp.tpl:105
 msgid "1 only"
-msgstr "csak az első"
+msgstr "1. szint"
 
 #: tmp.tpl:106
 msgid "1+2 only"
-msgstr "Első és második"
+msgstr "1. és 2. szint"
 
 #: tmp.tpl:107
 msgid "all severity"
-msgstr "összes súlyosság"
+msgstr "Összes szint"
 
 #: tmp.tpl:108
 msgid "2 only"
-msgstr "csak a második"
+msgstr "2. szint"
 
 #: tmp.tpl:109
 msgid "3 only"
-msgstr "csak a harmadik"
+msgstr "3. szint"
 
 #: tmp.tpl:110
 msgid "Fixable"
@@ -477,7 +479,7 @@ msgstr "mind"
 
 #: tmp.tpl:116 tmp.tpl:119
 msgid "nothing"
-msgstr "semmi sem"
+msgstr "semmi"
 
 #: tmp.tpl:117
 msgid "invert"
@@ -499,7 +501,7 @@ msgstr "Késés: %sd"
 #: tmp.tpl:125 tmp.tpl:126 tmp.tpl:127
 #, python-format
 msgid "Level %d errors (%d)"
-msgstr "%d szintű hibák (%d)"
+msgstr "%d. szintű hiba (%d)"
 
 #: tmp.tpl:128
 msgid "Logout"
@@ -547,7 +549,7 @@ msgstr "állapot módosítása"
 
 #: tmp.tpl:141
 msgid "corrected"
-msgstr "javított"
+msgstr "javítva"
 
 #: tmp.tpl:142
 msgid "false positive"
@@ -662,7 +664,7 @@ msgstr "fordított körforgalom"
 
 #: ../tools/database/item_menu.txt:6
 msgid "boundary intersect"
-msgstr ""
+msgstr "átfedő határvonal"
 
 #: ../tools/database/item_menu.txt:7
 msgid "objects overlap"
@@ -670,7 +672,7 @@ msgstr "egymást fedő objektumok"
 
 #: ../tools/database/item_menu.txt:8
 msgid "orphan nodes"
-msgstr ""
+msgstr "árva csomópont"
 
 #: ../tools/database/item_menu.txt:9
 msgid "sudden highway type change"
@@ -694,7 +696,7 @@ msgstr "hiányzó címke vagy szerep"
 
 #: ../tools/database/item_menu.txt:14
 msgid "surface intersection"
-msgstr ""
+msgstr "átfedő felület"
 
 #: ../tools/database/item_menu.txt:15
 msgid "big relation"
@@ -710,7 +712,7 @@ msgstr "dupla bicikliút"
 
 #: ../tools/database/item_menu.txt:18
 msgid "approximate way"
-msgstr ""
+msgstr "hozzávetőleges út"
 
 #: ../tools/database/item_menu.txt:19
 msgid "1-member relation"
@@ -726,7 +728,7 @@ msgstr "vizi út"
 
 #: ../tools/database/item_menu.txt:22
 msgid "duplicate geometry"
-msgstr ""
+msgstr "kettőzött geometria"
 
 #: ../tools/database/item_menu.txt:24
 msgid "junction=roundabout"
@@ -746,7 +748,7 @@ msgstr "szülő kapcsolat"
 
 #: ../tools/database/item_menu.txt:29
 msgid "street numbers"
-msgstr ""
+msgstr "házszámok"
 
 #: ../tools/database/item_menu.txt:30
 msgid "highway"
@@ -838,7 +840,7 @@ msgstr "parkoló sáv"
 
 #: ../tools/database/item_menu.txt:53
 msgid "relation role"
-msgstr ""
+msgstr "kapcsolati (relation) szerep"
 
 #: ../tools/database/item_menu.txt:54
 msgid "relation type=restriction"
@@ -854,7 +856,7 @@ msgstr "használaton kívül"
 
 #: ../tools/database/item_menu.txt:57
 msgid "on junction=roundabout"
-msgstr ""
+msgstr "junction=roundabout esetén"
 
 #: ../tools/database/item_menu.txt:58
 msgid "incompatible tags"
@@ -886,7 +888,7 @@ msgstr "hibás használat"
 
 #: ../tools/database/item_menu.txt:65
 msgid "orthograph"
-msgstr ""
+msgstr "helyesírás"
 
 #: ../tools/database/item_menu.txt:66
 msgid "way type"
@@ -922,19 +924,19 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:74
 msgid "admin_level"
-msgstr ""
+msgstr "admin_level"
 
 #: ../tools/database/item_menu.txt:75
 msgid "erroneous boundary"
-msgstr ""
+msgstr "hibás határ"
 
 #: ../tools/database/item_menu.txt:76
 msgid "out of boundary"
-msgstr ""
+msgstr "határ(vonal)on kívül"
 
 #: ../tools/database/item_menu.txt:77
 msgid "geodesic building"
-msgstr ""
+msgstr "geodéziai épület"
 
 #: ../tools/database/item_menu.txt:78
 msgid "building shape"
@@ -946,7 +948,7 @@ msgstr "címkézendő híd"
 
 #: ../tools/database/item_menu.txt:80
 msgid "admin boundary"
-msgstr ""
+msgstr "közigazgatási határ"
 
 #: ../tools/database/item_menu.txt:81
 msgid "power lines"
@@ -958,7 +960,7 @@ msgstr "posta"
 
 #: ../tools/database/item_menu.txt:83
 msgid "ODbL migration change"
-msgstr ""
+msgstr "ODbl migráció változás"
 
 #: ../tools/database/item_menu.txt:84
 msgid "school, not integrated"
@@ -978,7 +980,7 @@ msgstr "vasútállomás"
 
 #: ../tools/database/item_menu.txt:88
 msgid "TMC"
-msgstr ""
+msgstr "TMC"
 
 #: ../tools/database/item_menu.txt:89
 msgid "relation type=boundary"
@@ -1120,7 +1122,7 @@ msgstr "A fordítás a <a href='%s'>Transifex</a>en készül."
 
 #: tmp.tpl:87
 msgid "error n°"
-msgstr ""
+msgstr "hibaszám"
 
 #: tmp.tpl:121
 msgid "Export"
@@ -1132,7 +1134,7 @@ msgstr "Html lista"
 
 #: ../tools/database/item_menu.txt:23
 msgid "one-node way"
-msgstr ""
+msgstr "pont a szakaszokon"
 
 #: ../tools/database/item_menu.txt:119
 msgid "toilets"
