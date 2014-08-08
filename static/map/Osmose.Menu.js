@@ -33,7 +33,7 @@ OsmoseMenu = L.Control.Sidebar.extend({
       self._change_level();
     });
     $("#togglemenu").click(function () {
-      self._toggleMenu();
+      self.toggle();
       return false;
     });
 
@@ -41,8 +41,14 @@ OsmoseMenu = L.Control.Sidebar.extend({
   },
 
   // Menu
-  _toggleMenu: function () {
-    this.toggle();
+  toggle: function () {
+    L.Control.Sidebar.prototype.toggle.call(this);
+    if ($('.leaflet-active-area').css('left') == '0px') {
+      $('.leaflet-active-area').css('left', '');
+    } else {
+      $('.leaflet-active-area').css('left', '0px');
+    }
+    this._itemChanged();
   },
 
   // Update checkbox count

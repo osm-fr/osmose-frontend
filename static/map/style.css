@@ -207,6 +207,14 @@ ul.leaflet-control-geocoder-alternatives {
   background-color: inherit;
 }
 
+.leaflet-active-area {
+  position: absolute;
+  top: 24px;
+  left: 300px;
+  right: 0px;
+  bottom: 0px;
+}
+
 @media(max-width:399px) {
   #menu-lang, #menu-openstreetmapfr, #menu-byuser, #menu-relation_analyser, #menu-statistics, #menu-export, #menu-help, #menu-delay {
     display: none;
@@ -237,6 +245,10 @@ ul.leaflet-control-geocoder-alternatives {
   .leaflet-sidebar.right.visible ~ .leaflet-right {
     right: 270px;
   }
+
+  .leaflet-active-area {
+    left: 270px;
+  }
 }
 
 @media(min-width:992px) and (max-width:1199px) {
@@ -251,6 +263,10 @@ ul.leaflet-control-geocoder-alternatives {
   .leaflet-sidebar.right.visible ~ .leaflet-right {
     right: 285px;
   }
+
+  .leaflet-active-area {
+    left: 285px;
+  }
 }
 
 @media(min-width:1200px) {
@@ -264,5 +280,9 @@ ul.leaflet-control-geocoder-alternatives {
 
   .leaflet-sidebar.right.visible ~ .leaflet-right {
     right: 300px;
-    }
+  }
+
+  .leaflet-active-area {
+    left: 300px;
+  }
 }

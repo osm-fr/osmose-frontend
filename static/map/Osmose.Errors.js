@@ -58,7 +58,7 @@ OsmoseErrors = L.LayerGroup.extend({
       } else {
         delete this._params.fixable;
       }
-      this._params.bbox = this._map.getBounds().toBBoxString();
+      this._params.bbox = this._map.getViewportLatLngBounds().toBBoxString();
       this._params.zoom = this._map.getZoom();
       url = L.Util.getParamString(this._params);
       $.ajax({

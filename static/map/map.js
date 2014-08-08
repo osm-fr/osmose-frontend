@@ -10,7 +10,8 @@ function init_map() {
     center: new L.LatLng(lat, lon),
     zoom: zoom,
     layers: layers[0]
-  });
+  }).setActiveArea('leaflet-active-area');
+  map.setView(new L.LatLng(lat, lon));
 
   var coverage = new OsmoseCoverage('/osmose-coverage.json');
   mapOverlay['Coverage'] = coverage;

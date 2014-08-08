@@ -32,6 +32,7 @@ js_map_bundle = Bundle(
     'map/leaflet.select-layers.min.js',
     'map/leaflet-sidebar/src/L.Control.Sidebar.js',
     'map/leaflet-control-geocoder/Control.Geocoder.js',
+    'map/leaflet-active-area/L.activearea.js',
     'map/Location.js',
     'map/Osmose.Menu.js',
     'map/Osmose.Editor.js',
