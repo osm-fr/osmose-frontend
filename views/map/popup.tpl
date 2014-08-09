@@ -78,8 +78,8 @@
 {{_("Error reported on: ")}} <%b_date%>
   </div>
   <div class="bulle_verif">
-    <a href="http://www.openstreetmap.org/?lat=<%lat%>&lon=<%lon%>&zoom=18" target="_blank">osmlink</a>
-    <a href="http://www.openstreetmap.org/edit?lat=<%lat%>&lon=<%lon%>&zoom=18" target="_blank">potlatch</a>
+    <a href="http://www.openstreetmap.org/?lat=<%lat%>&lon=<%lon%>&zoom=18" target="_blank">osm-show</a>
+    <a href="http://www.openstreetmap.org/edit?lat=<%lat%>&lon=<%lon%>&zoom=18" target="_blank">osm-edit</a>
     <a href="http://localhost:8111/load_and_zoom?left=<%minlon%>&bottom=<%minlat%>&right=<%maxlon%>&top=<%maxlat%>&select=<%elems_id%>" target="hiddenIframe" class="josm">josm zone</a>
   </div>
   <div class="bulle_maj">
