@@ -209,8 +209,8 @@ OsmoseEditor = L.Control.Sidebar.extend({
     del.empty();
     $.each(reftags, function (e) {
       if (data[e] == undefined) {
-        var value = $('<div/>').text(e + '=' + reftags[e]).html(),
-          key = $('<div/>').text(e).html();
+        var value = String($('<div/>').text(e + '=' + reftags[e]).html()).replace('"', '&quot;'),
+          key = String($('<div/>').text(e).html()).replace('"', '&quot;');
         del.append($('<span class="line"><span>-</span><input type="text" name="tags_del[]" value="' + value + '" data-key="' + key + '"/><a href="#">×</a></span>'));
         touched = true;
       }
@@ -220,8 +220,8 @@ OsmoseEditor = L.Control.Sidebar.extend({
     same.empty();
     $.each(reftags, function (e) {
       if (data[e] != undefined && data[e] == reftags[e]) {
-        var value = $('<div/>').text(e + '=' + reftags[e]).html(),
-          key = $('<div/>').text(e).html();
+        var value = String($('<div/>').text(e + '=' + reftags[e]).html()).replace('"', '&quot;'),
+          key = String($('<div/>').text(e).html()).replace('"', '&quot;');
         same.append($('<span class="line"><span>=</span><input type="text" name="tags_del[]" value="' + value + '" data-key="' + key + '"/><a href="#">×</a></span>'));
       }
     });
@@ -230,9 +230,9 @@ OsmoseEditor = L.Control.Sidebar.extend({
     mod.empty();
     $.each(reftags, function (e) {
       if (data[e] != undefined && data[e] != reftags[e]) {
-        var value = $('<div/>').text(e + '=' + data[e]).html(),
-          key = $('<div/>').text(e).html(),
-          old = $('<div/>').text(reftags[e]).html();
+        var value = String($('<div/>').text(e + '=' + data[e]).html()).replace('"', '&quot;'),
+          key = String($('<div/>').text(e).html()).replace('"', '&quot;'),
+          old = String($('<div/>').text(reftags[e]).html()).replace('"', '&quot;');
         mod.append($('<span class="line"><span>~</span><input type="text" name="tags_mod[]" value="' + value + '" data-key="' + key + '" title="' + old + '"/><a href="#">×</a></span>'));
         touched = true;
       }
@@ -242,8 +242,8 @@ OsmoseEditor = L.Control.Sidebar.extend({
     add.empty();
     $.each(data, function (e) {
       if (reftags[e] == undefined) {
-        var value = $('<div/>').text(e + '=' + data[e]).html(),
-          key = $('<div/>').text(e).html();
+        var value = String($('<div/>').text(e + '=' + data[e]).html()).replace('"', '&quot;'),
+          key = String($('<div/>').text(e).html()).replace('"', '&quot;');
         add.append($('<span class="line"><span>+</span><input type="text" name="tags_add[]" value="' + value + '" data-key="' + key + '"/><a href="#">×</a></span>'));
         touched = true;
       }
