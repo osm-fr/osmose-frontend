@@ -3,10 +3,11 @@ var mapBases = {
   'Mapnik': L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: osmAttribution}),
   'MapQuest Open': L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {subdomains: '123', attribution: osmAttribution + " - Tiles Courtesy of <a href=\"http://www.mapquest.com/\" target=\"_blank\">MapQuest</a> <img src=\"http://developer.mapquest.com/content/osm/mq_logo.png\">"}),
   'ÖPNV Karte': L.tileLayer('http://tile.memomaps.de/tilegen/{z}/{x}/{y}.png'),
-  'Bing': L.bingLayer('AmQcQsaJ4WpRqn2_k0rEToboqaM1ind8HMmM0XwKwW9R8bChmHEbczHwjnjFpuNP', {type: 'Aerial'}),
   'White background': L.tileLayer('http://a.layers.openstreetmap.fr/blanc.png'),
   'Mapnik-osmfr': L.tileLayer('http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {attribution: osmAttribution}),
   'HOT': L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {attribution: osmAttribution}),
+  'Bing': L.bingLayer('AmQcQsaJ4WpRqn2_k0rEToboqaM1ind8HMmM0XwKwW9R8bChmHEbczHwjnjFpuNP', {type: 'Aerial'}),
+  'MapBox Satellite': L.tileLayer('http://{s}.tiles.mapbox.com/v4/openstreetmap.map-inh7ifmo/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoib3BlbnN0cmVldG1hcCIsImEiOiJhNVlHd29ZIn0.ti6wATGDWOmCnCYen-Ip7Q'),
 };
 
 var urlOsmFr = 'http://{s}.layers.openstreetmap.fr/{layer}/{z}/{x}/{y}.png';
