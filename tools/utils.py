@@ -7,7 +7,7 @@ import OsmSax
 
 ################################################################################
 
-allowed_languages = ["en", "fr", "de", "es", "hu", "it", "ja", "nl", "pl", "pt", "sw"]
+allowed_languages = ["en", "fr", "de", "es", "hu", "it", "ja", "nl", "pl", "pt", "sw", "uk"]
 pg_user           = "osmose"
 pg_pass           = "clostAdtoi"
 pg_base           = "osmose_frontend"
