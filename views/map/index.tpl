@@ -135,13 +135,13 @@
 <ul id="topmenu">
 <li id="menu-lang"><a href='#'>{{_("Change language")}} ▼</a>
 <ul class="submenu">
-%for l in allowed_languages:
-%    if translate.languages[0] == l:
+%for (k, v) in languages_name.items():
+%    if translate.languages[0] == k:
 %        s = " class='bold'"
 %    else:
 %        s = ""
 %    end
-  <li{{!s}}><a href="{{"http://" + website + "/" + l + request.path + "?" + request.query_string}}">{{l}}</a></li>
+  <li{{!s}}><a href="{{"http://" + website + "/" + k + request.path + "?" + request.query_string}}">{{v}} ({{k}})</a></li>
 %end
 </ul>
 </li>

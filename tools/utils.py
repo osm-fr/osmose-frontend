@@ -3,11 +3,29 @@
 
 import os, re, Cookie
 import datetime, urllib2
+from collections import OrderedDict
 import OsmSax
 
 ################################################################################
 
-allowed_languages = ["en", "fr", "de", "es", "hu", "it", "ja", "nl", "pl", "pt", "ru", "sw", "uk"]
+languages_name = OrderedDict()
+languages_name["en"] = u"English"
+
+# language names from http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+languages_name["de"] = u"Deutsch"
+languages_name["es"] = u"Español"
+languages_name["fr"] = u"Français"
+languages_name["hu"] = u"Magyar"
+languages_name["it"] = u"Italiano"
+languages_name["ja"] = u"日本語"
+languages_name["nl"] = u"Nederlands"
+languages_name["pl"] = u"Polszczyzna"
+languages_name["pt"] = u"Português"
+languages_name["ru"] = u"Русский"
+languages_name["sw"] = u"Kiswahili"
+languages_name["uk"] = u"Українська"
+
+allowed_languages = list(languages_name)
 pg_user           = "osmose"
 pg_pass           = "clostAdtoi"
 pg_base           = "osmose_frontend"
