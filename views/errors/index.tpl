@@ -77,7 +77,7 @@
 %    count = res["count"]
 %    if count == -1:
 %        count = "N/A"
-%    end:
+%    end
     <td><a href="?source={{res["source"]}}&amp;item={{res["item"]}}&amp;class={{res["class"]}}">{{count}}</a></td>
 </tr>
 %end
