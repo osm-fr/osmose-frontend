@@ -94,7 +94,7 @@
 <br>
 %if errors:
 %    str_more = _("Show more errors")
-%    include views/errors/list.tpl errors=errors, gen=gen, opt_date=opt_date, translate=translate
+%    include("views/errors/list.tpl", errors=errors, gen=gen, opt_date=opt_date, translate=translate)
 %
 %    import urlparse, urllib
 %    query_dict = urlparse.parse_qs(query)
