@@ -139,11 +139,12 @@ def update(lang):
 def send_update():
     src = request.params.get('source', default=None)
     code = request.params.get('code')
-    url = request.params.get('url')
+    url = request.params.get('url', default=None)
+    upload = request.files.get('content', default=None)
 
     response.content_type = "text/plain; charset=utf-8"
 
-    if not code or not url:
+    if not code or not (url or upload):
         return "FAIL"
 
     sources = utils.get_sources()
@@ -152,8 +153,21 @@ def send_update():
             continue
         if sources[s]["updatecode"] != code:
             continue
+
         try:
-            tools.update.update(sources[s], url)
+            if url:
+                tools.update.update(sources[s], url)
+
+            elif upload:
+                (name, ext) = os.path.splitext(upload.filename)
+                if ext not in ('.bz2','.gz','.xml'):
+                    return 'FAIL: File extension not allowed.'
+
+                save_filename = os.path.join(utils.dir_results, upload.filename)
+                upload.save(save_filename, overwrite=True)
+                tools.update.update(sources[s], save_filename)
+                os.unlink(save_filename)
+
         except:
             import traceback
             from cStringIO import StringIO

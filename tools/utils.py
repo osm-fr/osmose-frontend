@@ -4,6 +4,7 @@
 import os, re, Cookie
 import datetime, urllib2
 from collections import OrderedDict
+import pwd
 import OsmSax
 
 ################################################################################
@@ -34,6 +35,9 @@ website           = "osmose.openstreetmap.fr"
 remote_url        = "http://api.openstreetmap.org/"
 remote_url_read   = "http://api.openstreetmap.fr/"
 remote_url_write  = "http://api.openstreetmap.org/"
+
+username          = pwd.getpwuid(os.getuid())[0]
+dir_results       = "/data/work/%s/results" % (username)
 
 ################################################################################
 
