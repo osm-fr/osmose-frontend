@@ -1,4 +1,4 @@
-%rebase layout title=_("Update")
+%rebase('layout.tpl', title=_("Update"))
 <table>
 <tr>
     <th>{{_("source")}}</td>
