@@ -287,8 +287,8 @@ def markers(db, lang):
 
 @route('/tpl/popup.tpl')
 def popup_template(lang):
-    return template('map/popup', mustache_delimiter="{{=<% %>=}}", website=utils.website)
+    return template('map/popup', mustache_delimiter="{{={% %}=}}", website=utils.website)
 
 @route('/tpl/editor.tpl')
 def editor_template(lang):
-    return template('map/editor', mustache_delimiter="{{=<% %>=}}")
+    return template('map/editor', mustache_delimiter="{{={% %}=}}")
