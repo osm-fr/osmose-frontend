@@ -89,6 +89,7 @@
  7120 | _("relation type=boundary")
  7130 | _("tunnel/bridge")
  7140 | _("transport sharing, not integrated")
+ 7150 | _("pharmacy, not integrated ")
  8010 | _("monument, museum")
  8011 | _("monument, museum, could be integrated")
  8020 | _("post office")
@@ -119,3 +120,5 @@
  8180 | _("toilets")
  8190 | _("police")
  8191 | _("police, could be integrated")
+ 8210 | _("pharmacy")
+ 8211 | _("pharmacy, could be integrated")
