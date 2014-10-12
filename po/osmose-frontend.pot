@@ -753,7 +753,7 @@ msgstr ""
 msgid "highway crossing"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:32 ../tools/database/item_menu.txt:123
+#: ../tools/database/item_menu.txt:32 ../tools/database/item_menu.txt:124
 msgid "pharmacy"
 msgstr ""
 
@@ -1151,6 +1151,10 @@ msgstr ""
 msgid "pharmacy, not integrated "
 msgstr ""
 
-#: ../tools/database/item_menu.txt:124
+#: ../tools/database/item_menu.txt:125
 msgid "pharmacy, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:123
+msgid "gas station"
 msgstr ""
