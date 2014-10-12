@@ -6,7 +6,7 @@
 %    end
 %end
 %rss="http://"+website+"/errors.rss?%s" % query
-%rebase layout title=title, favicon=favicon, rss=rss
+%rebase('layout.tpl', title=title, favicon=favicon, rss=rss)
 <a href=".?{{query}}">{{_("Informations")}}</a>
 <a href="done?{{query}}">{{_("Fixed")}}</a>
 <a href="false-positive?{{query}}">{{_("False positives")}}</a>
@@ -77,7 +77,7 @@
 %    count = res["count"]
 %    if count == -1:
 %        count = "N/A"
-%    end:
+%    end
     <td><a href="?source={{res["source"]}}&amp;item={{res["item"]}}&amp;class={{res["class"]}}">{{count}}</a></td>
 </tr>
 %end
@@ -94,7 +94,7 @@
 <br>
 %if errors:
 %    str_more = _("Show more errors")
-%    include views/errors/list.tpl errors=errors, gen=gen, opt_date=opt_date, translate=translate
+%    include("views/errors/list.tpl", errors=errors, gen=gen, opt_date=opt_date, translate=translate)
 %
 %    import urlparse, urllib
 %    query_dict = urlparse.parse_qs(query)

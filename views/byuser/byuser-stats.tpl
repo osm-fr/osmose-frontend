@@ -1,4 +1,4 @@
-%rebase layout title=_("Users statistics")
+%rebase('layout.tpl', title=_("Users statistics"))
 <table>
   <tr>
     <th>#</th>

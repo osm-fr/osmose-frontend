@@ -1,4 +1,4 @@
-%rebase layout title=_("Last updates")
+%rebase('layout.tpl', title=_("Last updates"))
 <p>{{_("Median delay:")}} {{(liste[len(liste)/2][2]) if len(liste)>0 else ""}}</p>
 <table>
 <tr>

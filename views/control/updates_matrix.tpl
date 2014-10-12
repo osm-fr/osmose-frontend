@@ -1,4 +1,4 @@
-%rebase layout title=_("Last updates")
+%rebase('layout.tpl', title=_("Last updates"))
 %def col(t, v):
 %            if v > 4.05:
     <{{t}} class="delay-error">\\

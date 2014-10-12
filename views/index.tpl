@@ -1,4 +1,4 @@
-%rebase layout title=_('OpenStreetMap Oversight Search Engine')
+%rebase('layout.tpl', title=_('OpenStreetMap Oversight Search Engine'))
 <h1>Osmose</h1>
 <ul>
     <li><a href='map/'>{{_('Map of errors')}}</a>
