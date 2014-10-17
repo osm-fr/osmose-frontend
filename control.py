@@ -113,7 +113,7 @@ ORDER BY
 
 
 @route('/control/update/<source:int>')
-def update(db, source=None):
+def update(db, lang, source=None):
     sql = "SELECT source,timestamp,remote_url,remote_ip FROM dynpoi_update WHERE source=%d ORDER BY timestamp DESC;" % source
     db.execute(sql)
     return template('control/update', liste=db.fetchall())
