@@ -147,6 +147,8 @@ def send_update():
     if not code or not (url or upload):
         return "FAIL"
 
+    remote_ip = request.remote_addr
+
     sources = utils.get_sources()
     for s in sources:
         if src and sources[s]["comment"] != src:
@@ -156,7 +158,7 @@ def send_update():
 
         try:
             if url:
-                tools.update.update(sources[s], url)
+                tools.update.update(sources[s], url, remote_ip=remote_ip)
 
             elif upload:
                 (name, ext) = os.path.splitext(upload.filename)
@@ -165,7 +167,7 @@ def send_update():
 
                 save_filename = os.path.join(utils.dir_results, upload.filename)
                 upload.save(save_filename, overwrite=True)
-                tools.update.update(sources[s], save_filename)
+                tools.update.update(sources[s], save_filename, remote_ip=remote_ip)
                 os.unlink(save_filename)
 
         except:

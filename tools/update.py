@@ -55,7 +55,7 @@ def execute_sql(dbcurs, sql, args = None):
         print ".",
         sys.stdout.flush()
 
-def update(source, url, logger = printlogger()):
+def update(source, url, logger = printlogger(), remote_ip=""):
 
     source_id = int(source["id"])
 
@@ -65,7 +65,7 @@ def update(source, url, logger = printlogger()):
 
     ## xml parser
     parser = make_parser()
-    parser.setContentHandler(update_parser(source_id, source, url, dbcurs))
+    parser.setContentHandler(update_parser(source_id, source, url, remote_ip, dbcurs))
 
     ## download the file if needed
     if url.startswith("http://"):
@@ -138,10 +138,11 @@ def update(source, url, logger = printlogger()):
 
 class update_parser(handler.ContentHandler):
 
-    def __init__(self, source_id, source_data, source_url, dbcurs):
+    def __init__(self, source_id, source_data, source_url, remote_ip, dbcurs):
         self._source_id        = source_id
         self._source_data      = source_data
         self._source_url       = source_url
+        self._remote_ip        = remote_ip
         self._dbcurs           = dbcurs
         self._class_texts      = {}
         self._class_item       = {}
@@ -341,7 +342,7 @@ class update_parser(handler.ContentHandler):
             execute_sql(self._dbcurs, "INSERT INTO dynpoi_update VALUES(%s, %s, %s, %s);",
                                  (self._source_id, utils.pg_escape(self.ts),
                                   utils.pg_escape(self._source_url),
-                                  utils.pg_escape(os.environ.get('REMOTE_ADDR', ''))))
+                                  utils.pg_escape(self._remote_ip)))
             execute_sql(self._dbcurs, "UPDATE dynpoi_update_last SET timestamp=%s WHERE source=%s;",
                                  (utils.pg_escape(self.ts), self._source_id))
             if self._dbcurs.rowcount == 0:
