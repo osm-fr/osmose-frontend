@@ -136,7 +136,7 @@ def index(db, lang):
     urls.append(("byuser", _("Errors by user"), "../byuser/"))
     urls.append(("relation_analyser", _("Relation analyser"), "http://analyser.openstreetmap.fr/"))
     # TRANSLATORS: link to source code
-    urls.append(("statistics", _("Statistics"), "../control/update"))
+    urls.append(("statistics", _("Statistics"), "../control/update_matrix"))
 
     helps = []
     helps.append((_("Contact"), "../contact"))
