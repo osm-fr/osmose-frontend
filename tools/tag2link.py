@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 
-# https://trac.openstreetmap.org/browser/subversion/applications/editors/josm/plugins/tag2link/resources/tag2link_sources.xml?rev=28461&format=txt
+# https://trac.openstreetmap.org/browser/subversion/applications/editors/josm/plugins/tag2link/resources/tag2link_sources.xml?rev=30720&format=txt
 
 import xml.sax
 import re

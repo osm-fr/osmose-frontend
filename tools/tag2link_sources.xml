@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
 //    JOSM tag2link plugin.
-//    Copyright (C) 2011 Don-vip & FrViPofm
+//    Copyright (C) 2011-2014 Don-vip & FrViPofm
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 
     <!-- Global --> 
 
-    <source name="Common">
+    <src name="Common">
         <rule>
             <condition k="(contact:)?website" />
             <link name="View website" href="%v%" />
@@ -33,36 +33,41 @@
             <condition k="(contact:)?email" v="[^@]+@[^@]+" />
             <link name="Send Email" href="mailto:%v%" />
         </rule>
-    </source>
+    </src>
     
-    <source name="Wikipedia">
+    <src name="Wikipedia">
         <rule>
             <condition k="wikipedia(?::(\p{Lower}{2,}))?" v="(?:(\p{Lower}{2,}):)?(.*)" />
-            <link name="View %name% article" href="http://%k.1:v.1:en%.wikipedia.org/wiki/%v.2:v.1%" />
+            <link name="View %name% article" href="https://%k.1:v.1:en%.wikipedia.org/wiki/%v.2:v.1%" />
         </rule>
-    </source>
-
-    <source name="WHC">
         <rule>
-            <condition k="ref:whc" v="[0-9-]+" />
-            <link name="View UNESCO sheet" href="http://whc.unesco.org/%lang(en,fr):en%/list/%v%" />
+            <condition k="wikidata" />
+            <link name="View Wikidata page" href="https://www.wikidata.org/wiki/%v%" />
         </rule>
-    </source>
+    </src>
+
+    <src name="WHC">
+        <rule>
+            <condition k="ref:whc" v="([0-9]+)(?:-.*)?" />
+            <link name="View UNESCO sheet" href="http://whc.unesco.org/%lang(en,fr):en%/list/%v.1%" />
+        </rule>
+    </src>
     
     <!-- Only for France --> 
     
-    <source name="SANDRE" country-code="FR">
+    <src name="SANDRE" country-code="FR">
         <rule>
             <condition k="ref:(FR:)?sandre" v="[A-Z0-9-]{8}" />
             <link name="View %name% sheet of river" href="http://services.sandre.eaufrance.fr/Courdo/Fiche/client/fiche_courdo.php?CdSandre=%v%" />
         </rule>
-    </source>
+    </src>
     
-    <source name="INSEE" country-code="FR">
+    <src name="INSEE" country-code="FR">
         <rule>
             <condition k="admin_level" v="8"/>
             <condition k="ref:(FR:)?INSEE" v="(\p{Digit}{2})(\p{Digit}{3})" id="ref"/>
             <link name="View %name% municipality sheet" href="http://www.insee.fr/fr/methodes/nomenclatures/cog/fichecommunale.asp?codedep=%ref.v.1%&amp;codecom=%ref.v.2%" />
+            <link name="View %name% sheet on osm.fr" href="http://openstreetmap.fr/outils/etat-commune?insee=%ref.v%" />
         </rule>
         <rule>
             <condition k="political_division" v="FR:canton"/>
@@ -94,16 +99,16 @@
             <link name="View %name% map of regions" href="http://www.insee.fr/fr/methodes/nomenclatures/cog/carte_regions.asp" />
             <link name="View %name% list of regions" href="http://www.insee.fr/fr/methodes/nomenclatures/cog/region.asp" />
         </rule>
-    </source>
+    </src>
     
-    <source name="CEF" country-code="FR">
+    <src name="CEF" country-code="FR">
         <rule>
             <condition k="ref:(FR:)?CEF" v="[A-Z0-9_]{8}" />
-            <link name="View %name% sheet of church" href="http://www.messesinfo.catholique.fr/public/fiche.php?valcode=%v%" />
+            <link name="View %name% sheet of church" href="http://egliseinfo.catholique.fr/#!lieu:%v%" />
         </rule>
-    </source>
+    </src>
 
-    <source name="MHS" country-code="FR">
+    <src name="MHS" country-code="FR">
         <rule>
             <condition k="ref:(FR:)?mhs" v="\p{Upper}{2}\p{Digit}{8}" />
             <link name="View Mérimée sheet of monument" href="http://www.culture.gouv.fr/public/mistral/mersri_fr?ACTION=CHERCHER&amp;FIELD_1=REF&amp;VALUE_1=%v%" />
@@ -112,9 +117,9 @@
             <condition k="ref:(FR:)?INSEE" v="\p{Digit}{5}" />
             <link name="View Mérimée list for this municipality" href="http://www.culture.gouv.fr/public/mistral/merimee_fr?ACTION=CHERCHER&amp;FIELD_1=cmer1&amp;VALUE_1=%v%" />
         </rule>
-    </source>
+    </src>
 
-    <source name="IGN" country-code="FR">
+    <src name="IGN" country-code="FR">
 		<!-- 
 		http://geodesie.ign.fr/fiches/index.php?module=e&action=fichepdf&source=carte&sit_no=4509302&geo_cid=0&lambda=1.90024744&phi=48.03041621
 		 -->
@@ -135,13 +140,42 @@
             <condition k="ref" v="\p{Digit}{7}" id="ref" />
             <link name="View %name% sheet of geodesic site" href="http://geodesie.ign.fr/fiches/index.php?module=e&amp;action=fichepdf&amp;source=carte&amp;sit_no=%ref.v.1%" />
         </rule>
-    </source>
+    </src>
 
-    <source name="Education Nationale" country-code="FR">
+    <src name="Éducation Nationale" country-code="FR">
         <rule>
             <condition k="ref:(FR:)?UAI" />
-            <link name="View UAI sheet of school/college" href="http://www.education.gouv.fr/bce/avancee/fiche.php?NUMERO_UAI=%v%&amp;type_info=UAI_all" />
+            <link name="View UAI sheet of school/college" href="http://www.education.gouv.fr/pid24302/annuaire-resultat-recherche.html?lycee_name=%v%" />
         </rule>
-    </source>
-    
+    </src>
+
+    <!-- social facility -->
+    <src name="FINESS" country-code="FR">
+        <rule>
+            <condition k="ref:(FR:)?FINESS" v="[A-Z0-9-]{8,9}" />
+            <link name="View %name% sheet of hospital/home" href="http://finess.sante.gouv.fr/finess/jsp/actionDetailEtablissement.do?noFiness=%v%" />
+        </rule>
+    </src>
+
+    <src name="NAF" country-code="FR">
+        <rule>
+            <condition k="ref:FR:NAF" v="[A-Z0-9-]{5}" />
+            <link name="View explanation of %name% code" href="http://www.rouen.cci.fr/outils/ape/Naf_liste.asp?param=2&amp;code=%v%" />
+        </rule>
+    </src>
+
+    <src name="SIRET" country-code="FR">
+        <rule>
+            <condition k="ref:FR:SIRET" v="(\p{Digit}{9})([0-9-]{5})" />
+            <link name="Get identification card (pdf) for this establishment" href="http://avis-situation-sirene.insee.fr/avisitu/AvisPdf.do?nic=%v.2%&amp;siren=%v.1%" />
+        </rule>
+    </src>
+
+    <src name="La Poste" country-code="FR">
+        <rule>
+            <condition k="ref:FR:LaPoste" v="[0-9]{5}[A-Z]" />
+            <link name="View %name% page of this post office" href="http://www.laposte.fr/particulier/outils/trouver-un-bureau-de-poste/bureau-detail/%v%/%v%" />
+        </rule>
+    </src>
+
 </tag2link>
