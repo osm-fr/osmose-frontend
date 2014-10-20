@@ -15,11 +15,11 @@ OsmoseExport = L.Class.extend({
 
   _setUrl: function (e) {
     var self = this,
-      urlPart;
-    $("#menu-export ul a").each(function (i, a) {
       urlPart = self._menu.urlPart();
-      urlPart.bbox = self._map.getBounds().toBBoxString();
+    urlPart.bbox = self._map.getBounds().toBBoxString();
+    $("#menu-export ul a").each(function (i, a) {
       a.href = a.href.split("?")[0] + L.Util.getParamString(urlPart);
     });
+    delete urlPart.bbox;
   },
 });
