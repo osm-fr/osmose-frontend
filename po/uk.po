@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2014-10-12 15:47+0000\n"
+"PO-Revision-Date: 2014-10-24 18:06+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/projects/p/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgid "never generated"
 msgstr "ніколи не створювалось"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:155 ../false_positive.py:66
+#: ../error.py:155 ../false_positive.py:66 tmp.tpl:154
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
@@ -61,40 +61,38 @@ msgid "Relation analyser"
 msgstr "Аналізатор зв’язків"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:139
 msgid "openstreetmap.fr"
 msgstr "openstreetmap.fr"
 
-#: ../map.py:139
 msgid "http://www.openstreetmap.fr/"
 msgstr "http://www.openstreetmap.fr/"
 
 #. TRANSLATORS: link to source code
-#: ../map.py:141
+#: ../map.py:139
 msgid "Statistics"
 msgstr "Статистика"
 
-#: ../map.py:144 tmp.tpl:23
+#: ../map.py:142 tmp.tpl:23
 msgid "Contact"
 msgstr "Контакти"
 
-#: ../map.py:145
+#: ../map.py:143
 msgid "Help on wiki"
 msgstr "Довідка у вікі"
 
-#: ../map.py:145
+#: ../map.py:143 tmp.tpl:95 tmp.tpl:153
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
-#: ../map.py:146
+#: ../map.py:144
 msgid "Copyright"
 msgstr "Авторське право"
 
-#: ../map.py:147
+#: ../map.py:145
 msgid "Sources"
 msgstr "Джерела"
 
-#: ../map.py:148
+#: ../map.py:146
 msgid "Translation"
 msgstr "Переклад"
 
@@ -415,7 +413,7 @@ msgstr "Останні оновленні перевірки"
 msgid "Tags Editor"
 msgstr "Редактор Теґів"
 
-#: tmp.tpl:100
+#: tmp.tpl:100 tmp.tpl:132
 msgid "Cancel"
 msgstr "Скасувати"
 
@@ -756,7 +754,7 @@ msgstr ""
 msgid "highway crossing"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:32 ../tools/database/item_menu.txt:123
+#: ../tools/database/item_menu.txt:32 ../tools/database/item_menu.txt:124
 msgid "pharmacy"
 msgstr ""
 
@@ -1154,6 +1152,26 @@ msgstr ""
 msgid "pharmacy, not integrated "
 msgstr ""
 
-#: ../tools/database/item_menu.txt:124
+#: ../tools/database/item_menu.txt:125
 msgid "pharmacy, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:123
+msgid "gas station"
+msgstr ""
+
+#: tmp.tpl:82
+msgid "position"
+msgstr ""
+
+#: tmp.tpl:131
+msgid "You must be logged in order to use the tag editor"
+msgstr ""
+
+#: tmp.tpl:132
+msgid "Save changeset"
+msgstr ""
+
+#: tmp.tpl:135
+msgid "Comment"
 msgstr ""

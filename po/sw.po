@@ -1,141 +1,139 @@
-# Swahili translations for PACKAGE package.
-# Copyright (C) 2012 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-#  <jjaubert@openstreetmap.fr>, 2012.
-#  operon, 2012.
-#  <frodrigo@openstreetmap.fr>, 2012.
-#
+# OsmOse frontend
+# Copyright (C) 2014
+# This file is distributed under the same license as the osmose-frontend package.
+# 
+# Translators:
+#  <frodrigo@openstreetmap.fr>, 2012
+# Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2012
+#  operon, 2012
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2012-10-11 22:17+0100\n"
-"Last-Translator: operon\n"
-"Language-Team: Swahili\n"
-"Language: sw\n"
+"PO-Revision-Date: 2014-10-24 18:06+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"Language-Team: Swahili (http://www.transifex.com/projects/p/osmose/language/sw/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: sw\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANSLATORS: days / hours / minutes since last source update, abbreviated to d / h / m
+#. TRANSLATORS: days / hours / minutes since last source update, abbreviated
+#. to d / h / m
 #: ../control.py:50
 #, python-brace-format
 msgid "{day}d, {hour}h, {minute}m ago"
-msgstr "kutoka {day}siku, {hour}masaa, {minute}dakika"
+msgstr ""
 
 #: ../control.py:52
 #, python-brace-format
 msgid "in {day}d, {hour}h, {minute}m"
-msgstr "kutoka{day}siku, {hour}masaa, {minute}dakika"
+msgstr ""
 
 #: ../control.py:55
 msgid "never generated"
-msgstr "kamwe yanayotokana"
+msgstr ""
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:155 ../false_positive.py:66
+#: ../error.py:155 ../false_positive.py:66 tmp.tpl:154
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
-msgstr "http://wiki.openstreetmap.org/wiki/SW:Osmose/erreurs"
+msgstr ""
 
-#: ../errors.py:123 tmp.tpl:58
+#: ../errors.py:122 tmp.tpl:59
 msgid "False positives"
-msgstr "uongo chanya"
+msgstr ""
 
-#: ../errors.py:126
+#: ../errors.py:125
 msgid "Fixed errors"
-msgstr "makosa kusahihishwa"
+msgstr ""
 
-#: ../errors.py:129 tmp.tpl:56
+#: ../errors.py:128 tmp.tpl:57
 msgid "Informations"
-msgstr "Habari"
+msgstr ""
 
 #. TRANSLATORS: link to help in appropriate language
 #: ../map.py:136
 msgid "Errors by user"
-msgstr "Mtumiaji makosa"
+msgstr ""
 
 #: ../map.py:137
 msgid "Relation analyser"
-msgstr "Analyzer uhusiano"
+msgstr ""
 
 #. TRANSLATORS: this link can be changed to something specific to the language
-#: ../map.py:139
 msgid "openstreetmap.fr"
-msgstr "openstreetmap.fr"
+msgstr ""
 
-#: ../map.py:139
 msgid "http://www.openstreetmap.fr/"
-msgstr "http://www.openstreetmap.fr/"
+msgstr ""
 
 #. TRANSLATORS: link to source code
-#: ../map.py:141
+#: ../map.py:139
 msgid "Statistics"
-msgstr "Takwimu"
+msgstr ""
 
-#: ../map.py:144 tmp.tpl:23
+#: ../map.py:142 tmp.tpl:23
 msgid "Contact"
 msgstr ""
 
-#: ../map.py:145
-#, fuzzy
+#: ../map.py:143
 msgid "Help on wiki"
-msgstr "Msaada kwenye wiki"
+msgstr ""
+
+#: ../map.py:143 tmp.tpl:95 tmp.tpl:153
+msgid "http://wiki.openstreetmap.org/wiki/Osmose"
+msgstr ""
+
+#: ../map.py:144
+msgid "Copyright"
+msgstr ""
 
 #: ../map.py:145
-msgid "http://wiki.openstreetmap.org/wiki/Osmose"
-msgstr "http://wiki.openstreetmap.org/wiki/SW:Osmose"
+msgid "Sources"
+msgstr ""
 
 #: ../map.py:146
-msgid "Copyright"
-msgstr "Copyright"
-
-#: ../map.py:147
-#, fuzzy
-msgid "Sources"
-msgstr "Chanzo"
-
-#: ../map.py:148
 msgid "Translation"
 msgstr ""
 
 #: tmp.tpl:1 tmp.tpl:5 tmp.tpl:11
 #, python-format
 msgid "Statistics for user %s"
-msgstr "Mtumiaji takwimu kwa %s"
+msgstr ""
 
 #: tmp.tpl:2 tmp.tpl:3 tmp.tpl:4
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Number of level {level} errors: {count}"
-msgstr "Idadi ya makosa kupatikana : %d"
+msgstr ""
 
 #: tmp.tpl:6 tmp.tpl:15
 #, python-format
 msgid "Number of found errors: %d"
-msgstr "Idadi ya makosa kupatikana : %d"
+msgstr ""
 
 #: tmp.tpl:7 tmp.tpl:16
 #, python-format
 msgid "Number of found errors: more than %d"
-msgstr "Idadi ya makosa kupatikana : zaidi ya %d"
+msgstr ""
 
 #: tmp.tpl:8
 msgid "Users statistics"
-msgstr "Takwimu kwa mtumiaji"
+msgstr ""
 
 #: tmp.tpl:9
 msgid "Number"
-msgstr "Idadi"
+msgstr ""
 
 #: tmp.tpl:10
 msgid "Username"
-msgstr "mtumiaji"
+msgstr ""
 
 #: tmp.tpl:12
 #, python-format
 msgid "User statistics for %s"
-msgstr "Mtumiaji takwimu kwa %s"
+msgstr ""
 
 #: tmp.tpl:13
 #, python-format
@@ -143,44 +141,38 @@ msgid ""
 "This page shows errors on elements that were last modified by '%s'. This "
 "doesn't means that this user is responsible for all these errors."
 msgstr ""
-"Ukurasa huu unaorodhesha makosa juu ya vitu ambayo yamekuwa iliyopita kwa "
-"mara ya mwisho kwa '% s'. Hii haina maana kwamba mtumiaji ni kuwajibika kwa "
-"makosa haya yote."
 
 #: tmp.tpl:14
 msgid "This list is also available via rss."
-msgstr "Orodha hii inapatikana kupitia RSS."
+msgstr ""
 
 #: tmp.tpl:17
 msgid "Show errors on a map"
-msgstr "Kuonyesha makosa kwenye ramani"
+msgstr ""
 
 #: tmp.tpl:18
 msgid "Statistics for user"
-msgstr "Takwimu kwa mtumiaji"
+msgstr ""
 
 #: tmp.tpl:19
 msgid "User statistics"
-msgstr "Takwimu kwa mtumiaji"
+msgstr ""
 
 #: tmp.tpl:20
 msgid "Osmose allows you to control your own errors."
-msgstr "Osmosis utapata kudhibiti yako mwenyewe makosa"
+msgstr ""
 
 #: tmp.tpl:21
 msgid ""
-"By entering your OSM username in the following form, you will be able to see "
-"errors that are attached to your username. Note that the algorithm that "
+"By entering your OSM username in the following form, you will be able to see"
+" errors that are attached to your username. Note that the algorithm that "
 "attaches errors to username is not perfect, as Osmose only checks the last "
 "contributor of the relevant erroneous elements."
 msgstr ""
-"Kwa kuingia ID yako OSM mchangiaji, unaweza kuonaMakosa masharti yao. Lazima "
-"ifahamike kwamba algorithm kuunganishaÃ kosa user si kamili, osmosis "
-"inachukua katika akauntimchangiaji wa mwisho kwa kipengele kosa."
 
 #: tmp.tpl:22
 msgid "Username:"
-msgstr "Mtumiaji :"
+msgstr ""
 
 #: tmp.tpl:24
 msgid "Bug tracker"
@@ -210,793 +202,978 @@ msgstr ""
 
 #: tmp.tpl:29
 msgid ""
-"Development of Osmose is made as free software by <a href='../"
-"copyright'>volunteers</a>."
-msgstr ""
-
-#: tmp.tpl:30
-msgid "Contacting maintainers"
+"Development of Osmose is made as free software by <a "
+"href='../copyright'>volunteers</a>."
 msgstr ""
 
 #: tmp.tpl:31
+msgid "Contacting maintainers"
+msgstr ""
+
+#: tmp.tpl:32
 #, python-format
 msgid ""
 "We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
 msgstr ""
 
-#: tmp.tpl:32 tmp.tpl:33
+#: tmp.tpl:33 tmp.tpl:34
 msgid "Last updates"
 msgstr ""
 
-#: tmp.tpl:34
+#: tmp.tpl:35
 msgid "Median delay:"
-msgstr "Wastani wakati :"
+msgstr ""
 
-#: tmp.tpl:35 tmp.tpl:41 tmp.tpl:63 tmp.tpl:72
+#: tmp.tpl:36 tmp.tpl:42 tmp.tpl:64 tmp.tpl:73
+#: ../tools/database/item_menu.txt:27
 msgid "source"
-msgstr "Chanzo"
-
-#: tmp.tpl:36
-msgid "description"
-msgstr "maelezo"
+msgstr ""
 
 #: tmp.tpl:37
+msgid "description"
+msgstr ""
+
+#: tmp.tpl:38
 msgid "last generation"
-msgstr "mwisho wa kizazi"
+msgstr ""
 
-#: tmp.tpl:38 tmp.tpl:39
+#: tmp.tpl:39 tmp.tpl:40
 msgid "history"
-msgstr "kihistoria"
+msgstr ""
 
-#: tmp.tpl:40
+#: tmp.tpl:41
 msgid "Update"
 msgstr ""
 
-#: tmp.tpl:42
+#: tmp.tpl:43
 msgid "remote url"
 msgstr ""
 
-#: tmp.tpl:43
+#: tmp.tpl:44
 msgid "timestamp"
 msgstr ""
 
-#: tmp.tpl:44
-msgid "Copyright informations"
-msgstr "Copyright Taarifa"
-
 #: tmp.tpl:45
-msgid "License"
+msgid "Copyright informations"
 msgstr ""
 
 #: tmp.tpl:46
-msgid "Authors"
+msgid "License"
 msgstr ""
 
 #: tmp.tpl:47
-msgid "And contributors"
+msgid "Authors"
 msgstr ""
 
 #: tmp.tpl:48
-msgid "Data are coming from"
-msgstr "Data ni kutoka"
+msgid "And contributors"
+msgstr ""
 
 #: tmp.tpl:49
-msgid "copyright"
-msgstr "copyright"
+msgid "Data are coming from"
+msgstr ""
 
-#: tmp.tpl:50 tmp.tpl:87
+#: tmp.tpl:50
+msgid "copyright"
+msgstr ""
+
+#: tmp.tpl:51 tmp.tpl:89
 #, python-format
 msgid "Information on error %d"
-msgstr "Habari juu ya makosa ya %d"
+msgstr ""
 
-#: tmp.tpl:51 tmp.tpl:88
+#: tmp.tpl:52 tmp.tpl:90
 msgid "key"
-msgstr "ufunguo"
+msgstr ""
 
-#: tmp.tpl:52 tmp.tpl:89
+#: tmp.tpl:53 tmp.tpl:91
 msgid "value"
-msgstr "ufunguo"
+msgstr ""
 
-#: tmp.tpl:53 tmp.tpl:90
+#: tmp.tpl:54 tmp.tpl:92
 msgid "Marker"
 msgstr ""
 
-#: tmp.tpl:54
-msgid "Elements"
-msgstr "vipengele"
-
 #: tmp.tpl:55
+msgid "Elements"
+msgstr ""
+
+#: tmp.tpl:56
 msgid "Fixes"
-msgstr "Masahihisho"
+msgstr ""
 
-#: tmp.tpl:57
+#: tmp.tpl:58
 msgid "Fixed"
-msgstr "Fixed"
+msgstr ""
 
-#: tmp.tpl:59
+#: tmp.tpl:60
 msgid "Graph"
-msgstr "Graph"
+msgstr ""
 
-#: tmp.tpl:60 tmp.tpl:100
+#: tmp.tpl:61 tmp.tpl:102
 msgid "Map"
-msgstr "Ramani"
+msgstr ""
 
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
-#: tmp.tpl:62
+#: tmp.tpl:63
 msgid "Set"
-msgstr "Chagua"
+msgstr ""
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
-#: tmp.tpl:65 tmp.tpl:74
+#: tmp.tpl:66 tmp.tpl:75
 msgid "class (abbreviation)"
-msgstr "cl"
+msgstr ""
 
-#: tmp.tpl:66 tmp.tpl:79
+#: tmp.tpl:67 tmp.tpl:80
 msgid "item"
-msgstr "Item"
-
-#: tmp.tpl:67
-msgid "title"
-msgstr "cheo"
+msgstr ""
 
 #: tmp.tpl:68
-msgid "count"
-msgstr "idadi"
+msgid "title"
+msgstr ""
 
 #: tmp.tpl:69
-msgid "Total"
-msgstr "Jumla ya"
+msgid "count"
+msgstr ""
 
 #: tmp.tpl:70
-msgid "Show more errors"
-msgstr "View makosa zaidi"
+msgid "Total"
+msgstr ""
 
 #: tmp.tpl:71
+msgid "Show more errors"
+msgstr ""
+
+#: tmp.tpl:72
 msgid "Show some errors"
-msgstr "Onyesha baadhi ya makosa"
+msgstr ""
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: tmp.tpl:76
+#: tmp.tpl:77
 msgid "subclass (abbreviation)"
-msgstr "s"
+msgstr ""
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: tmp.tpl:78
+#: tmp.tpl:79
 msgid "level (abbreviation)"
-msgstr "l"
-
-#: tmp.tpl:80
-msgid "information on error"
-msgstr "habari juu ya makosa ya"
+msgstr ""
 
 #: tmp.tpl:81
-msgid "position (abbreviation)"
-msgstr "pos"
+msgid "information on error"
+msgstr ""
 
 #: tmp.tpl:82
-msgid "elements (abbreviation)"
-msgstr "elems"
+msgid "position (abbreviation)"
+msgstr ""
 
 #: tmp.tpl:83
-msgid "subtitle"
-msgstr "subtitle"
+msgid "elements (abbreviation)"
+msgstr ""
 
 #: tmp.tpl:84
-msgid "date"
-msgstr "tarehe"
+msgid "subtitle"
+msgstr ""
 
-#: tmp.tpl:85
-msgid "delete error"
+#: tmp.tpl:85 ../tools/database/item_menu.txt:44
+msgid "date"
 msgstr ""
 
 #: tmp.tpl:86
+msgid "delete error"
+msgstr ""
+
+#: tmp.tpl:88
 #, python-format
 msgid "delete error #%d"
 msgstr ""
 
-#: tmp.tpl:91
+#: tmp.tpl:93
 msgid "OpenStreetMap Oversight Search Engine"
-msgstr "OpenStreetMap Oversight Search Engine"
+msgstr ""
 
-#: tmp.tpl:92
+#: tmp.tpl:94
 msgid "Map of errors"
 msgstr ""
 
-#: tmp.tpl:93
-msgid "Help on OSM wiki"
-msgstr "Msaada kwenye OSM wiki"
-
-#: tmp.tpl:94
-msgid "Information on error database"
-msgstr "Taarifa juu ya msingi wa data kosa"
-
 #: tmp.tpl:95
-msgid "False positives list"
-msgstr "Orodha ya Positives uongo"
+msgid "Help on OSM wiki"
+msgstr ""
 
 #: tmp.tpl:96
-msgid "Last analysis updates"
+msgid "Information on error database"
 msgstr ""
 
 #: tmp.tpl:97
-msgid "Tags Editor"
+msgid "False positives list"
 msgstr ""
 
 #: tmp.tpl:98
-msgid "Cancel"
+msgid "Last analysis updates"
 msgstr ""
 
 #: tmp.tpl:99
-msgid "Valid"
+msgid "Tags Editor"
+msgstr ""
+
+#: tmp.tpl:100 tmp.tpl:132
+msgid "Cancel"
 msgstr ""
 
 #: tmp.tpl:101
-msgid "no bubbles at this zoom factor"
-msgstr "hakuna Bubble kwa zoom"
-
-#: tmp.tpl:102
-msgid "Severity"
-msgstr "ukali"
+msgid "Valid"
+msgstr ""
 
 #: tmp.tpl:103
-msgid "1 only"
-msgstr "1 tu"
+msgid "no bubbles at this zoom factor"
+msgstr ""
 
 #: tmp.tpl:104
-msgid "1+2 only"
-msgstr "1+2 tu"
+msgid "Severity"
+msgstr ""
 
 #: tmp.tpl:105
-msgid "all severity"
-msgstr "wote ukali"
+msgid "1 only"
+msgstr ""
 
 #: tmp.tpl:106
-msgid "2 only"
-msgstr "2 tu"
+msgid "1+2 only"
+msgstr ""
 
 #: tmp.tpl:107
-msgid "3 only"
-msgstr "3 tu"
+msgid "all severity"
+msgstr ""
 
 #: tmp.tpl:108
-msgid "Fixable"
+msgid "2 only"
 msgstr ""
 
 #: tmp.tpl:109
-msgid "Show only markers with correction suggestions"
+msgid "3 only"
 msgstr ""
 
 #: tmp.tpl:110
-msgid "Online"
+msgid "Fixable"
 msgstr ""
 
 #: tmp.tpl:111
-msgid "Topic"
+msgid "Show only markers with correction suggestions"
 msgstr ""
 
 #: tmp.tpl:112
+msgid "Online"
+msgstr ""
+
+#: tmp.tpl:113
+msgid "Topic"
+msgstr ""
+
+#: tmp.tpl:114
 msgid "Select:"
-msgstr "kuchaguliwa :"
+msgstr ""
 
-#: tmp.tpl:113 tmp.tpl:116
+#: tmp.tpl:115 tmp.tpl:118
 msgid "all"
-msgstr "wote"
+msgstr ""
 
-#: tmp.tpl:114 tmp.tpl:117
+#: tmp.tpl:116 tmp.tpl:119
 msgid "nothing"
-msgstr "chochote"
+msgstr ""
 
-#: tmp.tpl:115
+#: tmp.tpl:117
 msgid "invert"
 msgstr ""
 
-#: tmp.tpl:118
-#, fuzzy
-msgid "Change language"
-msgstr "Mabadiliko ya Lugha"
-
-#: tmp.tpl:119
-msgid "Help"
-msgstr "Misaada"
-
 #: tmp.tpl:120
-#, python-format
-msgid "Delay: %sd"
-msgstr "Delay: %sj"
+msgid "Change language"
+msgstr ""
 
-#: tmp.tpl:121 tmp.tpl:122 tmp.tpl:123
-#, fuzzy, python-format
-msgid "Level %d errors (%d)"
-msgstr "Idadi ya makosa kupatikana : %d"
+#: tmp.tpl:123
+msgid "Help"
+msgstr ""
 
 #: tmp.tpl:124
+#, python-format
+msgid "Delay: %sd"
+msgstr ""
+
+#: tmp.tpl:125 tmp.tpl:126 tmp.tpl:127
+#, python-format
+msgid "Level %d errors (%d)"
+msgstr ""
+
+#: tmp.tpl:128
 msgid "Logout"
 msgstr ""
 
-#: tmp.tpl:125 tmp.tpl:127
+#: tmp.tpl:129 tmp.tpl:131
 msgid "Login"
 msgstr ""
 
-#: tmp.tpl:126 tmp.tpl:128
+#: tmp.tpl:130 tmp.tpl:132
 msgid "Save"
 msgstr ""
 
-#: tmp.tpl:129
+#: tmp.tpl:133
 msgid "Objects edited:"
 msgstr ""
 
-#: tmp.tpl:130
+#: tmp.tpl:134
 msgid "Objects deleted:"
 msgstr ""
 
-#: tmp.tpl:131
+#: tmp.tpl:135
 msgid "Fix with Osmose"
 msgstr ""
 
-#: tmp.tpl:132
-#, fuzzy
+#: tmp.tpl:136
 msgid "Source"
-msgstr "Chanzo"
+msgstr ""
 
-#: tmp.tpl:133
+#: tmp.tpl:137
 msgid "Type"
 msgstr ""
 
-#: tmp.tpl:134
+#: tmp.tpl:138
 msgid "Reuse changeset"
 msgstr ""
 
-#: tmp.tpl:135
+#: tmp.tpl:139
 msgid "Error reported on: "
-msgstr "Hitilafu kuahirishwa :"
+msgstr ""
 
-#: tmp.tpl:136
+#: tmp.tpl:140
 msgid "change status"
-msgstr "kubadili hali"
-
-#: tmp.tpl:137
-msgid "corrected"
-msgstr "corrected"
-
-#: tmp.tpl:138
-msgid "false positive"
-msgstr "uongo chanya"
-
-#: tmp.tpl:139 tmp.tpl:140
-msgid "How to help translation"
 msgstr ""
 
 #: tmp.tpl:141
+msgid "corrected"
+msgstr ""
+
+#: tmp.tpl:142
+msgid "false positive"
+msgstr ""
+
+#: tmp.tpl:143 tmp.tpl:144
+msgid "How to help translation"
+msgstr ""
+
+#: tmp.tpl:145
 msgid ""
 "OsmOse tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
 msgstr ""
 
-#: tmp.tpl:142
+#: tmp.tpl:147
 msgid ""
 "To make OsmOse a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr ""
 
-#: tmp.tpl:143
-msgid "Recent translation needs"
-msgstr ""
-
-#: tmp.tpl:144
-msgid ""
-"European countries: German and Italian in Switzerland and Dutch in Belgium"
-msgstr ""
-
-#: tmp.tpl:145
-msgid ""
-"Countries covered by HOT: Wolof in Senegal, Arabic in Chad and Cameroon, "
-"Swahili in Kenya, Kirundi in Burundi, and Malagasy in Madagascar"
-msgstr ""
-
-#: tmp.tpl:146
+#: tmp.tpl:148
 msgid "Pages to translate"
 msgstr ""
 
-#: tmp.tpl:147
+#: tmp.tpl:152
 msgid "Wiki pages"
 msgstr ""
 
-#: tmp.tpl:148
+#: tmp.tpl:153
 msgid "OsmOse main page"
 msgstr ""
 
-#: tmp.tpl:149
-#, fuzzy
+#: tmp.tpl:154
 msgid "Documentation on reported errors"
-msgstr "habari juu ya makosa ya"
+msgstr ""
 
-#: tmp.tpl:150
+#: tmp.tpl:149
 msgid "OsmOse pages"
 msgstr ""
 
-#: tmp.tpl:151
-msgid "Translation status of frontend"
-msgstr ""
-
-#: tmp.tpl:152
-msgid "Source code for translations of frontend (.po files)"
-msgstr ""
-
-#: tmp.tpl:153
-msgid "Source code for translations of backend (.po files)"
-msgstr ""
-
-#: tmp.tpl:154
-msgid ""
-"Source code for translations (database files for menu) - categ_menu_en.txt "
-"and item_menu_en.txt are the reference ones."
-msgstr ""
-
-#: tmp.tpl:155
+#: tmp.tpl:158
 msgid "Bug tracking system"
 msgstr ""
 
-#: tmp.tpl:156
+#: tmp.tpl:159
 msgid ""
 "<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
 "issue with translations, or erroneous analyses."
 msgstr ""
 
-#, fuzzy
-#~ msgid "Valid & Corrected"
-#~ msgstr "corrected"
+#: tmp.tpl:30
+msgid ""
+"Adding new functionality of <em>Osmose Editor</em>, initial support of "
+"mobile device and improvement of documentation was funded by region of "
+"Aquitaine, France; part of the OpenAquiMap project leading by <em>Les Petits"
+" Débrouillards d'Aquitaine</em>."
+msgstr ""
 
-#~ msgid "CLC"
-#~ msgstr "CLC"
-
-#~ msgid "http://clc.openstreetmap.fr/"
-#~ msgstr "http://clc.openstreetmap.fr/"
-
-#~ msgid "Title"
-#~ msgstr "Kichwa"
-
-#~ msgid "Error"
-#~ msgstr "Hitilafu"
-
-#~ msgid "Geodesic"
-#~ msgstr "geodesy"
-
-#~ msgid "http://geodesie.openstreetmap.fr/"
-#~ msgstr "http://geodesie.openstreetmap.fr/"
-
-#~ msgid "Item"
-#~ msgstr "Item"
-
-#~ msgid "Class"
-#~ msgstr "Classe"
-
-#~ msgid "Level"
-#~ msgstr "ngazi"
-
-#~ msgid "Latitude"
-#~ msgstr "latitudo"
-
-#~ msgid "Longitude"
-#~ msgstr "latitudo"
-
-#~ msgid "map"
-#~ msgstr "ramani"
-
-#~ msgid "OsmOse - statistics for user %s"
-#~ msgstr "OsmOse - takwimu kwa mtumiaji %s"
-
-#~ msgid "Show:"
-#~ msgstr "kuonyesha :"
-
-#~ msgid "all levels"
-#~ msgstr "wote"
-
-#~ msgid "OsmOse - Users statistics"
-#~ msgstr "OsmOse - takwimu kwa mtumiaji "
-
-#~ msgid "OsmOse - information on error %d"
-#~ msgstr "OsmOse - kosa habari %d"
-
-#~ msgid "OsmOse - informations"
-#~ msgstr "OsmOse - kosa "
-
-#~ msgid "OsmOse - false positives"
-#~ msgstr "OsmOse - uongo chanya"
-
-#~ msgid "position"
-#~ msgstr "nafasi"
-
-#~ msgid "clc"
-#~ msgstr "clc"
-
-#~ msgid "%dd, %dh, %02dm ago"
-#~ msgstr "il y a %dd, %dh, %02dm"
-
-#~ msgid "in %dj, %dh, %02dm"
-#~ msgstr "dans %dj, %dh, %02dm"
-
-#~ msgid "not an error"
-#~ msgstr "uongo chanya"
-
-#~ msgid "OsmOse - information on error"
-#~ msgstr "OsmOse - kosa habari "
-
+#: ../tools/database/categ_menu.txt:1
 msgid "Structure"
-msgstr "kimuundo"
+msgstr ""
 
+#: ../tools/database/categ_menu.txt:2
 msgid "Missing tags"
-msgstr "Tags kukosa"
+msgstr ""
 
+#: ../tools/database/categ_menu.txt:3
+msgid "Bad tag"
+msgstr ""
+
+#: ../tools/database/categ_menu.txt:4
 msgid "Tags to remove"
-msgstr "Tags kuondolewa"
+msgstr ""
 
+#: ../tools/database/categ_menu.txt:5
 msgid "Tags name"
-msgstr "Tags jina"
+msgstr ""
 
+#: ../tools/database/categ_menu.txt:6
 msgid "Administrative"
-msgstr "Utawala"
+msgstr ""
 
+#: ../tools/database/categ_menu.txt:7
 msgid "To map"
-msgstr "ramani"
+msgstr ""
 
+#: ../tools/database/categ_menu.txt:8
+msgid "Integration"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:1
 msgid "overlapping building"
-msgstr "majengo kufunika"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:2
 msgid "duplicated node"
-msgstr "unaorudiwa nodi"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:3
 msgid "way one node"
-msgstr "way 1 fundo"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:4
 msgid "invalid polygon"
-msgstr "batili poligoni"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:5
 msgid "reverse roundabout"
-msgstr "kupokezana nyuma"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:6
 msgid "boundary intersect"
-msgstr "mpaka intersect"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:7
 msgid "objects overlap"
-msgstr "barabara intersection jengo"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:8
 msgid "orphan nodes"
-msgstr "yatima nodes"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:9
 msgid "sudden highway type change"
-msgstr "disparate aina ya barabara"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:10
 msgid "unclosed area"
-msgstr "area=yes unclosed"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:11
 msgid "bad *_link highway"
-msgstr "mbaya uhusiano * _link"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:12
 msgid "broken highway continuity"
-msgstr "kuvunjika mwendelezo wa barabara"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:13
 msgid "missign tag or role"
-msgstr "tag kukosa au jukumu"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:14
 msgid "surface intersection"
-msgstr "intersection kati ya nyuso"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:15
+msgid "big relation"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:16
 msgid "multipolygon"
-msgstr "multipolygon"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:17
 msgid "double cycleway"
-msgstr "dual bikeway"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:18
 msgid "approximate way"
-msgstr "rough njia"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:19
 msgid "1-member relation"
-msgstr "1 mwanachama uhusiano"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:20
 msgid "not-connected highway/cycleway"
-msgstr "si kushikamana bikeway"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:21
 msgid "waterway"
-msgstr "mito"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:22
+msgid "duplicate geometry"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:24
 msgid "junction=roundabout"
-msgstr "makutano = mzunguko"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:25
 msgid "elevation"
-msgstr "ele = ..."
+msgstr ""
 
+#: ../tools/database/item_menu.txt:26
 msgid "oneway"
-msgstr "oneway = ..."
+msgstr ""
 
+#: ../tools/database/item_menu.txt:28
 msgid "parent tag"
-msgstr "Mzazi tag"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:29
 msgid "street numbers"
-msgstr "mitaani idadi"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:30
 msgid "highway"
-msgstr "highway = ..."
+msgstr ""
 
+#: ../tools/database/item_menu.txt:31
+msgid "highway crossing"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:32 ../tools/database/item_menu.txt:124
+msgid "pharmacy"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:33
 msgid "highway roundabout"
-msgstr "highway roundabout"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:34
 msgid "bad source tag"
-msgstr "mbaya tag chanzo"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:35
 msgid "tagwatch cleaner"
-msgstr "Tagwatch safi"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:36
 msgid "wikipedia"
-msgstr "wikipedia"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:37
 msgid "multiple tags"
-msgstr "kiungo tags"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:38
 msgid "saint hyphen"
-msgstr "kiungo kwa Saint"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:39
 msgid "incorrect tag"
-msgstr "tag sahihi"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:40
 msgid "bad tag key"
-msgstr "mbaya muhimu tag"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:41
 msgid "similar values"
-msgstr "sawa maadili"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:42
 msgid "multiple values"
-msgstr "multivalued"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:43
 msgid "swimming pool as natural=water"
-msgstr "asili = maji bwawa"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:45
 msgid "numeric value"
-msgstr "namba"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:46
 msgid "small farm"
-msgstr "mashamba madogo"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:47
 msgid "note"
-msgstr "rating"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:48
 msgid "tree"
-msgstr "mti"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:49
 msgid "brand in name"
-msgstr "brand jina na"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:50
 msgid "typo in tag"
-msgstr "typo katika tag"
+msgstr ""
 
-msgid "incorrect \"lanes\""
-msgstr "\"lane\" sahihi"
+#: ../tools/database/item_menu.txt:51
+msgid "incorrect "
+msgstr ""
 
+#: ../tools/database/item_menu.txt:52
+msgid "parking lane"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:53
 msgid "relation role"
-msgstr "uhusiano jukumu"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:54
+msgid "relation type=restriction"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:55
+msgid "postcode"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:56
 msgid "disused"
-msgstr "kutelekezwa"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:57
 msgid "on junction=roundabout"
-msgstr "junction=roundabout"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:58
 msgid "incompatible tags"
-msgstr "Tags yasiokubaliana"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:59
 msgid "ref in name"
-msgstr "ref jina katika"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:60
 msgid "seamark:fixme"
-msgstr "seamark: fixme"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:61
 msgid "construction"
-msgstr "Ujenzi"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:62
 msgid "duplicate object"
-msgstr "POI mbili"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:63
 msgid "unwanted tag on node"
-msgstr "tag juu ya nodi unnecessary"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:64
 msgid "bad usage"
-msgstr "\"designation\" sahihi"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:65
 msgid "orthograph"
-msgstr "spelling"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:66
 msgid "way type"
-msgstr "aina njia"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:67
 msgid "two names"
-msgstr "2 majina"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:68
 msgid "toponymy"
-msgstr "toponymy"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:69
 msgid "test soundex"
-msgstr "soundex mtihani"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:70
 msgid "open polygon"
-msgstr "wazi poligoni"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:71
 msgid "duplicated way"
-msgstr "Njia zinajirudia"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:72
 msgid "place without name"
-msgstr "mahali bila jina"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:73
 msgid "INSEE code"
-msgstr "code INSEE"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:74
 msgid "admin_level"
-msgstr "admin_level"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:75
 msgid "erroneous boundary"
-msgstr "admin_level shimo = 8"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:76
+msgid "out of boundary"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:77
 msgid "geodesic building"
-msgstr "jengo geodesic"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:78
 msgid "building shape"
-msgstr "umbo jengo"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:79
+msgid "bridge to tag"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:80
 msgid "admin boundary"
-msgstr "admin kikomo"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:81
 msgid "power lines"
-msgstr "powerlines"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:82 ../tools/database/item_menu.txt:95
 msgid "post office"
-msgstr "ofisi ya posta"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:83
 msgid "ODbL migration change"
-msgstr "ODbL kwa ajili ya mabadiliko"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:84
 msgid "school, not integrated"
-msgstr "Shule siyo shirikishi"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:85
 msgid "monument"
-msgstr "monument"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:86
 msgid "node on ways"
-msgstr "Reli kuvuka"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:87 ../tools/database/item_menu.txt:101
 msgid "train station"
-msgstr "Railway Station"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:88
 msgid "TMC"
-msgstr "TMC"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:89
+msgid "relation type=boundary"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:90
+msgid "tunnel/bridge"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:93
 msgid "monument, museum"
-msgstr "monument"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:94
 msgid "monument, museum, could be integrated"
-msgstr "monument iwezekanavyo ushirikiano"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:96
 msgid "post office, could be integrated"
-msgstr "ofisi ya posta, ushirikiano iwezekanavyo"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:97
 msgid "school"
-msgstr "Shule"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:98
 msgid "school, could be integrated"
-msgstr "shule ushirikiano iwezekanavyo"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:99
 msgid "public transport"
-msgstr "kituo cha RATP"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:100
 msgid "public transport, could be integrated"
-msgstr "kituo cha RATP iwezekanavyo ushirikiano"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:102
 msgid "train station, could be integrated"
-msgstr "kituo cha iwezekanavyo ushirikiano"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:103
 msgid "level crossing"
-msgstr "Crossing"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:104
 msgid "geodesic point"
-msgstr "geodesic uhakika kukosa"
+msgstr ""
 
+#: ../tools/database/item_menu.txt:105
 msgid "postal address"
-msgstr "anuani iwezekanavyo ushirikiano"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:106
+msgid "wikipedia, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:107
+msgid "public service"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:108
+msgid "recycling"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:109
+msgid "recycling, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:110
+msgid "parking"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:111
+msgid "parking, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:112
+msgid "accommodation"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:113
+msgid "accommodation, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:114
+msgid "cycle parking"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:115
+msgid "cycle parking, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:116
+msgid "transport sharing"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:117
+msgid "transport sharing, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:118
+msgid "sport"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:119
+msgid "sport, could be integrated"
+msgstr ""
+
+#: tmp.tpl:151
+msgid "Translation progress: osmose"
+msgstr ""
+
+#: tmp.tpl:155
+msgid "For new language or countries"
+msgstr ""
+
+#: tmp.tpl:157
+#, python-format
+msgid ""
+"For new countries, we can be contacted through a direct email to <a "
+"href='mailto:%s'>%s</a>."
+msgstr ""
+
+#: tmp.tpl:146
+#, python-format
+msgid "The <a href='%s'>country coverage is available</a>."
+msgstr ""
+
+#: tmp.tpl:156
+#, python-format
+msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
+msgstr ""
+
+#: tmp.tpl:150
+#, python-format
+msgid "Translation is done on <a href='%s'>Transifex</a>."
+msgstr ""
+
+#: tmp.tpl:87
+msgid "error n°"
+msgstr ""
+
+#: tmp.tpl:121
+msgid "Export"
+msgstr ""
+
+#: tmp.tpl:122
+msgid "Html list"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:23
+msgid "one-node way"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:120
+msgid "toilets"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:91
+msgid "transport sharing, not integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:121
+msgid "police"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:122
+msgid "police, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:92
+msgid "pharmacy, not integrated "
+msgstr ""
+
+#: ../tools/database/item_menu.txt:125
+msgid "pharmacy, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:123
+msgid "gas station"
+msgstr ""
+
+#: tmp.tpl:82
+msgid "position"
+msgstr ""
+
+#: tmp.tpl:131
+msgid "You must be logged in order to use the tag editor"
+msgstr ""
+
+#: tmp.tpl:132
+msgid "Save changeset"
+msgstr ""
+
+#: tmp.tpl:135
+msgid "Comment"
+msgstr ""
