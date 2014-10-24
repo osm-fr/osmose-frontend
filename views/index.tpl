@@ -2,7 +2,7 @@
 <h1>Osmose</h1>
 <ul>
     <li><a href='map/'>{{_('Map of errors')}}</a>
-    <li><a href='{{_("http://wiki.openstreetmap.org/wiki/FR:Osmose")}}'>{{_("Help on OSM wiki")}}</a>
+    <li><a href='{{_("http://wiki.openstreetmap.org/wiki/Osmose")}}'>{{_("Help on OSM wiki")}}</a>
 </ul>
 
 <h2>{{_("Information on error database")}}</h2>
