@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2014-10-24 18:06+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2014-10-24 18:12+0000\n"
+"Last-Translator: ViriatoLusitano <marcosoliveira.2405@gmail.com>\n"
 "Language-Team: Portuguese (http://www.transifex.com/projects/p/osmose/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1152,28 +1152,28 @@ msgstr "polícia, poderia ser integrado"
 
 #: ../tools/database/item_menu.txt:92
 msgid "pharmacy, not integrated "
-msgstr ""
+msgstr "farmácia, não integrada"
 
 #: ../tools/database/item_menu.txt:125
 msgid "pharmacy, could be integrated"
-msgstr ""
+msgstr "farmácia, pode ser integrada"
 
 #: ../tools/database/item_menu.txt:123
 msgid "gas station"
-msgstr ""
+msgstr "estação de combustível"
 
 #: tmp.tpl:82
 msgid "position"
-msgstr ""
+msgstr "posição"
 
 #: tmp.tpl:131
 msgid "You must be logged in order to use the tag editor"
-msgstr ""
+msgstr "Tem de ter a sessão iniciada para usar o editor de etiquetas"
 
 #: tmp.tpl:132
 msgid "Save changeset"
-msgstr ""
+msgstr "Gravar conjunto de edições"
 
 #: tmp.tpl:135
 msgid "Comment"
-msgstr ""
+msgstr "Comentário"
