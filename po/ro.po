@@ -6,12 +6,14 @@
 # Cristian Draghici <cristian.draghici@gmail.com>, 2014
 # Ionescu Madalina <madalinaionescu79@gmail.com>, 2014
 # Jean-Baptiste H <jb.holcroft@gmail.com>, 2014
+# Lucian Popovici <lucian.popovici@gmail.com>, 2014
+# Rădulescu Răzvan <radulescu.razvan@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2014-10-27 06:21+0000\n"
+"PO-Revision-Date: 2014-11-01 21:07+0000\n"
 "Last-Translator: Ionescu Madalina <madalinaionescu79@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/projects/p/osmose/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -106,7 +108,7 @@ msgstr "Statistica pentru utilizatorul %s"
 #: tmp.tpl:2 tmp.tpl:3 tmp.tpl:4
 #, python-brace-format
 msgid "Number of level {level} errors: {count}"
-msgstr ""
+msgstr "Numărul nivelului {level} erori: {count}"
 
 #: tmp.tpl:6 tmp.tpl:15
 #, python-format
@@ -188,7 +190,7 @@ msgstr "Defectele trebuie raportate la <a href='http://trac.openstreetmap.fr'>tr
 
 #: tmp.tpl:26
 msgid "Providing patches"
-msgstr ""
+msgstr "Furnizarea de patch-uri"
 
 #: tmp.tpl:27
 msgid ""
@@ -389,7 +391,7 @@ msgstr "șterge eroarea #%d"
 
 #: tmp.tpl:93
 msgid "OpenStreetMap Oversight Search Engine"
-msgstr ""
+msgstr "OpenStreetMap Oversight Search Engine"
 
 #: tmp.tpl:94
 msgid "Map of errors"
@@ -441,7 +443,7 @@ msgstr "doar 1+2"
 
 #: tmp.tpl:107
 msgid "all severity"
-msgstr "toate tipurile de garvitate"
+msgstr "toate tipurile de gravitate"
 
 #: tmp.tpl:108
 msgid "2 only"
@@ -499,7 +501,7 @@ msgstr "Întârziere:%sd"
 #: tmp.tpl:125 tmp.tpl:126 tmp.tpl:127
 #, python-format
 msgid "Level %d errors (%d)"
-msgstr ""
+msgstr "Nivel %d erori (%d)"
 
 #: tmp.tpl:128
 msgid "Logout"
@@ -658,27 +660,27 @@ msgstr "poligon nevalid"
 
 #: ../tools/database/item_menu.txt:5
 msgid "reverse roundabout"
-msgstr ""
+msgstr "giratoriu cu sens greșit"
 
 #: ../tools/database/item_menu.txt:6
 msgid "boundary intersect"
-msgstr ""
+msgstr "limită administrativă intersectată"
 
 #: ../tools/database/item_menu.txt:7
 msgid "objects overlap"
-msgstr ""
+msgstr "obiectele se suprapun"
 
 #: ../tools/database/item_menu.txt:8
 msgid "orphan nodes"
-msgstr ""
+msgstr "noduri izolate"
 
 #: ../tools/database/item_menu.txt:9
 msgid "sudden highway type change"
-msgstr ""
+msgstr "schimbare bruscă a clasificării drumului"
 
 #: ../tools/database/item_menu.txt:10
 msgid "unclosed area"
-msgstr ""
+msgstr "zonă neînchisă"
 
 #: ../tools/database/item_menu.txt:11
 msgid "bad *_link highway"
@@ -690,83 +692,83 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:13
 msgid "missign tag or role"
-msgstr ""
+msgstr "lipsă tag sau rol"
 
 #: ../tools/database/item_menu.txt:14
 msgid "surface intersection"
-msgstr ""
+msgstr "suprafață intersectată"
 
 #: ../tools/database/item_menu.txt:15
 msgid "big relation"
-msgstr ""
+msgstr "relație mare"
 
 #: ../tools/database/item_menu.txt:16
 msgid "multipolygon"
-msgstr ""
+msgstr "poligon multiplu"
 
 #: ../tools/database/item_menu.txt:17
 msgid "double cycleway"
-msgstr ""
+msgstr "pistă de biciclete dublată"
 
 #: ../tools/database/item_menu.txt:18
 msgid "approximate way"
-msgstr ""
+msgstr "cale aproximativă"
 
 #: ../tools/database/item_menu.txt:19
 msgid "1-member relation"
-msgstr ""
+msgstr "relație cu 1 membru"
 
 #: ../tools/database/item_menu.txt:20
 msgid "not-connected highway/cycleway"
-msgstr ""
+msgstr "autostradă/pistă de biciclete neconectată"
 
 #: ../tools/database/item_menu.txt:21
 msgid "waterway"
-msgstr ""
+msgstr "curs de apă"
 
 #: ../tools/database/item_menu.txt:22
 msgid "duplicate geometry"
-msgstr ""
+msgstr "geometrie duplicată"
 
 #: ../tools/database/item_menu.txt:24
 msgid "junction=roundabout"
-msgstr ""
+msgstr "joncțiune=giratoriu"
 
 #: ../tools/database/item_menu.txt:25
 msgid "elevation"
-msgstr ""
+msgstr "ridicare"
 
 #: ../tools/database/item_menu.txt:26
 msgid "oneway"
-msgstr ""
+msgstr "sens unic"
 
 #: ../tools/database/item_menu.txt:28
 msgid "parent tag"
-msgstr ""
+msgstr "tag părinte"
 
 #: ../tools/database/item_menu.txt:29
 msgid "street numbers"
-msgstr ""
+msgstr "numere adrese"
 
 #: ../tools/database/item_menu.txt:30
 msgid "highway"
-msgstr ""
+msgstr "șosea"
 
 #: ../tools/database/item_menu.txt:31
 msgid "highway crossing"
-msgstr ""
+msgstr "trecere pentru pietoni sau biciclete"
 
 #: ../tools/database/item_menu.txt:32 ../tools/database/item_menu.txt:124
 msgid "pharmacy"
-msgstr ""
+msgstr "farmacie"
 
 #: ../tools/database/item_menu.txt:33
 msgid "highway roundabout"
-msgstr ""
+msgstr "sens giratoriu"
 
 #: ../tools/database/item_menu.txt:34
 msgid "bad source tag"
-msgstr ""
+msgstr "tag cu sursă nepotrivită"
 
 #: ../tools/database/item_menu.txt:35
 msgid "tagwatch cleaner"
@@ -774,95 +776,95 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:36
 msgid "wikipedia"
-msgstr ""
+msgstr "wikipedia"
 
 #: ../tools/database/item_menu.txt:37
 msgid "multiple tags"
-msgstr ""
+msgstr "tag-uri multiple"
 
 #: ../tools/database/item_menu.txt:38
 msgid "saint hyphen"
-msgstr ""
+msgstr "cratimă lipsă în numele care conțin sfânt"
 
 #: ../tools/database/item_menu.txt:39
 msgid "incorrect tag"
-msgstr ""
+msgstr "tag incorect"
 
 #: ../tools/database/item_menu.txt:40
 msgid "bad tag key"
-msgstr ""
+msgstr "cheie greșită a tag-ului"
 
 #: ../tools/database/item_menu.txt:41
 msgid "similar values"
-msgstr ""
+msgstr "valori similare"
 
 #: ../tools/database/item_menu.txt:42
 msgid "multiple values"
-msgstr ""
+msgstr "valori multiple"
 
 #: ../tools/database/item_menu.txt:43
 msgid "swimming pool as natural=water"
-msgstr ""
+msgstr "piscină trecută ca natural=water"
 
 #: ../tools/database/item_menu.txt:45
 msgid "numeric value"
-msgstr ""
+msgstr "valoare numerică"
 
 #: ../tools/database/item_menu.txt:46
 msgid "small farm"
-msgstr ""
+msgstr "fermă mică"
 
 #: ../tools/database/item_menu.txt:47
 msgid "note"
-msgstr ""
+msgstr "notițe"
 
 #: ../tools/database/item_menu.txt:48
 msgid "tree"
-msgstr ""
+msgstr "arbore"
 
 #: ../tools/database/item_menu.txt:49
 msgid "brand in name"
-msgstr ""
+msgstr "marcă în nume"
 
 #: ../tools/database/item_menu.txt:50
 msgid "typo in tag"
-msgstr ""
+msgstr "greșeală de scriere a tag-ului"
 
 #: ../tools/database/item_menu.txt:51
 msgid "incorrect "
-msgstr ""
+msgstr "incorect"
 
 #: ../tools/database/item_menu.txt:52
 msgid "parking lane"
-msgstr ""
+msgstr "loc de parcare"
 
 #: ../tools/database/item_menu.txt:53
 msgid "relation role"
-msgstr ""
+msgstr "rol al relației"
 
 #: ../tools/database/item_menu.txt:54
 msgid "relation type=restriction"
-msgstr ""
+msgstr "tip relație=restricție"
 
 #: ../tools/database/item_menu.txt:55
 msgid "postcode"
-msgstr ""
+msgstr "cod poștal"
 
 #: ../tools/database/item_menu.txt:56
 msgid "disused"
-msgstr ""
+msgstr "scos din uz"
 
 #: ../tools/database/item_menu.txt:57
 msgid "on junction=roundabout"
-msgstr ""
+msgstr "pe joncțiune=giratoriu"
 
 #: ../tools/database/item_menu.txt:58
 msgid "incompatible tags"
-msgstr ""
+msgstr "tag-uri incompatibile"
 
 #: ../tools/database/item_menu.txt:59
 msgid "ref in name"
-msgstr ""
+msgstr "referință în nume"
 
 #: ../tools/database/item_menu.txt:60
 msgid "seamark:fixme"
@@ -870,35 +872,35 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:61
 msgid "construction"
-msgstr ""
+msgstr "construcție"
 
 #: ../tools/database/item_menu.txt:62
 msgid "duplicate object"
-msgstr ""
+msgstr "obiect duplicat"
 
 #: ../tools/database/item_menu.txt:63
 msgid "unwanted tag on node"
-msgstr ""
+msgstr "nod sau tag nedorit"
 
 #: ../tools/database/item_menu.txt:64
 msgid "bad usage"
-msgstr ""
+msgstr "utilizare greșită"
 
 #: ../tools/database/item_menu.txt:65
 msgid "orthograph"
-msgstr ""
+msgstr "ortografie"
 
 #: ../tools/database/item_menu.txt:66
 msgid "way type"
-msgstr ""
+msgstr "tip cale"
 
 #: ../tools/database/item_menu.txt:67
 msgid "two names"
-msgstr ""
+msgstr "două nume"
 
 #: ../tools/database/item_menu.txt:68
 msgid "toponymy"
-msgstr ""
+msgstr "toponimie"
 
 #: ../tools/database/item_menu.txt:69
 msgid "test soundex"
@@ -906,15 +908,15 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:70
 msgid "open polygon"
-msgstr ""
+msgstr "poligon deschis"
 
 #: ../tools/database/item_menu.txt:71
 msgid "duplicated way"
-msgstr ""
+msgstr "cale duplicată"
 
 #: ../tools/database/item_menu.txt:72
 msgid "place without name"
-msgstr ""
+msgstr "locație fără nume"
 
 #: ../tools/database/item_menu.txt:73
 msgid "INSEE code"
@@ -938,7 +940,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:78
 msgid "building shape"
-msgstr ""
+msgstr "forma clădirii"
 
 #: ../tools/database/item_menu.txt:79
 msgid "bridge to tag"
@@ -954,7 +956,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:82 ../tools/database/item_menu.txt:95
 msgid "post office"
-msgstr ""
+msgstr "oficiu poștal"
 
 #: ../tools/database/item_menu.txt:83
 msgid "ODbL migration change"
@@ -966,7 +968,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:85
 msgid "monument"
-msgstr ""
+msgstr "monument"
 
 #: ../tools/database/item_menu.txt:86
 msgid "node on ways"
@@ -974,11 +976,11 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:87 ../tools/database/item_menu.txt:101
 msgid "train station"
-msgstr ""
+msgstr "stație tren"
 
 #: ../tools/database/item_menu.txt:88
 msgid "TMC"
-msgstr ""
+msgstr "TMC"
 
 #: ../tools/database/item_menu.txt:89
 msgid "relation type=boundary"
@@ -986,23 +988,23 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:90
 msgid "tunnel/bridge"
-msgstr ""
+msgstr "tunel/pod"
 
 #: ../tools/database/item_menu.txt:93
 msgid "monument, museum"
-msgstr ""
+msgstr "monument, muzeu"
 
 #: ../tools/database/item_menu.txt:94
 msgid "monument, museum, could be integrated"
-msgstr ""
+msgstr "monument, muzeu, ar putea fi integrat"
 
 #: ../tools/database/item_menu.txt:96
 msgid "post office, could be integrated"
-msgstr ""
+msgstr "oficiu poștal, ar putea fi integrat"
 
 #: ../tools/database/item_menu.txt:97
 msgid "school"
-msgstr ""
+msgstr "școală"
 
 #: ../tools/database/item_menu.txt:98
 msgid "school, could be integrated"
@@ -1010,19 +1012,19 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:99
 msgid "public transport"
-msgstr ""
+msgstr "transport în comun"
 
 #: ../tools/database/item_menu.txt:100
 msgid "public transport, could be integrated"
-msgstr ""
+msgstr "transport în comun, ar putea fi integrat"
 
 #: ../tools/database/item_menu.txt:102
 msgid "train station, could be integrated"
-msgstr ""
+msgstr "gara, ar putea fi integrată"
 
 #: ../tools/database/item_menu.txt:103
 msgid "level crossing"
-msgstr ""
+msgstr "trecere la nivel"
 
 #: ../tools/database/item_menu.txt:104
 msgid "geodesic point"
@@ -1030,7 +1032,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:105
 msgid "postal address"
-msgstr ""
+msgstr "adresă poștală"
 
 #: ../tools/database/item_menu.txt:106
 msgid "wikipedia, could be integrated"
@@ -1050,11 +1052,11 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:110
 msgid "parking"
-msgstr ""
+msgstr "parcare"
 
 #: ../tools/database/item_menu.txt:111
 msgid "parking, could be integrated"
-msgstr ""
+msgstr "parcare, ar putea fi integrată"
 
 #: ../tools/database/item_menu.txt:112
 msgid "accommodation"
@@ -1120,23 +1122,23 @@ msgstr ""
 
 #: tmp.tpl:87
 msgid "error n°"
-msgstr ""
+msgstr "eroare număr"
 
 #: tmp.tpl:121
 msgid "Export"
-msgstr ""
+msgstr "Export"
 
 #: tmp.tpl:122
 msgid "Html list"
-msgstr ""
+msgstr "Listă html"
 
 #: ../tools/database/item_menu.txt:23
 msgid "one-node way"
-msgstr ""
+msgstr "cale cu un singur nod"
 
 #: ../tools/database/item_menu.txt:120
 msgid "toilets"
-msgstr ""
+msgstr "toalete"
 
 #: ../tools/database/item_menu.txt:91
 msgid "transport sharing, not integrated"
@@ -1144,7 +1146,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:121
 msgid "police"
-msgstr ""
+msgstr "poliție"
 
 #: ../tools/database/item_menu.txt:122
 msgid "police, could be integrated"
@@ -1160,11 +1162,11 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:123
 msgid "gas station"
-msgstr ""
+msgstr "benzinărie"
 
 #: tmp.tpl:82
 msgid "position"
-msgstr ""
+msgstr "poziție"
 
 #: tmp.tpl:131
 msgid "You must be logged in order to use the tag editor"
@@ -1176,4 +1178,4 @@ msgstr ""
 
 #: tmp.tpl:135
 msgid "Comment"
-msgstr ""
+msgstr "Comentariu"
