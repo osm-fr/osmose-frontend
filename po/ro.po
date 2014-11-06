@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2014-11-01 21:07+0000\n"
+"PO-Revision-Date: 2014-11-05 10:15+0000\n"
 "Last-Translator: Ionescu Madalina <madalinaionescu79@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/projects/p/osmose/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -904,7 +904,7 @@ msgstr "toponimie"
 
 #: ../tools/database/item_menu.txt:69
 msgid "test soundex"
-msgstr ""
+msgstr "test soundex"
 
 #: ../tools/database/item_menu.txt:70
 msgid "open polygon"
@@ -920,7 +920,7 @@ msgstr "locație fără nume"
 
 #: ../tools/database/item_menu.txt:73
 msgid "INSEE code"
-msgstr ""
+msgstr "cod INSEE"
 
 #: ../tools/database/item_menu.txt:74
 msgid "admin_level"
@@ -928,11 +928,11 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:75
 msgid "erroneous boundary"
-msgstr ""
+msgstr "limită administrativă enormă"
 
 #: ../tools/database/item_menu.txt:76
 msgid "out of boundary"
-msgstr ""
+msgstr "în afara limitei administrative"
 
 #: ../tools/database/item_menu.txt:77
 msgid "geodesic building"
@@ -944,7 +944,7 @@ msgstr "forma clădirii"
 
 #: ../tools/database/item_menu.txt:79
 msgid "bridge to tag"
-msgstr ""
+msgstr "pod fără tag"
 
 #: ../tools/database/item_menu.txt:80
 msgid "admin boundary"
@@ -964,7 +964,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:84
 msgid "school, not integrated"
-msgstr ""
+msgstr "școală, neintegrată"
 
 #: ../tools/database/item_menu.txt:85
 msgid "monument"
@@ -976,7 +976,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:87 ../tools/database/item_menu.txt:101
 msgid "train station"
-msgstr "stație tren"
+msgstr "gară"
 
 #: ../tools/database/item_menu.txt:88
 msgid "TMC"
@@ -984,7 +984,7 @@ msgstr "TMC"
 
 #: ../tools/database/item_menu.txt:89
 msgid "relation type=boundary"
-msgstr ""
+msgstr "relație type=boundary"
 
 #: ../tools/database/item_menu.txt:90
 msgid "tunnel/bridge"
@@ -1008,7 +1008,7 @@ msgstr "școală"
 
 #: ../tools/database/item_menu.txt:98
 msgid "school, could be integrated"
-msgstr ""
+msgstr "școală, ar putea fi integrată"
 
 #: ../tools/database/item_menu.txt:99
 msgid "public transport"
@@ -1036,7 +1036,7 @@ msgstr "adresă poștală"
 
 #: ../tools/database/item_menu.txt:106
 msgid "wikipedia, could be integrated"
-msgstr ""
+msgstr "wikipedia, ar putea fi integrată"
 
 #: ../tools/database/item_menu.txt:107
 msgid "public service"
@@ -1044,11 +1044,11 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:108
 msgid "recycling"
-msgstr ""
+msgstr "reciclare"
 
 #: ../tools/database/item_menu.txt:109
 msgid "recycling, could be integrated"
-msgstr ""
+msgstr "reciclare, ar putea fi integrată"
 
 #: ../tools/database/item_menu.txt:110
 msgid "parking"
@@ -1060,19 +1060,19 @@ msgstr "parcare, ar putea fi integrată"
 
 #: ../tools/database/item_menu.txt:112
 msgid "accommodation"
-msgstr ""
+msgstr "cazare"
 
 #: ../tools/database/item_menu.txt:113
 msgid "accommodation, could be integrated"
-msgstr ""
+msgstr "cazare, ar putea fi integrată"
 
 #: ../tools/database/item_menu.txt:114
 msgid "cycle parking"
-msgstr ""
+msgstr "parcare pentru biciclete"
 
 #: ../tools/database/item_menu.txt:115
 msgid "cycle parking, could be integrated"
-msgstr ""
+msgstr "parcare pentru biciclete, ar putea fi integrată"
 
 #: ../tools/database/item_menu.txt:116
 msgid "transport sharing"
@@ -1084,19 +1084,19 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:118
 msgid "sport"
-msgstr ""
+msgstr "sport"
 
 #: ../tools/database/item_menu.txt:119
 msgid "sport, could be integrated"
-msgstr ""
+msgstr "sport, ar putea fi integrat"
 
 #: tmp.tpl:151
 msgid "Translation progress: osmose"
-msgstr ""
+msgstr "Progresul traducerii: osmose"
 
 #: tmp.tpl:155
 msgid "For new language or countries"
-msgstr ""
+msgstr "Pentru noi limbi și tări"
 
 #: tmp.tpl:157
 #, python-format
@@ -1108,17 +1108,17 @@ msgstr ""
 #: tmp.tpl:146
 #, python-format
 msgid "The <a href='%s'>country coverage is available</a>."
-msgstr ""
+msgstr "<a href='%s'>Acoperirea țării este disponibilă</a>."
 
 #: tmp.tpl:156
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
-msgstr ""
+msgstr "Puteți crea posibilitatea unei noi limbi direct pe  <a href='%s'>Transifex</a>."
 
 #: tmp.tpl:150
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
-msgstr ""
+msgstr "Traducerea este realizată pe  <a href='%s'>Transifex</a>."
 
 #: tmp.tpl:87
 msgid "error n°"
@@ -1150,15 +1150,15 @@ msgstr "poliție"
 
 #: ../tools/database/item_menu.txt:122
 msgid "police, could be integrated"
-msgstr ""
+msgstr "poliție, ar putea fi integrat"
 
 #: ../tools/database/item_menu.txt:92
 msgid "pharmacy, not integrated "
-msgstr ""
+msgstr "farmacie, neintegrat"
 
 #: ../tools/database/item_menu.txt:125
 msgid "pharmacy, could be integrated"
-msgstr ""
+msgstr "farmacie, ar putea fi integrat"
 
 #: ../tools/database/item_menu.txt:123
 msgid "gas station"
@@ -1170,11 +1170,11 @@ msgstr "poziție"
 
 #: tmp.tpl:131
 msgid "You must be logged in order to use the tag editor"
-msgstr ""
+msgstr "Trebuie să fiți autentificat pentru a utiliza editorul de tag-uri"
 
 #: tmp.tpl:132
 msgid "Save changeset"
-msgstr ""
+msgstr "Salvați setul de modificări"
 
 #: tmp.tpl:135
 msgid "Comment"
