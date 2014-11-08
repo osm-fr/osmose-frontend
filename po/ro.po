@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2014-11-05 10:15+0000\n"
+"PO-Revision-Date: 2014-11-07 22:39+0000\n"
 "Last-Translator: Ionescu Madalina <madalinaionescu79@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/projects/p/osmose/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -210,7 +210,7 @@ msgstr "Osmose este software liber dezvoltat de <a href='../copyright'>voluntari
 
 #: tmp.tpl:31
 msgid "Contacting maintainers"
-msgstr "Ia legătura cu administratorii"
+msgstr "Luați legătura cu administratorii"
 
 #: tmp.tpl:32
 #, python-format
@@ -684,11 +684,11 @@ msgstr "zonă neînchisă"
 
 #: ../tools/database/item_menu.txt:11
 msgid "bad *_link highway"
-msgstr ""
+msgstr "conexiune *_link greșită "
 
 #: ../tools/database/item_menu.txt:12
 msgid "broken highway continuity"
-msgstr ""
+msgstr "inconsistență în clasificarea drumului"
 
 #: ../tools/database/item_menu.txt:13
 msgid "missign tag or role"
@@ -732,7 +732,7 @@ msgstr "geometrie duplicată"
 
 #: ../tools/database/item_menu.txt:24
 msgid "junction=roundabout"
-msgstr "joncțiune=giratoriu"
+msgstr "giratoriu greșit"
 
 #: ../tools/database/item_menu.txt:25
 msgid "elevation"
@@ -772,7 +772,7 @@ msgstr "tag cu sursă nepotrivită"
 
 #: ../tools/database/item_menu.txt:35
 msgid "tagwatch cleaner"
-msgstr ""
+msgstr "supervizor pentru tag-uri"
 
 #: ../tools/database/item_menu.txt:36
 msgid "wikipedia"
@@ -844,7 +844,7 @@ msgstr "rol al relației"
 
 #: ../tools/database/item_menu.txt:54
 msgid "relation type=restriction"
-msgstr "tip relație=restricție"
+msgstr "relație type=restriction"
 
 #: ../tools/database/item_menu.txt:55
 msgid "postcode"
@@ -856,7 +856,7 @@ msgstr "scos din uz"
 
 #: ../tools/database/item_menu.txt:57
 msgid "on junction=roundabout"
-msgstr "pe joncțiune=giratoriu"
+msgstr "pe junction=roundabout"
 
 #: ../tools/database/item_menu.txt:58
 msgid "incompatible tags"
@@ -868,7 +868,7 @@ msgstr "referință în nume"
 
 #: ../tools/database/item_menu.txt:60
 msgid "seamark:fixme"
-msgstr ""
+msgstr "seamark:fixme"
 
 #: ../tools/database/item_menu.txt:61
 msgid "construction"
@@ -916,7 +916,7 @@ msgstr "cale duplicată"
 
 #: ../tools/database/item_menu.txt:72
 msgid "place without name"
-msgstr "locație fără nume"
+msgstr "loc fără nume"
 
 #: ../tools/database/item_menu.txt:73
 msgid "INSEE code"
@@ -924,7 +924,7 @@ msgstr "cod INSEE"
 
 #: ../tools/database/item_menu.txt:74
 msgid "admin_level"
-msgstr ""
+msgstr "admin_level"
 
 #: ../tools/database/item_menu.txt:75
 msgid "erroneous boundary"
@@ -936,7 +936,7 @@ msgstr "în afara limitei administrative"
 
 #: ../tools/database/item_menu.txt:77
 msgid "geodesic building"
-msgstr ""
+msgstr "clădire geodezică"
 
 #: ../tools/database/item_menu.txt:78
 msgid "building shape"
@@ -948,11 +948,11 @@ msgstr "pod fără tag"
 
 #: ../tools/database/item_menu.txt:80
 msgid "admin boundary"
-msgstr ""
+msgstr "limită admin"
 
 #: ../tools/database/item_menu.txt:81
 msgid "power lines"
-msgstr ""
+msgstr "linii electrice"
 
 #: ../tools/database/item_menu.txt:82 ../tools/database/item_menu.txt:95
 msgid "post office"
@@ -960,7 +960,7 @@ msgstr "oficiu poștal"
 
 #: ../tools/database/item_menu.txt:83
 msgid "ODbL migration change"
-msgstr ""
+msgstr "trecerea la licența ODbL"
 
 #: ../tools/database/item_menu.txt:84
 msgid "school, not integrated"
@@ -972,7 +972,7 @@ msgstr "monument"
 
 #: ../tools/database/item_menu.txt:86
 msgid "node on ways"
-msgstr ""
+msgstr "nod pe căi"
 
 #: ../tools/database/item_menu.txt:87 ../tools/database/item_menu.txt:101
 msgid "train station"
@@ -1008,7 +1008,7 @@ msgstr "școală"
 
 #: ../tools/database/item_menu.txt:98
 msgid "school, could be integrated"
-msgstr "școală, ar putea fi integrată"
+msgstr "școală, ar putea fi integrat"
 
 #: ../tools/database/item_menu.txt:99
 msgid "public transport"
@@ -1020,7 +1020,7 @@ msgstr "transport în comun, ar putea fi integrat"
 
 #: ../tools/database/item_menu.txt:102
 msgid "train station, could be integrated"
-msgstr "gara, ar putea fi integrată"
+msgstr "gara, ar putea fi integrat"
 
 #: ../tools/database/item_menu.txt:103
 msgid "level crossing"
@@ -1028,7 +1028,7 @@ msgstr "trecere la nivel"
 
 #: ../tools/database/item_menu.txt:104
 msgid "geodesic point"
-msgstr ""
+msgstr "punct din rețeaua geodezică"
 
 #: ../tools/database/item_menu.txt:105
 msgid "postal address"
@@ -1036,11 +1036,11 @@ msgstr "adresă poștală"
 
 #: ../tools/database/item_menu.txt:106
 msgid "wikipedia, could be integrated"
-msgstr "wikipedia, ar putea fi integrată"
+msgstr "wikipedia, ar putea fi integrat"
 
 #: ../tools/database/item_menu.txt:107
 msgid "public service"
-msgstr ""
+msgstr "serviciu public"
 
 #: ../tools/database/item_menu.txt:108
 msgid "recycling"
@@ -1064,7 +1064,7 @@ msgstr "cazare"
 
 #: ../tools/database/item_menu.txt:113
 msgid "accommodation, could be integrated"
-msgstr "cazare, ar putea fi integrată"
+msgstr "cazare, ar putea fi integrat"
 
 #: ../tools/database/item_menu.txt:114
 msgid "cycle parking"
@@ -1072,15 +1072,15 @@ msgstr "parcare pentru biciclete"
 
 #: ../tools/database/item_menu.txt:115
 msgid "cycle parking, could be integrated"
-msgstr "parcare pentru biciclete, ar putea fi integrată"
+msgstr "parcare pentru biciclete, ar putea fi integrat"
 
 #: ../tools/database/item_menu.txt:116
 msgid "transport sharing"
-msgstr ""
+msgstr "împărțirea transportului"
 
 #: ../tools/database/item_menu.txt:117
 msgid "transport sharing, could be integrated"
-msgstr ""
+msgstr "împărțirea transportului, ar putea fi integrat"
 
 #: ../tools/database/item_menu.txt:118
 msgid "sport"
@@ -1103,7 +1103,7 @@ msgstr "Pentru noi limbi și tări"
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
 "href='mailto:%s'>%s</a>."
-msgstr ""
+msgstr "Pentru alte țări, putem fi contactați direct prin email <a href='mailto:%s'>%s</a>."
 
 #: tmp.tpl:146
 #, python-format
@@ -1142,7 +1142,7 @@ msgstr "toalete"
 
 #: ../tools/database/item_menu.txt:91
 msgid "transport sharing, not integrated"
-msgstr ""
+msgstr "împărțirea transportului, neintegrat"
 
 #: ../tools/database/item_menu.txt:121
 msgid "police"
