@@ -53,6 +53,8 @@
  3170 | _("relation role")
  3180 | _("relation type=restriction")
  3190 | _("postcode")
+ 3200 | _("area")
+ 3210 | _("noexit")
  4010 | _("disused")
  4020 | _("on junction=roundabout")
  4030 | _("incompatible tags")
