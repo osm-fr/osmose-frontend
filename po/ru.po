@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2014-10-24 18:06+0000\n"
+"PO-Revision-Date: 2014-11-13 17:33+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/osmose/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -755,7 +755,7 @@ msgstr "дорога"
 msgid "highway crossing"
 msgstr "перекрёсток"
 
-#: ../tools/database/item_menu.txt:32 ../tools/database/item_menu.txt:124
+#: ../tools/database/item_menu.txt:32 ../tools/database/item_menu.txt:126
 msgid "pharmacy"
 msgstr "аптека"
 
@@ -847,243 +847,243 @@ msgstr "отношение type=restriction"
 msgid "postcode"
 msgstr "индекс"
 
-#: ../tools/database/item_menu.txt:56
+#: ../tools/database/item_menu.txt:58
 msgid "disused"
 msgstr "не используется"
 
-#: ../tools/database/item_menu.txt:57
+#: ../tools/database/item_menu.txt:59
 msgid "on junction=roundabout"
 msgstr "на junction=roundabout"
 
-#: ../tools/database/item_menu.txt:58
+#: ../tools/database/item_menu.txt:60
 msgid "incompatible tags"
 msgstr "несовместимые теги"
 
-#: ../tools/database/item_menu.txt:59
+#: ../tools/database/item_menu.txt:61
 msgid "ref in name"
 msgstr "ref в имени"
 
-#: ../tools/database/item_menu.txt:60
+#: ../tools/database/item_menu.txt:62
 msgid "seamark:fixme"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:61
+#: ../tools/database/item_menu.txt:63
 msgid "construction"
 msgstr "строительство"
 
-#: ../tools/database/item_menu.txt:62
+#: ../tools/database/item_menu.txt:64
 msgid "duplicate object"
 msgstr "дублированный объект"
 
-#: ../tools/database/item_menu.txt:63
+#: ../tools/database/item_menu.txt:65
 msgid "unwanted tag on node"
 msgstr "нежелательный тег на точке"
 
-#: ../tools/database/item_menu.txt:64
+#: ../tools/database/item_menu.txt:66
 msgid "bad usage"
 msgstr "неправильное использование"
 
-#: ../tools/database/item_menu.txt:65
+#: ../tools/database/item_menu.txt:67
 msgid "orthograph"
 msgstr "орфография"
 
-#: ../tools/database/item_menu.txt:66
+#: ../tools/database/item_menu.txt:68
 msgid "way type"
 msgstr "тип линии"
 
-#: ../tools/database/item_menu.txt:67
+#: ../tools/database/item_menu.txt:69
 msgid "two names"
 msgstr "два имени"
 
-#: ../tools/database/item_menu.txt:68
+#: ../tools/database/item_menu.txt:70
 msgid "toponymy"
 msgstr "топонимика"
 
-#: ../tools/database/item_menu.txt:69
+#: ../tools/database/item_menu.txt:71
 msgid "test soundex"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:70
+#: ../tools/database/item_menu.txt:72
 msgid "open polygon"
 msgstr "незамкнутый полигон"
 
-#: ../tools/database/item_menu.txt:71
+#: ../tools/database/item_menu.txt:73
 msgid "duplicated way"
 msgstr "дублированная линия"
 
-#: ../tools/database/item_menu.txt:72
+#: ../tools/database/item_menu.txt:74
 msgid "place without name"
 msgstr "место без имени"
 
-#: ../tools/database/item_menu.txt:73
+#: ../tools/database/item_menu.txt:75
 msgid "INSEE code"
 msgstr "код INSEE"
 
-#: ../tools/database/item_menu.txt:74
+#: ../tools/database/item_menu.txt:76
 msgid "admin_level"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:75
+#: ../tools/database/item_menu.txt:77
 msgid "erroneous boundary"
 msgstr "ошибочная граница"
 
-#: ../tools/database/item_menu.txt:76
+#: ../tools/database/item_menu.txt:78
 msgid "out of boundary"
 msgstr "вне границ"
 
-#: ../tools/database/item_menu.txt:77
+#: ../tools/database/item_menu.txt:79
 msgid "geodesic building"
 msgstr "геодезическое здание"
 
-#: ../tools/database/item_menu.txt:78
+#: ../tools/database/item_menu.txt:80
 msgid "building shape"
 msgstr "форма здания"
 
-#: ../tools/database/item_menu.txt:79
+#: ../tools/database/item_menu.txt:81
 msgid "bridge to tag"
 msgstr "мост в тег"
 
-#: ../tools/database/item_menu.txt:80
+#: ../tools/database/item_menu.txt:82
 msgid "admin boundary"
 msgstr "административная граница"
 
-#: ../tools/database/item_menu.txt:81
+#: ../tools/database/item_menu.txt:83
 msgid "power lines"
 msgstr "линии электропередач"
 
-#: ../tools/database/item_menu.txt:82 ../tools/database/item_menu.txt:95
+#: ../tools/database/item_menu.txt:84 ../tools/database/item_menu.txt:97
 msgid "post office"
 msgstr "почтовое отделение"
 
-#: ../tools/database/item_menu.txt:83
+#: ../tools/database/item_menu.txt:85
 msgid "ODbL migration change"
 msgstr "миграция на ODbL"
 
-#: ../tools/database/item_menu.txt:84
+#: ../tools/database/item_menu.txt:86
 msgid "school, not integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:85
+#: ../tools/database/item_menu.txt:87
 msgid "monument"
 msgstr "памятник"
 
-#: ../tools/database/item_menu.txt:86
+#: ../tools/database/item_menu.txt:88
 msgid "node on ways"
 msgstr "точка на линиях"
 
-#: ../tools/database/item_menu.txt:87 ../tools/database/item_menu.txt:101
+#: ../tools/database/item_menu.txt:89 ../tools/database/item_menu.txt:103
 msgid "train station"
 msgstr "железнодорожная станция"
 
-#: ../tools/database/item_menu.txt:88
+#: ../tools/database/item_menu.txt:90
 msgid "TMC"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:89
+#: ../tools/database/item_menu.txt:91
 msgid "relation type=boundary"
 msgstr "отношение type=boundary"
 
-#: ../tools/database/item_menu.txt:90
+#: ../tools/database/item_menu.txt:92
 msgid "tunnel/bridge"
 msgstr "туннель/мост"
 
-#: ../tools/database/item_menu.txt:93
+#: ../tools/database/item_menu.txt:95
 msgid "monument, museum"
 msgstr "монумент, музей"
 
-#: ../tools/database/item_menu.txt:94
+#: ../tools/database/item_menu.txt:96
 msgid "monument, museum, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:96
+#: ../tools/database/item_menu.txt:98
 msgid "post office, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:97
+#: ../tools/database/item_menu.txt:99
 msgid "school"
 msgstr "школа"
 
-#: ../tools/database/item_menu.txt:98
+#: ../tools/database/item_menu.txt:100
 msgid "school, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:99
+#: ../tools/database/item_menu.txt:101
 msgid "public transport"
 msgstr "общественный транспорт"
 
-#: ../tools/database/item_menu.txt:100
+#: ../tools/database/item_menu.txt:102
 msgid "public transport, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:102
+#: ../tools/database/item_menu.txt:104
 msgid "train station, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:103
+#: ../tools/database/item_menu.txt:105
 msgid "level crossing"
 msgstr "переезд"
 
-#: ../tools/database/item_menu.txt:104
+#: ../tools/database/item_menu.txt:106
 msgid "geodesic point"
 msgstr "геодезический пункт"
 
-#: ../tools/database/item_menu.txt:105
+#: ../tools/database/item_menu.txt:107
 msgid "postal address"
 msgstr "почтовый адрес"
 
-#: ../tools/database/item_menu.txt:106
+#: ../tools/database/item_menu.txt:108
 msgid "wikipedia, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:107
+#: ../tools/database/item_menu.txt:109
 msgid "public service"
 msgstr "публичная служба"
 
-#: ../tools/database/item_menu.txt:108
+#: ../tools/database/item_menu.txt:110
 msgid "recycling"
 msgstr "мусоросборник"
 
-#: ../tools/database/item_menu.txt:109
+#: ../tools/database/item_menu.txt:111
 msgid "recycling, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:110
+#: ../tools/database/item_menu.txt:112
 msgid "parking"
 msgstr "парковка"
 
-#: ../tools/database/item_menu.txt:111
+#: ../tools/database/item_menu.txt:113
 msgid "parking, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:112
+#: ../tools/database/item_menu.txt:114
 msgid "accommodation"
 msgstr "жильё"
 
-#: ../tools/database/item_menu.txt:113
+#: ../tools/database/item_menu.txt:115
 msgid "accommodation, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:114
+#: ../tools/database/item_menu.txt:116
 msgid "cycle parking"
 msgstr "парковка для велосипедов"
 
-#: ../tools/database/item_menu.txt:115
+#: ../tools/database/item_menu.txt:117
 msgid "cycle parking, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:116
+#: ../tools/database/item_menu.txt:118
 msgid "transport sharing"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:117
+#: ../tools/database/item_menu.txt:119
 msgid "transport sharing, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:118
+#: ../tools/database/item_menu.txt:120
 msgid "sport"
 msgstr "спорт"
 
-#: ../tools/database/item_menu.txt:119
+#: ../tools/database/item_menu.txt:121
 msgid "sport, could be integrated"
 msgstr ""
 
@@ -1133,31 +1133,31 @@ msgstr "Список в HTML"
 msgid "one-node way"
 msgstr "линия из одной точки"
 
-#: ../tools/database/item_menu.txt:120
+#: ../tools/database/item_menu.txt:122
 msgid "toilets"
 msgstr "туалеты"
 
-#: ../tools/database/item_menu.txt:91
+#: ../tools/database/item_menu.txt:93
 msgid "transport sharing, not integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:121
+#: ../tools/database/item_menu.txt:123
 msgid "police"
 msgstr "полиция"
 
-#: ../tools/database/item_menu.txt:122
+#: ../tools/database/item_menu.txt:124
 msgid "police, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:92
+#: ../tools/database/item_menu.txt:94
 msgid "pharmacy, not integrated "
 msgstr ""
 
-#: ../tools/database/item_menu.txt:125
+#: ../tools/database/item_menu.txt:127
 msgid "pharmacy, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:123
+#: ../tools/database/item_menu.txt:125
 msgid "gas station"
 msgstr ""
 
@@ -1175,4 +1175,12 @@ msgstr ""
 
 #: tmp.tpl:135
 msgid "Comment"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:56
+msgid "area"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:57
+msgid "noexit"
 msgstr ""
