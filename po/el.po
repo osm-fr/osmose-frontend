@@ -1,0 +1,1185 @@
+# OsmOse frontend
+# Copyright (C) 2014
+# This file is distributed under the same license as the osmose-frontend package.
+# 
+# Translators:
+# Yannis Gyftomitros, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: Osmose\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-18 22:25+0100\n"
+"PO-Revision-Date: 2014-11-16 19:34+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"Language-Team: Greek (http://www.transifex.com/projects/p/osmose/language/el/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: el\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANSLATORS: days / hours / minutes since last source update, abbreviated
+#. to d / h / m
+#: ../control.py:50
+#, python-brace-format
+msgid "{day}d, {hour}h, {minute}m ago"
+msgstr "{day}η, {hour}ω, {minute}λ πριν"
+
+#: ../control.py:52
+#, python-brace-format
+msgid "in {day}d, {hour}h, {minute}m"
+msgstr ""
+
+#: ../control.py:55
+msgid "never generated"
+msgstr ""
+
+#. TRANSLATORS: link to tooltip help
+#: ../error.py:155 ../false_positive.py:66 tmp.tpl:154
+msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
+msgstr ""
+
+#: ../errors.py:122 tmp.tpl:59
+msgid "False positives"
+msgstr "Εσφαλμένες σημάνσεις"
+
+#: ../errors.py:125
+msgid "Fixed errors"
+msgstr "Διορθωμένα σφάλματα"
+
+#: ../errors.py:128 tmp.tpl:57
+msgid "Informations"
+msgstr "Πληροφορίες"
+
+#. TRANSLATORS: link to help in appropriate language
+#: ../map.py:136
+msgid "Errors by user"
+msgstr "Σφάλματα ανά χρήστη"
+
+#: ../map.py:137
+msgid "Relation analyser"
+msgstr "Αναλυτής σχέσεων"
+
+#. TRANSLATORS: this link can be changed to something specific to the language
+msgid "openstreetmap.fr"
+msgstr "openstreetmap.fr"
+
+msgid "http://www.openstreetmap.fr/"
+msgstr "http://www.openstreetmap.fr/"
+
+#. TRANSLATORS: link to source code
+#: ../map.py:139
+msgid "Statistics"
+msgstr "Στατιστικά"
+
+#: ../map.py:142 tmp.tpl:23
+msgid "Contact"
+msgstr "Επικοινωνία"
+
+#: ../map.py:143
+msgid "Help on wiki"
+msgstr ""
+
+#: ../map.py:143 tmp.tpl:95 tmp.tpl:153
+msgid "http://wiki.openstreetmap.org/wiki/Osmose"
+msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
+
+#: ../map.py:144
+msgid "Copyright"
+msgstr "Πνευματικά δικαιώματα"
+
+#: ../map.py:145
+msgid "Sources"
+msgstr ""
+
+#: ../map.py:146
+msgid "Translation"
+msgstr "Μετάφραση"
+
+#: tmp.tpl:1 tmp.tpl:5 tmp.tpl:11
+#, python-format
+msgid "Statistics for user %s"
+msgstr "Στατιστικά για τον χρήστη %s"
+
+#: tmp.tpl:2 tmp.tpl:3 tmp.tpl:4
+#, python-brace-format
+msgid "Number of level {level} errors: {count}"
+msgstr ""
+
+#: tmp.tpl:6 tmp.tpl:15
+#, python-format
+msgid "Number of found errors: %d"
+msgstr "Αριθμός σφαλμάτων που βρέθηκαν: %d"
+
+#: tmp.tpl:7 tmp.tpl:16
+#, python-format
+msgid "Number of found errors: more than %d"
+msgstr "Αριθμός σφαλμάτων που βρέθηκαν: περισσότερα από %d"
+
+#: tmp.tpl:8
+msgid "Users statistics"
+msgstr "Στατιστικά χρήστη"
+
+#: tmp.tpl:9
+msgid "Number"
+msgstr "Αριθμός"
+
+#: tmp.tpl:10
+msgid "Username"
+msgstr "Όνομα χρήστη"
+
+#: tmp.tpl:12
+#, python-format
+msgid "User statistics for %s"
+msgstr "Στατιστικά χρήστη του %s"
+
+#: tmp.tpl:13
+#, python-format
+msgid ""
+"This page shows errors on elements that were last modified by '%s'. This "
+"doesn't means that this user is responsible for all these errors."
+msgstr "Αυτή η σελίδα εμφανίζει σφάλματα σε στοιχεία που τροποποιήθηκαν τελευταία από τον '%s'. Αυτό δεν σημαίνει ότι αυτός ο χρήστης είναι υπεύθυνος για όλα αυτά τα σφάλματα."
+
+#: tmp.tpl:14
+msgid "This list is also available via rss."
+msgstr "Αυτή η λίστα είναι επίσης διαθέσιμη μέσω rss."
+
+#: tmp.tpl:17
+msgid "Show errors on a map"
+msgstr "Εμφάνιση σφαλμάτων στο χάρτη"
+
+#: tmp.tpl:18
+msgid "Statistics for user"
+msgstr "Στατιστικά του χρήστη"
+
+#: tmp.tpl:19
+msgid "User statistics"
+msgstr "Στατιστικά χρήστη"
+
+#: tmp.tpl:20
+msgid "Osmose allows you to control your own errors."
+msgstr "Το osmose σου επιτρέπει να ελέγξεις τα δικά σου σφάλματα."
+
+#: tmp.tpl:21
+msgid ""
+"By entering your OSM username in the following form, you will be able to see"
+" errors that are attached to your username. Note that the algorithm that "
+"attaches errors to username is not perfect, as Osmose only checks the last "
+"contributor of the relevant erroneous elements."
+msgstr "Εισάγοντας το όνομα χρήστη OSM στην παρακάτω φόρμα, θα μπορείς να δεις σφάλματα που είναι συνδεδεμένα με το όνομά σου. Σημειώστε οτι ο αλγόριθμος που συνδέει σφάλματα στους χρήστες δεν είναι τέλειος, καθώς το Osmose ελέγχει μόνο για τον τελευταίο που επεξεργάστηκε το εν λόγω στοιχείο."
+
+#: tmp.tpl:22
+msgid "Username:"
+msgstr "Όνομα χρήστη:"
+
+#: tmp.tpl:24
+msgid "Bug tracker"
+msgstr ""
+
+#: tmp.tpl:25
+msgid ""
+"Bug should be reported on <a href='http://trac.openstreetmap.fr'>trac</a>. "
+"The component to pick should be osmose-frontend for issues around the "
+"website, and osmose-backend for issues on the reported errors, or for "
+"suggestion for new analyses."
+msgstr ""
+
+#: tmp.tpl:26
+msgid "Providing patches"
+msgstr ""
+
+#: tmp.tpl:27
+msgid ""
+"Patches can be provided via merge requests on gitorious or github. This is "
+"the prefered way to handle patches."
+msgstr ""
+
+#: tmp.tpl:28
+msgid "Development"
+msgstr "Ανάπτυξη"
+
+#: tmp.tpl:29
+msgid ""
+"Development of Osmose is made as free software by <a "
+"href='../copyright'>volunteers</a>."
+msgstr "Η ανάπτυξη του Osmose γίνεται ως ελεύθερο λογισμικό από <a href='../copyright'>εθελοντές</a>."
+
+#: tmp.tpl:31
+msgid "Contacting maintainers"
+msgstr ""
+
+#: tmp.tpl:32
+#, python-format
+msgid ""
+"We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
+msgstr ""
+
+#: tmp.tpl:33 tmp.tpl:34
+msgid "Last updates"
+msgstr ""
+
+#: tmp.tpl:35
+msgid "Median delay:"
+msgstr ""
+
+#: tmp.tpl:36 tmp.tpl:42 tmp.tpl:64 tmp.tpl:73
+#: ../tools/database/item_menu.txt:27
+msgid "source"
+msgstr ""
+
+#: tmp.tpl:37
+msgid "description"
+msgstr "περιγραφή"
+
+#: tmp.tpl:38
+msgid "last generation"
+msgstr ""
+
+#: tmp.tpl:39 tmp.tpl:40
+msgid "history"
+msgstr "ιστορικό"
+
+#: tmp.tpl:41
+msgid "Update"
+msgstr ""
+
+#: tmp.tpl:43
+msgid "remote url"
+msgstr ""
+
+#: tmp.tpl:44
+msgid "timestamp"
+msgstr "χρονική σήμανση"
+
+#: tmp.tpl:45
+msgid "Copyright informations"
+msgstr ""
+
+#: tmp.tpl:46
+msgid "License"
+msgstr "Άδεια"
+
+#: tmp.tpl:47
+msgid "Authors"
+msgstr ""
+
+#: tmp.tpl:48
+msgid "And contributors"
+msgstr ""
+
+#: tmp.tpl:49
+msgid "Data are coming from"
+msgstr "Τα δεδομένα προέρχονται από"
+
+#: tmp.tpl:50
+msgid "copyright"
+msgstr ""
+
+#: tmp.tpl:51 tmp.tpl:89
+#, python-format
+msgid "Information on error %d"
+msgstr ""
+
+#: tmp.tpl:52 tmp.tpl:90
+msgid "key"
+msgstr "κλειδί"
+
+#: tmp.tpl:53 tmp.tpl:91
+msgid "value"
+msgstr "τιμή"
+
+#: tmp.tpl:54 tmp.tpl:92
+msgid "Marker"
+msgstr ""
+
+#: tmp.tpl:55
+msgid "Elements"
+msgstr "Στοιχεία"
+
+#: tmp.tpl:56
+msgid "Fixes"
+msgstr ""
+
+#: tmp.tpl:58
+msgid "Fixed"
+msgstr ""
+
+#: tmp.tpl:60
+msgid "Graph"
+msgstr ""
+
+#: tmp.tpl:61 tmp.tpl:102
+msgid "Map"
+msgstr "Χάρτης"
+
+#. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
+#: tmp.tpl:63
+msgid "Set"
+msgstr ""
+
+#. TRANSLATORS: this should be replaced by a abbreviation for class
+#: tmp.tpl:66 tmp.tpl:75
+msgid "class (abbreviation)"
+msgstr ""
+
+#: tmp.tpl:67 tmp.tpl:80
+msgid "item"
+msgstr ""
+
+#: tmp.tpl:68
+msgid "title"
+msgstr "τίτλος"
+
+#: tmp.tpl:69
+msgid "count"
+msgstr ""
+
+#: tmp.tpl:70
+msgid "Total"
+msgstr "Σύνολο"
+
+#: tmp.tpl:71
+msgid "Show more errors"
+msgstr "Εμφάνιση περισσότερων σφαλμάτων"
+
+#: tmp.tpl:72
+msgid "Show some errors"
+msgstr ""
+
+#. TRANSLATORS: this should be replaced by a abbreviation for subclass
+#: tmp.tpl:77
+msgid "subclass (abbreviation)"
+msgstr ""
+
+#. TRANSLATORS: this should be replaced by a abbreviation for subclass
+#: tmp.tpl:79
+msgid "level (abbreviation)"
+msgstr ""
+
+#: tmp.tpl:81
+msgid "information on error"
+msgstr ""
+
+#: tmp.tpl:82
+msgid "position (abbreviation)"
+msgstr ""
+
+#: tmp.tpl:83
+msgid "elements (abbreviation)"
+msgstr ""
+
+#: tmp.tpl:84
+msgid "subtitle"
+msgstr ""
+
+#: tmp.tpl:85 ../tools/database/item_menu.txt:44
+msgid "date"
+msgstr "ημερομηνία"
+
+#: tmp.tpl:86
+msgid "delete error"
+msgstr ""
+
+#: tmp.tpl:88
+#, python-format
+msgid "delete error #%d"
+msgstr ""
+
+#: tmp.tpl:93
+msgid "OpenStreetMap Oversight Search Engine"
+msgstr ""
+
+#: tmp.tpl:94
+msgid "Map of errors"
+msgstr "Χάρτης σφαλμάτων"
+
+#: tmp.tpl:95
+msgid "Help on OSM wiki"
+msgstr ""
+
+#: tmp.tpl:96
+msgid "Information on error database"
+msgstr ""
+
+#: tmp.tpl:97
+msgid "False positives list"
+msgstr ""
+
+#: tmp.tpl:98
+msgid "Last analysis updates"
+msgstr ""
+
+#: tmp.tpl:99
+msgid "Tags Editor"
+msgstr "Επεξεργαστής Ετικετών"
+
+#: tmp.tpl:100 tmp.tpl:132
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+#: tmp.tpl:101
+msgid "Valid"
+msgstr "Έγκυρο"
+
+#: tmp.tpl:103
+msgid "no bubbles at this zoom factor"
+msgstr ""
+
+#: tmp.tpl:104
+msgid "Severity"
+msgstr "Σοβαρότητα"
+
+#: tmp.tpl:105
+msgid "1 only"
+msgstr "1 μόνο"
+
+#: tmp.tpl:106
+msgid "1+2 only"
+msgstr "1+2 μόνο"
+
+#: tmp.tpl:107
+msgid "all severity"
+msgstr ""
+
+#: tmp.tpl:108
+msgid "2 only"
+msgstr "2 μόνο"
+
+#: tmp.tpl:109
+msgid "3 only"
+msgstr "3 μόνο"
+
+#: tmp.tpl:110
+msgid "Fixable"
+msgstr ""
+
+#: tmp.tpl:111
+msgid "Show only markers with correction suggestions"
+msgstr ""
+
+#: tmp.tpl:112
+msgid "Online"
+msgstr ""
+
+#: tmp.tpl:113
+msgid "Topic"
+msgstr ""
+
+#: tmp.tpl:114
+msgid "Select:"
+msgstr "Επιλογή:"
+
+#: tmp.tpl:115 tmp.tpl:118
+msgid "all"
+msgstr "όλα"
+
+#: tmp.tpl:116 tmp.tpl:119
+msgid "nothing"
+msgstr "τίποτα"
+
+#: tmp.tpl:117
+msgid "invert"
+msgstr "αντιστροφή"
+
+#: tmp.tpl:120
+msgid "Change language"
+msgstr "Αλλαγή γλώσσας"
+
+#: tmp.tpl:123
+msgid "Help"
+msgstr "Βοήθεια"
+
+#: tmp.tpl:124
+#, python-format
+msgid "Delay: %sd"
+msgstr "Καθυστέρηση: %sd"
+
+#: tmp.tpl:125 tmp.tpl:126 tmp.tpl:127
+#, python-format
+msgid "Level %d errors (%d)"
+msgstr ""
+
+#: tmp.tpl:128
+msgid "Logout"
+msgstr "Αποσύνδεση"
+
+#: tmp.tpl:129 tmp.tpl:131
+msgid "Login"
+msgstr "Σύνδεση"
+
+#: tmp.tpl:130 tmp.tpl:132
+msgid "Save"
+msgstr "Αποθήκευση"
+
+#: tmp.tpl:133
+msgid "Objects edited:"
+msgstr "Διορθωμένα αντικείμενα:"
+
+#: tmp.tpl:134
+msgid "Objects deleted:"
+msgstr "Διαγραμμένα αντικείμενα:"
+
+#: tmp.tpl:135
+msgid "Fix with Osmose"
+msgstr ""
+
+#: tmp.tpl:136
+msgid "Source"
+msgstr ""
+
+#: tmp.tpl:137
+msgid "Type"
+msgstr "Τύπος"
+
+#: tmp.tpl:138
+msgid "Reuse changeset"
+msgstr ""
+
+#: tmp.tpl:139
+msgid "Error reported on: "
+msgstr ""
+
+#: tmp.tpl:140
+msgid "change status"
+msgstr "αλλαγή κατάστασης"
+
+#: tmp.tpl:141
+msgid "corrected"
+msgstr "διορθωμένο"
+
+#: tmp.tpl:142
+msgid "false positive"
+msgstr "εσφαλμένη σήμανση"
+
+#: tmp.tpl:143 tmp.tpl:144
+msgid "How to help translation"
+msgstr "Πως να βοηθήσετε στη μετάφραση"
+
+#: tmp.tpl:145
+msgid ""
+"OsmOse tool is mainly developped by french people, and we aim to add more "
+"languages. We currently cover almost all the languages used by countries "
+"covered by analyses."
+msgstr "Το εργαλείο OsmOse αναπτύσσετε κυρίως από Γάλλους, και στόχος μας είναι να προσθέσουμε περισσότερες γλώσσες. Προς το παρόν καλύπτουμε σχεδόν όλες τις γλώσσες που χρησιμοποιούνται από τις χώρες που καλύπτονται από τις αναλύσεις"
+
+#: tmp.tpl:147
+msgid ""
+"To make OsmOse a real multi-lingual tool, we need your help to improve "
+"current translations, and add new translations"
+msgstr "Για να κάνουμε το OsmOse ένα πραγματικά πολυγλωσσικό εργαλείο, χρειαζόμαστε τη βοήθειά σου για να βελτιώσουμε τις υπάρχουσες μεταφράσεις, και να προσθέσουμε καινούριες."
+
+#: tmp.tpl:148
+msgid "Pages to translate"
+msgstr "Σελίδες προς μετάφραση"
+
+#: tmp.tpl:152
+msgid "Wiki pages"
+msgstr ""
+
+#: tmp.tpl:153
+msgid "OsmOse main page"
+msgstr "Κεντρική σελίδα OsmOse"
+
+#: tmp.tpl:154
+msgid "Documentation on reported errors"
+msgstr "Τεκμηρίωση αναφερόμενων σφαλμάτων"
+
+#: tmp.tpl:149
+msgid "OsmOse pages"
+msgstr ""
+
+#: tmp.tpl:158
+msgid "Bug tracking system"
+msgstr ""
+
+#: tmp.tpl:159
+msgid ""
+"<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
+"issue with translations, or erroneous analyses."
+msgstr ""
+
+#: tmp.tpl:30
+msgid ""
+"Adding new functionality of <em>Osmose Editor</em>, initial support of "
+"mobile device and improvement of documentation was funded by region of "
+"Aquitaine, France; part of the OpenAquiMap project leading by <em>Les Petits"
+" Débrouillards d'Aquitaine</em>."
+msgstr ""
+
+#: ../tools/database/categ_menu.txt:1
+msgid "Structure"
+msgstr ""
+
+#: ../tools/database/categ_menu.txt:2
+msgid "Missing tags"
+msgstr "Απούσες ετικέτες"
+
+#: ../tools/database/categ_menu.txt:3
+msgid "Bad tag"
+msgstr "Εσφαλμένες ετικέτες"
+
+#: ../tools/database/categ_menu.txt:4
+msgid "Tags to remove"
+msgstr "Ετικέτες προς αφαίρεση"
+
+#: ../tools/database/categ_menu.txt:5
+msgid "Tags name"
+msgstr ""
+
+#: ../tools/database/categ_menu.txt:6
+msgid "Administrative"
+msgstr ""
+
+#: ../tools/database/categ_menu.txt:7
+msgid "To map"
+msgstr ""
+
+#: ../tools/database/categ_menu.txt:8
+msgid "Integration"
+msgstr "Ενσωμάτωση"
+
+#: ../tools/database/item_menu.txt:1
+msgid "overlapping building"
+msgstr "αλληλεπικαλυπτόμενο κτήριο"
+
+#: ../tools/database/item_menu.txt:2
+msgid "duplicated node"
+msgstr "διπλός κόμβος"
+
+#: ../tools/database/item_menu.txt:3
+msgid "way one node"
+msgstr "διαδρομή ενός κόμβου"
+
+#: ../tools/database/item_menu.txt:4
+msgid "invalid polygon"
+msgstr "μη έγκυρο πολύγωνο"
+
+#: ../tools/database/item_menu.txt:5
+msgid "reverse roundabout"
+msgstr "αντίθετος κυκλικός κόμβος"
+
+#: ../tools/database/item_menu.txt:6
+msgid "boundary intersect"
+msgstr "διασταυρούμενο όριο"
+
+#: ../tools/database/item_menu.txt:7
+msgid "objects overlap"
+msgstr "επικαλυπτόμενα αντικείμενα"
+
+#: ../tools/database/item_menu.txt:8
+msgid "orphan nodes"
+msgstr "ορφανοί κόμβοι"
+
+#: ../tools/database/item_menu.txt:9
+msgid "sudden highway type change"
+msgstr "ξαφνική αλλαγή τύπου δρόμου"
+
+#: ../tools/database/item_menu.txt:10
+msgid "unclosed area"
+msgstr "ανοικτή περιοχή"
+
+#: ../tools/database/item_menu.txt:11
+msgid "bad *_link highway"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:12
+msgid "broken highway continuity"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:13
+msgid "missign tag or role"
+msgstr "απούσα ετικέτα ή ρόλος"
+
+#: ../tools/database/item_menu.txt:14
+msgid "surface intersection"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:15
+msgid "big relation"
+msgstr "μεγάλη σχέση"
+
+#: ../tools/database/item_menu.txt:16
+msgid "multipolygon"
+msgstr "πολυπολύγωνο"
+
+#: ../tools/database/item_menu.txt:17
+msgid "double cycleway"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:18
+msgid "approximate way"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:19
+msgid "1-member relation"
+msgstr "σχέση 1-μέλους"
+
+#: ../tools/database/item_menu.txt:20
+msgid "not-connected highway/cycleway"
+msgstr "ασύνδετος δρόμος/ποδηλατόδρομος"
+
+#: ../tools/database/item_menu.txt:21
+msgid "waterway"
+msgstr "υδατοδιαδρομή"
+
+#: ../tools/database/item_menu.txt:22
+msgid "duplicate geometry"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:24
+msgid "junction=roundabout"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:25
+msgid "elevation"
+msgstr "υψόμετρο"
+
+#: ../tools/database/item_menu.txt:26
+msgid "oneway"
+msgstr "μονόδρομος"
+
+#: ../tools/database/item_menu.txt:28
+msgid "parent tag"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:29
+msgid "street numbers"
+msgstr "αριθμοί δρόμων"
+
+#: ../tools/database/item_menu.txt:30
+msgid "highway"
+msgstr "δρόμος"
+
+#: ../tools/database/item_menu.txt:31
+msgid "highway crossing"
+msgstr "διασταύρωση δρόμου"
+
+#: ../tools/database/item_menu.txt:32 ../tools/database/item_menu.txt:126
+msgid "pharmacy"
+msgstr "φαρμακείο"
+
+#: ../tools/database/item_menu.txt:33
+msgid "highway roundabout"
+msgstr "κυκλικός κόμβος δρόμου"
+
+#: ../tools/database/item_menu.txt:34
+msgid "bad source tag"
+msgstr "εσφαλμένη ετικέτα πηγής"
+
+#: ../tools/database/item_menu.txt:35
+msgid "tagwatch cleaner"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:36
+msgid "wikipedia"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:37
+msgid "multiple tags"
+msgstr "πολλαπλές ετικέτες"
+
+#: ../tools/database/item_menu.txt:38
+msgid "saint hyphen"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:39
+msgid "incorrect tag"
+msgstr "λανθασμένη ετικέτα"
+
+#: ../tools/database/item_menu.txt:40
+msgid "bad tag key"
+msgstr "εσφαλμένο κλειδί ετικέτας"
+
+#: ../tools/database/item_menu.txt:41
+msgid "similar values"
+msgstr "παρόμοιες τιμές"
+
+#: ../tools/database/item_menu.txt:42
+msgid "multiple values"
+msgstr "πολλαπλές τιμές"
+
+#: ../tools/database/item_menu.txt:43
+msgid "swimming pool as natural=water"
+msgstr "πισίνα ως natural=water"
+
+#: ../tools/database/item_menu.txt:45
+msgid "numeric value"
+msgstr "αριθμητική τιμή"
+
+#: ../tools/database/item_menu.txt:46
+msgid "small farm"
+msgstr "μικρό αγρόκτημα"
+
+#: ../tools/database/item_menu.txt:47
+msgid "note"
+msgstr "σημείωση"
+
+#: ../tools/database/item_menu.txt:48
+msgid "tree"
+msgstr "δένδρο"
+
+#: ../tools/database/item_menu.txt:49
+msgid "brand in name"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:50
+msgid "typo in tag"
+msgstr "ανορθόγραφη ετικέτα"
+
+#: ../tools/database/item_menu.txt:51
+msgid "incorrect "
+msgstr "εσφαλμένο"
+
+#: ../tools/database/item_menu.txt:52
+msgid "parking lane"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:53
+msgid "relation role"
+msgstr "ρόλος σχέσης"
+
+#: ../tools/database/item_menu.txt:54
+msgid "relation type=restriction"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:55
+msgid "postcode"
+msgstr "ταχυδρομικός κώδικας"
+
+#: ../tools/database/item_menu.txt:58
+msgid "disused"
+msgstr "παροπλισμένο"
+
+#: ../tools/database/item_menu.txt:59
+msgid "on junction=roundabout"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:60
+msgid "incompatible tags"
+msgstr "ασύμβατες ετικέτες"
+
+#: ../tools/database/item_menu.txt:61
+msgid "ref in name"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:62
+msgid "seamark:fixme"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:63
+msgid "construction"
+msgstr "κατασκευή"
+
+#: ../tools/database/item_menu.txt:64
+msgid "duplicate object"
+msgstr "διπλό αντικείμενο"
+
+#: ../tools/database/item_menu.txt:65
+msgid "unwanted tag on node"
+msgstr "αχρείαστη ετικέτα σε κόμβο"
+
+#: ../tools/database/item_menu.txt:66
+msgid "bad usage"
+msgstr "εσφαλμένη χρήση"
+
+#: ../tools/database/item_menu.txt:67
+msgid "orthograph"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:68
+msgid "way type"
+msgstr "τύπος διαδρομής"
+
+#: ../tools/database/item_menu.txt:69
+msgid "two names"
+msgstr "δύο ονόματα"
+
+#: ../tools/database/item_menu.txt:70
+msgid "toponymy"
+msgstr "τοπωνυμία"
+
+#: ../tools/database/item_menu.txt:71
+msgid "test soundex"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:72
+msgid "open polygon"
+msgstr "ανοικτό πολύγωνο"
+
+#: ../tools/database/item_menu.txt:73
+msgid "duplicated way"
+msgstr "διπλή διαδρομή"
+
+#: ../tools/database/item_menu.txt:74
+msgid "place without name"
+msgstr "μέρος χωρίς όνομα"
+
+#: ../tools/database/item_menu.txt:75
+msgid "INSEE code"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:76
+msgid "admin_level"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:77
+msgid "erroneous boundary"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:78
+msgid "out of boundary"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:79
+msgid "geodesic building"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:80
+msgid "building shape"
+msgstr "σχήμα κτηρίου"
+
+#: ../tools/database/item_menu.txt:81
+msgid "bridge to tag"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:82
+msgid "admin boundary"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:83
+msgid "power lines"
+msgstr "γραμμές ηλεκτρικού"
+
+#: ../tools/database/item_menu.txt:84 ../tools/database/item_menu.txt:97
+msgid "post office"
+msgstr "ταχυδρομείο"
+
+#: ../tools/database/item_menu.txt:85
+msgid "ODbL migration change"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:86
+msgid "school, not integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:87
+msgid "monument"
+msgstr "μνημείο"
+
+#: ../tools/database/item_menu.txt:88
+msgid "node on ways"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:89 ../tools/database/item_menu.txt:103
+msgid "train station"
+msgstr "σταθμός τρένου"
+
+#: ../tools/database/item_menu.txt:90
+msgid "TMC"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:91
+msgid "relation type=boundary"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:92
+msgid "tunnel/bridge"
+msgstr "σήραγγα/γέφυρα"
+
+#: ../tools/database/item_menu.txt:95
+msgid "monument, museum"
+msgstr "μνημείο, μουσείο"
+
+#: ../tools/database/item_menu.txt:96
+msgid "monument, museum, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:98
+msgid "post office, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:99
+msgid "school"
+msgstr "σχολείο"
+
+#: ../tools/database/item_menu.txt:100
+msgid "school, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:101
+msgid "public transport"
+msgstr "δημόσιες μεταφορές"
+
+#: ../tools/database/item_menu.txt:102
+msgid "public transport, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:104
+msgid "train station, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:105
+msgid "level crossing"
+msgstr "ισόπεδη διασταύρωση"
+
+#: ../tools/database/item_menu.txt:106
+msgid "geodesic point"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:107
+msgid "postal address"
+msgstr "ταχυδρομική διεύθυνση"
+
+#: ../tools/database/item_menu.txt:108
+msgid "wikipedia, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:109
+msgid "public service"
+msgstr "δημόσια υπηρεσία"
+
+#: ../tools/database/item_menu.txt:110
+msgid "recycling"
+msgstr "ανακύκλωση"
+
+#: ../tools/database/item_menu.txt:111
+msgid "recycling, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:112
+msgid "parking"
+msgstr "στάθμευση"
+
+#: ../tools/database/item_menu.txt:113
+msgid "parking, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:114
+msgid "accommodation"
+msgstr "διαμονή"
+
+#: ../tools/database/item_menu.txt:115
+msgid "accommodation, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:116
+msgid "cycle parking"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:117
+msgid "cycle parking, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:118
+msgid "transport sharing"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:119
+msgid "transport sharing, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:120
+msgid "sport"
+msgstr "άθλημα"
+
+#: ../tools/database/item_menu.txt:121
+msgid "sport, could be integrated"
+msgstr ""
+
+#: tmp.tpl:151
+msgid "Translation progress: osmose"
+msgstr "Πρόοδος μετάφρασης: osmose"
+
+#: tmp.tpl:155
+msgid "For new language or countries"
+msgstr "Για νέα γλώσσα ή χώρες"
+
+#: tmp.tpl:157
+#, python-format
+msgid ""
+"For new countries, we can be contacted through a direct email to <a "
+"href='mailto:%s'>%s</a>."
+msgstr "Για νέες χώρες, επικοινωνήστε μαζί μας με απευθείας email στο <a href='mailto:%s'>%s</a>."
+
+#: tmp.tpl:146
+#, python-format
+msgid "The <a href='%s'>country coverage is available</a>."
+msgstr "Η <a href='%s'>κάλυψη χωρών είναι διαθέσιμη</a>."
+
+#: tmp.tpl:156
+#, python-format
+msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
+msgstr "Μπορείτε να δημιουργήσετε μια νέα γλώσσα απευθείας στο <a href='%s'>Transifex.</a>"
+
+#: tmp.tpl:150
+#, python-format
+msgid "Translation is done on <a href='%s'>Transifex</a>."
+msgstr "Η μετάφραση γίνεται στο <a href='%s'>Transifex</a>."
+
+#: tmp.tpl:87
+msgid "error n°"
+msgstr ""
+
+#: tmp.tpl:121
+msgid "Export"
+msgstr "Εξαγωγή"
+
+#: tmp.tpl:122
+msgid "Html list"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:23
+msgid "one-node way"
+msgstr "διαδρομή ενός κόμβου"
+
+#: ../tools/database/item_menu.txt:122
+msgid "toilets"
+msgstr "τουαλέτες"
+
+#: ../tools/database/item_menu.txt:93
+msgid "transport sharing, not integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:123
+msgid "police"
+msgstr "αστυνομία"
+
+#: ../tools/database/item_menu.txt:124
+msgid "police, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:94
+msgid "pharmacy, not integrated "
+msgstr ""
+
+#: ../tools/database/item_menu.txt:127
+msgid "pharmacy, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:125
+msgid "gas station"
+msgstr "βενζινάδικο"
+
+#: tmp.tpl:82
+msgid "position"
+msgstr "θέση"
+
+#: tmp.tpl:131
+msgid "You must be logged in order to use the tag editor"
+msgstr "Πρέπει να είστε συνδεδεμένος για να μπορέσετε να χρησιμοποιήσετε τον επεξεργαστή ετικετών"
+
+#: tmp.tpl:132
+msgid "Save changeset"
+msgstr ""
+
+#: tmp.tpl:135
+msgid "Comment"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:56
+msgid "area"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:57
+msgid "noexit"
+msgstr ""
