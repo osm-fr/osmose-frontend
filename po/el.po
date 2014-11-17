@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Yannis Gyftomitros, 2014
+# Yannis Gyftomitros, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2014-11-16 19:34+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2014-11-16 20:19+0000\n"
+"Last-Translator: Yannis Gyftomitros\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/osmose/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +29,7 @@ msgstr "{day}η, {hour}ω, {minute}λ πριν"
 #: ../control.py:52
 #, python-brace-format
 msgid "in {day}d, {hour}h, {minute}m"
-msgstr ""
+msgstr "σε {day}η, {hour}ω, {minute}λ"
 
 #: ../control.py:55
 msgid "never generated"
@@ -90,7 +91,7 @@ msgstr "Πνευματικά δικαιώματα"
 
 #: ../map.py:145
 msgid "Sources"
-msgstr ""
+msgstr "Πηγαίος κώδικας"
 
 #: ../map.py:146
 msgid "Translation"
@@ -174,7 +175,7 @@ msgstr "Όνομα χρήστη:"
 
 #: tmp.tpl:24
 msgid "Bug tracker"
-msgstr ""
+msgstr "Ιχνηλάτης σφαλμάτων"
 
 #: tmp.tpl:25
 msgid ""
@@ -212,15 +213,15 @@ msgstr ""
 #, python-format
 msgid ""
 "We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
-msgstr ""
+msgstr "Μπορούμε να έρθουμε σε επαφή μέσω απευθείας email στο <a href='mailto:%s'>%s</a>."
 
 #: tmp.tpl:33 tmp.tpl:34
 msgid "Last updates"
-msgstr ""
+msgstr "Τελευταίες ενημερώσεις"
 
 #: tmp.tpl:35
 msgid "Median delay:"
-msgstr ""
+msgstr "Μέση καθυστέρηση:"
 
 #: tmp.tpl:36 tmp.tpl:42 tmp.tpl:64 tmp.tpl:73
 #: ../tools/database/item_menu.txt:27
@@ -241,7 +242,7 @@ msgstr "ιστορικό"
 
 #: tmp.tpl:41
 msgid "Update"
-msgstr ""
+msgstr "Ενημέρωση"
 
 #: tmp.tpl:43
 msgid "remote url"
@@ -253,7 +254,7 @@ msgstr "χρονική σήμανση"
 
 #: tmp.tpl:45
 msgid "Copyright informations"
-msgstr ""
+msgstr "Πληροφορίες πνευματικών δικαιωμάτων"
 
 #: tmp.tpl:46
 msgid "License"
@@ -265,7 +266,7 @@ msgstr ""
 
 #: tmp.tpl:48
 msgid "And contributors"
-msgstr ""
+msgstr "Και συνεισφέροντες"
 
 #: tmp.tpl:49
 msgid "Data are coming from"
@@ -273,12 +274,12 @@ msgstr "Τα δεδομένα προέρχονται από"
 
 #: tmp.tpl:50
 msgid "copyright"
-msgstr ""
+msgstr "πνευματικά δικαιώματα"
 
 #: tmp.tpl:51 tmp.tpl:89
 #, python-format
 msgid "Information on error %d"
-msgstr ""
+msgstr "πληροφορίες στο σφάλμα %d"
 
 #: tmp.tpl:52 tmp.tpl:90
 msgid "key"
@@ -290,7 +291,7 @@ msgstr "τιμή"
 
 #: tmp.tpl:54 tmp.tpl:92
 msgid "Marker"
-msgstr ""
+msgstr "Δείκτης"
 
 #: tmp.tpl:55
 msgid "Elements"
@@ -298,11 +299,11 @@ msgstr "Στοιχεία"
 
 #: tmp.tpl:56
 msgid "Fixes"
-msgstr ""
+msgstr "Διορθώσεις"
 
 #: tmp.tpl:58
 msgid "Fixed"
-msgstr ""
+msgstr "Επιδιορθωμένα"
 
 #: tmp.tpl:60
 msgid "Graph"
@@ -344,7 +345,7 @@ msgstr "Εμφάνιση περισσότερων σφαλμάτων"
 
 #: tmp.tpl:72
 msgid "Show some errors"
-msgstr ""
+msgstr "Εμφάνιση μερικών σφαλμάτων"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: tmp.tpl:77
@@ -378,12 +379,12 @@ msgstr "ημερομηνία"
 
 #: tmp.tpl:86
 msgid "delete error"
-msgstr ""
+msgstr "διαγραφή σφάλματος"
 
 #: tmp.tpl:88
 #, python-format
 msgid "delete error #%d"
-msgstr ""
+msgstr "διαγραφή σφάλματος #%d"
 
 #: tmp.tpl:93
 msgid "OpenStreetMap Oversight Search Engine"
@@ -403,7 +404,7 @@ msgstr ""
 
 #: tmp.tpl:97
 msgid "False positives list"
-msgstr ""
+msgstr "Λίστα εσφαλμένων σημάνσεων"
 
 #: tmp.tpl:98
 msgid "Last analysis updates"
@@ -459,11 +460,11 @@ msgstr ""
 
 #: tmp.tpl:112
 msgid "Online"
-msgstr ""
+msgstr "Σε σύνδεση"
 
 #: tmp.tpl:113
 msgid "Topic"
-msgstr ""
+msgstr "Θέμα"
 
 #: tmp.tpl:114
 msgid "Select:"
@@ -586,7 +587,7 @@ msgstr "Τεκμηρίωση αναφερόμενων σφαλμάτων"
 
 #: tmp.tpl:149
 msgid "OsmOse pages"
-msgstr ""
+msgstr "Σελίδες OsmOse"
 
 #: tmp.tpl:158
 msgid "Bug tracking system"
@@ -608,7 +609,7 @@ msgstr ""
 
 #: ../tools/database/categ_menu.txt:1
 msgid "Structure"
-msgstr ""
+msgstr "Διάρθρωση"
 
 #: ../tools/database/categ_menu.txt:2
 msgid "Missing tags"
@@ -628,11 +629,11 @@ msgstr ""
 
 #: ../tools/database/categ_menu.txt:6
 msgid "Administrative"
-msgstr ""
+msgstr "Διοικητικό"
 
 #: ../tools/database/categ_menu.txt:7
 msgid "To map"
-msgstr ""
+msgstr "Στο χάρτη"
 
 #: ../tools/database/categ_menu.txt:8
 msgid "Integration"
@@ -924,11 +925,11 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:77
 msgid "erroneous boundary"
-msgstr ""
+msgstr "εσφαλμένο όριο"
 
 #: ../tools/database/item_menu.txt:78
 msgid "out of boundary"
-msgstr ""
+msgstr "εκτός ορίου"
 
 #: ../tools/database/item_menu.txt:79
 msgid "geodesic building"
@@ -944,7 +945,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:82
 msgid "admin boundary"
-msgstr ""
+msgstr "διοικητικό όριο"
 
 #: ../tools/database/item_menu.txt:83
 msgid "power lines"
@@ -1170,15 +1171,15 @@ msgstr "Πρέπει να είστε συνδεδεμένος για να μπο
 
 #: tmp.tpl:132
 msgid "Save changeset"
-msgstr ""
+msgstr "Αποθήκευση ομάδας αλλαγών"
 
 #: tmp.tpl:135
 msgid "Comment"
-msgstr ""
+msgstr "Σχόλιο"
 
 #: ../tools/database/item_menu.txt:56
 msgid "area"
-msgstr ""
+msgstr "περιοχή"
 
 #: ../tools/database/item_menu.txt:57
 msgid "noexit"
