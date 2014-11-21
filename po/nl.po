@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the osmose-frontend package.
 # 
 # Translators:
+# a <ali.zaroili@gmail.com>, 2014
 # operon, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2014-11-13 17:33+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2014-11-21 18:36+0000\n"
+"Last-Translator: a <ali.zaroili@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -253,7 +254,7 @@ msgstr "timestamp"
 
 #: tmp.tpl:45
 msgid "Copyright informations"
-msgstr ""
+msgstr "Copyright informatie"
 
 #: tmp.tpl:46
 msgid "License"
@@ -391,7 +392,7 @@ msgstr ""
 
 #: tmp.tpl:94
 msgid "Map of errors"
-msgstr ""
+msgstr "Kaart met fouten"
 
 #: tmp.tpl:95
 msgid "Help on OSM wiki"
@@ -533,7 +534,7 @@ msgstr "Type"
 
 #: tmp.tpl:138
 msgid "Reuse changeset"
-msgstr ""
+msgstr "Hergebruik changeset"
 
 #: tmp.tpl:139
 msgid "Error reported on: "
@@ -828,7 +829,7 @@ msgstr "typefout in tag"
 
 #: ../tools/database/item_menu.txt:51
 msgid "incorrect "
-msgstr ""
+msgstr "niet juist"
 
 #: ../tools/database/item_menu.txt:52
 msgid "parking lane"
@@ -1032,7 +1033,7 @@ msgstr "adres"
 
 #: ../tools/database/item_menu.txt:108
 msgid "wikipedia, could be integrated"
-msgstr ""
+msgstr "wikipedia, kan toegevoegd worden"
 
 #: ../tools/database/item_menu.txt:109
 msgid "public service"
@@ -1040,15 +1041,15 @@ msgstr "openbare dienst"
 
 #: ../tools/database/item_menu.txt:110
 msgid "recycling"
-msgstr ""
+msgstr "recycling"
 
 #: ../tools/database/item_menu.txt:111
 msgid "recycling, could be integrated"
-msgstr ""
+msgstr "recycling, kan toegevoegd worden"
 
 #: ../tools/database/item_menu.txt:112
 msgid "parking"
-msgstr ""
+msgstr "parking"
 
 #: ../tools/database/item_menu.txt:113
 msgid "parking, could be integrated"
@@ -1060,7 +1061,7 @@ msgstr "accommodatie"
 
 #: ../tools/database/item_menu.txt:115
 msgid "accommodation, could be integrated"
-msgstr ""
+msgstr "accommodatie, kan toegevoegd worden"
 
 #: ../tools/database/item_menu.txt:116
 msgid "cycle parking"
@@ -1068,7 +1069,7 @@ msgstr "fiets parking"
 
 #: ../tools/database/item_menu.txt:117
 msgid "cycle parking, could be integrated"
-msgstr ""
+msgstr "fiets parking, kan toegevoegd worden"
 
 #: ../tools/database/item_menu.txt:118
 msgid "transport sharing"
@@ -1076,7 +1077,7 @@ msgstr "fietsverhuur"
 
 #: ../tools/database/item_menu.txt:119
 msgid "transport sharing, could be integrated"
-msgstr ""
+msgstr "fietsverhuur, kan toegevoegd worden"
 
 #: ../tools/database/item_menu.txt:120
 msgid "sport"
@@ -1084,49 +1085,49 @@ msgstr "sport"
 
 #: ../tools/database/item_menu.txt:121
 msgid "sport, could be integrated"
-msgstr ""
+msgstr "sport, kan toegevoegd worden"
 
 #: tmp.tpl:151
 msgid "Translation progress: osmose"
-msgstr ""
+msgstr "Vertaling vooruitgang:osmose"
 
 #: tmp.tpl:155
 msgid "For new language or countries"
-msgstr ""
+msgstr "Voor nieuwe talen of landen"
 
 #: tmp.tpl:157
 #, python-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
 "href='mailto:%s'>%s</a>."
-msgstr ""
+msgstr "Voor nieuwe landen, zijn we te bereiken via email <a href='mailto:%s'>%s</a>."
 
 #: tmp.tpl:146
 #, python-format
 msgid "The <a href='%s'>country coverage is available</a>."
-msgstr ""
+msgstr "De <a href='%s'>landen dekking is beschikbaar</a>."
 
 #: tmp.tpl:156
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
-msgstr ""
+msgstr "Je kan een nieuwe taal onmiddellijk creeren in <a href='%s'>Transifex.</a>"
 
 #: tmp.tpl:150
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
-msgstr ""
+msgstr "Vertaling is gedaan op <a href='%s'>Transifex</a>."
 
 #: tmp.tpl:87
 msgid "error n°"
-msgstr ""
+msgstr "fout n°"
 
 #: tmp.tpl:121
 msgid "Export"
-msgstr ""
+msgstr "export"
 
 #: tmp.tpl:122
 msgid "Html list"
-msgstr ""
+msgstr "Html lijst"
 
 #: ../tools/database/item_menu.txt:23
 msgid "one-node way"
@@ -1134,51 +1135,51 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:122
 msgid "toilets"
-msgstr ""
+msgstr "toiletten"
 
 #: ../tools/database/item_menu.txt:93
 msgid "transport sharing, not integrated"
-msgstr ""
+msgstr "fietsverhuur, niet toegevoegd"
 
 #: ../tools/database/item_menu.txt:123
 msgid "police"
-msgstr ""
+msgstr "politie"
 
 #: ../tools/database/item_menu.txt:124
 msgid "police, could be integrated"
-msgstr ""
+msgstr "politie, kan toegevoegd worden"
 
 #: ../tools/database/item_menu.txt:94
 msgid "pharmacy, not integrated "
-msgstr ""
+msgstr "apotheker, niet toegevoegd"
 
 #: ../tools/database/item_menu.txt:127
 msgid "pharmacy, could be integrated"
-msgstr ""
+msgstr "apotheker, kan toegevoegd worden"
 
 #: ../tools/database/item_menu.txt:125
 msgid "gas station"
-msgstr ""
+msgstr "benzine station"
 
 #: tmp.tpl:82
 msgid "position"
-msgstr ""
+msgstr "positie"
 
 #: tmp.tpl:131
 msgid "You must be logged in order to use the tag editor"
-msgstr ""
+msgstr "U moet ingelogd zijn om de tag editor te gebruiken"
 
 #: tmp.tpl:132
 msgid "Save changeset"
-msgstr ""
+msgstr "Bewaar changeset"
 
 #: tmp.tpl:135
 msgid "Comment"
-msgstr ""
+msgstr "Commentaar"
 
 #: ../tools/database/item_menu.txt:56
 msgid "area"
-msgstr ""
+msgstr "gebied"
 
 #: ../tools/database/item_menu.txt:57
 msgid "noexit"
