@@ -5,13 +5,14 @@
 # Translators:
 # a <ali.zaroili@gmail.com>, 2014
 # operon, 2012
+# alain2003, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2014-11-21 18:36+0000\n"
-"Last-Translator: a <ali.zaroili@gmail.com>\n"
+"PO-Revision-Date: 2014-11-22 04:24+0000\n"
+"Last-Translator: alain2003\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -363,7 +364,7 @@ msgstr "informatie over de fout"
 
 #: tmp.tpl:82
 msgid "position (abbreviation)"
-msgstr "li"
+msgstr "positie (afkorting)"
 
 #: tmp.tpl:83
 msgid "elements (abbreviation)"
@@ -388,7 +389,7 @@ msgstr "verwijder fout #%d"
 
 #: tmp.tpl:93
 msgid "OpenStreetMap Oversight Search Engine"
-msgstr ""
+msgstr "OpenStreetMap Oversight Search Engine"
 
 #: tmp.tpl:94
 msgid "Map of errors"
@@ -605,7 +606,7 @@ msgid ""
 "mobile device and improvement of documentation was funded by region of "
 "Aquitaine, France; part of the OpenAquiMap project leading by <em>Les Petits"
 " Débrouillards d'Aquitaine</em>."
-msgstr ""
+msgstr "Nieuwe functies in voegen voegen <em> Osmose Editor </ em>, initiële ondersteuning van mobiele apparatuur en verbetering van de documentatie werd gefinancierd door regio Aquitaine, Frankrijk; onderdeel van het OpenAquiMap project geleidt door <em> Les Petits débrouillards d'Aquitaine </ em>."
 
 #: ../tools/database/categ_menu.txt:1
 msgid "Structure"
@@ -1105,7 +1106,7 @@ msgstr "Voor nieuwe landen, zijn we te bereiken via email <a href='mailto:%s'>%s
 #: tmp.tpl:146
 #, python-format
 msgid "The <a href='%s'>country coverage is available</a>."
-msgstr "De <a href='%s'>landen dekking is beschikbaar</a>."
+msgstr "De beschikbare<a href='%s'>landen dekking zijn hier te vinden</a>."
 
 #: tmp.tpl:156
 #, python-format
@@ -1131,7 +1132,7 @@ msgstr "Html lijst"
 
 #: ../tools/database/item_menu.txt:23
 msgid "one-node way"
-msgstr ""
+msgstr "één-node weg"
 
 #: ../tools/database/item_menu.txt:122
 msgid "toilets"

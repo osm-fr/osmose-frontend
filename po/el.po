@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2014-11-17 19:48+0000\n"
+"PO-Revision-Date: 2014-11-22 14:21+0000\n"
 "Last-Translator: Yannis Gyftomitros\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/osmose/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr ""
 #. TRANSLATORS: link to tooltip help
 #: ../error.py:155 ../false_positive.py:66 tmp.tpl:154
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
-msgstr ""
+msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
 #: ../errors.py:122 tmp.tpl:59
 msgid "False positives"
@@ -396,7 +396,7 @@ msgstr "Χάρτης σφαλμάτων"
 
 #: tmp.tpl:95
 msgid "Help on OSM wiki"
-msgstr ""
+msgstr "Βοήθεια στο OSM wiki"
 
 #: tmp.tpl:96
 msgid "Information on error database"
@@ -456,7 +456,7 @@ msgstr ""
 
 #: tmp.tpl:111
 msgid "Show only markers with correction suggestions"
-msgstr ""
+msgstr "Εμφάνιση μόνο των δεικτών με προτεινόμενες διορθώσεις"
 
 #: tmp.tpl:112
 msgid "Online"
@@ -538,7 +538,7 @@ msgstr ""
 
 #: tmp.tpl:139
 msgid "Error reported on: "
-msgstr ""
+msgstr "Αναφορά σφάλματος στο:"
 
 #: tmp.tpl:140
 msgid "change status"
@@ -575,7 +575,7 @@ msgstr "Σελίδες προς μετάφραση"
 
 #: tmp.tpl:152
 msgid "Wiki pages"
-msgstr ""
+msgstr "Σελίδες wiki"
 
 #: tmp.tpl:153
 msgid "OsmOse main page"
@@ -685,7 +685,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:12
 msgid "broken highway continuity"
-msgstr ""
+msgstr "διακοπή συνέχειας οδού"
 
 #: ../tools/database/item_menu.txt:13
 msgid "missign tag or role"
@@ -741,7 +741,7 @@ msgstr "μονόδρομος"
 
 #: ../tools/database/item_menu.txt:28
 msgid "parent tag"
-msgstr ""
+msgstr "γονική ετικέτα"
 
 #: ../tools/database/item_menu.txt:29
 msgid "street numbers"
@@ -773,7 +773,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:36
 msgid "wikipedia"
-msgstr ""
+msgstr "wikipedia"
 
 #: ../tools/database/item_menu.txt:37
 msgid "multiple tags"
@@ -1065,7 +1065,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:116
 msgid "cycle parking"
-msgstr ""
+msgstr "στάθμευση ποδηλάτων"
 
 #: ../tools/database/item_menu.txt:117
 msgid "cycle parking, could be integrated"
@@ -1127,7 +1127,7 @@ msgstr "Εξαγωγή"
 
 #: tmp.tpl:122
 msgid "Html list"
-msgstr ""
+msgstr "Λίστα html"
 
 #: ../tools/database/item_menu.txt:23
 msgid "one-node way"
@@ -1183,4 +1183,4 @@ msgstr "περιοχή"
 
 #: ../tools/database/item_menu.txt:57
 msgid "noexit"
-msgstr ""
+msgstr "αδιέξοδο"
