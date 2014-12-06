@@ -170,6 +170,9 @@ def send_update():
                 tools.update.update(sources[s], save_filename, remote_ip=remote_ip)
                 os.unlink(save_filename)
 
+        except tools.update.OsmoseUpdateAlreadyDone:
+            pass
+
         except:
             import traceback
             from cStringIO import StringIO
