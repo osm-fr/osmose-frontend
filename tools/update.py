@@ -21,6 +21,7 @@
 ###########################################################################
 
 import sys, os, time, urllib, tempfile, commands
+import psycopg2
 import utils
 import socket
 from xml.sax import make_parser, handler
@@ -36,6 +37,9 @@ class printlogger:
 
 ###########################################################################
 ## updater
+
+class OsmoseUpdateAlreadyDone(Exception):
+    pass
 
 num_sql_run = 0
 prev_sql = ""
@@ -65,7 +69,7 @@ def update(source, url, logger = printlogger(), remote_ip=""):
 
     ## xml parser
     parser = make_parser()
-    parser.setContentHandler(update_parser(source_id, source, url, remote_ip, dbcurs))
+    parser.setContentHandler(update_parser(source_id, source, url, remote_ip, dbconn, dbcurs))
 
     ## download the file if needed
     if url.startswith("http://"):
@@ -138,11 +142,12 @@ def update(source, url, logger = printlogger(), remote_ip=""):
 
 class update_parser(handler.ContentHandler):
 
-    def __init__(self, source_id, source_data, source_url, remote_ip, dbcurs):
+    def __init__(self, source_id, source_data, source_url, remote_ip, dbconn, dbcurs):
         self._source_id        = source_id
         self._source_data      = source_data
         self._source_url       = source_url
         self._remote_ip        = remote_ip
+        self._dbconn           = dbconn
         self._dbcurs           = dbcurs
         self._class_texts      = {}
         self._class_item       = {}
@@ -339,10 +344,21 @@ class update_parser(handler.ContentHandler):
         self.ts = attrs.get("timestamp", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
 
         if not self._tstamp_updated:
-            execute_sql(self._dbcurs, "INSERT INTO dynpoi_update VALUES(%s, %s, %s, %s);",
-                                 (self._source_id, utils.pg_escape(self.ts),
-                                  utils.pg_escape(self._source_url),
-                                  utils.pg_escape(self._remote_ip)))
+            try:
+                execute_sql(self._dbcurs, "INSERT INTO dynpoi_update VALUES(%s, %s, %s, %s);",
+                                     (self._source_id, utils.pg_escape(self.ts),
+                                      utils.pg_escape(self._source_url),
+                                      utils.pg_escape(self._remote_ip)))
+            except psycopg2.IntegrityError:
+                self._dbconn.rollback()
+                execute_sql(self._dbcurs, "SELECT count(*) FROM dynpoi_update WHERE source = %s AND \"timestamp\" = %s",
+                                     (self._source_id, utils.pg_escape(self.ts)))
+                r = self._dbcurs.fetchone()
+                if r["count"] == 1:
+                    raise OsmoseUpdateAlreadyDone, "source=%s and timestamp=%s are already present" % (self._source_id, utils.pg_escape(self.ts))
+                else:
+                    raise
+
             execute_sql(self._dbcurs, "UPDATE dynpoi_update_last SET timestamp=%s WHERE source=%s;",
                                  (utils.pg_escape(self.ts), self._source_id))
             if self._dbcurs.rowcount == 0:
@@ -408,12 +424,11 @@ class Test(unittest.TestCase):
 
 
     def test_duplicate_update(self):
-        import psycopg2
         self.check_num_marker(0)
         update({"id": 1}, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
         self.check_num_marker(50)
 
-        with self.assertRaises(psycopg2.IntegrityError) as cm:
+        with self.assertRaises(OsmoseUpdateAlreadyDone) as cm:
             update({"id": 1}, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
         self.check_num_marker(50)
 
