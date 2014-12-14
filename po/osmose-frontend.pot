@@ -1182,5 +1182,7 @@ msgid "noexit"
 msgstr ""
 
 #: tmp.tpl:33
-msgid "Keep in touch by watching at <a href="
+msgid ""
+"Keep in touch by watching at <a href='https://twitter.com/"
+"osmose_qa'>@osmose_qa</a> on twitter."
 msgstr ""
