@@ -64,6 +64,7 @@
  4080 | _("duplicate object")
  4090 | _("unwanted tag on node")
  4100 | _("bad usage")
+ 4110 | _("incorrect layer")
  5010 | _("orthograph")
  5020 | _("way type")
  5030 | _("two names")
