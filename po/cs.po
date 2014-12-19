@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2014-12-14 13:03+0000\n"
+"PO-Revision-Date: 2014-12-18 11:49+0000\n"
 "Last-Translator: TK\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -37,11 +37,11 @@ msgid "never generated"
 msgstr "nikdy nevygenerováno"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:155 ../false_positive.py:66 tmp.tpl:154
+#: ../error.py:155 ../false_positive.py:66 tmp.tpl:155
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
-#: ../errors.py:122 tmp.tpl:59
+#: ../errors.py:122 tmp.tpl:60
 msgid "False positives"
 msgstr "Není chyba"
 
@@ -49,7 +49,7 @@ msgstr "Není chyba"
 msgid "Fixed errors"
 msgstr "Opravené chyby"
 
-#: ../errors.py:128 tmp.tpl:57
+#: ../errors.py:128 tmp.tpl:58
 msgid "Informations"
 msgstr "Informace"
 
@@ -82,7 +82,7 @@ msgstr "Kontakt"
 msgid "Help on wiki"
 msgstr "Nápověda na wiki"
 
-#: ../map.py:143 tmp.tpl:95 tmp.tpl:153
+#: ../map.py:143 tmp.tpl:96 tmp.tpl:154
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
@@ -216,385 +216,385 @@ msgid ""
 "We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
 msgstr "Můžete nás kontaktovat emailem na <a href='mailto:%s'>%s</a>."
 
-#: tmp.tpl:33 tmp.tpl:34
+#: tmp.tpl:34 tmp.tpl:35
 msgid "Last updates"
 msgstr "Poslední aktualizace"
 
-#: tmp.tpl:35
+#: tmp.tpl:36
 msgid "Median delay:"
 msgstr "Medián zpoždění:"
 
-#: tmp.tpl:36 tmp.tpl:42 tmp.tpl:64 tmp.tpl:73
+#: tmp.tpl:37 tmp.tpl:43 tmp.tpl:65 tmp.tpl:74
 #: ../tools/database/item_menu.txt:27
 msgid "source"
 msgstr "zdroj"
 
-#: tmp.tpl:37
+#: tmp.tpl:38
 msgid "description"
 msgstr "popis"
 
-#: tmp.tpl:38
+#: tmp.tpl:39
 msgid "last generation"
 msgstr "naposledy vygenerováno"
 
-#: tmp.tpl:39 tmp.tpl:40
+#: tmp.tpl:40 tmp.tpl:41
 msgid "history"
 msgstr "historie"
 
-#: tmp.tpl:41
+#: tmp.tpl:42
 msgid "Update"
 msgstr "Aktuzalizace"
 
-#: tmp.tpl:43
+#: tmp.tpl:44
 msgid "remote url"
 msgstr "vzdálené URL"
 
-#: tmp.tpl:44
+#: tmp.tpl:45
 msgid "timestamp"
 msgstr "časové razítko"
 
-#: tmp.tpl:45
+#: tmp.tpl:46
 msgid "Copyright informations"
 msgstr "Informace o copyrightu"
 
-#: tmp.tpl:46
+#: tmp.tpl:47
 msgid "License"
 msgstr "Licence"
 
-#: tmp.tpl:47
+#: tmp.tpl:48
 msgid "Authors"
 msgstr "Autoři"
 
-#: tmp.tpl:48
+#: tmp.tpl:49
 msgid "And contributors"
 msgstr "A přispěvatelé"
 
-#: tmp.tpl:49
+#: tmp.tpl:50
 msgid "Data are coming from"
 msgstr "Data pocházejí z"
 
-#: tmp.tpl:50
+#: tmp.tpl:51
 msgid "copyright"
 msgstr "copyright"
 
-#: tmp.tpl:51 tmp.tpl:89
+#: tmp.tpl:52 tmp.tpl:90
 #, python-format
 msgid "Information on error %d"
 msgstr "Informace k chybě %d"
 
-#: tmp.tpl:52 tmp.tpl:90
+#: tmp.tpl:53 tmp.tpl:91
 msgid "key"
 msgstr "klíč"
 
-#: tmp.tpl:53 tmp.tpl:91
+#: tmp.tpl:54 tmp.tpl:92
 msgid "value"
 msgstr "hodnota"
 
-#: tmp.tpl:54 tmp.tpl:92
+#: tmp.tpl:55 tmp.tpl:93
 msgid "Marker"
 msgstr "Značka"
 
-#: tmp.tpl:55
+#: tmp.tpl:56
 msgid "Elements"
 msgstr "Prvky"
 
-#: tmp.tpl:56
+#: tmp.tpl:57
 msgid "Fixes"
 msgstr "Opravy"
 
-#: tmp.tpl:58
+#: tmp.tpl:59
 msgid "Fixed"
 msgstr "Opraveno"
 
-#: tmp.tpl:60
+#: tmp.tpl:61
 msgid "Graph"
 msgstr "Graf"
 
-#: tmp.tpl:61 tmp.tpl:102
+#: tmp.tpl:62 tmp.tpl:103
 msgid "Map"
 msgstr "Mapa"
 
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
-#: tmp.tpl:63
+#: tmp.tpl:64
 msgid "Set"
 msgstr "Nastav"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
-#: tmp.tpl:66 tmp.tpl:75
+#: tmp.tpl:67 tmp.tpl:76
 msgid "class (abbreviation)"
 msgstr "tř"
 
-#: tmp.tpl:67 tmp.tpl:80
+#: tmp.tpl:68 tmp.tpl:81
 msgid "item"
 msgstr "prvek"
 
-#: tmp.tpl:68
+#: tmp.tpl:69
 msgid "title"
 msgstr "název"
 
-#: tmp.tpl:69
+#: tmp.tpl:70
 msgid "count"
 msgstr "počet"
 
-#: tmp.tpl:70
+#: tmp.tpl:71
 msgid "Total"
 msgstr "Celkem"
 
-#: tmp.tpl:71
+#: tmp.tpl:72
 msgid "Show more errors"
 msgstr "Ukaž více chyb"
 
-#: tmp.tpl:72
+#: tmp.tpl:73
 msgid "Show some errors"
 msgstr "Ukaž část chyb"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: tmp.tpl:77
+#: tmp.tpl:78
 msgid "subclass (abbreviation)"
 msgstr "podtř"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: tmp.tpl:79
+#: tmp.tpl:80
 msgid "level (abbreviation)"
 msgstr "úroveň"
 
-#: tmp.tpl:81
+#: tmp.tpl:82
 msgid "information on error"
 msgstr "Informace k chybě"
 
-#: tmp.tpl:82
+#: tmp.tpl:83
 msgid "position (abbreviation)"
 msgstr "poz"
 
-#: tmp.tpl:83
+#: tmp.tpl:84
 msgid "elements (abbreviation)"
 msgstr "prvky"
 
-#: tmp.tpl:84
+#: tmp.tpl:85
 msgid "subtitle"
 msgstr "titulek"
 
-#: tmp.tpl:85 ../tools/database/item_menu.txt:44
+#: tmp.tpl:86 ../tools/database/item_menu.txt:44
 msgid "date"
 msgstr "datum"
 
-#: tmp.tpl:86
+#: tmp.tpl:87
 msgid "delete error"
 msgstr "smazat chybu"
 
-#: tmp.tpl:88
+#: tmp.tpl:89
 #, python-format
 msgid "delete error #%d"
 msgstr "smazat chybu #%d"
 
-#: tmp.tpl:93
+#: tmp.tpl:94
 msgid "OpenStreetMap Oversight Search Engine"
 msgstr "OpenStreetMap Oversight Search Engine"
 
-#: tmp.tpl:94
+#: tmp.tpl:95
 msgid "Map of errors"
 msgstr "Mapa chyb"
 
-#: tmp.tpl:95
+#: tmp.tpl:96
 msgid "Help on OSM wiki"
 msgstr "Nápověda na OSM wiki"
 
-#: tmp.tpl:96
+#: tmp.tpl:97
 msgid "Information on error database"
 msgstr "Informace k databázi chyb"
 
-#: tmp.tpl:97
+#: tmp.tpl:98
 msgid "False positives list"
 msgstr "Seznam falešných chyb"
 
-#: tmp.tpl:98
+#: tmp.tpl:99
 msgid "Last analysis updates"
 msgstr "Poslední  aktualizace analýz"
 
-#: tmp.tpl:99
+#: tmp.tpl:100
 msgid "Tags Editor"
 msgstr "Editor značek"
 
-#: tmp.tpl:100 tmp.tpl:132
+#: tmp.tpl:101 tmp.tpl:133
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: tmp.tpl:101
+#: tmp.tpl:102
 msgid "Valid"
 msgstr "Použít"
 
-#: tmp.tpl:103
+#: tmp.tpl:104
 msgid "no bubbles at this zoom factor"
 msgstr "žádné značky pro tohle přiblížení"
 
-#: tmp.tpl:104
+#: tmp.tpl:105
 msgid "Severity"
 msgstr "Závažnost"
 
-#: tmp.tpl:105
+#: tmp.tpl:106
 msgid "1 only"
 msgstr "Závažnost 1"
 
-#: tmp.tpl:106
+#: tmp.tpl:107
 msgid "1+2 only"
 msgstr "Závažnost 1+2"
 
-#: tmp.tpl:107
+#: tmp.tpl:108
 msgid "all severity"
 msgstr "všechny úrovně závažnosti"
 
-#: tmp.tpl:108
+#: tmp.tpl:109
 msgid "2 only"
 msgstr "Závažnost 2"
 
-#: tmp.tpl:109
+#: tmp.tpl:110
 msgid "3 only"
 msgstr "Závažnost 3"
 
-#: tmp.tpl:110
+#: tmp.tpl:111
 msgid "Fixable"
 msgstr "Opravitelné"
 
-#: tmp.tpl:111
+#: tmp.tpl:112
 msgid "Show only markers with correction suggestions"
 msgstr "Ukaž jen značky s nápovědou k opravě"
 
-#: tmp.tpl:112
+#: tmp.tpl:113
 msgid "Online"
 msgstr "Online"
 
-#: tmp.tpl:113
+#: tmp.tpl:114
 msgid "Topic"
 msgstr "Téma"
 
-#: tmp.tpl:114
+#: tmp.tpl:115
 msgid "Select:"
 msgstr "Vybrat:"
 
-#: tmp.tpl:115 tmp.tpl:118
+#: tmp.tpl:116 tmp.tpl:119
 msgid "all"
 msgstr "vše"
 
-#: tmp.tpl:116 tmp.tpl:119
+#: tmp.tpl:117 tmp.tpl:120
 msgid "nothing"
 msgstr "nic"
 
-#: tmp.tpl:117
+#: tmp.tpl:118
 msgid "invert"
 msgstr "obrátit"
 
-#: tmp.tpl:120
+#: tmp.tpl:121
 msgid "Change language"
 msgstr "Změň jazyk"
 
-#: tmp.tpl:123
+#: tmp.tpl:124
 msgid "Help"
 msgstr "Nápověda"
 
-#: tmp.tpl:124
+#: tmp.tpl:125
 #, python-format
 msgid "Delay: %sd"
 msgstr "Zpoždění: %sd"
 
-#: tmp.tpl:125 tmp.tpl:126 tmp.tpl:127
+#: tmp.tpl:126 tmp.tpl:127 tmp.tpl:128
 #, python-format
 msgid "Level %d errors (%d)"
 msgstr "Chyby úrovně %d (%d)"
 
-#: tmp.tpl:128
+#: tmp.tpl:129
 msgid "Logout"
 msgstr "Odhlásit"
 
-#: tmp.tpl:129 tmp.tpl:131
+#: tmp.tpl:130 tmp.tpl:132
 msgid "Login"
 msgstr "Login"
 
-#: tmp.tpl:130 tmp.tpl:132
+#: tmp.tpl:131 tmp.tpl:133
 msgid "Save"
 msgstr "Uložit"
 
-#: tmp.tpl:133
+#: tmp.tpl:134
 msgid "Objects edited:"
 msgstr "Objektů změněno:"
 
-#: tmp.tpl:134
+#: tmp.tpl:135
 msgid "Objects deleted:"
 msgstr "Objektů smazáno:"
 
-#: tmp.tpl:135
+#: tmp.tpl:136
 msgid "Fix with Osmose"
 msgstr "Fix with Osmose"
 
-#: tmp.tpl:136
+#: tmp.tpl:137
 msgid "Source"
 msgstr "Zdroj"
 
-#: tmp.tpl:137
+#: tmp.tpl:138
 msgid "Type"
 msgstr "Typ"
 
-#: tmp.tpl:138
+#: tmp.tpl:139
 msgid "Reuse changeset"
 msgstr "Znovu použít sadu změn"
 
-#: tmp.tpl:139
+#: tmp.tpl:140
 msgid "Error reported on: "
 msgstr "Chyba hlášena dne:"
 
-#: tmp.tpl:140
+#: tmp.tpl:141
 msgid "change status"
 msgstr "Změnit stav"
 
-#: tmp.tpl:141
+#: tmp.tpl:142
 msgid "corrected"
 msgstr "opraveno"
 
-#: tmp.tpl:142
+#: tmp.tpl:143
 msgid "false positive"
 msgstr "není chyba"
 
-#: tmp.tpl:143 tmp.tpl:144
+#: tmp.tpl:144 tmp.tpl:145
 msgid "How to help translation"
 msgstr "Jak pomoci s překladem"
 
-#: tmp.tpl:145
+#: tmp.tpl:146
 msgid ""
 "OsmOse tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
 msgstr "OsmOse je nástroj vyvíjený zejména francouzskými vývojáři. Plánuje se přidat více jazyků - nyní zde máme překlad prakticky pro každou zemi, kterou OsmOse pokrývá."
 
-#: tmp.tpl:147
+#: tmp.tpl:148
 msgid ""
 "To make OsmOse a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr "Abychom z OsmOse udělali opravdu vícejazyčný nástroj, potřebujeme tvou pomoc při vylepšování stávajících překladů, nebo vytváření nových."
 
-#: tmp.tpl:148
+#: tmp.tpl:149
 msgid "Pages to translate"
 msgstr "Stránky k překladu"
 
-#: tmp.tpl:152
+#: tmp.tpl:153
 msgid "Wiki pages"
 msgstr "Wiki stránky"
 
-#: tmp.tpl:153
+#: tmp.tpl:154
 msgid "OsmOse main page"
 msgstr "Hlavní stránka OsmOse"
 
-#: tmp.tpl:154
+#: tmp.tpl:155
 msgid "Documentation on reported errors"
 msgstr "Dokumentace nahlášených chyb"
 
-#: tmp.tpl:149
+#: tmp.tpl:150
 msgid "OsmOse pages"
 msgstr "Stránky OsmOse"
 
-#: tmp.tpl:158
+#: tmp.tpl:159
 msgid "Bug tracking system"
 msgstr "Systém pro hlášení chyb"
 
-#: tmp.tpl:159
+#: tmp.tpl:160
 msgid ""
 "<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
 "issue with translations, or erroneous analyses."
@@ -756,7 +756,7 @@ msgstr "silnice"
 msgid "highway crossing"
 msgstr "přechod přes silnici"
 
-#: ../tools/database/item_menu.txt:32 ../tools/database/item_menu.txt:126
+#: ../tools/database/item_menu.txt:32 ../tools/database/item_menu.txt:127
 msgid "pharmacy"
 msgstr "lékárna"
 
@@ -884,249 +884,249 @@ msgstr "nelogická značka na uzlu"
 msgid "bad usage"
 msgstr "špatné použití"
 
-#: ../tools/database/item_menu.txt:67
+#: ../tools/database/item_menu.txt:68
 msgid "orthograph"
 msgstr "pravopis"
 
-#: ../tools/database/item_menu.txt:68
+#: ../tools/database/item_menu.txt:69
 msgid "way type"
 msgstr "typ cesty"
 
-#: ../tools/database/item_menu.txt:69
+#: ../tools/database/item_menu.txt:70
 msgid "two names"
 msgstr "dva názvy"
 
-#: ../tools/database/item_menu.txt:70
+#: ../tools/database/item_menu.txt:71
 msgid "toponymy"
 msgstr "toponymie"
 
-#: ../tools/database/item_menu.txt:71
+#: ../tools/database/item_menu.txt:72
 msgid "test soundex"
 msgstr "test soundex"
 
-#: ../tools/database/item_menu.txt:72
+#: ../tools/database/item_menu.txt:73
 msgid "open polygon"
 msgstr "otevřený polygon"
 
-#: ../tools/database/item_menu.txt:73
+#: ../tools/database/item_menu.txt:74
 msgid "duplicated way"
 msgstr "duplikovaná cesta"
 
-#: ../tools/database/item_menu.txt:74
+#: ../tools/database/item_menu.txt:75
 msgid "place without name"
 msgstr "místo (lokalita) beze jména"
 
-#: ../tools/database/item_menu.txt:75
+#: ../tools/database/item_menu.txt:76
 msgid "INSEE code"
 msgstr "kód INSEE"
 
-#: ../tools/database/item_menu.txt:76
+#: ../tools/database/item_menu.txt:77
 msgid "admin_level"
 msgstr "admin_level"
 
-#: ../tools/database/item_menu.txt:77
+#: ../tools/database/item_menu.txt:78
 msgid "erroneous boundary"
 msgstr "hranice s chybami"
 
-#: ../tools/database/item_menu.txt:78
+#: ../tools/database/item_menu.txt:79
 msgid "out of boundary"
 msgstr "mimo hranice"
 
-#: ../tools/database/item_menu.txt:79
+#: ../tools/database/item_menu.txt:80
 msgid "geodesic building"
 msgstr "geodetická budova"
 
-#: ../tools/database/item_menu.txt:80
+#: ../tools/database/item_menu.txt:81
 msgid "building shape"
 msgstr "tvar budovy"
 
-#: ../tools/database/item_menu.txt:81
+#: ../tools/database/item_menu.txt:82
 msgid "bridge to tag"
 msgstr "most k označkování"
 
-#: ../tools/database/item_menu.txt:82
+#: ../tools/database/item_menu.txt:83
 msgid "admin boundary"
 msgstr "administrativní hranice"
 
-#: ../tools/database/item_menu.txt:83
+#: ../tools/database/item_menu.txt:84
 msgid "power lines"
 msgstr "síť rozvodu elektřiny"
 
-#: ../tools/database/item_menu.txt:84 ../tools/database/item_menu.txt:97
+#: ../tools/database/item_menu.txt:85 ../tools/database/item_menu.txt:98
 msgid "post office"
 msgstr "pošta"
 
-#: ../tools/database/item_menu.txt:85
+#: ../tools/database/item_menu.txt:86
 msgid "ODbL migration change"
 msgstr "migrace na licenci ODbL"
 
-#: ../tools/database/item_menu.txt:86
+#: ../tools/database/item_menu.txt:87
 msgid "school, not integrated"
 msgstr "škola, není sjednoceno"
 
-#: ../tools/database/item_menu.txt:87
+#: ../tools/database/item_menu.txt:88
 msgid "monument"
 msgstr "monument"
 
-#: ../tools/database/item_menu.txt:88
+#: ../tools/database/item_menu.txt:89
 msgid "node on ways"
 msgstr "uzel na cestách"
 
-#: ../tools/database/item_menu.txt:89 ../tools/database/item_menu.txt:103
+#: ../tools/database/item_menu.txt:90 ../tools/database/item_menu.txt:104
 msgid "train station"
 msgstr "vlaková stanice"
 
-#: ../tools/database/item_menu.txt:90
+#: ../tools/database/item_menu.txt:91
 msgid "TMC"
 msgstr "TMC"
 
-#: ../tools/database/item_menu.txt:91
+#: ../tools/database/item_menu.txt:92
 msgid "relation type=boundary"
 msgstr "relace type=boundary"
 
-#: ../tools/database/item_menu.txt:92
+#: ../tools/database/item_menu.txt:93
 msgid "tunnel/bridge"
 msgstr "tunel/most"
 
-#: ../tools/database/item_menu.txt:95
+#: ../tools/database/item_menu.txt:96
 msgid "monument, museum"
 msgstr "monument, muzeum"
 
-#: ../tools/database/item_menu.txt:96
+#: ../tools/database/item_menu.txt:97
 msgid "monument, museum, could be integrated"
 msgstr "monument, muzeum, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:98
+#: ../tools/database/item_menu.txt:99
 msgid "post office, could be integrated"
 msgstr "pošta, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:99
+#: ../tools/database/item_menu.txt:100
 msgid "school"
 msgstr "škola"
 
-#: ../tools/database/item_menu.txt:100
+#: ../tools/database/item_menu.txt:101
 msgid "school, could be integrated"
 msgstr "škola, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:101
+#: ../tools/database/item_menu.txt:102
 msgid "public transport"
 msgstr "veřejná doprava"
 
-#: ../tools/database/item_menu.txt:102
+#: ../tools/database/item_menu.txt:103
 msgid "public transport, could be integrated"
 msgstr "veřejná doprava, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:104
+#: ../tools/database/item_menu.txt:105
 msgid "train station, could be integrated"
 msgstr "vlaková stanice, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:105
+#: ../tools/database/item_menu.txt:106
 msgid "level crossing"
 msgstr "úrovňový přejezd"
 
-#: ../tools/database/item_menu.txt:106
+#: ../tools/database/item_menu.txt:107
 msgid "geodesic point"
 msgstr "geodetický bod"
 
-#: ../tools/database/item_menu.txt:107
+#: ../tools/database/item_menu.txt:108
 msgid "postal address"
 msgstr "poštovní adresa"
 
-#: ../tools/database/item_menu.txt:108
+#: ../tools/database/item_menu.txt:109
 msgid "wikipedia, could be integrated"
 msgstr "wikipedie, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:109
+#: ../tools/database/item_menu.txt:110
 msgid "public service"
 msgstr "veřejná služba"
 
-#: ../tools/database/item_menu.txt:110
+#: ../tools/database/item_menu.txt:111
 msgid "recycling"
 msgstr "recyklace"
 
-#: ../tools/database/item_menu.txt:111
+#: ../tools/database/item_menu.txt:112
 msgid "recycling, could be integrated"
 msgstr "recyklace, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:112
+#: ../tools/database/item_menu.txt:113
 msgid "parking"
 msgstr "parkování"
 
-#: ../tools/database/item_menu.txt:113
+#: ../tools/database/item_menu.txt:114
 msgid "parking, could be integrated"
 msgstr "parkování, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:114
+#: ../tools/database/item_menu.txt:115
 msgid "accommodation"
 msgstr "ubytování"
 
-#: ../tools/database/item_menu.txt:115
+#: ../tools/database/item_menu.txt:116
 msgid "accommodation, could be integrated"
 msgstr "byty, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:116
+#: ../tools/database/item_menu.txt:117
 msgid "cycle parking"
 msgstr "parkování pro bicykly"
 
-#: ../tools/database/item_menu.txt:117
+#: ../tools/database/item_menu.txt:118
 msgid "cycle parking, could be integrated"
 msgstr "parkování kol, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:118
+#: ../tools/database/item_menu.txt:119
 msgid "transport sharing"
 msgstr "sdílená doprava"
 
-#: ../tools/database/item_menu.txt:119
+#: ../tools/database/item_menu.txt:120
 msgid "transport sharing, could be integrated"
 msgstr "sdílená doprava, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:120
+#: ../tools/database/item_menu.txt:121
 msgid "sport"
 msgstr "sport"
 
-#: ../tools/database/item_menu.txt:121
+#: ../tools/database/item_menu.txt:122
 msgid "sport, could be integrated"
 msgstr "sport, může být sjednoceno"
 
-#: tmp.tpl:151
+#: tmp.tpl:152
 msgid "Translation progress: osmose"
 msgstr "Postup překladu: Osmose"
 
-#: tmp.tpl:155
+#: tmp.tpl:156
 msgid "For new language or countries"
 msgstr "Pro nové jazyky nebo státy"
 
-#: tmp.tpl:157
+#: tmp.tpl:158
 #, python-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
 "href='mailto:%s'>%s</a>."
 msgstr "Pokud chcete přidat další stát, kontaktujte nás na emailové adrese <a href='mailto:%s'>%s</a>."
 
-#: tmp.tpl:146
+#: tmp.tpl:147
 #, python-format
 msgid "The <a href='%s'>country coverage is available</a>."
 msgstr "Pokrytí státu <a href='%s'> je k dispozici </a>."
 
-#: tmp.tpl:156
+#: tmp.tpl:157
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
 msgstr "Nový jazyk můžete vytvořit přímo na stránce <a href='%s'>Transifex.</a>"
 
-#: tmp.tpl:150
+#: tmp.tpl:151
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr "Překlad je prováděn na stránce <a href='%s'>Transifex</a>."
 
-#: tmp.tpl:87
+#: tmp.tpl:88
 msgid "error n°"
 msgstr "chyba č."
 
-#: tmp.tpl:121
+#: tmp.tpl:122
 msgid "Export"
 msgstr "Exportovat"
 
-#: tmp.tpl:122
+#: tmp.tpl:123
 msgid "Html list"
 msgstr "HTML"
 
@@ -1134,47 +1134,47 @@ msgstr "HTML"
 msgid "one-node way"
 msgstr "cesta s jedním uzlem"
 
-#: ../tools/database/item_menu.txt:122
+#: ../tools/database/item_menu.txt:123
 msgid "toilets"
 msgstr "toalety"
 
-#: ../tools/database/item_menu.txt:93
+#: ../tools/database/item_menu.txt:94
 msgid "transport sharing, not integrated"
 msgstr "sdílená doprava, není sjednoceno"
 
-#: ../tools/database/item_menu.txt:123
+#: ../tools/database/item_menu.txt:124
 msgid "police"
 msgstr "policie"
 
-#: ../tools/database/item_menu.txt:124
+#: ../tools/database/item_menu.txt:125
 msgid "police, could be integrated"
 msgstr "policie, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:94
+#: ../tools/database/item_menu.txt:95
 msgid "pharmacy, not integrated "
 msgstr "lékárna, není sjednoceno"
 
-#: ../tools/database/item_menu.txt:127
+#: ../tools/database/item_menu.txt:128
 msgid "pharmacy, could be integrated"
 msgstr "lékárna, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:125
+#: ../tools/database/item_menu.txt:126
 msgid "gas station"
 msgstr "čerpací stanice"
 
-#: tmp.tpl:82
+#: tmp.tpl:83
 msgid "position"
 msgstr "pozice"
 
-#: tmp.tpl:131
+#: tmp.tpl:132
 msgid "You must be logged in order to use the tag editor"
 msgstr "K použití editoru klíčů musíte být přihlášení."
 
-#: tmp.tpl:132
+#: tmp.tpl:133
 msgid "Save changeset"
 msgstr "Uložit sadu změn"
 
-#: tmp.tpl:135
+#: tmp.tpl:136
 msgid "Comment"
 msgstr "Komentář"
 
@@ -1185,3 +1185,13 @@ msgstr "oblast"
 #: ../tools/database/item_menu.txt:57
 msgid "noexit"
 msgstr "noexit"
+
+#: tmp.tpl:33
+msgid ""
+"Keep in touch by watching at <a "
+"href='https://twitter.com/osmose_qa'>@osmose_qa</a> on twitter."
+msgstr "Zůstaňte v kontaktu, sledujte  <a href='https://twitter.com/osmose_qa'>@osmose_qa</a> na Twitteru."
+
+#: ../tools/database/item_menu.txt:67
+msgid "incorrect layer"
+msgstr "chybná vrstva"
