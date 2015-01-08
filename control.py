@@ -112,6 +112,37 @@ ORDER BY
     return template('control/updates_matrix', keys=keys, matrix=matrix, stats_analyser=stats_analyser, stats_country=stats_country)
 
 
+@route('/control/update_summary')
+def updates(db, lang):
+    db.execute("""
+SELECT
+    remote_ip,
+    regexp_replace(comment, '.*-', '') AS country,
+    MAX(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp))) AS max_age,
+    MIN(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp))) AS min_age,
+    count(*) AS count
+FROM
+    dynpoi_source
+    NATURAL JOIN dynpoi_update_last
+    JOIN dynpoi_update ON
+        dynpoi_update.source = dynpoi_update_last.source AND
+        dynpoi_update.timestamp = dynpoi_update_last.timestamp
+GROUP BY
+    remote_ip,
+    regexp_replace(comment, '.*-', '')
+ORDER BY
+    remote_ip,
+    MAX(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp))) DESC
+""")
+
+    summary = defaultdict(list)
+    for res in db.fetchall():
+        (remote, country, max_age, min_age, count) = res
+        summary[remote].append({'country': country, 'max_age': max_age/60/60/24, 'min_age': min_age/60/60/24, 'count': count})
+
+    return template('control/updates_summary', summary=summary)
+
+
 @route('/control/update/<source:int>')
 def update(db, lang, source=None):
     sql = "SELECT source,timestamp,remote_url,remote_ip FROM dynpoi_update WHERE source=%d ORDER BY timestamp DESC;" % source
