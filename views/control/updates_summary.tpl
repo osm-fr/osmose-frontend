@@ -11,12 +11,12 @@
 %end
 <table>
 %for remote in summary.keys():
-<tr><th>{{remote}}</th></tr>
+<tr><th>{{"0x%03x" % (hash(remote)%4096)}}</th></tr>
 <tr><td>
 %    for country in summary[remote]:
 %        col('span', country['max_age'])
 {{country['country']}}<sup>{{country['count']}}</sup>
-({{"%0.1f" % country['max_age']}}, {{"%0.1f" % country['min_age']}})
+({{"%0.1f" % country['max_age']}}-{{"%0.1f" % country['min_age']}})
 </span>&nbsp;⚫
 %    end
 </td></tr>
