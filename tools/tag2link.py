@@ -102,12 +102,15 @@ class tag2link:
                                 replace.append(val)
                                 break
                 ret = rule['link']['url'] % tuple(replace)
+                if not '://' in ret:
+                    ret = 'http://' + ret
                 urls[id[rule['link']['subs'][0][0][0]]['k'].group(0)] = ret
         return urls
 
 if __name__ == '__main__':
     t2l = tag2link('tag2link_sources.xml')
     print t2l.checkTags({'oneway':  'yes'})
+    print t2l.checkTags({'url': 'plop.com'})
     print t2l.checkTags({'url': 'http://plop.com'})
     print t2l.checkTags({'ref:UAI': '123'})
     print t2l.checkTags({'man_made': 'survey_point', 'source': u'©IGN 2012', 'ref': '1234567 - A'})
