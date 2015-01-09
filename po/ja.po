@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2014-11-13 17:33+0000\n"
+"PO-Revision-Date: 2015-01-09 20:05+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -35,11 +35,11 @@ msgid "never generated"
 msgstr "生成なし"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:155 ../false_positive.py:66 tmp.tpl:154
+#: ../error.py:155 ../false_positive.py:66 tmp.tpl:156
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
-#: ../errors.py:122 tmp.tpl:59
+#: ../errors.py:122 tmp.tpl:61
 msgid "False positives"
 msgstr "誤検出"
 
@@ -47,7 +47,7 @@ msgstr "誤検出"
 msgid "Fixed errors"
 msgstr "修正済みのエラー"
 
-#: ../errors.py:128 tmp.tpl:57
+#: ../errors.py:128 tmp.tpl:59
 msgid "Informations"
 msgstr "情報"
 
@@ -80,7 +80,7 @@ msgstr "コンタクト"
 msgid "Help on wiki"
 msgstr "Wikiのヘルプ"
 
-#: ../map.py:143 tmp.tpl:95 tmp.tpl:153
+#: ../map.py:143 tmp.tpl:97 tmp.tpl:155
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
@@ -214,385 +214,385 @@ msgid ""
 "We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
 msgstr "<a href='mailto:%s'>%s</a>に直接メールを送ってください。"
 
-#: tmp.tpl:33 tmp.tpl:34
+#: tmp.tpl:34 tmp.tpl:36
 msgid "Last updates"
 msgstr "最新状況"
 
-#: tmp.tpl:35
+#: tmp.tpl:37
 msgid "Median delay:"
 msgstr "中間集計:"
 
-#: tmp.tpl:36 tmp.tpl:42 tmp.tpl:64 tmp.tpl:73
+#: tmp.tpl:38 tmp.tpl:44 tmp.tpl:66 tmp.tpl:75
 #: ../tools/database/item_menu.txt:27
 msgid "source"
 msgstr "ソース"
 
-#: tmp.tpl:37
+#: tmp.tpl:39
 msgid "description"
 msgstr "説明"
 
-#: tmp.tpl:38
+#: tmp.tpl:40
 msgid "last generation"
 msgstr "最終生成"
 
-#: tmp.tpl:39 tmp.tpl:40
+#: tmp.tpl:41 tmp.tpl:42
 msgid "history"
 msgstr "履歴"
 
-#: tmp.tpl:41
+#: tmp.tpl:43
 msgid "Update"
 msgstr "更新"
 
-#: tmp.tpl:43
+#: tmp.tpl:45
 msgid "remote url"
 msgstr "リモートURL"
 
-#: tmp.tpl:44
+#: tmp.tpl:46
 msgid "timestamp"
 msgstr "タイムスタンプ"
 
-#: tmp.tpl:45
+#: tmp.tpl:47
 msgid "Copyright informations"
 msgstr "著作権情報"
 
-#: tmp.tpl:46
+#: tmp.tpl:48
 msgid "License"
 msgstr "ライセンス"
 
-#: tmp.tpl:47
+#: tmp.tpl:49
 msgid "Authors"
 msgstr "作者"
 
-#: tmp.tpl:48
+#: tmp.tpl:50
 msgid "And contributors"
 msgstr "および協力者"
 
-#: tmp.tpl:49
+#: tmp.tpl:51
 msgid "Data are coming from"
 msgstr "データの引用元"
 
-#: tmp.tpl:50
+#: tmp.tpl:52
 msgid "copyright"
 msgstr "著作権"
 
-#: tmp.tpl:51 tmp.tpl:89
+#: tmp.tpl:53 tmp.tpl:91
 #, python-format
 msgid "Information on error %d"
 msgstr "エラー%dの情報"
 
-#: tmp.tpl:52 tmp.tpl:90
+#: tmp.tpl:54 tmp.tpl:92
 msgid "key"
 msgstr "キー"
 
-#: tmp.tpl:53 tmp.tpl:91
+#: tmp.tpl:55 tmp.tpl:93
 msgid "value"
 msgstr "値"
 
-#: tmp.tpl:54 tmp.tpl:92
+#: tmp.tpl:56 tmp.tpl:94
 msgid "Marker"
 msgstr "マーカー"
 
-#: tmp.tpl:55
+#: tmp.tpl:57
 msgid "Elements"
 msgstr "要素"
 
-#: tmp.tpl:56
+#: tmp.tpl:58
 msgid "Fixes"
 msgstr "修正"
 
-#: tmp.tpl:58
+#: tmp.tpl:60
 msgid "Fixed"
 msgstr "修正済み"
 
-#: tmp.tpl:60
+#: tmp.tpl:62
 msgid "Graph"
 msgstr "グラフ"
 
-#: tmp.tpl:61 tmp.tpl:102
+#: tmp.tpl:63 tmp.tpl:104
 msgid "Map"
 msgstr "地図"
 
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
-#: tmp.tpl:63
+#: tmp.tpl:65
 msgid "Set"
 msgstr "セット"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
-#: tmp.tpl:66 tmp.tpl:75
+#: tmp.tpl:68 tmp.tpl:77
 msgid "class (abbreviation)"
 msgstr "クラス"
 
-#: tmp.tpl:67 tmp.tpl:80
+#: tmp.tpl:69 tmp.tpl:82
 msgid "item"
 msgstr "項目"
 
-#: tmp.tpl:68
+#: tmp.tpl:70
 msgid "title"
 msgstr "件名"
 
-#: tmp.tpl:69
+#: tmp.tpl:71
 msgid "count"
 msgstr "回数"
 
-#: tmp.tpl:70
+#: tmp.tpl:72
 msgid "Total"
 msgstr "合計"
 
-#: tmp.tpl:71
+#: tmp.tpl:73
 msgid "Show more errors"
 msgstr "もっとエラーを表示"
 
-#: tmp.tpl:72
+#: tmp.tpl:74
 msgid "Show some errors"
 msgstr "一部のエラーを表示"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: tmp.tpl:77
+#: tmp.tpl:79
 msgid "subclass (abbreviation)"
 msgstr "サブクラス"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: tmp.tpl:79
+#: tmp.tpl:81
 msgid "level (abbreviation)"
 msgstr "Lv"
 
-#: tmp.tpl:81
+#: tmp.tpl:83
 msgid "information on error"
 msgstr "エラー情報"
 
-#: tmp.tpl:82
+#: tmp.tpl:84
 msgid "position (abbreviation)"
 msgstr "位置"
 
-#: tmp.tpl:83
+#: tmp.tpl:85
 msgid "elements (abbreviation)"
 msgstr "要素"
 
-#: tmp.tpl:84
+#: tmp.tpl:86
 msgid "subtitle"
 msgstr "サブタイトル"
 
-#: tmp.tpl:85 ../tools/database/item_menu.txt:44
+#: tmp.tpl:87 ../tools/database/item_menu.txt:44
 msgid "date"
 msgstr "日付"
 
-#: tmp.tpl:86
+#: tmp.tpl:88
 msgid "delete error"
 msgstr "削除エラー"
 
-#: tmp.tpl:88
+#: tmp.tpl:90
 #, python-format
 msgid "delete error #%d"
 msgstr "削除エラー #%d"
 
-#: tmp.tpl:93
+#: tmp.tpl:95
 msgid "OpenStreetMap Oversight Search Engine"
 msgstr "OpenStreetMap Oversight Search Engine"
 
-#: tmp.tpl:94
+#: tmp.tpl:96
 msgid "Map of errors"
 msgstr "エラーの地図"
 
-#: tmp.tpl:95
+#: tmp.tpl:97
 msgid "Help on OSM wiki"
 msgstr "OSM Wikiのヘルプ"
 
-#: tmp.tpl:96
+#: tmp.tpl:98
 msgid "Information on error database"
 msgstr "エラーデータベースの情報"
 
-#: tmp.tpl:97
+#: tmp.tpl:99
 msgid "False positives list"
 msgstr "誤検出の一覧"
 
-#: tmp.tpl:98
+#: tmp.tpl:100
 msgid "Last analysis updates"
 msgstr "最終解析更新"
 
-#: tmp.tpl:99
+#: tmp.tpl:101
 msgid "Tags Editor"
 msgstr "タグエディター"
 
-#: tmp.tpl:100 tmp.tpl:132
+#: tmp.tpl:102 tmp.tpl:134
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: tmp.tpl:101
+#: tmp.tpl:103
 msgid "Valid"
 msgstr "確認"
 
-#: tmp.tpl:103
+#: tmp.tpl:105
 msgid "no bubbles at this zoom factor"
 msgstr "この表示倍率では表示するものはありません"
 
-#: tmp.tpl:104
+#: tmp.tpl:106
 msgid "Severity"
 msgstr "深刻度"
 
-#: tmp.tpl:105
+#: tmp.tpl:107
 msgid "1 only"
 msgstr "1のみ"
 
-#: tmp.tpl:106
+#: tmp.tpl:108
 msgid "1+2 only"
 msgstr "1+2のみ"
 
-#: tmp.tpl:107
+#: tmp.tpl:109
 msgid "all severity"
 msgstr "すべての深刻度"
 
-#: tmp.tpl:108
+#: tmp.tpl:110
 msgid "2 only"
 msgstr "2のみ"
 
-#: tmp.tpl:109
+#: tmp.tpl:111
 msgid "3 only"
 msgstr "3のみ"
 
-#: tmp.tpl:110
+#: tmp.tpl:112
 msgid "Fixable"
 msgstr "修正手段"
 
-#: tmp.tpl:111
+#: tmp.tpl:113
 msgid "Show only markers with correction suggestions"
 msgstr "修正の提案があるマーカーのみ表示"
 
-#: tmp.tpl:112
+#: tmp.tpl:114
 msgid "Online"
 msgstr "オンライン"
 
-#: tmp.tpl:113
+#: tmp.tpl:115
 msgid "Topic"
 msgstr "トピック"
 
-#: tmp.tpl:114
+#: tmp.tpl:116
 msgid "Select:"
 msgstr "選択:"
 
-#: tmp.tpl:115 tmp.tpl:118
+#: tmp.tpl:117 tmp.tpl:120
 msgid "all"
 msgstr "全て"
 
-#: tmp.tpl:116 tmp.tpl:119
+#: tmp.tpl:118 tmp.tpl:121
 msgid "nothing"
 msgstr "なし"
 
-#: tmp.tpl:117
+#: tmp.tpl:119
 msgid "invert"
 msgstr "反転"
 
-#: tmp.tpl:120
+#: tmp.tpl:122
 msgid "Change language"
 msgstr "言語を変更"
 
-#: tmp.tpl:123
+#: tmp.tpl:125
 msgid "Help"
 msgstr "ヘルプ"
 
-#: tmp.tpl:124
+#: tmp.tpl:126
 #, python-format
 msgid "Delay: %sd"
 msgstr "集計: %s日前"
 
-#: tmp.tpl:125 tmp.tpl:126 tmp.tpl:127
+#: tmp.tpl:127 tmp.tpl:128 tmp.tpl:129
 #, python-format
 msgid "Level %d errors (%d)"
 msgstr "レベル%dのエラー(%d件)"
 
-#: tmp.tpl:128
+#: tmp.tpl:130
 msgid "Logout"
 msgstr "ログアウト"
 
-#: tmp.tpl:129 tmp.tpl:131
+#: tmp.tpl:131 tmp.tpl:133
 msgid "Login"
 msgstr "ログイン"
 
-#: tmp.tpl:130 tmp.tpl:132
+#: tmp.tpl:132 tmp.tpl:134
 msgid "Save"
 msgstr "保存"
 
-#: tmp.tpl:133
+#: tmp.tpl:135
 msgid "Objects edited:"
 msgstr "編集されたオブジェクト:"
 
-#: tmp.tpl:134
+#: tmp.tpl:136
 msgid "Objects deleted:"
 msgstr "削除されたオブジェクト:"
 
-#: tmp.tpl:135
+#: tmp.tpl:137
 msgid "Fix with Osmose"
 msgstr "Osmoseで修正"
 
-#: tmp.tpl:136
+#: tmp.tpl:138
 msgid "Source"
 msgstr "ソース"
 
-#: tmp.tpl:137
+#: tmp.tpl:139
 msgid "Type"
 msgstr "種別"
 
-#: tmp.tpl:138
+#: tmp.tpl:140
 msgid "Reuse changeset"
 msgstr "変更セットを再利用"
 
-#: tmp.tpl:139
+#: tmp.tpl:141
 msgid "Error reported on: "
 msgstr "エラー報告日:"
 
-#: tmp.tpl:140
+#: tmp.tpl:142
 msgid "change status"
 msgstr "状態の変更"
 
-#: tmp.tpl:141
+#: tmp.tpl:143
 msgid "corrected"
 msgstr "修正済み"
 
-#: tmp.tpl:142
+#: tmp.tpl:144
 msgid "false positive"
 msgstr "誤検出"
 
-#: tmp.tpl:143 tmp.tpl:144
+#: tmp.tpl:145 tmp.tpl:146
 msgid "How to help translation"
 msgstr "翻訳に協力するには"
 
-#: tmp.tpl:145
+#: tmp.tpl:147
 msgid ""
 "OsmOse tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
 msgstr "OsmOseツールはフランス人を中心に開発されており、もっと言語を追加したいと思っています。現在は解析でカバーしているほとんどの国に対応しています。"
 
-#: tmp.tpl:147
+#: tmp.tpl:149
 msgid ""
 "To make OsmOse a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr "OsmOseを真に多言語のツールにするために、現在の翻訳の改善や新しい翻訳の協力が必要です。"
 
-#: tmp.tpl:148
+#: tmp.tpl:150
 msgid "Pages to translate"
 msgstr "翻訳のページ"
 
-#: tmp.tpl:152
+#: tmp.tpl:154
 msgid "Wiki pages"
 msgstr "Wikiページ"
 
-#: tmp.tpl:153
+#: tmp.tpl:155
 msgid "OsmOse main page"
 msgstr "OsmOseメインページ"
 
-#: tmp.tpl:154
+#: tmp.tpl:156
 msgid "Documentation on reported errors"
 msgstr "報告されるエラーの説明"
 
-#: tmp.tpl:149
+#: tmp.tpl:151
 msgid "OsmOse pages"
 msgstr "OsmOseの各ページ"
 
-#: tmp.tpl:158
+#: tmp.tpl:160
 msgid "Bug tracking system"
 msgstr "バグ追跡システム"
 
-#: tmp.tpl:159
+#: tmp.tpl:161
 msgid ""
 "<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
 "issue with translations, or erroneous analyses."
@@ -754,7 +754,7 @@ msgstr "highway"
 msgid "highway crossing"
 msgstr "横断歩道"
 
-#: ../tools/database/item_menu.txt:32 ../tools/database/item_menu.txt:126
+#: ../tools/database/item_menu.txt:32 ../tools/database/item_menu.txt:127
 msgid "pharmacy"
 msgstr "薬局"
 
@@ -882,249 +882,249 @@ msgstr "ノード上の不要なタグ"
 msgid "bad usage"
 msgstr "使い方の誤り"
 
-#: ../tools/database/item_menu.txt:67
+#: ../tools/database/item_menu.txt:68
 msgid "orthograph"
 msgstr "投影法"
 
-#: ../tools/database/item_menu.txt:68
+#: ../tools/database/item_menu.txt:69
 msgid "way type"
 msgstr "ウェイの種別"
 
-#: ../tools/database/item_menu.txt:69
+#: ../tools/database/item_menu.txt:70
 msgid "two names"
 msgstr "2つの名前"
 
-#: ../tools/database/item_menu.txt:70
+#: ../tools/database/item_menu.txt:71
 msgid "toponymy"
 msgstr "地名"
 
-#: ../tools/database/item_menu.txt:71
+#: ../tools/database/item_menu.txt:72
 msgid "test soundex"
 msgstr "試験の読み索引"
 
-#: ../tools/database/item_menu.txt:72
+#: ../tools/database/item_menu.txt:73
 msgid "open polygon"
 msgstr "閉じていないポリゴン"
 
-#: ../tools/database/item_menu.txt:73
+#: ../tools/database/item_menu.txt:74
 msgid "duplicated way"
 msgstr "重複したウェイ"
 
-#: ../tools/database/item_menu.txt:74
+#: ../tools/database/item_menu.txt:75
 msgid "place without name"
 msgstr "nameがないplace"
 
-#: ../tools/database/item_menu.txt:75
+#: ../tools/database/item_menu.txt:76
 msgid "INSEE code"
 msgstr "INSEEコード"
 
-#: ../tools/database/item_menu.txt:76
+#: ../tools/database/item_menu.txt:77
 msgid "admin_level"
 msgstr "管理レベル"
 
-#: ../tools/database/item_menu.txt:77
+#: ../tools/database/item_menu.txt:78
 msgid "erroneous boundary"
 msgstr "誤った境界線"
 
-#: ../tools/database/item_menu.txt:78
+#: ../tools/database/item_menu.txt:79
 msgid "out of boundary"
 msgstr "境界線外"
 
-#: ../tools/database/item_menu.txt:79
+#: ../tools/database/item_menu.txt:80
 msgid "geodesic building"
 msgstr "測地の建物"
 
-#: ../tools/database/item_menu.txt:80
+#: ../tools/database/item_menu.txt:81
 msgid "building shape"
 msgstr "建物の形状"
 
-#: ../tools/database/item_menu.txt:81
+#: ../tools/database/item_menu.txt:82
 msgid "bridge to tag"
 msgstr "タグ付けが必要な橋"
 
-#: ../tools/database/item_menu.txt:82
+#: ../tools/database/item_menu.txt:83
 msgid "admin boundary"
 msgstr "行政境界"
 
-#: ../tools/database/item_menu.txt:83
+#: ../tools/database/item_menu.txt:84
 msgid "power lines"
 msgstr "電力線"
 
-#: ../tools/database/item_menu.txt:84 ../tools/database/item_menu.txt:97
+#: ../tools/database/item_menu.txt:85 ../tools/database/item_menu.txt:98
 msgid "post office"
 msgstr "郵便局"
 
-#: ../tools/database/item_menu.txt:85
+#: ../tools/database/item_menu.txt:86
 msgid "ODbL migration change"
 msgstr "ODbLからの変更"
 
-#: ../tools/database/item_menu.txt:86
+#: ../tools/database/item_menu.txt:87
 msgid "school, not integrated"
 msgstr "含まれていない学校"
 
-#: ../tools/database/item_menu.txt:87
+#: ../tools/database/item_menu.txt:88
 msgid "monument"
 msgstr "記念堂"
 
-#: ../tools/database/item_menu.txt:88
+#: ../tools/database/item_menu.txt:89
 msgid "node on ways"
 msgstr "ウェイ上のノード"
 
-#: ../tools/database/item_menu.txt:89 ../tools/database/item_menu.txt:103
+#: ../tools/database/item_menu.txt:90 ../tools/database/item_menu.txt:104
 msgid "train station"
 msgstr "鉄道駅"
 
-#: ../tools/database/item_menu.txt:90
+#: ../tools/database/item_menu.txt:91
 msgid "TMC"
 msgstr "TMC"
 
-#: ../tools/database/item_menu.txt:91
+#: ../tools/database/item_menu.txt:92
 msgid "relation type=boundary"
 msgstr "relation type=boundary"
 
-#: ../tools/database/item_menu.txt:92
+#: ../tools/database/item_menu.txt:93
 msgid "tunnel/bridge"
 msgstr "トンネル/橋"
 
-#: ../tools/database/item_menu.txt:95
+#: ../tools/database/item_menu.txt:96
 msgid "monument, museum"
 msgstr "記念堂、博物館"
 
-#: ../tools/database/item_menu.txt:96
+#: ../tools/database/item_menu.txt:97
 msgid "monument, museum, could be integrated"
 msgstr "含められる記念堂、博物館"
 
-#: ../tools/database/item_menu.txt:98
+#: ../tools/database/item_menu.txt:99
 msgid "post office, could be integrated"
 msgstr "含められる郵便局"
 
-#: ../tools/database/item_menu.txt:99
+#: ../tools/database/item_menu.txt:100
 msgid "school"
 msgstr "学校"
 
-#: ../tools/database/item_menu.txt:100
+#: ../tools/database/item_menu.txt:101
 msgid "school, could be integrated"
 msgstr "含められる学校"
 
-#: ../tools/database/item_menu.txt:101
+#: ../tools/database/item_menu.txt:102
 msgid "public transport"
 msgstr "公共交通"
 
-#: ../tools/database/item_menu.txt:102
+#: ../tools/database/item_menu.txt:103
 msgid "public transport, could be integrated"
 msgstr "含められる公共交通"
 
-#: ../tools/database/item_menu.txt:104
+#: ../tools/database/item_menu.txt:105
 msgid "train station, could be integrated"
 msgstr "含められる鉄道駅"
 
-#: ../tools/database/item_menu.txt:105
+#: ../tools/database/item_menu.txt:106
 msgid "level crossing"
 msgstr "踏切"
 
-#: ../tools/database/item_menu.txt:106
+#: ../tools/database/item_menu.txt:107
 msgid "geodesic point"
 msgstr "測地点"
 
-#: ../tools/database/item_menu.txt:107
+#: ../tools/database/item_menu.txt:108
 msgid "postal address"
 msgstr "住所"
 
-#: ../tools/database/item_menu.txt:108
+#: ../tools/database/item_menu.txt:109
 msgid "wikipedia, could be integrated"
 msgstr "含められるwikipedia"
 
-#: ../tools/database/item_menu.txt:109
+#: ../tools/database/item_menu.txt:110
 msgid "public service"
 msgstr "公共交通機関"
 
-#: ../tools/database/item_menu.txt:110
+#: ../tools/database/item_menu.txt:111
 msgid "recycling"
 msgstr "資源回収場所"
 
-#: ../tools/database/item_menu.txt:111
+#: ../tools/database/item_menu.txt:112
 msgid "recycling, could be integrated"
 msgstr "含められる資源回収場所"
 
-#: ../tools/database/item_menu.txt:112
+#: ../tools/database/item_menu.txt:113
 msgid "parking"
 msgstr "駐車場"
 
-#: ../tools/database/item_menu.txt:113
+#: ../tools/database/item_menu.txt:114
 msgid "parking, could be integrated"
 msgstr "含められる駐車場"
 
-#: ../tools/database/item_menu.txt:114
+#: ../tools/database/item_menu.txt:115
 msgid "accommodation"
 msgstr "宿泊施設"
 
-#: ../tools/database/item_menu.txt:115
+#: ../tools/database/item_menu.txt:116
 msgid "accommodation, could be integrated"
 msgstr "含められる宿泊施設"
 
-#: ../tools/database/item_menu.txt:116
+#: ../tools/database/item_menu.txt:117
 msgid "cycle parking"
 msgstr "駐輪場"
 
-#: ../tools/database/item_menu.txt:117
+#: ../tools/database/item_menu.txt:118
 msgid "cycle parking, could be integrated"
 msgstr "含められる駐輪場"
 
-#: ../tools/database/item_menu.txt:118
+#: ../tools/database/item_menu.txt:119
 msgid "transport sharing"
 msgstr "乗り物のシェア"
 
-#: ../tools/database/item_menu.txt:119
+#: ../tools/database/item_menu.txt:120
 msgid "transport sharing, could be integrated"
 msgstr "含められる乗り物のシェア"
 
-#: ../tools/database/item_menu.txt:120
+#: ../tools/database/item_menu.txt:121
 msgid "sport"
 msgstr "スポーツ"
 
-#: ../tools/database/item_menu.txt:121
+#: ../tools/database/item_menu.txt:122
 msgid "sport, could be integrated"
 msgstr "含められるスポーツ"
 
-#: tmp.tpl:151
+#: tmp.tpl:153
 msgid "Translation progress: osmose"
 msgstr "翻訳の進捗: osmose"
 
-#: tmp.tpl:155
+#: tmp.tpl:157
 msgid "For new language or countries"
 msgstr "言語と国の追加"
 
-#: tmp.tpl:157
+#: tmp.tpl:159
 #, python-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
 "href='mailto:%s'>%s</a>."
 msgstr "新しい国の追加は、直接メールで<a href='mailto:%s'>%s</a>にご連絡ください。"
 
-#: tmp.tpl:146
+#: tmp.tpl:148
 #, python-format
 msgid "The <a href='%s'>country coverage is available</a>."
 msgstr "<a href='%s'>国のカバー状況はこちらです</a>。"
 
-#: tmp.tpl:156
+#: tmp.tpl:158
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
 msgstr "新しい言語は<a href='%s'>Transifex</a>から直接作成できます。"
 
-#: tmp.tpl:150
+#: tmp.tpl:152
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr "翻訳は<a href='%s'>Transifex</a>で行われています。"
 
-#: tmp.tpl:87
+#: tmp.tpl:89
 msgid "error n°"
 msgstr "エラー番号"
 
-#: tmp.tpl:121
+#: tmp.tpl:123
 msgid "Export"
 msgstr "エクスポート"
 
-#: tmp.tpl:122
+#: tmp.tpl:124
 msgid "Html list"
 msgstr "HTMLリスト"
 
@@ -1132,47 +1132,47 @@ msgstr "HTMLリスト"
 msgid "one-node way"
 msgstr "ノードが1つのウェイ"
 
-#: ../tools/database/item_menu.txt:122
+#: ../tools/database/item_menu.txt:123
 msgid "toilets"
 msgstr "トイレ"
 
-#: ../tools/database/item_menu.txt:93
+#: ../tools/database/item_menu.txt:94
 msgid "transport sharing, not integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:123
+#: ../tools/database/item_menu.txt:124
 msgid "police"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:124
+#: ../tools/database/item_menu.txt:125
 msgid "police, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:94
+#: ../tools/database/item_menu.txt:95
 msgid "pharmacy, not integrated "
 msgstr ""
 
-#: ../tools/database/item_menu.txt:127
+#: ../tools/database/item_menu.txt:128
 msgid "pharmacy, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:125
+#: ../tools/database/item_menu.txt:126
 msgid "gas station"
 msgstr ""
 
-#: tmp.tpl:82
+#: tmp.tpl:84
 msgid "position"
 msgstr ""
 
-#: tmp.tpl:131
+#: tmp.tpl:133
 msgid "You must be logged in order to use the tag editor"
 msgstr ""
 
-#: tmp.tpl:132
+#: tmp.tpl:134
 msgid "Save changeset"
 msgstr ""
 
-#: tmp.tpl:135
+#: tmp.tpl:137
 msgid "Comment"
 msgstr ""
 
@@ -1182,4 +1182,18 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:57
 msgid "noexit"
+msgstr ""
+
+#: tmp.tpl:33
+msgid ""
+"Keep in touch by watching at <a "
+"href='https://twitter.com/osmose_qa'>@osmose_qa</a> on twitter."
+msgstr ""
+
+#: ../tools/database/item_menu.txt:67
+msgid "incorrect layer"
+msgstr ""
+
+#: tmp.tpl:35
+msgid "Updates summary"
 msgstr ""
