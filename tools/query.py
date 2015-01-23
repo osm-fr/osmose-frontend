@@ -265,7 +265,7 @@ def _gets(db, params):
             marker.source = dynpoi_update_last.source
     WHERE
         %s AND
-        dynpoi_update_last.timestamp > (now() - interval '3000 months')
+        dynpoi_update_last.timestamp > (now() - interval '3 months')
     """
     if params.lat and params.lon:
         sqlbase += """
