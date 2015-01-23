@@ -61,10 +61,7 @@
 %for res in errors_groups:
 <tr>
     <td><a href="?source={{res["source"]}}">{{res["source"]}}</a></td>
-%    cmt_split = res["comment"].split("-")
-%    analyse = "-".join(cmt_split[0:-1])
-%    country = cmt_split[-1]
-    <td>{{analyse}}-<a href="?country={{country}}">{{country}}</a></td>
+    <td>{{res["analyser"]}}-<a href="?country={{res["country"]}}">{{res["country"]}}</a></td>
     <td><a href="?item={{res["item"]}}&amp;class={{res["class"]}}">{{res["class"]}}</a></td>
     <td title="{{res["item"]}}"><img src="../images/markers/marker-l-{{res["item"]}}.png" alt="{{res["item"]}}"></td>
     <td><a href="?item={{res["item"]}}">{{res["item"]}}</a></td>

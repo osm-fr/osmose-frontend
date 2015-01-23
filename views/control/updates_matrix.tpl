@@ -35,9 +35,9 @@
 %    end
 %    for k in keys:
 %        if matrix[r].has_key(k):
-%            v = matrix[r][k][1]
+%            v = matrix[r][k][0]
 %            col('td', v)
-<a href="update/{{matrix[r][k][2]}}">{{"%0.1f"%v}}</a></td>
+<a href="update/{{matrix[r][k][1]}}">{{"%0.1f"%v}}</a></td>
 %        else:
     <td/>
 %        end

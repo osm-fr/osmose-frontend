@@ -143,7 +143,8 @@ def index(db, lang, format=None):
             "dynpoi_class.item",
             "dynpoi_class.source",
             "dynpoi_class.class",
-            "dynpoi_source.comment"],
+            "source.country",
+            "source.analyser"],
             ["dynpoi_item"], [
             "first(dynpoi_item.menu) AS menu",
             "first(dynpoi_class.title) AS title"],

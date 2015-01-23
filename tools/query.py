@@ -89,7 +89,7 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
     if (level and level != "1,2,3") or tags:
         tables.append("dynpoi_class")
     if country:
-        tables.append("dynpoi_source")
+        tables.append("source")
     if not stats:
         tables.append("dynpoi_item")
         if useDevItem:
@@ -97,16 +97,16 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
         if users:
             tables.append("marker_elem")
 
-    if "dynpoi_class" in tables or "dynpoi_source" in tables:
+    if "dynpoi_class" in tables or "source" in tables:
         join += """
         JOIN dynpoi_class ON
             marker.source = dynpoi_class.source AND
             marker.class = dynpoi_class.class"""
 
-    if "dynpoi_source" in tables:
+    if "source" in tables:
         join += """
-        JOIN dynpoi_source ON
-            dynpoi_class.source = dynpoi_source.source"""
+        JOIN source ON
+            dynpoi_class.source = source.id"""
 
     if "dynpoi_item" in tables:
         join += """
@@ -134,7 +134,7 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
     if country:
         if country[-1] == "*":
             country = country[:-1] + "%"
-        where.append("dynpoi_source.comment LIKE '%%%s'" % country)
+        where.append("source.country LIKE '%s'" % country)
 
     if not status in ("done", "false") and useDevItem == True:
         where.append("dynpoi_item.item IS NULL")
@@ -244,7 +244,8 @@ def _gets(db, params):
         marker.elems,
         marker.subclass,
         marker.subtitle,
-        dynpoi_source.comment,
+        source.country,
+        source.analyser,
         dynpoi_class.title,
         dynpoi_class.level,
         dynpoi_update_last.timestamp,
@@ -264,7 +265,7 @@ def _gets(db, params):
             marker.source = dynpoi_update_last.source
     WHERE
         %s AND
-        dynpoi_update_last.timestamp > (now() - interval '3 months')
+        dynpoi_update_last.timestamp > (now() - interval '3000 months')
     """
     if params.lat and params.lon:
         sqlbase += """
@@ -277,9 +278,9 @@ def _gets(db, params):
 
     if params.full:
         if not params.status in ("done", "false"):
-            forceTable = ["dynpoi_class", "dynpoi_source", "marker_elem"]
+            forceTable = ["dynpoi_class", "source", "marker_elem"]
         else:
-            forceTable = ["dynpoi_class", "dynpoi_source"]
+            forceTable = ["dynpoi_class", "source"]
     else:
         forceTable = []
 
