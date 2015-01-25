@@ -63,14 +63,15 @@ def pg_escape(text):
 def get_sources():
     conn = get_dbconn()
     curs = conn.cursor()
-    curs.execute("SELECT source, update, comment, contact FROM dynpoi_source;")
+    curs.execute("SELECT id, password, country, analyser FROM source JOIN source_password ON source.id = source_id;")
     config = {}
     for res in curs.fetchall():
         src = {}
-        src["id"]         = str(res["source"])
-        src["updatecode"] = res["update"]
-        src["comment"]    = res["comment"]
-        src["contact"]    = res["contact"]
+        src["id"]         = str(res["id"])
+        src["password"]   = res["password"]
+        src["country"]    = res["country"]
+        src["analyser"]   = res["analyser"]
+        src["comment"]    = res["analyser"] + "-" + res["country"]
         config[src["id"]] = src
     return config
 

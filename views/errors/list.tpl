@@ -26,7 +26,7 @@
 </thead>
 %for res in errors:
 <tr>
-    <td title="{{res["comment"]}}"><a href="?source={{res["source"]}}">{{res["source"]}}</a></td>
+    <td title="{{res["country"] + "-" + res["analyser"]}}"><a href="?source={{res["source"]}}">{{res["source"]}}</a></td>
     <td>{{res["class"]}}</td>
     <td>{{res["subclass"]}}</td>
     <td>{{res["level"]}}</td>

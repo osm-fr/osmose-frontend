@@ -31,29 +31,30 @@ from collections import defaultdict
 def updates(db, lang):
     db.execute("""
 SELECT
-    dynpoi_source.source,
+    source.id,
     EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp)) AS age,
-    dynpoi_source.comment
+    source.country,
+    source.analyser
 FROM
-    dynpoi_source
+    source
     LEFT JOIN dynpoi_update_last ON
-        dynpoi_source.source = dynpoi_update_last.source
+        source.id = dynpoi_update_last.source
 ORDER BY
     dynpoi_update_last.timestamp DESC
 """)
     liste = []
     for res in db.fetchall():
-        (source, age, comment) = (res[0], res[1], res[2])
+        (source, age, country, analyser) = (res[0], res[1], res[2], res[3])
         if age:
             if age >= 0:
                 # TRANSLATORS: days / hours / minutes since last source update, abbreviated to d / h / m
                 txt = _("{day}d, {hour}h, {minute}m ago").format(day=int(age/86400), hour=int(age/3600)%24, minute=int(age/60)%60)
             else:
                 txt = _("in {day}d, {hour}h, {minute}m").format(day=int(-age/86400), hour=int(-age/3600)%24, minute=int(-age/60)%60)
-            liste.append((comment, age, txt, source))
+            liste.append((country, analyser, age, txt, source))
         else:
-            liste.append((comment, 1e10, _("never generated"), source))
-    liste.sort(lambda x, y: -cmp(x[1], y[1]))
+            liste.append((country, analyser, 1e10, _("never generated"), source))
+    liste.sort(lambda x, y: -cmp(x[2], y[2]))
 
     return template('control/updates', liste=liste)
 
@@ -61,15 +62,17 @@ ORDER BY
 @route('/control/update_matrix')
 def updates(db, lang):
     db.execute("""
-SELECT DISTINCT ON (source)
-    source,
+SELECT DISTINCT ON (source.id)
+    source.id,
     EXTRACT(EPOCH FROM ((now())-timestamp)) AS age,
-    comment
+    country,
+    analyser
 FROM
-    dynpoi_source
-    NATURAL JOIN dynpoi_update_last
+    source
+    JOIN dynpoi_update_last ON
+        source.id = dynpoi_update_last.source
 ORDER BY
-    source ASC,
+    source.id ASC,
     timestamp DESC
 """)
 
@@ -78,16 +81,14 @@ ORDER BY
     stats_analyser = {}
     stats_country = {}
     for res in db.fetchall():
-        (source, age, comment) = (res[0], res[1], res[2])
-        analyser = '-'.join(comment.split('-')[0:-1])
-        country = comment.split('-')[-1]
+        (source, age, country, analyser) = (res[0], res[1], res[2], res[3])
         keys[country] += 1
-        matrix[analyser][country] = (comment, age/60/60/24, source)
+        matrix[analyser][country] = (age/60/60/24, source)
     for analyser in matrix:
         min = max = None
         sum = 0
         for country in matrix[analyser]:
-            v = matrix[analyser][country][1]
+            v = matrix[analyser][country][0]
             min = v if not min or v < min else min
             max = v if not max or v > max else max
             sum += v
@@ -117,19 +118,20 @@ def updates(db, lang):
     db.execute("""
 SELECT
     remote_ip,
-    regexp_replace(comment, '.*-', '') AS country,
+    country,
     MAX(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp))) AS max_age,
     MIN(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp))) AS min_age,
     count(*) AS count
 FROM
-    dynpoi_source
-    NATURAL JOIN dynpoi_update_last
+    source
+    JOIN dynpoi_update_last ON
+        source.id = dynpoi_update_last.source
     JOIN dynpoi_update ON
         dynpoi_update.source = dynpoi_update_last.source AND
         dynpoi_update.timestamp = dynpoi_update_last.timestamp
 GROUP BY
     remote_ip,
-    regexp_replace(comment, '.*-', '')
+    country
 ORDER BY
     remote_ip,
     MAX(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp))) DESC
@@ -184,7 +186,7 @@ def send_update():
     for s in sources:
         if src and sources[s]["comment"] != src:
             continue
-        if sources[s]["updatecode"] != code:
+        if sources[s]["password"] != code:
             continue
 
         try:

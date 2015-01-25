@@ -393,10 +393,14 @@ class Test(unittest.TestCase):
         self.dbcurs = self.dbconn.cursor()
         self.dbcurs.execute(open("tools/database/drop.sql", "r").read())
         self.dbcurs.execute(open("tools/database/schema.sql", "r").read())
-        self.dbcurs.execute("INSERT INTO dynpoi_source (update, comment, source, contact) VALUES (%s, %s, %s, %s);",
-                       ("xx1", "xx1", 1, "xxx"))
-        self.dbcurs.execute("INSERT INTO dynpoi_source (update, comment, source, contact) VALUES (%s, %s, %s, %s);",
-                       ("xx2", "xx2", 2, "xxx"))
+        self.dbcurs.execute("INSERT INTO source (id, country, analyser) VALUES (%s, %s, %s);",
+                       (1, "xx1", "yy1"))
+        self.dbcurs.execute("INSERT INTO source (id, country, analyser) VALUES (%s, %s, %s);",
+                       (2, "xx2", "yy2"))
+        self.dbcurs.execute("INSERT INTO source_password (source_id, password) VALUES (%s, %s);",
+                       (1, "xx1"))
+        self.dbcurs.execute("INSERT INTO source_password (source_id, password) VALUES (%s, %s);",
+                       (2, "xx2"))
         self.dbconn.commit()
 
     def tearDown(self):

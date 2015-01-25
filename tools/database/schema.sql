@@ -51,19 +51,8 @@ CREATE TABLE dynpoi_item (
     marker_flag character varying(16),
     menu hstore,
     levels integer[],
-    number integer[]
-);
-
-
---
--- Name: dynpoi_source; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE dynpoi_source (
-    source integer NOT NULL,
-    update character varying(128),
-    contact character varying(256),
-    comment character varying(1024)
+    number integer[],
+    tags character varying[]
 );
 
 
@@ -80,6 +69,18 @@ CREATE TABLE dynpoi_stats (
 
 
 --
+-- Name: dynpoi_status_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE dynpoi_status_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
 -- Name: dynpoi_status; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -93,27 +94,8 @@ CREATE TABLE dynpoi_status (
     lat numeric(9,7),
     lon numeric(10,7),
     subtitle hstore,
-    id bigint
+    id bigint DEFAULT nextval('dynpoi_status_id_seq'::regclass)
 );
-
-
---
--- Name: dynpoi_status_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE dynpoi_status_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: dynpoi_status_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE dynpoi_status_id_seq OWNED BY dynpoi_status.id;
 
 
 --
@@ -204,10 +186,24 @@ ALTER SEQUENCE marker_id_seq OWNED BY marker.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: source; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY dynpoi_status ALTER COLUMN id SET DEFAULT nextval('dynpoi_status_id_seq'::regclass);
+CREATE TABLE source (
+    id integer NOT NULL,
+    country character varying(256),
+    analyser character varying(256)
+);
+
+
+--
+-- Name: source_password; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE source_password (
+    source_id integer NOT NULL,
+    password character varying(128)
+);
 
 
 --
@@ -251,16 +247,6 @@ ALTER TABLE ONLY dynpoi_item
     ADD CONSTRAINT dynpoi_item_pkey PRIMARY KEY (item);
 
 ALTER TABLE dynpoi_item CLUSTER ON dynpoi_item_pkey;
-
-
---
--- Name: dynpoi_source_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY dynpoi_source
-    ADD CONSTRAINT dynpoi_source_pkey PRIMARY KEY (source);
-
-ALTER TABLE dynpoi_source CLUSTER ON dynpoi_source_pkey;
 
 
 --
@@ -336,10 +322,19 @@ ALTER TABLE marker CLUSTER ON marker_pkey;
 
 
 --
--- Name: dynpoi_source_comment_unique; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: source_password_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE UNIQUE INDEX dynpoi_source_comment_unique ON dynpoi_source USING btree (comment);
+ALTER TABLE ONLY source_password
+    ADD CONSTRAINT source_password_pkey PRIMARY KEY (source_id);
+
+
+--
+-- Name: source_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY source
+    ADD CONSTRAINT source_pkey PRIMARY KEY (id);
 
 
 --
@@ -457,11 +452,18 @@ CREATE INDEX marker_geom ON marker USING gist (point((lat)::double precision, (l
 
 
 --
+-- Name: source_password_password; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX source_password_password ON source_password USING btree (password);
+
+
+--
 -- Name: dynpoi_class_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dynpoi_class
-    ADD CONSTRAINT dynpoi_class_source_fkey FOREIGN KEY (source) REFERENCES dynpoi_source(source);
+    ADD CONSTRAINT dynpoi_class_source_fkey FOREIGN KEY (source) REFERENCES source(id);
 
 
 --
@@ -469,7 +471,7 @@ ALTER TABLE ONLY dynpoi_class
 --
 
 ALTER TABLE ONLY dynpoi_status
-    ADD CONSTRAINT dynpoi_status_source_fkey FOREIGN KEY (source) REFERENCES dynpoi_source(source);
+    ADD CONSTRAINT dynpoi_status_source_fkey FOREIGN KEY (source) REFERENCES source(id);
 
 
 --
@@ -501,7 +503,7 @@ ALTER TABLE ONLY marker_fix
 --
 
 ALTER TABLE ONLY marker
-    ADD CONSTRAINT marker_source_fkey FOREIGN KEY (source) REFERENCES dynpoi_source(source);
+    ADD CONSTRAINT marker_source_fkey FOREIGN KEY (source) REFERENCES source(id);
 
 
 --

@@ -37,9 +37,9 @@ def _items(db, lang):
 def _countries(db, lang):
     sql = """
     SELECT DISTINCT
-        (string_to_array(comment,'-'))[array_upper(string_to_array(comment,'-'), 1)] AS country
+        country
     FROM
-        dynpoi_source
+        source
     ORDER BY
         country
     """
