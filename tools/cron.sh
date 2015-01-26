@@ -40,7 +40,9 @@ psql -d $DATABASE -c "UPDATE dynpoi_item SET tags = (SELECT array_agg(tag)
              ) AS a
              );"
 
-pg_dump -t dynpoi_categ -t dynpoi_class -t dynpoi_item -t dynpoi_status -t dynpoi_update_last -t marker -t marker_elem -t marker_fix -t source $DATABASE \
-  | bzip2 > "$DIR_DUMP/planet-dump.sql.bz2.tmp"
+mkdir "$DIR_DUMP/tmp"
 mkdir "$DIR_DUMP/export"
-mv "$DIR_DUMP/planet-dump.sql.bz2.tmp" "$DIR_DUMP/export/planet-dump.sql.bz2"
+
+pg_dump -t dynpoi_categ -t dynpoi_class -t dynpoi_item -t dynpoi_update_last -t marker -t marker_elem -t marker_fix -t source $DATABASE \
+  | bzip2 > "$DIR_DUMP/tmp/osmose-planet-latest.sql.bz2.tmp"
+mv "$DIR_DUMP/tmp/osmose-planet-latest.sql.bz2.tmp" "$DIR_DUMP/export/osmose-planet-latest.sql.bz2"
