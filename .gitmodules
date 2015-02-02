@@ -25,3 +25,6 @@
 [submodule "externals/Leaflet-active-area"]
 	path = externals/Leaflet-active-area
 	url = https://github.com/Mappy/Leaflet-active-area.git
+[submodule "externals/topojson"]
+	path = externals/topojson
+	url = https://github.com/mbostock/topojson.git
