@@ -1,16 +1,16 @@
 OsmoseCoverage = L.GeoJSON.extend({
 
-  initialize: function (geojson_url, options) {
+  initialize: function (topojson_url, options) {
     L.Util.setOptions(this, options);
 
     this._layers = {};
-    this._geojson_url = geojson_url;
-    this._geojson = null;
+    this._topojson_url = topojson_url;
+    this._topojson = null;
   },
 
   onAdd: function (map, insertAtTheBottom) {
     this._map = map;
-    if (this._geojson === null) {
+    if (this._topojson === null) {
       this.fetchData();
     }
 
@@ -20,13 +20,21 @@ OsmoseCoverage = L.GeoJSON.extend({
   fetchData: function () {
     var self = this;
     this._map.spin(true);
-    $.ajax({
-      'url': this._geojson_url
-    }).done(function (data) {
-      self.addData(data);
-      self._geojson = data;
-    }).always(function () {
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', this._topojson_url, true);
+    xhr.responseType = 'arraybuffer';
+
+    xhr.onload = function(e) {
+      if (this.status == 200) {
+        data = geobuf.decode(new Pbf(new Uint8Array(xhr.response)));
+        data = topojson.feature(data, data.objects['osmose-cover']);
+        self.addData(data);
+        self._topojson = data;
+      }
       self._map.spin(false);
-    });
+    };
+
+    xhr.send();
   },
 });

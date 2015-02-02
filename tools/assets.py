@@ -4,7 +4,7 @@
 from webassets import Environment, Bundle
 
 environment = Environment('static', '')
-# environment.debug = True
+environment.debug = True
 
 css_map_bundle = Bundle(
     'css/style.css',
@@ -34,6 +34,10 @@ js_map_bundle = Bundle(
     'map/leaflet-control-geocoder/Control.Geocoder.js',
     'map/leaflet-active-area/L.activearea.js',
     'map/Location.js',
+    'map/geobuf/ieee754.js',
+    'map/geobuf/pbf-dev.js',
+    'map/geobuf/geobuf-dev.js',
+    'map/geobuf/topojson.js',
     'map/Osmose.Menu.js',
     'map/Osmose.Editor.js',
     'map/Osmose.Coverage.js',

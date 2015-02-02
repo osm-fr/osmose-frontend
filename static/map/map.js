@@ -13,7 +13,7 @@ function init_map() {
   }).setActiveArea('leaflet-active-area');
   map.setView(new L.LatLng(lat, lon));
 
-  var coverage = new OsmoseCoverage('/osmose-coverage.json');
+  var coverage = new OsmoseCoverage('/osmose-coverage.topojson.pbf');
   mapOverlay['Coverage'] = coverage;
 
   var menu = new OsmoseMenu('menu', {
