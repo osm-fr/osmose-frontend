@@ -3,3 +3,10 @@
 po/mo
 po/osmose-frontend.pot.tmp
 po/tmp.tpl
+
+session/
+
+static/.webassets-cache/
+static/gen/
+static/osmose-coverage.json*
+static/osmose-coverage.topojson.pbf*
