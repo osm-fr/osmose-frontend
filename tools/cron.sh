@@ -46,3 +46,16 @@ mkdir -p "$DIR_DUMP/export"
 pg_dump -t dynpoi_status_id_seq -t dynpoi_categ -t dynpoi_class -t dynpoi_item -t dynpoi_update_last -t marker -t marker_elem -t marker_fix -t source $DATABASE \
   | bzip2 > "$DIR_DUMP/tmp/osmose-planet-latest.sql.bz2.tmp"
 mv "$DIR_DUMP/tmp/osmose-planet-latest.sql.bz2.tmp" "$DIR_DUMP/export/osmose-planet-latest.sql.bz2"
+
+psql $DATABASE -c "COPY (SELECT source.country,
+             source.analyser,
+             marker.lat,
+             marker.lon,
+             marker.elems,
+             marker.class,
+             marker.subclass,
+             marker.item
+      FROM marker
+      LEFT JOIN source ON source.id = marker.source)
+TO STDOUT WITH CSV HEADER;" | bzip2 > "$DIR_DUMP/tmp/osmose-planet-latest.csv.bz2"
+mv "$DIR_DUMP/tmp/osmose-planet-latest.csv.bz2" "$DIR_DUMP/export/osmose-planet-latest.csv.bz2"
