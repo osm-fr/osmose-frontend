@@ -3,12 +3,12 @@
 # This file is distributed under the same license as the osmose-frontend package.
 # 
 # Translators:
-# frodrigo <fred.rodrigo@gmail.com>, 2014
+# frodrigo <fred.rodrigo@gmail.com>, 2014-2015
 # frodrigo <fred.rodrigo@gmail.com>, 2014
 #  <frodrigo@openstreetmap.fr>, 2012
 # Jean-Baptiste H <jb.holcroft@gmail.com>, 2014
 # Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2012
-# Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2012,2014
+# Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2012,2014-2015
 # Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2012,2014
 # operon, 2014
 #  operon, 2012
@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2015-01-09 20:05+0000\n"
+"PO-Revision-Date: 2015-01-25 17:15+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -577,7 +577,7 @@ msgstr "L'outil OsmOse est principalement développé par des français, et nous
 msgid ""
 "To make OsmOse a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
-msgstr "Afin de rendre OsmOse un outil international, nous avons besoin de votre aide pour améliorer les traductions actuelles, et en ajouter d'autres."
+msgstr "Pour qu'OsmOse soit un projet multilingue nous avons besoin de votre aide pour améliorer les traductions actuelles et en ajouter de nouvelles."
 
 #: tmp.tpl:150
 msgid "Pages to translate"

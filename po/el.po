@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Yannis Gyftomitros, 2014
-# Yannis Gyftomitros, 2014
+# Yannis Gyftomitros, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2015-01-09 20:05+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2015-02-04 18:50+0000\n"
+"Last-Translator: Yannis Gyftomitros\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/osmose/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -79,7 +79,7 @@ msgstr "Επικοινωνία"
 
 #: ../map.py:143
 msgid "Help on wiki"
-msgstr ""
+msgstr "Βοήθεια στο wiki"
 
 #: ../map.py:143 tmp.tpl:97 tmp.tpl:155
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
@@ -452,7 +452,7 @@ msgstr "3 μόνο"
 
 #: tmp.tpl:112
 msgid "Fixable"
-msgstr ""
+msgstr "Επισκευάσιμο"
 
 #: tmp.tpl:113
 msgid "Show only markers with correction suggestions"
@@ -725,7 +725,7 @@ msgstr "υδατοδιαδρομή"
 
 #: ../tools/database/item_menu.txt:22
 msgid "duplicate geometry"
-msgstr ""
+msgstr "διπλή γεωμετρία"
 
 #: ../tools/database/item_menu.txt:24
 msgid "junction=roundabout"
