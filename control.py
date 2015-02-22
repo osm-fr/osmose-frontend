@@ -61,20 +61,31 @@ ORDER BY
 
 @route('/control/update_matrix')
 def updates(db, lang):
+    remote = request.params.get('remote')
+    country = request.params.get('country')
     db.execute("""
 SELECT DISTINCT ON (source.id)
     source.id,
-    EXTRACT(EPOCH FROM ((now())-timestamp)) AS age,
+    EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp)) AS age,
     country,
     analyser
 FROM
     source
     JOIN dynpoi_update_last ON
-        source.id = dynpoi_update_last.source
+        source.id = dynpoi_update_last.source """ + (
+"""
+    JOIN dynpoi_update ON
+        dynpoi_update.source = dynpoi_update_last.source AND
+        dynpoi_update.timestamp = dynpoi_update_last.timestamp """ if remote else "") + """
+WHERE
+""" + ("""
+    RIGHT(MD5(remote_ip), 4) = %(remote)s AND """ if remote else "") + ("""
+    source.country LIKE %(country)s AND """ if country else "") + """
+    true
 ORDER BY
     source.id ASC,
-    timestamp DESC
-""")
+    dynpoi_update_last.timestamp DESC
+""", {"remote": remote, "country": country and country.replace("*", "%")})
 
     keys = defaultdict(int)
     matrix = defaultdict(dict)
@@ -117,7 +128,7 @@ ORDER BY
 def updates(db, lang):
     db.execute("""
 SELECT
-    remote_ip,
+    RIGHT(MD5(remote_ip), 4) AS remote_ip,
     country,
     MAX(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp))) AS max_age,
     MIN(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp))) AS min_age,
@@ -134,7 +145,7 @@ GROUP BY
     country
 ORDER BY
     remote_ip,
-    MAX(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp))) DESC
+    MIN(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp))) ASC
 """)
 
     summary = defaultdict(list)

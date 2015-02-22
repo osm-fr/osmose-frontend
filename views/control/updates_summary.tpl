@@ -11,11 +11,11 @@
 %end
 <table>
 %for remote in summary.keys():
-<tr><th>{{"0x%03x" % (hash(remote)%4096)}}</th></tr>
+<tr><th><a href="update_matrix?remote={{remote}}">{{remote}}</a></th></tr>
 <tr><td>
 %    for country in summary[remote]:
 %        col('span', country['min_age'])
-{{country['country']}}<sup>{{country['count']}}</sup>
+<a href="../errors/?country={{country['country']}}&item=xxxx">{{country['country']}}</a><sup>{{country['count']}}</sup>
 %        col('span', country['max_age'])
 {{"%0.1f" % country['max_age']}}</span>-{{"%0.1f" % country['min_age']}}</span>
 </span>&nbsp;⚫
