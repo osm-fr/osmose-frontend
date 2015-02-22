@@ -11,7 +11,7 @@
 %end
 <table>
 %for remote in summary.keys():
-<tr><th>{{"0x%03x" % (hash(remote)%4096)}}</th></tr>
+<tr><th>{{remote}}</th></tr>
 <tr><td>
 %    for country in summary[remote]:
 %        col('span', country['min_age'])

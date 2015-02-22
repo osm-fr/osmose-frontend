@@ -117,7 +117,7 @@ ORDER BY
 def updates(db, lang):
     db.execute("""
 SELECT
-    remote_ip,
+    RIGHT(MD5(remote_ip), 4) AS remote_ip,
     country,
     MAX(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp))) AS max_age,
     MIN(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp))) AS min_age,
