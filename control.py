@@ -134,7 +134,7 @@ GROUP BY
     country
 ORDER BY
     remote_ip,
-    MAX(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp))) DESC
+    MIN(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp))) ASC
 """)
 
     summary = defaultdict(list)
