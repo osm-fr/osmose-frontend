@@ -15,7 +15,7 @@
     <th colspan="4" rowspan="4"/>
 %keys = sorted(keys, key=lambda k: -stats_country[k][2])
 %for k in keys:
-    <th class="country"><div class="rotate-90"><a href="../errors/?country={{k}}">{{k}}</a></div></th>
+    <th class="country"><div class="rotate-90"><a href="../errors/?country={{k}}&item=xxxx">{{k}}</a></div></th>
 %end
 </tr>
 %for i in range(0,3):
