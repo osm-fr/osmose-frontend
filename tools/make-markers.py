@@ -31,6 +31,9 @@ import utils, query_meta, commands, sys, os
 ## '. deux petit carrés
 ## / diagonale
 ## =-
+## H H
+## h H at 90°
+## Dd tow half-circle
 
 def get_symb(symbole):
     if symbole == "O":
@@ -102,6 +105,10 @@ def get_symb(symbole):
         l2 = "<path d='M 8,7 L 5,7 L 5,5 L 8,5 L 8,7 z' />"
         l3 = "<path d='M 8,11 L 5,11 L 5,9 L 8,9 L 8,11 z' />"
         return l1+l2+l3
+    if symbole == "H":
+        return "<path d='M 5,5 L 7,5 L 7,7 L 9,7 L 9,5 L 11,5 L 11,11 L 9,11 L 9,9 L 7,9 L 7,11 L 5,11 z' />"
+    if symbole == "h":
+        return "<path transform='rotate(90 8 8)' d='M 5,5 L 7,5 L 7,7 L 9,7 L 9,5 L 11,5 L 11,11 L 9,11 L 9,9 L 7,9 L 7,11 L 5,11 z' />"
 
 ################################################################################
 ## marqueurs
