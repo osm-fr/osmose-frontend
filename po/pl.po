@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2015-02-24 21:44+0000\n"
+"PO-Revision-Date: 2015-02-28 18:33+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -755,7 +755,7 @@ msgstr "highway"
 msgid "highway crossing"
 msgstr "skrzyżowanie"
 
-#: ../tools/database/item_menu.txt:32 ../tools/database/item_menu.txt:129
+#: ../tools/database/item_menu.txt:32 ../tools/database/item_menu.txt:130
 msgid "pharmacy"
 msgstr "apteka"
 
@@ -903,187 +903,187 @@ msgstr "toponomia"
 msgid "test soundex"
 msgstr "test soundex"
 
-#: ../tools/database/item_menu.txt:74
+#: ../tools/database/item_menu.txt:75
 msgid "open polygon"
 msgstr "otwarty wielokąt"
 
-#: ../tools/database/item_menu.txt:75
+#: ../tools/database/item_menu.txt:76
 msgid "duplicated way"
 msgstr "powielona droga"
 
-#: ../tools/database/item_menu.txt:76
+#: ../tools/database/item_menu.txt:77
 msgid "place without name"
 msgstr "place bez nazwy"
 
-#: ../tools/database/item_menu.txt:77
+#: ../tools/database/item_menu.txt:78
 msgid "INSEE code"
 msgstr "kod INSEE"
 
-#: ../tools/database/item_menu.txt:78
+#: ../tools/database/item_menu.txt:79
 msgid "admin_level"
 msgstr "admin_level"
 
-#: ../tools/database/item_menu.txt:79
+#: ../tools/database/item_menu.txt:80
 msgid "erroneous boundary"
 msgstr "problematyczna granica"
 
-#: ../tools/database/item_menu.txt:80
+#: ../tools/database/item_menu.txt:81
 msgid "out of boundary"
 msgstr "poza granicą"
 
-#: ../tools/database/item_menu.txt:81
+#: ../tools/database/item_menu.txt:82
 msgid "geodesic building"
 msgstr "budynek geodezyjny"
 
-#: ../tools/database/item_menu.txt:82
+#: ../tools/database/item_menu.txt:83
 msgid "building shape"
 msgstr "kształt budynku"
 
-#: ../tools/database/item_menu.txt:83
+#: ../tools/database/item_menu.txt:84
 msgid "bridge to tag"
 msgstr "most do tagu"
 
-#: ../tools/database/item_menu.txt:84
+#: ../tools/database/item_menu.txt:85
 msgid "admin boundary"
 msgstr "granica administracyjna"
 
-#: ../tools/database/item_menu.txt:85
+#: ../tools/database/item_menu.txt:86
 msgid "power lines"
 msgstr "linia energetyczna"
 
-#: ../tools/database/item_menu.txt:86 ../tools/database/item_menu.txt:100
+#: ../tools/database/item_menu.txt:87 ../tools/database/item_menu.txt:101
 msgid "post office"
 msgstr "urząd pocztowy"
 
-#: ../tools/database/item_menu.txt:87
+#: ../tools/database/item_menu.txt:88
 msgid "ODbL migration change"
 msgstr "zmiany po migracji ODbL"
 
-#: ../tools/database/item_menu.txt:88
+#: ../tools/database/item_menu.txt:89
 msgid "school, not integrated"
 msgstr "szkoła, nie zintegrowana"
 
-#: ../tools/database/item_menu.txt:89
+#: ../tools/database/item_menu.txt:90
 msgid "monument"
 msgstr "pomnik"
 
-#: ../tools/database/item_menu.txt:90
+#: ../tools/database/item_menu.txt:91
 msgid "node on ways"
 msgstr "węzeł na drogach"
 
-#: ../tools/database/item_menu.txt:91 ../tools/database/item_menu.txt:106
+#: ../tools/database/item_menu.txt:92 ../tools/database/item_menu.txt:107
 msgid "train station"
 msgstr "stacja kolejowa"
 
-#: ../tools/database/item_menu.txt:92
+#: ../tools/database/item_menu.txt:93
 msgid "TMC"
 msgstr "TMC"
 
-#: ../tools/database/item_menu.txt:93
+#: ../tools/database/item_menu.txt:94
 msgid "relation type=boundary"
 msgstr "relacja type=boundary"
 
-#: ../tools/database/item_menu.txt:94
+#: ../tools/database/item_menu.txt:95
 msgid "tunnel/bridge"
 msgstr "tunel/most"
 
-#: ../tools/database/item_menu.txt:98
+#: ../tools/database/item_menu.txt:99
 msgid "monument, museum"
 msgstr "pomnik, muzeum"
 
-#: ../tools/database/item_menu.txt:99
+#: ../tools/database/item_menu.txt:100
 msgid "monument, museum, could be integrated"
 msgstr "pomnik, muzeum, powinno być zintegrowane"
 
-#: ../tools/database/item_menu.txt:101
+#: ../tools/database/item_menu.txt:102
 msgid "post office, could be integrated"
 msgstr "urząd pocztowy, powinien być zintegrowany"
 
-#: ../tools/database/item_menu.txt:102
+#: ../tools/database/item_menu.txt:103
 msgid "school"
 msgstr "szkoła"
 
-#: ../tools/database/item_menu.txt:103
+#: ../tools/database/item_menu.txt:104
 msgid "school, could be integrated"
 msgstr "szkoła, powinna być zintegrowana"
 
-#: ../tools/database/item_menu.txt:104
+#: ../tools/database/item_menu.txt:105
 msgid "public transport"
 msgstr "transport publiczny"
 
-#: ../tools/database/item_menu.txt:105
+#: ../tools/database/item_menu.txt:106
 msgid "public transport, could be integrated"
 msgstr "transport publiczny, może być zintegrowany"
 
-#: ../tools/database/item_menu.txt:107
+#: ../tools/database/item_menu.txt:108
 msgid "train station, could be integrated"
 msgstr "stacja kolejowa, może być zintegrowana"
 
-#: ../tools/database/item_menu.txt:108
+#: ../tools/database/item_menu.txt:109
 msgid "level crossing"
 msgstr "przejazd kolejowy"
 
-#: ../tools/database/item_menu.txt:109
+#: ../tools/database/item_menu.txt:110
 msgid "geodesic point"
 msgstr "punkt geodezyjny"
 
-#: ../tools/database/item_menu.txt:110
+#: ../tools/database/item_menu.txt:111
 msgid "postal address"
 msgstr "adres pocztowy"
 
-#: ../tools/database/item_menu.txt:111
+#: ../tools/database/item_menu.txt:112
 msgid "wikipedia, could be integrated"
 msgstr "wikipedia, może być zintegrowana"
 
-#: ../tools/database/item_menu.txt:112
+#: ../tools/database/item_menu.txt:113
 msgid "public service"
 msgstr "usługa publiczna"
 
-#: ../tools/database/item_menu.txt:113
+#: ../tools/database/item_menu.txt:114
 msgid "recycling"
 msgstr "recykling"
 
-#: ../tools/database/item_menu.txt:114
+#: ../tools/database/item_menu.txt:115
 msgid "recycling, could be integrated"
 msgstr "recykling, może być zintegrowany"
 
-#: ../tools/database/item_menu.txt:115
+#: ../tools/database/item_menu.txt:116
 msgid "parking"
 msgstr "parking"
 
-#: ../tools/database/item_menu.txt:116
+#: ../tools/database/item_menu.txt:117
 msgid "parking, could be integrated"
 msgstr "parking, może być zintegrowany"
 
-#: ../tools/database/item_menu.txt:117
+#: ../tools/database/item_menu.txt:118
 msgid "accommodation"
 msgstr "mieszkanie"
 
-#: ../tools/database/item_menu.txt:118
+#: ../tools/database/item_menu.txt:119
 msgid "accommodation, could be integrated"
 msgstr "mieszkanie, może być zintegrowane"
 
-#: ../tools/database/item_menu.txt:119
+#: ../tools/database/item_menu.txt:120
 msgid "cycle parking"
 msgstr "parking rowerowy"
 
-#: ../tools/database/item_menu.txt:120
+#: ../tools/database/item_menu.txt:121
 msgid "cycle parking, could be integrated"
 msgstr "parking rowerowy, może być zintegrowany"
 
-#: ../tools/database/item_menu.txt:121
+#: ../tools/database/item_menu.txt:122
 msgid "transport sharing"
 msgstr "udostępnianie transportu"
 
-#: ../tools/database/item_menu.txt:122
+#: ../tools/database/item_menu.txt:123
 msgid "transport sharing, could be integrated"
 msgstr "udostępnianie transportu, może być zintegrowane"
 
-#: ../tools/database/item_menu.txt:123
+#: ../tools/database/item_menu.txt:124
 msgid "sport"
 msgstr "sport"
 
-#: ../tools/database/item_menu.txt:124
+#: ../tools/database/item_menu.txt:125
 msgid "sport, could be integrated"
 msgstr "sport, może być zintegrowany"
 
@@ -1133,31 +1133,31 @@ msgstr "Lista HTML"
 msgid "one-node way"
 msgstr "droga z jednym węzłem"
 
-#: ../tools/database/item_menu.txt:125
+#: ../tools/database/item_menu.txt:126
 msgid "toilets"
 msgstr "toalety"
 
-#: ../tools/database/item_menu.txt:95
+#: ../tools/database/item_menu.txt:96
 msgid "transport sharing, not integrated"
 msgstr "udostępnianie transportu, nie zintegrowane"
 
-#: ../tools/database/item_menu.txt:126
+#: ../tools/database/item_menu.txt:127
 msgid "police"
 msgstr "policja"
 
-#: ../tools/database/item_menu.txt:127
+#: ../tools/database/item_menu.txt:128
 msgid "police, could be integrated"
 msgstr "policja, może być zintegrowany"
 
-#: ../tools/database/item_menu.txt:96
+#: ../tools/database/item_menu.txt:97
 msgid "pharmacy, not integrated "
 msgstr ""
 
-#: ../tools/database/item_menu.txt:130
+#: ../tools/database/item_menu.txt:131
 msgid "pharmacy, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:128
+#: ../tools/database/item_menu.txt:129
 msgid "gas station"
 msgstr ""
 
@@ -1207,19 +1207,19 @@ msgstr ""
 msgid "analyser"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:131
+#: ../tools/database/item_menu.txt:132
 msgid "postal code, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:132
+#: ../tools/database/item_menu.txt:133
 msgid "library"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:133
+#: ../tools/database/item_menu.txt:134
 msgid "restaurant"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:134
+#: ../tools/database/item_menu.txt:135
 msgid "winery"
 msgstr ""
 
@@ -1227,6 +1227,10 @@ msgstr ""
 msgid "missing object kind"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:97
+#: ../tools/database/item_menu.txt:98
 msgid "postal code, not integrated "
+msgstr ""
+
+#: ../tools/database/item_menu.txt:74
+msgid "local language"
 msgstr ""

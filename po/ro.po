@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2015-02-24 21:44+0000\n"
+"PO-Revision-Date: 2015-02-28 18:33+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Romanian (http://www.transifex.com/projects/p/osmose/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -757,7 +757,7 @@ msgstr "șosea"
 msgid "highway crossing"
 msgstr "trecere pentru pietoni sau biciclete"
 
-#: ../tools/database/item_menu.txt:32 ../tools/database/item_menu.txt:129
+#: ../tools/database/item_menu.txt:32 ../tools/database/item_menu.txt:130
 msgid "pharmacy"
 msgstr "farmacie"
 
@@ -905,187 +905,187 @@ msgstr "toponimie"
 msgid "test soundex"
 msgstr "test soundex"
 
-#: ../tools/database/item_menu.txt:74
+#: ../tools/database/item_menu.txt:75
 msgid "open polygon"
 msgstr "poligon deschis"
 
-#: ../tools/database/item_menu.txt:75
+#: ../tools/database/item_menu.txt:76
 msgid "duplicated way"
 msgstr "cale duplicată"
 
-#: ../tools/database/item_menu.txt:76
+#: ../tools/database/item_menu.txt:77
 msgid "place without name"
 msgstr "loc fără nume"
 
-#: ../tools/database/item_menu.txt:77
+#: ../tools/database/item_menu.txt:78
 msgid "INSEE code"
 msgstr "cod INSEE"
 
-#: ../tools/database/item_menu.txt:78
+#: ../tools/database/item_menu.txt:79
 msgid "admin_level"
 msgstr "admin_level"
 
-#: ../tools/database/item_menu.txt:79
+#: ../tools/database/item_menu.txt:80
 msgid "erroneous boundary"
 msgstr "limită administrativă enormă"
 
-#: ../tools/database/item_menu.txt:80
+#: ../tools/database/item_menu.txt:81
 msgid "out of boundary"
 msgstr "în afara limitei administrative"
 
-#: ../tools/database/item_menu.txt:81
+#: ../tools/database/item_menu.txt:82
 msgid "geodesic building"
 msgstr "clădire geodezică"
 
-#: ../tools/database/item_menu.txt:82
+#: ../tools/database/item_menu.txt:83
 msgid "building shape"
 msgstr "forma clădirii"
 
-#: ../tools/database/item_menu.txt:83
+#: ../tools/database/item_menu.txt:84
 msgid "bridge to tag"
 msgstr "pod fără tag"
 
-#: ../tools/database/item_menu.txt:84
+#: ../tools/database/item_menu.txt:85
 msgid "admin boundary"
 msgstr "limită admin"
 
-#: ../tools/database/item_menu.txt:85
+#: ../tools/database/item_menu.txt:86
 msgid "power lines"
 msgstr "linii electrice"
 
-#: ../tools/database/item_menu.txt:86 ../tools/database/item_menu.txt:100
+#: ../tools/database/item_menu.txt:87 ../tools/database/item_menu.txt:101
 msgid "post office"
 msgstr "oficiu poștal"
 
-#: ../tools/database/item_menu.txt:87
+#: ../tools/database/item_menu.txt:88
 msgid "ODbL migration change"
 msgstr "trecerea la licența ODbL"
 
-#: ../tools/database/item_menu.txt:88
+#: ../tools/database/item_menu.txt:89
 msgid "school, not integrated"
 msgstr "școală, neintegrată"
 
-#: ../tools/database/item_menu.txt:89
+#: ../tools/database/item_menu.txt:90
 msgid "monument"
 msgstr "monument"
 
-#: ../tools/database/item_menu.txt:90
+#: ../tools/database/item_menu.txt:91
 msgid "node on ways"
 msgstr "nod pe căi"
 
-#: ../tools/database/item_menu.txt:91 ../tools/database/item_menu.txt:106
+#: ../tools/database/item_menu.txt:92 ../tools/database/item_menu.txt:107
 msgid "train station"
 msgstr "gară"
 
-#: ../tools/database/item_menu.txt:92
+#: ../tools/database/item_menu.txt:93
 msgid "TMC"
 msgstr "TMC"
 
-#: ../tools/database/item_menu.txt:93
+#: ../tools/database/item_menu.txt:94
 msgid "relation type=boundary"
 msgstr "relație type=boundary"
 
-#: ../tools/database/item_menu.txt:94
+#: ../tools/database/item_menu.txt:95
 msgid "tunnel/bridge"
 msgstr "tunel/pod"
 
-#: ../tools/database/item_menu.txt:98
+#: ../tools/database/item_menu.txt:99
 msgid "monument, museum"
 msgstr "monument, muzeu"
 
-#: ../tools/database/item_menu.txt:99
+#: ../tools/database/item_menu.txt:100
 msgid "monument, museum, could be integrated"
 msgstr "monument, muzeu, ar putea fi integrat"
 
-#: ../tools/database/item_menu.txt:101
+#: ../tools/database/item_menu.txt:102
 msgid "post office, could be integrated"
 msgstr "oficiu poștal, ar putea fi integrat"
 
-#: ../tools/database/item_menu.txt:102
+#: ../tools/database/item_menu.txt:103
 msgid "school"
 msgstr "școală"
 
-#: ../tools/database/item_menu.txt:103
+#: ../tools/database/item_menu.txt:104
 msgid "school, could be integrated"
 msgstr "școală, ar putea fi integrat"
 
-#: ../tools/database/item_menu.txt:104
+#: ../tools/database/item_menu.txt:105
 msgid "public transport"
 msgstr "transport în comun"
 
-#: ../tools/database/item_menu.txt:105
+#: ../tools/database/item_menu.txt:106
 msgid "public transport, could be integrated"
 msgstr "transport în comun, ar putea fi integrat"
 
-#: ../tools/database/item_menu.txt:107
+#: ../tools/database/item_menu.txt:108
 msgid "train station, could be integrated"
 msgstr "gara, ar putea fi integrat"
 
-#: ../tools/database/item_menu.txt:108
+#: ../tools/database/item_menu.txt:109
 msgid "level crossing"
 msgstr "trecere la nivel"
 
-#: ../tools/database/item_menu.txt:109
+#: ../tools/database/item_menu.txt:110
 msgid "geodesic point"
 msgstr "punct din rețeaua geodezică"
 
-#: ../tools/database/item_menu.txt:110
+#: ../tools/database/item_menu.txt:111
 msgid "postal address"
 msgstr "adresă poștală"
 
-#: ../tools/database/item_menu.txt:111
+#: ../tools/database/item_menu.txt:112
 msgid "wikipedia, could be integrated"
 msgstr "wikipedia, ar putea fi integrat"
 
-#: ../tools/database/item_menu.txt:112
+#: ../tools/database/item_menu.txt:113
 msgid "public service"
 msgstr "serviciu public"
 
-#: ../tools/database/item_menu.txt:113
+#: ../tools/database/item_menu.txt:114
 msgid "recycling"
 msgstr "reciclare"
 
-#: ../tools/database/item_menu.txt:114
+#: ../tools/database/item_menu.txt:115
 msgid "recycling, could be integrated"
 msgstr "reciclare, ar putea fi integrată"
 
-#: ../tools/database/item_menu.txt:115
+#: ../tools/database/item_menu.txt:116
 msgid "parking"
 msgstr "parcare"
 
-#: ../tools/database/item_menu.txt:116
+#: ../tools/database/item_menu.txt:117
 msgid "parking, could be integrated"
 msgstr "parcare, ar putea fi integrată"
 
-#: ../tools/database/item_menu.txt:117
+#: ../tools/database/item_menu.txt:118
 msgid "accommodation"
 msgstr "cazare"
 
-#: ../tools/database/item_menu.txt:118
+#: ../tools/database/item_menu.txt:119
 msgid "accommodation, could be integrated"
 msgstr "cazare, ar putea fi integrat"
 
-#: ../tools/database/item_menu.txt:119
+#: ../tools/database/item_menu.txt:120
 msgid "cycle parking"
 msgstr "parcare pentru biciclete"
 
-#: ../tools/database/item_menu.txt:120
+#: ../tools/database/item_menu.txt:121
 msgid "cycle parking, could be integrated"
 msgstr "parcare pentru biciclete, ar putea fi integrat"
 
-#: ../tools/database/item_menu.txt:121
+#: ../tools/database/item_menu.txt:122
 msgid "transport sharing"
 msgstr "împărțirea transportului"
 
-#: ../tools/database/item_menu.txt:122
+#: ../tools/database/item_menu.txt:123
 msgid "transport sharing, could be integrated"
 msgstr "împărțirea transportului, ar putea fi integrat"
 
-#: ../tools/database/item_menu.txt:123
+#: ../tools/database/item_menu.txt:124
 msgid "sport"
 msgstr "sport"
 
-#: ../tools/database/item_menu.txt:124
+#: ../tools/database/item_menu.txt:125
 msgid "sport, could be integrated"
 msgstr "sport, ar putea fi integrat"
 
@@ -1135,31 +1135,31 @@ msgstr "Listă html"
 msgid "one-node way"
 msgstr "cale cu un singur nod"
 
-#: ../tools/database/item_menu.txt:125
+#: ../tools/database/item_menu.txt:126
 msgid "toilets"
 msgstr "toalete"
 
-#: ../tools/database/item_menu.txt:95
+#: ../tools/database/item_menu.txt:96
 msgid "transport sharing, not integrated"
 msgstr "împărțirea transportului, neintegrat"
 
-#: ../tools/database/item_menu.txt:126
+#: ../tools/database/item_menu.txt:127
 msgid "police"
 msgstr "poliție"
 
-#: ../tools/database/item_menu.txt:127
+#: ../tools/database/item_menu.txt:128
 msgid "police, could be integrated"
 msgstr "poliție, ar putea fi integrat"
 
-#: ../tools/database/item_menu.txt:96
+#: ../tools/database/item_menu.txt:97
 msgid "pharmacy, not integrated "
 msgstr "farmacie, neintegrat"
 
-#: ../tools/database/item_menu.txt:130
+#: ../tools/database/item_menu.txt:131
 msgid "pharmacy, could be integrated"
 msgstr "farmacie, ar putea fi integrat"
 
-#: ../tools/database/item_menu.txt:128
+#: ../tools/database/item_menu.txt:129
 msgid "gas station"
 msgstr "benzinărie"
 
@@ -1209,19 +1209,19 @@ msgstr ""
 msgid "analyser"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:131
+#: ../tools/database/item_menu.txt:132
 msgid "postal code, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:132
+#: ../tools/database/item_menu.txt:133
 msgid "library"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:133
+#: ../tools/database/item_menu.txt:134
 msgid "restaurant"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:134
+#: ../tools/database/item_menu.txt:135
 msgid "winery"
 msgstr ""
 
@@ -1229,6 +1229,10 @@ msgstr ""
 msgid "missing object kind"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:97
+#: ../tools/database/item_menu.txt:98
 msgid "postal code, not integrated "
+msgstr ""
+
+#: ../tools/database/item_menu.txt:74
+msgid "local language"
 msgstr ""
