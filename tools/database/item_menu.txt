@@ -71,6 +71,7 @@
  5030 | _("two names")
  5040 | _("toponymy")
  5050 | _("test soundex")
+ 5060 | _("local language")
  6010 | _("open polygon")
  6020 | _("duplicated way")
  6030 | _("place without name")
