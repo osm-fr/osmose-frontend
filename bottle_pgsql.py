@@ -60,8 +60,11 @@ class PgSQLPlugin(object):
         self.autorollback = autorollback
         self.dictrows = dictrows
         self.keyword = keyword
+        self.init_connection()
+
+    def init_connection(self):
         #con = psycopg2.connect(dsn)
-        self.con = psycopg2.extras.DictConnection(dsn)
+        self.con = psycopg2.extras.DictConnection(self.dsn)
         psycopg2.extras.register_hstore(self.con, unicode=True)
         # Using DictCursor lets us return result as a dictionary instead of the default list
 
@@ -109,6 +112,10 @@ class PgSQLPlugin(object):
             except psycopg2.ProgrammingError, e:
                 self.con.rollback()
                 raise HTTPError(500, "Database Error", e)
+            except psycopg2.OperationalError, e:
+                self.con.close()
+                self.init_connection()
+                raise HTTPError(500, "Database Operational Error", e)
             except HTTPError, e:
                 raise
             except HTTPResponse, e:
