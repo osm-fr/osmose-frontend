@@ -125,8 +125,6 @@ class PgSQLPlugin(object):
                 print traceback.print_exc()
                 raise
             except HTTPResponse, e:
-                import traceback
-                print traceback.print_exc()
                 if autocommit:
                     self.con.commit()
                 raise
