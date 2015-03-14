@@ -20,7 +20,9 @@
 <h1>{{_("Development")}}</h1>
 <p>{{! _("Development of Osmose is made as free software by <a href='../copyright'>volunteers</a>.")}}</p>
 <p>{{! _(u"Adding new functionality of <em>Osmose Editor</em>, initial support of mobile device and improvement of documentation was funded by region of Aquitaine, France; part of the OpenAquiMap project leading by <em>Les Petits Débrouillards d'Aquitaine</em>.")}}</p>
+<p>{{! _(u"The servers analysing data are provided by OpenStreetMap-France and some others by contributors around the world. The servers for north-america and other areas are funded by Mapbox.")}}</p>
 <img src="images/logo-aquitaine.png" alt="Logo of region of Aquitaine" width="340" height="100"/>
+<img src="images/logo-mapbox.png" alt="Logo of Mapbox" width="340" height="100"/>
 
 <h1>{{_("Contacting maintainers")}}</h1>
 <p>{{! _("We can be contacted through a direct email to <a href='mailto:%s'>%s</a>.") % (2 * ("osmose-contact@openstreetmap.fr".replace('@', '&#x40;'), ))}}</p>
