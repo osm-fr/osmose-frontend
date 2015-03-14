@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2015-02-28 18:33+0000\n"
+"PO-Revision-Date: 2015-03-14 19:44+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -37,11 +37,11 @@ msgid "never generated"
 msgstr "nikdy nevygenerováno"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:155 ../false_positive.py:66 tmp.tpl:157
+#: ../error.py:155 ../false_positive.py:66 tmp.tpl:158
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
-#: ../errors.py:122 tmp.tpl:62
+#: ../errors.py:122 tmp.tpl:63
 msgid "False positives"
 msgstr "Není chyba"
 
@@ -49,7 +49,7 @@ msgstr "Není chyba"
 msgid "Fixed errors"
 msgstr "Opravené chyby"
 
-#: ../errors.py:128 tmp.tpl:60
+#: ../errors.py:128 tmp.tpl:61
 msgid "Informations"
 msgstr "Informace"
 
@@ -82,7 +82,7 @@ msgstr "Kontakt"
 msgid "Help on wiki"
 msgstr "Nápověda na wiki"
 
-#: ../map.py:143 tmp.tpl:98 tmp.tpl:156
+#: ../map.py:143 tmp.tpl:99 tmp.tpl:157
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
@@ -206,25 +206,25 @@ msgid ""
 "href='../copyright'>volunteers</a>."
 msgstr "Osmose je vyvíjen <a href='../copyright'>dobrovolníky</a> jako svobodný software."
 
-#: tmp.tpl:31
+#: tmp.tpl:32
 msgid "Contacting maintainers"
 msgstr "Kontaktovat správce"
 
-#: tmp.tpl:32
+#: tmp.tpl:33
 #, python-format
 msgid ""
 "We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
 msgstr "Můžete nás kontaktovat emailem na <a href='mailto:%s'>%s</a>."
 
-#: tmp.tpl:34 tmp.tpl:36
+#: tmp.tpl:35 tmp.tpl:37
 msgid "Last updates"
 msgstr "Poslední aktualizace"
 
-#: tmp.tpl:37
+#: tmp.tpl:38
 msgid "Median delay:"
 msgstr "Medián zpoždění:"
 
-#: tmp.tpl:38 tmp.tpl:45 tmp.tpl:67 tmp.tpl:76
+#: tmp.tpl:39 tmp.tpl:46 tmp.tpl:68 tmp.tpl:77
 #: ../tools/database/item_menu.txt:27
 msgid "source"
 msgstr "zdroj"
@@ -232,368 +232,368 @@ msgstr "zdroj"
 msgid "description"
 msgstr "popis"
 
-#: tmp.tpl:41
+#: tmp.tpl:42
 msgid "last generation"
 msgstr "naposledy vygenerováno"
 
-#: tmp.tpl:42 tmp.tpl:43
+#: tmp.tpl:43 tmp.tpl:44
 msgid "history"
 msgstr "historie"
 
-#: tmp.tpl:44
+#: tmp.tpl:45
 msgid "Update"
 msgstr "Aktuzalizace"
 
-#: tmp.tpl:46
+#: tmp.tpl:47
 msgid "remote url"
 msgstr "vzdálené URL"
 
-#: tmp.tpl:47
+#: tmp.tpl:48
 msgid "timestamp"
 msgstr "časové razítko"
 
-#: tmp.tpl:48
+#: tmp.tpl:49
 msgid "Copyright informations"
 msgstr "Informace o copyrightu"
 
-#: tmp.tpl:49
+#: tmp.tpl:50
 msgid "License"
 msgstr "Licence"
 
-#: tmp.tpl:50
+#: tmp.tpl:51
 msgid "Authors"
 msgstr "Autoři"
 
-#: tmp.tpl:51
+#: tmp.tpl:52
 msgid "And contributors"
 msgstr "A přispěvatelé"
 
-#: tmp.tpl:52
+#: tmp.tpl:53
 msgid "Data are coming from"
 msgstr "Data pocházejí z"
 
-#: tmp.tpl:53
+#: tmp.tpl:54
 msgid "copyright"
 msgstr "copyright"
 
-#: tmp.tpl:54 tmp.tpl:92
+#: tmp.tpl:55 tmp.tpl:93
 #, python-format
 msgid "Information on error %d"
 msgstr "Informace k chybě %d"
 
-#: tmp.tpl:55 tmp.tpl:93
+#: tmp.tpl:56 tmp.tpl:94
 msgid "key"
 msgstr "klíč"
 
-#: tmp.tpl:56 tmp.tpl:94
+#: tmp.tpl:57 tmp.tpl:95
 msgid "value"
 msgstr "hodnota"
 
-#: tmp.tpl:57 tmp.tpl:95
+#: tmp.tpl:58 tmp.tpl:96
 msgid "Marker"
 msgstr "Značka"
 
-#: tmp.tpl:58
+#: tmp.tpl:59
 msgid "Elements"
 msgstr "Prvky"
 
-#: tmp.tpl:59
+#: tmp.tpl:60
 msgid "Fixes"
 msgstr "Opravy"
 
-#: tmp.tpl:61
+#: tmp.tpl:62
 msgid "Fixed"
 msgstr "Opraveno"
 
-#: tmp.tpl:63
+#: tmp.tpl:64
 msgid "Graph"
 msgstr "Graf"
 
-#: tmp.tpl:64 tmp.tpl:105
+#: tmp.tpl:65 tmp.tpl:106
 msgid "Map"
 msgstr "Mapa"
 
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
-#: tmp.tpl:66
+#: tmp.tpl:67
 msgid "Set"
 msgstr "Nastav"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
-#: tmp.tpl:69 tmp.tpl:78
+#: tmp.tpl:70 tmp.tpl:79
 msgid "class (abbreviation)"
 msgstr "tř"
 
-#: tmp.tpl:70 tmp.tpl:83
+#: tmp.tpl:71 tmp.tpl:84
 msgid "item"
 msgstr "prvek"
 
-#: tmp.tpl:71
+#: tmp.tpl:72
 msgid "title"
 msgstr "název"
 
-#: tmp.tpl:72
+#: tmp.tpl:73
 msgid "count"
 msgstr "počet"
 
-#: tmp.tpl:73
+#: tmp.tpl:74
 msgid "Total"
 msgstr "Celkem"
 
-#: tmp.tpl:74
+#: tmp.tpl:75
 msgid "Show more errors"
 msgstr "Ukaž více chyb"
 
-#: tmp.tpl:75
+#: tmp.tpl:76
 msgid "Show some errors"
 msgstr "Ukaž část chyb"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: tmp.tpl:80
+#: tmp.tpl:81
 msgid "subclass (abbreviation)"
 msgstr "podtř"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: tmp.tpl:82
+#: tmp.tpl:83
 msgid "level (abbreviation)"
 msgstr "úroveň"
 
-#: tmp.tpl:84
+#: tmp.tpl:85
 msgid "information on error"
 msgstr "Informace k chybě"
 
-#: tmp.tpl:85
+#: tmp.tpl:86
 msgid "position (abbreviation)"
 msgstr "poz"
 
-#: tmp.tpl:86
+#: tmp.tpl:87
 msgid "elements (abbreviation)"
 msgstr "prvky"
 
-#: tmp.tpl:87
+#: tmp.tpl:88
 msgid "subtitle"
 msgstr "titulek"
 
-#: tmp.tpl:88 ../tools/database/item_menu.txt:45
+#: tmp.tpl:89 ../tools/database/item_menu.txt:45
 msgid "date"
 msgstr "datum"
 
-#: tmp.tpl:89
+#: tmp.tpl:90
 msgid "delete error"
 msgstr "smazat chybu"
 
-#: tmp.tpl:91
+#: tmp.tpl:92
 #, python-format
 msgid "delete error #%d"
 msgstr "smazat chybu #%d"
 
-#: tmp.tpl:96
+#: tmp.tpl:97
 msgid "OpenStreetMap Oversight Search Engine"
 msgstr "OpenStreetMap Oversight Search Engine"
 
-#: tmp.tpl:97
+#: tmp.tpl:98
 msgid "Map of errors"
 msgstr "Mapa chyb"
 
-#: tmp.tpl:98
+#: tmp.tpl:99
 msgid "Help on OSM wiki"
 msgstr "Nápověda na OSM wiki"
 
-#: tmp.tpl:99
+#: tmp.tpl:100
 msgid "Information on error database"
 msgstr "Informace k databázi chyb"
 
-#: tmp.tpl:100
+#: tmp.tpl:101
 msgid "False positives list"
 msgstr "Seznam falešných chyb"
 
-#: tmp.tpl:101
+#: tmp.tpl:102
 msgid "Last analysis updates"
 msgstr "Poslední  aktualizace analýz"
 
-#: tmp.tpl:102
+#: tmp.tpl:103
 msgid "Tags Editor"
 msgstr "Editor značek"
 
-#: tmp.tpl:103 tmp.tpl:135
+#: tmp.tpl:104 tmp.tpl:136
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: tmp.tpl:104
+#: tmp.tpl:105
 msgid "Valid"
 msgstr "Použít"
 
-#: tmp.tpl:106
+#: tmp.tpl:107
 msgid "no bubbles at this zoom factor"
 msgstr "žádné značky pro tohle přiblížení"
 
-#: tmp.tpl:107
+#: tmp.tpl:108
 msgid "Severity"
 msgstr "Závažnost"
 
-#: tmp.tpl:108
+#: tmp.tpl:109
 msgid "1 only"
 msgstr "Závažnost 1"
 
-#: tmp.tpl:109
+#: tmp.tpl:110
 msgid "1+2 only"
 msgstr "Závažnost 1+2"
 
-#: tmp.tpl:110
+#: tmp.tpl:111
 msgid "all severity"
 msgstr "všechny úrovně závažnosti"
 
-#: tmp.tpl:111
+#: tmp.tpl:112
 msgid "2 only"
 msgstr "Závažnost 2"
 
-#: tmp.tpl:112
+#: tmp.tpl:113
 msgid "3 only"
 msgstr "Závažnost 3"
 
-#: tmp.tpl:113
+#: tmp.tpl:114
 msgid "Fixable"
 msgstr "Opravitelné"
 
-#: tmp.tpl:114
+#: tmp.tpl:115
 msgid "Show only markers with correction suggestions"
 msgstr "Ukaž jen značky s nápovědou k opravě"
 
-#: tmp.tpl:115
+#: tmp.tpl:116
 msgid "Online"
 msgstr "Online"
 
-#: tmp.tpl:116
+#: tmp.tpl:117
 msgid "Topic"
 msgstr "Téma"
 
-#: tmp.tpl:117
+#: tmp.tpl:118
 msgid "Select:"
 msgstr "Vybrat:"
 
-#: tmp.tpl:118 tmp.tpl:121
+#: tmp.tpl:119 tmp.tpl:122
 msgid "all"
 msgstr "vše"
 
-#: tmp.tpl:119 tmp.tpl:122
+#: tmp.tpl:120 tmp.tpl:123
 msgid "nothing"
 msgstr "nic"
 
-#: tmp.tpl:120
+#: tmp.tpl:121
 msgid "invert"
 msgstr "obrátit"
 
-#: tmp.tpl:123
+#: tmp.tpl:124
 msgid "Change language"
 msgstr "Změň jazyk"
 
-#: tmp.tpl:126
+#: tmp.tpl:127
 msgid "Help"
 msgstr "Nápověda"
 
-#: tmp.tpl:127
+#: tmp.tpl:128
 #, python-format
 msgid "Delay: %sd"
 msgstr "Zpoždění: %sd"
 
-#: tmp.tpl:128 tmp.tpl:129 tmp.tpl:130
+#: tmp.tpl:129 tmp.tpl:130 tmp.tpl:131
 #, python-format
 msgid "Level %d errors (%d)"
 msgstr "Chyby úrovně %d (%d)"
 
-#: tmp.tpl:131
+#: tmp.tpl:132
 msgid "Logout"
 msgstr "Odhlásit"
 
-#: tmp.tpl:132 tmp.tpl:134
+#: tmp.tpl:133 tmp.tpl:135
 msgid "Login"
 msgstr "Login"
 
-#: tmp.tpl:133 tmp.tpl:135
+#: tmp.tpl:134 tmp.tpl:136
 msgid "Save"
 msgstr "Uložit"
 
-#: tmp.tpl:136
+#: tmp.tpl:137
 msgid "Objects edited:"
 msgstr "Objektů změněno:"
 
-#: tmp.tpl:137
+#: tmp.tpl:138
 msgid "Objects deleted:"
 msgstr "Objektů smazáno:"
 
-#: tmp.tpl:138
+#: tmp.tpl:139
 msgid "Fix with Osmose"
 msgstr "Fix with Osmose"
 
-#: tmp.tpl:139
+#: tmp.tpl:140
 msgid "Source"
 msgstr "Zdroj"
 
-#: tmp.tpl:140
+#: tmp.tpl:141
 msgid "Type"
 msgstr "Typ"
 
-#: tmp.tpl:141
+#: tmp.tpl:142
 msgid "Reuse changeset"
 msgstr "Znovu použít sadu změn"
 
-#: tmp.tpl:142
+#: tmp.tpl:143
 msgid "Error reported on: "
 msgstr "Chyba hlášena dne:"
 
-#: tmp.tpl:143
+#: tmp.tpl:144
 msgid "change status"
 msgstr "Změnit stav"
 
-#: tmp.tpl:144
+#: tmp.tpl:145
 msgid "corrected"
 msgstr "opraveno"
 
-#: tmp.tpl:145
+#: tmp.tpl:146
 msgid "false positive"
 msgstr "není chyba"
 
-#: tmp.tpl:146 tmp.tpl:147
+#: tmp.tpl:147 tmp.tpl:148
 msgid "How to help translation"
 msgstr "Jak pomoci s překladem"
 
-#: tmp.tpl:148
+#: tmp.tpl:149
 msgid ""
 "OsmOse tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
 msgstr "OsmOse je nástroj vyvíjený zejména francouzskými vývojáři. Plánuje se přidat více jazyků - nyní zde máme překlad prakticky pro každou zemi, kterou OsmOse pokrývá."
 
-#: tmp.tpl:150
+#: tmp.tpl:151
 msgid ""
 "To make OsmOse a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr "Abychom z OsmOse udělali opravdu vícejazyčný nástroj, potřebujeme tvou pomoc při vylepšování stávajících překladů, nebo vytváření nových."
 
-#: tmp.tpl:151
+#: tmp.tpl:152
 msgid "Pages to translate"
 msgstr "Stránky k překladu"
 
-#: tmp.tpl:155
+#: tmp.tpl:156
 msgid "Wiki pages"
 msgstr "Wiki stránky"
 
-#: tmp.tpl:156
+#: tmp.tpl:157
 msgid "OsmOse main page"
 msgstr "Hlavní stránka OsmOse"
 
-#: tmp.tpl:157
+#: tmp.tpl:158
 msgid "Documentation on reported errors"
 msgstr "Dokumentace nahlášených chyb"
 
-#: tmp.tpl:152
+#: tmp.tpl:153
 msgid "OsmOse pages"
 msgstr "Stránky OsmOse"
 
-#: tmp.tpl:161
+#: tmp.tpl:162
 msgid "Bug tracking system"
 msgstr "Systém pro hlášení chyb"
 
-#: tmp.tpl:162
+#: tmp.tpl:163
 msgid ""
 "<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
 "issue with translations, or erroneous analyses."
@@ -1087,45 +1087,45 @@ msgstr "sport"
 msgid "sport, could be integrated"
 msgstr "sport, může být sjednoceno"
 
-#: tmp.tpl:154
+#: tmp.tpl:155
 msgid "Translation progress: osmose"
 msgstr "Postup překladu: Osmose"
 
-#: tmp.tpl:158
+#: tmp.tpl:159
 msgid "For new language or countries"
 msgstr "Pro nové jazyky nebo státy"
 
-#: tmp.tpl:160
+#: tmp.tpl:161
 #, python-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
 "href='mailto:%s'>%s</a>."
 msgstr "Pokud chcete přidat další stát, kontaktujte nás na emailové adrese <a href='mailto:%s'>%s</a>."
 
-#: tmp.tpl:149
+#: tmp.tpl:150
 #, python-format
 msgid "The <a href='%s'>country coverage is available</a>."
 msgstr "Pokrytí státu <a href='%s'> je k dispozici </a>."
 
-#: tmp.tpl:159
+#: tmp.tpl:160
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
 msgstr "Nový jazyk můžete vytvořit přímo na stránce <a href='%s'>Transifex.</a>"
 
-#: tmp.tpl:153
+#: tmp.tpl:154
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr "Překlad je prováděn na stránce <a href='%s'>Transifex</a>."
 
-#: tmp.tpl:90
+#: tmp.tpl:91
 msgid "error n°"
 msgstr "chyba č."
 
-#: tmp.tpl:124
+#: tmp.tpl:125
 msgid "Export"
 msgstr "Exportovat"
 
-#: tmp.tpl:125
+#: tmp.tpl:126
 msgid "Html list"
 msgstr "HTML"
 
@@ -1161,19 +1161,19 @@ msgstr "lékárna, může být sjednoceno"
 msgid "gas station"
 msgstr "čerpací stanice"
 
-#: tmp.tpl:85
+#: tmp.tpl:86
 msgid "position"
 msgstr "pozice"
 
-#: tmp.tpl:134
+#: tmp.tpl:135
 msgid "You must be logged in order to use the tag editor"
 msgstr "K použití editoru klíčů musíte být přihlášení."
 
-#: tmp.tpl:135
+#: tmp.tpl:136
 msgid "Save changeset"
 msgstr "Uložit sadu změn"
 
-#: tmp.tpl:138
+#: tmp.tpl:139
 msgid "Comment"
 msgstr "Komentář"
 
@@ -1185,7 +1185,7 @@ msgstr "oblast"
 msgid "noexit"
 msgstr "noexit"
 
-#: tmp.tpl:33
+#: tmp.tpl:34
 msgid ""
 "Keep in touch by watching at <a "
 "href='https://twitter.com/osmose_qa'>@osmose_qa</a> on twitter."
@@ -1195,15 +1195,15 @@ msgstr "Zůstaňte v kontaktu, sledujte  <a href='https://twitter.com/osmose_qa'
 msgid "incorrect layer"
 msgstr "chybná vrstva"
 
-#: tmp.tpl:35
+#: tmp.tpl:36
 msgid "Updates summary"
 msgstr "Shrnutí aktualizací"
 
-#: tmp.tpl:39
+#: tmp.tpl:40
 msgid "country"
 msgstr "stát"
 
-#: tmp.tpl:40
+#: tmp.tpl:41
 msgid "analyser"
 msgstr "analyzér"
 
@@ -1233,4 +1233,11 @@ msgstr "PSČ, není sjednoceno"
 
 #: ../tools/database/item_menu.txt:74
 msgid "local language"
+msgstr ""
+
+#: tmp.tpl:31
+msgid ""
+"The servers analysing data are provided by OpenStreetMap-France and some "
+"others by contributors around the world. The servers for north-america and "
+"other areas are funded by Mapbox."
 msgstr ""
