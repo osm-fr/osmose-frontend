@@ -60,7 +60,7 @@ class PgSQLPlugin(object):
         self.autorollback = autorollback
         self.dictrows = dictrows
         self.keyword = keyword
-        self.init_connection()
+        self.con = None
 
     def init_connection(self):
         #con = psycopg2.connect(dsn)
@@ -93,6 +93,9 @@ class PgSQLPlugin(object):
 
         def wrapper(*args, **kwargs):
             try:
+                if not self.con:
+                    self.init_connection()
+
                 if dictrows:
                     cur = self.con.cursor(cursor_factory=psycopg2.extras.DictCursor)
                 else:
@@ -121,7 +124,7 @@ class PgSQLPlugin(object):
                     self.con.close()
                 except:
                     pass
-                self.init_connection()
+                self.con = None
                 raise HTTPError(500, "Database Operational Error", e)
             except HTTPError, e:
                 import traceback
