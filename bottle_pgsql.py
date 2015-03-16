@@ -53,12 +53,10 @@ class PgSQLPlugin(object):
     api  = 2
 
     def __init__(self, dsn=None, autocommit=False, autorollback=True,
-                 dictrows=True,
                  keyword='db'):
         self.dsn = dsn
         self.autocommit = autocommit
         self.autorollback = autorollback
-        self.dictrows = dictrows
         self.keyword = keyword
         self.con = None
 
@@ -82,7 +80,6 @@ class PgSQLPlugin(object):
         conf = route.config.get('pgsql') or {}
         autocommit = conf.get('autocommit', self.autocommit)
         autorollback = conf.get('autorollback', self.autorollback)
-        dictrows = conf.get('dictrows', self.dictrows)
         keyword = conf.get('keyword', self.keyword)
 
         # Test if the original callback accepts a 'db' keyword.
@@ -96,10 +93,7 @@ class PgSQLPlugin(object):
                 if not self.con:
                     self.init_connection()
 
-                if dictrows:
-                    cur = self.con.cursor(cursor_factory=psycopg2.extras.DictCursor)
-                else:
-                    cur = self.con.cursor()
+                cur = self.con.cursor()
             except HTTPResponse, e:
                 raise HTTPError(500, "Database Error", e)
 
