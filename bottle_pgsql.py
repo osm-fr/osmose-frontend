@@ -117,7 +117,10 @@ class PgSQLPlugin(object):
             except psycopg2.OperationalError, e:
                 import traceback
                 print traceback.print_exc()
-                self.con.close()
+                try:
+                    self.con.close()
+                except:
+                    pass
                 self.init_connection()
                 raise HTTPError(500, "Database Operational Error", e)
             except HTTPError, e:
