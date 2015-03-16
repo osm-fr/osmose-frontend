@@ -96,6 +96,9 @@ class PgSQLPlugin(object):
                 cur = self.con.cursor()
             except HTTPResponse, e:
                 raise HTTPError(500, "Database Error", e)
+            except psycopg2.InterfaceError:
+                self.init_connection()
+                cur = self.con.cursor()
 
             # Add the connection handle as a keyword argument.
             kwargs[keyword] = cur
