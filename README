@@ -13,6 +13,7 @@ Dependencies
   python-requests >= 2.0
   python-beaker >= 1.6
   python-imaging
+  python-polib
   librsvg2-bin                     # to generate markers with rsvg
   apache2
   gettext
