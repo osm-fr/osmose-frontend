@@ -32,7 +32,7 @@ Initialisation
   psql osmose_frontend -f /usr/share/postgresql/9.1/contrib/postgis-1.5/spatial_ref_sys.sql
 
  - check db parameter into tools/utils.py and as default user
-  (cd po && make)                                       # to generate translation files
+  (cd po && make mo)                                    # to generate translation files
   git submodule update --init                           # to get Mustache javascript library
   psql osmose_frontend -f tools/database/schema.sql     # for postgresql database tables
 
