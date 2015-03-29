@@ -15,7 +15,7 @@
     <td>
 %        if type(res[i]) is dict:
             <table>
-%            for (k, v) in res[i].items():
+%            for (k, v) in sorted(res[i].items()):
                 <tr><td>{{k}}</td><td>{{v}}</td></tr>
 %            end
             </table>

@@ -171,7 +171,7 @@ def error(db, lang, err_id):
         for k in tags:
           t.append({"k": k})
       else:
-        for (k, v) in tags.items():
+        for (k, v) in sorted(tags.items()):
           if links and links.has_key(k):
             t.append({"k": k, "v": v, "vlink": links[k]})
           else:
