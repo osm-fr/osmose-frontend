@@ -10,6 +10,8 @@ OsmoseErrors = L.LayerGroup.extend({
 
   _osmoseMarker: null,
 
+  _inQuery: false,
+
   initialize: function (menu, params, editor) {
     L.LayerGroup.prototype.initialize.call(this);
     this._menu = menu;
@@ -35,9 +37,7 @@ OsmoseErrors = L.LayerGroup.extend({
   _updateOsmoseLayer: function () {
     if (this._map.getZoom() >= 6) {
       var urlPart = this._menu.urlPart(),
-        url = null,
-        self = this;
-      this._map.spin(true);
+        url = null;
       if (urlPart.item) {
         this._params.item = urlPart.item;
       } else {
@@ -61,6 +61,18 @@ OsmoseErrors = L.LayerGroup.extend({
       this._params.bbox = this._map.getViewportLatLngBounds().toBBoxString();
       this._params.zoom = this._map.getZoom();
       url = L.Util.getParamString(this._params);
+      if (!this._inQuery) {
+        this._query(url);
+      } else {
+        this._waitingQuery = url;
+      }
+    }
+  },
+
+  _query: function(url) {
+      var self = this;
+      this._map.spin(true);
+      this._inQuery = true;
       $.ajax({
         url: 'markers' + url,
         dataType: 'json'
@@ -84,9 +96,14 @@ OsmoseErrors = L.LayerGroup.extend({
           self.addLayer(self._osmoseMarker);
         }
       }).always(function () {
+        self._inQuery = false;
         self._map.spin(false);
+        if (self._waitingQuery) {
+          url = self._waitingQuery;
+          delete self._waitingQuery;
+          self._query(url);
+        }
       });
-    }
   },
 
   corrected: function (layer) {
