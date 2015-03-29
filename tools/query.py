@@ -50,7 +50,7 @@ def _build_where_item(item, table):
     return where
 
 
-def _build_param(bbox, source, item, level, users, classs, country, useDevItem, status, tags, fixable, forceTable=[],
+def _build_param(lat, lon, bbox, source, item, level, users, classs, country, useDevItem, status, tags, fixable, forceTable=[],
                  summary=False, stats=False, start_date=None, end_date=None):
     join = ""
     where = ["1=1"]
@@ -127,9 +127,11 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
     if classs:
         where.append("marker.class = %d"%int(classs))
 
+    if lat and lon and bbox:
+        where.append('point(marker.lat, marker.lon) <-> point(%f, %f) < point(%f, %f) <-> point(%f, %f)' % (lat, lon, lat, lon, bbox[1], bbox[0]))
+
     if bbox:
-        where.append("marker.lat BETWEEN %s AND %s" % (bbox[1], bbox[3]))
-        where.append("marker.lon BETWEEN %s AND %s" % (bbox[0], bbox[2]))
+        where.append("box(point(%f, %f), point(%f, %f)) @> point(marker.lat, marker.lon)" % (bbox[1], bbox[0], bbox[3], bbox[2]))
 
     if country:
         if country[-1] == "*":
@@ -284,7 +286,7 @@ def _gets(db, params):
     else:
         forceTable = []
 
-    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, forceTable=forceTable, start_date=params.start_date, end_date=params.end_date)
+    join, where = _build_param(params.lat, params.lon, params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, forceTable=forceTable, start_date=params.start_date, end_date=params.end_date)
     sql = sqlbase % (join, where)
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()
@@ -325,7 +327,7 @@ def _count(db, params, by, extraFrom=[], extraFields=[], orderBy=False):
     if params.limit:
         sqlbase += " LIMIT %s" % params.limit
 
-    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, summary=summary, forceTable=byTable, start_date=params.start_date, end_date=params.end_date)
+    join, where = _build_param(params.lat, params.lon, params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, summary=summary, forceTable=byTable, start_date=params.start_date, end_date=params.end_date)
     sql = sqlbase % (select, join, where, groupBy, order)
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()
