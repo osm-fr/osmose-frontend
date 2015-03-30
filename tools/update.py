@@ -55,7 +55,7 @@ def execute_sql(dbcurs, sql, args = None):
         print sql, args
         raise
     num_sql_run += 1
-    if num_sql_run % 1000 == 0:
+    if num_sql_run % 10000 == 0:
         print ".",
         sys.stdout.flush()
 
