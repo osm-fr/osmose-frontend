@@ -191,7 +191,10 @@ def _params():
 
     if params.level:
         params.level = params.level.split(",")
-        params.level = ",".join([str(int(x)) for x in params.level if x])
+        try:
+            params.level = ",".join([str(int(x)) for x in params.level if x])
+        except:
+            params.level = "1,2,3"
     if params.bbox:
         try:
             params.bbox = map(lambda x: float(x), params.bbox.split(','))
