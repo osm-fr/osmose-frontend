@@ -124,8 +124,6 @@ class PgSQLPlugin(object):
                 self.con = None
                 raise HTTPError(500, "Database Operational Error", e)
             except HTTPError, e:
-                import traceback
-                print traceback.print_exc()
                 raise
             except HTTPResponse, e:
                 if autocommit:
