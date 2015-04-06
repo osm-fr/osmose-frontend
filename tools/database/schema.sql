@@ -3,6 +3,7 @@
 --
 
 SET statement_timeout = 0;
+SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -10,12 +11,10 @@ SET client_min_messages = warning;
 
 SET search_path = public, pg_catalog;
 
-SET default_tablespace = '';
-
 SET default_with_oids = false;
 
 --
--- Name: dynpoi_categ; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: dynpoi_categ; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE dynpoi_categ (
@@ -25,7 +24,7 @@ CREATE TABLE dynpoi_categ (
 
 
 --
--- Name: dynpoi_class; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: dynpoi_class; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE dynpoi_class (
@@ -41,7 +40,7 @@ CREATE TABLE dynpoi_class (
 
 
 --
--- Name: dynpoi_item; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: dynpoi_item; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE dynpoi_item (
@@ -57,7 +56,7 @@ CREATE TABLE dynpoi_item (
 
 
 --
--- Name: dynpoi_stats; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: dynpoi_stats; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE dynpoi_stats (
@@ -81,7 +80,7 @@ CREATE SEQUENCE dynpoi_status_id_seq
 
 
 --
--- Name: dynpoi_status; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: dynpoi_status; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE dynpoi_status (
@@ -99,19 +98,20 @@ CREATE TABLE dynpoi_status (
 
 
 --
--- Name: dynpoi_update; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: dynpoi_update; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE dynpoi_update (
     source integer NOT NULL,
     "timestamp" timestamp with time zone NOT NULL,
     remote_url character varying(2048),
-    remote_ip character varying(128)
+    remote_ip character varying(128),
+    version text
 );
 
 
 --
--- Name: dynpoi_update_last; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: dynpoi_update_last; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE dynpoi_update_last (
@@ -121,7 +121,7 @@ CREATE TABLE dynpoi_update_last (
 
 
 --
--- Name: marker; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: marker; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE marker (
@@ -138,7 +138,7 @@ CREATE TABLE marker (
 
 
 --
--- Name: marker_elem; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: marker_elem; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE marker_elem (
@@ -152,7 +152,7 @@ CREATE TABLE marker_elem (
 
 
 --
--- Name: marker_fix; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: marker_fix; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE marker_fix (
@@ -186,7 +186,7 @@ ALTER SEQUENCE marker_id_seq OWNED BY marker.id;
 
 
 --
--- Name: source; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: source; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE source (
@@ -197,7 +197,7 @@ CREATE TABLE source (
 
 
 --
--- Name: source_password; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: source_password; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE source_password (
@@ -214,7 +214,7 @@ ALTER TABLE ONLY marker ALTER COLUMN id SET DEFAULT nextval('marker_id_seq'::reg
 
 
 --
--- Name: dynpoi_categ_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: dynpoi_categ_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dynpoi_categ
@@ -224,7 +224,7 @@ ALTER TABLE dynpoi_categ CLUSTER ON dynpoi_categ_pkey;
 
 
 --
--- Name: dynpoi_class_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: dynpoi_class_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dynpoi_class
@@ -232,7 +232,7 @@ ALTER TABLE ONLY dynpoi_class
 
 
 --
--- Name: dynpoi_item_marker; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: dynpoi_item_marker; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dynpoi_item
@@ -240,7 +240,7 @@ ALTER TABLE ONLY dynpoi_item
 
 
 --
--- Name: dynpoi_item_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: dynpoi_item_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dynpoi_item
@@ -250,7 +250,7 @@ ALTER TABLE dynpoi_item CLUSTER ON dynpoi_item_pkey;
 
 
 --
--- Name: dynpoi_stats_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: dynpoi_stats_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dynpoi_stats
@@ -260,7 +260,7 @@ ALTER TABLE dynpoi_stats CLUSTER ON dynpoi_stats_pkey;
 
 
 --
--- Name: dynpoi_status_id; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: dynpoi_status_id; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dynpoi_status
@@ -268,7 +268,7 @@ ALTER TABLE ONLY dynpoi_status
 
 
 --
--- Name: dynpoi_status_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: dynpoi_status_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dynpoi_status
@@ -278,23 +278,27 @@ ALTER TABLE dynpoi_status CLUSTER ON dynpoi_status_pkey;
 
 
 --
--- Name: dynpoi_update_last_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: dynpoi_update_last_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dynpoi_update_last
     ADD CONSTRAINT dynpoi_update_last_pkey PRIMARY KEY (source);
 
+ALTER TABLE dynpoi_update_last CLUSTER ON dynpoi_update_last_pkey;
+
 
 --
--- Name: dynpoi_update_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: dynpoi_update_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dynpoi_update
     ADD CONSTRAINT dynpoi_update_pkey PRIMARY KEY (source, "timestamp");
 
+ALTER TABLE dynpoi_update CLUSTER ON dynpoi_update_pkey;
+
 
 --
--- Name: marker_elem_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: marker_elem_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY marker_elem
@@ -304,15 +308,17 @@ ALTER TABLE marker_elem CLUSTER ON marker_elem_pkey;
 
 
 --
--- Name: marker_fix_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: marker_fix_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY marker_fix
     ADD CONSTRAINT marker_fix_pkey PRIMARY KEY (marker_id, diff_index, elem_data_type, elem_id);
 
+ALTER TABLE marker_fix CLUSTER ON marker_fix_pkey;
+
 
 --
--- Name: marker_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: marker_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY marker
@@ -322,7 +328,7 @@ ALTER TABLE marker CLUSTER ON marker_pkey;
 
 
 --
--- Name: source_password_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: source_password_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY source_password
@@ -330,7 +336,7 @@ ALTER TABLE ONLY source_password
 
 
 --
--- Name: source_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: source_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY source
@@ -338,14 +344,14 @@ ALTER TABLE ONLY source
 
 
 --
--- Name: dynpoi_stats_timestamp; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: dynpoi_stats_timestamp; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX dynpoi_stats_timestamp ON dynpoi_stats USING btree ("timestamp");
 
 
 --
--- Name: idx_dynpoi_class_class; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: idx_dynpoi_class_class; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_dynpoi_class_class ON dynpoi_class USING btree (class);
@@ -354,105 +360,98 @@ ALTER TABLE dynpoi_class CLUSTER ON idx_dynpoi_class_class;
 
 
 --
--- Name: idx_dynpoi_class_item; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: idx_dynpoi_class_item; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_dynpoi_class_item ON dynpoi_class USING btree (item);
 
 
 --
--- Name: idx_dynpoi_class_level; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: idx_dynpoi_class_level; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_dynpoi_class_level ON dynpoi_class USING btree (level);
 
 
 --
--- Name: idx_dynpoi_class_source; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: idx_dynpoi_class_source; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_dynpoi_class_source ON dynpoi_class USING btree (source);
 
 
 --
--- Name: idx_dynpoi_update_source; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: idx_dynpoi_update_source; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_dynpoi_update_source ON dynpoi_update USING btree (source);
 
 
 --
--- Name: idx_dynpoi_update_timestamp; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: idx_dynpoi_update_source_timestamp; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_dynpoi_update_source_timestamp ON dynpoi_update USING btree (source, "timestamp");
+
+
+--
+-- Name: idx_dynpoi_update_timestamp; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_dynpoi_update_timestamp ON dynpoi_update USING btree ("timestamp");
 
 
 --
--- Name: idx_marker_elem_data_type_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: idx_marker_elem_data_type_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_marker_elem_data_type_id ON marker_elem USING btree (data_type, id);
 
 
 --
--- Name: idx_marker_elem_username; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: idx_marker_elem_username; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_marker_elem_username ON marker_elem USING btree (username);
 
 
 --
--- Name: idx_marker_item; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: idx_marker_item; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_marker_item ON marker USING btree (item);
 
 
 --
--- Name: idx_marker_lat; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX idx_marker_lat ON marker USING btree (lat);
-
-
---
--- Name: idx_marker_lat_lon; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX idx_marker_lat_lon ON marker USING btree (lat, lon);
-
-
---
--- Name: idx_marker_lon; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX idx_marker_lon ON marker USING btree (lon);
-
-
---
--- Name: idx_marker_source_class; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: idx_marker_source_class; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_marker_source_class ON marker USING btree (source, class);
 
 
 --
--- Name: idx_marker_source_class_subclass_lat_lon_elems; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: idx_marker_source_class_subclass_lat_lon_elems; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_marker_source_class_subclass_lat_lon_elems ON marker USING btree (source, class, subclass, lat, lon, elems);
 
 
 --
--- Name: marker_geom; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: marker_geom; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX marker_geom ON marker USING gist (point((lat)::double precision, (lon)::double precision));
 
 
 --
--- Name: source_password_password; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: source_country_analyser; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX source_country_analyser ON source USING btree (country, analyser);
+
+
+--
+-- Name: source_password_password; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX source_password_password ON source_password USING btree (password);
@@ -504,6 +503,14 @@ ALTER TABLE ONLY marker_fix
 
 ALTER TABLE ONLY marker
     ADD CONSTRAINT marker_source_fkey FOREIGN KEY (source) REFERENCES source(id);
+
+
+--
+-- Name: source_password_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY source_password
+    ADD CONSTRAINT source_password_source_fkey FOREIGN KEY (source_id) REFERENCES source(id);
 
 
 --
