@@ -56,6 +56,8 @@ def get_dbconn():
     return conn
 
 def pg_escape(text):
+    if text is None:
+        return None
     if type(text) == int:
         return str(text)
     return text.replace(u"'", u"''").replace(u'\\',u'\\\\')
