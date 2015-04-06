@@ -342,13 +342,15 @@ class update_parser(handler.ContentHandler):
 
     def update_timestamp(self, attrs):
         self.ts = attrs.get("timestamp", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
+        self.version = attrs.get("version", None)
 
         if not self._tstamp_updated:
             try:
-                execute_sql(self._dbcurs, "INSERT INTO dynpoi_update VALUES(%s, %s, %s, %s);",
+                execute_sql(self._dbcurs, "INSERT INTO dynpoi_update (source, timestamp, remote_url, remote_ip, version) VALUES(%s, %s, %s, %s, %s);",
                                      (self._source_id, utils.pg_escape(self.ts),
                                       utils.pg_escape(self._source_url),
-                                      utils.pg_escape(self._remote_ip)))
+                                      utils.pg_escape(self._remote_ip),
+                                      utils.pg_escape(self.version)))
             except psycopg2.IntegrityError:
                 self._dbconn.rollback()
                 execute_sql(self._dbcurs, "SELECT count(*) FROM dynpoi_update WHERE source = %s AND \"timestamp\" = %s",
