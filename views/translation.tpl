@@ -19,7 +19,7 @@
 <h3>{{_("Wiki pages")}}</h3>
 <ul>
 <li><a href="{{_("http://wiki.openstreetmap.org/wiki/Osmose")}}">{{_("OsmOse main page")}}</a></li>
-<li><a href="{{_("http://wiki.openstreetmap.org/wiki/Osmose/errors")}}">{{_("Documentation on reported errors")}}</a></li>
+<li><a href="{{_("http://wiki.openstreetmap.org/wiki/Osmose/errors")}}">{{_("Documentation on reported issues")}}</a></li>
 </ul>
 
 <h2>{{_("For new language or countries")}}</h2>

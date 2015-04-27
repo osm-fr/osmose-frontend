@@ -90,7 +90,7 @@
 </table>
 <br>
 %if errors:
-%    str_more = _("Show more errors")
+%    str_more = _("Show more issues")
 %    include("views/errors/list.tpl", errors=errors, gen=gen, opt_date=opt_date, translate=translate)
 %
 %    import urlparse, urllib
@@ -103,5 +103,5 @@
 <br>
 <a href="?{{urllib.urlencode(query_dict, True)}}">{{str_more}}</a>
 %else:
-<a href="?{{query}}&amp;limit=100">{{_("Show some errors")}}</a>
+<a href="?{{query}}&amp;limit=100">{{_("Show some issues")}}</a>
 %end

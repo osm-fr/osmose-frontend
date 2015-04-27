@@ -1,4 +1,4 @@
-%rebase('layout.tpl', title=_("Information on error %d") % err_id, favicon="../images/markers/marker-l-%s.png" % marker['item'])
+%rebase('layout.tpl', title=_("Information on issue %d") % err_id, favicon="../images/markers/marker-l-%s.png" % marker['item'])
 %def show_html_results(columns, res):
 <table class="sortable" id ="table_marker">
 <thead>

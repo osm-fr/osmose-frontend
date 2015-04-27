@@ -75,7 +75,7 @@
       </div>
     </div>
 {%/new_elems%}
-{{_("Error reported on: ")}} {%b_date%}
+{{_("Issue reported on: ")}} {%b_date%}
   </div>
   <div class="bulle_verif">
     <a href="http://www.openstreetmap.org/?lat={%lat%}&lon={%lon%}&zoom=18" target="_blank">osm-show</a>

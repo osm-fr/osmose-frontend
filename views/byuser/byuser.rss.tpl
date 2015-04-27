@@ -4,9 +4,9 @@
     <title>Osmose - {{", ".join(users)}}</title>
     <description>{{_("Statistics for user %s") % ", ".join(users)}}.
 %if count < 500:
-    {{_("Number of found errors: %d") % count}}.
+    {{_("Number of found issues: %d") % count}}.
 %else:
-    {{_("Number of found errors: more than %d") % count}}.
+    {{_("Number of found issues: more than %d") % count}}.
 %end
     </description>
     <lastBuildDate>\\

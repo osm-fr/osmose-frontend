@@ -12,7 +12,7 @@
     <th></th>
     <th>#</th>
     <th>{{_("item")}}</th>
-    <th title="{{_("information on error")}}">E</th>
+    <th title="{{_("information on issue")}}">E</th>
     <th title="{{_("position")}}">{{_("position (abbreviation)")}}</th>
     <th>{{_("elements (abbreviation)")}}</th>
     <th>{{_("subtitle")}}</th>
@@ -20,7 +20,7 @@
     <th>{{_("date")}}</th>
 %end
 %if gen == "false-positive":
-    <th title="{{_("delete error")}}">X</th>
+    <th title="{{_("delete issue")}}">X</th>
 %end
 </tr>
 </thead>
@@ -38,7 +38,7 @@
     <td></td>
 %    end
 %    e = gen if gen in ('error', 'false-positive') else 'error'
-    <td title="{{_(u"error n°")}}{{res["id"]}}"><a href="../{{e}}/{{res["id"]}}">E</a></td>
+    <td title="{{_(u"issue n°")}}{{res["id"]}}"><a href="../{{e}}/{{res["id"]}}">E</a></td>
 %    if res["lat"] and res["lon"]:
 %        lat = res["lat"]
 %        lon = res["lon"]
@@ -93,7 +93,7 @@
     <td>{{date[:10]}}&nbsp;{{date[11:16]}}</td>
 %    end
 %    if gen == "false-positive":
-    <td title="{{_("delete error #%d") % res["id"]}}"><a href="#" class="err_delete" id="delete={{gen}}={{res["id"]}}">X</a></td>
+    <td title="{{_("delete issue #%d") % res["id"]}}"><a href="#" class="err_delete" id="delete={{gen}}={{res["id"]}}">X</a></td>
 %    end
 </tr>
 %end

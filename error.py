@@ -294,7 +294,7 @@ def fix(db, err_id, fix_num=0):
 
     else:
         abort(412, "Precondition Failed")
-        #print "No error found"
+        #print "No issue found"
 
 
 class OsmSaxFixWriter(OsmSax.OsmSaxWriter):
