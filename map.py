@@ -133,7 +133,7 @@ def index(db, lang):
 
     urls = []
     # TRANSLATORS: link to help in appropriate language
-    urls.append(("byuser", _("Errors by user"), "../byuser/"))
+    urls.append(("byuser", _("Issues by user"), "../byuser/"))
     urls.append(("relation_analyser", _("Relation analyser"), "http://analyser.openstreetmap.fr/"))
     # TRANSLATORS: link to source code
     urls.append(("statistics", _("Statistics"), "../control/update_matrix"))
