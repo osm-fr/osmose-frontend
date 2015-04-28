@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2015-03-14 19:44+0000\n"
+"PO-Revision-Date: 2015-04-27 21:04+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Romanian (http://www.transifex.com/projects/p/osmose/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,6 @@ msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgid "False positives"
 msgstr "Rezultate fals pozitive"
 
-#: ../errors.py:125
 msgid "Fixed errors"
 msgstr "Erori rezolvate"
 
@@ -56,7 +55,6 @@ msgid "Informations"
 msgstr "Informații"
 
 #. TRANSLATORS: link to help in appropriate language
-#: ../map.py:136
 msgid "Errors by user"
 msgstr "Eroarea utilizatorului"
 
@@ -105,17 +103,14 @@ msgstr "Traducere"
 msgid "Statistics for user %s"
 msgstr "Statistica pentru utilizatorul %s"
 
-#: tmp.tpl:2 tmp.tpl:3 tmp.tpl:4
 #, python-brace-format
 msgid "Number of level {level} errors: {count}"
 msgstr "Numărul nivelului {level} erori: {count}"
 
-#: tmp.tpl:6 tmp.tpl:15
 #, python-format
 msgid "Number of found errors: %d"
 msgstr "Numărul de erori găsite:%d"
 
-#: tmp.tpl:7 tmp.tpl:16
 #, python-format
 msgid "Number of found errors: more than %d"
 msgstr "Numărul de erori găsite: mai mult de %d"
@@ -137,7 +132,6 @@ msgstr "Nume de utilizator"
 msgid "User statistics for %s"
 msgstr "Statistica utilizatorului pentru %s"
 
-#: tmp.tpl:13
 #, python-format
 msgid ""
 "This page shows errors on elements that were last modified by '%s'. This "
@@ -148,7 +142,6 @@ msgstr "Această pagină prezintă erori ale elementelor modificate ultima dată
 msgid "This list is also available via rss."
 msgstr "Această listă este disponibilă de asemenea via rss."
 
-#: tmp.tpl:17
 msgid "Show errors on a map"
 msgstr "Afișează erorile de pe hartă"
 
@@ -160,11 +153,9 @@ msgstr "Statistici pentru utilizator"
 msgid "User statistics"
 msgstr "Statistici utilizator"
 
-#: tmp.tpl:20
 msgid "Osmose allows you to control your own errors."
 msgstr "Osmose îți permite să-ți verifici erorile."
 
-#: tmp.tpl:21
 msgid ""
 "By entering your OSM username in the following form, you will be able to see"
 " errors that are attached to your username. Note that the algorithm that "
@@ -180,7 +171,6 @@ msgstr "Nume de utilizator:"
 msgid "Bug tracker"
 msgstr "Sistem de urmărire a defectelor"
 
-#: tmp.tpl:25
 msgid ""
 "Bug should be reported on <a href='http://trac.openstreetmap.fr'>trac</a>. "
 "The component to pick should be osmose-frontend for issues around the "
@@ -278,7 +268,6 @@ msgstr "Datele provin din"
 msgid "copyright"
 msgstr "drepturi de autor"
 
-#: tmp.tpl:55 tmp.tpl:93
 #, python-format
 msgid "Information on error %d"
 msgstr "Informații despre eroarea %d"
@@ -341,11 +330,9 @@ msgstr "numărare"
 msgid "Total"
 msgstr "Total"
 
-#: tmp.tpl:75
 msgid "Show more errors"
 msgstr "Arată mai multe erori"
 
-#: tmp.tpl:76
 msgid "Show some errors"
 msgstr "Arată erori"
 
@@ -359,7 +346,6 @@ msgstr "subclasă (abreviere)"
 msgid "level (abbreviation)"
 msgstr "nivel (abreviere)"
 
-#: tmp.tpl:85
 msgid "information on error"
 msgstr "informații despre eroare"
 
@@ -379,11 +365,9 @@ msgstr "subtitlu"
 msgid "date"
 msgstr "dată"
 
-#: tmp.tpl:90
 msgid "delete error"
 msgstr "șterge eroarea"
 
-#: tmp.tpl:92
 #, python-format
 msgid "delete error #%d"
 msgstr "șterge eroarea #%d"
@@ -392,7 +376,6 @@ msgstr "șterge eroarea #%d"
 msgid "OpenStreetMap Oversight Search Engine"
 msgstr "OpenStreetMap Oversight Search Engine"
 
-#: tmp.tpl:98
 msgid "Map of errors"
 msgstr "Harta erorilor"
 
@@ -400,7 +383,6 @@ msgstr "Harta erorilor"
 msgid "Help on OSM wiki"
 msgstr "Ajutor pe OSM wiki"
 
-#: tmp.tpl:100
 msgid "Information on error database"
 msgstr "Informații despre eroarea bazei de date"
 
@@ -497,7 +479,6 @@ msgstr "Ajutor"
 msgid "Delay: %sd"
 msgstr "Întârziere:%sd"
 
-#: tmp.tpl:129 tmp.tpl:130 tmp.tpl:131
 #, python-format
 msgid "Level %d errors (%d)"
 msgstr "Nivel %d erori (%d)"
@@ -538,7 +519,6 @@ msgstr "Tip"
 msgid "Reuse changeset"
 msgstr "Reutilizați setul de modificări"
 
-#: tmp.tpl:143
 msgid "Error reported on: "
 msgstr "Eroare înregistrată la:"
 
@@ -583,7 +563,6 @@ msgstr "Pagini wiki"
 msgid "OsmOse main page"
 msgstr "Pagina principală OsmOse"
 
-#: tmp.tpl:158
 msgid "Documentation on reported errors"
 msgstr "Documentație despre erorile raportate"
 
@@ -1119,7 +1098,6 @@ msgstr "Puteți crea posibilitatea unei noi limbi direct pe  <a href='%s'>Transi
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr "Traducerea este realizată pe  <a href='%s'>Transifex</a>."
 
-#: tmp.tpl:91
 msgid "error n°"
 msgstr "eroare număr"
 
@@ -1242,4 +1220,110 @@ msgid ""
 "The servers analysing data are provided by OpenStreetMap-France and some "
 "others by contributors around the world. The servers for north-america and "
 "other areas are funded by Mapbox."
+msgstr ""
+
+#: ../errors.py:125
+msgid "Fixed issues"
+msgstr ""
+
+#. TRANSLATORS: link to help in appropriate language
+#: ../map.py:136
+msgid "Issues by user"
+msgstr ""
+
+#: tmp.tpl:2 tmp.tpl:3 tmp.tpl:4
+#, python-brace-format
+msgid "Number of level {level} issues: {count}"
+msgstr ""
+
+#: tmp.tpl:6 tmp.tpl:15
+#, python-format
+msgid "Number of found issues: %d"
+msgstr ""
+
+#: tmp.tpl:7 tmp.tpl:16
+#, python-format
+msgid "Number of found issues: more than %d"
+msgstr ""
+
+#: tmp.tpl:13
+#, python-format
+msgid ""
+"This page shows issues on elements that were last modified by '%s'. This "
+"doesn't means that this user is responsible for all these issues."
+msgstr ""
+
+#: tmp.tpl:17
+msgid "Show issues on a map"
+msgstr ""
+
+#: tmp.tpl:20
+msgid "Osmose allows you to control your own issues."
+msgstr ""
+
+#: tmp.tpl:21
+msgid ""
+"By entering your OSM username in the following form, you will be able to see"
+" issues that are attached to your username. Note that the algorithm that "
+"attaches issues to username is not perfect, as Osmose only checks the last "
+"contributor of the relevant erroneous elements."
+msgstr ""
+
+#: tmp.tpl:25
+msgid ""
+"Bug should be reported on <a href='http://trac.openstreetmap.fr'>trac</a>. "
+"The component to pick should be osmose-frontend for issues around the "
+"website, and osmose-backend for issues on the reported issues on OSM data, "
+"or for suggestion for new analyses."
+msgstr ""
+
+#: tmp.tpl:55 tmp.tpl:93
+#, python-format
+msgid "Information on issue %d"
+msgstr ""
+
+#: tmp.tpl:75
+msgid "Show more issues"
+msgstr ""
+
+#: tmp.tpl:76
+msgid "Show some issues"
+msgstr ""
+
+#: tmp.tpl:85
+msgid "information on issue"
+msgstr ""
+
+#: tmp.tpl:90
+msgid "delete issue"
+msgstr ""
+
+#: tmp.tpl:91
+msgid "issue n°"
+msgstr ""
+
+#: tmp.tpl:92
+#, python-format
+msgid "delete issue #%d"
+msgstr ""
+
+#: tmp.tpl:98
+msgid "Map of issues"
+msgstr ""
+
+#: tmp.tpl:100
+msgid "Information on issues database"
+msgstr ""
+
+#: tmp.tpl:129 tmp.tpl:130 tmp.tpl:131
+#, python-format
+msgid "Level %d issues (%d)"
+msgstr ""
+
+#: tmp.tpl:143
+msgid "Issue reported on: "
+msgstr ""
+
+#: tmp.tpl:158
+msgid "Documentation on reported issues"
 msgstr ""
