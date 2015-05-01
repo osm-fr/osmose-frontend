@@ -4,6 +4,7 @@
     <th>{{_("source")}}</td>
     <th style="min-width: 800px">{{_("remote url")}}</td>
     <th>{{_("timestamp")}}</td>
+    <th>{{_("version")}}</td>
 </tr>
 %for res in liste:
 <tr>
@@ -16,6 +17,7 @@
 %    end
     <td>{{url}}</td>
     <td>{{res[1]}}</td>
+    <td>{{res[4]}}</td>
 </tr>
 %end
 </table>

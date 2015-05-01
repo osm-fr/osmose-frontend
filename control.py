@@ -132,6 +132,8 @@ SELECT
     country,
     MAX(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp))) AS max_age,
     MIN(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp))) AS min_age,
+    MAX(dynpoi_update.version) AS max_version,
+    MIN(dynpoi_update.version) AS min_version,
     count(*) AS count
 FROM
     source
@@ -149,16 +151,27 @@ ORDER BY
 """)
 
     summary = defaultdict(list)
+    max_versions = defaultdict(list)
+    min_versions = defaultdict(list)
     for res in db.fetchall():
-        (remote, country, max_age, min_age, count) = res
+        (remote, country, max_age, min_age, max_version, min_version, count) = res
         summary[remote].append({'country': country, 'max_age': max_age/60/60/24, 'min_age': min_age/60/60/24, 'count': count})
+        max_versions[remote].append(max_version)
+        min_versions[remote].append(min_version)
+    for remote in max_versions.keys():
+        max_versions[remote] = max(max_versions[remote])
+        if max_versions[remote] and '-' in max_versions[remote]:
+          max_versions[remote] = '-'.join(max_versions[remote].split('-')[1:5])
+        min_versions[remote] = min(min_versions[remote])
+        if min_versions[remote] and '-' in min_versions[remote]:
+          min_versions[remote] = '-'.join(min_versions[remote].split('-')[1:5])
 
-    return template('control/updates_summary', summary=summary)
+    return template('control/updates_summary', summary=summary, max_versions=max_versions, min_versions=min_versions)
 
 
 @route('/control/update/<source:int>')
 def update(db, lang, source=None):
-    sql = "SELECT source,timestamp,remote_url,remote_ip FROM dynpoi_update WHERE source=%d ORDER BY timestamp DESC;" % source
+    sql = "SELECT source,timestamp,remote_url,remote_ip,version FROM dynpoi_update WHERE source=%d ORDER BY timestamp DESC;" % source
     db.execute(sql)
     return template('control/update', liste=db.fetchall())
 
