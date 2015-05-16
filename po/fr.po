@@ -6,6 +6,7 @@
 # frodrigo <fred.rodrigo@gmail.com>, 2014-2015
 # frodrigo <fred.rodrigo@gmail.com>, 2014
 #  <frodrigo@openstreetmap.fr>, 2012
+# George Kaplan <georgekaplanosm@hotmail.fr>, 2015
 # Jean-Baptiste H <jb.holcroft@gmail.com>, 2014
 # Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2012
 # Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2012,2014-2015
@@ -21,8 +22,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2015-04-28 08:31+0000\n"
-"Last-Translator: frodrigo <fred.rodrigo@gmail.com>\n"
+"PO-Revision-Date: 2015-05-14 10:03+0000\n"
+"Last-Translator: George Kaplan <georgekaplanosm@hotmail.fr>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,7 +57,7 @@ msgid "False positives"
 msgstr "Faux positifs"
 
 msgid "Fixed errors"
-msgstr "Erreurs Corrigées"
+msgstr "Erreurs corrigées"
 
 #: ../errors.py:128 tmp.tpl:61
 msgid "Informations"
@@ -121,7 +122,7 @@ msgstr "Nombre d'erreurs trouvées : %d"
 
 #, python-format
 msgid "Number of found errors: more than %d"
-msgstr "Nombre d'erreurs trouvées : plus que %d"
+msgstr "Nombre d'erreurs trouvées : plus de %d"
 
 #: tmp.tpl:8
 msgid "Users statistics"
@@ -194,7 +195,7 @@ msgstr "Proposer des correctifs"
 msgid ""
 "Patches can be provided via merge requests on gitorious or github. This is "
 "the prefered way to handle patches."
-msgstr "Les patchs peuvent être proposé de préférence par des merge requests sur gitorious ou github."
+msgstr "Les patchs peuvent être proposés de préférence par des merge requests sur gitorious ou github."
 
 #: tmp.tpl:28
 msgid "Development"
@@ -214,7 +215,7 @@ msgstr "Contacter les développeurs"
 #, python-format
 msgid ""
 "We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
-msgstr "Nous pouvons être contacté directement par email à <a href='mailto:%s'>%s</a>."
+msgstr "Nous pouvons être contactés directement par email à <a href='mailto:%s'>%s</a>."
 
 #: tmp.tpl:35 tmp.tpl:37
 msgid "Last updates"
@@ -306,7 +307,7 @@ msgstr "Corrigés"
 
 #: tmp.tpl:64
 msgid "Graph"
-msgstr "Graphe"
+msgstr "Graphique"
 
 #: tmp.tpl:65 tmp.tpl:106
 msgid "Map"
@@ -557,7 +558,7 @@ msgstr "L'outil OsmOse est principalement développé par des français, et nous
 msgid ""
 "To make OsmOse a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
-msgstr "Pour qu'OsmOse soit un projet multilingue nous avons besoin de votre aide pour améliorer les traductions actuelles et en ajouter de nouvelles."
+msgstr "Pour qu'OsmOse soit un projet multilingue, nous avons besoin de votre aide pour améliorer les traductions actuelles et en ajouter de nouvelles."
 
 #: tmp.tpl:152
 msgid "Pages to translate"
@@ -586,7 +587,7 @@ msgstr "Suivi des bugs"
 msgid ""
 "<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
 "issue with translations, or erroneous analyses."
-msgstr "<a href='http://trac.openstreetmap.fr'>Trac</a> est utilisé pour reporter tout problèmes avec les traductions, ou des analyses erronées."
+msgstr "<a href='http://trac.openstreetmap.fr'>Trac</a> est utilisé pour reporter tout problème avec les traductions ou des analyses erronées."
 
 #: tmp.tpl:30
 msgid ""
@@ -658,7 +659,7 @@ msgstr "intersection d'objets"
 
 #: ../tools/database/item_menu.txt:8
 msgid "orphan nodes"
-msgstr "noeuds orphelins"
+msgstr "nœuds orphelins"
 
 #: ../tools/database/item_menu.txt:9
 msgid "sudden highway type change"
@@ -686,7 +687,7 @@ msgstr "intersection entre surfaces"
 
 #: ../tools/database/item_menu.txt:15
 msgid "big relation"
-msgstr "relation large"
+msgstr "relation étendue"
 
 #: ../tools/database/item_menu.txt:16
 msgid "multipolygon"
@@ -850,7 +851,7 @@ msgstr "tags incompatibles"
 
 #: ../tools/database/item_menu.txt:62
 msgid "ref in name"
-msgstr "ref in name"
+msgstr "référence dans le nom"
 
 #: ../tools/database/item_menu.txt:63
 msgid "seamark:fixme"
@@ -866,7 +867,7 @@ msgstr "POI en double"
 
 #: ../tools/database/item_menu.txt:66
 msgid "unwanted tag on node"
-msgstr "tag non-nécessaire sur node"
+msgstr "tag superflu sur nœud"
 
 #: ../tools/database/item_menu.txt:67
 msgid "bad usage"
@@ -1115,11 +1116,11 @@ msgstr "Export"
 
 #: tmp.tpl:126
 msgid "Html list"
-msgstr "Liste Html"
+msgstr "Liste HTML"
 
 #: ../tools/database/item_menu.txt:23
 msgid "one-node way"
-msgstr "chemin avec un seul nœud"
+msgstr "chemin à un seul nœud"
 
 #: ../tools/database/item_menu.txt:126
 msgid "toilets"
@@ -1127,7 +1128,7 @@ msgstr "toilettes"
 
 #: ../tools/database/item_menu.txt:96
 msgid "transport sharing, not integrated"
-msgstr "voiture et vélopartage non intégrés"
+msgstr "voiture, vélopartage non intégré"
 
 #: ../tools/database/item_menu.txt:127
 msgid "police"
@@ -1135,7 +1136,7 @@ msgstr "police"
 
 #: ../tools/database/item_menu.txt:128
 msgid "police, could be integrated"
-msgstr "police, peut être intégré"
+msgstr "police, intégration possible"
 
 #: ../tools/database/item_menu.txt:97
 msgid "pharmacy, not integrated "
@@ -1177,7 +1178,7 @@ msgstr "Voie sans issue"
 msgid ""
 "Keep in touch by watching at <a "
 "href='https://twitter.com/osmose_qa'>@osmose_qa</a> on twitter."
-msgstr "Restez en contact en regardant <a href='https://twitter.com/osmose_qa'>@osmose_qa</a> sur twitter."
+msgstr "Restez en contact en suivant <a href='https://twitter.com/osmose_qa'>@osmose_qa</a> sur twitter."
 
 #: ../tools/database/item_menu.txt:68
 msgid "incorrect layer"
@@ -1197,7 +1198,7 @@ msgstr "analyseur"
 
 #: ../tools/database/item_menu.txt:132
 msgid "postal code, could be integrated"
-msgstr "code postal, , intégration possible"
+msgstr "code postal, intégration possible"
 
 #: ../tools/database/item_menu.txt:133
 msgid "library"
@@ -1228,11 +1229,11 @@ msgid ""
 "The servers analysing data are provided by OpenStreetMap-France and some "
 "others by contributors around the world. The servers for north-america and "
 "other areas are funded by Mapbox."
-msgstr "Les serveurs d'analyse des données sont fournies par OpenStreetMap-France et quelques autres par des contributeurs à travers le monde. Les serveurs pour l'Amérique du Nord et d'autres régions sont financés par MapBox."
+msgstr "Les serveurs d'analyse des données sont fournis par OpenStreetMap-France et quelques autres par des contributeurs à travers le monde. Les serveurs pour l'Amérique du Nord et d'autres régions sont financés par MapBox."
 
 #: ../errors.py:125
 msgid "Fixed issues"
-msgstr "Signalements Corrigées"
+msgstr "Signalements corrigés"
 
 #. TRANSLATORS: link to help in appropriate language
 #: ../map.py:136
@@ -1259,7 +1260,7 @@ msgstr "Nombre de signalements trouvés : plus de %d"
 msgid ""
 "This page shows issues on elements that were last modified by '%s'. This "
 "doesn't means that this user is responsible for all these issues."
-msgstr ""
+msgstr "Cette page recense les signalements sur des éléments modifiés en dernier par '%s'. Ça ne signifie pas que l'utilisateur est responsable de ces signalements."
 
 #: tmp.tpl:17
 msgid "Show issues on a map"
@@ -1317,7 +1318,7 @@ msgstr "supprimer le signalement #%d"
 
 #: tmp.tpl:98
 msgid "Map of issues"
-msgstr "Carte des signalments"
+msgstr "Carte des signalements"
 
 #: tmp.tpl:100
 msgid "Information on issues database"
