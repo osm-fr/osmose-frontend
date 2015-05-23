@@ -133,3 +133,4 @@
  8230 | _("library")
  8240 | _("restaurant")
  8250 | _("winery")
+ 8260 | _("geodesic")
