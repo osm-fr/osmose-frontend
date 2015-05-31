@@ -18,7 +18,7 @@
   {%/infos%}
   {%#relation%}
       <a target="_blank" href="http://analyser.openstreetmap.fr/cgi-bin/index.py?relation={%id%}">analyse1</a>
-      <a target="_blank" href="http://osm8.openstreetmap.fr/~osmbin/analyse-relation-open.py?{%id%}">analyse2</a>
+      <a target="_blank" href="http://polygons.openstreetmap.fr/~osmbin/analyse-relation-open.py?{%id%}">analyse2</a>
   {%/relation%}
   {%#node%}
       <a href="http://localhost:8111/load_object?objects=n{%id%}" target="hiddenIframe" class="josm">josm</a>
