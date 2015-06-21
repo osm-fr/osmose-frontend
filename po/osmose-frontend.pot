@@ -177,8 +177,8 @@ msgstr ""
 
 #: tmp.tpl:27
 msgid ""
-"Patches can be provided via merge requests on gitorious or github. This is "
-"the prefered way to handle patches."
+"Patches can be provided via merge requests on Github. This is the preferred "
+"way of handling patches."
 msgstr ""
 
 #: tmp.tpl:28
