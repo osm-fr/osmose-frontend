@@ -100,6 +100,8 @@
  8011 | _("monument, museum, could be integrated")
  8020 | _("post office")
  8021 | _("post office, could be integrated")
+ 8022 | _("post box")
+ 8023 | _("post box, could be integrated")
  8030 | _("school")
  8031 | _("school, could be integrated")
  8040 | _("public transport")
