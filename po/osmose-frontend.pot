@@ -729,7 +729,7 @@ msgstr ""
 msgid "highway crossing"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:32 ../tools/database/item_menu.txt:130
+#: ../tools/database/item_menu.txt:32 ../tools/database/item_menu.txt:132
 msgid "pharmacy"
 msgstr ""
 
@@ -945,7 +945,7 @@ msgstr ""
 msgid "node on ways"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:92 ../tools/database/item_menu.txt:107
+#: ../tools/database/item_menu.txt:92 ../tools/database/item_menu.txt:109
 msgid "train station"
 msgstr ""
 
@@ -973,91 +973,91 @@ msgstr ""
 msgid "post office, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:103
+#: ../tools/database/item_menu.txt:105
 msgid "school"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:104
+#: ../tools/database/item_menu.txt:106
 msgid "school, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:105
+#: ../tools/database/item_menu.txt:107
 msgid "public transport"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:106
+#: ../tools/database/item_menu.txt:108
 msgid "public transport, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:108
+#: ../tools/database/item_menu.txt:110
 msgid "train station, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:109
+#: ../tools/database/item_menu.txt:111
 msgid "level crossing"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:110
+#: ../tools/database/item_menu.txt:112
 msgid "geodesic point"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:111
+#: ../tools/database/item_menu.txt:113
 msgid "postal address"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:112
+#: ../tools/database/item_menu.txt:114
 msgid "wikipedia, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:113
+#: ../tools/database/item_menu.txt:115
 msgid "public service"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:114
+#: ../tools/database/item_menu.txt:116
 msgid "recycling"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:115
+#: ../tools/database/item_menu.txt:117
 msgid "recycling, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:116
+#: ../tools/database/item_menu.txt:118
 msgid "parking"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:117
+#: ../tools/database/item_menu.txt:119
 msgid "parking, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:118
+#: ../tools/database/item_menu.txt:120
 msgid "accommodation"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:119
+#: ../tools/database/item_menu.txt:121
 msgid "accommodation, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:120
+#: ../tools/database/item_menu.txt:122
 msgid "cycle parking"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:121
+#: ../tools/database/item_menu.txt:123
 msgid "cycle parking, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:122
+#: ../tools/database/item_menu.txt:124
 msgid "transport sharing"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:123
+#: ../tools/database/item_menu.txt:125
 msgid "transport sharing, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:124
+#: ../tools/database/item_menu.txt:126
 msgid "sport"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:125
+#: ../tools/database/item_menu.txt:127
 msgid "sport, could be integrated"
 msgstr ""
 
@@ -1106,7 +1106,7 @@ msgstr ""
 msgid "one-node way"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:126
+#: ../tools/database/item_menu.txt:128
 msgid "toilets"
 msgstr ""
 
@@ -1114,11 +1114,11 @@ msgstr ""
 msgid "transport sharing, not integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:127
+#: ../tools/database/item_menu.txt:129
 msgid "police"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:128
+#: ../tools/database/item_menu.txt:130
 msgid "police, could be integrated"
 msgstr ""
 
@@ -1126,11 +1126,11 @@ msgstr ""
 msgid "pharmacy, not integrated "
 msgstr ""
 
-#: ../tools/database/item_menu.txt:131
+#: ../tools/database/item_menu.txt:133
 msgid "pharmacy, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:129
+#: ../tools/database/item_menu.txt:131
 msgid "gas station"
 msgstr ""
 
@@ -1180,19 +1180,19 @@ msgstr ""
 msgid "analyser"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:132
+#: ../tools/database/item_menu.txt:134
 msgid "postal code, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:133
+#: ../tools/database/item_menu.txt:135
 msgid "library"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:134
+#: ../tools/database/item_menu.txt:136
 msgid "restaurant"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:135
+#: ../tools/database/item_menu.txt:137
 msgid "winery"
 msgstr ""
 
@@ -1325,6 +1325,14 @@ msgstr ""
 msgid "version"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:136
+#: ../tools/database/item_menu.txt:138
 msgid "geodesic"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:103
+msgid "post box"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:104
+msgid "post box, could be integrated"
 msgstr ""
