@@ -5,10 +5,13 @@ var mapBases = {
   'ÖPNV Karte': L.tileLayer('http://tile.memomaps.de/tilegen/{z}/{x}/{y}.png'),
   'White background': L.tileLayer('http://a.layers.openstreetmap.fr/blanc.png'),
   'Mapnik-osmfr': L.tileLayer('http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {attribution: osmAttribution}),
+  'Cadastre-FR': L.tileLayer('http://tms.cadastre.openstreetmap.fr/*/tout/{z}/{x}/{y}.png', {attribution: 'Direction Générale des Impôts - Cadastre'}),
   'HOT': L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {attribution: osmAttribution}),
   'Bing': L.bingLayer('AmQcQsaJ4WpRqn2_k0rEToboqaM1ind8HMmM0XwKwW9R8bChmHEbczHwjnjFpuNP', {type: 'Aerial'}),
   'MapBox Satellite': L.tileLayer('http://{s}.tiles.mapbox.com/v4/openstreetmap.map-inh7ifmo/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoib3BlbnN0cmVldG1hcCIsImEiOiJhNVlHd29ZIn0.ti6wATGDWOmCnCYen-Ip7Q'),
 };
+
+
 
 var urlOsmFr = 'http://{s}.layers.openstreetmap.fr/{layer}/{z}/{x}/{y}.png';
 var attributionOsmFr = '';
@@ -19,6 +22,7 @@ var mapOverlay = {
   'Fixme tags': L.tileLayer(urlOsmFr, {layer: 'fixme', attribution: attributionOsmFr}),
   'Note tags': L.tileLayer(urlOsmFr, {layer: 'note', attribution: attributionOsmFr}),
   'validate:my_own=yes': L.tileLayer(urlOsmFr, {layer: 'my_own', attribution: attributionOsmFr}),
+  'BAN': L.tileLayer(urlOsmFr, {layer: 'bano', attribution: attributionOsmFr}),
   'admin_level=4': L.tileLayer(urlOsmFr, {layer: 'admin4', attribution: attributionOsmFr}),
   'admin_level=5': L.tileLayer(urlOsmFr, {layer: 'admin5', attribution: attributionOsmFr}),
   'admin_level=6': L.tileLayer(urlOsmFr, {layer: 'admin6', attribution: attributionOsmFr}),
