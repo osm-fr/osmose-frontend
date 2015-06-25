@@ -85,6 +85,7 @@
  7020 | _("admin boundary")
  7040 | _("power lines")
  7050 | _("post office")
+ 7051 | _("post box")
  7060 | _("ODbL migration change")
  7070 | _("school, not integrated")
  7080 | _("monument")
