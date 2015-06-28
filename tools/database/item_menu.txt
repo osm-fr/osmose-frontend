@@ -31,6 +31,7 @@
  2090 | _("highway crossing")
  2100 | _("pharmacy")
  2110 | _("missing object kind")
+ 2112 | _("indoor")
  3010 | _("highway roundabout")
  3020 | _("bad source tag")
  3030 | _("tagwatch cleaner")
