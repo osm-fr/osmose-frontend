@@ -13,6 +13,7 @@ languages_name = OrderedDict()
 languages_name["en"] = u"English"
 
 # language names from http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+languages_name["ca"] = u"Català"
 languages_name["cs"] = u"Čeština"
 languages_name["da"] = u"Dansk"
 languages_name["de"] = u"Deutsch"
