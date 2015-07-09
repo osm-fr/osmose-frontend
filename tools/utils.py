@@ -34,7 +34,7 @@ languages_name["uk"] = u"Українська"
 
 allowed_languages = list(languages_name)
 pg_user           = "osmose"
-pg_pass           = "clostAdtoi"
+pg_pass           = "-osmose-"
 pg_base           = "osmose_frontend"
 website           = "osmose.openstreetmap.fr"
 
