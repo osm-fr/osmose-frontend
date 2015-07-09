@@ -13,6 +13,11 @@
 
 	Alias /robots.txt /data/project/osmose/frontend/static/robots.txt
 	Alias /favicon.ico /data/project/osmose/frontend/static/favicon.ico
+	Alias /export /data/work/osmose/export
+
+	<Location />
+		Require all granted
+	</Location>
 
 	<Directory /data/project/osmose/frontend/static/>
 		AddDefaultCharset UTF-8
@@ -22,6 +27,13 @@
 		AllowOverride None
 		DirectoryIndex index.html index.py
 	</Directory>
+
+        <Directory /data/work/osmose/export/>
+                AddDefaultCharset UTF-8
+                Options FollowSymLinks Indexes MultiViews
+                AllowOverride None
+                DirectoryIndex index.html
+        </Directory>
 
 	ExpiresActive On
 	ExpiresDefault "access plus 1 week"
