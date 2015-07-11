@@ -62,7 +62,7 @@ if __name__ == "__main__":
       print "updated country=%s analyser=%s where password=%s" % (country, analyser, password)
       return
 
-  sys.path.append("../../backend")
+  sys.path.append(sys.argv[1] if len(sys.argv) > 0 else "../../backend")
   import osmose_config
 
   for (country, country_config) in osmose_config.config.items():
