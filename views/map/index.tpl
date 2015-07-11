@@ -115,7 +115,7 @@
 %    for item in unactiveItem:
         <li id='item_desc{{item}}'>
             <input type='checkbox' id='{{item}}' name='item{{item}}' checked="checked">
-            <a target="_blank" href="../errors/?item={{err["item"]}}">{{item}}</a>
+            <a target="_blank" href="../errors/?item={{item}}">{{item}}</a>
         </li>
 %    end
     </ul>
