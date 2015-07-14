@@ -10,7 +10,7 @@ if __name__ == "__main__":
   dbconn = utils.get_dbconn()
   dbcurs = dbconn.cursor()
 
-  dbcurs.execute("SELECT max(id)+1 FROM source;")
+  dbcurs.execute("SELECT COALESCE(max(id)+1, 1) FROM source;")
   for res in dbcurs.fetchall():
     source = res[0]
 
