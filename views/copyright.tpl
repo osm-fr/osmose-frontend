@@ -28,7 +28,6 @@ along with this program.  If not, see http://www.gnu.org/licenses/.</p>
 
 %urls = []
 %urls.append(("OpenStreetMap", "http://www.openstreetmap.org/", "http://www.openstreetmap.org/copyright"))
-%urls.append(("OpenStreetBugs", "http://openstreetbugs.appspot.com/", None))
 %urls.append(("www.galichon.com", "http://www.galichon.com/", "http://www.galichon.com/codesgeo/avertissement.php"))
 
 <ul>
