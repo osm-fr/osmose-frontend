@@ -27,7 +27,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/.</p>
 <h1>{{_("Data are coming from")}}</h1>
 
 %urls = []
-%urls.append(("OpenStreetMap", "http://www.openstreetmap.org/", "http://www.openstreetmap.org/copyright"))
+%urls.append((main_project, main_website, main_website + "copyright"))
 %urls.append(("www.galichon.com", "http://www.galichon.com/", "http://www.galichon.com/codesgeo/avertissement.php"))
 
 <ul>

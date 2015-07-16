@@ -51,7 +51,7 @@ def contact(lang, name=None):
 @route('/copyright')
 def copyright(lang, name=None):
     translate = utils.translator(lang)
-    return template('copyright')
+    return template('copyright', main_project=utils.main_project, main_website=utils.main_website)
 
 @route('/translation')
 def translation(lang, name=None):

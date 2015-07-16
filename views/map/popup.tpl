@@ -13,7 +13,7 @@
 {%#elems%}
     <div class="bulle_elem">
   {%^infos%}
-      <b><a target="_blank" href="http://www.openstreetmap.org/browse/{%type%}/{%id%}">{%type%} {%id%}</a></b>
+      <b><a target="_blank" href="{{main_website}}browse/{%type%}/{%id%}">{%type%} {%id%}</a></b>
       <a href="#" onclick="window.open('http://rawedit.openstreetmap.fr/edit/{%type%}/{%id%}','rawedit','height=360,width=710');">rawedit</a>
   {%/infos%}
   {%#relation%}
@@ -27,7 +27,7 @@
       <a href="http://localhost:8111/load_object?objects=w{%id%}" target="hiddenIframe" class="josm">josm</a>
   {%/way%}
   {%#relation%}
-      <a href="http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/{%type%}/{%id%}/full" target="hiddenIframe" class="josm">josm</a>
+      <a href="http://localhost:8111/import?url={{remote_url_read}}0.6/{%type%}/{%id%}/full" target="hiddenIframe" class="josm">josm</a>
   {%/relation%}
       <a href="#" class="editor_edit" data-type="{%type%}" data-id="{%id%}" data-error="{%error_id%}">edit</a>
       <br>
@@ -78,8 +78,8 @@
 {{_("Issue reported on: ")}} {%b_date%}
   </div>
   <div class="bulle_verif">
-    <a href="http://www.openstreetmap.org/?lat={%lat%}&lon={%lon%}&zoom=18" target="_blank">osm-show</a>
-    <a href="http://www.openstreetmap.org/edit?lat={%lat%}&lon={%lon%}&zoom=18" target="_blank">osm-edit</a>
+    <a href="{{main_website}}?lat={%lat%}&lon={%lon%}&zoom=18" target="_blank">osm-show</a>
+    <a href="{{main_website}}edit?lat={%lat%}&lon={%lon%}&zoom=18" target="_blank">osm-edit</a>
     <a href="http://localhost:8111/load_and_zoom?left={%minlon%}&bottom={%minlat%}&right={%maxlon%}&top={%maxlat%}&select={%elems_id%}" target="hiddenIframe" class="josm">josm zone</a>
   </div>
   <div class="bulle_maj">
