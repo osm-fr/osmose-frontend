@@ -38,9 +38,15 @@ pg_pass           = "-osmose-"
 pg_base           = "osmose_frontend"
 website           = "osmose.openstreetmap.fr"
 
+# OpenStreetMap
 remote_url        = "http://api.openstreetmap.org/"
 remote_url_read   = "http://api.openstreetmap.fr/"
 remote_url_write  = "http://api.openstreetmap.org/"
+
+# OpenGeoFiction
+#remote_url        = "http://opengeofiction.net/"
+#remote_url_read   = "http://opengeofiction.net/"
+#remote_url_write  = "http://opengeofiction.net/"
 
 username          = pwd.getpwuid(os.getuid())[0]
 dir_results       = "/data/work/%s/results" % (username)
