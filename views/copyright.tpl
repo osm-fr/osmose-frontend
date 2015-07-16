@@ -14,14 +14,14 @@ along with this program.  If not, see http://www.gnu.org/licenses/.</p>
 <h1>{{_("Authors")}}</h1>
 <ul>
     <li>Etienne Chové 2009-2010</li>
-    <li>Jocelyn Jaubert 2011-2013</li>
-    <li>Frédéric Rodrigo 2011-2013</li>
+    <li>Jocelyn Jaubert 2011-2015</li>
+    <li>Frédéric Rodrigo 2011-2513</li>
 </ul>
 {{_("And contributors")}}
 <ul>
     <li>Krysst aka Didier Marchand 2012</li>
     <li>Clément Cunin aka Black Myst 2012-2013</li>
-    <li>Operon 2012-2013</li>
+    <li>Operon 2012-2015</li>
 </ul>
 
 <h1>{{_("Data are coming from")}}</h1>
