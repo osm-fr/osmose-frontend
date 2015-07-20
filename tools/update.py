@@ -120,7 +120,11 @@ def update(source, url, logger = printlogger(), remote_ip=""):
 #                   (source_id, source_id, ))
 
     execute_sql(dbcurs, """DELETE FROM marker
-                      WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status WHERE source = %s)""",
+                      WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status WHERE source = %s AND elems != '')""",
+                   (source_id, ))
+
+    execute_sql(dbcurs, """DELETE FROM marker
+                      WHERE (source,class,subclass,lat,lon) IN (SELECT source,class,subclass,lat,lon FROM dynpoi_status WHERE source = %s AND elems = '')""",
                    (source_id, ))
 
     execute_sql(dbcurs, """UPDATE dynpoi_class
