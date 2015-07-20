@@ -59,3 +59,7 @@ psql $DATABASE -c "COPY (SELECT source.country,
       LEFT JOIN source ON source.id = marker.source)
 TO STDOUT WITH CSV HEADER;" | bzip2 > "$DIR_DUMP/tmp/osmose-planet-latest.csv.bz2"
 mv "$DIR_DUMP/tmp/osmose-planet-latest.csv.bz2" "$DIR_DUMP/export/osmose-planet-latest.csv.bz2"
+
+pg_dump --data-only -t dynpoi_categ -t dynpoi_item $DATABASE \
+  | bzip2 > "$DIR_DUMP/tmp/osmose-menu.sql.bz2.tmp"
+mv "$DIR_DUMP/tmp/osmose-menu.sql.bz2.tmp" "$DIR_DUMP/export/osmose-menu.sql.bz2"
