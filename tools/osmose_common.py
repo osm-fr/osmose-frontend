@@ -10,7 +10,7 @@ def remove_bug(error_id, status):
   PgCursor = PgConn.cursor()
 
   # find source
-  PgCursor.execute("SELECT source,class,subclass,elems FROM marker WHERE id = %s;",
+  PgCursor.execute("SELECT source,class,subclass,elems,lat,lon FROM marker WHERE id = %s;",
                    (error_id, ))
   source_id = None
   for res in PgCursor.fetchall():
@@ -18,13 +18,20 @@ def remove_bug(error_id, status):
       class_id = res["class"]
       sub_class = res["subclass"]
       elems = res["elems"]
+      lat = res["lon"]
+      lon = res["lat"]
 
   if not source_id:
       return -1
 
-  PgCursor.execute("""DELETE FROM dynpoi_status
-                      WHERE source=%s AND class=%s AND subclass=%s AND elems=%s;""",
-                   (source_id,class_id,sub_class,elems))
+  if len(elems) > 1:
+    PgCursor.execute("""DELETE FROM dynpoi_status
+                        WHERE source=%s AND class=%s AND subclass=%s AND elems=%s;""",
+                     (source_id,class_id,sub_class,elems))
+  else:
+    PgCursor.execute("""DELETE FROM dynpoi_status
+                        WHERE source=%s AND class=%s AND subclass=%s AND lat=%s AND lon=%s;""",
+                     (source_id,class_id,sub_class,lat,lon))
   PgCursor.execute("""INSERT INTO dynpoi_status
                         (id,source,class,subclass,elems,date,status,lat,lon,subtitle)
                       SELECT id,source,class,subclass,elems,NOW(),%s,
