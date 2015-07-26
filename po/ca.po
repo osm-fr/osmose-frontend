@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the osmose-frontend package.
 # 
 # Translators:
+# el_libre como el chaval <el.libre@gmail.com>, 2015
 # jmontane <joan@montane.cat>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2015-07-05 19:30+0000\n"
-"Last-Translator: jmontane <joan@montane.cat>\n"
+"PO-Revision-Date: 2015-07-26 19:41+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Catalan (http://www.transifex.com/projects/p/osmose/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -157,7 +158,7 @@ msgid ""
 " errors that are attached to your username. Note that the algorithm that "
 "attaches errors to username is not perfect, as Osmose only checks the last "
 "contributor of the relevant erroneous elements."
-msgstr ""
+msgstr "Si introduïu el vostre nom d'usuari de l'OSM al formulari següent, podreu veure els errors associats al vostre nom d'usuari. Tingueu en compteu que l'algoritme que associa els errors als noms d'usuari no és perfecte, atès que l'Osmose només comprova l'últim col·laborador dels elements potencialment erronis."
 
 #: tmp.tpl:22
 msgid "Username:"
@@ -176,7 +177,7 @@ msgstr ""
 
 #: tmp.tpl:26
 msgid "Providing patches"
-msgstr ""
+msgstr "Proveint pegats"
 
 #: tmp.tpl:27
 msgid ""
@@ -202,7 +203,7 @@ msgstr "Contacte amb els mantenidors"
 #, python-format
 msgid ""
 "We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
-msgstr ""
+msgstr "Podeu contactar amb nosaltres via un correu electrònic a <a href='mailto:%s'>%s</a>."
 
 #: tmp.tpl:35 tmp.tpl:37
 msgid "Last updates"
@@ -210,7 +211,7 @@ msgstr "Últimes actualitzacions"
 
 #: tmp.tpl:38
 msgid "Median delay:"
-msgstr ""
+msgstr "Retard mitjà:"
 
 #: tmp.tpl:39 tmp.tpl:46 tmp.tpl:69 tmp.tpl:78
 #: ../tools/database/item_menu.txt:27
@@ -278,7 +279,7 @@ msgstr "valor"
 
 #: tmp.tpl:59 tmp.tpl:97
 msgid "Marker"
-msgstr ""
+msgstr "Marcador"
 
 #: tmp.tpl:60
 msgid "Elements"
@@ -303,12 +304,12 @@ msgstr "Mapa"
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
 #: tmp.tpl:68
 msgid "Set"
-msgstr ""
+msgstr "Estableix"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
 #: tmp.tpl:71 tmp.tpl:80
 msgid "class (abbreviation)"
-msgstr ""
+msgstr "classe (abreviatura)"
 
 #: tmp.tpl:72 tmp.tpl:85
 msgid "item"
@@ -335,7 +336,7 @@ msgstr "Mostra alguns errors"
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: tmp.tpl:82
 msgid "subclass (abbreviation)"
-msgstr ""
+msgstr "subclasse (abreviatura)"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: tmp.tpl:84
@@ -380,7 +381,7 @@ msgid "Help on OSM wiki"
 msgstr "Ajuda al wiki de l'OSM"
 
 msgid "Information on error database"
-msgstr ""
+msgstr "Informació de la base de dades d'errors"
 
 #: tmp.tpl:102
 msgid "False positives list"
@@ -388,7 +389,7 @@ msgstr "Llistat dels falsos positius"
 
 #: tmp.tpl:103
 msgid "Last analysis updates"
-msgstr ""
+msgstr "Últimes actualitzacions de l'anàlisi"
 
 #: tmp.tpl:104
 msgid "Tags Editor"
@@ -400,15 +401,15 @@ msgstr "Cancel·la"
 
 #: tmp.tpl:106
 msgid "Valid"
-msgstr ""
+msgstr "Vàlid"
 
 #: tmp.tpl:108
 msgid "no bubbles at this zoom factor"
-msgstr ""
+msgstr "no hi ha diàlegs en aquesta escala de zoom"
 
 #: tmp.tpl:109
 msgid "Severity"
-msgstr ""
+msgstr "Grau"
 
 #: tmp.tpl:110
 msgid "1 only"
@@ -420,7 +421,7 @@ msgstr "Només 1 i 2"
 
 #: tmp.tpl:112
 msgid "all severity"
-msgstr ""
+msgstr "tots els graus"
 
 #: tmp.tpl:113
 msgid "2 only"
@@ -436,7 +437,7 @@ msgstr "Corregibles"
 
 #: tmp.tpl:116
 msgid "Show only markers with correction suggestions"
-msgstr ""
+msgstr "Mostra només els marcadors amb suggeriment de correcció"
 
 #: tmp.tpl:117
 msgid "Online"
@@ -448,7 +449,7 @@ msgstr "Tema"
 
 #: tmp.tpl:119
 msgid "Select:"
-msgstr "Seleccioneu:"
+msgstr "Selecció:"
 
 #: tmp.tpl:120 tmp.tpl:123
 msgid "all"
@@ -473,11 +474,11 @@ msgstr "Ajuda"
 #: tmp.tpl:129
 #, python-format
 msgid "Delay: %sd"
-msgstr ""
+msgstr "Retard: %sd"
 
 #, python-format
 msgid "Level %d errors (%d)"
-msgstr ""
+msgstr "Errors del nivell %d (%d)"
 
 #: tmp.tpl:133
 msgid "Logout"
@@ -501,7 +502,7 @@ msgstr "Objectes suprimits:"
 
 #: tmp.tpl:140
 msgid "Fix with Osmose"
-msgstr ""
+msgstr "Correcció amb l'Osmose"
 
 #: tmp.tpl:141
 msgid "Source"
@@ -513,10 +514,10 @@ msgstr "Tipus"
 
 #: tmp.tpl:143
 msgid "Reuse changeset"
-msgstr ""
+msgstr "Reutilitza el conjunt de canvis"
 
 msgid "Error reported on: "
-msgstr ""
+msgstr "Error reportat amb data:"
 
 #: tmp.tpl:145
 msgid "change status"
@@ -545,7 +546,7 @@ msgstr ""
 msgid ""
 "To make OsmOse a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
-msgstr ""
+msgstr "Per a fer de l'OsmOse una eina autènticament multillenguatge, ens cal la vostra ajuda per a millorar les traduccions actuals, i afegir-ne de noves."
 
 #: tmp.tpl:153
 msgid "Pages to translate"
@@ -560,7 +561,7 @@ msgid "OsmOse main page"
 msgstr "Pàgina prinicipal de l'OsmOse"
 
 msgid "Documentation on reported errors"
-msgstr ""
+msgstr "Documentació sobre els errors reportats"
 
 #: tmp.tpl:154
 msgid "OsmOse pages"
@@ -574,7 +575,7 @@ msgstr "Sistema de gestió d'errors"
 msgid ""
 "<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
 "issue with translations, or erroneous analyses."
-msgstr ""
+msgstr "Podeu usar el <a href='http://trac.openstreetmap.fr'>Trac</a> per a informar de qualsevol problema amb les traduccions o anàlisis incorrectes."
 
 #: tmp.tpl:30
 msgid ""
@@ -590,7 +591,7 @@ msgstr "Estructura"
 
 #: ../tools/database/categ_menu.txt:2
 msgid "Missing tags"
-msgstr ""
+msgstr "Etiquetes omeses"
 
 #: ../tools/database/categ_menu.txt:3
 msgid "Bad tag"
@@ -606,11 +607,11 @@ msgstr "Nom de l'etiqueta"
 
 #: ../tools/database/categ_menu.txt:6
 msgid "Administrative"
-msgstr ""
+msgstr "Administratiu"
 
 #: ../tools/database/categ_menu.txt:7
 msgid "To map"
-msgstr ""
+msgstr "Al mapa"
 
 #: ../tools/database/categ_menu.txt:8
 msgid "Integration"
@@ -618,7 +619,7 @@ msgstr "Integració"
 
 #: ../tools/database/item_menu.txt:1
 msgid "overlapping building"
-msgstr ""
+msgstr "edificis superposats"
 
 #: ../tools/database/item_menu.txt:2
 msgid "duplicated node"
@@ -638,11 +639,11 @@ msgstr "rotonda inversa"
 
 #: ../tools/database/item_menu.txt:6
 msgid "boundary intersect"
-msgstr ""
+msgstr "intersecció de límits"
 
 #: ../tools/database/item_menu.txt:7
 msgid "objects overlap"
-msgstr ""
+msgstr "objectes superposats"
 
 #: ../tools/database/item_menu.txt:8
 msgid "orphan nodes"
@@ -650,7 +651,7 @@ msgstr "nodes orfes"
 
 #: ../tools/database/item_menu.txt:9
 msgid "sudden highway type change"
-msgstr ""
+msgstr "canvi sobtat del tipus de via"
 
 #: ../tools/database/item_menu.txt:10
 msgid "unclosed area"
@@ -658,15 +659,15 @@ msgstr "àrea sense tancar"
 
 #: ../tools/database/item_menu.txt:11
 msgid "bad *_link highway"
-msgstr ""
+msgstr "enllaç * incorrecte"
 
 #: ../tools/database/item_menu.txt:12
 msgid "broken highway continuity"
-msgstr ""
+msgstr "continuitat de la via tallada"
 
 #: ../tools/database/item_menu.txt:13
 msgid "missign tag or role"
-msgstr ""
+msgstr "manca una etiqueta o rol"
 
 #: ../tools/database/item_menu.txt:14
 msgid "surface intersection"
@@ -682,11 +683,11 @@ msgstr "multipolígon"
 
 #: ../tools/database/item_menu.txt:17
 msgid "double cycleway"
-msgstr ""
+msgstr "via ciclista doble"
 
 #: ../tools/database/item_menu.txt:18
 msgid "approximate way"
-msgstr ""
+msgstr "via aproximada"
 
 #: ../tools/database/item_menu.txt:19
 msgid "1-member relation"
@@ -694,11 +695,11 @@ msgstr "relació d'un membre"
 
 #: ../tools/database/item_menu.txt:20
 msgid "not-connected highway/cycleway"
-msgstr ""
+msgstr "via de vehicles, o via ciclista, sense connectar"
 
 #: ../tools/database/item_menu.txt:21
 msgid "waterway"
-msgstr ""
+msgstr "via d'aigua"
 
 #: ../tools/database/item_menu.txt:22
 msgid "duplicate geometry"
@@ -706,19 +707,19 @@ msgstr "geometria duplicada"
 
 #: ../tools/database/item_menu.txt:24
 msgid "junction=roundabout"
-msgstr ""
+msgstr "junction=roundabout"
 
 #: ../tools/database/item_menu.txt:25
 msgid "elevation"
-msgstr ""
+msgstr "elevació"
 
 #: ../tools/database/item_menu.txt:26
 msgid "oneway"
-msgstr ""
+msgstr "oneway"
 
 #: ../tools/database/item_menu.txt:28
 msgid "parent tag"
-msgstr ""
+msgstr "etiqueta principal"
 
 #: ../tools/database/item_menu.txt:29
 msgid "street numbers"
@@ -726,23 +727,23 @@ msgstr "numeració de carrers"
 
 #: ../tools/database/item_menu.txt:30
 msgid "highway"
-msgstr ""
+msgstr "highway"
 
 #: ../tools/database/item_menu.txt:31
 msgid "highway crossing"
-msgstr ""
+msgstr "encreuament"
 
-#: ../tools/database/item_menu.txt:32 ../tools/database/item_menu.txt:135
+#: ../tools/database/item_menu.txt:32 ../tools/database/item_menu.txt:136
 msgid "pharmacy"
-msgstr ""
+msgstr "farmàcia"
 
 #: ../tools/database/item_menu.txt:35
 msgid "highway roundabout"
-msgstr ""
+msgstr "rotonda"
 
 #: ../tools/database/item_menu.txt:36
 msgid "bad source tag"
-msgstr ""
+msgstr "etiqueta de font incorrecta"
 
 #: ../tools/database/item_menu.txt:37
 msgid "tagwatch cleaner"
@@ -766,7 +767,7 @@ msgstr "etiqueta incorrecta"
 
 #: ../tools/database/item_menu.txt:42
 msgid "bad tag key"
-msgstr ""
+msgstr "clau d'etiqueta errònia"
 
 #: ../tools/database/item_menu.txt:43
 msgid "similar values"
@@ -778,7 +779,7 @@ msgstr "valors múltiples"
 
 #: ../tools/database/item_menu.txt:45
 msgid "swimming pool as natural=water"
-msgstr ""
+msgstr "piscina com a natural=water"
 
 #: ../tools/database/item_menu.txt:47
 msgid "numeric value"
@@ -786,7 +787,7 @@ msgstr "valor numèric"
 
 #: ../tools/database/item_menu.txt:48
 msgid "small farm"
-msgstr ""
+msgstr "granja petita"
 
 #: ../tools/database/item_menu.txt:49
 msgid "note"
@@ -798,11 +799,11 @@ msgstr "arbre"
 
 #: ../tools/database/item_menu.txt:51
 msgid "brand in name"
-msgstr ""
+msgstr "marca comercial al nom"
 
 #: ../tools/database/item_menu.txt:52
 msgid "typo in tag"
-msgstr ""
+msgstr "error tipogràfic a l'etiqueta"
 
 #: ../tools/database/item_menu.txt:53
 msgid "incorrect "
@@ -810,15 +811,15 @@ msgstr "incorrecte"
 
 #: ../tools/database/item_menu.txt:54
 msgid "parking lane"
-msgstr ""
+msgstr "via d'aparcament"
 
 #: ../tools/database/item_menu.txt:55
 msgid "relation role"
-msgstr ""
+msgstr "rol a la relació"
 
 #: ../tools/database/item_menu.txt:56
 msgid "relation type=restriction"
-msgstr ""
+msgstr "tipus de relació = restriction"
 
 #: ../tools/database/item_menu.txt:57
 msgid "postcode"
@@ -830,7 +831,7 @@ msgstr "en desús"
 
 #: ../tools/database/item_menu.txt:61
 msgid "on junction=roundabout"
-msgstr ""
+msgstr "a junction=roundabout"
 
 #: ../tools/database/item_menu.txt:62
 msgid "incompatible tags"
@@ -842,7 +843,7 @@ msgstr "ref al nom"
 
 #: ../tools/database/item_menu.txt:64
 msgid "seamark:fixme"
-msgstr ""
+msgstr "seamark:fixme"
 
 #: ../tools/database/item_menu.txt:65
 msgid "construction"
@@ -854,7 +855,7 @@ msgstr "objecte duplicat"
 
 #: ../tools/database/item_menu.txt:67
 msgid "unwanted tag on node"
-msgstr ""
+msgstr "etiqueta o node no desitjats"
 
 #: ../tools/database/item_menu.txt:68
 msgid "bad usage"
@@ -902,23 +903,23 @@ msgstr "admin_level"
 
 #: ../tools/database/item_menu.txt:82
 msgid "erroneous boundary"
-msgstr ""
+msgstr "límit fronterer erroni"
 
 #: ../tools/database/item_menu.txt:83
 msgid "out of boundary"
-msgstr ""
+msgstr "fora del límit"
 
 #: ../tools/database/item_menu.txt:84
 msgid "geodesic building"
-msgstr ""
+msgstr "edifici geodèsic"
 
 #: ../tools/database/item_menu.txt:85
 msgid "building shape"
-msgstr ""
+msgstr "forma d'edifici"
 
 #: ../tools/database/item_menu.txt:86
 msgid "bridge to tag"
-msgstr ""
+msgstr "pont a etiquetar"
 
 #: ../tools/database/item_menu.txt:87
 msgid "admin boundary"
@@ -926,19 +927,19 @@ msgstr "límit administratiu"
 
 #: ../tools/database/item_menu.txt:88
 msgid "power lines"
-msgstr ""
+msgstr "línies d'electricitat"
 
-#: ../tools/database/item_menu.txt:89 ../tools/database/item_menu.txt:104
+#: ../tools/database/item_menu.txt:89 ../tools/database/item_menu.txt:105
 msgid "post office"
 msgstr "oficina postal"
 
 #: ../tools/database/item_menu.txt:91
 msgid "ODbL migration change"
-msgstr ""
+msgstr "Canvi de migració a ODbL"
 
 #: ../tools/database/item_menu.txt:92
 msgid "school, not integrated"
-msgstr ""
+msgstr "escola, no integrada"
 
 #: ../tools/database/item_menu.txt:93
 msgid "monument"
@@ -946,127 +947,127 @@ msgstr "monument"
 
 #: ../tools/database/item_menu.txt:94
 msgid "node on ways"
-msgstr ""
+msgstr "node en vies"
 
-#: ../tools/database/item_menu.txt:95 ../tools/database/item_menu.txt:112
+#: ../tools/database/item_menu.txt:95 ../tools/database/item_menu.txt:113
 msgid "train station"
 msgstr "estació de tren"
 
 #: ../tools/database/item_menu.txt:96
 msgid "TMC"
-msgstr ""
+msgstr "TMC"
 
 #: ../tools/database/item_menu.txt:97
 msgid "relation type=boundary"
-msgstr ""
+msgstr "tipus de relació = boundary"
 
 #: ../tools/database/item_menu.txt:98
 msgid "tunnel/bridge"
 msgstr "túnel o pont"
 
-#: ../tools/database/item_menu.txt:102
+#: ../tools/database/item_menu.txt:103
 msgid "monument, museum"
 msgstr "monument, museu"
 
-#: ../tools/database/item_menu.txt:103
+#: ../tools/database/item_menu.txt:104
 msgid "monument, museum, could be integrated"
-msgstr ""
+msgstr "monument, museu, es podria intregrar"
 
-#: ../tools/database/item_menu.txt:105
+#: ../tools/database/item_menu.txt:106
 msgid "post office, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:108
+#: ../tools/database/item_menu.txt:109
 msgid "school"
 msgstr "escola"
 
-#: ../tools/database/item_menu.txt:109
-msgid "school, could be integrated"
-msgstr ""
-
 #: ../tools/database/item_menu.txt:110
+msgid "school, could be integrated"
+msgstr "escola, es podria integrar"
+
+#: ../tools/database/item_menu.txt:111
 msgid "public transport"
 msgstr "transport públic"
 
-#: ../tools/database/item_menu.txt:111
+#: ../tools/database/item_menu.txt:112
 msgid "public transport, could be integrated"
-msgstr ""
-
-#: ../tools/database/item_menu.txt:113
-msgid "train station, could be integrated"
-msgstr ""
+msgstr "trasport públic, es podria integrar"
 
 #: ../tools/database/item_menu.txt:114
-msgid "level crossing"
-msgstr ""
+msgid "train station, could be integrated"
+msgstr "estació de tren, es podria integrar"
 
 #: ../tools/database/item_menu.txt:115
+msgid "level crossing"
+msgstr "pas a nivell"
+
+#: ../tools/database/item_menu.txt:116
 msgid "geodesic point"
 msgstr "punt geodèsic"
 
-#: ../tools/database/item_menu.txt:116
+#: ../tools/database/item_menu.txt:117
 msgid "postal address"
 msgstr "adreça postal"
 
-#: ../tools/database/item_menu.txt:117
-msgid "wikipedia, could be integrated"
-msgstr ""
-
 #: ../tools/database/item_menu.txt:118
+msgid "wikipedia, could be integrated"
+msgstr "wikipedia, es podria integrar"
+
+#: ../tools/database/item_menu.txt:119
 msgid "public service"
 msgstr "servei públic"
 
-#: ../tools/database/item_menu.txt:119
-msgid "recycling"
-msgstr ""
-
 #: ../tools/database/item_menu.txt:120
-msgid "recycling, could be integrated"
-msgstr ""
+msgid "recycling"
+msgstr "reciclatge"
 
 #: ../tools/database/item_menu.txt:121
+msgid "recycling, could be integrated"
+msgstr "reciclatge, es podria integrar"
+
+#: ../tools/database/item_menu.txt:122
 msgid "parking"
 msgstr "pàrquing"
 
-#: ../tools/database/item_menu.txt:122
-msgid "parking, could be integrated"
-msgstr ""
-
 #: ../tools/database/item_menu.txt:123
-msgid "accommodation"
-msgstr ""
+msgid "parking, could be integrated"
+msgstr "aparcament, es podria integrar"
 
 #: ../tools/database/item_menu.txt:124
-msgid "accommodation, could be integrated"
-msgstr ""
+msgid "accommodation"
+msgstr "acomodació"
 
 #: ../tools/database/item_menu.txt:125
+msgid "accommodation, could be integrated"
+msgstr "acomodació podria ser integrada"
+
+#: ../tools/database/item_menu.txt:126
 msgid "cycle parking"
 msgstr "pàrquing de bicicletes"
 
-#: ../tools/database/item_menu.txt:126
-msgid "cycle parking, could be integrated"
-msgstr ""
-
 #: ../tools/database/item_menu.txt:127
-msgid "transport sharing"
-msgstr ""
+msgid "cycle parking, could be integrated"
+msgstr "aparcament de bicicletes, es podria integrar"
 
 #: ../tools/database/item_menu.txt:128
-msgid "transport sharing, could be integrated"
-msgstr ""
+msgid "transport sharing"
+msgstr "transport compartit"
 
 #: ../tools/database/item_menu.txt:129
+msgid "transport sharing, could be integrated"
+msgstr "transport compartir, es pordria integrar"
+
+#: ../tools/database/item_menu.txt:130
 msgid "sport"
 msgstr "esport"
 
-#: ../tools/database/item_menu.txt:130
+#: ../tools/database/item_menu.txt:131
 msgid "sport, could be integrated"
-msgstr ""
+msgstr "esport, es podria integrar"
 
 #: tmp.tpl:156
 msgid "Translation progress: osmose"
-msgstr ""
+msgstr "Progrés de la traducció: osmose"
 
 #: tmp.tpl:160
 msgid "For new language or countries"
@@ -1082,7 +1083,7 @@ msgstr "Per a països nous, podeu contactar enviant un correu electrònic a <a h
 #: tmp.tpl:151
 #, python-format
 msgid "The <a href='%s'>country coverage is available</a>."
-msgstr ""
+msgstr "La cobertura <a href='%s'> està disponible</a>."
 
 #: tmp.tpl:161
 #, python-format
@@ -1109,33 +1110,33 @@ msgstr "Llista HTML"
 msgid "one-node way"
 msgstr "via d'un node"
 
-#: ../tools/database/item_menu.txt:131
+#: ../tools/database/item_menu.txt:132
 msgid "toilets"
 msgstr "serveis"
 
 #: ../tools/database/item_menu.txt:99
 msgid "transport sharing, not integrated"
-msgstr ""
+msgstr "transport compartit, no integrat"
 
-#: ../tools/database/item_menu.txt:132
+#: ../tools/database/item_menu.txt:133
 msgid "police"
 msgstr "policia"
 
-#: ../tools/database/item_menu.txt:133
+#: ../tools/database/item_menu.txt:134
 msgid "police, could be integrated"
-msgstr ""
+msgstr "policia, es podria integrar"
 
 #: ../tools/database/item_menu.txt:100
 msgid "pharmacy, not integrated "
-msgstr ""
+msgstr "farmàcia, no integrada"
 
-#: ../tools/database/item_menu.txt:136
+#: ../tools/database/item_menu.txt:137
 msgid "pharmacy, could be integrated"
-msgstr ""
+msgstr "farmàcia, es podria integrar"
 
-#: ../tools/database/item_menu.txt:134
+#: ../tools/database/item_menu.txt:135
 msgid "gas station"
-msgstr ""
+msgstr "gasolinera"
 
 #: tmp.tpl:87
 msgid "position"
@@ -1159,13 +1160,13 @@ msgstr "àrea"
 
 #: ../tools/database/item_menu.txt:59
 msgid "noexit"
-msgstr ""
+msgstr "noexit"
 
 #: tmp.tpl:34
 msgid ""
 "Keep in touch by watching at <a "
 "href='https://twitter.com/osmose_qa'>@osmose_qa</a> on twitter."
-msgstr ""
+msgstr "Seguiu el compte <a href='https://twitter.com/osmose_qa'>@osmose_qa</a> de Twitter per a estar informat."
 
 #: ../tools/database/item_menu.txt:69
 msgid "incorrect layer"
@@ -1183,29 +1184,29 @@ msgstr "estat"
 msgid "analyser"
 msgstr "analitzador"
 
-#: ../tools/database/item_menu.txt:137
-msgid "postal code, could be integrated"
-msgstr ""
-
 #: ../tools/database/item_menu.txt:138
-msgid "library"
-msgstr ""
+msgid "postal code, could be integrated"
+msgstr "codi posta, es podria integrar"
 
 #: ../tools/database/item_menu.txt:139
+msgid "library"
+msgstr "biblioteca"
+
+#: ../tools/database/item_menu.txt:140
 msgid "restaurant"
 msgstr "restaurant"
 
-#: ../tools/database/item_menu.txt:140
+#: ../tools/database/item_menu.txt:141
 msgid "winery"
-msgstr ""
+msgstr "celler o vinoteca"
 
 #: ../tools/database/item_menu.txt:33
 msgid "missing object kind"
-msgstr ""
+msgstr "º"
 
 #: ../tools/database/item_menu.txt:101
 msgid "postal code, not integrated "
-msgstr ""
+msgstr "codi postal, no integrat"
 
 #: ../tools/database/item_menu.txt:76
 msgid "local language"
@@ -1220,42 +1221,42 @@ msgstr ""
 
 #: ../errors.py:125
 msgid "Fixed issues"
-msgstr ""
+msgstr "Problemes corregits"
 
 #. TRANSLATORS: link to help in appropriate language
 #: ../map.py:136
 msgid "Issues by user"
-msgstr ""
+msgstr "Problemes per usuari"
 
 #: tmp.tpl:2 tmp.tpl:3 tmp.tpl:4
 #, python-brace-format
 msgid "Number of level {level} issues: {count}"
-msgstr ""
+msgstr "Nombre de problemes de nivell {level}: {count}"
 
 #: tmp.tpl:6 tmp.tpl:15
 #, python-format
 msgid "Number of found issues: %d"
-msgstr ""
+msgstr "Nombre de problemes trobats: %d"
 
 #: tmp.tpl:7 tmp.tpl:16
 #, python-format
 msgid "Number of found issues: more than %d"
-msgstr ""
+msgstr "Nombre de problemes trobats: més de %d"
 
 #: tmp.tpl:13
 #, python-format
 msgid ""
 "This page shows issues on elements that were last modified by '%s'. This "
 "doesn't means that this user is responsible for all these issues."
-msgstr ""
+msgstr "Aquesta pàgina mostra problemes en els elements que tenen com a últim editor «%s». Això no significa que aquest usuari sigui el responsable de tots aquests problemes."
 
 #: tmp.tpl:17
 msgid "Show issues on a map"
-msgstr ""
+msgstr "Mostra problemes en un mapa"
 
 #: tmp.tpl:20
 msgid "Osmose allows you to control your own issues."
-msgstr ""
+msgstr "L'Osmose us permet controlar els vostres problemes."
 
 #: tmp.tpl:21
 msgid ""
@@ -1263,7 +1264,7 @@ msgid ""
 " issues that are attached to your username. Note that the algorithm that "
 "attaches issues to username is not perfect, as Osmose only checks the last "
 "contributor of the relevant erroneous elements."
-msgstr ""
+msgstr "Si introduïu el vostre nom d'usuari de l'OSM al formulari següent, podreu veure els errors associats al vostre nom d'usuari. Tingueu en compteu que l'algoritme que associa els errors als noms d'usuari no és perfecte, atès que l'Osmose només comprova l'últim col·laborador dels elements potencialment erronis."
 
 #: tmp.tpl:25
 msgid ""
@@ -1276,69 +1277,69 @@ msgstr ""
 #: tmp.tpl:56 tmp.tpl:94
 #, python-format
 msgid "Information on issue %d"
-msgstr ""
+msgstr "Informació sobre el problema %d"
 
 #: tmp.tpl:76
 msgid "Show more issues"
-msgstr ""
+msgstr "Mostra més problemes"
 
 #: tmp.tpl:77
 msgid "Show some issues"
-msgstr ""
+msgstr "Mostra alguns problemes"
 
 #: tmp.tpl:86
 msgid "information on issue"
-msgstr ""
+msgstr "Informació del problema"
 
 #: tmp.tpl:91
 msgid "delete issue"
-msgstr ""
+msgstr "esborra el problema"
 
 #: tmp.tpl:92
 msgid "issue n°"
-msgstr ""
+msgstr "problema núm."
 
 #: tmp.tpl:93
 #, python-format
 msgid "delete issue #%d"
-msgstr ""
+msgstr "esborra el problema #%d"
 
 #: tmp.tpl:99
 msgid "Map of issues"
-msgstr ""
+msgstr "Mapa de problemes"
 
 #: tmp.tpl:101
 msgid "Information on issues database"
-msgstr ""
+msgstr "Informació de la base de dades de problemes"
 
 #: tmp.tpl:130 tmp.tpl:131 tmp.tpl:132
 #, python-format
 msgid "Level %d issues (%d)"
-msgstr ""
+msgstr "Problemes del nivell %d (%d)"
 
 #: tmp.tpl:144
 msgid "Issue reported on: "
-msgstr ""
+msgstr "Problema reportat el:"
 
 #: tmp.tpl:159
 msgid "Documentation on reported issues"
-msgstr ""
+msgstr "Documentació sobre els problemes reportats"
 
 #: tmp.tpl:49
 msgid "version"
 msgstr "versió"
 
-#: ../tools/database/item_menu.txt:141
+#: ../tools/database/item_menu.txt:142
 msgid "geodesic"
-msgstr ""
+msgstr "geodèsic"
 
-#: ../tools/database/item_menu.txt:90 ../tools/database/item_menu.txt:106
+#: ../tools/database/item_menu.txt:90 ../tools/database/item_menu.txt:107
 msgid "post box"
-msgstr ""
+msgstr "bústia"
 
-#: ../tools/database/item_menu.txt:107
+#: ../tools/database/item_menu.txt:108
 msgid "post box, could be integrated"
-msgstr ""
+msgstr "bústia, es podria integrar"
 
 #: ../tools/database/item_menu.txt:34
 msgid "indoor"
@@ -1347,3 +1348,7 @@ msgstr "interior"
 #: ../tools/database/item_menu.txt:70
 msgid "roundabout as area"
 msgstr "rotonda com a àrea"
+
+#: ../tools/database/item_menu.txt:102
+msgid "road"
+msgstr ""
