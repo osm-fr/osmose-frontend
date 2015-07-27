@@ -103,7 +103,7 @@ def update(source, url, logger = printlogger(), remote_ip=""):
 
     ## update subtitle from new errors
     execute_sql(dbcurs, """SELECT * FROM marker
-                      WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status WHERE source = %s)""",
+                      WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status WHERE source = %s AND elems != '')""",
                    (source_id, ))
     for res in dbcurs.fetchall():
         execute_sql(dbcurs, """UPDATE dynpoi_status SET subtitle = %s,
@@ -111,6 +111,16 @@ def update(source, url, logger = printlogger(), remote_ip=""):
                           WHERE source = %s AND class = %s AND subclass = %s AND elems = %s""",
                        (res["subtitle"], res["lat"], res["lon"],
                         res["source"], res["class"], res["subclass"], res["elems"]))
+
+    execute_sql(dbcurs, """SELECT * FROM marker
+                      WHERE (source,class,subclass,lat,lon) IN (SELECT source,class,subclass,lat,lon FROM dynpoi_status WHERE source = %s AND elems = '')""",
+                   (source_id, ))
+    for res in dbcurs.fetchall():
+        execute_sql(dbcurs, """UPDATE dynpoi_status SET subtitle = %s
+                          WHERE source = %s AND class = %s AND subclass = %s AND lat = %s AND lon = %s""",
+                       (res["subtitle"],
+                        res["source"], res["class"], res["subclass"], res["lat"], res["lon"]))
+
 
     ## remove false positive no longer present
 #    execute_sql(dbcurs, """DELETE FROM dynpoi_status
