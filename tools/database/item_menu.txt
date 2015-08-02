@@ -1,4 +1,5 @@
     0 | _("overlapping building")
+    1 | _("split building")
  1010 | _("duplicated node")
  1030 | _("way one node")
  1040 | _("invalid polygon")
