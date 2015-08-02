@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2015-07-26 19:41+0000\n"
+"PO-Revision-Date: 2015-08-02 19:22+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/projects/p/osmose/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -213,7 +213,7 @@ msgid "Median delay:"
 msgstr "Medianinis uždelsimas:"
 
 #: tmp.tpl:39 tmp.tpl:46 tmp.tpl:69 tmp.tpl:78
-#: ../tools/database/item_menu.txt:27
+#: ../tools/database/item_menu.txt:28
 msgid "source"
 msgstr "šaltinis"
 
@@ -357,7 +357,7 @@ msgstr "elem."
 msgid "subtitle"
 msgstr "paantraštė"
 
-#: tmp.tpl:90 ../tools/database/item_menu.txt:46
+#: tmp.tpl:90 ../tools/database/item_menu.txt:47
 msgid "date"
 msgstr "data"
 
@@ -620,447 +620,447 @@ msgstr "Integracija"
 msgid "overlapping building"
 msgstr "persidengiantys pastatai"
 
-#: ../tools/database/item_menu.txt:2
+#: ../tools/database/item_menu.txt:3
 msgid "duplicated node"
 msgstr "taško dublikatas"
 
-#: ../tools/database/item_menu.txt:3
+#: ../tools/database/item_menu.txt:4
 msgid "way one node"
 msgstr "kelias vieno taško"
 
-#: ../tools/database/item_menu.txt:4
+#: ../tools/database/item_menu.txt:5
 msgid "invalid polygon"
 msgstr "neteisingas daugiakampis"
 
-#: ../tools/database/item_menu.txt:5
+#: ../tools/database/item_menu.txt:6
 msgid "reverse roundabout"
 msgstr "apgręžtas žiedas"
 
-#: ../tools/database/item_menu.txt:6
+#: ../tools/database/item_menu.txt:7
 msgid "boundary intersect"
 msgstr "ribų susikirtimas"
 
-#: ../tools/database/item_menu.txt:7
+#: ../tools/database/item_menu.txt:8
 msgid "objects overlap"
 msgstr "objektai persidengia"
 
-#: ../tools/database/item_menu.txt:8
+#: ../tools/database/item_menu.txt:9
 msgid "orphan nodes"
 msgstr "apleisti taškai"
 
-#: ../tools/database/item_menu.txt:9
+#: ../tools/database/item_menu.txt:10
 msgid "sudden highway type change"
 msgstr "staigus kelio tipo pasikeitimas"
 
-#: ../tools/database/item_menu.txt:10
+#: ../tools/database/item_menu.txt:11
 msgid "unclosed area"
 msgstr "atviras plotas"
 
-#: ../tools/database/item_menu.txt:11
+#: ../tools/database/item_menu.txt:12
 msgid "bad *_link highway"
 msgstr "blogas *_link kelias"
 
-#: ../tools/database/item_menu.txt:12
+#: ../tools/database/item_menu.txt:13
 msgid "broken highway continuity"
 msgstr "pertrauktas kelio tęstinumas"
 
-#: ../tools/database/item_menu.txt:13
+#: ../tools/database/item_menu.txt:14
 msgid "missign tag or role"
 msgstr "trūkstama žyma ar rolė"
 
-#: ../tools/database/item_menu.txt:14
+#: ../tools/database/item_menu.txt:15
 msgid "surface intersection"
 msgstr "paviršiaus susikirtimas"
 
-#: ../tools/database/item_menu.txt:15
+#: ../tools/database/item_menu.txt:16
 msgid "big relation"
 msgstr "didelis ryšys"
 
-#: ../tools/database/item_menu.txt:16
+#: ../tools/database/item_menu.txt:17
 msgid "multipolygon"
 msgstr "multipoligonas"
 
-#: ../tools/database/item_menu.txt:17
+#: ../tools/database/item_menu.txt:18
 msgid "double cycleway"
 msgstr "dvigubas dviračių takas"
 
-#: ../tools/database/item_menu.txt:18
+#: ../tools/database/item_menu.txt:19
 msgid "approximate way"
 msgstr "apytikslis kelias"
 
-#: ../tools/database/item_menu.txt:19
+#: ../tools/database/item_menu.txt:20
 msgid "1-member relation"
 msgstr "1-no nario ryšys"
 
-#: ../tools/database/item_menu.txt:20
+#: ../tools/database/item_menu.txt:21
 msgid "not-connected highway/cycleway"
 msgstr "neprijungtas kelias/dviračių takas"
 
-#: ../tools/database/item_menu.txt:21
+#: ../tools/database/item_menu.txt:22
 msgid "waterway"
 msgstr "vandens kelias"
 
-#: ../tools/database/item_menu.txt:22
+#: ../tools/database/item_menu.txt:23
 msgid "duplicate geometry"
 msgstr "geometrijos dublikatas"
 
-#: ../tools/database/item_menu.txt:24
+#: ../tools/database/item_menu.txt:25
 msgid "junction=roundabout"
 msgstr "sankryža=žiedas"
 
-#: ../tools/database/item_menu.txt:25
+#: ../tools/database/item_menu.txt:26
 msgid "elevation"
 msgstr "aukštis"
 
-#: ../tools/database/item_menu.txt:26
+#: ../tools/database/item_menu.txt:27
 msgid "oneway"
 msgstr "vienpusis"
 
-#: ../tools/database/item_menu.txt:28
+#: ../tools/database/item_menu.txt:29
 msgid "parent tag"
 msgstr "tėvinė žyma"
 
-#: ../tools/database/item_menu.txt:29
+#: ../tools/database/item_menu.txt:30
 msgid "street numbers"
 msgstr "gatvių numeriai"
 
-#: ../tools/database/item_menu.txt:30
+#: ../tools/database/item_menu.txt:31
 msgid "highway"
 msgstr "kelias"
 
-#: ../tools/database/item_menu.txt:31
+#: ../tools/database/item_menu.txt:32
 msgid "highway crossing"
 msgstr "kelio sankryža"
 
-#: ../tools/database/item_menu.txt:32 ../tools/database/item_menu.txt:136
+#: ../tools/database/item_menu.txt:33 ../tools/database/item_menu.txt:137
 msgid "pharmacy"
 msgstr "vaistinė"
 
-#: ../tools/database/item_menu.txt:35
+#: ../tools/database/item_menu.txt:36
 msgid "highway roundabout"
 msgstr "kelio žiedas"
 
-#: ../tools/database/item_menu.txt:36
+#: ../tools/database/item_menu.txt:37
 msgid "bad source tag"
 msgstr "bloga šaltinio žyma"
 
-#: ../tools/database/item_menu.txt:37
+#: ../tools/database/item_menu.txt:38
 msgid "tagwatch cleaner"
 msgstr "tagwatch valiklis"
 
-#: ../tools/database/item_menu.txt:38
+#: ../tools/database/item_menu.txt:39
 msgid "wikipedia"
 msgstr "vikipedija"
 
-#: ../tools/database/item_menu.txt:39
+#: ../tools/database/item_menu.txt:40
 msgid "multiple tags"
 msgstr "kelios žymos"
 
-#: ../tools/database/item_menu.txt:40
+#: ../tools/database/item_menu.txt:41
 msgid "saint hyphen"
 msgstr "šventojo brūkšnys"
 
-#: ../tools/database/item_menu.txt:41
+#: ../tools/database/item_menu.txt:42
 msgid "incorrect tag"
 msgstr "neteisinga žyma"
 
-#: ../tools/database/item_menu.txt:42
+#: ../tools/database/item_menu.txt:43
 msgid "bad tag key"
 msgstr "blogas žymos raktas"
 
-#: ../tools/database/item_menu.txt:43
+#: ../tools/database/item_menu.txt:44
 msgid "similar values"
 msgstr "panašios reikšmės"
 
-#: ../tools/database/item_menu.txt:44
+#: ../tools/database/item_menu.txt:45
 msgid "multiple values"
 msgstr "kelios reikšmės"
 
-#: ../tools/database/item_menu.txt:45
+#: ../tools/database/item_menu.txt:46
 msgid "swimming pool as natural=water"
 msgstr "baseinas kaip natural=water"
 
-#: ../tools/database/item_menu.txt:47
+#: ../tools/database/item_menu.txt:48
 msgid "numeric value"
 msgstr "skaitinė reikšmė"
 
-#: ../tools/database/item_menu.txt:48
+#: ../tools/database/item_menu.txt:49
 msgid "small farm"
 msgstr "maža ferma"
 
-#: ../tools/database/item_menu.txt:49
+#: ../tools/database/item_menu.txt:50
 msgid "note"
 msgstr "pastaba"
 
-#: ../tools/database/item_menu.txt:50
+#: ../tools/database/item_menu.txt:51
 msgid "tree"
 msgstr "medis"
 
-#: ../tools/database/item_menu.txt:51
+#: ../tools/database/item_menu.txt:52
 msgid "brand in name"
 msgstr "prekės ženklas pavadinime"
 
-#: ../tools/database/item_menu.txt:52
+#: ../tools/database/item_menu.txt:53
 msgid "typo in tag"
 msgstr "rinkimo klaida žymoje"
 
-#: ../tools/database/item_menu.txt:53
+#: ../tools/database/item_menu.txt:54
 msgid "incorrect "
 msgstr "neteisinga"
 
-#: ../tools/database/item_menu.txt:54
+#: ../tools/database/item_menu.txt:55
 msgid "parking lane"
 msgstr "parkavimo juosta"
 
-#: ../tools/database/item_menu.txt:55
+#: ../tools/database/item_menu.txt:56
 msgid "relation role"
 msgstr "ryšio rolė"
 
-#: ../tools/database/item_menu.txt:56
+#: ../tools/database/item_menu.txt:57
 msgid "relation type=restriction"
 msgstr "ryšys type=restriction"
 
-#: ../tools/database/item_menu.txt:57
+#: ../tools/database/item_menu.txt:58
 msgid "postcode"
 msgstr "pašto kodas"
 
-#: ../tools/database/item_menu.txt:60
+#: ../tools/database/item_menu.txt:61
 msgid "disused"
 msgstr "nebenaudojama"
 
-#: ../tools/database/item_menu.txt:61
+#: ../tools/database/item_menu.txt:62
 msgid "on junction=roundabout"
 msgstr "ant sankryža=žiedas"
 
-#: ../tools/database/item_menu.txt:62
+#: ../tools/database/item_menu.txt:63
 msgid "incompatible tags"
 msgstr "nesuderinamos žymos"
 
-#: ../tools/database/item_menu.txt:63
+#: ../tools/database/item_menu.txt:64
 msgid "ref in name"
 msgstr "ref pavadinime"
 
-#: ../tools/database/item_menu.txt:64
+#: ../tools/database/item_menu.txt:65
 msgid "seamark:fixme"
 msgstr "seamark:fixme"
 
-#: ../tools/database/item_menu.txt:65
+#: ../tools/database/item_menu.txt:66
 msgid "construction"
 msgstr "statybos"
 
-#: ../tools/database/item_menu.txt:66
+#: ../tools/database/item_menu.txt:67
 msgid "duplicate object"
 msgstr "objekto dublikatas"
 
-#: ../tools/database/item_menu.txt:67
+#: ../tools/database/item_menu.txt:68
 msgid "unwanted tag on node"
 msgstr "nenorima žyma ant taško"
 
-#: ../tools/database/item_menu.txt:68
+#: ../tools/database/item_menu.txt:69
 msgid "bad usage"
 msgstr "neteisingas naudojimas"
 
-#: ../tools/database/item_menu.txt:71
+#: ../tools/database/item_menu.txt:72
 msgid "orthograph"
 msgstr "rašyba"
 
-#: ../tools/database/item_menu.txt:72
+#: ../tools/database/item_menu.txt:73
 msgid "way type"
 msgstr "kelio tipas"
 
-#: ../tools/database/item_menu.txt:73
+#: ../tools/database/item_menu.txt:74
 msgid "two names"
 msgstr "du vardai"
 
-#: ../tools/database/item_menu.txt:74
+#: ../tools/database/item_menu.txt:75
 msgid "toponymy"
 msgstr "toponimika"
 
-#: ../tools/database/item_menu.txt:75
+#: ../tools/database/item_menu.txt:76
 msgid "test soundex"
 msgstr "soundex testas"
 
-#: ../tools/database/item_menu.txt:77
+#: ../tools/database/item_menu.txt:78
 msgid "open polygon"
 msgstr "atviras daugiakampis"
 
-#: ../tools/database/item_menu.txt:78
+#: ../tools/database/item_menu.txt:79
 msgid "duplicated way"
 msgstr "kelio dublikatas"
 
-#: ../tools/database/item_menu.txt:79
+#: ../tools/database/item_menu.txt:80
 msgid "place without name"
 msgstr "vieta be pavadinimo"
 
-#: ../tools/database/item_menu.txt:80
+#: ../tools/database/item_menu.txt:81
 msgid "INSEE code"
 msgstr "INSEE kodas"
 
-#: ../tools/database/item_menu.txt:81
+#: ../tools/database/item_menu.txt:82
 msgid "admin_level"
 msgstr "admin_level"
 
-#: ../tools/database/item_menu.txt:82
+#: ../tools/database/item_menu.txt:83
 msgid "erroneous boundary"
 msgstr "klaidinga riba"
 
-#: ../tools/database/item_menu.txt:83
+#: ../tools/database/item_menu.txt:84
 msgid "out of boundary"
 msgstr "už ribos"
 
-#: ../tools/database/item_menu.txt:84
+#: ../tools/database/item_menu.txt:85
 msgid "geodesic building"
 msgstr "geodezinis pastatas"
 
-#: ../tools/database/item_menu.txt:85
+#: ../tools/database/item_menu.txt:86
 msgid "building shape"
 msgstr "pastato forma"
 
-#: ../tools/database/item_menu.txt:86
+#: ../tools/database/item_menu.txt:87
 msgid "bridge to tag"
 msgstr "tiltas žymėjimui"
 
-#: ../tools/database/item_menu.txt:87
+#: ../tools/database/item_menu.txt:88
 msgid "admin boundary"
 msgstr "administracinė riba"
 
-#: ../tools/database/item_menu.txt:88
+#: ../tools/database/item_menu.txt:89
 msgid "power lines"
 msgstr "elektros linijos"
 
-#: ../tools/database/item_menu.txt:89 ../tools/database/item_menu.txt:105
+#: ../tools/database/item_menu.txt:90 ../tools/database/item_menu.txt:106
 msgid "post office"
 msgstr "paštas"
 
-#: ../tools/database/item_menu.txt:91
+#: ../tools/database/item_menu.txt:92
 msgid "ODbL migration change"
 msgstr "ODbL migravimo pakeitimas"
 
-#: ../tools/database/item_menu.txt:92
+#: ../tools/database/item_menu.txt:93
 msgid "school, not integrated"
 msgstr "mokykla, neintegruota"
 
-#: ../tools/database/item_menu.txt:93
+#: ../tools/database/item_menu.txt:94
 msgid "monument"
 msgstr "monumentas"
 
-#: ../tools/database/item_menu.txt:94
+#: ../tools/database/item_menu.txt:95
 msgid "node on ways"
 msgstr "taškas kelyje"
 
-#: ../tools/database/item_menu.txt:95 ../tools/database/item_menu.txt:113
+#: ../tools/database/item_menu.txt:96 ../tools/database/item_menu.txt:114
 msgid "train station"
 msgstr "geležinkelio stotis"
 
-#: ../tools/database/item_menu.txt:96
+#: ../tools/database/item_menu.txt:97
 msgid "TMC"
 msgstr "TMC"
 
-#: ../tools/database/item_menu.txt:97
+#: ../tools/database/item_menu.txt:98
 msgid "relation type=boundary"
 msgstr "ryšys type=boundary"
 
-#: ../tools/database/item_menu.txt:98
+#: ../tools/database/item_menu.txt:99
 msgid "tunnel/bridge"
 msgstr "tunelis/tiltas"
 
-#: ../tools/database/item_menu.txt:103
+#: ../tools/database/item_menu.txt:104
 msgid "monument, museum"
 msgstr "monumentas, muziejus"
 
-#: ../tools/database/item_menu.txt:104
+#: ../tools/database/item_menu.txt:105
 msgid "monument, museum, could be integrated"
 msgstr "monumentas, muziejus, gali būti integruota"
 
-#: ../tools/database/item_menu.txt:106
+#: ../tools/database/item_menu.txt:107
 msgid "post office, could be integrated"
 msgstr "paštas, gali būti integruota"
 
-#: ../tools/database/item_menu.txt:109
+#: ../tools/database/item_menu.txt:110
 msgid "school"
 msgstr "mokykla"
 
-#: ../tools/database/item_menu.txt:110
+#: ../tools/database/item_menu.txt:111
 msgid "school, could be integrated"
 msgstr "mokykla, gali būti integruota"
 
-#: ../tools/database/item_menu.txt:111
+#: ../tools/database/item_menu.txt:112
 msgid "public transport"
 msgstr "viešasis transportas"
 
-#: ../tools/database/item_menu.txt:112
+#: ../tools/database/item_menu.txt:113
 msgid "public transport, could be integrated"
 msgstr "viešasis transportas, gali būti integruota"
 
-#: ../tools/database/item_menu.txt:114
+#: ../tools/database/item_menu.txt:115
 msgid "train station, could be integrated"
 msgstr "geležinkelio stotis, gali būti integruota"
 
-#: ../tools/database/item_menu.txt:115
+#: ../tools/database/item_menu.txt:116
 msgid "level crossing"
 msgstr "pervaža"
 
-#: ../tools/database/item_menu.txt:116
+#: ../tools/database/item_menu.txt:117
 msgid "geodesic point"
 msgstr "geodezinis taškas"
 
-#: ../tools/database/item_menu.txt:117
+#: ../tools/database/item_menu.txt:118
 msgid "postal address"
 msgstr "pašto adresas"
 
-#: ../tools/database/item_menu.txt:118
+#: ../tools/database/item_menu.txt:119
 msgid "wikipedia, could be integrated"
 msgstr "vikipedija, gali būti integruota"
 
-#: ../tools/database/item_menu.txt:119
+#: ../tools/database/item_menu.txt:120
 msgid "public service"
 msgstr "viešosios paslaugos"
 
-#: ../tools/database/item_menu.txt:120
+#: ../tools/database/item_menu.txt:121
 msgid "recycling"
 msgstr "perdirbimas"
 
-#: ../tools/database/item_menu.txt:121
+#: ../tools/database/item_menu.txt:122
 msgid "recycling, could be integrated"
 msgstr "perdirbimas, gali būti integruota"
 
-#: ../tools/database/item_menu.txt:122
+#: ../tools/database/item_menu.txt:123
 msgid "parking"
 msgstr "parkavimas"
 
-#: ../tools/database/item_menu.txt:123
+#: ../tools/database/item_menu.txt:124
 msgid "parking, could be integrated"
 msgstr "parkavimas, gali būti integruota"
 
-#: ../tools/database/item_menu.txt:124
+#: ../tools/database/item_menu.txt:125
 msgid "accommodation"
 msgstr "patogumai"
 
-#: ../tools/database/item_menu.txt:125
+#: ../tools/database/item_menu.txt:126
 msgid "accommodation, could be integrated"
 msgstr "patogumai, gali būti integruota"
 
-#: ../tools/database/item_menu.txt:126
+#: ../tools/database/item_menu.txt:127
 msgid "cycle parking"
 msgstr "dviračių parkavimas"
 
-#: ../tools/database/item_menu.txt:127
+#: ../tools/database/item_menu.txt:128
 msgid "cycle parking, could be integrated"
 msgstr "dviračių parkavimas, gali būti integruota"
 
-#: ../tools/database/item_menu.txt:128
+#: ../tools/database/item_menu.txt:129
 msgid "transport sharing"
 msgstr "dalinimasis transportu"
 
-#: ../tools/database/item_menu.txt:129
+#: ../tools/database/item_menu.txt:130
 msgid "transport sharing, could be integrated"
 msgstr "dalinimasis transportu, gali būti integruota"
 
-#: ../tools/database/item_menu.txt:130
+#: ../tools/database/item_menu.txt:131
 msgid "sport"
 msgstr "sportas"
 
-#: ../tools/database/item_menu.txt:131
+#: ../tools/database/item_menu.txt:132
 msgid "sport, could be integrated"
 msgstr "sportas, gali būti integruota"
 
@@ -1105,35 +1105,35 @@ msgstr "Eksportas"
 msgid "Html list"
 msgstr "HTML sąrašas"
 
-#: ../tools/database/item_menu.txt:23
+#: ../tools/database/item_menu.txt:24
 msgid "one-node way"
 msgstr "vieno taško kelias"
 
-#: ../tools/database/item_menu.txt:132
+#: ../tools/database/item_menu.txt:133
 msgid "toilets"
 msgstr "tualetai"
 
-#: ../tools/database/item_menu.txt:99
+#: ../tools/database/item_menu.txt:100
 msgid "transport sharing, not integrated"
 msgstr "dalinimasis transportu, neintegruota"
 
-#: ../tools/database/item_menu.txt:133
+#: ../tools/database/item_menu.txt:134
 msgid "police"
 msgstr "policija"
 
-#: ../tools/database/item_menu.txt:134
+#: ../tools/database/item_menu.txt:135
 msgid "police, could be integrated"
 msgstr "policija, gali būti integruota"
 
-#: ../tools/database/item_menu.txt:100
+#: ../tools/database/item_menu.txt:101
 msgid "pharmacy, not integrated "
 msgstr "vaistinė, neintegruota"
 
-#: ../tools/database/item_menu.txt:137
+#: ../tools/database/item_menu.txt:138
 msgid "pharmacy, could be integrated"
 msgstr "vaistinė, gali būti integruota"
 
-#: ../tools/database/item_menu.txt:135
+#: ../tools/database/item_menu.txt:136
 msgid "gas station"
 msgstr "degalinė"
 
@@ -1153,11 +1153,11 @@ msgstr "Įrašyti pakeitimą"
 msgid "Comment"
 msgstr "Komentaras"
 
-#: ../tools/database/item_menu.txt:58
+#: ../tools/database/item_menu.txt:59
 msgid "area"
 msgstr "plotas"
 
-#: ../tools/database/item_menu.txt:59
+#: ../tools/database/item_menu.txt:60
 msgid "noexit"
 msgstr "aklagatvis"
 
@@ -1167,7 +1167,7 @@ msgid ""
 "href='https://twitter.com/osmose_qa'>@osmose_qa</a> on twitter."
 msgstr "Palaikykite ryšį stebėdami <a href='https://twitter.com/osmose_qa'>@osmose_qa</a> per twitter."
 
-#: ../tools/database/item_menu.txt:69
+#: ../tools/database/item_menu.txt:70
 msgid "incorrect layer"
 msgstr "neteisingas sluoksnis"
 
@@ -1183,31 +1183,31 @@ msgstr "šalis"
 msgid "analyser"
 msgstr "analizatorius"
 
-#: ../tools/database/item_menu.txt:138
+#: ../tools/database/item_menu.txt:139
 msgid "postal code, could be integrated"
 msgstr "pašto kodas, gali būti integruota"
 
-#: ../tools/database/item_menu.txt:139
+#: ../tools/database/item_menu.txt:140
 msgid "library"
 msgstr "biblioteka"
 
-#: ../tools/database/item_menu.txt:140
+#: ../tools/database/item_menu.txt:141
 msgid "restaurant"
 msgstr "restoranas"
 
-#: ../tools/database/item_menu.txt:141
+#: ../tools/database/item_menu.txt:142
 msgid "winery"
 msgstr "vyninė"
 
-#: ../tools/database/item_menu.txt:33
+#: ../tools/database/item_menu.txt:34
 msgid "missing object kind"
 msgstr "trūkstama objekto rūšis"
 
-#: ../tools/database/item_menu.txt:101
+#: ../tools/database/item_menu.txt:102
 msgid "postal code, not integrated "
 msgstr "pašto kodas, neintegruota"
 
-#: ../tools/database/item_menu.txt:76
+#: ../tools/database/item_menu.txt:77
 msgid "local language"
 msgstr "vietinė kalba"
 
@@ -1328,26 +1328,30 @@ msgstr "Klaidų ataskaitose dokumentacija"
 msgid "version"
 msgstr "versija"
 
-#: ../tools/database/item_menu.txt:142
+#: ../tools/database/item_menu.txt:143
 msgid "geodesic"
 msgstr "geodezinis"
 
-#: ../tools/database/item_menu.txt:90 ../tools/database/item_menu.txt:107
+#: ../tools/database/item_menu.txt:91 ../tools/database/item_menu.txt:108
 msgid "post box"
 msgstr "pašto dėžutė"
 
-#: ../tools/database/item_menu.txt:108
+#: ../tools/database/item_menu.txt:109
 msgid "post box, could be integrated"
 msgstr "pašto dėžutė, gali būti integruota"
 
-#: ../tools/database/item_menu.txt:34
+#: ../tools/database/item_menu.txt:35
 msgid "indoor"
 msgstr "viduje"
 
-#: ../tools/database/item_menu.txt:70
+#: ../tools/database/item_menu.txt:71
 msgid "roundabout as area"
 msgstr "žiedas kaip plotas"
 
-#: ../tools/database/item_menu.txt:102
+#: ../tools/database/item_menu.txt:103
 msgid "road"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:2
+msgid "split building"
 msgstr ""
