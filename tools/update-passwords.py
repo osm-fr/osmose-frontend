@@ -66,6 +66,8 @@ if __name__ == "__main__":
   import osmose_config
 
   for (country, country_config) in osmose_config.config.items():
+    if country_config.analyser_options["project"] != "openstreetmap":
+      continue
     for k, v in country_config.analyser.items():
       if v != "xxx":
         update_pass(country, k, v)
