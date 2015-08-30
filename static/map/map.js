@@ -30,7 +30,7 @@ function init_map() {
   });
   map.addControl(editor);
 
-  mapOverlay['Osmose Issues Heatmap'] = new OsmoseHeatmap(menu);
+  mapOverlay['Osmose Issues Heatmap'] = new OsmoseHeatmap(menu, urlVars);
   var osmoseLayer = new OsmoseErrors(menu, urlVars, editor);
   mapOverlay['Osmose Issues'] = osmoseLayer;
   editor.errors = osmoseLayer;

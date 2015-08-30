@@ -4,8 +4,11 @@ OsmoseHeatmap = L.TileLayer.extend({
 
   _menu: null,
 
-  initialize: function (menu, options) {
+  _params: null,
+
+  initialize: function (menu, params, options) {
     this._menu = menu;
+    this._params = params;
     L.TileLayer.prototype.initialize.call(this, this._makeUrl(), options);
   },
 
@@ -24,8 +27,11 @@ OsmoseHeatmap = L.TileLayer.extend({
       params = {
         item: urlPart.item,
         level: urlPart.level,
-      },
-      url = L.Util.getParamString(params);
+      };
+    if (this._params.class) {
+      params.class = this._params.class;
+    }
+    var url = L.Util.getParamString(params);
 
     return 'heat/{z}/{x}/{y}.png' + url;
   },
