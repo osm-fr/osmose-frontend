@@ -32,5 +32,5 @@
 
 <h2>{{_("Bug tracking system")}}</h2>
 <ul>
-<li>{{!_("<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any issue with translations, or erroneous analyses.")}}</a></li>
+<li>{{!_("<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> can be used to report any issue with translations.")}}</a></li>
 </ul>
