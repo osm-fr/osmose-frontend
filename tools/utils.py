@@ -34,13 +34,22 @@ languages_name["uk"] = u"Українська"
 
 allowed_languages = list(languages_name)
 pg_user           = "osmose"
-pg_pass           = "clostAdtoi"
+pg_pass           = "-osmose-"
 pg_base           = "osmose_frontend"
 website           = "osmose.openstreetmap.fr"
 
+main_project      = "OpenStreetMap"
+main_website      = "http://www.openstreetmap.org/"
 remote_url        = "http://api.openstreetmap.org/"
 remote_url_read   = "http://api.openstreetmap.fr/"
 remote_url_write  = "http://api.openstreetmap.org/"
+
+#main_project      = "OpenGeoFiction"
+#main_website      = "http://opengeofiction.net/"
+#remote_url        = "http://opengeofiction.net/"
+#remote_url_read   = "http://opengeofiction.net/"
+#remote_url_write  = "http://opengeofiction.net/"
+#main_website      = "http://opengeofiction.net/"
 
 username          = pwd.getpwuid(os.getuid())[0]
 dir_results       = "/data/work/%s/results" % (username)

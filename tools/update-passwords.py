@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/env python
 
 import os
 import psycopg2
@@ -10,7 +10,7 @@ if __name__ == "__main__":
   dbconn = utils.get_dbconn()
   dbcurs = dbconn.cursor()
 
-  dbcurs.execute("SELECT max(id)+1 FROM source;")
+  dbcurs.execute("SELECT COALESCE(max(id)+1, 1) FROM source;")
   for res in dbcurs.fetchall():
     source = res[0]
 
@@ -62,7 +62,7 @@ if __name__ == "__main__":
       print "updated country=%s analyser=%s where password=%s" % (country, analyser, password)
       return
 
-  sys.path.append("../../backend")
+  sys.path.append(sys.argv[1] if len(sys.argv) > 0 else "../../backend")
   import osmose_config
 
   for (country, country_config) in osmose_config.config.items():

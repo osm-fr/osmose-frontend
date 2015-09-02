@@ -1,0 +1,6 @@
+psycopg2 >= 2.4
+matplotlib >= 1.1
+requests >= 2.0
+beaker >= 1.6
+PIL
+polib

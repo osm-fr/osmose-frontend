@@ -146,8 +146,8 @@ def index(db, lang, format=None):
             "source.country",
             "source.analyser"],
             ["dynpoi_item"], [
-            "first(dynpoi_item.menu) AS menu",
-            "first(dynpoi_class.title) AS title"],
+            "min(dynpoi_item.menu::text)::hstore AS menu",
+            "min(dynpoi_class.title::text)::hstore AS title"],
             orderBy = True)
 
         total = 0
@@ -196,4 +196,4 @@ def index(db, lang, format=None):
     else:
         tpl = 'errors/index'
 
-    return template(tpl, countries=countries, items=items, errors_groups=errors_groups, total=total, errors=errors, query=request.query_string, country=params.country, item=params.item, translate=utils.translator(lang), gen=gen, opt_date=opt_date, title=title, website=utils.website)
+    return template(tpl, countries=countries, items=items, errors_groups=errors_groups, total=total, errors=errors, query=request.query_string, country=params.country, item=params.item, translate=utils.translator(lang), gen=gen, opt_date=opt_date, title=title, website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read)

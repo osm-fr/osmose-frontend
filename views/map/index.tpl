@@ -3,7 +3,7 @@
 <head>
   <title>Osmose - {{_("Map")}}</title>
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-  <meta name="description" content="Contrôle, vérification et correction d'erreurs d'OpenStreetMap">
+  <meta name="description" content="{{_("Control, verification and correction of %s issues") % main_project}}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 %for css in assets['css_map'].urls():
   <link rel="stylesheet" type="text/css" href="{{get_url('static', filename=css)}}">
@@ -115,7 +115,7 @@
 %    for item in unactiveItem:
         <li id='item_desc{{item}}'>
             <input type='checkbox' id='{{item}}' name='item{{item}}' checked="checked">
-            <a target="_blank" href="../errors/?item={{err["item"]}}">{{item}}</a>
+            <a target="_blank" href="../errors/?item={{item}}">{{item}}</a>
         </li>
 %    end
     </ul>

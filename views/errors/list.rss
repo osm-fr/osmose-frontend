@@ -42,9 +42,9 @@
 %                    printed_td = True
 %                end
 %                cur_type = m.group(1)
-      http://www.openstreetmap.org/browse/{{m.group(1)}}/{{m.group(2)}}
+      {{main_website}}browse/{{m.group(1)}}/{{m.group(2)}}
 %                if cur_type == "relation":
-      http://localhost:8111/import?url=http://www.openstreetmap.org/api/0.6/relation/{{m.group(2)}}/full
+      http://localhost:8111/import?url={{remote_url_read}}/0.6/relation/{{m.group(2)}}/full
 %                else:
       http://localhost:8111/load_object?objects={{cur_type[0]}}{{m.group(2)}}
 %                end

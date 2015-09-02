@@ -181,7 +181,7 @@ OFFSET
         item_tags=item_tags, tags_selected=tags_selected, tags=tags, fixable_selected=fixable_selected,
         item_levels=item_levels, level_selected=level_selected,
         active_items=active_items, useDevItem=params["useDevItem"],
-        urls=urls, helps=helps, delay=delay, languages_name=utils.languages_name, translate=utils.translator(lang),
+        main_project=utils.main_project, urls=urls, helps=helps, delay=delay, languages_name=utils.languages_name, translate=utils.translator(lang),
         website=utils.website, request=request, assets=assets.environment,
         user=user, user_error_count=user_error_count)
 
@@ -285,8 +285,8 @@ def markers(db, lang):
 
 @route('/tpl/popup.tpl')
 def popup_template(lang):
-    return template('map/popup', mustache_delimiter="{{={% %}=}}", website=utils.website)
+    return template('map/popup', mustache_delimiter="{{={% %}=}}", website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read)
 
 @route('/tpl/editor.tpl')
 def editor_template(lang):
-    return template('map/editor', mustache_delimiter="{{={% %}=}}")
+    return template('map/editor', mustache_delimiter="{{={% %}=}}", main_website=utils.main_website)
