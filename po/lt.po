@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2015-08-02 19:22+0000\n"
+"PO-Revision-Date: 2015-09-02 20:32+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
-"Language-Team: Lithuanian (http://www.transifex.com/projects/p/osmose/language/lt/)\n"
+"Language-Team: Lithuanian (http://www.transifex.com/openstreetmap-france/osmose/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -35,7 +35,7 @@ msgid "never generated"
 msgstr "niekada negeneruota"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:155 ../false_positive.py:66 tmp.tpl:159
+#: ../error.py:155 ../false_positive.py:66 tmp.tpl:160
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
@@ -78,7 +78,7 @@ msgstr "Kontaktai"
 msgid "Help on wiki"
 msgstr "Pagalba vikyje"
 
-#: ../map.py:143 tmp.tpl:100 tmp.tpl:158
+#: ../map.py:143 tmp.tpl:100 tmp.tpl:159
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
@@ -394,7 +394,7 @@ msgstr "Paskutinės analizės atnaujinimai"
 msgid "Tags Editor"
 msgstr "Žymų rengyklė"
 
-#: tmp.tpl:105 tmp.tpl:137
+#: tmp.tpl:105 tmp.tpl:138
 msgid "Cancel"
 msgstr "Atsisakyti"
 
@@ -402,75 +402,75 @@ msgstr "Atsisakyti"
 msgid "Valid"
 msgstr "Teisinga"
 
-#: tmp.tpl:108
+#: tmp.tpl:109
 msgid "no bubbles at this zoom factor"
 msgstr "nėra burbulų šiame mastelyje"
 
-#: tmp.tpl:109
+#: tmp.tpl:110
 msgid "Severity"
 msgstr "Sudėtingumas"
 
-#: tmp.tpl:110
+#: tmp.tpl:111
 msgid "1 only"
 msgstr "tik 1"
 
-#: tmp.tpl:111
+#: tmp.tpl:112
 msgid "1+2 only"
 msgstr "tik 1+2"
 
-#: tmp.tpl:112
+#: tmp.tpl:113
 msgid "all severity"
 msgstr "visi"
 
-#: tmp.tpl:113
+#: tmp.tpl:114
 msgid "2 only"
 msgstr "tik 2"
 
-#: tmp.tpl:114
+#: tmp.tpl:115
 msgid "3 only"
 msgstr "tik 3"
 
-#: tmp.tpl:115
+#: tmp.tpl:116
 msgid "Fixable"
 msgstr "Pataisoma"
 
-#: tmp.tpl:116
+#: tmp.tpl:117
 msgid "Show only markers with correction suggestions"
 msgstr "Rodyti tik žymeklius su pataisymo pasiūlymais"
 
-#: tmp.tpl:117
+#: tmp.tpl:118
 msgid "Online"
 msgstr "Internetu"
 
-#: tmp.tpl:118
+#: tmp.tpl:119
 msgid "Topic"
 msgstr "Tema"
 
-#: tmp.tpl:119
+#: tmp.tpl:120
 msgid "Select:"
 msgstr "Pažymėti:"
 
-#: tmp.tpl:120 tmp.tpl:123
+#: tmp.tpl:121 tmp.tpl:124
 msgid "all"
 msgstr "viską"
 
-#: tmp.tpl:121 tmp.tpl:124
+#: tmp.tpl:122 tmp.tpl:125
 msgid "nothing"
 msgstr "nieko"
 
-#: tmp.tpl:122
+#: tmp.tpl:123
 msgid "invert"
 msgstr "invertuoti"
 
-#: tmp.tpl:125
+#: tmp.tpl:126
 msgid "Change language"
 msgstr "Keisti kalbą"
 
-#: tmp.tpl:128
+#: tmp.tpl:129
 msgid "Help"
 msgstr "Žinynas"
 
-#: tmp.tpl:129
+#: tmp.tpl:130
 #, python-format
 msgid "Delay: %sd"
 msgstr "Uždelsimas: %sd"
@@ -479,98 +479,97 @@ msgstr "Uždelsimas: %sd"
 msgid "Level %d errors (%d)"
 msgstr "%d lygio klaidos (%d)"
 
-#: tmp.tpl:133
+#: tmp.tpl:134
 msgid "Logout"
 msgstr "Atsijungti"
 
-#: tmp.tpl:134 tmp.tpl:136
+#: tmp.tpl:135 tmp.tpl:137
 msgid "Login"
 msgstr "Prisijungti"
 
-#: tmp.tpl:135 tmp.tpl:137
+#: tmp.tpl:136 tmp.tpl:138
 msgid "Save"
 msgstr "Įrašyti"
 
-#: tmp.tpl:138
+#: tmp.tpl:139
 msgid "Objects edited:"
 msgstr "Redaguoti objektai:"
 
-#: tmp.tpl:139
+#: tmp.tpl:140
 msgid "Objects deleted:"
 msgstr "Pašalinti objektai:"
 
-#: tmp.tpl:140
+#: tmp.tpl:141
 msgid "Fix with Osmose"
 msgstr "Taisyti su Osmose"
 
-#: tmp.tpl:141
+#: tmp.tpl:142
 msgid "Source"
 msgstr "Šaltinis"
 
-#: tmp.tpl:142
+#: tmp.tpl:143
 msgid "Type"
 msgstr "Tipas"
 
-#: tmp.tpl:143
+#: tmp.tpl:144
 msgid "Reuse changeset"
 msgstr "Pakartotinai panaudoti pakeitimą"
 
 msgid "Error reported on: "
 msgstr "Apie klaidą pranešta:"
 
-#: tmp.tpl:145
+#: tmp.tpl:146
 msgid "change status"
 msgstr "keisti būseną"
 
-#: tmp.tpl:146
+#: tmp.tpl:147
 msgid "corrected"
 msgstr "pataisyta"
 
-#: tmp.tpl:147
+#: tmp.tpl:148
 msgid "false positive"
 msgstr "klaidingai teigiama"
 
-#: tmp.tpl:148 tmp.tpl:149
+#: tmp.tpl:149 tmp.tpl:150
 msgid "How to help translation"
 msgstr "Kaip prisidėti prie vertimo"
 
-#: tmp.tpl:150
+#: tmp.tpl:151
 msgid ""
 "OsmOse tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
 msgstr "OsmOse įrankis pagrinde tobulinamas prancūzų, bet siekiame pridėti daugiau kalbų. Dabar turime vertimus į beveik visas kalbas, naudojamas šalyse, kuriose vykdoma analizė."
 
-#: tmp.tpl:152
+#: tmp.tpl:153
 msgid ""
 "To make OsmOse a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr "Norint padaryti OsmOse tikru daugiakalbiu įrankiu mums reikia jūsų pagalbos dabartiniam vertimui pagerinti ar naujam vertimui pridėti."
 
-#: tmp.tpl:153
+#: tmp.tpl:154
 msgid "Pages to translate"
 msgstr "Puslapiai vertimui"
 
-#: tmp.tpl:157
+#: tmp.tpl:158
 msgid "Wiki pages"
 msgstr "Viki puslapiai"
 
-#: tmp.tpl:158
 msgid "OsmOse main page"
 msgstr "OsmOse pagrindinis puslapis"
 
 msgid "Documentation on reported errors"
 msgstr "Klaidų ataskaitose dokumentacija"
 
-#: tmp.tpl:154
+#: tmp.tpl:155
 msgid "OsmOse pages"
 msgstr "OsmOse puslapiai"
 
-#: tmp.tpl:163
+#: tmp.tpl:164
 msgid "Bug tracking system"
 msgstr "Klaidų sekimo sistema"
 
-#: tmp.tpl:164
+#: tmp.tpl:165
 msgid ""
 "<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
 "issue with translations, or erroneous analyses."
@@ -1064,32 +1063,32 @@ msgstr "sportas"
 msgid "sport, could be integrated"
 msgstr "sportas, gali būti integruota"
 
-#: tmp.tpl:156
+#: tmp.tpl:157
 msgid "Translation progress: osmose"
 msgstr "Vertimo progresas: osmose"
 
-#: tmp.tpl:160
+#: tmp.tpl:161
 msgid "For new language or countries"
 msgstr "Naujoms kalboms ar šalims"
 
-#: tmp.tpl:162
+#: tmp.tpl:163
 #, python-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
 "href='mailto:%s'>%s</a>."
 msgstr "Naujoms šalims su mumis galite susisiekti el. paštu <a href='mailto:%s'>%s</a>."
 
-#: tmp.tpl:151
+#: tmp.tpl:152
 #, python-format
 msgid "The <a href='%s'>country coverage is available</a>."
 msgstr "<a href='%s'>Šalių padengimas prieinamas</a>."
 
-#: tmp.tpl:161
+#: tmp.tpl:162
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
 msgstr "Galite sukurti naują kalbą tiesiai <a href='%s'>Transifex.</a>"
 
-#: tmp.tpl:155
+#: tmp.tpl:156
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr "Vertimas atliekamas <a href='%s'>Transifex</a>."
@@ -1097,11 +1096,11 @@ msgstr "Vertimas atliekamas <a href='%s'>Transifex</a>."
 msgid "error n°"
 msgstr "klaidos nr."
 
-#: tmp.tpl:126
+#: tmp.tpl:127
 msgid "Export"
 msgstr "Eksportas"
 
-#: tmp.tpl:127
+#: tmp.tpl:128
 msgid "Html list"
 msgstr "HTML sąrašas"
 
@@ -1141,15 +1140,15 @@ msgstr "degalinė"
 msgid "position"
 msgstr "pozicija"
 
-#: tmp.tpl:136
+#: tmp.tpl:137
 msgid "You must be logged in order to use the tag editor"
 msgstr "Privalote prisijungti žymų rengyklei naudoti"
 
-#: tmp.tpl:137
+#: tmp.tpl:138
 msgid "Save changeset"
 msgstr "Įrašyti pakeitimą"
 
-#: tmp.tpl:140
+#: tmp.tpl:141
 msgid "Comment"
 msgstr "Komentaras"
 
@@ -1311,16 +1310,16 @@ msgstr "Klaidų žemėlapis"
 msgid "Information on issues database"
 msgstr "Informacija apie klaidų duomenų bazę"
 
-#: tmp.tpl:130 tmp.tpl:131 tmp.tpl:132
+#: tmp.tpl:131 tmp.tpl:132 tmp.tpl:133
 #, python-format
 msgid "Level %d issues (%d)"
 msgstr "%d lygio klaidos (%d)"
 
-#: tmp.tpl:144
+#: tmp.tpl:145
 msgid "Issue reported on: "
 msgstr "Apie klaidą pranešta:"
 
-#: tmp.tpl:159
+#: tmp.tpl:160
 msgid "Documentation on reported issues"
 msgstr "Klaidų ataskaitose dokumentacija"
 
@@ -1354,4 +1353,13 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:2
 msgid "split building"
+msgstr ""
+
+#: tmp.tpl:108
+#, python-format
+msgid "Control, verification and correction of %s issues"
+msgstr ""
+
+#: tmp.tpl:159
+msgid "Osmose QA main page"
 msgstr ""
