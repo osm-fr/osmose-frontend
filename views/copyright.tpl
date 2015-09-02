@@ -15,7 +15,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/.</p>
 <ul>
     <li>Etienne Chové 2009-2010</li>
     <li>Jocelyn Jaubert 2011-2015</li>
-    <li>Frédéric Rodrigo 2011-2513</li>
+    <li>Frédéric Rodrigo 2011-2015</li>
 </ul>
 {{_("And contributors")}}
 <ul>
