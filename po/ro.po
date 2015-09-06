@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2015-08-22 20:46+0000\n"
-"Last-Translator: Jean-Baptiste H <jb.holcroft@gmail.com>\n"
+"PO-Revision-Date: 2015-09-06 18:10+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Romanian (http://www.transifex.com/openstreetmap-france/osmose/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +39,7 @@ msgid "never generated"
 msgstr "niciodată generat"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:155 ../false_positive.py:66 tmp.tpl:159
+#: ../error.py:155 ../false_positive.py:66 tmp.tpl:160
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
@@ -82,7 +82,7 @@ msgstr "Contact"
 msgid "Help on wiki"
 msgstr "Ajutor pe wiki"
 
-#: ../map.py:143 tmp.tpl:100 tmp.tpl:158
+#: ../map.py:143 tmp.tpl:100 tmp.tpl:159
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
@@ -398,7 +398,7 @@ msgstr "Ultima analiză a actualizărilor"
 msgid "Tags Editor"
 msgstr "Editorul pentru tag-uri"
 
-#: tmp.tpl:105 tmp.tpl:137
+#: tmp.tpl:105 tmp.tpl:138
 msgid "Cancel"
 msgstr "Anulează"
 
@@ -406,75 +406,75 @@ msgstr "Anulează"
 msgid "Valid"
 msgstr "Valid"
 
-#: tmp.tpl:108
+#: tmp.tpl:109
 msgid "no bubbles at this zoom factor"
 msgstr "Nu există indicatoare la acest zoom"
 
-#: tmp.tpl:109
+#: tmp.tpl:110
 msgid "Severity"
 msgstr "Gravitate"
 
-#: tmp.tpl:110
+#: tmp.tpl:111
 msgid "1 only"
 msgstr "doar 1"
 
-#: tmp.tpl:111
+#: tmp.tpl:112
 msgid "1+2 only"
 msgstr "doar 1+2"
 
-#: tmp.tpl:112
+#: tmp.tpl:113
 msgid "all severity"
 msgstr "toate tipurile de gravitate"
 
-#: tmp.tpl:113
+#: tmp.tpl:114
 msgid "2 only"
 msgstr "doar 2"
 
-#: tmp.tpl:114
+#: tmp.tpl:115
 msgid "3 only"
 msgstr "doar 3"
 
-#: tmp.tpl:115
+#: tmp.tpl:116
 msgid "Fixable"
 msgstr "Rezolvabile"
 
-#: tmp.tpl:116
+#: tmp.tpl:117
 msgid "Show only markers with correction suggestions"
 msgstr "Arată doar indicatoare cu sugestii de corectare"
 
-#: tmp.tpl:117
+#: tmp.tpl:118
 msgid "Online"
 msgstr "Online"
 
-#: tmp.tpl:118
+#: tmp.tpl:119
 msgid "Topic"
 msgstr "Subiect"
 
-#: tmp.tpl:119
+#: tmp.tpl:120
 msgid "Select:"
 msgstr "Selectați:"
 
-#: tmp.tpl:120 tmp.tpl:123
+#: tmp.tpl:121 tmp.tpl:124
 msgid "all"
 msgstr "toate"
 
-#: tmp.tpl:121 tmp.tpl:124
+#: tmp.tpl:122 tmp.tpl:125
 msgid "nothing"
 msgstr "nimic"
 
-#: tmp.tpl:122
+#: tmp.tpl:123
 msgid "invert"
 msgstr "inversează"
 
-#: tmp.tpl:125
+#: tmp.tpl:126
 msgid "Change language"
 msgstr "Schimbați limba"
 
-#: tmp.tpl:128
+#: tmp.tpl:129
 msgid "Help"
 msgstr "Ajutor"
 
-#: tmp.tpl:129
+#: tmp.tpl:130
 #, python-format
 msgid "Delay: %sd"
 msgstr "Întârziere:%sd"
@@ -483,98 +483,96 @@ msgstr "Întârziere:%sd"
 msgid "Level %d errors (%d)"
 msgstr "Nivel %d erori (%d)"
 
-#: tmp.tpl:133
+#: tmp.tpl:134
 msgid "Logout"
 msgstr "Deconectați-vă"
 
-#: tmp.tpl:134 tmp.tpl:136
+#: tmp.tpl:135 tmp.tpl:137
 msgid "Login"
 msgstr "Conectați-vă"
 
-#: tmp.tpl:135 tmp.tpl:137
+#: tmp.tpl:136 tmp.tpl:138
 msgid "Save"
 msgstr "Salvați"
 
-#: tmp.tpl:138
+#: tmp.tpl:139
 msgid "Objects edited:"
 msgstr "Obiecte modificate:"
 
-#: tmp.tpl:139
+#: tmp.tpl:140
 msgid "Objects deleted:"
 msgstr "Obiecte șterse:"
 
-#: tmp.tpl:140
+#: tmp.tpl:141
 msgid "Fix with Osmose"
 msgstr "Reparați cu Osmose"
 
-#: tmp.tpl:141
+#: tmp.tpl:142
 msgid "Source"
 msgstr "Sursă"
 
-#: tmp.tpl:142
+#: tmp.tpl:143
 msgid "Type"
 msgstr "Tip"
 
-#: tmp.tpl:143
+#: tmp.tpl:144
 msgid "Reuse changeset"
 msgstr "Reutilizați setul de modificări"
 
 msgid "Error reported on: "
 msgstr "Eroare înregistrată la:"
 
-#: tmp.tpl:145
+#: tmp.tpl:146
 msgid "change status"
 msgstr "modificați starea"
 
-#: tmp.tpl:146
+#: tmp.tpl:147
 msgid "corrected"
 msgstr "corectată"
 
-#: tmp.tpl:147
+#: tmp.tpl:148
 msgid "false positive"
 msgstr "rezultat fals pozitiv"
 
-#: tmp.tpl:148 tmp.tpl:149
+#: tmp.tpl:149 tmp.tpl:150
 msgid "How to help translation"
 msgstr "Cum să ajut la traducere"
 
-#: tmp.tpl:150
+#: tmp.tpl:151
 msgid ""
 "OsmOse tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
 msgstr "OsmOse este un instrument dezvoltat în general de francezi, dar ne dorim adăugarea mai multor limbi. În prezent, sunt disponibile aproape toate limbile corespunzătoare țărilor în care s-a efectuat analiza."
 
-#: tmp.tpl:152
+#: tmp.tpl:153
 msgid ""
 "To make OsmOse a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr "Pentru ca Osmose să fie un real instrument multi lingvistic, avem nevoie de ajutorul dumnevoastră pentru îmbunătățirea actualei traduceri și adăugarea unei noi traduceri."
 
-#: tmp.tpl:153
+#: tmp.tpl:154
 msgid "Pages to translate"
 msgstr "Pagini de tradus"
 
-#: tmp.tpl:157
+#: tmp.tpl:158
 msgid "Wiki pages"
 msgstr "Pagini wiki"
 
-#: tmp.tpl:158
 msgid "OsmOse main page"
 msgstr "Pagina principală OsmOse"
 
 msgid "Documentation on reported errors"
 msgstr "Documentație despre erorile raportate"
 
-#: tmp.tpl:154
+#: tmp.tpl:155
 msgid "OsmOse pages"
 msgstr "Pagini OsmOse"
 
-#: tmp.tpl:163
+#: tmp.tpl:164
 msgid "Bug tracking system"
 msgstr "Sistem de urmărire a defectelor"
 
-#: tmp.tpl:164
 msgid ""
 "<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
 "issue with translations, or erroneous analyses."
@@ -1068,32 +1066,32 @@ msgstr "sport"
 msgid "sport, could be integrated"
 msgstr "sport, ar putea fi integrat"
 
-#: tmp.tpl:156
+#: tmp.tpl:157
 msgid "Translation progress: osmose"
 msgstr "Progresul traducerii: osmose"
 
-#: tmp.tpl:160
+#: tmp.tpl:161
 msgid "For new language or countries"
 msgstr "Pentru noi limbi și tări"
 
-#: tmp.tpl:162
+#: tmp.tpl:163
 #, python-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
 "href='mailto:%s'>%s</a>."
 msgstr "Pentru alte țări, putem fi contactați direct prin email <a href='mailto:%s'>%s</a>."
 
-#: tmp.tpl:151
+#: tmp.tpl:152
 #, python-format
 msgid "The <a href='%s'>country coverage is available</a>."
 msgstr "<a href='%s'>Acoperirea țării este disponibilă</a>."
 
-#: tmp.tpl:161
+#: tmp.tpl:162
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
 msgstr "Puteți crea posibilitatea unei noi limbi direct pe  <a href='%s'>Transifex</a>."
 
-#: tmp.tpl:155
+#: tmp.tpl:156
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr "Traducerea este realizată pe  <a href='%s'>Transifex</a>."
@@ -1101,11 +1099,11 @@ msgstr "Traducerea este realizată pe  <a href='%s'>Transifex</a>."
 msgid "error n°"
 msgstr "eroare număr"
 
-#: tmp.tpl:126
+#: tmp.tpl:127
 msgid "Export"
 msgstr "Export"
 
-#: tmp.tpl:127
+#: tmp.tpl:128
 msgid "Html list"
 msgstr "Listă html"
 
@@ -1145,15 +1143,15 @@ msgstr "benzinărie"
 msgid "position"
 msgstr "poziție"
 
-#: tmp.tpl:136
+#: tmp.tpl:137
 msgid "You must be logged in order to use the tag editor"
 msgstr "Trebuie să fiți autentificat pentru a utiliza editorul de tag-uri"
 
-#: tmp.tpl:137
+#: tmp.tpl:138
 msgid "Save changeset"
 msgstr "Salvați setul de modificări"
 
-#: tmp.tpl:140
+#: tmp.tpl:141
 msgid "Comment"
 msgstr "Comentariu"
 
@@ -1269,7 +1267,6 @@ msgid ""
 "contributor of the relevant erroneous elements."
 msgstr ""
 
-#: tmp.tpl:25
 msgid ""
 "Bug should be reported on <a href='http://trac.openstreetmap.fr'>trac</a>. "
 "The component to pick should be osmose-frontend for issues around the "
@@ -1315,16 +1312,16 @@ msgstr ""
 msgid "Information on issues database"
 msgstr ""
 
-#: tmp.tpl:130 tmp.tpl:131 tmp.tpl:132
+#: tmp.tpl:131 tmp.tpl:132 tmp.tpl:133
 #, python-format
 msgid "Level %d issues (%d)"
 msgstr ""
 
-#: tmp.tpl:144
+#: tmp.tpl:145
 msgid "Issue reported on: "
 msgstr ""
 
-#: tmp.tpl:159
+#: tmp.tpl:160
 msgid "Documentation on reported issues"
 msgstr ""
 
@@ -1358,4 +1355,28 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:2
 msgid "split building"
+msgstr ""
+
+#: tmp.tpl:108
+#, python-format
+msgid "Control, verification and correction of %s issues"
+msgstr ""
+
+#: tmp.tpl:159
+msgid "Osmose QA main page"
+msgstr ""
+
+#: tmp.tpl:25
+msgid ""
+"Bug should be reported on <a href='https://github.com/osm-fr/osmose-"
+"frontend/issues'>osmose-frontend</a> for issues around the website, or on <a"
+" href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> "
+"for issues on the reported issues on OSM data, or for suggestion about "
+"analyses."
+msgstr ""
+
+#: tmp.tpl:165
+msgid ""
+"<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
+"frontend</a> can be used to report any issue with translations."
 msgstr ""

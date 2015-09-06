@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2015-09-02 20:32+0000\n"
+"PO-Revision-Date: 2015-09-06 18:10+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -586,7 +586,6 @@ msgstr "Pages d'OsmOse"
 msgid "Bug tracking system"
 msgstr "Suivi des bugs"
 
-#: tmp.tpl:165
 msgid ""
 "<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
 "issue with translations, or erroneous analyses."
@@ -1281,7 +1280,6 @@ msgid ""
 "contributor of the relevant erroneous elements."
 msgstr "En entrant votre identifiant de contributeur OSM, vous pouvez consulter les erreurs qui y sont rattachées. À noter que l'algorithme de rattachement d'une erreur à un utilisateur n'est pas parfait, Osmose ne prend en compte que le dernier contributeur de l'élément fautif."
 
-#: tmp.tpl:25
 msgid ""
 "Bug should be reported on <a href='http://trac.openstreetmap.fr'>trac</a>. "
 "The component to pick should be osmose-frontend for issues around the "
@@ -1379,4 +1377,19 @@ msgstr ""
 
 #: tmp.tpl:159
 msgid "Osmose QA main page"
+msgstr ""
+
+#: tmp.tpl:25
+msgid ""
+"Bug should be reported on <a href='https://github.com/osm-fr/osmose-"
+"frontend/issues'>osmose-frontend</a> for issues around the website, or on <a"
+" href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> "
+"for issues on the reported issues on OSM data, or for suggestion about "
+"analyses."
+msgstr ""
+
+#: tmp.tpl:165
+msgid ""
+"<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
+"frontend</a> can be used to report any issue with translations."
 msgstr ""
