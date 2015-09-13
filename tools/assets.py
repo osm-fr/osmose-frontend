@@ -27,6 +27,8 @@ js_map_bundle = Bundle(
     'map/Permalink.Overlay.js',
     'map/Permalink.Item.js',
     'map/leaflet-plugins/layer/tile/Bing.js',
+    'map/Leaflet.MapboxVectorTile.js',
+    'map/Mapillary.js',
     'map/layers.js',
     'map/leaflet.active-layers.min.js',
     'map/leaflet.select-layers.min.js',
