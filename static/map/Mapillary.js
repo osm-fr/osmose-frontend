@@ -21,13 +21,7 @@ Mapillary = L.TileLayer.MVTSource.extend({
 
   onAdd: function (map) {
     this._map = map;
-    this._bind_onClick = L.Util.bind(this._onClick, this);
-    map.on('click', this._bind_onClick);
     L.TileLayer.MVTSource.prototype.onAdd.call(this, map);
-  },
-
-  onRemove: function (map) {
-    map.off('click', this._bind_onClick);
   },
 
   _onClick: function (e) {
