@@ -17,23 +17,28 @@ if __name__ == "__main__":
   def update_pass(country, analyser, password, contact="Jocelyn Jaubert <jocelyn@osm1.crans.org>"):
     global source
 
-    try:
-      dbcurs.execute("SELECT source, password FROM source JOIN source_password ON source.id = source_id WHERE country=%s AND analyser=%s;",
-                     (country, analyser))
-      if dbcurs.rowcount == 1:
-        prev_password = dbcurs.fetchone()["password"]
-        if prev_password == password:
-          return
-
+    dbcurs.execute("SELECT id, password FROM source JOIN source_password ON source.id = source_id WHERE country=%s AND analyser=%s;",
+                   (country, analyser))
+    if dbcurs.rowcount == 1:
+      prev_password = dbcurs.fetchone()["password"]
+      if prev_password == password:
+        return
       # try to update password for an analyse
       dbcurs.execute("UPDATE source_password SET password=%s WHERE source_id IN (SELECT id FROM source WHERE country=%s AND analyser=%s);",
                      (password, country, analyser))
-    except psycopg2.IntegrityError:
-      print "failure on country=%s analyser=%s password=%s" % (country, analyser, password)
-      raise
-    except:
-      print "failure on country=%s analyser=%s password=%s" % (country, analyser, password)
-      raise
+      if dbcurs.rowcount == 1:
+        print "updated password=%s where country=%s analyser=%s" % (password, country, analyser)
+        return
+
+    elif dbcurs.rowcount == 0:
+      dbcurs.execute("SELECT id FROM source WHERE country=%s AND analyser=%s;",
+                     (country, analyser))
+      if dbcurs.rowcount == 1:
+        cur_source = dbcurs.fetchone()["id"]
+        dbcurs.execute("INSERT INTO source_password (source_id, password) VALUES (%s, %s);",
+                       (cur_source, password))
+        print "inserted password=%s where country=%s analyser=%s" % (password, country, analyser)
+        return
 
     if dbcurs.rowcount == 0:
   #    # try to update name for an analyse for a given password
@@ -41,7 +46,6 @@ if __name__ == "__main__":
   #                   (analyser, password))
       pass
     else:
-      print "updated password=%s where country=%s analyser=%s" % (password, country, analyser)
       return
 
     if dbcurs.rowcount == 0:
