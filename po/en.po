@@ -569,20 +569,20 @@ msgstr "How to help translation"
 
 #: tmp.tpl:141
 msgid ""
-"OsmOse tool is mainly developped by french people, and we aim to add more "
+"Osmose tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
 msgstr ""
-"OsmOse tool is mainly developped by french people, and we aim to add more "
+"Osmose tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
 
 #: tmp.tpl:142
 msgid ""
-"To make OsmOse a real multi-lingual tool, we need your help to improve "
+"To make Osmose a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr ""
-"To make OsmOse a real multi-lingual tool, we need your help to improve "
+"To make Osmose a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 
 #: tmp.tpl:143
@@ -612,16 +612,16 @@ msgid "Wiki pages"
 msgstr "Wiki pages"
 
 #: tmp.tpl:148
-msgid "OsmOse main page"
-msgstr "OsmOse main page"
+msgid "Osmose main page"
+msgstr "Osmose main page"
 
 #: tmp.tpl:149
 msgid "Documentation on reported errors"
 msgstr "Documentation on reported errors"
 
 #: tmp.tpl:150
-msgid "OsmOse pages"
-msgstr "OsmOse pages"
+msgid "Osmose pages"
+msgstr "Osmose pages"
 
 #: tmp.tpl:151
 msgid "Translation status of frontend"
@@ -694,8 +694,8 @@ msgstr ""
 #~ msgid "map"
 #~ msgstr "map"
 
-#~ msgid "OsmOse - statistics for user %s"
-#~ msgstr "OsmOse - statistics for user %s"
+#~ msgid "Osmose - statistics for user %s"
+#~ msgstr "Osmose - statistics for user %s"
 
 #~ msgid "Show:"
 #~ msgstr "Show:"
@@ -703,17 +703,17 @@ msgstr ""
 #~ msgid "all levels"
 #~ msgstr "all levels"
 
-#~ msgid "OsmOse - Users statistics"
-#~ msgstr "OsmOse - Users statistics"
+#~ msgid "Osmose - Users statistics"
+#~ msgstr "Osmose - Users statistics"
 
-#~ msgid "OsmOse - information on error %d"
-#~ msgstr "OsmOse - information on error %d"
+#~ msgid "Osmose - information on error %d"
+#~ msgstr "Osmose - information on error %d"
 
-#~ msgid "OsmOse - informations"
-#~ msgstr "OsmOse - informations"
+#~ msgid "Osmose - informations"
+#~ msgstr "Osmose - informations"
 
-#~ msgid "OsmOse - false positives"
-#~ msgstr "OsmOse - false positives"
+#~ msgid "Osmose - false positives"
+#~ msgstr "Osmose - false positives"
 
 #~ msgid "position"
 #~ msgstr "position"

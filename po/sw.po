@@ -1,4 +1,4 @@
-# OsmOse frontend
+# Osmose frontend
 # Copyright (C) 2014
 # This file is distributed under the same license as the osmose-frontend package.
 # 
@@ -559,14 +559,14 @@ msgstr ""
 
 #: tmp.tpl:145
 msgid ""
-"OsmOse tool is mainly developped by french people, and we aim to add more "
+"Osmose tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
 msgstr ""
 
 #: tmp.tpl:147
 msgid ""
-"To make OsmOse a real multi-lingual tool, we need your help to improve "
+"To make Osmose a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr ""
 
@@ -579,7 +579,7 @@ msgid "Wiki pages"
 msgstr ""
 
 #: tmp.tpl:153
-msgid "OsmOse main page"
+msgid "Osmose main page"
 msgstr ""
 
 #: tmp.tpl:154
@@ -587,7 +587,7 @@ msgid "Documentation on reported errors"
 msgstr ""
 
 #: tmp.tpl:149
-msgid "OsmOse pages"
+msgid "Osmose pages"
 msgstr ""
 
 #: tmp.tpl:158

@@ -1,4 +1,4 @@
-# OsmOse frontend
+# Osmose frontend
 # Copyright (C) 2014
 # This file is distributed under the same license as the osmose-frontend package.
 # 
@@ -536,16 +536,16 @@ msgstr "Як допомогти з перекладом"
 
 #: tmp.tpl:151
 msgid ""
-"OsmOse tool is mainly developped by french people, and we aim to add more "
+"Osmose tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
-msgstr "OsmOse — інструмент, переважно створений французами, проте ми бажаємо додати підтримку інших мов. Зараз ми використовуємо майже всі мови країн, дані по яких перевіряються."
+msgstr "Osmose — інструмент, переважно створений французами, проте ми бажаємо додати підтримку інших мов. Зараз ми використовуємо майже всі мови країн, дані по яких перевіряються."
 
 #: tmp.tpl:153
 msgid ""
-"To make OsmOse a real multi-lingual tool, we need your help to improve "
+"To make Osmose a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
-msgstr "Для того, щоб зробити OsmOse дійсно багатомовним інструментом, нам потрібна ваша допомога в покращені існуючих перекладів, а також додані нових"
+msgstr "Для того, щоб зробити Osmose дійсно багатомовним інструментом, нам потрібна ваша допомога в покращені існуючих перекладів, а також додані нових"
 
 #: tmp.tpl:154
 msgid "Pages to translate"
@@ -555,15 +555,15 @@ msgstr "Сторінки, для перекладу"
 msgid "Wiki pages"
 msgstr "Сторінки Вікі"
 
-msgid "OsmOse main page"
-msgstr "Головна сторінка OsmOse"
+msgid "Osmose main page"
+msgstr "Головна сторінка Osmose"
 
 msgid "Documentation on reported errors"
 msgstr "Документація на виявлені помилки"
 
 #: tmp.tpl:155
-msgid "OsmOse pages"
-msgstr "Сторіники OsmOse "
+msgid "Osmose pages"
+msgstr "Сторіники Osmose "
 
 #: tmp.tpl:164
 msgid "Bug tracking system"
