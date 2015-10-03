@@ -1,12 +1,12 @@
 %rebase('layout.tpl', title=(_("How to help translation")))
 <h1>{{_("How to help translation")}}</h1>
-<p>{{_("OsmOse tool is mainly developped by french people, and we aim to add more languages. We currently cover almost all the languages used by countries covered by analyses.")}}
+<p>{{_("Osmose tool is mainly developped by french people, and we aim to add more languages. We currently cover almost all the languages used by countries covered by analyses.")}}
 {{!_("The <a href='%s'>country coverage is available</a>.") % "map/#zoom=2&lat=37&lon=-25.9&layer=Mapnik&overlays=FFFFFFFFFFFFFFFFFTFF&item=xxxx&level=1%2C2%2C3&tags=&fixable=" }}
-<p>{{_("To make OsmOse a real multi-lingual tool, we need your help to improve current translations, and add new translations")}}</p>
+<p>{{_("To make Osmose a real multi-lingual tool, we need your help to improve current translations, and add new translations")}}</p>
 
 
 <h2>{{_("Pages to translate")}}</h2>
-<h3>{{_("OsmOse pages")}}</h3>
+<h3>{{_("Osmose pages")}}</h3>
 <ul>
 <li>{{!_("Translation is done on <a href='%s'>Transifex</a>.") % "http://www.transifex.com/projects/p/osmose/"}}</a></li>
 </ul>
