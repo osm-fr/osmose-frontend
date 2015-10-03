@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2015-09-06 18:10+0000\n"
+"PO-Revision-Date: 2015-10-03 11:09+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -184,7 +184,7 @@ msgstr "Poskytnutí patchů"
 msgid ""
 "Patches can be provided via merge requests on Github. This is the preferred "
 "way of handling patches."
-msgstr ""
+msgstr "Patche mohou být poskytnuty přes požadavky na sloučení na Githubu. To je preferovaná cesta jak nakládat vylepšeními."
 
 #: tmp.tpl:28
 msgid "Development"
@@ -1325,44 +1325,44 @@ msgstr "Dokumentace pro nahlášené problémy"
 
 #: tmp.tpl:49
 msgid "version"
-msgstr ""
+msgstr "verze"
 
 #: ../tools/database/item_menu.txt:143
 msgid "geodesic"
-msgstr ""
+msgstr "geodetický"
 
 #: ../tools/database/item_menu.txt:91 ../tools/database/item_menu.txt:108
 msgid "post box"
-msgstr ""
+msgstr "poštovní schránka"
 
 #: ../tools/database/item_menu.txt:109
 msgid "post box, could be integrated"
-msgstr ""
+msgstr "poštovní schránka, může být sjednoceno"
 
 #: ../tools/database/item_menu.txt:35
 msgid "indoor"
-msgstr ""
+msgstr "vnitřní"
 
 #: ../tools/database/item_menu.txt:71
 msgid "roundabout as area"
-msgstr ""
+msgstr "kruhový objezd jako plocha"
 
 #: ../tools/database/item_menu.txt:103
 msgid "road"
-msgstr ""
+msgstr "cesta"
 
 #: ../tools/database/item_menu.txt:2
 msgid "split building"
-msgstr ""
+msgstr "rozdělit budovu"
 
 #: tmp.tpl:108
 #, python-format
 msgid "Control, verification and correction of %s issues"
-msgstr ""
+msgstr "Kontrola, verifikace a korekce %s chyb"
 
 #: tmp.tpl:159
 msgid "Osmose QA main page"
-msgstr ""
+msgstr "Hlavní stránka pro zajištění kvality Osmose"
 
 #: tmp.tpl:25
 msgid ""
@@ -1371,10 +1371,10 @@ msgid ""
 " href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> "
 "for issues on the reported issues on OSM data, or for suggestion about "
 "analyses."
-msgstr ""
+msgstr "Chyby mohou být hlášeny na <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> pro věci spojené s webem nebo na <a href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> pro věci k reportovaných chybám v OSM datech nebo pro návrhy k analýze."
 
 #: tmp.tpl:165
 msgid ""
 "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
 "frontend</a> can be used to report any issue with translations."
-msgstr ""
+msgstr "Použijte <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> k hlášení problémů s překladem."

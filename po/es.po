@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the osmose-frontend package.
 # 
 # Translators:
+# Marco Antonio <marcoantoniofrias@gmail.com>, 2014
 # Marco Antonio <marcoantoniofrias@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2015-09-06 18:10+0000\n"
+"PO-Revision-Date: 2015-10-03 11:09+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -182,7 +183,7 @@ msgstr "Proporcionando parches"
 msgid ""
 "Patches can be provided via merge requests on Github. This is the preferred "
 "way of handling patches."
-msgstr ""
+msgstr "Los parches se proporcionan a través de solicitudes de combinación en Github. Esta es la forma preferida de manejo de parches."
 
 #: tmp.tpl:28
 msgid "Development"
@@ -1347,20 +1348,20 @@ msgstr "rotonda como área"
 
 #: ../tools/database/item_menu.txt:103
 msgid "road"
-msgstr ""
+msgstr "camino"
 
 #: ../tools/database/item_menu.txt:2
 msgid "split building"
-msgstr ""
+msgstr "dividir edificio"
 
 #: tmp.tpl:108
 #, python-format
 msgid "Control, verification and correction of %s issues"
-msgstr ""
+msgstr "Control, verificación y corrección de %s problemas"
 
 #: tmp.tpl:159
 msgid "Osmose QA main page"
-msgstr ""
+msgstr "Página principal de CC Osmose"
 
 #: tmp.tpl:25
 msgid ""
@@ -1369,10 +1370,10 @@ msgid ""
 " href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> "
 "for issues on the reported issues on OSM data, or for suggestion about "
 "analyses."
-msgstr ""
+msgstr "Los deben ser reportados en <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> para problemas relacionados al sitio web, o en <a href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> para problemas relacionados a los datos OSM, o para sugerir análisis."
 
 #: tmp.tpl:165
 msgid ""
 "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
 "frontend</a> can be used to report any issue with translations."
-msgstr ""
+msgstr "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> puede ser usado para reportar cualquier problema con las traducciones."

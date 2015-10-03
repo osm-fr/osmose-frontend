@@ -4,14 +4,16 @@
 # 
 # Translators:
 # Daniel Koć <daniel@xn--ko-wla.pl>, 2014
+# Debeat <krystian4842@gmail.com>, 2015
 # endro, 2014-2015
 # Debeat <krystian4842@gmail.com>, 2015
+# endro, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2015-09-06 18:10+0000\n"
+"PO-Revision-Date: 2015-10-03 11:09+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -184,7 +186,7 @@ msgstr "Dostarczanie poprawek"
 msgid ""
 "Patches can be provided via merge requests on Github. This is the preferred "
 "way of handling patches."
-msgstr ""
+msgstr "Łatki mogą być dostarczone przez Github. Jest to preferowany sposób ich obsługi."
 
 #: tmp.tpl:28
 msgid "Development"
@@ -1333,7 +1335,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:91 ../tools/database/item_menu.txt:108
 msgid "post box"
-msgstr ""
+msgstr "skrzynka pocztowa"
 
 #: ../tools/database/item_menu.txt:109
 msgid "post box, could be integrated"
@@ -1345,11 +1347,11 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:71
 msgid "roundabout as area"
-msgstr ""
+msgstr "rondo jako obszar"
 
 #: ../tools/database/item_menu.txt:103
 msgid "road"
-msgstr ""
+msgstr "droga"
 
 #: ../tools/database/item_menu.txt:2
 msgid "split building"

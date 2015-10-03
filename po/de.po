@@ -5,17 +5,23 @@
 # Translators:
 # Ettore Atalan <atalanttore@googlemail.com>, 2014-2015
 # frodrigo <fred.rodrigo@gmail.com>, 2014
+# frodrigo <fred.rodrigo@gmail.com>, 2014
 # Loo Nie <looniverse@gmail.com>, 2015
 # operon, 2012
+# operon, 2012
+# Sebastian, 2014
 # Sebastian, 2014
 # simon04 <simon.legner@gmail.com>, 2014
+# simon04 <simon.legner@gmail.com>, 2014
+# Klumbumbus, 2015
+# sommerluk <sommerluk@gmail.com>, 2014
 # sommerluk <sommerluk@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2015-09-06 18:10+0000\n"
+"PO-Revision-Date: 2015-10-03 11:07+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
