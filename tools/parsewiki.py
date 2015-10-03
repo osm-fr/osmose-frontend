@@ -39,7 +39,7 @@ def listitem(lang):
         items[res['categ']]['item'][res['item']] = dict(res)
         items[res['categ']]['item'][res['item']]['class'] = {}
 
-    curs.execute("SELECT DISTINCT class, dynpoi_class.item, dynpoi_item.categ, COALESCE(title->'%s', title->'en') AS title FROM dynpoi_class JOIN dynpoi_item ON dynpoi_item.item=dynpoi_class.item" % lang)
+    curs.execute("SELECT class, dynpoi_class.item, dynpoi_item.categ, COALESCE(Max(title->'%s'), Max(title->'en')) AS title FROM dynpoi_class JOIN dynpoi_item ON dynpoi_item.item=dynpoi_class.item GROUP BY class, dynpoi_class.item, dynpoi_item.categ" % lang)
     for res in curs.fetchall():
         if items[res['categ']]['item'].get(res['item']):
             items[res['categ']]['item'][res['item']]['class'][res['class']] = res['title']
