@@ -6,7 +6,6 @@
 # Daniel Koć <daniel@xn--ko-wla.pl>, 2014
 # endro, 2014-2015
 # Debeat <krystian4842@gmail.com>, 2015
-# endro, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"

@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the osmose-frontend package.
 # 
 # Translators:
-# Yannis Gyftomitros, 2014
 # Yannis Gyftomitros, 2014-2015
 msgid ""
 msgstr ""

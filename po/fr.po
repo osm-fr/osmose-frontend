@@ -4,18 +4,11 @@
 # 
 # Translators:
 # Christian Quest <christian.quest@gmail.com>, 2015
-# frodrigo <fred.rodrigo@gmail.com>, 2014-2015
-# frodrigo <fred.rodrigo@gmail.com>, 2014
-#  <frodrigo@openstreetmap.fr>, 2012
+# frodrigo <fred.rodrigo@gmail.com>, 2012,2014-2015
 # George Kaplan <georgekaplanosm@hotmail.fr>, 2015
 # Jean-Baptiste H <jb.holcroft@gmail.com>, 2014-2015
-# Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2012
 # Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2012,2014-2015
-# Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2012,2014
-# operon, 2014
-#  operon, 2012
-# operon, 2015
-# operon, 2014
+# operon, 2012,2014-2015
 # PanierAvide <panieravide@riseup.net>, 2015
 # Pyrog <pyrog@laposte.net>, 2014
 # Sébastien Duthil <duthils@free.fr>, 2015
