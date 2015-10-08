@@ -4,15 +4,17 @@
 # 
 # Translators:
 # d1g <acroq3@gmail.com>, 2015
+# d1g <acroq3@gmail.com>, 2015
 # jekader <jekader@gmail.com>, 2014
-# Nikolay Parukhin <parukhin@gmail.com>, 2014
+# jekader <jekader@gmail.com>, 2014
+# Nikolay Parukhin <parukhin@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2015-09-06 18:10+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2015-10-03 23:54+0000\n"
+"Last-Translator: Nikolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/openstreetmap-france/osmose/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -134,7 +136,7 @@ msgstr "Статистика по пользователю %s"
 msgid ""
 "This page shows errors on elements that were last modified by '%s'. This "
 "doesn't means that this user is responsible for all these errors."
-msgstr ""
+msgstr "Эта страница показывает ошибки на элементах, которые последний раз изменялись '%s'. Это не означает, что этот пользователь несет ответственность за все эти ошибки."
 
 #: tmp.tpl:14
 msgid "This list is also available via rss."
@@ -159,7 +161,7 @@ msgid ""
 " errors that are attached to your username. Note that the algorithm that "
 "attaches errors to username is not perfect, as Osmose only checks the last "
 "contributor of the relevant erroneous elements."
-msgstr ""
+msgstr "Введя своё OSM имя пользователя в следующей форме, вы сможете увидеть ошибки, которые прикреплены к вашему имени пользователя. Обратите внимание, что алгоритм, который прикрепляет ошибки к имени пользователя не является совершенным, так как Osmose проверяет только последнего, кто изменял соответствующие ошибочные элементы."
 
 #: tmp.tpl:22
 msgid "Username:"
@@ -174,7 +176,7 @@ msgid ""
 "The component to pick should be osmose-frontend for issues around the "
 "website, and osmose-backend for issues on the reported errors, or for "
 "suggestion for new analyses."
-msgstr ""
+msgstr "Об ошибках вы можете сообщить через <a href='http://trac.openstreetmap.fr'>trac</a>. Выбранным компонентом должен быть osmose-frontend для всех вопросов по веб-сайту и osmose-backend для вопросов по отправленным ошибкам или предложений новых тестов."
 
 #: tmp.tpl:26
 msgid "Providing patches"
@@ -184,7 +186,7 @@ msgstr "Предоставление патчей"
 msgid ""
 "Patches can be provided via merge requests on Github. This is the preferred "
 "way of handling patches."
-msgstr ""
+msgstr "Патчи могут быть предоставлены с помощью запросов слияния на Github. Это предпочтительный способ обработки патчей."
 
 #: tmp.tpl:28
 msgid "Development"
@@ -194,7 +196,7 @@ msgstr "Разработка"
 msgid ""
 "Development of Osmose is made as free software by <a "
 "href='../copyright'>volunteers</a>."
-msgstr ""
+msgstr "Разработка свободного программного обеспечения Osmose выполнена <a href='../copyright'>волонтёрами</a>."
 
 #: tmp.tpl:32
 msgid "Contacting maintainers"
@@ -204,7 +206,7 @@ msgstr "Связаться с администраторами"
 #, python-format
 msgid ""
 "We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
-msgstr ""
+msgstr "С нами можно связаться напрямую по электронной почте <a href='mailto:%s'>%s</a>."
 
 #: tmp.tpl:35 tmp.tpl:37
 msgid "Last updates"
@@ -224,7 +226,7 @@ msgstr "описание"
 
 #: tmp.tpl:42
 msgid "last generation"
-msgstr ""
+msgstr "последнее создание"
 
 #: tmp.tpl:43 tmp.tpl:44
 msgid "history"
@@ -236,11 +238,11 @@ msgstr "Обновить"
 
 #: tmp.tpl:47
 msgid "remote url"
-msgstr ""
+msgstr "дистанционный url"
 
 #: tmp.tpl:48
 msgid "timestamp"
-msgstr ""
+msgstr "метка времени"
 
 #: tmp.tpl:50
 msgid "Copyright informations"
@@ -264,7 +266,7 @@ msgstr "Источник данных"
 
 #: tmp.tpl:55
 msgid "copyright"
-msgstr ""
+msgstr "авторские права"
 
 #, python-format
 msgid "Information on error %d"
@@ -314,7 +316,7 @@ msgstr "класс (аббревиатура)"
 
 #: tmp.tpl:72 tmp.tpl:85
 msgid "item"
-msgstr ""
+msgstr "проблема"
 
 #: tmp.tpl:73
 msgid "title"
@@ -390,7 +392,7 @@ msgstr "Список ложных срабатываний"
 
 #: tmp.tpl:103
 msgid "Last analysis updates"
-msgstr ""
+msgstr "Последнее обновление анализа"
 
 #: tmp.tpl:104
 msgid "Tags Editor"
@@ -518,7 +520,7 @@ msgid "Reuse changeset"
 msgstr "Использовать пакет правок"
 
 msgid "Error reported on: "
-msgstr ""
+msgstr "Об ошибке сообщили на:"
 
 #: tmp.tpl:146
 msgid "change status"
@@ -574,7 +576,7 @@ msgstr "Сообщения об ошибках"
 msgid ""
 "<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
 "issue with translations, or erroneous analyses."
-msgstr ""
+msgstr "<a href='http://trac.openstreetmap.fr'>Trac</a> может быть использован, чтобы сообщить о любой проблеме с переводом или ошибочным анализом."
 
 #: tmp.tpl:30
 msgid ""
@@ -582,7 +584,7 @@ msgid ""
 "mobile device and improvement of documentation was funded by region of "
 "Aquitaine, France; part of the OpenAquiMap project leading by <em>Les Petits"
 " Débrouillards d'Aquitaine</em>."
-msgstr ""
+msgstr "Добавление новых функций в <em>Osmose Editor</em>, начальная поддержка мобильных устройств и улучшения документации финансировались областью Аквитания, Франция; часть ведения проекта OpenAquiMap <em>Les Petits Débrouillards d'Aquitaine</em>."
 
 #: ../tools/database/categ_menu.txt:1
 msgid "Structure"
@@ -746,7 +748,7 @@ msgstr "неверный тег source"
 
 #: ../tools/database/item_menu.txt:38
 msgid "tagwatch cleaner"
-msgstr ""
+msgstr "tagwatch cleaner"
 
 #: ../tools/database/item_menu.txt:39
 msgid "wikipedia"
@@ -758,7 +760,7 @@ msgstr "несколько тегов"
 
 #: ../tools/database/item_menu.txt:41
 msgid "saint hyphen"
-msgstr ""
+msgstr "дефис после saint"
 
 #: ../tools/database/item_menu.txt:42
 msgid "incorrect tag"
@@ -842,7 +844,7 @@ msgstr "ref в имени"
 
 #: ../tools/database/item_menu.txt:65
 msgid "seamark:fixme"
-msgstr ""
+msgstr "seamark:fixme"
 
 #: ../tools/database/item_menu.txt:66
 msgid "construction"
@@ -938,7 +940,7 @@ msgstr "миграция на ODbL"
 
 #: ../tools/database/item_menu.txt:93
 msgid "school, not integrated"
-msgstr ""
+msgstr "школа, не интегрированная"
 
 #: ../tools/database/item_menu.txt:94
 msgid "monument"
@@ -954,7 +956,7 @@ msgstr "железнодорожная станция"
 
 #: ../tools/database/item_menu.txt:97
 msgid "TMC"
-msgstr ""
+msgstr "TMC"
 
 #: ../tools/database/item_menu.txt:98
 msgid "relation type=boundary"
@@ -970,11 +972,11 @@ msgstr "монумент, музей"
 
 #: ../tools/database/item_menu.txt:105
 msgid "monument, museum, could be integrated"
-msgstr ""
+msgstr "памятник, музей, могут быть интегрированы"
 
 #: ../tools/database/item_menu.txt:107
 msgid "post office, could be integrated"
-msgstr ""
+msgstr "почтовое отделение, может быть интегрировано"
 
 #: ../tools/database/item_menu.txt:110
 msgid "school"
@@ -982,7 +984,7 @@ msgstr "школа"
 
 #: ../tools/database/item_menu.txt:111
 msgid "school, could be integrated"
-msgstr ""
+msgstr "школа, может быть интегрирована"
 
 #: ../tools/database/item_menu.txt:112
 msgid "public transport"
@@ -990,11 +992,11 @@ msgstr "общественный транспорт"
 
 #: ../tools/database/item_menu.txt:113
 msgid "public transport, could be integrated"
-msgstr ""
+msgstr "общественный транспорт, может быть интегрирован"
 
 #: ../tools/database/item_menu.txt:115
 msgid "train station, could be integrated"
-msgstr ""
+msgstr "железнодорожная станция, может быть интегрирована"
 
 #: ../tools/database/item_menu.txt:116
 msgid "level crossing"
@@ -1010,7 +1012,7 @@ msgstr "почтовый адрес"
 
 #: ../tools/database/item_menu.txt:119
 msgid "wikipedia, could be integrated"
-msgstr ""
+msgstr "wikipedia, может быть интегрирована"
 
 #: ../tools/database/item_menu.txt:120
 msgid "public service"
@@ -1022,7 +1024,7 @@ msgstr "мусоросборник"
 
 #: ../tools/database/item_menu.txt:122
 msgid "recycling, could be integrated"
-msgstr ""
+msgstr "рециклинг, может быть интегрирован"
 
 #: ../tools/database/item_menu.txt:123
 msgid "parking"
@@ -1030,7 +1032,7 @@ msgstr "парковка"
 
 #: ../tools/database/item_menu.txt:124
 msgid "parking, could be integrated"
-msgstr ""
+msgstr "стоянка, может быть интегрирована"
 
 #: ../tools/database/item_menu.txt:125
 msgid "accommodation"
@@ -1038,7 +1040,7 @@ msgstr "жильё"
 
 #: ../tools/database/item_menu.txt:126
 msgid "accommodation, could be integrated"
-msgstr ""
+msgstr "жильё, может быть интегрировано"
 
 #: ../tools/database/item_menu.txt:127
 msgid "cycle parking"
@@ -1046,15 +1048,15 @@ msgstr "парковка для велосипедов"
 
 #: ../tools/database/item_menu.txt:128
 msgid "cycle parking, could be integrated"
-msgstr ""
+msgstr "велостоянка, может быть интегрирована"
 
 #: ../tools/database/item_menu.txt:129
 msgid "transport sharing"
-msgstr ""
+msgstr "каршеринг"
 
 #: ../tools/database/item_menu.txt:130
 msgid "transport sharing, could be integrated"
-msgstr ""
+msgstr "каршеринг, может быть интегрирован"
 
 #: ../tools/database/item_menu.txt:131
 msgid "sport"
@@ -1062,7 +1064,7 @@ msgstr "спорт"
 
 #: ../tools/database/item_menu.txt:132
 msgid "sport, could be integrated"
-msgstr ""
+msgstr "спорт, может быть интегрирован"
 
 #: tmp.tpl:157
 msgid "Translation progress: osmose"
@@ -1115,7 +1117,7 @@ msgstr "туалеты"
 
 #: ../tools/database/item_menu.txt:100
 msgid "transport sharing, not integrated"
-msgstr ""
+msgstr "каршеринг, не интегрирован"
 
 #: ../tools/database/item_menu.txt:134
 msgid "police"
@@ -1123,23 +1125,23 @@ msgstr "полиция"
 
 #: ../tools/database/item_menu.txt:135
 msgid "police, could be integrated"
-msgstr ""
+msgstr "полиция, может быть интегрирована"
 
 #: ../tools/database/item_menu.txt:101
 msgid "pharmacy, not integrated "
-msgstr ""
+msgstr "аптека, не интегрированная"
 
 #: ../tools/database/item_menu.txt:138
 msgid "pharmacy, could be integrated"
-msgstr ""
+msgstr "аптека, может быть интегрирована"
 
 #: ../tools/database/item_menu.txt:136
 msgid "gas station"
-msgstr ""
+msgstr "автозаправка"
 
 #: tmp.tpl:87
 msgid "position"
-msgstr ""
+msgstr "местоположение"
 
 #: tmp.tpl:137
 msgid "You must be logged in order to use the tag editor"
@@ -1165,15 +1167,15 @@ msgstr "тупик"
 msgid ""
 "Keep in touch by watching at <a "
 "href='https://twitter.com/osmose_qa'>@osmose_qa</a> on twitter."
-msgstr ""
+msgstr "Оставайтесь на связи, следя за <a href='https://twitter.com/osmose_qa'>@osmose_qa</a> в твиттере."
 
 #: ../tools/database/item_menu.txt:70
 msgid "incorrect layer"
-msgstr ""
+msgstr "неверный слой"
 
 #: tmp.tpl:36
 msgid "Updates summary"
-msgstr ""
+msgstr "Сводка обновлений"
 
 #: tmp.tpl:40
 msgid "country"
@@ -1181,31 +1183,31 @@ msgstr "страна"
 
 #: tmp.tpl:41
 msgid "analyser"
-msgstr ""
+msgstr "анализатор"
 
 #: ../tools/database/item_menu.txt:139
 msgid "postal code, could be integrated"
-msgstr ""
+msgstr "почтовый индекс, может быть интегрирован"
 
 #: ../tools/database/item_menu.txt:140
 msgid "library"
-msgstr ""
+msgstr "библиотека"
 
 #: ../tools/database/item_menu.txt:141
 msgid "restaurant"
-msgstr ""
+msgstr "ресторан"
 
 #: ../tools/database/item_menu.txt:142
 msgid "winery"
-msgstr ""
+msgstr "винодельня"
 
 #: ../tools/database/item_menu.txt:34
 msgid "missing object kind"
-msgstr ""
+msgstr "отсутствует вид объекта"
 
 #: ../tools/database/item_menu.txt:102
 msgid "postal code, not integrated "
-msgstr ""
+msgstr "почтовый индекс, не интегрированный"
 
 #: ../tools/database/item_menu.txt:77
 msgid "local language"
@@ -1216,7 +1218,7 @@ msgid ""
 "The servers analysing data are provided by OpenStreetMap-France and some "
 "others by contributors around the world. The servers for north-america and "
 "other areas are funded by Mapbox."
-msgstr ""
+msgstr "Серверы анализирующие данных предоставлены OpenStreetMap-Франции и некоторыми другими участниками со всего мира. Серверы для Северной Америки и других областей финансируются MapBox."
 
 #: ../errors.py:125
 msgid "Fixed issues"
@@ -1230,7 +1232,7 @@ msgstr "Проблемы по пользователям"
 #: tmp.tpl:2 tmp.tpl:3 tmp.tpl:4
 #, python-brace-format
 msgid "Number of level {level} issues: {count}"
-msgstr ""
+msgstr "Число проблем уровня {level}: {count}"
 
 #: tmp.tpl:6 tmp.tpl:15
 #, python-format
@@ -1247,7 +1249,7 @@ msgstr "Найдено более %d проблем"
 msgid ""
 "This page shows issues on elements that were last modified by '%s'. This "
 "doesn't means that this user is responsible for all these issues."
-msgstr ""
+msgstr "Эта страница показывает проблемы на элементах, которые последний раз изменялись '%s'. Это не означает, что этот пользователь несет ответственность за все эти проблемы."
 
 #: tmp.tpl:17
 msgid "Show issues on a map"
@@ -1255,7 +1257,7 @@ msgstr "Показать проблемы на карте"
 
 #: tmp.tpl:20
 msgid "Osmose allows you to control your own issues."
-msgstr ""
+msgstr "Osmose позволяет вам управлять созданными вами проблемами"
 
 #: tmp.tpl:21
 msgid ""
@@ -1263,19 +1265,19 @@ msgid ""
 " issues that are attached to your username. Note that the algorithm that "
 "attaches issues to username is not perfect, as Osmose only checks the last "
 "contributor of the relevant erroneous elements."
-msgstr ""
+msgstr "Введя своё OSM имя пользователя в следующей форме, вы сможете увидеть проблемы, которые прикреплены к вашему имени пользователя. Обратите внимание, что алгоритм, который прикрепляет проблемы к имени пользователя не является совершенным, так как Osmose проверяет только последнего, кто изменял соответствующие ошибочные элементы."
 
 msgid ""
 "Bug should be reported on <a href='http://trac.openstreetmap.fr'>trac</a>. "
 "The component to pick should be osmose-frontend for issues around the "
 "website, and osmose-backend for issues on the reported issues on OSM data, "
 "or for suggestion for new analyses."
-msgstr ""
+msgstr "Об ошибках вы можете сообщить через <a href='http://trac.openstreetmap.fr'>trac</a>. Выбранным компонентом должен быть osmose-frontend для всех вопросов по веб-сайту и osmose-backend для вопросов по проблемам OSM данных или предложений новых тестов."
 
 #: tmp.tpl:56 tmp.tpl:94
 #, python-format
 msgid "Information on issue %d"
-msgstr ""
+msgstr "Информация о проблеме %d"
 
 #: tmp.tpl:76
 msgid "Show more issues"
@@ -1283,7 +1285,7 @@ msgstr "Показать другие проблемы"
 
 #: tmp.tpl:77
 msgid "Show some issues"
-msgstr ""
+msgstr "Показать некоторые проблемы"
 
 #: tmp.tpl:86
 msgid "information on issue"
@@ -1308,12 +1310,12 @@ msgstr "Карта проблем"
 
 #: tmp.tpl:101
 msgid "Information on issues database"
-msgstr ""
+msgstr "Информаза о базе данных проблем"
 
 #: tmp.tpl:131 tmp.tpl:132 tmp.tpl:133
 #, python-format
 msgid "Level %d issues (%d)"
-msgstr ""
+msgstr "Проблемы уровня %d (%d)"
 
 #: tmp.tpl:145
 msgid "Issue reported on: "
@@ -1321,7 +1323,7 @@ msgstr "О проблеме сообщили на:"
 
 #: tmp.tpl:160
 msgid "Documentation on reported issues"
-msgstr ""
+msgstr "Документация по сообщённым проблемам"
 
 #: tmp.tpl:49
 msgid "version"
@@ -1329,7 +1331,7 @@ msgstr "версия"
 
 #: ../tools/database/item_menu.txt:143
 msgid "geodesic"
-msgstr ""
+msgstr "геодезический"
 
 #: ../tools/database/item_menu.txt:91 ../tools/database/item_menu.txt:108
 msgid "post box"
@@ -1337,11 +1339,11 @@ msgstr "почтовый ящик"
 
 #: ../tools/database/item_menu.txt:109
 msgid "post box, could be integrated"
-msgstr ""
+msgstr "почтовый ящик, может быть интегрирован"
 
 #: ../tools/database/item_menu.txt:35
 msgid "indoor"
-msgstr ""
+msgstr "в помещении"
 
 #: ../tools/database/item_menu.txt:71
 msgid "roundabout as area"
@@ -1349,20 +1351,20 @@ msgstr "круговое движение прощадью"
 
 #: ../tools/database/item_menu.txt:103
 msgid "road"
-msgstr ""
+msgstr "дорога"
 
 #: ../tools/database/item_menu.txt:2
 msgid "split building"
-msgstr ""
+msgstr "разделённое здание"
 
 #: tmp.tpl:108
 #, python-format
 msgid "Control, verification and correction of %s issues"
-msgstr ""
+msgstr "Контроль, проверка и коррекция %s проблем"
 
 #: tmp.tpl:159
 msgid "Osmose QA main page"
-msgstr ""
+msgstr "Главная страница OsmOse QA"
 
 #: tmp.tpl:25
 msgid ""
@@ -1371,10 +1373,10 @@ msgid ""
 " href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> "
 "for issues on the reported issues on OSM data, or for suggestion about "
 "analyses."
-msgstr ""
+msgstr "Об ошибках вы можете сообщить через <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> для всех вопросов по веб-сайту и <a href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> для вопросов по проблемам OSM данных или предложения тестов."
 
 #: tmp.tpl:165
 msgid ""
 "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
 "frontend</a> can be used to report any issue with translations."
-msgstr ""
+msgstr "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> может быть использован, чтобы сообщить о любой проблеме с переводом."
