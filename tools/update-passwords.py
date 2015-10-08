@@ -24,10 +24,12 @@ if __name__ == "__main__":
       if prev_password == password:
         return
       # try to update password for an analyse
-      dbcurs.execute("UPDATE source_password SET password=%s WHERE source_id IN (SELECT id FROM source WHERE country=%s AND analyser=%s);",
-                     (password, country, analyser))
+      dbcurs.execute("INSERT INTO source_password (source_id, password) VALUES ((SELECT id FROM source WHERE country=%s AND analyser=%s), %s);",
+                     (country, analyser, password))
+#      dbcurs.execute("UPDATE source_password SET password=%s WHERE source_id IN (SELECT id FROM source WHERE country=%s AND analyser=%s);",
+#                     (password, country, analyser))
       if dbcurs.rowcount == 1:
-        print "updated password=%s where country=%s analyser=%s" % (password, country, analyser)
+        print "created password=%s where country=%s analyser=%s" % (password, country, analyser)
         return
 
     elif dbcurs.rowcount == 0:
