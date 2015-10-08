@@ -210,7 +210,7 @@ def send_update():
     for s in sources:
         if src and sources[s]["comment"] != src:
             continue
-        if sources[s]["password"] != code:
+        if not code in sources[s]["password"]:
             continue
 
         try:

@@ -81,11 +81,16 @@ def get_sources():
     for res in curs.fetchall():
         src = {}
         src["id"]         = str(res["id"])
-        src["password"]   = res["password"]
+        src["password"]   = set([res["password"]])
         src["country"]    = res["country"]
         src["analyser"]   = res["analyser"]
         src["comment"]    = res["analyser"] + "-" + res["country"]
-        config[src["id"]] = src
+        if (src["id"] in config and
+            config[src["id"]]["country"] == src["country"] and
+            config[src["id"]]["analyser"] == src["analyser"]):
+            config[src["id"]]["password"].update(src["password"])
+        else:
+            config[src["id"]] = src
     return config
 
 def show(s):
