@@ -3,6 +3,7 @@
 --
 
 SET statement_timeout = 0;
+SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -89,8 +90,8 @@ CREATE TABLE dynpoi_status (
     elems character varying(128) NOT NULL,
     date timestamp with time zone,
     status character varying(128),
-    lat numeric(9,7),
-    lon numeric(10,7),
+    lat numeric(9,7) NOT NULL,
+    lon numeric(10,7) NOT NULL,
     subtitle hstore,
     id bigint DEFAULT nextval('dynpoi_status_id_seq'::regclass)
 );
@@ -201,7 +202,7 @@ CREATE TABLE source (
 
 CREATE TABLE source_password (
     source_id integer NOT NULL,
-    password character varying(128)
+    password character varying(128) NOT NULL
 );
 
 
@@ -271,9 +272,7 @@ ALTER TABLE ONLY dynpoi_status
 --
 
 ALTER TABLE ONLY dynpoi_status
-    ADD CONSTRAINT dynpoi_status_pkey PRIMARY KEY (source, class, subclass, elems);
-
-ALTER TABLE dynpoi_status CLUSTER ON dynpoi_status_pkey;
+    ADD CONSTRAINT dynpoi_status_pkey PRIMARY KEY (source, class, subclass, elems, lat, lon);
 
 
 --
@@ -331,7 +330,7 @@ ALTER TABLE marker CLUSTER ON marker_pkey;
 --
 
 ALTER TABLE ONLY source_password
-    ADD CONSTRAINT source_password_pkey PRIMARY KEY (source_id);
+    ADD CONSTRAINT source_password_pkey PRIMARY KEY (source_id, password);
 
 
 --
@@ -447,13 +446,6 @@ CREATE INDEX marker_geom ON marker USING gist (point((lat)::double precision, (l
 --
 
 CREATE UNIQUE INDEX source_country_analyser ON source USING btree (country, analyser);
-
-
---
--- Name: source_password_password; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX source_password_password ON source_password USING btree (password);
 
 
 --
