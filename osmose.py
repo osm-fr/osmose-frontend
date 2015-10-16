@@ -25,7 +25,7 @@ from bottle import SimpleTemplate
 SimpleTemplate.defaults["get_url"] = app.get_url
 
 import bottle_pgsql
-app.install(bottle_pgsql.Plugin("dbname='%s' user='%s' password='%s'" % (utils.pg_base, utils.pg_user, utils.pg_pass)))
+app.install(bottle_pgsql.Plugin(utils.db_string))
 import bottle_gettext, os
 app.install(bottle_gettext.Plugin('osmose-frontend', os.path.join("po", "mo"), utils.allowed_languages))
 

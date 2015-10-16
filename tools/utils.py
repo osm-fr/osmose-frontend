@@ -33,9 +33,13 @@ languages_name["sw"] = u"Kiswahili"
 languages_name["uk"] = u"Українська"
 
 allowed_languages = list(languages_name)
+pg_host           = ""
+pg_port           = "5432"
 pg_user           = "osmose"
 pg_pass           = "-osmose-"
 pg_base           = "osmose_frontend"
+db_string         = "host='%s' port='%s' dbname='%s' user='%s' password='%s'" % (pg_host, pg_port, pg_base, pg_user, pg_pass)
+
 website           = "osmose.openstreetmap.fr"
 
 main_project      = "OpenStreetMap"
@@ -59,7 +63,6 @@ dir_results       = "/data/work/%s/results" % (username)
 def get_dbconn():
     import psycopg2.extras
 #    return psycopg2.connect(host="localhost", database = pg_base, user = pg_user, password = pg_pass)
-    db_string = "host='localhost' dbname='%s' user='%s' password='%s'" % (pg_base, pg_user, pg_pass)
     psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
     psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
     conn = psycopg2.extras.DictConnection(db_string)
