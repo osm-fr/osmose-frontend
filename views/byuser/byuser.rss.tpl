@@ -39,7 +39,9 @@
 %    level = res["level"]
 %    lat_s = "%.2f" % lat
 %    lon_s = "%.2f" % lon
-        <link>http://{{website}}/map/#zoom=16&amp;lat={{lat}}&amp;lon={{lon}}&amp;item={{item}}&amp;level={{level}}</link>
+%    url = 'http://%s/map/#zoom=16&amp;lat=%s&amp;lon=%s&amp;item=%s&amp;level=%s' % (website, lat, lon, item, level)
+        <link>{{url}}</link>
+        <guid>{{url}}</guid>
     </item>
 %end
 </channel>
