@@ -60,7 +60,7 @@
 %    end
     </description>
     <category>{{res["item"]}}</category>
-%    url = 'http://%s/map/#zoom=13&amp;lat=%s&amp;lon=%s&amp;item=%s&amp;level=%s' % (website, lat, lon, res["item"], res["level"])
+%    url = 'http://%s/map/#zoom=13&lat=%s&lon=%s&item=%s&level=%s' % (website, lat, lon, res["item"], res["level"])
     <link>{{url}}</link>
     <guid>{{url}}</guid>
 </item>
