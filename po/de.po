@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the osmose-frontend package.
 # 
 # Translators:
+# Christian Ostermann <openstreetmap@oekkel.de>, 2015
 # Ettore Atalan <atalanttore@googlemail.com>, 2014-2015
 # frodrigo <fred.rodrigo@gmail.com>, 2014
 # frodrigo <fred.rodrigo@gmail.com>, 2014
@@ -21,8 +22,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2015-10-03 11:07+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2015-10-30 02:53+0000\n"
+"Last-Translator: Christian Ostermann <openstreetmap@oekkel.de>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -88,7 +89,7 @@ msgstr "Kontakt"
 
 #: ../map.py:143
 msgid "Help on wiki"
-msgstr "Hilfe im wiki"
+msgstr "Hilfe im Wiki"
 
 #: ../map.py:143 tmp.tpl:100 tmp.tpl:159
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
@@ -194,7 +195,7 @@ msgstr "Patches einreichen"
 msgid ""
 "Patches can be provided via merge requests on Github. This is the preferred "
 "way of handling patches."
-msgstr ""
+msgstr "Patches können als merge requests auf Github eingereicht werden. Dies ist der bevorzugte Bearbeitungsweg."
 
 #: tmp.tpl:28
 msgid "Development"
@@ -363,7 +364,7 @@ msgstr "Pos."
 
 #: tmp.tpl:88
 msgid "elements (abbreviation)"
-msgstr "Elemente"
+msgstr "El."
 
 #: tmp.tpl:89
 msgid "subtitle"
@@ -592,7 +593,7 @@ msgid ""
 "mobile device and improvement of documentation was funded by region of "
 "Aquitaine, France; part of the OpenAquiMap project leading by <em>Les Petits"
 " Débrouillards d'Aquitaine</em>."
-msgstr ""
+msgstr "Das Hinzufügen neuer Funktionen des <em>Osmose Editor</em>, die Unterstützung von Mobilgeräten und die Verbesserung der Dokumentation wurde finanziert durch die Region Aquitaine in Frankreich, im Rahmen des OpenAquiMap Projekts betrieben von <em>Les Petits Débrouillards d'Aquitaine</em>."
 
 #: ../tools/database/categ_menu.txt:1
 msgid "Structure"
@@ -652,7 +653,7 @@ msgstr "sich schneidende Begrenzungen"
 
 #: ../tools/database/item_menu.txt:8
 msgid "objects overlap"
-msgstr "Straßen schneiden Gebäude"
+msgstr "sich überlappende Objekte"
 
 #: ../tools/database/item_menu.txt:9
 msgid "orphan nodes"
@@ -696,7 +697,7 @@ msgstr "Zweifach-umlaufender Wege"
 
 #: ../tools/database/item_menu.txt:19
 msgid "approximate way"
-msgstr "Ungefährer Wegverlauf"
+msgstr "Ungenauer Wegverlauf"
 
 #: ../tools/database/item_menu.txt:20
 msgid "1-member relation"
@@ -928,7 +929,7 @@ msgstr "Gebäudeform"
 
 #: ../tools/database/item_menu.txt:87
 msgid "bridge to tag"
-msgstr ""
+msgstr "Brücke zu Beschreiben"
 
 #: ../tools/database/item_menu.txt:88
 msgid "admin boundary"
@@ -1048,7 +1049,7 @@ msgstr "Unterkunft"
 
 #: ../tools/database/item_menu.txt:126
 msgid "accommodation, could be integrated"
-msgstr "Unterkunft, "
+msgstr "Unterkunft, Eintragung möglich"
 
 #: ../tools/database/item_menu.txt:127
 msgid "cycle parking"
@@ -1060,11 +1061,11 @@ msgstr "Fahrradstellplatz, Eintragung möglich"
 
 #: ../tools/database/item_menu.txt:129
 msgid "transport sharing"
-msgstr ""
+msgstr "Gemeinschaftstransport"
 
 #: ../tools/database/item_menu.txt:130
 msgid "transport sharing, could be integrated"
-msgstr ""
+msgstr "Gemeinschaftstransport, Eintragung möglich"
 
 #: ../tools/database/item_menu.txt:131
 msgid "sport"
@@ -1125,7 +1126,7 @@ msgstr "Toiletten"
 
 #: ../tools/database/item_menu.txt:100
 msgid "transport sharing, not integrated"
-msgstr ""
+msgstr "Gemeinschaftstransport, nicht integriert"
 
 #: ../tools/database/item_menu.txt:134
 msgid "police"
@@ -1226,7 +1227,7 @@ msgid ""
 "The servers analysing data are provided by OpenStreetMap-France and some "
 "others by contributors around the world. The servers for north-america and "
 "other areas are funded by Mapbox."
-msgstr ""
+msgstr "Die Server, die die Daten analysieren, werden von OpenStreetMap-France und weitere von Mitwirkenden aus aller Welt bereitgestellt. Die Server für Nordamerika und andere Regionen werden von Mapbox gefördert."
 
 #: ../errors.py:125
 msgid "Fixed issues"
@@ -1257,7 +1258,7 @@ msgstr "Anzahl der gefundenen Probleme: mehr als %d"
 msgid ""
 "This page shows issues on elements that were last modified by '%s'. This "
 "doesn't means that this user is responsible for all these issues."
-msgstr ""
+msgstr "Diese Seite zeigt Probleme bei Elementen, die zuletzt von '%s' bearbeitet wurden. Das bedeutet nicht, dass dieser Nutzer für all diese Probleme verantwortlich ist."
 
 #: tmp.tpl:17
 msgid "Show issues on a map"
@@ -1273,14 +1274,14 @@ msgid ""
 " issues that are attached to your username. Note that the algorithm that "
 "attaches issues to username is not perfect, as Osmose only checks the last "
 "contributor of the relevant erroneous elements."
-msgstr ""
+msgstr "Nach Eingabe Ihres OSM-Usernamens in das Eingabefeld sehen Sie Probleme, die mit Ihrem Usernamen verbunden werden. Beachten Sie, dass der verwendete Algorithmus nicht perfekt ist, da Osmose nur den letzten Bearbeiter der relevanten fehlerhaften Elemente abfragt."
 
 msgid ""
 "Bug should be reported on <a href='http://trac.openstreetmap.fr'>trac</a>. "
 "The component to pick should be osmose-frontend for issues around the "
 "website, and osmose-backend for issues on the reported issues on OSM data, "
 "or for suggestion for new analyses."
-msgstr ""
+msgstr "Der Fehler sollte auf <a href='http://trac.openstreetmap.fr'>trac</a>. gemeldet werden. Als Komponente sollte osmose-frontend für Probleme mit der Webseite bzw. osmose-backend für Probleme über gefundene Probleme zu OSM-Daten oder Vorschläge für neue Analysen."
 
 #: tmp.tpl:56 tmp.tpl:94
 #, python-format
@@ -1368,7 +1369,7 @@ msgstr "Gebäude aufteilen"
 #: tmp.tpl:108
 #, python-format
 msgid "Control, verification and correction of %s issues"
-msgstr ""
+msgstr "Kontrolle, Bestätigung und Korrektur von %s Problemen"
 
 #: tmp.tpl:159
 msgid "Osmose QA main page"
@@ -1381,10 +1382,10 @@ msgid ""
 " href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> "
 "for issues on the reported issues on OSM data, or for suggestion about "
 "analyses."
-msgstr ""
+msgstr "Fehler bezüglich der Webseite sollten auf <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> gemeldet werden, Fehler bezüglich der Problemmeldungen zu OSM-Daten oder Vorschläge zu Analysen auf <a href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a>."
 
 #: tmp.tpl:165
 msgid ""
 "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
 "frontend</a> can be used to report any issue with translations."
-msgstr ""
+msgstr "Auf <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> können Übersetzungsfehler gemeldet werden."
