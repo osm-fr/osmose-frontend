@@ -125,7 +125,7 @@ def _build_param(lat, lon, bbox, source, item, level, users, classs, country, us
         where.append("dynpoi_class.level IN (%s)" % level)
 
     if classs:
-        where.append("marker.class = %d"%int(classs))
+        where.append("marker.class IN (%s)" % ','.join(map(lambda c: str(int(c)), classs.split(','))))
 
     if lat and lon and bbox:
         where.append('point(marker.lat, marker.lon) <-> point(%f, %f) < point(%f, %f) <-> point(%f, %f)' % (lat, lon, lat, lon, bbox[1], bbox[0]))
