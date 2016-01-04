@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014                                      ##
+## Copyrights Frédéric Rodrigo 2014-2015                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -39,7 +39,7 @@ def listitem(lang):
         items[res['categ']]['item'][res['item']] = dict(res)
         items[res['categ']]['item'][res['item']]['class'] = {}
 
-    curs.execute("SELECT DISTINCT class, dynpoi_class.item, dynpoi_item.categ, COALESCE(title->'%s', title->'en') AS title FROM dynpoi_class JOIN dynpoi_item ON dynpoi_item.item=dynpoi_class.item" % lang)
+    curs.execute("SELECT class, dynpoi_class.item, dynpoi_item.categ, COALESCE(Max(title->'%s'), Max(title->'en')) AS title FROM dynpoi_class JOIN dynpoi_item ON dynpoi_item.item=dynpoi_class.item GROUP BY class, dynpoi_class.item, dynpoi_item.categ" % lang)
     for res in curs.fetchall():
         if items[res['categ']]['item'].get(res['item']):
             items[res['categ']]['item'][res['item']]['class'][res['class']] = res['title']
@@ -52,6 +52,7 @@ header = {
     'fr': 'Item || Aide || Exemple',
     'it': 'Articolo || Aiuto || Esempio',
     'nl': 'Item || Help || Voorbeeld',
+    'ja': '項目 || 説明 || 例',
 }
 
 classs = {
@@ -60,6 +61,7 @@ classs = {
     'fr': 'Classe',
     'it': 'Class',
     'nl': 'Class',
+    'ja': 'Class',
 }
 
 def parsewiki(lang):
@@ -67,8 +69,8 @@ def parsewiki(lang):
 
     LANG = lang.upper() + ":" if lang != "en" else ""
 
-    #data = urlread("http://wiki.openstreetmap.org/w/index.php?title=FR:Osmose/errors&action=raw", 1)
-    data = open("index.php?title=" + LANG + "Osmose%2Ferrors&action=raw").read()
+    #data = urlread("http://wiki.openstreetmap.org/w/index.php?title=FR:Osmose/issues&action=raw", 1)
+    data = open("index.php?title=" + LANG + "Osmose%2Fissues&action=raw").read()
     data = data.split("\n")
     in_error = False
     errors = {0: []}
@@ -132,4 +134,4 @@ def parsewiki(lang):
 
 if __name__ == "__main__":
 
-    parsewiki('nl')
+    parsewiki('ja')
