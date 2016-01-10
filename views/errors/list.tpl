@@ -65,7 +65,7 @@
         <a target="_blank" href="{{main_website}}browse/{{m.group(1)}}/{{m.group(2)}}">{{m.group(2)}}</a>&nbsp;
         &nbsp;
 %                if cur_type == "relation":
-        <a title="josm" href="http://localhost:8111/import?url={{remote_url_read}}/0.6/relation/{{m.group(2)}}/full" target="hiddenIframe">(j)</a>
+        <a title="josm" href="http://localhost:8111/import?url={{remote_url_read}}/api/0.6/relation/{{m.group(2)}}/full" target="hiddenIframe">(j)</a>
 %                else:
         <a title="josm" href="http://localhost:8111/load_object?objects={{cur_type[0]}}{{m.group(2)}}" target="hiddenIframe">(j)</a>
 %                end
