@@ -27,7 +27,7 @@
       <a href="http://localhost:8111/load_object?objects=w{%id%}" target="hiddenIframe" class="josm">josm</a>
   {%/way%}
   {%#relation%}
-      <a href="http://localhost:8111/import?url={{remote_url_read}}0.6/{%type%}/{%id%}/full" target="hiddenIframe" class="josm">josm</a>
+      <a href="http://localhost:8111/import?url={{remote_url_read}}api/0.6/{%type%}/{%id%}/full" target="hiddenIframe" class="josm">josm</a>
   {%/relation%}
       <a href="#" class="editor_edit" data-type="{%type%}" data-id="{%id%}" data-error="{%error_id%}">edit</a>
       <br>
