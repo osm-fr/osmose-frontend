@@ -3,37 +3,36 @@
 # This file is distributed under the same license as the osmose-frontend package.
 # 
 # Translators:
-# Marco Antonio <marcoantoniofrias@gmail.com>, 2014
-# Marco Antonio <marcoantoniofrias@gmail.com>, 2014-2016
+# Kuang-che Wu <kcwu@csie.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2016-05-14 08:04+0000\n"
-"Last-Translator: Marco Antonio <marcoantoniofrias@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
+"PO-Revision-Date: 2016-05-10 17:23+0000\n"
+"Last-Translator: Kuang-che Wu <kcwu@csie.org>\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. TRANSLATORS: days / hours / minutes since last source update, abbreviated
 #. to d / h / m
 #: ../control.py:51
 #, python-brace-format
 msgid "{day}d, {hour}h, {minute}m ago"
-msgstr "hace {day}d, {hour}h, {minute}m"
+msgstr "{day}天{hour}小時{minute}分鐘前"
 
 #: ../control.py:53
 #, python-brace-format
 msgid "in {day}d, {hour}h, {minute}m"
-msgstr "en {day}d, {hour}h, {minute}m"
+msgstr ""
 
 #: ../control.py:56
 msgid "never generated"
-msgstr "nunca generada"
+msgstr ""
 
 #. TRANSLATORS: link to tooltip help
 #: ../error.py:155 ../false_positive.py:66 tmp.tpl:160
@@ -42,26 +41,26 @@ msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
 #: ../errors.py:122 tmp.tpl:64
 msgid "False positives"
-msgstr "Falsos positivos"
+msgstr "誤報錯誤"
 
 msgid "Fixed errors"
-msgstr "Errores corregidos"
+msgstr ""
 
 #: ../errors.py:128 tmp.tpl:62
 msgid "Informations"
-msgstr "Informaciones"
+msgstr "資訊"
 
 #. TRANSLATORS: link to help in appropriate language
 msgid "Errors by user"
-msgstr "Errores por usuario"
+msgstr ""
 
 #: ../map.py:137
 msgid "Relation analyser"
-msgstr "Analizador de relaciones"
+msgstr "關係分析器"
 
 #. TRANSLATORS: this link can be changed to something specific to the language
 msgid "openstreetmap.fr"
-msgstr "openstreetmap.fr"
+msgstr ""
 
 msgid "http://www.openstreetmap.fr/"
 msgstr "http://www.openstreetmap.fr/"
@@ -69,15 +68,15 @@ msgstr "http://www.openstreetmap.fr/"
 #. TRANSLATORS: link to source code
 #: ../map.py:139
 msgid "Statistics"
-msgstr "Estadísticas"
+msgstr "統計"
 
 #: ../map.py:142 tmp.tpl:23
 msgid "Contact"
-msgstr "Contacto"
+msgstr "聯絡我們"
 
 #: ../map.py:143
 msgid "Help on wiki"
-msgstr "Ayuda en la wiki"
+msgstr "Wiki 上的說明頁"
 
 #: ../map.py:143 tmp.tpl:100 tmp.tpl:159
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
@@ -85,495 +84,495 @@ msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
 #: ../map.py:144
 msgid "Copyright"
-msgstr "Derechos de autor"
+msgstr "著作權"
 
 #: ../map.py:145
 msgid "Sources"
-msgstr "Fuentes"
+msgstr "程式碼"
 
 #: ../map.py:146
 msgid "Translation"
-msgstr "Traducción"
+msgstr "翻譯"
 
 #: tmp.tpl:1 tmp.tpl:5 tmp.tpl:11
 #, python-format
 msgid "Statistics for user %s"
-msgstr "Estadísticas para usuarios %s"
+msgstr ""
 
 #, python-brace-format
 msgid "Number of level {level} errors: {count}"
-msgstr "Número de errores nivel {level}: {count}"
+msgstr "等級 {level} 的錯誤數量：{count}"
 
 #, python-format
 msgid "Number of found errors: %d"
-msgstr "Número de errores encontrados: %d"
+msgstr "發現的錯誤數量：%d"
 
 #, python-format
 msgid "Number of found errors: more than %d"
-msgstr "Número de errores encontrados: mayor a %d"
+msgstr "發現的錯誤數量：超過 %d"
 
 #: tmp.tpl:8
 msgid "Users statistics"
-msgstr "Estadísticas de usuarios"
+msgstr "使用者統計"
 
 #: tmp.tpl:9
 msgid "Number"
-msgstr "Número"
+msgstr "數量"
 
 #: tmp.tpl:10
 msgid "Username"
-msgstr "Nombre de usuario"
+msgstr "使用者名稱"
 
 #: tmp.tpl:12
 #, python-format
 msgid "User statistics for %s"
-msgstr "Estadísticas de usuario para %s"
+msgstr "%s 的使用者統計"
 
 #, python-format
 msgid ""
 "This page shows errors on elements that were last modified by '%s'. This "
 "doesn't means that this user is responsible for all these errors."
-msgstr "Esta página muestra los errores en los elementos que fueron modificados por última vez por '%s'. Esto no significa que este usuario es responsable de todos estos errores."
+msgstr "本頁顯示的是錯誤元素的最後修改者 '%s'。這並不表示這些錯誤都是他造成的。"
 
 #: tmp.tpl:14
 msgid "This list is also available via rss."
-msgstr "Esta lista también está disponible vía rss."
+msgstr "本列表也有提供 RSS"
 
 msgid "Show errors on a map"
-msgstr "Mostrar errores en un mapa"
+msgstr "在地圖上顯示錯誤"
 
 #: tmp.tpl:18
 msgid "Statistics for user"
-msgstr "Estadísticas por usuario"
+msgstr "使用者的統計"
 
 #: tmp.tpl:19
 msgid "User statistics"
-msgstr "Estadísticas del usuario"
+msgstr "使用者統計"
 
 msgid "Osmose allows you to control your own errors."
-msgstr "Osmose te permite controlar tus propios errores."
+msgstr "Osmose 能讓你掌控自己的錯誤。"
 
 msgid ""
 "By entering your OSM username in the following form, you will be able to see"
 " errors that are attached to your username. Note that the algorithm that "
 "attaches errors to username is not perfect, as Osmose only checks the last "
 "contributor of the relevant erroneous elements."
-msgstr "Al introducir tu nombre de usuario OSM en el siguiente formulario, serás capaz de ver los errores que se adjuntan a tu nombre de usuario. Tenga en cuenta que el algoritmo que adhiere los errores a los nombre de usuario no es perfecto, puesto que Osmose sólo comprueba el último colaborador de los elementos erróneos pertinentes."
+msgstr "只要在下方的表單填入你的 OSM 帳號名，就能看到列於你名下的錯誤。不過要注意到，關聯錯誤及帳號的算法並不完美，因為 Osmose 只看有誤的元素最後修改人。"
 
 #: tmp.tpl:22
 msgid "Username:"
-msgstr "Nombre de usuario:"
+msgstr "使用者名稱："
 
 #: tmp.tpl:24
 msgid "Bug tracker"
-msgstr "Rastreador de errores"
+msgstr "Bug 追蹤系統"
 
 msgid ""
 "Bug should be reported on <a href='http://trac.openstreetmap.fr'>trac</a>. "
 "The component to pick should be osmose-frontend for issues around the "
 "website, and osmose-backend for issues on the reported errors, or for "
 "suggestion for new analyses."
-msgstr "Los errores deben ser reportados en <a href='http://trac.openstreetmap.fr'>trac</a>. El componente para recoger debe ser osmose-frontend para cuestiones en torno a la web, y osmose-backend para las cuestiones sobre los errores reportados, o para sugerir nuevos análisis."
+msgstr ""
 
 #: tmp.tpl:26
 msgid "Providing patches"
-msgstr "Proporcionando parches"
+msgstr "提供 patch (程式補丁)"
 
 #: tmp.tpl:27
 msgid ""
 "Patches can be provided via merge requests on Github. This is the preferred "
 "way of handling patches."
-msgstr "Los parches se proporcionan a través de solicitudes de combinación en Github. Esta es la forma preferida de manejo de parches."
+msgstr "可以使用 Github 的 merge request 功能來送交 patch。這是我們比較喜歡的 patch 處理方式。"
 
 #: tmp.tpl:28
 msgid "Development"
-msgstr "Desarrollo"
+msgstr "開發"
 
 #: tmp.tpl:29
 msgid ""
 "Development of Osmose is made as free software by <a "
 "href='../copyright'>volunteers</a>."
-msgstr "El desarrollo de Osmose se hace como software libre por <a href='../copyright'>voluntarios</a>."
+msgstr "Osmose 是由 <a href='../copyright'>volunteers</a> 開發的自由軟體。"
 
 #: tmp.tpl:32
 msgid "Contacting maintainers"
-msgstr "Contacto con los mantenedores"
+msgstr "聯絡網站維護者"
 
 #: tmp.tpl:33
 #, python-format
 msgid ""
 "We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
-msgstr "Puedes contactar con nosotros a través de un correo electrónico directamente a <a href='mailto:%s'>%s</a>."
+msgstr "直接寫電子郵件到 <a href='mailto:%s'>%s</a> 就能聯絡到我們。"
 
 #: tmp.tpl:35 tmp.tpl:37
 msgid "Last updates"
-msgstr "Últimas actualizaciones"
+msgstr ""
 
 #: tmp.tpl:38
 msgid "Median delay:"
-msgstr "Mediana de retraso:"
+msgstr ""
 
 #: tmp.tpl:39 tmp.tpl:46 tmp.tpl:69 tmp.tpl:78
 #: ../tools/database/item_menu.txt:28
 msgid "source"
-msgstr "fuente"
+msgstr ""
 
 msgid "description"
-msgstr "descripción"
+msgstr ""
 
 #: tmp.tpl:42
 msgid "last generation"
-msgstr "última generación"
+msgstr ""
 
 #: tmp.tpl:43 tmp.tpl:44
 msgid "history"
-msgstr "historial"
+msgstr ""
 
 #: tmp.tpl:45
 msgid "Update"
-msgstr "Actualización"
+msgstr ""
 
 #: tmp.tpl:47
 msgid "remote url"
-msgstr "url remota"
+msgstr ""
 
 #: tmp.tpl:48
 msgid "timestamp"
-msgstr "marca de tiempo"
+msgstr "時間戳記"
 
 #: tmp.tpl:50
 msgid "Copyright informations"
-msgstr "Información sobre derechos de autor"
+msgstr "著作權資訊"
 
 #: tmp.tpl:51
 msgid "License"
-msgstr "Licencia"
+msgstr "授權"
 
 #: tmp.tpl:52
 msgid "Authors"
-msgstr "Autores"
+msgstr "作者"
 
 #: tmp.tpl:53
 msgid "And contributors"
-msgstr "Y contribuidores"
+msgstr "貢獻者"
 
 #: tmp.tpl:54
 msgid "Data are coming from"
-msgstr "Los datos provienen de"
+msgstr "資料來源"
 
 #: tmp.tpl:55
 msgid "copyright"
-msgstr "derechos de autor"
+msgstr "著作權"
 
 #, python-format
 msgid "Information on error %d"
-msgstr "Información sobre error %d"
+msgstr ""
 
 #: tmp.tpl:57 tmp.tpl:95
 msgid "key"
-msgstr "clave"
+msgstr ""
 
 #: tmp.tpl:58 tmp.tpl:96
 msgid "value"
-msgstr "valor"
+msgstr ""
 
 #: tmp.tpl:59 tmp.tpl:97
 msgid "Marker"
-msgstr "Marcador"
+msgstr ""
 
 #: tmp.tpl:60
 msgid "Elements"
-msgstr "Elementos"
+msgstr ""
 
 #: tmp.tpl:61
 msgid "Fixes"
-msgstr "Correcciones"
+msgstr ""
 
 #: tmp.tpl:63
 msgid "Fixed"
-msgstr "Corregido"
+msgstr "已修正"
 
 #: tmp.tpl:65
 msgid "Graph"
-msgstr "Gráfico"
+msgstr ""
 
 #: tmp.tpl:66 tmp.tpl:107
 msgid "Map"
-msgstr "Mapa"
+msgstr "地圖"
 
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
 #: tmp.tpl:68
 msgid "Set"
-msgstr "Conjunto"
+msgstr ""
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
 #: tmp.tpl:71 tmp.tpl:80
 msgid "class (abbreviation)"
-msgstr "c"
+msgstr ""
 
 #: tmp.tpl:72 tmp.tpl:85
 msgid "item"
-msgstr "ítem"
+msgstr "項目"
 
 #: tmp.tpl:73
 msgid "title"
-msgstr "título"
+msgstr "標題"
 
 #: tmp.tpl:74
 msgid "count"
-msgstr "contador"
+msgstr "數量"
 
 #: tmp.tpl:75
 msgid "Total"
-msgstr "Total"
+msgstr "合計"
 
 msgid "Show more errors"
-msgstr "Mostrar más errores"
+msgstr "顯示更多錯誤"
 
 msgid "Show some errors"
-msgstr "Mostrar algunos errores"
+msgstr "顯示更多錯誤"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: tmp.tpl:82
 msgid "subclass (abbreviation)"
-msgstr "sc"
+msgstr ""
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: tmp.tpl:84
 msgid "level (abbreviation)"
-msgstr "n"
+msgstr "級"
 
 msgid "information on error"
-msgstr "información sobre el error"
+msgstr ""
 
 #: tmp.tpl:87
 msgid "position (abbreviation)"
-msgstr "p"
+msgstr "位置"
 
 #: tmp.tpl:88
 msgid "elements (abbreviation)"
-msgstr "e"
+msgstr ""
 
 #: tmp.tpl:89
 msgid "subtitle"
-msgstr "subtítulo"
+msgstr "小標"
 
 #: tmp.tpl:90 ../tools/database/item_menu.txt:47
 msgid "date"
-msgstr "fecha"
+msgstr "日期"
 
 msgid "delete error"
-msgstr "eliminar el error"
+msgstr ""
 
 #, python-format
 msgid "delete error #%d"
-msgstr "eliminar el error #%d"
+msgstr ""
 
 #: tmp.tpl:98
 msgid "OpenStreetMap Oversight Search Engine"
-msgstr "Motor de búsqueda de supervisión OpenStreetMap"
+msgstr ""
 
 msgid "Map of errors"
-msgstr "Mapa de errores"
+msgstr "錯誤地圖"
 
 #: tmp.tpl:100
 msgid "Help on OSM wiki"
-msgstr "Ayuda en la wiki OSM"
+msgstr "OSM wiki 上的說明"
 
 msgid "Information on error database"
-msgstr "Información sobre el error de la base de datos"
+msgstr ""
 
 #: tmp.tpl:102
 msgid "False positives list"
-msgstr "Lista de falsos positivos"
+msgstr "誤判列表"
 
 #: tmp.tpl:103
 msgid "Last analysis updates"
-msgstr "Últimas actualizaciones del análisis"
+msgstr ""
 
 #: tmp.tpl:104
 msgid "Tags Editor"
-msgstr "Editor de etiquetas"
+msgstr "Tags Editor"
 
 #: tmp.tpl:105 tmp.tpl:138
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "取消"
 
 #: tmp.tpl:106
 msgid "Valid"
-msgstr "Válido"
+msgstr ""
 
 #: tmp.tpl:109
 msgid "no bubbles at this zoom factor"
-msgstr "no hay burbujas en este factor de acercamiento"
+msgstr ""
 
 #: tmp.tpl:110
 msgid "Severity"
-msgstr "Gravedad"
+msgstr "嚴重度"
 
 #: tmp.tpl:111
 msgid "1 only"
-msgstr "sólo 1"
+msgstr "只有 1"
 
 #: tmp.tpl:112
 msgid "1+2 only"
-msgstr "sólo 1+2"
+msgstr "只有 1+2"
 
 #: tmp.tpl:113
 msgid "all severity"
-msgstr "toda las gravedades"
+msgstr "全部"
 
 #: tmp.tpl:114
 msgid "2 only"
-msgstr "sólo 2"
+msgstr "只有 2"
 
 #: tmp.tpl:115
 msgid "3 only"
-msgstr "sólo 3"
+msgstr "只有 3"
 
 #: tmp.tpl:116
 msgid "Fixable"
-msgstr "Corregible"
+msgstr ""
 
 #: tmp.tpl:117
 msgid "Show only markers with correction suggestions"
-msgstr "Mostrar sólo marcadores con sugerencias de corrección"
+msgstr ""
 
 #: tmp.tpl:118
 msgid "Online"
-msgstr "En línea"
+msgstr "線上"
 
 #: tmp.tpl:119
 msgid "Topic"
-msgstr "Tema"
+msgstr "主題"
 
 #: tmp.tpl:120
 msgid "Select:"
-msgstr "Seleccionar:"
+msgstr "選擇："
 
 #: tmp.tpl:121 tmp.tpl:124
 msgid "all"
-msgstr "todo"
+msgstr "全部"
 
 #: tmp.tpl:122 tmp.tpl:125
 msgid "nothing"
-msgstr "nada"
+msgstr "無"
 
 #: tmp.tpl:123
 msgid "invert"
-msgstr "invertir"
+msgstr "反相"
 
 #: tmp.tpl:126
 msgid "Change language"
-msgstr "Cambiar el idioma"
+msgstr "切換語言"
 
 #: tmp.tpl:129
 msgid "Help"
-msgstr "Ayuda"
+msgstr "求助"
 
 #: tmp.tpl:130
 #, python-format
 msgid "Delay: %sd"
-msgstr "Retraso: %sd"
+msgstr "延遲：%s天"
 
 #, python-format
 msgid "Level %d errors (%d)"
-msgstr "Errores level %d (%d)"
+msgstr "等級 %d 的錯誤 (%d)"
 
 #: tmp.tpl:134
 msgid "Logout"
-msgstr "Salir"
+msgstr "登出"
 
 #: tmp.tpl:135 tmp.tpl:137
 msgid "Login"
-msgstr "Ingresar"
+msgstr "登入"
 
 #: tmp.tpl:136 tmp.tpl:138
 msgid "Save"
-msgstr "Guardar"
+msgstr "儲存"
 
 #: tmp.tpl:139
 msgid "Objects edited:"
-msgstr "Objetos editados:"
+msgstr ""
 
 #: tmp.tpl:140
 msgid "Objects deleted:"
-msgstr "Objetos eliminados:"
+msgstr ""
 
 #: tmp.tpl:141
 msgid "Fix with Osmose"
-msgstr "Corregir con Osmose"
+msgstr ""
 
 #: tmp.tpl:142
 msgid "Source"
-msgstr "Fuente"
+msgstr ""
 
 #: tmp.tpl:143
 msgid "Type"
-msgstr "Tipo"
+msgstr ""
 
 #: tmp.tpl:144
 msgid "Reuse changeset"
-msgstr "Reutilizar conjunto de cambios"
+msgstr ""
 
 msgid "Error reported on: "
-msgstr "Error reportado en:"
+msgstr ""
 
 #: tmp.tpl:146
 msgid "change status"
-msgstr "cambiar el estado"
+msgstr ""
 
 #: tmp.tpl:147
 msgid "corrected"
-msgstr "corregido"
+msgstr "已更正"
 
 #: tmp.tpl:148
 msgid "false positive"
-msgstr "falso positivo"
+msgstr "誤報錯誤"
 
 #: tmp.tpl:149 tmp.tpl:150
 msgid "How to help translation"
-msgstr "Cómo ayudar a la traducción"
+msgstr "如何幫忙翻譯"
 
 #: tmp.tpl:151
 msgid ""
 "Osmose tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
-msgstr "La herramienta Osmose es desarrollada principalmente por franceses, y nuestro objetivo es añadir más idiomas. Actualmente cubrimos casi todos los idiomas utilizados por los países incluidos en el análisis."
+msgstr "Osmose 工具主要由法國人開發，我們希望能加入更多語言。目前有被分析的國家所用的語言大多已含括在內了。"
 
 #: tmp.tpl:153
 msgid ""
 "To make Osmose a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
-msgstr "Para hacer a Osmose una verdadera herramienta multilingüe, necesitamos tu ayuda para mejorar las traducciones actuales, y añadir nuevas traducciones"
+msgstr "要讓 Osmose 成為真正的多語工具，我們需要你的協助來改善已有的翻譯、增加新的翻譯。"
 
 #: tmp.tpl:154
 msgid "Pages to translate"
-msgstr "Páginas por traducir"
+msgstr "需要被翻譯的網頁"
 
 #: tmp.tpl:158
 msgid "Wiki pages"
-msgstr "Páginas wiki"
+msgstr "Wiki 頁面"
 
 msgid "Osmose main page"
-msgstr "Página principal Osmose"
+msgstr "Osmose 主頁"
 
 msgid "Documentation on reported errors"
-msgstr "Documentación sobre los errores reportados"
+msgstr "各項錯誤的詳細說明"
 
 #: tmp.tpl:155
 msgid "Osmose pages"
-msgstr "Páginas Osmose"
+msgstr "Osmose 網頁"
 
 #: tmp.tpl:164
 msgid "Bug tracking system"
-msgstr "Sistema de seguimiento de errores"
+msgstr "Bug 追蹤系統"
 
 msgid ""
 "<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
 "issue with translations, or erroneous analyses."
-msgstr "<a href='http://trac.openstreetmap.fr'>Trac</a> se puede utilizar para informar de cualquier problema con las traducciones, o análisis erróneos."
+msgstr ""
 
 #: tmp.tpl:30
 msgid ""
@@ -581,263 +580,263 @@ msgid ""
 "mobile device and improvement of documentation was funded by region of "
 "Aquitaine, France; part of the OpenAquiMap project leading by <em>Les Petits"
 " Débrouillards d'Aquitaine</em>."
-msgstr "Adicionando nueva funcionalidad del <em>Editor Osmose</em>, soporte inicial a dispositivos móviles y la mejora de la documentación ha sido financiado por la región de Aquitania, Francia; parte del proyecto OpenAquiMap que es llevado por <em>Les Petits Débrouillards d'Aquitaine</em>."
+msgstr ""
 
 #: ../tools/database/categ_menu.txt:1
 msgid "Structure"
-msgstr "Estructura"
+msgstr "結構"
 
 #: ../tools/database/categ_menu.txt:2
 msgid "Missing tags"
-msgstr "Etiquetas olvidadas"
+msgstr "缺少 tag"
 
 #: ../tools/database/categ_menu.txt:3
 msgid "Bad tag"
-msgstr "Mala etiqueta"
+msgstr "不良 tag"
 
 #: ../tools/database/categ_menu.txt:4
 msgid "Tags to remove"
-msgstr "Etiquetas para eliminar"
+msgstr "多餘的 tag"
 
 #: ../tools/database/categ_menu.txt:5
 msgid "Tags name"
-msgstr "Nombre de etiquetas"
+msgstr "tag 的名稱"
 
 #: ../tools/database/categ_menu.txt:6
 msgid "Administrative"
-msgstr "Administrativo"
+msgstr "行政區"
 
 #: ../tools/database/categ_menu.txt:7
 msgid "To map"
-msgstr "A mapear"
+msgstr "需要再繪製"
 
 #: ../tools/database/categ_menu.txt:8
 msgid "Integration"
-msgstr "Integración"
+msgstr "整合"
 
 #: ../tools/database/item_menu.txt:1
 msgid "overlapping building"
-msgstr "superposición de edificios"
+msgstr "建物重疊"
 
 #: ../tools/database/item_menu.txt:3
 msgid "duplicated node"
-msgstr "nodo duplicado"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:4
 msgid "way one node"
-msgstr "vía en un nodo"
+msgstr "只有一個點的線"
 
 #: ../tools/database/item_menu.txt:5
 msgid "invalid polygon"
-msgstr "polígono inválido"
+msgstr "不合法的多邊形"
 
 #: ../tools/database/item_menu.txt:6
 msgid "reverse roundabout"
-msgstr "rotonda inversa"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:7
 msgid "boundary intersect"
-msgstr "fronteras cruzadas"
+msgstr "邊界相交"
 
 #: ../tools/database/item_menu.txt:8
 msgid "objects overlap"
-msgstr "objetos superpuestos"
+msgstr "物件重疊"
 
 #: ../tools/database/item_menu.txt:9
 msgid "orphan nodes"
-msgstr "nodos huérfanos"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:10
 msgid "sudden highway type change"
-msgstr "repentino cambio de tipo de carretera"
+msgstr "highway 突然改變類別"
 
 #: ../tools/database/item_menu.txt:11
 msgid "unclosed area"
-msgstr "área no cerrada"
+msgstr "區域(area)未封閉"
 
 #: ../tools/database/item_menu.txt:12
 msgid "bad *_link highway"
-msgstr "mala carretera *_link"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:13
 msgid "broken highway continuity"
-msgstr "continuidad de carretera rota"
+msgstr "highway 沒接好"
 
 #: ../tools/database/item_menu.txt:14
 msgid "missign tag or role"
-msgstr "etiqueta o rol olvidado"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:15
 msgid "surface intersection"
-msgstr "intersección de superficie"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:16
 msgid "big relation"
-msgstr "relación grande"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:17
 msgid "multipolygon"
-msgstr "multipolígono"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:18
 msgid "double cycleway"
-msgstr "carril bici doble"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:19
 msgid "approximate way"
-msgstr "vía aproximada"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:20
 msgid "1-member relation"
-msgstr "relación de 1 miembro"
+msgstr "只有一個成員的 relation"
 
 #: ../tools/database/item_menu.txt:21
 msgid "not-connected highway/cycleway"
-msgstr "carretera/carril bici no conectada"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:22
 msgid "waterway"
-msgstr "vía fluvial"
+msgstr "水路"
 
 #: ../tools/database/item_menu.txt:23
 msgid "duplicate geometry"
-msgstr "geometría duplicada"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:25
 msgid "junction=roundabout"
-msgstr "junction=roundabout"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:26
 msgid "elevation"
-msgstr "elevación"
+msgstr "海拔高度"
 
 #: ../tools/database/item_menu.txt:27
 msgid "oneway"
-msgstr "sentido único"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:29
 msgid "parent tag"
-msgstr "etiqueta padre"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:30
 msgid "street numbers"
-msgstr "números de la calle"
+msgstr "門牌號碼"
 
 #: ../tools/database/item_menu.txt:31
 msgid "highway"
-msgstr "carretera"
+msgstr "highway"
 
 #: ../tools/database/item_menu.txt:32
 msgid "highway crossing"
-msgstr "paso de carretera"
+msgstr "highway 路口"
 
 #: ../tools/database/item_menu.txt:33 ../tools/database/item_menu.txt:137
 msgid "pharmacy"
-msgstr "farmacia"
+msgstr "藥局"
 
 #: ../tools/database/item_menu.txt:36
 msgid "highway roundabout"
-msgstr "rotonda de carretera"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:37
 msgid "bad source tag"
-msgstr "mala etiqueta de origen"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:38
 msgid "tagwatch cleaner"
-msgstr "limpiador tagwatch"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:39
 msgid "wikipedia"
-msgstr "wikipedia"
+msgstr "維基百科"
 
 #: ../tools/database/item_menu.txt:40
 msgid "multiple tags"
-msgstr "multiples etiquetas"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:41
 msgid "saint hyphen"
-msgstr "guión santo"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:42
 msgid "incorrect tag"
-msgstr "etiqueta incorrecta"
+msgstr "錯誤的 tag"
 
 #: ../tools/database/item_menu.txt:43
 msgid "bad tag key"
-msgstr "mala etiqueta clave"
+msgstr "不良的 tag key"
 
 #: ../tools/database/item_menu.txt:44
 msgid "similar values"
-msgstr "valores similares"
+msgstr "相似的 value"
 
 #: ../tools/database/item_menu.txt:45
 msgid "multiple values"
-msgstr "valores múltiples"
+msgstr "多個 value"
 
 #: ../tools/database/item_menu.txt:46
 msgid "swimming pool as natural=water"
-msgstr "piscina como natural=water"
+msgstr "被標為 natural=water 的游泳池"
 
 #: ../tools/database/item_menu.txt:48
 msgid "numeric value"
-msgstr "valor númerico"
+msgstr "數值"
 
 #: ../tools/database/item_menu.txt:49
 msgid "small farm"
-msgstr "pequeña granja"
+msgstr "小塊農田"
 
 #: ../tools/database/item_menu.txt:50
 msgid "note"
-msgstr "nota"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:51
 msgid "tree"
-msgstr "árbol"
+msgstr "樹"
 
 #: ../tools/database/item_menu.txt:52
 msgid "brand in name"
-msgstr "marca en el nombre"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:53
 msgid "typo in tag"
-msgstr "error tipográfico en etiqueta"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:54
 msgid "incorrect "
-msgstr "incorrecto"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:55
 msgid "parking lane"
-msgstr "carril de aparcamiento"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:56
 msgid "relation role"
-msgstr "rol de la relación"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:57
 msgid "relation type=restriction"
-msgstr "relación type=restriction"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:58
 msgid "postcode"
-msgstr "código postal"
+msgstr "郵遞區號"
 
 #: ../tools/database/item_menu.txt:61
 msgid "disused"
-msgstr "desuso"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:62
 msgid "on junction=roundabout"
-msgstr "en junction=roundabout"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:63
 msgid "incompatible tags"
-msgstr "etiquetas incompatibles"
+msgstr "彼此不相容的 tag"
 
 #: ../tools/database/item_menu.txt:64
 msgid "ref in name"
-msgstr "ref en nombre"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:65
 msgid "seamark:fixme"
@@ -845,416 +844,416 @@ msgstr "seamark:fixme"
 
 #: ../tools/database/item_menu.txt:66
 msgid "construction"
-msgstr "construcción"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:67
 msgid "duplicate object"
-msgstr "objeto duplicado"
+msgstr "重覆的物件"
 
 #: ../tools/database/item_menu.txt:68
 msgid "unwanted tag on node"
-msgstr "etiqueta no deseada en el nodo"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:69
 msgid "bad usage"
-msgstr "mal uso"
+msgstr "不良的用法"
 
 #: ../tools/database/item_menu.txt:72
 msgid "orthograph"
-msgstr "ortografía"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:73
 msgid "way type"
-msgstr "tipo de vía"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:74
 msgid "two names"
-msgstr "dos nombres"
+msgstr "兩個名字"
 
 #: ../tools/database/item_menu.txt:75
 msgid "toponymy"
-msgstr "toponomía"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:76
 msgid "test soundex"
-msgstr "prueba soundex"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:78
 msgid "open polygon"
-msgstr "polígono abierto"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:79
 msgid "duplicated way"
-msgstr "vía duplicada"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:80
 msgid "place without name"
-msgstr "lugar sin nombre"
+msgstr "沒有名字的 place"
 
 #: ../tools/database/item_menu.txt:81
 msgid "INSEE code"
-msgstr "código INSEE"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:82
 msgid "admin_level"
-msgstr "admin_level"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:83
 msgid "erroneous boundary"
-msgstr "frontera errónea"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:84
 msgid "out of boundary"
-msgstr "fuera de la frontera"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:85
 msgid "geodesic building"
-msgstr "edificio geodésico"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:86
 msgid "building shape"
-msgstr "forma del edificio"
+msgstr "建物的形狀"
 
 #: ../tools/database/item_menu.txt:87
 msgid "bridge to tag"
-msgstr "puente a etiquetar"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:88
 msgid "admin boundary"
-msgstr "frontera administrativa"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:89
 msgid "power lines"
-msgstr "líneas eléctricas"
+msgstr "輸電電線"
 
 #: ../tools/database/item_menu.txt:90 ../tools/database/item_menu.txt:106
 msgid "post office"
-msgstr "oficina de correos"
+msgstr "郵局"
 
 #: ../tools/database/item_menu.txt:92
 msgid "ODbL migration change"
-msgstr "Cambio por la migración ODbL"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:93
 msgid "school, not integrated"
-msgstr "escuela, no integrada"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:94
 msgid "monument"
-msgstr "monumento"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:95
 msgid "node on ways"
-msgstr "nodo en vías"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:96 ../tools/database/item_menu.txt:114
 msgid "train station"
-msgstr "estación de tren"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:97
 msgid "TMC"
-msgstr "TMC"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:98
 msgid "relation type=boundary"
-msgstr "relación type=boundary"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:99
 msgid "tunnel/bridge"
-msgstr "túnel/puente"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:104
 msgid "monument, museum"
-msgstr "monumento, museo"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:105
 msgid "monument, museum, could be integrated"
-msgstr "monumento, museo, podrían integrarse"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:107
 msgid "post office, could be integrated"
-msgstr "oficina de correos, podría integrarse"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:110
 msgid "school"
-msgstr "escuela"
+msgstr "學校"
 
 #: ../tools/database/item_menu.txt:111
 msgid "school, could be integrated"
-msgstr "escuela, podría integrarse"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:112
 msgid "public transport"
-msgstr "transporte público"
+msgstr "大眾運輸"
 
 #: ../tools/database/item_menu.txt:113
 msgid "public transport, could be integrated"
-msgstr "transporte público, podría integrarse"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:115
 msgid "train station, could be integrated"
-msgstr "estación de tren, podría integrarse"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:116
 msgid "level crossing"
-msgstr "paso a nivel"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:117
 msgid "geodesic point"
-msgstr "punto geodésico"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:118
 msgid "postal address"
-msgstr "dirección postal"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:119
 msgid "wikipedia, could be integrated"
-msgstr "wikipedia, podría integrarse"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:120
 msgid "public service"
-msgstr "servicio público"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:121
 msgid "recycling"
-msgstr "reciclaje"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:122
 msgid "recycling, could be integrated"
-msgstr "reciclaje, podría integrarse"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:123
 msgid "parking"
-msgstr "aparcamiento"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:124
 msgid "parking, could be integrated"
-msgstr "aparcamiento, podría integrarse"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:125
 msgid "accommodation"
-msgstr "alojamiento"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:126
 msgid "accommodation, could be integrated"
-msgstr "alojamiento, podría integrarse"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:127
 msgid "cycle parking"
-msgstr "aparcamiento para bicicletas"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:128
 msgid "cycle parking, could be integrated"
-msgstr "aparcamiento para bicicletas, podría integrarse"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:129
 msgid "transport sharing"
-msgstr "transporte compartido"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:130
 msgid "transport sharing, could be integrated"
-msgstr "transporte compartido, podría integrarse"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:131
 msgid "sport"
-msgstr "deporte"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:132
 msgid "sport, could be integrated"
-msgstr "deporte, podría integrarse"
+msgstr ""
 
 #: tmp.tpl:157
 msgid "Translation progress: osmose"
-msgstr "Progreso de la traducción: osmose"
+msgstr "翻譯進度： osmose"
 
 #: tmp.tpl:161
 msgid "For new language or countries"
-msgstr "Para nuevo idioma o países"
+msgstr "新增語言或國家"
 
 #: tmp.tpl:163
 #, python-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
 "href='mailto:%s'>%s</a>."
-msgstr "Para los nuevos países, pueden contactarse con nosotros a través de un correo electrónico directamente a <a href='mailto:%s'>%s</a>."
+msgstr "對於新增國家，請直接寄電子郵件到 <a href='mailto:%s'>%s</a> 聯絡我們。"
 
 #: tmp.tpl:152
 #, python-format
 msgid "The <a href='%s'>country coverage is available</a>."
-msgstr "La <a href='%s'>cobertura del país está disponible</a>."
+msgstr "<a href='%s'>目前已含蓋的國家</a>。"
 
 #: tmp.tpl:162
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
-msgstr "Puedes crear un nuevo idioma directamente en <a href='%s'>Transifex</a>."
+msgstr "你可以直接在 <a href='%s'>Transifex</a> 上新增一個語言。"
 
 #: tmp.tpl:156
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
-msgstr "La traducción se realiza en <a href='%s'>Transifex</a>."
+msgstr "翻譯是透過 <a href='%s'>Transifex</a> 所完成。"
 
 msgid "error n°"
-msgstr "error n°"
+msgstr ""
 
 #: tmp.tpl:127
 msgid "Export"
-msgstr "Exportar"
+msgstr "匯出"
 
 #: tmp.tpl:128
 msgid "Html list"
-msgstr "Lista HTML"
+msgstr "HTML 列表"
 
 #: ../tools/database/item_menu.txt:24
 msgid "one-node way"
-msgstr "vía de un nodo"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:133
 msgid "toilets"
-msgstr "baños"
+msgstr "廁所"
 
 #: ../tools/database/item_menu.txt:100
 msgid "transport sharing, not integrated"
-msgstr "transporte compartido, no inetgrado"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:134
 msgid "police"
-msgstr "policía"
+msgstr "警察局"
 
 #: ../tools/database/item_menu.txt:135
 msgid "police, could be integrated"
-msgstr "policía, podría integrarse"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:101
 msgid "pharmacy, not integrated "
-msgstr "farmacia, no integrada"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:138
 msgid "pharmacy, could be integrated"
-msgstr "farmacia, podría integrarse"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:136
 msgid "gas station"
-msgstr "gasolinera"
+msgstr "加油站"
 
 #: tmp.tpl:87
 msgid "position"
-msgstr "posición"
+msgstr ""
 
 #: tmp.tpl:137
 msgid "You must be logged in order to use the tag editor"
-msgstr "Debe estar conectado para poder utilizar el editor de etiquetas"
+msgstr ""
 
 #: tmp.tpl:138
 msgid "Save changeset"
-msgstr "Guardar conjunto de cambios"
+msgstr ""
 
 #: tmp.tpl:141
 msgid "Comment"
-msgstr "Comentario"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:59
 msgid "area"
-msgstr "área"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:60
 msgid "noexit"
-msgstr "sin salida"
+msgstr ""
 
 #: tmp.tpl:34
 msgid ""
 "Keep in touch by watching at <a "
 "href='https://twitter.com/osmose_qa'>@osmose_qa</a> on twitter."
-msgstr "Manténgase en contacto observando <a href='https://twitter.com/osmose_qa'>@osmose_qa</a> en twitter."
+msgstr ""
 
 #: ../tools/database/item_menu.txt:70
 msgid "incorrect layer"
-msgstr "capa incorrecta"
+msgstr "layer 有誤"
 
 #: tmp.tpl:36
 msgid "Updates summary"
-msgstr "Resumen de actualizaciones"
+msgstr ""
 
 #: tmp.tpl:40
 msgid "country"
-msgstr "país"
+msgstr "國家"
 
 #: tmp.tpl:41
 msgid "analyser"
-msgstr "revisor"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:139
 msgid "postal code, could be integrated"
-msgstr "código postal, podría integrarse"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:140
 msgid "library"
-msgstr "biblioteca"
+msgstr "圖書館"
 
 #: ../tools/database/item_menu.txt:141
 msgid "restaurant"
-msgstr "restaurante"
+msgstr "餐廳"
 
 #: ../tools/database/item_menu.txt:142
 msgid "winery"
-msgstr "bodega"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:34
 msgid "missing object kind"
-msgstr "falta tipo de objeto"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:102
 msgid "postal code, not integrated "
-msgstr "código postal, no integrado"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:77
 msgid "local language"
-msgstr "idioma local"
+msgstr "當地語言"
 
 #: tmp.tpl:31
 msgid ""
 "The servers analysing data are provided by OpenStreetMap-France and some "
 "others by contributors around the world. The servers for north-america and "
 "other areas are funded by Mapbox."
-msgstr "Los servidores que analizan los datos son proporcionados por OpenStreetMap Francia y algunos otros por colaboradores de todo el mundo. Los servidores de América del Norte y otras áreas están financiados por Mapbox."
+msgstr ""
 
 #: ../errors.py:125
 msgid "Fixed issues"
-msgstr "Problemas corregidos"
+msgstr ""
 
 #. TRANSLATORS: link to help in appropriate language
 #: ../map.py:136
 msgid "Issues by user"
-msgstr "Problemas por usuario"
+msgstr ""
 
 #: tmp.tpl:2 tmp.tpl:3 tmp.tpl:4
 #, python-brace-format
 msgid "Number of level {level} issues: {count}"
-msgstr "Número de problemas nivel {level}: {count}"
+msgstr ""
 
 #: tmp.tpl:6 tmp.tpl:15
 #, python-format
 msgid "Number of found issues: %d"
-msgstr "Número de problemas encontrados: %d"
+msgstr ""
 
 #: tmp.tpl:7 tmp.tpl:16
 #, python-format
 msgid "Number of found issues: more than %d"
-msgstr "Número de problemas encontrados: mayor a %d"
+msgstr ""
 
 #: tmp.tpl:13
 #, python-format
 msgid ""
 "This page shows issues on elements that were last modified by '%s'. This "
 "doesn't means that this user is responsible for all these issues."
-msgstr "Esta página muestra los problemas de elementos que fueron modificados por última vez por '%s'. Esto no significa que este usuario es responsable de todos estos problemas."
+msgstr ""
 
 #: tmp.tpl:17
 msgid "Show issues on a map"
-msgstr "Mostrar problemas en el mapa"
+msgstr ""
 
 #: tmp.tpl:20
 msgid "Osmose allows you to control your own issues."
-msgstr "Osmose te permite controlar tus porpios problemas."
+msgstr ""
 
 #: tmp.tpl:21
 msgid ""
@@ -1262,106 +1261,106 @@ msgid ""
 " issues that are attached to your username. Note that the algorithm that "
 "attaches issues to username is not perfect, as Osmose only checks the last "
 "contributor of the relevant erroneous elements."
-msgstr "Al introducir su nombre de usuario OSM en el siguiente formulario, usted será capaz de ver los problemas que se asocian a su nombre de usuario. Tenga en cuenta que el algoritmo que asocia problemas a su nombre de usuario no es perfecto, como Osmose sólo comprueba el último colaborador de los elementos erróneos pertinentes."
+msgstr ""
 
 msgid ""
 "Bug should be reported on <a href='http://trac.openstreetmap.fr'>trac</a>. "
 "The component to pick should be osmose-frontend for issues around the "
 "website, and osmose-backend for issues on the reported issues on OSM data, "
 "or for suggestion for new analyses."
-msgstr "Errores deben ser reportados en <a href='http://trac.openstreetmap.fr'>trac</a>. El componente para escoger debe ser osmose-frontend para problemas de todo el sitio web, y osmose-backend para problemas en los problemas reportados de los datos OSM, o para sugerir nuevos análisis."
+msgstr ""
 
 #: tmp.tpl:56 tmp.tpl:94
 #, python-format
 msgid "Information on issue %d"
-msgstr "Información del problema %d"
+msgstr ""
 
 #: tmp.tpl:76
 msgid "Show more issues"
-msgstr "Mostrar más problemas"
+msgstr ""
 
 #: tmp.tpl:77
 msgid "Show some issues"
-msgstr "Mostrar algunos problemas"
+msgstr ""
 
 #: tmp.tpl:86
 msgid "information on issue"
-msgstr "información del problema"
+msgstr ""
 
 #: tmp.tpl:91
 msgid "delete issue"
-msgstr "borrar problema"
+msgstr ""
 
 #: tmp.tpl:92
 msgid "issue n°"
-msgstr "problema n°"
+msgstr ""
 
 #: tmp.tpl:93
 #, python-format
 msgid "delete issue #%d"
-msgstr "borrar problema #%d"
+msgstr ""
 
 #: tmp.tpl:99
 msgid "Map of issues"
-msgstr "Mapa de problemas"
+msgstr ""
 
 #: tmp.tpl:101
 msgid "Information on issues database"
-msgstr "Información de la base de datos de problemas"
+msgstr ""
 
 #: tmp.tpl:131 tmp.tpl:132 tmp.tpl:133
 #, python-format
 msgid "Level %d issues (%d)"
-msgstr "Problemas nivel %d (%d)"
+msgstr ""
 
 #: tmp.tpl:145
 msgid "Issue reported on: "
-msgstr "Problema reportado en:"
+msgstr ""
 
 #: tmp.tpl:160
 msgid "Documentation on reported issues"
-msgstr "Documentación sobre problemas reportados"
+msgstr ""
 
 #: tmp.tpl:49
 msgid "version"
-msgstr "versión"
+msgstr "版本"
 
 #: ../tools/database/item_menu.txt:143
 msgid "geodesic"
-msgstr "geodésico"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:91 ../tools/database/item_menu.txt:108
 msgid "post box"
-msgstr "buzón de correo"
+msgstr "郵筒"
 
 #: ../tools/database/item_menu.txt:109
 msgid "post box, could be integrated"
-msgstr "buzón de correo, podría integrarse"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:35
 msgid "indoor"
-msgstr "interior"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:71
 msgid "roundabout as area"
-msgstr "rotonda como área"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:103
 msgid "road"
-msgstr "camino"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:2
 msgid "split building"
-msgstr "dividir edificio"
+msgstr ""
 
 #: tmp.tpl:108
 #, python-format
 msgid "Control, verification and correction of %s issues"
-msgstr "Control, verificación y corrección de %s problemas"
+msgstr ""
 
 #: tmp.tpl:159
 msgid "Osmose QA main page"
-msgstr "Página principal de CC Osmose"
+msgstr ""
 
 #: tmp.tpl:25
 msgid ""
@@ -1370,10 +1369,10 @@ msgid ""
 " href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> "
 "for issues on the reported issues on OSM data, or for suggestion about "
 "analyses."
-msgstr "Los deben ser reportados en <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> para problemas relacionados al sitio web, o en <a href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> para problemas relacionados a los datos OSM, o para sugerir análisis."
+msgstr ""
 
 #: tmp.tpl:165
 msgid ""
 "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
 "frontend</a> can be used to report any issue with translations."
-msgstr "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> puede ser usado para reportar cualquier problema con las traducciones."
+msgstr "有任何翻譯的問題可以回報到 <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a>。"
