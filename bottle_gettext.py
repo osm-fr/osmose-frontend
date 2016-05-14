@@ -33,11 +33,17 @@ class GettextPlugin(object):
             response.delete_cookie('lang', path="/")
 
         if len(request.script_name) > 3:
-            lang = [request.script_name[-3:-1], self.allowed_languages[0]]
-            if lang[0] not in self.allowed_languages:
-                lang = [None]
-            else:
-                return (lang, False)
+            tmp_lang = request.script_name[-3:-1]
+            if tmp_lang in self.allowed_languages:
+              return ([tmp_lang, self.allowed_languages[0]], False)
+
+            # Handle longer languages like zh_TW
+            if len(request.script_name) > 6 and request.script_name[-4] == "_":
+              tmp_lang = request.script_name[-6:-1]
+              if tmp_lang in self.allowed_languages:
+                return ([tmp_lang, self.allowed_languages[0]], False)
+
+            lang = [None]
 
         if not lang[0] and request.get_cookie('lang'):
             lang = [request.get_cookie('lang')]
