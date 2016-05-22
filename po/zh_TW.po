@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2016-05-10 17:23+0000\n"
+"PO-Revision-Date: 2016-05-18 16:25+0000\n"
 "Last-Translator: Kuang-che Wu <kcwu@csie.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr ""
 
 #: ../control.py:56
 msgid "never generated"
-msgstr ""
+msgstr "不曾產生"
 
 #. TRANSLATORS: link to tooltip help
 #: ../error.py:155 ../false_positive.py:66 tmp.tpl:160
@@ -41,10 +41,10 @@ msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
 #: ../errors.py:122 tmp.tpl:64
 msgid "False positives"
-msgstr "誤報錯誤"
+msgstr "誤判"
 
 msgid "Fixed errors"
-msgstr ""
+msgstr "已修正的錯誤"
 
 #: ../errors.py:128 tmp.tpl:62
 msgid "Informations"
@@ -52,7 +52,7 @@ msgstr "資訊"
 
 #. TRANSLATORS: link to help in appropriate language
 msgid "Errors by user"
-msgstr ""
+msgstr "依使用者分"
 
 #: ../map.py:137
 msgid "Relation analyser"
@@ -218,23 +218,23 @@ msgid "source"
 msgstr ""
 
 msgid "description"
-msgstr ""
+msgstr "描述"
 
 #: tmp.tpl:42
 msgid "last generation"
-msgstr ""
+msgstr "上次產生"
 
 #: tmp.tpl:43 tmp.tpl:44
 msgid "history"
-msgstr ""
+msgstr "歷史"
 
 #: tmp.tpl:45
 msgid "Update"
-msgstr ""
+msgstr "更新"
 
 #: tmp.tpl:47
 msgid "remote url"
-msgstr ""
+msgstr "遠端網址"
 
 #: tmp.tpl:48
 msgid "timestamp"
@@ -278,15 +278,15 @@ msgstr ""
 
 #: tmp.tpl:59 tmp.tpl:97
 msgid "Marker"
-msgstr ""
+msgstr "標記"
 
 #: tmp.tpl:60
 msgid "Elements"
-msgstr ""
+msgstr "元素"
 
 #: tmp.tpl:61
 msgid "Fixes"
-msgstr ""
+msgstr "修正"
 
 #: tmp.tpl:63
 msgid "Fixed"
@@ -294,7 +294,7 @@ msgstr "已修正"
 
 #: tmp.tpl:65
 msgid "Graph"
-msgstr ""
+msgstr "數量趨勢圖"
 
 #: tmp.tpl:66 tmp.tpl:107
 msgid "Map"
@@ -308,7 +308,7 @@ msgstr ""
 #. TRANSLATORS: this should be replaced by a abbreviation for class
 #: tmp.tpl:71 tmp.tpl:80
 msgid "class (abbreviation)"
-msgstr ""
+msgstr "類"
 
 #: tmp.tpl:72 tmp.tpl:85
 msgid "item"
@@ -335,7 +335,7 @@ msgstr "顯示更多錯誤"
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: tmp.tpl:82
 msgid "subclass (abbreviation)"
-msgstr ""
+msgstr "子類"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: tmp.tpl:84
@@ -351,7 +351,7 @@ msgstr "位置"
 
 #: tmp.tpl:88
 msgid "elements (abbreviation)"
-msgstr ""
+msgstr "元素"
 
 #: tmp.tpl:89
 msgid "subtitle"
@@ -432,11 +432,11 @@ msgstr "只有 3"
 
 #: tmp.tpl:116
 msgid "Fixable"
-msgstr ""
+msgstr "可用編修工具"
 
 #: tmp.tpl:117
 msgid "Show only markers with correction suggestions"
-msgstr ""
+msgstr "只顯示附帶修正建議的標記"
 
 #: tmp.tpl:118
 msgid "Online"
@@ -505,7 +505,7 @@ msgstr ""
 
 #: tmp.tpl:142
 msgid "Source"
-msgstr ""
+msgstr "來源"
 
 #: tmp.tpl:143
 msgid "Type"
@@ -516,7 +516,7 @@ msgid "Reuse changeset"
 msgstr ""
 
 msgid "Error reported on: "
-msgstr ""
+msgstr "錯誤發現日期："
 
 #: tmp.tpl:146
 msgid "change status"
@@ -1249,7 +1249,7 @@ msgstr ""
 
 #: tmp.tpl:17
 msgid "Show issues on a map"
-msgstr ""
+msgstr "在地圖上顯示問題"
 
 #: tmp.tpl:20
 msgid "Osmose allows you to control your own issues."
@@ -1261,7 +1261,7 @@ msgid ""
 " issues that are attached to your username. Note that the algorithm that "
 "attaches issues to username is not perfect, as Osmose only checks the last "
 "contributor of the relevant erroneous elements."
-msgstr ""
+msgstr "只要在下方的表單填入你的 OSM 帳號名，就能看到列於你名下的問題。不過要注意到，關聯問題及帳號的算法並不完美，因為 Osmose 只看有問題的元素最後修改人。"
 
 msgid ""
 "Bug should be reported on <a href='http://trac.openstreetmap.fr'>trac</a>. "
@@ -1277,15 +1277,15 @@ msgstr ""
 
 #: tmp.tpl:76
 msgid "Show more issues"
-msgstr ""
+msgstr "顯示更多問題"
 
 #: tmp.tpl:77
 msgid "Show some issues"
-msgstr ""
+msgstr "顯示更多問題"
 
 #: tmp.tpl:86
 msgid "information on issue"
-msgstr ""
+msgstr "問題的資訊"
 
 #: tmp.tpl:91
 msgid "delete issue"
@@ -1302,7 +1302,7 @@ msgstr ""
 
 #: tmp.tpl:99
 msgid "Map of issues"
-msgstr ""
+msgstr "問題地圖"
 
 #: tmp.tpl:101
 msgid "Information on issues database"
@@ -1315,7 +1315,7 @@ msgstr ""
 
 #: tmp.tpl:145
 msgid "Issue reported on: "
-msgstr ""
+msgstr "問題發現日期："
 
 #: tmp.tpl:160
 msgid "Documentation on reported issues"
@@ -1327,7 +1327,7 @@ msgstr "版本"
 
 #: ../tools/database/item_menu.txt:143
 msgid "geodesic"
-msgstr ""
+msgstr "測地線"
 
 #: ../tools/database/item_menu.txt:91 ../tools/database/item_menu.txt:108
 msgid "post box"
@@ -1339,7 +1339,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:35
 msgid "indoor"
-msgstr ""
+msgstr "室內"
 
 #: ../tools/database/item_menu.txt:71
 msgid "roundabout as area"
@@ -1347,7 +1347,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:103
 msgid "road"
-msgstr ""
+msgstr "道路"
 
 #: ../tools/database/item_menu.txt:2
 msgid "split building"
@@ -1360,7 +1360,7 @@ msgstr ""
 
 #: tmp.tpl:159
 msgid "Osmose QA main page"
-msgstr ""
+msgstr "Osmose QA 主頁"
 
 #: tmp.tpl:25
 msgid ""
