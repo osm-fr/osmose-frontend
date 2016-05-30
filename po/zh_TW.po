@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2016-05-18 16:25+0000\n"
+"PO-Revision-Date: 2016-05-29 17:18+0000\n"
 "Last-Translator: Kuang-che Wu <kcwu@csie.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr "{day}天{hour}小時{minute}分鐘前"
 #: ../control.py:53
 #, python-brace-format
 msgid "in {day}d, {hour}h, {minute}m"
-msgstr ""
+msgstr "在{day}天{hour}小時 {minute}分鐘後"
 
 #: ../control.py:56
 msgid "never generated"
@@ -97,7 +97,7 @@ msgstr "翻譯"
 #: tmp.tpl:1 tmp.tpl:5 tmp.tpl:11
 #, python-format
 msgid "Statistics for user %s"
-msgstr ""
+msgstr "使用者 %s 的統計"
 
 #, python-brace-format
 msgid "Number of level {level} errors: {count}"
@@ -206,16 +206,16 @@ msgstr "直接寫電子郵件到 <a href='mailto:%s'>%s</a> 就能聯絡到我�
 
 #: tmp.tpl:35 tmp.tpl:37
 msgid "Last updates"
-msgstr ""
+msgstr "上次更新"
 
 #: tmp.tpl:38
 msgid "Median delay:"
-msgstr ""
+msgstr "平均延遲："
 
 #: tmp.tpl:39 tmp.tpl:46 tmp.tpl:69 tmp.tpl:78
 #: ../tools/database/item_menu.txt:28
 msgid "source"
-msgstr ""
+msgstr "來源"
 
 msgid "description"
 msgstr "描述"
@@ -270,11 +270,11 @@ msgstr ""
 
 #: tmp.tpl:57 tmp.tpl:95
 msgid "key"
-msgstr ""
+msgstr "鍵(key)"
 
 #: tmp.tpl:58 tmp.tpl:96
 msgid "value"
-msgstr ""
+msgstr "值(value)"
 
 #: tmp.tpl:59 tmp.tpl:97
 msgid "Marker"
@@ -303,7 +303,7 @@ msgstr "地圖"
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
 #: tmp.tpl:68
 msgid "Set"
-msgstr ""
+msgstr "設定"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
 #: tmp.tpl:71 tmp.tpl:80
@@ -370,7 +370,7 @@ msgstr ""
 
 #: tmp.tpl:98
 msgid "OpenStreetMap Oversight Search Engine"
-msgstr ""
+msgstr "OpenStreetMap Oversight Search Engine"
 
 msgid "Map of errors"
 msgstr "錯誤地圖"
@@ -380,7 +380,7 @@ msgid "Help on OSM wiki"
 msgstr "OSM wiki 上的說明"
 
 msgid "Information on error database"
-msgstr ""
+msgstr "更多關於資料庫的資訊"
 
 #: tmp.tpl:102
 msgid "False positives list"
@@ -388,11 +388,11 @@ msgstr "誤判列表"
 
 #: tmp.tpl:103
 msgid "Last analysis updates"
-msgstr ""
+msgstr "上次分析更新的時間"
 
 #: tmp.tpl:104
 msgid "Tags Editor"
-msgstr "Tags Editor"
+msgstr "Tag 編輯器"
 
 #: tmp.tpl:105 tmp.tpl:138
 msgid "Cancel"
@@ -404,7 +404,7 @@ msgstr ""
 
 #: tmp.tpl:109
 msgid "no bubbles at this zoom factor"
-msgstr ""
+msgstr "在這個縮放級別沒有資訊泡泡"
 
 #: tmp.tpl:110
 msgid "Severity"
@@ -493,15 +493,15 @@ msgstr "儲存"
 
 #: tmp.tpl:139
 msgid "Objects edited:"
-msgstr ""
+msgstr "物件編輯數："
 
 #: tmp.tpl:140
 msgid "Objects deleted:"
-msgstr ""
+msgstr "物件刪除數："
 
 #: tmp.tpl:141
 msgid "Fix with Osmose"
-msgstr ""
+msgstr "Fix with Osmose"
 
 #: tmp.tpl:142
 msgid "Source"
@@ -513,14 +513,14 @@ msgstr ""
 
 #: tmp.tpl:144
 msgid "Reuse changeset"
-msgstr ""
+msgstr "續用(reuse)變更集"
 
 msgid "Error reported on: "
 msgstr "錯誤發現日期："
 
 #: tmp.tpl:146
 msgid "change status"
-msgstr ""
+msgstr "修改狀態"
 
 #: tmp.tpl:147
 msgid "corrected"
@@ -580,7 +580,7 @@ msgid ""
 "mobile device and improvement of documentation was funded by region of "
 "Aquitaine, France; part of the OpenAquiMap project leading by <em>Les Petits"
 " Débrouillards d'Aquitaine</em>."
-msgstr ""
+msgstr "由法國 Aquitaine 地區 <em>Les Petits Débrouillards d'Aquitaine</em> 所帶領的 OpenAquiMap 專案，資助了 <em>Osmose 編輯器</em>功能的開發，行動裝置的初步支援，還改善了文件。"
 
 #: ../tools/database/categ_menu.txt:1
 msgid "Structure"
@@ -620,7 +620,7 @@ msgstr "建物重疊"
 
 #: ../tools/database/item_menu.txt:3
 msgid "duplicated node"
-msgstr ""
+msgstr "重覆的 node"
 
 #: ../tools/database/item_menu.txt:4
 msgid "way one node"
@@ -644,7 +644,7 @@ msgstr "物件重疊"
 
 #: ../tools/database/item_menu.txt:9
 msgid "orphan nodes"
-msgstr ""
+msgstr "被遺棄的 node"
 
 #: ../tools/database/item_menu.txt:10
 msgid "sudden highway type change"
@@ -672,7 +672,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:16
 msgid "big relation"
-msgstr ""
+msgstr "巨大的 relation"
 
 #: ../tools/database/item_menu.txt:17
 msgid "multipolygon"
@@ -684,7 +684,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:19
 msgid "approximate way"
-msgstr ""
+msgstr "粗略的道路/水路"
 
 #: ../tools/database/item_menu.txt:20
 msgid "1-member relation"
@@ -712,7 +712,7 @@ msgstr "海拔高度"
 
 #: ../tools/database/item_menu.txt:27
 msgid "oneway"
-msgstr ""
+msgstr "單行道"
 
 #: ../tools/database/item_menu.txt:29
 msgid "parent tag"
@@ -788,7 +788,7 @@ msgstr "小塊農田"
 
 #: ../tools/database/item_menu.txt:50
 msgid "note"
-msgstr ""
+msgstr "note"
 
 #: ../tools/database/item_menu.txt:51
 msgid "tree"
@@ -800,7 +800,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:53
 msgid "typo in tag"
-msgstr ""
+msgstr "tag 拼寫錯誤"
 
 #: ../tools/database/item_menu.txt:54
 msgid "incorrect "
@@ -808,7 +808,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:55
 msgid "parking lane"
-msgstr ""
+msgstr "路邊停車"
 
 #: ../tools/database/item_menu.txt:56
 msgid "relation role"
@@ -844,7 +844,7 @@ msgstr "seamark:fixme"
 
 #: ../tools/database/item_menu.txt:66
 msgid "construction"
-msgstr ""
+msgstr "施工中"
 
 #: ../tools/database/item_menu.txt:67
 msgid "duplicate object"
@@ -896,7 +896,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:82
 msgid "admin_level"
-msgstr ""
+msgstr "行政區級別"
 
 #: ../tools/database/item_menu.txt:83
 msgid "erroneous boundary"
@@ -916,11 +916,11 @@ msgstr "建物的形狀"
 
 #: ../tools/database/item_menu.txt:87
 msgid "bridge to tag"
-msgstr ""
+msgstr "橋梁標記"
 
 #: ../tools/database/item_menu.txt:88
 msgid "admin boundary"
-msgstr ""
+msgstr "行政區界"
 
 #: ../tools/database/item_menu.txt:89
 msgid "power lines"
@@ -932,7 +932,7 @@ msgstr "郵局"
 
 #: ../tools/database/item_menu.txt:92
 msgid "ODbL migration change"
-msgstr ""
+msgstr "ODbL 授權轉換修改"
 
 #: ../tools/database/item_menu.txt:93
 msgid "school, not integrated"
@@ -940,7 +940,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:94
 msgid "monument"
-msgstr ""
+msgstr "紀念建物"
 
 #: ../tools/database/item_menu.txt:95
 msgid "node on ways"
@@ -948,7 +948,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:96 ../tools/database/item_menu.txt:114
 msgid "train station"
-msgstr ""
+msgstr "車站"
 
 #: ../tools/database/item_menu.txt:97
 msgid "TMC"
@@ -960,11 +960,11 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:99
 msgid "tunnel/bridge"
-msgstr ""
+msgstr "隧道/橋梁"
 
 #: ../tools/database/item_menu.txt:104
 msgid "monument, museum"
-msgstr ""
+msgstr "紀念館/博物館"
 
 #: ../tools/database/item_menu.txt:105
 msgid "monument, museum, could be integrated"
@@ -1004,7 +1004,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:118
 msgid "postal address"
-msgstr ""
+msgstr "地址"
 
 #: ../tools/database/item_menu.txt:119
 msgid "wikipedia, could be integrated"
@@ -1012,11 +1012,11 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:120
 msgid "public service"
-msgstr ""
+msgstr "公共服務"
 
 #: ../tools/database/item_menu.txt:121
 msgid "recycling"
-msgstr ""
+msgstr "回收"
 
 #: ../tools/database/item_menu.txt:122
 msgid "recycling, could be integrated"
@@ -1024,7 +1024,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:123
 msgid "parking"
-msgstr ""
+msgstr "停車"
 
 #: ../tools/database/item_menu.txt:124
 msgid "parking, could be integrated"
@@ -1032,7 +1032,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:125
 msgid "accommodation"
-msgstr ""
+msgstr "住宿"
 
 #: ../tools/database/item_menu.txt:126
 msgid "accommodation, could be integrated"
@@ -1040,7 +1040,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:127
 msgid "cycle parking"
-msgstr ""
+msgstr "腳踏車停放"
 
 #: ../tools/database/item_menu.txt:128
 msgid "cycle parking, could be integrated"
@@ -1056,7 +1056,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:131
 msgid "sport"
-msgstr ""
+msgstr "運動"
 
 #: ../tools/database/item_menu.txt:132
 msgid "sport, could be integrated"
@@ -1171,7 +1171,7 @@ msgstr "layer 有誤"
 
 #: tmp.tpl:36
 msgid "Updates summary"
-msgstr ""
+msgstr "更新摘要"
 
 #: tmp.tpl:40
 msgid "country"
@@ -1179,7 +1179,7 @@ msgstr "國家"
 
 #: tmp.tpl:41
 msgid "analyser"
-msgstr ""
+msgstr "分析器"
 
 #: ../tools/database/item_menu.txt:139
 msgid "postal code, could be integrated"
@@ -1214,7 +1214,7 @@ msgid ""
 "The servers analysing data are provided by OpenStreetMap-France and some "
 "others by contributors around the world. The servers for north-america and "
 "other areas are funded by Mapbox."
-msgstr ""
+msgstr "分析資料的伺服器由 OpenStreetMap-France 及世界各地的貢獻者提供。其中北美等地的伺服器由 Mapbox 贊助。"
 
 #: ../errors.py:125
 msgid "Fixed issues"
@@ -1228,24 +1228,24 @@ msgstr ""
 #: tmp.tpl:2 tmp.tpl:3 tmp.tpl:4
 #, python-brace-format
 msgid "Number of level {level} issues: {count}"
-msgstr ""
+msgstr "等級 {level} 的問題數量：{count}"
 
 #: tmp.tpl:6 tmp.tpl:15
 #, python-format
 msgid "Number of found issues: %d"
-msgstr ""
+msgstr "發現的問題數量：%d"
 
 #: tmp.tpl:7 tmp.tpl:16
 #, python-format
 msgid "Number of found issues: more than %d"
-msgstr ""
+msgstr "發現的問題數量：超過 %d"
 
 #: tmp.tpl:13
 #, python-format
 msgid ""
 "This page shows issues on elements that were last modified by '%s'. This "
 "doesn't means that this user is responsible for all these issues."
-msgstr ""
+msgstr "本頁顯示的是問題元素的最後修改者 '%s'。這並不表示這些問題都是他造成的。"
 
 #: tmp.tpl:17
 msgid "Show issues on a map"
@@ -1253,7 +1253,7 @@ msgstr "在地圖上顯示問題"
 
 #: tmp.tpl:20
 msgid "Osmose allows you to control your own issues."
-msgstr ""
+msgstr "Osmose 能讓你掌控自己的疑似錯誤。"
 
 #: tmp.tpl:21
 msgid ""

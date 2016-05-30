@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2016-05-14 08:04+0000\n"
+"PO-Revision-Date: 2016-05-29 17:34+0000\n"
 "Last-Translator: Marco Antonio <marcoantoniofrias@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -502,7 +502,7 @@ msgstr "Objetos eliminados:"
 
 #: tmp.tpl:141
 msgid "Fix with Osmose"
-msgstr "Corregir con Osmose"
+msgstr "Arreglado con osmose"
 
 #: tmp.tpl:142
 msgid "Source"
@@ -593,11 +593,11 @@ msgstr "Etiquetas olvidadas"
 
 #: ../tools/database/categ_menu.txt:3
 msgid "Bad tag"
-msgstr "Mala etiqueta"
+msgstr "Mal etiquetado"
 
 #: ../tools/database/categ_menu.txt:4
 msgid "Tags to remove"
-msgstr "Etiquetas para eliminar"
+msgstr "Etiquetas por quitar"
 
 #: ../tools/database/categ_menu.txt:5
 msgid "Tags name"
@@ -609,7 +609,7 @@ msgstr "Administrativo"
 
 #: ../tools/database/categ_menu.txt:7
 msgid "To map"
-msgstr "A mapear"
+msgstr "Por mapear"
 
 #: ../tools/database/categ_menu.txt:8
 msgid "Integration"
