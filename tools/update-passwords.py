@@ -19,10 +19,11 @@ if __name__ == "__main__":
 
     dbcurs.execute("SELECT id, password FROM source JOIN source_password ON source.id = source_id WHERE country=%s AND analyser=%s;",
                    (country, analyser))
-    if dbcurs.rowcount == 1:
-      prev_password = dbcurs.fetchone()["password"]
-      if prev_password == password:
-        return
+    if dbcurs.rowcount >= 1:
+      for r in dbcurs:
+        prev_password = r["password"]
+        if prev_password == password:
+          return
       # try to update password for an analyse
       dbcurs.execute("INSERT INTO source_password (source_id, password) VALUES ((SELECT id FROM source WHERE country=%s AND analyser=%s), %s);",
                      (country, analyser, password))
