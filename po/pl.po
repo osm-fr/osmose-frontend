@@ -7,14 +7,15 @@
 # Debeat <krystian4842@gmail.com>, 2015
 # endro, 2014-2016
 # Debeat <krystian4842@gmail.com>, 2015
+# Teiron <mmok444@gmail.com>, 2016
 # endro, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2016-02-11 19:05+0000\n"
-"Last-Translator: endro\n"
+"PO-Revision-Date: 2016-05-31 08:47+0000\n"
+"Last-Translator: Teiron <mmok444@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -712,7 +713,7 @@ msgstr "junction=roundabout"
 
 #: ../tools/database/item_menu.txt:26
 msgid "elevation"
-msgstr "głębokość"
+msgstr "wysokość n.p.m."
 
 #: ../tools/database/item_menu.txt:27
 msgid "oneway"
@@ -760,7 +761,7 @@ msgstr "wielokrotne tagi"
 
 #: ../tools/database/item_menu.txt:41
 msgid "saint hyphen"
-msgstr "święty hyphen"
+msgstr "pauza przy Saint (fr)"
 
 #: ../tools/database/item_menu.txt:42
 msgid "incorrect tag"
