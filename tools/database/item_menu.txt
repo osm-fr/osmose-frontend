@@ -20,6 +20,7 @@
  1200 | _("1-member relation")
  1210 | _("not-connected highway/cycleway")
  1220 | _("waterway")
+ 1221 | _("far from water")
  1230 | _("duplicate geometry")
  1240 | _("one-node way")
  2010 | _("junction=roundabout")
