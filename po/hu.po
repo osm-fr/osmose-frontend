@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2016-06-11 19:15+0000\n"
+"PO-Revision-Date: 2016-06-20 19:27+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -45,27 +45,13 @@ msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgid "False positives"
 msgstr "Téves hibajelzések"
 
-msgid "Fixed errors"
-msgstr "Hibák javítva"
-
 #: ../errors.py:128 tmp.tpl:62
 msgid "Informations"
 msgstr "Információk"
 
-#. TRANSLATORS: link to help in appropriate language
-msgid "Errors by user"
-msgstr "Hibák felhasználónként"
-
 #: ../map.py:137
 msgid "Relation analyser"
 msgstr "Kapcsolatellenőrző"
-
-#. TRANSLATORS: this link can be changed to something specific to the language
-msgid "openstreetmap.fr"
-msgstr "openstreetmap.fr"
-
-msgid "http://www.openstreetmap.fr/"
-msgstr "http://www.openstreetmap.fr/"
 
 #. TRANSLATORS: link to source code
 #: ../map.py:139
@@ -101,18 +87,6 @@ msgstr "Fordítás"
 msgid "Statistics for user %s"
 msgstr "%s statisztikája"
 
-#, python-brace-format
-msgid "Number of level {level} errors: {count}"
-msgstr "{count} darab {level}. szintű hiba"
-
-#, python-format
-msgid "Number of found errors: %d"
-msgstr "Talált hibák száma: %d"
-
-#, python-format
-msgid "Number of found errors: more than %d"
-msgstr "Talált hibák száma: több mint %d"
-
 #: tmp.tpl:8
 msgid "Users statistics"
 msgstr "Felhasználói statisztikák"
@@ -130,18 +104,9 @@ msgstr "Felhasználónév"
 msgid "User statistics for %s"
 msgstr "%s felhasználói statisztikák"
 
-#, python-format
-msgid ""
-"This page shows errors on elements that were last modified by '%s'. This "
-"doesn't means that this user is responsible for all these errors."
-msgstr "Ez az oldal azoknak az objektumoknak a hibáit mutatja, amiket '%s' módosított utoljára. Ez nem jelenti azt, hogy az összes hibát ő hozta létre."
-
 #: tmp.tpl:14
 msgid "This list is also available via rss."
 msgstr "Ez a lista rss-en is elérhető."
-
-msgid "Show errors on a map"
-msgstr "Hibák mutatása térképen."
 
 #: tmp.tpl:18
 msgid "Statistics for user"
@@ -151,16 +116,6 @@ msgstr "Felhasználói statisztika"
 msgid "User statistics"
 msgstr "Felhasználói statisztika"
 
-msgid "Osmose allows you to control your own errors."
-msgstr "Az Osmose lehetővé teszi, hogy figyelemmel kísérd a hibáidat."
-
-msgid ""
-"By entering your OSM username in the following form, you will be able to see"
-" errors that are attached to your username. Note that the algorithm that "
-"attaches errors to username is not perfect, as Osmose only checks the last "
-"contributor of the relevant erroneous elements."
-msgstr "OSM felhasználóneved megadásával lehetőséged lesz megtekinteni a hibákat, amik kapcsolatban állnak a felhasználóneveddel. Vedd figyelembe, hogy az algoritmus, ami összekapcsolja a felhasználóneveket a hibákkal, nem tökéletes, mert az Osmose csak a hibás elemek utolsó módosítóját keresi meg."
-
 #: tmp.tpl:22
 msgid "Username:"
 msgstr "Felhasználónév:"
@@ -168,13 +123,6 @@ msgstr "Felhasználónév:"
 #: tmp.tpl:24
 msgid "Bug tracker"
 msgstr "Hibakereső"
-
-msgid ""
-"Bug should be reported on <a href='http://trac.openstreetmap.fr'>trac</a>. "
-"The component to pick should be osmose-frontend for issues around the "
-"website, and osmose-backend for issues on the reported errors, or for "
-"suggestion for new analyses."
-msgstr "A hibát a <a href='http://trac.openstreetmap.fr'>trac</a> oldalon kell jelezni. A hiba típus osmose-frontend kell hogy legyen a weboldallal kapcsolatos hibáknál és osmose-backend az analizátor által jelzett hibák vagy az analizátorral kapcsolatos javaslatok esetén"
 
 #: tmp.tpl:26
 msgid "Providing patches"
@@ -219,9 +167,6 @@ msgstr "Átlagos késedelm"
 msgid "source"
 msgstr "forrás"
 
-msgid "description"
-msgstr "leírás"
-
 #: tmp.tpl:42
 msgid "last generation"
 msgstr "utolsó létrehozás"
@@ -265,10 +210,6 @@ msgstr "Az adatok a következő helyről származnak:"
 #: tmp.tpl:55
 msgid "copyright"
 msgstr "szerzői jog"
-
-#, python-format
-msgid "Information on error %d"
-msgstr "Információ a %d hibáról"
 
 #: tmp.tpl:57 tmp.tpl:95
 msgid "key"
@@ -328,12 +269,6 @@ msgstr "db."
 msgid "Total"
 msgstr "Összesen"
 
-msgid "Show more errors"
-msgstr "Több hiba mutatása"
-
-msgid "Show some errors"
-msgstr "Néhány hiba mutatása"
-
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: tmp.tpl:82
 msgid "subclass (abbreviation)"
@@ -343,9 +278,6 @@ msgstr "alcsop."
 #: tmp.tpl:84
 msgid "level (abbreviation)"
 msgstr "szint"
-
-msgid "information on error"
-msgstr "információ a hibáról"
 
 #: tmp.tpl:87
 msgid "position (abbreviation)"
@@ -363,26 +295,13 @@ msgstr "alcím"
 msgid "date"
 msgstr "dátum"
 
-msgid "delete error"
-msgstr "hiba törlése"
-
-#, python-format
-msgid "delete error #%d"
-msgstr "#%d hiba törlése"
-
 #: tmp.tpl:98
 msgid "OpenStreetMap Oversight Search Engine"
 msgstr "OpenStreetMap Oversight Search Engine"
 
-msgid "Map of errors"
-msgstr "Hibák térképe"
-
 #: tmp.tpl:100
 msgid "Help on OSM wiki"
 msgstr "Segítség az OSM wikiben"
-
-msgid "Information on error database"
-msgstr "Információ a hiba adatbázisról"
 
 #: tmp.tpl:102
 msgid "False positives list"
@@ -477,10 +396,6 @@ msgstr "Segítség"
 msgid "Delay: %sd"
 msgstr "Késés: %sd"
 
-#, python-format
-msgid "Level %d errors (%d)"
-msgstr "%d. szintű hiba (%d)"
-
 #: tmp.tpl:134
 msgid "Logout"
 msgstr "Kilépés"
@@ -516,9 +431,6 @@ msgstr "Típus"
 #: tmp.tpl:144
 msgid "Reuse changeset"
 msgstr "Módosításcsomag újrafelhasználása"
-
-msgid "Error reported on: "
-msgstr "Hiba jelentve:"
 
 #: tmp.tpl:146
 msgid "change status"
@@ -557,12 +469,6 @@ msgstr "Lefordítandó oldalak"
 msgid "Wiki pages"
 msgstr "Wiki oldalak"
 
-msgid "Osmose main page"
-msgstr "Osmose főoldal"
-
-msgid "Documentation on reported errors"
-msgstr "Jelentett hibák dokumentációja"
-
 #: tmp.tpl:155
 msgid "Osmose pages"
 msgstr "Osmose oldalak"
@@ -570,11 +476,6 @@ msgstr "Osmose oldalak"
 #: tmp.tpl:164
 msgid "Bug tracking system"
 msgstr "Hibakereső rendszer"
-
-msgid ""
-"<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
-"issue with translations, or erroneous analyses."
-msgstr "A <a href='http://trac.openstreetmap.fr'>Trac</a> használható bármilyen fordítási hiba vagy hibás analízis jelentésére."
 
 #: tmp.tpl:30
 msgid ""
@@ -1094,9 +995,6 @@ msgstr "Létrehozhatsz egy nyelvet itt: <a href='%s'>Transifex.</a>"
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr "A fordítás a <a href='%s'>Transifex</a>en készül."
 
-msgid "error n°"
-msgstr "hibaszám"
-
 #: tmp.tpl:127
 msgid "Export"
 msgstr "Exportálás"
@@ -1263,13 +1161,6 @@ msgid ""
 " issues that are attached to your username. Note that the algorithm that "
 "attaches issues to username is not perfect, as Osmose only checks the last "
 "contributor of the relevant erroneous elements."
-msgstr ""
-
-msgid ""
-"Bug should be reported on <a href='http://trac.openstreetmap.fr'>trac</a>. "
-"The component to pick should be osmose-frontend for issues around the "
-"website, and osmose-backend for issues on the reported issues on OSM data, "
-"or for suggestion for new analyses."
 msgstr ""
 
 #: tmp.tpl:56 tmp.tpl:94

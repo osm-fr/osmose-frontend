@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2016-06-11 19:15+0000\n"
+"PO-Revision-Date: 2016-06-20 19:27+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -43,27 +43,13 @@ msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgid "False positives"
 msgstr "誤判"
 
-msgid "Fixed errors"
-msgstr "已修正的錯誤"
-
 #: ../errors.py:128 tmp.tpl:62
 msgid "Informations"
 msgstr "資訊"
 
-#. TRANSLATORS: link to help in appropriate language
-msgid "Errors by user"
-msgstr "依使用者分"
-
 #: ../map.py:137
 msgid "Relation analyser"
 msgstr "關係分析器"
-
-#. TRANSLATORS: this link can be changed to something specific to the language
-msgid "openstreetmap.fr"
-msgstr ""
-
-msgid "http://www.openstreetmap.fr/"
-msgstr "http://www.openstreetmap.fr/"
 
 #. TRANSLATORS: link to source code
 #: ../map.py:139
@@ -99,18 +85,6 @@ msgstr "翻譯"
 msgid "Statistics for user %s"
 msgstr "使用者 %s 的統計"
 
-#, python-brace-format
-msgid "Number of level {level} errors: {count}"
-msgstr "等級 {level} 的錯誤數量：{count}"
-
-#, python-format
-msgid "Number of found errors: %d"
-msgstr "發現的錯誤數量：%d"
-
-#, python-format
-msgid "Number of found errors: more than %d"
-msgstr "發現的錯誤數量：超過 %d"
-
 #: tmp.tpl:8
 msgid "Users statistics"
 msgstr "使用者統計"
@@ -128,18 +102,9 @@ msgstr "使用者名稱"
 msgid "User statistics for %s"
 msgstr "%s 的使用者統計"
 
-#, python-format
-msgid ""
-"This page shows errors on elements that were last modified by '%s'. This "
-"doesn't means that this user is responsible for all these errors."
-msgstr "本頁顯示的是錯誤元素的最後修改者 '%s'。這並不表示這些錯誤都是他造成的。"
-
 #: tmp.tpl:14
 msgid "This list is also available via rss."
 msgstr "本列表也有提供 RSS"
-
-msgid "Show errors on a map"
-msgstr "在地圖上顯示錯誤"
 
 #: tmp.tpl:18
 msgid "Statistics for user"
@@ -149,16 +114,6 @@ msgstr "使用者的統計"
 msgid "User statistics"
 msgstr "使用者統計"
 
-msgid "Osmose allows you to control your own errors."
-msgstr "Osmose 能讓你掌控自己的錯誤。"
-
-msgid ""
-"By entering your OSM username in the following form, you will be able to see"
-" errors that are attached to your username. Note that the algorithm that "
-"attaches errors to username is not perfect, as Osmose only checks the last "
-"contributor of the relevant erroneous elements."
-msgstr "只要在下方的表單填入你的 OSM 帳號名，就能看到列於你名下的錯誤。不過要注意到，關聯錯誤及帳號的算法並不完美，因為 Osmose 只看有誤的元素最後修改人。"
-
 #: tmp.tpl:22
 msgid "Username:"
 msgstr "使用者名稱："
@@ -166,13 +121,6 @@ msgstr "使用者名稱："
 #: tmp.tpl:24
 msgid "Bug tracker"
 msgstr "Bug 追蹤系統"
-
-msgid ""
-"Bug should be reported on <a href='http://trac.openstreetmap.fr'>trac</a>. "
-"The component to pick should be osmose-frontend for issues around the "
-"website, and osmose-backend for issues on the reported errors, or for "
-"suggestion for new analyses."
-msgstr ""
 
 #: tmp.tpl:26
 msgid "Providing patches"
@@ -217,9 +165,6 @@ msgstr "平均延遲："
 msgid "source"
 msgstr "來源"
 
-msgid "description"
-msgstr "描述"
-
 #: tmp.tpl:42
 msgid "last generation"
 msgstr "上次產生"
@@ -263,10 +208,6 @@ msgstr "資料來源"
 #: tmp.tpl:55
 msgid "copyright"
 msgstr "著作權"
-
-#, python-format
-msgid "Information on error %d"
-msgstr ""
 
 #: tmp.tpl:57 tmp.tpl:95
 msgid "key"
@@ -326,12 +267,6 @@ msgstr "數量"
 msgid "Total"
 msgstr "合計"
 
-msgid "Show more errors"
-msgstr "顯示更多錯誤"
-
-msgid "Show some errors"
-msgstr "顯示更多錯誤"
-
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: tmp.tpl:82
 msgid "subclass (abbreviation)"
@@ -341,9 +276,6 @@ msgstr "子類"
 #: tmp.tpl:84
 msgid "level (abbreviation)"
 msgstr "級"
-
-msgid "information on error"
-msgstr ""
 
 #: tmp.tpl:87
 msgid "position (abbreviation)"
@@ -361,26 +293,13 @@ msgstr "小標"
 msgid "date"
 msgstr "日期"
 
-msgid "delete error"
-msgstr ""
-
-#, python-format
-msgid "delete error #%d"
-msgstr ""
-
 #: tmp.tpl:98
 msgid "OpenStreetMap Oversight Search Engine"
 msgstr "OpenStreetMap Oversight Search Engine"
 
-msgid "Map of errors"
-msgstr "錯誤地圖"
-
 #: tmp.tpl:100
 msgid "Help on OSM wiki"
 msgstr "OSM wiki 上的說明"
-
-msgid "Information on error database"
-msgstr "更多關於資料庫的資訊"
 
 #: tmp.tpl:102
 msgid "False positives list"
@@ -475,10 +394,6 @@ msgstr "求助"
 msgid "Delay: %sd"
 msgstr "延遲：%s天"
 
-#, python-format
-msgid "Level %d errors (%d)"
-msgstr "等級 %d 的錯誤 (%d)"
-
 #: tmp.tpl:134
 msgid "Logout"
 msgstr "登出"
@@ -514,9 +429,6 @@ msgstr ""
 #: tmp.tpl:144
 msgid "Reuse changeset"
 msgstr "續用(reuse)變更集"
-
-msgid "Error reported on: "
-msgstr "錯誤發現日期："
 
 #: tmp.tpl:146
 msgid "change status"
@@ -555,12 +467,6 @@ msgstr "需要被翻譯的網頁"
 msgid "Wiki pages"
 msgstr "Wiki 頁面"
 
-msgid "Osmose main page"
-msgstr "Osmose 主頁"
-
-msgid "Documentation on reported errors"
-msgstr "各項錯誤的詳細說明"
-
 #: tmp.tpl:155
 msgid "Osmose pages"
 msgstr "Osmose 網頁"
@@ -568,11 +474,6 @@ msgstr "Osmose 網頁"
 #: tmp.tpl:164
 msgid "Bug tracking system"
 msgstr "Bug 追蹤系統"
-
-msgid ""
-"<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
-"issue with translations, or erroneous analyses."
-msgstr ""
 
 #: tmp.tpl:30
 msgid ""
@@ -1092,9 +993,6 @@ msgstr "你可以直接在 <a href='%s'>Transifex</a> 上新增一個語言。"
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr "翻譯是透過 <a href='%s'>Transifex</a> 所完成。"
 
-msgid "error n°"
-msgstr ""
-
 #: tmp.tpl:127
 msgid "Export"
 msgstr "匯出"
@@ -1262,13 +1160,6 @@ msgid ""
 "attaches issues to username is not perfect, as Osmose only checks the last "
 "contributor of the relevant erroneous elements."
 msgstr "只要在下方的表單填入你的 OSM 帳號名，就能看到列於你名下的問題。不過要注意到，關聯問題及帳號的算法並不完美，因為 Osmose 只看有問題的元素最後修改人。"
-
-msgid ""
-"Bug should be reported on <a href='http://trac.openstreetmap.fr'>trac</a>. "
-"The component to pick should be osmose-frontend for issues around the "
-"website, and osmose-backend for issues on the reported issues on OSM data, "
-"or for suggestion for new analyses."
-msgstr ""
 
 #: tmp.tpl:56 tmp.tpl:94
 #, python-format

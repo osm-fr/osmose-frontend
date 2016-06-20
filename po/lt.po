@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2016-06-11 19:15+0000\n"
+"PO-Revision-Date: 2016-06-20 19:27+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/openstreetmap-france/osmose/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -43,27 +43,13 @@ msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgid "False positives"
 msgstr "Klaidingai teigiamos"
 
-msgid "Fixed errors"
-msgstr "Pataisytos klaidos"
-
 #: ../errors.py:128 tmp.tpl:62
 msgid "Informations"
 msgstr "Informacija"
 
-#. TRANSLATORS: link to help in appropriate language
-msgid "Errors by user"
-msgstr "Klaidos pagal naudotoją"
-
 #: ../map.py:137
 msgid "Relation analyser"
 msgstr "Ryšių analizatorius"
-
-#. TRANSLATORS: this link can be changed to something specific to the language
-msgid "openstreetmap.fr"
-msgstr "openstreetmap.fr"
-
-msgid "http://www.openstreetmap.fr/"
-msgstr "http://www.openstreetmap.fr/"
 
 #. TRANSLATORS: link to source code
 #: ../map.py:139
@@ -99,18 +85,6 @@ msgstr "Vertimas"
 msgid "Statistics for user %s"
 msgstr "Statistika naudotojui %s"
 
-#, python-brace-format
-msgid "Number of level {level} errors: {count}"
-msgstr "{level} lygio klaidų skaičius: {count}"
-
-#, python-format
-msgid "Number of found errors: %d"
-msgstr "Rastų klaidų skaičius: %d"
-
-#, python-format
-msgid "Number of found errors: more than %d"
-msgstr "Rastų klaidų skaičius: daugiau kaip %d"
-
 #: tmp.tpl:8
 msgid "Users statistics"
 msgstr "Naudotojo statistika"
@@ -128,18 +102,9 @@ msgstr "Naudotojas"
 msgid "User statistics for %s"
 msgstr "Naudotojo %s statistika"
 
-#, python-format
-msgid ""
-"This page shows errors on elements that were last modified by '%s'. This "
-"doesn't means that this user is responsible for all these errors."
-msgstr "Šis puslapis rodo elementų, kurie buvo paskiausiai modifikuoti naudotojo „%s“, klaidas. Tai nereiškia, kad naudotojas yra atsakingas už visas šias klaidas."
-
 #: tmp.tpl:14
 msgid "This list is also available via rss."
 msgstr "Šis sąrašas taip pat prieinamas per rss."
-
-msgid "Show errors on a map"
-msgstr "Rodyti klaidas žemėlapyje"
 
 #: tmp.tpl:18
 msgid "Statistics for user"
@@ -149,16 +114,6 @@ msgstr "Statistika naudotojui"
 msgid "User statistics"
 msgstr "Naudotojo statistika"
 
-msgid "Osmose allows you to control your own errors."
-msgstr "Osmose leidžia valdyti savo pačių klaidas."
-
-msgid ""
-"By entering your OSM username in the following form, you will be able to see"
-" errors that are attached to your username. Note that the algorithm that "
-"attaches errors to username is not perfect, as Osmose only checks the last "
-"contributor of the relevant erroneous elements."
-msgstr "Įvedę savo OSM naudotojo vardą šioje formoje pamatysite klaidas susietas su jūsų naudotoju. Atkreipkite dėmesį, kad algoritmas, kuris susieja klaidas su naudotoju nėra tobulas, nes Osmose tikrina tik paskutinį prisidėjusį prie atitinkamų klaidingų elementų."
-
 #: tmp.tpl:22
 msgid "Username:"
 msgstr "Naudotojas:"
@@ -166,13 +121,6 @@ msgstr "Naudotojas:"
 #: tmp.tpl:24
 msgid "Bug tracker"
 msgstr "Klaidų sekimo sistema"
-
-msgid ""
-"Bug should be reported on <a href='http://trac.openstreetmap.fr'>trac</a>. "
-"The component to pick should be osmose-frontend for issues around the "
-"website, and osmose-backend for issues on the reported errors, or for "
-"suggestion for new analyses."
-msgstr "Apie klaidas reikėtų pranešti <a href='http://trac.openstreetmap.fr'>trac</a>. Klaidoms svetainėje reikia pasirinkti komponentą „osmose-frontend“, o problemoms apie klaidas ataskaitose ar naujų analizių pasiūlymams – „osmose-backend“."
 
 #: tmp.tpl:26
 msgid "Providing patches"
@@ -217,9 +165,6 @@ msgstr "Medianinis uždelsimas:"
 msgid "source"
 msgstr "šaltinis"
 
-msgid "description"
-msgstr "aprašas"
-
 #: tmp.tpl:42
 msgid "last generation"
 msgstr "paskutinis generavimas"
@@ -263,10 +208,6 @@ msgstr "Duomenys iš"
 #: tmp.tpl:55
 msgid "copyright"
 msgstr "autoriaus teisės"
-
-#, python-format
-msgid "Information on error %d"
-msgstr "Informacija apie klaidą %d"
 
 #: tmp.tpl:57 tmp.tpl:95
 msgid "key"
@@ -326,12 +267,6 @@ msgstr "kiekis"
 msgid "Total"
 msgstr "Iš viso"
 
-msgid "Show more errors"
-msgstr "Rodyti daugiau klaidų"
-
-msgid "Show some errors"
-msgstr "Rodyti keletą klaidų"
-
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: tmp.tpl:82
 msgid "subclass (abbreviation)"
@@ -341,9 +276,6 @@ msgstr "pkl."
 #: tmp.tpl:84
 msgid "level (abbreviation)"
 msgstr "lyg."
-
-msgid "information on error"
-msgstr "informacija apie klaidą"
 
 #: tmp.tpl:87
 msgid "position (abbreviation)"
@@ -361,26 +293,13 @@ msgstr "paantraštė"
 msgid "date"
 msgstr "data"
 
-msgid "delete error"
-msgstr "šalinti klaidą"
-
-#, python-format
-msgid "delete error #%d"
-msgstr "šalinti klaidą #%d"
-
 #: tmp.tpl:98
 msgid "OpenStreetMap Oversight Search Engine"
 msgstr "OpenStreetMap Apsirikimų Paieškos Sistema"
 
-msgid "Map of errors"
-msgstr "Klaidų žemėlapis"
-
 #: tmp.tpl:100
 msgid "Help on OSM wiki"
 msgstr "Žinynas OSM vikyje"
-
-msgid "Information on error database"
-msgstr "Informacija apie klaidų duomenų bazę"
 
 #: tmp.tpl:102
 msgid "False positives list"
@@ -475,10 +394,6 @@ msgstr "Žinynas"
 msgid "Delay: %sd"
 msgstr "Uždelsimas: %sd"
 
-#, python-format
-msgid "Level %d errors (%d)"
-msgstr "%d lygio klaidos (%d)"
-
 #: tmp.tpl:134
 msgid "Logout"
 msgstr "Atsijungti"
@@ -514,9 +429,6 @@ msgstr "Tipas"
 #: tmp.tpl:144
 msgid "Reuse changeset"
 msgstr "Pakartotinai panaudoti pakeitimą"
-
-msgid "Error reported on: "
-msgstr "Apie klaidą pranešta:"
 
 #: tmp.tpl:146
 msgid "change status"
@@ -555,12 +467,6 @@ msgstr "Puslapiai vertimui"
 msgid "Wiki pages"
 msgstr "Viki puslapiai"
 
-msgid "Osmose main page"
-msgstr "Osmose pagrindinis puslapis"
-
-msgid "Documentation on reported errors"
-msgstr "Klaidų ataskaitose dokumentacija"
-
 #: tmp.tpl:155
 msgid "Osmose pages"
 msgstr "Osmose puslapiai"
@@ -568,11 +474,6 @@ msgstr "Osmose puslapiai"
 #: tmp.tpl:164
 msgid "Bug tracking system"
 msgstr "Klaidų sekimo sistema"
-
-msgid ""
-"<a href='http://trac.openstreetmap.fr'>Trac</a> can be used to report any "
-"issue with translations, or erroneous analyses."
-msgstr "<a href='http://trac.openstreetmap.fr'>Trac</a> gali būti naudojamas pranešti bet kokiai problemai su vertimu ar klaidomis analizėse."
 
 #: tmp.tpl:30
 msgid ""
@@ -1092,9 +993,6 @@ msgstr "Galite sukurti naują kalbą tiesiai <a href='%s'>Transifex.</a>"
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr "Vertimas atliekamas <a href='%s'>Transifex</a>."
 
-msgid "error n°"
-msgstr "klaidos nr."
-
 #: tmp.tpl:127
 msgid "Export"
 msgstr "Eksportas"
@@ -1262,13 +1160,6 @@ msgid ""
 "attaches issues to username is not perfect, as Osmose only checks the last "
 "contributor of the relevant erroneous elements."
 msgstr "Įvedę savo OSM naudotojo vardą šioje formoje pamatysite klaidas susietas su jūsų naudotoju. Atkreipkite dėmesį, kad algoritmas, kuris susieja klaidas su naudotoju nėra tobulas, nes Osmose tikrina tik paskutinį prisidėjusį prie atitinkamų klaidingų elementų."
-
-msgid ""
-"Bug should be reported on <a href='http://trac.openstreetmap.fr'>trac</a>. "
-"The component to pick should be osmose-frontend for issues around the "
-"website, and osmose-backend for issues on the reported issues on OSM data, "
-"or for suggestion for new analyses."
-msgstr "Apie klaidas reikėtų pranešti <a href='http://trac.openstreetmap.fr'>trac</a>. Klaidoms svetainėje reikia pasirinkti komponentą „osmose-frontend“, o problemoms apie klaidas OSM duomenų ataskaitose ar naujų analizių pasiūlymams – „osmose-backend“."
 
 #: tmp.tpl:56 tmp.tpl:94
 #, python-format
