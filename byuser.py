@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, request, template, redirect, response
+from bottle import route, request, template, redirect, response, html_escape
 from tools import utils
 from tools import query
 from tools.OrderedDict import OrderedDict
@@ -62,7 +62,7 @@ def user(db, lang, username=None, format=None):
         return template('byuser/byuser.rss', username=username, users=params.users, count=count, errors=errors, translate=utils.translator(lang), website=utils.website)
 
     else:
-        return template('byuser/byuser', username=username, users=params.users, count=count, errors=errors, translate=utils.translator(lang), website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read)
+        return template('byuser/byuser', username=username, users=params.users, count=count, errors=errors, translate=utils.translator(lang), website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read, html_escape=html_escape)
 
 
 def _user_count(db, username=None):

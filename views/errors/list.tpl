@@ -26,12 +26,12 @@
 </thead>
 %for res in errors:
 <tr>
-    <td title="{{res["country"] + "-" + res["analyser"]}}"><a href="?source={{res["source"]}}">{{res["source"]}}</a></td>
+    <td title="{{res["country"] + "-" + res["analyser"]}}"><a href="?{{!page_args}}source={{res["source"]}}">{{res["source"]}}</a></td>
     <td>{{res["class"]}}</td>
     <td>{{res["subclass"]}}</td>
     <td>{{res["level"]}}</td>
     <td title="{{res["item"]}}"><img src="../images/markers/marker-l-{{res["item"]}}.png" alt="{{res["item"]}}"></td>
-    <td><a href="?item={{res["item"]}}">{{res["item"]}}</a></td>
+    <td><a href="?{{!page_args}}item={{res["item"]}}">{{res["item"]}}</a></td>
 %    if res["menu"]:
     <td title="{{translate.select(res["title"])}}">{{translate.select(res["menu"])}}</td>
 %    else:
