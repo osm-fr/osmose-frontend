@@ -63,7 +63,7 @@
  4020 | _("on junction=roundabout")
  4030 | _("incompatible tags")
  4040 | _("ref in name")
- 4060 | _("seamark:fixme")
+ 4060 | _("fixme import")
  4070 | _("construction")
  4080 | _("duplicate object")
  4090 | _("unwanted tag on node")
