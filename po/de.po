@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Christian Ostermann <openstreetmap@oekkel.de>, 2015
-# Ettore Atalan <atalanttore@googlemail.com>, 2014-2015
+# Ettore Atalan <atalanttore@googlemail.com>, 2014-2016
 # frodrigo <fred.rodrigo@gmail.com>, 2014
 # frodrigo <fred.rodrigo@gmail.com>, 2014
 # Loo Nie <looniverse@gmail.com>, 2015
@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2016-06-20 19:27+0000\n"
+"PO-Revision-Date: 2016-06-30 19:38+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -752,10 +752,6 @@ msgstr "unvereinbare Tags"
 msgid "ref in name"
 msgstr "ref im name"
 
-#: ../tools/database/item_menu.txt:66
-msgid "seamark:fixme"
-msgstr "seamark:fixme"
-
 #: ../tools/database/item_menu.txt:67
 msgid "construction"
 msgstr "im Bau"
@@ -1283,4 +1279,8 @@ msgstr "Auf <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-fr
 
 #: ../tools/database/item_menu.txt:23
 msgid "far from water"
+msgstr "weit vom Wasser entfernt"
+
+#: ../tools/database/item_menu.txt:66
+msgid "fixme import"
 msgstr ""

@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2016-06-20 19:27+0000\n"
+"PO-Revision-Date: 2016-06-30 19:38+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Catalan (http://www.transifex.com/openstreetmap-france/osmose/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -741,10 +741,6 @@ msgstr "etiquetes incompatibles"
 msgid "ref in name"
 msgstr "ref al nom"
 
-#: ../tools/database/item_menu.txt:66
-msgid "seamark:fixme"
-msgstr "seamark:fixme"
-
 #: ../tools/database/item_menu.txt:67
 msgid "construction"
 msgstr "construcció"
@@ -1272,4 +1268,8 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:23
 msgid "far from water"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:66
+msgid "fixme import"
 msgstr ""

@@ -736,10 +736,6 @@ msgstr ""
 msgid "ref in name"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:66
-msgid "seamark:fixme"
-msgstr ""
-
 #: ../tools/database/item_menu.txt:67
 msgid "construction"
 msgstr ""
@@ -1267,4 +1263,8 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:23
 msgid "far from water"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:66
+msgid "fixme import"
 msgstr ""
