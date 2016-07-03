@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2016-06-30 19:38+0000\n"
+"PO-Revision-Date: 2016-07-03 18:55+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -163,7 +163,7 @@ msgid "Median delay:"
 msgstr "Medián zpoždění:"
 
 #: tmp.tpl:39 tmp.tpl:46 tmp.tpl:69 tmp.tpl:78
-#: ../tools/database/item_menu.txt:29
+#: ../tools/database/item_menu.txt:30
 msgid "source"
 msgstr "zdroj"
 
@@ -291,7 +291,7 @@ msgstr "prvky"
 msgid "subtitle"
 msgstr "titulek"
 
-#: tmp.tpl:90 ../tools/database/item_menu.txt:48
+#: tmp.tpl:90 ../tools/database/item_menu.txt:50
 msgid "date"
 msgstr "datum"
 
@@ -605,359 +605,359 @@ msgstr "vodní tok"
 msgid "duplicate geometry"
 msgstr "duplikovaná geometrie"
 
-#: ../tools/database/item_menu.txt:26
+#: ../tools/database/item_menu.txt:27
 msgid "junction=roundabout"
 msgstr "kruhový objezd"
 
-#: ../tools/database/item_menu.txt:27
+#: ../tools/database/item_menu.txt:28
 msgid "elevation"
 msgstr "nadmořská výška"
 
-#: ../tools/database/item_menu.txt:28
+#: ../tools/database/item_menu.txt:29
 msgid "oneway"
 msgstr "jednosměrka"
 
-#: ../tools/database/item_menu.txt:30
+#: ../tools/database/item_menu.txt:31
 msgid "parent tag"
 msgstr "značka rodiče"
 
-#: ../tools/database/item_menu.txt:31
+#: ../tools/database/item_menu.txt:32
 msgid "street numbers"
 msgstr "čísla popisná"
 
-#: ../tools/database/item_menu.txt:32
+#: ../tools/database/item_menu.txt:33
 msgid "highway"
 msgstr "silnice"
 
-#: ../tools/database/item_menu.txt:33
+#: ../tools/database/item_menu.txt:34
 msgid "highway crossing"
 msgstr "přechod přes silnici"
 
-#: ../tools/database/item_menu.txt:34 ../tools/database/item_menu.txt:138
+#: ../tools/database/item_menu.txt:35 ../tools/database/item_menu.txt:142
 msgid "pharmacy"
 msgstr "lékárna"
 
-#: ../tools/database/item_menu.txt:37
+#: ../tools/database/item_menu.txt:39
 msgid "highway roundabout"
 msgstr "kruhový objezd"
 
-#: ../tools/database/item_menu.txt:38
+#: ../tools/database/item_menu.txt:40
 msgid "bad source tag"
 msgstr "špatně uvedený zdroj"
 
-#: ../tools/database/item_menu.txt:39
+#: ../tools/database/item_menu.txt:41
 msgid "tagwatch cleaner"
 msgstr "tagwatch čistič"
 
-#: ../tools/database/item_menu.txt:40
+#: ../tools/database/item_menu.txt:42
 msgid "wikipedia"
 msgstr "wikipedie"
 
-#: ../tools/database/item_menu.txt:41
+#: ../tools/database/item_menu.txt:43
 msgid "multiple tags"
 msgstr "násobné značky"
 
-#: ../tools/database/item_menu.txt:42
+#: ../tools/database/item_menu.txt:44
 msgid "saint hyphen"
 msgstr "pomlčka za Svatý"
 
-#: ../tools/database/item_menu.txt:43
+#: ../tools/database/item_menu.txt:45
 msgid "incorrect tag"
 msgstr "nesprávná značka"
 
-#: ../tools/database/item_menu.txt:44
+#: ../tools/database/item_menu.txt:46
 msgid "bad tag key"
 msgstr "špatný klíč"
 
-#: ../tools/database/item_menu.txt:45
+#: ../tools/database/item_menu.txt:47
 msgid "similar values"
 msgstr "podobné hodnoty"
 
-#: ../tools/database/item_menu.txt:46
+#: ../tools/database/item_menu.txt:48
 msgid "multiple values"
 msgstr "více hodnot"
 
-#: ../tools/database/item_menu.txt:47
+#: ../tools/database/item_menu.txt:49
 msgid "swimming pool as natural=water"
 msgstr "plavecký bazén jako natural=water"
 
-#: ../tools/database/item_menu.txt:49
+#: ../tools/database/item_menu.txt:51
 msgid "numeric value"
 msgstr "číselná hodnota"
 
-#: ../tools/database/item_menu.txt:50
+#: ../tools/database/item_menu.txt:52
 msgid "small farm"
 msgstr "malá farma"
 
-#: ../tools/database/item_menu.txt:51
+#: ../tools/database/item_menu.txt:53
 msgid "note"
 msgstr "poznámka"
 
-#: ../tools/database/item_menu.txt:52
+#: ../tools/database/item_menu.txt:54
 msgid "tree"
 msgstr "strom"
 
-#: ../tools/database/item_menu.txt:53
+#: ../tools/database/item_menu.txt:55
 msgid "brand in name"
 msgstr "obchodní značka ve jméně"
 
-#: ../tools/database/item_menu.txt:54
+#: ../tools/database/item_menu.txt:56
 msgid "typo in tag"
 msgstr "překlep v tagu"
 
-#: ../tools/database/item_menu.txt:55
+#: ../tools/database/item_menu.txt:57
 msgid "incorrect "
 msgstr "nesprávný"
 
-#: ../tools/database/item_menu.txt:56
+#: ../tools/database/item_menu.txt:58
 msgid "parking lane"
 msgstr "parkovací pruh"
 
-#: ../tools/database/item_menu.txt:57
+#: ../tools/database/item_menu.txt:59
 msgid "relation role"
 msgstr "role v relaci"
 
-#: ../tools/database/item_menu.txt:58
+#: ../tools/database/item_menu.txt:60
 msgid "relation type=restriction"
 msgstr "relace type=restriction"
 
-#: ../tools/database/item_menu.txt:59
+#: ../tools/database/item_menu.txt:61
 msgid "postcode"
 msgstr "poštovní směrovací číslo"
 
-#: ../tools/database/item_menu.txt:62
+#: ../tools/database/item_menu.txt:65
 msgid "disused"
 msgstr "nepoužívané"
 
-#: ../tools/database/item_menu.txt:63
+#: ../tools/database/item_menu.txt:66
 msgid "on junction=roundabout"
 msgstr "na junction=roundabout"
 
-#: ../tools/database/item_menu.txt:64
+#: ../tools/database/item_menu.txt:67
 msgid "incompatible tags"
 msgstr "nekompatibilní značky"
 
-#: ../tools/database/item_menu.txt:65
+#: ../tools/database/item_menu.txt:68
 msgid "ref in name"
 msgstr "referenční číslo v názvu"
 
-#: ../tools/database/item_menu.txt:67
+#: ../tools/database/item_menu.txt:71
 msgid "construction"
 msgstr "výstavba"
 
-#: ../tools/database/item_menu.txt:68
+#: ../tools/database/item_menu.txt:72
 msgid "duplicate object"
 msgstr "duplikovaný objekt"
 
-#: ../tools/database/item_menu.txt:69
+#: ../tools/database/item_menu.txt:73
 msgid "unwanted tag on node"
 msgstr "nelogická značka na uzlu"
 
-#: ../tools/database/item_menu.txt:70
+#: ../tools/database/item_menu.txt:74
 msgid "bad usage"
 msgstr "špatné použití"
 
-#: ../tools/database/item_menu.txt:73
+#: ../tools/database/item_menu.txt:77
 msgid "orthograph"
 msgstr "pravopis"
 
-#: ../tools/database/item_menu.txt:74
+#: ../tools/database/item_menu.txt:78
 msgid "way type"
 msgstr "typ cesty"
 
-#: ../tools/database/item_menu.txt:75
+#: ../tools/database/item_menu.txt:79
 msgid "two names"
 msgstr "dva názvy"
 
-#: ../tools/database/item_menu.txt:76
+#: ../tools/database/item_menu.txt:80
 msgid "toponymy"
 msgstr "toponymie"
 
-#: ../tools/database/item_menu.txt:77
+#: ../tools/database/item_menu.txt:81
 msgid "test soundex"
 msgstr "test soundex"
 
-#: ../tools/database/item_menu.txt:79
+#: ../tools/database/item_menu.txt:83
 msgid "open polygon"
 msgstr "otevřený polygon"
 
-#: ../tools/database/item_menu.txt:80
+#: ../tools/database/item_menu.txt:84
 msgid "duplicated way"
 msgstr "duplikovaná cesta"
 
-#: ../tools/database/item_menu.txt:81
+#: ../tools/database/item_menu.txt:85
 msgid "place without name"
 msgstr "místo (lokalita) beze jména"
 
-#: ../tools/database/item_menu.txt:82
+#: ../tools/database/item_menu.txt:86
 msgid "INSEE code"
 msgstr "kód INSEE"
 
-#: ../tools/database/item_menu.txt:83
+#: ../tools/database/item_menu.txt:87
 msgid "admin_level"
 msgstr "admin_level"
 
-#: ../tools/database/item_menu.txt:84
+#: ../tools/database/item_menu.txt:88
 msgid "erroneous boundary"
 msgstr "hranice s chybami"
 
-#: ../tools/database/item_menu.txt:85
+#: ../tools/database/item_menu.txt:89
 msgid "out of boundary"
 msgstr "mimo hranice"
 
-#: ../tools/database/item_menu.txt:86
+#: ../tools/database/item_menu.txt:90
 msgid "geodesic building"
 msgstr "geodetická budova"
 
-#: ../tools/database/item_menu.txt:87
+#: ../tools/database/item_menu.txt:91
 msgid "building shape"
 msgstr "tvar budovy"
 
-#: ../tools/database/item_menu.txt:88
+#: ../tools/database/item_menu.txt:92
 msgid "bridge to tag"
 msgstr "most k označkování"
 
-#: ../tools/database/item_menu.txt:89
+#: ../tools/database/item_menu.txt:93
 msgid "admin boundary"
 msgstr "administrativní hranice"
 
-#: ../tools/database/item_menu.txt:90
+#: ../tools/database/item_menu.txt:94
 msgid "power lines"
 msgstr "síť rozvodu elektřiny"
 
-#: ../tools/database/item_menu.txt:91 ../tools/database/item_menu.txt:107
+#: ../tools/database/item_menu.txt:95 ../tools/database/item_menu.txt:111
 msgid "post office"
 msgstr "pošta"
 
-#: ../tools/database/item_menu.txt:93
+#: ../tools/database/item_menu.txt:97
 msgid "ODbL migration change"
 msgstr "migrace na licenci ODbL"
 
-#: ../tools/database/item_menu.txt:94
+#: ../tools/database/item_menu.txt:98
 msgid "school, not integrated"
 msgstr "škola, není sjednoceno"
 
-#: ../tools/database/item_menu.txt:95
+#: ../tools/database/item_menu.txt:99
 msgid "monument"
 msgstr "monument"
 
-#: ../tools/database/item_menu.txt:96
+#: ../tools/database/item_menu.txt:100
 msgid "node on ways"
 msgstr "uzel na cestách"
 
-#: ../tools/database/item_menu.txt:97 ../tools/database/item_menu.txt:115
+#: ../tools/database/item_menu.txt:101 ../tools/database/item_menu.txt:119
 msgid "train station"
 msgstr "vlaková stanice"
 
-#: ../tools/database/item_menu.txt:98
+#: ../tools/database/item_menu.txt:102
 msgid "TMC"
 msgstr "TMC"
 
-#: ../tools/database/item_menu.txt:99
+#: ../tools/database/item_menu.txt:103
 msgid "relation type=boundary"
 msgstr "relace type=boundary"
 
-#: ../tools/database/item_menu.txt:100
+#: ../tools/database/item_menu.txt:104
 msgid "tunnel/bridge"
 msgstr "tunel/most"
 
-#: ../tools/database/item_menu.txt:105
+#: ../tools/database/item_menu.txt:109
 msgid "monument, museum"
 msgstr "monument, muzeum"
 
-#: ../tools/database/item_menu.txt:106
+#: ../tools/database/item_menu.txt:110
 msgid "monument, museum, could be integrated"
 msgstr "monument, muzeum, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:108
+#: ../tools/database/item_menu.txt:112
 msgid "post office, could be integrated"
 msgstr "pošta, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:111
+#: ../tools/database/item_menu.txt:115
 msgid "school"
 msgstr "škola"
 
-#: ../tools/database/item_menu.txt:112
+#: ../tools/database/item_menu.txt:116
 msgid "school, could be integrated"
 msgstr "škola, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:113
+#: ../tools/database/item_menu.txt:117
 msgid "public transport"
 msgstr "veřejná doprava"
 
-#: ../tools/database/item_menu.txt:114
+#: ../tools/database/item_menu.txt:118
 msgid "public transport, could be integrated"
 msgstr "veřejná doprava, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:116
+#: ../tools/database/item_menu.txt:120
 msgid "train station, could be integrated"
 msgstr "vlaková stanice, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:117
+#: ../tools/database/item_menu.txt:121
 msgid "level crossing"
 msgstr "úrovňový přejezd"
 
-#: ../tools/database/item_menu.txt:118
+#: ../tools/database/item_menu.txt:122
 msgid "geodesic point"
 msgstr "geodetický bod"
 
-#: ../tools/database/item_menu.txt:119
+#: ../tools/database/item_menu.txt:123
 msgid "postal address"
 msgstr "poštovní adresa"
 
-#: ../tools/database/item_menu.txt:120
+#: ../tools/database/item_menu.txt:124
 msgid "wikipedia, could be integrated"
 msgstr "wikipedie, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:121
+#: ../tools/database/item_menu.txt:125
 msgid "public service"
 msgstr "veřejná služba"
 
-#: ../tools/database/item_menu.txt:122
+#: ../tools/database/item_menu.txt:126
 msgid "recycling"
 msgstr "recyklace"
 
-#: ../tools/database/item_menu.txt:123
+#: ../tools/database/item_menu.txt:127
 msgid "recycling, could be integrated"
 msgstr "recyklace, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:124
+#: ../tools/database/item_menu.txt:128
 msgid "parking"
 msgstr "parkování"
 
-#: ../tools/database/item_menu.txt:125
+#: ../tools/database/item_menu.txt:129
 msgid "parking, could be integrated"
 msgstr "parkování, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:126
+#: ../tools/database/item_menu.txt:130
 msgid "accommodation"
 msgstr "ubytování"
 
-#: ../tools/database/item_menu.txt:127
+#: ../tools/database/item_menu.txt:131
 msgid "accommodation, could be integrated"
 msgstr "byty, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:128
+#: ../tools/database/item_menu.txt:132
 msgid "cycle parking"
 msgstr "parkování pro bicykly"
 
-#: ../tools/database/item_menu.txt:129
+#: ../tools/database/item_menu.txt:133
 msgid "cycle parking, could be integrated"
 msgstr "parkování kol, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:130
+#: ../tools/database/item_menu.txt:134
 msgid "transport sharing"
 msgstr "sdílená doprava"
 
-#: ../tools/database/item_menu.txt:131
+#: ../tools/database/item_menu.txt:135
 msgid "transport sharing, could be integrated"
 msgstr "sdílená doprava, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:132
+#: ../tools/database/item_menu.txt:136
 msgid "sport"
 msgstr "sport"
 
-#: ../tools/database/item_menu.txt:133
+#: ../tools/database/item_menu.txt:137
 msgid "sport, could be integrated"
 msgstr "sport, může být sjednoceno"
 
@@ -1003,31 +1003,31 @@ msgstr "HTML"
 msgid "one-node way"
 msgstr "cesta s jedním uzlem"
 
-#: ../tools/database/item_menu.txt:134
+#: ../tools/database/item_menu.txt:138
 msgid "toilets"
 msgstr "toalety"
 
-#: ../tools/database/item_menu.txt:101
+#: ../tools/database/item_menu.txt:105
 msgid "transport sharing, not integrated"
 msgstr "sdílená doprava, není sjednoceno"
 
-#: ../tools/database/item_menu.txt:135
+#: ../tools/database/item_menu.txt:139
 msgid "police"
 msgstr "policie"
 
-#: ../tools/database/item_menu.txt:136
+#: ../tools/database/item_menu.txt:140
 msgid "police, could be integrated"
 msgstr "policie, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:102
+#: ../tools/database/item_menu.txt:106
 msgid "pharmacy, not integrated "
 msgstr "lékárna, není sjednoceno"
 
-#: ../tools/database/item_menu.txt:139
+#: ../tools/database/item_menu.txt:143
 msgid "pharmacy, could be integrated"
 msgstr "lékárna, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:137
+#: ../tools/database/item_menu.txt:141
 msgid "gas station"
 msgstr "čerpací stanice"
 
@@ -1047,11 +1047,11 @@ msgstr "Uložit sadu změn"
 msgid "Comment"
 msgstr "Komentář"
 
-#: ../tools/database/item_menu.txt:60
+#: ../tools/database/item_menu.txt:62
 msgid "area"
 msgstr "oblast"
 
-#: ../tools/database/item_menu.txt:61
+#: ../tools/database/item_menu.txt:63
 msgid "noexit"
 msgstr "noexit"
 
@@ -1061,7 +1061,7 @@ msgid ""
 "href='https://twitter.com/osmose_qa'>@osmose_qa</a> on twitter."
 msgstr "Zůstaňte v kontaktu, sledujte  <a href='https://twitter.com/osmose_qa'>@osmose_qa</a> na Twitteru."
 
-#: ../tools/database/item_menu.txt:71
+#: ../tools/database/item_menu.txt:75
 msgid "incorrect layer"
 msgstr "chybná vrstva"
 
@@ -1077,31 +1077,31 @@ msgstr "stát"
 msgid "analyser"
 msgstr "analyzér"
 
-#: ../tools/database/item_menu.txt:140
+#: ../tools/database/item_menu.txt:144
 msgid "postal code, could be integrated"
 msgstr "PSČ, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:141
+#: ../tools/database/item_menu.txt:145
 msgid "library"
 msgstr "knihovna"
 
-#: ../tools/database/item_menu.txt:142
+#: ../tools/database/item_menu.txt:146
 msgid "restaurant"
 msgstr "restaurace"
 
-#: ../tools/database/item_menu.txt:143
+#: ../tools/database/item_menu.txt:147
 msgid "winery"
 msgstr "vinárna"
 
-#: ../tools/database/item_menu.txt:35
+#: ../tools/database/item_menu.txt:36
 msgid "missing object kind"
 msgstr "chybí druh objektu"
 
-#: ../tools/database/item_menu.txt:103
+#: ../tools/database/item_menu.txt:107
 msgid "postal code, not integrated "
 msgstr "PSČ, není sjednoceno"
 
-#: ../tools/database/item_menu.txt:78
+#: ../tools/database/item_menu.txt:82
 msgid "local language"
 msgstr "lokální jazyk"
 
@@ -1214,27 +1214,27 @@ msgstr "Dokumentace pro nahlášené problémy"
 msgid "version"
 msgstr "verze"
 
-#: ../tools/database/item_menu.txt:144
+#: ../tools/database/item_menu.txt:148
 msgid "geodesic"
 msgstr "geodetický"
 
-#: ../tools/database/item_menu.txt:92 ../tools/database/item_menu.txt:109
+#: ../tools/database/item_menu.txt:96 ../tools/database/item_menu.txt:113
 msgid "post box"
 msgstr "poštovní schránka"
 
-#: ../tools/database/item_menu.txt:110
+#: ../tools/database/item_menu.txt:114
 msgid "post box, could be integrated"
 msgstr "poštovní schránka, může být sjednoceno"
 
-#: ../tools/database/item_menu.txt:36
+#: ../tools/database/item_menu.txt:37
 msgid "indoor"
 msgstr "vnitřní"
 
-#: ../tools/database/item_menu.txt:72
+#: ../tools/database/item_menu.txt:76
 msgid "roundabout as area"
 msgstr "kruhový objezd jako plocha"
 
-#: ../tools/database/item_menu.txt:104
+#: ../tools/database/item_menu.txt:108
 msgid "road"
 msgstr "cesta"
 
@@ -1270,6 +1270,18 @@ msgstr "Použijte <a href='https://github.com/osm-fr/osmose-frontend/issues'>osm
 msgid "far from water"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:66
+#: ../tools/database/item_menu.txt:69
 msgid "fixme import"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:26
+msgid "objects intersection"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:38 ../tools/database/item_menu.txt:64
+msgid "access"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:70
+msgid "fixme review"
 msgstr ""
