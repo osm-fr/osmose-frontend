@@ -11,7 +11,7 @@
  1100 | _("unclosed area")
  1110 | _("bad *_link highway")
  1120 | _("broken highway continuity")
- 1140 | _("missign tag or role")
+ 1140 | _("missing tag or role")
  1150 | _("surface intersection")
  1160 | _("big relation")
  1170 | _("multipolygon")

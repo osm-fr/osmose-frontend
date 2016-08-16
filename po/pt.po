@@ -567,7 +567,7 @@ msgid "broken highway continuity"
 msgstr "continuidade de rodovia quebrada"
 
 #: ../tools/database/item_menu.txt:14
-msgid "missign tag or role"
+msgid "missing tag or role"
 msgstr "faltando tag ou função"
 
 #: ../tools/database/item_menu.txt:15

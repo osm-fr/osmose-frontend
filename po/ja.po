@@ -564,7 +564,7 @@ msgid "broken highway continuity"
 msgstr "接続していない道路"
 
 #: ../tools/database/item_menu.txt:14
-msgid "missign tag or role"
+msgid "missing tag or role"
 msgstr "タグまたはロールなし"
 
 #: ../tools/database/item_menu.txt:15

@@ -566,7 +566,7 @@ msgid "broken highway continuity"
 msgstr "az út folytonossága megszakad"
 
 #: ../tools/database/item_menu.txt:14
-msgid "missign tag or role"
+msgid "missing tag or role"
 msgstr "hiányzó címke vagy szerep"
 
 #: ../tools/database/item_menu.txt:15

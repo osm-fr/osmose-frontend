@@ -566,7 +566,7 @@ msgid "broken highway continuity"
 msgstr ""
 
 #: ../tools/database/item_menu.txt:14
-msgid "missign tag or role"
+msgid "missing tag or role"
 msgstr "відсутний теґ або роль"
 
 #: ../tools/database/item_menu.txt:15

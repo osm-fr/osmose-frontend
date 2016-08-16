@@ -565,7 +565,7 @@ msgid "broken highway continuity"
 msgstr "διακοπή συνέχειας οδού"
 
 #: ../tools/database/item_menu.txt:14
-msgid "missign tag or role"
+msgid "missing tag or role"
 msgstr "απούσα ετικέτα ή ρόλος"
 
 #: ../tools/database/item_menu.txt:15
