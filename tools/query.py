@@ -121,7 +121,7 @@ def _build_param(lat, lon, bbox, source, item, level, users, classs, country, us
     if item != None:
         where.append(_build_where_item(item, itemField))
 
-    if level != "1,2,3":
+    if level and level != "1,2,3":
         where.append("dynpoi_class.level IN (%s)" % level)
 
     if classs:
