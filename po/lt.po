@@ -564,7 +564,7 @@ msgid "broken highway continuity"
 msgstr "pertrauktas kelio tęstinumas"
 
 #: ../tools/database/item_menu.txt:14
-msgid "missign tag or role"
+msgid "missing tag or role"
 msgstr "trūkstama žyma ar rolė"
 
 #: ../tools/database/item_menu.txt:15

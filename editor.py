@@ -49,7 +49,10 @@ def save(db, lang):
     # Get an open changeset
     changeset = request.session.get('changeset')
     if changeset and not reuse_changeset:
-        _changeset_close(changeset)
+        try:
+            _changeset_close(changeset)
+        except:
+            pass
         changeset = None
         del request.session['changeset']
     elif changeset:

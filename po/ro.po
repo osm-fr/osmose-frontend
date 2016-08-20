@@ -568,7 +568,7 @@ msgid "broken highway continuity"
 msgstr "inconsistență în clasificarea drumului"
 
 #: ../tools/database/item_menu.txt:14
-msgid "missign tag or role"
+msgid "missing tag or role"
 msgstr "lipsă tag sau rol"
 
 #: ../tools/database/item_menu.txt:15

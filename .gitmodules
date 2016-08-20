@@ -28,3 +28,6 @@
 [submodule "externals/topojson"]
 	path = externals/topojson
 	url = https://github.com/mbostock/topojson.git
+[submodule "externals/leaflet-plugins"]
+	path = externals/leaflet-plugins
+	url = https://github.com/shramov/leaflet-plugins.git
