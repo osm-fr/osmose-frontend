@@ -93,7 +93,7 @@ def parsewiki(lang):
                 accu[key] = {'text': '', 'class': {}}
                 line = line.strip()
             if line.startswith("* " + classs[lang] + " "):
-                dclass = line[len("* " + classs[lang] + " "):].split(" : ", 1)
+                dclass = line[len("* " + classs[lang] + " "):].split('" : ', 1)
                 nclass = int(dclass[0].split(' ')[0].strip())
                 accu[key]['class'][nclass] = dclass[1].strip() if len(dclass)> 1 else ""
             elif key:
@@ -109,8 +109,8 @@ def parsewiki(lang):
         print line
 
     for categ in sorted(ref.keys()):
-        print ("=%s=" % ref[categ]['menu'].encode('utf-8')).replace('|', '&#124;')
-        print ("{| class=\"wikitable sortable\" style=\"width:100%\"\n|-\n! " + header[lang] + "\n|-\n").replace('|', '&#124;')
+        print ("=%s=" % ref[categ]['menu'].encode('utf-8'))
+        print ("{| class=\"wikitable sortable\" style=\"width:100%\"\n|-\n! " + header[lang] + "\n|-\n")
         for item in sorted(ref[categ]['item']):
             print "{{Osmose Error|format={{{format|para}}}"
             if not errors[categ].get(item):
@@ -123,11 +123,11 @@ def parsewiki(lang):
                 if k != 'image' and not val.has_key(k):
                     val[k] = {'text': '', 'class': {}}
                 if val.has_key(k):
-                    print ("| %s=%s" % (k, val[k]['text'])).replace('|', '&#124;').strip()
+                    print ("| %s=%s" % (k, val[k]['text'])).strip()
                     if len(ref[categ]['item'][item]['class'].keys()) > 1:
                         for c in sorted(ref[categ]['item'][item]['class'].keys()):
                             if k in ('detail', 'fix'):
-                                print ("* %s %s \"%s\" : %s" % (classs[lang], c, ref[categ]['item'][item]['class'][c].encode('utf-8'), val[k]['class'].get(c, ''))).replace('|', '&#124;')
+                                print ("* %s %s \"%s\" : %s" % (classs[lang], c, ref[categ]['item'][item]['class'][c].encode('utf-8').replace('|', '&#124;'), val[k]['class'].get(c, '')))
             print "}}\n"
         print "|}\n"
 
