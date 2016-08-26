@@ -8,7 +8,8 @@
 # frodrigo <fred.rodrigo@gmail.com>, 2014
 #  <frodrigo@openstreetmap.fr>, 2012
 # George Kaplan <georgekaplanosm@hotmail.fr>, 2015
-# Jean-Baptiste H <jean-baptiste@holcroft.fr>, 2014-2015
+# Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2014-2015
+# Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2016
 # Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2012
 # Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2012,2014-2015
 # Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2012,2014
@@ -26,7 +27,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2016-07-03 18:55+0000\n"
+"PO-Revision-Date: 2016-08-26 20:02+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -582,7 +583,7 @@ msgstr "continuité rompue des highways"
 
 #: ../tools/database/item_menu.txt:14
 msgid "missing tag or role"
-msgstr "tag ou rôle manquant"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:15
 msgid "surface intersection"
@@ -648,7 +649,7 @@ msgstr "highway"
 msgid "highway crossing"
 msgstr "croisement de routes"
 
-#: ../tools/database/item_menu.txt:35 ../tools/database/item_menu.txt:142
+#: ../tools/database/item_menu.txt:35 ../tools/database/item_menu.txt:148
 msgid "pharmacy"
 msgstr "pharmacie"
 
@@ -840,7 +841,7 @@ msgstr "limite admin"
 msgid "power lines"
 msgstr "lignes électriques"
 
-#: ../tools/database/item_menu.txt:95 ../tools/database/item_menu.txt:111
+#: ../tools/database/item_menu.txt:95 ../tools/database/item_menu.txt:112
 msgid "post office"
 msgstr "bureau de poste"
 
@@ -860,7 +861,7 @@ msgstr "monument"
 msgid "node on ways"
 msgstr "nœud sur chemins"
 
-#: ../tools/database/item_menu.txt:101 ../tools/database/item_menu.txt:119
+#: ../tools/database/item_menu.txt:101 ../tools/database/item_menu.txt:122
 msgid "train station"
 msgstr "gare"
 
@@ -884,95 +885,95 @@ msgstr "monument, musée"
 msgid "monument, museum, could be integrated"
 msgstr "monument, musée, intégration possible"
 
-#: ../tools/database/item_menu.txt:112
+#: ../tools/database/item_menu.txt:113
 msgid "post office, could be integrated"
 msgstr "poste, intégration possible"
 
-#: ../tools/database/item_menu.txt:115
+#: ../tools/database/item_menu.txt:116
 msgid "school"
 msgstr "école"
 
-#: ../tools/database/item_menu.txt:116
+#: ../tools/database/item_menu.txt:117
 msgid "school, could be integrated"
 msgstr "école, intégration possible"
 
-#: ../tools/database/item_menu.txt:117
+#: ../tools/database/item_menu.txt:119
 msgid "public transport"
 msgstr "transport en commun"
 
-#: ../tools/database/item_menu.txt:118
+#: ../tools/database/item_menu.txt:120
 msgid "public transport, could be integrated"
 msgstr "transport en commun, intégration possible"
 
-#: ../tools/database/item_menu.txt:120
+#: ../tools/database/item_menu.txt:123
 msgid "train station, could be integrated"
 msgstr "gare, intégration possible"
 
-#: ../tools/database/item_menu.txt:121
+#: ../tools/database/item_menu.txt:124
 msgid "level crossing"
 msgstr "passage à niveau"
 
-#: ../tools/database/item_menu.txt:122
+#: ../tools/database/item_menu.txt:125
 msgid "geodesic point"
 msgstr "point géodésique manquant"
 
-#: ../tools/database/item_menu.txt:123
+#: ../tools/database/item_menu.txt:126
 msgid "postal address"
 msgstr "adresse"
 
-#: ../tools/database/item_menu.txt:124
+#: ../tools/database/item_menu.txt:127
 msgid "wikipedia, could be integrated"
 msgstr "wikipedia, intégration possible"
 
-#: ../tools/database/item_menu.txt:125
+#: ../tools/database/item_menu.txt:128
 msgid "public service"
 msgstr "service public"
 
-#: ../tools/database/item_menu.txt:126
+#: ../tools/database/item_menu.txt:129
 msgid "recycling"
 msgstr "recyclage"
 
-#: ../tools/database/item_menu.txt:127
+#: ../tools/database/item_menu.txt:130
 msgid "recycling, could be integrated"
 msgstr "recyclage, intégration possible"
 
-#: ../tools/database/item_menu.txt:128
+#: ../tools/database/item_menu.txt:132
 msgid "parking"
 msgstr "parking"
 
-#: ../tools/database/item_menu.txt:129
+#: ../tools/database/item_menu.txt:133
 msgid "parking, could be integrated"
 msgstr "parking, intégration possible"
 
-#: ../tools/database/item_menu.txt:130
+#: ../tools/database/item_menu.txt:135
 msgid "accommodation"
 msgstr "hébergement"
 
-#: ../tools/database/item_menu.txt:131
+#: ../tools/database/item_menu.txt:136
 msgid "accommodation, could be integrated"
 msgstr "hébergement, intégration possible"
 
-#: ../tools/database/item_menu.txt:132
+#: ../tools/database/item_menu.txt:137
 msgid "cycle parking"
 msgstr "parking vélo"
 
-#: ../tools/database/item_menu.txt:133
+#: ../tools/database/item_menu.txt:138
 msgid "cycle parking, could be integrated"
 msgstr "parking vélo, intégration possible"
 
-#: ../tools/database/item_menu.txt:134
+#: ../tools/database/item_menu.txt:139
 msgid "transport sharing"
 msgstr "voiture et vélopartage"
 
-#: ../tools/database/item_menu.txt:135
+#: ../tools/database/item_menu.txt:140
 msgid "transport sharing, could be integrated"
 msgstr "voiture et vélopartage, intégration possible"
 
-#: ../tools/database/item_menu.txt:136
+#: ../tools/database/item_menu.txt:142
 msgid "sport"
 msgstr "sport"
 
-#: ../tools/database/item_menu.txt:137
+#: ../tools/database/item_menu.txt:143
 msgid "sport, could be integrated"
 msgstr "sport, intégration possible"
 
@@ -1018,7 +1019,7 @@ msgstr "Liste HTML"
 msgid "one-node way"
 msgstr "chemin à un seul nœud"
 
-#: ../tools/database/item_menu.txt:138
+#: ../tools/database/item_menu.txt:144
 msgid "toilets"
 msgstr "toilettes"
 
@@ -1026,11 +1027,11 @@ msgstr "toilettes"
 msgid "transport sharing, not integrated"
 msgstr "voiture, vélopartage non intégré"
 
-#: ../tools/database/item_menu.txt:139
+#: ../tools/database/item_menu.txt:145
 msgid "police"
 msgstr "police"
 
-#: ../tools/database/item_menu.txt:140
+#: ../tools/database/item_menu.txt:146
 msgid "police, could be integrated"
 msgstr "police, intégration possible"
 
@@ -1038,11 +1039,11 @@ msgstr "police, intégration possible"
 msgid "pharmacy, not integrated "
 msgstr "pharmacie, non intégrée"
 
-#: ../tools/database/item_menu.txt:143
+#: ../tools/database/item_menu.txt:149
 msgid "pharmacy, could be integrated"
 msgstr "pharmacie, intégration possible"
 
-#: ../tools/database/item_menu.txt:141
+#: ../tools/database/item_menu.txt:147
 msgid "gas station"
 msgstr "station-service"
 
@@ -1092,19 +1093,19 @@ msgstr "pays"
 msgid "analyser"
 msgstr "analyseur"
 
-#: ../tools/database/item_menu.txt:144
+#: ../tools/database/item_menu.txt:150
 msgid "postal code, could be integrated"
 msgstr "code postal, intégration possible"
 
-#: ../tools/database/item_menu.txt:145
+#: ../tools/database/item_menu.txt:151
 msgid "library"
 msgstr "bibliothèque"
 
-#: ../tools/database/item_menu.txt:146
+#: ../tools/database/item_menu.txt:152
 msgid "restaurant"
 msgstr "restaurant"
 
-#: ../tools/database/item_menu.txt:147
+#: ../tools/database/item_menu.txt:153
 msgid "winery"
 msgstr "chai"
 
@@ -1229,15 +1230,15 @@ msgstr "Documentation sur les signalements signalés"
 msgid "version"
 msgstr "version"
 
-#: ../tools/database/item_menu.txt:148
+#: ../tools/database/item_menu.txt:154
 msgid "geodesic"
 msgstr "géodésique"
 
-#: ../tools/database/item_menu.txt:96 ../tools/database/item_menu.txt:113
+#: ../tools/database/item_menu.txt:96
 msgid "post box"
 msgstr "boîte aux lettres"
 
-#: ../tools/database/item_menu.txt:114
+#: ../tools/database/item_menu.txt:115
 msgid "post box, could be integrated"
 msgstr "boîte aux lettres, intégration possible"
 
@@ -1291,12 +1292,40 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:26
 msgid "objects intersection"
-msgstr ""
+msgstr "intersection entre des objets"
 
 #: ../tools/database/item_menu.txt:38 ../tools/database/item_menu.txt:64
 msgid "access"
-msgstr ""
+msgstr "accès"
 
 #: ../tools/database/item_menu.txt:70
 msgid "fixme review"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:111
+msgid "monument, museum, need update"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:114
+msgid "post box, need update"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:118
+msgid "school, need update"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:121
+msgid "public transport, need update"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:131
+msgid "recycling, need update"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:134
+msgid "parking, need update"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:141
+msgid "transport sharing, need update"
 msgstr ""
