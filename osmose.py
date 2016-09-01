@@ -90,6 +90,17 @@ def oauth_(lang, name=None):
         pass
     redirect('map')
 
+@route('/josm_proxy')
+def josm_proxy():
+    query = request.query_string
+    r = None
+    print(query)
+    if query.startswith('errors.josm'):
+        r = "http://%s/%s" % (utils.website, query) # Explicit http, not https
+    else:
+        r = "http://localhost:8111/%s" % query
+    return "<img src='%s'/>" % r
+
 @error(404)
 @view('404')
 def error404(error):

@@ -153,7 +153,7 @@
 <li id="menu-export"><a href='#'>{{_("Export")}} ▼</a>
 <ul class="submenu">
   <li><a href="../errors/" target="_blank">{{_("Html list")}}</a></li>
-  <li><a href="../errors.josm" target="hiddenIframe">JOSM</a></li>
+  <li><a href="../josm_proxy?errors.josm" target="hiddenIframe">JOSM</a></li>
   <li><a href="../errors.rss" target="_blank">RSS</a></li>
   <li><a href="../errors.gpx">GPX</a></li>
   <li><a href="../api/0.2/errors" target="_blank">Json</a></li>
