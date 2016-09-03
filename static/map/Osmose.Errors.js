@@ -16,6 +16,8 @@ OsmoseErrors = L.LayerGroup.extend({
     L.LayerGroup.prototype.initialize.call(this);
     this._menu = menu;
     this._params = params;
+    delete this._params.lat;
+    delete this._params.lon;
     this._editor = editor;
   },
 
