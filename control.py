@@ -72,11 +72,7 @@ SELECT DISTINCT ON (source.id)
 FROM
     source
     JOIN dynpoi_update_last ON
-        source.id = dynpoi_update_last.source """ + (
-"""
-    JOIN dynpoi_update ON
-        dynpoi_update.source = dynpoi_update_last.source AND
-        dynpoi_update.timestamp = dynpoi_update_last.timestamp """ if remote else "") + """
+        source.id = dynpoi_update_last.source
 WHERE
 """ + ("""
     RIGHT(MD5(remote_ip), 4) = %(remote)s AND """ if remote else "") + ("""
@@ -132,16 +128,13 @@ SELECT
     country,
     MAX(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp))) AS max_age,
     MIN(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp))) AS min_age,
-    MAX(dynpoi_update.version) AS max_version,
-    MIN(dynpoi_update.version) AS min_version,
+    MAX(dynpoi_update_last.version) AS max_version,
+    MIN(dynpoi_update_last.version) AS min_version,
     count(*) AS count
 FROM
     source
     JOIN dynpoi_update_last ON
         source.id = dynpoi_update_last.source
-    JOIN dynpoi_update ON
-        dynpoi_update.source = dynpoi_update_last.source AND
-        dynpoi_update.timestamp = dynpoi_update_last.timestamp
 GROUP BY
     remote_ip,
     country
