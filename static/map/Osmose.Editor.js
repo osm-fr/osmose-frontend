@@ -60,8 +60,9 @@ OsmoseEditor = L.Control.Sidebar.extend({
 
     this._$container.html("<center><img src='../images/throbbler.gif' alt='downloading'></center>");
     var self = this;
+    var url = '../api/0.2/error/' + error + '/fresh_elems' + (fix ? '/' + fix : '');
     $.ajax({
-      url: '../api/0.2/error/' + error + '/fresh_elems' + (fix ? '/' + fix : ''),
+      url: url,
       dataType: 'json'
     }).done(function (data) {
       var template = $('#editorTpl').html(),
@@ -89,7 +90,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
       });
       $('form .tags[data-type="' + type + '"][data-id="' + id + '"] input[type="text"]:last', self._$container).focus();
     }).fail(function (xhr, err) {
-      self._$container.html("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+      self._$container.html("Fails get " + url + "</br>readyState: " + xhr.readyState + "</br>status: " + xhr.status);
     });
   },
 
@@ -102,8 +103,9 @@ OsmoseEditor = L.Control.Sidebar.extend({
 
   _upload: function (comment, source, type, reuse_changeset, always) {
     var self = this;
+    var url = '../editor/save';
     $.ajax({
-      url: '../editor/save',
+      url: url,
       type: 'POST',
       contentType: 'application/json',
       data: JSON.stringify({
@@ -122,7 +124,7 @@ OsmoseEditor = L.Control.Sidebar.extend({
       self._count_touched();
       self.saveDialog.dialog('close');
     }).fail(function (xhr, err) {
-      alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+      alert("Fails post to " + url + "\nreadyState: " + xhr.readyState + "\nstatus: " + xhr.status);
     }).always(always);
   },
 
