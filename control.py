@@ -162,6 +162,41 @@ ORDER BY
     return template('control/updates_summary', summary=summary, max_versions=max_versions, min_versions=min_versions)
 
 
+@route('/control/update_summary_by_analyser')
+def updates(db, lang):
+    db.execute("""
+SELECT
+    analyser,
+    COUNT(*),
+    MIN(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp)))/60/60/24 AS min_age,
+    MAX(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp)))/60/60/24 AS max_age,
+    MIN(dynpoi_update_last.version) AS min_version,
+    MAX(dynpoi_update_last.version) AS max_version
+FROM
+    source
+    JOIN dynpoi_update_last ON
+        source.id = dynpoi_update_last.source
+WHERE
+    dynpoi_update_last.version IS NOT NULL AND
+    dynpoi_update_last.version NOT IN ('(None)', '(unknown)')
+GROUP BY
+    analyser
+ORDER BY
+    analyser
+""")
+
+    summary = defaultdict(list)
+    max_versions = None
+    for res in db.fetchall():
+        (analyser, count, min_age, max_age, min_version, max_version) = res
+        max_versions = max_version if max_version > max_versions else max_versions
+        summary[analyser] = {'count': count, 'min_age': min_age, 'max_age': max_age, 'max_version': '-'.join((max_version or '').split('-')[1:5]), 'min_version': '-'.join((min_version or '').split('-')[1:5])}
+
+    max_versions = '-'.join((max_versions or '').split('-')[1:5])
+
+    return template('control/updates_summary_by_analyser', summary=summary, max_versions=max_versions)
+
+
 @route('/control/update/<source:int>')
 def update(db, lang, source=None):
     sql = "SELECT source,timestamp,remote_url,remote_ip,version FROM dynpoi_update WHERE source=%d ORDER BY timestamp DESC;" % source
