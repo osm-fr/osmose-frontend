@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2016-08-26 20:02+0000\n"
+"PO-Revision-Date: 2016-10-04 18:58+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -35,15 +35,15 @@ msgid "never generated"
 msgstr "不曾產生"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:155 ../false_positive.py:66 tmp.tpl:160
+#: ../error.py:155 ../false_positive.py:66 tmp.tpl:162
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
-#: ../errors.py:122 tmp.tpl:64
+#: ../errors.py:122 tmp.tpl:66
 msgid "False positives"
 msgstr "誤判"
 
-#: ../errors.py:128 tmp.tpl:62
+#: ../errors.py:128 tmp.tpl:64
 msgid "Informations"
 msgstr "資訊"
 
@@ -64,7 +64,7 @@ msgstr "聯絡我們"
 msgid "Help on wiki"
 msgstr "Wiki 上的說明頁"
 
-#: ../map.py:143 tmp.tpl:100 tmp.tpl:159
+#: ../map.py:143 tmp.tpl:102 tmp.tpl:161
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
@@ -152,326 +152,326 @@ msgid ""
 "We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
 msgstr "直接寫電子郵件到 <a href='mailto:%s'>%s</a> 就能聯絡到我們。"
 
-#: tmp.tpl:35 tmp.tpl:37
+#: tmp.tpl:35 tmp.tpl:39
 msgid "Last updates"
 msgstr "上次更新"
 
-#: tmp.tpl:38
+#: tmp.tpl:40
 msgid "Median delay:"
 msgstr "平均延遲："
 
-#: tmp.tpl:39 tmp.tpl:46 tmp.tpl:69 tmp.tpl:78
+#: tmp.tpl:41 tmp.tpl:48 tmp.tpl:71 tmp.tpl:80
 #: ../tools/database/item_menu.txt:30
 msgid "source"
 msgstr "來源"
 
-#: tmp.tpl:42
+#: tmp.tpl:44
 msgid "last generation"
 msgstr "上次產生"
 
-#: tmp.tpl:43 tmp.tpl:44
+#: tmp.tpl:45 tmp.tpl:46
 msgid "history"
 msgstr "歷史"
 
-#: tmp.tpl:45
+#: tmp.tpl:47
 msgid "Update"
 msgstr "更新"
 
-#: tmp.tpl:47
+#: tmp.tpl:49
 msgid "remote url"
 msgstr "遠端網址"
 
-#: tmp.tpl:48
+#: tmp.tpl:50
 msgid "timestamp"
 msgstr "時間戳記"
 
-#: tmp.tpl:50
+#: tmp.tpl:52
 msgid "Copyright informations"
 msgstr "著作權資訊"
 
-#: tmp.tpl:51
+#: tmp.tpl:53
 msgid "License"
 msgstr "授權"
 
-#: tmp.tpl:52
+#: tmp.tpl:54
 msgid "Authors"
 msgstr "作者"
 
-#: tmp.tpl:53
+#: tmp.tpl:55
 msgid "And contributors"
 msgstr "貢獻者"
 
-#: tmp.tpl:54
+#: tmp.tpl:56
 msgid "Data are coming from"
 msgstr "資料來源"
 
-#: tmp.tpl:55
+#: tmp.tpl:57
 msgid "copyright"
 msgstr "著作權"
 
-#: tmp.tpl:57 tmp.tpl:95
+#: tmp.tpl:59 tmp.tpl:97
 msgid "key"
 msgstr "鍵(key)"
 
-#: tmp.tpl:58 tmp.tpl:96
+#: tmp.tpl:60 tmp.tpl:98
 msgid "value"
 msgstr "值(value)"
 
-#: tmp.tpl:59 tmp.tpl:97
+#: tmp.tpl:61 tmp.tpl:99
 msgid "Marker"
 msgstr "標記"
 
-#: tmp.tpl:60
+#: tmp.tpl:62
 msgid "Elements"
 msgstr "元素"
 
-#: tmp.tpl:61
+#: tmp.tpl:63
 msgid "Fixes"
 msgstr "修正"
 
-#: tmp.tpl:63
+#: tmp.tpl:65
 msgid "Fixed"
 msgstr "已修正"
 
-#: tmp.tpl:65
+#: tmp.tpl:67
 msgid "Graph"
 msgstr "數量趨勢圖"
 
-#: tmp.tpl:66 tmp.tpl:107
+#: tmp.tpl:68 tmp.tpl:109
 msgid "Map"
 msgstr "地圖"
 
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
-#: tmp.tpl:68
+#: tmp.tpl:70
 msgid "Set"
 msgstr "設定"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
-#: tmp.tpl:71 tmp.tpl:80
+#: tmp.tpl:73 tmp.tpl:82
 msgid "class (abbreviation)"
 msgstr "類"
 
-#: tmp.tpl:72 tmp.tpl:85
+#: tmp.tpl:74 tmp.tpl:87
 msgid "item"
 msgstr "項目"
 
-#: tmp.tpl:73
+#: tmp.tpl:75
 msgid "title"
 msgstr "標題"
 
-#: tmp.tpl:74
+#: tmp.tpl:76
 msgid "count"
 msgstr "數量"
 
-#: tmp.tpl:75
+#: tmp.tpl:77
 msgid "Total"
 msgstr "合計"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: tmp.tpl:82
+#: tmp.tpl:84
 msgid "subclass (abbreviation)"
 msgstr "子類"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: tmp.tpl:84
+#: tmp.tpl:86
 msgid "level (abbreviation)"
 msgstr "級"
 
-#: tmp.tpl:87
+#: tmp.tpl:89
 msgid "position (abbreviation)"
 msgstr "位置"
 
-#: tmp.tpl:88
+#: tmp.tpl:90
 msgid "elements (abbreviation)"
 msgstr "元素"
 
-#: tmp.tpl:89
+#: tmp.tpl:91
 msgid "subtitle"
 msgstr "小標"
 
-#: tmp.tpl:90 ../tools/database/item_menu.txt:50
+#: tmp.tpl:92 ../tools/database/item_menu.txt:50
 msgid "date"
 msgstr "日期"
 
-#: tmp.tpl:98
+#: tmp.tpl:100
 msgid "OpenStreetMap Oversight Search Engine"
 msgstr "OpenStreetMap Oversight Search Engine"
 
-#: tmp.tpl:100
+#: tmp.tpl:102
 msgid "Help on OSM wiki"
 msgstr "OSM wiki 上的說明"
 
-#: tmp.tpl:102
+#: tmp.tpl:104
 msgid "False positives list"
 msgstr "誤判列表"
 
-#: tmp.tpl:103
+#: tmp.tpl:105
 msgid "Last analysis updates"
 msgstr "上次分析更新的時間"
 
-#: tmp.tpl:104
+#: tmp.tpl:106
 msgid "Tags Editor"
 msgstr "Tag 編輯器"
 
-#: tmp.tpl:105 tmp.tpl:138
+#: tmp.tpl:107 tmp.tpl:140
 msgid "Cancel"
 msgstr "取消"
 
-#: tmp.tpl:106
+#: tmp.tpl:108
 msgid "Valid"
 msgstr ""
 
-#: tmp.tpl:109
+#: tmp.tpl:111
 msgid "no bubbles at this zoom factor"
 msgstr "在這個縮放級別沒有資訊泡泡"
 
-#: tmp.tpl:110
+#: tmp.tpl:112
 msgid "Severity"
 msgstr "嚴重度"
 
-#: tmp.tpl:111
+#: tmp.tpl:113
 msgid "1 only"
 msgstr "只有 1"
 
-#: tmp.tpl:112
+#: tmp.tpl:114
 msgid "1+2 only"
 msgstr "只有 1+2"
 
-#: tmp.tpl:113
+#: tmp.tpl:115
 msgid "all severity"
 msgstr "全部"
 
-#: tmp.tpl:114
+#: tmp.tpl:116
 msgid "2 only"
 msgstr "只有 2"
 
-#: tmp.tpl:115
+#: tmp.tpl:117
 msgid "3 only"
 msgstr "只有 3"
 
-#: tmp.tpl:116
+#: tmp.tpl:118
 msgid "Fixable"
 msgstr "可用編修工具"
 
-#: tmp.tpl:117
+#: tmp.tpl:119
 msgid "Show only markers with correction suggestions"
 msgstr "只顯示附帶修正建議的標記"
 
-#: tmp.tpl:118
+#: tmp.tpl:120
 msgid "Online"
 msgstr "線上"
 
-#: tmp.tpl:119
+#: tmp.tpl:121
 msgid "Topic"
 msgstr "主題"
 
-#: tmp.tpl:120
+#: tmp.tpl:122
 msgid "Select:"
 msgstr "選擇："
 
-#: tmp.tpl:121 tmp.tpl:124
+#: tmp.tpl:123 tmp.tpl:126
 msgid "all"
 msgstr "全部"
 
-#: tmp.tpl:122 tmp.tpl:125
+#: tmp.tpl:124 tmp.tpl:127
 msgid "nothing"
 msgstr "無"
 
-#: tmp.tpl:123
+#: tmp.tpl:125
 msgid "invert"
 msgstr "反相"
 
-#: tmp.tpl:126
+#: tmp.tpl:128
 msgid "Change language"
 msgstr "切換語言"
 
-#: tmp.tpl:129
+#: tmp.tpl:131
 msgid "Help"
 msgstr "求助"
 
-#: tmp.tpl:130
+#: tmp.tpl:132
 #, python-format
 msgid "Delay: %sd"
 msgstr "延遲：%s天"
 
-#: tmp.tpl:134
+#: tmp.tpl:136
 msgid "Logout"
 msgstr "登出"
 
-#: tmp.tpl:135 tmp.tpl:137
+#: tmp.tpl:137 tmp.tpl:139
 msgid "Login"
 msgstr "登入"
 
-#: tmp.tpl:136 tmp.tpl:138
+#: tmp.tpl:138 tmp.tpl:140
 msgid "Save"
 msgstr "儲存"
 
-#: tmp.tpl:139
+#: tmp.tpl:141
 msgid "Objects edited:"
 msgstr "物件編輯數："
 
-#: tmp.tpl:140
+#: tmp.tpl:142
 msgid "Objects deleted:"
 msgstr "物件刪除數："
 
-#: tmp.tpl:141
+#: tmp.tpl:143
 msgid "Fix with Osmose"
 msgstr "Fix with Osmose"
 
-#: tmp.tpl:142
+#: tmp.tpl:144
 msgid "Source"
 msgstr "來源"
 
-#: tmp.tpl:143
+#: tmp.tpl:145
 msgid "Type"
 msgstr ""
 
-#: tmp.tpl:144
+#: tmp.tpl:146
 msgid "Reuse changeset"
 msgstr "續用(reuse)變更集"
 
-#: tmp.tpl:146
+#: tmp.tpl:148
 msgid "change status"
 msgstr "修改狀態"
 
-#: tmp.tpl:147
+#: tmp.tpl:149
 msgid "corrected"
 msgstr "已更正"
 
-#: tmp.tpl:148
+#: tmp.tpl:150
 msgid "false positive"
 msgstr "誤報錯誤"
 
-#: tmp.tpl:149 tmp.tpl:150
+#: tmp.tpl:151 tmp.tpl:152
 msgid "How to help translation"
 msgstr "如何幫忙翻譯"
 
-#: tmp.tpl:151
+#: tmp.tpl:153
 msgid ""
 "Osmose tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
 msgstr "Osmose 工具主要由法國人開發，我們希望能加入更多語言。目前有被分析的國家所用的語言大多已含括在內了。"
 
-#: tmp.tpl:153
+#: tmp.tpl:155
 msgid ""
 "To make Osmose a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr "要讓 Osmose 成為真正的多語工具，我們需要你的協助來改善已有的翻譯、增加新的翻譯。"
 
-#: tmp.tpl:154
+#: tmp.tpl:156
 msgid "Pages to translate"
 msgstr "需要被翻譯的網頁"
 
-#: tmp.tpl:158
+#: tmp.tpl:160
 msgid "Wiki pages"
 msgstr "Wiki 頁面"
 
-#: tmp.tpl:155
+#: tmp.tpl:157
 msgid "Osmose pages"
 msgstr "Osmose 網頁"
 
-#: tmp.tpl:164
+#: tmp.tpl:166
 msgid "Bug tracking system"
 msgstr "Bug 追蹤系統"
 
@@ -959,41 +959,41 @@ msgstr "運動"
 msgid "sport, could be integrated"
 msgstr ""
 
-#: tmp.tpl:157
+#: tmp.tpl:159
 msgid "Translation progress: osmose"
 msgstr "翻譯進度： osmose"
 
-#: tmp.tpl:161
+#: tmp.tpl:163
 msgid "For new language or countries"
 msgstr "新增語言或國家"
 
-#: tmp.tpl:163
+#: tmp.tpl:165
 #, python-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
 "href='mailto:%s'>%s</a>."
 msgstr "對於新增國家，請直接寄電子郵件到 <a href='mailto:%s'>%s</a> 聯絡我們。"
 
-#: tmp.tpl:152
+#: tmp.tpl:154
 #, python-format
 msgid "The <a href='%s'>country coverage is available</a>."
 msgstr "<a href='%s'>目前已含蓋的國家</a>。"
 
-#: tmp.tpl:162
+#: tmp.tpl:164
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
 msgstr "你可以直接在 <a href='%s'>Transifex</a> 上新增一個語言。"
 
-#: tmp.tpl:156
+#: tmp.tpl:158
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr "翻譯是透過 <a href='%s'>Transifex</a> 所完成。"
 
-#: tmp.tpl:127
+#: tmp.tpl:129
 msgid "Export"
 msgstr "匯出"
 
-#: tmp.tpl:128
+#: tmp.tpl:130
 msgid "Html list"
 msgstr "HTML 列表"
 
@@ -1029,19 +1029,19 @@ msgstr ""
 msgid "gas station"
 msgstr "加油站"
 
-#: tmp.tpl:87
+#: tmp.tpl:89
 msgid "position"
 msgstr ""
 
-#: tmp.tpl:137
+#: tmp.tpl:139
 msgid "You must be logged in order to use the tag editor"
 msgstr ""
 
-#: tmp.tpl:138
+#: tmp.tpl:140
 msgid "Save changeset"
 msgstr ""
 
-#: tmp.tpl:141
+#: tmp.tpl:143
 msgid "Comment"
 msgstr ""
 
@@ -1063,15 +1063,15 @@ msgstr ""
 msgid "incorrect layer"
 msgstr "layer 有誤"
 
-#: tmp.tpl:36
+#: tmp.tpl:36 tmp.tpl:38
 msgid "Updates summary"
 msgstr "更新摘要"
 
-#: tmp.tpl:40
+#: tmp.tpl:42
 msgid "country"
 msgstr "國家"
 
-#: tmp.tpl:41
+#: tmp.tpl:43
 msgid "analyser"
 msgstr "分析器"
 
@@ -1157,58 +1157,58 @@ msgid ""
 "contributor of the relevant erroneous elements."
 msgstr "只要在下方的表單填入你的 OSM 帳號名，就能看到列於你名下的問題。不過要注意到，關聯問題及帳號的算法並不完美，因為 Osmose 只看有問題的元素最後修改人。"
 
-#: tmp.tpl:56 tmp.tpl:94
+#: tmp.tpl:58 tmp.tpl:96
 #, python-format
 msgid "Information on issue %d"
 msgstr ""
 
-#: tmp.tpl:76
+#: tmp.tpl:78
 msgid "Show more issues"
 msgstr "顯示更多問題"
 
-#: tmp.tpl:77
+#: tmp.tpl:79
 msgid "Show some issues"
 msgstr "顯示更多問題"
 
-#: tmp.tpl:86
+#: tmp.tpl:88
 msgid "information on issue"
 msgstr "問題的資訊"
 
-#: tmp.tpl:91
+#: tmp.tpl:93
 msgid "delete issue"
 msgstr ""
 
-#: tmp.tpl:92
+#: tmp.tpl:94
 msgid "issue n°"
 msgstr ""
 
-#: tmp.tpl:93
+#: tmp.tpl:95
 #, python-format
 msgid "delete issue #%d"
 msgstr ""
 
-#: tmp.tpl:99
+#: tmp.tpl:101
 msgid "Map of issues"
 msgstr "問題地圖"
 
-#: tmp.tpl:101
+#: tmp.tpl:103
 msgid "Information on issues database"
 msgstr ""
 
-#: tmp.tpl:131 tmp.tpl:132 tmp.tpl:133
+#: tmp.tpl:133 tmp.tpl:134 tmp.tpl:135
 #, python-format
 msgid "Level %d issues (%d)"
 msgstr ""
 
-#: tmp.tpl:145
+#: tmp.tpl:147
 msgid "Issue reported on: "
 msgstr "問題發現日期："
 
-#: tmp.tpl:160
+#: tmp.tpl:162
 msgid "Documentation on reported issues"
 msgstr ""
 
-#: tmp.tpl:49
+#: tmp.tpl:51
 msgid "version"
 msgstr "版本"
 
@@ -1240,12 +1240,12 @@ msgstr "道路"
 msgid "split building"
 msgstr ""
 
-#: tmp.tpl:108
+#: tmp.tpl:110
 #, python-format
 msgid "Control, verification and correction of %s issues"
 msgstr ""
 
-#: tmp.tpl:159
+#: tmp.tpl:161
 msgid "Osmose QA main page"
 msgstr "Osmose QA 主頁"
 
@@ -1258,7 +1258,7 @@ msgid ""
 "analyses."
 msgstr ""
 
-#: tmp.tpl:165
+#: tmp.tpl:167
 msgid ""
 "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
 "frontend</a> can be used to report any issue with translations."
@@ -1310,4 +1310,20 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:141
 msgid "transport sharing, need update"
+msgstr ""
+
+#: tmp.tpl:37
+msgid "Analyser"
+msgstr ""
+
+#: tmp.tpl:37
+msgid "Count"
+msgstr ""
+
+#: tmp.tpl:37
+msgid "Age"
+msgstr ""
+
+#: tmp.tpl:37
+msgid "Version"
 msgstr ""

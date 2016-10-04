@@ -5,6 +5,7 @@
 # Translators:
 # ViriatoLusitano <marcosoliveira.2405@gmail.com>, 2014
 # OpenStreetMap contributor Paulo, 2014
+# Rui <xymarior@yandex.com>, 2016
 # Thiago Vieira <thipvieira@gmail.com>, 2014
 # ViriatoLusitano <marcosoliveira.2405@gmail.com>, 2014
 # Rui <xymarior@yandex.com>, 2016
@@ -13,8 +14,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2016-09-08 09:36+0000\n"
-"Last-Translator: Rui <xymarior@yandex.com>\n"
+"PO-Revision-Date: 2016-10-04 18:58+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Portuguese (http://www.transifex.com/openstreetmap-france/osmose/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,15 +40,15 @@ msgid "never generated"
 msgstr "nunca gerou"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:155 ../false_positive.py:66 tmp.tpl:160
+#: ../error.py:155 ../false_positive.py:66 tmp.tpl:162
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
-#: ../errors.py:122 tmp.tpl:64
+#: ../errors.py:122 tmp.tpl:66
 msgid "False positives"
 msgstr "Falsos positivos"
 
-#: ../errors.py:128 tmp.tpl:62
+#: ../errors.py:128 tmp.tpl:64
 msgid "Informations"
 msgstr "Informações"
 
@@ -68,7 +69,7 @@ msgstr "Contato"
 msgid "Help on wiki"
 msgstr "Ajuda no wiki"
 
-#: ../map.py:143 tmp.tpl:100 tmp.tpl:159
+#: ../map.py:143 tmp.tpl:102 tmp.tpl:161
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
@@ -134,7 +135,7 @@ msgstr "Fornecer patches"
 msgid ""
 "Patches can be provided via merge requests on Github. This is the preferred "
 "way of handling patches."
-msgstr ""
+msgstr "Podem ser fornecidas correções (patches) através de pedidos de fusão (merge) no Github. Este é o método preferido para lidar com correções."
 
 #: tmp.tpl:28
 msgid "Development"
@@ -156,326 +157,326 @@ msgid ""
 "We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
 msgstr "Podemos ser contactado através de um e-mail direto para <a href='mailto:%s'>%s</a>."
 
-#: tmp.tpl:35 tmp.tpl:37
+#: tmp.tpl:35 tmp.tpl:39
 msgid "Last updates"
 msgstr "Últimas atualizações"
 
-#: tmp.tpl:38
+#: tmp.tpl:40
 msgid "Median delay:"
 msgstr "Atraso Médio:"
 
-#: tmp.tpl:39 tmp.tpl:46 tmp.tpl:69 tmp.tpl:78
+#: tmp.tpl:41 tmp.tpl:48 tmp.tpl:71 tmp.tpl:80
 #: ../tools/database/item_menu.txt:30
 msgid "source"
 msgstr "fonte"
 
-#: tmp.tpl:42
+#: tmp.tpl:44
 msgid "last generation"
 msgstr "última geração"
 
-#: tmp.tpl:43 tmp.tpl:44
+#: tmp.tpl:45 tmp.tpl:46
 msgid "history"
 msgstr "história"
 
-#: tmp.tpl:45
+#: tmp.tpl:47
 msgid "Update"
 msgstr "Atualizar"
 
-#: tmp.tpl:47
+#: tmp.tpl:49
 msgid "remote url"
 msgstr "url remoto"
 
-#: tmp.tpl:48
+#: tmp.tpl:50
 msgid "timestamp"
 msgstr "timestamp"
 
-#: tmp.tpl:50
+#: tmp.tpl:52
 msgid "Copyright informations"
 msgstr "Informações de direitos autorais"
 
-#: tmp.tpl:51
+#: tmp.tpl:53
 msgid "License"
 msgstr "Licença"
 
-#: tmp.tpl:52
+#: tmp.tpl:54
 msgid "Authors"
 msgstr "Autores"
 
-#: tmp.tpl:53
+#: tmp.tpl:55
 msgid "And contributors"
 msgstr "E contribuidores"
 
-#: tmp.tpl:54
+#: tmp.tpl:56
 msgid "Data are coming from"
 msgstr "Os dados são provenientes de"
 
-#: tmp.tpl:55
+#: tmp.tpl:57
 msgid "copyright"
 msgstr "direitos autorais"
 
-#: tmp.tpl:57 tmp.tpl:95
+#: tmp.tpl:59 tmp.tpl:97
 msgid "key"
 msgstr "chave"
 
-#: tmp.tpl:58 tmp.tpl:96
+#: tmp.tpl:60 tmp.tpl:98
 msgid "value"
 msgstr "valor"
 
-#: tmp.tpl:59 tmp.tpl:97
+#: tmp.tpl:61 tmp.tpl:99
 msgid "Marker"
 msgstr "Marcador"
 
-#: tmp.tpl:60
+#: tmp.tpl:62
 msgid "Elements"
 msgstr "Elementos"
 
-#: tmp.tpl:61
+#: tmp.tpl:63
 msgid "Fixes"
 msgstr "Correções"
 
-#: tmp.tpl:63
+#: tmp.tpl:65
 msgid "Fixed"
 msgstr "Corrigido"
 
-#: tmp.tpl:65
+#: tmp.tpl:67
 msgid "Graph"
 msgstr "Gráfico"
 
-#: tmp.tpl:66 tmp.tpl:107
+#: tmp.tpl:68 tmp.tpl:109
 msgid "Map"
 msgstr "Mapa"
 
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
-#: tmp.tpl:68
+#: tmp.tpl:70
 msgid "Set"
 msgstr "Conjunto"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
-#: tmp.tpl:71 tmp.tpl:80
+#: tmp.tpl:73 tmp.tpl:82
 msgid "class (abbreviation)"
 msgstr "classe (abreviação)"
 
-#: tmp.tpl:72 tmp.tpl:85
+#: tmp.tpl:74 tmp.tpl:87
 msgid "item"
 msgstr "item"
 
-#: tmp.tpl:73
+#: tmp.tpl:75
 msgid "title"
 msgstr "título"
 
-#: tmp.tpl:74
+#: tmp.tpl:76
 msgid "count"
 msgstr "contar"
 
-#: tmp.tpl:75
+#: tmp.tpl:77
 msgid "Total"
 msgstr "Total"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: tmp.tpl:82
+#: tmp.tpl:84
 msgid "subclass (abbreviation)"
 msgstr "subclasse (abreviação)"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
-#: tmp.tpl:84
+#: tmp.tpl:86
 msgid "level (abbreviation)"
 msgstr "nível (abreviação)"
 
-#: tmp.tpl:87
+#: tmp.tpl:89
 msgid "position (abbreviation)"
 msgstr "posição (abreviação)"
 
-#: tmp.tpl:88
+#: tmp.tpl:90
 msgid "elements (abbreviation)"
 msgstr "elementos (abreviação)"
 
-#: tmp.tpl:89
+#: tmp.tpl:91
 msgid "subtitle"
 msgstr "subtítulo"
 
-#: tmp.tpl:90 ../tools/database/item_menu.txt:50
+#: tmp.tpl:92 ../tools/database/item_menu.txt:50
 msgid "date"
 msgstr "data"
 
-#: tmp.tpl:98
+#: tmp.tpl:100
 msgid "OpenStreetMap Oversight Search Engine"
 msgstr "OpenStreetMap Oversight Search Engine"
 
-#: tmp.tpl:100
+#: tmp.tpl:102
 msgid "Help on OSM wiki"
 msgstr "Ajuda no OSM wiki"
 
-#: tmp.tpl:102
+#: tmp.tpl:104
 msgid "False positives list"
 msgstr "Lista de falsos positivos"
 
-#: tmp.tpl:103
+#: tmp.tpl:105
 msgid "Last analysis updates"
 msgstr "Atualizações de análises"
 
-#: tmp.tpl:104
+#: tmp.tpl:106
 msgid "Tags Editor"
-msgstr "Editor de Tags"
+msgstr "Editor de Etiquetas"
 
-#: tmp.tpl:105 tmp.tpl:138
+#: tmp.tpl:107 tmp.tpl:140
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: tmp.tpl:106
+#: tmp.tpl:108
 msgid "Valid"
 msgstr "Válido"
 
-#: tmp.tpl:109
+#: tmp.tpl:111
 msgid "no bubbles at this zoom factor"
 msgstr "sem bolhas neste fator de zoom"
 
-#: tmp.tpl:110
+#: tmp.tpl:112
 msgid "Severity"
 msgstr "Gravidade"
 
-#: tmp.tpl:111
+#: tmp.tpl:113
 msgid "1 only"
 msgstr "1 apenas"
 
-#: tmp.tpl:112
+#: tmp.tpl:114
 msgid "1+2 only"
 msgstr "1+2 apenas"
 
-#: tmp.tpl:113
+#: tmp.tpl:115
 msgid "all severity"
 msgstr "todas as gravidades"
 
-#: tmp.tpl:114
+#: tmp.tpl:116
 msgid "2 only"
 msgstr "2 apenas"
 
-#: tmp.tpl:115
+#: tmp.tpl:117
 msgid "3 only"
 msgstr "3 apenas"
 
-#: tmp.tpl:116
+#: tmp.tpl:118
 msgid "Fixable"
 msgstr "Corrigível"
 
-#: tmp.tpl:117
+#: tmp.tpl:119
 msgid "Show only markers with correction suggestions"
 msgstr "Mostrar apenas marcadores com sugestões de correção"
 
-#: tmp.tpl:118
+#: tmp.tpl:120
 msgid "Online"
 msgstr "Online"
 
-#: tmp.tpl:119
+#: tmp.tpl:121
 msgid "Topic"
 msgstr "Tópico"
 
-#: tmp.tpl:120
+#: tmp.tpl:122
 msgid "Select:"
 msgstr "Selecione:"
 
-#: tmp.tpl:121 tmp.tpl:124
+#: tmp.tpl:123 tmp.tpl:126
 msgid "all"
 msgstr "tudo"
 
-#: tmp.tpl:122 tmp.tpl:125
+#: tmp.tpl:124 tmp.tpl:127
 msgid "nothing"
 msgstr "nada"
 
-#: tmp.tpl:123
+#: tmp.tpl:125
 msgid "invert"
 msgstr "invertido"
 
-#: tmp.tpl:126
+#: tmp.tpl:128
 msgid "Change language"
 msgstr "Mudar o idioma"
 
-#: tmp.tpl:129
+#: tmp.tpl:131
 msgid "Help"
 msgstr "Ajuda"
 
-#: tmp.tpl:130
+#: tmp.tpl:132
 #, python-format
 msgid "Delay: %sd"
 msgstr "Atraso: %sd"
 
-#: tmp.tpl:134
+#: tmp.tpl:136
 msgid "Logout"
 msgstr "Sair"
 
-#: tmp.tpl:135 tmp.tpl:137
+#: tmp.tpl:137 tmp.tpl:139
 msgid "Login"
 msgstr "Login"
 
-#: tmp.tpl:136 tmp.tpl:138
+#: tmp.tpl:138 tmp.tpl:140
 msgid "Save"
 msgstr "Salvar"
 
-#: tmp.tpl:139
+#: tmp.tpl:141
 msgid "Objects edited:"
 msgstr "Objetos editados:"
 
-#: tmp.tpl:140
+#: tmp.tpl:142
 msgid "Objects deleted:"
-msgstr "Objetos excluídos:"
+msgstr "Objetos eliminados:"
 
-#: tmp.tpl:141
+#: tmp.tpl:143
 msgid "Fix with Osmose"
 msgstr "Corrigir com Osmose"
 
-#: tmp.tpl:142
+#: tmp.tpl:144
 msgid "Source"
 msgstr "Fonte"
 
-#: tmp.tpl:143
+#: tmp.tpl:145
 msgid "Type"
 msgstr "Tipo"
 
-#: tmp.tpl:144
+#: tmp.tpl:146
 msgid "Reuse changeset"
 msgstr "Reutilização de alterações"
 
-#: tmp.tpl:146
+#: tmp.tpl:148
 msgid "change status"
-msgstr "alterar status"
+msgstr "alterar estado"
 
-#: tmp.tpl:147
+#: tmp.tpl:149
 msgid "corrected"
 msgstr "corrigido"
 
-#: tmp.tpl:148
+#: tmp.tpl:150
 msgid "false positive"
 msgstr "falso positivo"
 
-#: tmp.tpl:149 tmp.tpl:150
+#: tmp.tpl:151 tmp.tpl:152
 msgid "How to help translation"
 msgstr "Como ajudar na tradução"
 
-#: tmp.tpl:151
+#: tmp.tpl:153
 msgid ""
 "Osmose tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
 msgstr "A ferramenta Osmose é desenvolvida principalmente por franceses, e nosso objetivo é adicionar mais idiomas. Nós atualmente cobrimos quase todas as línguas utilizadas pelos países cobertos pela análise."
 
-#: tmp.tpl:153
+#: tmp.tpl:155
 msgid ""
 "To make Osmose a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr "Para fazer Osmose uma ferramenta multi-lingual real, precisamos de sua ajuda para melhorar as traduções atuais e adicionar novas traduções."
 
-#: tmp.tpl:154
+#: tmp.tpl:156
 msgid "Pages to translate"
 msgstr "Páginas para traduzir"
 
-#: tmp.tpl:158
+#: tmp.tpl:160
 msgid "Wiki pages"
 msgstr "Páginas Wiki"
 
-#: tmp.tpl:155
+#: tmp.tpl:157
 msgid "Osmose pages"
 msgstr "Páginas Osmose"
 
-#: tmp.tpl:164
+#: tmp.tpl:166
 msgid "Bug tracking system"
 msgstr "Sistema de acompanhamento de bugs"
 
@@ -493,19 +494,19 @@ msgstr "Estrutura"
 
 #: ../tools/database/categ_menu.txt:2
 msgid "Missing tags"
-msgstr "Ausência de tags"
+msgstr "Ausência de etiquetas"
 
 #: ../tools/database/categ_menu.txt:3
 msgid "Bad tag"
-msgstr "Erro de tag"
+msgstr "Etiqueta errada"
 
 #: ../tools/database/categ_menu.txt:4
 msgid "Tags to remove"
-msgstr "Tags para remover"
+msgstr "Etiquetas para remover"
 
 #: ../tools/database/categ_menu.txt:5
 msgid "Tags name"
-msgstr "Nomes de tags"
+msgstr "Nome das etiquetas"
 
 #: ../tools/database/categ_menu.txt:6
 msgid "Administrative"
@@ -537,7 +538,7 @@ msgstr "polígono inválido"
 
 #: ../tools/database/item_menu.txt:6
 msgid "reverse roundabout"
-msgstr "rotatória invertida"
+msgstr "rotatória (rotunda) invertida"
 
 #: ../tools/database/item_menu.txt:7
 msgid "boundary intersect"
@@ -621,11 +622,11 @@ msgstr "mão única"
 
 #: ../tools/database/item_menu.txt:31
 msgid "parent tag"
-msgstr "tag pai"
+msgstr "etiqueta pai"
 
 #: ../tools/database/item_menu.txt:32
 msgid "street numbers"
-msgstr "número de porta"
+msgstr "números de porta"
 
 #: ../tools/database/item_menu.txt:33
 msgid "highway"
@@ -641,11 +642,11 @@ msgstr "farmácia"
 
 #: ../tools/database/item_menu.txt:39
 msgid "highway roundabout"
-msgstr "rotatória"
+msgstr "rotatória (rotunda)"
 
 #: ../tools/database/item_menu.txt:40
 msgid "bad source tag"
-msgstr "erro no tag fonte"
+msgstr "etiqueta de fonte errada"
 
 #: ../tools/database/item_menu.txt:41
 msgid "tagwatch cleaner"
@@ -657,7 +658,7 @@ msgstr "wikipedia"
 
 #: ../tools/database/item_menu.txt:43
 msgid "multiple tags"
-msgstr "múltiplos tags"
+msgstr "etiquetas múltiplas"
 
 #: ../tools/database/item_menu.txt:44
 msgid "saint hyphen"
@@ -665,11 +666,11 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:45
 msgid "incorrect tag"
-msgstr "tag incorreto"
+msgstr "etiqueta incorreta"
 
 #: ../tools/database/item_menu.txt:46
 msgid "bad tag key"
-msgstr "erro de chave do tag"
+msgstr "erro na chave da etiqueta"
 
 #: ../tools/database/item_menu.txt:47
 msgid "similar values"
@@ -677,7 +678,7 @@ msgstr "valores similares"
 
 #: ../tools/database/item_menu.txt:48
 msgid "multiple values"
-msgstr "Múltiplos valores"
+msgstr "múltiplos valores"
 
 #: ../tools/database/item_menu.txt:49
 msgid "swimming pool as natural=water"
@@ -701,11 +702,11 @@ msgstr "árvore"
 
 #: ../tools/database/item_menu.txt:55
 msgid "brand in name"
-msgstr "Marca no nome"
+msgstr "marca no nome"
 
 #: ../tools/database/item_menu.txt:56
 msgid "typo in tag"
-msgstr "erro de digitação no tag"
+msgstr "erro ortográfico na etiqueta"
 
 #: ../tools/database/item_menu.txt:57
 msgid "incorrect "
@@ -725,11 +726,11 @@ msgstr "tipo de relação=restrição"
 
 #: ../tools/database/item_menu.txt:61
 msgid "postcode"
-msgstr "CEP"
+msgstr "CEP / código portal"
 
 #: ../tools/database/item_menu.txt:65
 msgid "disused"
-msgstr "desuso"
+msgstr "em desuso"
 
 #: ../tools/database/item_menu.txt:66
 msgid "on junction=roundabout"
@@ -737,7 +738,7 @@ msgstr "na junction=roundabout"
 
 #: ../tools/database/item_menu.txt:67
 msgid "incompatible tags"
-msgstr "tags incompatíveis"
+msgstr "etiquetas incompatíveis"
 
 #: ../tools/database/item_menu.txt:68
 msgid "ref in name"
@@ -753,7 +754,7 @@ msgstr "objeto duplicado"
 
 #: ../tools/database/item_menu.txt:73
 msgid "unwanted tag on node"
-msgstr "tag indesejado no nó"
+msgstr "etiqueta indesejado no nó"
 
 #: ../tools/database/item_menu.txt:74
 msgid "bad usage"
@@ -825,15 +826,15 @@ msgstr "fronteira administrativa"
 
 #: ../tools/database/item_menu.txt:94
 msgid "power lines"
-msgstr "cabos de força"
+msgstr "linhas de eletricidade"
 
 #: ../tools/database/item_menu.txt:95 ../tools/database/item_menu.txt:112
 msgid "post office"
-msgstr "Correios"
+msgstr "correios"
 
 #: ../tools/database/item_menu.txt:97
 msgid "ODbL migration change"
-msgstr ""
+msgstr "alteração de migração para ODbL"
 
 #: ../tools/database/item_menu.txt:98
 msgid "school, not integrated"
@@ -873,7 +874,7 @@ msgstr "monumento, museu, pode ser integrado"
 
 #: ../tools/database/item_menu.txt:113
 msgid "post office, could be integrated"
-msgstr "Correios, pode ser integrado"
+msgstr "correios, pode ser integrado"
 
 #: ../tools/database/item_menu.txt:116
 msgid "school"
@@ -957,47 +958,47 @@ msgstr "compartilhamento de transporte, poderia ser integrado"
 
 #: ../tools/database/item_menu.txt:142
 msgid "sport"
-msgstr "esporte"
+msgstr "esporte/desporto"
 
 #: ../tools/database/item_menu.txt:143
 msgid "sport, could be integrated"
-msgstr "esporte, poderia ser integrado"
+msgstr "esporte/desporto, poderia ser integrado"
 
-#: tmp.tpl:157
+#: tmp.tpl:159
 msgid "Translation progress: osmose"
 msgstr "Progresso da tradução: osmose"
 
-#: tmp.tpl:161
+#: tmp.tpl:163
 msgid "For new language or countries"
 msgstr "Para novo idioma ou países"
 
-#: tmp.tpl:163
+#: tmp.tpl:165
 #, python-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
 "href='mailto:%s'>%s</a>."
 msgstr "Para novos países, podemos ser contatados através do email <a href='mailto:%s'>%s</a>."
 
-#: tmp.tpl:152
+#: tmp.tpl:154
 #, python-format
 msgid "The <a href='%s'>country coverage is available</a>."
 msgstr "A <a href='%s'>cobertura do país está disponível</a>."
 
-#: tmp.tpl:162
+#: tmp.tpl:164
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
 msgstr "Você pode criar um novo idioma diretamente em <a href='%s'>Transifex</a>."
 
-#: tmp.tpl:156
+#: tmp.tpl:158
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr "A tradução é feita em <a href='%s'>Transifex</a>."
 
-#: tmp.tpl:127
+#: tmp.tpl:129
 msgid "Export"
 msgstr "Exportar"
 
-#: tmp.tpl:128
+#: tmp.tpl:130
 msgid "Html list"
 msgstr "Lista html"
 
@@ -1007,7 +1008,7 @@ msgstr "via de um nó"
 
 #: ../tools/database/item_menu.txt:144
 msgid "toilets"
-msgstr "banheiros"
+msgstr "banheiros/casas de banho"
 
 #: ../tools/database/item_menu.txt:105
 msgid "transport sharing, not integrated"
@@ -1033,19 +1034,19 @@ msgstr "farmácia, pode ser integrada"
 msgid "gas station"
 msgstr "estação de combustível"
 
-#: tmp.tpl:87
+#: tmp.tpl:89
 msgid "position"
 msgstr "posição"
 
-#: tmp.tpl:137
+#: tmp.tpl:139
 msgid "You must be logged in order to use the tag editor"
 msgstr "Tem de ter a sessão iniciada para usar o editor de etiquetas"
 
-#: tmp.tpl:138
+#: tmp.tpl:140
 msgid "Save changeset"
 msgstr "Gravar conjunto de edições"
 
-#: tmp.tpl:141
+#: tmp.tpl:143
 msgid "Comment"
 msgstr "Comentário"
 
@@ -1061,31 +1062,31 @@ msgstr "sem saída"
 msgid ""
 "Keep in touch by watching at <a "
 "href='https://twitter.com/osmose_qa'>@osmose_qa</a> on twitter."
-msgstr ""
+msgstr "Mantenha-se atualizado em <a href='https://twitter.com/osmose_qa'>@osmose_qa</a> no twitter."
 
 #: ../tools/database/item_menu.txt:75
 msgid "incorrect layer"
-msgstr ""
+msgstr "camada incorreta"
 
-#: tmp.tpl:36
+#: tmp.tpl:36 tmp.tpl:38
 msgid "Updates summary"
-msgstr ""
+msgstr "Sumário de atualizações"
 
-#: tmp.tpl:40
+#: tmp.tpl:42
 msgid "country"
 msgstr "país"
 
-#: tmp.tpl:41
+#: tmp.tpl:43
 msgid "analyser"
-msgstr ""
+msgstr "analisador"
 
 #: ../tools/database/item_menu.txt:150
 msgid "postal code, could be integrated"
-msgstr ""
+msgstr "CEP/código postal, pode ser integrado"
 
 #: ../tools/database/item_menu.txt:151
 msgid "library"
-msgstr ""
+msgstr "biblioteca"
 
 #: ../tools/database/item_menu.txt:152
 msgid "restaurant"
@@ -1121,12 +1122,12 @@ msgstr "Erros corrigidos"
 #. TRANSLATORS: link to help in appropriate language
 #: ../map.py:136
 msgid "Issues by user"
-msgstr ""
+msgstr "Problemas por utilizador"
 
 #: tmp.tpl:2 tmp.tpl:3 tmp.tpl:4
 #, python-brace-format
 msgid "Number of level {level} issues: {count}"
-msgstr ""
+msgstr "Número de problemas em level {level}: {count}"
 
 #: tmp.tpl:6 tmp.tpl:15
 #, python-format
@@ -1151,7 +1152,7 @@ msgstr "Mostrar erros num mapa"
 
 #: tmp.tpl:20
 msgid "Osmose allows you to control your own issues."
-msgstr ""
+msgstr "O Osmose permite-lhe controlar os seus próprios problemas."
 
 #: tmp.tpl:21
 msgid ""
@@ -1161,58 +1162,58 @@ msgid ""
 "contributor of the relevant erroneous elements."
 msgstr ""
 
-#: tmp.tpl:56 tmp.tpl:94
+#: tmp.tpl:58 tmp.tpl:96
 #, python-format
 msgid "Information on issue %d"
 msgstr "Informação do erro %d"
 
-#: tmp.tpl:76
+#: tmp.tpl:78
 msgid "Show more issues"
 msgstr "Mostrar mais erros"
 
-#: tmp.tpl:77
+#: tmp.tpl:79
 msgid "Show some issues"
 msgstr "Mostrar mais erros"
 
-#: tmp.tpl:86
+#: tmp.tpl:88
 msgid "information on issue"
 msgstr "informação do erro"
 
-#: tmp.tpl:91
+#: tmp.tpl:93
 msgid "delete issue"
 msgstr "eliminar erro"
 
-#: tmp.tpl:92
+#: tmp.tpl:94
 msgid "issue n°"
 msgstr "erro nº"
 
-#: tmp.tpl:93
+#: tmp.tpl:95
 #, python-format
 msgid "delete issue #%d"
 msgstr "eliminar erro #%d"
 
-#: tmp.tpl:99
+#: tmp.tpl:101
 msgid "Map of issues"
 msgstr "Mapa dos erros"
 
-#: tmp.tpl:101
+#: tmp.tpl:103
 msgid "Information on issues database"
 msgstr "Informação na base de dados de erros"
 
-#: tmp.tpl:131 tmp.tpl:132 tmp.tpl:133
+#: tmp.tpl:133 tmp.tpl:134 tmp.tpl:135
 #, python-format
 msgid "Level %d issues (%d)"
-msgstr ""
+msgstr "Problemas com level %d (%d)"
 
-#: tmp.tpl:145
+#: tmp.tpl:147
 msgid "Issue reported on: "
 msgstr "Erro reportado em:"
 
-#: tmp.tpl:160
+#: tmp.tpl:162
 msgid "Documentation on reported issues"
-msgstr ""
+msgstr "Documentação em problemas reportados"
 
-#: tmp.tpl:49
+#: tmp.tpl:51
 msgid "version"
 msgstr "versão"
 
@@ -1222,15 +1223,15 @@ msgstr "geodésico"
 
 #: ../tools/database/item_menu.txt:96
 msgid "post box"
-msgstr ""
+msgstr "caixa de correio"
 
 #: ../tools/database/item_menu.txt:115
 msgid "post box, could be integrated"
-msgstr ""
+msgstr "caixa de correio, pode ser integrado"
 
 #: ../tools/database/item_menu.txt:37
 msgid "indoor"
-msgstr ""
+msgstr "interior"
 
 #: ../tools/database/item_menu.txt:76
 msgid "roundabout as area"
@@ -1244,14 +1245,14 @@ msgstr "estrada"
 msgid "split building"
 msgstr ""
 
-#: tmp.tpl:108
+#: tmp.tpl:110
 #, python-format
 msgid "Control, verification and correction of %s issues"
-msgstr ""
+msgstr "Controle, verificação e correção de %s problemas"
 
-#: tmp.tpl:159
+#: tmp.tpl:161
 msgid "Osmose QA main page"
-msgstr ""
+msgstr "Página principal Osmose QA"
 
 #: tmp.tpl:25
 msgid ""
@@ -1262,7 +1263,7 @@ msgid ""
 "analyses."
 msgstr ""
 
-#: tmp.tpl:165
+#: tmp.tpl:167
 msgid ""
 "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
 "frontend</a> can be used to report any issue with translations."
@@ -1274,11 +1275,11 @@ msgstr "longe da água"
 
 #: ../tools/database/item_menu.txt:69
 msgid "fixme import"
-msgstr ""
+msgstr "importação fixme"
 
 #: ../tools/database/item_menu.txt:26
 msgid "objects intersection"
-msgstr ""
+msgstr "interseção de objetos"
 
 #: ../tools/database/item_menu.txt:38 ../tools/database/item_menu.txt:64
 msgid "access"
@@ -1286,32 +1287,48 @@ msgstr "acesso"
 
 #: ../tools/database/item_menu.txt:70
 msgid "fixme review"
-msgstr ""
+msgstr "revisão de fixme"
 
 #: ../tools/database/item_menu.txt:111
 msgid "monument, museum, need update"
-msgstr ""
+msgstr "monumento, museu, necessita de atualização"
 
 #: ../tools/database/item_menu.txt:114
 msgid "post box, need update"
-msgstr ""
+msgstr "caixa de correio, necessita de atualização"
 
 #: ../tools/database/item_menu.txt:118
 msgid "school, need update"
-msgstr ""
+msgstr "escola, necessita de atualização"
 
 #: ../tools/database/item_menu.txt:121
 msgid "public transport, need update"
-msgstr ""
+msgstr "transporte público, necessita de atualização"
 
 #: ../tools/database/item_menu.txt:131
 msgid "recycling, need update"
-msgstr ""
+msgstr "reciclagem, necessita de atualização"
 
 #: ../tools/database/item_menu.txt:134
 msgid "parking, need update"
-msgstr ""
+msgstr "estacionamento, necessita de atualização"
 
 #: ../tools/database/item_menu.txt:141
 msgid "transport sharing, need update"
+msgstr "partilha de transporte, necessita de atualização"
+
+#: tmp.tpl:37
+msgid "Analyser"
+msgstr ""
+
+#: tmp.tpl:37
+msgid "Count"
+msgstr ""
+
+#: tmp.tpl:37
+msgid "Age"
+msgstr ""
+
+#: tmp.tpl:37
+msgid "Version"
 msgstr ""
