@@ -11,7 +11,7 @@
 %end
 <table>
 %for remote in summary.keys():
-<tr><th><a href="update_matrix?remote={{remote}}">{{remote}}</a> ({{min_versions[remote]}} - {{max_versions[remote]}})</th></tr>
+<tr><th><a href="update_matrix?remote={{remote_hashes[remote]}}">{{remote}}</a> ({{min_versions[remote]}} - {{max_versions[remote]}})</th></tr>
 <tr><td>
 %    for country in summary[remote]:
 %        col('span', country['min_age'])

@@ -124,7 +124,8 @@ ORDER BY
 def updates(db, lang):
     db.execute("""
 SELECT
-    RIGHT(MD5(remote_ip), 4) AS remote_ip,
+    coalesce(backend.hostname, dynpoi_update_last.remote_ip) AS remote,
+    RIGHT(MD5(remote_ip), 4) AS remote_ip_hash,
     country,
     MAX(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp))) AS max_age,
     MIN(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp))) AS min_age,
@@ -135,20 +136,25 @@ FROM
     source
     JOIN dynpoi_update_last ON
         source.id = dynpoi_update_last.source
+    LEFT JOIN backend ON
+        dynpoi_update_last.remote_ip = backend.ip
 GROUP BY
-    remote_ip,
+    remote,
+    remote_ip_hash,
     country
 ORDER BY
-    remote_ip,
+    remote,
     MIN(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp))) ASC
 """)
 
     summary = defaultdict(list)
+    remote_hashes = {}
     max_versions = defaultdict(list)
     min_versions = defaultdict(list)
     for res in db.fetchall():
-        (remote, country, max_age, min_age, max_version, min_version, count) = res
+        (remote, remote_hash, country, max_age, min_age, max_version, min_version, count) = res
         summary[remote].append({'country': country, 'max_age': max_age/60/60/24, 'min_age': min_age/60/60/24, 'count': count})
+        remote_hashes[remote] = remote_hash
         max_versions[remote].append(max_version)
         min_versions[remote].append(min_version)
     for remote in max_versions.keys():
@@ -159,7 +165,7 @@ ORDER BY
         if min_versions[remote] and '-' in min_versions[remote]:
           min_versions[remote] = '-'.join(min_versions[remote].split('-')[1:5])
 
-    return template('control/updates_summary', summary=summary, max_versions=max_versions, min_versions=min_versions)
+    return template('control/updates_summary', summary=summary, max_versions=max_versions, min_versions=min_versions, remote_hashes=remote_hashes)
 
 
 @route('/control/update_summary_by_analyser')
