@@ -381,7 +381,7 @@ class update_parser(handler.ContentHandler):
                                   utils.pg_escape(self._remote_ip),
                                   self._source_id))
             if self._dbcurs.rowcount == 0:
-                execute_sql(self._dbcurs, "INSERT INTO dynpoi_update_last VALUES(%s, %s, %s %s);",
+                execute_sql(self._dbcurs, "INSERT INTO dynpoi_update_last VALUES(%s, %s, %s, %s);",
                                  (self._source_id, utils.pg_escape(self.ts),
                                   utils.pg_escape(self.version),
                                   utils.pg_escape(self._remote_ip)))
