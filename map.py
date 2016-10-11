@@ -195,11 +195,13 @@ def num2deg(xtile, ytile, zoom):
 
 @route('/map/heat/<z:int>/<x:int>/<y:int>.png')
 def heat(db, z, x, y):
+    COUNT=32
+
     x2,y1 = num2deg(x,y,z)
     x1,y2 = num2deg(x+1,y+1,z)
 
     params = query._params()
-    params.bbox = [y1, x1, y2, x2]
+    params.bbox = [y1, x1, y2 + (y2-y1)/COUNT, x2]
     items = query._build_where_item(params.item, "dynpoi_item")
 
     db.execute("""
@@ -220,13 +222,12 @@ WHERE
     join = join.replace("%", "%%")
     where = where.replace("%", "%%")
 
-    COUNT=32
-
     sql = """
 SELECT
     COUNT(*),
     (((lon-%(y1)s))*%(count)s/(%(y2)s-%(y1)s)-0.5)::int AS latn,
-    (((lat-%(x1)s))*%(count)s/(%(x2)s-%(x1)s)-0.5)::int AS lonn
+    (((lat-%(x1)s))*%(count)s/(%(x2)s-%(x1)s)-0.5)::int AS lonn,
+    mode() WITHIN GROUP (ORDER BY dynpoi_item.marker_color) AS color
 FROM
 """ + join + """
 WHERE
@@ -245,11 +246,15 @@ GROUP BY
     mask_draw.rectangle(transparent_area, fill=0)
 
     for row in db.fetchall():
-        count, x, y = row
+        count, x, y, color = row
         count = int(math.log(count) / math.log(max / ((z-4+1+math.sqrt(COUNT))**2)) * 255)
         count = 255 if count > 255 else count
-        r = [(x*256/COUNT,(COUNT-1-y)*256/COUNT), ((x+1)*256/COUNT-1,((COUNT-1-y+1)*256/COUNT-1))]
-        mask_draw.rectangle(r, fill=count)
+        count = count/2 + 128
+        cx = x*256/COUNT + (256/COUNT/2 * (int(y) % 2))
+        cy = (COUNT-1-y)*256/COUNT + 256/COUNT/2
+        r = 256/COUNT/2 - 1
+        mask_draw.ellipse((cx-r, cy-r, cx+r, cy+r), fill=count)
+        draw.ellipse((cx-r, cy-r, cx+r, cy+r), fill=color)
 
     im.putalpha(mask)
     del draw

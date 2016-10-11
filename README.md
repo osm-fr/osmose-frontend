@@ -42,7 +42,7 @@ Installation Database
 
 Setup system dependencies (Ubuntu Server 14.04)
 ```
-apt install postgresql-9.3 postgresql-contrib-9.3 postgresql-9.3-postgis-2.1
+apt install postgresql-9.4 postgresql-contrib-9.4 postgresql-9.4-postgis-2.1
 ```
 
 As postgres user:
