@@ -13,4 +13,4 @@
 <a href='../map/#username={{username}}'>{{_("Show issues on a map")}}</a>
 </p>
 
-%include("views/errors/list.tpl", errors=errors, gen="info", opt_date="-1", translate=translate, page_args="username=%s&" % html_escape(username))
+%include("views/errors/list.tpl", query="", errors=errors, gen="info", opt_date="-1", translate=translate, page_args="username=%s&" % html_escape(username))
