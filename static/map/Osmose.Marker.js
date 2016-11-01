@@ -55,7 +55,7 @@ OsmoseMarker = L.GeoJSON.extend({
         e.popup.update();
 
         setTimeout(function () {
-          if (e.popup._isOpen) {
+          if (e.popup.isOpen) {
             // Popup still open, so download content
             $.ajax({
               url: '../api/0.2/error/' + featureData.properties.error_id,
