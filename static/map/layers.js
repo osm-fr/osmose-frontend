@@ -35,5 +35,5 @@ var mapOverlay = {
   'boundary=election': L.tileLayer(urlOsmFr, {layer: 'boundary_election', attribution: attributionOsmFr}),
   'Voirie/Cadastre': L.tileLayer(urlOsmFr, {layer: 'voirie-cadastre', attribution: attributionOsmFr}),
   'No ref without tertiary': L.tileLayer(urlOsmFr, {layer: 'noref-notertiary', attribution: attributionOsmFr}),
-  'Mapillary': new Mapillary('MEpmMTFQclBTUWlacjV6RTUxWWMtZzo5OTY4Nzg1ZWZkM2IyMjRk'),
+  'Mapillary': new Mapillary('MEpmMTFQclBTUWlacjV6RTUxWWMtZzo5OTc2NjY2MmRiMDUwYmMw'),
 };
