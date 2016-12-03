@@ -51,7 +51,7 @@ def _build_where_item(item, table):
 
 
 def _build_param(lat, lon, bbox, source, item, level, users, classs, country, useDevItem, status, tags, fixable, forceTable=[],
-                 summary=False, stats=False, start_date=None, end_date=None):
+                 summary=False, stats=False, start_date=None, end_date=None, last_update=None):
     join = ""
     where = ["1=1"]
 
@@ -96,6 +96,8 @@ def _build_param(lat, lon, bbox, source, item, level, users, classs, country, us
             tablesLeft.append("dynpoi_item")
         if users:
             tables.append("marker_elem")
+    if last_update:
+            tables.append("dynpoi_update_last")
 
     if "dynpoi_class" in tables or "source" in tables:
         join += """
@@ -112,6 +114,11 @@ def _build_param(lat, lon, bbox, source, item, level, users, classs, country, us
         join += """
         %sJOIN dynpoi_item ON
             %s.item = dynpoi_item.item""" % ("LEFT " if "dynpoi_item" in tablesLeft else "", itemField)
+
+    if "dynpoi_update_last" in tables:
+        join += """
+        JOIN dynpoi_update_last ON
+            dynpoi_update_last.source = marker.source"""
 
     if "marker_elem" in tables:
         join += """
@@ -329,8 +336,10 @@ def _count(db, params, by, extraFrom=[], extraFields=[], orderBy=False):
         order = "count DESC"
     if params.limit:
         sqlbase += " LIMIT %s" % params.limit
+    if "dynpoi_update_last" in byTable:
+        last_update = True
 
-    join, where = _build_param(params.lat, params.lon, params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, summary=summary, forceTable=byTable, start_date=params.start_date, end_date=params.end_date)
+    join, where = _build_param(params.lat, params.lon, params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, summary=summary, forceTable=byTable, start_date=params.start_date, end_date=params.end_date, last_update=last_update)
     sql = sqlbase % (select, join, where, groupBy, order)
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()

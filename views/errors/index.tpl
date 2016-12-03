@@ -1,3 +1,4 @@
+%from datetime import datetime
 %favicon=None
 %for res in items:
 %    if item == str(res["item"]):
@@ -48,6 +49,7 @@
 <tr>
     <th>#</th>
     <th>{{_("source")}}</th>
+    <th>{{_("age")}}</th>
 %# TRANSLATORS: this should be replaced by a abbreviation for class
     <th title="class">{{_("class (abbreviation)")}}</th>
     <th></th>
@@ -62,6 +64,7 @@
 <tr>
     <td><a href="?source={{res["source"]}}">{{res["source"]}}</a></td>
     <td>{{res["analyser"]}}-<a href="?country={{res["country"]}}">{{res["country"]}}</a></td>
+    <td>{{round((datetime.now(res["timestamp"].tzinfo) - res["timestamp"]).total_seconds()/60/60/24, 1)}}</td>
     <td><a href="?item={{res["item"]}}&amp;class={{res["class"]}}">{{res["class"]}}</a></td>
     <td title="{{res["item"]}}"><img src="../images/markers/marker-l-{{res["item"]}}.png" alt="{{res["item"]}}"></td>
     <td><a href="?item={{res["item"]}}">{{res["item"]}}</a></td>
