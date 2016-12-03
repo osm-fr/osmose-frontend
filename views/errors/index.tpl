@@ -50,11 +50,9 @@
     <th>#</th>
     <th>{{_("source")}}</th>
     <th>{{_("age")}}</th>
+    <th class="sorttable_sorted">{{_("item")}}<span id="sorttable_sortfwdindtable_source">&nbsp;▾</span></th>
 %# TRANSLATORS: this should be replaced by a abbreviation for class
     <th title="class">{{_("class (abbreviation)")}}</th>
-    <th></th>
-    <th class="sorttable_sorted">#<span id="sorttable_sortfwdindtable_source">&nbsp;▾</span></th>
-    <th>{{_("item")}}</th>
     <th>{{_("title")}}</th>
     <th>{{_("count")}}</th>
 </tr>
@@ -65,14 +63,14 @@
     <td><a href="?source={{res["source"]}}">{{res["source"]}}</a></td>
     <td>{{res["analyser"]}}-<a href="?country={{res["country"]}}">{{res["country"]}}</a></td>
     <td>{{round((datetime.now(res["timestamp"].tzinfo) - res["timestamp"]).total_seconds()/60/60/24, 1)}}</td>
+    <td>
+        <img src="../images/markers/marker-l-{{res["item"]}}.png" alt="{{res["item"]}}">
+        <a href="?item={{res["item"]}}">{{res["item"]}}</a>
+%        if res["menu"]:
+            {{translate.select(res["menu"])}}
+%        end
+    </td>
     <td><a href="?item={{res["item"]}}&amp;class={{res["class"]}}">{{res["class"]}}</a></td>
-    <td title="{{res["item"]}}"><img src="../images/markers/marker-l-{{res["item"]}}.png" alt="{{res["item"]}}"></td>
-    <td><a href="?item={{res["item"]}}">{{res["item"]}}</a></td>
-%    if res["menu"]:
-    <td>{{translate.select(res["menu"])}}</td>
-%    else:
-    <td></td>
-%    end
     <td>{{translate.select(res["title"])}}</td>
 %    count = res["count"]
 %    if count == -1:
@@ -85,7 +83,7 @@
 %if total > 0:
 <tfoot>
 <tr>
-    <th colspan="7">{{_("Total")}}</th>
+    <th colspan="6">{{_("Total")}}</th>
     <th style="text-align: left">{{total}}</th>
 </tr>
 </tfoot>
