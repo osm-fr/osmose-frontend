@@ -46,6 +46,7 @@ function init_map() {
   var permalink = new L.Control.Permalink({
     layers: layers,
     position: 'bottomright',
+    useAnchor: false,
     menu: menu
   });
   map.addControl(permalink);
