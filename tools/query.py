@@ -336,6 +336,7 @@ def _count(db, params, by, extraFrom=[], extraFields=[], orderBy=False):
         order = "count DESC"
     if params.limit:
         sqlbase += " LIMIT %s" % params.limit
+    last_update = False
     if "dynpoi_update_last" in byTable:
         last_update = True
 
