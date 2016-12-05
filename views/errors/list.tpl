@@ -3,15 +3,13 @@
 <thead>
 <tr>
     <th title="source">{{_("source")}}</th>
+%# TRANSLATORS: this should be replaced by a abbreviation for subclass
+    <th title="level">{{_("level (abbreviation)")}}</th>
+    <th>{{_("item")}}</th>
 %# TRANSLATORS: this should be replaced by a abbreviation for class
     <th title="class">{{_("class (abbreviation)")}}</th>
 %# TRANSLATORS: this should be replaced by a abbreviation for subclass
     <th title="subclass">{{_("subclass (abbreviation)")}}</th>
-%# TRANSLATORS: this should be replaced by a abbreviation for subclass
-    <th title="level">{{_("level (abbreviation)")}}</th>
-    <th></th>
-    <th>#</th>
-    <th>{{_("item")}}</th>
     <th title="{{_("information on issue")}}">E</th>
     <th title="{{_("position")}}">{{_("position (abbreviation)")}}</th>
     <th>{{_("elements (abbreviation)")}}</th>
@@ -27,16 +25,16 @@
 %for res in errors:
 <tr>
     <td title="{{res["country"] + "-" + res["analyser"]}}"><a href="?{{!page_args}}source={{res["source"]}}">{{res["source"]}}</a></td>
+    <td>{{res["level"]}}</td>
+    <td>
+        <img src="../images/markers/marker-l-{{res["item"]}}.png" alt="{{res["item"]}}">
+        <a href="?{{!page_args}}item={{res["item"]}}">{{res["item"]}}</a>
+%        if res["menu"]:
+            {{translate.select(res["menu"])}}
+%        end
+    </td>
     <td>{{res["class"]}}</td>
     <td>{{res["subclass"]}}</td>
-    <td>{{res["level"]}}</td>
-    <td title="{{res["item"]}}"><img src="../images/markers/marker-l-{{res["item"]}}.png" alt="{{res["item"]}}"></td>
-    <td><a href="?{{!page_args}}item={{res["item"]}}">{{res["item"]}}</a></td>
-%    if res["menu"]:
-    <td title="{{translate.select(res["title"])}}">{{translate.select(res["menu"])}}</td>
-%    else:
-    <td></td>
-%    end
 %    e = gen if gen in ('error', 'false-positive') else 'error'
     <td title="{{_(u"issue n°")}}{{res["id"]}}"><a href="../{{e}}/{{res["id"]}}">E</a></td>
 %    if res["lat"] and res["lon"]:

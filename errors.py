@@ -144,8 +144,9 @@ def index(db, lang, format=None):
             "dynpoi_class.source",
             "dynpoi_class.class",
             "source.country",
-            "source.analyser"],
-            ["dynpoi_item"], [
+            "source.analyser",
+            "dynpoi_update_last.timestamp"], [
+            "dynpoi_item"], [
             "min(dynpoi_item.menu::text)::hstore AS menu",
             "min(dynpoi_class.title::text)::hstore AS title"],
             orderBy = True)
