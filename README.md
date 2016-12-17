@@ -32,7 +32,7 @@ apt install pkg-config libpng-dev libfreetype6-dev
 Create a python virtualenv, active it and install python dependencies
 ```
 virtualenv --python=python2.7 osmose-frontend-venv
-source osmose-backend-venv/bin/activate
+source osmose-frontend-venv/bin/activate
 pip install -r requirements.txt  --allow-all-external --allow-unverified PIL
 ```
 
