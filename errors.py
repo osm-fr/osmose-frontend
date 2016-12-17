@@ -30,9 +30,8 @@ import StringIO, re
 import errors_graph
 
 
-def _errors_geo(db, lang, params):
+def _errors_geo(db, params):
     results = query._gets(db, params)
-    translate = utils.translator(lang)
 
     features = []
 

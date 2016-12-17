@@ -264,7 +264,7 @@ GROUP BY
 
 
 @route('/map/markers')
-def markers(db, lang):
+def markers(db):
     params = query._params()
 
     if (not params.users) and (not params.source) and (params.zoom < 6):
@@ -283,7 +283,7 @@ def markers(db, lang):
     response.set_cookie('last_tags', str(','.join(params.tags)) if params.tags else '', expires=expires, path=path)
     response.set_cookie('last_fixable', str(params.fixable) if params.fixable else '', expires=expires, path=path)
 
-    return errors._errors_geo(db, lang, params)
+    return errors._errors_geo(db, params)
 
 
 @route('/tpl/popup.tpl')
