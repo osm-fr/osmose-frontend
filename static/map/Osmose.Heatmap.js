@@ -1,4 +1,4 @@
-OsmoseHeatmap = L.TileLayer.extend({
+OsmoseHeatmap = L.VectorGrid.Protobuf.extend({
 
   _options: null,
 
@@ -9,7 +9,22 @@ OsmoseHeatmap = L.TileLayer.extend({
   initialize: function (menu, params, options) {
     this._menu = menu;
     this._params = params;
-    L.TileLayer.prototype.initialize.call(this, this._makeUrl(), options);
+
+    var vectorTileOptions = {
+      vectorTileLayerStyles: {
+        issues: function(properties, zoom) {
+          return {
+            weight: 0,
+            fillColor: '#' + (properties.color + 0x1000000).toString(16).substr(-6),
+            fillOpacity: 0.25  + properties.count / 256 * 0.75,
+            fill: true,
+            radius: 5,
+          };
+        }
+      }
+    };
+
+    L.VectorGrid.Protobuf.prototype.initialize.call(this, this._makeUrl(), vectorTileOptions);
   },
 
   onAdd: function (map) {
@@ -33,7 +48,7 @@ OsmoseHeatmap = L.TileLayer.extend({
     }
     var url = L.Util.getParamString(params);
 
-    return 'heat/{z}/{x}/{y}.png' + url;
+    return 'heat/{z}/{x}/{y}.mvt' + url;
   },
 
   _setUrl: function () {

@@ -26,8 +26,6 @@ import byuser
 import errors
 import datetime
 import math, StringIO
-from PIL import Image
-from PIL import ImageDraw
 from shapely.geometry import Point
 import mapbox_vector_tile
 
@@ -232,7 +230,7 @@ def _errors_mvt(db, params, z, min_x, min_y, max_x, max_y, limit):
         }] + limit_feature, quantize_bounds=(min_x, min_y, max_x, max_y))
 
 
-@route('/map/heat/<z:int>/<x:int>/<y:int>.png')
+@route('/map/heat/<z:int>/<x:int>/<y:int>.mvt')
 def heat(db, z, x, y):
     COUNT=32
 
@@ -254,8 +252,11 @@ WHERE
     if max and max[0]:
         max = float(max[0])
     else:
-        response.content_type = 'image/png'
-        return static_file("images/tile-empty.png", root='static')
+        global MVT_EMPTY
+        if not MVT_EMPTY:
+            MVT_EMPTY = mapbox_vector_tile.encode([])
+        response.content_type = 'application/vnd.mapbox-vector-tile'
+        return MVT_EMPTY
 
     join, where = query._build_param(None, None, params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable)
     join = join.replace("%", "%%")
@@ -264,8 +265,8 @@ WHERE
     sql = """
 SELECT
     COUNT(*),
-    (((lon-%(y1)s))*%(count)s/(%(y2)s-%(y1)s)-0.5)::int AS latn,
-    (((lat-%(x1)s))*%(count)s/(%(x2)s-%(x1)s)-0.5)::int AS lonn,
+    (((lon-%(y1)s)) * %(count)s / (%(y2)s-%(y1)s) + 0.5)::int AS latn,
+    (((lat-%(x1)s)) * %(count)s / (%(x2)s-%(x1)s) + 0.5)::int AS lonn,
     mode() WITHIN GROUP (ORDER BY dynpoi_item.marker_color) AS color
 FROM
 """ + join + """
@@ -276,30 +277,25 @@ GROUP BY
     lonn
 """
     db.execute(sql, {"x1":x1, "y1":y1, "x2":x2, "y2":y2, "count":COUNT})
-    im = Image.new("RGB", (256,256), "#ff0000")
-    draw = ImageDraw.Draw(im)
 
-    transparent_area = (0,0,256,256)
-    mask = Image.new('L', im.size, color=255)
-    mask_draw = ImageDraw.Draw(mask)
-    mask_draw.rectangle(transparent_area, fill=0)
-
+    features = []
     for row in db.fetchall():
         count, x, y, color = row
         count = int(math.log(count) / math.log(max / ((z-4+1+math.sqrt(COUNT))**2)) * 255)
         count = 255 if count > 255 else count
-        count = count
-        r = [(x*256/COUNT,(COUNT-1-y)*256/COUNT), ((x+1)*256/COUNT-1,((COUNT-1-y+1)*256/COUNT-1))]
-        mask_draw.rectangle(r, fill=count)
-        draw.rectangle(r, fill=color)
+        if count > 0:
+          features.append({
+            "geometry": Point(x * 2 - 1, y * 2 - 1),
+            "properties": {
+                "color": int(color[1:], 16),
+                "count": count}
+          })
 
-    im.putalpha(mask)
-    del draw
-
-    buf = StringIO.StringIO()
-    im.save(buf, 'PNG')
-    response.content_type = 'image/png'
-    return buf.getvalue()
+    response.content_type = 'application/vnd.mapbox-vector-tile'
+    return mapbox_vector_tile.encode([{
+        "name": "issues",
+        "features": features
+    }], extents=COUNT * 2)
 
 
 @route('/map/issues/<z:int>/<x:int>/<y:int>.mvt')
