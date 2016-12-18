@@ -36,7 +36,6 @@ js_map_bundle = Bundle(
     'map/leaflet-active-area/leaflet.activearea.js',
     'map/Location.js',
     'map/geobuf/ieee754.js',
-    'map/geobuf/pbf-dev.js',
     'map/geobuf/geobuf-dev.js',
     'map/geobuf/topojson.js',
     'map/Osmose.Menu.js',
