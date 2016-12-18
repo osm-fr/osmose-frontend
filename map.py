@@ -28,6 +28,8 @@ import datetime
 import math, StringIO
 from PIL import Image
 from PIL import ImageDraw
+from shapely.geometry import Point
+import mapbox_vector_tile
 
 
 def check_items(items, all_items):
@@ -193,6 +195,43 @@ def num2deg(xtile, ytile, zoom):
     lat_deg = math.degrees(lat_rad)
     return (lat_deg, lon_deg)
 
+
+MVT_EMPTY = None
+
+def _errors_mvt(db, params, z, min_x, min_y, max_x, max_y, limit):
+    params.limit = limit
+    results = query._gets(db, params) if z > 6 else None
+
+    if not results or len(results) == 0:
+        global MVT_EMPTY
+        if not MVT_EMPTY:
+            MVT_EMPTY = mapbox_vector_tile.encode([])
+        return MVT_EMPTY
+    else:
+        limit_feature = []
+        if len(results) == limit:
+            limit_feature = [{
+                "name": "limit",
+                "features": [{
+                    "geometry": Point((min_x + max_x) / 2, (min_y + max_y) / 2)
+                }]
+            }]
+
+        issues_features = []
+        for res in sorted(results, key=lambda res: -res["lat"]):
+            issues_features.append({
+                "geometry": Point(res["lon"], res["lat"]),
+                "properties": {
+                    "issue_id": res["id"],
+                    "item": res["item"] or 0}
+            })
+
+        return mapbox_vector_tile.encode([{
+            "name": "issues",
+            "features": issues_features
+        }] + limit_feature, quantize_bounds=(min_x, min_y, max_x, max_y))
+
+
 @route('/map/heat/<z:int>/<x:int>/<y:int>.png')
 def heat(db, z, x, y):
     COUNT=32
@@ -261,6 +300,36 @@ GROUP BY
     im.save(buf, 'PNG')
     response.content_type = 'image/png'
     return buf.getvalue()
+
+
+@route('/map/issues/<z:int>/<x:int>/<y:int>.mvt')
+def issues_mvt(db, z, x, y):
+    x2,y1 = num2deg(x,y,z)
+    x1,y2 = num2deg(x+1,y+1,z)
+    dx = (x1 - x2) / 256
+    dy = (x2 - x1) / 256
+
+    params = query._params()
+    params.bbox = [y1-dy*8, x1-dx*0, y2+dy*8, x2+dx*32]
+
+    if (not params.users) and (not params.source) and (params.zoom < 6):
+        return
+
+    params.limit = 50
+    params.full = False
+
+    expires = datetime.datetime.now() + datetime.timedelta(days=365)
+    path = '/'.join(request.fullpath.split('/')[0:-1])
+    response.set_cookie('last_lat', str(params.lat), expires=expires, path=path)
+    response.set_cookie('last_lon', str(params.lon), expires=expires, path=path)
+    response.set_cookie('last_zoom', str(params.zoom), expires=expires, path=path)
+    response.set_cookie('last_level', str(params.level), expires=expires, path=path)
+    response.set_cookie('last_item', str(params.item), expires=expires, path=path)
+    response.set_cookie('last_tags', str(','.join(params.tags)) if params.tags else '', expires=expires, path=path)
+    response.set_cookie('last_fixable', str(params.fixable) if params.fixable else '', expires=expires, path=path)
+
+    response.content_type = 'application/vnd.mapbox-vector-tile'
+    return _errors_mvt(db, params, z, y1, x1, y2, x2, 50)
 
 
 @route('/map/markers')
