@@ -5,14 +5,15 @@
 # Translators:
 # andygol, 2014
 # andygol, 2014
+# frodrigo <fred.rodrigo@gmail.com>, 2017
 # Viktor <avatarsnk@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2016-12-19 19:52+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2017-01-14 16:52+0000\n"
+"Last-Translator: frodrigo <fred.rodrigo@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -251,7 +252,7 @@ msgstr "Встановити"
 #. TRANSLATORS: this should be replaced by a abbreviation for class
 #: tmp.tpl:75 tmp.tpl:86
 msgid "class (abbreviation)"
-msgstr "клас (абревіатура)"
+msgstr "к"
 
 #: tmp.tpl:73 tmp.tpl:84
 msgid "item"
@@ -272,20 +273,20 @@ msgstr "Всього"
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: tmp.tpl:88
 msgid "subclass (abbreviation)"
-msgstr "підклас (абревіатура)"
+msgstr "підк"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: tmp.tpl:83
 msgid "level (abbreviation)"
-msgstr "рівень (абревіатура)"
+msgstr "р"
 
 #: tmp.tpl:90
 msgid "position (abbreviation)"
-msgstr "положення (абревіатура)"
+msgstr "пол"
 
 #: tmp.tpl:91
 msgid "elements (abbreviation)"
-msgstr "елементи (абревіатура)"
+msgstr "еле"
 
 #: tmp.tpl:92
 msgid "subtitle"

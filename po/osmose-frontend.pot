@@ -36,11 +36,11 @@ msgstr ""
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr ""
 
-#: ../errors.py:122 tmp.tpl:66
+#: ../errors.py:121 tmp.tpl:66
 msgid "False positives"
 msgstr ""
 
-#: ../errors.py:128 tmp.tpl:64
+#: ../errors.py:127 tmp.tpl:64
 msgid "Informations"
 msgstr ""
 
@@ -1107,7 +1107,7 @@ msgid ""
 "other areas are funded by Mapbox."
 msgstr ""
 
-#: ../errors.py:125
+#: ../errors.py:124
 msgid "Fixed issues"
 msgstr ""
 
