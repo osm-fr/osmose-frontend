@@ -31,7 +31,6 @@ js_map_bundle = Bundle(
     'map/Mapillary.js',
     'map/layers.js',
     'map/leaflet.active-layers.min.js',
-    'map/leaflet.select-layers.min.js',
     'map/leaflet-sidebar/src/L.Control.Sidebar.js',
     'map/leaflet-control-geocoder/Control.Geocoder.js',
     'map/leaflet-active-area/leaflet.activearea.js',
