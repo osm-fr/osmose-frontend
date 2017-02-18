@@ -5,14 +5,14 @@
 # Translators:
 # Michal Pustějovský <Michal.Pustejovsky@seznam.cz>, 2014
 # Petr Schönmann <pschonmann@gmail.com>, 2014
-# TK, 2014-2015
+# TK, 2014-2015,2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2016-12-19 19:52+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2017-01-23 07:50+0000\n"
+"Last-Translator: TK\n"
 "Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -567,7 +567,7 @@ msgstr "rozbité pokračování cesty"
 
 #: ../tools/database/item_menu.txt:14
 msgid "missing tag or role"
-msgstr ""
+msgstr "chybějící tag nebo role"
 
 #: ../tools/database/item_menu.txt:15
 msgid "surface intersection"
@@ -1268,76 +1268,76 @@ msgstr "Použijte <a href='https://github.com/osm-fr/osmose-frontend/issues'>osm
 
 #: ../tools/database/item_menu.txt:23
 msgid "far from water"
-msgstr ""
+msgstr "daleko od vody"
 
 #: ../tools/database/item_menu.txt:69
 msgid "fixme import"
-msgstr ""
+msgstr "fixme import"
 
 #: ../tools/database/item_menu.txt:26
 msgid "objects intersection"
-msgstr ""
+msgstr "křížení objektů"
 
 #: ../tools/database/item_menu.txt:38 ../tools/database/item_menu.txt:64
 msgid "access"
-msgstr ""
+msgstr "přístup"
 
 #: ../tools/database/item_menu.txt:70
 msgid "fixme review"
-msgstr ""
+msgstr "kontrola fixme"
 
 #: ../tools/database/item_menu.txt:112
 msgid "monument, museum, need update"
-msgstr ""
+msgstr "památník, muzeum potřebuje aktualizaci"
 
 #: ../tools/database/item_menu.txt:120
 msgid "school, need update"
-msgstr ""
+msgstr "škola potřebuje aktualizaci"
 
 #: ../tools/database/item_menu.txt:123
 msgid "public transport, need update"
-msgstr ""
+msgstr "veřejná doprava potřebuje aktualizaci"
 
 #: ../tools/database/item_menu.txt:133
 msgid "recycling, need update"
-msgstr ""
+msgstr "recyklace potřebuje aktualizaci"
 
 #: ../tools/database/item_menu.txt:136
 msgid "parking, need update"
-msgstr ""
+msgstr "parkování potřebuje aktualizaci"
 
 #: ../tools/database/item_menu.txt:143
 msgid "transport sharing, need update"
-msgstr ""
+msgstr "sdílená doprava potřebuje aktualizaci"
 
 #: tmp.tpl:37
 msgid "Analyser"
-msgstr ""
+msgstr "Analyzér"
 
 #: tmp.tpl:37
 msgid "Count"
-msgstr ""
+msgstr "Počet"
 
 #: tmp.tpl:37
 msgid "Age"
-msgstr ""
+msgstr "Stáří"
 
 #: tmp.tpl:37
 msgid "Version"
-msgstr ""
+msgstr "Verze"
 
 #: ../tools/database/item_menu.txt:115
 msgid "post office, need update"
-msgstr ""
+msgstr "pošta potřebuje aktualizaci"
 
 #: tmp.tpl:72
 msgid "age"
-msgstr ""
+msgstr "stáří"
 
 #: ../tools/database/item_menu.txt:83
 msgid "invalid character"
-msgstr ""
+msgstr "chybný znak"
 
 #: ../tools/database/item_menu.txt:150
 msgid "gas station, could be integrated"
-msgstr ""
+msgstr "čerpací stanice, nemůže být sjednoceno"
