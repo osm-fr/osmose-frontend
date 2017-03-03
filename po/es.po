@@ -4,13 +4,13 @@
 # 
 # Translators:
 # Marco Antonio <marcoantoniofrias@gmail.com>, 2014
-# Marco Antonio <marcoantoniofrias@gmail.com>, 2014-2016
+# Marco Antonio <marcoantoniofrias@gmail.com>, 2014-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2016-12-27 18:43+0000\n"
+"PO-Revision-Date: 2017-03-02 21:31+0000\n"
 "Last-Translator: Marco Antonio <marcoantoniofrias@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -328,7 +328,7 @@ msgstr "no hay burbujas en este factor de acercamiento"
 
 #: tmp.tpl:113
 msgid "Severity"
-msgstr "Gravedad"
+msgstr "Severidad"
 
 #: tmp.tpl:114
 msgid "1 only"
@@ -340,7 +340,7 @@ msgstr "sólo 1+2"
 
 #: tmp.tpl:116
 msgid "all severity"
-msgstr "toda las gravedades"
+msgstr "toda severidad"
 
 #: tmp.tpl:117
 msgid "2 only"
@@ -538,7 +538,7 @@ msgstr "rotonda inversa"
 
 #: ../tools/database/item_menu.txt:7
 msgid "boundary intersect"
-msgstr "intersección de frontera"
+msgstr "intersección de límites"
 
 #: ../tools/database/item_menu.txt:8
 msgid "objects overlap"
@@ -798,11 +798,11 @@ msgstr "admin_level"
 
 #: ../tools/database/item_menu.txt:89
 msgid "erroneous boundary"
-msgstr "frontera errónea"
+msgstr "límite erróneo"
 
 #: ../tools/database/item_menu.txt:90
 msgid "out of boundary"
-msgstr "fuera de la frontera"
+msgstr "fuera del límite"
 
 #: ../tools/database/item_menu.txt:91
 msgid "geodesic building"
@@ -818,7 +818,7 @@ msgstr "puente a etiquetar"
 
 #: ../tools/database/item_menu.txt:94
 msgid "admin boundary"
-msgstr "frontera administrativa"
+msgstr "límite administrativa"
 
 #: ../tools/database/item_menu.txt:95
 msgid "power lines"
@@ -1148,7 +1148,7 @@ msgstr "Mostrar problemas en el mapa"
 
 #: tmp.tpl:20
 msgid "Osmose allows you to control your own issues."
-msgstr "Osmose te permite controlar tus porpios problemas."
+msgstr "Osmose le permite controlar sus propios problemas."
 
 #: tmp.tpl:21
 msgid ""
@@ -1156,7 +1156,7 @@ msgid ""
 " issues that are attached to your username. Note that the algorithm that "
 "attaches issues to username is not perfect, as Osmose only checks the last "
 "contributor of the relevant erroneous elements."
-msgstr "Al introducir su nombre de usuario OSM en el siguiente formulario, usted será capaz de ver los problemas que se asocian a su nombre de usuario. Tenga en cuenta que el algoritmo que asocia problemas a su nombre de usuario no es perfecto, como Osmose sólo comprueba el último colaborador de los elementos erróneos pertinentes."
+msgstr "Al introducir su nombre de usuario OSM en el siguiente formulario, podrá ver los problemas asociados a su nombre de usuario. Tenga en cuenta que el algoritmo que asocia problemas a su nombre de usuario no es perfecto, ya que Osmose sólo comprueba el último colaborador de los elementos erróneos pertinentes."
 
 #: tmp.tpl:58 tmp.tpl:97
 #, python-format
