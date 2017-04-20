@@ -6,15 +6,16 @@
 # ali zaroili <ali.zaroili@gmail.com>, 2014
 # alain2003, 2014
 # ali zaroili <ali.zaroili@gmail.com>, 2016
+# frodrigo <fred.rodrigo@gmail.com>, 2017
 # operon, 2012
 # operon, 2012
-# alain2003, 2014
+# alain2003, 2014,2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2016-12-19 19:52+0000\n"
+"PO-Revision-Date: 2017-04-20 20:07+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -28,12 +29,12 @@ msgstr ""
 #: ../control.py:51
 #, python-brace-format
 msgid "{day}d, {hour}h, {minute}m ago"
-msgstr "{day}d, {hour}h, {minute}m geleden"
+msgstr "{dag}d, {uur}h, {minuut}m geleden"
 
 #: ../control.py:53
 #, python-brace-format
 msgid "in {day}d, {hour}h, {minute}m"
-msgstr "{day}d, {hour}h, {minute}m geleden"
+msgstr "{dag}d, {uur}h, {minuut}m geleden"
 
 #: ../control.py:56
 msgid "never generated"
@@ -44,11 +45,11 @@ msgstr "nooit gegenereerd"
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/NL:Osmose/erreurs"
 
-#: ../errors.py:122 tmp.tpl:66
+#: ../errors.py:121 tmp.tpl:66
 msgid "False positives"
 msgstr "Valse melding"
 
-#: ../errors.py:128 tmp.tpl:64
+#: ../errors.py:127 tmp.tpl:64
 msgid "Informations"
 msgstr "Informatie"
 
@@ -280,7 +281,7 @@ msgstr "sk"
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: tmp.tpl:83
 msgid "level (abbreviation)"
-msgstr "Niv"
+msgstr "niv"
 
 #: tmp.tpl:90
 msgid "position (abbreviation)"
@@ -486,7 +487,7 @@ msgid ""
 "mobile device and improvement of documentation was funded by region of "
 "Aquitaine, France; part of the OpenAquiMap project leading by <em>Les Petits"
 " Débrouillards d'Aquitaine</em>."
-msgstr "Nieuwe functies in voegen voegen <em> Osmose Editor </ em>, initiële ondersteuning van mobiele apparatuur en verbetering van de documentatie werd gefinancierd door regio Aquitaine, Frankrijk; onderdeel van het OpenAquiMap project geleidt door <em> Les Petits débrouillards d'Aquitaine </ em>."
+msgstr "Nieuwe functies invoegen in <em> Osmose Editor </ em>, initiële ondersteuning van mobiele apparatuur en verbetering van de documentatie werd gefinancierd door regio Aquitaine, Frankrijk; onderdeel van het OpenAquiMap project geleidt door <em> Les Petits débrouillards d'Aquitaine </ em>."
 
 #: ../tools/database/categ_menu.txt:1
 msgid "Structure"
@@ -636,7 +637,7 @@ msgstr "highway"
 msgid "highway crossing"
 msgstr "kruising van wegen"
 
-#: ../tools/database/item_menu.txt:35 ../tools/database/item_menu.txt:151
+#: ../tools/database/item_menu.txt:35 ../tools/database/item_menu.txt:152
 msgid "pharmacy"
 msgstr "apotheker"
 
@@ -828,7 +829,7 @@ msgstr "administratieve grens"
 msgid "power lines"
 msgstr "hoogspanningslijnen"
 
-#: ../tools/database/item_menu.txt:96 ../tools/database/item_menu.txt:113
+#: ../tools/database/item_menu.txt:96 ../tools/database/item_menu.txt:114
 msgid "post office"
 msgstr "postkantoor"
 
@@ -848,7 +849,7 @@ msgstr "monument"
 msgid "node on ways"
 msgstr "knoop op weg"
 
-#: ../tools/database/item_menu.txt:102 ../tools/database/item_menu.txt:124
+#: ../tools/database/item_menu.txt:102 ../tools/database/item_menu.txt:125
 msgid "train station"
 msgstr "trein station"
 
@@ -864,103 +865,103 @@ msgstr "relatie type=boundary"
 msgid "tunnel/bridge"
 msgstr "tunnel/brug"
 
-#: ../tools/database/item_menu.txt:110
+#: ../tools/database/item_menu.txt:111
 msgid "monument, museum"
 msgstr "monument, museum"
 
-#: ../tools/database/item_menu.txt:111
+#: ../tools/database/item_menu.txt:112
 msgid "monument, museum, could be integrated"
 msgstr "monument, museum, mogelijk invoegen"
 
-#: ../tools/database/item_menu.txt:114
+#: ../tools/database/item_menu.txt:115
 msgid "post office, could be integrated"
 msgstr "postkantoor, mogelijk invoegen"
 
-#: ../tools/database/item_menu.txt:118
+#: ../tools/database/item_menu.txt:119
 msgid "school"
 msgstr "school"
 
-#: ../tools/database/item_menu.txt:119
+#: ../tools/database/item_menu.txt:120
 msgid "school, could be integrated"
 msgstr "school, mogelijk invoegen"
 
-#: ../tools/database/item_menu.txt:121
+#: ../tools/database/item_menu.txt:122
 msgid "public transport"
 msgstr "openbaar trein station"
 
-#: ../tools/database/item_menu.txt:122
+#: ../tools/database/item_menu.txt:123
 msgid "public transport, could be integrated"
 msgstr "openbaar trein station, mogelijk invoegen"
 
-#: ../tools/database/item_menu.txt:125
+#: ../tools/database/item_menu.txt:126
 msgid "train station, could be integrated"
 msgstr "trein station, mogelijk invoegen"
 
-#: ../tools/database/item_menu.txt:126
+#: ../tools/database/item_menu.txt:127
 msgid "level crossing"
 msgstr "overweg"
 
-#: ../tools/database/item_menu.txt:127
+#: ../tools/database/item_menu.txt:128
 msgid "geodesic point"
 msgstr "geodesic punt ontbreekt"
 
-#: ../tools/database/item_menu.txt:128
+#: ../tools/database/item_menu.txt:129
 msgid "postal address"
 msgstr "adres"
 
-#: ../tools/database/item_menu.txt:129
+#: ../tools/database/item_menu.txt:130
 msgid "wikipedia, could be integrated"
 msgstr "wikipedia, kan toegevoegd worden"
 
-#: ../tools/database/item_menu.txt:130
+#: ../tools/database/item_menu.txt:131
 msgid "public service"
 msgstr "openbare dienst"
 
-#: ../tools/database/item_menu.txt:131
+#: ../tools/database/item_menu.txt:132
 msgid "recycling"
 msgstr "recycling"
 
-#: ../tools/database/item_menu.txt:132
+#: ../tools/database/item_menu.txt:133
 msgid "recycling, could be integrated"
 msgstr "recycling, kan toegevoegd worden"
 
-#: ../tools/database/item_menu.txt:134
+#: ../tools/database/item_menu.txt:135
 msgid "parking"
 msgstr "parking"
 
-#: ../tools/database/item_menu.txt:135
+#: ../tools/database/item_menu.txt:136
 msgid "parking, could be integrated"
 msgstr "parking, kan toegevoegd worden"
 
-#: ../tools/database/item_menu.txt:137
+#: ../tools/database/item_menu.txt:138
 msgid "accommodation"
 msgstr "accommodatie"
 
-#: ../tools/database/item_menu.txt:138
+#: ../tools/database/item_menu.txt:139
 msgid "accommodation, could be integrated"
 msgstr "accommodatie, kan toegevoegd worden"
 
-#: ../tools/database/item_menu.txt:139
+#: ../tools/database/item_menu.txt:140
 msgid "cycle parking"
 msgstr "fiets parking"
 
-#: ../tools/database/item_menu.txt:140
+#: ../tools/database/item_menu.txt:141
 msgid "cycle parking, could be integrated"
 msgstr "fiets parking, kan toegevoegd worden"
 
-#: ../tools/database/item_menu.txt:141
+#: ../tools/database/item_menu.txt:142
 msgid "transport sharing"
 msgstr "transport delen"
 
-#: ../tools/database/item_menu.txt:142
+#: ../tools/database/item_menu.txt:143
 msgid "transport sharing, could be integrated"
 msgstr "transport delen, kan toegevoegd worden"
 
-#: ../tools/database/item_menu.txt:144
+#: ../tools/database/item_menu.txt:145
 msgid "sport"
 msgstr "sport"
 
-#: ../tools/database/item_menu.txt:145
+#: ../tools/database/item_menu.txt:146
 msgid "sport, could be integrated"
 msgstr "sport, kan toegevoegd worden"
 
@@ -1006,7 +1007,7 @@ msgstr "Html lijst"
 msgid "one-node way"
 msgstr "één-knoop weg"
 
-#: ../tools/database/item_menu.txt:146
+#: ../tools/database/item_menu.txt:147
 msgid "toilets"
 msgstr "toiletten"
 
@@ -1014,11 +1015,11 @@ msgstr "toiletten"
 msgid "transport sharing, not integrated"
 msgstr "transport delen, niet toegevoegd"
 
-#: ../tools/database/item_menu.txt:147
+#: ../tools/database/item_menu.txt:148
 msgid "police"
 msgstr "politie"
 
-#: ../tools/database/item_menu.txt:148
+#: ../tools/database/item_menu.txt:149
 msgid "police, could be integrated"
 msgstr "politie, kan toegevoegd worden"
 
@@ -1026,11 +1027,11 @@ msgstr "politie, kan toegevoegd worden"
 msgid "pharmacy, not integrated "
 msgstr "apotheker, niet toegevoegd"
 
-#: ../tools/database/item_menu.txt:152
+#: ../tools/database/item_menu.txt:153
 msgid "pharmacy, could be integrated"
 msgstr "apotheker, kan toegevoegd worden"
 
-#: ../tools/database/item_menu.txt:149
+#: ../tools/database/item_menu.txt:150
 msgid "gas station"
 msgstr "benzine station"
 
@@ -1080,19 +1081,19 @@ msgstr "land"
 msgid "analyser"
 msgstr "analyzer"
 
-#: ../tools/database/item_menu.txt:153
+#: ../tools/database/item_menu.txt:154
 msgid "postal code, could be integrated"
 msgstr "postcode, kan toegevoegd worden"
 
-#: ../tools/database/item_menu.txt:154
+#: ../tools/database/item_menu.txt:155
 msgid "library"
 msgstr "bibliotheek"
 
-#: ../tools/database/item_menu.txt:155
+#: ../tools/database/item_menu.txt:156
 msgid "restaurant"
 msgstr "restaurant"
 
-#: ../tools/database/item_menu.txt:156
+#: ../tools/database/item_menu.txt:157
 msgid "winery"
 msgstr "wijnmakerij"
 
@@ -1115,7 +1116,7 @@ msgid ""
 "other areas are funded by Mapbox."
 msgstr "De servers analysing data worden geleverd door OpenStreetMap-Frankrijk en enkele andere bijdragers over de hele wereld. De servers voor Noord-Amerika en andere gebieden worden gefinancierd door Mapbox."
 
-#: ../errors.py:125
+#: ../errors.py:124
 msgid "Fixed issues"
 msgstr "Verholpen opmerking"
 
@@ -1217,15 +1218,15 @@ msgstr "Documentatie over gemelde opmerkingen"
 msgid "version"
 msgstr "versie"
 
-#: ../tools/database/item_menu.txt:157
+#: ../tools/database/item_menu.txt:158
 msgid "geodesic"
 msgstr "geodesic"
 
-#: ../tools/database/item_menu.txt:97 ../tools/database/item_menu.txt:116
+#: ../tools/database/item_menu.txt:97 ../tools/database/item_menu.txt:117
 msgid "post box"
 msgstr "postbus"
 
-#: ../tools/database/item_menu.txt:117
+#: ../tools/database/item_menu.txt:118
 msgid "post box, could be integrated"
 msgstr "Post bus, kan toegevoegd worden"
 
@@ -1289,27 +1290,27 @@ msgstr "toegang"
 msgid "fixme review"
 msgstr "herbekijk fixme"
 
-#: ../tools/database/item_menu.txt:112
+#: ../tools/database/item_menu.txt:113
 msgid "monument, museum, need update"
 msgstr "monument, museum, vereist een update "
 
-#: ../tools/database/item_menu.txt:120
+#: ../tools/database/item_menu.txt:121
 msgid "school, need update"
 msgstr "school, vereist een update "
 
-#: ../tools/database/item_menu.txt:123
+#: ../tools/database/item_menu.txt:124
 msgid "public transport, need update"
 msgstr "openbaar vervoer, vereist een update "
 
-#: ../tools/database/item_menu.txt:133
+#: ../tools/database/item_menu.txt:134
 msgid "recycling, need update"
 msgstr "recycling, vereist een update "
 
-#: ../tools/database/item_menu.txt:136
+#: ../tools/database/item_menu.txt:137
 msgid "parking, need update"
 msgstr "parking, vereist een update"
 
-#: ../tools/database/item_menu.txt:143
+#: ../tools/database/item_menu.txt:144
 msgid "transport sharing, need update"
 msgstr "transport delen, vereist een update"
 
@@ -1319,7 +1320,7 @@ msgstr "Analyzer"
 
 #: tmp.tpl:37
 msgid "Count"
-msgstr ""
+msgstr "Aantal"
 
 #: tmp.tpl:37
 msgid "Age"
@@ -1329,18 +1330,34 @@ msgstr "Oud"
 msgid "Version"
 msgstr "Versie"
 
-#: ../tools/database/item_menu.txt:115
+#: ../tools/database/item_menu.txt:116
 msgid "post office, need update"
-msgstr "postkantoor, heeft update nodig"
+msgstr ""
 
 #: tmp.tpl:72
 msgid "age"
-msgstr "oud"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:83
 msgid "invalid character"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:150
+#: ../tools/database/item_menu.txt:151
 msgid "gas station, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:110 ../tools/database/item_menu.txt:159
+msgid "power substation"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:160
+msgid "power substation, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:161
+msgid "power support"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:162
+msgid "power support, could be integrated"
 msgstr ""
