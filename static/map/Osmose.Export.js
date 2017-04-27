@@ -18,7 +18,7 @@ OsmoseExport = L.Class.extend({
       urlPart = self._menu.urlPart();
     urlPart.bbox = self._map.getBounds().toBBoxString();
     $("#menu-export ul a").each(function (i, a) {
-      a.href = a.href + L.Util.getParamString(urlPart);
+      a.href = $(a).data('href') + L.Util.getParamString(urlPart);
     });
     delete urlPart.bbox;
   },
