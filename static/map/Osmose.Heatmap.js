@@ -13,12 +13,14 @@ OsmoseHeatmap = L.VectorGrid.Protobuf.extend({
     var vectorTileOptions = {
       vectorTileLayerStyles: {
         issues: function(properties, zoom) {
+          var color = '#' + (properties.color + 0x1000000).toString(16).substr(-6);
           return {
-            weight: 0,
-            fillColor: '#' + (properties.color + 0x1000000).toString(16).substr(-6),
-            fillOpacity: 0.25  + properties.count / 256 * 0.75,
+            weight: zoom < 12 ? 1 : 2,
+            color: color,
+            fillColor: color,
+            fillOpacity: zoom < 13 ? 0.25 + properties.count / 256 * 0.75 : 1,
             fill: true,
-            radius: 5,
+            radius: 4,
           };
         }
       }
