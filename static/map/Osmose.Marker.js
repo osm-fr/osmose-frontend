@@ -35,7 +35,7 @@ OsmoseMarker = L.VectorGrid.Protobuf.extend({
     this._map = map;
     var self = this;
     L.GridLayer.prototype.onAdd.call(this, map);
-
+/*
     this.on('mouseover', function (e) {
       if (e.layer.properties.issue_id) {
         self._openPopup(e);
@@ -44,12 +44,15 @@ OsmoseMarker = L.VectorGrid.Protobuf.extend({
       if (e.layer.properties.issue_id && self.highlight != e.layer.properties.issue_id) {
         self._closePopup();
       }
-    }).off('click').on('click', function (e) {
+    });
+*/
+    this.on('click', function (e) {
       if (e.layer.properties.issue_id) {
         if (self.highlight == e.layer.properties.issue_id) {
           self._closePopup();
         } else {
           self.highlight = e.layer.properties.issue_id;
+          self._openPopup(e);
         }
       }
     });
@@ -73,7 +76,7 @@ OsmoseMarker = L.VectorGrid.Protobuf.extend({
     var popup = this.popup = L.popup({
       maxWidth: 280,
       autoPan: false,
-      offset: L.point(0, -32)
+      offset: L.point(0, -8)
     }).setLatLng(e.latlng)
     .setContent("<center><img src='../images/throbbler.gif' alt='downloading'></center>")
     .openOn(this._map);
