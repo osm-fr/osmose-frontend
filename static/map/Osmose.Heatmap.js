@@ -54,6 +54,6 @@ OsmoseHeatmap = L.VectorGrid.Protobuf.extend({
   },
 
   _setUrl: function () {
-    this.setUrl(this._makeUrl());
+    this.setUrl(this._makeUrl()); // setUrl is not implemented https://github.com/Leaflet/Leaflet.VectorGrid/issues/49
   },
 });
