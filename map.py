@@ -198,7 +198,7 @@ MVT_EMPTY = None
 
 def _errors_mvt(db, params, z, min_x, min_y, max_x, max_y, limit):
     params.limit = limit
-    results = query._gets(db, params) if z > 6 else None
+    results = query._gets(db, params) if z >= 6 else None
 
     if not results or len(results) == 0:
         global MVT_EMPTY

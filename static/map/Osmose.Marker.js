@@ -15,12 +15,15 @@ OsmoseMarker = L.VectorGrid.Protobuf.extend({
             })
           };
         },
-        limit: {
-          icon: L.icon({
-            iconUrl: '../images/limit.png',
-            iconSize:  L.point(256, 256),
-            iconAnchor:  L.point(128, 128),
-          })
+        limit: function(properties, zoom) {
+          properties.limit = true;
+          return {
+            icon: L.icon({
+              iconUrl: '../images/limit.png',
+              iconSize:  L.point(256, 256),
+              iconAnchor:  L.point(128, 128),
+            })
+          };
         }
       },
       interactive: true,  // Make sure that this VectorGrid fires mouse/pointer events
@@ -47,7 +50,9 @@ OsmoseMarker = L.VectorGrid.Protobuf.extend({
     });
 */
     this.on('click', function (e) {
-      if (e.layer.properties.issue_id) {
+      if (e.layer.properties.limit) {
+        map.setZoomAround(e.latlng, map.getZoom() + 1);
+      } else if (e.layer.properties.issue_id) {
         if (self.highlight == e.layer.properties.issue_id) {
           self._closePopup();
         } else {
