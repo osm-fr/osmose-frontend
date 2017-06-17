@@ -61,12 +61,18 @@ OsmoseMarker = L.VectorGrid.Protobuf.extend({
         }
       }
     });
+
+    var bindClosePopup = L.Util.bind(this._closePopup, this);
+    map.on('zoomstart', bindClosePopup);
+    this.on('remove', function() {
+      map.off('zoomstart', bindClosePopup);
+    });
   },
 
   _closePopup: function () {
     this.highlight = undefined;
     this.open_popup = undefined;
-    if(this.popup) {
+    if(this.popup && this._map) {
       this._map.closePopup(this.popup);
     }
   },
