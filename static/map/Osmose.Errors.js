@@ -61,7 +61,8 @@ OsmoseErrors = L.LayerGroup.extend({
 
   _query: function(url) {
       this.clearLayers();
-      this.addLayer(new OsmoseMarker(url, this._editor));
+      this._osmoseMarker = new OsmoseMarker(url, this._editor);
+      this.addLayer(this._osmoseMarker);
   },
 
   corrected: function (layer) {

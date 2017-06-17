@@ -98,12 +98,11 @@ OsmoseMarker = L.VectorGrid.Protobuf.extend({
               content = $(Mustache.render(template, data));
             content.on('click', '.closePopup', function () {
               setTimeout(function () {
-                self._closePopup();
-                e.layer.remove();
+                self.corrected(e.layer);
               }, 200);
             });
             content.on('click', '.editor_edit, .editor_fix', function () {
-              self._editor.edit(layer, this.getAttribute('data-error'), this.getAttribute('data-type'), this.getAttribute('data-id'), this.getAttribute('data-fix'));
+              self._editor.edit(e.layer, this.getAttribute('data-error'), this.getAttribute('data-type'), this.getAttribute('data-id'), this.getAttribute('data-fix'));
             });
             popup.setContent(content[0]);
           },
@@ -118,16 +117,7 @@ OsmoseMarker = L.VectorGrid.Protobuf.extend({
   },
 
   corrected: function (layer) {
-    if (this.hasLayer(layer)) {
-      this.removeLayer(layer);
-    } else {
-      var self = this;
-      this.eachLayer(function (l) {
-        if (l.error_id == layer.error_id) {
-          self.removeLayer(l);
-          return;
-        }
-      });
-    }
+    this._closePopup();
+    this.setFeatureStyle(layer.properties.issue_id, {});
   },
 });
