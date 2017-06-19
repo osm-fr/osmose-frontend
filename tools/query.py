@@ -262,13 +262,17 @@ def _gets(db, params):
         dynpoi_class.level,
         dynpoi_update_last.timestamp,
         dynpoi_item.menu"""
+        if not params.status in ("done", "false") and params.users:
+            sqlbase += """,
+        marker_elem.username"""
+        else:
+            sqlbase += """,
+        '' AS username"""
         if not params.status in ("done", "false"):
             sqlbase += """,
-        marker_elem.username,
         -1 AS date"""
         else:
             sqlbase += """,
-        '' AS username,
         marker.date"""
     sqlbase += """
     FROM
@@ -289,7 +293,7 @@ def _gets(db, params):
         %s""" % params.limit
 
     if params.full:
-        if not params.status in ("done", "false"):
+        if not params.status in ("done", "false") and params.users:
             forceTable = ["dynpoi_class", "source", "marker_elem"]
         else:
             forceTable = ["dynpoi_class", "source"]
