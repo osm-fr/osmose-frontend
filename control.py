@@ -278,3 +278,27 @@ def send_update():
         return "OK"
 
     return "AUTH FAIL"
+
+@route('/control/status/<country>/<analyser>')
+def status(db, country = None, analyser = None):
+    if not country or not analyser:
+        return "FAIL"
+
+    response.content_type = 'text/plain; charset=utf-8'
+
+    ret = ''
+    db.execute('SELECT timestamp, source FROM dynpoi_update_last WHERE source = (SELECT id FROM source WHERE analyser = %s AND country = %s)', (analyser, country))
+    r = db.fetchone()
+    if r and r['timestamp']:
+        ret + "1\n" # status format version
+        ret += str(r['timestamp']) + "\n"
+        ret += "ANALYSER_VERSION_COME_HERE\n"
+        for t in ['N', 'W', 'R']:
+            db.execute('SELECT string_agg(id::text, \',\') FROM (SELECT DISTINCT marker_id AS id FROM marker JOIN marker_elem ON marker_elem.marker_id = marker.id WHERE source=%s AND data_type = %s) AS t', (r['source'], t))
+            s = db.fetchone()
+            if s and s[0]:
+                ret += s[0]
+            ret += "\n"
+        return ret
+
+    return 'NOTHING'
