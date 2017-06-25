@@ -302,11 +302,11 @@ GROUP BY
 def issues_mvt(db, z, x, y):
     x2,y1 = num2deg(x,y,z)
     x1,y2 = num2deg(x+1,y+1,z)
-    dx = (x1 - x2) / 256
-    dy = (x2 - x1) / 256
+    dx = (x2 - x1) / 256
+    dy = (y2 - y1) / 256
 
     params = query._params()
-    params.bbox = [y1-dy*8, x1-dx*0, y2+dy*8, x2+dx*32]
+    params.bbox = [y1-dy*8, x1-dx*32, y2+dy*8, x2+dx]
 
     if (not params.users) and (not params.source) and (params.zoom < 6):
         return
