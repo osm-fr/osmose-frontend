@@ -15,12 +15,10 @@ OsmoseHeatmap = L.VectorGrid.Protobuf.extend({
         issues: function(properties, zoom) {
           var color = '#' + (properties.color + 0x1000000).toString(16).substr(-6);
           return {
-            weight: zoom < 12 ? 1 : 2,
-            color: color,
+            stroke: false,
             fillColor: color,
             fillOpacity: zoom < 13 ? 0.25 + properties.count / 256 * 0.75 : 1,
             fill: true,
-            radius: 4,
           };
         }
       }

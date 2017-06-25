@@ -26,7 +26,7 @@ import byuser
 import errors
 import datetime
 import math, StringIO
-from shapely.geometry import Point
+from shapely.geometry import Point, Polygon
 import mapbox_vector_tile
 
 
@@ -265,8 +265,8 @@ WHERE
     sql = """
 SELECT
     COUNT(*),
-    (((lon-%(y1)s)) * %(count)s / (%(y2)s-%(y1)s) + 0.5)::int AS latn,
-    (((lat-%(x1)s)) * %(count)s / (%(x2)s-%(x1)s) + 0.5)::int AS lonn,
+    ((lon-%(y1)s) * %(count)s / (%(y2)s-%(y1)s) + 0.5)::int AS latn,
+    ((lat-%(x1)s) * %(count)s / (%(x2)s-%(x1)s) + 0.5)::int AS lonn,
     mode() WITHIN GROUP (ORDER BY dynpoi_item.marker_color) AS color
 FROM
 """ + join + """
@@ -282,10 +282,10 @@ GROUP BY
     for row in db.fetchall():
         count, x, y, color = row
         count = int(math.log(count) / math.log(max / ((z-4+1+math.sqrt(COUNT))**2)) * 255)
-        count = 255 if count > 255 else count
         if count > 0:
+          count = 255 if count > 255 else count
           features.append({
-            "geometry": Point(x * 2 - 1, y * 2 - 1),
+            "geometry": Polygon([(x, y), (x - 1, y), (x - 1, y - 1), (x, y - 1)]),
             "properties": {
                 "color": int(color[1:], 16),
                 "count": count}
@@ -295,7 +295,7 @@ GROUP BY
     return mapbox_vector_tile.encode([{
         "name": "issues",
         "features": features
-    }], extents=COUNT * 2)
+    }], extents=COUNT)
 
 
 @route('/map/issues/<z:int>/<x:int>/<y:int>.mvt')
