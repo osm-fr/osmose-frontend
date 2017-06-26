@@ -51,7 +51,7 @@ OsmoseMarker = L.VectorGrid.Protobuf.extend({
       }
     });
 */
-    this.on('click', function (e) {
+    var click = function (e) {
       if (e.layer.properties.limit) {
         map.setZoomAround(e.latlng, map.getZoom() + 1);
       } else if (e.layer.properties.issue_id) {
@@ -62,20 +62,19 @@ OsmoseMarker = L.VectorGrid.Protobuf.extend({
           self._openPopup(e);
         }
       }
-    });
+    };
+    this.on('click', click);
 
     var bindClosePopup = L.Util.bind(this._closePopup, this);
     map.on('zoomstart', bindClosePopup);
-    this.on('remove', function() {
-      map.off('zoomstart', bindClosePopup);
-    });
 
     this._menu.on('itemchanged', this._updateOsmoseLayer, this);
-  },
 
-  onRemove: function (map) {
-    this._menu.off('itemchanged', this._updateOsmoseLayer, this);
-    L.GridLayer.prototype.onRemove.call(this, map);
+    this.once('remove', function() {
+      this.off('click', click);
+      map.off('zoomstart', bindClosePopup);
+      this._menu.off('itemchanged', this._updateOsmoseLayer, this);
+    }, this);
   },
 
   _updateOsmoseLayer: function () {
