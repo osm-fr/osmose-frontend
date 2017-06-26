@@ -248,9 +248,9 @@ FROM
     dynpoi_item
 WHERE
 """ + items)
-    max = db.fetchone()
-    if max and max[0]:
-        max = float(max[0])
+    limit = db.fetchone()
+    if limit and limit[0]:
+        limit = float(limit[0])
     else:
         global MVT_EMPTY
         if not MVT_EMPTY:
@@ -281,7 +281,10 @@ GROUP BY
     features = []
     for row in db.fetchall():
         count, x, y, color = row
-        count = int(math.log(count) / math.log(max / ((z-4+1+math.sqrt(COUNT))**2)) * 255)
+        count = max(
+          int(math.log(count) / math.log(limit / ((z-4+1+math.sqrt(COUNT))**2)) * 255),
+          1 if count > 0 else 0
+        )
         if count > 0:
           count = 255 if count > 255 else count
           features.append({
