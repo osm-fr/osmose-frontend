@@ -43,7 +43,6 @@ js_map_bundle = Bundle(
     'map/Osmose.Coverage.js',
     'map/Osmose.Heatmap.js',
     'map/Osmose.Marker.js',
-    'map/Osmose.Errors.js',
     'map/Osmose.Export.js',
     'map/map.js',
     'map/menu.js',

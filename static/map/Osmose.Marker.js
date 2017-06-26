@@ -1,6 +1,8 @@
 OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
-  initialize: function (url, editor, options) {
+  initialize: function (menu, params, editor, options) {
+    this._menu = menu;
+    this._params = params;
     this._editor = editor;
     L.Util.setOptions(this, options);
     var vectorTileOptions = {
@@ -31,7 +33,7 @@ OsmoseMarker = L.VectorGrid.Protobuf.extend({
         return f.properties.issue_id;
       }
     };
-    L.VectorGrid.Protobuf.prototype.initialize.call(this, './issues/{z}/{x}/{y}.mvt' + url, vectorTileOptions);
+    L.VectorGrid.Protobuf.prototype.initialize.call(this, this._getUrl(), vectorTileOptions);
   },
 
   onAdd: function(map) {
@@ -67,6 +69,44 @@ OsmoseMarker = L.VectorGrid.Protobuf.extend({
     this.on('remove', function() {
       map.off('zoomstart', bindClosePopup);
     });
+
+    this._menu.on('itemchanged', this._updateOsmoseLayer, this);
+  },
+
+  onRemove: function (map) {
+    this._menu.off('itemchanged', this._updateOsmoseLayer, this);
+    L.GridLayer.prototype.onRemove.call(this, map);
+  },
+
+  _updateOsmoseLayer: function () {
+    if (this._map.getZoom() >= 6) {
+      this.setUrl(this._getUrl());
+    }
+  },
+
+  _getUrl: function() {
+    var urlPart = this._menu.urlPart();
+    if (urlPart.item) {
+      this._params.item = urlPart.item;
+    } else {
+      delete this._params.item;
+    }
+    if (urlPart.level) {
+      this._params.level = urlPart.level;
+    } else {
+      delete this._params.level;
+    }
+    if (urlPart.tags) {
+      this._params.tags = urlPart.tags;
+    } else {
+      delete this._params.tags;
+    }
+    if (urlPart.fixable) {
+      this._params.fixable = urlPart.fixable;
+    } else {
+      delete this._params.fixable;
+    }
+    return './issues/{z}/{x}/{y}.mvt' + L.Util.getParamString(this._params);
   },
 
   _closePopup: function () {
