@@ -19,9 +19,10 @@ OsmoseErrors = L.LayerGroup.extend({
 
   onAdd: function (map) {
     this._map = map;
-    this._menu.on('itemchanged', this._updateOsmoseLayer, this);
     this._onMap = true;
-    this._updateOsmoseLayer();
+    this._osmoseMarker = new OsmoseMarker(this._getUrl(), this._editor);
+    this.addLayer(this._osmoseMarker);
+    this._menu.on('itemchanged', this._updateOsmoseLayer, this);
   },
 
   onRemove: function (map) {
@@ -30,39 +31,35 @@ OsmoseErrors = L.LayerGroup.extend({
     this.clearLayers();
   },
 
-  _updateOsmoseLayer: function () {
-    if (this._map.getZoom() >= 6) {
-      var urlPart = this._menu.urlPart(),
-        url = null;
-      if (urlPart.item) {
-        this._params.item = urlPart.item;
-      } else {
-        delete this._params.item;
-      }
-      if (urlPart.level) {
-        this._params.level = urlPart.level;
-      } else {
-        delete this._params.level;
-      }
-      if (urlPart.tags) {
-        this._params.tags = urlPart.tags;
-      } else {
-        delete this._params.tags;
-      }
-      if (urlPart.fixable) {
-        this._params.fixable = urlPart.fixable;
-      } else {
-        delete this._params.fixable;
-      }
-      url = L.Util.getParamString(this._params);
-      this._query(url);
+  _getUrl: function() {
+    var urlPart = this._menu.urlPart();
+    if (urlPart.item) {
+      this._params.item = urlPart.item;
+    } else {
+      delete this._params.item;
     }
+    if (urlPart.level) {
+      this._params.level = urlPart.level;
+    } else {
+      delete this._params.level;
+    }
+    if (urlPart.tags) {
+      this._params.tags = urlPart.tags;
+    } else {
+      delete this._params.tags;
+    }
+    if (urlPart.fixable) {
+      this._params.fixable = urlPart.fixable;
+    } else {
+      delete this._params.fixable;
+    }
+    return L.Util.getParamString(this._params);
   },
 
-  _query: function(url) {
-      this.clearLayers();
-      this._osmoseMarker = new OsmoseMarker(url, this._editor);
-      this.addLayer(this._osmoseMarker);
+  _updateOsmoseLayer: function () {
+    if (this._map.getZoom() >= 6) {
+      this._osmoseMarker.setUrl('./issues/{z}/{x}/{y}.mvt' + this._getUrl());
+    }
   },
 
   corrected: function (layer) {
