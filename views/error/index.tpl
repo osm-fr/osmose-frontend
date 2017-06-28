@@ -1,4 +1,11 @@
 %rebase('layout.tpl', title=_("Information on issue %d") % err_id, favicon="../images/markers/marker-l-%s.png" % marker['item'])
+%def show_html_dict(dict):
+            <table>
+%            for (k, v) in sorted(dict.items()):
+                <tr><td>{{k}}</td><td>{{v}}</td></tr>
+%            end
+            </table>
+%end
 %def show_html_results(columns, res):
 <table class="sortable" id ="table_marker">
 <thead>
@@ -14,11 +21,7 @@
     <td>{{c}}</td>
     <td>
 %        if type(res[i]) is dict:
-            <table>
-%            for (k, v) in sorted(res[i].items()):
-                <tr><td>{{k}}</td><td>{{v}}</td></tr>
-%            end
-            </table>
+%            show_html_dict(res[i])
 %        else:
 {{res[i]}}
 %        end
@@ -30,14 +33,50 @@
 %end
 
 <h2>{{_("Marker")}}</h2>
-%show_html_results(columns_marker, marker)
+<table class="sortable" id ="table_marker">
+<thead>
+<tr>
+    <th>{{_("key")}}</th>
+    <th>{{_("value")}}</th>
+</tr>
+</thead>
+<tr><td>source</td><td><a target="_blank" href="/errors/?item=xxxx&amp;source={{marker['source']}}">{{marker['source']}}<a></td></tr>
+<tr><td>item</td><td><a target="_blank" href="/errors/?item={{marker['item']}}">{{marker['item']}}</a></td></tr>
+<tr><td>class</td><td><a target="_blank" href="/errors/?item={{marker['item']}}&amp;class={{marker['class']}}">{{marker['class']}}</a></td></tr>
+<tr><td>subclass</td><td><a target="_blank" href="/errors/?item={{marker['item']}}&amp;class={{marker['class']}}&subclass={{marker['subclass']}}">{{marker['subclass']}}</a></td></tr>
+<tr><td>elems</td><td>{{marker['elems']}}</td></tr>
+<tr><td>lat lon</td><td><a target="_blank" href="/map/?item={{marker['item']}}&amp;zoom=17&amp;lat={{marker['lat']}}&amp;lon={{marker['lon']}}">{{marker['lat']}}&nbsp;{{marker['lon']}}</a></td></tr>
+<tr><td>title</td><td>
+%show_html_dict(marker['title'])
+</td></tr>
+<tr><td>subtitle</td><td>
+%show_html_dict(marker['subtitle'])
+</td></tr>
+<tr><td>timestamp</td><td>{{marker['timestamp']}}</td></tr>
+</table>
+</br>
 
 <h2>{{_("Elements")}}</h2>
-%for i in elements:
-%    show_html_results(columns_elements, i)
+%for element in elements:
+<table class="sortable" id ="table_marker">
+<thead>
+<tr>
+    <th>{{_("key")}}</th>
+    <th>{{_("value")}}</th>
+</tr>
+</thead>
+<tr><td>elem_index</td><td>{{element['elem_index']}}</td></tr>
+<tr><td>type id</td><td><a target="_blank" href="{{main_website}}browse/{{data_type[element['data_type']]}}/{{element['id']}}">{{element['data_type']}}&nbsp;{{element['id']}}</a></td></tr>
+<tr><td>tags</td><td>
+%     show_html_dict(element['tags'])
+</td></tr>
+<tr><td>username</td><td><a target="_blank" href="{{main_website}}user/{{element['username']}}">{{element['username']}}</a></td></tr>
+</table>
+</br>
 %end
 
 <h2>{{_("Fixes")}}</h2>
 %for i in fix:
 %    show_html_results(columns_fix, i)
+</br>
 %end

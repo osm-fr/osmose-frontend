@@ -80,10 +80,12 @@ def _get(db, err_id):
 def display(db, lang, err_id):
     (marker, columns_marker, elements, columns_elements, fix, columns_fix) = _get(db, err_id)
 
+    data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
+
     return template('error/index', err_id=err_id,
         marker=marker, columns_marker=columns_marker,
         elements=elements, columns_elements=columns_elements,
-        fix=fix, columns_fix=columns_fix)
+        fix=fix, columns_fix=columns_fix, main_website=utils.main_website, data_type=data_type)
 
 
 @route('/api/0.2/error/<err_id:int>/fresh_elems')
