@@ -102,25 +102,41 @@ def update(source, url, logger = printlogger(), remote_ip=""):
     parser.parse(f)
 
     ## update subtitle from new errors
-    execute_sql(dbcurs, """SELECT * FROM marker
-                      WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status WHERE source = %s AND elems != '')""",
-                   (source_id, ))
-    for res in dbcurs.fetchall():
-        execute_sql(dbcurs, """UPDATE dynpoi_status SET subtitle = %s,
-                                                        lat = %s, lon = %s
-                          WHERE source = %s AND class = %s AND subclass = %s AND elems = %s""",
-                       (res["subtitle"], res["lat"], res["lon"],
-                        res["source"], res["class"], res["subclass"], res["elems"]))
+    execute_sql(dbcurs, """
+UPDATE
+  dynpoi_status
+SET
+  subtitle = marker.subtitle,
+  lat = marker.lat,
+  lon = marker.lon
+FROM
+  marker
+WHERE
+  marker.source = %s AND
+  marker.elems != '' AND
+  dynpoi_status.source = marker.source AND
+  dynpoi_status.class = marker.class AND
+  dynpoi_status.subclass = marker.subclass AND
+  dynpoi_status.elems = marker.elems
+""", (source_id, ))
 
-    execute_sql(dbcurs, """SELECT * FROM marker
-                      WHERE (source,class,subclass,lat,lon) IN (SELECT source,class,subclass,lat,lon FROM dynpoi_status WHERE source = %s AND elems = '')""",
-                   (source_id, ))
-    for res in dbcurs.fetchall():
-        execute_sql(dbcurs, """UPDATE dynpoi_status SET subtitle = %s
-                          WHERE source = %s AND class = %s AND subclass = %s AND lat = %s AND lon = %s""",
-                       (res["subtitle"],
-                        res["source"], res["class"], res["subclass"], res["lat"], res["lon"]))
-
+    execute_sql(dbcurs, """
+UPDATE
+  dynpoi_status
+SET
+  subtitle = marker.subtitle
+FROM
+  marker
+WHERE
+  marker.source = %s AND
+  marker.elems = '' AND
+  dynpoi_status.source = marker.source AND
+  dynpoi_status.class = marker.class AND
+  dynpoi_status.subclass = marker.subclass AND
+  dynpoi_status.elems = marker.elems AND
+  dynpoi_status.lat = marker.lat AND
+  dynpoi_status.lon = marker.lon
+""", (source_id, ))
 
     ## remove false positive no longer present
 #    execute_sql(dbcurs, """DELETE FROM dynpoi_status
@@ -129,13 +145,35 @@ def update(source, url, logger = printlogger(), remote_ip=""):
 #                            date < now()-interval '7 day'""",
 #                   (source_id, source_id, ))
 
-    execute_sql(dbcurs, """DELETE FROM marker
-                      WHERE (source,class,subclass,elems) IN (SELECT source,class,subclass,elems FROM dynpoi_status WHERE source = %s AND elems != '')""",
-                   (source_id, ))
+    execute_sql(dbcurs, """
+DELETE FROM
+  marker
+USING
+  dynpoi_status
+WHERE
+  marker.source = %s AND
+  marker.elems != '' AND
+  dynpoi_status.source = marker.source AND
+  dynpoi_status.class = marker.class AND
+  dynpoi_status.subclass = marker.subclass AND
+  dynpoi_status.elems = marker.elems
+""", (source_id, ))
 
-    execute_sql(dbcurs, """DELETE FROM marker
-                      WHERE (source,class,subclass,lat,lon) IN (SELECT source,class,subclass,lat,lon FROM dynpoi_status WHERE source = %s AND elems = '')""",
-                   (source_id, ))
+    execute_sql(dbcurs, """
+DELETE FROM
+  marker
+USING
+  dynpoi_status
+WHERE
+  marker.source = %s AND
+  marker.elems = '' AND
+  dynpoi_status.source = marker.source AND
+  dynpoi_status.class = marker.class AND
+  dynpoi_status.subclass = marker.subclass AND
+  dynpoi_status.elems = marker.elems AND
+  dynpoi_status.lat = marker.lat AND
+  dynpoi_status.lon = marker.lon
+""", (source_id, ))
 
     execute_sql(dbcurs, """UPDATE dynpoi_class
                       SET count = (SELECT count(*) FROM marker
