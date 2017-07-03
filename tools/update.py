@@ -407,8 +407,10 @@ import unittest
 class Test(unittest.TestCase):
 
     def setUp(self):
+        utils.pg_host = "localhost"
         utils.pg_base = "osmose_test"
         utils.pg_pass = "-osmose-"
+        utils.db_string = "host='%s' port='%s' dbname='%s' user='%s' password='%s'" % (utils.pg_host, utils.pg_port, utils.pg_base, utils.pg_user, utils.pg_pass)
 
         self.dbconn = utils.get_dbconn()
         self.dbcurs = self.dbconn.cursor()
