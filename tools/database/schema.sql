@@ -116,7 +116,9 @@ CREATE TABLE dynpoi_update (
 
 CREATE TABLE dynpoi_update_last (
     source integer NOT NULL,
-    "timestamp" timestamp with time zone
+    "timestamp" timestamp with time zone,
+    version text,
+    remote_ip character varying(128) DEFAULT NULL::character varying
 );
 
 
@@ -349,6 +351,13 @@ CREATE INDEX dynpoi_stats_timestamp ON dynpoi_stats USING btree ("timestamp");
 
 
 --
+-- Name: dynpoi_update_source_timestamp; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX dynpoi_update_source_timestamp ON dynpoi_update USING btree (source, "timestamp");
+
+
+--
 -- Name: idx_dynpoi_class_class; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -418,6 +427,13 @@ CREATE INDEX idx_marker_elem_username ON marker_elem USING btree (username);
 --
 
 CREATE INDEX idx_marker_item ON marker USING btree (item);
+
+
+--
+-- Name: idx_marker_lat_lon; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_marker_lat_lon ON marker USING btree (lat, lon);
 
 
 --
