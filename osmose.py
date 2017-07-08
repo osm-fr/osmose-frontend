@@ -109,7 +109,12 @@ def enable_cors_generic_route():
 @error(404)
 @view('404')
 def error404(error):
-    return {}
+    if 'images/markers/marker-b-' in request.path:
+        redirect('/images/markers/marker-b-0.png')
+    if 'images/markers/marker-l-' in request.path:
+        redirect('/images/markers/marker-l-0.png')
+    else:
+        return {}
 
 import api_0_1
 import api_0_2_meta
