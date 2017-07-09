@@ -63,6 +63,11 @@ function init_map() {
   };
   map.addControl(geocode);
 
+  var loadingControl = L.Control.loading({
+    separate: true
+  });
+  map.addControl(loadingControl);
+
   if (!urlVars.overlays) {
     map.addLayer(osmoseLayer);
   }

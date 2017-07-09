@@ -28,3 +28,6 @@
 [submodule "externals/leaflet-plugins"]
 	path = externals/leaflet-plugins
 	url = https://github.com/shramov/leaflet-plugins.git
+[submodule "externals/Leaflet.loading"]
+	path = externals/Leaflet.loading
+	url = https://github.com/ebrelsford/Leaflet.loading.git
