@@ -155,6 +155,13 @@ Disallow: /uk/errors/
 Disallow: /uk/false-positive/
 Disallow: /uk/map/markers
 Disallow: /uk/map/heat/
+Disallow: /zh_CN/api/
+Disallow: /zh_CN/control/
+Disallow: /zh_CN/error/
+Disallow: /zh_CN/errors/
+Disallow: /zh_CN/false-positive/
+Disallow: /zh_CN/map/markers
+Disallow: /zh_CN/map/heat/
 Disallow: /zh_TW/api/
 Disallow: /zh_TW/control/
 Disallow: /zh_TW/error/

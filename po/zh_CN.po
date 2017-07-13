@@ -1,0 +1,1373 @@
+# Osmose frontend
+# Copyright (C) 2014
+# This file is distributed under the same license as the osmose-frontend package.
+# 
+# Translators:
+# jie x <qa003qa003@hotmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Osmose\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-18 22:25+0100\n"
+"PO-Revision-Date: 2017-07-10 08:33+0000\n"
+"Last-Translator: jie x <qa003qa003@hotmail.com>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_CN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. TRANSLATORS: days / hours / minutes since last source update, abbreviated
+#. to d / h / m
+#: ../control.py:51
+#, python-brace-format
+msgid "{day}d, {hour}h, {minute}m ago"
+msgstr "{day}天{hour}小时{minute}分钟前"
+
+#: ../control.py:53
+#, python-brace-format
+msgid "in {day}d, {hour}h, {minute}m"
+msgstr "在{day}天{hour}小时{minute}分钟后"
+
+#: ../control.py:56
+msgid "never generated"
+msgstr "从未生成"
+
+#. TRANSLATORS: link to tooltip help
+#: ../error.py:155 ../false_positive.py:66 tmp.tpl:163
+msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
+msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
+
+#: ../errors.py:121 tmp.tpl:66
+msgid "False positives"
+msgstr "误报"
+
+#: ../errors.py:127 tmp.tpl:64
+msgid "Informations"
+msgstr "信息"
+
+#: ../map.py:137
+msgid "Relation analyser"
+msgstr "关系分析器"
+
+#. TRANSLATORS: link to source code
+#: ../map.py:139
+msgid "Statistics"
+msgstr "统计"
+
+#: ../map.py:142 tmp.tpl:23
+msgid "Contact"
+msgstr "联系我们"
+
+#: ../map.py:143
+msgid "Help on wiki"
+msgstr "Wiki上使用帮助"
+
+#: ../map.py:143 tmp.tpl:103 tmp.tpl:162
+msgid "http://wiki.openstreetmap.org/wiki/Osmose"
+msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
+
+#: ../map.py:144
+msgid "Copyright"
+msgstr "版权所有"
+
+#: ../map.py:145
+msgid "Sources"
+msgstr "源代码"
+
+#: ../map.py:146
+msgid "Translation"
+msgstr "翻译"
+
+#: tmp.tpl:1 tmp.tpl:5 tmp.tpl:11
+#, python-format
+msgid "Statistics for user %s"
+msgstr "用户 %s 的统计"
+
+#: tmp.tpl:8
+msgid "Users statistics"
+msgstr "用户们的统计"
+
+#: tmp.tpl:9
+msgid "Number"
+msgstr "数量"
+
+#: tmp.tpl:10
+msgid "Username"
+msgstr "用户名称"
+
+#: tmp.tpl:12
+#, python-format
+msgid "User statistics for %s"
+msgstr "%s的用户统计"
+
+#: tmp.tpl:14
+msgid "This list is also available via rss."
+msgstr "本列表也提供 RSS"
+
+#: tmp.tpl:18
+msgid "Statistics for user"
+msgstr "统计的用户"
+
+#: tmp.tpl:19
+msgid "User statistics"
+msgstr "用户统计"
+
+#: tmp.tpl:22
+msgid "Username:"
+msgstr "用户名:"
+
+#: tmp.tpl:24
+msgid "Bug tracker"
+msgstr "漏洞追踪"
+
+#: tmp.tpl:26
+msgid "Providing patches"
+msgstr "提供 patches"
+
+#: tmp.tpl:27
+msgid ""
+"Patches can be provided via merge requests on Github. This is the preferred "
+"way of handling patches."
+msgstr "可以使用 Github 的 merge request 功能来提交 patch。这是我们比较喜欢的 patch 处理方式。"
+
+#: tmp.tpl:28
+msgid "Development"
+msgstr "开发"
+
+#: tmp.tpl:29
+msgid ""
+"Development of Osmose is made as free software by <a "
+"href='../copyright'>volunteers</a>."
+msgstr "Osmose 是由 <a href='../copyright'>volunteers</a> 开发的自由软件。"
+
+#: tmp.tpl:32
+msgid "Contacting maintainers"
+msgstr "联系网站维护人员"
+
+#: tmp.tpl:33
+#, python-format
+msgid ""
+"We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
+msgstr "通过电子邮件<a href='mailto:%s'>%s</a>可以和我们取得联系。"
+
+#: tmp.tpl:35 tmp.tpl:39
+msgid "Last updates"
+msgstr "最后更新"
+
+#: tmp.tpl:40
+msgid "Median delay:"
+msgstr "平均延迟:"
+
+#: tmp.tpl:41 tmp.tpl:48 tmp.tpl:71 tmp.tpl:81
+#: ../tools/database/item_menu.txt:31
+msgid "source"
+msgstr "来源"
+
+#: tmp.tpl:44
+msgid "last generation"
+msgstr "上次产生"
+
+#: tmp.tpl:45 tmp.tpl:46
+msgid "history"
+msgstr "历史"
+
+#: tmp.tpl:47
+msgid "Update"
+msgstr "更新"
+
+#: tmp.tpl:49
+msgid "remote url"
+msgstr "远程网址"
+
+#: tmp.tpl:50
+msgid "timestamp"
+msgstr "时间戳"
+
+#: tmp.tpl:52
+msgid "Copyright informations"
+msgstr "版权信息"
+
+#: tmp.tpl:53
+msgid "License"
+msgstr "授权"
+
+#: tmp.tpl:54
+msgid "Authors"
+msgstr "作者"
+
+#: tmp.tpl:55
+msgid "And contributors"
+msgstr "以及贡献者"
+
+#: tmp.tpl:56
+msgid "Data are coming from"
+msgstr "资料来源"
+
+#: tmp.tpl:57
+msgid "copyright"
+msgstr "版权"
+
+#: tmp.tpl:59 tmp.tpl:98
+msgid "key"
+msgstr "键 key"
+
+#: tmp.tpl:60 tmp.tpl:99
+msgid "value"
+msgstr "值 value"
+
+#: tmp.tpl:61 tmp.tpl:100
+msgid "Marker"
+msgstr "标记"
+
+#: tmp.tpl:62
+msgid "Elements"
+msgstr "建立"
+
+#: tmp.tpl:63
+msgid "Fixes"
+msgstr "待修复"
+
+#: tmp.tpl:65
+msgid "Fixed"
+msgstr "已修复"
+
+#: tmp.tpl:67
+msgid "Graph"
+msgstr "数量趋势图"
+
+#: tmp.tpl:68 tmp.tpl:110
+msgid "Map"
+msgstr "地图"
+
+#. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
+#: tmp.tpl:70
+msgid "Set"
+msgstr "设定"
+
+#. TRANSLATORS: this should be replaced by a abbreviation for class
+#: tmp.tpl:75 tmp.tpl:86
+msgid "class (abbreviation)"
+msgstr "类 (缩写)"
+
+#: tmp.tpl:73 tmp.tpl:84
+msgid "item"
+msgstr "项目"
+
+#: tmp.tpl:76
+msgid "title"
+msgstr "标题"
+
+#: tmp.tpl:77
+msgid "count"
+msgstr "数量"
+
+#: tmp.tpl:78
+msgid "Total"
+msgstr "总计"
+
+#. TRANSLATORS: this should be replaced by a abbreviation for subclass
+#: tmp.tpl:88
+msgid "subclass (abbreviation)"
+msgstr "子类 (缩写)"
+
+#. TRANSLATORS: this should be replaced by a abbreviation for subclass
+#: tmp.tpl:83
+msgid "level (abbreviation)"
+msgstr "级别 (缩写)"
+
+#: tmp.tpl:90
+msgid "position (abbreviation)"
+msgstr "位置 (缩写)"
+
+#: tmp.tpl:91
+msgid "elements (abbreviation)"
+msgstr "内容 (缩写)"
+
+#: tmp.tpl:92
+msgid "subtitle"
+msgstr "小标题"
+
+#: tmp.tpl:93 ../tools/database/item_menu.txt:52
+msgid "date"
+msgstr "日期"
+
+#: tmp.tpl:101
+msgid "OpenStreetMap Oversight Search Engine"
+msgstr "OpenStreetMap Oversight 搜索引擎"
+
+#: tmp.tpl:103
+msgid "Help on OSM wiki"
+msgstr "OSM Wiki上使用帮助"
+
+#: tmp.tpl:105
+msgid "False positives list"
+msgstr "误报列表"
+
+#: tmp.tpl:106
+msgid "Last analysis updates"
+msgstr "上次分析更新的时间"
+
+#: tmp.tpl:107
+msgid "Tags Editor"
+msgstr "标签编辑器"
+
+#: tmp.tpl:108 tmp.tpl:141
+msgid "Cancel"
+msgstr "取消"
+
+#: tmp.tpl:109
+msgid "Valid"
+msgstr "有效"
+
+#: tmp.tpl:112
+msgid "no bubbles at this zoom factor"
+msgstr "在这个缩放级别没有资讯泡泡"
+
+#: tmp.tpl:113
+msgid "Severity"
+msgstr "严重度"
+
+#: tmp.tpl:114
+msgid "1 only"
+msgstr "只有 1"
+
+#: tmp.tpl:115
+msgid "1+2 only"
+msgstr "只有 1+2"
+
+#: tmp.tpl:116
+msgid "all severity"
+msgstr "所有严重度"
+
+#: tmp.tpl:117
+msgid "2 only"
+msgstr "只有 2"
+
+#: tmp.tpl:118
+msgid "3 only"
+msgstr "只有 3"
+
+#: tmp.tpl:119
+msgid "Fixable"
+msgstr "可修复"
+
+#: tmp.tpl:120
+msgid "Show only markers with correction suggestions"
+msgstr "只显示附带修正建议的标记"
+
+#: tmp.tpl:121
+msgid "Online"
+msgstr "在线"
+
+#: tmp.tpl:122
+msgid "Topic"
+msgstr "主题"
+
+#: tmp.tpl:123
+msgid "Select:"
+msgstr "选择："
+
+#: tmp.tpl:124 tmp.tpl:127
+msgid "all"
+msgstr "全部"
+
+#: tmp.tpl:125 tmp.tpl:128
+msgid "nothing"
+msgstr "无"
+
+#: tmp.tpl:126
+msgid "invert"
+msgstr "颠倒"
+
+#: tmp.tpl:129
+msgid "Change language"
+msgstr "切换语言"
+
+#: tmp.tpl:132
+msgid "Help"
+msgstr "帮助"
+
+#: tmp.tpl:133
+#, python-format
+msgid "Delay: %sd"
+msgstr "延迟：%s天"
+
+#: tmp.tpl:137
+msgid "Logout"
+msgstr "注销"
+
+#: tmp.tpl:138 tmp.tpl:140
+msgid "Login"
+msgstr "登录"
+
+#: tmp.tpl:139 tmp.tpl:141
+msgid "Save"
+msgstr "保存"
+
+#: tmp.tpl:142
+msgid "Objects edited:"
+msgstr "编辑对象："
+
+#: tmp.tpl:143
+msgid "Objects deleted:"
+msgstr "删除对象："
+
+#: tmp.tpl:144
+msgid "Fix with Osmose"
+msgstr "用Osmose修复"
+
+#: tmp.tpl:145
+msgid "Source"
+msgstr "来源"
+
+#: tmp.tpl:146
+msgid "Type"
+msgstr "种类"
+
+#: tmp.tpl:147
+msgid "Reuse changeset"
+msgstr "重用变更集"
+
+#: tmp.tpl:149
+msgid "change status"
+msgstr "改变状态"
+
+#: tmp.tpl:150
+msgid "corrected"
+msgstr "已修正"
+
+#: tmp.tpl:151
+msgid "false positive"
+msgstr "报告错误"
+
+#: tmp.tpl:152 tmp.tpl:153
+msgid "How to help translation"
+msgstr "如何帮忙翻译"
+
+#: tmp.tpl:154
+msgid ""
+"Osmose tool is mainly developped by french people, and we aim to add more "
+"languages. We currently cover almost all the languages used by countries "
+"covered by analyses."
+msgstr "Osmose工具主要由法国人开发，我们希望能加入更多语言。目前有被分析的国家所用的语言大多已含在内。"
+
+#: tmp.tpl:156
+msgid ""
+"To make Osmose a real multi-lingual tool, we need your help to improve "
+"current translations, and add new translations"
+msgstr "要让 Osmose 成为真正的多语种工具，我们需要你的协助来改善已有的翻译以及增加新的翻译。"
+
+#: tmp.tpl:157
+msgid "Pages to translate"
+msgstr "需要翻译的页面"
+
+#: tmp.tpl:161
+msgid "Wiki pages"
+msgstr "Wiki 页面"
+
+#: tmp.tpl:158
+msgid "Osmose pages"
+msgstr "Osmose 页面"
+
+#: tmp.tpl:167
+msgid "Bug tracking system"
+msgstr "漏洞追踪系统"
+
+#: tmp.tpl:30
+msgid ""
+"Adding new functionality of <em>Osmose Editor</em>, initial support of "
+"mobile device and improvement of documentation was funded by region of "
+"Aquitaine, France; part of the OpenAquiMap project leading by <em>Les Petits"
+" Débrouillards d'Aquitaine</em>."
+msgstr "由法国 Aquitaine 地区 <em>Les Petits Débrouillards d'Aquitaine</em> 所带领的 OpenAquiMap 专案，资助了 <em>Osmose 编辑器</em> 功能的开发，行动装置的初步支援，还改善了文件。"
+
+#: ../tools/database/categ_menu.txt:1
+msgid "Structure"
+msgstr "结构"
+
+#: ../tools/database/categ_menu.txt:2
+msgid "Missing tags"
+msgstr "缺少 tags"
+
+#: ../tools/database/categ_menu.txt:3
+msgid "Bad tag"
+msgstr "不良 tag"
+
+#: ../tools/database/categ_menu.txt:4
+msgid "Tags to remove"
+msgstr "多余的 tags"
+
+#: ../tools/database/categ_menu.txt:5
+msgid "Tags name"
+msgstr "tag 的名称"
+
+#: ../tools/database/categ_menu.txt:6
+msgid "Administrative"
+msgstr "行政区"
+
+#: ../tools/database/categ_menu.txt:7
+msgid "To map"
+msgstr "需要再绘制"
+
+#: ../tools/database/categ_menu.txt:8
+msgid "Integration"
+msgstr "整合"
+
+#: ../tools/database/item_menu.txt:1
+msgid "overlapping building"
+msgstr "建筑重叠"
+
+#: ../tools/database/item_menu.txt:3
+msgid "duplicated node"
+msgstr "重复节点"
+
+#: ../tools/database/item_menu.txt:4
+msgid "way one node"
+msgstr "只有一个点的路径"
+
+#: ../tools/database/item_menu.txt:5
+msgid "invalid polygon"
+msgstr "无效多边形"
+
+#: ../tools/database/item_menu.txt:6
+msgid "reverse roundabout"
+msgstr "相反环岛"
+
+#: ../tools/database/item_menu.txt:7
+msgid "boundary intersect"
+msgstr "边界相交"
+
+#: ../tools/database/item_menu.txt:8
+msgid "objects overlap"
+msgstr "对象重叠"
+
+#: ../tools/database/item_menu.txt:9
+msgid "orphan nodes"
+msgstr "孤立节点"
+
+#: ../tools/database/item_menu.txt:10
+msgid "sudden highway type change"
+msgstr "公路突然改变方向"
+
+#: ../tools/database/item_menu.txt:11
+msgid "unclosed area"
+msgstr "未封闭的area"
+
+#: ../tools/database/item_menu.txt:12
+msgid "bad *_link highway"
+msgstr "不良的 *_link highway"
+
+#: ../tools/database/item_menu.txt:13
+msgid "broken highway continuity"
+msgstr "没连接好的公路"
+
+#: ../tools/database/item_menu.txt:14
+msgid "missing tag or role"
+msgstr "缺少tag或role"
+
+#: ../tools/database/item_menu.txt:15
+msgid "surface intersection"
+msgstr "表面重叠"
+
+#: ../tools/database/item_menu.txt:16
+msgid "big relation"
+msgstr "太大的关系"
+
+#: ../tools/database/item_menu.txt:17
+msgid "multipolygon"
+msgstr "多重多边形"
+
+#: ../tools/database/item_menu.txt:18
+msgid "double cycleway"
+msgstr "双循环"
+
+#: ../tools/database/item_menu.txt:19
+msgid "approximate way"
+msgstr "粗略的路径"
+
+#: ../tools/database/item_menu.txt:20
+msgid "1-member relation"
+msgstr "只有1个成员的关系"
+
+#: ../tools/database/item_menu.txt:21
+msgid "not-connected highway/cycleway"
+msgstr "未连接公路/自行车道"
+
+#: ../tools/database/item_menu.txt:22
+msgid "waterway"
+msgstr "水路"
+
+#: ../tools/database/item_menu.txt:24
+msgid "duplicate geometry"
+msgstr "重复的几何形"
+
+#: ../tools/database/item_menu.txt:28
+msgid "junction=roundabout"
+msgstr "junction=roundabout"
+
+#: ../tools/database/item_menu.txt:29
+msgid "elevation"
+msgstr "海拔高度"
+
+#: ../tools/database/item_menu.txt:30
+msgid "oneway"
+msgstr "单行道"
+
+#: ../tools/database/item_menu.txt:32
+msgid "parent tag"
+msgstr "父 tag"
+
+#: ../tools/database/item_menu.txt:33
+msgid "street numbers"
+msgstr "门牌号码"
+
+#: ../tools/database/item_menu.txt:34
+msgid "highway"
+msgstr "highway"
+
+#: ../tools/database/item_menu.txt:35
+msgid "highway crossing"
+msgstr "highway 路口"
+
+#: ../tools/database/item_menu.txt:36 ../tools/database/item_menu.txt:156
+msgid "pharmacy"
+msgstr "药店"
+
+#: ../tools/database/item_menu.txt:41
+msgid "highway roundabout"
+msgstr "公路环岛"
+
+#: ../tools/database/item_menu.txt:42
+msgid "bad source tag"
+msgstr "不良的来源 tag"
+
+#: ../tools/database/item_menu.txt:43
+msgid "tagwatch cleaner"
+msgstr "标签查看清理器"
+
+#: ../tools/database/item_menu.txt:44
+msgid "wikipedia"
+msgstr "维基百科"
+
+#: ../tools/database/item_menu.txt:45
+msgid "multiple tags"
+msgstr "多个 tag"
+
+#: ../tools/database/item_menu.txt:46
+msgid "saint hyphen"
+msgstr "saint 连字符"
+
+#: ../tools/database/item_menu.txt:47
+msgid "incorrect tag"
+msgstr "错误的 tag"
+
+#: ../tools/database/item_menu.txt:48
+msgid "bad tag key"
+msgstr "不良的 tag key"
+
+#: ../tools/database/item_menu.txt:49
+msgid "similar values"
+msgstr "相似的 value"
+
+#: ../tools/database/item_menu.txt:50
+msgid "multiple values"
+msgstr "多个 value"
+
+#: ../tools/database/item_menu.txt:51
+msgid "swimming pool as natural=water"
+msgstr "被标为 natural=water 的游泳池"
+
+#: ../tools/database/item_menu.txt:53
+msgid "numeric value"
+msgstr "数值"
+
+#: ../tools/database/item_menu.txt:54
+msgid "small farm"
+msgstr "小块农田"
+
+#: ../tools/database/item_menu.txt:55
+msgid "note"
+msgstr "注释"
+
+#: ../tools/database/item_menu.txt:56
+msgid "tree"
+msgstr "树"
+
+#: ../tools/database/item_menu.txt:57
+msgid "brand in name"
+msgstr "品牌名称"
+
+#: ../tools/database/item_menu.txt:58
+msgid "typo in tag"
+msgstr "有错别字的 tag"
+
+#: ../tools/database/item_menu.txt:59
+msgid "incorrect "
+msgstr "不正确"
+
+#: ../tools/database/item_menu.txt:60
+msgid "parking lane"
+msgstr "路边停车位"
+
+#: ../tools/database/item_menu.txt:61
+msgid "relation role"
+msgstr "关系角色"
+
+#: ../tools/database/item_menu.txt:62
+msgid "relation type=restriction"
+msgstr "关系 type=restriction"
+
+#: ../tools/database/item_menu.txt:63
+msgid "postcode"
+msgstr "邮政编码"
+
+#: ../tools/database/item_menu.txt:68
+msgid "disused"
+msgstr "废弃"
+
+#: ../tools/database/item_menu.txt:69
+msgid "on junction=roundabout"
+msgstr "junction=roundabout"
+
+#: ../tools/database/item_menu.txt:70
+msgid "incompatible tags"
+msgstr "不兼容的 tag"
+
+#: ../tools/database/item_menu.txt:71
+msgid "ref in name"
+msgstr "ref的值填在name里"
+
+#: ../tools/database/item_menu.txt:74
+msgid "construction"
+msgstr "施工中"
+
+#: ../tools/database/item_menu.txt:75
+msgid "duplicate object"
+msgstr "重复对象"
+
+#: ../tools/database/item_menu.txt:76
+msgid "unwanted tag on node"
+msgstr "需要填tag的node"
+
+#: ../tools/database/item_menu.txt:77
+msgid "bad usage"
+msgstr "不良的用法"
+
+#: ../tools/database/item_menu.txt:81
+msgid "orthograph"
+msgstr "拼写问题"
+
+#: ../tools/database/item_menu.txt:82
+msgid "way type"
+msgstr "路径的类型"
+
+#: ../tools/database/item_menu.txt:83
+msgid "two names"
+msgstr "有两个name"
+
+#: ../tools/database/item_menu.txt:84
+msgid "toponymy"
+msgstr "地名"
+
+#: ../tools/database/item_menu.txt:85
+msgid "test soundex"
+msgstr "测试 soundex"
+
+#: ../tools/database/item_menu.txt:88
+msgid "open polygon"
+msgstr "没封闭的多边形"
+
+#: ../tools/database/item_menu.txt:89
+msgid "duplicated way"
+msgstr "重复的线"
+
+#: ../tools/database/item_menu.txt:90
+msgid "place without name"
+msgstr "没name的地名"
+
+#: ../tools/database/item_menu.txt:91
+msgid "INSEE code"
+msgstr "INSEE 代码"
+
+#: ../tools/database/item_menu.txt:92
+msgid "admin_level"
+msgstr "行政等级"
+
+#: ../tools/database/item_menu.txt:93
+msgid "erroneous boundary"
+msgstr "错误边界"
+
+#: ../tools/database/item_menu.txt:94
+msgid "out of boundary"
+msgstr "超出边界"
+
+#: ../tools/database/item_menu.txt:95
+msgid "geodesic building"
+msgstr "测量建筑"
+
+#: ../tools/database/item_menu.txt:96
+msgid "building shape"
+msgstr "建筑形状"
+
+#: ../tools/database/item_menu.txt:97
+msgid "bridge to tag"
+msgstr "桥梁的tag"
+
+#: ../tools/database/item_menu.txt:98
+msgid "admin boundary"
+msgstr "行政边界"
+
+#: ../tools/database/item_menu.txt:99
+msgid "power lines"
+msgstr "电线"
+
+#: ../tools/database/item_menu.txt:100 ../tools/database/item_menu.txt:118
+msgid "post office"
+msgstr "邮局"
+
+#: ../tools/database/item_menu.txt:102
+msgid "ODbL migration change"
+msgstr "ODbL授权转换修改"
+
+#: ../tools/database/item_menu.txt:103
+msgid "school, not integrated"
+msgstr "没有整合的学校"
+
+#: ../tools/database/item_menu.txt:104
+msgid "monument"
+msgstr "纪念建筑"
+
+#: ../tools/database/item_menu.txt:105
+msgid "node on ways"
+msgstr "在路径上的node"
+
+#: ../tools/database/item_menu.txt:106 ../tools/database/item_menu.txt:129
+msgid "train station"
+msgstr "车站"
+
+#: ../tools/database/item_menu.txt:107
+msgid "TMC"
+msgstr "TMC"
+
+#: ../tools/database/item_menu.txt:108
+msgid "relation type=boundary"
+msgstr "关系键值为type=boundary"
+
+#: ../tools/database/item_menu.txt:109
+msgid "tunnel/bridge"
+msgstr "隧道/桥梁"
+
+#: ../tools/database/item_menu.txt:115
+msgid "monument, museum"
+msgstr "纪念馆，博物馆"
+
+#: ../tools/database/item_menu.txt:116
+msgid "monument, museum, could be integrated"
+msgstr "可以整合的纪念馆，博物馆"
+
+#: ../tools/database/item_menu.txt:119
+msgid "post office, could be integrated"
+msgstr "可以整合的邮局"
+
+#: ../tools/database/item_menu.txt:123
+msgid "school"
+msgstr "学校"
+
+#: ../tools/database/item_menu.txt:124
+msgid "school, could be integrated"
+msgstr "可以整合的学校"
+
+#: ../tools/database/item_menu.txt:126
+msgid "public transport"
+msgstr "公共交通"
+
+#: ../tools/database/item_menu.txt:127
+msgid "public transport, could be integrated"
+msgstr "可以整合的公共交通"
+
+#: ../tools/database/item_menu.txt:130
+msgid "train station, could be integrated"
+msgstr "可以整合的车站"
+
+#: ../tools/database/item_menu.txt:131
+msgid "level crossing"
+msgstr "水平交叉"
+
+#: ../tools/database/item_menu.txt:132
+msgid "geodesic point"
+msgstr "测量点"
+
+#: ../tools/database/item_menu.txt:133
+msgid "postal address"
+msgstr "邮寄地址"
+
+#: ../tools/database/item_menu.txt:134
+msgid "wikipedia, could be integrated"
+msgstr "可以整合的维基百科数据"
+
+#: ../tools/database/item_menu.txt:135
+msgid "public service"
+msgstr "公共服务"
+
+#: ../tools/database/item_menu.txt:136
+msgid "recycling"
+msgstr "垃圾循环"
+
+#: ../tools/database/item_menu.txt:137
+msgid "recycling, could be integrated"
+msgstr "可以整合的垃圾循环"
+
+#: ../tools/database/item_menu.txt:139
+msgid "parking"
+msgstr "停车场"
+
+#: ../tools/database/item_menu.txt:140
+msgid "parking, could be integrated"
+msgstr "可以整合的停车场"
+
+#: ../tools/database/item_menu.txt:142
+msgid "accommodation"
+msgstr "住所"
+
+#: ../tools/database/item_menu.txt:143
+msgid "accommodation, could be integrated"
+msgstr "可以整合的住所"
+
+#: ../tools/database/item_menu.txt:144
+msgid "cycle parking"
+msgstr "非机动车停车场"
+
+#: ../tools/database/item_menu.txt:145
+msgid "cycle parking, could be integrated"
+msgstr "可以整合的非机动车停车场"
+
+#: ../tools/database/item_menu.txt:146
+msgid "transport sharing"
+msgstr "共享/租借交通"
+
+#: ../tools/database/item_menu.txt:147
+msgid "transport sharing, could be integrated"
+msgstr "可以整合的共享/租借交通"
+
+#: ../tools/database/item_menu.txt:149
+msgid "sport"
+msgstr "运动"
+
+#: ../tools/database/item_menu.txt:150
+msgid "sport, could be integrated"
+msgstr "可以整合的运动类"
+
+#: tmp.tpl:160
+msgid "Translation progress: osmose"
+msgstr "翻译进度：osmose"
+
+#: tmp.tpl:164
+msgid "For new language or countries"
+msgstr "新增的语言或国家"
+
+#: tmp.tpl:166
+#, python-format
+msgid ""
+"For new countries, we can be contacted through a direct email to <a "
+"href='mailto:%s'>%s</a>."
+msgstr "对于新增国家，请直接发电子邮件到<a href='mailto:%s'>%s</a>联系我们。"
+
+#: tmp.tpl:155
+#, python-format
+msgid "The <a href='%s'>country coverage is available</a>."
+msgstr "<a href='%s'>目前已含盖的国家</a>。"
+
+#: tmp.tpl:165
+#, python-format
+msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
+msgstr "你可以直接在 <a href='%s'>Transifex</a> 上新增一個語言。"
+
+#: tmp.tpl:159
+#, python-format
+msgid "Translation is done on <a href='%s'>Transifex</a>."
+msgstr "翻译是通过<a href='%s'>Transifex</a>完成的。"
+
+#: tmp.tpl:130
+msgid "Export"
+msgstr "输出"
+
+#: tmp.tpl:131
+msgid "Html list"
+msgstr "HTML 列表"
+
+#: ../tools/database/item_menu.txt:25
+msgid "one-node way"
+msgstr "一个node的路径"
+
+#: ../tools/database/item_menu.txt:151
+msgid "toilets"
+msgstr "厕所"
+
+#: ../tools/database/item_menu.txt:110
+msgid "transport sharing, not integrated"
+msgstr "不能整合的共享/租借交通"
+
+#: ../tools/database/item_menu.txt:152
+msgid "police"
+msgstr "警察类"
+
+#: ../tools/database/item_menu.txt:153
+msgid "police, could be integrated"
+msgstr "可以整合的警察类"
+
+#: ../tools/database/item_menu.txt:111
+msgid "pharmacy, not integrated "
+msgstr "不能整合的药店"
+
+#: ../tools/database/item_menu.txt:157
+msgid "pharmacy, could be integrated"
+msgstr "可以整合的药店"
+
+#: ../tools/database/item_menu.txt:154
+msgid "gas station"
+msgstr "加油站"
+
+#: tmp.tpl:90
+msgid "position"
+msgstr "位置"
+
+#: tmp.tpl:140
+msgid "You must be logged in order to use the tag editor"
+msgstr "您必须登录才能使用标签编辑器"
+
+#: tmp.tpl:141
+msgid "Save changeset"
+msgstr "保存更改集"
+
+#: tmp.tpl:144
+msgid "Comment"
+msgstr "评论"
+
+#: ../tools/database/item_menu.txt:64
+msgid "area"
+msgstr "区域"
+
+#: ../tools/database/item_menu.txt:65
+msgid "noexit"
+msgstr "没有出口"
+
+#: tmp.tpl:34
+msgid ""
+"Keep in touch by watching at <a "
+"href='https://twitter.com/osmose_qa'>@osmose_qa</a> on twitter."
+msgstr "关注我们的推特<a href='https://twitter.com/osmose_qa'>@osmose_qa</a>"
+
+#: ../tools/database/item_menu.txt:78
+msgid "incorrect layer"
+msgstr "layer不正确"
+
+#: tmp.tpl:36 tmp.tpl:38
+msgid "Updates summary"
+msgstr "更新摘要"
+
+#: tmp.tpl:42
+msgid "country"
+msgstr "国家"
+
+#: tmp.tpl:43
+msgid "analyser"
+msgstr "分析器"
+
+#: ../tools/database/item_menu.txt:158
+msgid "postal code, could be integrated"
+msgstr "可以整合的邮政编码"
+
+#: ../tools/database/item_menu.txt:159
+msgid "library"
+msgstr "图书馆"
+
+#: ../tools/database/item_menu.txt:160
+msgid "restaurant"
+msgstr "餐厅"
+
+#: ../tools/database/item_menu.txt:161
+msgid "winery"
+msgstr "酒厂"
+
+#: ../tools/database/item_menu.txt:37
+msgid "missing object kind"
+msgstr "丢失对象的种类"
+
+#: ../tools/database/item_menu.txt:112
+msgid "postal code, not integrated "
+msgstr "不能整合的邮政编码"
+
+#: ../tools/database/item_menu.txt:86
+msgid "local language"
+msgstr "本地语言"
+
+#: tmp.tpl:31
+msgid ""
+"The servers analysing data are provided by OpenStreetMap-France and some "
+"others by contributors around the world. The servers for north-america and "
+"other areas are funded by Mapbox."
+msgstr "分析资料的服务器由OpenStreetMap-法国及世界各地的贡献者提供。其中北美等地的服务器由Mapbox赞助。"
+
+#: ../errors.py:124
+msgid "Fixed issues"
+msgstr "修正问题"
+
+#. TRANSLATORS: link to help in appropriate language
+#: ../map.py:136
+msgid "Issues by user"
+msgstr "用户问题"
+
+#: tmp.tpl:2 tmp.tpl:3 tmp.tpl:4
+#, python-brace-format
+msgid "Number of level {level} issues: {count}"
+msgstr "等级{level}的问题数量：{count}"
+
+#: tmp.tpl:6 tmp.tpl:15
+#, python-format
+msgid "Number of found issues: %d"
+msgstr "发现的问题数量：%d"
+
+#: tmp.tpl:7 tmp.tpl:16
+#, python-format
+msgid "Number of found issues: more than %d"
+msgstr "发现的问题数量：超过%d"
+
+#: tmp.tpl:13
+#, python-format
+msgid ""
+"This page shows issues on elements that were last modified by '%s'. This "
+"doesn't means that this user is responsible for all these issues."
+msgstr "本页显示的是问题是由最后修改者“%s”建立。但并不表示这些问题都是他造成的。"
+
+#: tmp.tpl:17
+msgid "Show issues on a map"
+msgstr "在地图上显示问题"
+
+#: tmp.tpl:20
+msgid "Osmose allows you to control your own issues."
+msgstr "Osmose能让你掌控自己的疑似错误。"
+
+#: tmp.tpl:21
+msgid ""
+"By entering your OSM username in the following form, you will be able to see"
+" issues that are attached to your username. Note that the algorithm that "
+"attaches issues to username is not perfect, as Osmose only checks the last "
+"contributor of the relevant erroneous elements."
+msgstr "只要在下方的表单填入你的OSM用户名，就能看到列于你名下的问题。不过要注意，关联问题和帐号的算法并不完美，因为Osmose只看有问题编辑建立的最后修改人。"
+
+#: tmp.tpl:58 tmp.tpl:97
+#, python-format
+msgid "Information on issue %d"
+msgstr "问题信息%d"
+
+#: tmp.tpl:79
+msgid "Show more issues"
+msgstr "显示更多问题"
+
+#: tmp.tpl:80
+msgid "Show some issues"
+msgstr "显示部分问题"
+
+#: tmp.tpl:89
+msgid "information on issue"
+msgstr "问题的信息"
+
+#: tmp.tpl:94
+msgid "delete issue"
+msgstr "删除问题"
+
+#: tmp.tpl:95
+msgid "issue n°"
+msgstr "问题  n°"
+
+#: tmp.tpl:96
+#, python-format
+msgid "delete issue #%d"
+msgstr "删除问题 #%d"
+
+#: tmp.tpl:102
+msgid "Map of issues"
+msgstr "问题地图"
+
+#: tmp.tpl:104
+msgid "Information on issues database"
+msgstr "关于问题数据库信息"
+
+#: tmp.tpl:134 tmp.tpl:135 tmp.tpl:136
+#, python-format
+msgid "Level %d issues (%d)"
+msgstr "等级 %d 问题 (%d)"
+
+#: tmp.tpl:148
+msgid "Issue reported on: "
+msgstr "问题发现日期："
+
+#: tmp.tpl:163
+msgid "Documentation on reported issues"
+msgstr "关于报告问题的文件"
+
+#: tmp.tpl:51
+msgid "version"
+msgstr "版本"
+
+#: ../tools/database/item_menu.txt:162
+msgid "geodesic"
+msgstr "测量"
+
+#: ../tools/database/item_menu.txt:101 ../tools/database/item_menu.txt:121
+msgid "post box"
+msgstr "邮箱"
+
+#: ../tools/database/item_menu.txt:122
+msgid "post box, could be integrated"
+msgstr "可以整合的邮箱"
+
+#: ../tools/database/item_menu.txt:38
+msgid "indoor"
+msgstr "室内"
+
+#: ../tools/database/item_menu.txt:79
+msgid "roundabout as area"
+msgstr "作为区域的环岛"
+
+#: ../tools/database/item_menu.txt:113
+msgid "road"
+msgstr "路"
+
+#: ../tools/database/item_menu.txt:2
+msgid "split building"
+msgstr "分裂建筑"
+
+#: tmp.tpl:111
+#, python-format
+msgid "Control, verification and correction of %s issues"
+msgstr "控制，验证和纠正%s问题"
+
+#: tmp.tpl:162
+msgid "Osmose QA main page"
+msgstr "Osmose 问答主页"
+
+#: tmp.tpl:25
+msgid ""
+"Bug should be reported on <a href='https://github.com/osm-fr/osmose-"
+"frontend/issues'>osmose-frontend</a> for issues around the website, or on <a"
+" href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> "
+"for issues on the reported issues on OSM data, or for suggestion about "
+"analyses."
+msgstr "关于漏洞的提交前台错误在<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a>上提，OSM数据的错误在<a href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a>提交，也可以提出分析建议。"
+
+#: tmp.tpl:168
+msgid ""
+"<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
+"frontend</a> can be used to report any issue with translations."
+msgstr "翻译的问题可以提交到<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a>。"
+
+#: ../tools/database/item_menu.txt:23
+msgid "far from water"
+msgstr "远离水域"
+
+#: ../tools/database/item_menu.txt:72
+msgid "fixme import"
+msgstr "输入含fixme标签"
+
+#: ../tools/database/item_menu.txt:26
+msgid "objects intersection"
+msgstr "对象交叉点"
+
+#: ../tools/database/item_menu.txt:39 ../tools/database/item_menu.txt:66
+msgid "access"
+msgstr "访问"
+
+#: ../tools/database/item_menu.txt:73
+msgid "fixme review"
+msgstr "fixme 的评论"
+
+#: ../tools/database/item_menu.txt:117
+msgid "monument, museum, need update"
+msgstr "需要更新的纪念碑，博物馆"
+
+#: ../tools/database/item_menu.txt:125
+msgid "school, need update"
+msgstr "需要更新的学校"
+
+#: ../tools/database/item_menu.txt:128
+msgid "public transport, need update"
+msgstr "需要更新的公共交通"
+
+#: ../tools/database/item_menu.txt:138
+msgid "recycling, need update"
+msgstr "需要更新的垃圾循环"
+
+#: ../tools/database/item_menu.txt:141
+msgid "parking, need update"
+msgstr "需要更新的停车场"
+
+#: ../tools/database/item_menu.txt:148
+msgid "transport sharing, need update"
+msgstr "需要更新的"
+
+#: tmp.tpl:37
+msgid "Analyser"
+msgstr "分析仪"
+
+#: tmp.tpl:37
+msgid "Count"
+msgstr "数量"
+
+#: tmp.tpl:37
+msgid "Age"
+msgstr "发布时间"
+
+#: tmp.tpl:37
+msgid "Version"
+msgstr "版本"
+
+#: ../tools/database/item_menu.txt:120
+msgid "post office, need update"
+msgstr "需要更新的"
+
+#: tmp.tpl:72
+msgid "age"
+msgstr "发布时间"
+
+#: ../tools/database/item_menu.txt:87
+msgid "invalid character"
+msgstr "无效字符"
+
+#: ../tools/database/item_menu.txt:155
+msgid "gas station, could be integrated"
+msgstr "可以整合的加油站"
+
+#: ../tools/database/item_menu.txt:114 ../tools/database/item_menu.txt:163
+msgid "power substation"
+msgstr "变电所"
+
+#: ../tools/database/item_menu.txt:164
+msgid "power substation, could be integrated"
+msgstr "可以整合的变电所"
+
+#: ../tools/database/item_menu.txt:165
+msgid "power support"
+msgstr "电线塔"
+
+#: ../tools/database/item_menu.txt:166
+msgid "power support, could be integrated"
+msgstr "可以整合的电线塔"
+
+#: ../tools/database/item_menu.txt:27
+msgid "almost junction"
+msgstr "几乎连接"
+
+#: ../tools/database/item_menu.txt:40
+msgid "public_transport route"
+msgstr "公共交通线路"
+
+#: ../tools/database/item_menu.txt:67
+msgid "recycling container"
+msgstr "垃圾循环箱"
+
+#: ../tools/database/item_menu.txt:80
+msgid "duplicate wikipedia"
+msgstr "重复维基百科"

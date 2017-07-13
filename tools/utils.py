@@ -32,6 +32,7 @@ languages_name["ro"] = u"Română"
 languages_name["ru"] = u"Русский"
 languages_name["sw"] = u"Kiswahili"
 languages_name["uk"] = u"Українська"
+languages_name["zh_CN"] = u"中文 (简体)"
 languages_name["zh_TW"] = u"中文 (繁體)"
 
 allowed_languages = list(languages_name)
