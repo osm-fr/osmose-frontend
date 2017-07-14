@@ -38,10 +38,18 @@
             <a href="#" class="editor_fix" data-type="{%type%}" data-id="{%id%}" data-error="{%error_id%}" data-fix="{%num%}">fix-edit</a>
         </div>
     {%#add%}
-        <div class="add"> + <b>{%k%}</b> = {%v%}</div>
+        <div class="add"> + <b>{%k%}</b> =
+          {%#vlink%}<a href="{%vlink%}" target="_blank">{%/vlink%}
+          {%v%}
+          {%#vlink%}</a>{%/vlink%}
+        </div>
     {%/add%}
     {%#mod%}
-        <div class="mod"> ~ <b>{%k%}</b> = {%v%}</div>
+        <div class="mod"> ~ <b>{%k%}</b> =
+          {%#vlink%}<a href="{%vlink%}" target="_blank">{%/vlink%}
+          {%v%}
+          {%#vlink%}</a>{%/vlink%}
+        </div>
     {%/mod%}
     {%#del%}
         <div class="del"> - <b>{%k%}</b></div>
@@ -64,10 +72,18 @@
           <a href="../josm_proxy?import?url=http://{{website}}/api/0.2/error/{%error_id%}/fix/{%num%}" target="hiddenIframe" class="josm">fix-josm</a>
         </div>
   {%#add%}
-        <div class="add"> + <b>{%k%}</b> = {%v%}</div>
+        <div class="add"> + <b>{%k%}</b> =
+          {%#vlink%}<a href="{%vlink%}" target="_blank">{%/vlink%}
+          {%v%}
+          {%#vlink%}</a>{%/vlink%}
+        </div>
   {%/add%}
   {%#mod%}
-        <div class="mod"> ~ <b>{%k%}</b> = {%v%}</div>
+        <div class="mod"> ~ <b>{%k%}</b> =
+          {%#vlink%}<a href="{%vlink%}" target="_blank">{%/vlink%}
+          {%v%}
+          {%#vlink%}</a>{%/vlink%}
+        </div>
   {%/mod%}
   {%#del%}
         <div class="del"> - <b>{%k%}</b></div>

@@ -184,14 +184,10 @@ def error(db, lang, err_id):
     for elem in elements:
       if elem["data_type"]:
         tags = elem["tags"]
-        try:
-            links = t2l.checkTags(tags)
-        except:
-            links = {}
         tmp_elem = {data_type[elem["data_type"]]: True,
                     "type": data_type[elem["data_type"]],
                     "id": elem["id"],
-                    "tags": expand_tags(tags, links),
+                    "tags": expand_tags(tags, t2l.checkTags(tags)),
                     "fixes": [],
                    }
         for fix in fixies:
@@ -199,8 +195,8 @@ def error(db, lang, err_id):
               fix["elem_data_type"] == elem["data_type"] and
               fix["elem_id"] == elem["id"]):
             tmp_elem["fixes"].append({"num": fix["diff_index"],
-                                      "add": expand_tags(fix["tags_create"], {}),
-                                      "mod": expand_tags(fix["tags_modify"], {}),
+                                      "add": expand_tags(fix["tags_create"], t2l.checkTags(fix["tags_create"])),
+                                      "mod": expand_tags(fix["tags_modify"], t2l.checkTags(fix["tags_modify"])),
                                       "del": expand_tags(fix["tags_delete"], {}, True),
                                      })
         elems.append(tmp_elem)
@@ -217,8 +213,8 @@ def error(db, lang, err_id):
                     break
             if not found:
                 new_elems.append({"num": fix["diff_index"],
-                                  "add": expand_tags(fix["tags_create"], {}),
-                                  "mod": expand_tags(fix["tags_modify"], {}),
+                                  "add": expand_tags(fix["tags_create"], t2l.checkTags(fix["tags_create"])),
+                                  "mod": expand_tags(fix["tags_modify"], t2l.checkTags(fix["tags_modify"])),
                                   "del": expand_tags(fix["tags_delete"], {}, True),
                                  })
 
