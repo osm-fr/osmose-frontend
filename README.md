@@ -26,14 +26,14 @@ Alternatively instal python-virtualenv and create a new virtualenv.
 
 Setup system dependencies (Ubuntu Server 14.04)
 ```
-apt install pkg-config libpng-dev libfreetype6-dev
+apt install pkg-config libpng-dev libjpeg-dev libfreetype6-dev
 ```
 
 Create a python virtualenv, active it and install python dependencies
 ```
 virtualenv --python=python2.7 osmose-frontend-venv
 source osmose-frontend-venv/bin/activate
-pip install -r requirements.txt  --allow-all-external --allow-unverified PIL
+pip install -r requirements.txt
 ```
 
 
