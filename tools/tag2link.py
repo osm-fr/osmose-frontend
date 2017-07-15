@@ -63,6 +63,7 @@ class tag2link:
         self.all = re.compile('.*')
 
     def checkTags(self, tags):
+      try:
         urls = {}
         for rule in self.rules:
             valid = True
@@ -106,6 +107,8 @@ class tag2link:
                     ret = 'http://' + ret
                 urls[id[rule['link']['subs'][0][0][0]]['k'].group(0)] = ret
         return urls
+      except:
+        return {}
 
 if __name__ == '__main__':
     t2l = tag2link('tag2link_sources.xml')

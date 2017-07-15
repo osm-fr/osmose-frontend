@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
 //    JOSM tag2link plugin.
-//    Copyright (C) 2011-2014 Don-vip & FrViPofm
+//    Copyright (C) 2011-2015 Don-vip & FrViPofm
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU General Public License as published by
@@ -33,6 +33,18 @@
             <condition k="(contact:)?email" v="[^@]+@[^@]+" />
             <link name="Send Email" href="mailto:%v%" />
         </rule>
+        <rule>
+            <condition k="source" v="(http:|https:).*"/>
+            <link name="View website" href="%v%" />
+        </rule>
+        <rule>
+            <condition k="image" v="(http:|https:).*"/>
+            <link name="View image" href="%v%" />
+        </rule>
+        <rule>
+            <condition k="image" v="File:.*"/>
+            <link name="View image" href="https://commons.wikimedia.org/wiki/%v%" />
+        </rule>
     </src>
     
     <src name="Wikipedia">
@@ -44,6 +56,10 @@
             <condition k="wikidata" />
             <link name="View Wikidata page" href="https://www.wikidata.org/wiki/%v%" />
         </rule>
+        <rule>
+            <condition k="species"/>
+            <link name="View Wikispecies page" href="https://species.wikimedia.org/wiki/%v%" />
+        </rule>
     </src>
 
     <src name="WHC">
@@ -52,7 +68,14 @@
             <link name="View UNESCO sheet" href="http://whc.unesco.org/%lang(en,fr):en%/list/%v.1%" />
         </rule>
     </src>
-    
+
+    <src name="Mapillary">
+        <rule>
+            <condition k="((ref|source):)?mapillary" v="[0-9a-zA-Z-_]+" />
+            <link name="View %name% image" href="http://www.mapillary.com/map/im/%v%" />
+        </rule>
+    </src>
+
     <!-- Only for France --> 
     
     <src name="SANDRE" country-code="FR">
@@ -160,7 +183,7 @@
     <src name="NAF" country-code="FR">
         <rule>
             <condition k="ref:FR:NAF" v="[A-Z0-9-]{5}" />
-            <link name="View explanation of %name% code" href="http://www.rouen.cci.fr/outils/ape/Naf_liste.asp?param=2&amp;code=%v%" />
+            <link name="View INSEE explanation of %name% code" href="http://recherche-naf.insee.fr/SIRENET_ClassesNaf/%v%.htm" />
         </rule>
     </src>
 
@@ -175,6 +198,13 @@
         <rule>
             <condition k="ref:FR:LaPoste" v="[0-9]{5}[A-Z]" />
             <link name="View %name% page of this post office" href="http://www.laposte.fr/particulier/outils/trouver-un-bureau-de-poste/bureau-detail/%v%/%v%" />
+        </rule>
+    </src>
+
+    <src name="MemorialGenWeb" country-code="FR">
+        <rule>
+            <condition k="ref:(FR:)?MemorialGenWeb" v="[0-9]+" />
+            <link name="View %name% sheet of memorial" href="http://www.memorialgenweb.org/memorial3/html/fr/resultcommune.php?idsource=%v%" />
         </rule>
     </src>
 
