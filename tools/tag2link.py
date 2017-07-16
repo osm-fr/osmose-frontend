@@ -23,8 +23,8 @@ class Exact(xml.sax.handler.ContentHandler):
         elif name == 'condition':
             self.rules[-1]['conditions'].append({
                 'kk': attrs['k'],
-                'k':re.compile(self.unposix(attrs['k'])),
-                'v': re.compile(self.unposix(attrs['v'])) if attrs.has_key('v') else None,
+                'k':re.compile('^' + self.unposix(attrs['k']) + '$'),
+                'v': re.compile('^' + self.unposix(attrs['v']) + '$') if attrs.has_key('v') else None,
                 'id': attrs['id'] if attrs.has_key('id') else None
             })
         elif name == 'link':
@@ -121,3 +121,4 @@ if __name__ == '__main__':
     print t2l.checkTags({'wikipedia:fr': 'toto'})
     print t2l.checkTags({'wikipedia': 'fr:toto'})
     print t2l.checkTags({'wikipedia': 'toto'})
+    print t2l.checkTags({'source': 'source', 'source:url': 'http://example.com'})
