@@ -2,7 +2,7 @@
 <div id="popup-{%error_id%}">
   <div class="bulle_msg">
     <div class="closebubble">
-      <div class="help"><a target="_blank" href='{%url_help%}#{%item%}'>&nbsp;?&nbsp;</a></div>
+      <div class="help"><a target="popup_help" href='{%url_help%}#{%item%}'>&nbsp;?&nbsp;</a></div>
       <div class="error-link"><a target="_blank" href="../error/{%error_id%}">&nbsp;E&nbsp;</a></div>
     </div>
     <div class="bulle_err">
@@ -39,14 +39,14 @@
         </div>
     {%#add%}
         <div class="add"> + <b>{%k%}</b> =
-          {%#vlink%}<a href="{%vlink%}" target="_blank">{%/vlink%}
+          {%#vlink%}<a href="{%vlink%}" target="popup_tag2link">{%/vlink%}
           {%v%}
           {%#vlink%}</a>{%/vlink%}
         </div>
     {%/add%}
     {%#mod%}
         <div class="mod"> ~ <b>{%k%}</b> =
-          {%#vlink%}<a href="{%vlink%}" target="_blank">{%/vlink%}
+          {%#vlink%}<a href="{%vlink%}" target="popup_tag2link">{%/vlink%}
           {%v%}
           {%#vlink%}</a>{%/vlink%}
         </div>
@@ -58,7 +58,7 @@
   {%/fixes%}
   {%#tags%}
       <b>{%k%}</b> =
-      {%#vlink%}<a href="{%vlink%}" target="_blank">{%/vlink%}
+      {%#vlink%}<a href="{%vlink%}" target="popup_tag2link">{%/vlink%}
       {%v%}
       {%#vlink%}</a>{%/vlink%}
       <br>
@@ -73,14 +73,14 @@
         </div>
   {%#add%}
         <div class="add"> + <b>{%k%}</b> =
-          {%#vlink%}<a href="{%vlink%}" target="_blank">{%/vlink%}
+          {%#vlink%}<a href="{%vlink%}" target="popup_tag2link">{%/vlink%}
           {%v%}
           {%#vlink%}</a>{%/vlink%}
         </div>
   {%/add%}
   {%#mod%}
         <div class="mod"> ~ <b>{%k%}</b> =
-          {%#vlink%}<a href="{%vlink%}" target="_blank">{%/vlink%}
+          {%#vlink%}<a href="{%vlink%}" target="popup_tag2link">{%/vlink%}
           {%v%}
           {%#vlink%}</a>{%/vlink%}
         </div>
@@ -94,7 +94,7 @@
 {{_("Issue reported on: ")}} {%b_date%}
   </div>
   <div class="bulle_verif">
-    <a href="{{main_website}}?lat={%lat%}&lon={%lon%}&zoom=18" target="_blank">osm-show</a>
+    <a href="{{main_website}}?lat={%lat%}&lon={%lon%}&zoom=18" target="popup_osm">osm-show</a>
     <a href="{{main_website}}edit?lat={%lat%}&lon={%lon%}&zoom=18" target="_blank">osm-edit</a>
     <a href="../josm_proxy?load_and_zoom?left={%minlon%}&bottom={%minlat%}&right={%maxlon%}&top={%maxlat%}&select={%elems_id%}" target="hiddenIframe" class="josm">josm zone</a>
   </div>
