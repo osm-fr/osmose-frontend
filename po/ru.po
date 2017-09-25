@@ -9,14 +9,15 @@
 # jekader <jekader@gmail.com>, 2014
 # jekader <jekader@gmail.com>, 2014
 # Nikolay Parukhin <parukhin@gmail.com>, 2014-2015
+# Semigradsky Dmitry <semigradskyd@gmail.com>, 2017
 # 4004 <tohaklim@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2017-07-16 17:15+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2017-09-20 02:30+0000\n"
+"Last-Translator: Semigradsky Dmitry <semigradskyd@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/openstreetmap-france/osmose/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1364,7 +1365,7 @@ msgstr "электроопора, может быть интегрирована
 
 #: ../tools/database/item_menu.txt:28
 msgid "almost junction"
-msgstr ""
+msgstr "почти соединяются"
 
 #: ../tools/database/item_menu.txt:41
 msgid "public_transport route"
@@ -1372,11 +1373,11 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:68
 msgid "recycling container"
-msgstr ""
+msgstr "контейнер, для сбора мусора"
 
 #: ../tools/database/item_menu.txt:82
 msgid "duplicate wikipedia"
-msgstr ""
+msgstr "дублированная ссылка на wikipedia"
 
 #: ../tools/database/item_menu.txt:69
 msgid "route access mismatch"
@@ -1384,4 +1385,4 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:169
 msgid "traffc signs"
-msgstr ""
+msgstr "дорожные знаки"
