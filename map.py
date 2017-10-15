@@ -207,7 +207,7 @@ def _errors_mvt(db, params, z, min_x, min_y, max_x, max_y, limit):
         return MVT_EMPTY
     else:
         limit_feature = []
-        if len(results) == limit:
+        if len(results) == limit and z < 18:
             limit_feature = [{
                 "name": "limit",
                 "features": [{
