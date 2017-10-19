@@ -50,7 +50,7 @@ def _build_where_item(item, table):
     return where
 
 
-def _build_param(lat, lon, bbox, source, item, level, users, classs, country, useDevItem, status, tags, fixable, forceTable=[],
+def _build_param(bbox, source, item, level, users, classs, country, useDevItem, status, tags, fixable, forceTable=[],
                  summary=False, stats=False, start_date=None, end_date=None, last_update=None):
     join = ""
     where = ["1=1"]
@@ -172,8 +172,6 @@ def _build_param(lat, lon, bbox, source, item, level, users, classs, country, us
 
 def _params():
     class Params:
-        lat      = request.params.get('lat', type=float, default=0)
-        lon      = request.params.get('lon', type=float, default=0)
         bbox     = request.params.get('bbox', default=None)
         item     = request.params.get('item')
         source   = request.params.get('source', default='')
@@ -202,10 +200,6 @@ def _params():
     if params.bbox:
         try:
             params.bbox = map(lambda x: float(x), params.bbox.split(','))
-            if not params.lat or params.lat==0:
-                params.lat = (params.bbox[1] + params.bbox[3]) / 2
-            if not params.lon or params.lon==0:
-                params.lon = (params.bbox[0] + params.bbox[2]) / 2
         except:
             params.bbox = None
     if params.users:
@@ -293,7 +287,7 @@ def _gets(db, params):
     else:
         forceTable = []
 
-    join, where = _build_param(params.lat, params.lon, params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, forceTable=forceTable, start_date=params.start_date, end_date=params.end_date)
+    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, forceTable=forceTable, start_date=params.start_date, end_date=params.end_date)
     sql = sqlbase % (join, where)
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()
@@ -337,7 +331,7 @@ def _count(db, params, by, extraFrom=[], extraFields=[], orderBy=False):
     if "dynpoi_update_last" in byTable:
         last_update = True
 
-    join, where = _build_param(params.lat, params.lon, params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, summary=summary, forceTable=byTable, start_date=params.start_date, end_date=params.end_date, last_update=last_update)
+    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, summary=summary, forceTable=byTable, start_date=params.start_date, end_date=params.end_date, last_update=last_update)
     sql = sqlbase % (select, join, where, groupBy, order)
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()

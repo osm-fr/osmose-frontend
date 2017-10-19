@@ -258,7 +258,7 @@ WHERE
         response.content_type = 'application/vnd.mapbox-vector-tile'
         return MVT_EMPTY
 
-    join, where = query._build_param(None, None, params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable)
+    join, where = query._build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable)
     join = join.replace("%", "%%")
     where = where.replace("%", "%%")
 
