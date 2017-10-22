@@ -28,6 +28,8 @@ import bottle_pgsql
 app.install(bottle_pgsql.Plugin(utils.db_string))
 import bottle_gettext, os
 app.install(bottle_gettext.Plugin('osmose-frontend', os.path.join("po", "mo"), utils.allowed_languages))
+import bottle_cors
+app.install(bottle_cors.Plugin(allow_origin = '*', preflight_methods = ['GET', 'POST', 'PUT', 'DELETE']))
 
 def ext_filter(config):
     regexp = r'html|json|xml|rss|png|svg|pdf|gpx|josm'
@@ -100,10 +102,19 @@ def josm_proxy():
         r = "http://localhost:8111/%s" % query
     return "<img src='%s'/>" % r
 
+@bottle.route('/<:re:.*>', method='OPTIONS')
+def enable_cors_generic_route():
+    pass
+
 @error(404)
 @view('404')
 def error404(error):
-    return {}
+    if 'images/markers/marker-b-' in request.path:
+        redirect('/images/markers/marker-b-0.png')
+    if 'images/markers/marker-l-' in request.path:
+        redirect('/images/markers/marker-l-0.png')
+    else:
+        return {}
 
 import api_0_1
 import api_0_2_meta

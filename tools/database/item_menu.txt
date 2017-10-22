@@ -154,6 +154,7 @@
  8190 | _("police")
  8191 | _("police, could be integrated")
  8200 | _("gas station")
+ 8202 | _("gas station, need update")
  8201 | _("gas station, could be integrated")
  8210 | _("pharmacy")
  8211 | _("pharmacy, could be integrated")

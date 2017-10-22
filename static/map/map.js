@@ -31,7 +31,7 @@ function init_map() {
   map.addControl(editor);
 
   mapOverlay['Osmose Issues Heatmap'] = new OsmoseHeatmap(menu, urlVars);
-  var osmoseLayer = new OsmoseErrors(menu, urlVars, editor);
+  var osmoseLayer = new OsmoseMarker(menu, urlVars, editor);
   mapOverlay['Osmose Issues'] = osmoseLayer;
   editor.errors = osmoseLayer;
 
@@ -62,6 +62,11 @@ function init_map() {
     return this;
   };
   map.addControl(geocode);
+
+  var loadingControl = L.Control.loading({
+    separate: true
+  });
+  map.addControl(loadingControl);
 
   if (!urlVars.overlays) {
     map.addLayer(osmoseLayer);

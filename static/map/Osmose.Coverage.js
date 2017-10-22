@@ -19,7 +19,6 @@ OsmoseCoverage = L.GeoJSON.extend({
 
   fetchData: function () {
     var self = this;
-    this._map.spin(true);
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', this._topojson_url, true);
@@ -32,7 +31,6 @@ OsmoseCoverage = L.GeoJSON.extend({
         self.addData(data);
         self._topojson = data;
       }
-      self._map.spin(false);
     };
 
     xhr.send();

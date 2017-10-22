@@ -26,8 +26,8 @@ import byuser
 import errors
 import datetime
 import math, StringIO
-from PIL import Image
-from PIL import ImageDraw
+from shapely.geometry import Point, Polygon
+import mapbox_vector_tile
 
 
 def check_items(items, all_items):
@@ -193,7 +193,44 @@ def num2deg(xtile, ytile, zoom):
     lat_deg = math.degrees(lat_rad)
     return (lat_deg, lon_deg)
 
-@route('/map/heat/<z:int>/<x:int>/<y:int>.png')
+
+MVT_EMPTY = None
+
+def _errors_mvt(db, params, z, min_x, min_y, max_x, max_y, limit):
+    params.limit = limit
+    results = query._gets(db, params) if z >= 6 else None
+
+    if not results or len(results) == 0:
+        global MVT_EMPTY
+        if not MVT_EMPTY:
+            MVT_EMPTY = mapbox_vector_tile.encode([])
+        return MVT_EMPTY
+    else:
+        limit_feature = []
+        if len(results) == limit and z < 18:
+            limit_feature = [{
+                "name": "limit",
+                "features": [{
+                    "geometry": Point((min_x + max_x) / 2, (min_y + max_y) / 2)
+                }]
+            }]
+
+        issues_features = []
+        for res in sorted(results, key=lambda res: -res["lat"]):
+            issues_features.append({
+                "geometry": Point(res["lon"], res["lat"]),
+                "properties": {
+                    "issue_id": res["id"],
+                    "item": res["item"] or 0}
+            })
+
+        return mapbox_vector_tile.encode([{
+            "name": "issues",
+            "features": issues_features
+        }] + limit_feature, quantize_bounds=(min_x, min_y, max_x, max_y))
+
+
+@route('/map/heat/<z:int>/<x:int>/<y:int>.mvt')
 def heat(db, z, x, y):
     COUNT=32
 
@@ -211,12 +248,15 @@ FROM
     dynpoi_item
 WHERE
 """ + items)
-    max = db.fetchone()
-    if max and max[0]:
-        max = float(max[0])
+    limit = db.fetchone()
+    if limit and limit[0]:
+        limit = float(limit[0])
     else:
-        response.content_type = 'image/png'
-        return static_file("images/tile-empty.png", root='static')
+        global MVT_EMPTY
+        if not MVT_EMPTY:
+            MVT_EMPTY = mapbox_vector_tile.encode([])
+        response.content_type = 'application/vnd.mapbox-vector-tile'
+        return MVT_EMPTY
 
     join, where = query._build_param(None, None, params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable)
     join = join.replace("%", "%%")
@@ -225,8 +265,8 @@ WHERE
     sql = """
 SELECT
     COUNT(*),
-    (((lon-%(y1)s))*%(count)s/(%(y2)s-%(y1)s)-0.5)::int AS latn,
-    (((lat-%(x1)s))*%(count)s/(%(x2)s-%(x1)s)-0.5)::int AS lonn,
+    ((lon-%(y1)s) * %(count)s / (%(y2)s-%(y1)s) + 0.5)::int AS latn,
+    ((lat-%(x1)s) * %(count)s / (%(x2)s-%(x1)s) + 0.5)::int AS lonn,
     mode() WITHIN GROUP (ORDER BY dynpoi_item.marker_color) AS color
 FROM
 """ + join + """
@@ -237,30 +277,58 @@ GROUP BY
     lonn
 """
     db.execute(sql, {"x1":x1, "y1":y1, "x2":x2, "y2":y2, "count":COUNT})
-    im = Image.new("RGB", (256,256), "#ff0000")
-    draw = ImageDraw.Draw(im)
 
-    transparent_area = (0,0,256,256)
-    mask = Image.new('L', im.size, color=255)
-    mask_draw = ImageDraw.Draw(mask)
-    mask_draw.rectangle(transparent_area, fill=0)
-
+    features = []
     for row in db.fetchall():
         count, x, y, color = row
-        count = int(math.log(count) / math.log(max / ((z-4+1+math.sqrt(COUNT))**2)) * 255)
-        count = 255 if count > 255 else count
-        count = count
-        r = [(x*256/COUNT,(COUNT-1-y)*256/COUNT), ((x+1)*256/COUNT-1,((COUNT-1-y+1)*256/COUNT-1))]
-        mask_draw.rectangle(r, fill=count)
-        draw.rectangle(r, fill=color)
+        count = max(
+          int(math.log(count) / math.log(limit / ((z-4+1+math.sqrt(COUNT))**2)) * 255),
+          1 if count > 0 else 0
+        )
+        if count > 0:
+          count = 255 if count > 255 else count
+          features.append({
+            "geometry": Polygon([(x, y), (x - 1, y), (x - 1, y - 1), (x, y - 1)]),
+            "properties": {
+                "color": int(color[1:], 16),
+                "count": count}
+          })
 
-    im.putalpha(mask)
-    del draw
+    response.content_type = 'application/vnd.mapbox-vector-tile'
+    return mapbox_vector_tile.encode([{
+        "name": "issues",
+        "features": features
+    }], extents=COUNT)
 
-    buf = StringIO.StringIO()
-    im.save(buf, 'PNG')
-    response.content_type = 'image/png'
-    return buf.getvalue()
+
+@route('/map/issues/<z:int>/<x:int>/<y:int>.mvt')
+def issues_mvt(db, z, x, y):
+    x2,y1 = num2deg(x,y,z)
+    x1,y2 = num2deg(x+1,y+1,z)
+    dx = (x2 - x1) / 256
+    dy = (y2 - y1) / 256
+
+    params = query._params()
+    params.bbox = [y1-dy*8, x1-dx*32, y2+dy*8, x2+dx]
+
+    if (not params.users) and (not params.source) and (params.zoom < 6):
+        return
+
+    params.limit = 50
+    params.full = False
+
+    expires = datetime.datetime.now() + datetime.timedelta(days=365)
+    path = '/'.join(request.fullpath.split('/')[0:-1])
+    response.set_cookie('last_lat', str(params.lat), expires=expires, path=path)
+    response.set_cookie('last_lon', str(params.lon), expires=expires, path=path)
+    response.set_cookie('last_zoom', str(params.zoom), expires=expires, path=path)
+    response.set_cookie('last_level', str(params.level), expires=expires, path=path)
+    response.set_cookie('last_item', str(params.item), expires=expires, path=path)
+    response.set_cookie('last_tags', str(','.join(params.tags)) if params.tags else '', expires=expires, path=path)
+    response.set_cookie('last_fixable', str(params.fixable) if params.fixable else '', expires=expires, path=path)
+
+    response.content_type = 'application/vnd.mapbox-vector-tile'
+    return _errors_mvt(db, params, z, y1, x1, y2, x2, 50)
 
 
 @route('/map/markers')
