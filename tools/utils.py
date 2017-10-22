@@ -48,7 +48,7 @@ website           = "osmose.openstreetmap.fr"
 main_project      = "OpenStreetMap"
 main_website      = "http://www.openstreetmap.org/"
 remote_url        = "http://api.openstreetmap.org/"
-remote_url_read   = "http://api.openstreetmap.fr/"
+remote_url_read   = "http://api.openstreetmap.org/"
 remote_url_write  = "http://api.openstreetmap.org/"
 
 #main_project      = "OpenGeoFiction"
