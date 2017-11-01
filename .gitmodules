@@ -31,3 +31,6 @@
 [submodule "externals/Leaflet.loading"]
 	path = externals/Leaflet.loading
 	url = https://github.com/ebrelsford/Leaflet.loading.git
+[submodule "externals/leaflet-responsive-popup"]
+	path = externals/leaflet-responsive-popup
+	url = https://github.com/yafred/leaflet-responsive-popup.git
