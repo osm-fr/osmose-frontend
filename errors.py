@@ -25,7 +25,7 @@ from tools import utils
 from tools import query
 from tools import query_meta
 from tools.OrderedDict import OrderedDict
-import StringIO, re
+import StringIO, re, csv
 
 import errors_graph
 
@@ -127,7 +127,7 @@ def index(db, lang, format=None):
         title = _("Informations")
         gen = "error"
 
-    if not format in ('rss', 'gpx', 'josm'):
+    if not format in ('rss', 'gpx', 'josm', 'csv'):
         format = None
 
     countries = query_meta._countries(db, lang) if format == None else None
@@ -193,6 +193,15 @@ def index(db, lang, format=None):
         response.status = 302
         response.set_header('Location', 'http://localhost:8111/load_object?objects=%s' % ','.join(objects))
         return
+    elif format == 'csv':
+        output = StringIO.StringIO()
+        writer = csv.writer(output)
+        h = ['id', 'source', 'item', 'class', 'subclass', 'level', 'title', 'subtitle', 'country', 'analyser', 'timestamp', 'username', 'lat', 'lon', 'elems']
+        writer.writerow(h)
+        for res in errors:
+            writer.writerow(map(lambda a: res[a], h))
+        response.content_type = 'text/csv'
+        return output.getvalue()
     else:
         tpl = 'errors/index'
 

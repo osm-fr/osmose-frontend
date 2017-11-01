@@ -32,9 +32,9 @@ import bottle_cors
 app.install(bottle_cors.Plugin(allow_origin = '*', preflight_methods = ['GET', 'POST', 'PUT', 'DELETE']))
 
 def ext_filter(config):
-    regexp = r'html|json|xml|rss|png|svg|pdf|gpx|josm'
+    regexp = r'html|json|xml|rss|png|svg|pdf|gpx|josm|csv'
     def to_python(match):
-        return match if match in ('html', 'json', 'xml', 'rss', 'png', 'svg', 'pdf', 'gpx', 'josm') else 'html'
+        return match if match in ('html', 'json', 'xml', 'rss', 'png', 'svg', 'pdf', 'gpx', 'josm', 'csv') else 'html'
     def to_url(ext):
         return ext
     return regexp, to_python, to_url
