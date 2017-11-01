@@ -319,8 +319,6 @@ def issues_mvt(db, z, x, y):
 
     expires = datetime.datetime.now() + datetime.timedelta(days=365)
     path = '/'.join(request.fullpath.split('/')[0:-1])
-    response.set_cookie('last_lat', str(params.lat), expires=expires, path=path)
-    response.set_cookie('last_lon', str(params.lon), expires=expires, path=path)
     response.set_cookie('last_zoom', str(params.zoom), expires=expires, path=path)
     response.set_cookie('last_level', str(params.level), expires=expires, path=path)
     response.set_cookie('last_item', str(params.item), expires=expires, path=path)
@@ -343,8 +341,6 @@ def markers(db):
 
     expires = datetime.datetime.now() + datetime.timedelta(days=365)
     path = '/'.join(request.fullpath.split('/')[0:-1])
-    response.set_cookie('last_lat', str(params.lat), expires=expires, path=path)
-    response.set_cookie('last_lon', str(params.lon), expires=expires, path=path)
     response.set_cookie('last_zoom', str(params.zoom), expires=expires, path=path)
     response.set_cookie('last_level', str(params.level), expires=expires, path=path)
     response.set_cookie('last_item', str(params.item), expires=expires, path=path)
