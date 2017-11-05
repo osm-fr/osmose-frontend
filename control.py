@@ -226,16 +226,14 @@ def update(lang):
 
 
 @post('/control/send-update')
-@post('/cgi-bin/update.py') # Backward compatibility
 def send_update():
     src = request.params.get('source', default=None)
     code = request.params.get('code')
-    url = request.params.get('url', default=None)
     upload = request.files.get('content', default=None)
 
     response.content_type = "text/plain; charset=utf-8"
 
-    if not code or not (url or upload):
+    if not code or not upload:
         return "FAIL"
 
     remote_ip = request.remote_addr
@@ -248,18 +246,14 @@ def send_update():
             continue
 
         try:
-            if url:
-                tools.update.update(sources[s], url, remote_ip=remote_ip)
+            (name, ext) = os.path.splitext(upload.filename)
+            if ext not in ('.bz2','.gz','.xml'):
+                return 'FAIL: File extension not allowed.'
 
-            elif upload:
-                (name, ext) = os.path.splitext(upload.filename)
-                if ext not in ('.bz2','.gz','.xml'):
-                    return 'FAIL: File extension not allowed.'
-
-                save_filename = os.path.join(utils.dir_results, upload.filename)
-                upload.save(save_filename, overwrite=True)
-                tools.update.update(sources[s], save_filename, remote_ip=remote_ip)
-                os.unlink(save_filename)
+            save_filename = os.path.join(utils.dir_results, upload.filename)
+            upload.save(save_filename, overwrite=True)
+            tools.update.update(sources[s], save_filename, remote_ip=remote_ip)
+            os.unlink(save_filename)
 
         except tools.update.OsmoseUpdateAlreadyDone:
             pass
