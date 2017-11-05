@@ -5,28 +5,45 @@ This is the part of osmose [http://osmose.openstreetmap.fr] that shows issues
 on a map.
 
 
-Installation Python
+Initialisation
+--------------
+
+Generate translation files
+```
+cd po && make mo
+```
+
+Install javascript libraries, as git submodules
+```
+git submodule update --init
+```
+
+Run within Docker
+---------------
+
+Build the Docker image, within source directory:
+```
+docker build -t osm-fr/osmose_frontend:lastest .
+```
+
+Run the container:
+```
+docker run -ti -p 7895:80 osm-fr/osmose_frontend:latest
+```
+
+The server will be running at http://localhost:7895
+
+
+Manual Installation
 -------------------
+
+### Python
 
 Osmose QA frontend requires python > 2.6 and < 3
 
-Setup system dependencies (Ubuntu Server 14.04)
+Setup system dependencies (Ubuntu Server 16.04)
 ```
-apt install python
-```
-
-You can install python dependencies in the system or in a virtualenv.
-
-In the system install the folowing packages:
-```
-apt install python-psycopg2 python-matplotlib python-requests python-beaker python-imaging python-polib
-```
-
-Alternatively instal python-virtualenv and create a new virtualenv.
-
-Setup system dependencies (Ubuntu Server 14.04)
-```
-apt install pkg-config libpng-dev libjpeg-dev libfreetype6-dev
+apt install python2.7 python2.7-dev virtualenv gcc pkg-config libpng-dev libjpeg-dev libfreetype6-dev
 ```
 
 Create a python virtualenv, active it and install python dependencies
@@ -37,12 +54,11 @@ pip install -r requirements.txt
 ```
 
 
-Installation Database
----------------------
+### Database
 
-Setup system dependencies (Ubuntu Server 14.04)
+Setup system dependencies (Ubuntu Server 16.04)
 ```
-apt install postgresql-9.4 postgresql-contrib-9.4 postgresql-9.4-postgis-2.1
+apt install postgresql postgresql-contrib
 ```
 
 As postgres user:
@@ -52,7 +68,7 @@ createuser -s osmose
 psql -c "ALTER ROLE osmose WITH PASSWORD '-osmose-';"
 createdb -E UTF8 -T template0 -O osmose osmose_frontend
 # Enable extensions
-psql -c "CREATE extension hstore; CREATE extension postgis;" osmose_frontend
+psql -c "CREATE extension hstore" osmose_frontend
 ```
 
 As normal user, ceate the database tables:
@@ -63,10 +79,9 @@ psql osmose_frontend -f tools/database/schema.sql
 Check data base parameter into `tools/utils.py`.
 
 
-Installation Web Server
------------------------
+### Web Server
 
-Setup system dependencies (Ubuntu Server 14.04)
+Setup system dependencies (Ubuntu Server 16.04)
 ```
 apt install apache2 libapache2-mod-wsgi
 ```
@@ -90,27 +105,16 @@ service apache2 reload
 
 Change the server URL into `website` in file `tools/utils.py`.
 
-Dependencies
-------------
+
+### Dependencies
 
 Setup system dependencies for internationalization and render SVG marker with rsvg (Ubuntu Server 14.04)
 ```
 apt install gettext librsvg2-bin
 ```
 
-
-Initialisation
---------------
-
-Generate translation files
-```
-cd po && make mo
-```
-
-Install javascript libraries, as git submodules
-```
-git submodule update --init
-```
+Database translations
+---------------------
 
 When some issues are in the database, to get translations
 ```
