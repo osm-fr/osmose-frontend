@@ -123,7 +123,7 @@ OsmoseMarker = L.VectorGrid.Protobuf.extend({
       this.open_popup = e.layer.properties.issue_id;
     }
 
-    var popup = this.popup = L.popup({
+    var popup = this.popup = L.responsivePopup({
       maxWidth: 280,
       autoPan: false,
       offset: L.point(0, -8)
