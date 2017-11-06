@@ -226,7 +226,7 @@ def update(lang):
 
 
 @post('/control/send-update')
-def send_update():
+def send_update(db):
     src = request.params.get('source', default=None)
     code = request.params.get('code')
     upload = request.files.get('content', default=None)
@@ -236,42 +236,52 @@ def send_update():
     if not code or not upload:
         return "FAIL"
 
+    db.execute("""
+SELECT
+    id
+FROM
+    source
+    JOIN source_password ON
+        source.id = source_id
+WHERE
+    analyser || '-' || country = %(comment)s AND
+    password = %(password)s
+LIMIT 1
+""", {"comment": src, "password": code})
+
+    res = db.fetchone()
+
+    if not res:
+        return "AUTH FAIL"
+
+    source_id = res["id"]
     remote_ip = request.remote_addr
 
-    sources = utils.get_sources()
-    for s in sources:
-        if src and sources[s]["comment"] != src:
-            continue
-        if not code in sources[s]["password"]:
-            continue
+    try:
+        (name, ext) = os.path.splitext(upload.filename)
+        if ext not in ('.bz2','.gz','.xml'):
+            return 'FAIL: File extension not allowed.'
 
-        try:
-            (name, ext) = os.path.splitext(upload.filename)
-            if ext not in ('.bz2','.gz','.xml'):
-                return 'FAIL: File extension not allowed.'
+        save_filename = os.path.join(utils.dir_results, upload.filename)
+        upload.save(save_filename, overwrite=True)
+        tools.update.update(source_id, save_filename, remote_ip=remote_ip)
+        os.unlink(save_filename)
 
-            save_filename = os.path.join(utils.dir_results, upload.filename)
-            upload.save(save_filename, overwrite=True)
-            tools.update.update(sources[s], save_filename, remote_ip=remote_ip)
-            os.unlink(save_filename)
+    except tools.update.OsmoseUpdateAlreadyDone:
+        pass
 
-        except tools.update.OsmoseUpdateAlreadyDone:
-            pass
+    except:
+        import traceback
+        from cStringIO import StringIO
+        import smtplib
+        s = StringIO()
+        sys.stderr = s
+        traceback.print_exc()
+        sys.stderr = sys.__stderr__
+        traceback = s.getvalue()
+        return traceback.rstrip()
 
-        except:
-            import traceback
-            from cStringIO import StringIO
-            import smtplib
-            s = StringIO()
-            sys.stderr = s
-            traceback.print_exc()
-            sys.stderr = sys.__stderr__
-            traceback = s.getvalue()
-            return traceback.rstrip()
-
-        return "OK"
-
-    return "AUTH FAIL"
+    return "OK"
 
 @route('/control/status/<country>/<analyser>')
 def status(db, country = None, analyser = None):
