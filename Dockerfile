@@ -7,22 +7,22 @@ RUN apt update
 
 # Osmose Frontend
 
-RUN mkdir -p /data/work/osmose
+RUN mkdir -p /data/work/osmose/results
 RUN useradd -s /bin/bash -d /data/work/osmose osmose
-RUN chown osmose /data/work/osmose
+RUN chown -R osmose /data/work/osmose
 
 RUN apt install -y --no-install-recommends \
         git gettext make
 
 USER osmose
-ADD "./osmose-frontend" "/data/project/osmose/frontend"
-WORKDIR "/opt/osmose-fronted"
-
+ADD "." "/data/project/osmose/frontend"
+WORKDIR "/data/project/osmose/frontend"
 RUN cd /data/project/osmose/frontend && \
     git submodule update --init && \
     cd po && make mo
 
 USER root
+RUN sed -e 's_= "osmose.openstreetmap.fr"_= "/"_' -i tools/utils.py
 RUN chown -R osmose /data/project/osmose/frontend
 RUN apt remove -y --auto-remove \
         git gettext make
@@ -60,25 +60,30 @@ RUN /etc/init.d/postgresql start && \
 # Apache
 
 USER root
-RUN apt install -y --no-install-recommends \
-        apache2 libapache2-mod-wsgi
+#RUN apt install -y --no-install-recommends \
+#        apache2 libapache2-mod-wsgi
 
-RUN cd /data/project/osmose/frontend && \
-    cp apache-site /etc/apache2/sites-available/osmose.conf
+#RUN cd /data/project/osmose/frontend && \
+#    cp apache-site /etc/apache2/sites-available/osmose.conf
 
-RUN a2dissite 000-default.conf && \
-    a2ensite osmose.conf && \
-    a2enmod expires.load && \
-    a2enmod rewrite.load
+#RUN a2dissite 000-default.conf && \
+#    a2ensite osmose.conf && \
+#    a2enmod expires.load && \
+#    a2enmod rewrite.load
 
-RUN ln -sfT /dev/stdout /var/log/apache2/access.log && \
-    ln -sfT /dev/stderr /var/log/apache2/error.log && \
-    ln -sfT /dev/stdout /var/log/apache2/other_vhosts_access.log && \
-    ln -sfT /dev/stdout /var/log/apache2/osmose-access.log && \
-    ln -sfT /dev/stderr /var/log/apache2/osmose-error.log
+#RUN ln -sfT /dev/stdout /var/log/apache2/access.log && \
+#    ln -sfT /dev/stderr /var/log/apache2/error.log && \
+#    ln -sfT /dev/stdout /var/log/apache2/other_vhosts_access.log && \
+#    ln -sfT /dev/stdout /var/log/apache2/osmose-access.log && \
+#    ln -sfT /dev/stderr /var/log/apache2/osmose-error.log
 
 
-RUN apt clean
+RUN apt install sudo
 
-EXPOSE 80
-ENTRYPOINT ["sh", "-c", "/etc/init.d/postgresql start && /usr/sbin/apachectl -D FOREGROUND"]
+RUN rm -rf /var/lib/apt/lists/*
+
+#EXPOSE 80
+#ENTRYPOINT ["sh", "-c", "/etc/init.d/postgresql start && /usr/sbin/apachectl -D FOREGROUND"]
+
+EXPOSE 20009
+ENTRYPOINT ["sh", "-c", "/etc/init.d/postgresql start && cd /data/project/osmose/frontend && sudo -E -u osmose -s eval '. osmose-frontend-venv/bin/activate ; ./osmose-standalone-bottle.py'"]

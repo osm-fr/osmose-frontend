@@ -251,10 +251,18 @@ LIMIT 1
 
     res = db.fetchone()
 
-    if not res:
+    if not res and not os.environ.get("OSMOSE_UNLOCKED_UPDATE"):
         return "AUTH FAIL"
+    if not res and os.environ.get("OSMOSE_UNLOCKED_UPDATE"):
+        r = db.execute("SELECT COALESCE(MAX(id), 0) + 1 AS id FROM source")
+        source_id = db.fetchone()["id"]
+        analyser, country = src.split("-")
+        db.execute("INSERT INTO source(id, country, analyser) VALUES (%s, %s, %s)", (source_id, country, analyser))
+        db.execute("INSERT INTO source_password(source_id, password) VALUES(%s, %s)", (source_id, code))
+        db.connection.commit()
+    else:
+        source_id = res["id"]
 
-    source_id = res["id"]
     remote_ip = request.remote_addr
 
     try:
