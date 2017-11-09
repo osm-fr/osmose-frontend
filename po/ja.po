@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2017-10-22 17:15+0000\n"
+"PO-Revision-Date: 2017-11-09 20:38+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -633,7 +633,7 @@ msgstr "highway"
 msgid "highway crossing"
 msgstr "横断歩道"
 
-#: ../tools/database/item_menu.txt:37 ../tools/database/item_menu.txt:160
+#: ../tools/database/item_menu.txt:37 ../tools/database/item_menu.txt:161
 msgid "pharmacy"
 msgstr "薬局"
 
@@ -685,279 +685,279 @@ msgstr "水泳プールにnatural_waterがある"
 msgid "numeric value"
 msgstr "数値"
 
-#: ../tools/database/item_menu.txt:55
+#: ../tools/database/item_menu.txt:56
 msgid "small farm"
 msgstr "小さい農地"
 
-#: ../tools/database/item_menu.txt:56
+#: ../tools/database/item_menu.txt:57
 msgid "note"
 msgstr "備考"
 
-#: ../tools/database/item_menu.txt:57
+#: ../tools/database/item_menu.txt:58
 msgid "tree"
 msgstr "木"
 
-#: ../tools/database/item_menu.txt:58
+#: ../tools/database/item_menu.txt:59
 msgid "brand in name"
 msgstr "nameがブランドである"
 
-#: ../tools/database/item_menu.txt:59
+#: ../tools/database/item_menu.txt:60
 msgid "typo in tag"
 msgstr "タグ名の綴り間違い"
 
-#: ../tools/database/item_menu.txt:60
+#: ../tools/database/item_menu.txt:61
 msgid "incorrect "
 msgstr "不正"
 
-#: ../tools/database/item_menu.txt:61
+#: ../tools/database/item_menu.txt:62
 msgid "parking lane"
 msgstr "駐車レーン"
 
-#: ../tools/database/item_menu.txt:62
+#: ../tools/database/item_menu.txt:63
 msgid "relation role"
 msgstr "リレーションのロール"
 
-#: ../tools/database/item_menu.txt:63
+#: ../tools/database/item_menu.txt:64
 msgid "relation type=restriction"
 msgstr "type=restrictionのリレーション"
 
-#: ../tools/database/item_menu.txt:64
+#: ../tools/database/item_menu.txt:65
 msgid "postcode"
 msgstr "郵便番号"
 
-#: ../tools/database/item_menu.txt:70
+#: ../tools/database/item_menu.txt:71
 msgid "disused"
 msgstr "未使用"
 
-#: ../tools/database/item_menu.txt:71
+#: ../tools/database/item_menu.txt:72
 msgid "on junction=roundabout"
 msgstr "junction=roundabout上"
 
-#: ../tools/database/item_menu.txt:72
+#: ../tools/database/item_menu.txt:73
 msgid "incompatible tags"
 msgstr "互換性のないタグ"
 
-#: ../tools/database/item_menu.txt:73
+#: ../tools/database/item_menu.txt:74
 msgid "ref in name"
 msgstr "refに名前が入っている"
 
-#: ../tools/database/item_menu.txt:76
+#: ../tools/database/item_menu.txt:77
 msgid "construction"
 msgstr "建設中"
 
-#: ../tools/database/item_menu.txt:77
+#: ../tools/database/item_menu.txt:78
 msgid "duplicate object"
 msgstr "オブジェクトの重複"
 
-#: ../tools/database/item_menu.txt:78
+#: ../tools/database/item_menu.txt:79
 msgid "unwanted tag on node"
 msgstr "ノード上の不要なタグ"
 
-#: ../tools/database/item_menu.txt:79
+#: ../tools/database/item_menu.txt:80
 msgid "bad usage"
 msgstr "使い方の誤り"
 
-#: ../tools/database/item_menu.txt:83
+#: ../tools/database/item_menu.txt:84
 msgid "orthograph"
 msgstr "名前の綴り"
 
-#: ../tools/database/item_menu.txt:84
+#: ../tools/database/item_menu.txt:85
 msgid "way type"
 msgstr "ウェイの種別"
 
-#: ../tools/database/item_menu.txt:85
+#: ../tools/database/item_menu.txt:86
 msgid "two names"
 msgstr "2つの名前"
 
-#: ../tools/database/item_menu.txt:86
+#: ../tools/database/item_menu.txt:87
 msgid "toponymy"
 msgstr "地名"
 
-#: ../tools/database/item_menu.txt:87
+#: ../tools/database/item_menu.txt:88
 msgid "test soundex"
 msgstr "試験の読み索引"
 
-#: ../tools/database/item_menu.txt:91
+#: ../tools/database/item_menu.txt:92
 msgid "open polygon"
 msgstr "閉じていないポリゴン"
 
-#: ../tools/database/item_menu.txt:92
+#: ../tools/database/item_menu.txt:93
 msgid "duplicated way"
 msgstr "重複したウェイ"
 
-#: ../tools/database/item_menu.txt:93
+#: ../tools/database/item_menu.txt:94
 msgid "place without name"
 msgstr "nameがないplace"
 
-#: ../tools/database/item_menu.txt:94
+#: ../tools/database/item_menu.txt:95
 msgid "INSEE code"
 msgstr "INSEEコード"
 
-#: ../tools/database/item_menu.txt:95
+#: ../tools/database/item_menu.txt:96
 msgid "admin_level"
 msgstr "管理レベル"
 
-#: ../tools/database/item_menu.txt:96
+#: ../tools/database/item_menu.txt:97
 msgid "erroneous boundary"
 msgstr "誤った境界線"
 
-#: ../tools/database/item_menu.txt:97
+#: ../tools/database/item_menu.txt:98
 msgid "out of boundary"
 msgstr "境界線外"
 
-#: ../tools/database/item_menu.txt:98
+#: ../tools/database/item_menu.txt:99
 msgid "geodesic building"
 msgstr "測地の建物"
 
-#: ../tools/database/item_menu.txt:99
+#: ../tools/database/item_menu.txt:100
 msgid "building shape"
 msgstr "建物の形状"
 
-#: ../tools/database/item_menu.txt:100
+#: ../tools/database/item_menu.txt:101
 msgid "bridge to tag"
 msgstr "タグ付けが必要な橋"
 
-#: ../tools/database/item_menu.txt:101
+#: ../tools/database/item_menu.txt:102
 msgid "admin boundary"
 msgstr "行政境界"
 
-#: ../tools/database/item_menu.txt:102
+#: ../tools/database/item_menu.txt:103
 msgid "power lines"
 msgstr "電力線"
 
-#: ../tools/database/item_menu.txt:103 ../tools/database/item_menu.txt:121
+#: ../tools/database/item_menu.txt:104 ../tools/database/item_menu.txt:122
 msgid "post office"
 msgstr "郵便局"
 
-#: ../tools/database/item_menu.txt:105
+#: ../tools/database/item_menu.txt:106
 msgid "ODbL migration change"
 msgstr "ODbLからの変更"
 
-#: ../tools/database/item_menu.txt:106
+#: ../tools/database/item_menu.txt:107
 msgid "school, not integrated"
 msgstr "未統合の学校"
 
-#: ../tools/database/item_menu.txt:107
+#: ../tools/database/item_menu.txt:108
 msgid "monument"
 msgstr "記念堂"
 
-#: ../tools/database/item_menu.txt:108
+#: ../tools/database/item_menu.txt:109
 msgid "node on ways"
 msgstr "ウェイ上のノード"
 
-#: ../tools/database/item_menu.txt:109 ../tools/database/item_menu.txt:132
+#: ../tools/database/item_menu.txt:110 ../tools/database/item_menu.txt:133
 msgid "train station"
 msgstr "鉄道駅"
 
-#: ../tools/database/item_menu.txt:110
+#: ../tools/database/item_menu.txt:111
 msgid "TMC"
 msgstr "TMC"
 
-#: ../tools/database/item_menu.txt:111
+#: ../tools/database/item_menu.txt:112
 msgid "relation type=boundary"
 msgstr "relation type=boundary"
 
-#: ../tools/database/item_menu.txt:112
+#: ../tools/database/item_menu.txt:113
 msgid "tunnel/bridge"
 msgstr "トンネル/橋"
 
-#: ../tools/database/item_menu.txt:118
+#: ../tools/database/item_menu.txt:119
 msgid "monument, museum"
 msgstr "記念堂、博物館"
 
-#: ../tools/database/item_menu.txt:119
+#: ../tools/database/item_menu.txt:120
 msgid "monument, museum, could be integrated"
 msgstr "含められる記念堂、博物館"
 
-#: ../tools/database/item_menu.txt:122
+#: ../tools/database/item_menu.txt:123
 msgid "post office, could be integrated"
 msgstr "含められる郵便局"
 
-#: ../tools/database/item_menu.txt:126
+#: ../tools/database/item_menu.txt:127
 msgid "school"
 msgstr "学校"
 
-#: ../tools/database/item_menu.txt:127
+#: ../tools/database/item_menu.txt:128
 msgid "school, could be integrated"
 msgstr "含められる学校"
 
-#: ../tools/database/item_menu.txt:27 ../tools/database/item_menu.txt:129
+#: ../tools/database/item_menu.txt:27 ../tools/database/item_menu.txt:130
 msgid "public transport"
 msgstr "公共交通"
 
-#: ../tools/database/item_menu.txt:130
+#: ../tools/database/item_menu.txt:131
 msgid "public transport, could be integrated"
 msgstr "含められる公共交通"
 
-#: ../tools/database/item_menu.txt:133
+#: ../tools/database/item_menu.txt:134
 msgid "train station, could be integrated"
 msgstr "含められる鉄道駅"
 
-#: ../tools/database/item_menu.txt:134
+#: ../tools/database/item_menu.txt:135
 msgid "level crossing"
 msgstr "踏切"
 
-#: ../tools/database/item_menu.txt:135
+#: ../tools/database/item_menu.txt:136
 msgid "geodesic point"
 msgstr "測地点"
 
-#: ../tools/database/item_menu.txt:136
+#: ../tools/database/item_menu.txt:137
 msgid "postal address"
 msgstr "住所"
 
-#: ../tools/database/item_menu.txt:137
+#: ../tools/database/item_menu.txt:138
 msgid "wikipedia, could be integrated"
 msgstr "含められるwikipedia"
 
-#: ../tools/database/item_menu.txt:138
+#: ../tools/database/item_menu.txt:139
 msgid "public service"
 msgstr "公共交通機関"
 
-#: ../tools/database/item_menu.txt:139
+#: ../tools/database/item_menu.txt:140
 msgid "recycling"
 msgstr "資源回収場所"
 
-#: ../tools/database/item_menu.txt:140
+#: ../tools/database/item_menu.txt:141
 msgid "recycling, could be integrated"
 msgstr "含められる資源回収場所"
 
-#: ../tools/database/item_menu.txt:142
+#: ../tools/database/item_menu.txt:143
 msgid "parking"
 msgstr "駐車場"
 
-#: ../tools/database/item_menu.txt:143
+#: ../tools/database/item_menu.txt:144
 msgid "parking, could be integrated"
 msgstr "含められる駐車場"
 
-#: ../tools/database/item_menu.txt:145
+#: ../tools/database/item_menu.txt:146
 msgid "accommodation"
 msgstr "宿泊施設"
 
-#: ../tools/database/item_menu.txt:146
+#: ../tools/database/item_menu.txt:147
 msgid "accommodation, could be integrated"
 msgstr "含められる宿泊施設"
 
-#: ../tools/database/item_menu.txt:147
+#: ../tools/database/item_menu.txt:148
 msgid "cycle parking"
 msgstr "駐輪場"
 
-#: ../tools/database/item_menu.txt:148
+#: ../tools/database/item_menu.txt:149
 msgid "cycle parking, could be integrated"
 msgstr "含められる駐輪場"
 
-#: ../tools/database/item_menu.txt:149
+#: ../tools/database/item_menu.txt:150
 msgid "transport sharing"
 msgstr "乗り物のシェア"
 
-#: ../tools/database/item_menu.txt:150
+#: ../tools/database/item_menu.txt:151
 msgid "transport sharing, could be integrated"
 msgstr "含められる乗り物のシェア"
 
-#: ../tools/database/item_menu.txt:152
+#: ../tools/database/item_menu.txt:153
 msgid "sport"
 msgstr "スポーツ"
 
-#: ../tools/database/item_menu.txt:153
+#: ../tools/database/item_menu.txt:154
 msgid "sport, could be integrated"
 msgstr "含められるスポーツ"
 
@@ -1003,31 +1003,31 @@ msgstr "HTMLリスト"
 msgid "one-node way"
 msgstr "ノードが1つのウェイ"
 
-#: ../tools/database/item_menu.txt:154
+#: ../tools/database/item_menu.txt:155
 msgid "toilets"
 msgstr "トイレ"
 
-#: ../tools/database/item_menu.txt:113
+#: ../tools/database/item_menu.txt:114
 msgid "transport sharing, not integrated"
 msgstr "未統合の公共機関シェア"
 
-#: ../tools/database/item_menu.txt:155
+#: ../tools/database/item_menu.txt:156
 msgid "police"
 msgstr "警察"
 
-#: ../tools/database/item_menu.txt:156
+#: ../tools/database/item_menu.txt:157
 msgid "police, could be integrated"
 msgstr "統合可能な警察署"
 
-#: ../tools/database/item_menu.txt:114
+#: ../tools/database/item_menu.txt:115
 msgid "pharmacy, not integrated "
 msgstr "未統合の薬局"
 
-#: ../tools/database/item_menu.txt:161
+#: ../tools/database/item_menu.txt:162
 msgid "pharmacy, could be integrated"
 msgstr "統合可能な薬局"
 
-#: ../tools/database/item_menu.txt:157
+#: ../tools/database/item_menu.txt:158
 msgid "gas station"
 msgstr "ガソリンスタンド"
 
@@ -1047,11 +1047,11 @@ msgstr "変更セットを保存"
 msgid "Comment"
 msgstr "コメント"
 
-#: ../tools/database/item_menu.txt:65
+#: ../tools/database/item_menu.txt:66
 msgid "area"
 msgstr "エリア"
 
-#: ../tools/database/item_menu.txt:66
+#: ../tools/database/item_menu.txt:67
 msgid "noexit"
 msgstr "行き止まり"
 
@@ -1061,7 +1061,7 @@ msgid ""
 "href='https://twitter.com/osmose_qa'>@osmose_qa</a> on twitter."
 msgstr "twitterで<a href='https://twitter.com/osmose_qa'>@osmose_qa</a>の最新情報をフォロー"
 
-#: ../tools/database/item_menu.txt:80
+#: ../tools/database/item_menu.txt:81
 msgid "incorrect layer"
 msgstr "レイヤ指定ミス"
 
@@ -1077,19 +1077,19 @@ msgstr "国"
 msgid "analyser"
 msgstr "アナライザー"
 
-#: ../tools/database/item_menu.txt:162
+#: ../tools/database/item_menu.txt:163
 msgid "postal code, could be integrated"
 msgstr "統合可能な郵便番号"
 
-#: ../tools/database/item_menu.txt:163
+#: ../tools/database/item_menu.txt:164
 msgid "library"
 msgstr "図書館"
 
-#: ../tools/database/item_menu.txt:164
+#: ../tools/database/item_menu.txt:165
 msgid "restaurant"
 msgstr "レストラン"
 
-#: ../tools/database/item_menu.txt:165
+#: ../tools/database/item_menu.txt:166
 msgid "winery"
 msgstr "ワイナリ"
 
@@ -1097,11 +1097,11 @@ msgstr "ワイナリ"
 msgid "missing object kind"
 msgstr "オブジェクト種別未指定"
 
-#: ../tools/database/item_menu.txt:115
+#: ../tools/database/item_menu.txt:116
 msgid "postal code, not integrated "
 msgstr "未統合の郵便番号"
 
-#: ../tools/database/item_menu.txt:88
+#: ../tools/database/item_menu.txt:89
 msgid "local language"
 msgstr "現地表記"
 
@@ -1214,15 +1214,15 @@ msgstr "報告された課題関連ドキュメント"
 msgid "version"
 msgstr "バージョン"
 
-#: ../tools/database/item_menu.txt:166
+#: ../tools/database/item_menu.txt:167
 msgid "geodesic"
 msgstr "測地"
 
-#: ../tools/database/item_menu.txt:104 ../tools/database/item_menu.txt:124
+#: ../tools/database/item_menu.txt:105 ../tools/database/item_menu.txt:125
 msgid "post box"
 msgstr "郵便ポスト"
 
-#: ../tools/database/item_menu.txt:125
+#: ../tools/database/item_menu.txt:126
 msgid "post box, could be integrated"
 msgstr "統合可能な郵便ポスト"
 
@@ -1230,11 +1230,11 @@ msgstr "統合可能な郵便ポスト"
 msgid "indoor"
 msgstr "インドア"
 
-#: ../tools/database/item_menu.txt:81
+#: ../tools/database/item_menu.txt:82
 msgid "roundabout as area"
 msgstr "エリアで描かれたラウンドアバウト"
 
-#: ../tools/database/item_menu.txt:116
+#: ../tools/database/item_menu.txt:117
 msgid "road"
 msgstr "道路"
 
@@ -1270,7 +1270,7 @@ msgstr "ウェブサイトの翻訳に関する不明点は<a href='https://gith
 msgid "far from water"
 msgstr "水域から距離あり"
 
-#: ../tools/database/item_menu.txt:74
+#: ../tools/database/item_menu.txt:75
 msgid "fixme import"
 msgstr "fixmeつきのインポート"
 
@@ -1278,35 +1278,35 @@ msgstr "fixmeつきのインポート"
 msgid "objects intersection"
 msgstr "オブジェクトの交差"
 
-#: ../tools/database/item_menu.txt:40 ../tools/database/item_menu.txt:67
+#: ../tools/database/item_menu.txt:40 ../tools/database/item_menu.txt:68
 msgid "access"
 msgstr "アクセス制限"
 
-#: ../tools/database/item_menu.txt:75
+#: ../tools/database/item_menu.txt:76
 msgid "fixme review"
 msgstr "fixmeレビュー"
 
-#: ../tools/database/item_menu.txt:120
+#: ../tools/database/item_menu.txt:121
 msgid "monument, museum, need update"
 msgstr "要更新・記念碑、博物館"
 
-#: ../tools/database/item_menu.txt:128
+#: ../tools/database/item_menu.txt:129
 msgid "school, need update"
 msgstr "要更新・学校"
 
-#: ../tools/database/item_menu.txt:131
+#: ../tools/database/item_menu.txt:132
 msgid "public transport, need update"
 msgstr "要更新・公共交通"
 
-#: ../tools/database/item_menu.txt:141
+#: ../tools/database/item_menu.txt:142
 msgid "recycling, need update"
 msgstr "要更新・リサイクル"
 
-#: ../tools/database/item_menu.txt:144
+#: ../tools/database/item_menu.txt:145
 msgid "parking, need update"
 msgstr "要更新・駐車場"
 
-#: ../tools/database/item_menu.txt:151
+#: ../tools/database/item_menu.txt:152
 msgid "transport sharing, need update"
 msgstr "要更新・交通機関シェア"
 
@@ -1326,7 +1326,7 @@ msgstr ""
 msgid "Version"
 msgstr "バージョン"
 
-#: ../tools/database/item_menu.txt:123
+#: ../tools/database/item_menu.txt:124
 msgid "post office, need update"
 msgstr ""
 
@@ -1334,27 +1334,27 @@ msgstr ""
 msgid "age"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:89
+#: ../tools/database/item_menu.txt:90
 msgid "invalid character"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:159
+#: ../tools/database/item_menu.txt:160
 msgid "gas station, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:117 ../tools/database/item_menu.txt:167
+#: ../tools/database/item_menu.txt:118 ../tools/database/item_menu.txt:168
 msgid "power substation"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:168
+#: ../tools/database/item_menu.txt:169
 msgid "power substation, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:169
+#: ../tools/database/item_menu.txt:170
 msgid "power support"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:170
+#: ../tools/database/item_menu.txt:171
 msgid "power support, could be integrated"
 msgstr ""
 
@@ -1366,26 +1366,37 @@ msgstr ""
 msgid "public_transport route"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:68
+#: ../tools/database/item_menu.txt:69
 msgid "recycling container"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:82
+#: ../tools/database/item_menu.txt:83
 msgid "duplicate wikipedia"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:69
+#: ../tools/database/item_menu.txt:70
 msgid "route access mismatch"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:171
 msgid "traffc signs"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:90
+#: ../tools/database/item_menu.txt:91
 msgid "similar name"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:158
+#: ../tools/database/item_menu.txt:159
 msgid "gas station, need update"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:55
+msgid "phone number"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:172
+msgid "traffic signs"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:173
+msgid "traffic sign limitation"
 msgstr ""
