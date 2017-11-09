@@ -39,6 +39,7 @@
 	ExpiresDefault "access plus 1 week"
 	<LocationMatch /[a-z]*/api>
 		ExpiresActive Off
+		CacheDisable on
 	</LocationMatch>
 	<LocationMatch /[a-z]*/byuser>
 		ExpiresDefault "access plus 5 minutes"
@@ -48,21 +49,25 @@
 	</LocationMatch>
 	<LocationMatch /[a-z]*/error>
 		ExpiresActive Off
+		CacheDisable on
 	</LocationMatch>
 	<LocationMatch /[a-z]*/errors>
 		ExpiresDefault "access plus 5 minutes"
 	</LocationMatch>
 	<LocationMatch /[a-z]*/map>
 		ExpiresActive Off
+		CacheDisable on
 	</LocationMatch>
 	<LocationMatch /[a-z]*/map/heat>
 		ExpiresDefault "access plus 1 day"
 	</LocationMatch>
 	<LocationMatch /[a-z]*/map/marker>
 		ExpiresActive Off
+		CacheDisable on
 	</LocationMatch>
 	<LocationMatch /[a-z]*/map/markers>
 		ExpiresActive Off
+		CacheDisable on
 	</LocationMatch>
 
 	RewriteEngine On
