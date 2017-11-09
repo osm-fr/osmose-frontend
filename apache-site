@@ -6,7 +6,7 @@
 	ServerAlias osmose.openstreetmap.lu
 
 	WSGIScriptAlias / /data/project/osmose/frontend/osmose.wsgi
-	WSGIDaemonProcess osmose processes=2 threads=15 user=osmose group=osmose
+	WSGIDaemonProcess osmose processes=5 threads=6 user=osmose group=osmose maximum-requests=1000 graceful-timeout=600 python-path=/data/project/osmose/frontend/osmose-frontend-venv/lib/python2.7/site-packages
 	WSGIProcessGroup osmose
 
 	DocumentRoot /data/project/osmose/frontend/static/

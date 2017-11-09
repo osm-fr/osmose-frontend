@@ -59,9 +59,7 @@ def execute_sql(dbcurs, sql, args = None):
         print ".",
         sys.stdout.flush()
 
-def update(source, url, logger = printlogger(), remote_ip=""):
-
-    source_id = int(source["id"])
+def update(source_id, fname, logger = printlogger(), remote_ip=""):
 
     ## open connections
     dbconn = utils.get_dbconn()
@@ -69,30 +67,13 @@ def update(source, url, logger = printlogger(), remote_ip=""):
 
     ## xml parser
     parser = make_parser()
-    parser.setContentHandler(update_parser(source_id, source, url, remote_ip, dbconn, dbcurs))
-
-    ## download the file if needed
-    if url.startswith("http://"):
-        socket.setdefaulttimeout(180)
-
-
-        tmp_path = "/tmp/osmose/"
-        if not os.path.exists(tmp_path):
-            os.makedirs(tmp_path)
-        fname =  tempfile.mktemp(dir=tmp_path, prefix="update")
-        urllib.urlretrieve(url, fname)
-        #mysock = urllib.urlopen(source["url"])
-        #open(fname,'w').write(mysock.read())
-        istemp = True
-    else:
-        fname = url
-        istemp = False
+    parser.setContentHandler(update_parser(source_id, fname, remote_ip, dbconn, dbcurs))
 
     ## open the file
-    if url.endswith(".bz2"):
+    if fname.endswith(".bz2"):
         import bz2
         f = bz2.BZ2File(fname)
-    elif url.endswith(".gz"):
+    elif fname.endswith(".gz"):
         import gzip
         f = gzip.open(fname)
     else:
@@ -189,14 +170,11 @@ WHERE
     ## close and delete
     f.close()
     del f
-    if istemp:
-        os.remove(fname)
 
 class update_parser(handler.ContentHandler):
 
-    def __init__(self, source_id, source_data, source_url, remote_ip, dbconn, dbcurs):
+    def __init__(self, source_id, source_url, remote_ip, dbconn, dbcurs):
         self._source_id        = source_id
-        self._source_data      = source_data
         self._source_url       = source_url
         self._remote_ip        = remote_ip
         self._dbconn           = dbconn
@@ -476,33 +454,33 @@ class Test(unittest.TestCase):
 
     def test(self):
         self.check_num_marker(0)
-        update({"id": 1}, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
+        update(1, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
         self.check_num_marker(50)
 
     def test_update(self):
         self.check_num_marker(0)
-        update({"id": 1}, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-05-20.xml.bz2")
+        update(1, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-05-20.xml.bz2")
         self.check_num_marker(48)
 
-        update({"id": 1}, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
+        update(1, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
         self.check_num_marker(50)
 
 
     def test_duplicate_update(self):
         self.check_num_marker(0)
-        update({"id": 1}, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
+        update(1, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
         self.check_num_marker(50)
 
         with self.assertRaises(OsmoseUpdateAlreadyDone) as cm:
-            update({"id": 1}, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
+            update(1, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
         self.check_num_marker(50)
 
     def test_two_sources(self):
         self.check_num_marker(0)
-        update({"id": 1}, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
+        update(1, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
         self.check_num_marker(50)
 
-        update({"id": 2}, "tests/Analyser_Osmosis_Broken_Highway_Level_Continuity-france_reunion-2014-06-11.xml.bz2")
+        update(2, "tests/Analyser_Osmosis_Broken_Highway_Level_Continuity-france_reunion-2014-06-11.xml.bz2")
         self.check_num_marker(50+99)
 
 ###########################################################################
