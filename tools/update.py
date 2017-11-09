@@ -454,33 +454,33 @@ class Test(unittest.TestCase):
 
     def test(self):
         self.check_num_marker(0)
-        update({"id": 1}, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
+        update(1, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
         self.check_num_marker(50)
 
     def test_update(self):
         self.check_num_marker(0)
-        update({"id": 1}, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-05-20.xml.bz2")
+        update(1, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-05-20.xml.bz2")
         self.check_num_marker(48)
 
-        update({"id": 1}, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
+        update(1, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
         self.check_num_marker(50)
 
 
     def test_duplicate_update(self):
         self.check_num_marker(0)
-        update({"id": 1}, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
+        update(1, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
         self.check_num_marker(50)
 
         with self.assertRaises(OsmoseUpdateAlreadyDone) as cm:
-            update({"id": 1}, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
+            update(1, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
         self.check_num_marker(50)
 
     def test_two_sources(self):
         self.check_num_marker(0)
-        update({"id": 1}, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
+        update(1, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
         self.check_num_marker(50)
 
-        update({"id": 2}, "tests/Analyser_Osmosis_Broken_Highway_Level_Continuity-france_reunion-2014-06-11.xml.bz2")
+        update(2, "tests/Analyser_Osmosis_Broken_Highway_Level_Continuity-france_reunion-2014-06-11.xml.bz2")
         self.check_num_marker(50+99)
 
 ###########################################################################
