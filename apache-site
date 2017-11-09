@@ -37,6 +37,8 @@
 
 	ExpiresActive On
 	ExpiresDefault "access plus 1 week"
+	CacheIgnoreHeaders Cookie Set-Cookie
+
 	<LocationMatch /[a-z]*/api>
 		ExpiresActive Off
 		CacheDisable on
