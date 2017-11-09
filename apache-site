@@ -60,6 +60,18 @@
 	</LocationMatch>
 	<LocationMatch /[a-z]*/map/heat>
 		ExpiresDefault "access plus 1 day"
+		CacheEnable disk
+		CacheHeader on
+	</LocationMatch>
+	<LocationMatch /[a-z]*/map/issues/>
+		ExpiresDefault "access plus 2 minutes"
+		CacheEnable disk
+		CacheHeader on
+	</LocationMatch>
+	<LocationMatch /[a-z]*/map/issues/[0-9]/*>
+		ExpiresDefault "access plus 1 day"
+		CacheEnable disk
+		CacheHeader on
 	</LocationMatch>
 	<LocationMatch /[a-z]*/map/marker>
 		ExpiresActive Off
