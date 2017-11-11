@@ -14,7 +14,7 @@ Generate translation files
 cd po && make mo
 ```
 
-Install javascript libraries, as git submodules
+Install git submodules
 ```
 git submodule update --init
 ```
@@ -78,6 +78,14 @@ Create a python virtualenv, active it and install python dependencies
 virtualenv --python=python2.7 osmose-frontend-venv
 source osmose-frontend-venv/bin/activate
 pip install -r requirements.txt
+```
+
+
+### JavaScript
+
+Install javascript libraries with npm
+```
+npm install
 ```
 
 

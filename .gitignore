@@ -10,3 +10,6 @@ static/.webassets-cache/
 static/gen/
 static/osmose-coverage.json*
 static/osmose-coverage.topojson.pbf*
+
+node_modules
+osmose-frontend-venv

@@ -1,1 +1,1 @@
-../../../externals/topojson/topojson.js
+../../../node_modules/topojson/dist/topojson.js

@@ -1,1 +1,1 @@
-../../../externals/leaflet-responsive-popup/leaflet.responsive.popup.js
+../../../node_modules/leaflet-responsive-popup/leaflet.responsive.popup.js
