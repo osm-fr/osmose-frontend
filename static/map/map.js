@@ -1,4 +1,21 @@
-function init_map() {
+import { mapBases, mapOverlay } from './layers.js';
+require('leaflet-active-area/src/leaflet.activearea.js');
+import { OsmoseCoverage } from './Osmose.Coverage.js';
+import { OsmoseMenu, OsmoseMenuToggle } from './Osmose.Menu.js';
+import { OsmoseExport } from './Osmose.Export.js';
+import { OsmoseEditor } from './Osmose.Editor.js';
+import { OsmoseMarker } from './Osmose.Marker.js';
+import { OsmoseHeatmap } from './Osmose.Heatmap.js';
+require('./Permalink.Item.js');
+require('./Permalink.Overlay.js');
+require('./Location.js');
+require('leaflet-control-geocoder');
+require('leaflet-control-geocoder/dist/Control.Geocoder.css');
+require('leaflet-loading');
+require('leaflet-loading/src/Control.Loading.css');
+
+
+export function init_map() {
   var urlVars = getUrlVars();
 
   var layers = [];

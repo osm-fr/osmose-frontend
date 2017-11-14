@@ -2,6 +2,9 @@
  * This file is licensed under Creative Commons Zero (CC0)
  * http://creativecommons.org/publicdomain/zero/1.0/
  */
+require('leaflet');
+require('leaflet-plugins/control/Permalink.js');
+
 
 L.Control.Permalink.include({
 

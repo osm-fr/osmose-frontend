@@ -1,4 +1,10 @@
-OsmoseMarker = L.VectorGrid.Protobuf.extend({
+require('leaflet');
+require('leaflet-responsive-popup');
+require('leaflet-responsive-popup/leaflet.responsive.popup.css');
+require('mustache');
+
+
+export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
   initialize: function (menu, params, editor, options) {
     this._menu = menu;
