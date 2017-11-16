@@ -14,11 +14,6 @@ Generate translation files
 cd po && make mo
 ```
 
-Install git submodules
-```
-git submodule update --init
-```
-
 Run within Docker
 -----------------
 

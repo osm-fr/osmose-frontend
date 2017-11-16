@@ -24,7 +24,6 @@ RUN chown -R osmose /data/project/osmose/frontend
 USER osmose
 WORKDIR "/data/project/osmose/frontend"
 RUN cd /data/project/osmose/frontend && \
-    git submodule update --init && \
     npm install && \
     sed -e 's_= "osmose.openstreetmap.fr"_= "/"_' -i tools/utils.py && \
     cd po && make mo
