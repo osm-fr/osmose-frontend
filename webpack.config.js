@@ -3,10 +3,13 @@ var webpack = require('webpack');
 
 
 module.exports = {
-    entry: "./webpack.index.js",
+    entry: {
+        "static": "./static/webpack.index.js",
+        "static/map": "./static/map/webpack.index.js",
+    },
     output: {
         path: __dirname,
-        filename: "webpack.bundle.js"
+        filename: "[name]/webpack.bundle.js"
     },
     devtool: 'source-map',
     module: {

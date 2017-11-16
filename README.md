@@ -82,6 +82,7 @@ pip install -r requirements.txt
 Install javascript libraries with npm
 ```
 npm install
+npm run build
 ```
 
 
