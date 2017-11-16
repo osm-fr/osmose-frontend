@@ -1,6 +1,3 @@
-[submodule "externals/rauth"]
-	path = externals/rauth
-	url = https://github.com/litl/rauth.git
 [submodule "Leaflet-active-area"]
 	path = Leaflet-active-area
 	url = https://github.com/Mappy/Leaflet-active-area.git
