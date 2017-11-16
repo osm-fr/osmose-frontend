@@ -6,13 +6,6 @@ on a map.
 
 Interested in helping translate Osmose? Contribute on [Transifex](https://www.transifex.com/openstreetmap-france/osmose/).
 
-Initialisation
---------------
-
-Generate translation files
-```
-cd po && make mo
-```
 
 Run within Docker
 -----------------
@@ -58,6 +51,14 @@ And show the result at: http://myhost:20009/en/errors?item=xxxx&useDevItem=true
 
 Manual Installation
 -------------------
+
+### Initialisation
+
+Generate translation files
+```
+cd po && make mo
+```
+
 
 ### Python
 
