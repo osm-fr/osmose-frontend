@@ -28,7 +28,7 @@ docker build -t osm-fr/osmose_frontend:latest .
 
 Run the container:
 ```
-docker run -ti -p 20009:80 osm-fr/osmose_frontend:latest
+docker run -ti -p 20009:20009 osm-fr/osmose_frontend:latest
 ```
 
 The server will be running at http://localhost:20009
@@ -43,7 +43,7 @@ docker run -ti -e OSMOSE_UNLOCKED_UPDATE=on osm-fr/osmose_frontend:latest
 
 Configure your Osmose Backend to point to the Osmose Frontend in `osmose-backend/modules/config.py`
 ```python
-url_frontend_update = "http://myhost:2009/control/send-update"
+url_frontend_update = "http://myhost:20009/control/send-update"
 ```
 
 Run the Backend with upload password `osmose-backend/osmose_config_password.py` for your analyse:
