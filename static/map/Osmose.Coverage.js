@@ -1,6 +1,6 @@
 require('leaflet');
 var Pbf = require('pbf');
-var geobuf = require('geobuf');
+var geobuf = require('./geobuf-1.0.1.js');
 var topojson = require('topojson');
 
 
