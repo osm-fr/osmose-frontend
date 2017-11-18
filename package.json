@@ -10,7 +10,7 @@
     "base64-image-loader": "^1.2.0",
     "css-loader": "^0.28.7",
     "geobuf": "^3.0.0",
-    "jquery": "^1.12.0",
+    "jquery": "^3.2.1",
     "leaflet": "^1.0.3",
     "leaflet-active-area": "^1.0.0",
     "leaflet-control-geocoder": "^1.5.6",
