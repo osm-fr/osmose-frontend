@@ -9,7 +9,7 @@ module.exports = {
     },
     output: {
         path: __dirname,
-        filename: "[name]/webpack.bundle.js"
+        filename: "[name]/webpack.bundle-[hash].js"
     },
     devtool: 'source-map',
     module: {
@@ -26,5 +26,12 @@ module.exports = {
             Mustache: "mustache",
         }),
         new webpack.optimize.UglifyJsPlugin({ minimize: true, sourceMap: true }),
+        function() {
+            this.plugin("done", function(stats) {
+                require("fs").writeFileSync(
+                    __dirname + "/webpack.stats.json",
+                    JSON.stringify(stats.toJson().assetsByChunkName));
+            });
+        }
     ],
 };

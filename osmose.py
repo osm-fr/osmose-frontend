@@ -10,9 +10,12 @@ import bottle
 from bottle import route, view, template, error, redirect, request, hook
 from tools import utils, oauth, xmldict
 import beaker.middleware
+import assets
 
 
 app = bottle.default_app()
+
+assets.init_assets()
 
 @hook('before_request')
 def setup_request():

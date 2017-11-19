@@ -3,7 +3,8 @@
 <head>
   <title>Osmose - {{title or ''}}</title>
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-  <script type="text/javascript" src="{{get_url('static', filename='/webpack.bundle.js')}}"></script>
+%from assets import assets
+  <script type="text/javascript" src="{{get_url('static', filename=assets['static'][0])}}"></script>
 %if not 'favicon' in locals() or not favicon:
 %    favicon = get_url('static', filename='favicon.png')
 %end
