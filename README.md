@@ -97,7 +97,7 @@ createdb -E UTF8 -T template0 -O osmose osmose_frontend
 psql -c "CREATE extension hstore" osmose_frontend
 ```
 
-As normal user, ceate the database tables:
+As normal user, create the database tables:
 ```
 psql osmose_frontend -f tools/database/schema.sql
 ```
