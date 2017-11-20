@@ -6,4 +6,4 @@ polib
 mapbox-vector-tile
 pyclipper
 rauth
-bottle == 0.12.7
+bottle == 0.12.13
