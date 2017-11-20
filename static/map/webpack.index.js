@@ -1,6 +1,7 @@
 
 require('../css/style.css');
 require('./style.css');
+require('../images/markers/markers-l.css');
 
 require('leaflet');
 require('leaflet/dist/leaflet.css');

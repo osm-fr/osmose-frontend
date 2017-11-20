@@ -84,7 +84,7 @@
     <ul>
 %    for err in categ["item"]:
 %        it.add(err["item"])
-        <li style='background-image: url(../images/markers/marker-l-{{err["item"]}}.png)' id='item_desc{{err["item"]}}'>
+        <li class='marker-l-{{err["item"]}}' id='item_desc{{err["item"]}}'>
             <div class="level">\\
 %        p = 0
 %        for i in [1,2,3]:
