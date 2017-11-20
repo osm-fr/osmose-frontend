@@ -36,7 +36,7 @@ Mapillary = L.VectorGrid.Protobuf.extend({
     this._ajax("https://a.mapillary.com/v2/search/im/close?client_id=" + this._client_id + "&lat=" + e.latlng.lat + "&lon=" + e.latlng.lng + "&limit=1", function(json) {
       var im = JSON.parse(json).ims[0];
       //[{"ca":164.309981822046,"captured_at":1423158021000,"distance":26.849678599,"key":"zr9Yl7eYCmUm-FtpO6EmRg","lon":2.33909010887146,"lat":48.8530414830134,"location":"Paris","user":"dhuyp"}]}
-      var popup = L.popup()
+      var popup = L.responsivePopup()
         .setLatLng([im.lat, im.lon])
         .setContent("<a href='http://www.mapillary.com/map/im/" + im.key + "/photo' target='_blank'><img src='https://d1cuyjsrcm0gby.cloudfront.net/" + im.key+ "/thumb-320.jpg' width='240' /></br>" + im.user + " - Mapillary - CC BY-SA 4.0</a>")
         .openOn(self._map);
