@@ -117,10 +117,10 @@ def graph(db, format='png'):
 @route('/errors/false-positive')
 @route('/errors/false-positive.<format:ext>')
 def index(db, lang, format=None):
-    if request.path.endswith("false-positive"):
+    if "false-positive" in request.path:
         title = _("False positives")
         gen = "false-positive"
-    elif request.path.endswith("done"):
+    elif "done" in request.path:
         title = _("Fixed issues")
         gen = "done"
     else:
