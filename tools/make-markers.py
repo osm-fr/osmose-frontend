@@ -162,7 +162,7 @@ if __name__ == "__main__":
 
     marker_folder = os.path.join("..", "static", "images", "markers")
     commands.getstatusoutput("rm %s"%os.path.join(marker_folder,"*.png"))
-    css = ""
+    css = "/* sprite-loader-enable */\n"
     for i in all_items:
         print i
         for m in "LB":

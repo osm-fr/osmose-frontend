@@ -14,7 +14,11 @@ module.exports = {
     devtool: 'source-map',
     module: {
         rules: [
-            { test: /\.css$/, loaders: ["style-loader", "css-loader"] },
+            { test: /\.css$/, use: [
+                { loader: "style-loader" },
+                { loader: "css-loader" },
+                { loader: "sprite-loader", options: { name: "[hash].png", outputPath: "./static/images/", cssImagePath: "/en/images/" } }
+            ] },
             { test: /\.png$/, loaders: ["base64-image-loader"] },
             { test: /\.gif$/, loaders: ["base64-image-loader"] },
         ]

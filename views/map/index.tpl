@@ -84,7 +84,8 @@
     <ul>
 %    for err in categ["item"]:
 %        it.add(err["item"])
-        <li class='marker-l-{{err["item"]}}' id='item_desc{{err["item"]}}'>
+        <li id='item_desc{{err["item"]}}'>
+            <div class="marker-l marker-l-{{err["item"]}}"></div>
             <div class="level">\\
 %        p = 0
 %        for i in [1,2,3]:
