@@ -39,7 +39,7 @@ Docker for development
 
 Run a configuration and password less instance:
 ```
-docker run -ti -e OSMOSE_UNLOCKED_UPDATE=on osm-fr/osmose_frontend:latest
+docker run -ti -p 20009:20009 -e OSMOSE_UNLOCKED_UPDATE=on osm-fr/osmose_frontend:latest
 ```
 
 Configure your Osmose Backend to point to the Osmose Frontend in `osmose-backend/modules/config.py`
