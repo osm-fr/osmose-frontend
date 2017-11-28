@@ -306,7 +306,7 @@ def status(db, country = None, analyser = None):
         ret += str(r['timestamp']) + "\n"
         ret += "ANALYSER_VERSION_COME_HERE\n"
         for t in ['N', 'W', 'R']:
-            db.execute('SELECT string_agg(id::text, \',\') FROM (SELECT DISTINCT marker_id AS id FROM marker JOIN marker_elem ON marker_elem.marker_id = marker.id WHERE source=%s AND data_type = %s) AS t', (r['source'], t))
+            db.execute('SELECT string_agg(id::text, \',\') FROM (SELECT DISTINCT marker_elem.id AS id FROM marker JOIN marker_elem ON marker_elem.marker_id = marker.id WHERE source=%s AND data_type = %s) AS t', (r['source'], t))
             s = db.fetchone()
             if s and s[0]:
                 ret += s[0]
