@@ -1,4 +1,7 @@
-OsmoseExport = L.Class.extend({
+require('leaflet');
+
+
+export var OsmoseExport = L.Class.extend({
   includes: L.Mixin.Events,
 
   _menu: null,

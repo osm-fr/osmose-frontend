@@ -1,1 +1,0 @@
-../../externals/mustache.js/mustache.js

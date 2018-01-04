@@ -1,5 +1,9 @@
+import L from 'leaflet';
+require('leaflet-plugins/layer/tile/Bing.js')
+import { Mapillary } from './Mapillary.js';
+
 var osmAttribution = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors';
-var mapBases = {
+export var mapBases = {
   // OpenStreetMap
   'Mapnik': L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: osmAttribution}),
   'ÖPNV Karte': L.tileLayer('http://tile.memomaps.de/tilegen/{z}/{x}/{y}.png'),
@@ -17,7 +21,7 @@ var mapBases = {
 
 var urlOsmFr = 'http://{s}.layers.openstreetmap.fr/{layer}/{z}/{x}/{y}.png';
 var attributionOsmFr = '';
-var mapOverlay = {
+export var mapOverlay = {
   'No name': L.tileLayer(urlOsmFr, {layer: 'noname', attribution: attributionOsmFr}),
   'No Oneway': L.tileLayer(urlOsmFr, {layer: 'nooneway', attribution: attributionOsmFr}),
   'No Ref on way': L.tileLayer(urlOsmFr, {layer: 'noref', attribution: attributionOsmFr}),

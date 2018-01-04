@@ -1,4 +1,10 @@
-OsmoseCoverage = L.GeoJSON.extend({
+require('leaflet');
+var Pbf = require('pbf');
+var geobuf = require('./geobuf-1.0.1.js');
+var topojson = require('topojson');
+
+
+export var OsmoseCoverage = L.GeoJSON.extend({
 
   initialize: function (topojson_url, options) {
     L.Util.setOptions(this, options);
@@ -26,7 +32,7 @@ OsmoseCoverage = L.GeoJSON.extend({
 
     xhr.onload = function(e) {
       if (this.status == 200) {
-        data = geobuf.decode(new Pbf(new Uint8Array(xhr.response)));
+        var data = geobuf.decode(new Pbf(new Uint8Array(xhr.response)));
         data = topojson.feature(data, data.objects['osmose-cover']);
         self.addData(data);
         self._topojson = data;

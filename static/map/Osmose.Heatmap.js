@@ -1,4 +1,7 @@
-OsmoseHeatmap = L.VectorGrid.Protobuf.extend({
+require('leaflet');
+
+
+export var OsmoseHeatmap = L.VectorGrid.Protobuf.extend({
 
   _options: null,
 

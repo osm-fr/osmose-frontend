@@ -46,10 +46,13 @@ div#menu div.test_group ul {
   padding-left: 0px;
 }
 div#menu div.test_group li {
-  background-repeat: no-repeat;
-  background-position: 2px 2px;
-  padding-left: 16px; 
+  padding-left: 2px;
   font-size: 11px;
+}
+div#menu div.test_group li div.marker-l {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
 }
 .leaflet-touch div#menu div.test_group li {
   font-size: inherit;
@@ -118,12 +121,6 @@ option.level-123 {
 }
 option.level-12_ {
   background: url('../images/level-12_.png');
-}
-option.level-1_3 {
-  background: url('../images/level-1_3.png');
-}
-option.level-_23 {
-  background: url('../images/level-_23.png');
 }
 option.level-1__ {
   background: url('../images/level-1__.png');

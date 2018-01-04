@@ -1,4 +1,7 @@
-Mapillary = L.VectorGrid.Protobuf.extend({
+require('leaflet.vectorgrid');
+
+
+export var Mapillary = L.VectorGrid.Protobuf.extend({
 
   _client_id: null,
 

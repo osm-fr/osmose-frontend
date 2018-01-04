@@ -1,3 +1,6 @@
+require('leaflet');
+
+
 L.Control.Location = L.Control.extend({
 
   options: {

@@ -6,18 +6,6 @@ on a map.
 
 Interested in helping translate Osmose? Contribute on [Transifex](https://www.transifex.com/openstreetmap-france/osmose/).
 
-Initialisation
---------------
-
-Generate translation files
-```
-cd po && make mo
-```
-
-Install javascript libraries, as git submodules
-```
-git submodule update --init
-```
 
 Run within Docker
 -----------------
@@ -39,7 +27,7 @@ Docker for development
 
 Run a configuration and password less instance:
 ```
-docker run -ti -e OSMOSE_UNLOCKED_UPDATE=on osm-fr/osmose_frontend:latest
+docker run -ti -p 20009:20009 -e OSMOSE_UNLOCKED_UPDATE=on osm-fr/osmose_frontend:latest
 ```
 
 Configure your Osmose Backend to point to the Osmose Frontend in `osmose-backend/modules/config.py`
@@ -64,6 +52,14 @@ And show the result at: http://myhost:20009/en/errors?item=xxxx&useDevItem=true
 Manual Installation
 -------------------
 
+### Initialisation
+
+Generate translation files
+```
+cd po && make mo
+```
+
+
 ### Python
 
 Osmose QA frontend requires python > 2.6 and < 3
@@ -78,6 +74,15 @@ Create a python virtualenv, active it and install python dependencies
 virtualenv --python=python2.7 osmose-frontend-venv
 source osmose-frontend-venv/bin/activate
 pip install -r requirements.txt
+```
+
+
+### JavaScript
+
+Install javascript libraries with npm
+```
+npm install
+npm run build
 ```
 
 

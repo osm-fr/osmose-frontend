@@ -5,14 +5,10 @@
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
   <meta name="description" content="{{_("Control, verification and correction of %s issues") % main_project}}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-%for css in assets['css_map'].urls():
-  <link rel="stylesheet" type="text/css" href="{{get_url('static', filename=css)}}">
-%end
   <script id="popupTpl" type="text/template" src="{{get_url('static', filename='/tpl/popup.tpl')}}"></script>
   <script id="editorTpl" type="text/template" src="{{get_url('static', filename='/tpl/editor.tpl')}}"></script>
-%for js in assets['js_map'].urls():
-  <script type="text/javascript" src="{{get_url('static', filename=js)}}"></script>
-%end
+%from assets import assets
+  <script type="text/javascript" src="{{get_url('static', filename=assets['static/map'][0])}}"></script>
   <script type="text/javascript">
     var lat={{lat}};
     var lon={{lon}};
@@ -89,7 +85,8 @@
     <ul>
 %    for err in categ["item"]:
 %        it.add(err["item"])
-        <li style='background-image: url(../images/markers/marker-l-{{err["item"]}}.png)' id='item_desc{{err["item"]}}'>
+        <li id='item_desc{{err["item"]}}'>
+            <div class="marker-l marker-l-{{err["item"]}}"></div>
             <div class="level">\\
 %        p = 0
 %        for i in [1,2,3]:

@@ -2,7 +2,12 @@ FROM ubuntu:16.04
 
 MAINTAINER Frédéric Rodrigo <fred.rodrigo@gmail.com>
 
-RUN apt update
+RUN apt update && \
+    apt install -y --no-install-recommends \
+        curl && \
+    curl -sL http://deb.nodesource.com/setup_9.x -o nodesource_setup.sh && \
+    bash ./nodesource_setup.sh && \
+    apt update
 
 
 # Osmose Frontend
@@ -12,20 +17,22 @@ RUN useradd -s /bin/bash -d /data/work/osmose osmose
 RUN chown -R osmose /data/work/osmose
 
 RUN apt install -y --no-install-recommends \
-        git gettext make
+        git gettext make nodejs
 
-USER osmose
 ADD "." "/data/project/osmose/frontend"
+RUN chown -R osmose /data/project/osmose/frontend
+USER osmose
 WORKDIR "/data/project/osmose/frontend"
 RUN cd /data/project/osmose/frontend && \
-    git submodule update --init && \
+    npm install && \
+    npm run build && \
+    sed -e 's_= "osmose.openstreetmap.fr"_= "/"_' -i tools/utils.py && \
     cd po && make mo
 
 USER root
-RUN sed -e 's_= "osmose.openstreetmap.fr"_= "/"_' -i tools/utils.py
-RUN chown -R osmose /data/project/osmose/frontend
 RUN apt remove -y --auto-remove \
-        git gettext make
+        git gettext make nodejs
+
 
 # Python
 

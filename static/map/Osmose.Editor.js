@@ -1,4 +1,11 @@
-OsmoseEditor = L.Control.Sidebar.extend({
+require('leaflet');
+require('../js/jquery-ui-1.10.4.dialog.js');
+require('mustache');
+
+require('./Osmose.Editor.css');
+
+
+export var OsmoseEditor = L.Control.Sidebar.extend({
 
   options: {
     closeButton: false,

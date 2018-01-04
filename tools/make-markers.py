@@ -162,6 +162,7 @@ if __name__ == "__main__":
 
     marker_folder = os.path.join("..", "static", "images", "markers")
     commands.getstatusoutput("rm %s"%os.path.join(marker_folder,"*.png"))
+    css = "/* sprite-loader-enable */\n"
     for i in all_items:
         print i
         for m in "LB":
@@ -170,4 +171,6 @@ if __name__ == "__main__":
             open(file_svg,"w").write(get_marker(m, i["marker_flag"], i["marker_color"]))
             commands.getstatusoutput("rsvg %s %s"%(file_svg, file_png))
             #commands.getstatusoutput("rsvg-convert %s > %s"%(file_svg, file_png))
+        css += ".marker-l-{0} {{ background-image: url(marker-l-{0}.png); }}\n".format(i["item"])
+    open(os.path.join(marker_folder, "markers-l.css"), "w").write(css)
     commands.getstatusoutput("rm %s"%os.path.join(marker_folder,"*.svg"))

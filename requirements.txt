@@ -5,3 +5,5 @@ beaker >= 1.6
 polib
 mapbox-vector-tile
 pyclipper
+rauth
+bottle == 0.12.13

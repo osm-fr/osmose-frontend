@@ -1,3 +1,7 @@
+require('leaflet');
+require('leaflet-plugins/control/Permalink.js');
+
+
 L.Control.Permalink.include({
 
   initialize_item: function () {

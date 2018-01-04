@@ -1,4 +1,11 @@
-OsmoseMenu = L.Control.Sidebar.extend({
+require('leaflet');
+require('leaflet-sidebar');
+require('leaflet-sidebar/src/L.Control.Sidebar.css');
+
+require('./Osmose.Menu.css');
+
+
+export var OsmoseMenu = L.Control.Sidebar.extend({
 
   options: {
     closeButton: false,
@@ -230,7 +237,7 @@ OsmoseMenu = L.Control.Sidebar.extend({
 });
 
 
-OsmoseMenuToggle = L.Control.extend({
+export var OsmoseMenuToggle = L.Control.extend({
 
   options: {
     position: 'topleft',
