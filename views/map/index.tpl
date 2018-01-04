@@ -62,6 +62,7 @@
           <option value="josm"{{!fixable_selected['josm']}}>JOSM</option>
         </select>
       </span>
+      <br>
       <span id="tags-span">
         <label for='tags'>{{_("Topic")}}</label>
         <select id='tags'>
