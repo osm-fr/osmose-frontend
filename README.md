@@ -66,7 +66,7 @@ Osmose QA frontend requires python > 2.6 and < 3
 
 Setup system dependencies (Ubuntu Server 16.04)
 ```
-apt install python2.7 python2.7-dev virtualenv gcc pkg-config libpng-dev libjpeg-dev libfreetype6-dev postgresql-server-dev-all libgeos-dev g++ python-shapely
+apt install python2.7 python2.7-dev virtualenv gcc pkg-config libpng-dev libjpeg-dev libfreetype6-dev postgresql-server-dev-all libgeos-dev g++ python-shapely nodejs
 ```
 
 Create a python virtualenv, active it and install python dependencies
@@ -74,6 +74,11 @@ Create a python virtualenv, active it and install python dependencies
 virtualenv --python=python2.7 osmose-frontend-venv
 source osmose-frontend-venv/bin/activate
 pip install -r requirements.txt
+```
+
+Generate markers
+```
+(cd tools && ./make-markers.py)
 ```
 
 
