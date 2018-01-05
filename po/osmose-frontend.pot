@@ -143,7 +143,6 @@ msgstr ""
 msgid "Contacting maintainers"
 msgstr ""
 
-#: tmp.tpl:33
 #, python-format
 msgid ""
 "We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
@@ -959,7 +958,6 @@ msgstr ""
 msgid "For new language or countries"
 msgstr ""
 
-#: tmp.tpl:170
 #, python-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
@@ -1187,7 +1185,6 @@ msgstr ""
 msgid "Information on issues database"
 msgstr ""
 
-#: tmp.tpl:138 tmp.tpl:139 tmp.tpl:140
 #, python-format
 msgid "Level %d issues (%d)"
 msgstr ""
@@ -1409,4 +1406,23 @@ msgstr ""
 
 #: tmp.tpl:122
 msgid "Low only"
+msgstr ""
+
+#: tmp.tpl:33
+#, python-brace-format
+msgid ""
+"We can be contacted through a direct email to <a href='mailto:"
+"{email}'>{email}</a>."
+msgstr ""
+
+#: tmp.tpl:138 tmp.tpl:139 tmp.tpl:140
+#, python-brace-format
+msgid "Level {level} issues ({count})"
+msgstr ""
+
+#: tmp.tpl:170
+#, python-brace-format
+msgid ""
+"For new countries, we can be contacted through a direct email to <a "
+"href='mailto:{email}'>{email}</a>."
 msgstr ""

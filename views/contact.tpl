@@ -20,5 +20,5 @@
 <img src="images/logo-mapbox.png" alt="Logo of Mapbox" width="340" height="100"/>
 
 <h1>{{_("Contacting maintainers")}}</h1>
-<p>{{! _("We can be contacted through a direct email to <a href='mailto:%s'>%s</a>.") % (2 * ("osmose-contact@openstreetmap.fr".replace('@', '&#x40;'), ))}}</p>
+<p>{{! _("We can be contacted through a direct email to <a href='mailto:{email}'>{email}</a>.").format(email="osmose-contact@openstreetmap.fr".replace('@', '&#x40;'))}}</p>
 <p>{{! _("Keep in touch by watching at <a href='https://twitter.com/osmose_qa'>@osmose_qa</a> on twitter.")}}</p>
