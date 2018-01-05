@@ -326,23 +326,18 @@ msgstr ""
 msgid "Severity"
 msgstr ""
 
-#: tmp.tpl:118
 msgid "1 only"
 msgstr ""
 
-#: tmp.tpl:119
 msgid "1+2 only"
 msgstr ""
 
-#: tmp.tpl:120
 msgid "all severity"
 msgstr ""
 
-#: tmp.tpl:121
 msgid "2 only"
 msgstr ""
 
-#: tmp.tpl:122
 msgid "3 only"
 msgstr ""
 
@@ -1394,4 +1389,24 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:173
 msgid "traffic sign limitation"
+msgstr ""
+
+#: tmp.tpl:118
+msgid "High"
+msgstr ""
+
+#: tmp.tpl:119
+msgid "Normal or higher"
+msgstr ""
+
+#: tmp.tpl:120
+msgid "All"
+msgstr ""
+
+#: tmp.tpl:121
+msgid "Normal only"
+msgstr ""
+
+#: tmp.tpl:122
+msgid "Low only"
 msgstr ""
