@@ -25,7 +25,7 @@
 <h2>{{_("For new language or countries")}}</h2>
 <ul>
 <li>{{!_("You can create a new language directly on <a href='%s'>Transifex.</a>") % "http://www.transifex.com/projects/p/osmose/"}}</a></li>
-<li>{{!_("For new countries, we can be contacted through a direct email to <a href='mailto:%s'>%s</a>.") % (2 * ("osmose-contact@openstreetmap.fr".replace('@', '&#x40;'), ))}}</li>
+<li>{{!_("For new countries, we can be contacted through a direct email to <a href='mailto:{email}'>{email}</a>.") .format (email="osmose-contact@openstreetmap.fr".replace('@', '&#x40;'))}}</li>
 </li>
 </ul>
 
