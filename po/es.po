@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2017-11-11 05:00+0000\n"
-"Last-Translator: Marco Antonio <marcoantoniofrias@gmail.com>\n"
+"PO-Revision-Date: 2018-01-06 18:49+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -147,7 +147,6 @@ msgstr "El desarrollo de Osmose se hace como software libre por <a href='../copy
 msgid "Contacting maintainers"
 msgstr "Contacto con los mantenedores"
 
-#: tmp.tpl:33
 #, python-format
 msgid ""
 "We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
@@ -330,26 +329,6 @@ msgstr "no hay burbujas en este factor de acercamiento"
 msgid "Severity"
 msgstr "Severidad"
 
-#: tmp.tpl:118
-msgid "1 only"
-msgstr "sólo 1"
-
-#: tmp.tpl:119
-msgid "1+2 only"
-msgstr "sólo 1+2"
-
-#: tmp.tpl:120
-msgid "all severity"
-msgstr "toda severidad"
-
-#: tmp.tpl:121
-msgid "2 only"
-msgstr "sólo 2"
-
-#: tmp.tpl:122
-msgid "3 only"
-msgstr "sólo 3"
-
 #: tmp.tpl:123
 msgid "Fixable"
 msgstr "Corregible"
@@ -413,11 +392,11 @@ msgstr "Objetos editados:"
 
 #: tmp.tpl:147
 msgid "Objects deleted:"
-msgstr "Objetos eliminados:"
+msgstr "Objetos borrados:"
 
 #: tmp.tpl:148
 msgid "Fix with Osmose"
-msgstr "Arreglado con osmose"
+msgstr "Corregido con osmose"
 
 #: tmp.tpl:149
 msgid "Source"
@@ -562,7 +541,7 @@ msgstr "*_link de carretera erróneo"
 
 #: ../tools/database/item_menu.txt:13
 msgid "broken highway continuity"
-msgstr "rota la continuidad de carretera"
+msgstr "continuidad de carretera rota"
 
 #: ../tools/database/item_menu.txt:14
 msgid "missing tag or role"
@@ -594,7 +573,7 @@ msgstr "relación de 1 miembro"
 
 #: ../tools/database/item_menu.txt:21
 msgid "not-connected highway/cycleway"
-msgstr "carretera/carril bici no conectada"
+msgstr "carretera/carril bici desconectada"
 
 #: ../tools/database/item_menu.txt:22
 msgid "waterway"
@@ -622,7 +601,7 @@ msgstr "etiqueta padre"
 
 #: ../tools/database/item_menu.txt:34
 msgid "street numbers"
-msgstr "números de la calle"
+msgstr "números de calle"
 
 #: ../tools/database/item_menu.txt:35
 msgid "highway"
@@ -630,7 +609,7 @@ msgstr "carretera"
 
 #: ../tools/database/item_menu.txt:36
 msgid "highway crossing"
-msgstr "paso de carretera"
+msgstr "cruce de carretera"
 
 #: ../tools/database/item_menu.txt:37 ../tools/database/item_menu.txt:161
 msgid "pharmacy"
@@ -726,7 +705,7 @@ msgstr "código postal"
 
 #: ../tools/database/item_menu.txt:71
 msgid "disused"
-msgstr "desuso"
+msgstr "en desuso"
 
 #: ../tools/database/item_menu.txt:72
 msgid "on junction=roundabout"
@@ -818,7 +797,7 @@ msgstr "puente a etiquetar"
 
 #: ../tools/database/item_menu.txt:102
 msgid "admin boundary"
-msgstr "límite administrativa"
+msgstr "límite administrativo"
 
 #: ../tools/database/item_menu.txt:103
 msgid "power lines"
@@ -842,7 +821,7 @@ msgstr "monumento"
 
 #: ../tools/database/item_menu.txt:109
 msgid "node on ways"
-msgstr "nodo en vías"
+msgstr "nodo sobre vías"
 
 #: ../tools/database/item_menu.txt:110 ../tools/database/item_menu.txt:133
 msgid "train station"
@@ -866,11 +845,11 @@ msgstr "monumento, museo"
 
 #: ../tools/database/item_menu.txt:120
 msgid "monument, museum, could be integrated"
-msgstr "monumento, museo, podrían ser integrados"
+msgstr "monumento, museo, podrían integrarse"
 
 #: ../tools/database/item_menu.txt:123
 msgid "post office, could be integrated"
-msgstr "oficina de correos, podría ser integrado"
+msgstr "oficina de correos, podría integrarse"
 
 #: ../tools/database/item_menu.txt:127
 msgid "school"
@@ -878,7 +857,7 @@ msgstr "escuela"
 
 #: ../tools/database/item_menu.txt:128
 msgid "school, could be integrated"
-msgstr "escuela, podría ser integrado"
+msgstr "escuela, podría integrarse"
 
 #: ../tools/database/item_menu.txt:27 ../tools/database/item_menu.txt:130
 msgid "public transport"
@@ -886,11 +865,11 @@ msgstr "transporte público"
 
 #: ../tools/database/item_menu.txt:131
 msgid "public transport, could be integrated"
-msgstr "transporte público, podría ser integrado"
+msgstr "transporte público, podría integrarse"
 
 #: ../tools/database/item_menu.txt:134
 msgid "train station, could be integrated"
-msgstr "estación de tren, podría ser integrado"
+msgstr "estación de tren, podría integrarse"
 
 #: ../tools/database/item_menu.txt:135
 msgid "level crossing"
@@ -906,7 +885,7 @@ msgstr "dirección postal"
 
 #: ../tools/database/item_menu.txt:138
 msgid "wikipedia, could be integrated"
-msgstr "wikipedia, podría ser integrado"
+msgstr "wikipedia, podría integrarse"
 
 #: ../tools/database/item_menu.txt:139
 msgid "public service"
@@ -918,7 +897,7 @@ msgstr "reciclaje"
 
 #: ../tools/database/item_menu.txt:141
 msgid "recycling, could be integrated"
-msgstr "reciclaje, podría ser integrado"
+msgstr "reciclaje, podría integrarse"
 
 #: ../tools/database/item_menu.txt:143
 msgid "parking"
@@ -926,7 +905,7 @@ msgstr "aparcamiento"
 
 #: ../tools/database/item_menu.txt:144
 msgid "parking, could be integrated"
-msgstr "aparcamiento, podría ser integrado"
+msgstr "aparcamiento, podría integrarse"
 
 #: ../tools/database/item_menu.txt:146
 msgid "accommodation"
@@ -934,7 +913,7 @@ msgstr "alojamiento"
 
 #: ../tools/database/item_menu.txt:147
 msgid "accommodation, could be integrated"
-msgstr "alojamiento, podría ser integrado"
+msgstr "alojamiento, podría integrarse"
 
 #: ../tools/database/item_menu.txt:148
 msgid "cycle parking"
@@ -942,7 +921,7 @@ msgstr "aparcamiento para bicicletas"
 
 #: ../tools/database/item_menu.txt:149
 msgid "cycle parking, could be integrated"
-msgstr "aparcamiento de bicicletas, podría ser integrado"
+msgstr "aparcamiento de bicicletas, podría integrarse"
 
 #: ../tools/database/item_menu.txt:150
 msgid "transport sharing"
@@ -950,7 +929,7 @@ msgstr "transporte compartido"
 
 #: ../tools/database/item_menu.txt:151
 msgid "transport sharing, could be integrated"
-msgstr "transporte compartido, podría ser integrado"
+msgstr "transporte compartido, podría integrarse"
 
 #: ../tools/database/item_menu.txt:153
 msgid "sport"
@@ -958,7 +937,7 @@ msgstr "deporte"
 
 #: ../tools/database/item_menu.txt:154
 msgid "sport, could be integrated"
-msgstr "deporte, podría ser integrado"
+msgstr "deporte, podría integrarse"
 
 #: tmp.tpl:164
 msgid "Translation progress: osmose"
@@ -968,7 +947,6 @@ msgstr "Progreso de la traducción: osmose"
 msgid "For new language or countries"
 msgstr "Para nuevo idioma o países"
 
-#: tmp.tpl:170
 #, python-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
@@ -1016,7 +994,7 @@ msgstr "policía"
 
 #: ../tools/database/item_menu.txt:157
 msgid "police, could be integrated"
-msgstr "policía, podría ser integrado"
+msgstr "policía, podría integrarse"
 
 #: ../tools/database/item_menu.txt:115
 msgid "pharmacy, not integrated "
@@ -1024,7 +1002,7 @@ msgstr "farmacia, no integrada"
 
 #: ../tools/database/item_menu.txt:162
 msgid "pharmacy, could be integrated"
-msgstr "farmacia, podría ser integrado"
+msgstr "farmacia, podría integrarse"
 
 #: ../tools/database/item_menu.txt:158
 msgid "gas station"
@@ -1032,7 +1010,7 @@ msgstr "gasolinera"
 
 #: tmp.tpl:94
 msgid "position"
-msgstr "posición"
+msgstr "ubicación"
 
 #: tmp.tpl:144
 msgid "You must be logged in order to use the tag editor"
@@ -1078,7 +1056,7 @@ msgstr "revisor"
 
 #: ../tools/database/item_menu.txt:163
 msgid "postal code, could be integrated"
-msgstr "código postal, podría ser integrado"
+msgstr "código postal, podría integrarse"
 
 #: ../tools/database/item_menu.txt:164
 msgid "library"
@@ -1181,7 +1159,7 @@ msgstr "borrar problema"
 
 #: tmp.tpl:99
 msgid "issue n°"
-msgstr "problema n°"
+msgstr "problema nº"
 
 #: tmp.tpl:100
 #, python-format
@@ -1194,20 +1172,19 @@ msgstr "Mapa de problemas"
 
 #: tmp.tpl:108
 msgid "Information on issues database"
-msgstr "Información de la base de datos de problemas"
+msgstr "Información sobre problemas en la base de datos"
 
-#: tmp.tpl:138 tmp.tpl:139 tmp.tpl:140
 #, python-format
 msgid "Level %d issues (%d)"
 msgstr "Problemas nivel %d (%d)"
 
 #: tmp.tpl:152
 msgid "Issue reported on: "
-msgstr "Problema reportado en:"
+msgstr "Problema informado el:"
 
 #: tmp.tpl:167
 msgid "Documentation on reported issues"
-msgstr "Documentación sobre problemas reportados"
+msgstr "Documentación sobre problemas informados"
 
 #: tmp.tpl:51
 msgid "version"
@@ -1223,7 +1200,7 @@ msgstr "buzón de correo"
 
 #: ../tools/database/item_menu.txt:126
 msgid "post box, could be integrated"
-msgstr "buzón de correo, podría ser integrado"
+msgstr "buzón de correo, podría integrarse"
 
 #: ../tools/database/item_menu.txt:39
 msgid "indoor"
@@ -1257,13 +1234,13 @@ msgid ""
 " href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> "
 "for issues on the reported issues on OSM data, or for suggestion about "
 "analyses."
-msgstr "Los deben ser reportados en <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> para problemas relacionados al sitio web, o en <a href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> para problemas relacionados a los datos OSM, o para sugerir análisis."
+msgstr "Los problemas deben ser informados en <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> para problemas relacionados al sitio web, o en <a href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> para problemas relacionados a los datos OSM, o para sugerir análisis."
 
 #: tmp.tpl:172
 msgid ""
 "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
 "frontend</a> can be used to report any issue with translations."
-msgstr "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> puede ser usado para reportar cualquier problema con las traducciones."
+msgstr "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> puede ser usado para informar cualquier problema con las traducciones."
 
 #: ../tools/database/item_menu.txt:23
 msgid "far from water"
@@ -1339,7 +1316,7 @@ msgstr "caracter inválido"
 
 #: ../tools/database/item_menu.txt:160
 msgid "gas station, could be integrated"
-msgstr "gasolinera, podría ser integrado"
+msgstr "gasolinera, podría integrarse"
 
 #: ../tools/database/item_menu.txt:118 ../tools/database/item_menu.txt:168
 msgid "power substation"
@@ -1347,7 +1324,7 @@ msgstr "subestación de energía"
 
 #: ../tools/database/item_menu.txt:169
 msgid "power substation, could be integrated"
-msgstr "subestación de energía, podría ser integrado"
+msgstr "subestación de energía, podría integrarse"
 
 #: ../tools/database/item_menu.txt:170
 msgid "power support"
@@ -1355,7 +1332,7 @@ msgstr "soporte de energía"
 
 #: ../tools/database/item_menu.txt:171
 msgid "power support, could be integrated"
-msgstr "soporte de energía, podría ser integrado"
+msgstr "soporte de energía, podría integrarse"
 
 #: ../tools/database/item_menu.txt:28
 msgid "almost junction"
@@ -1377,9 +1354,6 @@ msgstr "wikipedia duplicado"
 msgid "route access mismatch"
 msgstr "acceso de ruta no coincide"
 
-msgid "traffc signs"
-msgstr "señales de tráfico"
-
 #: ../tools/database/item_menu.txt:91
 msgid "similar name"
 msgstr "nombre similar"
@@ -1399,3 +1373,42 @@ msgstr "señales de tráfico"
 #: ../tools/database/item_menu.txt:173
 msgid "traffic sign limitation"
 msgstr "limitación de señales de tráfico"
+
+#: tmp.tpl:118
+msgid "High"
+msgstr ""
+
+#: tmp.tpl:119
+msgid "Normal or higher"
+msgstr ""
+
+#: tmp.tpl:120
+msgid "All"
+msgstr ""
+
+#: tmp.tpl:121
+msgid "Normal only"
+msgstr ""
+
+#: tmp.tpl:122
+msgid "Low only"
+msgstr ""
+
+#: tmp.tpl:33
+#, python-brace-format
+msgid ""
+"We can be contacted through a direct email to <a "
+"href='mailto:{email}'>{email}</a>."
+msgstr ""
+
+#: tmp.tpl:138 tmp.tpl:139 tmp.tpl:140
+#, python-brace-format
+msgid "Level {level} issues ({count})"
+msgstr ""
+
+#: tmp.tpl:170
+#, python-brace-format
+msgid ""
+"For new countries, we can be contacted through a direct email to <a "
+"href='mailto:{email}'>{email}</a>."
+msgstr ""

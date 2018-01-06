@@ -8,6 +8,7 @@
 # frodrigo <fred.rodrigo@gmail.com>, 2014-2017
 # frodrigo <fred.rodrigo@gmail.com>, 2014
 #  <frodrigo@openstreetmap.fr>, 2012
+# Gautier Pelloux <gautier.pelloux@gmail.com>, 2018
 # George Kaplan <georgekaplanosm@hotmail.fr>, 2015
 # Gérald Schwartzmann <gschwartzmann@cadoles.com>, 2016
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2014-2015
@@ -18,7 +19,7 @@
 # Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2012,2014
 # operon, 2014
 #  operon, 2012
-# operon, 2015
+# operon, 2015,2017
 # operon, 2014
 # Adrien Pavie <panieravide@riseup.net>, 2015
 # Philippe Verdy, 2017
@@ -33,7 +34,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2017-11-09 20:38+0000\n"
+"PO-Revision-Date: 2018-01-06 18:49+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -170,7 +171,6 @@ msgstr "Le développement d'Osmose est effectué avec des  logiciels libres <a h
 msgid "Contacting maintainers"
 msgstr "Contacter les développeurs"
 
-#: tmp.tpl:33
 #, python-format
 msgid ""
 "We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
@@ -353,29 +353,9 @@ msgstr "pas de bulle à ce zoom"
 msgid "Severity"
 msgstr "Gravité"
 
-#: tmp.tpl:118
-msgid "1 only"
-msgstr "1 seulement"
-
-#: tmp.tpl:119
-msgid "1+2 only"
-msgstr "1+2 seulement"
-
-#: tmp.tpl:120
-msgid "all severity"
-msgstr "tous"
-
-#: tmp.tpl:121
-msgid "2 only"
-msgstr "2 seulement"
-
-#: tmp.tpl:122
-msgid "3 only"
-msgstr "3 seulement"
-
 #: tmp.tpl:123
 msgid "Fixable"
-msgstr "Avec fix"
+msgstr "Avec correction"
 
 #: tmp.tpl:124
 msgid "Show only markers with correction suggestions"
@@ -991,7 +971,6 @@ msgstr "Progression de la traduction : Osmose"
 msgid "For new language or countries"
 msgstr "Pour de nouvelles langues ou pays"
 
-#: tmp.tpl:170
 #, python-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
@@ -1219,10 +1198,9 @@ msgstr "Carte des signalements"
 msgid "Information on issues database"
 msgstr "Information sur la base de données des signalements"
 
-#: tmp.tpl:138 tmp.tpl:139 tmp.tpl:140
 #, python-format
 msgid "Level %d issues (%d)"
-msgstr "Signalements de gravité %d (%d)"
+msgstr "Signalements d'importance%d (%d)"
 
 #: tmp.tpl:152
 msgid "Issue reported on: "
@@ -1362,7 +1340,7 @@ msgstr "Caractère non valide"
 
 #: ../tools/database/item_menu.txt:160
 msgid "gas station, could be integrated"
-msgstr "Station service, intégration possible"
+msgstr "Station-service, intégration possible"
 
 #: ../tools/database/item_menu.txt:118 ../tools/database/item_menu.txt:168
 msgid "power substation"
@@ -1400,25 +1378,61 @@ msgstr "Wikipédia en doublon"
 msgid "route access mismatch"
 msgstr "Accès à la route qui ne correspond pas"
 
-msgid "traffc signs"
-msgstr ""
-
 #: ../tools/database/item_menu.txt:91
 msgid "similar name"
-msgstr ""
+msgstr "Nom similaire"
 
 #: ../tools/database/item_menu.txt:159
 msgid "gas station, need update"
-msgstr ""
+msgstr "Station-service, à mettre à jour"
 
 #: ../tools/database/item_menu.txt:55
 msgid "phone number"
-msgstr ""
+msgstr "Numéro de téléphone"
 
 #: ../tools/database/item_menu.txt:172
 msgid "traffic signs"
-msgstr ""
+msgstr "Panneaux de signalisation"
 
 #: ../tools/database/item_menu.txt:173
 msgid "traffic sign limitation"
+msgstr "Panneaux de signalisation : limitation"
+
+#: tmp.tpl:118
+msgid "High"
+msgstr ""
+
+#: tmp.tpl:119
+msgid "Normal or higher"
+msgstr ""
+
+#: tmp.tpl:120
+msgid "All"
+msgstr ""
+
+#: tmp.tpl:121
+msgid "Normal only"
+msgstr ""
+
+#: tmp.tpl:122
+msgid "Low only"
+msgstr ""
+
+#: tmp.tpl:33
+#, python-brace-format
+msgid ""
+"We can be contacted through a direct email to <a "
+"href='mailto:{email}'>{email}</a>."
+msgstr ""
+
+#: tmp.tpl:138 tmp.tpl:139 tmp.tpl:140
+#, python-brace-format
+msgid "Level {level} issues ({count})"
+msgstr ""
+
+#: tmp.tpl:170
+#, python-brace-format
+msgid ""
+"For new countries, we can be contacted through a direct email to <a "
+"href='mailto:{email}'>{email}</a>."
 msgstr ""

@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2017-11-09 20:38+0000\n"
+"PO-Revision-Date: 2018-01-06 18:49+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Greek (http://www.transifex.com/openstreetmap-france/osmose/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -147,7 +147,6 @@ msgstr "Η ανάπτυξη του Osmose γίνεται ως ελεύθερο �
 msgid "Contacting maintainers"
 msgstr ""
 
-#: tmp.tpl:33
 #, python-format
 msgid ""
 "We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
@@ -329,26 +328,6 @@ msgstr ""
 #: tmp.tpl:117
 msgid "Severity"
 msgstr "Σοβαρότητα"
-
-#: tmp.tpl:118
-msgid "1 only"
-msgstr "1 μόνο"
-
-#: tmp.tpl:119
-msgid "1+2 only"
-msgstr "1+2 μόνο"
-
-#: tmp.tpl:120
-msgid "all severity"
-msgstr ""
-
-#: tmp.tpl:121
-msgid "2 only"
-msgstr "2 μόνο"
-
-#: tmp.tpl:122
-msgid "3 only"
-msgstr "3 μόνο"
 
 #: tmp.tpl:123
 msgid "Fixable"
@@ -968,7 +947,6 @@ msgstr "Πρόοδος μετάφρασης: osmose"
 msgid "For new language or countries"
 msgstr "Για νέα γλώσσα ή χώρες"
 
-#: tmp.tpl:170
 #, python-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
@@ -1196,7 +1174,6 @@ msgstr ""
 msgid "Information on issues database"
 msgstr ""
 
-#: tmp.tpl:138 tmp.tpl:139 tmp.tpl:140
 #, python-format
 msgid "Level %d issues (%d)"
 msgstr ""
@@ -1377,9 +1354,6 @@ msgstr ""
 msgid "route access mismatch"
 msgstr ""
 
-msgid "traffc signs"
-msgstr ""
-
 #: ../tools/database/item_menu.txt:91
 msgid "similar name"
 msgstr ""
@@ -1398,4 +1372,43 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:173
 msgid "traffic sign limitation"
+msgstr ""
+
+#: tmp.tpl:118
+msgid "High"
+msgstr ""
+
+#: tmp.tpl:119
+msgid "Normal or higher"
+msgstr ""
+
+#: tmp.tpl:120
+msgid "All"
+msgstr ""
+
+#: tmp.tpl:121
+msgid "Normal only"
+msgstr ""
+
+#: tmp.tpl:122
+msgid "Low only"
+msgstr ""
+
+#: tmp.tpl:33
+#, python-brace-format
+msgid ""
+"We can be contacted through a direct email to <a "
+"href='mailto:{email}'>{email}</a>."
+msgstr ""
+
+#: tmp.tpl:138 tmp.tpl:139 tmp.tpl:140
+#, python-brace-format
+msgid "Level {level} issues ({count})"
+msgstr ""
+
+#: tmp.tpl:170
+#, python-brace-format
+msgid ""
+"For new countries, we can be contacted through a direct email to <a "
+"href='mailto:{email}'>{email}</a>."
 msgstr ""

@@ -325,21 +325,6 @@ msgstr ""
 msgid "Severity"
 msgstr ""
 
-msgid "1 only"
-msgstr ""
-
-msgid "1+2 only"
-msgstr ""
-
-msgid "all severity"
-msgstr ""
-
-msgid "2 only"
-msgstr ""
-
-msgid "3 only"
-msgstr ""
-
 #: tmp.tpl:123
 msgid "Fixable"
 msgstr ""
@@ -1363,9 +1348,6 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:70
 msgid "route access mismatch"
-msgstr ""
-
-msgid "traffc signs"
 msgstr ""
 
 #: ../tools/database/item_menu.txt:91

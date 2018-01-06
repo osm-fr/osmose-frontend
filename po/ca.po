@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2017-11-09 20:38+0000\n"
+"PO-Revision-Date: 2018-01-06 18:49+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Catalan (http://www.transifex.com/openstreetmap-france/osmose/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -149,7 +149,6 @@ msgstr "El desenvolupament de l'Osmose és fa com a programari lliure per <a hre
 msgid "Contacting maintainers"
 msgstr "Contacte amb els mantenidors"
 
-#: tmp.tpl:33
 #, python-format
 msgid ""
 "We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
@@ -331,26 +330,6 @@ msgstr "no hi ha diàlegs en aquesta escala de zoom"
 #: tmp.tpl:117
 msgid "Severity"
 msgstr "Grau"
-
-#: tmp.tpl:118
-msgid "1 only"
-msgstr "Només 1"
-
-#: tmp.tpl:119
-msgid "1+2 only"
-msgstr "Només 1 i 2"
-
-#: tmp.tpl:120
-msgid "all severity"
-msgstr "tots els graus"
-
-#: tmp.tpl:121
-msgid "2 only"
-msgstr "Només 2"
-
-#: tmp.tpl:122
-msgid "3 only"
-msgstr "Només 3"
 
 #: tmp.tpl:123
 msgid "Fixable"
@@ -970,7 +949,6 @@ msgstr "Progrés de la traducció: osmose"
 msgid "For new language or countries"
 msgstr "Per a llengües o països nous"
 
-#: tmp.tpl:170
 #, python-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
@@ -1198,7 +1176,6 @@ msgstr "Mapa de problemes"
 msgid "Information on issues database"
 msgstr "Informació de la base de dades de problemes"
 
-#: tmp.tpl:138 tmp.tpl:139 tmp.tpl:140
 #, python-format
 msgid "Level %d issues (%d)"
 msgstr "Problemes del nivell %d (%d)"
@@ -1379,9 +1356,6 @@ msgstr ""
 msgid "route access mismatch"
 msgstr ""
 
-msgid "traffc signs"
-msgstr ""
-
 #: ../tools/database/item_menu.txt:91
 msgid "similar name"
 msgstr ""
@@ -1400,4 +1374,43 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:173
 msgid "traffic sign limitation"
+msgstr ""
+
+#: tmp.tpl:118
+msgid "High"
+msgstr ""
+
+#: tmp.tpl:119
+msgid "Normal or higher"
+msgstr ""
+
+#: tmp.tpl:120
+msgid "All"
+msgstr ""
+
+#: tmp.tpl:121
+msgid "Normal only"
+msgstr ""
+
+#: tmp.tpl:122
+msgid "Low only"
+msgstr ""
+
+#: tmp.tpl:33
+#, python-brace-format
+msgid ""
+"We can be contacted through a direct email to <a "
+"href='mailto:{email}'>{email}</a>."
+msgstr ""
+
+#: tmp.tpl:138 tmp.tpl:139 tmp.tpl:140
+#, python-brace-format
+msgid "Level {level} issues ({count})"
+msgstr ""
+
+#: tmp.tpl:170
+#, python-brace-format
+msgid ""
+"For new countries, we can be contacted through a direct email to <a "
+"href='mailto:{email}'>{email}</a>."
 msgstr ""
