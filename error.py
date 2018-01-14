@@ -235,7 +235,7 @@ def error(db, lang, err_id):
 @route('/api/0.2/error/<err_id:int>/<status:re:(done|false)>')
 def status(err_id, status):
     if osmose_common.remove_bug(err_id, status) == 0:
-        abort(200, "OK")
+        return
     else:
         abort(410, "FAIL")
 
