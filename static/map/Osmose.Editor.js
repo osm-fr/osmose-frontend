@@ -41,7 +41,7 @@ export var OsmoseEditor = L.Control.Sidebar.extend({
           var dialog_content = self.saveDialog.html(),
             comment = document.forms.editor_save_form.elements.comment.value,
             source = document.forms.editor_save_form.elements.source.value,
-            type = document.forms.editor_save_form.elements.type.value
+            type = document.forms.editor_save_form.elements.type.value,
             reuse_changeset = document.forms.editor_save_form.elements.reuse_changeset.checked;
           self.saveDialog.html("<center><img src='../images/throbbler.gif' alt='downloading'></center>");
           self.saveDialog.parent().find('.ui-dialog-buttonpane').hide();
