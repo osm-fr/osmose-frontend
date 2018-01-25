@@ -51,7 +51,8 @@ RUN apt remove -y --auto-remove \
 # Postgres
 
 RUN apt install -y --no-install-recommends \
-        postgresql postgresql-contrib
+        postgresql postgresql-contrib \
+        bzip2
 # postgresql-9.5-postgis-2.2
 
 USER postgres
@@ -61,7 +62,12 @@ RUN /etc/init.d/postgresql start && \
     createdb -E UTF8 -T template0 -O osmose osmose_frontend && \
     psql -c "CREATE extension hstore" osmose_frontend && \
     cd /data/project/osmose/frontend && \
-    PGPASSWORD='-osmose-' psql -f tools/database/schema.sql -h localhost osmose_frontend osmose
+    PGPASSWORD='-osmose-' psql -f tools/database/schema.sql -h localhost osmose_frontend osmose && \
+    curl http://osmose.openstreetmap.fr/export/osmose-menu.sql.bz2 | bzcat | PGPASSWORD='-osmose-' psql -h localhost osmose_frontend osmose
+
+USER root
+RUN apt remove -y --auto-remove \
+    bzip2
 
 
 # Apache
