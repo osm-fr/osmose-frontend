@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2018-01-22 20:59+0000\n"
+"PO-Revision-Date: 2018-01-26 07:08+0000\n"
 "Last-Translator: Ігор Варварчук <varvar1@bigmir.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -135,7 +135,7 @@ msgstr "Надані латки"
 msgid ""
 "Patches can be provided via merge requests on Github. This is the preferred "
 "way of handling patches."
-msgstr "Латки можна надавати через запити об'єднань (merge request) на Github. Це найкращий спосіб поводження з латками."
+msgstr "Латки можна надавати через запити об'єднань (merge request) на Github. Це найкращий спосіб обробки латок."
 
 #: tmp.tpl:28
 msgid "Development"
@@ -167,7 +167,7 @@ msgstr "Середня затримка:"
 #: tmp.tpl:41 tmp.tpl:48 tmp.tpl:75 tmp.tpl:85
 #: ../tools/database/item_menu.txt:32
 msgid "source"
-msgstr "джерело"
+msgstr "source"
 
 #: tmp.tpl:44
 msgid "last generation"
@@ -219,7 +219,7 @@ msgstr "ключ"
 
 #: tmp.tpl:60 tmp.tpl:63 tmp.tpl:66 tmp.tpl:103
 msgid "value"
-msgstr "значення"
+msgstr "value"
 
 #: tmp.tpl:61 tmp.tpl:104
 msgid "Marker"
@@ -248,12 +248,12 @@ msgstr "Мапа"
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
 #: tmp.tpl:74
 msgid "Set"
-msgstr "Набір"
+msgstr "Сформувати"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
 #: tmp.tpl:79 tmp.tpl:90
 msgid "class (abbreviation)"
-msgstr "клас (абревіатура)"
+msgstr "кл."
 
 #: tmp.tpl:77 tmp.tpl:88
 msgid "item"
@@ -274,7 +274,7 @@ msgstr "Всього"
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: tmp.tpl:92
 msgid "subclass (abbreviation)"
-msgstr "підк"
+msgstr "п/кл."
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: tmp.tpl:87
@@ -283,7 +283,7 @@ msgstr "р"
 
 #: tmp.tpl:94
 msgid "position (abbreviation)"
-msgstr "пол"
+msgstr "позиція"
 
 #: tmp.tpl:95
 msgid "elements (abbreviation)"
@@ -311,7 +311,7 @@ msgstr "Список помилкових спрацьовувань"
 
 #: tmp.tpl:110
 msgid "Last analysis updates"
-msgstr "Останні оновленні перевірки"
+msgstr "Останні оновлення аналізу"
 
 #: tmp.tpl:111
 msgid "Tags Editor"
@@ -477,7 +477,7 @@ msgstr "Відсутні теґи"
 
 #: ../tools/database/categ_menu.txt:3
 msgid "Bad tag"
-msgstr "Невірний теґ"
+msgstr "Помилковий теґ"
 
 #: ../tools/database/categ_menu.txt:4
 msgid "Tags to remove"
@@ -485,7 +485,7 @@ msgstr "Теґи до вилучення"
 
 #: ../tools/database/categ_menu.txt:5
 msgid "Tags name"
-msgstr "Теґи name"
+msgstr "Імена теґів"
 
 #: ../tools/database/categ_menu.txt:6
 msgid "Administrative"
@@ -513,11 +513,11 @@ msgstr "лінія з одної точки"
 
 #: ../tools/database/item_menu.txt:5
 msgid "invalid polygon"
-msgstr "невірний полігон"
+msgstr "недійсний полігон"
 
 #: ../tools/database/item_menu.txt:6
 msgid "reverse roundabout"
-msgstr "зворотний рух колом"
+msgstr "зворотній рух колом"
 
 #: ../tools/database/item_menu.txt:7
 msgid "boundary intersect"
@@ -533,7 +533,7 @@ msgstr "поодинокі точки"
 
 #: ../tools/database/item_menu.txt:10
 msgid "sudden highway type change"
-msgstr "неочікувана зміна типу highway=*"
+msgstr "раптова зміна типу highway=*"
 
 #: ../tools/database/item_menu.txt:11
 msgid "unclosed area"
@@ -541,7 +541,7 @@ msgstr "незамкнена ділянка"
 
 #: ../tools/database/item_menu.txt:12
 msgid "bad *_link highway"
-msgstr "помилковий тип *_link для дороги"
+msgstr "помилковий *_link шляху"
 
 #: ../tools/database/item_menu.txt:13
 msgid "broken highway continuity"
@@ -561,7 +561,7 @@ msgstr "завеликий зв'язок"
 
 #: ../tools/database/item_menu.txt:17
 msgid "multipolygon"
-msgstr "мультиполігон"
+msgstr "multipolygon"
 
 #: ../tools/database/item_menu.txt:18
 msgid "double cycleway"
@@ -573,7 +573,7 @@ msgstr "нескруглений шлях"
 
 #: ../tools/database/item_menu.txt:20
 msgid "1-member relation"
-msgstr "зв'язок з єдиним членом"
+msgstr "зв'язок з 1-м членом"
 
 #: ../tools/database/item_menu.txt:21
 msgid "not-connected highway/cycleway"
@@ -581,7 +581,7 @@ msgstr "нез'єднаний вело/шлях"
 
 #: ../tools/database/item_menu.txt:22
 msgid "waterway"
-msgstr "водний шлях"
+msgstr "waterway"
 
 #: ../tools/database/item_menu.txt:24
 msgid "duplicate geometry"
@@ -609,7 +609,7 @@ msgstr "номери вулиць"
 
 #: ../tools/database/item_menu.txt:35
 msgid "highway"
-msgstr "шлях"
+msgstr "highway"
 
 #: ../tools/database/item_menu.txt:36
 msgid "highway crossing"
@@ -625,7 +625,7 @@ msgstr "круговий рух"
 
 #: ../tools/database/item_menu.txt:43
 msgid "bad source tag"
-msgstr "невірний теґ джерела"
+msgstr "помилковий теґ джерела"
 
 #: ../tools/database/item_menu.txt:44
 msgid "tagwatch cleaner"
@@ -633,7 +633,7 @@ msgstr "очищувач теґів"
 
 #: ../tools/database/item_menu.txt:45
 msgid "wikipedia"
-msgstr "вікіпедія"
+msgstr "wikipedia"
 
 #: ../tools/database/item_menu.txt:46
 msgid "multiple tags"
@@ -649,7 +649,7 @@ msgstr "невірний теґ"
 
 #: ../tools/database/item_menu.txt:49
 msgid "bad tag key"
-msgstr "поганий ключ теґа"
+msgstr "помилковий ключ теґа"
 
 #: ../tools/database/item_menu.txt:50
 msgid "similar values"
@@ -677,7 +677,7 @@ msgstr "нотатка"
 
 #: ../tools/database/item_menu.txt:58
 msgid "tree"
-msgstr "дерево"
+msgstr "tree"
 
 #: ../tools/database/item_menu.txt:59
 msgid "brand in name"
@@ -693,7 +693,7 @@ msgstr "невірний теґ"
 
 #: ../tools/database/item_menu.txt:62
 msgid "parking lane"
-msgstr "проїзд паркінґу"
+msgstr "проїзд по паркінґу"
 
 #: ../tools/database/item_menu.txt:63
 msgid "relation role"
@@ -705,7 +705,7 @@ msgstr "зв'язок type=restriction"
 
 #: ../tools/database/item_menu.txt:65
 msgid "postcode"
-msgstr "індекс"
+msgstr "postcode"
 
 #: ../tools/database/item_menu.txt:71
 msgid "disused"
@@ -737,7 +737,7 @@ msgstr "небажаний теґ на точці"
 
 #: ../tools/database/item_menu.txt:80
 msgid "bad usage"
-msgstr "погане застосування"
+msgstr "помилкове застосування"
 
 #: ../tools/database/item_menu.txt:84
 msgid "orthograph"
@@ -809,11 +809,11 @@ msgstr "електромережі"
 
 #: ../tools/database/item_menu.txt:104 ../tools/database/item_menu.txt:122
 msgid "post office"
-msgstr "поштове відділення"
+msgstr "відділення зв'язку"
 
 #: ../tools/database/item_menu.txt:106
 msgid "ODbL migration change"
-msgstr "Зміна міґрації ODbL"
+msgstr "зміна міґрації ODbL"
 
 #: ../tools/database/item_menu.txt:107
 msgid "school, not integrated"
@@ -849,11 +849,11 @@ msgstr "монумент, музей"
 
 #: ../tools/database/item_menu.txt:120
 msgid "monument, museum, could be integrated"
-msgstr "монумент, музей, може бути інтеґрований"
+msgstr "монумент, музей, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:123
 msgid "post office, could be integrated"
-msgstr "відділення зв'язку, може бути інтеґроване"
+msgstr "відділення зв'язку, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:127
 msgid "school"
@@ -861,19 +861,19 @@ msgstr "школа"
 
 #: ../tools/database/item_menu.txt:128
 msgid "school, could be integrated"
-msgstr "школа, може бути інтеґрована"
+msgstr "школа, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:27 ../tools/database/item_menu.txt:130
 msgid "public transport"
-msgstr "громадський транспорт"
+msgstr "public transport"
 
 #: ../tools/database/item_menu.txt:131
 msgid "public transport, could be integrated"
-msgstr "громадський транспорт, може бути інтеґрований"
+msgstr "громадський транспорт, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:134
 msgid "train station, could be integrated"
-msgstr "залізнична станція, може бути інтеґрована"
+msgstr "залізнична станція, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:135
 msgid "level crossing"
@@ -889,27 +889,27 @@ msgstr "поштова адреса"
 
 #: ../tools/database/item_menu.txt:138
 msgid "wikipedia, could be integrated"
-msgstr "вікіпедія, може бути інтеґрована"
+msgstr "вікіпедія, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:139
 msgid "public service"
-msgstr "державна служба, може бути інтеґрована"
+msgstr "державна служба, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:140
 msgid "recycling"
-msgstr "вторинна переробка"
+msgstr "recycling"
 
 #: ../tools/database/item_menu.txt:141
 msgid "recycling, could be integrated"
-msgstr "вторинна переробка, може бути інтеґрована"
+msgstr "вторпереробка, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:143
 msgid "parking"
-msgstr "паркінґ"
+msgstr "parking"
 
 #: ../tools/database/item_menu.txt:144
 msgid "parking, could be integrated"
-msgstr "паркінґ, може бути інтеґрований"
+msgstr "паркінґ, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:146
 msgid "accommodation"
@@ -917,7 +917,7 @@ msgstr "житло"
 
 #: ../tools/database/item_menu.txt:147
 msgid "accommodation, could be integrated"
-msgstr "accommodation, може бути інтеґроване"
+msgstr "accommodation, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:148
 msgid "cycle parking"
@@ -925,7 +925,7 @@ msgstr "велопаркінґ"
 
 #: ../tools/database/item_menu.txt:149
 msgid "cycle parking, could be integrated"
-msgstr "велопаркінґ, може бути інтеґрований"
+msgstr "велопаркінґ, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:150
 msgid "transport sharing"
@@ -933,15 +933,15 @@ msgstr "прокат транспорту"
 
 #: ../tools/database/item_menu.txt:151
 msgid "transport sharing, could be integrated"
-msgstr "прокат транспорту, може бути інтеґрований"
+msgstr "прокат транспорту, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:153
 msgid "sport"
-msgstr "спорт"
+msgstr "sport"
 
 #: ../tools/database/item_menu.txt:154
 msgid "sport, could be integrated"
-msgstr "спорт, може бути інтеґрований"
+msgstr "спорт, може інтеґруватися"
 
 #: tmp.tpl:164
 msgid "Translation progress: osmose"
@@ -998,7 +998,7 @@ msgstr "поліція"
 
 #: ../tools/database/item_menu.txt:157
 msgid "police, could be integrated"
-msgstr "поліція, може бути інтеґрований"
+msgstr "поліція, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:115
 msgid "pharmacy, not integrated "
@@ -1006,7 +1006,7 @@ msgstr "аптека, неінтеґрований"
 
 #: ../tools/database/item_menu.txt:162
 msgid "pharmacy, could be integrated"
-msgstr "аптека, може бути інтеґрований"
+msgstr "аптека, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:158
 msgid "gas station"
@@ -1060,7 +1060,7 @@ msgstr "аналізатор"
 
 #: ../tools/database/item_menu.txt:163
 msgid "postal code, could be integrated"
-msgstr "індекс, може бути інтеґрований"
+msgstr "поштовий індекс, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:164
 msgid "library"
@@ -1080,7 +1080,7 @@ msgstr "відсутний опис об'єкту"
 
 #: ../tools/database/item_menu.txt:116
 msgid "postal code, not integrated "
-msgstr "індекс, неінтеґрований"
+msgstr "поштовий індекс, неінтеґрований"
 
 #: ../tools/database/item_menu.txt:89
 msgid "local language"
@@ -1115,7 +1115,7 @@ msgstr "Проблем знайдено: %d"
 #: tmp.tpl:7 tmp.tpl:16
 #, python-format
 msgid "Number of found issues: more than %d"
-msgstr "Кількість знайдених значень: більше за %d"
+msgstr "Кількість знайдених значень: більше %d"
 
 #: tmp.tpl:13
 #, python-format
@@ -1204,11 +1204,11 @@ msgstr "поштова скринька"
 
 #: ../tools/database/item_menu.txt:126
 msgid "post box, could be integrated"
-msgstr "поштова скринька, може бути інтеґрована"
+msgstr "поштова скринька, інтеґруватися"
 
 #: ../tools/database/item_menu.txt:39
 msgid "indoor"
-msgstr "в приміщенні"
+msgstr "indoor"
 
 #: ../tools/database/item_menu.txt:82
 msgid "roundabout as area"
@@ -1216,7 +1216,7 @@ msgstr "рух колом як зона"
 
 #: ../tools/database/item_menu.txt:117
 msgid "road"
-msgstr "шлях"
+msgstr "дорога"
 
 #: ../tools/database/item_menu.txt:2
 msgid "split building"
@@ -1308,7 +1308,7 @@ msgstr "Версія"
 
 #: ../tools/database/item_menu.txt:124
 msgid "post office, need update"
-msgstr "поштове відділення, слід оновити"
+msgstr "відділення зв'язку, слід оновити"
 
 #: tmp.tpl:76
 msgid "age"
@@ -1316,27 +1316,27 @@ msgstr "вік"
 
 #: ../tools/database/item_menu.txt:90
 msgid "invalid character"
-msgstr "невірний символ"
+msgstr "недійсний символ"
 
 #: ../tools/database/item_menu.txt:160
 msgid "gas station, could be integrated"
-msgstr "АЗС, може бути інтеґрована"
+msgstr "АЗС, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:118 ../tools/database/item_menu.txt:168
 msgid "power substation"
-msgstr "Електропідстанція"
+msgstr "електропідстанція"
 
 #: ../tools/database/item_menu.txt:169
 msgid "power substation, could be integrated"
-msgstr "Електропідстанція, може бути інтеґрована"
+msgstr "електропідстанція, може бути інтеґрована"
 
 #: ../tools/database/item_menu.txt:170
 msgid "power support"
-msgstr "Підтримка електромереж"
+msgstr "підтримка енергетики"
 
 #: ../tools/database/item_menu.txt:171
 msgid "power support, could be integrated"
-msgstr "Підтримка електромереж, може бути інтеґрована"
+msgstr "підтримка енергетики, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:28
 msgid "almost junction"
@@ -1344,11 +1344,11 @@ msgstr "майже з'єднання"
 
 #: ../tools/database/item_menu.txt:41
 msgid "public_transport route"
-msgstr "маршрут громадського транспорту"
+msgstr "public_transport route"
 
 #: ../tools/database/item_menu.txt:69
 msgid "recycling container"
-msgstr "контейнер вторинної переробки"
+msgstr "контейнер вторпереробки"
 
 #: ../tools/database/item_menu.txt:83
 msgid "duplicate wikipedia"
