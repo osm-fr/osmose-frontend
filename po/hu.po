@@ -6,7 +6,6 @@
 # Gábor Babos <gabor.babos@gmail.com>, 2017-2018
 # kla <kl-o@freemail.hu>, 2014-2015
 # nagy_balint <nagy_balint@freemail.hu>, 2014
-# nagy_balint <nagy_balint@freemail.hu>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"

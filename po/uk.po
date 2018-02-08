@@ -3,9 +3,8 @@
 # This file is distributed under the same license as the osmose-frontend package.
 # 
 # Translators:
-# Andrey Golovin, 2018
+# Andrey Golovin, 2014,2018
 # andygol, 2014
-# Andrey Golovin, 2014
 # frodrigo <fred.rodrigo@gmail.com>, 2017
 # Serhii Murza <jhellico@gmail.com>, 2018
 # Viktor <avatarsnk@gmail.com>, 2015

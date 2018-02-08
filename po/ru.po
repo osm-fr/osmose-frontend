@@ -4,10 +4,8 @@
 # 
 # Translators:
 # d1g <acroq3@gmail.com>, 2015
-# d1g <acroq3@gmail.com>, 2015
 # frodrigo <fred.rodrigo@gmail.com>, 2017
 # Jake Strine <jake.strine@gmail.com>, 2017
-# jekader <jekader@gmail.com>, 2014
 # jekader <jekader@gmail.com>, 2014
 # Nikolay Parukhin <parukhin@gmail.com>, 2014-2015
 # Semigradsky Dmitry <semigradskyd@gmail.com>, 2017

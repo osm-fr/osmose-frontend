@@ -3,21 +3,15 @@
 # This file is distributed under the same license as the osmose-frontend package.
 # 
 # Translators:
-# Christian Ostermann, 2015
-# Christian Ostermann, 2017
+# Christian Ostermann, 2015,2017
 # Ettore Atalan <atalanttore@googlemail.com>, 2014-2018
-# frodrigo <fred.rodrigo@gmail.com>, 2014
 # frodrigo <fred.rodrigo@gmail.com>, 2014
 # osmtools <osm@haraldhartmann.de>, 2017
 # Loo Nie <looniverse@gmail.com>, 2015
 # operon, 2012
-# operon, 2012
-# Sebastian, 2014
 # Sebastian, 2014,2017
 # simon04 <simon.legner@gmail.com>, 2014
-# simon04 <simon.legner@gmail.com>, 2014
 # Klumbumbus, 2015
-# sommerluk <sommerluk@gmail.com>, 2014
 # sommerluk <sommerluk@gmail.com>, 2014
 msgid ""
 msgstr ""

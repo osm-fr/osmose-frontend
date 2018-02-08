@@ -6,21 +6,13 @@
 # Baptiste Mille-Mathias <baptiste.millemathias@gmail.com>, 2017
 # Christian Quest <christian.quest@gmail.com>, 2015
 # frodrigo <fred.rodrigo@gmail.com>, 2014-2017
-# frodrigo <fred.rodrigo@gmail.com>, 2014
 #  <frodrigo@openstreetmap.fr>, 2012
 # Gautier Pelloux <gautier.pelloux@gmail.com>, 2018
 # George Kaplan <georgekaplanosm@hotmail.fr>, 2015
 # Gérald Schwartzmann <gschwartzmann@cadoles.com>, 2016
-# Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2014-2015
-# Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2016
-# Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2016
-# Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2012
+# Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2014-2016
 # Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2012,2014-2015
-# Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2012,2014
-# operon, 2014
-#  operon, 2012
-# operon, 2015,2017-2018
-# operon, 2014
+# operon, 2012,2014-2018
 # Adrien Pavie <panieravide@riseup.net>, 2015
 # Philippe Verdy, 2017
 # Pyrog <pyrog@laposte.net>, 2014
@@ -28,7 +20,6 @@
 # Sidjy <gross.c@gmail.com>, 2015
 # StephaneP <stephane.peneau@wanadoo.fr>, 2016
 # Sylvain Maillard <sylvain@ecologeek.net>, 2014
-# Philippe Verdy, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"

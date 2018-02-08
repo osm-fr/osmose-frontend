@@ -4,11 +4,9 @@
 # 
 # Translators:
 # frodrigo <fred.rodrigo@gmail.com>, 2014,2017
-# frodrigo <fred.rodrigo@gmail.com>, 2014
 # Giuseppe Pignataro (Fasbyte01) <rogepix@gmail.com>, 2017
 # Lorenzo Beltrami <lorenzo.beba@gmail.com>, 2014
 # idetao <marcxosm@gmail.com>, 2015
-# operon, 2012
 # operon, 2012
 msgid ""
 msgstr ""
