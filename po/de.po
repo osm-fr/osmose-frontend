@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2018-02-10 18:04+0000\n"
+"PO-Revision-Date: 2018-02-10 20:09+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -617,7 +617,7 @@ msgstr "Übergeordnetes Tag"
 msgid "street numbers"
 msgstr "Hausnummern"
 
-#: ../tools/database/item_menu.txt:35
+#: ../tools/database/item_menu.txt:35 ../tools/database/item_menu.txt:179
 msgid "highway"
 msgstr "highway=..."
 
@@ -641,7 +641,7 @@ msgstr "ungeeigneter source-Tag"
 msgid "tagwatch cleaner"
 msgstr "Tagwatch-Bereinigung"
 
-#: ../tools/database/item_menu.txt:45
+#: ../tools/database/item_menu.txt:45 ../tools/database/item_menu.txt:186
 msgid "wikipedia"
 msgstr "Wikipedia"
 
@@ -1429,4 +1429,48 @@ msgstr ""
 
 #: ../tools/database/categ_menu.txt:9
 msgid "JOSM validator"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:174
+msgid "seamark"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:175
+msgid "addresses"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:176
+msgid "combinations"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:177
+msgid "deprecated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:178
+msgid "geometry"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:180
+msgid "multiple"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:181
+msgid "numeric"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:182
+msgid "relation"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:183
+msgid "religion"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:184
+msgid "territories"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:185
+msgid "unnecessary"
 msgstr ""
