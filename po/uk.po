@@ -7,6 +7,7 @@
 # andygol, 2014
 # Andrey Golovin, 2014
 # frodrigo <fred.rodrigo@gmail.com>, 2017
+# Serhii Murza <jhellico@gmail.com>, 2018
 # Viktor <avatarsnk@gmail.com>, 2015
 # Ігор Варварчук <varvar1@bigmir.net>, 2018
 msgid ""
@@ -14,8 +15,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2018-01-26 07:08+0000\n"
-"Last-Translator: Ігор Варварчук <varvar1@bigmir.net>\n"
+"PO-Revision-Date: 2018-02-01 16:34+0000\n"
+"Last-Translator: Serhii Murza <jhellico@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -167,7 +168,7 @@ msgstr "Середня затримка:"
 #: tmp.tpl:41 tmp.tpl:48 tmp.tpl:75 tmp.tpl:85
 #: ../tools/database/item_menu.txt:32
 msgid "source"
-msgstr "source"
+msgstr "джерело"
 
 #: tmp.tpl:44
 msgid "last generation"
@@ -219,7 +220,7 @@ msgstr "ключ"
 
 #: tmp.tpl:60 tmp.tpl:63 tmp.tpl:66 tmp.tpl:103
 msgid "value"
-msgstr "value"
+msgstr "значення"
 
 #: tmp.tpl:61 tmp.tpl:104
 msgid "Marker"
@@ -287,7 +288,7 @@ msgstr "позиція"
 
 #: tmp.tpl:95
 msgid "elements (abbreviation)"
-msgstr "еле"
+msgstr "елемент(и)"
 
 #: tmp.tpl:96
 msgid "subtitle"
@@ -327,7 +328,7 @@ msgstr "Вірно"
 
 #: tmp.tpl:116
 msgid "no bubbles at this zoom factor"
-msgstr "не показувати маркери у цьому масштабі"
+msgstr "у цьому масштабі маркери не відображаються"
 
 #: tmp.tpl:117
 msgid "Severity"
@@ -424,7 +425,7 @@ msgstr "виправлено"
 
 #: tmp.tpl:155
 msgid "false positive"
-msgstr "помилкове спрацьовуваня"
+msgstr "помилкове спрацьовування"
 
 #: tmp.tpl:156 tmp.tpl:157
 msgid "How to help translation"
@@ -445,7 +446,7 @@ msgstr "Для того, щоб зробити Osmose дійсно багато�
 
 #: tmp.tpl:161
 msgid "Pages to translate"
-msgstr "Сторінки, для перекладу"
+msgstr "Сторінки для перекладу"
 
 #: tmp.tpl:165
 msgid "Wiki pages"
@@ -453,11 +454,11 @@ msgstr "Сторінки Вікі"
 
 #: tmp.tpl:162
 msgid "Osmose pages"
-msgstr "Сторіники Osmose "
+msgstr "Сторінки Osmose "
 
 #: tmp.tpl:171
 msgid "Bug tracking system"
-msgstr "Система вісдтежування вад"
+msgstr "Система відстежування вад"
 
 #: tmp.tpl:30
 msgid ""
@@ -509,7 +510,7 @@ msgstr "дубльовані точки"
 
 #: ../tools/database/item_menu.txt:4
 msgid "way one node"
-msgstr "лінія з одної точки"
+msgstr "лінія з однієї точки"
 
 #: ../tools/database/item_menu.txt:5
 msgid "invalid polygon"
@@ -525,7 +526,7 @@ msgstr "перетин кордонів"
 
 #: ../tools/database/item_menu.txt:8
 msgid "objects overlap"
-msgstr "перетин об'єктів"
+msgstr "перетин об’єктів"
 
 #: ../tools/database/item_menu.txt:9
 msgid "orphan nodes"
@@ -557,11 +558,11 @@ msgstr "перетин поверхонь"
 
 #: ../tools/database/item_menu.txt:16
 msgid "big relation"
-msgstr "завеликий зв'язок"
+msgstr "завеликий зв’язок"
 
 #: ../tools/database/item_menu.txt:17
 msgid "multipolygon"
-msgstr "multipolygon"
+msgstr "мультиполігон"
 
 #: ../tools/database/item_menu.txt:18
 msgid "double cycleway"
@@ -573,15 +574,15 @@ msgstr "нескруглений шлях"
 
 #: ../tools/database/item_menu.txt:20
 msgid "1-member relation"
-msgstr "зв'язок з 1-м членом"
+msgstr "зв’язок з 1-м членом"
 
 #: ../tools/database/item_menu.txt:21
 msgid "not-connected highway/cycleway"
-msgstr "нез'єднаний вело/шлях"
+msgstr "нез’єднаний вело/шлях"
 
 #: ../tools/database/item_menu.txt:22
 msgid "waterway"
-msgstr "waterway"
+msgstr "водний шлях"
 
 #: ../tools/database/item_menu.txt:24
 msgid "duplicate geometry"
@@ -677,7 +678,7 @@ msgstr "нотатка"
 
 #: ../tools/database/item_menu.txt:58
 msgid "tree"
-msgstr "tree"
+msgstr "дерево"
 
 #: ../tools/database/item_menu.txt:59
 msgid "brand in name"
@@ -697,7 +698,7 @@ msgstr "проїзд по паркінґу"
 
 #: ../tools/database/item_menu.txt:63
 msgid "relation role"
-msgstr "роль у зв'язку"
+msgstr "роль у зв’язку"
 
 #: ../tools/database/item_menu.txt:64
 msgid "relation type=restriction"
@@ -705,7 +706,7 @@ msgstr "зв'язок type=restriction"
 
 #: ../tools/database/item_menu.txt:65
 msgid "postcode"
-msgstr "postcode"
+msgstr "поштовий індекс"
 
 #: ../tools/database/item_menu.txt:71
 msgid "disused"
@@ -729,7 +730,7 @@ msgstr "будівництво"
 
 #: ../tools/database/item_menu.txt:78
 msgid "duplicate object"
-msgstr "дублювання об'єкту"
+msgstr "дублювання об’єкту"
 
 #: ../tools/database/item_menu.txt:79
 msgid "unwanted tag on node"
@@ -741,7 +742,7 @@ msgstr "помилкове застосування"
 
 #: ../tools/database/item_menu.txt:84
 msgid "orthograph"
-msgstr "орфоргафія"
+msgstr "орфографія"
 
 #: ../tools/database/item_menu.txt:85
 msgid "way type"
@@ -809,7 +810,7 @@ msgstr "електромережі"
 
 #: ../tools/database/item_menu.txt:104 ../tools/database/item_menu.txt:122
 msgid "post office"
-msgstr "відділення зв'язку"
+msgstr "відділення зв’язку"
 
 #: ../tools/database/item_menu.txt:106
 msgid "ODbL migration change"
@@ -837,7 +838,7 @@ msgstr "TMC"
 
 #: ../tools/database/item_menu.txt:112
 msgid "relation type=boundary"
-msgstr "зв'язок type=boundary"
+msgstr "зв’язок type=boundary"
 
 #: ../tools/database/item_menu.txt:113
 msgid "tunnel/bridge"
@@ -853,7 +854,7 @@ msgstr "монумент, музей, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:123
 msgid "post office, could be integrated"
-msgstr "відділення зв'язку, може інтеґруватися"
+msgstr "відділення зв’язку, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:127
 msgid "school"
@@ -865,7 +866,7 @@ msgstr "школа, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:27 ../tools/database/item_menu.txt:130
 msgid "public transport"
-msgstr "public transport"
+msgstr "громадський транспорт"
 
 #: ../tools/database/item_menu.txt:131
 msgid "public transport, could be integrated"
@@ -937,7 +938,7 @@ msgstr "прокат транспорту, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:153
 msgid "sport"
-msgstr "sport"
+msgstr "спорт"
 
 #: ../tools/database/item_menu.txt:154
 msgid "sport, could be integrated"
@@ -1040,7 +1041,7 @@ msgstr "без виходу"
 msgid ""
 "Keep in touch by watching at <a "
 "href='https://twitter.com/osmose_qa'>@osmose_qa</a> on twitter."
-msgstr "Зв'яжіться, переглядаючи <a href='https://twitter.com/osmose_qa'>@osmose_qa</a> на Twitter."
+msgstr "Зв’яжіться, переглядаючи <a href='https://twitter.com/osmose_qa'>@osmose_qa</a> на Twitter."
 
 #: ../tools/database/item_menu.txt:81
 msgid "incorrect layer"
@@ -1076,7 +1077,7 @@ msgstr "виноробня"
 
 #: ../tools/database/item_menu.txt:38
 msgid "missing object kind"
-msgstr "відсутний опис об'єкту"
+msgstr "відсутний опис об’єкту"
 
 #: ../tools/database/item_menu.txt:116
 msgid "postal code, not integrated "
@@ -1138,7 +1139,7 @@ msgid ""
 " issues that are attached to your username. Note that the algorithm that "
 "attaches issues to username is not perfect, as Osmose only checks the last "
 "contributor of the relevant erroneous elements."
-msgstr "Ввівши своє ім'я користувача OSM у наступній формі, ви зможете побачити проблеми, які додаються до вашого імені користувача. Зауважте, що алгоритм, який прив'язує проблеми до імені користувача, не є ідеальним, оскільки Osmose перевіряє лише останнього картографа відповідних проблемних елементів."
+msgstr "Ввівши своє ім’я користувача OSM у наступній формі, ви зможете побачити проблеми, які додаються до вашого імені користувача. Зауважте, що алгоритм, який прив’язує проблеми до імені користувача, не є ідеальним, оскільки Osmose перевіряє лише останнього картографа відповідних проблемних елементів."
 
 #: tmp.tpl:58 tmp.tpl:101
 #, python-format
@@ -1204,7 +1205,7 @@ msgstr "поштова скринька"
 
 #: ../tools/database/item_menu.txt:126
 msgid "post box, could be integrated"
-msgstr "поштова скринька, інтеґруватися"
+msgstr "поштова скринька, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:39
 msgid "indoor"
@@ -1256,7 +1257,7 @@ msgstr "імпорт fixme"
 
 #: ../tools/database/item_menu.txt:26
 msgid "objects intersection"
-msgstr "перетин об'єктів"
+msgstr "перетин об’єктів"
 
 #: ../tools/database/item_menu.txt:40 ../tools/database/item_menu.txt:68
 msgid "access"
@@ -1308,7 +1309,7 @@ msgstr "Версія"
 
 #: ../tools/database/item_menu.txt:124
 msgid "post office, need update"
-msgstr "відділення зв'язку, слід оновити"
+msgstr "відділення зв’язку, слід оновити"
 
 #: tmp.tpl:76
 msgid "age"
@@ -1328,7 +1329,7 @@ msgstr "електропідстанція"
 
 #: ../tools/database/item_menu.txt:169
 msgid "power substation, could be integrated"
-msgstr "електропідстанція, може бути інтеґрована"
+msgstr "електропідстанція, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:170
 msgid "power support"
@@ -1376,15 +1377,15 @@ msgstr "дорожні знаки"
 
 #: ../tools/database/item_menu.txt:173
 msgid "traffic sign limitation"
-msgstr "обмежувальний дорожній знак"
+msgstr "дорожній знак обмеження"
 
 #: tmp.tpl:118
 msgid "High"
-msgstr "Високий"
+msgstr "Висока"
 
 #: tmp.tpl:119
 msgid "Normal or higher"
-msgstr "Нормальний або високий"
+msgstr "Звичайна або висока"
 
 #: tmp.tpl:120
 msgid "All"
@@ -1392,11 +1393,11 @@ msgstr "Усі"
 
 #: tmp.tpl:121
 msgid "Normal only"
-msgstr "Лише нормальний"
+msgstr "Лише звичайна"
 
 #: tmp.tpl:122
 msgid "Low only"
-msgstr "Лише низький"
+msgstr "Лише низька"
 
 #: tmp.tpl:33
 #, python-brace-format

@@ -1408,3 +1408,7 @@ msgid ""
 "For new countries, we can be contacted through a direct email to <a "
 "href='mailto:{email}'>{email}</a>."
 msgstr ""
+
+#: ../tools/database/categ_menu.txt:9
+msgid "JOSM validator"
+msgstr ""
