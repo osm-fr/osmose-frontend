@@ -17,6 +17,16 @@ div#menu div#action_links {
   font-size: 10px;
   text-align: center;
 }
+div#menu div#action_links > div {
+  margin-bottom: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+}
+div#menu div#action_links > div > label,
+div#menu div#action_links > div > div {
+  padding-right: 0px;
+  padding-left: 0px;
+}
 .leaflet-touch div#menu div#action_links {
   font-size: inherit;
 }
