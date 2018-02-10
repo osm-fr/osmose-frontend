@@ -6,3 +6,4 @@
     60 | _("Administrative")
     70 | _("To map")
     80 | _("Integration")
+    90 | _("JOSM validator")
