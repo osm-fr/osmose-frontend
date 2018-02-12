@@ -67,6 +67,9 @@ div#menu div.test_group li div.marker-l {
 .leaflet-touch div#menu div.test_group li {
   font-size: inherit;
 }
+div#menu div.test_group li input {
+  margin: 3px 3px 3px 4px;
+}
 div#menu div.test_group li:hover {
   background-color: #ffc;
 }
@@ -118,28 +121,6 @@ div.level-2.disabled {
 div.level-3.disabled {
   background: url('../images/levels.png') no-repeat;
   background-position:-32px -16px;
-}
-
-select#level option {
-  padding-left: 50px;
-  height: 16px;
-  background-repeat: no-repeat;
-  background-position: top left;
-}
-option.level-123 {
-  background: url('../images/level-123.png');
-}
-option.level-12_ {
-  background: url('../images/level-12_.png');
-}
-option.level-1__ {
-  background: url('../images/level-1__.png');
-}
-option.level-_2_ {
-  background: url('../images/level-_2_.png');
-}
-option.level-__3 {
-  background: url('../images/level-__3.png');
 }
 
 .leaflet-sidebar > #menu {
