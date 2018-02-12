@@ -1,3 +1,6 @@
+require('bootstrap');
+require('bootstrap/dist/css/bootstrap.css');
+
 require('./css/style.css');
 
 // err_delete.js

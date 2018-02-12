@@ -1,21 +1,21 @@
 %import re
-<table class="sortable">
-<thead>
+<table class="table table-striped table-bordered table-hover table-sm sortable">
+<thead class="thead-dark">
 <tr>
-    <th title="source">{{_("source")}}</th>
+    <th scope="col" title="source">{{_("source")}}</th>
 %# TRANSLATORS: this should be replaced by a abbreviation for subclass
-    <th title="level">{{_("level (abbreviation)")}}</th>
-    <th>{{_("item")}}</th>
+    <th scope="col" title="level">{{_("level (abbreviation)")}}</th>
+    <th scope="col">{{_("item")}}</th>
 %# TRANSLATORS: this should be replaced by a abbreviation for class
-    <th title="class">{{_("class (abbreviation)")}}</th>
+    <th scope="col" title="class">{{_("class (abbreviation)")}}</th>
 %# TRANSLATORS: this should be replaced by a abbreviation for subclass
-    <th title="subclass">{{_("subclass (abbreviation)")}}</th>
-    <th title="{{_("information on issue")}}">E</th>
-    <th title="{{_("position")}}">{{_("position (abbreviation)")}}</th>
-    <th>{{_("elements (abbreviation)")}}</th>
-    <th>{{_("subtitle")}}</th>
+    <th scope="col" title="subclass">{{_("subclass (abbreviation)")}}</th>
+    <th scope="col" title="{{_("information on issue")}}">E</th>
+    <th scope="col" title="{{_("position")}}">{{_("position (abbreviation)")}}</th>
+    <th scope="col">{{_("elements (abbreviation)")}}</th>
+    <th scope="col">{{_("subtitle")}}</th>
 %if opt_date != "-1":
-    <th>{{_("date")}}</th>
+    <th scope="col">{{_("date")}}</th>
 %end
 %if gen == "false-positive":
     <th title="{{_("delete issue")}}">X</th>

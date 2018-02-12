@@ -8,16 +8,23 @@
 %end
 %rss="http://"+website+"/errors.rss?%s" % query
 %rebase('layout.tpl', title=title, favicon=favicon, rss=rss)
-<a href=".?{{query}}">{{_("Informations")}}</a>
-<a href="done?{{query}}">{{_("Fixed")}}</a>
-<a href="false-positive?{{query}}">{{_("False positives")}}</a>
-<a href="graph.png?{{query}}">{{_("Graph")}}</a>
-<a href="../map/#{{query}}">{{_("Map")}}</a>
-<br><br>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #212529;">
+  <div class="collapse navbar-collapse">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href=".?{{query}}">{{_("Informations")}}</a>
+      <a class="nav-item nav-link active" href="done?{{query}}">{{_("Fixed")}}</a>
+      <a class="nav-item nav-link active" href="false-positive?{{query}}">{{_("False positives")}}</a>
+      <a class="nav-item nav-link active" href="graph.png?{{query}}">{{_("Graph")}}</a>
+      <a class="nav-item nav-link active" href="../map/#{{query}}">{{_("Map")}}</a>
+    </div>
+  </div>
+</nav>
+</br>
 
+<div class="form-inline col-md-12">
 <form method='get' action=''>
-
-<select name='country'>
+<div class="col-md-4" style="display:inline">
+<select class="form-control form-control-sm" name='country'>
     <option value=''></option>
 %for res in countries:
     <option\\
@@ -28,7 +35,8 @@
 %end
 </select>
 
-<select name='item'>
+<div class="col-md-4" style="display:inline">
+<select class="form-control form-control-sm" name='item'>
     <option value='xxxx'></option>
 %for res in items:
     <option\\
@@ -38,23 +46,28 @@
  value='{{res['item']}}'>{{res['item']}} - {{translate.select(res['menu'])}}</option>
 %end
 </select>
+</div>
 
+<div class="col-md-2" style="display:inline">
 %# TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
-<input type='submit' value='{{_("Set")}}'>
+<input type='submit' class='btn btn-outline-secondary btn-sm' value='{{_("Set")}}'>
+</div>
+</div>
 
 </form>
+</div>
 
-<table class="sortable" id ="table_source">
-<thead>
+<table class="table table-striped table-bordered table-hover table-sm sortable" id ="table_source">
+<thead class="thead-dark">
 <tr>
-    <th>#</th>
-    <th>{{_("source")}}</th>
-    <th>{{_("age")}}</th>
-    <th class="sorttable_sorted">{{_("item")}}<span id="sorttable_sortfwdindtable_source">&nbsp;▾</span></th>
+    <th scope="col">#</th>
+    <th scope="col">{{_("source")}}</th>
+    <th scope="col">{{_("age")}}</th>
+    <th scope="col" class="sorttable_sorted">{{_("item")}}<span id="sorttable_sortfwdindtable_source">&nbsp;▾</span></th>
 %# TRANSLATORS: this should be replaced by a abbreviation for class
-    <th title="class">{{_("class (abbreviation)")}}</th>
-    <th>{{_("title")}}</th>
-    <th>{{_("count")}}</th>
+    <th scope="col" title="class">{{_("class (abbreviation)")}}</th>
+    <th scope="col">{{_("title")}}</th>
+    <th scope="col">{{_("count")}}</th>
 </tr>
 </thead>
 <tbody>
@@ -81,7 +94,7 @@
 %end
 </tbody>
 %if total > 0:
-<tfoot>
+<tfoot class="thead-dark">
 <tr>
     <th colspan="6">{{_("Total")}}</th>
     <th style="text-align: left">{{total}}</th>

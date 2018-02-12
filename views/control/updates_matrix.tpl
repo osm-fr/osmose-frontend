@@ -10,7 +10,8 @@
 
 %end
 <div style="font-size:50%">
-<table>
+<table class="table table-striped table-bordered table-hover table-sm sortable">
+<thead>
 <tr>
     <th colspan="4" rowspan="4"/>
 %keys = sorted(keys, key=lambda k: -stats_country[k][2])
@@ -26,6 +27,8 @@
 %    end
 </tr>
 %end
+</thead>
+<tbody>
 %for r in sorted(matrix.keys(), key=lambda k: -stats_analyser[k][2]):
 <tr>
     <th style="text-align: left">{{r}}</th>
@@ -44,5 +47,6 @@
 %    end
 </tr>
 %end
+</tbody>
 </table>
 </div>

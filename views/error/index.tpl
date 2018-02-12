@@ -7,11 +7,11 @@
             </table>
 %end
 %def show_html_results(columns, res):
-<table class="sortable" id ="table_marker">
-<thead>
+<table class="table table-striped table-bordered table-hover table-sm sortable" id ="table_marker">
+<thead class="thead-dark">
 <tr>
-    <th>{{_("key")}}</th>
-    <th>{{_("value")}}</th>
+    <th scope="col">{{_("key")}}</th>
+    <th scope="col">{{_("value")}}</th>
 </tr>
 </thead>
 %    i = 0
@@ -33,11 +33,11 @@
 %end
 
 <h2>{{_("Marker")}}</h2>
-<table class="sortable" id ="table_marker">
-<thead>
+<table class="table table-striped table-bordered table-hover table-sm sortable" id ="table_marker">
+<thead class="thead-dark">
 <tr>
-    <th>{{_("key")}}</th>
-    <th>{{_("value")}}</th>
+    <th scope="col">{{_("key")}}</th>
+    <th scope="col">{{_("value")}}</th>
 </tr>
 </thead>
 <tr><td>source</td><td><a target="_blank" href="/errors/?item=xxxx&amp;source={{marker['source']}}">{{marker['source']}}<a></td></tr>
@@ -58,11 +58,11 @@
 
 <h2>{{_("Elements")}}</h2>
 %for element in elements:
-<table class="sortable" id ="table_marker">
-<thead>
+<table class="table table-striped table-bordered table-hover table-sm sortable" id ="table_marker">
+<thead class="thead-dark">
 <tr>
-    <th>{{_("key")}}</th>
-    <th>{{_("value")}}</th>
+    <th scope="col">{{_("key")}}</th>
+    <th scope="col">{{_("value")}}</th>
 </tr>
 </thead>
 <tr><td>elem_index</td><td>{{element['elem_index']}}</td></tr>
