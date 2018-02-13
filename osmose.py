@@ -19,7 +19,8 @@ assets.init_assets()
 
 @hook('before_request')
 def setup_request():
-    request.session = request.environ['beaker.session']
+    if request:
+        request.session = request.environ['beaker.session']
 
 for l in utils.allowed_languages:
     app.mount('/' + l, app)
