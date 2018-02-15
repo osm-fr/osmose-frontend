@@ -9,6 +9,9 @@
 %rss="http://"+website+"/errors.rss?%s" % query
 %rebase('layout.tpl', title=title, favicon=favicon, rss=rss)
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #212529;">
+  <span class="navbar-brand">
+    <img src="{{favicon}}">
+  </span>
   <div class="collapse navbar-collapse">
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href=".?{{query}}">{{_("Informations")}}</a>
@@ -23,37 +26,60 @@
 
 <div class="form-inline col-md-12">
 <form method='get' action=''>
-<div class="col-md-4" style="display:inline">
-<select class="form-control form-control-sm" name='country'>
-    <option value=''></option>
+<div class="form-row">
+  <div class="form-group col-md-3">
+    <label for='item'>{{_("Country")}}</label>
+  </div>
+  <div class="form-group col-md-3">
+    <label for='item'>{{_("Item")}}</label>
+  </div>
+  <div class="form-group col-md-3">
+    <label for='level'>{{_("Severity")}}</label>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-3">
+    <select class="form-control form-control-sm" name='country'>
+      <option value=''></option>
 %for res in countries:
-    <option\\
+      <option\\
 %    if country == res['country']:
  selected='selected'\\
 %    end
  value='{{res['country']}}'>{{res['country']}}</option>
 %end
-</select>
+    </select>
+  </div>
 
-<div class="col-md-4" style="display:inline">
-<select class="form-control form-control-sm" name='item'>
-    <option value='xxxx'></option>
+  <div class="form-group col-md-3">
+    <select class="form-control form-control-sm" name='item'>
+      <option value='xxxx'></option>
 %for res in items:
-    <option\\
+      <option\\
 %    if str(item) == str(res['item']):
  selected='selected'\\
 %    end
  value='{{res['item']}}'>{{res['item']}} - {{translate.select(res['menu'])}}</option>
 %end
-</select>
-</div>
+    </select>
+  </div>
 
-<div class="col-md-2" style="display:inline">
+  <div class="form-group col-md-3">
+    <select name='level' class='form-control form-control-sm'>
+      <option class="level-1__" value="1"{{" selected='selected'" if level == '1' else ""}}>{{_("High")}}</option>
+      <option class="level-12_" value="1,2"{{" selected='selected'" if level == '1,2' else ""}}>{{_("Normal or higher")}}</option>
+      <option class="level-123" value="1,2,3"{{" selected='selected'" if level == '1,2,3' else ""}}>{{_("All")}}</option>
+      <option disabled="disabled"></option>
+      <option class="level-_2_" value="2"{{" selected='selected'" if level == '2' else ""}}>{{_("Normal only")}}</option>
+      <option class="level-__3" value="3"{{" selected='selected'" if level == '3' else ""}}>{{_("Low only")}}</option>
+    </select>
+  </div>
+
+  <div class="form-group col-md-2">
 %# TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
-<input type='submit' class='btn btn-outline-secondary btn-sm' value='{{_("Set")}}'>
+    <input type='submit' class='btn btn-outline-secondary btn-sm' value='{{_("Set")}}'>
+  </div>
 </div>
-</div>
-
 </form>
 </div>
 
