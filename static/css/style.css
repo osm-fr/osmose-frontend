@@ -1,48 +1,5 @@
-table {
-  border-width: 1px;
-  border-style: solid;
-  border-collapse: collapse;
-}
 th {
-  color: black;
-  background-color: #999999;
-  font: bold;
   text-align: center;
-  border-width: 1px;
-  border-style: solid;
-  margin: 0px;
-  padding: 5px;
-}
-tr {
-  color: black;
-}
-tr:nth-child(even) {
-  background-color: #CCCCCC;
-}
-tr:nth-child(odd) {
-  background-color: #EEEEEE;
-}
-td {
-  border-width: 1px;
-  border-style: solid;
-  margin: 0px;
-  padding: 5px;
-}
-table a {
-  text-decoration: none;
-}
-
-a {
-  text-decoration: underline;
-}
-a:link {
-  color: #003388;
-}
-a:visited {
-  color: dark-purple;
-}
-a:hover {
-  color: blue;
 }
 
 /* iframe for josm and rawedit links */

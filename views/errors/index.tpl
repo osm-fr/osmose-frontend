@@ -8,53 +8,92 @@
 %end
 %rss="http://"+website+"/errors.rss?%s" % query
 %rebase('layout.tpl', title=title, favicon=favicon, rss=rss)
-<a href=".?{{query}}">{{_("Informations")}}</a>
-<a href="done?{{query}}">{{_("Fixed")}}</a>
-<a href="false-positive?{{query}}">{{_("False positives")}}</a>
-<a href="graph.png?{{query}}">{{_("Graph")}}</a>
-<a href="../map/#{{query}}">{{_("Map")}}</a>
-<br><br>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #212529;">
+  <span class="navbar-brand">
+    <img src="{{favicon}}">
+  </span>
+  <div class="collapse navbar-collapse">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href=".?{{query}}">{{_("Informations")}}</a>
+      <a class="nav-item nav-link active" href="done?{{query}}">{{_("Fixed")}}</a>
+      <a class="nav-item nav-link active" href="false-positive?{{query}}">{{_("False positives")}}</a>
+      <a class="nav-item nav-link active" href="graph.png?{{query}}">{{_("Graph")}}</a>
+      <a class="nav-item nav-link active" href="../map/#{{query}}">{{_("Map")}}</a>
+    </div>
+  </div>
+</nav>
+</br>
 
+<div class="form-inline col-md-12">
 <form method='get' action=''>
-
-<select name='country'>
-    <option value=''></option>
+<div class="form-row">
+  <div class="form-group col-md-3">
+    <label for='item'>{{_("Country")}}</label>
+  </div>
+  <div class="form-group col-md-3">
+    <label for='item'>{{_("Item")}}</label>
+  </div>
+  <div class="form-group col-md-3">
+    <label for='level'>{{_("Severity")}}</label>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-3">
+    <select class="form-control form-control-sm" name='country'>
+      <option value=''></option>
 %for res in countries:
-    <option\\
+      <option\\
 %    if country == res['country']:
  selected='selected'\\
 %    end
  value='{{res['country']}}'>{{res['country']}}</option>
 %end
-</select>
+    </select>
+  </div>
 
-<select name='item'>
-    <option value='xxxx'></option>
+  <div class="form-group col-md-3">
+    <select class="form-control form-control-sm" name='item'>
+      <option value='xxxx'></option>
 %for res in items:
-    <option\\
+      <option\\
 %    if str(item) == str(res['item']):
  selected='selected'\\
 %    end
  value='{{res['item']}}'>{{res['item']}} - {{translate.select(res['menu'])}}</option>
 %end
-</select>
+    </select>
+  </div>
 
+  <div class="form-group col-md-3">
+    <select name='level' class='form-control form-control-sm'>
+      <option class="level-1__" value="1"{{" selected='selected'" if level == '1' else ""}}>{{_("High")}}</option>
+      <option class="level-12_" value="1,2"{{" selected='selected'" if level == '1,2' else ""}}>{{_("Normal or higher")}}</option>
+      <option class="level-123" value="1,2,3"{{" selected='selected'" if level == '1,2,3' else ""}}>{{_("All")}}</option>
+      <option disabled="disabled"></option>
+      <option class="level-_2_" value="2"{{" selected='selected'" if level == '2' else ""}}>{{_("Normal only")}}</option>
+      <option class="level-__3" value="3"{{" selected='selected'" if level == '3' else ""}}>{{_("Low only")}}</option>
+    </select>
+  </div>
+
+  <div class="form-group col-md-2">
 %# TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
-<input type='submit' value='{{_("Set")}}'>
-
+    <input type='submit' class='btn btn-outline-secondary btn-sm' value='{{_("Set")}}'>
+  </div>
+</div>
 </form>
+</div>
 
-<table class="sortable" id ="table_source">
-<thead>
+<table class="table table-striped table-bordered table-hover table-sm sortable" id ="table_source">
+<thead class="thead-dark">
 <tr>
-    <th>#</th>
-    <th>{{_("source")}}</th>
-    <th>{{_("age")}}</th>
-    <th class="sorttable_sorted">{{_("item")}}<span id="sorttable_sortfwdindtable_source">&nbsp;▾</span></th>
+    <th scope="col">#</th>
+    <th scope="col">{{_("source")}}</th>
+    <th scope="col">{{_("age")}}</th>
+    <th scope="col" class="sorttable_sorted">{{_("item")}}<span id="sorttable_sortfwdindtable_source">&nbsp;▾</span></th>
 %# TRANSLATORS: this should be replaced by a abbreviation for class
-    <th title="class">{{_("class (abbreviation)")}}</th>
-    <th>{{_("title")}}</th>
-    <th>{{_("count")}}</th>
+    <th scope="col" title="class">{{_("class (abbreviation)")}}</th>
+    <th scope="col">{{_("title")}}</th>
+    <th scope="col">{{_("count")}}</th>
 </tr>
 </thead>
 <tbody>
@@ -81,7 +120,7 @@
 %end
 </tbody>
 %if total > 0:
-<tfoot>
+<tfoot class="thead-dark">
 <tr>
     <th colspan="6">{{_("Total")}}</th>
     <th style="text-align: left">{{total}}</th>

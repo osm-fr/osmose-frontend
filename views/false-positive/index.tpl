@@ -1,12 +1,13 @@
 %rebase('layout.tpl', title=_("Information on issue %d") % err_id, favicon="../images/markers/marker-l-%s.png" % marker['item'])
 %def show_html_results(columns, res):
-<table class="sortable" id ="table_marker">
-<thead>
+<table class="table table-striped table-bordered table-hover table-sm sortable" id="table_marker">
+<thead class="thead-dark">
 <tr>
-    <th>{{_("key")}}</th>
-    <th>{{_("value")}}</th>
+    <th scope="col">{{_("key")}}</th>
+    <th scope="col">{{_("value")}}</th>
 </tr>
 </thead>
+<tbody>
 %    i = 0
 %    for c in columns:
 %        c = c.split(" ")[-1]
@@ -26,6 +27,7 @@
 </tr>
 %        i += 1
 %    end
+</tbody>
 </table>
 %end
 

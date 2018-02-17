@@ -9,9 +9,12 @@
 %            end
 
 %end
-<table>
+<table class="table table-striped table-bordered table-hover table-sm sortable">
 %for remote in summary.keys():
+<thead class="thead-dark">
 <tr><th><a href="update_matrix?remote={{remote_hashes[remote]}}">{{remote}}</a> ({{min_versions[remote]}} - {{max_versions[remote]}})</th></tr>
+</thead>
+<tbody>
 <tr><td>
 %    for country in summary[remote]:
 %        col('span', country['min_age'])
@@ -22,4 +25,5 @@
 %    end
 </td></tr>
 %end
+</tbody>
 </table>

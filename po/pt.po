@@ -30,12 +30,12 @@ msgstr ""
 #: ../control.py:51
 #, python-brace-format
 msgid "{day}d, {hour}h, {minute}m ago"
-msgstr "{dia}d, {hora}h, {minuto}m atrás"
+msgstr "{day}d, {hour}h, {minute}m atrás"
 
 #: ../control.py:53
 #, python-brace-format
 msgid "in {day}d, {hour}h, {minute}m"
-msgstr "em {dia}d, {hora}h, {minuto}m"
+msgstr "em {day}d, {hour}h, {minute}m"
 
 #: ../control.py:56
 msgid "never generated"

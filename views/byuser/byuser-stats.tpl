@@ -1,10 +1,13 @@
 %rebase('layout.tpl', title=_("Users statistics"))
-<table>
+<table class="table table-striped table-bordered table-hover table-sm">
+<thead class="thead-dark">
   <tr>
-    <th>#</th>
-    <th>{{_("Number")}}</th>
-    <th>{{_("Username")}}</th>
+    <th scope="col">#</th>
+    <th scope="col">{{_("Number")}}</th>
+    <th scope="col">{{_("Username")}}</th>
   </tr>
+</thead>
+<tbody>
 %i = 1
 %for res in results:
   <tr>
@@ -14,4 +17,5 @@
   </tr>
 %    i += 1
 %end
+</tbody>
 </table>

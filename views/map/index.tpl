@@ -25,7 +25,7 @@
 </head>
 <body>
 <iframe id="hiddenIframe" name="hiddenIframe"></iframe>
-<div id="menu">
+<div id="menu" class="container">
   <a href="#" id="togglemenu">-</a>
   <form id="myform" name="myform" action="#">
   <input type='hidden' name='lat' value='{{lat}}'>
@@ -38,37 +38,40 @@
   <input type='hidden' name='country' value='{{country}}'>
     <div id="need_zoom">{{_("no bubbles at this zoom factor")}}</div>
     <div id="action_links">
-      <span id="level-span">
-        <label for='level'>{{_("Severity")}}</label>
-        <select id='level'>
-          <option class="level-1__" value="1"{{!level_selected['1']}}>{{_("High")}}</option>
-          <option class="level-12_" value="1,2"{{!level_selected['1,2']}}>{{_("Normal or higher")}}</option>
-          <option class="level-123" value="1,2,3"{{!level_selected['1,2,3']}}>{{_("All")}}</option>
-          <option disabled="disabled"></option>
-          <option class="level-_2_" value="2"{{!level_selected['2']}}>{{_("Normal only")}}</option>
-          <option class="level-__3" value="3"{{!level_selected['3']}}>{{_("Low only")}}</option>
-        </select>
-      </span>
-      <br>
-      <span id="fixable-span">
-        <label for='fixable'>{{_("Fixable")}}</label>
-        <select id="fixable" title="{{_("Show only markers with correction suggestions")}}">
-          <option value=""></option>
-          <option value="online"{{!fixable_selected['online']}}>{{_("Online")}}</option>
-          <option value="josm"{{!fixable_selected['josm']}}>JOSM</option>
-        </select>
-      </span>
-      <br>
-      <span id="tags-span">
-        <label for='tags'>{{_("Topic")}}</label>
-        <select id='tags'>
-          <option value=""></option>
+      <div id="level-span" class="form-group row">
+        <label for='level' class="col-sm-3 col-form-label">{{_("Severity")}}</label>
+          <div class="col-sm-9">
+          <select id='level' class='form-control form-control-sm'>
+            <option class="level-1__" value="1"{{!level_selected['1']}}>{{_("High")}}</option>
+            <option class="level-12_" value="1,2"{{!level_selected['1,2']}}>{{_("Normal or higher")}}</option>
+            <option class="level-123" value="1,2,3"{{!level_selected['1,2,3']}}>{{_("All")}}</option>
+            <option disabled="disabled"></option>
+            <option class="level-_2_" value="2"{{!level_selected['2']}}>{{_("Normal only")}}</option>
+            <option class="level-__3" value="3"{{!level_selected['3']}}>{{_("Low only")}}</option>
+          </select>
+        </div>
+      </div>
+      <div id="fixable-span" class="form-group row">
+        <label for='fixable' class="col-sm-3 col-form-label">{{_("Fixable")}}</label>
+        <div class="col-sm-9">
+          <select id="fixable" class="form-control form-control-sm" title="{{_("Show only markers with correction suggestions")}}">
+            <option value=""></option>
+            <option value="online"{{!fixable_selected['online']}}>{{_("Online")}}</option>
+            <option value="josm"{{!fixable_selected['josm']}}>JOSM</option>
+          </select>
+        </div>
+      </div>
+      <div id="tags-span" class="form-group row">
+        <label for='tags' class="col-sm-3 col-form-label">{{_("Topic")}}</label>
+        <div class="col-sm-9">
+          <select id='tags' class='form-control form-control-sm'>
+            <option value=""></option>
 %for tag in tags:
-          <option value="{{tag}}" {{!tags_selected[tag]}}>{{_(tag)}}</option>
+            <option value="{{tag}}" {{!tags_selected[tag]}}>{{_(tag)}}</option>
 %end
-        </select>
-      </span>
-      <br>
+          </select>
+        </div>
+      </div>
       {{_("Select:")}}
       <a href="#" class="toggleAllItem" data-view="all">{{_("all")}}</a>
       <a href="#" class="toggleAllItem" data-view="nothing">{{_("nothing")}}</a>

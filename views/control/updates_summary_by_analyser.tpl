@@ -17,8 +17,11 @@
 %  end
 %end
 
-<table>
+<table class="table table-striped table-bordered table-hover table-sm sortable">
+<thead class="thead-dark">
 <tr><th>{{_('Analyser')}}</th><th>{{_('Count')}}</th><th>{{_('Age')}}</th><th>{{_('Version')}}</th></tr>
+</thead>
+<tbody>
 %for analyser in sorted(summary.keys()):
 <tr>
   <td>{{analyser}}</td>
@@ -36,4 +39,5 @@
 {{summary[analyser]['max_version']}}</span></td>
 </tr>
 %end
+</tbody>
 </table>
