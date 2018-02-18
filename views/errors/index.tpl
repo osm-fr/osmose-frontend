@@ -9,9 +9,11 @@
 %rss="http://"+website+"/errors.rss?%s" % query
 %rebase('layout.tpl', title=title, favicon=favicon, rss=rss)
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #212529;">
+%if favicon:
   <span class="navbar-brand">
     <img src="{{favicon}}">
   </span>
+%end
   <div class="collapse navbar-collapse">
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href=".?{{query}}">{{_("Informations")}}</a>
