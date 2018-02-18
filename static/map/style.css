@@ -186,6 +186,11 @@ a.bulle_err:hover {
   font-size: 90%;
 }
 
+/* Layers control */
+.leaflet-control-layers label {
+  margin-bottom: 0px;
+}
+
 @media(max-width:640px) {
   .leaflet-touch .josm {
     display: none;
