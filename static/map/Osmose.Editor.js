@@ -201,7 +201,7 @@ export var OsmoseEditor = L.Control.Sidebar.extend({
         edited_key = e.target.dataset.key;
       if (!edited_key || k != edited_key) {
         edited_key = k;
-        $("input[type='text'][data-key='" + edited_key + "'", this._$container).attr('data-key', null);
+        $("input[type='text'][data-key='" + edited_key + "']", this._$container).attr('data-key', null);
         e.target.dataset.key = edited_key;
       }
     }
