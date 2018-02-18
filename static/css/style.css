@@ -2,6 +2,10 @@ th {
   text-align: center;
 }
 
+a:visited {
+  color: #551A8B;
+}
+
 /* iframe for josm and rawedit links */
 iframe#hiddenIframe {
   display: none;

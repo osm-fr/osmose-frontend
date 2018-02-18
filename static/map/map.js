@@ -75,7 +75,7 @@ export function init_map() {
     showResultIcons: true
   });
   geocode.markGeocode = function (result) {
-    this._map.fitBounds(result.bbox);
+    this._map.fitBounds(result.geocode.bbox);
     return this;
   };
   map.addControl(geocode);
