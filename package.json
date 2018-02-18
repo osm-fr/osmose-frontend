@@ -14,7 +14,7 @@
     "jquery": "^3.2.1",
     "leaflet": "^1.0.3",
     "leaflet-active-area": "^1.0.2",
-    "leaflet-control-geocoder": "^1.5.6",
+    "leaflet-control-geocoder": "git://github.com/perliedman/leaflet-control-geocoder.git#master",
     "leaflet-loading": "^0.1.24",
     "leaflet-plugins": "^3.0.1",
     "leaflet-responsive-popup": "^0.2.0",
