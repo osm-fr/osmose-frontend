@@ -70,9 +70,11 @@ div#top_links {
   border-right: 1px solid #CCCCCC;
   text-decoration: none;
 }
-#topmenu li a:hover { background-color: #B0B0B0; }
-#topmenu li a:active { background-color: #B0B0B0; }
- 
+#topmenu li a:hover
+#topmenu li a:active {
+  background-color: #B0B0B0;
+}
+
 #topmenu .submenu {
   display: none;
   list-style-type: none;
@@ -104,6 +106,10 @@ div#top_links {
 #topmenu li:hover > .submenu { display: block; }
 
 /* popups */
+.leaflet-popup-content a {
+  text-decoration: underline;
+}
+
 .bulle_msg {
   min-width: 200px;
   max-height: 200px;
@@ -121,9 +127,7 @@ div#top_links {
 .bulle_msg div.closebubble a {
   text-decoration:none;
 }
-.bulle_msg div.closebubble a:link {
-  color: #EEEEEE;
-}
+.bulle_msg div.closebubble a:link,
 .bulle_msg div.closebubble a:visited {
   color: #EEEEEE;
 }
@@ -137,25 +141,15 @@ div#top_links {
   color: #D1D1D1;
 }
 
-.bulle_err {
-  color: #FF5555;
-}  
-a.bulle_err:link {
-  color: #FF5555;
-}
-a.bulle_err:visited {
-  color: #FF5555;
-}
+.bulle_err,
+a.bulle_err:link,
+a.bulle_err:visited,
 a.bulle_err:hover {
   color: #FF5555;
 }
 
-.bulle_elem {
-  color: #5555FF;
-}
-.bulle_elem a:link {
-  color: #5555FF;
-}
+.bulle_elem,
+.bulle_elem a:link,
 .bulle_elem a:visited {
   color: #5555FF;
 }
@@ -182,12 +176,8 @@ a.bulle_err:hover {
 .bulle_verif {
   font-size: 90%;
 }
-.bulle_verif a:link {
-  color: #55AA55;
-}
-.bulle_verif a:visited {
-  color: #55AA55;
-}
+.bulle_verif a:link,
+.bulle_verif a:visited,
 .bulle_verif a:hover {
   color: #55AA55;
 }
