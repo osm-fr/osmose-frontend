@@ -1,4 +1,5 @@
 require('leaflet');
+require('leaflet.vectorgrid/dist/Leaflet.VectorGrid.js');
 require('leaflet-responsive-popup');
 require('leaflet-responsive-popup/leaflet.responsive.popup.css');
 require('mustache');

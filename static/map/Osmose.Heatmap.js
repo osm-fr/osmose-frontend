@@ -1,4 +1,5 @@
 require('leaflet');
+require('leaflet.vectorgrid/dist/Leaflet.VectorGrid.js');
 
 
 export var OsmoseHeatmap = L.VectorGrid.Protobuf.extend({
