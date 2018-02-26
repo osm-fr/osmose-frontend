@@ -230,7 +230,8 @@ def _gets(db, params):
         marker.id AS id,"""
     if not params.status in ("done", "false"):
         sqlbase += """
-        marker.item,"""
+        marker.item,
+        marker.class,"""
     elif params.full:
         sqlbase += """
         dynpoi_class.item,"""
@@ -243,7 +244,6 @@ def _gets(db, params):
     if params.full:
         sqlbase += """,
         marker.source,
-        marker.class,
         marker.elems,
         marker.subclass,
         marker.subtitle,
