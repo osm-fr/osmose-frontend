@@ -6,6 +6,14 @@ a:visited {
   color: #551A8B;
 }
 
+.thead-dark a {
+  color: lightgray;
+}
+
+.thead-dark a:visited {
+  color: gray;
+}
+
 /* iframe for josm and rawedit links */
 iframe#hiddenIframe {
   display: none;
