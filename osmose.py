@@ -113,9 +113,11 @@ def enable_cors_generic_route():
 @error(404)
 @view('404')
 def error404(error):
-    if 'images/markers/marker-b-' in request.path:
+    if 'map/issues/' in request.path:
+        return ""
+    elif 'images/markers/marker-b-' in request.path:
         redirect('/images/markers/marker-b-0.png')
-    if 'images/markers/marker-l-' in request.path:
+    elif 'images/markers/marker-l-' in request.path:
         redirect('/images/markers/marker-l-0.png')
     else:
         return {}

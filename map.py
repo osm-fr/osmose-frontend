@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, request, template, response, redirect, abort, static_file
+from bottle import route, request, template, response, redirect, abort, static_file, HTTPError
 from tools import utils, query, query_meta
 import byuser
 import errors
@@ -194,17 +194,12 @@ def num2deg(xtile, ytile, zoom):
     return (lat_deg, lon_deg)
 
 
-MVT_EMPTY = None
-
 def _errors_mvt(db, params, z, min_x, min_y, max_x, max_y, limit):
     params.limit = limit
     results = query._gets(db, params) if z >= 6 else None
 
     if not results or len(results) == 0:
-        global MVT_EMPTY
-        if not MVT_EMPTY:
-            MVT_EMPTY = mapbox_vector_tile.encode([])
-        return MVT_EMPTY
+        return None
     else:
         limit_feature = []
         if len(results) == limit and z < 18:
@@ -253,11 +248,7 @@ WHERE
     if limit and limit[0]:
         limit = float(limit[0])
     else:
-        global MVT_EMPTY
-        if not MVT_EMPTY:
-            MVT_EMPTY = mapbox_vector_tile.encode([])
-        response.content_type = 'application/vnd.mapbox-vector-tile'
-        return MVT_EMPTY
+        return HTTPError(404)
 
     join, where = query._build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable)
     join = join.replace("%", "%%")
@@ -326,8 +317,12 @@ def issues_mvt(db, z, x, y):
     response.set_cookie('last_tags', str(','.join(params.tags)) if params.tags else '', expires=expires, path=path)
     response.set_cookie('last_fixable', str(params.fixable) if params.fixable else '', expires=expires, path=path)
 
-    response.content_type = 'application/vnd.mapbox-vector-tile'
-    return _errors_mvt(db, params, z, y1, x1, y2, x2, 50)
+    tile = _errors_mvt(db, params, z, y1, x1, y2, x2, 50)
+    if tile:
+        response.content_type = 'application/vnd.mapbox-vector-tile'
+        return tile
+    else:
+        return HTTPError(404)
 
 
 @route('/map/markers')
