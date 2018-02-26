@@ -221,7 +221,8 @@ def _errors_mvt(db, params, z, min_x, min_y, max_x, max_y, limit):
                 "geometry": Point(res["lon"], res["lat"]),
                 "properties": {
                     "issue_id": res["id"],
-                    "item": res["item"] or 0}
+                    "item": res["item"] or 0,
+                    "class": res["class"] or 0}
             })
 
         return mapbox_vector_tile.encode([{
