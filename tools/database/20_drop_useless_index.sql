@@ -1,0 +1,2 @@
+DROP INDEX dynpoi_update_source_timestamp;
+DROP INDEX idx_dynpoi_update_source_timestamp;

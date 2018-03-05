@@ -351,13 +351,6 @@ CREATE INDEX dynpoi_stats_timestamp ON dynpoi_stats USING btree ("timestamp");
 
 
 --
--- Name: dynpoi_update_source_timestamp; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX dynpoi_update_source_timestamp ON dynpoi_update USING btree (source, "timestamp");
-
-
---
 -- Name: idx_dynpoi_class_class; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -392,13 +385,6 @@ CREATE INDEX idx_dynpoi_class_source ON dynpoi_class USING btree (source);
 --
 
 CREATE INDEX idx_dynpoi_update_source ON dynpoi_update USING btree (source);
-
-
---
--- Name: idx_dynpoi_update_source_timestamp; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_dynpoi_update_source_timestamp ON dynpoi_update USING btree (source, "timestamp");
 
 
 --
