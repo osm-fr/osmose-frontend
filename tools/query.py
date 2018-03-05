@@ -36,7 +36,8 @@ def _build_where_item(item, table):
         for i in item.split(','):
             try:
                 if 'xxx' in i:
-                    where.append("%s.item/1000 = %s" % (table, int(i[0])))
+                    n = int(i[0])
+                    where.append("(%s.item >= %s000 AND %s.item < %s000)" % (table, n, table, n + 1))
                 else:
                     l.append(str(int(i)))
             except:
