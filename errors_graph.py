@@ -47,7 +47,7 @@ FROM (
     GROUP BY
         marker.source,
         marker.class,
-        date
+        date_trunc('day', marker.timestamp)
     ) AS t
 GROUP BY
     date
