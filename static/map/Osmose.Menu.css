@@ -143,6 +143,7 @@ div.level-3.disabled {
     width: 26px;
     top: 5px;
     left: 5px;
+    z-index: 2;
   }
 }
 
