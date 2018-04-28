@@ -4,15 +4,15 @@
 # 
 # Translators:
 # Michal Pustějovský <Michal.Pustejovsky@seznam.cz>, 2014
-# Petr Schönmann <pschonmann@gmail.com>, 2014
+# Petr Schönmann <pschonmann@gmail.com>, 2014,2018
 # TK, 2014-2015,2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2018-02-17 20:09+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2018-03-20 08:29+0000\n"
+"Last-Translator: Petr Schönmann <pschonmann@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1377,46 +1377,46 @@ msgstr "omezení dopravní značkou"
 
 #: tmp.tpl:76 tmp.tpl:126
 msgid "High"
-msgstr ""
+msgstr "Vysoká priorita"
 
 #: tmp.tpl:77 tmp.tpl:127
 msgid "Normal or higher"
-msgstr ""
+msgstr "Normální či vyšší priorita"
 
 #: tmp.tpl:78 tmp.tpl:128
 msgid "All"
-msgstr ""
+msgstr "Vše"
 
 #: tmp.tpl:79 tmp.tpl:129
 msgid "Normal only"
-msgstr ""
+msgstr "Pouze normální priorita"
 
 #: tmp.tpl:80 tmp.tpl:130
 msgid "Low only"
-msgstr ""
+msgstr "Pouze nízká priorita"
 
 #: tmp.tpl:33
 #, python-brace-format
 msgid ""
 "We can be contacted through a direct email to <a "
 "href='mailto:{email}'>{email}</a>."
-msgstr ""
+msgstr "Můžete nás kontaktova přímo na emailu <a href='mailto:{email}'>{email}</a>."
 
 #: tmp.tpl:146 tmp.tpl:147 tmp.tpl:148
 #, python-brace-format
 msgid "Level {level} issues ({count})"
-msgstr ""
+msgstr "Priorita {level} problémů ({count})"
 
 #: tmp.tpl:178
 #, python-brace-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
 "href='mailto:{email}'>{email}</a>."
-msgstr ""
+msgstr "Pro přidání nových zemí nás můžete kontaktovat přímo na emailu <a href='mailto:{email}'>{email}</a>."
 
 #: ../tools/database/categ_menu.txt:9
 msgid "JOSM validator"
-msgstr ""
+msgstr "JOSM validátor"
 
 #: ../tools/database/item_menu.txt:174
 msgid "seamark"
@@ -1428,7 +1428,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:176
 msgid "combinations"
-msgstr ""
+msgstr "kombinace"
 
 #: ../tools/database/item_menu.txt:177
 msgid "deprecated"
@@ -1436,7 +1436,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:178
 msgid "geometry"
-msgstr ""
+msgstr "geometrie"
 
 #: ../tools/database/item_menu.txt:180
 msgid "multiple"
@@ -1448,11 +1448,11 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:182
 msgid "relation"
-msgstr ""
+msgstr "relace"
 
 #: ../tools/database/item_menu.txt:183
 msgid "religion"
-msgstr ""
+msgstr "náboženské vyznání"
 
 #: ../tools/database/item_menu.txt:184
 msgid "territories"
@@ -1464,8 +1464,8 @@ msgstr ""
 
 #: tmp.tpl:73
 msgid "Country"
-msgstr ""
+msgstr "země"
 
 #: tmp.tpl:74
 msgid "Item"
-msgstr ""
+msgstr "Položka"
