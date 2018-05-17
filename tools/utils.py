@@ -46,10 +46,10 @@ db_string         = "host='%s' port='%s' dbname='%s' user='%s' password='%s'" % 
 website           = "osmose.openstreetmap.fr"
 
 main_project      = "OpenStreetMap"
-main_website      = "http://www.openstreetmap.org/"
-remote_url        = "http://api.openstreetmap.org/"
-remote_url_read   = "http://api.openstreetmap.org/"
-remote_url_write  = "http://api.openstreetmap.org/"
+main_website      = "https://www.openstreetmap.org/"
+remote_url        = "https://api.openstreetmap.org/"
+remote_url_read   = "https://api.openstreetmap.org/"
+remote_url_write  = "https://api.openstreetmap.org/"
 
 #main_project      = "OpenGeoFiction"
 #main_website      = "http://opengeofiction.net/"
