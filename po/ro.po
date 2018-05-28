@@ -8,14 +8,15 @@
 # Ionescu Madalina <madalinaionescu79@gmail.com>, 2014
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2014-2015
 # Lucian Popovici <lucian.popovici@gmail.com>, 2014
+# Mircea Vutcovici <mirceavutcovici@gmail.com>, 2018
 # Rădulescu Răzvan <radulescu.razvan@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2018-02-17 20:09+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2018-05-25 16:21+0000\n"
+"Last-Translator: Mircea Vutcovici <mirceavutcovici@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/openstreetmap-france/osmose/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -175,7 +176,7 @@ msgstr ""
 
 #: tmp.tpl:45 tmp.tpl:46
 msgid "history"
-msgstr ""
+msgstr "istorie"
 
 #: tmp.tpl:47
 msgid "Update"
@@ -195,15 +196,15 @@ msgstr ""
 
 #: tmp.tpl:53
 msgid "License"
-msgstr ""
+msgstr "Licență"
 
 #: tmp.tpl:54
 msgid "Authors"
-msgstr ""
+msgstr "Autori"
 
 #: tmp.tpl:55
 msgid "And contributors"
-msgstr ""
+msgstr "Și contributori"
 
 #: tmp.tpl:56
 msgid "Data are coming from"
@@ -211,7 +212,7 @@ msgstr ""
 
 #: tmp.tpl:57
 msgid "copyright"
-msgstr ""
+msgstr "drepturi de autor"
 
 #: tmp.tpl:59 tmp.tpl:62 tmp.tpl:65 tmp.tpl:110
 msgid "key"
