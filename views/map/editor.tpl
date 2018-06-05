@@ -2,7 +2,7 @@
 <h1>{{_("Tags Editor")}}</h1>
 <form>
   {%#elems%}
-  <a target="_blank" href="{%main_website%}browse/{%type%}/{%id%}">{%type%} {%id%}</a>
+  <a target="_blank" href="{{main_website}}{%type%}/{%id%}">{%type%} {%id%}</a>
   <div class="tags" data-type="{%type%}" data-id="{%id%}" data-version="{%version%}">
     <div class="del">
     </div>

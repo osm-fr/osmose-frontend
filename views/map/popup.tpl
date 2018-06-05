@@ -13,7 +13,7 @@
 {%#elems%}
     <div class="bulle_elem">
   {%^infos%}
-      <b><a target="_blank" href="{{main_website}}browse/{%type%}/{%id%}">{%type%} {%id%}</a></b>
+      <b><a target="_blank" href="{{main_website}}{%type%}/{%id%}">{%type%} {%id%}</a></b>
       <a href="#" onclick="window.open('http://rawedit.openstreetmap.fr/edit/{%type%}/{%id%}','rawedit','height=360,width=710');">rawedit</a>
   {%/infos%}
   {%#relation%}

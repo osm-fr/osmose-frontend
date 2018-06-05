@@ -66,7 +66,7 @@
 </tr>
 </thead>
 <tr><td>elem_index</td><td>{{element['elem_index']}}</td></tr>
-<tr><td>type id</td><td><a target="_blank" href="{{main_website}}browse/{{data_type[element['data_type']]}}/{{element['id']}}">{{element['data_type']}}&nbsp;{{element['id']}}</a></td></tr>
+<tr><td>type id</td><td><a target="_blank" href="{{main_website}}{{data_type[element['data_type']]}}/{{element['id']}}">{{element['data_type']}}&nbsp;{{element['id']}}</a></td></tr>
 <tr><td>tags</td><td>
 %     show_html_dict(element['tags'])
 </td></tr>

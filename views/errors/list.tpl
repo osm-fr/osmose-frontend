@@ -60,7 +60,7 @@
 %                end
 %                cur_type = m.group(1)
         {{cur_type[0]}}&nbsp;
-        <a target="_blank" href="{{main_website}}browse/{{m.group(1)}}/{{m.group(2)}}">{{m.group(2)}}</a>&nbsp;
+        <a target="_blank" href="{{main_website}}{{m.group(1)}}/{{m.group(2)}}">{{m.group(2)}}</a>&nbsp;
         &nbsp;
 %                if cur_type == "relation":
         <a title="josm" href="../josm_proxy?import?url={{remote_url_read}}/api/0.6/relation/{{m.group(2)}}/full" target="hiddenIframe">(j)</a>
