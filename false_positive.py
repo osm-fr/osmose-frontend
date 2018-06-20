@@ -24,9 +24,6 @@ import StringIO, os, tempfile, urllib2
 
 from tools import osmose_common
 from tools import utils
-from tools import tag2link
-
-t2l = tag2link.tag2link("tools/tag2link_sources.xml")
 
 
 def _get(db, err_id, status):
