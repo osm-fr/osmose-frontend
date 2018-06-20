@@ -26,7 +26,7 @@
             <link name="View website" href="%v%" />
         </rule>
         <rule>
-            <condition k="(.*:)?url" />
+            <condition k="(.*:url|.*_url|^url$)" />
             <link name="View URL" href="%v%" />
         </rule>
         <rule>
