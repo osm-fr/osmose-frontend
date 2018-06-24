@@ -42,7 +42,7 @@
 %                    printed_td = True
 %                end
 %                cur_type = m.group(1)
-      {{main_website}}browse/{{m.group(1)}}/{{m.group(2)}}
+      {{main_website}}{{m.group(1)}}/{{m.group(2)}}
 %                if cur_type == "relation":
       http://localhost:8111/import?url={{remote_url_read}}/api/0.6/relation/{{m.group(2)}}/full
 %                else:

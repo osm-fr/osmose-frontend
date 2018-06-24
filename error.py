@@ -76,11 +76,38 @@ def _get(db, err_id):
     return (marker, columns_marker, elements, columns_elements, fix, columns_fix)
 
 
+def _expand_tags(tags, links, short = False):
+  t = []
+  if short:
+    for k in tags:
+      t.append({"k": k})
+  else:
+    for (k, v) in sorted(tags.items()):
+      if links and links.has_key(k):
+        t.append({"k": k, "v": v, "vlink": links[k]})
+      else:
+        t.append({"k": k, "v": v})
+  return t
+
+
 @route('/error/<err_id:int>')
 def display(db, lang, err_id):
     (marker, columns_marker, elements, columns_elements, fix, columns_fix) = _get(db, err_id)
 
     data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
+
+    print(elements)
+    tags = columns_elements.index('tags')
+    for e in elements:
+        e[tags] = _expand_tags(e[tags], t2l.checkTags(e[tags]))
+
+    tags_create = columns_fix.index('tags_create')
+    tags_modify = columns_fix.index('tags_modify')
+    tags_delete = columns_fix.index('tags_delete')
+    for f in fix:
+        f[tags_create] = _expand_tags(f[tags_create], t2l.checkTags(f[tags_create]))
+        f[tags_modify] = _expand_tags(f[tags_modify], t2l.checkTags(f[tags_modify]))
+        f[tags_delete] = _expand_tags(f[tags_delete], {}, True)
 
     return template('error/index', err_id=err_id,
         marker=marker, columns_marker=columns_marker,
@@ -167,19 +194,6 @@ def error(db, lang, err_id):
     b_date    = marker["timestamp"] or ""
     item      = marker["item"] or 0
 
-    def expand_tags(tags, links, short = False):
-      t = []
-      if short:
-        for k in tags:
-          t.append({"k": k})
-      else:
-        for (k, v) in sorted(tags.items()):
-          if links and links.has_key(k):
-            t.append({"k": k, "v": v, "vlink": links[k]})
-          else:
-            t.append({"k": k, "v": v})
-      return t
-
     elems = []
     for elem in elements:
       if elem["data_type"]:
@@ -187,7 +201,7 @@ def error(db, lang, err_id):
         tmp_elem = {data_type[elem["data_type"]]: True,
                     "type": data_type[elem["data_type"]],
                     "id": elem["id"],
-                    "tags": expand_tags(tags, t2l.checkTags(tags)),
+                    "tags": _expand_tags(tags, t2l.checkTags(tags)),
                     "fixes": [],
                    }
         for fix in fixies:
@@ -195,9 +209,9 @@ def error(db, lang, err_id):
               fix["elem_data_type"] == elem["data_type"] and
               fix["elem_id"] == elem["id"]):
             tmp_elem["fixes"].append({"num": fix["diff_index"],
-                                      "add": expand_tags(fix["tags_create"], t2l.checkTags(fix["tags_create"])),
-                                      "mod": expand_tags(fix["tags_modify"], t2l.checkTags(fix["tags_modify"])),
-                                      "del": expand_tags(fix["tags_delete"], {}, True),
+                                      "add": _expand_tags(fix["tags_create"], t2l.checkTags(fix["tags_create"])),
+                                      "mod": _expand_tags(fix["tags_modify"], t2l.checkTags(fix["tags_modify"])),
+                                      "del": _expand_tags(fix["tags_delete"], {}, True),
                                      })
         elems.append(tmp_elem)
 
@@ -213,9 +227,9 @@ def error(db, lang, err_id):
                     break
             if not found:
                 new_elems.append({"num": fix["diff_index"],
-                                  "add": expand_tags(fix["tags_create"], t2l.checkTags(fix["tags_create"])),
-                                  "mod": expand_tags(fix["tags_modify"], t2l.checkTags(fix["tags_modify"])),
-                                  "del": expand_tags(fix["tags_delete"], {}, True),
+                                  "add": _expand_tags(fix["tags_create"], t2l.checkTags(fix["tags_create"])),
+                                  "mod": _expand_tags(fix["tags_modify"], t2l.checkTags(fix["tags_modify"])),
+                                  "del": _expand_tags(fix["tags_delete"], {}, True),
                                  })
 
     return {

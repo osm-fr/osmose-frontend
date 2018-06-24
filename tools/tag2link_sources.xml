@@ -26,7 +26,7 @@
             <link name="View website" href="%v%" />
         </rule>
         <rule>
-            <condition k="(.*:)?url" />
+            <condition k="(.*:url|.*_url|^url$)" />
             <link name="View URL" href="%v%" />
         </rule>
         <rule>
@@ -72,7 +72,7 @@
     <src name="Mapillary">
         <rule>
             <condition k="((ref|source):)?mapillary" v="[0-9a-zA-Z-_]+" />
-            <link name="View %name% image" href="http://www.mapillary.com/map/im/%v%" />
+            <link name="View %name% image" href="https://www.mapillary.com/app/?focus=photo&pKey=%v%&signs=true" />
         </rule>
     </src>
 

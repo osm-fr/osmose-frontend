@@ -6,6 +6,23 @@
 %            end
             </table>
 %end
+%def show_html_list(list):
+            <table>
+%            for e in list:
+                <tr><td>
+%    if type(e) is dict:
+%        show_html_dict(e)
+%    elif type(e) is list:
+%        if len(e) > 0:
+%            show_html_list(e)
+%        end
+%    else:
+{{e}}
+%    end
+</td></tr>
+%            end
+            </table>
+%end
 %def show_html_results(columns, res):
 <table class="table table-striped table-bordered table-hover table-sm sortable" id ="table_marker">
 <thead class="thead-dark">
@@ -22,6 +39,10 @@
     <td>
 %        if type(res[i]) is dict:
 %            show_html_dict(res[i])
+%        elif type(res[i]) is list:
+%            if len(res[i]) > 0:
+%                show_html_list(res[i])
+%            end
 %        else:
 {{res[i]}}
 %        end
@@ -66,9 +87,9 @@
 </tr>
 </thead>
 <tr><td>elem_index</td><td>{{element['elem_index']}}</td></tr>
-<tr><td>type id</td><td><a target="_blank" href="{{main_website}}browse/{{data_type[element['data_type']]}}/{{element['id']}}">{{element['data_type']}}&nbsp;{{element['id']}}</a></td></tr>
+<tr><td>type id</td><td><a target="_blank" href="{{main_website}}{{data_type[element['data_type']]}}/{{element['id']}}">{{element['data_type']}}&nbsp;{{element['id']}}</a></td></tr>
 <tr><td>tags</td><td>
-%     show_html_dict(element['tags'])
+%     show_html_list(element['tags'])
 </td></tr>
 <tr><td>username</td><td><a target="_blank" href="{{main_website}}user/{{element['username']}}">{{element['username']}}</a></td></tr>
 </table>
