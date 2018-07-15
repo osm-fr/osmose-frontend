@@ -27,14 +27,14 @@
       <a href="http://localhost:8111/load_object?objects=w{%id%}" target="hiddenIframe" class="josm">josm</a>
   {%/way%}
   {%#relation%}
-      <a href="http://localhost:8111/import?url={{remote_url_read}}api/0.6/{%type%}/{%id%}/full" target="hiddenIframe" class="josm">josm</a>
+      <a href="http://localhost:8111/import?url={{remote_url_read}}api/0.6/{%type%}/{%id%}/full" target="hiddenIframe" class="josm" onclick="$.get('http://localhost:8111/zoom?left={%minlon%}&bottom={%minlat%}&right={%maxlon%}&top={%maxlat%}'); return true;">josm</a>
   {%/relation%}
       <a href="#" class="editor_edit" data-type="{%type%}" data-id="{%id%}" data-error="{%error_id%}">edit</a>
       <br>
   {%#fixes%}
       <div class="fix">
         <div class="fix_links">
-            <a href="http://localhost:8111/import?url=http://{{website}}/api/0.2/error/{%error_id%}/fix/{%num%}" target="hiddenIframe" class="josm">fix-josm</a>
+            <a href="http://localhost:8111/import?url=http://{{website}}/api/0.2/error/{%error_id%}/fix/{%num%}" target="hiddenIframe" class="josm" onclick="$.get('http://localhost:8111/zoom?left={%minlon%}&bottom={%minlat%}&right={%maxlon%}&top={%maxlat%}'); return true;">fix-josm</a>
             <a href="#" class="editor_fix" data-type="{%type%}" data-id="{%id%}" data-error="{%error_id%}" data-fix="{%num%}">fix-edit</a>
         </div>
     {%#add%}
@@ -69,7 +69,7 @@
     <div class="bulle_elem">
       <div class="fix">
         <div class="fix_links">
-          <a href="http://localhost:8111/import?url=http://{{website}}/api/0.2/error/{%error_id%}/fix/{%num%}" target="hiddenIframe" class="josm">fix-josm</a>
+          <a href="http://localhost:8111/import?url=http://{{website}}/api/0.2/error/{%error_id%}/fix/{%num%}" target="hiddenIframe" class="josm" onclick="$.get('http://localhost:8111/zoom?left={%minlon%}&bottom={%minlat%}&right={%maxlon%}&top={%maxlat%}'); return true;">fix-josm</a>
         </div>
   {%#add%}
         <div class="add"> + <b>{%k%}</b> =
