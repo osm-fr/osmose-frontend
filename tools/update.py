@@ -373,14 +373,16 @@ class update_parser(handler.ContentHandler):
     def update_timestamp(self, attrs):
         self.ts = attrs.get("timestamp", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
         self.version = attrs.get("version", None)
+        self.analyser_version = attrs.get("analyser_version", None)
 
         if not self._tstamp_updated:
             try:
-                execute_sql(self._dbcurs, "INSERT INTO dynpoi_update (source, timestamp, remote_url, remote_ip, version) VALUES(%s, %s, %s, %s, %s);",
+                execute_sql(self._dbcurs, "INSERT INTO dynpoi_update (source, timestamp, remote_url, remote_ip, version, analyser_version) VALUES(%s, %s, %s, %s, %s, %s);",
                                      (self._source_id, utils.pg_escape(self.ts),
                                       utils.pg_escape(self._source_url),
                                       utils.pg_escape(self._remote_ip),
-                                      utils.pg_escape(self.version)))
+                                      utils.pg_escape(self.version),
+                                      utils.pg_escape(self.analyser_version)))
             except psycopg2.IntegrityError:
                 self._dbconn.rollback()
                 execute_sql(self._dbcurs, "SELECT count(*) FROM dynpoi_update WHERE source = %s AND \"timestamp\" = %s",
@@ -391,15 +393,18 @@ class update_parser(handler.ContentHandler):
                 else:
                     raise
 
-            execute_sql(self._dbcurs, "UPDATE dynpoi_update_last SET timestamp=%s, version=%s, remote_ip=%s WHERE source=%s;",
+            execute_sql(self._dbcurs, "UPDATE dynpoi_update_last SET timestamp=%s, version=%s, analyser_version=%s, remote_ip=%s WHERE source=%s;",
                                  (utils.pg_escape(self.ts),
                                   utils.pg_escape(self.version),
+                                  utils.pg_escape(self.analyser_version),
                                   utils.pg_escape(self._remote_ip),
                                   self._source_id))
             if self._dbcurs.rowcount == 0:
-                execute_sql(self._dbcurs, "INSERT INTO dynpoi_update_last VALUES(%s, %s, %s, %s);",
-                                 (self._source_id, utils.pg_escape(self.ts),
+                execute_sql(self._dbcurs, "INSERT INTO dynpoi_update_last(source, timestamp, version, analyser_version, remote_ip) VALUES(%s, %s, %s, %s, %s);",
+                                 (self._source_id,
+                                  utils.pg_escape(self.ts),
                                   utils.pg_escape(self.version),
+                                  utils.pg_escape(self.analyser_version),
                                   utils.pg_escape(self._remote_ip)))
 
             self._tstamp_updated = True

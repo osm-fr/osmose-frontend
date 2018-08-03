@@ -299,12 +299,12 @@ def status(db, country = None, analyser = None):
     response.content_type = 'text/plain; charset=utf-8'
 
     ret = ''
-    db.execute('SELECT timestamp, source FROM dynpoi_update_last WHERE source = (SELECT id FROM source WHERE analyser = %s AND country = %s)', (analyser, country))
+    db.execute('SELECT timestamp, source, analyser_version FROM dynpoi_update_last WHERE source = (SELECT id FROM source WHERE analyser = %s AND country = %s)', (analyser, country))
     r = db.fetchone()
     if r and r['timestamp']:
         ret + "1\n" # status format version
         ret += str(r['timestamp']) + "\n"
-        ret += "ANALYSER_VERSION_COME_HERE\n"
+        ret += str(r["analyser_version"] or "") + "\n"
         for t in ['N', 'W', 'R']:
             db.execute('SELECT string_agg(id::text, \',\') FROM (SELECT DISTINCT marker_elem.id AS id FROM marker JOIN marker_elem ON marker_elem.marker_id = marker.id WHERE source=%s AND data_type = %s) AS t', (r['source'], t))
             s = db.fetchone()

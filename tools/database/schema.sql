@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.7
+-- Dumped by pg_dump version 9.6.7
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -106,7 +111,8 @@ CREATE TABLE dynpoi_update (
     "timestamp" timestamp with time zone NOT NULL,
     remote_url character varying(2048),
     remote_ip character varying(128),
-    version text
+    version text,
+    analyser_version text
 );
 
 
@@ -118,7 +124,8 @@ CREATE TABLE dynpoi_update_last (
     source integer NOT NULL,
     "timestamp" timestamp with time zone,
     version text,
-    remote_ip character varying(128) DEFAULT NULL::character varying
+    remote_ip character varying(128) DEFAULT NULL::character varying,
+    analyser_version text
 );
 
 
@@ -136,7 +143,8 @@ CREATE TABLE marker (
     elems text,
     item integer,
     subtitle hstore
-);
+)
+WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
 
 
 --
@@ -150,7 +158,8 @@ CREATE TABLE marker_elem (
     id bigint,
     tags hstore,
     username text
-);
+)
+WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
 
 
 --
@@ -209,14 +218,14 @@ CREATE TABLE source_password (
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: marker id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY marker ALTER COLUMN id SET DEFAULT nextval('marker_id_seq'::regclass);
 
 
 --
--- Name: dynpoi_categ_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: dynpoi_categ dynpoi_categ_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dynpoi_categ
@@ -226,7 +235,7 @@ ALTER TABLE dynpoi_categ CLUSTER ON dynpoi_categ_pkey;
 
 
 --
--- Name: dynpoi_class_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: dynpoi_class dynpoi_class_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dynpoi_class
@@ -234,7 +243,7 @@ ALTER TABLE ONLY dynpoi_class
 
 
 --
--- Name: dynpoi_item_marker; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: dynpoi_item dynpoi_item_marker; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dynpoi_item
@@ -242,7 +251,7 @@ ALTER TABLE ONLY dynpoi_item
 
 
 --
--- Name: dynpoi_item_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: dynpoi_item dynpoi_item_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dynpoi_item
@@ -252,7 +261,7 @@ ALTER TABLE dynpoi_item CLUSTER ON dynpoi_item_pkey;
 
 
 --
--- Name: dynpoi_stats_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: dynpoi_stats dynpoi_stats_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dynpoi_stats
@@ -262,7 +271,7 @@ ALTER TABLE dynpoi_stats CLUSTER ON dynpoi_stats_pkey;
 
 
 --
--- Name: dynpoi_status_id; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: dynpoi_status dynpoi_status_id; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dynpoi_status
@@ -270,7 +279,7 @@ ALTER TABLE ONLY dynpoi_status
 
 
 --
--- Name: dynpoi_status_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: dynpoi_status dynpoi_status_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dynpoi_status
@@ -278,7 +287,7 @@ ALTER TABLE ONLY dynpoi_status
 
 
 --
--- Name: dynpoi_update_last_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: dynpoi_update_last dynpoi_update_last_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dynpoi_update_last
@@ -288,7 +297,7 @@ ALTER TABLE dynpoi_update_last CLUSTER ON dynpoi_update_last_pkey;
 
 
 --
--- Name: dynpoi_update_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: dynpoi_update dynpoi_update_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dynpoi_update
@@ -298,7 +307,7 @@ ALTER TABLE dynpoi_update CLUSTER ON dynpoi_update_pkey;
 
 
 --
--- Name: marker_elem_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: marker_elem marker_elem_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY marker_elem
@@ -308,7 +317,7 @@ ALTER TABLE marker_elem CLUSTER ON marker_elem_pkey;
 
 
 --
--- Name: marker_fix_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: marker_fix marker_fix_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY marker_fix
@@ -318,7 +327,7 @@ ALTER TABLE marker_fix CLUSTER ON marker_fix_pkey;
 
 
 --
--- Name: marker_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: marker marker_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY marker
@@ -328,7 +337,7 @@ ALTER TABLE marker CLUSTER ON marker_pkey;
 
 
 --
--- Name: source_password_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: source_password source_password_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY source_password
@@ -336,7 +345,7 @@ ALTER TABLE ONLY source_password
 
 
 --
--- Name: source_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: source source_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY source
@@ -437,13 +446,6 @@ CREATE INDEX idx_marker_source_class_subclass_lat_lon_elems ON marker USING btre
 
 
 --
--- Name: marker_geom; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX marker_geom ON marker USING gist (point((lat)::double precision, (lon)::double precision));
-
-
---
 -- Name: source_country_analyser; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -451,7 +453,7 @@ CREATE UNIQUE INDEX source_country_analyser ON source USING btree (country, anal
 
 
 --
--- Name: dynpoi_class_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: dynpoi_class dynpoi_class_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dynpoi_class
@@ -459,7 +461,7 @@ ALTER TABLE ONLY dynpoi_class
 
 
 --
--- Name: dynpoi_status_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: dynpoi_status dynpoi_status_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dynpoi_status
@@ -467,7 +469,7 @@ ALTER TABLE ONLY dynpoi_status
 
 
 --
--- Name: marker_class_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: marker marker_class_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY marker
@@ -475,7 +477,7 @@ ALTER TABLE ONLY marker
 
 
 --
--- Name: marker_elem_marker_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: marker_elem marker_elem_marker_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY marker_elem
@@ -483,7 +485,7 @@ ALTER TABLE ONLY marker_elem
 
 
 --
--- Name: marker_fix_marker_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: marker_fix marker_fix_marker_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY marker_fix
@@ -491,7 +493,7 @@ ALTER TABLE ONLY marker_fix
 
 
 --
--- Name: marker_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: marker marker_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY marker
@@ -499,7 +501,7 @@ ALTER TABLE ONLY marker
 
 
 --
--- Name: source_password_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: source_password source_password_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY source_password
