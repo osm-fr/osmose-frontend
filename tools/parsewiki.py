@@ -52,6 +52,7 @@ header = {
     'fr': 'Item || Aide || Exemple',
     'it': 'Articolo || Aiuto || Esempio',
     'nl': 'Item || Help || Voorbeeld',
+    'uk': 'Проблема || Допомога || Приклад',
     'ja': '項目 || 説明 || 例',
 }
 
@@ -61,6 +62,7 @@ classs = {
     'fr': 'Classe',
     'it': 'Class',
     'nl': 'Class',
+    'uk': 'Class',
     'ja': 'Class',
 }
 
@@ -127,7 +129,7 @@ def parsewiki(lang):
                     if len(ref[categ]['item'][item]['class'].keys()) > 1:
                         for c in sorted(ref[categ]['item'][item]['class'].keys()):
                             if k in ('detail', 'fix'):
-                                print ("* %s %s \"%s\" : %s" % (classs[lang], c, ref[categ]['item'][item]['class'][c].encode('utf-8').replace('|', '&#124;'), val[k]['class'].get(c, '')))
+                                print ("* %s %s \"%s\" : %s" % (classs[lang], c, (ref[categ]['item'][item]['class'][c] or '').encode('utf-8').replace('|', '&#124;'), val[k]['class'].get(c, '')))
             print "}}\n"
         print "|}\n"
 

@@ -26,7 +26,6 @@ WORKDIR "/data/project/osmose/frontend"
 RUN cd /data/project/osmose/frontend && \
     npm install && \
     npm run build && \
-    sed -e 's_= "osmose.openstreetmap.fr"_= "/"_' -i tools/utils.py && \
     cd po && make mo
 
 USER root

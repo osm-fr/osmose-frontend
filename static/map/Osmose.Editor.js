@@ -1,5 +1,5 @@
 require('leaflet');
-require('../js/jquery-ui-1.10.4.dialog.js');
+require('jquery-ui/ui/widgets/dialog');
 require('mustache');
 
 require('./Osmose.Editor.css');

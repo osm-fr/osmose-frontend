@@ -206,7 +206,7 @@ $(function() {
   <form id="editor_save_form">
     <label for="comment">{{_("Comment")}}</label><input type="text" name="comment" id="comment" value="{{_("Fix with Osmose")}}"/>
     <br/><br/>
-    <label for="source">{{_("Source")}}</label><input type="text" name="source" id="source" value="Osmose"/>
+    <label for="source">{{_("Source")}}</label><input type="text" name="source" id="source" value=""/>
     <br/><br/>
     <label for="type">{{_("Type")}}</label><input type="text" name="type" id="type" value="fix"/>
     <br/><br/>

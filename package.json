@@ -12,6 +12,7 @@
     "css-loader": "^0.28.7",
     "geobuf": "^3.0.0",
     "jquery": "^3.2.1",
+    "jquery-ui": "^1.12.1",
     "leaflet": "~1.0.3",
     "leaflet-active-area": "^1.0.2",
     "leaflet-control-geocoder": "git://github.com/perliedman/leaflet-control-geocoder.git#master",
