@@ -34,7 +34,7 @@ CREATE TABLE dynpoi_categ (
 
 CREATE TABLE dynpoi_class (
     source integer NOT NULL,
-    class bigint NOT NULL,
+    class integer NOT NULL,
     item integer,
     title hstore,
     level integer,
@@ -66,7 +66,7 @@ CREATE TABLE dynpoi_item (
 
 CREATE TABLE dynpoi_stats (
     source integer NOT NULL,
-    class bigint NOT NULL,
+    class integer NOT NULL,
     "timestamp" timestamp without time zone NOT NULL,
     count integer NOT NULL
 );
