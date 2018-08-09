@@ -68,7 +68,7 @@ CREATE TABLE dynpoi_stats (
     source integer NOT NULL,
     class bigint NOT NULL,
     "timestamp" timestamp without time zone NOT NULL,
-    count integer
+    count integer NOT NULL
 );
 
 
