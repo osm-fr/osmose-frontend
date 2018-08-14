@@ -96,6 +96,4 @@
 </tr>
 %end
 </table>
-<script type="text/javascript" src="{{get_url('static', filename='/js/jquery-1.7.2.js')}}"></script>
-<script src="{{get_url('static', filename='js/err_delete.js')}}" type="text/javascript"></script>
 <iframe id="hiddenIframe" name="hiddenIframe"></iframe>

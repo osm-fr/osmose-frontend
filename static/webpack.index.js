@@ -3,5 +3,5 @@ require('bootstrap/dist/css/bootstrap.css');
 
 require('./css/style.css');
 
-// err_delete.js
-require('./js/sorttable')
+require('./js/err_delete.js');
+require('./js/sorttable');
