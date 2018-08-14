@@ -8,12 +8,12 @@ $(document).ready(function() {
     $('#load').fadeIn();
     var Container = $(this).parent();
     var id = $(this).attr("id").split("=");
-    gen = id[1];
-    id = id[2];
- 
+    verb = id[0];
+    path = id[1];
+
     $.ajax({
-      type: "DELETE",
-      url: "../api/0.2/" + gen + "/" + id,
+      type: verb,
+      url: "../api/0.2/" + path,
       cache: false,
       beforeSend: function() {
         Container.parent().css({"backgroundColor":"red"})
@@ -31,7 +31,7 @@ $(document).ready(function() {
         Container.parent().css({"backgroundColor":""});
       }
     });
- 
+
     return false;
   });
 });
