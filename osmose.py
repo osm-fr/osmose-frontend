@@ -112,7 +112,6 @@ def error404(error):
     else:
         return {}
 
-import api_0_1
 import api_0_2_meta
 import byuser
 import control
