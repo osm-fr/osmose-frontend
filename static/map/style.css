@@ -106,7 +106,11 @@ div#top_links {
 #topmenu li:hover > .submenu { display: block; }
 
 /* popups */
-.leaflet-popup-content a {
+.leaflet-popup-content .btn {
+  color: #fff;
+}
+.leaflet-popup-content .bulle_msg a,
+.leaflet-popup-content .bulle_verif a {
   text-decoration: underline;
 }
 
@@ -122,9 +126,6 @@ div#top_links {
   font-weight: bold;
   background-color: #AAAAAA;
   margin-right: 2px;
-  text-decoration:none;
-}
-.bulle_msg div.closebubble a {
   text-decoration:none;
 }
 .bulle_msg div.closebubble a:link,
@@ -182,8 +183,22 @@ a.bulle_err:hover {
   color: #55AA55;
 }
 
-.bulle_maj {
-  font-size: 90%;
+#bulle_footer {
+  display: table;
+  width: 100%;
+}
+
+#bulle_maj {
+  display: table-cell;
+  font-size: 80%;
+  vertical-align: top;
+}
+
+#bulle_button {
+  display: table-cell;
+  text-align: right;
+  padding-top: 5px;
+  padding-left: 5px;
 }
 
 /* Layers control */

@@ -1,10 +1,6 @@
 {{!mustache_delimiter}}
 <div id="popup-{%error_id%}">
   <div class="bulle_msg">
-    <div class="closebubble">
-      <div class="help"><a target="popup_help" href='{%url_help%}#{%item%}' title="{{_('Help on OSM Wiki')}}">&nbsp;?&nbsp;</a></div>
-      <div class="error-link"><a target="_blank" href="../error/{%error_id%}" title="{{_('Issue details')}}">&nbsp;E&nbsp;</a></div>
-    </div>
     <div class="bulle_err">
       <b>{% title %}</b>
       <br>
@@ -91,17 +87,26 @@
       </div>
     </div>
 {%/new_elems%}
-  <span title="{{_('Report based on data from date')}}">{{_("Issue reported on: ")}} {%b_date%}</span>
   </div>
   <div class="bulle_verif">
     <a href="{{main_website}}?lat={%lat%}&lon={%lon%}&zoom=18" target="popup_osm" title="{{_('Show the area on {where}').format(where=main_website)}}">osm-show</a>
     <a href="{{main_website}}edit?lat={%lat%}&lon={%lon%}&zoom=18" target="_blank" title="{{_('Edit the area on {where}').format(where=main_website)}}">osm-edit</a>
     <a href="http://localhost:8111/load_and_zoom?left={%minlon%}&bottom={%minlat%}&right={%maxlon%}&top={%maxlat%}&select={%elems_id%}" target="hiddenIframe" class="josm" title="{{_('Edit the area on {where}').format(where='JOSM')}}">josm-zone</a>
+    <a href="../error/{%error_id%} "target="_blank" title="{{_('Issue details')}}">{{_("details")}}</a>
   </div>
-  <div class="bulle_maj">
-    <b>{{_("change status")}} :</b>
-    <a class="closePopup corrected" href="../api/0.2/error/{%error_id%}/done" target="hiddenIframe" title="{{_('After issue fixed on the OSM data, mark it as done. May also disapear automaticlay on next check if no more issue.')}}">{{_("corrected")}}</a>
-    <a class="closePopup false_positive" href="../api/0.2/error/{%error_id%}/false" target="hiddenIframe" title="{{_('Report the issue as improper, if according to you is not an issue. The issue will not be displayed to anyone more.')}}">{{_("false positive")}}</a>
-</div>
-
+  <div id="bulle_footer">
+    <div id="bulle_maj">
+      <span title="{{_('Report based on data from date')}}">{{_("Issue reported on:")}} {%b_date%}</span>
+    </div>
+    <div id="bulle_button">
+      <div class="btn-group" role="group">
+        <a class="closePopup false_positive btn btn-info btn-sm" role="button" href='{%url_help%}#{%item%}' target="popup_help" title="{{_('Help on OSM Wiki')}}">ℹ</a>
+        <a class="closePopup false_positive btn btn-danger btn-sm" role="button" href="../api/0.2/error/{%error_id%}/false" target="hiddenIframe"
+          onclick='return confirm("{{_('Report the issue as improper, if according to you is not an issue. The issue will not be displayed to anyone more.')}}")'
+          title="{{_('false positive')}} - {{_('Report the issue as improper, if according to you is not an issue. The issue will not be displayed to anyone more.')}}">✘</a>
+        <a class="closePopup corrected btn btn-success btn-sm" role="button" href="../api/0.2/error/{%error_id%}/done" target="hiddenIframe"
+          title="{{_('corrected')}} - {{_('After issue fixed on the OSM data, mark it as done. May also disapear automaticlay on next check if no more issue.')}}">✔</a>
+      </div>
+    </div>
+  </div>
 </div>
