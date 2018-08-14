@@ -137,7 +137,7 @@
 %
 %    import urlparse, urllib
 %    query_dict = urlparse.parse_qs(query)
-%    limit = int((query_dict.has_key("limit") and query_dict["limit"][0])) or 20
+%    limit = int((query_dict.has_key("limit") and query_dict["limit"][0])) or 100
 %    if limit < total:
 %        limit *= 5
 %    end
