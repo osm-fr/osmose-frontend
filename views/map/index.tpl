@@ -200,18 +200,61 @@ $(function() {
 
 <div id="editor" data-user="{{not not user}}"><p>{{_("You must be logged in order to use the tag editor")}}</p><a href="../login">{{_("Login")}}</a></div>
 
-<div id="dialog_editor_save_popup" title="{{_("Save changeset")}}" data-button_cancel="{{_("Cancel")}}" data-button_save="{{_("Save")}}" style="display:none">
-  <p>{{_("Objects edited:")}}&nbsp;<span id="editor-modify-count"></span></p>
-  <p>{{_("Objects deleted:")}}&nbsp;<span id="editor-delete-count"></span></p>
-  <form id="editor_save_form">
-    <label for="comment">{{_("Comment")}}</label><input type="text" name="comment" id="comment" value="{{_("Fix with Osmose")}}"/>
-    <br/><br/>
-    <label for="source">{{_("Source")}}</label><input type="text" name="source" id="source" value=""/>
-    <br/><br/>
-    <label for="type">{{_("Type")}}</label><input type="text" name="type" id="type" value="fix"/>
-    <br/><br/>
-    <input type="checkbox" name="reuse_changeset" id="reuse_changeset" checked="checked"/><label for="reuse_changeset">{{_("Reuse changeset")}}</label>
-  </form>
+<div class="modal" id="dialog_editor_save_modal" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{_("Save changeset")}}</h5>
+      </div>
+      <div class="modal-body" id="save_changeset">
+        <form id="editor_save_form">
+          <div class="form-group row">
+            <label for="editor-modify-count" class="col-sm-4 col-form-label">{{_("Objects edited")}}</label>
+            <div class="col-sm-8">
+              <input type="text" readonly class="form-control-plaintext" id="editor-modify-count" value="">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="editor-delete-count" class="col-sm-4 col-form-label">{{_("Objects deleted")}}</label>
+            <div class="col-sm-8">
+              <input type="text" readonly class="form-control-plaintext" id="editor-delete-count" value="">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="comment" class="col-sm-4 col-form-label">{{_("Comment")}}</label>
+            <div class="col-sm-8">
+              <input class="form-control" type="text" name="comment" id="comment" value="{{_("Fix with Osmose")}}"/>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="source" class="col-sm-4 col-form-label">{{_("Source")}}</label>
+            <div class="col-sm-8">
+              <input class="form-control" type="text" name="source" id="source" value=""/>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="type" class="col-sm-4 col-form-label">{{_("Type")}}</label>
+            <div class="col-sm-8">
+              <input class="form-control" type="text" name="type" id="type" value="fix"/>
+            </div>
+          </div>
+          <div class="form-group" row>
+            <div class="col-sm-12">
+              <input class="form-check-input" type="checkbox" name="reuse_changeset" id="reuse_changeset" checked="checked"/>
+              <label class="form-check-label" for="reuse_changeset">{{_("Reuse changeset")}}</label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-body" id="save_uploading" style="display: none">
+        <center><img src='../images/throbbler.gif' alt='downloading'></center>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{_("Cancel")}}</button>
+        <button type="button" class="btn btn-primary" id="save_button">{{_("Save")}}</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 </body>

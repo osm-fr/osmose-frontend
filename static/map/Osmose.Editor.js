@@ -1,5 +1,4 @@
 require('leaflet');
-require('jquery-ui/ui/widgets/dialog');
 require('mustache');
 
 require('./Osmose.Editor.css');
@@ -26,32 +25,24 @@ export var OsmoseEditor = L.Control.Sidebar.extend({
       self._save(this);
     });
 
-    this.saveDialog = $('#dialog_editor_save_popup');
-    this.saveDialog.dialog({
-      autoOpen: false,
-      modal: true,
-      buttons: [{
-        text: self.saveDialog.attr('data-button_cancel'),
-        click: function () {
-          self.saveDialog.dialog('close');
-        }
-      }, {
-        text: self.saveDialog.attr('data-button_save'),
-        click: function () {
-          var dialog_content = self.saveDialog.html(),
-            comment = document.forms.editor_save_form.elements.comment.value,
-            source = document.forms.editor_save_form.elements.source.value,
-            type = document.forms.editor_save_form.elements.type.value,
-            reuse_changeset = document.forms.editor_save_form.elements.reuse_changeset.checked;
-          self.saveDialog.html("<center><img src='../images/throbbler.gif' alt='downloading'></center>");
-          self.saveDialog.parent().find('.ui-dialog-buttonpane').hide();
+    this.saveModal = $('#dialog_editor_save_modal');
+    this.saveModal.on('shown.bs.modal', function () {
+      $('#save_button', this.saveModal).trigger('focus')
+    })
+    $('#save_button', this.saveModal).click(function () {
+      var comment = document.forms.editor_save_form.elements.comment.value,
+        source = document.forms.editor_save_form.elements.source.value,
+        type = document.forms.editor_save_form.elements.type.value,
+        reuse_changeset = document.forms.editor_save_form.elements.reuse_changeset.checked;
+      self.saveModal.find('#save_changeset').hide();
+      self.saveModal.find('#save_uploading').show();
+      self.saveModal.find('.modal-footer').hide();
 
-          self._upload(comment, source, type, reuse_changeset, function () {
-            self.saveDialog.html(dialog_content);
-            self.saveDialog.parent().find('.ui-dialog-buttonpane').show();
-          });
-        },
-      }]
+      self._upload(comment, source, type, reuse_changeset, function () {
+        self.saveModal.find('#save_changeset').show();
+        self.saveModal.find('#save_uploading').hide();
+        self.saveModal.find('.modal-footer').show();
+      });
     });
 
     $(window).on('beforeunload', L.Util.bind(this._beforeunload, this));
@@ -129,17 +120,16 @@ export var OsmoseEditor = L.Control.Sidebar.extend({
       self._modifiyObjectStack = {};
       self._deleteObjectStack = {};
       self._count_touched();
-      self.saveDialog.dialog('close');
+      self.saveModal.modal('hide');
     }).fail(function (xhr, err) {
       alert("Fails post to " + url + "\nreadyState: " + xhr.readyState + "\nstatus: " + xhr.status);
     }).always(always);
   },
 
   _save: function (e) {
-    this.saveDialog.find('#editor-modify-count').text(Object.keys(this._modifiyObjectStack).length);
-    this.saveDialog.find('#editor-delete-count').text(Object.keys(this._deleteObjectStack).length);
-    this.saveDialog.dialog('open');
-    this.saveDialog.parent().find('button:last').focus();
+    this.saveModal.find('#editor-modify-count').val(Object.keys(this._modifiyObjectStack).length);
+    this.saveModal.find('#editor-delete-count').val(Object.keys(this._deleteObjectStack).length);
+    this.saveModal.modal('show');
   },
 
   _cancel: function (e) {

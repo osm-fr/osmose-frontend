@@ -21,7 +21,7 @@ div#map div#spinner {
   left: 50%;
   margin-top: -128px;
   margin-left: -128px;
-  z-index: 2000;
+  z-index: 1025;
 }
 
 /* Top menu */
@@ -38,7 +38,7 @@ div#top_links {
 
   vertical-align: middle;
   text-align: center;
-  z-index: 2000;
+  z-index: 1025;
 }
 
 .leaflet-touch + div#top_links {
