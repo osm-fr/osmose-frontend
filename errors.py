@@ -127,7 +127,7 @@ def index(db, lang, format=None):
         title = _("Informations")
         gen = "error"
 
-    if not format in ('rss', 'gpx', 'josm', 'csv'):
+    if not format in ('rss', 'gpx', 'kml', 'josm', 'csv'):
         format = None
 
     countries = query_meta._countries(db, lang) if format == None else None
@@ -179,6 +179,9 @@ def index(db, lang, format=None):
     elif format == 'gpx':
         response.content_type = 'application/gpx+xml'
         tpl = 'errors/list.gpx'
+    elif format == 'kml':
+        response.content_type = 'application/vnd.google-earth.kml+xml'
+        tpl = 'errors/list.kml'
     elif format == 'josm':
         objects = []
         for res in errors:
