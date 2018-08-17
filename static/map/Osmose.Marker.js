@@ -2,15 +2,19 @@ require('leaflet');
 require('leaflet.vectorgrid/dist/Leaflet.VectorGrid.js');
 require('leaflet-responsive-popup');
 require('leaflet-responsive-popup/leaflet.responsive.popup.css');
+require('leaflet-osm');
+require('leaflet-textpath');
 require('mustache');
 
 
 export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
-  initialize: function (menu, params, editor, options) {
+  initialize: function (menu, params, editor, featuresLayers, options) {
     this._menu = menu;
     this._params = params;
     this._editor = editor;
+    this._featuresLayers = featuresLayers;
+    this._remote_url_read = remote_url_read;
     L.Util.setOptions(this, options);
     var vectorTileOptions = {
       rendererFactory: L.canvas.tile,
@@ -146,6 +150,34 @@ export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
           url: '../api/0.2/error/' + e.layer.properties.issue_id,
           dataType: 'json',
           success: function (data) {
+            // Get the OSM objects
+            self._featuresLayers.clearLayers();
+            if (data.elems_id) {
+              var shift = -1, palette = ['#ff3333', '#59b300', '#3388ff'];
+              data.elems.forEach(function(elem) {
+                $.ajax({
+                  url: elem.type == 'node' ? self._remote_url_read + 'api/0.6/node/' + elem.id:
+                    self._remote_url_read + 'api/0.6/' + elem.type + '/' + elem.id + '/full',
+                  dataType: 'xml',
+                  success: function (xml) {
+                    var layer = new L.OSM.DataLayer(xml);
+                    var color = palette[(shift += 1) % 3];
+                    layer.setStyle({
+                       color: color,
+                       fillColor: color,
+                    });
+                    layer.setText('  ►  ', {
+                       repeat: true,
+                       attributes: {
+                           fill: color
+                       }
+                    });
+                    self._featuresLayers.addLayer(layer);
+                  }
+                });
+              });
+            }
+            // Display Popup
             var template = $('#popupTpl').html(),
               content = $(Mustache.render(template, data));
             content.on('click', '.closePopup', function () {

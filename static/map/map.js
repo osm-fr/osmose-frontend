@@ -48,7 +48,9 @@ export function init_map() {
   map.addControl(editor);
 
   mapOverlay['Osmose Issues Heatmap'] = new OsmoseHeatmap(menu, urlVars);
-  var osmoseLayer = new OsmoseMarker(menu, urlVars, editor);
+  var featureLayer = L.layerGroup()
+  map.addLayer(featureLayer);
+  var osmoseLayer = new OsmoseMarker(menu, urlVars, editor, featureLayer, remote_url_read);
   mapOverlay['Osmose Issues'] = osmoseLayer;
   editor.errors = osmoseLayer;
 

@@ -21,6 +21,7 @@
 %for (t, i) in item_tags.iteritems():
     item_tags["{{t}}"] = {{list(i)}};
 %end
+    var remote_url_read = "{{remote_url_read}}";
   </script>
 </head>
 <body>
