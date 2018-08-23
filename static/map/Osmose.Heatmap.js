@@ -28,7 +28,7 @@ export var OsmoseHeatmap = L.VectorGrid.Protobuf.extend({
       }
     };
 
-    L.VectorGrid.Protobuf.prototype.initialize.call(this, this._makeUrl(), vectorTileOptions);
+    L.VectorGrid.Protobuf.prototype.initialize.call(this, 'heat/{z}/{x}/{y}.mvt' + L.Util.getParamString(this._params), vectorTileOptions);
   },
 
   onAdd: function (map) {
