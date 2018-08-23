@@ -2,19 +2,18 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.7
--- Dumped by pg_dump version 9.6.7
+-- Dumped from database version 9.6.10
+-- Dumped by pg_dump version 9.6.10
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
 SET client_min_messages = warning;
 SET row_security = off;
-
-SET search_path = public, pg_catalog;
 
 SET default_with_oids = false;
 
@@ -353,13 +352,6 @@ ALTER TABLE ONLY source
 
 
 --
--- Name: dynpoi_stats_timestamp; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX dynpoi_stats_timestamp ON dynpoi_stats USING btree ("timestamp");
-
-
---
 -- Name: idx_dynpoi_class_class; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -387,27 +379,6 @@ CREATE INDEX idx_dynpoi_class_level ON dynpoi_class USING btree (level);
 --
 
 CREATE INDEX idx_dynpoi_class_source ON dynpoi_class USING btree (source);
-
-
---
--- Name: idx_dynpoi_update_source; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_dynpoi_update_source ON dynpoi_update USING btree (source);
-
-
---
--- Name: idx_dynpoi_update_timestamp; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_dynpoi_update_timestamp ON dynpoi_update USING btree ("timestamp");
-
-
---
--- Name: idx_marker_elem_data_type_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_marker_elem_data_type_id ON marker_elem USING btree (data_type, id);
 
 
 --
