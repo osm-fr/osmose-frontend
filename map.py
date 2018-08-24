@@ -226,8 +226,10 @@ def heat(db, z, x, y):
     lon2,lat1 = tiles.tile2lonlat(x+1,y+1,z)
 
     params = query._params()
-    params.bbox = [lon1, lat1, lon2, lat2]
     items = query._build_where_item(params.item, "dynpoi_item")
+    params.tilex = x
+    params.tiley = y
+    params.zoom = z
 
     db.execute("""
 SELECT
@@ -242,7 +244,7 @@ WHERE
     else:
         return HTTPError(404)
 
-    join, where = query._build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable)
+    join, where = query._build_param(None, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, tilex=params.tilex, tiley=params.tiley, zoom=params.zoom)
     join = join.replace("%", "%%")
     where = where.replace("%", "%%")
 
@@ -293,7 +295,9 @@ def issues_mvt(db, z, x, y):
     dlat = (lat2 - lat1) / 256
 
     params = query._params()
-    params.bbox = [lon1-dlon*32, lat1-dlat*8, lon2+dlon, lat2+dlat*8]
+    params.tilex = x
+    params.tiley = y
+    params.zoom = z
 
     if (not params.users) and (not params.source) and (params.zoom < 6):
         return

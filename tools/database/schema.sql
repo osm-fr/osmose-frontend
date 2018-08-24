@@ -396,13 +396,6 @@ CREATE INDEX idx_marker_item ON marker USING btree (item);
 
 
 --
--- Name: idx_marker_lat_lon; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_marker_lat_lon ON marker USING btree (lat, lon);
-
-
---
 -- Name: idx_marker_source_class; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -414,6 +407,13 @@ CREATE INDEX idx_marker_source_class ON marker USING btree (source, class);
 --
 
 CREATE INDEX idx_marker_source_class_subclass_lat_lon_elems ON marker USING btree (source, class, subclass, lat, lon, elems);
+
+
+--
+-- Name: idx_marker_z_order_curve; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_marker_z_order_curve ON marker USING btree (lonlat2z_order_curve((lon)::double precision, (lat)::double precision)) WHERE (lat > ('-90'::integer)::numeric);
 
 
 --
