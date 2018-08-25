@@ -17,3 +17,16 @@ def tile2lonlat(xtile, ytile, zoom):
   lat_rad = math.atan(math.sinh(math.pi * (1 - 2 * ytile / n)))
   lat_deg = math.degrees(lat_rad)
   return (lon_deg, lat_deg)
+
+
+def bbox2tile(min_lon, min_lat, max_lon, max_lat):
+  # Note: Naive implementation
+  tile = (0, 0)
+  min_tile = max_tile = None
+  z = 1
+  while z < 19 and min_tile == max_tile:
+    tile = min_tile
+    min_tile = lonlat2tile(min_lon, min_lat, z)
+    max_tile = lonlat2tile(max_lon, max_lat, z)
+    z += 1
+  return (tile[0], tile[1], z - 2)
