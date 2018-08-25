@@ -21,7 +21,7 @@
 ###########################################################################
 
 from bottle import route, request, template, response, redirect, abort, static_file, HTTPError
-from tools import utils, query, query_meta
+from tools import utils, query, query_meta, tiles
 import byuser
 import errors
 import datetime
@@ -186,14 +186,6 @@ OFFSET
         user=user, user_error_count=user_error_count)
 
 
-def num2deg(xtile, ytile, zoom):
-    n = 2.0 ** zoom
-    lon_deg = xtile / n * 360.0 - 180.0
-    lat_rad = math.atan(math.sinh(math.pi * (1 - 2 * ytile / n)))
-    lat_deg = math.degrees(lat_rad)
-    return (lon_deg, lat_deg)
-
-
 def _errors_mvt(db, params, z, min_lon, min_lat, max_lon, max_lat, limit):
     params.limit = limit
     results = query._gets(db, params) if z >= 6 else None
@@ -230,8 +222,8 @@ def _errors_mvt(db, params, z, min_lon, min_lat, max_lon, max_lat, limit):
 def heat(db, z, x, y):
     COUNT=32
 
-    lon1,lat2 = num2deg(x,y,z)
-    lon2,lat1 = num2deg(x+1,y+1,z)
+    lon1,lat2 = tiles.tile2lonlat(x,y,z)
+    lon2,lat1 = tiles.tile2lonlat(x+1,y+1,z)
 
     params = query._params()
     params.bbox = [lon1, lat1, lon2, lat2]
@@ -295,8 +287,8 @@ GROUP BY
 
 @route('/map/issues/<z:int>/<x:int>/<y:int>.mvt')
 def issues_mvt(db, z, x, y):
-    lon1,lat2 = num2deg(x,y,z)
-    lon2,lat1 = num2deg(x+1,y+1,z)
+    lon1,lat2 = tiles.tile2lonlat(x,y,z)
+    lon2,lat1 = tiles.tile2lonlat(x+1,y+1,z)
     dlon = (lon2 - lon1) / 256
     dlat = (lat2 - lat1) / 256
 
