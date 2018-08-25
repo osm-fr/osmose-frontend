@@ -17,7 +17,7 @@ export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
     this._remote_url_read = remote_url_read;
     L.Util.setOptions(this, options);
     var vectorTileOptions = {
-      rendererFactory: L.canvas.tile,
+      rendererFactory: L.svg.tile,
       vectorTileLayerStyles: {
         issues: function(properties, zoom) {
           return {
@@ -45,6 +45,23 @@ export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
       }
     };
     L.VectorGrid.Protobuf.prototype.initialize.call(this, './issues/{z}/{x}/{y}.mvt' + L.Util.getParamString(this._params), vectorTileOptions);
+  },
+
+  _tileReady: function (coords, err, tile) {
+    L.VectorGrid.Protobuf.prototype._tileReady.call(this, coords, err, tile);
+
+    // Hack: Overload the tile size an relative position to display part of markers over the edge of the tile.
+    var key = this._tileCoordsToKey(coords);
+    tile = this._tiles[key];
+    if (tile) {
+      tile.el.setAttribute('viewBox', '-8 -33 264 289'); // 0-8, 0-33, 256+8, 256+33
+      tile.el.style.width = '272px';
+      tile.el.style.height = '289px';
+      var transform = tile.el.style.transform.match(/translate3d\(([-0-9]+)px, ([-0-9]+)px, 0px\)/);
+      var x = parseInt(transform[1]) - 8 * 2;
+      var y = parseInt(transform[2]) - 33;
+      tile.el.style.transform = 'translate3d(' + x + 'px, ' + y + 'px, 0px)'
+    }
   },
 
   onAdd: function(map) {
