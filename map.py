@@ -191,10 +191,10 @@ def num2deg(xtile, ytile, zoom):
     lon_deg = xtile / n * 360.0 - 180.0
     lat_rad = math.atan(math.sinh(math.pi * (1 - 2 * ytile / n)))
     lat_deg = math.degrees(lat_rad)
-    return (lat_deg, lon_deg)
+    return (lon_deg, lat_deg)
 
 
-def _errors_mvt(db, params, z, min_x, min_y, max_x, max_y, limit):
+def _errors_mvt(db, params, z, min_lon, min_lat, max_lon, max_lat, limit):
     params.limit = limit
     results = query._gets(db, params) if z >= 6 else None
 
@@ -206,7 +206,7 @@ def _errors_mvt(db, params, z, min_x, min_y, max_x, max_y, limit):
             limit_feature = [{
                 "name": "limit",
                 "features": [{
-                    "geometry": Point((min_x + max_x) / 2, (min_y + max_y) / 2)
+                    "geometry": Point((min_lon + max_lon) / 2, (min_lat + max_lat) / 2)
                 }]
             }]
 
@@ -223,18 +223,18 @@ def _errors_mvt(db, params, z, min_x, min_y, max_x, max_y, limit):
         return mapbox_vector_tile.encode([{
             "name": "issues",
             "features": issues_features
-        }] + limit_feature, quantize_bounds=(min_x, min_y, max_x, max_y))
+        }] + limit_feature, quantize_bounds=(min_lon, min_lat, max_lon, max_lat))
 
 
 @route('/map/heat/<z:int>/<x:int>/<y:int>.mvt')
 def heat(db, z, x, y):
     COUNT=32
 
-    x2,y1 = num2deg(x,y,z)
-    x1,y2 = num2deg(x+1,y+1,z)
+    lon1,lat2 = num2deg(x,y,z)
+    lon2,lat1 = num2deg(x+1,y+1,z)
 
     params = query._params()
-    params.bbox = [y1, x1, y2, x2]
+    params.bbox = [lon1, lat1, lon2, lat2]
     items = query._build_where_item(params.item, "dynpoi_item")
 
     db.execute("""
@@ -257,8 +257,8 @@ WHERE
     sql = """
 SELECT
     COUNT(*),
-    ((lon-%(y1)s) * %(count)s / (%(y2)s-%(y1)s) + 0.5)::int AS latn,
-    ((lat-%(x1)s) * %(count)s / (%(x2)s-%(x1)s) + 0.5)::int AS lonn,
+    ((lon-%(lon1)s) * %(count)s / (%(lon2)s-%(lon1)s) + 0.5)::int AS latn,
+    ((lat-%(lat1)s) * %(count)s / (%(lat2)s-%(lat1)s) + 0.5)::int AS lonn,
     mode() WITHIN GROUP (ORDER BY dynpoi_item.marker_color) AS color
 FROM
 """ + join + """
@@ -268,7 +268,7 @@ GROUP BY
     latn,
     lonn
 """
-    db.execute(sql, {"x1":x1, "y1":y1, "x2":x2, "y2":y2, "count":COUNT})
+    db.execute(sql, {"lon1":lon1, "lat1":lat1, "lon2":lon2, "lat2":lat2, "count":COUNT})
 
     features = []
     for row in db.fetchall():
@@ -295,13 +295,13 @@ GROUP BY
 
 @route('/map/issues/<z:int>/<x:int>/<y:int>.mvt')
 def issues_mvt(db, z, x, y):
-    x2,y1 = num2deg(x,y,z)
-    x1,y2 = num2deg(x+1,y+1,z)
-    dx = (x2 - x1) / 256
-    dy = (y2 - y1) / 256
+    lon1,lat2 = num2deg(x,y,z)
+    lon2,lat1 = num2deg(x+1,y+1,z)
+    dlon = (lon2 - lon1) / 256
+    dlat = (lat2 - lat1) / 256
 
     params = query._params()
-    params.bbox = [y1-dy*8, x1-dx*32, y2+dy*8, x2+dx]
+    params.bbox = [lon1-dlon*32, lat1-dlat*8, lon2+dlon, lat2+dlat*8]
 
     if (not params.users) and (not params.source) and (params.zoom < 6):
         return
@@ -317,7 +317,7 @@ def issues_mvt(db, z, x, y):
     response.set_cookie('last_tags', str(','.join(params.tags)) if params.tags else '', expires=expires, path=path)
     response.set_cookie('last_fixable', str(params.fixable) if params.fixable else '', expires=expires, path=path)
 
-    tile = _errors_mvt(db, params, z, y1, x1, y2, x2, 50)
+    tile = _errors_mvt(db, params, z, lon1, lat1, lon2, lat2, 50)
     if tile:
         response.content_type = 'application/vnd.mapbox-vector-tile'
         return tile
