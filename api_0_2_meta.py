@@ -24,6 +24,11 @@ from bottle import route, response
 from tools import query_meta
 
 
+@route('/api/0.2/meta/class')
+def items(db, lang):
+    return {"class": query_meta._class(db, lang)}
+
+
 @route('/api/0.2/meta/items')
 def items(db, lang):
     return {"items": query_meta._items(db, lang)}

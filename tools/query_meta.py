@@ -20,6 +20,24 @@
 ##                                                                       ##
 ###########################################################################
 
+def _class(db, lang):
+    sql = """
+    SELECT
+        item,
+        class,
+        title,
+        level,
+        tags
+    FROM
+        class
+    ORDER BY
+        item,
+        class
+    """
+    db.execute(sql)
+    return map(lambda r: dict(zip(["item", "class", "title", "level", "tags"], r)), db.fetchall())
+
+
 def _items(db, lang):
     sql = """
     SELECT
