@@ -78,7 +78,12 @@
     <ul>
 %    for err in categ["items"]:
 %        it.add(err["item"])
-        <li id='item_desc{{err["item"]}}'>
+        <li id='item_desc{{err["item"]}}' class="item" title="{{_("Item #%s") % err["item"]}}
+%for classs in err["class"]:
+{{classs["class"]}}. {{translate.select(classs["title"])}}
+%end
+"
+>
             <div class="marker-l marker-l-{{err["item"]}}"></div>
             <div class="level">\\
 %        ll = dict(map(lambda l: [l["level"], l["count"]], err["levels"]))

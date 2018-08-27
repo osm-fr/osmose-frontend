@@ -126,7 +126,7 @@ export const OsmoseMenu = L.Control.Sidebar.extend({
 
   // Change tags, level, fixable
   _change_tags_level_fixable_display(tag, level, fixable) {
-    $('div#tests li').each((i, elem) => {
+    $('div#tests li.item').each((i, elem) => {
       const id = parseInt($(elem).attr('id').replace(/item_desc/, ''), 10);
       if ($.inArray(id, itemLevels[level]) >= 0 && (!(tag in itemTags) || $.inArray(id, itemTags[tag]) >= 0)) {
         $(`#item_desc${id}`).show();
