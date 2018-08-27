@@ -123,6 +123,7 @@ def error404(error):
         return {}
 
 import api_0_2_meta
+import api_0_3_meta
 import byuser
 import control
 import error

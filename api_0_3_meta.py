@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
+## Copyrights Frédéric Rorigo 2018                                       ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -24,26 +24,16 @@ from bottle import route, response
 from tools import query_meta
 
 
-@route('/api/0.2/meta/class')
-def items(db, lang):
-    return {"class": query_meta._class(db, lang)}
+@route('/api/0.3beta/items')
+def items(db):
+    return {"categories": query_meta._items_3(db)}
 
 
-@route('/api/0.2/meta/items')
-def items(db, lang):
-    return {"items": query_meta._items(db, lang)}
+@route('/api/0.3beta/countries')
+def items(db):
+    return {"countries": query_meta._countries_3(db)}
 
 
-@route('/api/0.2/meta/countries')
-def items(db, lang):
-    return {"countries": map(lambda x: x[0], query_meta._countries(db, lang))}
-
-
-@route('/api/0.2/meta/categories')
-def items(db, lang):
-    return {"categories": query_meta._categories(db, lang)}
-
-
-@route('/api/0.2/meta/tags')
-def items(db, lang):
+@route('/api/0.3beta/tags')
+def items(db):
     return {"tags": query_meta._tags(db)}

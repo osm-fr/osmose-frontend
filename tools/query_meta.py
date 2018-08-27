@@ -20,6 +20,9 @@
 ##                                                                       ##
 ###########################################################################
 
+from collections import defaultdict
+
+
 def _class(db, lang):
     sql = """
     SELECT
@@ -64,6 +67,18 @@ def _countries(db, lang):
     db.execute(sql)
     return db.fetchall()
 
+def _countries_3(db):
+    sql = """
+    SELECT DISTINCT
+        country
+    FROM
+        source
+    ORDER BY
+        country
+    """
+    db.execute(sql)
+    return map(lambda x: x[0], db.fetchall())
+
 
 def _categories(db, lang):
     sql = """
@@ -106,8 +121,79 @@ def _categories(db, lang):
 
     return result
 
+def _items_3(db):
+    sql = """
+    SELECT
+        dynpoi_categ.categ,
+        dynpoi_categ.menu
+    FROM
+        dynpoi_categ
+    ORDER BY
+        categ
+    """
+    db.execute(sql)
+    categs = map(lambda r: dict(zip(['categ', 'title'], r)), db.fetchall())
 
-def _tags(db, lang):
+    sql = """
+    SELECT
+        item,
+        categ,
+        marker_color,
+        menu,
+        levels,
+        number,
+        tags
+    FROM
+        dynpoi_item
+    ORDER BY
+        item
+    """
+    db.execute(sql)
+    items = map(lambda r: dict(zip(['item', 'categ', 'color', 'title', 'levels', 'number', 'tags'], r)), db.fetchall())
+    items = map(lambda r: {
+        'item': r['item'],
+        'categ': r['categ'],
+        'color': r['color'],
+        'title': r['title'] or {'en': '(name missing)'},
+        'levels': r['number'] and map(lambda (l, n): {'level': l, 'count': n}, zip(r['levels'], r['number'])) or map(lambda i: {'level': i, 'count': 0}, [1, 2, 3]),
+        'tags': r['tags']
+    }, items)
+    items_categ = defaultdict(list)
+    for i in items:
+        items_categ[i['categ']].append(i)
+
+    sql = """
+    SELECT
+        item,
+        class,
+        title,
+        level,
+        tags
+    FROM
+        class
+    ORDER BY
+        item,
+        class
+    """
+    db.execute(sql)
+    classs = map(lambda r: dict(zip(['item', 'class', 'title', 'level', 'tags'], r)), db.fetchall())
+    class_item = defaultdict(list)
+    for c in classs:
+        class_item[c['item']].append(c)
+
+    return map(lambda categ:
+        dict(
+            categ,
+            **{'items': map(lambda item:
+                dict(
+                    item,
+                    **{'class': class_item[item['item']]}),
+                items_categ[categ['categ']])}
+        ),
+        categs)
+
+
+def _tags(db):
     sql = """
     SELECT DISTINCT
         tag
