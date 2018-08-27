@@ -387,13 +387,6 @@ CREATE INDEX idx_dynpoi_class_item ON dynpoi_class USING btree (item);
 
 
 --
--- Name: idx_dynpoi_class_level; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_dynpoi_class_level ON dynpoi_class USING btree (level);
-
-
---
 -- Name: idx_dynpoi_class_source; Type: INDEX; Schema: public; Owner: -
 --
 
