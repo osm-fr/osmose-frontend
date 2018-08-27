@@ -139,15 +139,16 @@ def index(db, lang, format=None):
 
     if format == None and params.item:
         errors_groups = query._count(db, params, [
-            "dynpoi_class.item",
-            "dynpoi_class.source",
-            "dynpoi_class.class",
+            "marker.item",
+            "marker.source",
+            "marker.class",
             "source.country",
             "source.analyser",
             "dynpoi_update_last.timestamp"], [
-            "dynpoi_item"], [
+            "dynpoi_item",
+            "class"], [
             "min(dynpoi_item.menu::text)::hstore AS menu",
-            "min(dynpoi_class.title::text)::hstore AS title"],
+            "min(class.title::text)::hstore AS title"],
             orderBy = True)
 
         total = 0

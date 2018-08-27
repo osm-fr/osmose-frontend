@@ -98,7 +98,7 @@ def _tags(db, lang):
         SELECT
             unnest(tags) AS tag
         FROM
-            dynpoi_class
+            class
         ) AS t
     WHERE
         tag != ''

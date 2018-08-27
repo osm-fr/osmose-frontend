@@ -18,6 +18,20 @@ SET row_security = off;
 SET default_with_oids = false;
 
 --
+-- Name: class; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE class (
+    item integer NOT NULL,
+    class integer NOT NULL,
+    title hstore,
+    level integer,
+    "timestamp" timestamp without time zone,
+    tags character varying(255)[]
+);
+
+
+--
 -- Name: dynpoi_categ; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -35,10 +49,7 @@ CREATE TABLE dynpoi_class (
     source integer NOT NULL,
     class integer NOT NULL,
     item integer,
-    title hstore,
-    level integer,
     "timestamp" timestamp without time zone,
-    tags character varying(255)[],
     count integer
 );
 
@@ -221,6 +232,14 @@ CREATE TABLE source_password (
 --
 
 ALTER TABLE ONLY marker ALTER COLUMN id SET DEFAULT nextval('marker_id_seq'::regclass);
+
+
+--
+-- Name: class class_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY class
+    ADD CONSTRAINT class_pkey PRIMARY KEY (item, class);
 
 
 --

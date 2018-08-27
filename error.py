@@ -33,13 +33,16 @@ t2l = tag2link.tag2link("tools/tag2link_sources.xml")
 def _get(db, err_id):
     columns_marker = ["marker.item", "marker.source", "marker.class", "marker.elems", "marker.subclass",
         "marker.lat", "marker.lon",
-        "dynpoi_class.title", "marker.subtitle", "dynpoi_class.timestamp"]
+        "class.title", "marker.subtitle", "dynpoi_class.timestamp"]
     sql = "SELECT " + ",".join(columns_marker) + """
     FROM
         marker
         JOIN dynpoi_class ON
             marker.source = dynpoi_class.source AND
             marker.class = dynpoi_class.class
+        JOIN class ON
+            marker.item = class.item AND
+            marker.class = class.class
     WHERE
         marker.id = %s
     """
