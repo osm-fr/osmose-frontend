@@ -71,28 +71,27 @@
 %it = set()
 %for categ in categories:
     <div class="test_group" id="categ{{categ["categ"]}}">
-    <h1><a href="#" class="toggleCateg">{{categ["menu"]}}</a>
+    <h1><a href="#" class="toggleCateg">{{translate.select(categ["title"])}}</a>
     <span class="count">-/-</span>
     <a href="#" class="toggleAllItem" data-view="all">{{_("all")}}</a>
     <a href="#" class="toggleAllItem" data-view="nothing">{{_("nothing")}}</a></h1>
     <ul>
-%    for err in categ["item"]:
+%    for err in categ["items"]:
 %        it.add(err["item"])
         <li id='item_desc{{err["item"]}}'>
             <div class="marker-l marker-l-{{err["item"]}}"></div>
             <div class="level">\\
-%        p = 0
+%        ll = dict(map(lambda l: [l["level"], l["count"]], err["levels"]))
 %        for i in [1,2,3]:
-%            if i in err["levels"]:
-<div class="level-{{i}}"><span>{{err["number"][p] if err["number"] and len(err["number"]) > p else 0}}</span></div>\\
-%                p += 1
+%            if i in ll:
+<div class="level-{{i}}"><span>{{ll[i]}}</span></div>\\
 %            else:
 <div></div>\\
 %            end
 %        end
             </div>
             <input type='checkbox' id='item{{"{:04d}".format(err["item"])}}' name='item{{"{:04d}".format(err["item"])}}'/>
-            <a target="_blank" href="../errors/?item={{err["item"]}}">{{err["menu"]}}</a>
+            <a target="_blank" href="../errors/?item={{err["item"]}}">{{translate.select(err["title"])}}</a>
         </li>
 %    end
     </ul>

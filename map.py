@@ -29,6 +29,7 @@ import datetime
 import math, StringIO
 from shapely.geometry import Point, Polygon
 import mapbox_vector_tile
+from collections import defaultdict
 
 
 def check_items(items, all_items):
@@ -58,27 +59,25 @@ def index(db, lang):
     if request.query_string:
         redirect("./#" + request.query_string)
 
-    tags = query_meta._tags(db, lang)
+    tags = query_meta._tags(db)
 
     db.execute("SELECT item FROM dynpoi_item GROUP BY item;")
     all_items = map(lambda res: int(res[0]), db.fetchall())
 
-    categories = query_meta._categories(db, lang)
+    categories = query_meta._items_3(db)
 
-    item_tags = {}
-    item_levels = {"1": set(), "2": set(), "3": set()}
+    item_tags = defaultdict(set)
+    item_levels = {'1': set(), '2': set(), '3': set()}
     for categ in categories:
-        for err in categ["item"]:
-            for l in err["levels"]:
-                item_levels[str(l)].add(err["item"])
-            if err["tags"]:
-                for t in err["tags"]:
-                    if not item_tags.has_key(t):
-                        item_tags[t] = set()
-                    item_tags[t].add(err["item"])
+        for item in categ['items']:
+            for level in item['levels']:
+                item_levels[str(level['level'])].add(item['item'])
+            if item['tags']:
+                for tag in item['tags']:
+                    item_tags[tag].add(item['item'])
 
-    item_levels["1,2"] = item_levels["1"] | item_levels["2"]
-    item_levels["1,2,3"] = item_levels["1,2"] | item_levels["3"]
+    item_levels['1,2'] = item_levels['1'] | item_levels['2']
+    item_levels['1,2,3'] = item_levels['1,2'] | item_levels['3']
 
     urls = []
     # TRANSLATORS: link to help in appropriate language
