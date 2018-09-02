@@ -172,23 +172,23 @@ export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
             // Get the OSM objects
             self._featuresLayers.clearLayers();
             if (data.elems_id) {
-              var shift = -1, palette = ['#ff3333', '#59b300', '#3388ff'];
+              var shift = -1, palette = ['#ff3333', '#59b300', '#3388ff'], colors = {};
               data.elems.forEach(function(elem) {
+                colors[elem.type + elem.id] = palette[(shift += 1) % 3];
                 $.ajax({
                   url: elem.type == 'node' ? self._remote_url_read + 'api/0.6/node/' + elem.id:
                     self._remote_url_read + 'api/0.6/' + elem.type + '/' + elem.id + '/full',
                   dataType: 'xml',
                   success: function (xml) {
                     var layer = new L.OSM.DataLayer(xml);
-                    var color = palette[(shift += 1) % 3];
                     layer.setStyle({
-                       color: color,
-                       fillColor: color,
+                       color: colors[elem.type + elem.id],
+                       fillColor: colors[elem.type + elem.id],
                     });
                     layer.setText('  ►  ', {
                        repeat: true,
                        attributes: {
-                           fill: color
+                           fill: colors[elem.type + elem.id]
                        }
                     });
                     self._featuresLayers.addLayer(layer);
