@@ -56,11 +56,11 @@ export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
     var key = this._tileCoordsToKey(coords);
     tile = this._tiles[key];
     if (tile) {
-      tile.el.setAttribute('viewBox', '-8 -33 264 289'); // 0-8, 0-33, 256+8, 256+33
-      tile.el.style.width = '272px';
-      tile.el.style.height = '289px';
+      tile.el.setAttribute('viewBox', '-33 -33 322 322'); // 0-33, 0-33, 256+33, 256+33
+      tile.el.style.width = '322px';
+      tile.el.style.height = '322px';
       var transform = tile.el.style.transform.match(/translate3d\(([-0-9]+)px, ([-0-9]+)px, 0px\)/);
-      var x = parseInt(transform[1]) - 8 * 2;
+      var x = parseInt(transform[1]) - 33;
       var y = parseInt(transform[2]) - 33;
       tile.el.style.transform = 'translate3d(' + x + 'px, ' + y + 'px, 0px)'
     }
