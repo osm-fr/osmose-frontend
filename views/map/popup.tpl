@@ -105,7 +105,7 @@
           onclick='return confirm("{{_('Report the issue as improper, if according to you is not an issue. The issue will not be displayed to anyone more.')}}")'
           title="{{_('false positive')}} - {{_('Report the issue as improper, if according to you is not an issue. The issue will not be displayed to anyone more.')}}">✘</a>
         <a class="closePopup corrected btn btn-success btn-sm" role="button" href="../api/0.2/error/{%error_id%}/done" target="hiddenIframe"
-          title="{{_('corrected')}} - {{_('After issue fixed on the OSM data, mark it as done. May also disapear automaticlay on next check if no more issue.')}}">✔</a>
+          title="{{_('corrected')}} - {{_('After issue fixed on the OSM data, mark it as done. May also disappear automatically on next check if no more issue.')}}">✔</a>
       </div>
     </div>
   </div>
