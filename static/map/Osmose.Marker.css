@@ -1,0 +1,3 @@
+#map svg.leaflet-tile g image[width="17px"][height="33px"] {
+  cursor: pointer;
+}

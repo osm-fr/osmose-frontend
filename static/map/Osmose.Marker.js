@@ -6,6 +6,8 @@ require('leaflet-osm');
 require('leaflet-textpath');
 require('mustache');
 
+require('./Osmose.Marker.css');
+
 
 export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
