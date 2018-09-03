@@ -19,6 +19,7 @@ export var OsmoseExport = L.Class.extend({
   _setUrl: function (e) {
     var self = this,
       urlPart = self._menu.urlPart();
+    urlPart.limit = 500;
     urlPart.bbox = self._map.getBounds().toBBoxString();
     $("#menu-export ul a").each(function (i, a) {
       a.href = $(a).data('href') + L.Util.getParamString(urlPart);

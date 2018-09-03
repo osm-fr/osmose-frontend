@@ -2,6 +2,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
 <Document>
+  <Style id="placemark-purple">
+    <IconStyle>
+      <Icon>
+        <href>http://maps.me/placemarks/placemark-purple.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
 %for res in items:
 %    if item == str(res["item"]):
 %        title += ' - ' + translate.select(res['menu'])
@@ -66,6 +73,7 @@
       http://localhost:8111/load_and_zoom?left={{minlon}}&amp;bottom={{minlat}}&amp;right={{maxlon}}&amp;top={{maxlat}}
 %    end
     </description>
+    <styleUrl>#placemark-purple</styleUrl>
     <Point>
         <coordinates>{{lon}},{{lat}}</coordinates>
   </Point>
