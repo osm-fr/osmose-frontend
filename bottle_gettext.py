@@ -28,10 +28,6 @@ class GettextPlugin(object):
     def get_language(self):
         lang = [None]
 
-        # Remove old no longer used cookie 'lang'
-        if request.get_cookie('lang'):
-            response.delete_cookie('lang', path="/")
-
         if len(request.script_name) > 3:
             tmp_lang = request.script_name[-3:-1]
             if tmp_lang in self.allowed_languages:
@@ -44,11 +40,6 @@ class GettextPlugin(object):
                 return ([tmp_lang, self.allowed_languages[0]], False)
 
             lang = [None]
-
-        if not lang[0] and request.get_cookie('lang'):
-            lang = [request.get_cookie('lang')]
-            if lang[0] not in self.allowed_languages:
-                lang = [None]
 
         if not lang[0] and request.get_header('Accept-Language'):
             lang = request.get_header('Accept-Language')
