@@ -221,6 +221,9 @@ export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
   corrected: function (layer) {
     this._closePopup();
-    this.setFeatureStyle(layer.properties.issue_id, {});
+
+    // Hack, removes the marker directly from the DOM since the style update of icon does not work with SVG renderer.
+    //this.setFeatureStyle(layer.properties.issue_id, {});
+    layer._path.remove();
   },
 });
