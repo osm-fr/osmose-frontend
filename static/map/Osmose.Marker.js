@@ -47,7 +47,8 @@ export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
         return f.properties.issue_id;
       }
     };
-    L.VectorGrid.Protobuf.prototype.initialize.call(this, './issues/{z}/{x}/{y}.mvt' + L.Util.getParamString(this._params), vectorTileOptions);
+//    L.VectorGrid.Protobuf.prototype.initialize.call(this, './issues/{z}/{x}/{y}.mvt' + L.Util.getParamString(this._params), vectorTileOptions);
+    L.VectorGrid.Protobuf.prototype.initialize.call(this, this._getUrl(), vectorTileOptions);
   },
 
   _tileReady: function (coords, err, tile) {
