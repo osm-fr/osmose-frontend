@@ -1,6 +1,7 @@
 require('leaflet');
 require('leaflet-sidebar');
 require('leaflet-sidebar/src/L.Control.Sidebar.css');
+var Cookies = require('js-cookie');
 
 require('./Osmose.Menu.css');
 
@@ -185,6 +186,16 @@ export var OsmoseMenu = L.Control.Sidebar.extend({
       });
     }
     ch = ch.replace(/,$/, '');
+
+    var cookies_options = {
+      expires: 365,
+      path: '/'
+    }
+
+    Cookies.set('last_level', document.myform.level.value, cookies_options);
+    Cookies.set('last_item', ch, cookies_options);
+    Cookies.set('last_tags', document.myform.tags.value, cookies_options);
+    Cookies.set('last_fixable', document.myform.fixable.value, cookies_options);
 
     return {
       item: ch,

@@ -22,6 +22,7 @@
 
 from bottle import route, request, template, response, redirect, abort, static_file, HTTPError
 from tools import utils, query, query_meta, tiles
+import urllib
 import byuser
 import errors
 import datetime
@@ -71,17 +72,23 @@ def index(db, lang):
 
     for p in ["lat", "lon", "zoom", "item", "level", "tags", "fixable"]:
         if request.cookies.get("last_" + p, default=None):
-            params[p] = request.cookies.get("last_" + p)
+            params[p] = urllib.unquote(request.cookies.get("last_" + p))
 
     for p in ["lat", "lon", "zoom", "item", "useDevItem", "level", "source", "username", "class", "country", "tags", "fixable"]:
         if request.params.get(p, default=None):
             params[p] = request.params.get(p)
 
     for p in ["lat", "lon"]:
-        params[p] = float(params[p])
+        try:
+            params[p] = float(params[p])
+        except:
+            pass
 
     for p in ["zoom"]:
-        params[p] = int(params[p])
+        try:
+            params[p] = int(params[p])
+        except:
+            pass
 
     if not params.has_key("useDevItem"):
         params["useDevItem"] = ""
@@ -305,14 +312,6 @@ def issues_mvt(db, z, x, y):
     params.limit = 50
     params.full = False
 
-    expires = datetime.datetime.now() + datetime.timedelta(days=365)
-    path = '/'.join(request.fullpath.split('/')[0:-1])
-    response.set_cookie('last_zoom', str(params.zoom), expires=expires, path=path)
-    response.set_cookie('last_level', str(params.level), expires=expires, path=path)
-    response.set_cookie('last_item', str(params.item), expires=expires, path=path)
-    response.set_cookie('last_tags', str(','.join(params.tags)) if params.tags else '', expires=expires, path=path)
-    response.set_cookie('last_fixable', str(params.fixable) if params.fixable else '', expires=expires, path=path)
-
     tile = _errors_mvt(db, params, z, lon1, lat1, lon2, lat2, 50)
     if tile:
         response.content_type = 'application/vnd.mapbox-vector-tile'
@@ -330,14 +329,6 @@ def markers(db):
 
     params.limit = 200
     params.full = False
-
-    expires = datetime.datetime.now() + datetime.timedelta(days=365)
-    path = '/'.join(request.fullpath.split('/')[0:-1])
-    response.set_cookie('last_zoom', str(params.zoom), expires=expires, path=path)
-    response.set_cookie('last_level', str(params.level), expires=expires, path=path)
-    response.set_cookie('last_item', str(params.item), expires=expires, path=path)
-    response.set_cookie('last_tags', str(','.join(params.tags)) if params.tags else '', expires=expires, path=path)
-    response.set_cookie('last_fixable', str(params.fixable) if params.fixable else '', expires=expires, path=path)
 
     return errors._errors_geo(db, params)
 

@@ -5,6 +5,7 @@ require('leaflet-responsive-popup/leaflet.responsive.popup.css');
 require('leaflet-osm');
 require('leaflet-textpath');
 require('mustache');
+var Cookies = require('js-cookie');
 
 require('./Osmose.Marker.css');
 
@@ -95,6 +96,7 @@ export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
     };
     this.on('click', click);
 
+    map.on('zoomend moveend', L.Util.bind(this._mapChange, this));
     var bindClosePopup = L.Util.bind(this._closePopup, this);
     map.on('zoomstart', bindClosePopup);
 
@@ -105,6 +107,17 @@ export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
       map.off('zoomstart', bindClosePopup);
       this._menu.off('itemchanged', this._updateOsmoseLayer, this);
     }, this);
+  },
+
+  _mapChange: function () {
+    var cookies_options = {
+      expires: 365,
+      path: '/'
+    }
+
+    Cookies.set('last_zoom', this._map.getZoom(), cookies_options);
+    Cookies.set('last_lat', this._map.getCenter().lat, cookies_options);
+    Cookies.set('last_lon', this._map.getCenter().lng, cookies_options);
   },
 
   _updateOsmoseLayer: function () {
