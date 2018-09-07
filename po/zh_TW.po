@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Supaplex <bejokeup@gmail.com>, 2017
-# jie x <qa003qa003@hotmail.com>, 2018
+# jie x, 2018
 # Kuang-che Wu <kcwu@csie.org>, 2016
 # Sean Young <assanges@icloud.com>, 2017
 msgid ""
@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2018-04-05 05:27+0000\n"
-"Last-Translator: jie x <qa003qa003@hotmail.com>\n"
+"PO-Revision-Date: 2018-09-07 19:58+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +38,7 @@ msgid "never generated"
 msgstr "不曾產生"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:157 ../false_positive.py:66 tmp.tpl:175
+#: ../error.py:184 ../false_positive.py:63 tmp.tpl:194
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
@@ -50,36 +50,36 @@ msgstr "誤判"
 msgid "Informations"
 msgstr "資訊"
 
-#: ../map.py:137
+#: ../map.py:144
 msgid "Relation analyser"
 msgstr "關係分析器"
 
 #. TRANSLATORS: link to source code
-#: ../map.py:139
+#: ../map.py:146
 msgid "Statistics"
 msgstr "統計"
 
-#: ../map.py:142 tmp.tpl:23
+#: ../map.py:149 tmp.tpl:23
 msgid "Contact"
 msgstr "聯絡我們"
 
-#: ../map.py:143
+#: ../map.py:150
 msgid "Help on wiki"
 msgstr "Wiki 上的說明頁"
 
-#: ../map.py:143 tmp.tpl:115 tmp.tpl:174
+#: ../map.py:150 tmp.tpl:118 tmp.tpl:193
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
-#: ../map.py:144
+#: ../map.py:151
 msgid "Copyright"
 msgstr "著作權"
 
-#: ../map.py:145
+#: ../map.py:152
 msgid "Sources"
 msgstr "程式碼"
 
-#: ../map.py:146
+#: ../map.py:153
 msgid "Translation"
 msgstr "翻譯"
 
@@ -149,11 +149,6 @@ msgstr "Osmose 是由 <a href='../copyright'>volunteers</a> 開發的自由軟�
 msgid "Contacting maintainers"
 msgstr "聯絡網站維護者"
 
-#, python-format
-msgid ""
-"We can be contacted through a direct email to <a href='mailto:%s'>%s</a>."
-msgstr "直接寫電子郵件到 <a href='mailto:%s'>%s</a> 就能聯絡到我們。"
-
 #: tmp.tpl:35 tmp.tpl:39
 msgid "Last updates"
 msgstr "上次更新"
@@ -211,15 +206,15 @@ msgstr "資料來源"
 msgid "copyright"
 msgstr "著作權"
 
-#: tmp.tpl:59 tmp.tpl:62 tmp.tpl:65 tmp.tpl:110
+#: tmp.tpl:59 tmp.tpl:62 tmp.tpl:65 tmp.tpl:113
 msgid "key"
 msgstr "鍵(key)"
 
-#: tmp.tpl:60 tmp.tpl:63 tmp.tpl:66 tmp.tpl:111
+#: tmp.tpl:60 tmp.tpl:63 tmp.tpl:66 tmp.tpl:114
 msgid "value"
 msgstr "值(value)"
 
-#: tmp.tpl:61 tmp.tpl:112
+#: tmp.tpl:61 tmp.tpl:115
 msgid "Marker"
 msgstr "標記"
 
@@ -239,7 +234,7 @@ msgstr "已修正"
 msgid "Graph"
 msgstr "數量趨勢圖"
 
-#: tmp.tpl:72 tmp.tpl:122
+#: tmp.tpl:72 tmp.tpl:125
 msgid "Map"
 msgstr "地圖"
 
@@ -295,165 +290,153 @@ msgstr "小標"
 msgid "date"
 msgstr "日期"
 
-#: tmp.tpl:113
+#: tmp.tpl:116
 msgid "OpenStreetMap Oversight Search Engine"
 msgstr "OpenStreetMap Oversight Search Engine"
 
-#: tmp.tpl:115
+#: tmp.tpl:118
 msgid "Help on OSM wiki"
 msgstr "OSM wiki 上的說明"
 
-#: tmp.tpl:117
+#: tmp.tpl:120
 msgid "False positives list"
 msgstr "誤判列表"
 
-#: tmp.tpl:118
+#: tmp.tpl:121
 msgid "Last analysis updates"
 msgstr "上次分析更新的時間"
 
-#: tmp.tpl:119
+#: tmp.tpl:122
 msgid "Tags Editor"
 msgstr "標籤編輯器"
 
-#: tmp.tpl:120 tmp.tpl:153
+#: tmp.tpl:123 tmp.tpl:164
 msgid "Cancel"
 msgstr "取消"
 
-#: tmp.tpl:121
+#: tmp.tpl:124
 msgid "Valid"
 msgstr "有效"
 
-#: tmp.tpl:124
+#: tmp.tpl:127
 msgid "no bubbles at this zoom factor"
 msgstr "在這個縮放級別沒有資訊泡泡"
 
-#: tmp.tpl:75 tmp.tpl:125
+#: tmp.tpl:75 tmp.tpl:128
 msgid "Severity"
 msgstr "嚴重度"
 
-#: tmp.tpl:131
+#: tmp.tpl:134
 msgid "Fixable"
 msgstr "可用編修工具"
 
-#: tmp.tpl:132
+#: tmp.tpl:135
 msgid "Show only markers with correction suggestions"
 msgstr "只顯示附帶修正建議的標記"
 
-#: tmp.tpl:133
+#: tmp.tpl:136
 msgid "Online"
 msgstr "線上"
 
-#: tmp.tpl:134
+#: tmp.tpl:137
 msgid "Topic"
 msgstr "主題"
 
-#: tmp.tpl:135
+#: tmp.tpl:138
 msgid "Select:"
 msgstr "選擇："
 
-#: tmp.tpl:136 tmp.tpl:139
+#: tmp.tpl:139 tmp.tpl:142
 msgid "all"
 msgstr "全部"
 
-#: tmp.tpl:137 tmp.tpl:140
+#: tmp.tpl:140 tmp.tpl:143
 msgid "nothing"
 msgstr "無"
 
-#: tmp.tpl:138
+#: tmp.tpl:141
 msgid "invert"
 msgstr "反相"
 
-#: tmp.tpl:141
+#: tmp.tpl:144
 msgid "Change language"
 msgstr "切換語言"
 
-#: tmp.tpl:144
+#: tmp.tpl:147
 msgid "Help"
 msgstr "求助"
 
-#: tmp.tpl:145
+#: tmp.tpl:148
 #, python-format
 msgid "Delay: %sd"
 msgstr "延遲：%s天"
 
-#: tmp.tpl:149
+#: tmp.tpl:152
 msgid "Logout"
 msgstr "登出"
 
-#: tmp.tpl:150 tmp.tpl:152
+#: tmp.tpl:153 tmp.tpl:155
 msgid "Login"
 msgstr "登入"
 
-#: tmp.tpl:151 tmp.tpl:153
+#: tmp.tpl:154 tmp.tpl:165
 msgid "Save"
 msgstr "儲存"
 
-#: tmp.tpl:154
-msgid "Objects edited:"
-msgstr "物件編輯數："
-
-#: tmp.tpl:155
-msgid "Objects deleted:"
-msgstr "物件刪除數："
-
-#: tmp.tpl:156
+#: tmp.tpl:160
 msgid "Fix with Osmose"
 msgstr "使用 Osmose 修正"
 
-#: tmp.tpl:157
+#: tmp.tpl:161
 msgid "Source"
 msgstr "來源"
 
-#: tmp.tpl:158
+#: tmp.tpl:162
 msgid "Type"
 msgstr "種類"
 
-#: tmp.tpl:159
+#: tmp.tpl:163
 msgid "Reuse changeset"
 msgstr "續用(reuse)變更集"
 
-#: tmp.tpl:161
-msgid "change status"
-msgstr "修改狀態"
-
-#: tmp.tpl:162
+#: tmp.tpl:182
 msgid "corrected"
 msgstr "已更正"
 
-#: tmp.tpl:163
+#: tmp.tpl:181
 msgid "false positive"
 msgstr "誤報錯誤"
 
-#: tmp.tpl:164 tmp.tpl:165
+#: tmp.tpl:183 tmp.tpl:184
 msgid "How to help translation"
 msgstr "如何幫忙翻譯"
 
-#: tmp.tpl:166
+#: tmp.tpl:185
 msgid ""
 "Osmose tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
 msgstr "Osmose 工具主要由法國人開發，我們希望能加入更多語言。目前有被分析的國家所用的語言大多已含括在內了。"
 
-#: tmp.tpl:168
+#: tmp.tpl:187
 msgid ""
 "To make Osmose a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr "要讓 Osmose 成為真正的多語工具，我們需要你的協助來改善已有的翻譯、增加新的翻譯。"
 
-#: tmp.tpl:169
+#: tmp.tpl:188
 msgid "Pages to translate"
 msgstr "需要被翻譯的網頁"
 
-#: tmp.tpl:173
+#: tmp.tpl:192
 msgid "Wiki pages"
 msgstr "Wiki 頁面"
 
-#: tmp.tpl:170
+#: tmp.tpl:189
 msgid "Osmose pages"
 msgstr "Osmose 網頁"
 
-#: tmp.tpl:179
+#: tmp.tpl:198
 msgid "Bug tracking system"
 msgstr "Bug 追蹤系統"
 
@@ -941,40 +924,34 @@ msgstr "運動"
 msgid "sport, could be integrated"
 msgstr "運動，應當整合"
 
-#: tmp.tpl:172
+#: tmp.tpl:191
 msgid "Translation progress: osmose"
 msgstr "翻譯進度： osmose"
 
-#: tmp.tpl:176
+#: tmp.tpl:195
 msgid "For new language or countries"
 msgstr "新增語言或國家"
 
-#, python-format
-msgid ""
-"For new countries, we can be contacted through a direct email to <a "
-"href='mailto:%s'>%s</a>."
-msgstr "對於新增國家，請直接寄電子郵件到 <a href='mailto:%s'>%s</a> 聯絡我們。"
-
-#: tmp.tpl:167
+#: tmp.tpl:186
 #, python-format
 msgid "The <a href='%s'>country coverage is available</a>."
 msgstr "<a href='%s'>目前已含蓋的國家</a>。"
 
-#: tmp.tpl:177
+#: tmp.tpl:196
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
 msgstr "你可以直接在 <a href='%s'>Transifex</a> 上新增一個語言。"
 
-#: tmp.tpl:171
+#: tmp.tpl:190
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr "翻譯是透過 <a href='%s'>Transifex</a> 所完成。"
 
-#: tmp.tpl:142
+#: tmp.tpl:145
 msgid "Export"
 msgstr "匯出"
 
-#: tmp.tpl:143
+#: tmp.tpl:146
 msgid "Html list"
 msgstr "HTML 列表"
 
@@ -1014,15 +991,15 @@ msgstr "加油站"
 msgid "position"
 msgstr "位置"
 
-#: tmp.tpl:152
+#: tmp.tpl:155
 msgid "You must be logged in order to use the tag editor"
 msgstr "你必須登入才能使用標籤編輯器"
 
-#: tmp.tpl:153
+#: tmp.tpl:156
 msgid "Save changeset"
 msgstr "儲存變更集"
 
-#: tmp.tpl:156
+#: tmp.tpl:159
 msgid "Comment"
 msgstr "留言"
 
@@ -1096,7 +1073,7 @@ msgid "Fixed issues"
 msgstr "已修正問題"
 
 #. TRANSLATORS: link to help in appropriate language
-#: ../map.py:136
+#: ../map.py:143
 msgid "Issues by user"
 msgstr "使用者回報問題"
 
@@ -1138,7 +1115,7 @@ msgid ""
 "contributor of the relevant erroneous elements."
 msgstr "只要在下方的表單填入你的 OSM 帳號名，就能看到列於你名下的問題。不過要注意到，關聯問題及帳號的算法並不完美，因為 Osmose 只看有問題的元素最後修改人。"
 
-#: tmp.tpl:58 tmp.tpl:109
+#: tmp.tpl:58 tmp.tpl:112
 #, python-format
 msgid "Information on issue %d"
 msgstr "問題 %d 的資訊"
@@ -1155,36 +1132,24 @@ msgstr "顯示更多問題"
 msgid "information on issue"
 msgstr "問題的資訊"
 
-#: tmp.tpl:106
-msgid "delete issue"
-msgstr "刪除的問題"
-
-#: tmp.tpl:107
+#: tmp.tpl:108
 msgid "issue n°"
 msgstr "問題 n°"
 
-#: tmp.tpl:108
+#: tmp.tpl:111
 #, python-format
 msgid "delete issue #%d"
 msgstr "刪除問題 #%d"
 
-#: tmp.tpl:114
+#: tmp.tpl:117
 msgid "Map of issues"
 msgstr "問題地圖"
 
-#: tmp.tpl:116
+#: tmp.tpl:119
 msgid "Information on issues database"
 msgstr "問題資料庫資訊"
 
-#, python-format
-msgid "Level %d issues (%d)"
-msgstr "層級 %d 問題 (%d)"
-
-#: tmp.tpl:160
-msgid "Issue reported on: "
-msgstr "問題發現日期："
-
-#: tmp.tpl:175
+#: tmp.tpl:194
 msgid "Documentation on reported issues"
 msgstr "回報問題的說明文件"
 
@@ -1220,12 +1185,12 @@ msgstr "道路"
 msgid "split building"
 msgstr "分割的建築"
 
-#: tmp.tpl:123
+#: tmp.tpl:126
 #, python-format
 msgid "Control, verification and correction of %s issues"
 msgstr "控制、驗證和修正問題 %s"
 
-#: tmp.tpl:174
+#: tmp.tpl:193
 msgid "Osmose QA main page"
 msgstr "Osmose QA 主頁"
 
@@ -1238,7 +1203,7 @@ msgid ""
 "analyses."
 msgstr "應當在<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frnotend</a>回報網站問題臭蟲，或是在<a href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a>回報 OSM 資料問題，或是給予分析器的建議。"
 
-#: tmp.tpl:180
+#: tmp.tpl:199
 msgid ""
 "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
 "frontend</a> can be used to report any issue with translations."
@@ -1376,23 +1341,23 @@ msgstr "交通標誌"
 msgid "traffic sign limitation"
 msgstr "交通標誌限制"
 
-#: tmp.tpl:76 tmp.tpl:126
+#: tmp.tpl:76 tmp.tpl:129
 msgid "High"
 msgstr "高"
 
-#: tmp.tpl:77 tmp.tpl:127
+#: tmp.tpl:77 tmp.tpl:130
 msgid "Normal or higher"
 msgstr "正常或更高"
 
-#: tmp.tpl:78 tmp.tpl:128
+#: tmp.tpl:78 tmp.tpl:131
 msgid "All"
 msgstr "全部"
 
-#: tmp.tpl:79 tmp.tpl:129
+#: tmp.tpl:79 tmp.tpl:132
 msgid "Normal only"
 msgstr "僅普通"
 
-#: tmp.tpl:80 tmp.tpl:130
+#: tmp.tpl:80 tmp.tpl:133
 msgid "Low only"
 msgstr "僅較低"
 
@@ -1403,12 +1368,12 @@ msgid ""
 "href='mailto:{email}'>{email}</a>."
 msgstr "通過電子郵件<a href='mailto:{email}'>{email}</a>可以和我們取得聯繫。"
 
-#: tmp.tpl:146 tmp.tpl:147 tmp.tpl:148
+#: tmp.tpl:149 tmp.tpl:150 tmp.tpl:151
 #, python-brace-format
 msgid "Level {level} issues ({count})"
 msgstr "等級{level}問題({count})"
 
-#: tmp.tpl:178
+#: tmp.tpl:197
 #, python-brace-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
@@ -1470,3 +1435,83 @@ msgstr "國家"
 #: tmp.tpl:74
 msgid "Item"
 msgstr "項目"
+
+#: tmp.tpl:106
+msgid "False positive / Done"
+msgstr ""
+
+#: tmp.tpl:109
+#, python-format
+msgid "Mark issue #%d as false positive"
+msgstr ""
+
+#: tmp.tpl:110
+#, python-format
+msgid "Mark issue #%d as fixed"
+msgstr ""
+
+#: tmp.tpl:157
+msgid "Objects edited"
+msgstr ""
+
+#: tmp.tpl:158
+msgid "Objects deleted"
+msgstr ""
+
+#: tmp.tpl:166
+#, python-brace-format
+msgid "Show Object on {where}"
+msgstr ""
+
+#: tmp.tpl:167 tmp.tpl:168 tmp.tpl:169 tmp.tpl:170
+#, python-brace-format
+msgid "Edit Object with {where}"
+msgstr ""
+
+#: tmp.tpl:170 tmp.tpl:172
+msgid "online Osmose Editor"
+msgstr ""
+
+#: tmp.tpl:171 tmp.tpl:172
+#, python-brace-format
+msgid "Load the fix in {where}"
+msgstr ""
+
+#: tmp.tpl:173
+#, python-brace-format
+msgid "Add the new object in {where}"
+msgstr ""
+
+#: tmp.tpl:174
+#, python-brace-format
+msgid "Show the area on {where}"
+msgstr ""
+
+#: tmp.tpl:175 tmp.tpl:176
+#, python-brace-format
+msgid "Edit the area on {where}"
+msgstr ""
+
+#: tmp.tpl:177
+msgid "details"
+msgstr ""
+
+#: tmp.tpl:178
+msgid "Issue reported on:"
+msgstr ""
+
+#: tmp.tpl:179
+msgid "Help on OSM Wiki"
+msgstr ""
+
+#: tmp.tpl:180 tmp.tpl:181
+msgid ""
+"Report the issue as improper, if according to you is not an issue. The issue"
+" will not be displayed to anyone more."
+msgstr ""
+
+#: tmp.tpl:182
+msgid ""
+"After issue fixed on the OSM data, mark it as done. May also disappear "
+"automatically on next check if no more issue."
+msgstr ""
