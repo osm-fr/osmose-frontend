@@ -123,6 +123,10 @@ div.level-3.disabled {
   background-position:-32px -16px;
 }
 
+.leaflet-sidebar {
+  z-index: 1010;
+}
+
 .leaflet-sidebar > #menu {
   padding: 8px 0 5px 5px;
 }

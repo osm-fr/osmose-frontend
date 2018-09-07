@@ -21,7 +21,8 @@
 ###########################################################################
 
 from bottle import route, request, template, response, redirect, abort, static_file, HTTPError
-from tools import utils, query, query_meta
+from tools import utils, query, query_meta, tiles
+import urllib
 import byuser
 import errors
 import datetime
@@ -71,17 +72,23 @@ def index(db, lang):
 
     for p in ["lat", "lon", "zoom", "item", "level", "tags", "fixable"]:
         if request.cookies.get("last_" + p, default=None):
-            params[p] = request.cookies.get("last_" + p)
+            params[p] = urllib.unquote(request.cookies.get("last_" + p))
 
     for p in ["lat", "lon", "zoom", "item", "useDevItem", "level", "source", "username", "class", "country", "tags", "fixable"]:
         if request.params.get(p, default=None):
             params[p] = request.params.get(p)
 
     for p in ["lat", "lon"]:
-        params[p] = float(params[p])
+        try:
+            params[p] = float(params[p])
+        except:
+            pass
 
     for p in ["zoom"]:
-        params[p] = int(params[p])
+        try:
+            params[p] = int(params[p])
+        except:
+            pass
 
     if not params.has_key("useDevItem"):
         params["useDevItem"] = ""
@@ -182,19 +189,11 @@ OFFSET
         item_levels=item_levels, level_selected=level_selected,
         active_items=active_items, useDevItem=params["useDevItem"],
         main_project=utils.main_project, urls=urls, helps=helps, delay=delay, languages_name=utils.languages_name, translate=utils.translator(lang),
-        website=utils.website, request=request,
+        website=utils.website, remote_url_read=utils.remote_url_read, request=request,
         user=user, user_error_count=user_error_count)
 
 
-def num2deg(xtile, ytile, zoom):
-    n = 2.0 ** zoom
-    lon_deg = xtile / n * 360.0 - 180.0
-    lat_rad = math.atan(math.sinh(math.pi * (1 - 2 * ytile / n)))
-    lat_deg = math.degrees(lat_rad)
-    return (lat_deg, lon_deg)
-
-
-def _errors_mvt(db, params, z, min_x, min_y, max_x, max_y, limit):
+def _errors_mvt(db, params, z, min_lon, min_lat, max_lon, max_lat, limit):
     params.limit = limit
     results = query._gets(db, params) if z >= 6 else None
 
@@ -206,7 +205,7 @@ def _errors_mvt(db, params, z, min_x, min_y, max_x, max_y, limit):
             limit_feature = [{
                 "name": "limit",
                 "features": [{
-                    "geometry": Point((min_x + max_x) / 2, (min_y + max_y) / 2)
+                    "geometry": Point((min_lon + max_lon) / 2, (min_lat + max_lat) / 2)
                 }]
             }]
 
@@ -223,19 +222,21 @@ def _errors_mvt(db, params, z, min_x, min_y, max_x, max_y, limit):
         return mapbox_vector_tile.encode([{
             "name": "issues",
             "features": issues_features
-        }] + limit_feature, quantize_bounds=(min_x, min_y, max_x, max_y))
+        }] + limit_feature, quantize_bounds=(min_lon, min_lat, max_lon, max_lat))
 
 
 @route('/map/heat/<z:int>/<x:int>/<y:int>.mvt')
 def heat(db, z, x, y):
     COUNT=32
 
-    x2,y1 = num2deg(x,y,z)
-    x1,y2 = num2deg(x+1,y+1,z)
+    lon1,lat2 = tiles.tile2lonlat(x,y,z)
+    lon2,lat1 = tiles.tile2lonlat(x+1,y+1,z)
 
     params = query._params()
-    params.bbox = [y1, x1, y2, x2]
     items = query._build_where_item(params.item, "dynpoi_item")
+    params.tilex = x
+    params.tiley = y
+    params.zoom = z
 
     db.execute("""
 SELECT
@@ -250,15 +251,15 @@ WHERE
     else:
         return HTTPError(404)
 
-    join, where = query._build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable)
+    join, where = query._build_param(None, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, tilex=params.tilex, tiley=params.tiley, zoom=params.zoom)
     join = join.replace("%", "%%")
     where = where.replace("%", "%%")
 
     sql = """
 SELECT
     COUNT(*),
-    ((lon-%(y1)s) * %(count)s / (%(y2)s-%(y1)s) + 0.5)::int AS latn,
-    ((lat-%(x1)s) * %(count)s / (%(x2)s-%(x1)s) + 0.5)::int AS lonn,
+    ((lon-%(lon1)s) * %(count)s / (%(lon2)s-%(lon1)s) + 0.5)::int AS latn,
+    ((lat-%(lat1)s) * %(count)s / (%(lat2)s-%(lat1)s) + 0.5)::int AS lonn,
     mode() WITHIN GROUP (ORDER BY dynpoi_item.marker_color) AS color
 FROM
 """ + join + """
@@ -268,7 +269,7 @@ GROUP BY
     latn,
     lonn
 """
-    db.execute(sql, {"x1":x1, "y1":y1, "x2":x2, "y2":y2, "count":COUNT})
+    db.execute(sql, {"lon1":lon1, "lat1":lat1, "lon2":lon2, "lat2":lat2, "count":COUNT})
 
     features = []
     for row in db.fetchall():
@@ -295,13 +296,15 @@ GROUP BY
 
 @route('/map/issues/<z:int>/<x:int>/<y:int>.mvt')
 def issues_mvt(db, z, x, y):
-    x2,y1 = num2deg(x,y,z)
-    x1,y2 = num2deg(x+1,y+1,z)
-    dx = (x2 - x1) / 256
-    dy = (y2 - y1) / 256
+    lon1,lat2 = tiles.tile2lonlat(x,y,z)
+    lon2,lat1 = tiles.tile2lonlat(x+1,y+1,z)
+    dlon = (lon2 - lon1) / 256
+    dlat = (lat2 - lat1) / 256
 
     params = query._params()
-    params.bbox = [y1-dy*8, x1-dx*32, y2+dy*8, x2+dx]
+    params.tilex = x
+    params.tiley = y
+    params.zoom = z
 
     if (not params.users) and (not params.source) and (params.zoom < 6):
         return
@@ -309,15 +312,7 @@ def issues_mvt(db, z, x, y):
     params.limit = 50
     params.full = False
 
-    expires = datetime.datetime.now() + datetime.timedelta(days=365)
-    path = '/'.join(request.fullpath.split('/')[0:-1])
-    response.set_cookie('last_zoom', str(params.zoom), expires=expires, path=path)
-    response.set_cookie('last_level', str(params.level), expires=expires, path=path)
-    response.set_cookie('last_item', str(params.item), expires=expires, path=path)
-    response.set_cookie('last_tags', str(','.join(params.tags)) if params.tags else '', expires=expires, path=path)
-    response.set_cookie('last_fixable', str(params.fixable) if params.fixable else '', expires=expires, path=path)
-
-    tile = _errors_mvt(db, params, z, y1, x1, y2, x2, 50)
+    tile = _errors_mvt(db, params, z, lon1, lat1, lon2, lat2, 50)
     if tile:
         response.content_type = 'application/vnd.mapbox-vector-tile'
         return tile
@@ -334,14 +329,6 @@ def markers(db):
 
     params.limit = 200
     params.full = False
-
-    expires = datetime.datetime.now() + datetime.timedelta(days=365)
-    path = '/'.join(request.fullpath.split('/')[0:-1])
-    response.set_cookie('last_zoom', str(params.zoom), expires=expires, path=path)
-    response.set_cookie('last_level', str(params.level), expires=expires, path=path)
-    response.set_cookie('last_item', str(params.item), expires=expires, path=path)
-    response.set_cookie('last_tags', str(','.join(params.tags)) if params.tags else '', expires=expires, path=path)
-    response.set_cookie('last_fixable', str(params.fixable) if params.fixable else '', expires=expires, path=path)
 
     return errors._errors_geo(db, params)
 

@@ -21,7 +21,7 @@ div#map div#spinner {
   left: 50%;
   margin-top: -128px;
   margin-left: -128px;
-  z-index: 2000;
+  z-index: 1025;
 }
 
 /* Top menu */
@@ -38,7 +38,7 @@ div#top_links {
 
   vertical-align: middle;
   text-align: center;
-  z-index: 2000;
+  z-index: 1025;
 }
 
 .leaflet-touch + div#top_links {
@@ -106,7 +106,11 @@ div#top_links {
 #topmenu li:hover > .submenu { display: block; }
 
 /* popups */
-.leaflet-popup-content a {
+.leaflet-popup-content .btn {
+  color: #fff;
+}
+.leaflet-popup-content .bulle_msg a,
+.leaflet-popup-content .bulle_verif a {
   text-decoration: underline;
 }
 
@@ -122,9 +126,6 @@ div#top_links {
   font-weight: bold;
   background-color: #AAAAAA;
   margin-right: 2px;
-  text-decoration:none;
-}
-.bulle_msg div.closebubble a {
   text-decoration:none;
 }
 .bulle_msg div.closebubble a:link,
@@ -182,8 +183,22 @@ a.bulle_err:hover {
   color: #55AA55;
 }
 
-.bulle_maj {
-  font-size: 90%;
+#bulle_footer {
+  display: table;
+  width: 100%;
+}
+
+#bulle_maj {
+  display: table-cell;
+  font-size: 80%;
+  vertical-align: top;
+}
+
+#bulle_button {
+  display: table-cell;
+  text-align: right;
+  padding-top: 5px;
+  padding-left: 5px;
 }
 
 /* Layers control */
@@ -213,19 +228,19 @@ ul.leaflet-control-geocoder-alternatives {
 }
 
 @media(max-width:399px) {
-  #menu-lang, #menu-openstreetmapfr, #menu-byuser, #menu-relation_analyser, #menu-statistics, #menu-export, #menu-help, #menu-delay {
+  #menu-lang, #menu-openstreetmapfr, #menu-byuser, #menu-relation_analyser, #menu-statistics, #menu-help, #menu-delay {
     display: none;
   }
 }
 
 @media(min-width:400px) and (max-width:767px) {
-  #menu-byuser, #menu-relation_analyser, #menu-statistics, #menu-export, #menu-help, #menu-delay {
+  #menu-byuser, #menu-relation_analyser, #menu-statistics, #menu-help, #menu-delay {
     display: none;
   }
 }
 
 @media(min-width:768px) and (max-width:991px) {
-  #menu-relation_analyser, #menu-statistics, #menu-export, #menu-help {
+  #menu-byuser, #menu-relation_analyser, #menu-statistics, #menu-help {
     display: none;
   }
 }

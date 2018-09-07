@@ -1,6 +1,7 @@
 require('leaflet');
 require('leaflet-sidebar');
 require('leaflet-sidebar/src/L.Control.Sidebar.css');
+var Cookies = require('js-cookie');
 
 require('./Osmose.Menu.css');
 
@@ -101,9 +102,9 @@ export var OsmoseMenu = L.Control.Sidebar.extend({
     var test_group = $(link).closest(".test_group, #myform"),
       checkbox = $((test_group.prop("tagName") != "FORM" ? "" : ".test_group:not(#categUnactiveItem) ") + "input[type='checkbox']", test_group);
     if ($(link).data().view == "all") {
-      checkbox.attr('checked', true);
+      checkbox.prop('checked', true);
     } else {
-      checkbox.attr('checked', false);
+      checkbox.prop('checked', false);
     }
 
     if (test_group.prop("tagName") == "FORM") {
@@ -117,7 +118,7 @@ export var OsmoseMenu = L.Control.Sidebar.extend({
   // Invert item check
   _invertAllItem: function () {
     $("#myform .test_group:not(#categUnactiveItem) input[type='checkbox']").each(function () {
-      $(this).attr('checked', !$(this).attr('checked'));
+      $(this).prop('checked', !$(this).prop('checked'));
     });
 
     this._countItemAll();
@@ -186,6 +187,16 @@ export var OsmoseMenu = L.Control.Sidebar.extend({
     }
     ch = ch.replace(/,$/, '');
 
+    var cookies_options = {
+      expires: 365,
+      path: '/'
+    }
+
+    Cookies.set('last_level', document.myform.level.value, cookies_options);
+    Cookies.set('last_item', ch, cookies_options);
+    Cookies.set('last_tags', document.myform.tags.value, cookies_options);
+    Cookies.set('last_fixable', document.myform.fixable.value, cookies_options);
+
     return {
       item: ch,
       level: document.myform.level.value,
@@ -197,12 +208,12 @@ export var OsmoseMenu = L.Control.Sidebar.extend({
   setItems: function (items, levels, tags, fixable) {
     if (items) {
       var checkbox = $(".test_group:not(#categUnactiveItem) :checkbox");
-      checkbox.attr('checked', false);
+      checkbox.attr('checked', false).prop('checked', false);
       $.each(items.split(','), function (i, item) {
         item = new RegExp('item' + item.replace(/x/g, '.'));
         checkbox.filter(function () {
           return item.test(this.id);
-        }).attr('checked', true);
+        }).attr('checked', true).prop('checked', true);
       });
     }
 

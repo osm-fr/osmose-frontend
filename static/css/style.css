@@ -42,3 +42,7 @@ th.country .rotate-90 {
 .delay-error {
     background: red !important;
 }
+
+#errors-list select {
+    width: 100%;
+}

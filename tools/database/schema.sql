@@ -2,19 +2,18 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.7
--- Dumped by pg_dump version 9.6.7
+-- Dumped from database version 9.6.10
+-- Dumped by pg_dump version 9.6.10
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
 SET client_min_messages = warning;
 SET row_security = off;
-
-SET search_path = public, pg_catalog;
 
 SET default_with_oids = false;
 
@@ -34,7 +33,7 @@ CREATE TABLE dynpoi_categ (
 
 CREATE TABLE dynpoi_class (
     source integer NOT NULL,
-    class bigint NOT NULL,
+    class integer NOT NULL,
     item integer,
     title hstore,
     level integer,
@@ -66,9 +65,9 @@ CREATE TABLE dynpoi_item (
 
 CREATE TABLE dynpoi_stats (
     source integer NOT NULL,
-    class bigint NOT NULL,
+    class integer NOT NULL,
     "timestamp" timestamp without time zone NOT NULL,
-    count integer
+    count integer NOT NULL
 );
 
 
@@ -353,13 +352,6 @@ ALTER TABLE ONLY source
 
 
 --
--- Name: dynpoi_stats_timestamp; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX dynpoi_stats_timestamp ON dynpoi_stats USING btree ("timestamp");
-
-
---
 -- Name: idx_dynpoi_class_class; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -390,27 +382,6 @@ CREATE INDEX idx_dynpoi_class_source ON dynpoi_class USING btree (source);
 
 
 --
--- Name: idx_dynpoi_update_source; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_dynpoi_update_source ON dynpoi_update USING btree (source);
-
-
---
--- Name: idx_dynpoi_update_timestamp; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_dynpoi_update_timestamp ON dynpoi_update USING btree ("timestamp");
-
-
---
--- Name: idx_marker_elem_data_type_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_marker_elem_data_type_id ON marker_elem USING btree (data_type, id);
-
-
---
 -- Name: idx_marker_elem_username; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -425,13 +396,6 @@ CREATE INDEX idx_marker_item ON marker USING btree (item);
 
 
 --
--- Name: idx_marker_lat_lon; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_marker_lat_lon ON marker USING btree (lat, lon);
-
-
---
 -- Name: idx_marker_source_class; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -443,6 +407,13 @@ CREATE INDEX idx_marker_source_class ON marker USING btree (source, class);
 --
 
 CREATE INDEX idx_marker_source_class_subclass_lat_lon_elems ON marker USING btree (source, class, subclass, lat, lon, elems);
+
+
+--
+-- Name: idx_marker_z_order_curve; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_marker_z_order_curve ON marker USING btree (lonlat2z_order_curve((lon)::double precision, (lat)::double precision)) WHERE (lat > ('-90'::integer)::numeric);
 
 
 --

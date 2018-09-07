@@ -14,6 +14,7 @@ module.exports = {
     devtool: 'source-map',
     module: {
         rules: [
+            { test: /\.js$/, loader: 'babel-loader' },
             { test: /\.css$/, use: [
                 { loader: "style-loader" },
                 { loader: "css-loader" },
@@ -29,7 +30,17 @@ module.exports = {
             jQuery: "jquery",
             Mustache: "mustache",
         }),
-        new webpack.optimize.UglifyJsPlugin({ minimize: true, sourceMap: true }),
+        new webpack.LoaderOptionsPlugin({
+            minimize: true,
+            debug: false
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            minimize: true,
+            output: {
+                comments: false
+            },
+            sourceMap: true
+        }),
         function() {
             this.plugin("done", function(stats) {
                 require("fs").writeFileSync(

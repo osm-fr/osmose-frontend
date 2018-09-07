@@ -6,6 +6,13 @@
 %            end
             </table>
 %end
+%def show_html_tags(list):
+            <table>
+%            for kv in list:
+                <tr><td>{{kv['k']}}</td><td>{{kv['v']}}</td><td><a href="{{kv.get('vlink', '')}}">{{kv.get('vlink', '')}}</a></td></tr>
+%            end
+            </table>
+%end
 %def show_html_list(list):
             <table>
 %            for e in list:
@@ -37,7 +44,9 @@
 <tr>
     <td>{{c}}</td>
     <td>
-%        if type(res[i]) is dict:
+%        if 'tags' in c:
+%            show_html_tags(res[i])
+%        elif type(res[i]) is dict:
 %            show_html_dict(res[i])
 %        elif type(res[i]) is list:
 %            if len(res[i]) > 0:
@@ -89,7 +98,7 @@
 <tr><td>elem_index</td><td>{{element['elem_index']}}</td></tr>
 <tr><td>type id</td><td><a target="_blank" href="{{main_website}}{{data_type[element['data_type']]}}/{{element['id']}}">{{element['data_type']}}&nbsp;{{element['id']}}</a></td></tr>
 <tr><td>tags</td><td>
-%     show_html_list(element['tags'])
+%     show_html_tags(element['tags'])
 </td></tr>
 <tr><td>username</td><td><a target="_blank" href="{{main_website}}user/{{element['username']}}">{{element['username']}}</a></td></tr>
 </table>

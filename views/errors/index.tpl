@@ -8,7 +8,7 @@
 %end
 %rss="http://"+website+"/errors.rss?%s" % query
 %rebase('layout.tpl', title=title, favicon=favicon, rss=rss)
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #212529;">
+<nav class="navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-dark" style="background-color: #212529;">
 %if favicon:
   <span class="navbar-brand">
     <img src="{{favicon}}">
@@ -26,21 +26,11 @@
 </nav>
 </br>
 
-<div class="form-inline col-md-12">
-<form method='get' action=''>
+<div class="form-inline col-sm-12 col-md-12">
+<form method='get' action='' id="errors-list">
 <div class="form-row">
-  <div class="form-group col-md-3">
+  <div class="form-group col-sm-3 col-md-3">
     <label for='item'>{{_("Country")}}</label>
-  </div>
-  <div class="form-group col-md-3">
-    <label for='item'>{{_("Item")}}</label>
-  </div>
-  <div class="form-group col-md-3">
-    <label for='level'>{{_("Severity")}}</label>
-  </div>
-</div>
-<div class="form-row">
-  <div class="form-group col-md-3">
     <select class="form-control form-control-sm" name='country'>
       <option value=''></option>
 %for res in countries:
@@ -53,7 +43,8 @@
     </select>
   </div>
 
-  <div class="form-group col-md-3">
+  <div class="form-group col-sm-3 col-md-3">
+    <label for='item'>{{_("Item")}}</label>
     <select class="form-control form-control-sm" name='item'>
       <option value='xxxx'></option>
 %for res in items:
@@ -66,7 +57,8 @@
     </select>
   </div>
 
-  <div class="form-group col-md-3">
+  <div class="form-group col-sm-3 col-md-3">
+    <label for='level'>{{_("Severity")}}</label>
     <select name='level' class='form-control form-control-sm'>
       <option class="level-1__" value="1"{{" selected='selected'" if level == '1' else ""}}>{{_("High")}}</option>
       <option class="level-12_" value="1,2"{{" selected='selected'" if level == '1,2' else ""}}>{{_("Normal or higher")}}</option>
@@ -77,7 +69,7 @@
     </select>
   </div>
 
-  <div class="form-group col-md-2">
+  <div class="form-group col-sm-3 col-md-3">
 %# TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
     <input type='submit' class='btn btn-outline-secondary btn-sm' value='{{_("Set")}}'>
   </div>
@@ -137,7 +129,7 @@
 %
 %    import urlparse, urllib
 %    query_dict = urlparse.parse_qs(query)
-%    limit = int((query_dict.has_key("limit") and query_dict["limit"][0])) or 20
+%    limit = int((query_dict.has_key("limit") and query_dict["limit"][0])) or 100
 %    if limit < total:
 %        limit *= 5
 %    end

@@ -17,8 +17,11 @@
 %if opt_date != "-1":
     <th scope="col">{{_("date")}}</th>
 %end
+%if gen in ("error", "info"):
+    <th title="{{_("False positive / Done")}}">✘/✔</th>
+%end
 %if gen == "false-positive":
-    <th title="{{_("delete issue")}}">X</th>
+    <th title="{{_("delete issue"")}}">✘</th>
 %end
 </tr>
 </thead>
@@ -90,12 +93,16 @@
 %        date = str(res["date"])
     <td>{{date[:10]}}&nbsp;{{date[11:16]}}</td>
 %    end
+%    if gen in ("error", "info"):
+    <td>
+      <a href="#" class="err_delete" id="GET=error/{{res["id"]}}/false" title="{{_("Mark issue #%d as false positive") % res["id"]}}">✘</a>/
+      <a href="#" class="err_delete" id="GET=error/{{res["id"]}}/done" title="{{_("Mark issue #%d as fixed") % res["id"]}}">✔</a>
+    </td>
+%    end
 %    if gen == "false-positive":
-    <td title="{{_("delete issue #%d") % res["id"]}}"><a href="#" class="err_delete" id="delete={{gen}}={{res["id"]}}">X</a></td>
+    <td title="{{_("delete issue #%d") % res["id"]}}"><a href="#" class="err_delete" id="DELETE={{gen}}/{{res["id"]}}">✘</a></td>
 %    end
 </tr>
 %end
 </table>
-<script type="text/javascript" src="{{get_url('static', filename='/js/jquery-1.7.2.js')}}"></script>
-<script src="{{get_url('static', filename='js/err_delete.js')}}" type="text/javascript"></script>
 <iframe id="hiddenIframe" name="hiddenIframe"></iframe>

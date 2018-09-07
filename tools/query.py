@@ -21,7 +21,7 @@
 ###########################################################################
 
 from bottle import route, request, response
-from tools import utils
+from tools import utils, tiles
 import datetime, re
 
 
@@ -52,7 +52,7 @@ def _build_where_item(item, table):
 
 
 def _build_param(bbox, source, item, level, users, classs, country, useDevItem, status, tags, fixable, forceTable=[],
-                 summary=False, stats=False, start_date=None, end_date=None, last_update=None):
+                 summary=False, stats=False, start_date=None, end_date=None, last_update=None, tilex=None, tiley=None, zoom=None):
     join = ""
     where = ["1=1"]
 
@@ -137,6 +137,11 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
 
     if bbox:
         where.append("marker.lat BETWEEN %f AND %f AND marker.lon BETWEEN %f AND %f" % (bbox[1], bbox[3], bbox[0], bbox[2]))
+        # Compute a tile to use index
+        tilex, tiley, zoom = tiles.bbox2tile(*bbox)
+
+    if tilex and tiley and zoom:
+        where.append("lonlat2z_order_curve(lon, lat) BETWEEN zoc18min(z_order_curve({x}, {y}), {z}) AND zoc18max(z_order_curve({x}, {y}), {z}) AND lat > -90".format(z=zoom, x=tilex, y=tiley))
 
     if country:
         if country[-1] == "*":
@@ -189,6 +194,8 @@ def _params():
         end_date = request.params.get('end_date', default=None)
         tags     = request.params.get('tags', default=None)
         fixable  = request.params.get('fixable', default=None)
+        tilex    = request.params.get('tilex', default=None)
+        tiley    = request.params.get('tiley', default=None)
 
     params = Params()
 
@@ -289,7 +296,7 @@ def _gets(db, params):
     else:
         forceTable = []
 
-    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, forceTable=forceTable, start_date=params.start_date, end_date=params.end_date)
+    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, forceTable=forceTable, start_date=params.start_date, end_date=params.end_date, tilex=params.tilex, tiley=params.tiley, zoom=params.zoom)
     sql = sqlbase % (join, where)
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()
@@ -333,7 +340,7 @@ def _count(db, params, by, extraFrom=[], extraFields=[], orderBy=False):
     if "dynpoi_update_last" in byTable:
         last_update = True
 
-    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, summary=summary, forceTable=byTable, start_date=params.start_date, end_date=params.end_date, last_update=last_update)
+    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, summary=summary, forceTable=byTable, start_date=params.start_date, end_date=params.end_date, last_update=last_update, tilex=params.tilex, tiley=params.tiley, zoom=params.zoom)
     sql = sqlbase % (select, join, where, groupBy, order)
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()

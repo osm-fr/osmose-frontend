@@ -47,9 +47,9 @@ website           = os.environ.get('URL_FRONTEND') or "osmose.openstreetmap.fr"
 
 main_project      = "OpenStreetMap"
 main_website      = "https://www.openstreetmap.org/"
-remote_url        = "https://api.openstreetmap.org/"
-remote_url_read   = "https://api.openstreetmap.org/"
-remote_url_write  = "https://api.openstreetmap.org/"
+remote_url        = "https://www.openstreetmap.org/"
+remote_url_read   = "https://www.openstreetmap.org/"
+remote_url_write  = "https://www.openstreetmap.org/"
 
 #main_project      = "OpenGeoFiction"
 #main_website      = "http://opengeofiction.net/"

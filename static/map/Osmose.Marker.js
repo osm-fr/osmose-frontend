@@ -2,18 +2,25 @@ require('leaflet');
 require('leaflet.vectorgrid/dist/Leaflet.VectorGrid.js');
 require('leaflet-responsive-popup');
 require('leaflet-responsive-popup/leaflet.responsive.popup.css');
+require('leaflet-osm');
+require('leaflet-textpath');
 require('mustache');
+var Cookies = require('js-cookie');
+
+require('./Osmose.Marker.css');
 
 
 export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
-  initialize: function (menu, params, editor, options) {
+  initialize: function (menu, params, editor, featuresLayers, options) {
     this._menu = menu;
     this._params = params;
     this._editor = editor;
+    this._featuresLayers = featuresLayers;
+    this._remote_url_read = remote_url_read;
     L.Util.setOptions(this, options);
     var vectorTileOptions = {
-      rendererFactory: L.canvas.tile,
+      rendererFactory: L.svg.tile,
       vectorTileLayerStyles: {
         issues: function(properties, zoom) {
           return {
@@ -40,7 +47,25 @@ export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
         return f.properties.issue_id;
       }
     };
-    L.VectorGrid.Protobuf.prototype.initialize.call(this, './issues/{z}/{x}/{y}.mvt' + L.Util.getParamString(this._params), vectorTileOptions);
+//    L.VectorGrid.Protobuf.prototype.initialize.call(this, './issues/{z}/{x}/{y}.mvt' + L.Util.getParamString(this._params), vectorTileOptions);
+    L.VectorGrid.Protobuf.prototype.initialize.call(this, this._getUrl(), vectorTileOptions);
+  },
+
+  _tileReady: function (coords, err, tile) {
+    L.VectorGrid.Protobuf.prototype._tileReady.call(this, coords, err, tile);
+
+    // Hack: Overload the tile size an relative position to display part of markers over the edge of the tile.
+    var key = this._tileCoordsToKey(coords);
+    tile = this._tiles[key];
+    if (tile) {
+      tile.el.setAttribute('viewBox', '-33 -33 322 322'); // 0-33, 0-33, 256+33, 256+33
+      tile.el.style.width = '322px';
+      tile.el.style.height = '322px';
+      var transform = tile.el.style.transform.match(/translate3d\(([-0-9]+)px, ([-0-9]+)px, 0px\)/);
+      var x = parseInt(transform[1]) - 33;
+      var y = parseInt(transform[2]) - 33;
+      tile.el.style.transform = 'translate3d(' + x + 'px, ' + y + 'px, 0px)'
+    }
   },
 
   onAdd: function(map) {
@@ -72,6 +97,7 @@ export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
     };
     this.on('click', click);
 
+    map.on('zoomend moveend', L.Util.bind(this._mapChange, this));
     var bindClosePopup = L.Util.bind(this._closePopup, this);
     map.on('zoomstart', bindClosePopup);
 
@@ -82,6 +108,17 @@ export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
       map.off('zoomstart', bindClosePopup);
       this._menu.off('itemchanged', this._updateOsmoseLayer, this);
     }, this);
+  },
+
+  _mapChange: function () {
+    var cookies_options = {
+      expires: 365,
+      path: '/'
+    }
+
+    Cookies.set('last_zoom', this._map.getZoom(), cookies_options);
+    Cookies.set('last_lat', this._map.getCenter().lat, cookies_options);
+    Cookies.set('last_lon', this._map.getCenter().lng, cookies_options);
   },
 
   _updateOsmoseLayer: function () {
@@ -146,6 +183,34 @@ export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
           url: '../api/0.2/error/' + e.layer.properties.issue_id,
           dataType: 'json',
           success: function (data) {
+            // Get the OSM objects
+            self._featuresLayers.clearLayers();
+            if (data.elems_id) {
+              var shift = -1, palette = ['#ff3333', '#59b300', '#3388ff'], colors = {};
+              data.elems.forEach(function(elem) {
+                colors[elem.type + elem.id] = palette[(shift += 1) % 3];
+                $.ajax({
+                  url: elem.type == 'node' ? self._remote_url_read + 'api/0.6/node/' + elem.id:
+                    self._remote_url_read + 'api/0.6/' + elem.type + '/' + elem.id + '/full',
+                  dataType: 'xml',
+                  success: function (xml) {
+                    var layer = new L.OSM.DataLayer(xml);
+                    layer.setStyle({
+                       color: colors[elem.type + elem.id],
+                       fillColor: colors[elem.type + elem.id],
+                    });
+                    layer.setText('  ►  ', {
+                       repeat: true,
+                       attributes: {
+                           fill: colors[elem.type + elem.id]
+                       }
+                    });
+                    self._featuresLayers.addLayer(layer);
+                  }
+                });
+              });
+            }
+            // Display Popup
             var template = $('#popupTpl').html(),
               content = $(Mustache.render(template, data));
             content.on('click', '.closePopup', function () {
@@ -170,6 +235,9 @@ export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
   corrected: function (layer) {
     this._closePopup();
-    this.setFeatureStyle(layer.properties.issue_id, {});
+
+    // Hack, removes the marker directly from the DOM since the style update of icon does not work with SVG renderer.
+    //this.setFeatureStyle(layer.properties.issue_id, {});
+    layer._path.remove();
   },
 });
