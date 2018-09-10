@@ -10,7 +10,7 @@
     <div class="bulle_elem">
   {%^infos%}
       <b><a target="_blank" href="{{main_website}}{%type%}/{%id%}" title="{{_('Show Object on {where}').format(where=main_website)}}">{%type%} {%id%}</a></b>
-      <a href="#" onclick="window.open('http://rawedit.openstreetmap.fr/edit/{%type%}/{%id%}','rawedit','height=360,width=710');">rawedit</a>
+      <a href="#" onclick="window.open('http://rawedit.openstreetmap.fr/edit/{%type%}/{%id%}','rawedit','height=360,width=710'); return false;">rawedit</a>
   {%/infos%}
   {%#relation%}
       <a target="_blank" href="http://analyser.openstreetmap.fr/cgi-bin/index.py?relation={%id%}">analyse1</a>

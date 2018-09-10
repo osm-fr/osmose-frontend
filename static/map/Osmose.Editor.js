@@ -23,6 +23,7 @@ export var OsmoseEditor = L.Control.Sidebar.extend({
     var self = this;
     $("#menu-editor-save").click(function () {
       self._save(this);
+      return false;
     });
 
     this.saveModal = $('#dialog_editor_save_modal');

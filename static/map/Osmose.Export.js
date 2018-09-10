@@ -2,28 +2,21 @@ require('leaflet');
 
 
 export var OsmoseExport = L.Class.extend({
-  includes: L.Mixin.Events,
-
-  _menu: null,
 
   _map: null,
 
-  initialize: function (map, menu) {
+  initialize: function (map, permalink, params) {
     this._map = map;
-    this._map.on('moveend', this._setUrl, this);
-    this._menu = menu;
-    this._menu.on('itemchanged', this._setUrl, this);
-    this._setUrl();
+    permalink.on('update', this._setUrl, this);
+    this._setUrl({params: params});
   },
 
   _setUrl: function (e) {
-    var self = this,
-      urlPart = self._menu.urlPart();
-    urlPart.limit = 500;
-    urlPart.bbox = self._map.getBounds().toBBoxString();
+    var params = Object.assign({}, e.params);
+    params.limit = 500;
+    params.bbox = this._map.getBounds().toBBoxString();
     $("#menu-export ul a").each(function (i, a) {
-      a.href = $(a).data('href') + L.Util.getParamString(urlPart);
+      a.href = $(a).data('href') + L.Util.getParamString(params);
     });
-    delete urlPart.bbox;
   },
 });

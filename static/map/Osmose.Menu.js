@@ -13,13 +13,9 @@ export var OsmoseMenu = L.Control.Sidebar.extend({
     autoPan: false,
   },
 
-  includes: L.Mixin.Events,
-
-  initialize: function (placeholder, options) {
+  initialize: function (placeholder, permalink, params, options) {
     this._$container = $("#" + placeholder);
-
-    this._countItemAll();
-    this._change_level();
+    this._permalink = permalink;
 
     var self = this;
     $("div#tests input[type='checkbox']").change(function () {
@@ -38,14 +34,19 @@ export var OsmoseMenu = L.Control.Sidebar.extend({
       return false;
     });
     $("#level, #tags, #fixable").change(function () {
-      self._change_level();
+      self._change_tags_level_fixable();
     });
     $("#togglemenu").click(function () {
       self.toggle();
       return false;
     });
 
+    this._setParams({params: params});
+    this._change_tags_level_fixable();
+    this._countItemAll();
+
     L.Control.Sidebar.prototype.initialize.call(this, placeholder, options);
+    this._permalink.on('update', this._setParams, this);
   },
 
   // Menu
@@ -125,17 +126,18 @@ export var OsmoseMenu = L.Control.Sidebar.extend({
     this._itemChanged();
   },
 
-  // Change level
-  _change_item_display: function (l, tag, fixable) {
+  // Change tags, level, fixable
+  _change_tags_level_fixable_display: function (tag, level, fixable) {
     $("div#tests li").each(function () {
       var id = parseInt($(this).attr('id').replace(/item_desc/, ''), 10);
-      if ($.inArray(id, item_levels[l]) >= 0 && (!(tag in item_tags) || $.inArray(id, item_tags[tag]) >= 0)) {
+      if ($.inArray(id, item_levels[level]) >= 0 && (!(tag in item_tags) || $.inArray(id, item_tags[tag]) >= 0)) {
         $("#item_desc" + id).show();
       } else {
         $("#item_desc" + id).hide();
       }
     });
-    var ll = l.split(',');
+
+    var ll = level.split(',');
     for (var i = 1; i <= 3; i++) {
       if ($.inArray(i.toString(), ll) >= 0) {
         $(".level-" + i).removeClass("disabled");
@@ -145,26 +147,17 @@ export var OsmoseMenu = L.Control.Sidebar.extend({
     }
   },
 
-  _change_level: function change_level() {
-    var new_level = document.myform.level.value,
-      new_tag = document.myform.tags.value,
-      fixable = document.myform.fixable.value;
-    this._change_item_display(new_level || "1,2,3", new_tag, fixable);
+  _change_tags_level_fixable: function () {
+    var new_tag = document.myform.tags.value;
+    var new_level = document.myform.level.value;
+    var fixable = document.myform.fixable.value;
 
+    this._change_tags_level_fixable_display(new_tag, new_level || "1,2,3", fixable);
     this._itemChanged();
   },
 
-  _itemChanged: function (skipBuildUrl) {
-    if (!skipBuildUrl) {
-      this._urlPart = this._buildUrlPart();
-    }
-    this.fire('itemchanged', {
-      urlPart: this._urlPart
-    });
-  },
-
-  urlPart: function () {
-    return this._urlPart;
+  _itemChanged: function () {
+    this._permalink.update_item(this._buildUrlPart());
   },
 
   _buildUrlPart: function () {
@@ -205,11 +198,12 @@ export var OsmoseMenu = L.Control.Sidebar.extend({
     };
   },
 
-  setItems: function (items, levels, tags, fixable) {
-    if (items) {
+  _setParams: function (e) {
+    var params = e.params;
+    if (params.item) {
       var checkbox = $(".test_group:not(#categUnactiveItem) :checkbox");
       checkbox.attr('checked', false).prop('checked', false);
-      $.each(items.split(','), function (i, item) {
+      $.each(params.item.split(','), function (i, item) {
         item = new RegExp('item' + item.replace(/x/g, '.'));
         checkbox.filter(function () {
           return item.test(this.id);
@@ -217,33 +211,21 @@ export var OsmoseMenu = L.Control.Sidebar.extend({
       });
     }
 
-    if (levels) {
-      document.myform.level.value = levels;
+    if (params.level) {
+      document.myform.level.value = params.level;
     }
 
-    if (tags != undefined) {
-      document.myform.tags.value = tags;
+    if (params.tags != undefined) {
+      document.myform.tags.value = params.tags;
     }
 
-    if (fixable != undefined) {
-      document.myform.fixable.value = fixable;
+    if (params.fixable != undefined) {
+      document.myform.fixable.value = params.fixable;
     }
+
+    this._change_tags_level_fixable_display(document.myform.tags.value, document.myform.level.value, document.myform.fixable.value);
 
     this._countItemAll();
-    this._urlPart = {};
-    if (items) {
-        this._urlPart.item =  items;
-    }
-    if (levels) {
-      this._urlPart.level = levels;
-    }
-    if (tags) {
-      this._urlPart.tags = tags;
-    }
-    if (fixable) {
-      this._urlPart.fixable = fixable;
-    };
-    this._itemChanged(true);
   },
 });
 

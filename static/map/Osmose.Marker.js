@@ -12,9 +12,8 @@ require('./Osmose.Marker.css');
 
 export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
-  initialize: function (menu, params, editor, featuresLayers, options) {
-    this._menu = menu;
-    this._params = params;
+  initialize: function (permalink, params, editor, featuresLayers, options) {
+    this._permalink = permalink;
     this._editor = editor;
     this._featuresLayers = featuresLayers;
     this._remote_url_read = remote_url_read;
@@ -47,7 +46,7 @@ export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
         return f.properties.issue_id;
       }
     };
-    L.VectorGrid.Protobuf.prototype.initialize.call(this, './issues/{z}/{x}/{y}.mvt' + L.Util.getParamString(this._params), vectorTileOptions);
+    L.VectorGrid.Protobuf.prototype.initialize.call(this, this._buildUrl(params), vectorTileOptions);
   },
 
   _tileReady: function (coords, err, tile) {
@@ -100,12 +99,12 @@ export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
     var bindClosePopup = L.Util.bind(this._closePopup, this);
     map.on('zoomstart', bindClosePopup);
 
-    this._menu.on('itemchanged', this._updateOsmoseLayer, this);
+    this._permalink.on('update', this._updateOsmoseLayer, this);
 
     this.once('remove', function() {
       this.off('click', click);
       map.off('zoomstart', bindClosePopup);
-      this._menu.off('itemchanged', this._updateOsmoseLayer, this);
+      this._permalink.off('update', this._updateOsmoseLayer, this);
     }, this);
   },
 
@@ -120,35 +119,23 @@ export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
     Cookies.set('last_lon', this._map.getCenter().lng, cookies_options);
   },
 
-  _updateOsmoseLayer: function () {
+  _updateOsmoseLayer: function (e) {
     if (this._map.getZoom() >= 6) {
-      this.setUrl(this._getUrl());
+      var newUrl = this._buildUrl(e.params);
+      if (this._url != newUrl) {
+         this.setUrl(newUrl);
+      }
     }
   },
 
-  _getUrl: function() {
-    var urlPart = this._menu.urlPart();
-    if (urlPart.item) {
-      this._params.item = urlPart.item;
-    } else {
-      delete this._params.item;
-    }
-    if (urlPart.level) {
-      this._params.level = urlPart.level;
-    } else {
-      delete this._params.level;
-    }
-    if (urlPart.tags) {
-      this._params.tags = urlPart.tags;
-    } else {
-      delete this._params.tags;
-    }
-    if (urlPart.fixable) {
-      this._params.fixable = urlPart.fixable;
-    } else {
-      delete this._params.fixable;
-    }
-    return './issues/{z}/{x}/{y}.mvt' + L.Util.getParamString(this._params);
+  _buildUrl: function(params) {
+    var p = ['level', 'fix', 'tags', 'item', 'class', 'fixable', 'useDevItem', 'source', 'username', 'country'].reduce(function(o, k) {
+      if (params[k] !== undefined) {
+        o[k] = params[k];
+      }
+      return o;
+    }, {});
+    return './issues/{z}/{x}/{y}.mvt' + L.Util.getParamString(p);
   },
 
   _closePopup: function () {
@@ -219,6 +206,7 @@ export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
             });
             content.on('click', '.editor_edit, .editor_fix', function () {
               self._editor.edit(e.layer, this.getAttribute('data-error'), this.getAttribute('data-type'), this.getAttribute('data-id'), this.getAttribute('data-fix'));
+              return false;
             });
             popup.setContent(content[0]);
           },

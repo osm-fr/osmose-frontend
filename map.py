@@ -56,70 +56,10 @@ def index_redirect():
 
 @route('/map/')
 def index(db, lang):
-    # valeurs par défaut
-    params = { "lat":    46.97,
-               "lon":    2.75,
-               "zoom":   6,
-               "item":   None,
-               "level":  1,
-               "source": '',
-               "class":  '',
-               "username": '',
-               "country": '',
-               "tags":    '',
-               "fixable": None,
-             }
-
-    for p in ["lat", "lon", "zoom", "item", "level", "tags", "fixable"]:
-        if request.cookies.get("last_" + p, default=None):
-            params[p] = urllib.unquote(request.cookies.get("last_" + p))
-
-    for p in ["lat", "lon", "zoom", "item", "useDevItem", "level", "source", "username", "class", "country", "tags", "fixable"]:
-        if request.params.get(p, default=None):
-            params[p] = request.params.get(p)
-
-    for p in ["lat", "lon"]:
-        try:
-            params[p] = float(params[p])
-        except:
-            pass
-
-    for p in ["zoom"]:
-        try:
-            params[p] = int(params[p])
-        except:
-            pass
-
-    if not params.has_key("useDevItem"):
-        params["useDevItem"] = ""
-
     tags = query_meta._tags(db, lang)
-    tags_selected = {}
-    tags_params = params["tags"].split(',')
-    for t in tags:
-      if t in tags_params:
-        tags_selected[t] = " selected=\"selected\""
-      else:
-        tags_selected[t] = ""
 
-    fixable_selected = {}
-    fixable_selected['online'] = " selected=\"selected\"" if params["fixable"] and params["fixable"] == "online" else ""
-    fixable_selected['josm'] = " selected=\"selected\"" if params["fixable"] and params["fixable"] == "josm" else ""
-
-    all_items = []
     db.execute("SELECT item FROM dynpoi_item GROUP BY item;")
-    for res in db.fetchall():
-        all_items.append(int(res[0]))
-    active_items = check_items(params["item"], all_items)
-
-    level_selected = {}
-    for l in ("_all", "1", "2", "3", "1,2", "1,2,3"):
-        level_selected[l] = ""
-
-    if params["level"] == "":
-        level_selected["1"] = " selected=\"selected\""
-    elif params["level"] in ("1", "2", "3", "1,2", "1,2,3"):
-        level_selected[params["level"]] = " selected=\"selected\""
+    all_items = map(lambda res: int(res[0]), db.fetchall())
 
     categories = query_meta._categories(db, lang)
 
@@ -183,11 +123,7 @@ OFFSET
         user = None
         user_error_count = None
 
-    return template('map/index', categories=categories, lat=params["lat"], lon=params["lon"], zoom=params["zoom"],
-        source=params["source"], username=params["username"], classs=params["class"], country=params["country"],
-        item_tags=item_tags, tags_selected=tags_selected, tags=tags, fixable_selected=fixable_selected,
-        item_levels=item_levels, level_selected=level_selected,
-        active_items=active_items, useDevItem=params["useDevItem"],
+    return template('map/index', categories=categories, item_tags=item_tags, tags=tags, item_levels=item_levels,
         main_project=utils.main_project, urls=urls, helps=helps, delay=delay, languages_name=utils.languages_name, translate=utils.translator(lang),
         website=utils.website, remote_url_read=utils.remote_url_read, request=request,
         user=user, user_error_count=user_error_count)
