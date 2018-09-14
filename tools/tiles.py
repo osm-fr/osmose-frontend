@@ -22,8 +22,8 @@ def tile2lonlat(xtile, ytile, zoom):
 def bbox2tile(min_lon, min_lat, max_lon, max_lat):
   # Note: Naive implementation
   tile = (0, 0)
-  min_tile = max_tile = None
-  z = 1
+  min_tile = max_tile = tile
+  z = 0
   while z < 19 and min_tile == max_tile:
     tile = min_tile
     min_tile = lonlat2tile(min_lon, min_lat, z)
