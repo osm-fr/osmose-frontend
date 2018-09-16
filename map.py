@@ -238,6 +238,9 @@ def heat(db, z, x, y):
     params.tiley = y
     params.zoom = z
 
+    if params.zoom > 18:
+        return
+
     db.execute("""
 SELECT
     SUM((SELECT SUM(t) FROM UNNEST(number) t))
@@ -306,6 +309,8 @@ def issues_mvt(db, z, x, y):
     params.tiley = y
     params.zoom = z
 
+    if params.zoom > 18:
+        return
     if (not params.users) and (not params.source) and (params.zoom < 6):
         return
 
