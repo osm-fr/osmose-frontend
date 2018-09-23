@@ -5,11 +5,6 @@ export function setCookie(c_name, value, exdays) {
   document.cookie = `${c_name}=${c_value}`;
 }
 
-export function set_lang(select) {
-  const lang = $(select).val();
-  window.location.href = `../${lang}/map/${window.location.search}`;
-}
-
 export function getUrlVars() {
   const vars = {};
   let hash;

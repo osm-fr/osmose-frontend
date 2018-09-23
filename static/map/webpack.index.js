@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import { init_map } from './map.js';
-import { setCookie, set_lang, getUrlVars } from './menu.js';
+import { setCookie, getUrlVars } from './menu.js';
 
 require('../css/style.css');
 require('./style.css');
@@ -17,5 +17,4 @@ L.DomEvent.fakeStop = L.DomEvent._fakeStop;
 window.$ = $;
 window.init_map = init_map;
 window.setCookie = setCookie;
-window.set_lang = set_lang;
 window.getUrlVars = getUrlVars;
