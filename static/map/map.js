@@ -1,22 +1,23 @@
 import { mapBases, mapOverlay } from './layers.js';
-require('leaflet-active-area/src/leaflet.activearea.js');
 import { OsmoseCoverage } from './Osmose.Coverage.js';
 import { OsmoseMenu, OsmoseMenuToggle } from './Osmose.Menu.js';
 import { OsmoseExport } from './Osmose.Export.js';
 import { OsmoseEditor } from './Osmose.Editor.js';
 import { OsmoseMarker } from './Osmose.Marker.js';
 import { OsmoseHeatmap } from './Osmose.Heatmap.js';
+
+require('leaflet-active-area/src/leaflet.activearea.js');
 require('./Permalink.Item.js');
 require('./Location.js');
 require('leaflet-control-geocoder');
 require('leaflet-control-geocoder/dist/Control.Geocoder.css');
 require('leaflet-loading');
 require('leaflet-loading/src/Control.Loading.css');
-var Cookies = require('js-cookie');
+const Cookies = require('js-cookie');
 
 
 export function init_map() {
-  var urlVars = getUrlVars();
+  const urlVars = getUrlVars();
   urlVars.lat = urlVars.lat || Cookies.get('last_lat') || 46.97;
   urlVars.lon = urlVars.lon || Cookies.get('last_lon') || 2.75;
   urlVars.zoom = urlVars.zoom || Cookies.get('last_zoom') || 6;
@@ -26,43 +27,43 @@ export function init_map() {
   urlVars.fixable = urlVars.fixable || Cookies.get('last_fixable');
 
   var layers = [];
-  $.each(mapBases, function (name, layer) {
+  $.each(mapBases, (name, layer) => {
     layers.push(layer);
   });
 
   // Map
-  var map = L.map('map', {
+  const map = L.map('map', {
     center: new L.LatLng(urlVars.lat, urlVars.lon),
     zoom: urlVars.zoom,
-    layers: layers[0]
+    layers: layers[0],
   }).setActiveArea('leaflet-active-area', true);
 
   // Editor
-  var editor = new OsmoseEditor('editor', {
-    position: 'right'
+  const editor = new OsmoseEditor('editor', {
+    position: 'right',
   });
   map.addControl(editor);
 
   // Permalink
-  var permalink = new L.Control.Permalink({
+  const permalink = new L.Control.Permalink({
     // layers: layers,
     text: '',
     useLocation: true,
-    position: 'bottomright'
+    position: 'bottomright',
   });
   map.addControl(permalink);
 
   // Layers
-  //// Layer Coverage
-  mapOverlay['Coverage'] = new OsmoseCoverage('/osmose-coverage.topojson.pbf');
+  // // Layer Coverage
+  mapOverlay.Coverage = new OsmoseCoverage('/osmose-coverage.topojson.pbf');
 
-  //// Layer Heatmap
+  // // Layer Heatmap
   mapOverlay['Osmose Issues Heatmap'] = new OsmoseHeatmap(permalink, urlVars);
 
-  //// Layer Marker
-  var featureLayer = L.layerGroup();
+  // // Layer Marker
+  const featureLayer = L.layerGroup();
   map.addLayer(featureLayer);
-  var osmoseLayer = new OsmoseMarker(permalink, urlVars, editor, featureLayer, remote_url_read);
+  const osmoseLayer = new OsmoseMarker(permalink, urlVars, editor, featureLayer, remote_url_read);
   mapOverlay['Osmose Issues'] = osmoseLayer;
   editor.errors = osmoseLayer;
 
@@ -71,8 +72,8 @@ export function init_map() {
   map.addControl(layers);
 
   // Menu
-  var menu = new OsmoseMenu('menu', permalink, urlVars, {
-    position: 'left'
+  const menu = new OsmoseMenu('menu', permalink, urlVars, {
+    position: 'left',
   });
   map.addControl(menu);
   map.addControl(new OsmoseMenuToggle(menu));
@@ -82,17 +83,17 @@ export function init_map() {
   new OsmoseExport(map, permalink, urlVars);
 
   // Widgets
-  var scale = L.control.scale({
-    position: 'bottomright'
+  const scale = L.control.scale({
+    position: 'bottomright',
   });
   map.addControl(scale);
 
-  var location = L.control.location();
+  const location = L.control.location();
   map.addControl(location);
 
-  var geocode = L.Control.geocoder({
+  const geocode = L.Control.geocoder({
     position: 'topleft',
-    showResultIcons: true
+    showResultIcons: true,
   });
   geocode.markGeocode = function (result) {
     this._map.fitBounds(result.geocode.bbox);
@@ -100,35 +101,35 @@ export function init_map() {
   };
   map.addControl(geocode);
 
-  var loadingControl = L.Control.loading({
-    separate: true
+  const loadingControl = L.Control.loading({
+    separate: true,
   });
   map.addControl(loadingControl);
 
   map.addLayer(osmoseLayer);
 
   $.ajax({
-    url: $("#popupTpl").attr("src")
-  }).done(function (html) {
-    $("#popupTpl").html(html);
+    url: $('#popupTpl').attr('src'),
+  }).done((html) => {
+    $('#popupTpl').html(html);
   });
 
   $.ajax({
-    url: $("#editorTpl").attr("src")
-  }).done(function (html) {
-    $("#editorTpl").html(html);
+    url: $('#editorTpl').attr('src'),
+  }).done((html) => {
+    $('#editorTpl').html(html);
   });
 
 
   function active_menu(e) {
-    var zoom = map.getZoom(),
-      lat = Math.abs(map.getCenter().lat);
+    const zoom = map.getZoom();
+    const lat = Math.abs(map.getCenter().lat);
     if (zoom >= 6 || (zoom >= 5 && lat > 60) || (zoom >= 4 && lat > 70) || (zoom >= 3 && lat > 75)) {
-      $("#need_zoom").hide();
-      $("#action_links, #tests").show();
+      $('#need_zoom').hide();
+      $('#action_links, #tests').show();
     } else {
-      $("#need_zoom").show();
-      $("#action_links, #tests").hide();
+      $('#need_zoom').show();
+      $('#action_links, #tests').hide();
     }
   }
 

@@ -5,17 +5,17 @@ export var OsmoseExport = L.Class.extend({
 
   _map: null,
 
-  initialize: function (map, permalink, params) {
+  initialize(map, permalink, params) {
     this._map = map;
     permalink.on('update', this._setUrl, this);
-    this._setUrl({params: params});
+    this._setUrl({ params });
   },
 
-  _setUrl: function (e) {
-    var params = Object.assign({}, e.params);
+  _setUrl(e) {
+    const params = Object.assign({}, e.params);
     params.limit = 500;
     params.bbox = this._map.getBounds().toBBoxString();
-    $("#menu-export ul a").each(function (i, a) {
+    $('#menu-export ul a').each((i, a) => {
       a.href = $(a).data('href') + L.Util.getParamString(params);
     });
   },

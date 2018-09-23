@@ -1,12 +1,12 @@
 require('leaflet');
-var Pbf = require('pbf');
-var geobuf = require('./geobuf-1.0.1.js');
-var topojson = require('topojson');
+const Pbf = require('pbf');
+const topojson = require('topojson');
+const geobuf = require('./geobuf-1.0.1.js');
 
 
 export var OsmoseCoverage = L.GeoJSON.extend({
 
-  initialize: function (topojson_url, options) {
+  initialize(topojson_url, options) {
     L.Util.setOptions(this, options);
 
     this._layers = {};
@@ -14,7 +14,7 @@ export var OsmoseCoverage = L.GeoJSON.extend({
     this._topojson = null;
   },
 
-  onAdd: function (map, insertAtTheBottom) {
+  onAdd(map, insertAtTheBottom) {
     this._map = map;
     if (this._topojson === null) {
       this.fetchData();
@@ -23,16 +23,15 @@ export var OsmoseCoverage = L.GeoJSON.extend({
     L.FeatureGroup.prototype.onAdd.call(this, map, insertAtTheBottom);
   },
 
-  fetchData: function () {
-    var self = this;
-
-    var xhr = new XMLHttpRequest();
+  fetchData() {
+    const self = this;
+    const xhr = new XMLHttpRequest();
     xhr.open('GET', this._topojson_url, true);
     xhr.responseType = 'arraybuffer';
 
-    xhr.onload = function(e) {
+    xhr.onload = function (e) {
       if (this.status == 200) {
-        var data = geobuf.decode(new Pbf(new Uint8Array(xhr.response)));
+        let data = geobuf.decode(new Pbf(new Uint8Array(xhr.response)));
         data = topojson.feature(data, data.objects['osmose-cover']);
         self.addData(data);
         self._topojson = data;
