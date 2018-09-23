@@ -89,7 +89,7 @@ def index(db, lang):
     helps.append((_("Contact"), "../contact"))
     helps.append((_("Help on wiki"), _("http://wiki.openstreetmap.org/wiki/Osmose")))
     helps.append((_("Copyright"), "../copyright"))
-    helps.append((_("Sources"), "https://github.com/osm-fr?query=osmose"))
+    helps.append((_("Sources"), "https://github.com/osm-fr?q=osmose"))
     helps.append((_("Translation"), "../translation"))
 
     sql = """
