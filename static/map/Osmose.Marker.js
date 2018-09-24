@@ -68,16 +68,15 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
   onAdd(map) {
     this._map = map;
-    const self = this;
     L.GridLayer.prototype.onAdd.call(this, map);
     /*
     this.on('mouseover', (e) => {
       if (e.layer.properties.issue_id) {
-        self._openPopup(e);
+        this._openPopup(e);
       }
     }).on('mouseout', (e) => {
-      if (e.layer.properties.issue_id && self.highlight != e.layer.properties.issue_id) {
-        self._closePopup();
+      if (e.layer.properties.issue_id && this.highlight != e.layer.properties.issue_id) {
+        this._closePopup();
       }
     });
 */
@@ -85,11 +84,11 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
       if (e.layer.properties.limit) {
         map.setZoomAround(e.latlng, map.getZoom() + 1);
       } else if (e.layer.properties.issue_id) {
-        if (self.highlight === e.layer.properties.issue_id) {
-          self._closePopup();
+        if (this.highlight === e.layer.properties.issue_id) {
+          this._closePopup();
         } else {
-          self.highlight = e.layer.properties.issue_id;
-          self._openPopup(e);
+          this.highlight = e.layer.properties.issue_id;
+          this._openPopup(e);
         }
       }
     };
@@ -101,7 +100,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
     this._permalink.on('update', this._updateOsmoseLayer, this);
 
-    this.once('remove', function () {
+    this.once('remove', () => {
       this.off('click', click);
       map.off('zoomstart', bindClosePopup);
       this._permalink.off('update', this._updateOsmoseLayer, this);
@@ -160,26 +159,25 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
       .setContent("<center><img src='../images/throbbler.gif' alt='downloading'></center>")
       .openOn(this._map);
 
-    const self = this;
     setTimeout(() => {
       if (popup.isOpen) {
         // Popup still open, so download content
         $.ajax({
           url: `../api/0.2/error/${e.layer.properties.issue_id}`,
           dataType: 'json',
-          success(data) {
+          success: (data) => {
             // Get the OSM objects
-            self._featuresLayers.clearLayers();
+            this._featuresLayers.clearLayers();
             if (data.elems_id) {
               let shift = -1; const palette = ['#ff3333', '#59b300', '#3388ff']; const
                 colors = {};
               data.elems.forEach((elem) => {
                 colors[elem.type + elem.id] = palette[(shift += 1) % 3];
                 $.ajax({
-                  url: elem.type === 'node' ? `${self._remoteUrlRead}api/0.6/node/${elem.id}`
-                    : `${self._remoteUrlRead}api/0.6/${elem.type}/${elem.id}/full`,
+                  url: elem.type === 'node' ? `${this._remoteUrlRead}api/0.6/node/${elem.id}`
+                    : `${this._remoteUrlRead}api/0.6/${elem.type}/${elem.id}/full`,
                   dataType: 'xml',
-                  success(xml) {
+                  success: (xml) => {
                     const layer = new L.OSM.DataLayer(xml);
                     layer.setStyle({
                       color: colors[elem.type + elem.id],
@@ -191,7 +189,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
                         fill: colors[elem.type + elem.id],
                       },
                     });
-                    self._featuresLayers.addLayer(layer);
+                    this._featuresLayers.addLayer(layer);
                   },
                 });
               });
@@ -203,16 +201,16 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
             const content = $(Mustache.render(template, data));
             content.on('click', '.closePopup', () => {
               setTimeout(() => {
-                self.corrected(e.layer);
+                this.corrected(e.layer);
               }, 200);
             });
-            content.on('click', '.editor_edit, .editor_fix', function () {
-              self._editor.edit(e.layer, this.getAttribute('data-error'), this.getAttribute('data-type'), this.getAttribute('data-id'), this.getAttribute('data-fix'));
+            content.on('click', '.editor_edit, .editor_fix', (event) => {
+              this._editor.edit(e.layer, event.currentTarget.getAttribute('data-error'), event.currentTarget.getAttribute('data-type'), event.currentTarget.getAttribute('data-id'), event.currentTarget.getAttribute('data-fix'));
               return false;
             });
             popup.setContent(content[0]);
           },
-          error(jqXHR, textStatus, errorThrown) {
+          error: (jqXHR, textStatus, errorThrown) => {
             popup.setContent(textStatus);
           },
         });

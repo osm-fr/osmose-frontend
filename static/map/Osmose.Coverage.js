@@ -43,4 +43,4 @@ const OsmoseCoverage = L.GeoJSON.extend({
 });
 
 
-export { OsmoseCoverage as default }
+export { OsmoseCoverage as default };

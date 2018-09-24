@@ -1,8 +1,8 @@
 $(document).ready(() => {
-  $('a.err_delete').click(function () {
+  $('a.err_delete').click((event) => {
     $('#load').fadeIn();
-    const Container = $(this).parent();
-    const id = $(this).attr('id').split('=');
+    const Container = $(event.currentTarget).parent();
+    const id = $(event.currentTarget).attr('id').split('=');
     const verb = id[0];
     const path = id[1];
 
@@ -13,16 +13,14 @@ $(document).ready(() => {
       beforeSend() {
         Container.parent().css({ backgroundColor: 'red' });
       },
-      success(response) {
+      success: (response) => {
         Container.parent().find('td')
           .wrapInner('<div style="display: block;" />')
           .parent()
           .find('td > div')
-          .slideUp(700, () => {
-            $(this).parent().parent().remove();
-          });
+          .slideUp(700, () => $(event.currentTarget).parent().parent().remove());
       },
-      error(xhr, ajaxOptions, thrownError) {
+      error: (xhr, ajaxOptions, thrownError) => {
         Container.parent().css({ backgroundColor: '' });
       },
     });

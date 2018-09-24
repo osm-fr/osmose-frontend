@@ -17,27 +17,26 @@ export const OsmoseMenu = L.Control.Sidebar.extend({
     this._$container = $(`#${placeholder}`);
     this._permalink = permalink;
 
-    const self = this;
-    $("div#tests input[type='checkbox']").change(function () {
-      self._checkbox_click(this);
+    $("div#tests input[type='checkbox']").change((event) => {
+      this._checkbox_click(event.currentTarget);
     });
-    $('.toggleAllItem').click(function () {
-      self._toggleAllItem(this);
+    $('.toggleAllItem').click((event) => {
+      this._toggleAllItem(event.currentTarget);
       return false;
     });
-    $('.invertAllItem').click(function () {
-      self._invertAllItem();
+    $('.invertAllItem').click((event) => {
+      this._invertAllItem();
       return false;
     });
-    $('.toggleCateg').click(function () {
-      self._toggleCateg(this);
+    $('.toggleCateg').click((event) => {
+      this._toggleCateg(event.currentTarget);
       return false;
     });
-    $('#level, #tags, #fixable').change(() => {
-      self._change_tags_level_fixable();
+    $('#level, #tags, #fixable').change((event) => {
+      this._change_tags_level_fixable();
     });
-    $('#togglemenu').click(() => {
-      self.toggle();
+    $('#togglemenu').click((event) => {
+      this.toggle();
       return false;
     });
 
@@ -74,9 +73,8 @@ export const OsmoseMenu = L.Control.Sidebar.extend({
   },
 
   _countItemAll() {
-    const self = this;
     $('.test_group').each((i, group) => {
-      self._countItem(group);
+      this._countItem(group);
     });
   },
 
@@ -118,8 +116,8 @@ export const OsmoseMenu = L.Control.Sidebar.extend({
 
   // Invert item check
   _invertAllItem() {
-    $("#myform .test_group:not(#categUnactiveItem) input[type='checkbox']").each(function () {
-      $(this).prop('checked', !$(this).prop('checked'));
+    $("#myform .test_group:not(#categUnactiveItem) input[type='checkbox']").each((i, elem) => {
+      $(elem).prop('checked', !$(elem).prop('checked'));
     });
 
     this._countItemAll();
@@ -128,8 +126,8 @@ export const OsmoseMenu = L.Control.Sidebar.extend({
 
   // Change tags, level, fixable
   _change_tags_level_fixable_display(tag, level, fixable) {
-    $('div#tests li').each(function () {
-      const id = parseInt($(this).attr('id').replace(/item_desc/, ''), 10);
+    $('div#tests li').each((i, elem) => {
+      const id = parseInt($(elem).attr('id').replace(/item_desc/, ''), 10);
       if ($.inArray(id, item_levels[level]) >= 0 && (!(tag in item_tags) || $.inArray(id, item_tags[tag]) >= 0)) {
         $(`#item_desc${id}`).show();
       } else {
@@ -166,14 +164,14 @@ export const OsmoseMenu = L.Control.Sidebar.extend({
     if ($('.test_group:not(#categUnactiveItem) :checkbox:not(:checked)').length === 0) {
       ch = 'xxxx';
     } else {
-      $('.test_group:not(#categUnactiveItem)').each(function () {
-        const id = this.id;
-        const v = $('h1 span', this).text().split('/');
+      $('.test_group:not(#categUnactiveItem)').each((i, elem) => {
+        const id = elem.id;
+        const v = $('h1 span', elem).text().split('/');
         if (v[0] == v[1]) {
           ch += `${id.substring(5, 6)}xxx,`;
         } else {
-          $(':checked', this).each(function () {
-            ch += `${this.name.substr(4)},`;
+          $(':checked', elem).each((i, elem) => {
+            ch += `${elem.name.substr(4)},`;
           });
         }
       });
@@ -205,9 +203,7 @@ export const OsmoseMenu = L.Control.Sidebar.extend({
       checkbox.attr('checked', false).prop('checked', false);
       $.each(params.item.split(','), (i, item) => {
         const itemRe = new RegExp(`item${item.replace(/x/g, '.')}`);
-        checkbox.filter(function () {
-            return itemRe.test(this.id);
-        }).attr('checked', true).prop('checked', true);
+        checkbox.filter((i, elem) => itemRe.test(elem.id)).attr('checked', true).prop('checked', true);
       });
     }
 

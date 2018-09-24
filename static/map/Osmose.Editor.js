@@ -19,14 +19,13 @@ const OsmoseEditor = L.Control.Sidebar.extend({
 
   initialize(placeholder, options) {
     this._$container = $(`#${placeholder}`);
-    const self = this;
-    $('#menu-editor-save').click(function () {
-      self._save(this);
+    $('#menu-editor-save').click((event) => {
+      this._save(event.currentTarget);
       return false;
     });
 
     this.saveModal = $('#dialog_editor_save_modal');
-    this.saveModal.on('shown.bs.modal', function () {
+    this.saveModal.on('shown.bs.modal', (event) => {
       $('#save_button', this.saveModal).trigger('focus');
     });
     $('#save_button', this.saveModal).click(() => {
@@ -34,14 +33,14 @@ const OsmoseEditor = L.Control.Sidebar.extend({
       const source = document.forms.editor_save_form.elements.source.value;
       const type = document.forms.editor_save_form.elements.type.value;
       const reuseChangeset = document.forms.editor_save_form.elements.reuse_changeset.checked;
-      self.saveModal.find('#save_changeset').hide();
-      self.saveModal.find('#save_uploading').show();
-      self.saveModal.find('.modal-footer').hide();
+      this.saveModal.find('#save_changeset').hide();
+      this.saveModal.find('#save_uploading').show();
+      this.saveModal.find('.modal-footer').hide();
 
-      self._upload(comment, source, type, reuseChangeset, () => {
-        self.saveModal.find('#save_changeset').show();
-        self.saveModal.find('#save_uploading').hide();
-        self.saveModal.find('.modal-footer').show();
+      this._upload(comment, source, type, reuseChangeset, () => {
+        this.saveModal.find('#save_changeset').show();
+        this.saveModal.find('#save_uploading').hide();
+        this.saveModal.find('.modal-footer').show();
       });
     });
 
@@ -57,7 +56,6 @@ const OsmoseEditor = L.Control.Sidebar.extend({
     }
 
     this._$container.html("<center><img src='../images/throbbler.gif' alt='downloading'></center>");
-    const self = this;
     const url = `../api/0.2/error/${error}/fresh_elems${fix ? `/${fix}` : ''}`;
     $.ajax({
       url,
@@ -65,30 +63,30 @@ const OsmoseEditor = L.Control.Sidebar.extend({
     }).done((data) => {
       const template = $('#editorTpl').html();
       const content = $(Mustache.render(template, data));
-      self._$container.html(content);
-      $('#validate', self._$container).click(function () {
-        self._validate(this);
+      this._$container.html(content);
+      $('#validate', this._$container).click((event) => {
+        this._validate(event.currentTarget);
         $.ajax({
           url: `../api/0.2/error/${error}/done`,
-        }).done(data => {
-          self.errors.corrected(layer);
+        }).done((data) => {
+          this.errors.corrected(layer);
         });
       });
-      $('#cancel', self._$container).click(function () {
-        self._cancel(this);
+      $('#cancel', this._$container).click((event) => {
+        this._cancel(event.currentTarget);
       });
 
-      $.each(data.elems, function (i, elem) {
+      $.each(data.elems, (i, elem) => {
         const reftags = {};
         $.each(elem.tags, (i, e) => {
           reftags[e.k] = e.v;
         });
-        self._build(elem.type, elem.id, reftags, (data.fix && data.fix[elem.type + elem.id]) || reftags);
-        $(`.tags[data-type="${elem.type}"][data-id="${elem.id}"]`, self._$container).data('reftags', reftags);
+        this._build(elem.type, elem.id, reftags, (data.fix && data.fix[elem.type + elem.id]) || reftags);
+        $(`.tags[data-type="${elem.type}"][data-id="${elem.id}"]`, this._$container).data('reftags', reftags);
       });
-      $(`form .tags[data-type="${type}"][data-id="${id}"] input[type="text"]:last`, self._$container).focus();
+      $(`form .tags[data-type="${type}"][data-id="${id}"] input[type="text"]:last`, this._$container).focus();
     }).fail((xhr, err) => {
-      self._$container.html(`Fails get ${url}</br>readyState: ${xhr.readyState}</br>status: ${xhr.status}`);
+      this._$container.html(`Fails get ${url}</br>readyState: ${xhr.readyState}</br>status: ${xhr.status}`);
     });
   },
 
@@ -100,7 +98,6 @@ const OsmoseEditor = L.Control.Sidebar.extend({
   },
 
   _upload(comment, source, type, reuseChangeset, always) {
-    const self = this;
     const url = '../editor/save';
     $.ajax({
       url,
@@ -113,14 +110,14 @@ const OsmoseEditor = L.Control.Sidebar.extend({
           type,
         },
         reuseChangeset,
-        modify: self._modifiyObjectStack,
-        delete: self._deleteObjectStack,
+        modify: this._modifiyObjectStack,
+        delete: this._deleteObjectStack,
       }),
     }).done(() => {
-      self._modifiyObjectStack = {};
-      self._deleteObjectStack = {};
-      self._count_touched();
-      self.saveModal.modal('hide');
+      this._modifiyObjectStack = {};
+      this._deleteObjectStack = {};
+      this._count_touched();
+      this.saveModal.modal('hide');
     }).fail((xhr, err) => {
       alert(`Fails post to ${url}\nreadyState: ${xhr.readyState}\nstatus: ${xhr.status}`);
     }).always(always);
@@ -137,11 +134,10 @@ const OsmoseEditor = L.Control.Sidebar.extend({
   },
 
   _validate(e) {
-    const self = this;
     $.each(this._extractData(), (i, e) => {
       if (e.touched) {
-        self._modifiyObjectStack[i] = e;
-        delete self._modifiyObjectStack[i].touched;
+        this._modifiyObjectStack[i] = e;
+        delete this._modifiyObjectStack[i].touched;
       }
     });
     this.hide();
@@ -250,15 +246,14 @@ const OsmoseEditor = L.Control.Sidebar.extend({
 
     tags.attr('data-touched', touched);
 
-    const self = this;
     $("input[type='text']", tags).change((e) => {
-      self._change(e);
+      this._change(e);
     });
     $("input[type='text']", tags).keypress((e) => {
-      self._keypress(e);
+      this._keypress(e);
     });
     $('a', tags).click((e) => {
-      self._delete_tag(e);
+      this._delete_tag(e);
       return false;
     });
   },
