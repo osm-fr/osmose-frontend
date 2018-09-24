@@ -68,7 +68,7 @@ const OsmoseEditor = L.Control.Sidebar.extend({
         this._validate(event.currentTarget);
         $.ajax({
           url: `../api/0.2/error/${error}/done`,
-        }).done((data) => {
+        }).done((d) => {
           this.errors.corrected(layer);
         });
       });
@@ -78,8 +78,8 @@ const OsmoseEditor = L.Control.Sidebar.extend({
 
       $.each(data.elems, (i, elem) => {
         const reftags = {};
-        $.each(elem.tags, (i, e) => {
-          reftags[e.k] = e.v;
+        $.each(elem.tags, (ii, ee) => {
+          reftags[ee.k] = ee.v;
         });
         this._build(elem.type, elem.id, reftags, (data.fix && data.fix[elem.type + elem.id]) || reftags);
         $(`.tags[data-type="${elem.type}"][data-id="${elem.id}"]`, this._$container).data('reftags', reftags);
@@ -134,9 +134,9 @@ const OsmoseEditor = L.Control.Sidebar.extend({
   },
 
   _validate(e) {
-    $.each(this._extractData(), (i, e) => {
-      if (e.touched) {
-        this._modifiyObjectStack[i] = e;
+    $.each(this._extractData(), (i, elem) => {
+      if (elem.touched) {
+        this._modifiyObjectStack[i] = elem;
         delete this._modifiyObjectStack[i].touched;
       }
     });

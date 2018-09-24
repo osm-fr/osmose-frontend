@@ -10,13 +10,13 @@
 %from assets import assets
   <script type="text/javascript" src="{{get_url('static', filename=assets['static/map'][0])}}"></script>
   <script type="text/javascript">
-    var item_levels = {};
+    var itemLevels = {};
 %for (l, i) in item_levels.iteritems():
-    item_levels["{{l}}"] = {{list(i)}};
+    itemLevels["{{l}}"] = {{list(i)}};
 %end
-    var item_tags = {};
+    var itemTags = {};
 %for (t, i) in item_tags.iteritems():
-    item_tags["{{t}}"] = {{list(i)}};
+    itemTags["{{t}}"] = {{list(i)}};
 %end
     var remoteUrlRead = "{{remote_url_read}}";
   </script>

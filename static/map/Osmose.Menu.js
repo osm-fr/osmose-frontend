@@ -128,7 +128,7 @@ export const OsmoseMenu = L.Control.Sidebar.extend({
   _change_tags_level_fixable_display(tag, level, fixable) {
     $('div#tests li').each((i, elem) => {
       const id = parseInt($(elem).attr('id').replace(/item_desc/, ''), 10);
-      if ($.inArray(id, item_levels[level]) >= 0 && (!(tag in item_tags) || $.inArray(id, item_tags[tag]) >= 0)) {
+      if ($.inArray(id, itemLevels[level]) >= 0 && (!(tag in itemTags) || $.inArray(id, itemTags[tag]) >= 0)) {
         $(`#item_desc${id}`).show();
       } else {
         $(`#item_desc${id}`).hide();
@@ -165,13 +165,13 @@ export const OsmoseMenu = L.Control.Sidebar.extend({
       ch = 'xxxx';
     } else {
       $('.test_group:not(#categUnactiveItem)').each((i, elem) => {
-        const id = elem.id;
+        const { id } = elem;
         const v = $('h1 span', elem).text().split('/');
-        if (v[0] == v[1]) {
+        if (v[0] === v[1]) {
           ch += `${id.substring(5, 6)}xxx,`;
         } else {
-          $(':checked', elem).each((i, elem) => {
-            ch += `${elem.name.substr(4)},`;
+          $(':checked', elem).each((ii, ee) => {
+            ch += `${ee.name.substr(4)},`;
           });
         }
       });
@@ -197,13 +197,13 @@ export const OsmoseMenu = L.Control.Sidebar.extend({
   },
 
   _setParams(e) {
-    const params = e.params;
+    const { params } = e;
     if (params.item) {
       const checkbox = $('.test_group:not(#categUnactiveItem) :checkbox');
       checkbox.attr('checked', false).prop('checked', false);
       $.each(params.item.split(','), (i, item) => {
         const itemRe = new RegExp(`item${item.replace(/x/g, '.')}`);
-        checkbox.filter((i, elem) => itemRe.test(elem.id)).attr('checked', true).prop('checked', true);
+        checkbox.filter((ii, ee) => itemRe.test(ee.id)).attr('checked', true).prop('checked', true);
       });
     }
 
