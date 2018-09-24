@@ -50,12 +50,14 @@ def check_items(items, all_items):
 def index_redirect():
     new_url = "map/"
     if request.query_string:
-        new_url += "?"
-        new_url += request.query_string
+        new_url += "#" + request.query_string
     redirect(new_url)
 
 @route('/map/')
 def index(db, lang):
+    if request.query_string:
+        redirect("./#" + request.query_string)
+
     tags = query_meta._tags(db, lang)
 
     db.execute("SELECT item FROM dynpoi_item GROUP BY item;")
