@@ -14,6 +14,22 @@ module.exports = {
     devtool: 'source-map',
     module: {
         rules: [
+/*
+            {
+                enforce: "pre",
+                test: /\.js$/,
+                exclude: [
+                    /node_modules/,
+                    /geobuf-.*\.js/,
+                    /sorttable\.js/,
+                    /webpack.bundle.*\.js/
+                ],
+                loader: 'eslint-loader',
+                options: {
+                    cache: true,
+                }
+            },
+*/
             { test: /\.js$/,
                 loader: 'babel-loader',
                 options: {
