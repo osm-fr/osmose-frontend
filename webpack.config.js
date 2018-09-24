@@ -14,7 +14,12 @@ module.exports = {
     devtool: 'source-map',
     module: {
         rules: [
-            { test: /\.js$/, loader: 'babel-loader' },
+            { test: /\.js$/,
+                loader: 'babel-loader',
+                options: {
+                    presets: ['babel-preset-env']
+                }
+            },
             { test: /\.css$/, use: [
                 { loader: "style-loader" },
                 { loader: "css-loader" },
