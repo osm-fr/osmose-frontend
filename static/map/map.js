@@ -1,10 +1,10 @@
-import { mapBases, mapOverlay } from './layers.js';
-import { OsmoseCoverage } from './Osmose.Coverage.js';
-import { OsmoseMenu, OsmoseMenuToggle } from './Osmose.Menu.js';
-import { OsmoseExport } from './Osmose.Export.js';
-import { OsmoseEditor } from './Osmose.Editor.js';
-import { OsmoseMarker } from './Osmose.Marker.js';
-import { OsmoseHeatmap } from './Osmose.Heatmap.js';
+import { mapBases, mapOverlay } from './layers';
+import { OsmoseCoverage } from './Osmose.Coverage';
+import { OsmoseMenu, OsmoseMenuToggle } from './Osmose.Menu';
+import { OsmoseExport } from './Osmose.Export';
+import { OsmoseEditor } from './Osmose.Editor';
+import { OsmoseMarker } from './Osmose.Marker';
+import { OsmoseHeatmap } from './Osmose.Heatmap';
 
 require('leaflet-active-area/src/leaflet.activearea.js');
 require('./Permalink.Item.js');
@@ -16,7 +16,7 @@ require('leaflet-loading/src/Control.Loading.css');
 const Cookies = require('js-cookie');
 
 
-export function init_map() {
+export function initMap() {
   const urlVars = getUrlVars();
   urlVars.lat = urlVars.lat || Cookies.get('last_lat') || 46.97;
   urlVars.lon = urlVars.lon || Cookies.get('last_lon') || 2.75;
@@ -26,7 +26,7 @@ export function init_map() {
   urlVars.tags = urlVars.tags || Cookies.get('last_tags');
   urlVars.fixable = urlVars.fixable || Cookies.get('last_fixable');
 
-  var layers = [];
+  const layers = [];
   $.each(mapBases, (name, layer) => {
     layers.push(layer);
   });
@@ -63,13 +63,13 @@ export function init_map() {
   // // Layer Marker
   const featureLayer = L.layerGroup();
   map.addLayer(featureLayer);
-  const osmoseLayer = new OsmoseMarker(permalink, urlVars, editor, featureLayer, remote_url_read);
+  const osmoseLayer = new OsmoseMarker(permalink, urlVars, editor, featureLayer, remoteUrlRead);
   mapOverlay['Osmose Issues'] = osmoseLayer;
   editor.errors = osmoseLayer;
 
   // Control Layer
-  var layers = L.control.layers(mapBases, mapOverlay);
-  map.addControl(layers);
+  const controlLayers = L.control.layers(mapBases, mapOverlay);
+  map.addControl(controlLayers);
 
   // Menu
   const menu = new OsmoseMenu('menu', permalink, urlVars, {
@@ -121,7 +121,7 @@ export function init_map() {
   });
 
 
-  function active_menu(e) {
+  function activeMenu(e) {
     const zoom = map.getZoom();
     const lat = Math.abs(map.getCenter().lat);
     if (zoom >= 6 || (zoom >= 5 && lat > 60) || (zoom >= 4 && lat > 70) || (zoom >= 3 && lat > 75)) {
@@ -133,7 +133,7 @@ export function init_map() {
     }
   }
 
-  map.on('zoomend', active_menu);
-  map.on('moveend', active_menu);
-  active_menu();
+  map.on('zoomend', activeMenu);
+  map.on('moveend', activeMenu);
+  activeMenu();
 }

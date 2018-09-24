@@ -18,7 +18,7 @@
 %for (t, i) in item_tags.iteritems():
     item_tags["{{t}}"] = {{list(i)}};
 %end
-    var remote_url_read = "{{remote_url_read}}";
+    var remoteUrlRead = "{{remote_url_read}}";
   </script>
 </head>
 <body>
@@ -171,7 +171,7 @@
 
 <script type="text/javascript">
 $(function() {
-  init_map();
+  initMap();
 });
 </script>
 

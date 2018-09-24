@@ -4,13 +4,13 @@ const topojson = require('topojson');
 const geobuf = require('./geobuf-1.0.1.js');
 
 
-export var OsmoseCoverage = L.GeoJSON.extend({
+export const OsmoseCoverage = L.GeoJSON.extend({
 
-  initialize(topojson_url, options) {
+  initialize(topojsonUrl, options) {
     L.Util.setOptions(this, options);
 
     this._layers = {};
-    this._topojson_url = topojson_url;
+    this._topojsonUrl = topojsonUrl;
     this._topojson = null;
   },
 
@@ -26,7 +26,7 @@ export var OsmoseCoverage = L.GeoJSON.extend({
   fetchData() {
     const self = this;
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', this._topojson_url, true);
+    xhr.open('GET', this._topojsonUrl, true);
     xhr.responseType = 'arraybuffer';
 
     xhr.onload = function (e) {

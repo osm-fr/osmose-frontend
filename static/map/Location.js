@@ -48,6 +48,4 @@ L.Control.Location = L.Control.extend({
   },
 });
 
-L.control.location = function (options) {
-  return new L.Control.Location(options);
-};
+L.control.location = options => new L.Control.Location(options);

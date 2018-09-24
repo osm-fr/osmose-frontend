@@ -2,7 +2,7 @@ require('leaflet');
 require('leaflet.vectorgrid/dist/Leaflet.VectorGrid.js');
 
 
-export var OsmoseHeatmap = L.VectorGrid.Protobuf.extend({
+export const OsmoseHeatmap = L.VectorGrid.Protobuf.extend({
 
   initialize(permalink, params, options) {
     this._permalink = permalink;
@@ -46,7 +46,7 @@ export var OsmoseHeatmap = L.VectorGrid.Protobuf.extend({
 
   _setUrl(e) {
     const newUrl = this._buildUrl(e.params);
-    if (this._url != newUrl) {
+    if (this._url !== newUrl) {
       this.setUrl(newUrl);
     }
   },

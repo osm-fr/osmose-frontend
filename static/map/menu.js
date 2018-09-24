@@ -1,8 +1,8 @@
-export function setCookie(c_name, value, exdays) {
+export function setCookie(cName, value, exdays) {
   const exdate = new Date();
   exdate.setDate(exdate.getDate() + exdays);
-  const c_value = escape(value) + ((exdays == null) ? '' : `; path=/; expires=${exdate.toUTCString()}`);
-  document.cookie = `${c_name}=${c_value}`;
+  const cValue = escape(value) + ((exdays == null) ? '' : `; path=/; expires=${exdate.toUTCString()}`);
+  document.cookie = `${cName}=${cValue}`;
 }
 
 export function getUrlVars() {
@@ -10,7 +10,7 @@ export function getUrlVars() {
   let hash;
   if (window.location.href.indexOf('#') >= 0) {
     const hashes = window.location.href.slice(window.location.href.indexOf('#') + 1).split('&');
-    for (let i = 0; i < hashes.length; i++) {
+    for (let i = 0; i < hashes.length; i += 1) {
       hash = hashes[i].split('=');
       vars[decodeURIComponent(hash[0])] = decodeURIComponent(hash[1]);
     }

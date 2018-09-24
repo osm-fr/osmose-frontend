@@ -10,13 +10,13 @@ const Cookies = require('js-cookie');
 require('./Osmose.Marker.css');
 
 
-export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
+export const OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
   initialize(permalink, params, editor, featuresLayers, options) {
     this._permalink = permalink;
     this._editor = editor;
     this._featuresLayers = featuresLayers;
-    this._remote_url_read = remote_url_read;
+    this._remoteUrlRead = remoteUrlRead;
     L.Util.setOptions(this, options);
     const vectorTileOptions = {
       rendererFactory: L.svg.tile,
@@ -60,8 +60,8 @@ export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
       tile.el.style.width = '322px';
       tile.el.style.height = '322px';
       const transform = tile.el.style.transform.match(/translate3d\(([-0-9]+)px, ([-0-9]+)px, 0px\)/);
-      const x = parseInt(transform[1]) - 33;
-      const y = parseInt(transform[2]) - 33;
+      const x = parseInt(transform[1], 10) - 33;
+      const y = parseInt(transform[2], 10) - 33;
       tile.el.style.transform = `translate3d(${x}px, ${y}px, 0px)`;
     }
   },
@@ -71,21 +71,21 @@ export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
     const self = this;
     L.GridLayer.prototype.onAdd.call(this, map);
     /*
-    this.on('mouseover', function (e) {
+    this.on('mouseover', (e) => {
       if (e.layer.properties.issue_id) {
         self._openPopup(e);
       }
-    }).on('mouseout', function (e) {
+    }).on('mouseout', (e) => {
       if (e.layer.properties.issue_id && self.highlight != e.layer.properties.issue_id) {
         self._closePopup();
       }
     });
 */
-    const click = function (e) {
+    const click = (e) => {
       if (e.layer.properties.limit) {
         map.setZoomAround(e.latlng, map.getZoom() + 1);
       } else if (e.layer.properties.issue_id) {
-        if (self.highlight == e.layer.properties.issue_id) {
+        if (self.highlight === e.layer.properties.issue_id) {
           self._closePopup();
         } else {
           self.highlight = e.layer.properties.issue_id;
@@ -109,20 +109,20 @@ export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
   },
 
   _mapChange() {
-    const cookies_options = {
+    const cookiesOptions = {
       expires: 365,
       path: '/',
     };
 
-    Cookies.set('last_zoom', this._map.getZoom(), cookies_options);
-    Cookies.set('last_lat', this._map.getCenter().lat, cookies_options);
-    Cookies.set('last_lon', this._map.getCenter().lng, cookies_options);
+    Cookies.set('last_zoom', this._map.getZoom(), cookiesOptions);
+    Cookies.set('last_lat', this._map.getCenter().lat, cookiesOptions);
+    Cookies.set('last_lon', this._map.getCenter().lng, cookiesOptions);
   },
 
   _updateOsmoseLayer(e) {
     if (this._map.getZoom() >= 6) {
       const newUrl = this._buildUrl(e.params);
-      if (this._url != newUrl) {
+      if (this._url !== newUrl) {
         this.setUrl(newUrl);
       }
     }
@@ -147,7 +147,7 @@ export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
   },
 
   _openPopup(e) {
-    if (this.open_popup == e.layer.properties.issue_id) {
+    if (this.open_popup === e.layer.properties.issue_id) {
       return;
     }
     this.open_popup = e.layer.properties.issue_id;
@@ -176,8 +176,8 @@ export var OsmoseMarker = L.VectorGrid.Protobuf.extend({
               data.elems.forEach((elem) => {
                 colors[elem.type + elem.id] = palette[(shift += 1) % 3];
                 $.ajax({
-                  url: elem.type == 'node' ? `${self._remote_url_read}api/0.6/node/${elem.id}`
-                    : `${self._remote_url_read}api/0.6/${elem.type}/${elem.id}/full`,
+                  url: elem.type === 'node' ? `${self._remoteUrlRead}api/0.6/node/${elem.id}`
+                    : `${self._remoteUrlRead}api/0.6/${elem.type}/${elem.id}/full`,
                   dataType: 'xml',
                   success(xml) {
                     const layer = new L.OSM.DataLayer(xml);

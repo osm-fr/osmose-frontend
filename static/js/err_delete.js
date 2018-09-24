@@ -3,8 +3,8 @@ $(document).ready(() => {
     $('#load').fadeIn();
     const Container = $(this).parent();
     const id = $(this).attr('id').split('=');
-    verb = id[0];
-    path = id[1];
+    const verb = id[0];
+    const path = id[1];
 
     $.ajax({
       type: verb,
@@ -18,7 +18,7 @@ $(document).ready(() => {
           .wrapInner('<div style="display: block;" />')
           .parent()
           .find('td > div')
-          .slideUp(700, function () {
+          .slideUp(700, () => {
             $(this).parent().parent().remove();
           });
       },

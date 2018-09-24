@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import { init_map } from './map.js';
-import { setCookie, getUrlVars } from './menu.js';
+import { initMap } from './map';
+import { setCookie, getUrlVars } from './menu';
 
 require('../css/style.css');
 require('./style.css');
@@ -15,6 +15,6 @@ require('bootstrap/dist/css/bootstrap.css');
 // Retro-compact hack for Leaflet.VectorGrid
 L.DomEvent.fakeStop = L.DomEvent._fakeStop;
 window.$ = $;
-window.init_map = init_map;
+window.initMap = initMap;
 window.setCookie = setCookie;
 window.getUrlVars = getUrlVars;

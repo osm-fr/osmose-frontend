@@ -4,7 +4,7 @@ require('mustache');
 require('./Osmose.Editor.css');
 
 
-export var OsmoseEditor = L.Control.Sidebar.extend({
+export const OsmoseEditor = L.Control.Sidebar.extend({
 
   options: {
     closeButton: false,
@@ -33,12 +33,12 @@ export var OsmoseEditor = L.Control.Sidebar.extend({
       const comment = document.forms.editor_save_form.elements.comment.value;
       const source = document.forms.editor_save_form.elements.source.value;
       const type = document.forms.editor_save_form.elements.type.value;
-      const reuse_changeset = document.forms.editor_save_form.elements.reuse_changeset.checked;
+      const reuseChangeset = document.forms.editor_save_form.elements.reuse_changeset.checked;
       self.saveModal.find('#save_changeset').hide();
       self.saveModal.find('#save_uploading').show();
       self.saveModal.find('.modal-footer').hide();
 
-      self._upload(comment, source, type, reuse_changeset, () => {
+      self._upload(comment, source, type, reuseChangeset, () => {
         self.saveModal.find('#save_changeset').show();
         self.saveModal.find('#save_uploading').hide();
         self.saveModal.find('.modal-footer').show();
@@ -52,7 +52,7 @@ export var OsmoseEditor = L.Control.Sidebar.extend({
 
   edit(layer, error, type, id, fix) {
     this.show();
-    if (this._$container.data().user != 'True') {
+    if (this._$container.data().user !== 'True') {
       return;
     }
 
@@ -70,7 +70,7 @@ export var OsmoseEditor = L.Control.Sidebar.extend({
         self._validate(this);
         $.ajax({
           url: `../api/0.2/error/${error}/done`,
-        }).done((data) => {
+        }).done(data => {
           self.errors.corrected(layer);
         });
       });
@@ -78,7 +78,7 @@ export var OsmoseEditor = L.Control.Sidebar.extend({
         self._cancel(this);
       });
 
-      $.each(data.elems, (i, elem) => {
+      $.each(data.elems, function (i, elem) {
         const reftags = {};
         $.each(elem.tags, (i, e) => {
           reftags[e.k] = e.v;
@@ -99,7 +99,7 @@ export var OsmoseEditor = L.Control.Sidebar.extend({
     }
   },
 
-  _upload(comment, source, type, reuse_changeset, always) {
+  _upload(comment, source, type, reuseChangeset, always) {
     const self = this;
     const url = '../editor/save';
     $.ajax({
@@ -112,7 +112,7 @@ export var OsmoseEditor = L.Control.Sidebar.extend({
           source,
           type,
         },
-        reuse_changeset,
+        reuseChangeset,
         modify: self._modifiyObjectStack,
         delete: self._deleteObjectStack,
       }),
@@ -174,7 +174,7 @@ export var OsmoseEditor = L.Control.Sidebar.extend({
         type: eee.dataset.type,
         id: eee.dataset.id,
         version: eee.dataset.version,
-        touched: eee.dataset.touched == 'true',
+        touched: eee.dataset.touched === 'true',
         tag: elem,
       };
     });
@@ -182,17 +182,17 @@ export var OsmoseEditor = L.Control.Sidebar.extend({
   },
 
   _change(e) {
-    let cur_value = e.target.value.trim();
-    if (cur_value.indexOf('=') < 0 || cur_value[0] == '=' || cur_value[cur_value.length - 1] == '=') {
-      cur_value = '';
+    let curValue = e.target.value.trim();
+    if (curValue.indexOf('=') < 0 || curValue[0] === '=' || curValue[curValue.length - 1] === '=') {
+      curValue = '';
     } else {
-      const edited = cur_value.split('=');
+      const edited = curValue.split('=');
       const k = edited[0].trim();
-      let edited_key = e.target.dataset.key;
-      if (!edited_key || k != edited_key) {
-        edited_key = k;
-        $(`input[type='text'][data-key='${edited_key}']`, this._$container).attr('data-key', null);
-        e.target.dataset.key = edited_key;
+      let editedKey = e.target.dataset.key;
+      if (!editedKey || k !== editedKey) {
+        editedKey = k;
+        $(`input[type='text'][data-key='${editedKey}']`, this._$container).attr('data-key', null);
+        e.target.dataset.key = editedKey;
       }
     }
 
@@ -206,7 +206,7 @@ export var OsmoseEditor = L.Control.Sidebar.extend({
     const del = $('.del', tags);
     del.empty();
     $.each(reftags, (e) => {
-      if (data[e] == undefined) {
+      if (data[e] === undefined) {
         const value = String($('<div/>').text(`${e}=${reftags[e]}`).html()).replace('"', '&quot;');
         const key = String($('<div/>').text(e).html()).replace('"', '&quot;');
         del.append($(`<span class="line"><span>-</span><input type="text" name="tags_del[]" value="${value}" data-key="${key}"/><a href="#">×</a></span>`));
@@ -217,7 +217,7 @@ export var OsmoseEditor = L.Control.Sidebar.extend({
     const same = $('.same', tags);
     same.empty();
     $.each(reftags, (e) => {
-      if (data[e] != undefined && data[e] == reftags[e]) {
+      if (data[e] !== undefined && data[e] === reftags[e]) {
         const value = String($('<div/>').text(`${e}=${reftags[e]}`).html()).replace('"', '&quot;');
         const key = String($('<div/>').text(e).html()).replace('"', '&quot;');
         same.append($(`<span class="line"><span>=</span><input type="text" name="tags_del[]" value="${value}" data-key="${key}"/><a href="#">×</a></span>`));
@@ -227,7 +227,7 @@ export var OsmoseEditor = L.Control.Sidebar.extend({
     const mod = $('.mod', tags);
     mod.empty();
     $.each(reftags, (e) => {
-      if (data[e] != undefined && data[e] != reftags[e]) {
+      if (data[e] !== undefined && data[e] !== reftags[e]) {
         const value = String($('<div/>').text(`${e}=${data[e]}`).html()).replace('"', '&quot;');
         const key = String($('<div/>').text(e).html()).replace('"', '&quot;');
         const old = String($('<div/>').text(reftags[e]).html()).replace('"', '&quot;');
@@ -239,7 +239,7 @@ export var OsmoseEditor = L.Control.Sidebar.extend({
     const add = $('.add', tags);
     add.empty();
     $.each(data, (e) => {
-      if (reftags[e] == undefined) {
+      if (reftags[e] === undefined) {
         const value = String($('<div/>').text(`${e}=${data[e]}`).html()).replace('"', '&quot;');
         const key = String($('<div/>').text(e).html()).replace('"', '&quot;');
         add.append($(`<span class="line"><span>+</span><input type="text" name="tags_add[]" value="${value}" data-key="${key}"/><a href="#">×</a></span>`));
@@ -282,13 +282,13 @@ export var OsmoseEditor = L.Control.Sidebar.extend({
   },
 
   _keypress(e) {
-    if (e.key == 'Up') {
-      var inputs = $(e.target).closest('form').find("input[type='text']");
+    if (e.key === 'Up') {
+      const inputs = $(e.target).closest('form').find("input[type='text']");
       inputs.eq(inputs.index(e.target) - 1).focus();
-    } else if (e.key == 'Down' || e.key == 'Enter') {
-      var inputs = $(e.target).closest('form').find("input[type='text']");
+    } else if (e.key === 'Down' || e.key === 'Enter') {
+      const inputs = $(e.target).closest('form').find("input[type='text']");
       inputs.eq(inputs.index(e.target) + 1).focus();
-    } else if (e.key == 'Backspace' && e.ctrlKey) { // Ctrl + Backspace
+    } else if (e.key === 'Backspace' && e.ctrlKey) { // Ctrl + Backspace
       this._delete_tag(e);
     }
   },

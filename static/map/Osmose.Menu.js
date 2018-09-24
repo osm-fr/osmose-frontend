@@ -6,7 +6,7 @@ const Cookies = require('js-cookie');
 require('./Osmose.Menu.css');
 
 
-export var OsmoseMenu = L.Control.Sidebar.extend({
+export const OsmoseMenu = L.Control.Sidebar.extend({
 
   options: {
     closeButton: false,
@@ -25,7 +25,7 @@ export var OsmoseMenu = L.Control.Sidebar.extend({
       self._toggleAllItem(this);
       return false;
     });
-    $('.invertAllItem').click(() => {
+    $('.invertAllItem').click(function () {
       self._invertAllItem();
       return false;
     });
@@ -52,7 +52,7 @@ export var OsmoseMenu = L.Control.Sidebar.extend({
   // Menu
   toggle() {
     L.Control.Sidebar.prototype.toggle.call(this);
-    if ($('.leaflet-active-area').css('left') == '0px') {
+    if ($('.leaflet-active-area').css('left') === '0px') {
       $('.leaflet-active-area').css('left', '');
     } else {
       $('.leaflet-active-area').css('left', '0px');
@@ -61,16 +61,16 @@ export var OsmoseMenu = L.Control.Sidebar.extend({
   },
 
   // Update checkbox count
-  _countItem(test_group) {
-    let count_checked = 0;
-    let count_tests = 0;
-    $.each($("input[type='checkbox']", test_group), (index, checkbox) => {
+  _countItem(testGroup) {
+    let countChecked = 0;
+    let countTests = 0;
+    $.each($("input[type='checkbox']", testGroup), (index, checkbox) => {
       if ($(checkbox).is(':checked')) {
-        count_checked++;
+        countChecked += 1;
       }
-      count_tests++;
+      countTests += 1;
     });
-    $('.count', test_group).html(`${count_checked}/${count_tests}`);
+    $('.count', testGroup).html(`${countChecked}/${countTests}`);
   },
 
   _countItemAll() {
@@ -100,18 +100,18 @@ export var OsmoseMenu = L.Control.Sidebar.extend({
 
   // Check or uncheck a categ of tests.
   _toggleAllItem(link) {
-    const test_group = $(link).closest('.test_group, #myform');
-    const checkbox = $(`${test_group.prop('tagName') != 'FORM' ? '' : '.test_group:not(#categUnactiveItem) '}input[type='checkbox']`, test_group);
-    if ($(link).data().view == 'all') {
+    const testGroup = $(link).closest('.test_group, #myform');
+    const checkbox = $(`${testGroup.prop('tagName') !== 'FORM' ? '' : '.test_group:not(#categUnactiveItem) '}input[type='checkbox']`, testGroup);
+    if ($(link).data().view === 'all') {
       checkbox.prop('checked', true);
     } else {
       checkbox.prop('checked', false);
     }
 
-    if (test_group.prop('tagName') == 'FORM') {
-      this._countItemAll(test_group);
+    if (testGroup.prop('tagName') === 'FORM') {
+      this._countItemAll(testGroup);
     } else {
-      this._countItem(test_group);
+      this._countItem(testGroup);
     }
     this._itemChanged();
   },
@@ -138,7 +138,7 @@ export var OsmoseMenu = L.Control.Sidebar.extend({
     });
 
     const ll = level.split(',');
-    for (let i = 1; i <= 3; i++) {
+    for (let i = 1; i <= 3; i += 1) {
       if ($.inArray(i.toString(), ll) >= 0) {
         $(`.level-${i}`).removeClass('disabled');
       } else {
@@ -148,11 +148,11 @@ export var OsmoseMenu = L.Control.Sidebar.extend({
   },
 
   _change_tags_level_fixable() {
-    const new_tag = document.myform.tags.value;
-    const new_level = document.myform.level.value;
+    const newTag = document.myform.tags.value;
+    const newLevel = document.myform.level.value;
     const fixable = document.myform.fixable.value;
 
-    this._change_tags_level_fixable_display(new_tag, new_level || '1,2,3', fixable);
+    this._change_tags_level_fixable_display(newTag, newLevel || '1,2,3', fixable);
     this._itemChanged();
   },
 
@@ -163,7 +163,7 @@ export var OsmoseMenu = L.Control.Sidebar.extend({
   _buildUrlPart() {
     // items list
     let ch = '';
-    if ($('.test_group:not(#categUnactiveItem) :checkbox:not(:checked)').length == 0) {
+    if ($('.test_group:not(#categUnactiveItem) :checkbox:not(:checked)').length === 0) {
       ch = 'xxxx';
     } else {
       $('.test_group:not(#categUnactiveItem)').each(function () {
@@ -180,15 +180,15 @@ export var OsmoseMenu = L.Control.Sidebar.extend({
     }
     ch = ch.replace(/,$/, '');
 
-    const cookies_options = {
+    const cookiesOptions = {
       expires: 365,
       path: '/',
     };
 
-    Cookies.set('last_level', document.myform.level.value, cookies_options);
-    Cookies.set('last_item', ch, cookies_options);
-    Cookies.set('last_tags', document.myform.tags.value, cookies_options);
-    Cookies.set('last_fixable', document.myform.fixable.value, cookies_options);
+    Cookies.set('last_level', document.myform.level.value, cookiesOptions);
+    Cookies.set('last_item', ch, cookiesOptions);
+    Cookies.set('last_tags', document.myform.tags.value, cookiesOptions);
+    Cookies.set('last_fixable', document.myform.fixable.value, cookiesOptions);
 
     return {
       item: ch,
@@ -204,9 +204,9 @@ export var OsmoseMenu = L.Control.Sidebar.extend({
       const checkbox = $('.test_group:not(#categUnactiveItem) :checkbox');
       checkbox.attr('checked', false).prop('checked', false);
       $.each(params.item.split(','), (i, item) => {
-        item = new RegExp(`item${item.replace(/x/g, '.')}`);
+        const itemRe = new RegExp(`item${item.replace(/x/g, '.')}`);
         checkbox.filter(function () {
-          return item.test(this.id);
+            return itemRe.test(this.id);
         }).attr('checked', true).prop('checked', true);
       });
     }
@@ -215,11 +215,11 @@ export var OsmoseMenu = L.Control.Sidebar.extend({
       document.myform.level.value = params.level;
     }
 
-    if (params.tags != undefined) {
+    if (params.tags !== undefined) {
       document.myform.tags.value = params.tags;
     }
 
-    if (params.fixable != undefined) {
+    if (params.fixable !== undefined) {
       document.myform.fixable.value = params.fixable;
     }
 
@@ -230,7 +230,7 @@ export var OsmoseMenu = L.Control.Sidebar.extend({
 });
 
 
-export var OsmoseMenuToggle = L.Control.extend({
+export const OsmoseMenuToggle = L.Control.extend({
 
   options: {
     position: 'topleft',
