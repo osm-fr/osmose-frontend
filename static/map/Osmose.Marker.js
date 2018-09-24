@@ -10,7 +10,7 @@ const Cookies = require('js-cookie');
 require('./Osmose.Marker.css');
 
 
-export const OsmoseMarker = L.VectorGrid.Protobuf.extend({
+const OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
   initialize(permalink, params, editor, featuresLayers, options) {
     this._permalink = permalink;
@@ -230,3 +230,6 @@ export const OsmoseMarker = L.VectorGrid.Protobuf.extend({
     layer._path.remove();
   },
 });
+
+
+export { OsmoseMarker as default };

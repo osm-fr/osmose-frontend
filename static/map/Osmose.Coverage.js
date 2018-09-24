@@ -4,7 +4,7 @@ const topojson = require('topojson');
 const geobuf = require('./geobuf-1.0.1.js');
 
 
-export const OsmoseCoverage = L.GeoJSON.extend({
+const OsmoseCoverage = L.GeoJSON.extend({
 
   initialize(topojsonUrl, options) {
     L.Util.setOptions(this, options);
@@ -41,3 +41,6 @@ export const OsmoseCoverage = L.GeoJSON.extend({
     xhr.send();
   },
 });
+
+
+export { OsmoseCoverage as default }

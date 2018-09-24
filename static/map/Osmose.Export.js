@@ -1,7 +1,7 @@
 require('leaflet');
 
 
-export const OsmoseExport = L.Class.extend({
+const OsmoseExport = L.Class.extend({
 
   _map: null,
 
@@ -20,3 +20,6 @@ export const OsmoseExport = L.Class.extend({
     });
   },
 });
+
+
+export { OsmoseExport as default };

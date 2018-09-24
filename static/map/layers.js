@@ -1,5 +1,5 @@
 import L from 'leaflet';
-import { Mapillary } from './Mapillary';
+import Mapillary from './Mapillary';
 
 require('leaflet-plugins/layer/tile/Bing.js');
 

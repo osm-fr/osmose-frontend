@@ -1,7 +1,7 @@
 require('leaflet.vectorgrid/dist/Leaflet.VectorGrid.js');
 
 
-export const Mapillary = L.VectorGrid.Protobuf.extend({
+const Mapillary = L.VectorGrid.Protobuf.extend({
 
   _client_id: null,
 
@@ -57,3 +57,6 @@ export const Mapillary = L.VectorGrid.Protobuf.extend({
     xhr.send();
   },
 });
+
+
+export { Mapillary as default };

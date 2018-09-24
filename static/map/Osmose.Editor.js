@@ -4,7 +4,7 @@ require('mustache');
 require('./Osmose.Editor.css');
 
 
-export const OsmoseEditor = L.Control.Sidebar.extend({
+const OsmoseEditor = L.Control.Sidebar.extend({
 
   options: {
     closeButton: false,
@@ -293,3 +293,6 @@ export const OsmoseEditor = L.Control.Sidebar.extend({
     }
   },
 });
+
+
+export { OsmoseEditor as default };

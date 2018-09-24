@@ -1,10 +1,10 @@
 import { mapBases, mapOverlay } from './layers';
-import { OsmoseCoverage } from './Osmose.Coverage';
+import OsmoseCoverage from './Osmose.Coverage';
 import { OsmoseMenu, OsmoseMenuToggle } from './Osmose.Menu';
-import { OsmoseExport } from './Osmose.Export';
-import { OsmoseEditor } from './Osmose.Editor';
-import { OsmoseMarker } from './Osmose.Marker';
-import { OsmoseHeatmap } from './Osmose.Heatmap';
+import OsmoseExport from './Osmose.Export';
+import OsmoseEditor from './Osmose.Editor';
+import OsmoseMarker from './Osmose.Marker';
+import OsmoseHeatmap from './Osmose.Heatmap';
 
 require('leaflet-active-area/src/leaflet.activearea.js');
 require('./Permalink.Item.js');
@@ -149,3 +149,5 @@ export function initMap() {
   map.on('moveend', activeMenu);
   activeMenu();
 }
+
+export { initMap as default };
