@@ -127,7 +127,7 @@
 <li id="menu-export"><a href='#' onclick='return false;'>{{_("Export")}} ▼</a>
 <ul class="submenu">
   <li><a data-href="../errors/" target="_blank">{{_("Html list")}}</a></li>
-  <li><a data-href="../errors.josm" target="hiddenIframe">JOSM</a></li>
+  <li><a data-href="../josm_proxy?errors.josm" target="hiddenIframe">JOSM</a></li>
   <li><a data-href="../errors.rss" target="_blank">RSS</a></li>
   <li><a data-href="../errors.gpx">GPX</a></li>
   <li><a data-href="../errors.kml">KML</a></li>
