@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import { initMap } from './map';
-import { setCookie, getUrlVars } from './menu';
+import { getUrlVars } from './menu';
 
 require('../css/style.css');
 require('./style.css');
@@ -16,5 +16,4 @@ require('bootstrap/dist/css/bootstrap.css');
 L.DomEvent.fakeStop = L.DomEvent._fakeStop;
 window.$ = $;
 window.initMap = initMap;
-window.setCookie = setCookie;
 window.getUrlVars = getUrlVars;
