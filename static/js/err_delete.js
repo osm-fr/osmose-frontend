@@ -1,8 +1,3 @@
-function err_delete(type, id) {
-  const b = $(`div#popup-${marker_id}`).parent().parent().parent();
-  b.hide();
-}
-
 $(document).ready(() => {
   $('a.err_delete').click(function () {
     $('#load').fadeIn();
