@@ -12,6 +12,7 @@
     "base64-image-loader": "^1.2.0",
     "bootstrap": "^4.1.3",
     "css-loader": "^0.28.7",
+    "eslint-loader": "^2.1.1",
     "geobuf": "^3.0.1",
     "jquery": "^3.2.1",
     "js-cookie": "^2.2.0",
@@ -32,7 +33,11 @@
     "topojson": "^3.0.2",
     "webpack": "^3.12.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^5.6.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack"
@@ -46,5 +51,22 @@
   "bugs": {
     "url": "https://github.com/frodrigo/osmose-frontend/issues"
   },
-  "homepage": "https://github.com/frodrigo/osmose-frontend#readme"
+  "homepage": "https://github.com/frodrigo/osmose-frontend#readme",
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "rules": {
+      "no-underscore-dangle": 0,
+      "no-unused-vars": 0,
+      "max-len": 0
+    },
+    "env": {
+      "browser": true,
+      "jquery": true
+    },
+    "globals": {
+      "L": false,
+      "Mustache": false,
+      "remoteUrlRead": false
+    }
+  }
 }
