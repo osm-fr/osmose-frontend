@@ -24,17 +24,16 @@ const OsmoseCoverage = L.GeoJSON.extend({
   },
 
   fetchData() {
-    const self = this;
     const xhr = new XMLHttpRequest();
     xhr.open('GET', this._topojsonUrl, true);
     xhr.responseType = 'arraybuffer';
 
-    xhr.onload = function (e) {
-      if (this.status == 200) {
+    xhr.onload = () => {
+      if (xhr.status === 200) {
         let data = geobuf.decode(new Pbf(new Uint8Array(xhr.response)));
         data = topojson.feature(data, data.objects['osmose-cover']);
-        self.addData(data);
-        self._topojson = data;
+        this.addData(data);
+        this._topojson = data;
       }
     };
 
