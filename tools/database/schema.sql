@@ -403,17 +403,17 @@ CREATE INDEX idx_marker_source_class ON marker USING btree (source, class);
 
 
 --
--- Name: idx_marker_source_class_subclass_lat_lon_elems; Type: INDEX; Schema: public; Owner: -
+-- Name: idx_marker_source_class_z_order_curve; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX idx_marker_source_class_subclass_lat_lon_elems ON marker USING btree (source, class, subclass, lat, lon, elems);
+CREATE INDEX idx_marker_source_class_z_order_curve ON marker USING btree (source, class, lonlat2z_order_curve((lon)::double precision, (lat)::double precision)) WHERE (lat > ('-90'::integer)::numeric);
 
 
 --
--- Name: idx_marker_z_order_curve; Type: INDEX; Schema: public; Owner: -
+-- Name: idx_marker_z_order_curve_item; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX idx_marker_z_order_curve ON marker USING btree (lonlat2z_order_curve((lon)::double precision, (lat)::double precision)) WHERE (lat > ('-90'::integer)::numeric);
+CREATE INDEX idx_marker_z_order_curve_item ON marker USING btree (lonlat2z_order_curve((lon)::double precision, (lat)::double precision), item) WHERE (lat > ('-90'::integer)::numeric);
 
 
 --
