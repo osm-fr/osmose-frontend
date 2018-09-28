@@ -55,7 +55,7 @@ def index_redirect():
     redirect(new_url)
 
 @route('/map/')
-def index(db, lang):
+def index(db, user, lang):
     if request.query_string:
         redirect("./#" + request.query_string)
 
@@ -81,7 +81,8 @@ def index(db, lang):
 
     urls = []
     # TRANSLATORS: link to help in appropriate language
-    urls.append(("byuser", _("Issues by user"), "../byuser/"))
+    if user:
+        urls.append(("byuser", _("Issues by user"), "../byuser/"))
     urls.append(("relation_analyser", _("Relation analyser"), "http://analyser.openstreetmap.fr/"))
     # TRANSLATORS: link to source code
     urls.append(("statistics", _("Statistics"), "../control/update_matrix"))
@@ -113,15 +114,13 @@ OFFSET
     else:
         delay = 0
 
-    if request.session.has_key('user'):
-        if request.session['user']:
-            user = request.session['user']['osm']['user']['@display_name']
+    if user != None:
+        if user:
             user_error_count = byuser._user_count(db, user.encode('utf-8'))
-        else:
+        else: # user == False
             user = '[user name]'
             user_error_count = {1: 0, 2: 0, 3: 0}
     else:
-        user = None
         user_error_count = None
 
     return template('map/index', categories=categories, item_tags=item_tags, tags=tags, item_levels=item_levels,

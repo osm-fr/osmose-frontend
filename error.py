@@ -94,7 +94,7 @@ def _expand_tags(tags, links, short = False):
 
 
 @route('/error/<err_id:int>')
-def display(db, lang, err_id):
+def display(db, lang, user, err_id):
     (marker, columns_marker, elements, columns_elements, fix, columns_fix) = _get(db, err_id)
 
     data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
@@ -114,7 +114,7 @@ def display(db, lang, err_id):
 
     return template('error/index', err_id=err_id,
         marker=marker, columns_marker=columns_marker,
-        elements=elements, columns_elements=columns_elements,
+        elements=elements, columns_elements=columns_elements, user=user,
         fix=fix, columns_fix=columns_fix, main_website=utils.main_website, data_type=data_type)
 
 

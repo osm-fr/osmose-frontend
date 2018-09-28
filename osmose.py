@@ -34,6 +34,8 @@ import bottle_cors
 app.install(bottle_cors.Plugin(allow_origin = '*', preflight_methods = ['GET', 'POST', 'PUT', 'DELETE']))
 import bottle_gettext, os
 app.install(bottle_gettext.Plugin('osmose-frontend', os.path.join("po", "mo"), utils.allowed_languages))
+import bottle_user
+app.install(bottle_user.Plugin())
 
 def ext_filter(config):
     regexp = r'html|json|xml|rss|png|svg|pdf|gpx|kml|josm|csv'
