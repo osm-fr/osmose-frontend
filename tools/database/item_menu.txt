@@ -39,6 +39,7 @@
  2120 | _("indoor")
  2130 | _("access")
  2140 | _("public_transport route")
+ 2150 | _("zone:maxspeed")
  3010 | _("highway roundabout")
  3020 | _("bad source tag")
  3030 | _("tagwatch cleaner")
@@ -184,3 +185,5 @@
  9009 | _("territories")
  9010 | _("unnecessary")
  9011 | _("wikipedia")
+ 9014 | _("public transport")
+ 9100 | _("power transformer")
