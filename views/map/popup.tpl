@@ -89,8 +89,8 @@
 {%/new_elems%}
   </div>
   <div class="bulle_verif">
-    <a href="{{main_website}}?lat={%lat%}&lon={%lon%}&zoom=18" target="popup_osm" title="{{_('Show the area on {where}').format(where=main_website)}}">osm-show</a>
-    <a href="{{main_website}}edit?lat={%lat%}&lon={%lon%}&zoom=18" target="_blank" title="{{_('Edit the area on {where}').format(where=main_website)}}">osm-edit</a>
+    <a href="{{main_website}}?mlat={%lat%}&mlon={%lon%}#map=18/{%lat%}/{%lon%}" target="popup_osm" title="{{_('Show the area on {where}').format(where=main_website)}}">osm-show</a>
+    <a href="{{main_website}}edit#map=18/{%lat%}/{%lon%}" target="_blank" title="{{_('Edit the area on {where}').format(where=main_website)}}">osm-edit</a>
     <a href="http://localhost:8111/load_and_zoom?left={%minlon%}&bottom={%minlat%}&right={%maxlon%}&top={%maxlat%}&select={%elems_id%}" target="hiddenIframe" class="josm" title="{{_('Edit the area on {where}').format(where='JOSM')}}">josm-zone</a>
     <a href="../error/{%error_id%} "target="_blank" title="{{_('Issue details')}}">{{_("details")}}</a>
   </div>
