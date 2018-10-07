@@ -34,6 +34,8 @@ import bottle_cors
 app.install(bottle_cors.Plugin(allow_origin = '*', preflight_methods = ['GET', 'POST', 'PUT', 'DELETE']))
 import bottle_gettext, os
 app.install(bottle_gettext.Plugin('osmose-frontend', os.path.join("po", "mo"), utils.allowed_languages))
+import bottle_user
+app.install(bottle_user.Plugin())
 
 def ext_filter(config):
     regexp = r'html|json|xml|rss|png|svg|pdf|gpx|kml|josm|csv'
@@ -96,6 +98,16 @@ def oauth_(lang, name=None):
         pass
     redirect('map')
 
+@route('/josm_proxy')
+def josm_proxy():
+    query = request.query_string
+    r = None
+    if query.startswith('errors.josm'):
+        r = "http://%s/%s" % (utils.website, query) # Explicit http, not https
+    else:
+        r = "http://localhost:8111/%s" % query
+    return "<img src='%s'/>" % r
+
 @bottle.route('/<:re:.*>', method='OPTIONS')
 def enable_cors_generic_route():
     pass
@@ -113,6 +125,7 @@ def error404(error):
         return {}
 
 import api_0_2_meta
+import api_0_3_meta
 import byuser
 import control
 import error

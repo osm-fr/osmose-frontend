@@ -33,13 +33,16 @@ t2l = tag2link.tag2link("tools/tag2link_sources.xml")
 def _get(db, err_id):
     columns_marker = ["marker.item", "marker.source", "marker.class", "marker.elems", "marker.subclass",
         "marker.lat", "marker.lon",
-        "dynpoi_class.title", "marker.subtitle", "dynpoi_class.timestamp"]
+        "class.title", "marker.subtitle", "dynpoi_class.timestamp"]
     sql = "SELECT " + ",".join(columns_marker) + """
     FROM
         marker
         JOIN dynpoi_class ON
             marker.source = dynpoi_class.source AND
             marker.class = dynpoi_class.class
+        JOIN class ON
+            marker.item = class.item AND
+            marker.class = class.class
     WHERE
         marker.id = %s
     """
@@ -91,7 +94,7 @@ def _expand_tags(tags, links, short = False):
 
 
 @route('/error/<err_id:int>')
-def display(db, lang, err_id):
+def display(db, lang, user, err_id):
     (marker, columns_marker, elements, columns_elements, fix, columns_fix) = _get(db, err_id)
 
     data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
@@ -111,7 +114,7 @@ def display(db, lang, err_id):
 
     return template('error/index', err_id=err_id,
         marker=marker, columns_marker=columns_marker,
-        elements=elements, columns_elements=columns_elements,
+        elements=elements, columns_elements=columns_elements, user=user,
         fix=fix, columns_fix=columns_fix, main_website=utils.main_website, data_type=data_type)
 
 

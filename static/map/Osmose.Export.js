@@ -1,29 +1,34 @@
 require('leaflet');
 
 
-export var OsmoseExport = L.Class.extend({
-  includes: L.Mixin.Events,
-
-  _menu: null,
+const OsmoseExport = L.Class.extend({
 
   _map: null,
 
-  initialize: function (map, menu) {
+  _params_last: {},
+
+  initialize(map, permalink, params) {
     this._map = map;
-    this._map.on('moveend', this._setUrl, this);
-    this._menu = menu;
-    this._menu.on('itemchanged', this._setUrl, this);
-    this._setUrl();
+    permalink.on('update', this._setUrl, this);
+    map.on('moveend', (e) => {
+      this._setUrl({ params: this._params_last });
+    });
+    this._params_last = params;
+    this._setUrl({ params });
   },
 
-  _setUrl: function (e) {
-    var self = this,
-      urlPart = self._menu.urlPart();
-    urlPart.limit = 500;
-    urlPart.bbox = self._map.getBounds().toBBoxString();
-    $("#menu-export ul a").each(function (i, a) {
-      a.href = $(a).data('href') + L.Util.getParamString(urlPart);
+  _setUrl(e) {
+    const params = Object.assign({}, e.params);
+    delete params.lat;
+    delete params.lon;
+    this._params_last = params;
+    params.limit = 500;
+    params.bbox = this._map.getBounds().toBBoxString();
+    $('#menu-export ul a').each((i, a) => {
+      a.href = $(a).data('href') + L.Util.getParamString(params);
     });
-    delete urlPart.bbox;
   },
 });
+
+
+export { OsmoseExport as default };

@@ -29,6 +29,7 @@ import datetime
 import math, StringIO
 from shapely.geometry import Point, Polygon
 import mapbox_vector_tile
+from collections import defaultdict
 
 
 def check_items(items, all_items):
@@ -50,97 +51,38 @@ def check_items(items, all_items):
 def index_redirect():
     new_url = "map/"
     if request.query_string:
-        new_url += "?"
-        new_url += request.query_string
+        new_url += "#" + request.query_string
     redirect(new_url)
 
 @route('/map/')
-def index(db, lang):
-    # valeurs par défaut
-    params = { "lat":    46.97,
-               "lon":    2.75,
-               "zoom":   6,
-               "item":   None,
-               "level":  1,
-               "source": '',
-               "class":  '',
-               "username": '',
-               "country": '',
-               "tags":    '',
-               "fixable": None,
-             }
+def index(db, user, lang):
+    if request.query_string:
+        redirect("./#" + request.query_string)
 
-    for p in ["lat", "lon", "zoom", "item", "level", "tags", "fixable"]:
-        if request.cookies.get("last_" + p, default=None):
-            params[p] = urllib.unquote(request.cookies.get("last_" + p))
+    tags = query_meta._tags(db)
 
-    for p in ["lat", "lon", "zoom", "item", "useDevItem", "level", "source", "username", "class", "country", "tags", "fixable"]:
-        if request.params.get(p, default=None):
-            params[p] = request.params.get(p)
-
-    for p in ["lat", "lon"]:
-        try:
-            params[p] = float(params[p])
-        except:
-            pass
-
-    for p in ["zoom"]:
-        try:
-            params[p] = int(params[p])
-        except:
-            pass
-
-    if not params.has_key("useDevItem"):
-        params["useDevItem"] = ""
-
-    tags = query_meta._tags(db, lang)
-    tags_selected = {}
-    tags_params = params["tags"].split(',')
-    for t in tags:
-      if t in tags_params:
-        tags_selected[t] = " selected=\"selected\""
-      else:
-        tags_selected[t] = ""
-
-    fixable_selected = {}
-    fixable_selected['online'] = " selected=\"selected\"" if params["fixable"] and params["fixable"] == "online" else ""
-    fixable_selected['josm'] = " selected=\"selected\"" if params["fixable"] and params["fixable"] == "josm" else ""
-
-    all_items = []
     db.execute("SELECT item FROM dynpoi_item GROUP BY item;")
-    for res in db.fetchall():
-        all_items.append(int(res[0]))
-    active_items = check_items(params["item"], all_items)
+    all_items = map(lambda res: int(res[0]), db.fetchall())
 
-    level_selected = {}
-    for l in ("_all", "1", "2", "3", "1,2", "1,2,3"):
-        level_selected[l] = ""
+    categories = query_meta._items_3(db)
 
-    if params["level"] == "":
-        level_selected["1"] = " selected=\"selected\""
-    elif params["level"] in ("1", "2", "3", "1,2", "1,2,3"):
-        level_selected[params["level"]] = " selected=\"selected\""
-
-    categories = query_meta._categories(db, lang)
-
-    item_tags = {}
-    item_levels = {"1": set(), "2": set(), "3": set()}
+    item_tags = defaultdict(set)
+    item_levels = {'1': set(), '2': set(), '3': set()}
     for categ in categories:
-        for err in categ["item"]:
-            for l in err["levels"]:
-                item_levels[str(l)].add(err["item"])
-            if err["tags"]:
-                for t in err["tags"]:
-                    if not item_tags.has_key(t):
-                        item_tags[t] = set()
-                    item_tags[t].add(err["item"])
+        for item in categ['items']:
+            for level in item['levels']:
+                item_levels[str(level['level'])].add(item['item'])
+            if item['tags']:
+                for tag in item['tags']:
+                    item_tags[tag].add(item['item'])
 
-    item_levels["1,2"] = item_levels["1"] | item_levels["2"]
-    item_levels["1,2,3"] = item_levels["1,2"] | item_levels["3"]
+    item_levels['1,2'] = item_levels['1'] | item_levels['2']
+    item_levels['1,2,3'] = item_levels['1,2'] | item_levels['3']
 
     urls = []
     # TRANSLATORS: link to help in appropriate language
-    urls.append(("byuser", _("Issues by user"), "../byuser/"))
+    if user:
+        urls.append(("byuser", _("Issues by user"), "../byuser/"))
     urls.append(("relation_analyser", _("Relation analyser"), "http://analyser.openstreetmap.fr/"))
     # TRANSLATORS: link to source code
     urls.append(("statistics", _("Statistics"), "../control/update_matrix"))
@@ -149,7 +91,7 @@ def index(db, lang):
     helps.append((_("Contact"), "../contact"))
     helps.append((_("Help on wiki"), _("http://wiki.openstreetmap.org/wiki/Osmose")))
     helps.append((_("Copyright"), "../copyright"))
-    helps.append((_("Sources"), "https://github.com/osm-fr?query=osmose"))
+    helps.append((_("Sources"), "https://github.com/osm-fr?q=osmose"))
     helps.append((_("Translation"), "../translation"))
 
     sql = """
@@ -172,22 +114,16 @@ OFFSET
     else:
         delay = 0
 
-    if request.session.has_key('user'):
-        if request.session['user']:
-            user = request.session['user']['osm']['user']['@display_name']
+    if user != None:
+        if user:
             user_error_count = byuser._user_count(db, user.encode('utf-8'))
-        else:
+        else: # user == False
             user = '[user name]'
             user_error_count = {1: 0, 2: 0, 3: 0}
     else:
-        user = None
         user_error_count = None
 
-    return template('map/index', categories=categories, lat=params["lat"], lon=params["lon"], zoom=params["zoom"],
-        source=params["source"], username=params["username"], classs=params["class"], country=params["country"],
-        item_tags=item_tags, tags_selected=tags_selected, tags=tags, fixable_selected=fixable_selected,
-        item_levels=item_levels, level_selected=level_selected,
-        active_items=active_items, useDevItem=params["useDevItem"],
+    return template('map/index', categories=categories, item_tags=item_tags, tags=tags, item_levels=item_levels,
         main_project=utils.main_project, urls=urls, helps=helps, delay=delay, languages_name=utils.languages_name, translate=utils.translator(lang),
         website=utils.website, remote_url_read=utils.remote_url_read, request=request,
         user=user, user_error_count=user_error_count)

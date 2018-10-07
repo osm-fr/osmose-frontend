@@ -18,6 +18,20 @@ SET row_security = off;
 SET default_with_oids = false;
 
 --
+-- Name: class; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE class (
+    item integer NOT NULL,
+    class integer NOT NULL,
+    title hstore,
+    level integer,
+    "timestamp" timestamp without time zone,
+    tags character varying(255)[]
+);
+
+
+--
 -- Name: dynpoi_categ; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -35,10 +49,7 @@ CREATE TABLE dynpoi_class (
     source integer NOT NULL,
     class integer NOT NULL,
     item integer,
-    title hstore,
-    level integer,
     "timestamp" timestamp without time zone,
-    tags character varying(255)[],
     count integer
 );
 
@@ -224,6 +235,14 @@ ALTER TABLE ONLY marker ALTER COLUMN id SET DEFAULT nextval('marker_id_seq'::reg
 
 
 --
+-- Name: class class_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY class
+    ADD CONSTRAINT class_pkey PRIMARY KEY (item, class);
+
+
+--
 -- Name: dynpoi_categ dynpoi_categ_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -403,17 +422,17 @@ CREATE INDEX idx_marker_source_class ON marker USING btree (source, class);
 
 
 --
--- Name: idx_marker_source_class_subclass_lat_lon_elems; Type: INDEX; Schema: public; Owner: -
+-- Name: idx_marker_source_class_z_order_curve; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX idx_marker_source_class_subclass_lat_lon_elems ON marker USING btree (source, class, subclass, lat, lon, elems);
+CREATE INDEX idx_marker_source_class_z_order_curve ON marker USING btree (source, class, lonlat2z_order_curve((lon)::double precision, (lat)::double precision)) WHERE (lat > ('-90'::integer)::numeric);
 
 
 --
--- Name: idx_marker_z_order_curve; Type: INDEX; Schema: public; Owner: -
+-- Name: idx_marker_z_order_curve_item; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX idx_marker_z_order_curve ON marker USING btree (lonlat2z_order_curve((lon)::double precision, (lat)::double precision)) WHERE (lat > ('-90'::integer)::numeric);
+CREATE INDEX idx_marker_z_order_curve_item ON marker USING btree (lonlat2z_order_curve((lon)::double precision, (lat)::double precision), item) WHERE (lat > ('-90'::integer)::numeric);
 
 
 --

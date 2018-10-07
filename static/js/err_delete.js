@@ -1,35 +1,28 @@
-function err_delete(type, id) {
-    var b = $("div#popup-" + marker_id).parent().parent().parent();
-    b.hide();
-}
-
-$(document).ready(function() {
-  $("a.err_delete").click(function() {
+$(document).ready(() => {
+  $('a.err_delete').click((event) => {
     $('#load').fadeIn();
-    var Container = $(this).parent();
-    var id = $(this).attr("id").split("=");
-    verb = id[0];
-    path = id[1];
+    const Container = $(event.currentTarget).parent();
+    const id = $(event.currentTarget).attr('id').split('=');
+    const verb = id[0];
+    const path = id[1];
 
     $.ajax({
       type: verb,
-      url: "../api/0.2/" + path,
+      url: `../api/0.2/${path}`,
       cache: false,
-      beforeSend: function() {
-        Container.parent().css({"backgroundColor":"red"})
+      beforeSend() {
+        Container.parent().css({ backgroundColor: 'red' });
       },
-      success: function(response){
+      success: (response) => {
         Container.parent().find('td')
           .wrapInner('<div style="display: block;" />')
           .parent()
           .find('td > div')
-          .slideUp(700, function(){
-              $(this).parent().parent().remove();
-          })
+          .slideUp(700, () => $(event.currentTarget).parent().parent().remove());
       },
-      error: function (xhr, ajaxOptions, thrownError) {
-        Container.parent().css({"backgroundColor":""});
-      }
+      error: (xhr, ajaxOptions, thrownError) => {
+        Container.parent().css({ backgroundColor: '' });
+      },
     });
 
     return false;

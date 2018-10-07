@@ -73,7 +73,7 @@ def _user_count(db, username=None):
     if not params.users:
         return
 
-    res = query._count(db, params, ['dynpoi_class.level'], ['dynpoi_class.level'])
+    res = query._count(db, params, ['class.level'], ['class.level'])
     ret = {1:0, 2:0, 3:0}
     for (l, c) in res:
         ret[l] = c

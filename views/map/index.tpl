@@ -10,18 +10,15 @@
 %from assets import assets
   <script type="text/javascript" src="{{get_url('static', filename=assets['static/map'][0])}}"></script>
   <script type="text/javascript">
-    var lat={{lat}};
-    var lon={{lon}};
-    var zoom={{zoom}};
-    var item_levels = {};
+    var itemLevels = {};
 %for (l, i) in item_levels.iteritems():
-    item_levels["{{l}}"] = {{list(i)}};
+    itemLevels["{{l}}"] = {{list(i)}};
 %end
-    var item_tags = {};
+    var itemTags = {};
 %for (t, i) in item_tags.iteritems():
-    item_tags["{{t}}"] = {{list(i)}};
+    itemTags["{{t}}"] = {{list(i)}};
 %end
-    var remote_url_read = "{{remote_url_read}}";
+    var remoteUrlRead = "{{remote_url_read}}";
   </script>
 </head>
 <body>
@@ -29,26 +26,18 @@
 <div id="menu" class="container">
   <a href="#" id="togglemenu">-</a>
   <form id="myform" name="myform" action="#">
-  <input type='hidden' name='lat' value='{{lat}}'>
-  <input type='hidden' name='lon' value='{{lon}}'>
-  <input type='hidden' name='zoom' value='{{zoom}}'>
-  <input type='hidden' name='source' value='{{source}}'>
-  <input type='hidden' name='class' value='{{classs}}'>
-  <input type='hidden' name='useDevItem' value='{{useDevItem}}'>
-  <input type='hidden' name='username' value='{{username}}'>
-  <input type='hidden' name='country' value='{{country}}'>
     <div id="need_zoom">{{_("no bubbles at this zoom factor")}}</div>
     <div id="action_links">
       <div id="level-span" class="form-group row">
         <label for='level' class="col-sm-3 col-form-label">{{_("Severity")}}</label>
           <div class="col-sm-9">
           <select id='level' class='form-control form-control-sm'>
-            <option class="level-1__" value="1"{{!level_selected['1']}}>{{_("High")}}</option>
-            <option class="level-12_" value="1,2"{{!level_selected['1,2']}}>{{_("Normal or higher")}}</option>
-            <option class="level-123" value="1,2,3"{{!level_selected['1,2,3']}}>{{_("All")}}</option>
+            <option class="level-1__" value="1">{{_("High")}}</option>
+            <option class="level-12_" value="1,2">{{_("Normal or higher")}}</option>
+            <option class="level-123" value="1,2,3">{{_("All")}}</option>
             <option disabled="disabled"></option>
-            <option class="level-_2_" value="2"{{!level_selected['2']}}>{{_("Normal only")}}</option>
-            <option class="level-__3" value="3"{{!level_selected['3']}}>{{_("Low only")}}</option>
+            <option class="level-_2_" value="2">{{_("Normal only")}}</option>
+            <option class="level-__3" value="3">{{_("Low only")}}</option>
           </select>
         </div>
       </div>
@@ -57,8 +46,8 @@
         <div class="col-sm-9">
           <select id="fixable" class="form-control form-control-sm" title="{{_("Show only markers with correction suggestions")}}">
             <option value=""></option>
-            <option value="online"{{!fixable_selected['online']}}>{{_("Online")}}</option>
-            <option value="josm"{{!fixable_selected['josm']}}>JOSM</option>
+            <option value="online">{{_("Online")}}</option>
+            <option value="josm">JOSM</option>
           </select>
         </div>
       </div>
@@ -68,7 +57,7 @@
           <select id='tags' class='form-control form-control-sm'>
             <option value=""></option>
 %for tag in tags:
-            <option value="{{tag}}" {{!tags_selected[tag]}}>{{_(tag)}}</option>
+            <option value="{{tag}}">{{_(tag)}}</option>
 %end
           </select>
         </div>
@@ -82,42 +71,32 @@
 %it = set()
 %for categ in categories:
     <div class="test_group" id="categ{{categ["categ"]}}">
-    <h1><a href="#" class="toggleCateg">{{categ["menu"]}}</a>
-    <span class="count">{{len([x for x in categ["item"] if x["item"] in active_items])}}/{{len(categ["item"])}}</span>
+    <h1><a href="#" class="toggleCateg">{{translate.select(categ["title"])}}</a>
+    <span class="count">-/-</span>
     <a href="#" class="toggleAllItem" data-view="all">{{_("all")}}</a>
     <a href="#" class="toggleAllItem" data-view="nothing">{{_("nothing")}}</a></h1>
     <ul>
-%    for err in categ["item"]:
+%    for err in categ["items"]:
 %        it.add(err["item"])
-        <li id='item_desc{{err["item"]}}'>
+        <li id='item_desc{{err["item"]}}' class="item" title="{{_("Item #%s") % err["item"]}}
+%for classs in err["class"]:
+{{classs["class"]}}. {{translate.select(classs["title"])}}
+%end
+"
+>
             <div class="marker-l marker-l-{{err["item"]}}"></div>
             <div class="level">\\
-%        p = 0
+%        ll = dict(map(lambda l: [l["level"], l["count"]], err["levels"]))
 %        for i in [1,2,3]:
-%            if i in err["levels"]:
-<div class="level-{{i}}"><span>{{err["number"][p] if err["number"] and len(err["number"]) > p else 0}}</span></div>\\
-%                p += 1
+%            if i in ll:
+<div class="level-{{i}}"><span>{{ll[i]}}</span></div>\\
 %            else:
 <div></div>\\
 %            end
 %        end
             </div>
-            <input type='checkbox' id='item{{err["item"]}}' name='item{{err["item"]}}' {{! {True:" checked=\"checked\"", False:""}[err["item"] in active_items]}}>
-            <a target="_blank" href="../errors/?item={{err["item"]}}">{{err["menu"]}}</a>
-        </li>
-%    end
-    </ul>
-    </div>
-%end
-%unactiveItem = set(active_items) - it
-%if unactiveItem:
-    <div class="test_group" id="categUnactiveItem" style="display: none">
-    <h1><span id="categUnactiveItem_count">1/0</span></h1>
-    <ul>
-%    for item in unactiveItem:
-        <li id='item_desc{{item}}'>
-            <input type='checkbox' id='{{item}}' name='item{{item}}' checked="checked">
-            <a target="_blank" href="../errors/?item={{item}}">{{item}}</a>
+            <input type='checkbox' id='item{{"{:04d}".format(err["item"])}}' name='item{{"{:04d}".format(err["item"])}}'/>
+            <a target="_blank" href="../errors/?item={{err["item"]}}">{{translate.select(err["title"])}}</a>
         </li>
 %    end
     </ul>
@@ -132,7 +111,7 @@
 
 <div id='top_links'>
 <ul id="topmenu">
-<li id="menu-lang"><a href='#'>{{_("Change language")}} ▼</a>
+<li id="menu-lang"><a href='#' onclick='return false;'>{{_("Change language")}} ▼</a>
 <ul class="submenu">
 %for (k, v) in languages_name.items():
 %    if translate.languages[0] == k:
@@ -149,10 +128,10 @@
  <li id="menu-{{u[0]}}"><a href="{{u[2]}}">{{u[1]}}</a></li>
 %end
 
-<li id="menu-export"><a href='#'>{{_("Export")}} ▼</a>
+<li id="menu-export"><a href='#' onclick='return false;'>{{_("Export")}} ▼</a>
 <ul class="submenu">
   <li><a data-href="../errors/" target="_blank">{{_("Html list")}}</a></li>
-  <li><a data-href="../errors.josm" target="hiddenIframe">JOSM</a></li>
+  <li><a data-href="../josm_proxy?errors.josm" target="hiddenIframe">JOSM</a></li>
   <li><a data-href="../errors.rss" target="_blank">RSS</a></li>
   <li><a data-href="../errors.gpx">GPX</a></li>
   <li><a data-href="../errors.kml">KML</a></li>
@@ -161,7 +140,7 @@
   <li><a data-href="markers" target="_blank">GeoJson</a></li>
 </ul>
 
-<li id="menu-help"><a href='#'>{{_("Help")}} ▼</a>
+<li id="menu-help"><a href='#' onclick='return false;'>{{_("Help")}} ▼</a>
 <ul class="submenu">
 %for u in helps:
  <li><a href="{{u[1]}}">{{u[0]}}</a></li>
@@ -196,7 +175,7 @@
 
 <script type="text/javascript">
 $(function() {
-  init_map();
+  initMap();
 });
 </script>
 

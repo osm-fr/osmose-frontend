@@ -4,7 +4,7 @@ require('mustache');
 require('./Osmose.Editor.css');
 
 
-export var OsmoseEditor = L.Control.Sidebar.extend({
+const OsmoseEditor = L.Control.Sidebar.extend({
 
   options: {
     closeButton: false,
@@ -17,31 +17,30 @@ export var OsmoseEditor = L.Control.Sidebar.extend({
 
   _deleteObjectStack: {},
 
-  initialize: function (placeholder, options) {
-    this._$container = $("#" + placeholder);
-
-    var self = this;
-    $("#menu-editor-save").click(function () {
-      self._save(this);
+  initialize(placeholder, options) {
+    this._$container = $(`#${placeholder}`);
+    $('#menu-editor-save').click((event) => {
+      this._save(event.currentTarget);
+      return false;
     });
 
     this.saveModal = $('#dialog_editor_save_modal');
-    this.saveModal.on('shown.bs.modal', function () {
-      $('#save_button', this.saveModal).trigger('focus')
-    })
-    $('#save_button', this.saveModal).click(function () {
-      var comment = document.forms.editor_save_form.elements.comment.value,
-        source = document.forms.editor_save_form.elements.source.value,
-        type = document.forms.editor_save_form.elements.type.value,
-        reuse_changeset = document.forms.editor_save_form.elements.reuse_changeset.checked;
-      self.saveModal.find('#save_changeset').hide();
-      self.saveModal.find('#save_uploading').show();
-      self.saveModal.find('.modal-footer').hide();
+    this.saveModal.on('shown.bs.modal', (event) => {
+      $('#save_button', this.saveModal).trigger('focus');
+    });
+    $('#save_button', this.saveModal).click(() => {
+      const comment = document.forms.editor_save_form.elements.comment.value;
+      const source = document.forms.editor_save_form.elements.source.value;
+      const type = document.forms.editor_save_form.elements.type.value;
+      const reuseChangeset = document.forms.editor_save_form.elements.reuse_changeset.checked;
+      this.saveModal.find('#save_changeset').hide();
+      this.saveModal.find('#save_uploading').show();
+      this.saveModal.find('.modal-footer').hide();
 
-      self._upload(comment, source, type, reuse_changeset, function () {
-        self.saveModal.find('#save_changeset').show();
-        self.saveModal.find('#save_uploading').hide();
-        self.saveModal.find('.modal-footer').show();
+      this._upload(comment, source, type, reuseChangeset, () => {
+        this.saveModal.find('#save_changeset').show();
+        this.saveModal.find('#save_uploading').hide();
+        this.saveModal.find('.modal-footer').show();
       });
     });
 
@@ -50,123 +49,120 @@ export var OsmoseEditor = L.Control.Sidebar.extend({
     L.Control.Sidebar.prototype.initialize.call(this, placeholder, options);
   },
 
-  edit: function (layer, error, type, id, fix) {
+  edit(layer, error, type, id, fix) {
     this.show();
-    if (this._$container.data().user != "True") {
+    if (this._$container.data().user !== 'True') {
       return;
     }
 
     this._$container.html("<center><img src='../images/throbbler.gif' alt='downloading'></center>");
-    var self = this;
-    var url = '../api/0.2/error/' + error + '/fresh_elems' + (fix ? '/' + fix : '');
+    const url = `../api/0.2/error/${error}/fresh_elems${fix ? `/${fix}` : ''}`;
     $.ajax({
-      url: url,
-      dataType: 'json'
-    }).done(function (data) {
-      var template = $('#editorTpl').html(),
-        content = $(Mustache.render(template, data));
-      self._$container.html(content);
-      $("#validate", self._$container).click(function () {
-        self._validate(this);
+      url,
+      dataType: 'json',
+    }).done((data) => {
+      const template = $('#editorTpl').html();
+      const content = $(Mustache.render(template, data));
+      this._$container.html(content);
+      $('#validate', this._$container).click((event) => {
+        this._validate(event.currentTarget);
         $.ajax({
-          url: '../api/0.2/error/' + error + '/done'
-        }).done(function (data) {
-          self.errors.corrected(layer);
+          url: `../api/0.2/error/${error}/done`,
+        }).done((d) => {
+          this.errors.corrected(layer);
         });
       });
-      $("#cancel", self._$container).click(function () {
-        self._cancel(this);
+      $('#cancel', this._$container).click((event) => {
+        this._cancel(event.currentTarget);
       });
 
-      $.each(data.elems, function (i, elem) {
-        var reftags = {};
-        $.each(elem.tags, function (i, e) {
-          reftags[e.k] = e.v;
+      $.each(data.elems, (i, elem) => {
+        const reftags = {};
+        $.each(elem.tags, (ii, ee) => {
+          reftags[ee.k] = ee.v;
         });
-        self._build(elem.type, elem.id, reftags, (data.fix && data.fix[elem.type + elem.id]) || reftags);
-        $('.tags[data-type="' + elem.type + '"][data-id="' + elem.id + '"]', self._$container).data('reftags', reftags);
+        this._build(elem.type, elem.id, reftags, (data.fix && data.fix[elem.type + elem.id]) || reftags);
+        $(`.tags[data-type="${elem.type}"][data-id="${elem.id}"]`, this._$container).data('reftags', reftags);
       });
-      $('form .tags[data-type="' + type + '"][data-id="' + id + '"] input[type="text"]:last', self._$container).focus();
-    }).fail(function (xhr, err) {
-      self._$container.html("Fails get " + url + "</br>readyState: " + xhr.readyState + "</br>status: " + xhr.status);
+      $(`form .tags[data-type="${type}"][data-id="${id}"] input[type="text"]:last`, this._$container).focus();
+    }).fail((xhr, err) => {
+      this._$container.html(`Fails get ${url}</br>readyState: ${xhr.readyState}</br>status: ${xhr.status}`);
     });
   },
 
-  _beforeunload: function () {
-    var n = Object.keys(this._modifiyObjectStack).length + Object.keys(this._deleteObjectStack).length;
+  _beforeunload() {
+    const n = Object.keys(this._modifiyObjectStack).length + Object.keys(this._deleteObjectStack).length;
     if (n > 0) {
-      return "Quit ?";
+      return 'Quit ?';
     }
   },
 
-  _upload: function (comment, source, type, reuse_changeset, always) {
-    var self = this;
-    var url = '../editor/save';
+  _upload(comment, source, type, reuseChangeset, always) {
+    const url = '../editor/save';
     $.ajax({
-      url: url,
+      url,
       type: 'POST',
       contentType: 'application/json',
       data: JSON.stringify({
         tag: {
-          comment: comment,
-          source: source,
-          type: type
+          comment,
+          source,
+          type,
         },
-        reuse_changeset: reuse_changeset,
-        modify: self._modifiyObjectStack,
-        'delete': self._deleteObjectStack
+        reuseChangeset,
+        modify: this._modifiyObjectStack,
+        delete: this._deleteObjectStack,
       }),
-    }).done(function () {
-      self._modifiyObjectStack = {};
-      self._deleteObjectStack = {};
-      self._count_touched();
-      self.saveModal.modal('hide');
-    }).fail(function (xhr, err) {
-      alert("Fails post to " + url + "\nreadyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+    }).done(() => {
+      this._modifiyObjectStack = {};
+      this._deleteObjectStack = {};
+      this._count_touched();
+      this.saveModal.modal('hide');
+    }).fail((xhr, err) => {
+      alert(`Fails post to ${url}\nreadyState: ${xhr.readyState}\nstatus: ${xhr.status}`);
     }).always(always);
   },
 
-  _save: function (e) {
+  _save(e) {
     this.saveModal.find('#editor-modify-count').val(Object.keys(this._modifiyObjectStack).length);
     this.saveModal.find('#editor-delete-count').val(Object.keys(this._deleteObjectStack).length);
     this.saveModal.modal('show');
   },
 
-  _cancel: function (e) {
+  _cancel(e) {
     this.hide();
   },
 
-  _validate: function (e) {
-    var self = this;
-    $.each(this._extractData(), function (i, e) {
-      if (e.touched) {
-        self._modifiyObjectStack[i] = e;
-        delete self._modifiyObjectStack[i].touched;
+  _validate(e) {
+    $.each(this._extractData(), (i, elem) => {
+      if (elem.touched) {
+        this._modifiyObjectStack[i] = elem;
+        delete this._modifiyObjectStack[i].touched;
       }
     });
     this.hide();
     this._count_touched();
   },
 
-  _count_touched: function () {
-    var n = Object.keys(this._modifiyObjectStack).length + Object.keys(this._deleteObjectStack).length,
-      es = $("#menu-editor-save");
+  _count_touched() {
+    const n = Object.keys(this._modifiyObjectStack).length + Object.keys(this._deleteObjectStack).length;
+    const es = $('#menu-editor-save');
     if (n > 0) {
       es.show();
-      es.find("#menu-editor-save-number").text(Object.keys(this._modifiyObjectStack).length);
+      es.find('#menu-editor-save-number').text(Object.keys(this._modifiyObjectStack).length);
     } else {
       es.hide();
     }
   },
 
-  _extractData: function () {
-    var data = {};
-    $('.tags', this._$container).each(function (iii, eee) {
-      var elem = {};
-      $("div:not(.del)", eee).each(function (ii, ee) {
-        $(" input[type='text']", ee).each(function (i, e) {
+  _extractData() {
+    const data = {};
+    $('.tags', this._$container).each((iii, eee) => {
+      const elem = {};
+      $('div:not(.del)', eee).each((ii, ee) => {
+        $(" input[type='text']", ee).each((i, e) => {
           if (e.value && e.dataset.key) {
-            elem[e.dataset.key] = e.value.split("=")[1];
+            elem[e.dataset.key] = e.value.split('=')[1];
           }
         });
       });
@@ -174,76 +170,75 @@ export var OsmoseEditor = L.Control.Sidebar.extend({
         type: eee.dataset.type,
         id: eee.dataset.id,
         version: eee.dataset.version,
-        touched: eee.dataset.touched == "true",
-        tag: elem
+        touched: eee.dataset.touched === 'true',
+        tag: elem,
       };
     });
     return data;
   },
 
-  _change: function (e) {
-    var cur_value = e.target.value.trim();
-    if (cur_value.indexOf("=") < 0 || cur_value[0] == "=" || cur_value[cur_value.length - 1] == "=") {
-      cur_value = "";
+  _change(e) {
+    let curValue = e.target.value.trim();
+    if (curValue.indexOf('=') < 0 || curValue[0] === '=' || curValue[curValue.length - 1] === '=') {
+      curValue = '';
     } else {
-      var edited = cur_value.split("="),
-        k = edited[0].trim(),
-        edited_key = e.target.dataset.key;
-      if (!edited_key || k != edited_key) {
-        edited_key = k;
-        $("input[type='text'][data-key='" + edited_key + "']", this._$container).attr('data-key', null);
-        e.target.dataset.key = edited_key;
+      const edited = curValue.split('=');
+      const k = edited[0].trim();
+      let editedKey = e.target.dataset.key;
+      if (!editedKey || k !== editedKey) {
+        editedKey = k;
+        $(`input[type='text'][data-key='${editedKey}']`, this._$container).attr('data-key', null);
+        e.target.dataset.key = editedKey;
       }
     }
 
-    var tags = $(e.target).closest(".tags");
+    const tags = $(e.target).closest('.tags');
     this._build(tags.data('type'), tags.data('id'), tags.data('reftags'), this._extractData()[tags.data('type') + tags.data('id')].tag);
   },
 
-  _build: function (type, id, reftags, data) {
-    var tags = $('.tags[data-type="' + type + '"][data-id="' + id + '"]', this._$container),
-      touched = false;
-
-    var del = $('.del', tags);
+  _build(type, id, reftags, data) {
+    const tags = $(`.tags[data-type="${type}"][data-id="${id}"]`, this._$container);
+    let touched = false;
+    const del = $('.del', tags);
     del.empty();
-    $.each(reftags, function (e) {
-      if (data[e] == undefined) {
-        var value = String($('<div/>').text(e + '=' + reftags[e]).html()).replace('"', '&quot;'),
-          key = String($('<div/>').text(e).html()).replace('"', '&quot;');
-        del.append($('<span class="line"><span>-</span><input type="text" name="tags_del[]" value="' + value + '" data-key="' + key + '"/><a href="#">×</a></span>'));
+    $.each(reftags, (e) => {
+      if (data[e] === undefined) {
+        const value = String($('<div/>').text(`${e}=${reftags[e]}`).html()).replace('"', '&quot;');
+        const key = String($('<div/>').text(e).html()).replace('"', '&quot;');
+        del.append($(`<span class="line"><span>-</span><input type="text" name="tags_del[]" value="${value}" data-key="${key}"/><a href="#">×</a></span>`));
         touched = true;
       }
     });
 
-    var same = $('.same', tags);
+    const same = $('.same', tags);
     same.empty();
-    $.each(reftags, function (e) {
-      if (data[e] != undefined && data[e] == reftags[e]) {
-        var value = String($('<div/>').text(e + '=' + reftags[e]).html()).replace('"', '&quot;'),
-          key = String($('<div/>').text(e).html()).replace('"', '&quot;');
-        same.append($('<span class="line"><span>=</span><input type="text" name="tags_del[]" value="' + value + '" data-key="' + key + '"/><a href="#">×</a></span>'));
+    $.each(reftags, (e) => {
+      if (data[e] !== undefined && data[e] === reftags[e]) {
+        const value = String($('<div/>').text(`${e}=${reftags[e]}`).html()).replace('"', '&quot;');
+        const key = String($('<div/>').text(e).html()).replace('"', '&quot;');
+        same.append($(`<span class="line"><span>=</span><input type="text" name="tags_del[]" value="${value}" data-key="${key}"/><a href="#">×</a></span>`));
       }
     });
 
-    var mod = $('.mod', tags);
+    const mod = $('.mod', tags);
     mod.empty();
-    $.each(reftags, function (e) {
-      if (data[e] != undefined && data[e] != reftags[e]) {
-        var value = String($('<div/>').text(e + '=' + data[e]).html()).replace('"', '&quot;'),
-          key = String($('<div/>').text(e).html()).replace('"', '&quot;'),
-          old = String($('<div/>').text(reftags[e]).html()).replace('"', '&quot;');
-        mod.append($('<span class="line"><span>~</span><input type="text" name="tags_mod[]" value="' + value + '" data-key="' + key + '" title="' + old + '"/><a href="#">×</a></span>'));
+    $.each(reftags, (e) => {
+      if (data[e] !== undefined && data[e] !== reftags[e]) {
+        const value = String($('<div/>').text(`${e}=${data[e]}`).html()).replace('"', '&quot;');
+        const key = String($('<div/>').text(e).html()).replace('"', '&quot;');
+        const old = String($('<div/>').text(reftags[e]).html()).replace('"', '&quot;');
+        mod.append($(`<span class="line"><span>~</span><input type="text" name="tags_mod[]" value="${value}" data-key="${key}" title="${old}"/><a href="#">×</a></span>`));
         touched = true;
       }
     });
 
-    var add = $('.add', tags);
+    const add = $('.add', tags);
     add.empty();
-    $.each(data, function (e) {
-      if (reftags[e] == undefined) {
-        var value = String($('<div/>').text(e + '=' + data[e]).html()).replace('"', '&quot;'),
-          key = String($('<div/>').text(e).html()).replace('"', '&quot;');
-        add.append($('<span class="line"><span>+</span><input type="text" name="tags_add[]" value="' + value + '" data-key="' + key + '"/><a href="#">×</a></span>'));
+    $.each(data, (e) => {
+      if (reftags[e] === undefined) {
+        const value = String($('<div/>').text(`${e}=${data[e]}`).html()).replace('"', '&quot;');
+        const key = String($('<div/>').text(e).html()).replace('"', '&quot;');
+        add.append($(`<span class="line"><span>+</span><input type="text" name="tags_add[]" value="${value}" data-key="${key}"/><a href="#">×</a></span>`));
         touched = true;
       }
     });
@@ -251,46 +246,48 @@ export var OsmoseEditor = L.Control.Sidebar.extend({
 
     tags.attr('data-touched', touched);
 
-    var self = this;
-    $("input[type='text']", tags).change(function (e) {
-      self._change(e);
+    $("input[type='text']", tags).change((e) => {
+      this._change(e);
     });
-    $("input[type='text']", tags).keypress(function (e) {
-      self._keypress(e);
+    $("input[type='text']", tags).keypress((e) => {
+      this._keypress(e);
     });
-    $("a", tags).click(function (e) {
-      self._delete_tag(e);
+    $('a', tags).click((e) => {
+      this._delete_tag(e);
       return false;
     });
   },
 
-  _delete_tag: function (e) {
-    var action = $(e.target).closest('div'),
-      span = $(e.target).closest('span'),
-      input = span.find('input').get()[0],
-      tags = $(e.target).closest(".tags"),
-      reftags = tags.data('reftags');
+  _delete_tag(e) {
+    const action = $(e.target).closest('div');
+    const span = $(e.target).closest('span');
+    const input = span.find('input').get()[0];
+    const tags = $(e.target).closest('.tags');
+    const reftags = tags.data('reftags');
     if (action.hasClass('del')) {
       span.appendTo(tags.find('.add'));
     } else if (action.hasClass('mod')) {
-      input.value = input.dataset.key + '=' + reftags[input.dataset.key];
+      input.value = `${input.dataset.key}=${reftags[input.dataset.key]}`;
     } else if (action.hasClass('same') || action.hasClass('add')) {
       input.value = '';
     }
     this._change({
-      target: input
+      target: input,
     });
   },
 
-  _keypress: function (e) {
-    if (e.key == "Up") {
-      var inputs = $(e.target).closest('form').find("input[type='text']");
+  _keypress(e) {
+    if (e.key === 'Up') {
+      const inputs = $(e.target).closest('form').find("input[type='text']");
       inputs.eq(inputs.index(e.target) - 1).focus();
-    } else if (e.key == "Down" || e.key == "Enter") {
-      var inputs = $(e.target).closest('form').find("input[type='text']");
+    } else if (e.key === 'Down' || e.key === 'Enter') {
+      const inputs = $(e.target).closest('form').find("input[type='text']");
       inputs.eq(inputs.index(e.target) + 1).focus();
-    } else if (e.key == "Backspace" && e.ctrlKey) { // Ctrl + Backspace
+    } else if (e.key === 'Backspace' && e.ctrlKey) { // Ctrl + Backspace
       this._delete_tag(e);
     }
   },
 });
+
+
+export { OsmoseEditor as default };

@@ -100,7 +100,9 @@
 <tr><td>tags</td><td>
 %     show_html_tags(element['tags'])
 </td></tr>
+%if user:
 <tr><td>username</td><td><a target="_blank" href="{{main_website}}user/{{element['username']}}">{{element['username']}}</a></td></tr>
+%end
 </table>
 </br>
 %end

@@ -87,8 +87,9 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
         if item:
             tables.append("dynpoi_class")
         itemField = "dynpoi_class"
+
     if (level and level != "1,2,3") or tags:
-        tables.append("dynpoi_class")
+        tables.append("class")
     if country:
         tables.append("source")
     if not stats:
@@ -100,16 +101,22 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
     if last_update:
             tables.append("dynpoi_update_last")
 
-    if "dynpoi_class" in tables or "source" in tables:
+    if "dynpoi_class" in tables:
         join += """
         JOIN dynpoi_class ON
             marker.source = dynpoi_class.source AND
             marker.class = dynpoi_class.class"""
 
+    if "class" in tables:
+        join += """
+        JOIN class ON
+            marker.item = class.item AND
+            marker.class = class.class"""
+
     if "source" in tables:
         join += """
         JOIN source ON
-            dynpoi_class.source = source.id"""
+            marker.source = source.id"""
 
     if "dynpoi_item" in tables:
         join += """
@@ -130,7 +137,7 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
         where.append(_build_where_item(item, itemField))
 
     if level and level != "1,2,3":
-        where.append("dynpoi_class.level IN (%s)" % level)
+        where.append("class.level IN (%s)" % level)
 
     if classs:
         where.append("marker.class IN (%s)" % ','.join(map(lambda c: str(int(c)), classs.split(','))))
@@ -169,7 +176,7 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
             where.append("marker.date < '%s'" % end_date.isoformat())
 
     if tags:
-        where.append("dynpoi_class.tags::text[] && ARRAY['%s']" % "','".join(map(utils.pg_escape, tags)))
+        where.append("class.tags::text[] && ARRAY['%s']" % "','".join(map(utils.pg_escape, tags)))
 
     if fixable == 'online':
         where.append("EXISTS (SELECT 1 FROM marker_fix WHERE marker_fix.marker_id = marker.id AND elem_id != 0)")
@@ -238,31 +245,23 @@ def _params():
 def _gets(db, params):
     sqlbase = """
     SELECT
-        marker.id AS id,"""
+        marker.id AS id,
+        marker.item,
+        marker.lat,
+        marker.lon,"""
     if not params.status in ("done", "false"):
         sqlbase += """
-        marker.item,
         marker.class,"""
-    elif params.full:
-        sqlbase += """
-        dynpoi_class.item,
-        marker.class,"""
-    else:
-        sqlbase += """
-        dynpoi_class.item,"""
-    sqlbase += """
-        marker.lat,
-        marker.lon"""
     if params.full:
-        sqlbase += """,
+        sqlbase += """
         marker.source,
         marker.elems,
         marker.subclass,
         marker.subtitle,
         source.country,
         source.analyser,
-        dynpoi_class.title,
-        dynpoi_class.level,
+        class.title,
+        class.level,
         dynpoi_update_last.timestamp,
         dynpoi_item.menu"""
         if not params.status in ("done", "false") and params.users:
@@ -276,8 +275,8 @@ def _gets(db, params):
         -1 AS date"""
         else:
             sqlbase += """,
-        marker.date"""
-    sqlbase += """
+        marker.date,"""
+    sqlbase = sqlbase[0:-1] + """
     FROM
         %s
         JOIN dynpoi_update_last ON
@@ -293,9 +292,9 @@ def _gets(db, params):
 
     if params.full:
         if not params.status in ("done", "false") and params.users:
-            forceTable = ["dynpoi_class", "source", "marker_elem"]
+            forceTable = ["class", "source", "marker_elem"]
         else:
-            forceTable = ["dynpoi_class", "source"]
+            forceTable = ["class", "source"]
     else:
         forceTable = []
 

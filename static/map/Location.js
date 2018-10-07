@@ -6,36 +6,35 @@ L.Control.Location = L.Control.extend({
   options: {
     position: 'topleft',
     menuText: '',
-    menuTitle: 'Location'
+    menuTitle: 'Location',
   },
 
-  initialize: function (options) {
+  initialize(options) {
     L.Control.prototype.initialize.call(this, options);
   },
 
-  onAdd: function (map) {
-    var menuName = 'leaflet-control-location',
-      container = L.DomUtil.create('div', menuName + ' leaflet-bar');
+  onAdd(map) {
+    const menuName = 'leaflet-control-location';
+    const container = L.DomUtil.create('div', `${menuName} leaflet-bar`);
     this._map = map;
-    this._zoomInButton = this._createButton(this.options.menuText, this.options.menuTitle, menuName + '-in', container, this._location, this);
+    this._zoomInButton = this._createButton(this.options.menuText, this.options.menuTitle, `${menuName}-in`, container, this._location, this);
     return container;
   },
 
-  _location: function () {
+  _location() {
     this._map.locate({
-      setView: true
+      setView: true,
     });
   },
 
-  _createButton: function (html, title, className, container, fn, context) {
-    var link = L.DomUtil.create('a', className, container);
+  _createButton(html, title, className, container, fn, context) {
+    const link = L.DomUtil.create('a', className, container);
     link.style = 'background-image: url(/images/location.png)'; // Firefox
     link.style['background-image'] = 'url(/images/location.png)'; // Chrome
     link.innerHTML = html;
     link.href = '#';
     link.title = title;
-
-    var stop = L.DomEvent.stopPropagation;
+    const stop = L.DomEvent.stopPropagation;
 
     L.DomEvent
       .on(link, 'click', stop)
@@ -49,6 +48,4 @@ L.Control.Location = L.Control.extend({
   },
 });
 
-L.control.location = function (options) {
-  return new L.Control.Location(options);
-};
+L.control.location = options => new L.Control.Location(options);
