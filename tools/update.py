@@ -336,6 +336,22 @@ class update_parser(handler.ContentHandler):
                 self._fix.append(self._elem)
 
         elif name == u"class":
+            keys = ["class", "item", "title", "level", "tags", "timestamp"]
+            vals = [self._class_id,
+                    self._class_item[self._class_id],
+                    self._class_texts,
+                    self._class_level,
+                    self._class_tags,
+                    utils.pg_escape(self.ts),
+                   ]
+
+            sql  = u"INSERT INTO class (" + u','.join(keys) + u") "
+            sql += u"VALUES (" + (u','.join(["%s"] * len(keys))) + u") "
+            sql += u"ON CONFLICT (item, class) DO "
+            sql += u"UPDATE SET " + (u', '.join(map(lambda k: '"' + k + '" = %s', keys[2:]))) + " "
+            sql += u"WHERE class.class = %s AND class.item = %s AND class.timestamp < %s;"
+            execute_sql(self._dbcurs, sql, vals + vals[2:] + vals[0:2] + [vals[-1]])
+
             keys = ["source", "class", "item", "timestamp"]
             vals = [self._source_id, self._class_id,
                     self._class_item[self._class_id],
@@ -361,23 +377,6 @@ class update_parser(handler.ContentHandler):
                     sql  = u"INSERT INTO dynpoi_class (" + u','.join(keys) + u") "
                     sql += u"VALUES (" + (u','.join(["%s"] * len(keys))) + u");"
                     execute_sql(self._dbcurs, sql, vals)
-
-            keys = ["class", "item", "title", "level", "tags", "timestamp"]
-            vals = [self._class_id,
-                    self._class_item[self._class_id],
-                    self._class_texts,
-                    self._class_level,
-                    self._class_tags,
-                    utils.pg_escape(self.ts),
-                   ]
-
-            sql  = u"INSERT INTO class (" + u','.join(keys) + u") "
-            sql += u"VALUES (" + (u','.join(["%s"] * len(keys))) + u") "
-            sql += u"ON CONFLICT (item, class) DO "
-            sql += u"UPDATE SET " + (u', '.join(map(lambda k: '"' + k + '" = %s', keys[2:]))) + " "
-            sql += u"WHERE class.class = %s AND class.item = %s AND class.timestamp < %s;"
-            execute_sql(self._dbcurs, sql, vals + vals[2:] + vals[0:2] + [vals[-1]])
-
 
         elif name == u"fixes":
             self.elem_mode = "info"
