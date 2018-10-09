@@ -71,7 +71,7 @@ ORDER BY
 
 def get_text(db, options):
     if len(options.sources)==1 and len(options.classes)==1:
-        db.execute("SELECT title->'en' FROM dynpoi_class JOIN class ON class.item = dynpoi_class.item AND class.class = dynpoi_class.class WHERE source=%s AND class=%s;", (options.sources[0], options.classes[0]))
+        db.execute("SELECT title->'en' FROM dynpoi_class JOIN class ON class.item = dynpoi_class.item AND class.class = dynpoi_class.class WHERE source=%s AND class.class=%s;", (options.sources[0], options.classes[0]))
     elif len(options.items)==1 and len(options.classes)==1:
         db.execute("SELECT title->'en' FROM class WHERE class=%s AND item=%s LIMIT 1;", (options.classes[0], options.items[0]))
     elif len(options.items)==1:
