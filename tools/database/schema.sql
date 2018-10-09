@@ -436,6 +436,14 @@ CREATE UNIQUE INDEX source_country_analyser ON source USING btree (country, anal
 
 
 --
+-- Name: dynpoi_class class_item_class_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY dynpoi_class
+    ADD CONSTRAINT class_item_class_fkey FOREIGN KEY (item, class) REFERENCES class(item, class);
+
+
+--
 -- Name: dynpoi_class dynpoi_class_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
