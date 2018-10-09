@@ -173,6 +173,8 @@ def heat(db, z, x, y):
     params.tilex = x
     params.tiley = y
     params.zoom = z
+    params.lat = None
+    params.lon = None
 
     if params.zoom > 18:
         return
@@ -244,6 +246,8 @@ def issues_mvt(db, z, x, y):
     params.tilex = x
     params.tiley = y
     params.zoom = z
+    params.lat = None
+    params.lon = None
 
     if params.zoom > 18:
         return

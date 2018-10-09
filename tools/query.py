@@ -146,8 +146,8 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
         where.append("marker.lat BETWEEN %f AND %f AND marker.lon BETWEEN %f AND %f" % (bbox[1], bbox[3], bbox[0], bbox[2]))
         # Compute a tile to use index
         tilex, tiley, zoom = tiles.bbox2tile(*bbox)
-        if zoom < 6:
-            zoom = 6
+        if zoom < 8:
+            zoom = 8
             tilex, tiley = tiles.lonlat2tile((bbox[0] + bbox[2]) / 2, (bbox[1] + bbox[3]) / 2, zoom)
 
     if tilex and tiley and zoom:
