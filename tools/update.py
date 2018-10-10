@@ -450,6 +450,8 @@ class Test(unittest.TestCase):
         self.dbcurs = self.dbconn.cursor()
         self.dbcurs.execute(open("tools/database/drop.sql", "r").read())
         self.dbcurs.execute(open("tools/database/schema.sql", "r").read())
+        # Re-initialise search_path as cleared by schema.sql
+        self.dbcurs.execute("SET search_path TO \"$user\", public;")
         self.dbcurs.execute("INSERT INTO source (id, country, analyser) VALUES (%s, %s, %s);",
                        (1, "xx1", "yy1"))
         self.dbcurs.execute("INSERT INTO source (id, country, analyser) VALUES (%s, %s, %s);",
