@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2018-09-30 19:52+0000\n"
+"PO-Revision-Date: 2018-10-18 20:20+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgid "never generated"
 msgstr "不曾產生"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:184 ../false_positive.py:63 tmp.tpl:194
+#: ../error.py:187 ../false_positive.py:63 tmp.tpl:195
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
@@ -50,36 +50,36 @@ msgstr "誤判"
 msgid "Informations"
 msgstr "資訊"
 
-#: ../map.py:144
+#: ../map.py:86
 msgid "Relation analyser"
 msgstr "關係分析器"
 
 #. TRANSLATORS: link to source code
-#: ../map.py:146
+#: ../map.py:88
 msgid "Statistics"
 msgstr "統計"
 
-#: ../map.py:149 tmp.tpl:23
+#: ../map.py:91 tmp.tpl:23
 msgid "Contact"
 msgstr "聯絡我們"
 
-#: ../map.py:150
+#: ../map.py:92
 msgid "Help on wiki"
 msgstr "Wiki 上的說明頁"
 
-#: ../map.py:150 tmp.tpl:118 tmp.tpl:193
+#: ../map.py:92 tmp.tpl:118 tmp.tpl:194
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
-#: ../map.py:151
+#: ../map.py:93
 msgid "Copyright"
 msgstr "著作權"
 
-#: ../map.py:152
+#: ../map.py:94
 msgid "Sources"
 msgstr "程式碼"
 
-#: ../map.py:153
+#: ../map.py:95
 msgid "Translation"
 msgstr "翻譯"
 
@@ -310,7 +310,7 @@ msgstr "上次分析更新的時間"
 msgid "Tags Editor"
 msgstr "標籤編輯器"
 
-#: tmp.tpl:123 tmp.tpl:164
+#: tmp.tpl:123 tmp.tpl:165
 msgid "Cancel"
 msgstr "取消"
 
@@ -358,85 +358,85 @@ msgstr "無"
 msgid "invert"
 msgstr "反相"
 
-#: tmp.tpl:144
+#: tmp.tpl:145
 msgid "Change language"
 msgstr "切換語言"
 
-#: tmp.tpl:147
+#: tmp.tpl:148
 msgid "Help"
 msgstr "求助"
 
-#: tmp.tpl:148
+#: tmp.tpl:149
 #, python-format
 msgid "Delay: %sd"
 msgstr "延遲：%s天"
 
-#: tmp.tpl:152
+#: tmp.tpl:153
 msgid "Logout"
 msgstr "登出"
 
-#: tmp.tpl:153 tmp.tpl:155
+#: tmp.tpl:154 tmp.tpl:156
 msgid "Login"
 msgstr "登入"
 
-#: tmp.tpl:154 tmp.tpl:165
+#: tmp.tpl:155 tmp.tpl:166
 msgid "Save"
 msgstr "儲存"
 
-#: tmp.tpl:160
+#: tmp.tpl:161
 msgid "Fix with Osmose"
 msgstr "使用 Osmose 修正"
 
-#: tmp.tpl:161
+#: tmp.tpl:162
 msgid "Source"
 msgstr "來源"
 
-#: tmp.tpl:162
+#: tmp.tpl:163
 msgid "Type"
 msgstr "種類"
 
-#: tmp.tpl:163
+#: tmp.tpl:164
 msgid "Reuse changeset"
 msgstr "續用(reuse)變更集"
 
-#: tmp.tpl:182
+#: tmp.tpl:183
 msgid "corrected"
 msgstr "已更正"
 
-#: tmp.tpl:181
+#: tmp.tpl:182
 msgid "false positive"
 msgstr "誤報錯誤"
 
-#: tmp.tpl:183 tmp.tpl:184
+#: tmp.tpl:184 tmp.tpl:185
 msgid "How to help translation"
 msgstr "如何幫忙翻譯"
 
-#: tmp.tpl:185
+#: tmp.tpl:186
 msgid ""
 "Osmose tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
 msgstr "Osmose 工具主要由法國人開發，我們希望能加入更多語言。目前有被分析的國家所用的語言大多已含括在內了。"
 
-#: tmp.tpl:187
+#: tmp.tpl:188
 msgid ""
 "To make Osmose a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr "要讓 Osmose 成為真正的多語工具，我們需要你的協助來改善已有的翻譯、增加新的翻譯。"
 
-#: tmp.tpl:188
+#: tmp.tpl:189
 msgid "Pages to translate"
 msgstr "需要被翻譯的網頁"
 
-#: tmp.tpl:192
+#: tmp.tpl:193
 msgid "Wiki pages"
 msgstr "Wiki 頁面"
 
-#: tmp.tpl:189
+#: tmp.tpl:190
 msgid "Osmose pages"
 msgstr "Osmose 網頁"
 
-#: tmp.tpl:198
+#: tmp.tpl:199
 msgid "Bug tracking system"
 msgstr "Bug 追蹤系統"
 
@@ -588,7 +588,7 @@ msgstr "父標籤"
 msgid "street numbers"
 msgstr "門牌號碼"
 
-#: ../tools/database/item_menu.txt:35 ../tools/database/item_menu.txt:180
+#: ../tools/database/item_menu.txt:35 ../tools/database/item_menu.txt:190
 msgid "highway"
 msgstr "道路"
 
@@ -596,7 +596,7 @@ msgstr "道路"
 msgid "highway crossing"
 msgstr "道路路口"
 
-#: ../tools/database/item_menu.txt:37 ../tools/database/item_menu.txt:162
+#: ../tools/database/item_menu.txt:37 ../tools/database/item_menu.txt:166
 msgid "pharmacy"
 msgstr "藥局"
 
@@ -612,7 +612,7 @@ msgstr "不良的來源標籤"
 msgid "tagwatch cleaner"
 msgstr "tagwatch 清理器"
 
-#: ../tools/database/item_menu.txt:46 ../tools/database/item_menu.txt:187
+#: ../tools/database/item_menu.txt:46 ../tools/database/item_menu.txt:197
 msgid "wikipedia"
 msgstr "維基百科"
 
@@ -688,271 +688,271 @@ msgstr "關聯 type=restriction"
 msgid "postcode"
 msgstr "郵遞區號"
 
-#: ../tools/database/item_menu.txt:72
+#: ../tools/database/item_menu.txt:73
 msgid "disused"
 msgstr "disused"
 
-#: ../tools/database/item_menu.txt:73
+#: ../tools/database/item_menu.txt:74
 msgid "on junction=roundabout"
 msgstr "在 junction=roundabout"
 
-#: ../tools/database/item_menu.txt:74
+#: ../tools/database/item_menu.txt:75
 msgid "incompatible tags"
 msgstr "彼此不相容的標籤"
 
-#: ../tools/database/item_menu.txt:75
+#: ../tools/database/item_menu.txt:76
 msgid "ref in name"
 msgstr "ref 在名稱裡"
 
-#: ../tools/database/item_menu.txt:78
+#: ../tools/database/item_menu.txt:79
 msgid "construction"
 msgstr "施工中"
 
-#: ../tools/database/item_menu.txt:79
+#: ../tools/database/item_menu.txt:80
 msgid "duplicate object"
 msgstr "重覆的物件"
 
-#: ../tools/database/item_menu.txt:80
+#: ../tools/database/item_menu.txt:81
 msgid "unwanted tag on node"
 msgstr "節點上不需要的標籤"
 
-#: ../tools/database/item_menu.txt:81
+#: ../tools/database/item_menu.txt:82
 msgid "bad usage"
 msgstr "不良的用法"
 
-#: ../tools/database/item_menu.txt:85
+#: ../tools/database/item_menu.txt:86
 msgid "orthograph"
 msgstr "拼寫問題"
 
-#: ../tools/database/item_menu.txt:86
+#: ../tools/database/item_menu.txt:87
 msgid "way type"
 msgstr "路徑類型"
 
-#: ../tools/database/item_menu.txt:87
+#: ../tools/database/item_menu.txt:88
 msgid "two names"
 msgstr "兩個名字"
 
-#: ../tools/database/item_menu.txt:88
+#: ../tools/database/item_menu.txt:89
 msgid "toponymy"
 msgstr "地名"
 
-#: ../tools/database/item_menu.txt:89
+#: ../tools/database/item_menu.txt:90
 msgid "test soundex"
 msgstr "測試同音"
 
-#: ../tools/database/item_menu.txt:93
+#: ../tools/database/item_menu.txt:94
 msgid "open polygon"
 msgstr "開放的多邊形"
 
-#: ../tools/database/item_menu.txt:94
+#: ../tools/database/item_menu.txt:95
 msgid "duplicated way"
 msgstr "重覆路徑"
 
-#: ../tools/database/item_menu.txt:95
+#: ../tools/database/item_menu.txt:96
 msgid "place without name"
 msgstr "沒有名字的 place"
 
-#: ../tools/database/item_menu.txt:96
+#: ../tools/database/item_menu.txt:97
 msgid "INSEE code"
 msgstr "INSEE 編號"
 
-#: ../tools/database/item_menu.txt:97
+#: ../tools/database/item_menu.txt:98
 msgid "admin_level"
 msgstr "行政區級別"
 
-#: ../tools/database/item_menu.txt:98
+#: ../tools/database/item_menu.txt:99
 msgid "erroneous boundary"
 msgstr "錯誤的邊界"
 
-#: ../tools/database/item_menu.txt:99
+#: ../tools/database/item_menu.txt:100
 msgid "out of boundary"
 msgstr "超出邊界"
 
-#: ../tools/database/item_menu.txt:100
+#: ../tools/database/item_menu.txt:101
 msgid "geodesic building"
 msgstr "測地建築"
 
-#: ../tools/database/item_menu.txt:101
+#: ../tools/database/item_menu.txt:102
 msgid "building shape"
 msgstr "建物的形狀"
 
-#: ../tools/database/item_menu.txt:102
+#: ../tools/database/item_menu.txt:103
 msgid "bridge to tag"
 msgstr "橋梁標記"
 
-#: ../tools/database/item_menu.txt:103
+#: ../tools/database/item_menu.txt:104
 msgid "admin boundary"
 msgstr "行政區界"
 
-#: ../tools/database/item_menu.txt:104
+#: ../tools/database/item_menu.txt:105
 msgid "power lines"
 msgstr "輸電電線"
 
-#: ../tools/database/item_menu.txt:105 ../tools/database/item_menu.txt:123
+#: ../tools/database/item_menu.txt:106 ../tools/database/item_menu.txt:127
 msgid "post office"
 msgstr "郵局"
 
-#: ../tools/database/item_menu.txt:107
+#: ../tools/database/item_menu.txt:108
 msgid "ODbL migration change"
 msgstr "ODbL 授權轉換修改"
 
-#: ../tools/database/item_menu.txt:108
+#: ../tools/database/item_menu.txt:109
 msgid "school, not integrated"
 msgstr "學校，未整合"
 
-#: ../tools/database/item_menu.txt:109
+#: ../tools/database/item_menu.txt:110
 msgid "monument"
 msgstr "紀念建物"
 
-#: ../tools/database/item_menu.txt:110
+#: ../tools/database/item_menu.txt:111
 msgid "node on ways"
 msgstr "路徑上的節點"
 
-#: ../tools/database/item_menu.txt:111 ../tools/database/item_menu.txt:134
+#: ../tools/database/item_menu.txt:112 ../tools/database/item_menu.txt:138
 msgid "train station"
 msgstr "車站"
 
-#: ../tools/database/item_menu.txt:112
+#: ../tools/database/item_menu.txt:113
 msgid "TMC"
 msgstr "TMC"
 
-#: ../tools/database/item_menu.txt:113
+#: ../tools/database/item_menu.txt:114
 msgid "relation type=boundary"
 msgstr "邊界類型關聯"
 
-#: ../tools/database/item_menu.txt:114
+#: ../tools/database/item_menu.txt:115
 msgid "tunnel/bridge"
 msgstr "隧道/橋梁"
 
-#: ../tools/database/item_menu.txt:120
+#: ../tools/database/item_menu.txt:124
 msgid "monument, museum"
 msgstr "紀念館/博物館"
 
-#: ../tools/database/item_menu.txt:121
+#: ../tools/database/item_menu.txt:125
 msgid "monument, museum, could be integrated"
 msgstr "紀念館、博物館應當整合"
 
-#: ../tools/database/item_menu.txt:124
+#: ../tools/database/item_menu.txt:128
 msgid "post office, could be integrated"
 msgstr "郵局，應當整合"
 
-#: ../tools/database/item_menu.txt:128
+#: ../tools/database/item_menu.txt:132
 msgid "school"
 msgstr "學校"
 
-#: ../tools/database/item_menu.txt:129
+#: ../tools/database/item_menu.txt:133
 msgid "school, could be integrated"
 msgstr "學校，應當整合"
 
-#: ../tools/database/item_menu.txt:27 ../tools/database/item_menu.txt:131
-#: ../tools/database/item_menu.txt:188
+#: ../tools/database/item_menu.txt:27 ../tools/database/item_menu.txt:135
+#: ../tools/database/item_menu.txt:198
 msgid "public transport"
 msgstr "大眾運輸"
 
-#: ../tools/database/item_menu.txt:132
+#: ../tools/database/item_menu.txt:136
 msgid "public transport, could be integrated"
 msgstr "大眾運輸，應當整合"
 
-#: ../tools/database/item_menu.txt:135
+#: ../tools/database/item_menu.txt:139
 msgid "train station, could be integrated"
 msgstr "火車站，應當整合"
 
-#: ../tools/database/item_menu.txt:136
+#: ../tools/database/item_menu.txt:140
 msgid "level crossing"
 msgstr "平交道"
 
-#: ../tools/database/item_menu.txt:137
+#: ../tools/database/item_menu.txt:141
 msgid "geodesic point"
 msgstr "測繪點"
 
-#: ../tools/database/item_menu.txt:138
+#: ../tools/database/item_menu.txt:142
 msgid "postal address"
 msgstr "地址"
 
-#: ../tools/database/item_menu.txt:139
+#: ../tools/database/item_menu.txt:143
 msgid "wikipedia, could be integrated"
 msgstr "維基百科，應當整合"
 
-#: ../tools/database/item_menu.txt:140
+#: ../tools/database/item_menu.txt:144
 msgid "public service"
 msgstr "公共服務"
 
-#: ../tools/database/item_menu.txt:141
+#: ../tools/database/item_menu.txt:145
 msgid "recycling"
 msgstr "回收"
 
-#: ../tools/database/item_menu.txt:142
+#: ../tools/database/item_menu.txt:146
 msgid "recycling, could be integrated"
 msgstr "回收，應當整合"
 
-#: ../tools/database/item_menu.txt:144
+#: ../tools/database/item_menu.txt:148
 msgid "parking"
 msgstr "停車"
 
-#: ../tools/database/item_menu.txt:145
+#: ../tools/database/item_menu.txt:149
 msgid "parking, could be integrated"
 msgstr "停車，應當整合"
 
-#: ../tools/database/item_menu.txt:147
+#: ../tools/database/item_menu.txt:151
 msgid "accommodation"
 msgstr "住宿"
 
-#: ../tools/database/item_menu.txt:148
+#: ../tools/database/item_menu.txt:152
 msgid "accommodation, could be integrated"
 msgstr "住宿，應當整合"
 
-#: ../tools/database/item_menu.txt:149
+#: ../tools/database/item_menu.txt:153
 msgid "cycle parking"
 msgstr "腳踏車停放"
 
-#: ../tools/database/item_menu.txt:150
+#: ../tools/database/item_menu.txt:154
 msgid "cycle parking, could be integrated"
 msgstr "腳踏車停放，應當整合"
 
-#: ../tools/database/item_menu.txt:151
+#: ../tools/database/item_menu.txt:155
 msgid "transport sharing"
 msgstr "共享大眾運輸"
 
-#: ../tools/database/item_menu.txt:152
+#: ../tools/database/item_menu.txt:156
 msgid "transport sharing, could be integrated"
 msgstr "共享大眾運輸，應當整合"
 
-#: ../tools/database/item_menu.txt:154
+#: ../tools/database/item_menu.txt:158
 msgid "sport"
 msgstr "運動"
 
-#: ../tools/database/item_menu.txt:155
+#: ../tools/database/item_menu.txt:159
 msgid "sport, could be integrated"
 msgstr "運動，應當整合"
 
-#: tmp.tpl:191
+#: tmp.tpl:192
 msgid "Translation progress: osmose"
 msgstr "翻譯進度： osmose"
 
-#: tmp.tpl:195
+#: tmp.tpl:196
 msgid "For new language or countries"
 msgstr "新增語言或國家"
 
-#: tmp.tpl:186
+#: tmp.tpl:187
 #, python-format
 msgid "The <a href='%s'>country coverage is available</a>."
 msgstr "<a href='%s'>目前已含蓋的國家</a>。"
 
-#: tmp.tpl:196
+#: tmp.tpl:197
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
 msgstr "你可以直接在 <a href='%s'>Transifex</a> 上新增一個語言。"
 
-#: tmp.tpl:190
+#: tmp.tpl:191
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr "翻譯是透過 <a href='%s'>Transifex</a> 所完成。"
 
-#: tmp.tpl:145
+#: tmp.tpl:146
 msgid "Export"
 msgstr "匯出"
 
-#: tmp.tpl:146
+#: tmp.tpl:147
 msgid "Html list"
 msgstr "HTML 列表"
 
@@ -960,31 +960,31 @@ msgstr "HTML 列表"
 msgid "one-node way"
 msgstr "只有一個節點的路徑"
 
-#: ../tools/database/item_menu.txt:156
+#: ../tools/database/item_menu.txt:160
 msgid "toilets"
 msgstr "廁所"
 
-#: ../tools/database/item_menu.txt:115
+#: ../tools/database/item_menu.txt:116
 msgid "transport sharing, not integrated"
 msgstr "共享大眾運輸，未整合"
 
-#: ../tools/database/item_menu.txt:157
+#: ../tools/database/item_menu.txt:161
 msgid "police"
 msgstr "警察局"
 
-#: ../tools/database/item_menu.txt:158
+#: ../tools/database/item_menu.txt:162
 msgid "police, could be integrated"
 msgstr "警察局，應當整合"
 
-#: ../tools/database/item_menu.txt:116
+#: ../tools/database/item_menu.txt:117
 msgid "pharmacy, not integrated "
 msgstr "藥局，未整合"
 
-#: ../tools/database/item_menu.txt:163
+#: ../tools/database/item_menu.txt:167
 msgid "pharmacy, could be integrated"
 msgstr "藥局，應當整合"
 
-#: ../tools/database/item_menu.txt:159
+#: ../tools/database/item_menu.txt:163
 msgid "gas station"
 msgstr "加油站"
 
@@ -992,15 +992,15 @@ msgstr "加油站"
 msgid "position"
 msgstr "位置"
 
-#: tmp.tpl:155
+#: tmp.tpl:156
 msgid "You must be logged in order to use the tag editor"
 msgstr "你必須登入才能使用標籤編輯器"
 
-#: tmp.tpl:156
+#: tmp.tpl:157
 msgid "Save changeset"
 msgstr "儲存變更集"
 
-#: tmp.tpl:159
+#: tmp.tpl:160
 msgid "Comment"
 msgstr "留言"
 
@@ -1018,7 +1018,7 @@ msgid ""
 "href='https://twitter.com/osmose_qa'>@osmose_qa</a> on twitter."
 msgstr "透過看 twitter  <a href='https://twitter.com/osmose_qa'>@osmose_qa</a>保持聯繫。"
 
-#: ../tools/database/item_menu.txt:82
+#: ../tools/database/item_menu.txt:83
 msgid "incorrect layer"
 msgstr "圖層有誤"
 
@@ -1034,19 +1034,19 @@ msgstr "國家"
 msgid "analyser"
 msgstr "分析器"
 
-#: ../tools/database/item_menu.txt:164
+#: ../tools/database/item_menu.txt:168
 msgid "postal code, could be integrated"
 msgstr "郵遞區域，應當整合"
 
-#: ../tools/database/item_menu.txt:165
+#: ../tools/database/item_menu.txt:169
 msgid "library"
 msgstr "圖書館"
 
-#: ../tools/database/item_menu.txt:166
+#: ../tools/database/item_menu.txt:170
 msgid "restaurant"
 msgstr "餐廳"
 
-#: ../tools/database/item_menu.txt:167
+#: ../tools/database/item_menu.txt:171
 msgid "winery"
 msgstr "酒廠"
 
@@ -1054,11 +1054,11 @@ msgstr "酒廠"
 msgid "missing object kind"
 msgstr "缺失物件"
 
-#: ../tools/database/item_menu.txt:117
+#: ../tools/database/item_menu.txt:118
 msgid "postal code, not integrated "
 msgstr "郵遞區號，未整合"
 
-#: ../tools/database/item_menu.txt:90
+#: ../tools/database/item_menu.txt:91
 msgid "local language"
 msgstr "當地語言"
 
@@ -1074,7 +1074,7 @@ msgid "Fixed issues"
 msgstr "已修正問題"
 
 #. TRANSLATORS: link to help in appropriate language
-#: ../map.py:143
+#: ../map.py:85
 msgid "Issues by user"
 msgstr "使用者回報問題"
 
@@ -1150,7 +1150,7 @@ msgstr "問題地圖"
 msgid "Information on issues database"
 msgstr "問題資料庫資訊"
 
-#: tmp.tpl:194
+#: tmp.tpl:195
 msgid "Documentation on reported issues"
 msgstr "回報問題的說明文件"
 
@@ -1158,15 +1158,15 @@ msgstr "回報問題的說明文件"
 msgid "version"
 msgstr "版本"
 
-#: ../tools/database/item_menu.txt:168
+#: ../tools/database/item_menu.txt:172
 msgid "geodesic"
 msgstr "測地線"
 
-#: ../tools/database/item_menu.txt:106 ../tools/database/item_menu.txt:126
+#: ../tools/database/item_menu.txt:107 ../tools/database/item_menu.txt:130
 msgid "post box"
 msgstr "郵筒"
 
-#: ../tools/database/item_menu.txt:127
+#: ../tools/database/item_menu.txt:131
 msgid "post box, could be integrated"
 msgstr "郵筒，應當整合"
 
@@ -1174,11 +1174,11 @@ msgstr "郵筒，應當整合"
 msgid "indoor"
 msgstr "室內"
 
-#: ../tools/database/item_menu.txt:83
+#: ../tools/database/item_menu.txt:84
 msgid "roundabout as area"
 msgstr "迴轉處作為區域"
 
-#: ../tools/database/item_menu.txt:118
+#: ../tools/database/item_menu.txt:119
 msgid "road"
 msgstr "道路"
 
@@ -1191,7 +1191,7 @@ msgstr "分割的建築"
 msgid "Control, verification and correction of %s issues"
 msgstr "控制、驗證和修正問題 %s"
 
-#: tmp.tpl:193
+#: tmp.tpl:194
 msgid "Osmose QA main page"
 msgstr "Osmose QA 主頁"
 
@@ -1204,7 +1204,7 @@ msgid ""
 "analyses."
 msgstr "應當在<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frnotend</a>回報網站問題臭蟲，或是在<a href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a>回報 OSM 資料問題，或是給予分析器的建議。"
 
-#: tmp.tpl:199
+#: tmp.tpl:200
 msgid ""
 "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
 "frontend</a> can be used to report any issue with translations."
@@ -1214,7 +1214,7 @@ msgstr "有任何翻譯的問題可以回報到 <a href='https://github.com/osm-
 msgid "far from water"
 msgstr "離水體很遠"
 
-#: ../tools/database/item_menu.txt:76
+#: ../tools/database/item_menu.txt:77
 msgid "fixme import"
 msgstr "修復我匯入"
 
@@ -1226,31 +1226,31 @@ msgstr "物件交叉"
 msgid "access"
 msgstr "可及性"
 
-#: ../tools/database/item_menu.txt:77
+#: ../tools/database/item_menu.txt:78
 msgid "fixme review"
 msgstr "修復我覆核"
 
-#: ../tools/database/item_menu.txt:122
+#: ../tools/database/item_menu.txt:126
 msgid "monument, museum, need update"
 msgstr "紀念館、博物館，應當更新"
 
-#: ../tools/database/item_menu.txt:130
+#: ../tools/database/item_menu.txt:134
 msgid "school, need update"
 msgstr "學校，應當更新"
 
-#: ../tools/database/item_menu.txt:133
+#: ../tools/database/item_menu.txt:137
 msgid "public transport, need update"
 msgstr "大眾運輸，應當更新"
 
-#: ../tools/database/item_menu.txt:143
+#: ../tools/database/item_menu.txt:147
 msgid "recycling, need update"
 msgstr "回收，應當更新"
 
-#: ../tools/database/item_menu.txt:146
+#: ../tools/database/item_menu.txt:150
 msgid "parking, need update"
 msgstr "停車，應當更新"
 
-#: ../tools/database/item_menu.txt:153
+#: ../tools/database/item_menu.txt:157
 msgid "transport sharing, need update"
 msgstr "共享大眾運輸，應當更新"
 
@@ -1270,7 +1270,7 @@ msgstr "年齡"
 msgid "Version"
 msgstr "版本"
 
-#: ../tools/database/item_menu.txt:125
+#: ../tools/database/item_menu.txt:129
 msgid "post office, need update"
 msgstr "郵局，應當更新"
 
@@ -1278,27 +1278,27 @@ msgstr "郵局，應當更新"
 msgid "age"
 msgstr "年齡"
 
-#: ../tools/database/item_menu.txt:91
+#: ../tools/database/item_menu.txt:92
 msgid "invalid character"
 msgstr "無效字元"
 
-#: ../tools/database/item_menu.txt:161
+#: ../tools/database/item_menu.txt:165
 msgid "gas station, could be integrated"
 msgstr "加油站，應當整合"
 
-#: ../tools/database/item_menu.txt:119 ../tools/database/item_menu.txt:169
+#: ../tools/database/item_menu.txt:120 ../tools/database/item_menu.txt:173
 msgid "power substation"
 msgstr "變電所"
 
-#: ../tools/database/item_menu.txt:170
+#: ../tools/database/item_menu.txt:174
 msgid "power substation, could be integrated"
 msgstr "變電所，應當整合"
 
-#: ../tools/database/item_menu.txt:171
+#: ../tools/database/item_menu.txt:175
 msgid "power support"
 msgstr "電力支援"
 
-#: ../tools/database/item_menu.txt:172
+#: ../tools/database/item_menu.txt:176
 msgid "power support, could be integrated"
 msgstr "電力支援，應當整合"
 
@@ -1314,7 +1314,7 @@ msgstr "大眾運輸路線"
 msgid "recycling container"
 msgstr "回收箱"
 
-#: ../tools/database/item_menu.txt:84
+#: ../tools/database/item_menu.txt:85
 msgid "duplicate wikipedia"
 msgstr "重覆的維基百科"
 
@@ -1322,11 +1322,11 @@ msgstr "重覆的維基百科"
 msgid "route access mismatch"
 msgstr "路徑通行錯置"
 
-#: ../tools/database/item_menu.txt:92
+#: ../tools/database/item_menu.txt:93
 msgid "similar name"
 msgstr "相似名稱"
 
-#: ../tools/database/item_menu.txt:160
+#: ../tools/database/item_menu.txt:164
 msgid "gas station, need update"
 msgstr "需要更新的加油站"
 
@@ -1334,11 +1334,11 @@ msgstr "需要更新的加油站"
 msgid "phone number"
 msgstr "電話號碼"
 
-#: ../tools/database/item_menu.txt:173
+#: ../tools/database/item_menu.txt:177
 msgid "traffic signs"
 msgstr "交通標誌"
 
-#: ../tools/database/item_menu.txt:174
+#: ../tools/database/item_menu.txt:178
 msgid "traffic sign limitation"
 msgstr "交通標誌限制"
 
@@ -1369,12 +1369,12 @@ msgid ""
 "href='mailto:{email}'>{email}</a>."
 msgstr "通過電子郵件<a href='mailto:{email}'>{email}</a>可以和我們取得聯繫。"
 
-#: tmp.tpl:149 tmp.tpl:150 tmp.tpl:151
+#: tmp.tpl:150 tmp.tpl:151 tmp.tpl:152
 #, python-brace-format
 msgid "Level {level} issues ({count})"
 msgstr "等級{level}問題({count})"
 
-#: tmp.tpl:197
+#: tmp.tpl:198
 #, python-brace-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
@@ -1385,47 +1385,47 @@ msgstr "對於新增語言或某些國家及地區使用的語言版本，請直
 msgid "JOSM validator"
 msgstr "JOSM驗證器"
 
-#: ../tools/database/item_menu.txt:175
+#: ../tools/database/item_menu.txt:185
 msgid "seamark"
 msgstr "海標"
 
-#: ../tools/database/item_menu.txt:176
+#: ../tools/database/item_menu.txt:186
 msgid "addresses"
 msgstr "地址"
 
-#: ../tools/database/item_menu.txt:177
+#: ../tools/database/item_menu.txt:187
 msgid "combinations"
 msgstr "組合"
 
-#: ../tools/database/item_menu.txt:178
+#: ../tools/database/item_menu.txt:188
 msgid "deprecated"
 msgstr "棄用"
 
-#: ../tools/database/item_menu.txt:179
+#: ../tools/database/item_menu.txt:189
 msgid "geometry"
 msgstr "幾何"
 
-#: ../tools/database/item_menu.txt:181
+#: ../tools/database/item_menu.txt:191
 msgid "multiple"
 msgstr "多種"
 
-#: ../tools/database/item_menu.txt:182
+#: ../tools/database/item_menu.txt:192
 msgid "numeric"
 msgstr "數字"
 
-#: ../tools/database/item_menu.txt:183
+#: ../tools/database/item_menu.txt:193
 msgid "relation"
 msgstr "關係"
 
-#: ../tools/database/item_menu.txt:184
+#: ../tools/database/item_menu.txt:194
 msgid "religion"
 msgstr "宗教"
 
-#: ../tools/database/item_menu.txt:185
+#: ../tools/database/item_menu.txt:195
 msgid "territories"
 msgstr "領土"
 
-#: ../tools/database/item_menu.txt:186
+#: ../tools/database/item_menu.txt:196
 msgid "unnecessary"
 msgstr "多餘"
 
@@ -1451,67 +1451,67 @@ msgstr "標記問題 #%d 為誤判"
 msgid "Mark issue #%d as fixed"
 msgstr "標記問題 #%d 為已修正"
 
-#: tmp.tpl:157
+#: tmp.tpl:158
 msgid "Objects edited"
 msgstr "編輯物件數"
 
-#: tmp.tpl:158
+#: tmp.tpl:159
 msgid "Objects deleted"
 msgstr "刪除物件數"
 
-#: tmp.tpl:166
+#: tmp.tpl:167
 #, python-brace-format
 msgid "Show Object on {where}"
 msgstr ""
 
-#: tmp.tpl:167 tmp.tpl:168 tmp.tpl:169 tmp.tpl:170
+#: tmp.tpl:168 tmp.tpl:169 tmp.tpl:170 tmp.tpl:171
 #, python-brace-format
 msgid "Edit Object with {where}"
 msgstr ""
 
-#: tmp.tpl:170 tmp.tpl:172
+#: tmp.tpl:171 tmp.tpl:173
 msgid "online Osmose Editor"
 msgstr ""
 
-#: tmp.tpl:171 tmp.tpl:172
+#: tmp.tpl:172 tmp.tpl:173
 #, python-brace-format
 msgid "Load the fix in {where}"
 msgstr ""
 
-#: tmp.tpl:173
+#: tmp.tpl:174
 #, python-brace-format
 msgid "Add the new object in {where}"
 msgstr ""
 
-#: tmp.tpl:174
+#: tmp.tpl:175
 #, python-brace-format
 msgid "Show the area on {where}"
 msgstr ""
 
-#: tmp.tpl:175 tmp.tpl:176
+#: tmp.tpl:176 tmp.tpl:177
 #, python-brace-format
 msgid "Edit the area on {where}"
 msgstr ""
 
-#: tmp.tpl:177
+#: tmp.tpl:178
 msgid "details"
 msgstr "詳細"
 
-#: tmp.tpl:178
+#: tmp.tpl:179
 msgid "Issue reported on:"
 msgstr "問題發現日期："
 
-#: tmp.tpl:179
+#: tmp.tpl:180
 msgid "Help on OSM Wiki"
 msgstr "於 OSM Wiki 取得幫助"
 
-#: tmp.tpl:180 tmp.tpl:181
+#: tmp.tpl:181 tmp.tpl:182
 msgid ""
 "Report the issue as improper, if according to you is not an issue. The issue"
 " will not be displayed to anyone more."
 msgstr "若你認為此問題無不適切之處，請回報此問題為不適當。 此問題將不再顯示予任何人。"
 
-#: tmp.tpl:182
+#: tmp.tpl:183
 msgid ""
 "After issue fixed on the OSM data, mark it as done. May also disappear "
 "automatically on next check if no more issue."
@@ -1521,6 +1521,39 @@ msgstr "在修復OSM資料數據問題後，請將其標記為已完成。如果
 msgid "zone:maxspeed"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:189
+#: ../tools/database/item_menu.txt:199
 msgid "power transformer"
+msgstr ""
+
+#: tmp.tpl:144
+#, python-format
+msgid "Item #%s"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:72
+msgid "opening hours"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:121 ../tools/database/item_menu.txt:179
+msgid "hospital"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:122 ../tools/database/item_menu.txt:181
+msgid "social facility"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:123 ../tools/database/item_menu.txt:183
+msgid "medical lab"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:180
+msgid "hospital, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:182
+msgid "social facility, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:184
+msgid "medical lab, could be integrated"
 msgstr ""
