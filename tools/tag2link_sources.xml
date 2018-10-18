@@ -176,7 +176,7 @@
     <src name="FINESS" country-code="FR">
         <rule>
             <condition k="ref:(FR:)?FINESS" v="[A-Z0-9-]{8,9}" />
-            <link name="View %name% sheet of hospital/home" href="http://finess.sante.gouv.fr/finess/jsp/actionDetailEtablissement.do?noFiness=%v%" />
+            <link name="View %name% sheet of hospital/home" href="http://finess.sante.gouv.fr/fininter/jsp/actionDetailEtablissement.do?noFiness=%v%" />
         </rule>
     </src>
 

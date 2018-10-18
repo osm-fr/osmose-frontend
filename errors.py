@@ -136,6 +136,7 @@ def index(db, lang, format=None):
     params = query._params()
     params.status = {"error":"open", "false-positive": "false", "done":"done"}[gen]
     params.limit = None
+    params.fixable = None
 
     if format == None and params.item:
         errors_groups = query._count(db, params, [

@@ -69,6 +69,7 @@
  3220 | _("access")
  3230 | _("recycling container")
  3240 | _("route access mismatch")
+ 3250 | _("opening hours")
  4010 | _("disused")
  4020 | _("on junction=roundabout")
  4030 | _("incompatible tags")
