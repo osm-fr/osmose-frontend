@@ -71,7 +71,7 @@
 %it = set()
 %for categ in categories:
     <div class="test_group" id="categ{{categ["categ"]}}">
-    <h1><a href="#" class="toggleCateg">{{translate.select(categ["title"])}}</a>
+    <h1><i class="toggleCategIco"></i><a href="#" class="toggleCateg">{{translate.select(categ["title"])}}</a>
     <span class="count">-/-</span>
     <a href="#" class="toggleAllItem" data-view="all">{{_("all")}}</a>
     <a href="#" class="toggleAllItem" data-view="nothing">{{_("nothing")}}</a></h1>

@@ -1,3 +1,7 @@
+body {
+  text-align: inherit;
+}
+
 th {
   text-align: center;
 }

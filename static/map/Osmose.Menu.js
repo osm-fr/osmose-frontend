@@ -89,10 +89,10 @@ export const OsmoseMenu = L.Control.Sidebar.extend({
     const ul = $('ul', $(id).closest('.test_group'));
     if (ul.is(':visible')) {
       ul.slideUp(200);
-      $(id).addClass('folded');
+      $(id).parent().addClass('folded');
     } else {
       ul.slideDown(200);
-      $(id).removeClass('folded');
+      $(id).parent().removeClass('folded');
     }
   },
 
