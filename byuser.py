@@ -44,7 +44,7 @@ def user(db, lang, username=None, format=None):
     username = ",".join(params.users)
 
     if not params.users:
-        return template('byuser/index')
+        return template('byuser/index', translate=utils.translator(lang))
 
     errors = query._gets(db, params)
     count = len(errors)
@@ -103,8 +103,8 @@ def _users(db):
 
 
 @route('/byuser-stats')
-def byuser_stats(db):
-    return template('byuser/byuser-stats', results=_users(db))
+def byuser_stats(db, lang):
+    return template('byuser/byuser-stats', translate=utils.translator(lang), results=_users(db))
 
 
 @route('/api/0.2/users')

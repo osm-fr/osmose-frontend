@@ -56,7 +56,7 @@ ORDER BY
             liste.append((country, analyser, 1e10, _("never generated"), source))
     liste.sort(lambda x, y: -cmp(x[2], y[2]))
 
-    return template('control/updates', liste=liste)
+    return template('control/updates', translate=utils.translator(lang), liste=liste)
 
 
 @route('/control/update_matrix')
@@ -117,7 +117,7 @@ ORDER BY
         stats_country[country][1] = stats_country[country][1]/stats_country[country][3]
     keys = sorted(keys.keys())
 
-    return template('control/updates_matrix', keys=keys, matrix=matrix, stats_analyser=stats_analyser, stats_country=stats_country)
+    return template('control/updates_matrix', translate=utils.translator(lang), keys=keys, matrix=matrix, stats_analyser=stats_analyser, stats_country=stats_country)
 
 
 @route('/control/update_summary')
@@ -165,7 +165,7 @@ ORDER BY
         if min_versions[remote] and '-' in min_versions[remote]:
           min_versions[remote] = '-'.join(min_versions[remote].split('-')[1:5])
 
-    return template('control/updates_summary', summary=summary, max_versions=max_versions, min_versions=min_versions, remote_hashes=remote_hashes)
+    return template('control/updates_summary', translate=utils.translator(lang), summary=summary, max_versions=max_versions, min_versions=min_versions, remote_hashes=remote_hashes)
 
 
 @route('/control/update_summary_by_analyser')
@@ -200,14 +200,14 @@ ORDER BY
 
     max_versions = '-'.join((max_versions or '').split('-')[1:5])
 
-    return template('control/updates_summary_by_analyser', summary=summary, max_versions=max_versions)
+    return template('control/updates_summary_by_analyser', translate=utils.translator(lang), summary=summary, max_versions=max_versions)
 
 
 @route('/control/update/<source:int>')
 def update(db, lang, source=None):
     sql = "SELECT source,timestamp,remote_url,remote_ip,version FROM dynpoi_update WHERE source=%d ORDER BY timestamp DESC;" % source
     db.execute(sql)
-    return template('control/update', liste=db.fetchall())
+    return template('control/update', translate=utils.translator(lang), liste=db.fetchall())
 
 
 @route('/control/i18n')

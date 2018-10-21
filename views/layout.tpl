@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<html lang="{{translate.languages[0]}}" dir="{{translate.direction}}">
 <head>
   <title>Osmose - {{title or ''}}</title>
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
