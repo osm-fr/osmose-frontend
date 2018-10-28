@@ -24,23 +24,19 @@ psql -d $DATABASE -c "UPDATE dynpoi_item SET levels = (SELECT array_agg(level)
                    ) AS a
              );"
 
-psql -d $DATABASE -c "UPDATE dynpoi_item SET number = (SELECT array_agg(n)
-              FROM (SELECT count(*) AS n
-                    FROM marker
-                      JOIN dynpoi_class ON
-                        dynpoi_class.source = marker.source AND
-                        dynpoi_class.class = marker.class
-                      JOIN class ON
-                        class.item = dynpoi_class.item AND
-                        class.class = dynpoi_class.class
-                    WHERE
-                      dynpoi_class.item = dynpoi_item.item
-                    GROUP BY
-                      level
-                    ORDER BY
-                      level
-                   ) AS a
-             );"
+psql -d $DATABASE -c "
+UPDATE dynpoi_item SET number = (
+  SELECT array_agg(n)
+  FROM (
+    SELECT sum(CASE WHEN marker.item IS NOT NULL THEN 1 ELSE 0 END) AS n
+    FROM class
+      LEFT JOIN marker ON marker.item = dynpoi_item.item
+    WHERE class.item = dynpoi_item.item
+    GROUP BY level
+    ORDER BY level
+  ) AS a
+);
+"
 
 psql -d $DATABASE -c "UPDATE dynpoi_item SET tags = (SELECT array_agg(tag)
               FROM (
