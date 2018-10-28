@@ -12,17 +12,18 @@ psql -d $DATABASE -c "DELETE FROM dynpoi_status WHERE date < now()-interval '7 d
 
 psql -d $DATABASE -c "INSERT INTO dynpoi_stats (SELECT dynpoi_class.source, dynpoi_class.class, now(), count(marker.source) FROM dynpoi_class LEFT JOIN marker ON dynpoi_class.source=marker.source AND dynpoi_class.class=marker.class GROUP BY dynpoi_class.source, dynpoi_class.class);"
 
-psql -d $DATABASE -c "UPDATE dynpoi_item SET levels = (SELECT array_agg(level)
-              FROM (SELECT level
-                    FROM dynpoi_class
-                      JOIN class ON
-                        class.item = dynpoi_class.item AND
-                        class.class = dynpoi_class.class
-                    WHERE dynpoi_class.item = dynpoi_item.item
-                    GROUP BY level
-                    ORDER BY level
-                   ) AS a
-             );"
+psql -d $DATABASE -c "
+UPDATE dynpoi_item SET levels = (
+  SELECT array_agg(level)
+  FROM (
+    SELECT level
+    FROM class
+    WHERE item = dynpoi_item.item
+    GROUP BY level
+    ORDER BY level
+  ) AS a
+);
+"
 
 psql -d $DATABASE -c "
 UPDATE dynpoi_item SET number = (
@@ -38,25 +39,22 @@ UPDATE dynpoi_item SET number = (
 );
 "
 
-psql -d $DATABASE -c "UPDATE dynpoi_item SET tags = (SELECT array_agg(tag)
-              FROM (
-                SELECT
-                    tag
-                FROM (
-                  SELECT unnest(tags) AS tag, dynpoi_class.item
-                  FROM
-                    dynpoi_class
-                    JOIN class ON
-                      class.item = dynpoi_class.item AND
-                      class.class = dynpoi_class.class
-                  WHERE
-                    dynpoi_class.item = dynpoi_item.item) AS dynpoi_class
-                WHERE
-                    tag != ''
-                GROUP BY tag
-                ORDER BY tag
-             ) AS a
-             );"
+psql -d $DATABASE -c "
+UPDATE dynpoi_item SET tags = (
+  SELECT array_agg(tag)
+  FROM (
+    SELECT tag
+    FROM (
+      SELECT unnest(tags) AS tag
+      FROM class
+      WHERE item = dynpoi_item.item
+      ) AS a
+    WHERE tag != ''
+    GROUP BY tag
+    ORDER BY tag
+  ) AS a
+);
+"
 
 mkdir -p "$DIR_DUMP/tmp"
 mkdir -p "$DIR_DUMP/export"
