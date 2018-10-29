@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2018-10-18 20:20+0000\n"
+"PO-Revision-Date: 2018-10-29 19:46+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Danish (http://www.transifex.com/openstreetmap-france/osmose/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -587,7 +587,7 @@ msgstr ""
 msgid "street numbers"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:35 ../tools/database/item_menu.txt:190
+#: ../tools/database/item_menu.txt:35 ../tools/database/item_menu.txt:191
 msgid "highway"
 msgstr ""
 
@@ -595,7 +595,7 @@ msgstr ""
 msgid "highway crossing"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:37 ../tools/database/item_menu.txt:166
+#: ../tools/database/item_menu.txt:37 ../tools/database/item_menu.txt:167
 msgid "pharmacy"
 msgstr ""
 
@@ -611,7 +611,7 @@ msgstr "dårlig kilde tag"
 msgid "tagwatch cleaner"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:46 ../tools/database/item_menu.txt:197
+#: ../tools/database/item_menu.txt:46 ../tools/database/item_menu.txt:198
 msgid "wikipedia"
 msgstr "Wikipedia"
 
@@ -844,7 +844,7 @@ msgid "school, could be integrated"
 msgstr ""
 
 #: ../tools/database/item_menu.txt:27 ../tools/database/item_menu.txt:135
-#: ../tools/database/item_menu.txt:198
+#: ../tools/database/item_menu.txt:199
 msgid "public transport"
 msgstr ""
 
@@ -979,11 +979,11 @@ msgstr ""
 msgid "pharmacy, not integrated "
 msgstr ""
 
-#: ../tools/database/item_menu.txt:167
+#: ../tools/database/item_menu.txt:168
 msgid "pharmacy, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:163
+#: ../tools/database/item_menu.txt:164
 msgid "gas station"
 msgstr "tankstation"
 
@@ -1033,19 +1033,19 @@ msgstr "land"
 msgid "analyser"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:168
+#: ../tools/database/item_menu.txt:169
 msgid "postal code, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:169
+#: ../tools/database/item_menu.txt:170
 msgid "library"
 msgstr "bibliotek"
 
-#: ../tools/database/item_menu.txt:170
+#: ../tools/database/item_menu.txt:171
 msgid "restaurant"
 msgstr "restaurant"
 
-#: ../tools/database/item_menu.txt:171
+#: ../tools/database/item_menu.txt:172
 msgid "winery"
 msgstr "vingård"
 
@@ -1157,7 +1157,7 @@ msgstr ""
 msgid "version"
 msgstr "version"
 
-#: ../tools/database/item_menu.txt:172
+#: ../tools/database/item_menu.txt:173
 msgid "geodesic"
 msgstr ""
 
@@ -1281,23 +1281,23 @@ msgstr "alder"
 msgid "invalid character"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:165
+#: ../tools/database/item_menu.txt:166
 msgid "gas station, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:120 ../tools/database/item_menu.txt:173
+#: ../tools/database/item_menu.txt:120 ../tools/database/item_menu.txt:174
 msgid "power substation"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:174
+#: ../tools/database/item_menu.txt:175
 msgid "power substation, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:175
+#: ../tools/database/item_menu.txt:176
 msgid "power support"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:176
+#: ../tools/database/item_menu.txt:177
 msgid "power support, could be integrated"
 msgstr ""
 
@@ -1325,7 +1325,7 @@ msgstr ""
 msgid "similar name"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:164
+#: ../tools/database/item_menu.txt:165
 msgid "gas station, need update"
 msgstr ""
 
@@ -1333,11 +1333,11 @@ msgstr ""
 msgid "phone number"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:177
+#: ../tools/database/item_menu.txt:178
 msgid "traffic signs"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:178
+#: ../tools/database/item_menu.txt:179
 msgid "traffic sign limitation"
 msgstr ""
 
@@ -1384,47 +1384,47 @@ msgstr "For nye lande kan vi kontaktes via en direkte email til <a href='mailto:
 msgid "JOSM validator"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:185
+#: ../tools/database/item_menu.txt:186
 msgid "seamark"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:186
+#: ../tools/database/item_menu.txt:187
 msgid "addresses"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:187
+#: ../tools/database/item_menu.txt:188
 msgid "combinations"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:188
+#: ../tools/database/item_menu.txt:189
 msgid "deprecated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:189
+#: ../tools/database/item_menu.txt:190
 msgid "geometry"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:191
+#: ../tools/database/item_menu.txt:192
 msgid "multiple"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:192
+#: ../tools/database/item_menu.txt:193
 msgid "numeric"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:193
+#: ../tools/database/item_menu.txt:194
 msgid "relation"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:194
+#: ../tools/database/item_menu.txt:195
 msgid "religion"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:195
+#: ../tools/database/item_menu.txt:196
 msgid "territories"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:196
+#: ../tools/database/item_menu.txt:197
 msgid "unnecessary"
 msgstr ""
 
@@ -1520,7 +1520,7 @@ msgstr ""
 msgid "zone:maxspeed"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:199
+#: ../tools/database/item_menu.txt:200
 msgid "power transformer"
 msgstr ""
 
@@ -1533,26 +1533,30 @@ msgstr ""
 msgid "opening hours"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:121 ../tools/database/item_menu.txt:179
+#: ../tools/database/item_menu.txt:121 ../tools/database/item_menu.txt:180
 msgid "hospital"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:122 ../tools/database/item_menu.txt:181
+#: ../tools/database/item_menu.txt:122 ../tools/database/item_menu.txt:182
 msgid "social facility"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:123 ../tools/database/item_menu.txt:183
+#: ../tools/database/item_menu.txt:123 ../tools/database/item_menu.txt:184
 msgid "medical lab"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:180
+#: ../tools/database/item_menu.txt:181
 msgid "hospital, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:182
+#: ../tools/database/item_menu.txt:183
 msgid "social facility, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:184
+#: ../tools/database/item_menu.txt:185
 msgid "medical lab, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:163
+msgid "police, need update"
 msgstr ""
