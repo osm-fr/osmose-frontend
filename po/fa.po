@@ -4,18 +4,19 @@
 # 
 # Translators:
 # imni <iriman@chmail.ir>, 2018
+# imni <iriman@chmail.ir>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2018-10-18 20:20+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
-"Language-Team: Persian (Iran) (http://www.transifex.com/openstreetmap-france/osmose/language/fa_IR/)\n"
+"PO-Revision-Date: 2018-10-29 10:30+0000\n"
+"Last-Translator: imni <iriman@chmail.ir>\n"
+"Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fa_IR\n"
+"Language: fa\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. TRANSLATORS: days / hours / minutes since last source update, abbreviated
@@ -41,7 +42,7 @@ msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
 #: ../errors.py:121 tmp.tpl:70
 msgid "False positives"
-msgstr "کاذب مثبت"
+msgstr "مثبت‌های کاذب"
 
 #: ../errors.py:127 tmp.tpl:68
 msgid "Informations"
@@ -62,11 +63,11 @@ msgstr "تماس"
 
 #: ../map.py:92
 msgid "Help on wiki"
-msgstr "راهنمایی در ویکی"
+msgstr "راهنما در ویکی"
 
 #: ../map.py:92 tmp.tpl:118 tmp.tpl:194
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
-msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
+msgstr "http://wiki.openstreetmap.org/wiki/Fa:Osmose"
 
 #: ../map.py:93
 msgid "Copyright"
@@ -100,11 +101,11 @@ msgstr "نام کاربری"
 #: tmp.tpl:12
 #, python-format
 msgid "User statistics for %s"
-msgstr "آمار کاربر برای %s"
+msgstr "آمار کاربری %s"
 
 #: tmp.tpl:14
 msgid "This list is also available via rss."
-msgstr "لیست از طریق rss هم در دسترس است."
+msgstr "این لیست از طریق rss هم در دسترس است."
 
 #: tmp.tpl:18
 msgid "Statistics for user"
@@ -124,13 +125,13 @@ msgstr "پیگیری باگ‌ها"
 
 #: tmp.tpl:26
 msgid "Providing patches"
-msgstr "ارائهٔ وصله‌ها (patches)"
+msgstr "ارائهٔ وصله‌ها"
 
 #: tmp.tpl:27
 msgid ""
 "Patches can be provided via merge requests on Github. This is the preferred "
 "way of handling patches."
-msgstr "وصله‌ها را با ارسال درخواست merge در گیت‌هاب ارائه کنید. بهترین روش کار با وصله‌ها همین است."
+msgstr "وصله‌ها (patches) را با ارسال درخواست merge در گیت‌هاب ارائه کنید. بهترین روش کار با وصله‌ها همین است."
 
 #: tmp.tpl:28
 msgid "Development"
@@ -140,11 +141,11 @@ msgstr "توسعه"
 msgid ""
 "Development of Osmose is made as free software by <a "
 "href='../copyright'>volunteers</a>."
-msgstr "Osmose را گروهی از <a href='../copyright'>داوطلبان</a> به‌عنوان نرم‌افزاری آزاد توسعه می‌دهند."
+msgstr "Osmose را گروهی از <a href='../copyright'>داوطلبان</a> در قالب نرم‌افزار آزاد توسعه می‌دهند."
 
 #: tmp.tpl:32
 msgid "Contacting maintainers"
-msgstr "تماس با نگه‌دارندگان"
+msgstr "تماس با نگهدارندگان"
 
 #: tmp.tpl:35 tmp.tpl:39
 msgid "Last updates"
@@ -157,7 +158,7 @@ msgstr "متوسط تأخیر:"
 #: tmp.tpl:41 tmp.tpl:48 tmp.tpl:83 tmp.tpl:93
 #: ../tools/database/item_menu.txt:32
 msgid "source"
-msgstr "منبع"
+msgstr "source"
 
 #: tmp.tpl:44
 msgid "last generation"
@@ -185,7 +186,7 @@ msgstr "اطلاعات حق تکثیر"
 
 #: tmp.tpl:53
 msgid "License"
-msgstr "گواهی"
+msgstr "مجوز"
 
 #: tmp.tpl:54
 msgid "Authors"
@@ -209,7 +210,7 @@ msgstr "کلید"
 
 #: tmp.tpl:60 tmp.tpl:63 tmp.tpl:66 tmp.tpl:114
 msgid "value"
-msgstr "مقدار"
+msgstr "value"
 
 #: tmp.tpl:61 tmp.tpl:115
 msgid "Marker"
@@ -221,7 +222,7 @@ msgstr "عناصر"
 
 #: tmp.tpl:67
 msgid "Fixes"
-msgstr "اصلاحات"
+msgstr "اصلاحات موردنیاز"
 
 #: tmp.tpl:69
 msgid "Fixed"
@@ -243,7 +244,7 @@ msgstr "تنظیم"
 #. TRANSLATORS: this should be replaced by a abbreviation for class
 #: tmp.tpl:87 tmp.tpl:98
 msgid "class (abbreviation)"
-msgstr "دس‍"
+msgstr "ک"
 
 #: tmp.tpl:85 tmp.tpl:96
 msgid "item"
@@ -264,7 +265,7 @@ msgstr "کل"
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: tmp.tpl:100
 msgid "subclass (abbreviation)"
-msgstr "ز"
+msgstr "زک"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: tmp.tpl:95
@@ -293,7 +294,7 @@ msgstr "جستجوگر ناظر بر OSM ‏(osmose)"
 
 #: tmp.tpl:118
 msgid "Help on OSM wiki"
-msgstr "راهنمایی در ویکی OSM"
+msgstr "‫راهنمایی در ویکی OSM‬"
 
 #: tmp.tpl:120
 msgid "False positives list"
@@ -317,7 +318,7 @@ msgstr "تأیید"
 
 #: tmp.tpl:127
 msgid "no bubbles at this zoom factor"
-msgstr "در این بزرگ‌نمایی حبابی نشان داده نمی‌شود"
+msgstr "در این بزرگ‌نمایی نشانه‌ای نمی‌بینید"
 
 #: tmp.tpl:75 tmp.tpl:128
 msgid "Severity"
@@ -357,7 +358,7 @@ msgstr "برعکس"
 
 #: tmp.tpl:145
 msgid "Change language"
-msgstr "تغییر زبان"
+msgstr "انتخاب زبان"
 
 #: tmp.tpl:148
 msgid "Help"
@@ -382,7 +383,7 @@ msgstr "ذخیره"
 
 #: tmp.tpl:161
 msgid "Fix with Osmose"
-msgstr "اصلاح با Osmose"
+msgstr "اصلاح با اوسموز"
 
 #: tmp.tpl:162
 msgid "Source"
@@ -406,14 +407,14 @@ msgstr "مثبت کاذب"
 
 #: tmp.tpl:184 tmp.tpl:185
 msgid "How to help translation"
-msgstr "چگونه به ترجمه کمک کنم"
+msgstr "راه کمک به ترجمه"
 
 #: tmp.tpl:186
 msgid ""
 "Osmose tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
-msgstr "توسعه‌دهندگان Osmose بیشتر فرانسوی هستند، اما مایلیم که زبان‌های بیشتری را پشتیبانی کنیم. در حال حاضر تقریباً همهٔ کشورهایی که در تحلیل‌ها می‌آیند زبانشان نیز پشتیبانی می‌شود."
+msgstr "توسعه‌دهندگان Osmose بیشتر فرانسوی هستند و می‌خواهیم زبان‌های بیشتری را پشتیبانی کنیم. هم‌اکنون تقریباً همهٔ کشورهایی که در تحلیل‌ها می‌آیند زبانشان نیز پشتیبانی می‌شود."
 
 #: tmp.tpl:188
 msgid ""
@@ -423,7 +424,7 @@ msgstr "برای اینکه Osmose ابزاری چندزبانه باشد به �
 
 #: tmp.tpl:189
 msgid "Pages to translate"
-msgstr "صفحه‌هایی که نیاز به ترجمه دارد"
+msgstr "صفحه‌هایی که نیازمند ترجمه است"
 
 #: tmp.tpl:193
 msgid "Wiki pages"
@@ -451,7 +452,7 @@ msgstr "ساختار"
 
 #: ../tools/database/categ_menu.txt:2
 msgid "Missing tags"
-msgstr "تگ‌های ناموجود"
+msgstr "کمبود تگ‌ها"
 
 #: ../tools/database/categ_menu.txt:3
 msgid "Bad tag"
@@ -459,7 +460,7 @@ msgstr " تگ بد"
 
 #: ../tools/database/categ_menu.txt:4
 msgid "Tags to remove"
-msgstr "تگ‌های حذفی"
+msgstr "تگ برای حذف"
 
 #: ../tools/database/categ_menu.txt:5
 msgid "Tags name"
@@ -467,7 +468,7 @@ msgstr "نام تگ‌ها"
 
 #: ../tools/database/categ_menu.txt:6
 msgid "Administrative"
-msgstr "حکومتی"
+msgstr "Administrative"
 
 #: ../tools/database/categ_menu.txt:7
 msgid "To map"
@@ -479,7 +480,7 @@ msgstr "یکپارچگی"
 
 #: ../tools/database/item_menu.txt:1
 msgid "overlapping building"
-msgstr "همپوشانی ساختمانی"
+msgstr "هم‌پوشانی ساختمان‌ها"
 
 #: ../tools/database/item_menu.txt:3
 msgid "duplicated node"
@@ -487,7 +488,7 @@ msgstr "گره تکراری"
 
 #: ../tools/database/item_menu.txt:4
 msgid "way one node"
-msgstr "راه تک‌گرهی"
+msgstr "راه تک‌گره"
 
 #: ../tools/database/item_menu.txt:5
 msgid "invalid polygon"
@@ -499,11 +500,11 @@ msgstr "فلکهٔ برعکس"
 
 #: ../tools/database/item_menu.txt:7
 msgid "boundary intersect"
-msgstr "اشتراک مرزی"
+msgstr "تقاطع با مرز"
 
 #: ../tools/database/item_menu.txt:8
 msgid "objects overlap"
-msgstr "همپوشانی اشیا"
+msgstr "هم‌پوشانی اشیا"
 
 #: ../tools/database/item_menu.txt:9
 msgid "orphan nodes"
@@ -523,7 +524,7 @@ msgstr "معبر ‎*_link بد"
 
 #: ../tools/database/item_menu.txt:13
 msgid "broken highway continuity"
-msgstr "قطعی در پیوستگی معبر"
+msgstr "شکست در پیوستگی معبر"
 
 #: ../tools/database/item_menu.txt:14
 msgid "missing tag or role"
@@ -539,7 +540,7 @@ msgstr "رابطهٔ بزرگ"
 
 #: ../tools/database/item_menu.txt:17
 msgid "multipolygon"
-msgstr "چندچندضلعی"
+msgstr "multipolygon"
 
 #: ../tools/database/item_menu.txt:18
 msgid "double cycleway"
@@ -559,11 +560,11 @@ msgstr "معبر/راه دوچرخهٔ غیرمتصل"
 
 #: ../tools/database/item_menu.txt:22
 msgid "waterway"
-msgstr "راه آبی"
+msgstr "waterway"
 
 #: ../tools/database/item_menu.txt:24
 msgid "duplicate geometry"
-msgstr "شکل هندسی تکراری"
+msgstr "هندسهٔ تکراری"
 
 #: ../tools/database/item_menu.txt:29
 msgid "junction=roundabout"
@@ -587,7 +588,7 @@ msgstr "شمارهٔ خیابان"
 
 #: ../tools/database/item_menu.txt:35 ../tools/database/item_menu.txt:190
 msgid "highway"
-msgstr "معبر"
+msgstr "highway"
 
 #: ../tools/database/item_menu.txt:36
 msgid "highway crossing"
@@ -611,7 +612,7 @@ msgstr "پاک‌ساز تگ"
 
 #: ../tools/database/item_menu.txt:46 ../tools/database/item_menu.txt:197
 msgid "wikipedia"
-msgstr "ویکی‌پدیا"
+msgstr "wikipedia"
 
 #: ../tools/database/item_menu.txt:47
 msgid "multiple tags"
@@ -627,7 +628,7 @@ msgstr "تگ نادرست"
 
 #: ../tools/database/item_menu.txt:50
 msgid "bad tag key"
-msgstr "کلید بد"
+msgstr "کلید بد در تگ"
 
 #: ../tools/database/item_menu.txt:51
 msgid "similar values"
@@ -639,7 +640,7 @@ msgstr "چندین مقدار"
 
 #: ../tools/database/item_menu.txt:53
 msgid "swimming pool as natural=water"
-msgstr "استخر شنا به‌عنوان natural=water"
+msgstr "استخر شنا با natural=water"
 
 #: ../tools/database/item_menu.txt:55
 msgid "numeric value"
@@ -655,7 +656,7 @@ msgstr "یادداشت"
 
 #: ../tools/database/item_menu.txt:59
 msgid "tree"
-msgstr "درخت"
+msgstr "tree"
 
 #: ../tools/database/item_menu.txt:60
 msgid "brand in name"
@@ -671,7 +672,7 @@ msgstr "نادرست"
 
 #: ../tools/database/item_menu.txt:63
 msgid "parking lane"
-msgstr "خط‌عبوری پارک‌کردن"
+msgstr "خط‌عبوری پارک خودرو"
 
 #: ../tools/database/item_menu.txt:64
 msgid "relation role"
@@ -763,7 +764,7 @@ msgstr "مرز خطادار"
 
 #: ../tools/database/item_menu.txt:100
 msgid "out of boundary"
-msgstr "خارج از مرز"
+msgstr "بیرون از مرز"
 
 #: ../tools/database/item_menu.txt:101
 msgid "geodesic building"
@@ -844,7 +845,7 @@ msgstr "مدرسه، می‌تواند یکپارچه شود"
 #: ../tools/database/item_menu.txt:27 ../tools/database/item_menu.txt:135
 #: ../tools/database/item_menu.txt:198
 msgid "public transport"
-msgstr "حمل‌ونقل عمومی"
+msgstr "public transport"
 
 #: ../tools/database/item_menu.txt:136
 msgid "public transport, could be integrated"
@@ -856,7 +857,7 @@ msgstr "ایستگاه قطار، می‌تواند یکپارچه شود"
 
 #: ../tools/database/item_menu.txt:140
 msgid "level crossing"
-msgstr "تقاطع همسطح"
+msgstr "تقاطع همسطح راه‌آهن"
 
 #: ../tools/database/item_menu.txt:141
 msgid "geodesic point"
@@ -876,7 +877,7 @@ msgstr "خدمت عمومی"
 
 #: ../tools/database/item_menu.txt:145
 msgid "recycling"
-msgstr "بازیافت"
+msgstr "recycling"
 
 #: ../tools/database/item_menu.txt:146
 msgid "recycling, could be integrated"
@@ -884,7 +885,7 @@ msgstr "بازیافت، می‌تواند یکپارچه شود"
 
 #: ../tools/database/item_menu.txt:148
 msgid "parking"
-msgstr "پارکینگ"
+msgstr "parking"
 
 #: ../tools/database/item_menu.txt:149
 msgid "parking, could be integrated"
@@ -916,7 +917,7 @@ msgstr "حمل‌ونقل اشتراکی، می‌تواند یکپارچه شو
 
 #: ../tools/database/item_menu.txt:158
 msgid "sport"
-msgstr "ورزش"
+msgstr "sport"
 
 #: ../tools/database/item_menu.txt:159
 msgid "sport, could be integrated"
@@ -995,7 +996,7 @@ msgstr "برای استفاده از ویرایشگر تگ باید وارد ش�
 
 #: tmp.tpl:157
 msgid "Save changeset"
-msgstr "ذخیرهٔ بستهٔ تغییر"
+msgstr "ذخیره‌سازی بستهٔ تغییر"
 
 #: tmp.tpl:160
 msgid "Comment"
@@ -1033,7 +1034,7 @@ msgstr "تحلیلگر"
 
 #: ../tools/database/item_menu.txt:168
 msgid "postal code, could be integrated"
-msgstr "کد پستی، می‌تواند یکپارچه شود"
+msgstr "postal code، می‌تواند یکپارچه شود"
 
 #: ../tools/database/item_menu.txt:169
 msgid "library"
@@ -1049,11 +1050,11 @@ msgstr "winery"
 
 #: ../tools/database/item_menu.txt:38
 msgid "missing object kind"
-msgstr "کمبود نوع شی "
+msgstr "کمبود نوع شیء"
 
 #: ../tools/database/item_menu.txt:118
 msgid "postal code, not integrated "
-msgstr "کد پستی، یکپارچه نشده"
+msgstr "postal code، یکپارچه نشده"
 
 #: ../tools/database/item_menu.txt:91
 msgid "local language"
@@ -1169,7 +1170,7 @@ msgstr "صندوق پست، می‌تواند یکپارچه شود"
 
 #: ../tools/database/item_menu.txt:39
 msgid "indoor"
-msgstr "داخلی"
+msgstr "indoor"
 
 #: ../tools/database/item_menu.txt:84
 msgid "roundabout as area"
@@ -1199,13 +1200,13 @@ msgid ""
 " href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> "
 "for issues on the reported issues on OSM data, or for suggestion about "
 "analyses."
-msgstr "باگ‌های مربوط به خود وبسایت را در <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> گزارش کنید. باگ‌های مربوط به گزارش‌های ارائه‌شده برای داده‌های OSM، یا پیشنهادهای مربوط به تحلیل‌ها را در <a href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> گزارش کنید."
+msgstr "باگ‌های مربوط به خود وبسایت را در <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> گزارش کنید. اگر در گزارش‌های ارائه‌شده برای داده‌های OSM مشکلی وجود دارد، یا دربارهٔ تحلیل‌ها پیشنهادی دارید، در<a href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> گزارش کنید."
 
 #: tmp.tpl:200
 msgid ""
 "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
 "frontend</a> can be used to report any issue with translations."
-msgstr "هرگونه مسئله‌ای دربارهٔ ترجمه‌ها را در <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> گزارش کنید."
+msgstr "اگر در ترجمه‌ها مشکلی مشاهده کردید آن را در <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> گزارش کنید."
 
 #: ../tools/database/item_menu.txt:23
 msgid "far from water"
@@ -1229,7 +1230,7 @@ msgstr "بازبینی fixme"
 
 #: ../tools/database/item_menu.txt:126
 msgid "monument, museum, need update"
-msgstr "monument،‏ museum، نیازمند به‌روزرسانی"
+msgstr "monument،‏ museum، نیازمند به‌روزآوری"
 
 #: ../tools/database/item_menu.txt:134
 msgid "school, need update"
@@ -1241,7 +1242,7 @@ msgstr "حمل‌ونقل عمومی، نیازمند به‌روزآوری"
 
 #: ../tools/database/item_menu.txt:147
 msgid "recycling, need update"
-msgstr "بازیافت، نیازمند به‌روزرسانی"
+msgstr "بازیافت، نیازمند به‌روزآوری"
 
 #: ../tools/database/item_menu.txt:150
 msgid "parking, need update"
@@ -1249,7 +1250,7 @@ msgstr "پارکنیگ، نیازمند به‌روزآوری"
 
 #: ../tools/database/item_menu.txt:157
 msgid "transport sharing, need update"
-msgstr "حمل‌ونقل اشتراکی، نیازمند به‌روزرسانی"
+msgstr "حمل‌ونقل اشتراکی، نیازمند به‌روزآوری"
 
 #: tmp.tpl:37
 msgid "Analyser"
@@ -1285,11 +1286,11 @@ msgstr "پمپ بنزین، می‌تواند یکپارچه شود"
 
 #: ../tools/database/item_menu.txt:120 ../tools/database/item_menu.txt:173
 msgid "power substation"
-msgstr "زیرایستگاه نیرو"
+msgstr "power substation"
 
 #: ../tools/database/item_menu.txt:174
 msgid "power substation, could be integrated"
-msgstr "زیرایستگاه نیرو، می‌تواند یکپارچه شود"
+msgstr "power substation، می‌تواند یکپارچه شود"
 
 #: ../tools/database/item_menu.txt:175
 msgid "power support"
@@ -1301,7 +1302,7 @@ msgstr "power support، می‌تواند یکپارچه شود"
 
 #: ../tools/database/item_menu.txt:28
 msgid "almost junction"
-msgstr "تقریبا تقاطع است"
+msgstr "ظاهراً تقاطع است"
 
 #: ../tools/database/item_menu.txt:41
 msgid "public_transport route"
@@ -1309,7 +1310,7 @@ msgstr "public_transport route"
 
 #: ../tools/database/item_menu.txt:70
 msgid "recycling container"
-msgstr "زباله‌دان بازیافتی"
+msgstr "زباله‌دان بازیافت"
 
 #: ../tools/database/item_menu.txt:85
 msgid "duplicate wikipedia"
@@ -1396,7 +1397,7 @@ msgstr "ترکیبات"
 
 #: ../tools/database/item_menu.txt:188
 msgid "deprecated"
-msgstr "منسوخ"
+msgstr "deprecated"
 
 #: ../tools/database/item_menu.txt:189
 msgid "geometry"
@@ -1412,7 +1413,7 @@ msgstr "عددی"
 
 #: ../tools/database/item_menu.txt:193
 msgid "relation"
-msgstr "رابطه"
+msgstr "relation"
 
 #: ../tools/database/item_menu.txt:194
 msgid "religion"
@@ -1446,7 +1447,7 @@ msgstr "نشانه‌گذاری مسئلهٔ #%d به‌عنوان مثبت کا
 #: tmp.tpl:110
 #, python-format
 msgid "Mark issue #%d as fixed"
-msgstr "نشانه‌گذاری مسئلهٔ #%d به‌عنوان رفع‌شده"
+msgstr "نشانه‌گذاری مسئلهٔ #%d به‌عنوان حل‌شده"
 
 #: tmp.tpl:158
 msgid "Objects edited"
@@ -1459,12 +1460,12 @@ msgstr "اشیای حذفی"
 #: tmp.tpl:167
 #, python-brace-format
 msgid "Show Object on {where}"
-msgstr "نمایش عنصر در {where}"
+msgstr "‫نمایش عنصر در {where}‬"
 
 #: tmp.tpl:168 tmp.tpl:169 tmp.tpl:170 tmp.tpl:171
 #, python-brace-format
 msgid "Edit Object with {where}"
-msgstr "ویرایش عنصر با {where}"
+msgstr "‫ویرایش عنصر با {where}‬"
 
 #: tmp.tpl:171 tmp.tpl:173
 msgid "online Osmose Editor"
@@ -1473,7 +1474,7 @@ msgstr "ویرایشگر برخط Osmose"
 #: tmp.tpl:172 tmp.tpl:173
 #, python-brace-format
 msgid "Load the fix in {where}"
-msgstr "بارگذاری اصلاحیه در {where}"
+msgstr "‫بارگذاری اصلاحیه در {where}‬"
 
 #: tmp.tpl:174
 #, python-brace-format
@@ -1483,7 +1484,7 @@ msgstr "افزودن شیء جدید در {where}"
 #: tmp.tpl:175
 #, python-brace-format
 msgid "Show the area on {where}"
-msgstr "نمایش این ناحیه در {where}"
+msgstr "‫نمایش این ناحیه در {where}‬"
 
 #: tmp.tpl:176 tmp.tpl:177
 #, python-brace-format
@@ -1500,13 +1501,13 @@ msgstr "تاریخ گزارش:"
 
 #: tmp.tpl:180
 msgid "Help on OSM Wiki"
-msgstr "راهنما در ویکی OSM"
+msgstr "‫راهنمایی در ویکی OSM‬"
 
 #: tmp.tpl:181 tmp.tpl:182
 msgid ""
 "Report the issue as improper, if according to you is not an issue. The issue"
 " will not be displayed to anyone more."
-msgstr "اگر با ارزیابی خودتان این مورد مشکل محسوب نمی‌شود، گزارش کنید که نابجاست. در این صورت این مسئله برای کس دیگری نمایش داده نمی‌شود."
+msgstr "اگر با ارزیابی خودتان این مورد مشکلی ندارد، گزارش کنید که نابجاست. در نتیجه این مسئله برای کس دیگری نمایش داده نمی‌شود."
 
 #: tmp.tpl:183
 msgid ""
@@ -1520,7 +1521,7 @@ msgstr "zone:maxspeed"
 
 #: ../tools/database/item_menu.txt:199
 msgid "power transformer"
-msgstr "انتقال نیرو"
+msgstr "power transformer"
 
 #: tmp.tpl:144
 #, python-format
@@ -1529,28 +1530,28 @@ msgstr "مورد #%s"
 
 #: ../tools/database/item_menu.txt:72
 msgid "opening hours"
-msgstr ""
+msgstr "ساعت کاری"
 
 #: ../tools/database/item_menu.txt:121 ../tools/database/item_menu.txt:179
 msgid "hospital"
-msgstr ""
+msgstr "بیمارستان"
 
 #: ../tools/database/item_menu.txt:122 ../tools/database/item_menu.txt:181
 msgid "social facility"
-msgstr ""
+msgstr "social facility"
 
 #: ../tools/database/item_menu.txt:123 ../tools/database/item_menu.txt:183
 msgid "medical lab"
-msgstr ""
+msgstr "آزمایشگاه پزشکی"
 
 #: ../tools/database/item_menu.txt:180
 msgid "hospital, could be integrated"
-msgstr ""
+msgstr "بیمارستان، می‌تواند یکپارچه شود"
 
 #: ../tools/database/item_menu.txt:182
 msgid "social facility, could be integrated"
-msgstr ""
+msgstr "social facility، می‌تواند یکپارچه شود"
 
 #: ../tools/database/item_menu.txt:184
 msgid "medical lab, could be integrated"
-msgstr ""
+msgstr "آزمایشگاه پزشکی، می‌تواند یکپارچه شود"
