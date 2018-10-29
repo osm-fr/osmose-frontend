@@ -112,7 +112,7 @@ def display(db, lang, user, err_id):
         f[tags_modify] = _expand_tags(f[tags_modify], t2l.checkTags(f[tags_modify]))
         f[tags_delete] = _expand_tags(f[tags_delete], {}, True)
 
-    return template('error/index', err_id=err_id,
+    return template('error/index', translate=utils.translator(lang), err_id=err_id,
         marker=marker, columns_marker=columns_marker,
         elements=elements, columns_elements=columns_elements, user=user,
         fix=fix, columns_fix=columns_fix, main_website=utils.main_website, data_type=data_type)

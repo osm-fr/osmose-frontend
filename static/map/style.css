@@ -54,10 +54,10 @@ div#top_links {
   border: 0;
   position: absolute;
   top: 0;
-  left: 1px; /* Avoid hover at (0,0) on Android default browser */
 }
 #topmenu li {
-  float: left;
+  display: inline-block;
+  vertical-align: top;
   margin: 0;
   padding: 0;
   border: 0;
@@ -83,7 +83,7 @@ div#top_links {
   border: 0;
 }
 #topmenu .submenu li {
-  float: none;
+  display: block;
   margin: 0;
   padding: 0;
   border: 0;
@@ -106,6 +106,15 @@ div#top_links {
 #topmenu li:hover > .submenu { display: block; }
 
 /* popups */
+
+/* Allow direction ltr in popup */
+.leaflet-popup {
+  text-align: inherit;
+}
+.leaflet-popup-content-wrapper {
+  text-align: inherit;
+}
+
 .leaflet-popup-content .btn {
   color: #fff;
 }
@@ -147,6 +156,10 @@ a.bulle_err:link,
 a.bulle_err:visited,
 a.bulle_err:hover {
   color: #FF5555;
+}
+
+.bulle_elem {
+  direction: ltr;
 }
 
 .bulle_elem,
@@ -196,9 +209,18 @@ a.bulle_err:hover {
 
 #bulle_button {
   display: table-cell;
-  text-align: right;
+  float: right;
   padding-top: 5px;
   padding-left: 5px;
+}
+html[dir=rtl] #bulle_button {
+  float: left;
+  padding-left: 0px;
+  padding-right: 5px;
+}
+
+#bulle_button .btn-group {
+  direction: ltr;
 }
 
 /* Layers control */

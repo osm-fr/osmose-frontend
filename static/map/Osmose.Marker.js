@@ -151,7 +151,10 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
     }
     this.open_popup = e.layer.properties.issue_id;
 
-    const popup = L.responsivePopup({
+    // leaflet-responsive-popup Does not support right ot left text direction
+    // https://github.com/yafred/leaflet-responsive-popup/issues/8
+    var new_popup = ($('html').attr('dir') == 'rtl') ? L.popup : L.responsivePopup;
+    const popup = new_popup({
       maxWidth: 280,
       autoPan: false,
       offset: L.point(0, -8),

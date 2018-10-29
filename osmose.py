@@ -49,22 +49,22 @@ app.router.add_filter('ext', ext_filter)
 @route('/', name='root')
 def index(lang):
     translate = utils.translator(lang)
-    return template('index')
+    return template('index', translate=utils.translator(lang))
 
 @route('/contact')
 def contact(lang, name=None):
     translate = utils.translator(lang)
-    return template('contact')
+    return template('contact', translate=utils.translator(lang))
 
 @route('/copyright')
 def copyright(lang, name=None):
     translate = utils.translator(lang)
-    return template('copyright', main_project=utils.main_project, main_website=utils.main_website)
+    return template('copyright', translate=utils.translator(lang), main_project=utils.main_project, main_website=utils.main_website)
 
 @route('/translation')
 def translation(lang, name=None):
     translate = utils.translator(lang)
-    return template('translation')
+    return template('translation', translate=utils.translator(lang))
 
 @route('/login')
 def login(lang, name=None):

@@ -52,7 +52,7 @@ def _get(db, err_id, status):
 def fp_(db, lang, err_id):
     (marker, columns) = _get(db, err_id, 'false')
 
-    return template('false-positive/index', err_id=err_id, marker=marker, columns_marker=columns)
+    return template('false-positive/index', translate=utils.translator(lang), err_id=err_id, marker=marker, columns_marker=columns)
 
 
 @route('/api/0.2/false-positive/<err_id:int>')

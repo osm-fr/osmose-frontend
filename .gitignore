@@ -14,5 +14,5 @@ static/osmose-coverage.topojson.pbf*
 node_modules
 osmose-frontend-venv
 
-webpack.bundle.js
-webpack.bundle.js.map
+webpack.bundle-*.js
+webpack.bundle-*.js.map

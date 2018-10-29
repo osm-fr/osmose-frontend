@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html lang="{{translate.languages[0]}}">
+<html lang="{{translate.languages[0]}}" dir="{{translate.direction}}">
 <head>
   <title>Osmose - {{_("Map")}}</title>
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
@@ -71,7 +71,7 @@
 %it = set()
 %for categ in categories:
     <div class="test_group" id="categ{{categ["categ"]}}">
-    <h1><a href="#" class="toggleCateg">{{translate.select(categ["title"])}}</a>
+    <h1><i class="toggleCategIco"></i><a href="#" class="toggleCateg">{{translate.select(categ["title"])}}</a>
     <span class="count">-/-</span>
     <a href="#" class="toggleAllItem" data-view="all">{{_("all")}}</a>
     <a href="#" class="toggleAllItem" data-view="nothing">{{_("nothing")}}</a></h1>

@@ -41,22 +41,25 @@ div#menu div.test_group h1 {
 .leaflet-touch div#menu div.test_group h1 {
   font-size: 100%;
 }
-div#menu div.test_group h1 a:first-child {
+div#menu div.test_group h1 i.toggleCategIco {
   display: inline-block;
-  background: url('../images/folder_open.png') no-repeat left 3px; 
-  padding-left: 20px;
-  line-height: 20px;
+  background: url('../images/folder_open.png');
+  width: 16px;
+  height: 16px;
+  margin: 2px 2px 0 2px;
 }
-div#menu div.test_group h1.folded a:first-child {
-  background: url('../images/folder.png') no-repeat left 3px; 
+div#menu div.test_group h1.folded i.toggleCategIco {
+  background: url('../images/folder.png');
 }
 div#menu div.test_group ul {
   list-style-type: none;
   margin: 0px;
   padding-left: 0px;
+  padding-right: 0px;
 }
 div#menu div.test_group li {
   padding-left: 2px;
+  padding-right: 2px;
   font-size: 11px;
 }
 div#menu div.test_group li div.marker-l {
@@ -83,11 +86,13 @@ div.test_group div.level {
   width: 48px;
   height: 16px;
 }
+html[dir=rtl] div.test_group div.level {
+  float: left;
+}
 div.test_group div.level div {
   width: 16px;
   height: 16px;
   display: inline-block;
-  direction: rtl;
 }
 div.test_group div.level div span {
   display: none;
@@ -128,7 +133,7 @@ div.level-3.disabled {
 }
 
 .leaflet-sidebar > #menu {
-  padding: 8px 0 5px 5px;
+  padding: 3px 3px 5px 5px;
 }
 
 @media(max-width:767px) {
