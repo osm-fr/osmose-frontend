@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2018-10-29 19:46+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2018-11-01 10:09+0000\n"
+"Last-Translator: imni <iriman@chmail.ir>\n"
 "Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -222,7 +222,7 @@ msgstr "عناصر"
 
 #: tmp.tpl:67
 msgid "Fixes"
-msgstr "اصلاحات موردنیاز"
+msgstr "اصلاحات"
 
 #: tmp.tpl:69
 msgid "Fixed"
@@ -290,7 +290,7 @@ msgstr "تاریخ"
 
 #: tmp.tpl:116
 msgid "OpenStreetMap Oversight Search Engine"
-msgstr "جستجوگر ناظر بر OSM ‏(osmose)"
+msgstr "‫جستجوگر ناظر بر OSM‬"
 
 #: tmp.tpl:118
 msgid "Help on OSM wiki"
@@ -302,7 +302,7 @@ msgstr "فهرست مثبت‌های کاذب"
 
 #: tmp.tpl:121
 msgid "Last analysis updates"
-msgstr "به‌روزرسانی‌های آخرین تحلیل‌ها"
+msgstr "آخرین به‌روزرسانی تحلیل‌ها"
 
 #: tmp.tpl:122
 msgid "Tags Editor"
@@ -414,7 +414,7 @@ msgid ""
 "Osmose tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
-msgstr "توسعه‌دهندگان Osmose بیشتر فرانسوی هستند و می‌خواهیم زبان‌های بیشتری را پشتیبانی کنیم. هم‌اکنون تقریباً همهٔ کشورهایی که در تحلیل‌ها می‌آیند زبانشان نیز پشتیبانی می‌شود."
+msgstr "توسعه‌دهندگان Osmose بیشتر فرانسوی هستند اما مایلیم زبان‌های بیشتری را پشتیبانی کنیم. هم‌اکنون تقریباً همهٔ کشورهایی که در تحلیل‌ها می‌آیند زبانشان نیز پشتیبانی می‌شود."
 
 #: tmp.tpl:188
 msgid ""
@@ -556,7 +556,7 @@ msgstr "رابطهٔ تک‌عضوی"
 
 #: ../tools/database/item_menu.txt:21
 msgid "not-connected highway/cycleway"
-msgstr "معبر/راه دوچرخهٔ غیرمتصل"
+msgstr "راه دوچرخه/معبر غیرمتصل"
 
 #: ../tools/database/item_menu.txt:22
 msgid "waterway"
@@ -1014,7 +1014,7 @@ msgstr "noexit"
 msgid ""
 "Keep in touch by watching at <a "
 "href='https://twitter.com/osmose_qa'>@osmose_qa</a> on twitter."
-msgstr "با دنبال‌کردن <a href='https://twitter.com/osmose_qa'>@osmose_qa</a> در توئیتر با ما در ارتباط باشید."
+msgstr "با دنبال‌کردن ‎<a href='https://twitter.com/osmose_qa'>@osmose_qa</a> در توئیتر با ما در ارتباط باشید."
 
 #: ../tools/database/item_menu.txt:83
 msgid "incorrect layer"
@@ -1117,7 +1117,7 @@ msgstr "پس از واردکردن نام کاربری OSM خود در فرم ز
 #: tmp.tpl:58 tmp.tpl:112
 #, python-format
 msgid "Information on issue %d"
-msgstr "اطلاعاتی دربارهٔ مسئلهٔ %d"
+msgstr "اطلاعاتی از مسئلهٔ %d"
 
 #: tmp.tpl:91
 msgid "Show more issues"
@@ -1146,7 +1146,7 @@ msgstr "نقشهٔ مسائل"
 
 #: tmp.tpl:119
 msgid "Information on issues database"
-msgstr "اطلاعاتی دربارهٔ پایگا‌ه‌دادهٔ مسئله‌ها"
+msgstr "اطلاعاتی از پایگا‌ه‌دادهٔ مسئله‌ها"
 
 #: tmp.tpl:195
 msgid "Documentation on reported issues"
@@ -1381,7 +1381,7 @@ msgstr "برای کشورهای جدید، مستقیماً به نشانی <a h
 
 #: ../tools/database/categ_menu.txt:9
 msgid "JOSM validator"
-msgstr "اعتبارسنج JOSM"
+msgstr "‫اعتبارسنج JOSM‬"
 
 #: ../tools/database/item_menu.txt:186
 msgid "seamark"
@@ -1558,4 +1558,4 @@ msgstr "آزمایشگاه پزشکی، می‌تواند یکپارچه شود"
 
 #: ../tools/database/item_menu.txt:163
 msgid "police, need update"
-msgstr ""
+msgstr "پلیس، نیازمند به‌روزآوری"
