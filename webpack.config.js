@@ -40,7 +40,7 @@ module.exports = {
             { test: /\.css$/, use: [
                 { loader: "style-loader" },
                 { loader: "css-loader" },
-                { loader: "sprite-loader", options: { name: "[hash].png", outputPath: "./static/images/", cssImagePath: "/en/images/" } }
+                { loader: "sprite-loader", options: { name: "[hash].png", outputPath: "./static/images/", cssImagePath: "/en/images/", padding: 0 } }
             ] },
             { test: /\.png$/, loaders: ["base64-image-loader"] },
             { test: /\.gif$/, loaders: ["base64-image-loader"] },
