@@ -38,10 +38,7 @@ const Mapillary = L.VectorGrid.Protobuf.extend({
     this._ajax(`https://a.mapillary.com/v3/images?client_id=${this._clientId}&closeto=${e.latlng.lng},${e.latlng.lat}&radius=300&per_page=1`, (json) => {
       const im = JSON.parse(json).features[0];
 
-      // leaflet-responsive-popup Does not support right ot left text direction
-      // https://github.com/yafred/leaflet-responsive-popup/issues/8
-      var new_popup = ($('html').attr('dir') == 'rtl') ? L.popup : L.responsivePopup;
-      new_popup()
+      L.responsivePopup()
         .setLatLng([im.geometry.coordinates[1], im.geometry.coordinates[0]])
         .setContent(`<a href='http://www.mapillary.com/map/im/${im.properties.key}/photo' target='_blank'><div style='width: 240px; height: 180px'><img src='https://d1cuyjsrcm0gby.cloudfront.net/${im.properties.key}/thumb-320.jpg' style='max-width: 100%; max-height: 100%; display: block;'/></div>${im.properties.username} - Mapillary - CC BY-SA 4.0</a>`)
         .openOn(this._map);
