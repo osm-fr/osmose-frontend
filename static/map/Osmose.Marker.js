@@ -2,6 +2,7 @@ require('leaflet');
 require('leaflet.vectorgrid/dist/Leaflet.VectorGrid.js');
 require('leaflet-responsive-popup');
 require('leaflet-responsive-popup/leaflet.responsive.popup.css');
+require('leaflet-responsive-popup/leaflet.responsive.popup.rtl.css');
 require('leaflet-osm');
 require('leaflet-textpath');
 require('mustache');
@@ -151,10 +152,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
     }
     this.open_popup = e.layer.properties.issue_id;
 
-    // leaflet-responsive-popup Does not support right ot left text direction
-    // https://github.com/yafred/leaflet-responsive-popup/issues/8
-    var new_popup = ($('html').attr('dir') == 'rtl') ? L.popup : L.responsivePopup;
-    const popup = new_popup({
+    const popup = L.responsivePopup({
       maxWidth: 280,
       autoPan: false,
       offset: L.point(0, -8),

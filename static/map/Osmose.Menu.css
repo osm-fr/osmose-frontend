@@ -13,6 +13,10 @@ div#menu form {
   margin: 0px;
   height: 100%;
 }
+div#menu a:link,
+div#menu a:visited {
+  color: rgb(0, 123, 255);
+}
 div#menu div#action_links {
   font-size: 10px;
   text-align: center;
