@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2018-11-01 10:09+0000\n"
+"PO-Revision-Date: 2018-11-05 18:08+0000\n"
 "Last-Translator: imni <iriman@chmail.ir>\n"
 "Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -158,7 +158,7 @@ msgstr "متوسط تأخیر:"
 #: tmp.tpl:41 tmp.tpl:48 tmp.tpl:83 tmp.tpl:93
 #: ../tools/database/item_menu.txt:32
 msgid "source"
-msgstr "source"
+msgstr "منبع"
 
 #: tmp.tpl:44
 msgid "last generation"
@@ -210,7 +210,7 @@ msgstr "کلید"
 
 #: tmp.tpl:60 tmp.tpl:63 tmp.tpl:66 tmp.tpl:114
 msgid "value"
-msgstr "value"
+msgstr "مقدار"
 
 #: tmp.tpl:61 tmp.tpl:115
 msgid "Marker"
@@ -460,7 +460,7 @@ msgstr " تگ بد"
 
 #: ../tools/database/categ_menu.txt:4
 msgid "Tags to remove"
-msgstr "تگ برای حذف"
+msgstr "حذف تگ‌ها"
 
 #: ../tools/database/categ_menu.txt:5
 msgid "Tags name"
@@ -476,7 +476,7 @@ msgstr "برای نقشه‌کشی"
 
 #: ../tools/database/categ_menu.txt:8
 msgid "Integration"
-msgstr "یکپارچگی"
+msgstr "یکپارچه‌سازی"
 
 #: ../tools/database/item_menu.txt:1
 msgid "overlapping building"
@@ -540,7 +540,7 @@ msgstr "رابطهٔ بزرگ"
 
 #: ../tools/database/item_menu.txt:17
 msgid "multipolygon"
-msgstr "multipolygon"
+msgstr "چندچندضلعی"
 
 #: ../tools/database/item_menu.txt:18
 msgid "double cycleway"
@@ -560,7 +560,7 @@ msgstr "راه دوچرخه/معبر غیرمتصل"
 
 #: ../tools/database/item_menu.txt:22
 msgid "waterway"
-msgstr "waterway"
+msgstr "راه آبی"
 
 #: ../tools/database/item_menu.txt:24
 msgid "duplicate geometry"
@@ -572,7 +572,7 @@ msgstr "junction=roundabout"
 
 #: ../tools/database/item_menu.txt:30
 msgid "elevation"
-msgstr "ارتفاع"
+msgstr "ارتفاع (ele)"
 
 #: ../tools/database/item_menu.txt:31
 msgid "oneway"
@@ -584,11 +584,11 @@ msgstr "تگ مادر"
 
 #: ../tools/database/item_menu.txt:34
 msgid "street numbers"
-msgstr "شمارهٔ خیابان"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:35 ../tools/database/item_menu.txt:191
 msgid "highway"
-msgstr "highway"
+msgstr "معبر"
 
 #: ../tools/database/item_menu.txt:36
 msgid "highway crossing"
@@ -612,7 +612,7 @@ msgstr "پاک‌ساز تگ"
 
 #: ../tools/database/item_menu.txt:46 ../tools/database/item_menu.txt:198
 msgid "wikipedia"
-msgstr "wikipedia"
+msgstr "ویکی‌پدیا"
 
 #: ../tools/database/item_menu.txt:47
 msgid "multiple tags"
@@ -656,7 +656,7 @@ msgstr "یادداشت"
 
 #: ../tools/database/item_menu.txt:59
 msgid "tree"
-msgstr "tree"
+msgstr "درخت"
 
 #: ../tools/database/item_menu.txt:60
 msgid "brand in name"
@@ -704,7 +704,7 @@ msgstr "ref در نام"
 
 #: ../tools/database/item_menu.txt:79
 msgid "construction"
-msgstr "construction"
+msgstr "در دست ساخت"
 
 #: ../tools/database/item_menu.txt:80
 msgid "duplicate object"
@@ -736,7 +736,7 @@ msgstr "جای‌نام‌شناسی"
 
 #: ../tools/database/item_menu.txt:90
 msgid "test soundex"
-msgstr "test soundex"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:94
 msgid "open polygon"
@@ -768,7 +768,7 @@ msgstr "بیرون از مرز"
 
 #: ../tools/database/item_menu.txt:101
 msgid "geodesic building"
-msgstr "geodesic building"
+msgstr ""
 
 #: ../tools/database/item_menu.txt:102
 msgid "building shape"
@@ -1112,7 +1112,7 @@ msgid ""
 " issues that are attached to your username. Note that the algorithm that "
 "attaches issues to username is not perfect, as Osmose only checks the last "
 "contributor of the relevant erroneous elements."
-msgstr "پس از واردکردن نام کاربری OSM خود در فرم زیر، همهٔ مسائلی که به نام کاربری شما سنجاق شده را می‌توانید ببینید. توجه کنید، الگوریتمی که مسئله‌ها را به نام‌های کاربری نسبت می‌دهد کامل نیست؛ یعنی صرفاً آخرین کاربری که یک عنصر مسئله‌دار را ویرایش کرده برای Osmose قابل‌شناسایی است."
+msgstr "پس از واردکردن نام کاربری OSM خود در فرم زیر، همهٔ مسائلی که به نام کاربری شما متصل شده را می‌توانید ببینید. توجه کنید، الگوریتمی که مسئله‌ها را به نام‌های کاربری نسبت می‌دهد کامل نیست؛ یعنی صرفاً آخرین کاربری که یک عنصر مسئله‌دار را ویرایش کرده برای Osmose قابل‌شناسایی است."
 
 #: tmp.tpl:58 tmp.tpl:112
 #, python-format
@@ -1302,7 +1302,7 @@ msgstr "power support، می‌تواند یکپارچه شود"
 
 #: ../tools/database/item_menu.txt:28
 msgid "almost junction"
-msgstr "ظاهراً تقاطع است"
+msgstr "تقریباً تقاطع است"
 
 #: ../tools/database/item_menu.txt:41
 msgid "public_transport route"
@@ -1338,7 +1338,7 @@ msgstr "علائم راهنمایی‌ورانندگی"
 
 #: ../tools/database/item_menu.txt:179
 msgid "traffic sign limitation"
-msgstr "محدودیت تابلوی راهنمایی‌ورانندگی"
+msgstr "محدودیت علائم راهنمایی‌ورانندگی"
 
 #: tmp.tpl:76 tmp.tpl:129
 msgid "High"
