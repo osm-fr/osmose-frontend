@@ -3,9 +3,8 @@ Docker
 
 Build the Docker image, within docker directory:
 ```
-docker build -t osm-fr/osmose_frontend:latest ..
+docker build -f Dockerfile -t osm-fr/osmose_frontend:latest ..
 ```
-
 Run the container:
 ```
 docker run -ti -p 20009:20009 -e URL_FRONTEND=localhost:20009 osm-fr/osmose_frontend:latest
