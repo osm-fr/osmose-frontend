@@ -42,11 +42,9 @@ ADD ./static /data/project/osmose/frontend/static
 RUN npm install && \
     npm run build
 
-ADD ./po /data/project/osmose/frontend/po
+ADD . /data/project/osmose/frontend
 RUN cd po && \
     make mo
-
-ADD . /data/project/osmose/frontend
 
 #RUN apt remove -y --auto-remove \
 #        git gettext make nodejs bzip2 && \
