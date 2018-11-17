@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2018-11-02 22:56+0000\n"
+"PO-Revision-Date: 2018-11-08 03:19+0000\n"
 "Last-Translator: alain2003\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -773,7 +773,7 @@ msgstr "buiten de grenzen"
 
 #: ../tools/database/item_menu.txt:101
 msgid "geodesic building"
-msgstr "geografische gebouw"
+msgstr "Geodesisch gebouw"
 
 #: ../tools/database/item_menu.txt:102
 msgid "building shape"
@@ -866,7 +866,7 @@ msgstr "overweg"
 
 #: ../tools/database/item_menu.txt:141
 msgid "geodesic point"
-msgstr "geodesic punt ontbreekt"
+msgstr "Geodesisch punt ontbreekt"
 
 #: ../tools/database/item_menu.txt:142
 msgid "postal address"
@@ -1163,7 +1163,7 @@ msgstr "versie"
 
 #: ../tools/database/item_menu.txt:173
 msgid "geodesic"
-msgstr "geodesic"
+msgstr "Geodesisch"
 
 #: ../tools/database/item_menu.txt:107 ../tools/database/item_menu.txt:130
 msgid "post box"
