@@ -50,7 +50,7 @@
  3050 | _("bad tag key")
  3060 | _("similar values")
  3070 | _("multiple values")
- 3080 | _("swimming pool as natural=water")
+ 3080 | _("swimming pool")
  3090 | _("date")
  3091 | _("numeric value")
  3092 | _("phone number")
