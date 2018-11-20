@@ -85,6 +85,16 @@ SET row_security = off;
 SET default_with_oids = false;
 
 --
+-- Name: backend; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.backend (
+    ip character varying(128) NOT NULL,
+    hostname character varying(256)
+);
+
+
+--
 -- Name: class; Type: TABLE; Schema: public; Owner: -
 --
 
