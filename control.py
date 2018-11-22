@@ -276,7 +276,7 @@ LIMIT 1
         os.unlink(save_filename)
 
     except tools.update.OsmoseUpdateAlreadyDone:
-        return 'FAIL: Already up to date'
+        return 'WARNING: Already up to date'
 
     except:
         import traceback
