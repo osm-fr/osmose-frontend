@@ -153,8 +153,10 @@ ORDER BY
     hostnames = defaultdict(list)
     max_versions = defaultdict(list)
     min_versions = defaultdict(list)
+    max_count = 0
     for res in db.fetchall():
         (hostname, remote, remote_hash, country, max_age, min_age, max_version, min_version, count) = res
+        max_count = max(max_count, count)
         summary[remote].append({'hostname': hostname, 'country': country, 'max_age': max_age/60/60/24, 'min_age': min_age/60/60/24, 'count': count})
         remote_hashes[remote] = remote_hash
         hostnames[remote].append(hostname)
@@ -169,7 +171,7 @@ ORDER BY
         if min_versions[remote] and '-' in min_versions[remote]:
           min_versions[remote] = '-'.join(min_versions[remote].split('-')[1:5])
 
-    return template('control/updates_summary', translate=utils.translator(lang), summary=summary, hostnames=hostnames, max_versions=max_versions, min_versions=min_versions, remote_hashes=remote_hashes)
+    return template('control/updates_summary', translate=utils.translator(lang), summary=summary, hostnames=hostnames, max_versions=max_versions, min_versions=min_versions, remote_hashes=remote_hashes, max_count=max_count)
 
 
 @route('/control/update_summary_by_analyser')
