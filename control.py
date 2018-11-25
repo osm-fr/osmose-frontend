@@ -124,7 +124,8 @@ ORDER BY
 def updates(db, lang):
     db.execute("""
 SELECT
-    coalesce(backend.hostname, dynpoi_update_last.remote_ip) AS remote,
+    backend.hostname AS hostname,
+    dynpoi_update_last.remote_ip AS remote,
     RIGHT(MD5(remote_ip), 4) AS remote_ip_hash,
     country,
     MAX(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp))) AS max_age,
@@ -139,25 +140,28 @@ FROM
     LEFT JOIN backend ON
         dynpoi_update_last.remote_ip = backend.ip
 GROUP BY
-    remote,
+    hostname,
+    remote_ip,
     remote_ip_hash,
     country
 ORDER BY
-    remote,
-    MIN(EXTRACT(EPOCH FROM ((now())-dynpoi_update_last.timestamp))) ASC
+    min_age ASC
 """)
 
     summary = defaultdict(list)
     remote_hashes = {}
+    hostnames = defaultdict(list)
     max_versions = defaultdict(list)
     min_versions = defaultdict(list)
     for res in db.fetchall():
-        (remote, remote_hash, country, max_age, min_age, max_version, min_version, count) = res
-        summary[remote].append({'country': country, 'max_age': max_age/60/60/24, 'min_age': min_age/60/60/24, 'count': count})
+        (hostname, remote, remote_hash, country, max_age, min_age, max_version, min_version, count) = res
+        summary[remote].append({'hostname': hostname, 'country': country, 'max_age': max_age/60/60/24, 'min_age': min_age/60/60/24, 'count': count})
         remote_hashes[remote] = remote_hash
+        hostnames[remote].append(hostname)
         max_versions[remote].append(max_version)
         min_versions[remote].append(min_version)
     for remote in max_versions.keys():
+        hostnames[remote] = hostnames[remote][0]
         max_versions[remote] = max(max_versions[remote])
         if max_versions[remote] and '-' in max_versions[remote]:
           max_versions[remote] = '-'.join(max_versions[remote].split('-')[1:5])
@@ -165,7 +169,7 @@ ORDER BY
         if min_versions[remote] and '-' in min_versions[remote]:
           min_versions[remote] = '-'.join(min_versions[remote].split('-')[1:5])
 
-    return template('control/updates_summary', translate=utils.translator(lang), summary=summary, max_versions=max_versions, min_versions=min_versions, remote_hashes=remote_hashes)
+    return template('control/updates_summary', translate=utils.translator(lang), summary=summary, hostnames=hostnames, max_versions=max_versions, min_versions=min_versions, remote_hashes=remote_hashes)
 
 
 @route('/control/update_summary_by_analyser')

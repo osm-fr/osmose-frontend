@@ -10,9 +10,9 @@
 
 %end
 <table class="table table-striped table-bordered table-hover table-sm sortable">
-%for remote in summary.keys():
+%for remote in sorted(summary.keys(), key=lambda remote: hostnames[remote]):
 <thead class="thead-dark">
-<tr><th><a href="update_matrix?remote={{remote_hashes[remote]}}">{{remote}}</a> ({{min_versions[remote]}} - {{max_versions[remote]}})</th></tr>
+<tr><th>{{hostnames[remote] or ''}} <a href="update_matrix?remote={{remote_hashes[remote]}}">{{remote}}</a> ({{min_versions[remote]}} - {{max_versions[remote]}})</th></tr>
 </thead>
 <tbody>
 <tr><td>
