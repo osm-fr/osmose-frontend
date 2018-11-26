@@ -90,7 +90,7 @@ SET default_with_oids = false;
 
 CREATE TABLE public.backend (
     ip character varying(128) NOT NULL,
-    hostname character varying(256)
+    hostname character varying(256) NOT NULL
 );
 
 
@@ -309,6 +309,14 @@ CREATE TABLE public.source_password (
 --
 
 ALTER TABLE ONLY public.marker ALTER COLUMN id SET DEFAULT nextval('public.marker_id_seq'::regclass);
+
+
+--
+-- Name: backend backend_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.backend
+    ADD CONSTRAINT backend_pkey PRIMARY KEY (ip, hostname);
 
 
 --

@@ -110,8 +110,8 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
     if "class" in tables:
         join += """
         JOIN class ON
-            marker.item = class.item AND
-            marker.class = class.class"""
+            """ + itemField + """.item = class.item AND
+            """ + itemField + """.class = class.class"""
 
     if "source" in tables:
         join += """
@@ -245,13 +245,18 @@ def _params():
 def _gets(db, params):
     sqlbase = """
     SELECT
-        marker.id AS id,
-        marker.item,
-        marker.lat,
-        marker.lon,"""
+        marker.id AS id,"""
     if not params.status in ("done", "false"):
         sqlbase += """
+        marker.item,
         marker.class,"""
+    else:
+        sqlbase += """
+        dynpoi_class.item,
+        dynpoi_class.class,"""
+    sqlbase += """
+        marker.lat,
+        marker.lon,"""
     if params.full:
         sqlbase += """
         marker.source,
