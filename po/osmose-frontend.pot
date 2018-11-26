@@ -634,10 +634,6 @@ msgstr ""
 msgid "multiple values"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:53
-msgid "swimming pool as natural=water"
-msgstr ""
-
 #: ../tools/database/item_menu.txt:55
 msgid "numeric value"
 msgstr ""
@@ -1554,4 +1550,8 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:163
 msgid "police, need update"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:53
+msgid "swimming pool"
 msgstr ""

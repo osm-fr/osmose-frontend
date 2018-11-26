@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2018-10-29 19:46+0000\n"
+"PO-Revision-Date: 2018-11-26 22:22+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -638,10 +638,6 @@ msgstr "似た値"
 #: ../tools/database/item_menu.txt:52
 msgid "multiple values"
 msgstr "複数の値"
-
-#: ../tools/database/item_menu.txt:53
-msgid "swimming pool as natural=water"
-msgstr "水泳プールにnatural_waterがある"
 
 #: ../tools/database/item_menu.txt:55
 msgid "numeric value"
@@ -1559,4 +1555,8 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:163
 msgid "police, need update"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:53
+msgid "swimming pool"
 msgstr ""
