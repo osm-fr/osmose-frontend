@@ -262,7 +262,7 @@ LIMIT 1
     if not res and os.environ.get("OSMOSE_UNLOCKED_UPDATE"):
         r = db.execute("SELECT COALESCE(MAX(id), 0) + 1 AS id FROM source")
         source_id = db.fetchone()["id"]
-        analyser, country = src.split("-")
+        analyser, country = src.rsplit("-", 1)
         db.execute("INSERT INTO source(id, country, analyser) VALUES (%s, %s, %s)", (source_id, country, analyser))
         db.execute("INSERT INTO source_password(source_id, password) VALUES(%s, %s)", (source_id, code))
         db.connection.commit()
