@@ -233,7 +233,9 @@ def update(lang):
 
 @post('/control/send-update')
 def send_update(db):
-    src = request.params.get('source', default=None)
+    src = request.params.get('source', default=None) # Deprecated, replaced by analyser & country
+    analyser = request.params.get('analyser', default=None)
+    country = request.params.get('analyser', default=None)
     code = request.params.get('code')
     upload = request.files.get('content', default=None)
 
@@ -241,6 +243,10 @@ def send_update(db):
 
     if not code or not upload:
         return "FAIL"
+
+    if src:
+        # Deprecated, replaced by analyser & country
+        analyser, country = src.split('-', 1)
 
     db.execute("""
 SELECT
@@ -250,10 +256,16 @@ FROM
     JOIN source_password ON
         source.id = source_id
 WHERE
-    analyser || '-' || country = %(comment)s AND
+    (analyser2 = %(analyser)s OR analyser = %(analyser)s) AND
+    country = %(country)s AND
     password = %(password)s
+ORDER BY
+    CASE
+        WHEN analyser2 = %(analyser)s THEN 1
+        ELSE 2
+    END
 LIMIT 1
-""", {"comment": src, "password": code})
+""", {"analyser": analyser, "country": country, "password": code})
 
     res = db.fetchone()
 
@@ -262,7 +274,6 @@ LIMIT 1
     if not res and os.environ.get("OSMOSE_UNLOCKED_UPDATE"):
         r = db.execute("SELECT COALESCE(MAX(id), 0) + 1 AS id FROM source")
         source_id = db.fetchone()["id"]
-        analyser, country = src.rsplit("-", 1)
         db.execute("INSERT INTO source(id, country, analyser) VALUES (%s, %s, %s)", (source_id, country, analyser))
         db.execute("INSERT INTO source_password(source_id, password) VALUES(%s, %s)", (source_id, code))
         db.connection.commit()
