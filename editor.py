@@ -55,16 +55,19 @@ def save(db, lang):
             pass
         changeset = None
         del request.session['changeset']
+        request.session.save()
     elif changeset:
         try:
             _changeset_update(changeset, tags)
         except:
             changeset = None
             request.session['changeset'] = changeset
+            request.session.save()
 
     if not changeset:
         changeset = _changeset_create(tags)
         request.session['changeset'] = changeset
+        request.session.save()
 
     # OsmChange
     out = StringIO.StringIO()
