@@ -203,9 +203,10 @@ const OsmoseEditor = L.Control.Sidebar.extend({
     del.empty();
     $.each(reftags, (e) => {
       if (data[e] === undefined) {
-        const value = String($('<div/>').text(`${e}=${reftags[e]}`).html()).replace('"', '&quot;');
-        const key = String($('<div/>').text(e).html()).replace('"', '&quot;');
-        del.append($(`<span class="line"><span>-</span><input type="text" name="tags_del[]" value="${value}" data-key="${key}"/><a href="#">×</a></span>`));
+        var h = $(`<span class="line"><span>-</span><input type="text" name="tags_del[]"/><a href="#">×</a></span>`)
+        $('input', h).attr('value', `${e}=${reftags[e]}`);
+        $('input', h).attr('data-key', e);
+        del.append(h);
         touched = true;
       }
     });
@@ -214,9 +215,10 @@ const OsmoseEditor = L.Control.Sidebar.extend({
     same.empty();
     $.each(reftags, (e) => {
       if (data[e] !== undefined && data[e] === reftags[e]) {
-        const value = String($('<div/>').text(`${e}=${reftags[e]}`).html()).replace('"', '&quot;');
-        const key = String($('<div/>').text(e).html()).replace('"', '&quot;');
-        same.append($(`<span class="line"><span>=</span><input type="text" name="tags_del[]" value="${value}" data-key="${key}"/><a href="#">×</a></span>`));
+        var h = $(`<span class="line"><span>=</span><input type="text" name="tags_del[]"/><a href="#">×</a></span>`);
+        $('input', h).attr('value', `${e}=${reftags[e]}`);
+        $('input', h).attr('data-key', e);
+        same.append(h);
       }
     });
 
@@ -224,10 +226,11 @@ const OsmoseEditor = L.Control.Sidebar.extend({
     mod.empty();
     $.each(reftags, (e) => {
       if (data[e] !== undefined && data[e] !== reftags[e]) {
-        const value = String($('<div/>').text(`${e}=${data[e]}`).html()).replace('"', '&quot;');
-        const key = String($('<div/>').text(e).html()).replace('"', '&quot;');
-        const old = String($('<div/>').text(reftags[e]).html()).replace('"', '&quot;');
-        mod.append($(`<span class="line"><span>~</span><input type="text" name="tags_mod[]" value="${value}" data-key="${key}" title="${old}"/><a href="#">×</a></span>`));
+        var h = $(`<span class="line"><span>~</span><input type="text" name="tags_mod[]"/><a href="#">×</a></span>`);
+        $('input', h).attr('value', `${e}=${data[e]}`);
+        $('input', h).attr('data-key', e);
+        $('input', h).attr('title', reftags[e]);
+        mod.append(h);
         touched = true;
       }
     });
@@ -236,9 +239,10 @@ const OsmoseEditor = L.Control.Sidebar.extend({
     add.empty();
     $.each(data, (e) => {
       if (reftags[e] === undefined) {
-        const value = String($('<div/>').text(`${e}=${data[e]}`).html()).replace('"', '&quot;');
-        const key = String($('<div/>').text(e).html()).replace('"', '&quot;');
-        add.append($(`<span class="line"><span>+</span><input type="text" name="tags_add[]" value="${value}" data-key="${key}"/><a href="#">×</a></span>`));
+        var h = $(`<span class="line"><span>+</span><input type="text" name="tags_add[]"/><a href="#">×</a></span>`);
+        $('input', h).attr('value', `${e}=${data[e]}`);
+        $('input', h).attr('data-key', e);
+        add.append(h);
         touched = true;
       }
     });
