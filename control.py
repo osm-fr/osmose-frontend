@@ -246,7 +246,7 @@ def send_update(db):
 
     if src:
         # Deprecated, replaced by analyser & country
-        analyser, country = src.split('-', 1)
+        analyser, country = src.rsplit("-", 1)
 
     db.execute("""
 SELECT
