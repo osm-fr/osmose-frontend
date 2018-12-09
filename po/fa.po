@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2018-11-25 15:21+0000\n"
+"PO-Revision-Date: 2018-12-07 09:01+0000\n"
 "Last-Translator: imni <iriman@chmail.ir>\n"
 "Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -638,10 +638,6 @@ msgstr "مقادیر مشابه"
 msgid "multiple values"
 msgstr "چندین مقدار"
 
-#: ../tools/database/item_menu.txt:53
-msgid "swimming pool as natural=water"
-msgstr "استخر شنا با natural=water"
-
 #: ../tools/database/item_menu.txt:55
 msgid "numeric value"
 msgstr "مقدار عددی"
@@ -1187,7 +1183,7 @@ msgstr "split building"
 #: tmp.tpl:126
 #, python-format
 msgid "Control, verification and correction of %s issues"
-msgstr "بررسی، اعتبارسنجی و اصلاح  مسئلهٔ %s"
+msgstr "بررسی، اعتبارسنجی و اصلاح  مسائل %s"
 
 #: tmp.tpl:194
 msgid "Osmose QA main page"
@@ -1559,3 +1555,7 @@ msgstr "آزمایشگاه پزشکی، می‌تواند یکپارچه شود"
 #: ../tools/database/item_menu.txt:163
 msgid "police, need update"
 msgstr "پلیس، نیازمند به‌روزآوری"
+
+#: ../tools/database/item_menu.txt:53
+msgid "swimming pool"
+msgstr "استخر شنا"

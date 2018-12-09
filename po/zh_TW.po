@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the osmose-frontend package.
 # 
 # Translators:
-# Supaplex <bejokeup@gmail.com>, 2017
+# Supaplex <bejokeup@gmail.com>, 2017-2018
 # jie x, 2018
 # Kuang-che Wu <kcwu@csie.org>, 2016
 # Sean Young <assanges@icloud.com>, 2017-2018
@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2018-11-26 22:22+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2018-11-30 16:41+0000\n"
+"Last-Translator: Supaplex <bejokeup@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1458,36 +1458,36 @@ msgstr "刪除物件數"
 #: tmp.tpl:167
 #, python-brace-format
 msgid "Show Object on {where}"
-msgstr ""
+msgstr "在 {where} 顯示物件"
 
 #: tmp.tpl:168 tmp.tpl:169 tmp.tpl:170 tmp.tpl:171
 #, python-brace-format
 msgid "Edit Object with {where}"
-msgstr ""
+msgstr "在 {where} 編輯物件"
 
 #: tmp.tpl:171 tmp.tpl:173
 msgid "online Osmose Editor"
-msgstr ""
+msgstr "線上 Osmose 編輯器"
 
 #: tmp.tpl:172 tmp.tpl:173
 #, python-brace-format
 msgid "Load the fix in {where}"
-msgstr ""
+msgstr "在 {where} 載入 fix"
 
 #: tmp.tpl:174
 #, python-brace-format
 msgid "Add the new object in {where}"
-msgstr ""
+msgstr "在  {where} 新增物件"
 
 #: tmp.tpl:175
 #, python-brace-format
 msgid "Show the area on {where}"
-msgstr ""
+msgstr "在  {where} 顯示區域"
 
 #: tmp.tpl:176 tmp.tpl:177
 #, python-brace-format
 msgid "Edit the area on {where}"
-msgstr ""
+msgstr "在  {where} 編輯區域"
 
 #: tmp.tpl:178
 msgid "details"
@@ -1515,49 +1515,49 @@ msgstr "在修復OSM資料數據問題後，請將其標記為已完成。如果
 
 #: ../tools/database/item_menu.txt:42
 msgid "zone:maxspeed"
-msgstr ""
+msgstr "zone:maxspeed"
 
 #: ../tools/database/item_menu.txt:200
 msgid "power transformer"
-msgstr ""
+msgstr "變電設施"
 
 #: tmp.tpl:144
 #, python-format
 msgid "Item #%s"
-msgstr ""
+msgstr "項目 # %s"
 
 #: ../tools/database/item_menu.txt:72
 msgid "opening hours"
-msgstr ""
+msgstr "營業時間"
 
 #: ../tools/database/item_menu.txt:121 ../tools/database/item_menu.txt:180
 msgid "hospital"
-msgstr ""
+msgstr "醫院"
 
 #: ../tools/database/item_menu.txt:122 ../tools/database/item_menu.txt:182
 msgid "social facility"
-msgstr ""
+msgstr "社福機構"
 
 #: ../tools/database/item_menu.txt:123 ../tools/database/item_menu.txt:184
 msgid "medical lab"
-msgstr ""
+msgstr "醫事檢驗所"
 
 #: ../tools/database/item_menu.txt:181
 msgid "hospital, could be integrated"
-msgstr ""
+msgstr "醫院，應當整合"
 
 #: ../tools/database/item_menu.txt:183
 msgid "social facility, could be integrated"
-msgstr ""
+msgstr "社福機構，應當整合"
 
 #: ../tools/database/item_menu.txt:185
 msgid "medical lab, could be integrated"
-msgstr ""
+msgstr "醫事檢驗所，應當整合"
 
 #: ../tools/database/item_menu.txt:163
 msgid "police, need update"
-msgstr ""
+msgstr "警察局，需要更新"
 
 #: ../tools/database/item_menu.txt:53
 msgid "swimming pool"
-msgstr ""
+msgstr "游泳池"

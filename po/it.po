@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2018-11-26 22:22+0000\n"
+"PO-Revision-Date: 2018-12-09 20:47+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Italian (http://www.transifex.com/openstreetmap-france/osmose/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -735,10 +735,6 @@ msgstr "due nomi"
 #: ../tools/database/item_menu.txt:89
 msgid "toponymy"
 msgstr "toponomastica"
-
-#: ../tools/database/item_menu.txt:90
-msgid "test soundex"
-msgstr "testare soundex"
 
 #: ../tools/database/item_menu.txt:94
 msgid "open polygon"
@@ -1564,4 +1560,8 @@ msgstr "polizia, necessita aggiornamento"
 
 #: ../tools/database/item_menu.txt:53
 msgid "swimming pool"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:90
+msgid "potential misspelling"
 msgstr ""
