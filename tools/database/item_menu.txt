@@ -87,7 +87,7 @@
  5020 | _("way type")
  5030 | _("two names")
  5040 | _("toponymy")
- 5050 | _("test soundex")
+ 5050 | _("potential misspelling")
  5060 | _("local language")
  5070 | _("invalid character")
  5080 | _("similar name")

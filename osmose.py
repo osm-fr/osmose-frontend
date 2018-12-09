@@ -72,12 +72,14 @@ def login(lang, name=None):
         del request.session['user'] # logout
     (url, oauth_tokens) = oauth.fetch_request_token()
     request.session['oauth_tokens'] = oauth_tokens
+    request.session.save()
     redirect(url)
 
 @route('/logout')
 def login(lang, name=None):
     if request.session.has_key('user'):
         del request.session['user']
+        request.session.save()
     redirect('map')
 
 @route('/oauth')
@@ -96,6 +98,8 @@ def oauth_(lang, name=None):
             request.session['user'] = None
     except:
         pass
+    finally:
+        request.session.save()
     redirect('map')
 
 @route('/josm_proxy')
@@ -142,7 +146,6 @@ def static(filename):
 session_opts = {
     'session.type': 'file',
     'session.data_dir': './session/',
-    'session.auto': True,
     'session.cookie_expires': False,
 }
 app = beaker.middleware.SessionMiddleware(app, session_opts)
