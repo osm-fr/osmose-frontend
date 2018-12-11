@@ -235,7 +235,7 @@ def update(lang):
 def send_update(db):
     src = request.params.get('source', default=None) # Deprecated, replaced by analyser & country
     analyser = request.params.get('analyser', default=None)
-    country = request.params.get('analyser', default=None)
+    country = request.params.get('country', default=None)
     code = request.params.get('code')
     upload = request.files.get('content', default=None)
 
