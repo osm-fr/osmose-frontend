@@ -1,5 +1,12 @@
 #! /usr/bin/env python
 
+try:
+    import builtins
+except ImportError:
+    import __builtin__ as builtins
+
+import importlib
+import inspect
 import os
 import psycopg2
 import sys
@@ -14,7 +21,7 @@ if __name__ == "__main__":
   for res in dbcurs.fetchall():
     source = res[0]
 
-  def update_pass(country, analyser, password, contact="Jocelyn Jaubert <jocelyn@osm1.crans.org>"):
+  def update_pass(country, analyser, analyser_name, password, contact="Jocelyn Jaubert <jocelyn@osm1.crans.org>"):
     global source
 
     dbcurs.execute("SELECT id, password FROM source JOIN source_password ON source.id = source_id WHERE country=%s AND analyser=%s;",
@@ -74,14 +81,25 @@ if __name__ == "__main__":
   else:
     sys.path.append("../../backend")
 
+  # Don't load translations, as not necessary
+  builtins.T_ = lambda: None
+  builtins.T_f = lambda: None
+
   import osmose_config
 
   for (country, country_config) in osmose_config.config.items():
     if country_config.analyser_options["project"] != "openstreetmap":
       continue
-    for k, v in country_config.analyser.items():
-      if v != "xxx":
-        update_pass(country, k, v)
+    for analyser, password in country_config.analyser.items():
+      if password != "xxx":
+        a = importlib.import_module("analysers.analyser_" + analyser, package=".")
+        m = inspect.getmembers(a)
+        for name, obj in m:
+          if (inspect.isclass(obj) and obj.__module__ == "analysers.analyser_" + analyser and
+                    (name.startswith("Analyser") or name.startswith("analyser"))):
+            analyser_name = name[len("Analyser_"):]
+
+            update_pass(country, analyser, analyser_name, password)
 
   dbconn.commit()
   dbconn.close()
