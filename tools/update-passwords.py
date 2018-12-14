@@ -34,8 +34,6 @@ if __name__ == "__main__":
       # try to update password for an analyse
       dbcurs.execute("INSERT INTO source_password (source_id, password) VALUES ((SELECT id FROM source WHERE country=%s AND analyser=%s), %s);",
                      (country, analyser, password))
-#      dbcurs.execute("UPDATE source_password SET password=%s WHERE source_id IN (SELECT id FROM source WHERE country=%s AND analyser=%s);",
-#                     (password, country, analyser))
       if dbcurs.rowcount == 1:
         print "created password=%s where country=%s analyser=%s" % (password, country, analyser)
         return
@@ -50,12 +48,7 @@ if __name__ == "__main__":
         print "inserted password=%s where country=%s analyser=%s" % (password, country, analyser)
         return
 
-    if dbcurs.rowcount == 0:
-  #    # try to update name for an analyse for a given password
-  #    dbcurs.execute("UPDATE source SET analyser=%s WHERE id IN (SELECT source_id FROM source_password WHERE password=%s);",
-  #                   (analyser, password))
-      pass
-    else:
+    if dbcurs.rowcount > 0:
       return
 
     if dbcurs.rowcount == 0:
