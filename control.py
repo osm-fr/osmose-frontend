@@ -292,8 +292,8 @@ LIMIT 1
         tools.update.update(source_id, save_filename, remote_ip=remote_ip)
         os.unlink(save_filename)
 
-    except tools.update.OsmoseUpdateAlreadyDone:
-        return 'FAIL: Already up to date'
+    except tools.update.OsmoseUpdateAlreadyDone as exception:
+        return 'FAIL: Already up to date: %s' % exception
 
     except:
         import traceback
