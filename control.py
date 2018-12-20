@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, request, response, template, post
+from bottle import route, request, response, template, post, HTTPError
 from tools import utils
 import tools.update
 import os
@@ -308,26 +308,29 @@ LIMIT 1
 
     return "OK"
 
+def _status_object(db, t, source):
+    db.execute('SELECT string_agg(DISTINCT marker_elem.id::text, \',\') AS id FROM marker JOIN marker_elem ON marker_elem.marker_id = marker.id WHERE source=%s AND data_type = %s', (source, t))
+    s = db.fetchone()
+    if s and s[0]:
+        return map(int, s[0].split(','))
+
 @route('/control/status/<country>/<analyser>')
 def status(db, country = None, analyser = None):
     if not country or not analyser:
-        return "FAIL"
+        return HTTPError(400)
 
-    response.content_type = 'text/plain; charset=utf-8'
+    objects = request.params.get('objects', default=False)
 
-    ret = ''
     db.execute('SELECT timestamp, source, analyser_version FROM dynpoi_update_last WHERE source = (SELECT id FROM source WHERE analyser = %s AND country = %s)', (analyser, country))
     r = db.fetchone()
     if r and r['timestamp']:
-        ret + "1\n" # status format version
-        ret += str(r['timestamp']) + "\n"
-        ret += str(r["analyser_version"] or "") + "\n"
-        for t in ['N', 'W', 'R']:
-            db.execute('SELECT string_agg(id::text, \',\') FROM (SELECT DISTINCT marker_elem.id AS id FROM marker JOIN marker_elem ON marker_elem.marker_id = marker.id WHERE source=%s AND data_type = %s) AS t', (r['source'], t))
-            s = db.fetchone()
-            if s and s[0]:
-                ret += s[0]
-            ret += "\n"
-        return ret
-
-    return 'NOTHING'
+        return {
+           'version': 1,
+           'timestamp': str(r['timestamp'].replace(tzinfo=None)),
+           'analyser_version': str(r['analyser_version'] or ''),
+           'nodes': _status_object(db, 'N', r['source']) if objects != False else None,
+           'ways': _status_object(db, 'W', r['source']) if objects != False else None,
+           'relations': _status_object(db, 'R', r['source']) if objects != False else None,
+        }
+    else:
+        return HTTPError(404)
