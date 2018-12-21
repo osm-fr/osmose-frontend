@@ -1,3 +1,8 @@
+User-agent: SEMrushBot
+User-agent: SemrushBot
+User-agent: SemrushBot-SA
+Disallow: /
+
 User-agent: *
 Crawl-delay: 1000
 Disallow: /api/
@@ -84,6 +89,15 @@ Disallow: /es/false-positive/
 Disallow: /es/map/markers
 Disallow: /es/map/heat/
 Disallow: /es/josm_proxy
+Disallow: /fa/api/
+Disallow: /fa/control/
+Disallow: /fa/error/
+Disallow: /fa/errors
+Disallow: /fa/errors/
+Disallow: /fa/false-positive/
+Disallow: /fa/map/markers
+Disallow: /fa/map/heat/
+Disallow: /fa/josm_proxy
 Disallow: /fi/api/
 Disallow: /fi/control/
 Disallow: /fi/error/
@@ -165,6 +179,15 @@ Disallow: /pt/false-positive/
 Disallow: /pt/map/markers
 Disallow: /pt/map/heat/
 Disallow: /pt/josm_proxy
+Disallow: /pt_BR/api/
+Disallow: /pt_BR/control/
+Disallow: /pt_BR/error/
+Disallow: /pt_BR/errors
+Disallow: /pt_BR/errors/
+Disallow: /pt_BR/false-positive/
+Disallow: /pt_BR/map/markers
+Disallow: /pt_BR/map/heat/
+Disallow: /pt_BR/josm_proxy
 Disallow: /ro/api/
 Disallow: /ro/control/
 Disallow: /ro/error/
