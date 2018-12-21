@@ -256,14 +256,9 @@ FROM
     JOIN source_password ON
         source.id = source_id
 WHERE
-    (analyser2 = %(analyser)s OR analyser = %(analyser)s) AND
+    analyser = %(analyser)s AND
     country = %(country)s AND
     password = %(password)s
-ORDER BY
-    CASE
-        WHEN analyser2 = %(analyser)s THEN 1
-        ELSE 2
-    END
 LIMIT 1
 """, {"analyser": analyser, "country": country, "password": code})
 
