@@ -34,21 +34,21 @@
             <a href="#" class="editor_fix" data-type="{%type%}" data-id="{%id%}" data-error="{%error_id%}" data-fix="{%num%}" title="{{_('Load the fix in {where}').format(where=_('online Osmose Editor'))}}">fix-edit</a>
         </div>
     {%#add%}
-        <div class="add"> + <b>{%k%}</b> =
+        <div class="add"><b>{%k%}</b> =
           {%#vlink%}<a href="{%vlink%}" target="popup_tag2link">{%/vlink%}
           {%v%}
           {%#vlink%}</a>{%/vlink%}
         </div>
     {%/add%}
     {%#mod%}
-        <div class="mod"> ~ <b>{%k%}</b> =
+        <div class="mod"><b>{%k%}</b> =
           {%#vlink%}<a href="{%vlink%}" target="popup_tag2link">{%/vlink%}
           {%v%}
           {%#vlink%}</a>{%/vlink%}
         </div>
     {%/mod%}
     {%#del%}
-        <div class="del"> - <b>{%k%}</b></div>
+        <div class="del"><b>{%k%}</b></div>
     {%/del%}
       </div>
   {%/fixes%}
