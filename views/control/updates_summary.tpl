@@ -25,6 +25,6 @@
 </span>&nbsp;
 %    end
 </td></tr>
-%end
 </tbody>
+%end
 </table>
