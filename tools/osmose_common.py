@@ -37,7 +37,8 @@ def remove_bug(error_id, status):
                       SELECT id,source,class,subclass,elems,NOW(),%s,
                              lat,lon,subtitle
                       FROM marker
-                      WHERE id = %s""",
+                      WHERE id = %s
+                      ON CONFLICT DO NOTHING""",
                    (status,error_id))
 
   PgCursor.execute("DELETE FROM marker WHERE id = %s;", (error_id, ))
