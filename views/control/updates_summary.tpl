@@ -1,8 +1,8 @@
 %rebase('layout.tpl', title=_("Updates summary"))
 %def col(tag, age, count):
-%            if age > 4.05:
+%            if age > 2.05:
     <{{tag}} style="background-color: rgba(255, 0, 0, {{count}});">\\
-%            elif age > 2.05:
+%            elif age > 1.05:
     <{{tag}} style="background-color: rgba(255, 127, 0, {{count}});">\\
 %            else:
     <{{tag}}>\\
