@@ -7,7 +7,7 @@
 # frodrigo <fred.rodrigo@gmail.com>, 2017-2018
 # ViriatoLusitano <marcosoliveira.2405@gmail.com>, 2014
 # OpenStreetMap contributor Paulo, 2014
-# Rui <xymarior@yandex.com>, 2016-2018
+# Rui <xymarior@yandex.com>, 2016-2019
 # Thiago Vieira <thipvieira@gmail.com>, 2014
 # ViriatoLusitano <marcosoliveira.2405@gmail.com>, 2014
 # Rui <xymarior@yandex.com>, 2016
@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2018-11-27 01:42+0000\n"
+"PO-Revision-Date: 2019-01-08 00:21+0000\n"
 "Last-Translator: Rui <xymarior@yandex.com>\n"
 "Language-Team: Portuguese (http://www.transifex.com/openstreetmap-france/osmose/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -245,7 +245,7 @@ msgstr "Mapa"
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
 #: tmp.tpl:82
 msgid "Set"
-msgstr "Conjunto"
+msgstr "Aplicar"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
 #: tmp.tpl:87 tmp.tpl:98
@@ -735,10 +735,6 @@ msgstr "dois nomes"
 #: ../tools/database/item_menu.txt:89
 msgid "toponymy"
 msgstr "toponímia"
-
-#: ../tools/database/item_menu.txt:90
-msgid "test soundex"
-msgstr "testar similaridade"
 
 #: ../tools/database/item_menu.txt:94
 msgid "open polygon"
@@ -1565,3 +1561,7 @@ msgstr "polícia, necessita de atualização"
 #: ../tools/database/item_menu.txt:53
 msgid "swimming pool"
 msgstr "piscina"
+
+#: ../tools/database/item_menu.txt:90
+msgid "potential misspelling"
+msgstr "possível erro ortográfico"

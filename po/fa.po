@@ -4,13 +4,13 @@
 # 
 # Translators:
 # imni <iriman@chmail.ir>, 2018
-# imni <iriman@chmail.ir>, 2018
+# imni <iriman@chmail.ir>, 2018-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2018-12-07 09:01+0000\n"
+"PO-Revision-Date: 2019-01-03 10:34+0000\n"
 "Last-Translator: imni <iriman@chmail.ir>\n"
 "Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -75,7 +75,7 @@ msgstr "حق تکثیر"
 
 #: ../map.py:94
 msgid "Sources"
-msgstr "منابع"
+msgstr "کد منبع"
 
 #: ../map.py:95
 msgid "Translation"
@@ -729,10 +729,6 @@ msgstr "دو نام"
 #: ../tools/database/item_menu.txt:89
 msgid "toponymy"
 msgstr "جای‌نام‌شناسی"
-
-#: ../tools/database/item_menu.txt:90
-msgid "test soundex"
-msgstr "test soundex"
 
 #: ../tools/database/item_menu.txt:94
 msgid "open polygon"
@@ -1559,3 +1555,7 @@ msgstr "پلیس، نیازمند به‌روزآوری"
 #: ../tools/database/item_menu.txt:53
 msgid "swimming pool"
 msgstr "استخر شنا"
+
+#: ../tools/database/item_menu.txt:90
+msgid "potential misspelling"
+msgstr ""

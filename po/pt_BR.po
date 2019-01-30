@@ -4,8 +4,9 @@
 # 
 # Translators:
 # André Marcelo Alvarenga <alvarenga@kde.org>, 2016
+# Eduardo Addad de Oliveira <eduardoaddad@hotmail.com>, 2019
 # OpenStreetMap contributor Paulo, 2014
-# Rui <xymarior@yandex.com>, 2016,2018
+# Rui <xymarior@yandex.com>, 2016,2018-2019
 # Thiago Vieira <thipvieira@gmail.com>, 2014
 # ViriatoLusitano <marcosoliveira.2405@gmail.com>, 2014
 msgid ""
@@ -13,8 +14,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2018-12-09 20:47+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2019-01-13 13:55+0000\n"
+"Last-Translator: Eduardo Addad de Oliveira <eduardoaddad@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/openstreetmap-france/osmose/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -242,7 +243,7 @@ msgstr "Mapa"
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
 #: tmp.tpl:82
 msgid "Set"
-msgstr "Conjunto"
+msgstr "Aplicar"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
 #: tmp.tpl:87 tmp.tpl:98
@@ -1289,11 +1290,11 @@ msgstr "subestação de energia, pode ser integrado"
 
 #: ../tools/database/item_menu.txt:176
 msgid "power support"
-msgstr ""
+msgstr "suporte de energia"
 
 #: ../tools/database/item_menu.txt:177
 msgid "power support, could be integrated"
-msgstr ""
+msgstr "suporte de energia, pode ser integrado"
 
 #: ../tools/database/item_menu.txt:28
 msgid "almost junction"

@@ -9,13 +9,13 @@
 # frodrigo <fred.rodrigo@gmail.com>, 2017
 # operon, 2012
 # operon, 2012
-# alain2003, 2014,2017-2018
+# alain2003, 2014,2017-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2018-11-28 19:35+0000\n"
+"PO-Revision-Date: 2019-01-03 02:19+0000\n"
 "Last-Translator: alain2003\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -734,10 +734,6 @@ msgstr "2 namen"
 #: ../tools/database/item_menu.txt:89
 msgid "toponymy"
 msgstr "plaatsnaamkunde"
-
-#: ../tools/database/item_menu.txt:90
-msgid "test soundex"
-msgstr "test soundex"
 
 #: ../tools/database/item_menu.txt:94
 msgid "open polygon"
@@ -1564,3 +1560,7 @@ msgstr "politie, updaten"
 #: ../tools/database/item_menu.txt:53
 msgid "swimming pool"
 msgstr "zwembad"
+
+#: ../tools/database/item_menu.txt:90
+msgid "potential misspelling"
+msgstr "potentiële spelfout"
