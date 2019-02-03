@@ -52,7 +52,8 @@ def _build_where_item(item, table):
 
 
 def _build_param(bbox, source, item, level, users, classs, country, useDevItem, status, tags, fixable, forceTable=[],
-                 summary=False, stats=False, start_date=None, end_date=None, last_update=None, tilex=None, tiley=None, zoom=None):
+                 summary=False, stats=False, start_date=None, end_date=None, last_update=None, tilex=None, tiley=None, zoom=None,
+                 osm_type=None, osm_id=None):
     join = ""
     where = ["1=1"]
 
@@ -96,7 +97,7 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
         tables.append("dynpoi_item")
         if useDevItem:
             tablesLeft.append("dynpoi_item")
-        if users:
+        if users or (osm_type and join.startswith("marker")):
             tables.append("marker_elem")
     if last_update:
             tables.append("dynpoi_update_last")
@@ -183,6 +184,11 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
     elif fixable == 'josm':
         where.append("EXISTS (SELECT 1 FROM marker_fix WHERE marker_fix.marker_id = marker.id)")
 
+    if osm_type and join.startswith("marker"):
+        where.append("marker_elem.data_type = '%s'" % osm_type[0].upper())
+        if osm_id:
+            where.append("marker_elem.id = %s" % osm_id)
+
     return (join, " AND\n        ".join(where))
 
 
@@ -204,6 +210,8 @@ def _params():
         end_date = request.params.get('end_date', default=None)
         tags     = request.params.get('tags', default=None)
         fixable  = request.params.get('fixable', default=None)
+        osm_type = request.params.get('osm_type', default=None)
+        osm_id   = request.params.get('osm_id', type=int, default=None)
         tilex    = request.params.get('tilex', default=None)
         tiley    = request.params.get('tiley', default=None)
 
@@ -238,6 +246,11 @@ def _params():
         params.end_date = utils.str_to_datetime(params.end_date)
     if params.tags:
         params.tags = params.tags.split(",")
+
+    if params.osm_type and params.osm_type not in ['node', 'way', 'relation']:
+        params.osm_type = None
+    if params.osm_id and not params.osm_type:
+        params.osm_id = None
 
     return params
 
@@ -303,7 +316,7 @@ def _gets(db, params):
     else:
         forceTable = []
 
-    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, forceTable=forceTable, start_date=params.start_date, end_date=params.end_date, tilex=params.tilex, tiley=params.tiley, zoom=params.zoom)
+    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, forceTable=forceTable, start_date=params.start_date, end_date=params.end_date, tilex=params.tilex, tiley=params.tiley, zoom=params.zoom, osm_type=params.osm_type, osm_id=params.osm_id)
     sql = sqlbase % (join, where)
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()
@@ -347,7 +360,7 @@ def _count(db, params, by, extraFrom=[], extraFields=[], orderBy=False):
     if "dynpoi_update_last" in byTable:
         last_update = True
 
-    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, summary=summary, forceTable=byTable, start_date=params.start_date, end_date=params.end_date, last_update=last_update, tilex=params.tilex, tiley=params.tiley, zoom=params.zoom)
+    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, summary=summary, forceTable=byTable, start_date=params.start_date, end_date=params.end_date, last_update=last_update, tilex=params.tilex, tiley=params.tiley, zoom=params.zoom, osm_type=params.osm_type, osm_id=params.osm_id)
     sql = sqlbase % (select, join, where, groupBy, order)
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()
