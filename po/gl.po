@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2019-01-30 13:33+0000\n"
+"PO-Revision-Date: 2019-02-10 16:17+0000\n"
 "Last-Translator: Ivan Seoane\n"
 "Language-Team: Galician (http://www.transifex.com/openstreetmap-france/osmose/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -152,7 +152,7 @@ msgstr "Últimas actualizacións"
 
 #: tmp.tpl:40
 msgid "Median delay:"
-msgstr "Mediana de delonga:"
+msgstr "Delonga media:"
 
 #: tmp.tpl:41 tmp.tpl:48 tmp.tpl:83 tmp.tpl:93
 #: ../tools/database/item_menu.txt:32
@@ -243,7 +243,7 @@ msgstr "Escoller"
 #. TRANSLATORS: this should be replaced by a abbreviation for class
 #: tmp.tpl:87 tmp.tpl:98
 msgid "class (abbreviation)"
-msgstr "cla"
+msgstr "clase"
 
 #: tmp.tpl:85 tmp.tpl:96
 msgid "item"
@@ -264,20 +264,20 @@ msgstr "Total"
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: tmp.tpl:100
 msgid "subclass (abbreviation)"
-msgstr "scla"
+msgstr "subclase"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for subclass
 #: tmp.tpl:95
 msgid "level (abbreviation)"
-msgstr "niv"
+msgstr "nivel"
 
 #: tmp.tpl:102
 msgid "position (abbreviation)"
-msgstr "pos"
+msgstr "posición"
 
 #: tmp.tpl:103
 msgid "elements (abbreviation)"
-msgstr "elem"
+msgstr "elementos"
 
 #: tmp.tpl:104
 msgid "subtitle"
@@ -317,7 +317,7 @@ msgstr "Válido"
 
 #: tmp.tpl:127
 msgid "no bubbles at this zoom factor"
-msgstr "non hai gurgullas neste factor de achegamento"
+msgstr "non hai avisos neste factor de achegamento"
 
 #: tmp.tpl:75 tmp.tpl:128
 msgid "Severity"
@@ -366,11 +366,11 @@ msgstr "Axuda"
 #: tmp.tpl:149
 #, python-format
 msgid "Delay: %sd"
-msgstr "Retraso: %sd"
+msgstr "Delonga: %sd"
 
 #: tmp.tpl:153
 msgid "Logout"
-msgstr "Saír"
+msgstr "Pecha a sesión"
 
 #: tmp.tpl:154 tmp.tpl:156
 msgid "Login"
@@ -499,7 +499,7 @@ msgstr "rotonda inversa"
 
 #: ../tools/database/item_menu.txt:7
 msgid "boundary intersect"
-msgstr "cruzamento de límites"
+msgstr "intersección de límites"
 
 #: ../tools/database/item_menu.txt:8
 msgid "objects overlap"
@@ -531,7 +531,7 @@ msgstr "falla etiqueta ou rol"
 
 #: ../tools/database/item_menu.txt:15
 msgid "surface intersection"
-msgstr "cruzamento de superficie"
+msgstr "intersección de áreas"
 
 #: ../tools/database/item_menu.txt:16
 msgid "big relation"
@@ -1209,7 +1209,7 @@ msgstr "arranxar importación"
 
 #: ../tools/database/item_menu.txt:26
 msgid "objects intersection"
-msgstr "cruzamento de obxectos"
+msgstr "intersección de obxectos"
 
 #: ../tools/database/item_menu.txt:40 ../tools/database/item_menu.txt:69
 msgid "access"
@@ -1285,11 +1285,11 @@ msgstr "subestación de enerxía, podería integrarse"
 
 #: ../tools/database/item_menu.txt:176
 msgid "power support"
-msgstr "soporte de enerxía"
+msgstr "poste de enerxía"
 
 #: ../tools/database/item_menu.txt:177
 msgid "power support, could be integrated"
-msgstr "soporte de enerxía, podería integrarse"
+msgstr "poste de enerxía, podería integrarse"
 
 #: ../tools/database/item_menu.txt:28
 msgid "almost junction"
@@ -1349,7 +1349,7 @@ msgstr "Só normal"
 
 #: tmp.tpl:80 tmp.tpl:133
 msgid "Low only"
-msgstr "Só baixo"
+msgstr "Só baixa"
 
 #: tmp.tpl:33
 #, python-brace-format

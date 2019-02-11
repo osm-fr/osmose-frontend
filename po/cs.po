@@ -3,17 +3,19 @@
 # This file is distributed under the same license as the osmose-frontend package.
 # 
 # Translators:
+# Jan Vršovský <vrs@email.cz>, 2015
 # trendspotter <j.podhorecky@volny.cz>, 2018
 # Michal Pustějovský <Michal.Pustejovsky@seznam.cz>, 2014
 # Petr Schönmann <pschonmann@gmail.com>, 2014,2018
 # TK, 2014-2015,2017
+# trendspotter <j.podhorecky@volny.cz>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2018-12-09 20:47+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2019-02-10 19:56+0000\n"
+"Last-Translator: majkaz\n"
 "Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -304,7 +306,7 @@ msgstr "Seznam falešných chyb"
 
 #: tmp.tpl:121
 msgid "Last analysis updates"
-msgstr "Poslední  aktualizace analýz"
+msgstr "Poslední aktualizace analýz"
 
 #: tmp.tpl:122
 msgid "Tags Editor"
@@ -458,7 +460,7 @@ msgstr "Chybějící značky"
 
 #: ../tools/database/categ_menu.txt:3
 msgid "Bad tag"
-msgstr "Chybné značky"
+msgstr "Špatná značka"
 
 #: ../tools/database/categ_menu.txt:4
 msgid "Tags to remove"
@@ -478,7 +480,7 @@ msgstr "K mapě"
 
 #: ../tools/database/categ_menu.txt:8
 msgid "Integration"
-msgstr "Sjednocení"
+msgstr "Integrace"
 
 #: ../tools/database/item_menu.txt:1
 msgid "overlapping building"
@@ -514,7 +516,7 @@ msgstr "osamělé uzly"
 
 #: ../tools/database/item_menu.txt:10
 msgid "sudden highway type change"
-msgstr "náhla změna typu silnice"
+msgstr "náhla změna typu cesty (highway)"
 
 #: ../tools/database/item_menu.txt:11
 msgid "unclosed area"
@@ -950,7 +952,7 @@ msgstr "HTML"
 
 #: ../tools/database/item_menu.txt:25
 msgid "one-node way"
-msgstr "cesta s jedním uzlem"
+msgstr "cesta s jediným uzlem"
 
 #: ../tools/database/item_menu.txt:160
 msgid "toilets"
@@ -1008,7 +1010,7 @@ msgstr "noexit"
 msgid ""
 "Keep in touch by watching at <a "
 "href='https://twitter.com/osmose_qa'>@osmose_qa</a> on twitter."
-msgstr "Zůstaňte v kontaktu, sledujte  <a href='https://twitter.com/osmose_qa'>@osmose_qa</a> na Twitteru."
+msgstr "Zůstaňte v kontaktu, sledujte <a href='https://twitter.com/osmose_qa'>@osmose_qa</a> na Twitteru."
 
 #: ../tools/database/item_menu.txt:83
 msgid "incorrect layer"
@@ -1106,7 +1108,7 @@ msgid ""
 " issues that are attached to your username. Note that the algorithm that "
 "attaches issues to username is not perfect, as Osmose only checks the last "
 "contributor of the relevant erroneous elements."
-msgstr "Zadáním OSM uživatelského jména do následujícího formuláře budete schopni vidět problémy spojené s vaším jménem. Pozor na to, ze algoritmus pro napojení problému na uživatelské jméno není perfektní - osmose kontroluje pouze posledního přispěvatele pro chybný element."
+msgstr "Zadáním OSM uživatelského jména do následujícího formuláře budete schopni vidět problémy spojené s vaším jménem. Pozor na to, že algoritmus pro napojení problému na uživatelské jméno není perfektní - osmose kontroluje pouze posledního přispěvatele pro chybný element."
 
 #: tmp.tpl:58 tmp.tpl:112
 #, python-format
@@ -1240,7 +1242,7 @@ msgstr "recyklace potřebuje aktualizaci"
 
 #: ../tools/database/item_menu.txt:150
 msgid "parking, need update"
-msgstr "parkování potřebuje aktualizaci"
+msgstr "parkování, potřebuje aktualizaci"
 
 #: ../tools/database/item_menu.txt:157
 msgid "transport sharing, need update"
@@ -1276,7 +1278,7 @@ msgstr "chybný znak"
 
 #: ../tools/database/item_menu.txt:166
 msgid "gas station, could be integrated"
-msgstr "čerpací stanice, nemůže být sjednoceno"
+msgstr "čerpací stanice, mohlo by být integrováno"
 
 #: ../tools/database/item_menu.txt:120 ../tools/database/item_menu.txt:174
 msgid "power substation"
@@ -1431,17 +1433,17 @@ msgstr "Položka"
 
 #: tmp.tpl:106
 msgid "False positive / Done"
-msgstr "Falešně pozitivní / Hotovo"
+msgstr "Není chyba / Hotovo"
 
 #: tmp.tpl:109
 #, python-format
 msgid "Mark issue #%d as false positive"
-msgstr ""
+msgstr "Označ problém #%d jako \"není chyba\""
 
 #: tmp.tpl:110
 #, python-format
 msgid "Mark issue #%d as fixed"
-msgstr ""
+msgstr "Označ problém #%d jako vyřešený"
 
 #: tmp.tpl:158
 msgid "Objects edited"
@@ -1454,12 +1456,12 @@ msgstr "Objekty smazány"
 #: tmp.tpl:167
 #, python-brace-format
 msgid "Show Object on {where}"
-msgstr ""
+msgstr "Ukaž objekt na {where}"
 
 #: tmp.tpl:168 tmp.tpl:169 tmp.tpl:170 tmp.tpl:171
 #, python-brace-format
 msgid "Edit Object with {where}"
-msgstr ""
+msgstr "Edituj objekt pomocí {where}"
 
 #: tmp.tpl:171 tmp.tpl:173
 msgid "online Osmose Editor"
@@ -1468,22 +1470,22 @@ msgstr "online Osmose Editor"
 #: tmp.tpl:172 tmp.tpl:173
 #, python-brace-format
 msgid "Load the fix in {where}"
-msgstr ""
+msgstr "Nahraj fix na {where}"
 
 #: tmp.tpl:174
 #, python-brace-format
 msgid "Add the new object in {where}"
-msgstr ""
+msgstr "Přidej nový objekt {where}"
 
 #: tmp.tpl:175
 #, python-brace-format
 msgid "Show the area on {where}"
-msgstr ""
+msgstr "Ukaž plochu {where}"
 
 #: tmp.tpl:176 tmp.tpl:177
 #, python-brace-format
 msgid "Edit the area on {where}"
-msgstr ""
+msgstr "Edituj plochu pomocí {where}"
 
 #: tmp.tpl:178
 msgid "details"
@@ -1524,40 +1526,40 @@ msgstr "Položka číslo %s"
 
 #: ../tools/database/item_menu.txt:72
 msgid "opening hours"
-msgstr ""
+msgstr "otvírací hodiny"
 
 #: ../tools/database/item_menu.txt:121 ../tools/database/item_menu.txt:180
 msgid "hospital"
-msgstr ""
+msgstr "nemocnice"
 
 #: ../tools/database/item_menu.txt:122 ../tools/database/item_menu.txt:182
 msgid "social facility"
-msgstr ""
+msgstr "sociální zařízení"
 
 #: ../tools/database/item_menu.txt:123 ../tools/database/item_menu.txt:184
 msgid "medical lab"
-msgstr ""
+msgstr "lékařská laboratoř"
 
 #: ../tools/database/item_menu.txt:181
 msgid "hospital, could be integrated"
-msgstr ""
+msgstr "nemocnice, mohlo by být integrováno"
 
 #: ../tools/database/item_menu.txt:183
 msgid "social facility, could be integrated"
-msgstr ""
+msgstr "sociální zařízení, mohlo by být integrováno"
 
 #: ../tools/database/item_menu.txt:185
 msgid "medical lab, could be integrated"
-msgstr ""
+msgstr "lékařská laboratoř, mohlo by být integrováno"
 
 #: ../tools/database/item_menu.txt:163
 msgid "police, need update"
-msgstr ""
+msgstr "policie, potřebuje update"
 
 #: ../tools/database/item_menu.txt:53
 msgid "swimming pool"
-msgstr ""
+msgstr "plavecký bazén"
 
 #: ../tools/database/item_menu.txt:90
 msgid "potential misspelling"
-msgstr ""
+msgstr "potenciální pravopisná chyba"
