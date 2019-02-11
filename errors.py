@@ -83,6 +83,41 @@ def errors(db, lang):
     return _errors(db, lang, params)
 
 
+@route('/api/0.3beta/issues')
+def errors(db, lang):
+    params = query._params()
+    results = query._gets(db, params)
+    translate = utils.translator(lang)
+
+    out = []
+    for res in results:
+        i = {
+            'lat': float(res["lat"]),
+            'lon': float(res["lon"]),
+            'id': res["id"],
+            'item': str(res["item"]),
+        }
+        if params.full:
+            i.update({
+                'lat': float(res["lat"]),
+                'lon': float(res["lon"]),
+                'id': res["id"],
+                'item': str(res["item"]),
+                'source': res["source"],
+                'classs': res["class"],
+                'elems': res["elems"],
+                'subclass': res["subclass"],
+                'subtitle': translate.select(res["subtitle"]),
+                'title': translate.select(res["title"]),
+                'level': res["level"],
+                'update': str(res["timestamp"]),
+                'username': res["username"] or None,
+            })
+        out.append(i)
+
+    return {'issues': out}
+
+
 def int_list(s):
     return map(lambda x: int(x), filter(lambda x: x and x!='',s).split(','))
 
