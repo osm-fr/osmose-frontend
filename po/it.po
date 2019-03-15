@@ -5,9 +5,9 @@
 # Translators:
 # frodrigo <fred.rodrigo@gmail.com>, 2014,2017
 # frodrigo <fred.rodrigo@gmail.com>, 2014
-# Giuseppe Pignataro (Fastbyte01) <rogepix@gmail.com>, 2017
+# Giuseppe Pignataro <rogepix@gmail.com>, 2017
 # Lorenzo Beltrami <lorenzo.beba@gmail.com>, 2014,2019
-# Manuel Tassi <manueltassi91@gmail.com>, 2018
+# Manuel Tassi <manueltassi91@gmail.com>, 2018-2019
 # Marco <marcxosm@gmail.com>, 2015,2018
 # operon, 2012
 # operon, 2012
@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2019-01-04 11:31+0000\n"
-"Last-Translator: Lorenzo Beltrami <lorenzo.beba@gmail.com>\n"
+"PO-Revision-Date: 2019-03-14 19:04+0000\n"
+"Last-Translator: Manuel Tassi <manueltassi91@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/openstreetmap-france/osmose/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1094,7 +1094,7 @@ msgstr "Numero dei problemi riscontrati: più di 1%d"
 msgid ""
 "This page shows issues on elements that were last modified by '%s'. This "
 "doesn't means that this user is responsible for all these issues."
-msgstr "Questa pagina mostra i problemi di elementi che sono stati modificati l’ultima volta da ‘1%s’. Ciò non significa che tale utente abbia inserito quegli errori."
+msgstr "Questa pagina mostra i problemi di elementi che sono stati modificati l’ultima volta da '%s'. Ciò non significa che tale utente abbia inserito quegli errori."
 
 #: tmp.tpl:17
 msgid "Show issues on a map"
