@@ -129,10 +129,7 @@ OFFSET
         user=user, user_error_count=user_error_count)
 
 
-def _errors_mvt(db, params, z, min_lon, min_lat, max_lon, max_lat, limit):
-    params.limit = limit
-    results = query._gets(db, params) if z >= 6 else None
-
+def _errors_mvt(db, results, z, min_lon, min_lat, max_lon, max_lat, limit):
     if not results or len(results) == 0:
         return None
     else:
@@ -159,6 +156,37 @@ def _errors_mvt(db, params, z, min_lon, min_lat, max_lon, max_lat, limit):
             "name": "issues",
             "features": issues_features
         }] + limit_feature, quantize_bounds=(min_lon, min_lat, max_lon, max_lat))
+
+
+def _errors_geojson(db, results, z, min_lon, min_lat, max_lon, max_lat, limit):
+    if not results or len(results) == 0:
+        return None
+    else:
+        issues_features = []
+        for res in sorted(results, key=lambda res: -res["lat"]):
+            issues_features.append({
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [float(res["lon"]), float(res["lat"])]
+                },
+                "properties": {
+                    "issue_id": res["id"],
+                    "item": res["item"] or 0,
+                    "class": res["class"] or 0}
+            })
+
+        features_collection = {
+            "type": "FeatureCollection",
+            "features": issues_features,
+        }
+
+        if len(results) == limit and z < 18:
+            features_collection["properties"] = {
+                "limit": limit
+            }
+
+        return features_collection
 
 
 @route('/map/heat/<z:int>/<x:int>/<y:int>.mvt')
@@ -235,32 +263,42 @@ GROUP BY
     }], extents=COUNT)
 
 
-@route('/map/issues/<z:int>/<x:int>/<y:int>.mvt')
-def issues_mvt(db, z, x, y):
+@route('/map/issues/<z:int>/<x:int>/<y:int>.<format:ext>')
+def issues_mvt(db, z, x, y, format):
     lon1,lat2 = tiles.tile2lonlat(x,y,z)
     lon2,lat1 = tiles.tile2lonlat(x+1,y+1,z)
     dlon = (lon2 - lon1) / 256
     dlat = (lat2 - lat1) / 256
 
-    params = query._params()
+    params = query._params(max_limit=50 if z > 18 else 10000)
     params.tilex = x
     params.tiley = y
     params.zoom = z
     params.lat = None
     params.lon = None
+    params.full = False
 
     if params.zoom > 18:
         return
     if (not params.users) and (not params.source) and (params.zoom < 6):
         return
 
-    params.limit = 50
-    params.full = False
+    results = query._gets(db, params) if z >= 6 else None
 
-    tile = _errors_mvt(db, params, z, lon1, lat1, lon2, lat2, 50)
-    if tile:
-        response.content_type = 'application/vnd.mapbox-vector-tile'
-        return tile
+    if format == 'mvt':
+        tile = _errors_mvt(db, results, z, lon1, lat1, lon2, lat2, params.limit)
+        if tile:
+            response.content_type = 'application/vnd.mapbox-vector-tile'
+            return tile
+        else:
+            return HTTPError(404)
+    elif format in ('geojson', 'json'):  # Fall back to GeoJSON
+        tile = _errors_geojson(db, results, z, lon1, lat1, lon2, lat2, params.limit)
+        if tile:
+            response.content_type = 'application/vnd.geo+json'
+            return tile
+        else:
+            return []
     else:
         return HTTPError(404)
 

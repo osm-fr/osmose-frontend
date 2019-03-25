@@ -38,9 +38,9 @@ import bottle_user
 app.install(bottle_user.Plugin())
 
 def ext_filter(config):
-    regexp = r'html|json|xml|rss|png|svg|pdf|gpx|kml|josm|csv'
+    regexp = r'html|json|geojson|xml|rss|png|svg|pdf|gpx|kml|josm|csv|mvt'
     def to_python(match):
-        return match if match in ('html', 'json', 'xml', 'rss', 'png', 'svg', 'pdf', 'gpx', 'kml', 'josm', 'csv') else 'html'
+        return match if match in ('html', 'json', 'geojson', 'xml', 'rss', 'png', 'svg', 'pdf', 'gpx', 'kml', 'josm', 'csv', 'mvt') else 'html'
     def to_url(ext):
         return ext
     return regexp, to_python, to_url
