@@ -192,7 +192,7 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
     return (join, " AND\n        ".join(where))
 
 
-def _params():
+def _params(max_limit=500):
     class Params:
         bbox     = request.params.get('bbox', default=None)
         item     = request.params.get('item')
@@ -230,8 +230,8 @@ def _params():
             params.bbox = None
     if params.users:
         params.users = params.users.split(",")
-    if params.limit > 500:
-        params.limit = 500
+    if params.limit > max_limit:
+        params.limit = max_limit
     if params.country and not re.match(r"^([a-z_]+)(\*|)$", params.country):
         params.country = None
     if params.useDevItem == "true":
