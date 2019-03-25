@@ -68,21 +68,21 @@
           <a href="../josm_proxy?import?url=http://{{website}}/api/0.2/error/{%error_id%}/fix/{%num%}" target="hiddenIframe" class="josm" title="{{_('Add the new object in {where}').format(where='JOSM')}}" onclick="$.get('../josm_proxy?zoom?left={%minlon%}&bottom={%minlat%}&right={%maxlon%}&top={%maxlat%}'); return true;">fix-josm</a>
         </div>
   {%#add%}
-        <div class="add"> + <b>{%k%}</b> =
+        <div class="add"><b>{%k%}</b> =
           {%#vlink%}<a href="{%vlink%}" target="popup_tag2link">{%/vlink%}
           {%v%}
           {%#vlink%}</a>{%/vlink%}
         </div>
   {%/add%}
   {%#mod%}
-        <div class="mod"> ~ <b>{%k%}</b> =
+        <div class="mod"><b>{%k%}</b> =
           {%#vlink%}<a href="{%vlink%}" target="popup_tag2link">{%/vlink%}
           {%v%}
           {%#vlink%}</a>{%/vlink%}
         </div>
   {%/mod%}
   {%#del%}
-        <div class="del"> - <b>{%k%}</b></div>
+        <div class="del"><b>{%k%}</b></div>
   {%/del%}
       </div>
     </div>
