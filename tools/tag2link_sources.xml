@@ -72,7 +72,7 @@
     <src name="Mapillary">
         <rule>
             <condition k="((ref|source):)?mapillary" v="[0-9a-zA-Z-_]+" />
-            <link name="View %name% image" href="https://www.mapillary.com/app/?focus=photo&amp;pKey=%v%&amp;signs=true" />
+            <link name="View %name% image" href="https://www.mapillary.com/app/?focus=photo&amp;pKey=%v%&amp;signs=true&amp;points=true" />
         </rule>
     </src>
 
