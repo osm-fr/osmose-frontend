@@ -85,7 +85,7 @@ def errors(db, lang):
 
 @route('/api/0.3beta/issues')
 def errors(db, lang):
-    params = query._params()
+    params = query._params(max_limit=10000)
     results = query._gets(db, params)
     translate = utils.translator(lang)
 
