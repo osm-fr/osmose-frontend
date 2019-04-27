@@ -8,6 +8,7 @@
 # Giuseppe Pignataro <rogepix@gmail.com>, 2017
 # Lorenzo Beltrami <lorenzo.beba@gmail.com>, 2014,2019
 # Manuel Tassi <manueltassi91@gmail.com>, 2018-2019
+# Marco <marcxosm@gmail.com>, 2019
 # Marco <marcxosm@gmail.com>, 2015,2018
 # operon, 2012
 # operon, 2012
@@ -16,7 +17,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2019-03-14 19:04+0000\n"
+"PO-Revision-Date: 2019-04-21 12:26+0000\n"
 "Last-Translator: Manuel Tassi <manueltassi91@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/openstreetmap-france/osmose/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -526,7 +527,7 @@ msgstr "area non chiusa"
 
 #: ../tools/database/item_menu.txt:12
 msgid "bad *_link highway"
-msgstr "Strada *_link errata"
+msgstr "strada *_link errata"
 
 #: ../tools/database/item_menu.txt:13
 msgid "broken highway continuity"
@@ -534,7 +535,7 @@ msgstr "classificazione discontinua"
 
 #: ../tools/database/item_menu.txt:14
 msgid "missing tag or role"
-msgstr "etichetta o ruolo mancanti"
+msgstr "Etichetta o ruolo mancanti"
 
 #: ../tools/database/item_menu.txt:15
 msgid "surface intersection"
@@ -1094,7 +1095,7 @@ msgstr "Numero dei problemi riscontrati: più di 1%d"
 msgid ""
 "This page shows issues on elements that were last modified by '%s'. This "
 "doesn't means that this user is responsible for all these issues."
-msgstr "Questa pagina mostra i problemi di elementi che sono stati modificati l’ultima volta da '%s'. Ciò non significa che tale utente abbia inserito quegli errori."
+msgstr "Questa pagina mostra i problemi di elementi che sono stati modificati l'ultima volta da '%s'. Ciò non significa che tale utente abbia inserito quegli errori."
 
 #: tmp.tpl:17
 msgid "Show issues on a map"
@@ -1110,7 +1111,7 @@ msgid ""
 " issues that are attached to your username. Note that the algorithm that "
 "attaches issues to username is not perfect, as Osmose only checks the last "
 "contributor of the relevant erroneous elements."
-msgstr "Inserendo il tuo nome utente OSM nel seguente spazio, potrai vedere i problemi che sono associati al tuo nome utente. Tieni in considerazione che l’algoritmo che affibbia i problemi ad un utente non è perfetto, visto che Osmose controlla solo l’ultimo contributore dei relativi elementi contenenti errori."
+msgstr "Inserendo il tuo nome utente OSM nel seguente spazio, potrai vedere i problemi che sono associati al tuo nome utente. Tieni in considerazione che l'algoritmo che affibbia i problemi ad un utente non è perfetto, visto che Osmose controlla solo l’ultimo contributore dei relativi elementi contenenti errori."
 
 #: tmp.tpl:58 tmp.tpl:112
 #, python-format
