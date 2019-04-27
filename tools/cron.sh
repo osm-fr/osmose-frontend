@@ -14,11 +14,53 @@ WHERE date < now()-interval '7 day' AND status = 'done';
 "
 
 psql -d $DATABASE -c "
-INSERT INTO dynpoi_stats (
-  SELECT dynpoi_class.source, dynpoi_class.class, now(), count(marker.source)
+CREATE TEMP TABLE stats_update AS
+SELECT
+  stats.source,
+  stats.class,
+  now()::timestamp AS timestamp,
+  c.count
+FROM (
+  SELECT
+    dynpoi_class.source,
+    dynpoi_class.class,
+    count(marker.source) AS count
   FROM dynpoi_class
-    LEFT JOIN marker ON dynpoi_class.source=marker.source AND dynpoi_class.class=marker.class
-  GROUP BY dynpoi_class.source, dynpoi_class.class
+    LEFT JOIN marker ON
+      dynpoi_class.source = marker.source AND
+      dynpoi_class.class = marker.class
+  GROUP BY
+    dynpoi_class.source,
+    dynpoi_class.class
+  ) AS c
+    JOIN stats ON
+      stats.source = c.source AND
+      stats.class = c.class AND
+      upper(stats.timestamp_range) IS NULL AND
+      stats.count != c. count
+;
+
+UPDATE
+  stats
+SET
+  timestamp_range = tsrange(lower(timestamp_range), stats_update.timestamp),
+  count = stats_update.count
+FROM
+  stats_update
+WHERE
+  stats_update.source = stats.source AND
+  stats_update.class = stats.class AND
+  upper(stats.timestamp_range) IS NULL
+;
+
+INSERT INTO stats (
+  SELECT
+    source,
+    class,
+    count,
+    tsrange(timestamp, NULL)
+  FROM
+    stats_update
 );
 "
 

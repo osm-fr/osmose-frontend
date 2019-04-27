@@ -38,16 +38,29 @@ SELECT
     SUM(count)
 FROM (
     SELECT
-        date_trunc('day', marker.timestamp) AS date,
-        AVG(marker.count) AS count
-    FROM
-        %s
+        date_trunc('day', timestamp) AS date,
+        AVG(count) AS count
+    FROM (
+        SELECT
+            marker.source,
+            marker.class,
+            marker.count,
+            generate_series(
+                lower(timestamp_range),
+                coalesce(upper(timestamp_range) - '23 hour'::interval, now()),
+                '1 day'::interval
+            )::timestamp without time zone AS timestamp
+        FROM
+            %s
+        WHERE
+            %s
+        ) AS t
     WHERE
         %s
     GROUP BY
-        marker.source,
-        marker.class,
-        date_trunc('day', marker.timestamp)
+        source,
+        class,
+        date_trunc('day', timestamp)
     ) AS t
 GROUP BY
     date
@@ -57,7 +70,13 @@ ORDER BY
 
     params = query._params()
     join, where = query._build_param(None, params.source, params.item, params.level, None, params.classs, params.country, params.useDevItem, None, params.tags, None, stats=True, start_date=params.start_date, end_date=params.end_date)
-    sql = sqlbase % (join, where)
+    where2 = ["1 = 1"]
+    if params.start_date:
+        where2.append("timestamp >= '%s'" % params.start_date.isoformat())
+    if params.end_date:
+        where2.append("timestamp < '%s'" % params.end_date.isoformat())
+    where2 = " AND ".join(where2)
+    sql = sqlbase % (join, where, where2)
 
     if len(sys.argv)>1:
       print sql
