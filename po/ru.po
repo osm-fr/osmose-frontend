@@ -11,7 +11,7 @@
 # jekader <jekader@gmail.com>, 2014
 # Nikolay Parukhin <parukhin@gmail.com>, 2014-2015
 # Semigradsky Dmitry <semigradskyd@gmail.com>, 2017
-# 4004 <tohaklim@gmail.com>, 2017
+# 4004, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
