@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2019-05-07 19:31+0000\n"
+"PO-Revision-Date: 2019-05-07 19:39+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Greek (http://www.transifex.com/openstreetmap-france/osmose/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -1511,7 +1511,7 @@ msgstr ""
 msgid "zone:maxspeed"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:203
+#: ../tools/database/item_menu.txt:205
 msgid "power transformer"
 msgstr ""
 
@@ -1570,4 +1570,12 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:188
 msgid "street objects"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:203
+msgid "openrailwaymap"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:204
+msgid "openrailwaymap in germany"
 msgstr ""

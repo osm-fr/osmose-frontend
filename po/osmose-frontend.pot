@@ -1507,7 +1507,7 @@ msgstr ""
 msgid "zone:maxspeed"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:203
+#: ../tools/database/item_menu.txt:205
 msgid "power transformer"
 msgstr ""
 
@@ -1566,4 +1566,12 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:188
 msgid "street objects"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:203
+msgid "openrailwaymap"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:204
+msgid "openrailwaymap in germany"
 msgstr ""
