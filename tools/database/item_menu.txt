@@ -200,4 +200,6 @@
  9010 | _("unnecessary")
  9011 | _("wikipedia")
  9014 | _("public transport")
+ 9015 | _("openrailwaymap")
+ 9016 | _("openrailwaymap in germany")
  9100 | _("power transformer")
