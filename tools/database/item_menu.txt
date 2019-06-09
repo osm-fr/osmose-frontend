@@ -41,6 +41,7 @@
  2130 | _("access")
  2140 | _("public_transport route")
  2150 | _("zone:maxspeed")
+ 2160 | _("railways")
  3010 | _("highway roundabout")
  3020 | _("bad source tag")
  3030 | _("tagwatch cleaner")
