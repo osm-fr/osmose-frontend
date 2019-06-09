@@ -50,11 +50,11 @@ def user(db, lang, username=None, format=None):
     count = len(errors)
     if request.path.startswith("/api") or format == "json":
         out = OrderedDict()
-        out["description"] = ["id", "item", "lat", "lon", "source", "class", "elems", "subclass", "subtitle", "comment", "title", "level", "timestamp", "menu", "username", "date"]
         for res in errors:
             res["timestamp"] = str(res["timestamp"])
-            res["date"] = str(res["date"])
-        out["byusers"] = errors
+            res["lat"] = float(res["lat"])
+            res["lon"] = float(res["lon"])
+        out["issues"] = map(dict, errors)
         return out
 
     elif format == 'rss':
