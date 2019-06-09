@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2019-05-07 19:39+0000\n"
+"PO-Revision-Date: 2019-06-09 20:30+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -286,7 +286,7 @@ msgstr "elemek"
 msgid "subtitle"
 msgstr "alcím"
 
-#: tmp.tpl:105 ../tools/database/item_menu.txt:55
+#: tmp.tpl:105 ../tools/database/item_menu.txt:56
 msgid "date"
 msgstr "dátum"
 
@@ -588,7 +588,7 @@ msgstr "szülőcímke"
 msgid "street numbers"
 msgstr "házszámok"
 
-#: ../tools/database/item_menu.txt:36 ../tools/database/item_menu.txt:194
+#: ../tools/database/item_menu.txt:36 ../tools/database/item_menu.txt:195
 msgid "highway"
 msgstr "út"
 
@@ -596,324 +596,324 @@ msgstr "út"
 msgid "highway crossing"
 msgstr "útkereszteződés"
 
-#: ../tools/database/item_menu.txt:38 ../tools/database/item_menu.txt:169
+#: ../tools/database/item_menu.txt:38 ../tools/database/item_menu.txt:170
 msgid "pharmacy"
 msgstr "gyógyszertár"
 
-#: ../tools/database/item_menu.txt:44
+#: ../tools/database/item_menu.txt:45
 msgid "highway roundabout"
 msgstr "körforgalom"
 
-#: ../tools/database/item_menu.txt:45
+#: ../tools/database/item_menu.txt:46
 msgid "bad source tag"
 msgstr "hibás forráscímke (source)"
 
-#: ../tools/database/item_menu.txt:46
+#: ../tools/database/item_menu.txt:47
 msgid "tagwatch cleaner"
 msgstr "tagwatch tisztítás"
 
-#: ../tools/database/item_menu.txt:47 ../tools/database/item_menu.txt:201
+#: ../tools/database/item_menu.txt:48 ../tools/database/item_menu.txt:202
 msgid "wikipedia"
 msgstr "Wikipédia"
 
-#: ../tools/database/item_menu.txt:48
+#: ../tools/database/item_menu.txt:49
 msgid "multiple tags"
 msgstr "többszörözött címkék"
 
-#: ../tools/database/item_menu.txt:49
+#: ../tools/database/item_menu.txt:50
 msgid "saint hyphen"
 msgstr "hiányzó kötőjel a saint(e) után (FR)"
 
-#: ../tools/database/item_menu.txt:50
+#: ../tools/database/item_menu.txt:51
 msgid "incorrect tag"
 msgstr "helytelen címke"
 
-#: ../tools/database/item_menu.txt:51
+#: ../tools/database/item_menu.txt:52
 msgid "bad tag key"
 msgstr "hibás címkekulcs"
 
-#: ../tools/database/item_menu.txt:52
+#: ../tools/database/item_menu.txt:53
 msgid "similar values"
 msgstr "hasonló értékek"
 
-#: ../tools/database/item_menu.txt:53
+#: ../tools/database/item_menu.txt:54
 msgid "multiple values"
 msgstr "többszörözött értékek"
 
-#: ../tools/database/item_menu.txt:56
+#: ../tools/database/item_menu.txt:57
 msgid "numeric value"
 msgstr "számszerű érték"
 
-#: ../tools/database/item_menu.txt:59
+#: ../tools/database/item_menu.txt:60
 msgid "small farm"
 msgstr "kis tanya"
 
-#: ../tools/database/item_menu.txt:60
+#: ../tools/database/item_menu.txt:61
 msgid "note"
 msgstr "megjegyzés"
 
-#: ../tools/database/item_menu.txt:61
+#: ../tools/database/item_menu.txt:62
 msgid "tree"
 msgstr "fa"
 
-#: ../tools/database/item_menu.txt:62
+#: ../tools/database/item_menu.txt:63
 msgid "brand in name"
 msgstr "márkajelzés a névben"
 
-#: ../tools/database/item_menu.txt:63
+#: ../tools/database/item_menu.txt:64
 msgid "typo in tag"
 msgstr "elírás a címkében"
 
-#: ../tools/database/item_menu.txt:64
+#: ../tools/database/item_menu.txt:65
 msgid "incorrect "
 msgstr "helytelen "
 
-#: ../tools/database/item_menu.txt:65
+#: ../tools/database/item_menu.txt:66
 msgid "parking lane"
 msgstr "parkolósáv"
 
-#: ../tools/database/item_menu.txt:66
+#: ../tools/database/item_menu.txt:67
 msgid "relation role"
 msgstr "kapcsolati (relation) szerep"
 
-#: ../tools/database/item_menu.txt:67
+#: ../tools/database/item_menu.txt:68
 msgid "relation type=restriction"
 msgstr "kapcsolat: type=restriction"
 
-#: ../tools/database/item_menu.txt:68
+#: ../tools/database/item_menu.txt:69
 msgid "postcode"
 msgstr "irányítószám"
 
-#: ../tools/database/item_menu.txt:75
+#: ../tools/database/item_menu.txt:76
 msgid "disused"
 msgstr "használaton kívül"
 
-#: ../tools/database/item_menu.txt:76
+#: ../tools/database/item_menu.txt:77
 msgid "on junction=roundabout"
 msgstr "junction=roundabout esetén"
 
-#: ../tools/database/item_menu.txt:77
+#: ../tools/database/item_menu.txt:78
 msgid "incompatible tags"
 msgstr "összeegyeztethetetlen címkék"
 
-#: ../tools/database/item_menu.txt:78
+#: ../tools/database/item_menu.txt:79
 msgid "ref in name"
 msgstr "'ref' a névben"
 
-#: ../tools/database/item_menu.txt:81
+#: ../tools/database/item_menu.txt:82
 msgid "construction"
 msgstr "építkezés"
 
-#: ../tools/database/item_menu.txt:82
+#: ../tools/database/item_menu.txt:83
 msgid "duplicate object"
 msgstr "duplikált objektum"
 
-#: ../tools/database/item_menu.txt:83
+#: ../tools/database/item_menu.txt:84
 msgid "unwanted tag on node"
 msgstr "nem kívánatos címke a ponton"
 
-#: ../tools/database/item_menu.txt:84
+#: ../tools/database/item_menu.txt:85
 msgid "bad usage"
 msgstr "hibás használat"
 
-#: ../tools/database/item_menu.txt:88
+#: ../tools/database/item_menu.txt:89
 msgid "orthograph"
 msgstr "helyesírás"
 
-#: ../tools/database/item_menu.txt:89
+#: ../tools/database/item_menu.txt:90
 msgid "way type"
 msgstr "vonaltípus"
 
-#: ../tools/database/item_menu.txt:90
+#: ../tools/database/item_menu.txt:91
 msgid "two names"
 msgstr "két név"
 
-#: ../tools/database/item_menu.txt:91
+#: ../tools/database/item_menu.txt:92
 msgid "toponymy"
 msgstr "helynév"
 
-#: ../tools/database/item_menu.txt:96
+#: ../tools/database/item_menu.txt:97
 msgid "open polygon"
 msgstr "nyitott terület"
 
-#: ../tools/database/item_menu.txt:97
+#: ../tools/database/item_menu.txt:98
 msgid "duplicated way"
 msgstr "duplikált vonal"
 
-#: ../tools/database/item_menu.txt:98
+#: ../tools/database/item_menu.txt:99
 msgid "place without name"
 msgstr "név nélküli hely"
 
-#: ../tools/database/item_menu.txt:99
+#: ../tools/database/item_menu.txt:100
 msgid "INSEE code"
 msgstr "INSEE statisztikai kód (FR)"
 
-#: ../tools/database/item_menu.txt:100
+#: ../tools/database/item_menu.txt:101
 msgid "admin_level"
 msgstr "admin_level"
 
-#: ../tools/database/item_menu.txt:101
+#: ../tools/database/item_menu.txt:102
 msgid "erroneous boundary"
 msgstr "hibás határ"
 
-#: ../tools/database/item_menu.txt:102
+#: ../tools/database/item_menu.txt:103
 msgid "out of boundary"
 msgstr "határ(vonal)on kívül"
 
-#: ../tools/database/item_menu.txt:103
+#: ../tools/database/item_menu.txt:104
 msgid "geodesic building"
 msgstr "földmérési épület"
 
-#: ../tools/database/item_menu.txt:104
+#: ../tools/database/item_menu.txt:105
 msgid "building shape"
 msgstr "épület körvonala"
 
-#: ../tools/database/item_menu.txt:105
+#: ../tools/database/item_menu.txt:106
 msgid "bridge to tag"
 msgstr "címkézendő híd"
 
-#: ../tools/database/item_menu.txt:106
+#: ../tools/database/item_menu.txt:107
 msgid "admin boundary"
 msgstr "közigazgatási határ"
 
-#: ../tools/database/item_menu.txt:107
+#: ../tools/database/item_menu.txt:108
 msgid "power lines"
 msgstr "elektromos vezetékek"
 
-#: ../tools/database/item_menu.txt:108 ../tools/database/item_menu.txt:129
+#: ../tools/database/item_menu.txt:109 ../tools/database/item_menu.txt:130
 msgid "post office"
 msgstr "posta"
 
-#: ../tools/database/item_menu.txt:110
+#: ../tools/database/item_menu.txt:111
 msgid "ODbL migration change"
 msgstr "ODbl migráció változása"
 
-#: ../tools/database/item_menu.txt:111
+#: ../tools/database/item_menu.txt:112
 msgid "school, not integrated"
 msgstr "iskola, nincs a térképen"
 
-#: ../tools/database/item_menu.txt:112
+#: ../tools/database/item_menu.txt:113
 msgid "monument"
 msgstr "műemlék"
 
-#: ../tools/database/item_menu.txt:113
+#: ../tools/database/item_menu.txt:114
 msgid "node on ways"
 msgstr "pont a vonalakon"
 
-#: ../tools/database/item_menu.txt:114 ../tools/database/item_menu.txt:140
+#: ../tools/database/item_menu.txt:115 ../tools/database/item_menu.txt:141
 msgid "train station"
 msgstr "vasútállomás"
 
-#: ../tools/database/item_menu.txt:115
+#: ../tools/database/item_menu.txt:116
 msgid "TMC"
 msgstr "Traffic Message Channel (TMC)"
 
-#: ../tools/database/item_menu.txt:116
+#: ../tools/database/item_menu.txt:117
 msgid "relation type=boundary"
 msgstr "kapcsolat: type=boundary"
 
-#: ../tools/database/item_menu.txt:117
+#: ../tools/database/item_menu.txt:118
 msgid "tunnel/bridge"
 msgstr "alagút/híd"
 
-#: ../tools/database/item_menu.txt:126
+#: ../tools/database/item_menu.txt:127
 msgid "monument, museum"
 msgstr "műemlék, múzeum"
 
-#: ../tools/database/item_menu.txt:127
+#: ../tools/database/item_menu.txt:128
 msgid "monument, museum, could be integrated"
 msgstr "műemlék, múzeum: térképre lehetne tenni"
 
-#: ../tools/database/item_menu.txt:130
+#: ../tools/database/item_menu.txt:131
 msgid "post office, could be integrated"
 msgstr "posta: térképre lehetne tenni"
 
-#: ../tools/database/item_menu.txt:134
+#: ../tools/database/item_menu.txt:135
 msgid "school"
 msgstr "iskola"
 
-#: ../tools/database/item_menu.txt:135
+#: ../tools/database/item_menu.txt:136
 msgid "school, could be integrated"
 msgstr "iskola, térképre lehetne tenni"
 
-#: ../tools/database/item_menu.txt:27 ../tools/database/item_menu.txt:137
-#: ../tools/database/item_menu.txt:202
+#: ../tools/database/item_menu.txt:27 ../tools/database/item_menu.txt:138
+#: ../tools/database/item_menu.txt:203
 msgid "public transport"
 msgstr "tömegközlekedés"
 
-#: ../tools/database/item_menu.txt:138
+#: ../tools/database/item_menu.txt:139
 msgid "public transport, could be integrated"
 msgstr "tömegközlekeség, térképre lehetne tenni"
 
-#: ../tools/database/item_menu.txt:141
+#: ../tools/database/item_menu.txt:142
 msgid "train station, could be integrated"
 msgstr "vasútállomás, térképre lehetne tenni"
 
-#: ../tools/database/item_menu.txt:142
+#: ../tools/database/item_menu.txt:143
 msgid "level crossing"
 msgstr "szintbeni kereszteződés"
 
-#: ../tools/database/item_menu.txt:143
+#: ../tools/database/item_menu.txt:144
 msgid "geodesic point"
 msgstr "földmérési pont"
 
-#: ../tools/database/item_menu.txt:144
+#: ../tools/database/item_menu.txt:145
 msgid "postal address"
 msgstr "postacím"
 
-#: ../tools/database/item_menu.txt:145
+#: ../tools/database/item_menu.txt:146
 msgid "wikipedia, could be integrated"
 msgstr "Wikipédia, térképre lehetne tenni"
 
-#: ../tools/database/item_menu.txt:146
+#: ../tools/database/item_menu.txt:147
 msgid "public service"
 msgstr "közszolgáltatás"
 
-#: ../tools/database/item_menu.txt:147
+#: ../tools/database/item_menu.txt:148
 msgid "recycling"
 msgstr "újrahasznosítás"
 
-#: ../tools/database/item_menu.txt:148
+#: ../tools/database/item_menu.txt:149
 msgid "recycling, could be integrated"
 msgstr "újrahasznosítás, térképre lehetne tenni"
 
-#: ../tools/database/item_menu.txt:150
+#: ../tools/database/item_menu.txt:151
 msgid "parking"
 msgstr "parkoló"
 
-#: ../tools/database/item_menu.txt:151
+#: ../tools/database/item_menu.txt:152
 msgid "parking, could be integrated"
 msgstr "parkoló, térképre lehetne tenni"
 
-#: ../tools/database/item_menu.txt:153
+#: ../tools/database/item_menu.txt:154
 msgid "accommodation"
 msgstr "szállás"
 
-#: ../tools/database/item_menu.txt:154
+#: ../tools/database/item_menu.txt:155
 msgid "accommodation, could be integrated"
 msgstr "szállás, térképre lehetne tenni"
 
-#: ../tools/database/item_menu.txt:155
+#: ../tools/database/item_menu.txt:156
 msgid "cycle parking"
 msgstr "kerékpártároló"
 
-#: ../tools/database/item_menu.txt:156
+#: ../tools/database/item_menu.txt:157
 msgid "cycle parking, could be integrated"
 msgstr "kerékpártároló, térképre lehetne tenni"
 
-#: ../tools/database/item_menu.txt:157
+#: ../tools/database/item_menu.txt:158
 msgid "transport sharing"
 msgstr "közlekedésieszköz-megosztás"
 
-#: ../tools/database/item_menu.txt:158
+#: ../tools/database/item_menu.txt:159
 msgid "transport sharing, could be integrated"
 msgstr "közlekedésieszköz-megosztás, térképre lehetne tenni"
 
-#: ../tools/database/item_menu.txt:160
+#: ../tools/database/item_menu.txt:161
 msgid "sport"
 msgstr "sport"
 
-#: ../tools/database/item_menu.txt:161
+#: ../tools/database/item_menu.txt:162
 msgid "sport, could be integrated"
 msgstr "sport, térképre lehetne tenni"
 
@@ -952,31 +952,31 @@ msgstr "HTML-lista"
 msgid "one-node way"
 msgstr "egy pontból álló vonal"
 
-#: ../tools/database/item_menu.txt:162
+#: ../tools/database/item_menu.txt:163
 msgid "toilets"
 msgstr "WC"
 
-#: ../tools/database/item_menu.txt:118
+#: ../tools/database/item_menu.txt:119
 msgid "transport sharing, not integrated"
 msgstr "közlekedésieszköz-megosztás, nincs a térképen"
 
-#: ../tools/database/item_menu.txt:163
+#: ../tools/database/item_menu.txt:164
 msgid "police"
 msgstr "rendőrség"
 
-#: ../tools/database/item_menu.txt:164
+#: ../tools/database/item_menu.txt:165
 msgid "police, could be integrated"
 msgstr "rendőrség, térképre lehetne tenni"
 
-#: ../tools/database/item_menu.txt:119
+#: ../tools/database/item_menu.txt:120
 msgid "pharmacy, not integrated "
 msgstr "gyógyszertár, nincs a térképen "
 
-#: ../tools/database/item_menu.txt:170
+#: ../tools/database/item_menu.txt:171
 msgid "pharmacy, could be integrated"
 msgstr "gyógyszertár, térképre lehetne tenni"
 
-#: ../tools/database/item_menu.txt:166
+#: ../tools/database/item_menu.txt:167
 msgid "gas station"
 msgstr "benzinkút"
 
@@ -996,11 +996,11 @@ msgstr "Módosításcsomag mentése"
 msgid "Comment"
 msgstr "Hozzászólás"
 
-#: ../tools/database/item_menu.txt:69
+#: ../tools/database/item_menu.txt:70
 msgid "area"
 msgstr "terület"
 
-#: ../tools/database/item_menu.txt:70
+#: ../tools/database/item_menu.txt:71
 msgid "noexit"
 msgstr "nincs kijárat, zsákutca <noexit>"
 
@@ -1010,7 +1010,7 @@ msgid ""
 "href='https://twitter.com/osmose_qa'>@osmose_qa</a> on twitter."
 msgstr "Kövess minket a Twitteren: <a href='https://twitter.com/osmose_qa'>@osmose_qa</a>."
 
-#: ../tools/database/item_menu.txt:85
+#: ../tools/database/item_menu.txt:86
 msgid "incorrect layer"
 msgstr "helytelen réteg"
 
@@ -1026,19 +1026,19 @@ msgstr "ország"
 msgid "analyser"
 msgstr "elemző"
 
-#: ../tools/database/item_menu.txt:171
+#: ../tools/database/item_menu.txt:172
 msgid "postal code, could be integrated"
 msgstr "irányítószám, térképre lehetne tenni"
 
-#: ../tools/database/item_menu.txt:172
+#: ../tools/database/item_menu.txt:173
 msgid "library"
 msgstr "könyvtár"
 
-#: ../tools/database/item_menu.txt:173
+#: ../tools/database/item_menu.txt:174
 msgid "restaurant"
 msgstr "étterem"
 
-#: ../tools/database/item_menu.txt:174
+#: ../tools/database/item_menu.txt:175
 msgid "winery"
 msgstr "borászat"
 
@@ -1046,11 +1046,11 @@ msgstr "borászat"
 msgid "missing object kind"
 msgstr "hiányzó objektumtípus"
 
-#: ../tools/database/item_menu.txt:120
+#: ../tools/database/item_menu.txt:121
 msgid "postal code, not integrated "
 msgstr "irányítószám, nincs a térképen "
 
-#: ../tools/database/item_menu.txt:93
+#: ../tools/database/item_menu.txt:94
 msgid "local language"
 msgstr "helyi nyelv"
 
@@ -1150,15 +1150,15 @@ msgstr "A jelentett hibák dokumentációja"
 msgid "version"
 msgstr "verzió"
 
-#: ../tools/database/item_menu.txt:175
+#: ../tools/database/item_menu.txt:176
 msgid "geodesic"
 msgstr "földmérési"
 
-#: ../tools/database/item_menu.txt:109 ../tools/database/item_menu.txt:132
+#: ../tools/database/item_menu.txt:110 ../tools/database/item_menu.txt:133
 msgid "post box"
 msgstr "postaláda"
 
-#: ../tools/database/item_menu.txt:133
+#: ../tools/database/item_menu.txt:134
 msgid "post box, could be integrated"
 msgstr "postaláda, térképre lehetne tenni"
 
@@ -1166,11 +1166,11 @@ msgstr "postaláda, térképre lehetne tenni"
 msgid "indoor"
 msgstr "beltéri"
 
-#: ../tools/database/item_menu.txt:86
+#: ../tools/database/item_menu.txt:87
 msgid "roundabout as area"
 msgstr "körforgalom területként"
 
-#: ../tools/database/item_menu.txt:121
+#: ../tools/database/item_menu.txt:122
 msgid "road"
 msgstr "út"
 
@@ -1206,7 +1206,7 @@ msgstr "Az <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-fro
 msgid "far from water"
 msgstr "távol van a víztől"
 
-#: ../tools/database/item_menu.txt:79
+#: ../tools/database/item_menu.txt:80
 msgid "fixme import"
 msgstr "fixme importálása"
 
@@ -1214,35 +1214,35 @@ msgstr "fixme importálása"
 msgid "objects intersection"
 msgstr "egymást metsző objektumok"
 
-#: ../tools/database/item_menu.txt:41 ../tools/database/item_menu.txt:71
+#: ../tools/database/item_menu.txt:41 ../tools/database/item_menu.txt:72
 msgid "access"
 msgstr "hozzáférés, használat (access)"
 
-#: ../tools/database/item_menu.txt:80
+#: ../tools/database/item_menu.txt:81
 msgid "fixme review"
 msgstr "fixme áttekintése"
 
-#: ../tools/database/item_menu.txt:128
+#: ../tools/database/item_menu.txt:129
 msgid "monument, museum, need update"
 msgstr "műemlék, múzeum: frissítendő"
 
-#: ../tools/database/item_menu.txt:136
+#: ../tools/database/item_menu.txt:137
 msgid "school, need update"
 msgstr "iskola, frissítendő"
 
-#: ../tools/database/item_menu.txt:139
+#: ../tools/database/item_menu.txt:140
 msgid "public transport, need update"
 msgstr "tömegközlekedés, frissítendő"
 
-#: ../tools/database/item_menu.txt:149
+#: ../tools/database/item_menu.txt:150
 msgid "recycling, need update"
 msgstr "újrahasznosítás, frissítendő"
 
-#: ../tools/database/item_menu.txt:152
+#: ../tools/database/item_menu.txt:153
 msgid "parking, need update"
 msgstr "parkoló, frissítendő"
 
-#: ../tools/database/item_menu.txt:159
+#: ../tools/database/item_menu.txt:160
 msgid "transport sharing, need update"
 msgstr "közlekedésieszköz-megosztás, frissítendő"
 
@@ -1262,7 +1262,7 @@ msgstr "Kor"
 msgid "Version"
 msgstr "Verzió"
 
-#: ../tools/database/item_menu.txt:131
+#: ../tools/database/item_menu.txt:132
 msgid "post office, need update"
 msgstr "posta, frissítendő"
 
@@ -1270,27 +1270,27 @@ msgstr "posta, frissítendő"
 msgid "age"
 msgstr "kor"
 
-#: ../tools/database/item_menu.txt:94
+#: ../tools/database/item_menu.txt:95
 msgid "invalid character"
 msgstr "érvénytelen karakter"
 
-#: ../tools/database/item_menu.txt:168
+#: ../tools/database/item_menu.txt:169
 msgid "gas station, could be integrated"
 msgstr "benzinkút, térképre lehetne tenni"
 
-#: ../tools/database/item_menu.txt:122 ../tools/database/item_menu.txt:176
+#: ../tools/database/item_menu.txt:123 ../tools/database/item_menu.txt:177
 msgid "power substation"
 msgstr "elektromos alállomás"
 
-#: ../tools/database/item_menu.txt:177
+#: ../tools/database/item_menu.txt:178
 msgid "power substation, could be integrated"
 msgstr "elektromos alállomás, térképre lehetne tenni"
 
-#: ../tools/database/item_menu.txt:178
+#: ../tools/database/item_menu.txt:179
 msgid "power support"
 msgstr "villamosenergia-ellátás"
 
-#: ../tools/database/item_menu.txt:179
+#: ../tools/database/item_menu.txt:180
 msgid "power support, could be integrated"
 msgstr "villamosenergia-ellátás, térképre lehetne tenni"
 
@@ -1302,35 +1302,35 @@ msgstr "majdnem csomópont"
 msgid "public_transport route"
 msgstr "tömegközlekedési útvonal (public_transport route)"
 
-#: ../tools/database/item_menu.txt:72
+#: ../tools/database/item_menu.txt:73
 msgid "recycling container"
 msgstr "szelektív hulladékgyűjtési konténer"
 
-#: ../tools/database/item_menu.txt:87
+#: ../tools/database/item_menu.txt:88
 msgid "duplicate wikipedia"
 msgstr "duplikált <wikipedia>"
 
-#: ../tools/database/item_menu.txt:73
+#: ../tools/database/item_menu.txt:74
 msgid "route access mismatch"
 msgstr "az útvonal hozzáférhetőségének (access) hibás illeszkedése"
 
-#: ../tools/database/item_menu.txt:95
+#: ../tools/database/item_menu.txt:96
 msgid "similar name"
 msgstr "hasonló név"
 
-#: ../tools/database/item_menu.txt:167
+#: ../tools/database/item_menu.txt:168
 msgid "gas station, need update"
 msgstr "benzinkút, frissítendő"
 
-#: ../tools/database/item_menu.txt:57
+#: ../tools/database/item_menu.txt:58
 msgid "phone number"
 msgstr "telefonszám"
 
-#: ../tools/database/item_menu.txt:180
+#: ../tools/database/item_menu.txt:181
 msgid "traffic signs"
 msgstr "jelzőtáblák"
 
-#: ../tools/database/item_menu.txt:181
+#: ../tools/database/item_menu.txt:182
 msgid "traffic sign limitation"
 msgstr "korlátozást jelző tábla"
 
@@ -1377,47 +1377,47 @@ msgstr "Új országok felvétele érdekében közvetlenül is elérhetők vagyun
 msgid "JOSM validator"
 msgstr "JOSM-érvényesítő"
 
-#: ../tools/database/item_menu.txt:189
+#: ../tools/database/item_menu.txt:190
 msgid "seamark"
 msgstr "hajózásitérkép-jel"
 
-#: ../tools/database/item_menu.txt:190
+#: ../tools/database/item_menu.txt:191
 msgid "addresses"
 msgstr "címek"
 
-#: ../tools/database/item_menu.txt:191
+#: ../tools/database/item_menu.txt:192
 msgid "combinations"
 msgstr "kombinációk"
 
-#: ../tools/database/item_menu.txt:192
+#: ../tools/database/item_menu.txt:193
 msgid "deprecated"
 msgstr "elavult"
 
-#: ../tools/database/item_menu.txt:193
+#: ../tools/database/item_menu.txt:194
 msgid "geometry"
 msgstr "geometria"
 
-#: ../tools/database/item_menu.txt:195
+#: ../tools/database/item_menu.txt:196
 msgid "multiple"
 msgstr "többszörös"
 
-#: ../tools/database/item_menu.txt:196
+#: ../tools/database/item_menu.txt:197
 msgid "numeric"
 msgstr "numerikus"
 
-#: ../tools/database/item_menu.txt:197
+#: ../tools/database/item_menu.txt:198
 msgid "relation"
 msgstr "kapcsolat"
 
-#: ../tools/database/item_menu.txt:198
+#: ../tools/database/item_menu.txt:199
 msgid "religion"
 msgstr "vallás"
 
-#: ../tools/database/item_menu.txt:199
+#: ../tools/database/item_menu.txt:200
 msgid "territories"
 msgstr "területek"
 
-#: ../tools/database/item_menu.txt:200
+#: ../tools/database/item_menu.txt:201
 msgid "unnecessary"
 msgstr "fölösleges"
 
@@ -1513,7 +1513,7 @@ msgstr "Miután a hibát kijavítottad az OSM-adatbázisban, jelöld meg készk�
 msgid "zone:maxspeed"
 msgstr "zone:maxspeed"
 
-#: ../tools/database/item_menu.txt:205
+#: ../tools/database/item_menu.txt:206
 msgid "power transformer"
 msgstr "transzformátor"
 
@@ -1522,43 +1522,43 @@ msgstr "transzformátor"
 msgid "Item #%s"
 msgstr "Elem #%s"
 
-#: ../tools/database/item_menu.txt:74
+#: ../tools/database/item_menu.txt:75
 msgid "opening hours"
 msgstr "nyitva tartás"
 
-#: ../tools/database/item_menu.txt:123 ../tools/database/item_menu.txt:182
+#: ../tools/database/item_menu.txt:124 ../tools/database/item_menu.txt:183
 msgid "hospital"
 msgstr "kórház"
 
-#: ../tools/database/item_menu.txt:124 ../tools/database/item_menu.txt:184
+#: ../tools/database/item_menu.txt:125 ../tools/database/item_menu.txt:185
 msgid "social facility"
 msgstr "szociális létesítmény"
 
-#: ../tools/database/item_menu.txt:125 ../tools/database/item_menu.txt:186
+#: ../tools/database/item_menu.txt:126 ../tools/database/item_menu.txt:187
 msgid "medical lab"
 msgstr "orvosi labor"
 
-#: ../tools/database/item_menu.txt:183
+#: ../tools/database/item_menu.txt:184
 msgid "hospital, could be integrated"
 msgstr "kórház, térképre lehetne tenni"
 
-#: ../tools/database/item_menu.txt:185
+#: ../tools/database/item_menu.txt:186
 msgid "social facility, could be integrated"
 msgstr "szociális létesítmény, térképre lehetne tenni"
 
-#: ../tools/database/item_menu.txt:187
+#: ../tools/database/item_menu.txt:188
 msgid "medical lab, could be integrated"
 msgstr "orvosi labor, térképre lehetne tenni"
 
-#: ../tools/database/item_menu.txt:165
+#: ../tools/database/item_menu.txt:166
 msgid "police, need update"
 msgstr "rendőrség, frissítendő"
 
-#: ../tools/database/item_menu.txt:54
+#: ../tools/database/item_menu.txt:55
 msgid "swimming pool"
 msgstr "úszómedence"
 
-#: ../tools/database/item_menu.txt:92
+#: ../tools/database/item_menu.txt:93
 msgid "potential misspelling"
 msgstr "lehetséges elírás"
 
@@ -1566,18 +1566,22 @@ msgstr "lehetséges elírás"
 msgid "enforcement"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:58
+#: ../tools/database/item_menu.txt:59
 msgid "URL"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:188
+#: ../tools/database/item_menu.txt:189
 msgid "street objects"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:203
+#: ../tools/database/item_menu.txt:204
 msgid "openrailwaymap"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:204
+#: ../tools/database/item_menu.txt:205
 msgid "openrailwaymap in germany"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:44
+msgid "railways"
 msgstr ""
