@@ -185,7 +185,7 @@ def index(db, lang, format=None):
             "class"], [
             "min(dynpoi_item.menu::text)::hstore AS menu",
             "min(class.title::text)::hstore AS title"],
-            orderBy = True)
+        )
 
         total = 0
         for res in errors_groups:

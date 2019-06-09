@@ -60,7 +60,7 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
     if summary:
         join += "dynpoi_class AS marker"
     elif stats:
-        join += "dynpoi_stats AS marker"
+        join += "stats AS marker"
     elif status in ("done", "false"):
         join += "dynpoi_status AS marker"
         where.append("marker.status = '%s'" % status)
@@ -166,10 +166,12 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
         where.append("marker_elem.username IN ('%s')" % "','".join(users))
 
     if stats:
-        if start_date:
-            where.append("marker.timestamp > '%s'" % start_date.isoformat())
-        if end_date:
-            where.append("marker.timestamp < '%s'" % end_date.isoformat())
+        if start_date and end_date:
+            where.append("marker.timestamp_range && tsrange('{0}', '{1}', '[]')".format(start_date.isoformat(), end_date.isoformat()))
+        elif start_date:
+            where.append("marker.timestamp_range && tsrange('{0}', NULL, '[)')".format(start_date.isoformat()))
+        elif end_date:
+            where.append("marker.timestamp_range && tsrange(NULL, '{1}', '(]')".format(end_date.isoformat()))
     elif status in ("done", "false"):
         if start_date:
             where.append("marker.date > '%s'" % start_date.isoformat())
