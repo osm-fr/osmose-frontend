@@ -18,7 +18,7 @@ a:visited {
   color: gray;
 }
 
-/* iframe for josm and rawedit links */
+/* iframe for josm links */
 iframe#hiddenIframe {
   display: none;
   position: absolute;
