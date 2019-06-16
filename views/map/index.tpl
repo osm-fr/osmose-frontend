@@ -113,73 +113,85 @@
 <div id="map">
 </div>
 
-<div id='top_links'>
-<ul id="topmenu">
-<li id="menu-lang"><a href='#' onclick='return false;'>{{_("Change language")}} ▼</a>
-<ul class="submenu">
-%for (k, v) in languages_name.items():
-%    if translate.languages[0] == k:
-%        s = " class='bold'"
-%    else:
-%        s = ""
-%    end
-  <li{{!s}}><a href="{{"http://" + website + "/" + k + request.path + "?" + request.query_string}}">{{v}} ({{k}})</a></li>
-%end
-</ul>
-</li>
 
-%for u in urls:
- <li id="menu-{{u[0]}}"><a href="{{u[2]}}">{{u[1]}}</a></li>
-%end
+<nav id="top_links" class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Osmose</a>
 
-<li id="menu-export"><a href='#' onclick='return false;'>{{_("Export")}} ▼</a>
-<ul class="submenu">
-  <li><a data-href="../errors/" target="_blank">{{_("Html list")}}</a></li>
-  <li><a data-href="../josm_proxy?errors.josm" target="hiddenIframe">JOSM</a></li>
-  <li><a data-href="../errors.rss" target="_blank">RSS</a></li>
-  <li><a data-href="../errors.gpx">GPX</a></li>
-  <li><a data-href="../errors.kml">KML</a></li>
-  <li><a data-href="../api/0.2/errors" target="_blank">Json</a></li>
-  <li><a data-href="../errors.csv" target="_blank">CSV</a></li>
-  <li><a data-href="markers" target="_blank">GeoJson</a></li>
-</ul>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-<li id="menu-help"><a href='#' onclick='return false;'>{{_("Help")}} ▼</a>
-<ul class="submenu">
-%for u in helps:
- <li><a href="{{u[1]}}">{{u[0]}}</a></li>
-%end
-</ul>
-</li>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{_("Change language")}}</a>
+        <div class="dropdown-menu">
+          %for (k, v) in languages_name.items():
+          %    if translate.languages[0] == k:
+          %        s = "bold"
+          %    else:
+          %        s = ""
+          %    end
+          <a class="dropdown-item {{s}}" href="{{"http://" + website + "/" + k + request.path + "?" + request.query_string}}">{{v}} ({{k}})</a>
+          %end
+        </div>
+      </li>
 
-%delay_status = "normal" if delay < 0.9 else "warning" if delay < 1.6 else "error"
-%delay = "%0.2f" % delay
-<li id="menu-delay"><a href="../control/update" class="delay-{{delay_status}}">{{_("Delay: %sd") % delay}}</a></li>
+      %for u in urls:
+       <li class="nav-item"><a class="nav-link" href="{{u[2]}}">{{u[1]}}</a></li>
+      %end
 
-<li id="menu-user">
-%if user:
-  <a href="../byuser/{{user}}">{{user}} ({{user_error_count[1]+user_error_count[2]+user_error_count[3]}}) ▼</a>
-  <ul class="submenu">
-    <li><a href="../byuser/{{user}}?level=1">{{_("Level {level} issues ({count})") .format(level=1, count=user_error_count[1])}}</a></li>
-    <li><a href="../byuser/{{user}}?level=2">{{_("Level {level} issues ({count})") .format(level=2, count=user_error_count[2])}}</a></li>
-    <li><a href="../byuser/{{user}}?level=3">{{_("Level {level} issues ({count})") .format(level=3, count=user_error_count[3])}}</a></li>
-    <li><a href="../logout">{{_("Logout")}}</a></li>
-  </ul>
-%else:
-  <a href="../login">{{_("Login")}}</a>
-%end
-</li>
+      <li class="nav-item dropdown" id="menu-export">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{_("Export")}}</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" data-href="../errors/" target="_blank">{{_("Html list")}}</a>
+          <a class="dropdown-item" data-href="../josm_proxy?errors.josm" target="hiddenIframe">JOSM</a>
+          <a class="dropdown-item" data-href="../errors.rss" target="_blank">RSS</a>
+          <a class="dropdown-item" data-href="../errors.gpx">GPX</a>
+          <a class="dropdown-item" data-href="../errors.kml">KML</a>
+          <a class="dropdown-item" data-href="../api/0.2/errors" target="_blank">Json</a>
+          <a class="dropdown-item" data-href="../errors.csv" target="_blank">CSV</a>
+          <a class="dropdown-item" data-href="markers" target="_blank">GeoJson</a>
+        </div>
+      </li>
 
-<li id="menu-editor-save" style="display:none">
-  <a href="#">{{_("Save")}} (<span id="menu-editor-save-number"></span>)</a>
-</li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{_("Help")}}</a>
+        <div class="dropdown-menu">
+          %for u in helps:
+          <a class="dropdown-item" href="{{u[1]}}">{{u[0]}}</a>
+          %end
+        </div>
+      </li>
 
-</ul>
-</div>
+      %if user:
+      <li class="nav-item dropdown">
+        <a href="../byuser/{{user}}">{{user}} ({{user_error_count[1]+user_error_count[2]+user_error_count[3]}}) ▼</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="../byuser/{{user}}?level=1">{{_("Level {level} issues ({count})") .format(level=1, count=user_error_count[1])}}</a>
+          <a class="dropdown-item" href="../byuser/{{user}}?level=2">{{_("Level {level} issues ({count})") .format(level=2, count=user_error_count[2])}}</a>
+          <a class="dropdown-item" href="../byuser/{{user}}?level=3">{{_("Level {level} issues ({count})") .format(level=3, count=user_error_count[3])}}</a>
+          <a class="dropdown-item" href="../logout">{{_("Logout")}}</a>
+        </div>
+      </li>
+      %else:
+      <li class="nav-item"><a class="nav-link" href="../login">{{_("Login")}}</a></li>
+      %end
+
+      <li class="nav-item" id="menu-editor-save" style="display:none">
+        <a href="#">{{_("Save")}} (<span id="menu-editor-save-number"></span>)</a>
+      </li>
+    </ul>
+    %delay_status = "success" if delay < 0.9 else "warning" if delay < 1.6 else "danger"
+    %delay = "%0.2f" % delay
+    <a href="../control/update" class="nav-link" data-toggle="tooltip" title="{{_("Delay: %sd") % delay}}"><span class="badge badge-pill badge-{{delay_status}}"> </span></a>
+  </div>
+</nav>
 
 <script type="text/javascript">
 $(function() {
   initMap();
+  $('[data-toggle="tooltip"]').tooltip();
 });
 </script>
 

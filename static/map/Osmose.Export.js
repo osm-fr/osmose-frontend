@@ -24,7 +24,7 @@ const OsmoseExport = L.Class.extend({
     this._params_last = params;
     params.limit = 500;
     params.bbox = this._map.getBounds().toBBoxString();
-    $('#menu-export ul a').each((i, a) => {
+    $('#menu-export div a').each((i, a) => {
       a.href = $(a).data('href') + L.Util.getParamString(params);
     });
   },

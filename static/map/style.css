@@ -10,7 +10,7 @@ body {
 /* Map */
 div#map {
   position: absolute;
-  top: 23px;
+  top: 56px;
   bottom: 0px;
   left: 0px;
   right: 0px;
@@ -25,85 +25,10 @@ div#map div#spinner {
 }
 
 /* Top menu */
-div#top_links {
-  background-color: #FFFFFF;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
-  position: absolute;
-  height: 24px;
-  width: 100%;
-  left: 0px;
-  top: 0px;
-  opacity: 0.9;
-  font-size: 13px;
-
-  vertical-align: middle;
-  text-align: center;
+#top_links {
   z-index: 1025;
 }
 
-.leaflet-touch + div#top_links {
-  box-shadow: none;
-  border-bottom: 2px solid rgba(0,0,0,0.2);
-  background-clip: padding-box;
-}
-
-#topmenu {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  position: absolute;
-  top: 0;
-}
-#topmenu li {
-  display: inline-block;
-  vertical-align: top;
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-#topmenu li a:link,
-#topmenu li a:visited {
-  display: block;
-  margin: 0;
-  padding: 2px 8px;
-  border-right: 1px solid #CCCCCC;
-  text-decoration: none;
-}
-#topmenu li a:hover
-#topmenu li a:active {
-  background-color: #B0B0B0;
-}
-
-#topmenu .submenu {
-  display: none;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-#topmenu .submenu li {
-  display: block;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-top: 1px solid #003453;
-  border-right: 1px solid #003453;
-}
-#topmenu .submenu li a:link,
-#topmenu .submenu li a:visited {
-  display: block;
-  margin: 0;
-  border: 0;
-  text-decoration: none;
-  background: #DDDDDD;
-}
-#topmenu .submenu li a:hover {
-  background-image: none;
-  background-color: #B0B0B0;
-}
- 
-#topmenu li:hover > .submenu { display: block; }
 
 /* popups */
 
@@ -247,24 +172,6 @@ ul.leaflet-control-geocoder-alternatives {
   left: 300px;
   right: 0px;
   bottom: 0px;
-}
-
-@media(max-width:399px) {
-  #topmenu #menu-lang, #topmenu #menu-openstreetmapfr, #topmenu #menu-byuser, #topmenu #menu-relation_analyser, #topmenu #menu-statistics, #topmenu #menu-help, #topmenu #menu-delay {
-    display: none;
-  }
-}
-
-@media(min-width:400px) and (max-width:767px) {
-  #topmenu #menu-byuser, #topmenu #menu-relation_analyser, #topmenu #menu-statistics, #topmenu #menu-help, #topmenu #menu-delay {
-    display: none;
-  }
-}
-
-@media(min-width:768px) and (max-width:991px) {
-  #topmenu #menu-byuser, #topmenu #menu-relation_analyser, #topmenu#menu-statistics, #topmenu #menu-help {
-    display: none;
-  }
 }
 
 @media(min-width:768px) and (max-width:991px) {
