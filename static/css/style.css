@@ -1,3 +1,8 @@
+[dir="rtl"] .dropdown-menu {
+  right: 0;
+  text-align: right;
+}
+
 body {
   text-align: inherit;
 }
