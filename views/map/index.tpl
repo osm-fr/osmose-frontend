@@ -166,7 +166,7 @@
 
       %if user:
       <li class="nav-item dropdown">
-        <a href="../byuser/{{user}}">{{user}} ({{user_error_count[1]+user_error_count[2]+user_error_count[3]}}) ▼</a>
+        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="../byuser/{{user}}">{{user}} ({{user_error_count[1]+user_error_count[2]+user_error_count[3]}}) ▼</a>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="../byuser/{{user}}?level=1">{{_("Level {level} issues ({count})") .format(level=1, count=user_error_count[1])}}</a>
           <a class="dropdown-item" href="../byuser/{{user}}?level=2">{{_("Level {level} issues ({count})") .format(level=2, count=user_error_count[2])}}</a>
