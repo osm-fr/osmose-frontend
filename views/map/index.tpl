@@ -184,7 +184,7 @@
     </ul>
     %delay_status = "success" if delay < 0.9 else "warning" if delay < 1.6 else "danger"
     %delay = "%0.2f" % delay
-    <a href="../control/update" class="nav-link" data-toggle="tooltip" title="{{_("Delay: %sd") % delay}}"><span class="badge badge-pill badge-{{delay_status}}"> </span></a>
+    <a href="../control/update" class="nav-link"><span class="badge  badge-{{delay_status}}">{{_("Delay: %sd") % delay}}</span></a>
   </div>
 </nav>
 
