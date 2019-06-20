@@ -18,12 +18,15 @@
   {%/relation%}
   {%#node%}
       <a href="../josm_proxy?load_object?objects=n{%id%}" target="hiddenIframe" class="josm" title="{{_('Edit Object with {where}').format(where='JOSM')}}">josm</a>
+      <a href="{{main_website}}edit?editor=id&node={%id%}" target="_blank" class="id" title="{{_('Edit Object with {where}').format(where='iD')}}">iD</a>
   {%/node%}
   {%#way%}
       <a href="../josm_proxy?load_object?objects=w{%id%}" target="hiddenIframe" class="josm" title="{{_('Edit Object with {where}').format(where='JOSM')}}">josm</a>
+      <a href="{{main_website}}edit?editor=id&way={%id%}" target="_blank" class="id" title="{{_('Edit Object with {where}').format(where='iD')}}">iD</a>
   {%/way%}
   {%#relation%}
       <a href="../josm_proxy?import?url={{remote_url_read}}api/0.6/{%type%}/{%id%}/full" target="hiddenIframe" class="josm" title="{{_('Edit Object with {where}').format(where='JOSM')}}" onclick="$.get('../josm_proxy?zoom?left={%minlon%}&bottom={%minlat%}&right={%maxlon%}&top={%maxlat%}'); return true;">josm</a>
+      <a href="{{main_website}}edit?editor=id&relation={%id%}" target="_blank" class="id" title="{{_('Edit Object with {where}').format(where='iD')}}">iD</a>
   {%/relation%}
       <a href="#" class="editor_edit" data-type="{%type%}" data-id="{%id%}" data-error="{%error_id%}" title="{{_('Edit Object with {where}').format(where=_('online Osmose Editor'))}}">edit</a>
       <br>
