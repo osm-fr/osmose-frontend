@@ -162,7 +162,7 @@ const OsmoseEditor = L.Control.Sidebar.extend({
       $('div:not(.del)', eee).each((ii, ee) => {
         $(" input[type='text']", ee).each((i, e) => {
           if (e.value && e.dataset.key) {
-            elem[e.dataset.key] = e.value.split('=')[1];
+            elem[e.dataset.key] = e.value.split('=').splice(1).join('=');
           }
         });
       });
