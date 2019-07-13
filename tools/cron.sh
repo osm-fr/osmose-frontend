@@ -37,14 +37,14 @@ FROM (
       stats.source = c.source AND
       stats.class = c.class AND
       upper(stats.timestamp_range) IS NULL AND
-      stats.count != c. count
+      stats.count != c.count
 ;
 
+-- Close last range
 UPDATE
   stats
 SET
-  timestamp_range = tsrange(lower(timestamp_range), stats_update.timestamp),
-  count = stats_update.count
+  timestamp_range = tsrange(lower(timestamp_range), stats_update.timestamp)
 FROM
   stats_update
 WHERE
@@ -53,6 +53,7 @@ WHERE
   upper(stats.timestamp_range) IS NULL
 ;
 
+-- Open new range
 INSERT INTO stats (
   SELECT
     source,
