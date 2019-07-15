@@ -185,7 +185,8 @@ CREATE TABLE public.dynpoi_status (
     lat numeric(9,7) NOT NULL,
     lon numeric(10,7) NOT NULL,
     subtitle public.hstore,
-    id bigint DEFAULT nextval('public.dynpoi_status_id_seq'::regclass)
+    id bigint DEFAULT nextval('public.dynpoi_status_id_seq'::regclass),
+    uuid uuid NOT NULL
 );
 
 
@@ -229,7 +230,8 @@ CREATE TABLE public.marker (
     lon numeric(10,7),
     elems text,
     item integer,
-    subtitle public.hstore
+    subtitle public.hstore,
+    uuid uuid NOT NULL
 )
 WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
 

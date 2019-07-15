@@ -275,8 +275,9 @@ class update_parser(handler.ContentHandler):
             all_elem  = all_elem.rstrip("_")
 
             ## sql template
-            sql_marker = u"INSERT INTO marker (source, class, subclass, item, lat, lon, elems, subtitle) "
-            sql_marker += u"VALUES (%(source)s, %(class)s, %(subclass)s, %(item)s, %(lat)s, %(lon)s, %(elems)s, %(subtitle)s) "
+            sql_marker = u"INSERT INTO marker (uuid, source, class, subclass, item, lat, lon, elems, subtitle) "
+            sql_marker += u"VALUES (('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid, "
+            sql_marker += u"%(source)s, %(class)s, %(subclass)s, %(item)s, %(lat)s, %(lon)s, %(elems)s, %(subtitle)s) "
             sql_marker += u"RETURNING id"
 
             ## add data at all location
