@@ -147,7 +147,7 @@ def _errors_mvt(db, results, z, min_lon, min_lat, max_lon, max_lat, limit):
             issues_features.append({
                 "geometry": Point(res["lon"], res["lat"]),
                 "properties": {
-                    "issue_id": res["id"],
+                    "issue_id": res["uuid"],
                     "item": res["item"] or 0,
                     "class": res["class"] or 0}
             })
@@ -171,7 +171,7 @@ def _errors_geojson(db, results, z, min_lon, min_lat, max_lon, max_lat, limit):
                     "coordinates": [float(res["lon"]), float(res["lat"])]
                 },
                 "properties": {
-                    "issue_id": res["id"],
+                    "issue_id": res["uuid"],
                     "item": res["item"] or 0,
                     "class": res["class"] or 0}
             })

@@ -26,20 +26,33 @@ from tools import osmose_common
 from tools import utils
 
 
-def _get(db, err_id, status):
+def _get(db, status, err_id=None, uuid=None):
     columns = ["item", "source", "class", "elems", "subclass",
         "lat", "lon",
         "title", "subtitle",
         "dynpoi_status.date", "dynpoi_class.timestamp"]
-    sql = "SELECT " + ",".join(columns) + """
-    FROM
-        dynpoi_status
-        JOIN dynpoi_class USING (source,class)
-    WHERE
-        dynpoi_status.status = %s AND
-        dynpoi_status.id = %s
-    """
-    db.execute(sql, (status, err_id, ))
+
+    if err_id:
+        sql = "SELECT " + ",".join(columns) + """
+        FROM
+            dynpoi_status
+            JOIN dynpoi_class USING (source,class)
+        WHERE
+            dynpoi_status.status = %s AND
+            dynpoi_status.id = %s
+        """
+        db.execute(sql, (status, err_id))
+    else:
+        sql = "SELECT " + ",".join(columns) + """
+        FROM
+            dynpoi_status
+            JOIN dynpoi_class USING (source,class)
+        WHERE
+            dynpoi_status.status = %s AND
+            dynpoi_status.uuid = %s
+        """
+        db.execute(sql, (status, uuid))
+
     marker = db.fetchone()
 
     if not marker:
@@ -48,23 +61,28 @@ def _get(db, err_id, status):
     return (marker, columns)
 
 
-@route('/false-positive/<err_id:int>')
-def fp_(db, lang, err_id):
-    (marker, columns) = _get(db, err_id, 'false')
+@route('/false-positive/<uuid:uuid>')
+def fp_(db, lang, uuid):
+    (marker, columns) = _get(db, 'false', uuid=uuid)
 
-    return template('false-positive/index', translate=utils.translator(lang), err_id=err_id, marker=marker, columns_marker=columns)
+    return template('false-positive/index', translate=utils.translator(lang), uuid=uuid, marker=marker, columns_marker=columns)
 
 
 @route('/api/0.2/false-positive/<err_id:int>')
-def fp(db, lang, err_id):
+def fp_err_id(db, lang, err_id):
+    return _fp(2, db, lang, None, *_get(db, 'false', err_id=err_id))
+
+@route('/api/0.3beta/false-positive/<uuid:uuid>')
+def fp_uuid(db, lang, uuid):
+    return _fp(3, db, lang, uuid, *_get(db, 'false', uuid=uuid))
+
+def _fp(version, db, lang, uuid, marker, columns):
     data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
 
     # TRANSLATORS: link to tooltip help
     url_help = _("http://wiki.openstreetmap.org/wiki/Osmose/errors")
 
     translate = utils.translator(lang)
-
-    (marker, columns) = _get(db, err_id, 'false')
 
     lat       = str(marker["lat"])
     lon       = str(marker["lon"])
@@ -74,38 +92,52 @@ def fp(db, lang, err_id):
     item      = marker["item"] or 0
     date      = marker["date"].isoformat() or 0
 
-    return {
-        "lat":lat, "lon":lon,
-        "minlat": float(lat) - 0.002, "maxlat": float(lat) + 0.002,
-        "minlon": float(lon) - 0.002, "maxlon": float(lon) + 0.002,
-        "error_id":err_id,
-        "title":title, "subtitle":subtitle,
-        "b_date":b_date.strftime("%Y-%m-%d"),
-        "item":item,
-        "date":date,
-        "url_help":url_help
-    }
+    if version == 2:
+        return {
+            "lat":lat, "lon":lon,
+            "minlat": float(lat) - 0.002, "maxlat": float(lat) + 0.002,
+            "minlon": float(lon) - 0.002, "maxlon": float(lon) + 0.002,
+            "error_id":err_id,
+            "title":title, "subtitle":subtitle,
+            "b_date":b_date.strftime("%Y-%m-%d"),
+            "item":item,
+            "date":date,
+            "url_help":url_help
+        }
+    else:
+        return {
+            "lat":lat, "lon":lon,
+            "minlat": float(lat) - 0.002, "maxlat": float(lat) + 0.002,
+            "minlon": float(lon) - 0.002, "maxlon": float(lon) + 0.002,
+            "id":uuid,
+            "title":title, "subtitle":subtitle,
+            "b_date":b_date.strftime("%Y-%m-%d"),
+            "item":item,
+            "date":date,
+            "url_help":url_help
+        }
 
 
 @delete('/api/0.2/false-positive/<err_id:int>')
-def fp_delete(db, err_id):
-
-    sql = """SELECT id FROM dynpoi_status
-    WHERE
-        status = %s AND
-        id = %s
-    """
-    db.execute(sql, ('false', err_id, ))
+def fp_delete_err_id(db, err_id):
+    db.execute("SELECT id FROM dynpoi_status WHERE status = %s AND id = %s", ('false', err_id))
     m = db.fetchone()
     if not m:
         abort(410, "FAIL")
 
-    sql = """DELETE FROM dynpoi_status
-    WHERE
-        status = %s AND
-        id = %s
-    """
-    db.execute(sql, ('false', err_id, ))
+    db.execute("DELETE FROM dynpoi_status WHERE status = %s AND id = %s", ('false', err_id))
+    db.connection.commit()
+
+    return
+
+@delete('/api/0.3beta/false-positive/<uuid:uuid>')
+def fp_delete_uuid(db, uuid):
+    db.execute("SELECT id FROM dynpoi_status WHERE status = %s AND uuid = %s", ('false', uuid))
+    m = db.fetchone()
+    if not m:
+        abort(410, "FAIL")
+
+    db.execute("DELETE FROM dynpoi_status WHERE status = %s AND uuid = %s", ('false', uuid))
     db.connection.commit()
 
     return

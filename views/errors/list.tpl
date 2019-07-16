@@ -39,7 +39,7 @@
     <td>{{res["class"]}}</td>
     <td>{{res["subclass"]}}</td>
 %    e = gen if gen in ('error', 'false-positive') else 'error'
-    <td title="{{_(u"issue n°")}}{{res["id"]}}"><a href="../{{e}}/{{res["id"]}}">E</a></td>
+    <td title="{{_(u"issue n°")}}{{res["uuid"]}}"><a href="../{{e}}/{{res["uuid"]}}">E</a></td>
 %    if res["lat"] and res["lon"]:
 %        lat = res["lat"]
 %        lon = res["lon"]
@@ -95,12 +95,12 @@
 %    end
 %    if gen in ("error", "info"):
     <td>
-      <a href="#" class="err_delete" id="GET=error/{{res["id"]}}/false" title="{{_("Mark issue #%d as false positive") % res["id"]}}">✘</a>/
-      <a href="#" class="err_delete" id="GET=error/{{res["id"]}}/done" title="{{_("Mark issue #%d as fixed") % res["id"]}}">✔</a>
+      <a href="#" class="err_delete" id="GET=issue/{{res["uuid"]}}/false" title="{{_("Mark issue #%s as false positive") % res["uuid"]}}">✘</a>/
+      <a href="#" class="err_delete" id="GET=issue/{{res["uuid"]}}/done" title="{{_("Mark issue #%s as fixed") % res["uuid"]}}">✔</a>
     </td>
 %    end
 %    if gen == "false-positive":
-    <td title="{{_("delete issue #%d") % res["id"]}}"><a href="#" class="err_delete" id="DELETE={{gen}}/{{res["id"]}}">✘</a></td>
+    <td title="{{_("delete issue #%s") % res["uuid"]}}"><a href="#" class="err_delete" id="DELETE={{gen}}/{{res["uuid"]}}">✘</a></td>
 %    end
 </tr>
 %end
