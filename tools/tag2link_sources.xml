@@ -26,7 +26,7 @@
             <link name="View website" href="%v%" />
         </rule>
         <rule>
-            <condition k="(.*:url|.*_url|^url$)" />
+            <condition k="url" />
             <link name="View URL" href="%v%" />
         </rule>
         <rule>
@@ -72,7 +72,7 @@
     <src name="Mapillary">
         <rule>
             <condition k="((ref|source):)?mapillary" v="[0-9a-zA-Z-_]+" />
-            <link name="View %name% image" href="https://www.mapillary.com/app/?focus=photo&amp;pKey=%v%&amp;signs=true&amp;points=true" />
+            <link name="View %name% image" href="http://www.mapillary.com/map/im/%v%" />
         </rule>
     </src>
 
@@ -176,7 +176,7 @@
     <src name="FINESS" country-code="FR">
         <rule>
             <condition k="ref:(FR:)?FINESS" v="[A-Z0-9-]{8,9}" />
-            <link name="View %name% sheet of hospital/home" href="http://finess.sante.gouv.fr/fininter/jsp/actionDetailEtablissement.do?noFiness=%v%" />
+            <link name="View %name% sheet of hospital/home" href="http://finess.sante.gouv.fr/finess/jsp/actionDetailEtablissement.do?noFiness=%v%" />
         </rule>
     </src>
 
@@ -190,7 +190,7 @@
     <src name="SIRET" country-code="FR">
         <rule>
             <condition k="ref:FR:SIRET" v="(\p{Digit}{9})([0-9-]{5})" />
-            <link name="Get identification card (pdf) for this establishment" href="http://avis-situation-sirene.insee.fr/avisitu/AvisPdf.do?nic=%v.2%&amp;siren=%v.1%" />
+            <link name="Get identification card (pdf) for this establishment" href="https://avis-situation-sirene.insee.fr/ListeSiretToEtab.action?form.nic=%v.2%&amp;form.siren=%v.1%" />
         </rule>
     </src>
 
