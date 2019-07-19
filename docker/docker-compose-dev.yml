@@ -1,0 +1,9 @@
+version: '3.3'
+
+services:
+  frontend:
+    volumes:
+      - type: bind
+        source: ..
+        target: /data/project/osmose/frontend
+    command: bash

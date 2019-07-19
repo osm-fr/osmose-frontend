@@ -1,13 +1,15 @@
 Docker
 ======
 
-Build the Docker image, within docker directory:
+Build the Docker image, within the docker directory:
 ```
-docker build -f Dockerfile -t osm-fr/osmose_frontend:latest ..
+curl http://osmose.openstreetmap.fr/export/osmose-menu.sql.bz2 | bzcat > osmose-menu.sql
+docker-compose build
 ```
-Run the container:
+
+Run the containers:
 ```
-docker run -ti -p 20009:20009 -e URL_FRONTEND=localhost:20009 osm-fr/osmose_frontend:latest
+docker-compose up
 ```
 
 The server will be running at http://localhost:20009/en/map/
@@ -18,23 +20,26 @@ Docker for development
 
 Run a configuration and password less instance:
 ```
-docker run -ti -p 20009:20009 -e URL_FRONTEND=localhost:20009 -e OSMOSE_UNLOCKED_UPDATE=on osm-fr/osmose_frontend:latest
+docker-compose -f docker-compose.yml -f docker-compose-test.yml -f docker-compose-dev.yml run --name frontend -p 20009:20009 frontend
 ```
 
-Configure your Osmose Backend to point to the Osmose Frontend in `osmose-backend/modules/config.py`
-```python
-url_frontend_update = "http://myhost:20009/control/send-update"
+Once on container, first time of for development purpose:
+```
+cd po && make mo && cd ..
+ln -s ../node_modules/ node_modules
+npm run build
 ```
 
-Run the Backend with upload password `osmose-backend/osmose_config_password.py` for your analyse:
-```python
-def set_password(config):
-  config["test"].analyser["merge_cadastre_FR"] = "MAGIC"
+Then run the standalone web server
+```
+./osmose-standalone-bottle.py
 ```
 
-Then run the anlyse on the backend:
-```
-python ./osmose_run.py --skip-init --no-clean --country=test --analyser=merge_cadastre_FR
-```
+To upload data to Osmose Frontend see the Osmose Backend.
 
-And show the result at: http://myhost:20009/en/errors?item=xxxx&useDevItem=true
+Show the results at: http://localhost:20009/en/errors?item=xxxx&useDevItem=true
+
+Acces to the database with
+```
+psql -h postgres osmose_frontend osmose
+```
