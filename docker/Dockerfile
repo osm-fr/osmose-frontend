@@ -8,7 +8,7 @@ WORKDIR /data/project/osmose/frontend
 EXPOSE 20009
 ENTRYPOINT ["sh", "-c", "/etc/init.d/postgresql start && cd /data/project/osmose/frontend && sudo -E -u osmose -s eval '. osmose-frontend-venv/bin/activate ; ./osmose-standalone-bottle.py'"]
 
-RUN curl -sL http://deb.nodesource.com/setup_9.x -o nodesource_setup.sh && \
+RUN curl -sL http://deb.nodesource.com/setup_10.x -o nodesource_setup.sh && \
     bash ./nodesource_setup.sh && \
     apt update && \
     apt install -y --no-install-recommends \
