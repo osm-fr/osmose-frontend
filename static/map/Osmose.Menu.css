@@ -9,6 +9,9 @@ div#menu div#need_zoom {
   color: #FF0000;
   text-align: center;
 }
+div#menu {
+  resize: horizontal;
+}
 div#menu form {
   margin: 0px;
   height: 100%;
