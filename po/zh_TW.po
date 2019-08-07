@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2019-06-09 20:30+0000\n"
+"PO-Revision-Date: 2019-08-07 20:28+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgid "never generated"
 msgstr "不曾產生"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:187 ../false_positive.py:63 tmp.tpl:195
+#: ../error.py:187 ../false_positive.py:63 tmp.tpl:198
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
@@ -67,7 +67,7 @@ msgstr "聯絡我們"
 msgid "Help on wiki"
 msgstr "Wiki 上的說明頁"
 
-#: ../map.py:92 tmp.tpl:118 tmp.tpl:194
+#: ../map.py:92 tmp.tpl:118 tmp.tpl:197
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
@@ -399,44 +399,44 @@ msgstr "種類"
 msgid "Reuse changeset"
 msgstr "續用(reuse)變更集"
 
-#: tmp.tpl:183
+#: tmp.tpl:186
 msgid "corrected"
 msgstr "已更正"
 
-#: tmp.tpl:182
+#: tmp.tpl:185
 msgid "false positive"
 msgstr "誤報錯誤"
 
-#: tmp.tpl:184 tmp.tpl:185
+#: tmp.tpl:187 tmp.tpl:188
 msgid "How to help translation"
 msgstr "如何幫忙翻譯"
 
-#: tmp.tpl:186
+#: tmp.tpl:189
 msgid ""
 "Osmose tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
 msgstr "Osmose 工具主要由法國人開發，我們希望能加入更多語言。目前有被分析的國家所用的語言大多已含括在內了。"
 
-#: tmp.tpl:188
+#: tmp.tpl:191
 msgid ""
 "To make Osmose a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr "要讓 Osmose 成為真正的多語工具，我們需要你的協助來改善已有的翻譯、增加新的翻譯。"
 
-#: tmp.tpl:189
+#: tmp.tpl:192
 msgid "Pages to translate"
 msgstr "需要被翻譯的網頁"
 
-#: tmp.tpl:193
+#: tmp.tpl:196
 msgid "Wiki pages"
 msgstr "Wiki 頁面"
 
-#: tmp.tpl:190
+#: tmp.tpl:193
 msgid "Osmose pages"
 msgstr "Osmose 網頁"
 
-#: tmp.tpl:199
+#: tmp.tpl:202
 msgid "Bug tracking system"
 msgstr "Bug 追蹤系統"
 
@@ -588,7 +588,7 @@ msgstr "父標籤"
 msgid "street numbers"
 msgstr "門牌號碼"
 
-#: ../tools/database/item_menu.txt:36 ../tools/database/item_menu.txt:195
+#: ../tools/database/item_menu.txt:36 ../tools/database/item_menu.txt:196
 msgid "highway"
 msgstr "道路"
 
@@ -612,7 +612,7 @@ msgstr "不良的來源標籤"
 msgid "tagwatch cleaner"
 msgstr "tagwatch 清理器"
 
-#: ../tools/database/item_menu.txt:48 ../tools/database/item_menu.txt:202
+#: ../tools/database/item_menu.txt:48 ../tools/database/item_menu.txt:203
 msgid "wikipedia"
 msgstr "維基百科"
 
@@ -837,7 +837,7 @@ msgid "school, could be integrated"
 msgstr "學校，應當整合"
 
 #: ../tools/database/item_menu.txt:27 ../tools/database/item_menu.txt:138
-#: ../tools/database/item_menu.txt:203
+#: ../tools/database/item_menu.txt:204
 msgid "public transport"
 msgstr "大眾運輸"
 
@@ -917,25 +917,25 @@ msgstr "運動"
 msgid "sport, could be integrated"
 msgstr "運動，應當整合"
 
-#: tmp.tpl:192
+#: tmp.tpl:195
 msgid "Translation progress: osmose"
 msgstr "翻譯進度： osmose"
 
-#: tmp.tpl:196
+#: tmp.tpl:199
 msgid "For new language or countries"
 msgstr "新增語言或國家"
 
-#: tmp.tpl:187
+#: tmp.tpl:190
 #, python-format
 msgid "The <a href='%s'>country coverage is available</a>."
 msgstr "<a href='%s'>目前已含蓋的國家</a>。"
 
-#: tmp.tpl:197
+#: tmp.tpl:200
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
 msgstr "你可以直接在 <a href='%s'>Transifex</a> 上新增一個語言。"
 
-#: tmp.tpl:191
+#: tmp.tpl:194
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr "翻譯是透過 <a href='%s'>Transifex</a> 所完成。"
@@ -1142,7 +1142,7 @@ msgstr "問題地圖"
 msgid "Information on issues database"
 msgstr "問題資料庫資訊"
 
-#: tmp.tpl:195
+#: tmp.tpl:198
 msgid "Documentation on reported issues"
 msgstr "回報問題的說明文件"
 
@@ -1183,7 +1183,7 @@ msgstr "分割的建築"
 msgid "Control, verification and correction of %s issues"
 msgstr "控制、驗證和修正問題 %s"
 
-#: tmp.tpl:194
+#: tmp.tpl:197
 msgid "Osmose QA main page"
 msgstr "Osmose QA 主頁"
 
@@ -1196,7 +1196,7 @@ msgid ""
 "analyses."
 msgstr "應當在<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frnotend</a>回報網站問題臭蟲，或是在<a href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a>回報 OSM 資料問題，或是給予分析器的建議。"
 
-#: tmp.tpl:200
+#: tmp.tpl:203
 msgid ""
 "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
 "frontend</a> can be used to report any issue with translations."
@@ -1278,19 +1278,19 @@ msgstr "無效字元"
 msgid "gas station, could be integrated"
 msgstr "加油站，應當整合"
 
-#: ../tools/database/item_menu.txt:123 ../tools/database/item_menu.txt:177
+#: ../tools/database/item_menu.txt:123 ../tools/database/item_menu.txt:178
 msgid "power substation"
 msgstr "變電所"
 
-#: ../tools/database/item_menu.txt:178
+#: ../tools/database/item_menu.txt:179
 msgid "power substation, could be integrated"
 msgstr "變電所，應當整合"
 
-#: ../tools/database/item_menu.txt:179
+#: ../tools/database/item_menu.txt:180
 msgid "power support"
 msgstr "電力支援"
 
-#: ../tools/database/item_menu.txt:180
+#: ../tools/database/item_menu.txt:181
 msgid "power support, could be integrated"
 msgstr "電力支援，應當整合"
 
@@ -1326,11 +1326,11 @@ msgstr "需要更新的加油站"
 msgid "phone number"
 msgstr "電話號碼"
 
-#: ../tools/database/item_menu.txt:181
+#: ../tools/database/item_menu.txt:182
 msgid "traffic signs"
 msgstr "交通標誌"
 
-#: ../tools/database/item_menu.txt:182
+#: ../tools/database/item_menu.txt:183
 msgid "traffic sign limitation"
 msgstr "交通標誌限制"
 
@@ -1366,7 +1366,7 @@ msgstr "通過電子郵件<a href='mailto:{email}'>{email}</a>可以和我們取
 msgid "Level {level} issues ({count})"
 msgstr "等級{level}問題({count})"
 
-#: tmp.tpl:198
+#: tmp.tpl:201
 #, python-brace-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
@@ -1377,47 +1377,47 @@ msgstr "對於新增語言或某些國家及地區使用的語言版本，請直
 msgid "JOSM validator"
 msgstr "JOSM驗證器"
 
-#: ../tools/database/item_menu.txt:190
+#: ../tools/database/item_menu.txt:191
 msgid "seamark"
 msgstr "海標"
 
-#: ../tools/database/item_menu.txt:191
+#: ../tools/database/item_menu.txt:192
 msgid "addresses"
 msgstr "地址"
 
-#: ../tools/database/item_menu.txt:192
+#: ../tools/database/item_menu.txt:193
 msgid "combinations"
 msgstr "組合"
 
-#: ../tools/database/item_menu.txt:193
+#: ../tools/database/item_menu.txt:194
 msgid "deprecated"
 msgstr "棄用"
 
-#: ../tools/database/item_menu.txt:194
+#: ../tools/database/item_menu.txt:195
 msgid "geometry"
 msgstr "幾何"
 
-#: ../tools/database/item_menu.txt:196
+#: ../tools/database/item_menu.txt:197
 msgid "multiple"
 msgstr "多種"
 
-#: ../tools/database/item_menu.txt:197
+#: ../tools/database/item_menu.txt:198
 msgid "numeric"
 msgstr "數字"
 
-#: ../tools/database/item_menu.txt:198
+#: ../tools/database/item_menu.txt:199
 msgid "relation"
 msgstr "關係"
 
-#: ../tools/database/item_menu.txt:199
+#: ../tools/database/item_menu.txt:200
 msgid "religion"
 msgstr "宗教"
 
-#: ../tools/database/item_menu.txt:200
+#: ../tools/database/item_menu.txt:201
 msgid "territories"
 msgstr "領土"
 
-#: ../tools/database/item_menu.txt:201
+#: ../tools/database/item_menu.txt:202
 msgid "unnecessary"
 msgstr "多餘"
 
@@ -1456,54 +1456,55 @@ msgstr "刪除物件數"
 msgid "Show Object on {where}"
 msgstr "在 {where} 顯示物件"
 
-#: tmp.tpl:168 tmp.tpl:169 tmp.tpl:170 tmp.tpl:171
+#: tmp.tpl:168 tmp.tpl:169 tmp.tpl:170 tmp.tpl:171 tmp.tpl:172 tmp.tpl:173
+#: tmp.tpl:174
 #, python-brace-format
 msgid "Edit Object with {where}"
 msgstr "在 {where} 編輯物件"
 
-#: tmp.tpl:171 tmp.tpl:173
+#: tmp.tpl:174 tmp.tpl:176
 msgid "online Osmose Editor"
 msgstr "線上 Osmose 編輯器"
 
-#: tmp.tpl:172 tmp.tpl:173
+#: tmp.tpl:175 tmp.tpl:176
 #, python-brace-format
 msgid "Load the fix in {where}"
 msgstr "在 {where} 載入 fix"
 
-#: tmp.tpl:174
+#: tmp.tpl:177
 #, python-brace-format
 msgid "Add the new object in {where}"
 msgstr "在  {where} 新增物件"
 
-#: tmp.tpl:175
+#: tmp.tpl:178
 #, python-brace-format
 msgid "Show the area on {where}"
 msgstr "在  {where} 顯示區域"
 
-#: tmp.tpl:176 tmp.tpl:177
+#: tmp.tpl:179 tmp.tpl:180
 #, python-brace-format
 msgid "Edit the area on {where}"
 msgstr "在  {where} 編輯區域"
 
-#: tmp.tpl:178
+#: tmp.tpl:181
 msgid "details"
 msgstr "詳細"
 
-#: tmp.tpl:179
+#: tmp.tpl:182
 msgid "Issue reported on:"
 msgstr "問題發現日期："
 
-#: tmp.tpl:180
+#: tmp.tpl:183
 msgid "Help on OSM Wiki"
 msgstr "於 OSM Wiki 取得幫助"
 
-#: tmp.tpl:181 tmp.tpl:182
+#: tmp.tpl:184 tmp.tpl:185
 msgid ""
 "Report the issue as improper, if according to you is not an issue. The issue"
 " will not be displayed to anyone more."
 msgstr "若你認為此問題無不適切之處，請回報此問題為不適當。 此問題將不再顯示予任何人。"
 
-#: tmp.tpl:183
+#: tmp.tpl:186
 msgid ""
 "After issue fixed on the OSM data, mark it as done. May also disappear "
 "automatically on next check if no more issue."
@@ -1513,7 +1514,7 @@ msgstr "在修復OSM資料數據問題後，請將其標記為已完成。如果
 msgid "zone:maxspeed"
 msgstr "zone:maxspeed"
 
-#: ../tools/database/item_menu.txt:206
+#: ../tools/database/item_menu.txt:207
 msgid "power transformer"
 msgstr "變電設施"
 
@@ -1526,27 +1527,27 @@ msgstr "項目 # %s"
 msgid "opening hours"
 msgstr "營業時間"
 
-#: ../tools/database/item_menu.txt:124 ../tools/database/item_menu.txt:183
+#: ../tools/database/item_menu.txt:124 ../tools/database/item_menu.txt:184
 msgid "hospital"
 msgstr "醫院"
 
-#: ../tools/database/item_menu.txt:125 ../tools/database/item_menu.txt:185
+#: ../tools/database/item_menu.txt:125 ../tools/database/item_menu.txt:186
 msgid "social facility"
 msgstr "社福機構"
 
-#: ../tools/database/item_menu.txt:126 ../tools/database/item_menu.txt:187
+#: ../tools/database/item_menu.txt:126 ../tools/database/item_menu.txt:188
 msgid "medical lab"
 msgstr "醫事檢驗所"
 
-#: ../tools/database/item_menu.txt:184
+#: ../tools/database/item_menu.txt:185
 msgid "hospital, could be integrated"
 msgstr "醫院，應當整合"
 
-#: ../tools/database/item_menu.txt:186
+#: ../tools/database/item_menu.txt:187
 msgid "social facility, could be integrated"
 msgstr "社福機構，應當整合"
 
-#: ../tools/database/item_menu.txt:188
+#: ../tools/database/item_menu.txt:189
 msgid "medical lab, could be integrated"
 msgstr "醫事檢驗所，應當整合"
 
@@ -1570,18 +1571,22 @@ msgstr ""
 msgid "URL"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:189
+#: ../tools/database/item_menu.txt:190
 msgid "street objects"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:204
+#: ../tools/database/item_menu.txt:205
 msgid "openrailwaymap"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:205
+#: ../tools/database/item_menu.txt:206
 msgid "openrailwaymap in germany"
 msgstr ""
 
 #: ../tools/database/item_menu.txt:44
 msgid "railways"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:177
+msgid "power plant"
 msgstr ""

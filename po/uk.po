@@ -9,13 +9,14 @@
 # frodrigo <fred.rodrigo@gmail.com>, 2017
 # Serhii Murza <jhellico@gmail.com>, 2018
 # Viktor <avatarsnk@gmail.com>, 2015
+# Ігор Варварчук <182050@i.ua>, 2019
 # Ігор Варварчук <182050@i.ua>, 2018-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2019-06-09 20:30+0000\n"
+"PO-Revision-Date: 2019-08-07 20:28+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +42,7 @@ msgid "never generated"
 msgstr "ніколи не створювалось"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:187 ../false_positive.py:63 tmp.tpl:195
+#: ../error.py:187 ../false_positive.py:63 tmp.tpl:198
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
@@ -70,7 +71,7 @@ msgstr "Контакти"
 msgid "Help on wiki"
 msgstr "Довідка у вікі"
 
-#: ../map.py:92 tmp.tpl:118 tmp.tpl:194
+#: ../map.py:92 tmp.tpl:118 tmp.tpl:197
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
@@ -136,7 +137,7 @@ msgstr "Надані латки"
 msgid ""
 "Patches can be provided via merge requests on Github. This is the preferred "
 "way of handling patches."
-msgstr "Латки можна надавати через запити об'єднань (merge request) на Github. Це найкращий спосіб обробки латок."
+msgstr "Латки можна надавати через запити об'єднань на Github. Це найкращий спосіб обробки латок."
 
 #: tmp.tpl:28
 msgid "Development"
@@ -402,44 +403,44 @@ msgstr "Тип"
 msgid "Reuse changeset"
 msgstr "Використовувати набір змін"
 
-#: tmp.tpl:183
+#: tmp.tpl:186
 msgid "corrected"
 msgstr "виправлено"
 
-#: tmp.tpl:182
+#: tmp.tpl:185
 msgid "false positive"
 msgstr "помилкове спрацьовування"
 
-#: tmp.tpl:184 tmp.tpl:185
+#: tmp.tpl:187 tmp.tpl:188
 msgid "How to help translation"
 msgstr "Як допомогти з перекладом"
 
-#: tmp.tpl:186
+#: tmp.tpl:189
 msgid ""
 "Osmose tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
 msgstr "Osmose — інструмент, переважно створений французами, проте ми бажаємо додати підтримку інших мов. Зараз ми використовуємо майже всі мови країн, дані по яких перевіряються."
 
-#: tmp.tpl:188
+#: tmp.tpl:191
 msgid ""
 "To make Osmose a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr "Для того, щоб зробити Osmose дійсно багатомовним інструментом, нам потрібна ваша допомога в покращені існуючих перекладів, а також додані нових"
 
-#: tmp.tpl:189
+#: tmp.tpl:192
 msgid "Pages to translate"
 msgstr "Сторінки для перекладу"
 
-#: tmp.tpl:193
+#: tmp.tpl:196
 msgid "Wiki pages"
 msgstr "Сторінки Вікі"
 
-#: tmp.tpl:190
+#: tmp.tpl:193
 msgid "Osmose pages"
 msgstr "Сторінки Osmose "
 
-#: tmp.tpl:199
+#: tmp.tpl:202
 msgid "Bug tracking system"
 msgstr "Система відстежування вад"
 
@@ -591,7 +592,7 @@ msgstr "батьківський теґ"
 msgid "street numbers"
 msgstr "номери вулиць"
 
-#: ../tools/database/item_menu.txt:36 ../tools/database/item_menu.txt:195
+#: ../tools/database/item_menu.txt:36 ../tools/database/item_menu.txt:196
 msgid "highway"
 msgstr "highway"
 
@@ -615,7 +616,7 @@ msgstr "помилковий теґ джерела"
 msgid "tagwatch cleaner"
 msgstr "очищувач теґів"
 
-#: ../tools/database/item_menu.txt:48 ../tools/database/item_menu.txt:202
+#: ../tools/database/item_menu.txt:48 ../tools/database/item_menu.txt:203
 msgid "wikipedia"
 msgstr "wikipedia"
 
@@ -840,7 +841,7 @@ msgid "school, could be integrated"
 msgstr "школа, може інтеґруватися"
 
 #: ../tools/database/item_menu.txt:27 ../tools/database/item_menu.txt:138
-#: ../tools/database/item_menu.txt:203
+#: ../tools/database/item_menu.txt:204
 msgid "public transport"
 msgstr "громадський транспорт"
 
@@ -920,25 +921,25 @@ msgstr "спорт"
 msgid "sport, could be integrated"
 msgstr "спорт, може інтеґруватися"
 
-#: tmp.tpl:192
+#: tmp.tpl:195
 msgid "Translation progress: osmose"
 msgstr "Проґрес перекладу: osmose"
 
-#: tmp.tpl:196
+#: tmp.tpl:199
 msgid "For new language or countries"
 msgstr "Для нових мов або країн"
 
-#: tmp.tpl:187
+#: tmp.tpl:190
 #, python-format
 msgid "The <a href='%s'>country coverage is available</a>."
 msgstr " <a href='%s'>country coverage is available</a>."
 
-#: tmp.tpl:197
+#: tmp.tpl:200
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
 msgstr "Ви можете створити ному мову безпосередньо в <a href='%s'>Transifex.</a>"
 
-#: tmp.tpl:191
+#: tmp.tpl:194
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr "Переклад зроблено на  <a href='%s'>Transifex</a>."
@@ -1145,7 +1146,7 @@ msgstr "Мапа ймовірних помилок"
 msgid "Information on issues database"
 msgstr "БД з інформацією про проблеми"
 
-#: tmp.tpl:195
+#: tmp.tpl:198
 msgid "Documentation on reported issues"
 msgstr "Документація з повідомлень про проблеми"
 
@@ -1186,7 +1187,7 @@ msgstr "розділені будівлі"
 msgid "Control, verification and correction of %s issues"
 msgstr "Контроль, перевірка та коригування з %s проблем"
 
-#: tmp.tpl:194
+#: tmp.tpl:197
 msgid "Osmose QA main page"
 msgstr "Головна сторінка Osmose QA"
 
@@ -1199,7 +1200,7 @@ msgid ""
 "analyses."
 msgstr "Про помилку слід повідомляти в <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> для питань, пов'язаних із веб-сайтом, або на <a href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> для вирішення проблем, що стосуються повідомлень про дані OSM, або для пропозицій щодо аналізу."
 
-#: tmp.tpl:200
+#: tmp.tpl:203
 msgid ""
 "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
 "frontend</a> can be used to report any issue with translations."
@@ -1281,19 +1282,19 @@ msgstr "недійсний символ"
 msgid "gas station, could be integrated"
 msgstr "АЗС, може інтеґруватися"
 
-#: ../tools/database/item_menu.txt:123 ../tools/database/item_menu.txt:177
+#: ../tools/database/item_menu.txt:123 ../tools/database/item_menu.txt:178
 msgid "power substation"
 msgstr "електропідстанція"
 
-#: ../tools/database/item_menu.txt:178
+#: ../tools/database/item_menu.txt:179
 msgid "power substation, could be integrated"
 msgstr "електропідстанція, може інтеґруватися"
 
-#: ../tools/database/item_menu.txt:179
+#: ../tools/database/item_menu.txt:180
 msgid "power support"
 msgstr "підтримка енергетики"
 
-#: ../tools/database/item_menu.txt:180
+#: ../tools/database/item_menu.txt:181
 msgid "power support, could be integrated"
 msgstr "підтримка енергетики, може інтеґруватися"
 
@@ -1303,7 +1304,7 @@ msgstr "майже з'єднання"
 
 #: ../tools/database/item_menu.txt:42
 msgid "public_transport route"
-msgstr "public_transport route"
+msgstr "маршрут public_transport"
 
 #: ../tools/database/item_menu.txt:73
 msgid "recycling container"
@@ -1329,11 +1330,11 @@ msgstr "АЗС, слід оновити"
 msgid "phone number"
 msgstr "номер телефону"
 
-#: ../tools/database/item_menu.txt:181
+#: ../tools/database/item_menu.txt:182
 msgid "traffic signs"
 msgstr "дорожні знаки"
 
-#: ../tools/database/item_menu.txt:182
+#: ../tools/database/item_menu.txt:183
 msgid "traffic sign limitation"
 msgstr "дорожній знак обмеження"
 
@@ -1369,7 +1370,7 @@ msgstr "З нами можна зв'язатися електронною пош
 msgid "Level {level} issues ({count})"
 msgstr "Проблеми {level} рівня ({count})"
 
-#: tmp.tpl:198
+#: tmp.tpl:201
 #, python-brace-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
@@ -1380,47 +1381,47 @@ msgstr "Для нових країн, з нами можна зв'язатися
 msgid "JOSM validator"
 msgstr "валідатор JOSM"
 
-#: ../tools/database/item_menu.txt:190
+#: ../tools/database/item_menu.txt:191
 msgid "seamark"
 msgstr "навігаційний знак"
 
-#: ../tools/database/item_menu.txt:191
+#: ../tools/database/item_menu.txt:192
 msgid "addresses"
 msgstr "адреси"
 
-#: ../tools/database/item_menu.txt:192
+#: ../tools/database/item_menu.txt:193
 msgid "combinations"
 msgstr "комбінації"
 
-#: ../tools/database/item_menu.txt:193
+#: ../tools/database/item_menu.txt:194
 msgid "deprecated"
 msgstr "не підтримується"
 
-#: ../tools/database/item_menu.txt:194
+#: ../tools/database/item_menu.txt:195
 msgid "geometry"
 msgstr "геометрія"
 
-#: ../tools/database/item_menu.txt:196
+#: ../tools/database/item_menu.txt:197
 msgid "multiple"
 msgstr "складовий"
 
-#: ../tools/database/item_menu.txt:197
+#: ../tools/database/item_menu.txt:198
 msgid "numeric"
 msgstr "числовий"
 
-#: ../tools/database/item_menu.txt:198
+#: ../tools/database/item_menu.txt:199
 msgid "relation"
 msgstr "зв'язок"
 
-#: ../tools/database/item_menu.txt:199
+#: ../tools/database/item_menu.txt:200
 msgid "religion"
 msgstr "релігія"
 
-#: ../tools/database/item_menu.txt:200
+#: ../tools/database/item_menu.txt:201
 msgid "territories"
 msgstr "території"
 
-#: ../tools/database/item_menu.txt:201
+#: ../tools/database/item_menu.txt:202
 msgid "unnecessary"
 msgstr "непотрібний"
 
@@ -1459,54 +1460,55 @@ msgstr "Об'єкти видалені"
 msgid "Show Object on {where}"
 msgstr "Показати Об'єкт на {where}"
 
-#: tmp.tpl:168 tmp.tpl:169 tmp.tpl:170 tmp.tpl:171
+#: tmp.tpl:168 tmp.tpl:169 tmp.tpl:170 tmp.tpl:171 tmp.tpl:172 tmp.tpl:173
+#: tmp.tpl:174
 #, python-brace-format
 msgid "Edit Object with {where}"
 msgstr "Редагувати Об'єкт на {where}"
 
-#: tmp.tpl:171 tmp.tpl:173
+#: tmp.tpl:174 tmp.tpl:176
 msgid "online Osmose Editor"
 msgstr "Онлайн-редактор Osmose"
 
-#: tmp.tpl:172 tmp.tpl:173
+#: tmp.tpl:175 tmp.tpl:176
 #, python-brace-format
 msgid "Load the fix in {where}"
 msgstr "Завантажити виправлення в {where}"
 
-#: tmp.tpl:174
+#: tmp.tpl:177
 #, python-brace-format
 msgid "Add the new object in {where}"
 msgstr "Додати новий об'єкт в {where}"
 
-#: tmp.tpl:175
+#: tmp.tpl:178
 #, python-brace-format
 msgid "Show the area on {where}"
 msgstr "Показати ділянку на {where}"
 
-#: tmp.tpl:176 tmp.tpl:177
+#: tmp.tpl:179 tmp.tpl:180
 #, python-brace-format
 msgid "Edit the area on {where}"
 msgstr "Редагувати ділянку на {where}"
 
-#: tmp.tpl:178
+#: tmp.tpl:181
 msgid "details"
 msgstr "тонкощі"
 
-#: tmp.tpl:179
+#: tmp.tpl:182
 msgid "Issue reported on:"
 msgstr "Повідомлення про проблему:"
 
-#: tmp.tpl:180
+#: tmp.tpl:183
 msgid "Help on OSM Wiki"
 msgstr "Допомога на ОСМ Вікі"
 
-#: tmp.tpl:181 tmp.tpl:182
+#: tmp.tpl:184 tmp.tpl:185
 msgid ""
 "Report the issue as improper, if according to you is not an issue. The issue"
 " will not be displayed to anyone more."
 msgstr "Повідомте про помилку, як про невідповідну, якщо ви вважаєте, що це не помилка. Повідомлення більше не з'являтиметься."
 
-#: tmp.tpl:183
+#: tmp.tpl:186
 msgid ""
 "After issue fixed on the OSM data, mark it as done. May also disappear "
 "automatically on next check if no more issue."
@@ -1516,7 +1518,7 @@ msgstr "Після виправлення помилки в OSM позначте
 msgid "zone:maxspeed"
 msgstr "zone:maxspeed"
 
-#: ../tools/database/item_menu.txt:206
+#: ../tools/database/item_menu.txt:207
 msgid "power transformer"
 msgstr "трансформатор"
 
@@ -1529,27 +1531,27 @@ msgstr "Пункт #%s"
 msgid "opening hours"
 msgstr "години роботи"
 
-#: ../tools/database/item_menu.txt:124 ../tools/database/item_menu.txt:183
+#: ../tools/database/item_menu.txt:124 ../tools/database/item_menu.txt:184
 msgid "hospital"
 msgstr "лікарня"
 
-#: ../tools/database/item_menu.txt:125 ../tools/database/item_menu.txt:185
+#: ../tools/database/item_menu.txt:125 ../tools/database/item_menu.txt:186
 msgid "social facility"
 msgstr "соціальний об'єкт"
 
-#: ../tools/database/item_menu.txt:126 ../tools/database/item_menu.txt:187
+#: ../tools/database/item_menu.txt:126 ../tools/database/item_menu.txt:188
 msgid "medical lab"
 msgstr "медична лабораторія"
 
-#: ../tools/database/item_menu.txt:184
+#: ../tools/database/item_menu.txt:185
 msgid "hospital, could be integrated"
 msgstr "лікарня, може інтеґруватися"
 
-#: ../tools/database/item_menu.txt:186
+#: ../tools/database/item_menu.txt:187
 msgid "social facility, could be integrated"
 msgstr "соціальний об'єкт, може інтеґруватися"
 
-#: ../tools/database/item_menu.txt:188
+#: ../tools/database/item_menu.txt:189
 msgid "medical lab, could be integrated"
 msgstr "медична лабораторія, може інтеґруватися"
 
@@ -1573,18 +1575,22 @@ msgstr "виконання"
 msgid "URL"
 msgstr "веб-адреса"
 
-#: ../tools/database/item_menu.txt:189
+#: ../tools/database/item_menu.txt:190
 msgid "street objects"
 msgstr "вуличні об'єкти"
 
-#: ../tools/database/item_menu.txt:204
+#: ../tools/database/item_menu.txt:205
 msgid "openrailwaymap"
 msgstr "OpenRailwayMap"
 
-#: ../tools/database/item_menu.txt:205
+#: ../tools/database/item_menu.txt:206
 msgid "openrailwaymap in germany"
 msgstr "OpenRailwayMap в Німеччині"
 
 #: ../tools/database/item_menu.txt:44
 msgid "railways"
+msgstr "залізниця"
+
+#: ../tools/database/item_menu.txt:177
+msgid "power plant"
 msgstr ""

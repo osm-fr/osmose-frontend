@@ -4,10 +4,10 @@
 # 
 # Translators:
 # Christian Ostermann, 2015
-# Christian Ostermann, 2017-2018
+# Christian Ostermann, 2017-2019
 # Claudius Henrichs <claudius.h@gmx.de>, 2018
 # Ettore Atalan <atalanttore@googlemail.com>, 2014-2018
-# frodrigo <fred.rodrigo@gmail.com>, 2014
+# frodrigo <fred.rodrigo@gmail.com>, 2014,2019
 # frodrigo <fred.rodrigo@gmail.com>, 2014
 # osmtools <osm@haraldhartmann.de>, 2017
 # Loo Nie <looniverse@gmail.com>, 2015
@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2019-06-09 20:30+0000\n"
+"PO-Revision-Date: 2019-08-07 20:28+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -51,7 +51,7 @@ msgid "never generated"
 msgstr "Noch nie erstellt"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:187 ../false_positive.py:63 tmp.tpl:195
+#: ../error.py:187 ../false_positive.py:63 tmp.tpl:198
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/DE:Osmose/erreurs"
 
@@ -80,7 +80,7 @@ msgstr "Kontakt"
 msgid "Help on wiki"
 msgstr "Hilfe im Wiki"
 
-#: ../map.py:92 tmp.tpl:118 tmp.tpl:194
+#: ../map.py:92 tmp.tpl:118 tmp.tpl:197
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/DE:Osmose"
 
@@ -412,44 +412,44 @@ msgstr "Typ"
 msgid "Reuse changeset"
 msgstr "Änderungssatz wiederverwenden"
 
-#: tmp.tpl:183
+#: tmp.tpl:186
 msgid "corrected"
 msgstr "korrigiert"
 
-#: tmp.tpl:182
+#: tmp.tpl:185
 msgid "false positive"
 msgstr "Falschmeldung"
 
-#: tmp.tpl:184 tmp.tpl:185
+#: tmp.tpl:187 tmp.tpl:188
 msgid "How to help translation"
 msgstr "Übersetzen helfen"
 
-#: tmp.tpl:186
+#: tmp.tpl:189
 msgid ""
 "Osmose tool is mainly developped by french people, and we aim to add more "
 "languages. We currently cover almost all the languages used by countries "
 "covered by analyses."
 msgstr "Das Tool Osmose wird hauptsächlich von Franzosen entwickelt und man möchte weitere Übersetzungen anbieten. Derzeit gibt es Osmose in den meisten Sprachen, welche in den von der Analyse abgedeckten Ländern gesprochen werden."
 
-#: tmp.tpl:188
+#: tmp.tpl:191
 msgid ""
 "To make Osmose a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr "Damit Osmose mehrsprachig wird, brauchen wir deine Unterstützung. Hilf mit, die bestehenden Übersetzungen zu verbessern oder Übersetzungen für weitere Sprachen hinzuzufügen."
 
-#: tmp.tpl:189
+#: tmp.tpl:192
 msgid "Pages to translate"
 msgstr "Seiten zu übersetzen"
 
-#: tmp.tpl:193
+#: tmp.tpl:196
 msgid "Wiki pages"
 msgstr "Wiki-Seiten"
 
-#: tmp.tpl:190
+#: tmp.tpl:193
 msgid "Osmose pages"
 msgstr "Osmose-Seiten"
 
-#: tmp.tpl:199
+#: tmp.tpl:202
 msgid "Bug tracking system"
 msgstr "Fehlerdatenbank"
 
@@ -601,7 +601,7 @@ msgstr "Übergeordnetes Tag"
 msgid "street numbers"
 msgstr "Hausnummern"
 
-#: ../tools/database/item_menu.txt:36 ../tools/database/item_menu.txt:195
+#: ../tools/database/item_menu.txt:36 ../tools/database/item_menu.txt:196
 msgid "highway"
 msgstr "highway=..."
 
@@ -625,7 +625,7 @@ msgstr "ungeeigneter source-Tag"
 msgid "tagwatch cleaner"
 msgstr "Tagwatch-Bereinigung"
 
-#: ../tools/database/item_menu.txt:48 ../tools/database/item_menu.txt:202
+#: ../tools/database/item_menu.txt:48 ../tools/database/item_menu.txt:203
 msgid "wikipedia"
 msgstr "Wikipedia"
 
@@ -850,7 +850,7 @@ msgid "school, could be integrated"
 msgstr "Schule, Eintragung möglich"
 
 #: ../tools/database/item_menu.txt:27 ../tools/database/item_menu.txt:138
-#: ../tools/database/item_menu.txt:203
+#: ../tools/database/item_menu.txt:204
 msgid "public transport"
 msgstr "Öffentliche Verkehrsmittel"
 
@@ -930,25 +930,25 @@ msgstr "Sport"
 msgid "sport, could be integrated"
 msgstr "Sport, Eintragung möglich"
 
-#: tmp.tpl:192
+#: tmp.tpl:195
 msgid "Translation progress: osmose"
 msgstr "Übersetzungs-Fortschritt: osmose"
 
-#: tmp.tpl:196
+#: tmp.tpl:199
 msgid "For new language or countries"
 msgstr "Für neue Sprachen/Länder"
 
-#: tmp.tpl:187
+#: tmp.tpl:190
 #, python-format
 msgid "The <a href='%s'>country coverage is available</a>."
 msgstr "Die <a href='%s'>Landesabdeckung ist verfügbar</a>."
 
-#: tmp.tpl:197
+#: tmp.tpl:200
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
 msgstr "Sie können eine neue Sprache direkt auf <a href='%s'>Transifex</a> erstellen."
 
-#: tmp.tpl:191
+#: tmp.tpl:194
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr "Übersetzung wird auf <a href='%s'>Transifex</a> erledigt."
@@ -1155,7 +1155,7 @@ msgstr "Problemkarte"
 msgid "Information on issues database"
 msgstr "Informationen zur Problemdatenbank"
 
-#: tmp.tpl:195
+#: tmp.tpl:198
 msgid "Documentation on reported issues"
 msgstr "Dokumentation über gemeldete Probleme"
 
@@ -1196,7 +1196,7 @@ msgstr "Gebäude aufteilen"
 msgid "Control, verification and correction of %s issues"
 msgstr "Kontrolle, Bestätigung und Korrektur von %s Problemen"
 
-#: tmp.tpl:194
+#: tmp.tpl:197
 msgid "Osmose QA main page"
 msgstr "Osmose-QS-Hauptseite"
 
@@ -1209,7 +1209,7 @@ msgid ""
 "analyses."
 msgstr "Fehler bezüglich der Webseite sollten auf <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> gemeldet werden, Fehler bezüglich der Problemmeldungen zu OSM-Daten oder Vorschläge zu Analysen auf <a href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a>."
 
-#: tmp.tpl:200
+#: tmp.tpl:203
 msgid ""
 "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
 "frontend</a> can be used to report any issue with translations."
@@ -1291,19 +1291,19 @@ msgstr "ungültiges Zeichen"
 msgid "gas station, could be integrated"
 msgstr "Tankstelle, Eintragung möglich"
 
-#: ../tools/database/item_menu.txt:123 ../tools/database/item_menu.txt:177
+#: ../tools/database/item_menu.txt:123 ../tools/database/item_menu.txt:178
 msgid "power substation"
 msgstr "Umspannwerk"
 
-#: ../tools/database/item_menu.txt:178
+#: ../tools/database/item_menu.txt:179
 msgid "power substation, could be integrated"
 msgstr "Umspannwerk, Eintragung möglich"
 
-#: ../tools/database/item_menu.txt:179
+#: ../tools/database/item_menu.txt:180
 msgid "power support"
 msgstr "Strommast"
 
-#: ../tools/database/item_menu.txt:180
+#: ../tools/database/item_menu.txt:181
 msgid "power support, could be integrated"
 msgstr "Strommast, Eintragung möglich"
 
@@ -1339,11 +1339,11 @@ msgstr "Tankstelle, Update nötig"
 msgid "phone number"
 msgstr "Telefonnummer"
 
-#: ../tools/database/item_menu.txt:181
+#: ../tools/database/item_menu.txt:182
 msgid "traffic signs"
 msgstr "Verkehrszeichen"
 
-#: ../tools/database/item_menu.txt:182
+#: ../tools/database/item_menu.txt:183
 msgid "traffic sign limitation"
 msgstr "Einschränkende Verkehrszeichen"
 
@@ -1379,7 +1379,7 @@ msgstr "Wir können per E-Mail an <a href='mailto:{email}'>{email}</a> kontaktie
 msgid "Level {level} issues ({count})"
 msgstr "Level {level} Probleme ({count})"
 
-#: tmp.tpl:198
+#: tmp.tpl:201
 #, python-brace-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
@@ -1390,47 +1390,47 @@ msgstr "Für neue Länder können wir per E-Mail an <a href='mailto:{email}'>{em
 msgid "JOSM validator"
 msgstr "JOSM-Validator"
 
-#: ../tools/database/item_menu.txt:190
+#: ../tools/database/item_menu.txt:191
 msgid "seamark"
 msgstr "Seezeichen"
 
-#: ../tools/database/item_menu.txt:191
+#: ../tools/database/item_menu.txt:192
 msgid "addresses"
 msgstr "Adressen"
 
-#: ../tools/database/item_menu.txt:192
+#: ../tools/database/item_menu.txt:193
 msgid "combinations"
 msgstr "Kombinationen"
 
-#: ../tools/database/item_menu.txt:193
+#: ../tools/database/item_menu.txt:194
 msgid "deprecated"
 msgstr "Veraltet"
 
-#: ../tools/database/item_menu.txt:194
+#: ../tools/database/item_menu.txt:195
 msgid "geometry"
 msgstr "Geometrie"
 
-#: ../tools/database/item_menu.txt:196
+#: ../tools/database/item_menu.txt:197
 msgid "multiple"
 msgstr "Mehrere"
 
-#: ../tools/database/item_menu.txt:197
+#: ../tools/database/item_menu.txt:198
 msgid "numeric"
 msgstr "Numerisch"
 
-#: ../tools/database/item_menu.txt:198
+#: ../tools/database/item_menu.txt:199
 msgid "relation"
 msgstr "Relation"
 
-#: ../tools/database/item_menu.txt:199
+#: ../tools/database/item_menu.txt:200
 msgid "religion"
 msgstr "Religion"
 
-#: ../tools/database/item_menu.txt:200
+#: ../tools/database/item_menu.txt:201
 msgid "territories"
 msgstr "Territorien"
 
-#: ../tools/database/item_menu.txt:201
+#: ../tools/database/item_menu.txt:202
 msgid "unnecessary"
 msgstr "unnötig"
 
@@ -1469,54 +1469,55 @@ msgstr "Objekt gelöscht"
 msgid "Show Object on {where}"
 msgstr "Objekt auf {where} anzeigen"
 
-#: tmp.tpl:168 tmp.tpl:169 tmp.tpl:170 tmp.tpl:171
+#: tmp.tpl:168 tmp.tpl:169 tmp.tpl:170 tmp.tpl:171 tmp.tpl:172 tmp.tpl:173
+#: tmp.tpl:174
 #, python-brace-format
 msgid "Edit Object with {where}"
 msgstr "Objekt mit {where} bearbeiten"
 
-#: tmp.tpl:171 tmp.tpl:173
+#: tmp.tpl:174 tmp.tpl:176
 msgid "online Osmose Editor"
 msgstr "Online Osmose-Editor"
 
-#: tmp.tpl:172 tmp.tpl:173
+#: tmp.tpl:175 tmp.tpl:176
 #, python-brace-format
 msgid "Load the fix in {where}"
 msgstr "Fehlerbehebung in {where} laden"
 
-#: tmp.tpl:174
+#: tmp.tpl:177
 #, python-brace-format
 msgid "Add the new object in {where}"
 msgstr "Neues Objekt in {where} hinzufügen"
 
-#: tmp.tpl:175
+#: tmp.tpl:178
 #, python-brace-format
 msgid "Show the area on {where}"
 msgstr "Bereich in {where} anzeigen"
 
-#: tmp.tpl:176 tmp.tpl:177
+#: tmp.tpl:179 tmp.tpl:180
 #, python-brace-format
 msgid "Edit the area on {where}"
 msgstr "Bereich in {where} bearbeiten"
 
-#: tmp.tpl:178
+#: tmp.tpl:181
 msgid "details"
-msgstr "Details"
+msgstr "details"
 
-#: tmp.tpl:179
+#: tmp.tpl:182
 msgid "Issue reported on:"
 msgstr "Fehler gemeldet am:"
 
-#: tmp.tpl:180
+#: tmp.tpl:183
 msgid "Help on OSM Wiki"
 msgstr "Hilfe im OSM-Wiki"
 
-#: tmp.tpl:181 tmp.tpl:182
+#: tmp.tpl:184 tmp.tpl:185
 msgid ""
 "Report the issue as improper, if according to you is not an issue. The issue"
 " will not be displayed to anyone more."
 msgstr "Melde das Problem als Falschmeldung, wenn es nach deiner Meinung keines ist. Das Problem wird niemandem mehr angezeigt."
 
-#: tmp.tpl:183
+#: tmp.tpl:186
 msgid ""
 "After issue fixed on the OSM data, mark it as done. May also disappear "
 "automatically on next check if no more issue."
@@ -1526,9 +1527,9 @@ msgstr "Nachdem der Fehler in den OSM-Daten behoben wurden, markiere ihn als beh
 msgid "zone:maxspeed"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:206
+#: ../tools/database/item_menu.txt:207
 msgid "power transformer"
-msgstr ""
+msgstr "Umspannwerke"
 
 #: tmp.tpl:144
 #, python-format
@@ -1537,39 +1538,39 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:75
 msgid "opening hours"
-msgstr ""
+msgstr "Öffnungszeiten"
 
-#: ../tools/database/item_menu.txt:124 ../tools/database/item_menu.txt:183
+#: ../tools/database/item_menu.txt:124 ../tools/database/item_menu.txt:184
 msgid "hospital"
-msgstr ""
+msgstr "Krankenhaus"
 
-#: ../tools/database/item_menu.txt:125 ../tools/database/item_menu.txt:185
+#: ../tools/database/item_menu.txt:125 ../tools/database/item_menu.txt:186
 msgid "social facility"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:126 ../tools/database/item_menu.txt:187
+#: ../tools/database/item_menu.txt:126 ../tools/database/item_menu.txt:188
 msgid "medical lab"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:184
+#: ../tools/database/item_menu.txt:185
 msgid "hospital, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:186
+#: ../tools/database/item_menu.txt:187
 msgid "social facility, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:188
+#: ../tools/database/item_menu.txt:189
 msgid "medical lab, could be integrated"
 msgstr ""
 
 #: ../tools/database/item_menu.txt:166
 msgid "police, need update"
-msgstr ""
+msgstr "Polizei, Update nötig"
 
 #: ../tools/database/item_menu.txt:55
 msgid "swimming pool"
-msgstr ""
+msgstr "Schwimmbecken"
 
 #: ../tools/database/item_menu.txt:93
 msgid "potential misspelling"
@@ -1581,20 +1582,24 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:59
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
-#: ../tools/database/item_menu.txt:189
+#: ../tools/database/item_menu.txt:190
 msgid "street objects"
-msgstr ""
-
-#: ../tools/database/item_menu.txt:204
-msgid "openrailwaymap"
-msgstr ""
+msgstr "Straßenobjekte"
 
 #: ../tools/database/item_menu.txt:205
+msgid "openrailwaymap"
+msgstr "OpenRailwayMap"
+
+#: ../tools/database/item_menu.txt:206
 msgid "openrailwaymap in germany"
-msgstr ""
+msgstr "OpenRailwayMap in Deutschland"
 
 #: ../tools/database/item_menu.txt:44
 msgid "railways"
+msgstr "Eisenbahn"
+
+#: ../tools/database/item_menu.txt:177
+msgid "power plant"
 msgstr ""
