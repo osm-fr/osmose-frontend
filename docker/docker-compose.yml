@@ -1,13 +1,40 @@
-version: '3'
+version: '3.3'
 
 services:
+  postgres:
+    image: postgres:11-alpine
+    volumes:
+      - type: bind
+        source: ../tools/database/schema.sql
+        target: /schema.sql
+      - type: bind
+        source: ./osmose-menu.sql
+        target: /osmose-menu.sql
+      - type: bind
+        source: ./postgres-init.sh
+        target: /docker-entrypoint-initdb.d/postgres-init.sh
+      ## To keep the data outside of container
+      #- type: bind
+      #  source: ./postgresql-data:
+      #  target: /var/lib/postgresql/data
+    networks:
+      - osmose-frontend-internal
+
   frontend:
     build:
       context: ..
       dockerfile: docker/Dockerfile
     image: osm-fr/osmose_frontend
+    depends_on:
+      - postgres
+    environment:
+      - DB_HOST=postgres
     ports:
       - 20009:20009
-    environment:
-      - URL_FRONTEND=frontend:20009
-      #- OSMOSE_UNLOCKED_UPDATE=on
+    networks:
+      - osmose-frontend-internal
+      - osmose-frontend
+
+networks:
+  osmose-frontend-internal:
+  osmose-frontend:

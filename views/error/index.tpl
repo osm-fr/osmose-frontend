@@ -9,7 +9,11 @@
 %def show_html_tags(list):
             <table>
 %            for kv in list:
-                <tr><td>{{kv['k']}}</td><td>{{kv['v']}}</td><td><a href="{{kv.get('vlink', '')}}">{{kv.get('vlink', '')}}</a></td></tr>
+%               if 'v' in kv:
+                    <tr><td>{{kv['k']}}</td><td>{{kv['v']}}</td><td><a href="{{kv.get('vlink', '')}}">{{kv.get('vlink', '')}}</a></td></tr>
+%               else:
+                    <tr><td>{{kv['k']}}</td></tr>
+%               end
 %            end
             </table>
 %end

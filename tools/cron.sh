@@ -16,8 +16,8 @@ WHERE date < now()-interval '7 day' AND status = 'done';
 psql -d $DATABASE -c "
 CREATE TEMP TABLE stats_update AS
 SELECT
-  stats.source,
-  stats.class,
+  c.source,
+  c.class,
   now()::timestamp AS timestamp,
   c.count
 FROM (
@@ -33,18 +33,22 @@ FROM (
     dynpoi_class.source,
     dynpoi_class.class
   ) AS c
-    JOIN stats ON
+    LEFT JOIN stats ON
       stats.source = c.source AND
-      stats.class = c.class AND
-      upper(stats.timestamp_range) IS NULL AND
-      stats.count != c. count
+      stats.class = c.class
+WHERE
+  stats.count IS NULL OR
+  (
+    upper(stats.timestamp_range) IS NULL AND
+    stats.count != c.count
+  )
 ;
 
+-- Close last range
 UPDATE
   stats
 SET
-  timestamp_range = tsrange(lower(timestamp_range), stats_update.timestamp),
-  count = stats_update.count
+  timestamp_range = tsrange(lower(timestamp_range), stats_update.timestamp)
 FROM
   stats_update
 WHERE
@@ -53,6 +57,7 @@ WHERE
   upper(stats.timestamp_range) IS NULL
 ;
 
+-- Open new range
 INSERT INTO stats (
   SELECT
     source,

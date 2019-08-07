@@ -1,0 +1,7 @@
+version: '3.3'
+
+services:
+  frontend:
+    environment:
+      - OSMOSE_UNLOCKED_UPDATE=on
+      - URL_FRONTEND=localhost:20009
