@@ -133,27 +133,7 @@ USING
   dynpoi_status
 WHERE
   marker.source = %s AND
-  marker.elems != '' AND
-  dynpoi_status.source = marker.source AND
-  dynpoi_status.class = marker.class AND
-  dynpoi_status.subclass = marker.subclass AND
-  dynpoi_status.elems = marker.elems
-""", (source_id, ))
-
-    execute_sql(dbcurs, """
-DELETE FROM
-  marker
-USING
-  dynpoi_status
-WHERE
-  marker.source = %s AND
-  marker.elems = '' AND
-  dynpoi_status.source = marker.source AND
-  dynpoi_status.class = marker.class AND
-  dynpoi_status.subclass = marker.subclass AND
-  dynpoi_status.elems = marker.elems AND
-  dynpoi_status.lat = marker.lat AND
-  dynpoi_status.lon = marker.lon
+  dynpoi_status.uuid = marker.uuid
 """, (source_id, ))
 
     execute_sql(dbcurs, """UPDATE dynpoi_class
