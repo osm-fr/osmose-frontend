@@ -509,6 +509,13 @@ CREATE INDEX idx_marker_source_class_z_order_curve ON public.marker USING btree 
 
 
 --
+-- Name: idx_marker_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX idx_marker_uuid ON public.marker USING btree (uuid);
+
+
+--
 -- Name: idx_marker_z_order_curve_item; Type: INDEX; Schema: public; Owner: -
 --
 
