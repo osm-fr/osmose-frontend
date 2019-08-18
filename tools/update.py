@@ -275,7 +275,9 @@ class update_parser(handler.ContentHandler):
             all_elem  = all_elem.rstrip("_")
 
             ## sql template
-            sql_marker = u"INSERT INTO marker (source, class, subclass, item, lat, lon, elems, subtitle) VALUES (" + "%s," * 7 + "%s) RETURNING id;"
+            sql_marker = u"INSERT INTO marker (source, class, subclass, item, lat, lon, elems, subtitle) "
+            sql_marker += u"VALUES (%(source)s, %(class)s, %(subclass)s, %(item)s, %(lat)s, %(lon)s, %(elems)s, %(subtitle)s) "
+            sql_marker += u"RETURNING id"
 
             ## add data at all location
             if len(self._error_locations) == 0:
@@ -285,43 +287,64 @@ class update_parser(handler.ContentHandler):
             cpt = 0
             for location in self._error_locations:
                 cpt += 1
-                                
+
                 lat = float(location["lat"])
                 lon = float(location["lon"])
-                
-                execute_sql(self._dbcurs, sql_marker,
-                            (self._source_id, self._class_id, self._class_sub,
-                             self._class_item[self._class_id],
-                             lat, lon,
-                             utils.pg_escape(all_elem),
-                             self._error_texts,
-                             ))
+
+                execute_sql(self._dbcurs, sql_marker, {
+                    "source": self._source_id,
+                    "class": self._class_id,
+                    "subclass": self._class_sub,
+                    "item": self._class_item[self._class_id],
+                    "lat": lat,
+                    "lon": lon,
+                    "elems": utils.pg_escape(all_elem),
+                    "subtitle": self._error_texts,
+                })
                 marker_id = self._dbcurs.fetchone()[0]
 
             ## add all elements
-            sql_elem = u"INSERT INTO marker_elem (marker_id, elem_index, data_type, id, tags, username) VALUES (" + "%s, " * 5 + "%s)"
+            sql_elem  = u"INSERT INTO marker_elem (marker_id, elem_index, data_type, id, tags, username) "
+            sql_elem += u"VALUES (%(marker_id)s, %(elem_index)s, %(data_type)s, %(id)s, %(tags)s, %(username)s) "
             num = 0
             for elem in self._error_elements:
                 if elem["type"] in ("node", "way", "relation"):
-                    execute_sql(self._dbcurs, sql_elem,
-                                (marker_id, num, elem["type"][0].upper(), int(elem["id"]),
-                                 elem["tag"], elem["user"]))
+                    execute_sql(self._dbcurs, sql_elem, {
+                        "marker_id": marker_id,
+                        "elem_index": num,
+                        "data_type": elem["type"][0].upper(),
+                        "id": int(elem["id"]),
+                        "tags": elem["tag"],
+                        "username": elem["user"],
+                    })
                     num += 1
                 if elem["type"] in ("infos"):
-                    execute_sql(self._dbcurs, sql_elem,
-                                (marker_id, num, elem["type"][0].upper(), 0,
-                                 elem["tag"], elem["user"]))
+                    execute_sql(self._dbcurs, sql_elem, {
+                        "marker_id": marker_id,
+                        "elem_index": num,
+                        "data_type": elem["type"][0].upper(),
+                        "id": 0,
+                        "tags": elem["tag"],
+                        "username": elem["user"],
+                    })
                     num += 1
 
             ## add quickfixes
-            sql_fix = u"INSERT INTO marker_fix (marker_id, diff_index, elem_data_type, elem_id, tags_create, tags_modify, tags_delete) VALUES (" + "%s, " * 6 + "%s)"
+            sql_fix  = u"INSERT INTO marker_fix (marker_id, diff_index, elem_data_type, elem_id, tags_create, tags_modify, tags_delete) "
+            sql_fix += u"VALUES (%(marker_id)s, %(diff_index)s, %(elem_data_type)s, %(elem_id)s, %(tags_create)s, %(tags_modify)s, %(tags_delete)s) "
             num = 0
             for fix in self._fixes:
                 for elem in fix:
                     if elem["type"] in ("node", "way", "relation"):
-                        execute_sql(self._dbcurs, sql_fix,
-                                    (marker_id, num, elem["type"][0].upper(), int(elem["id"]),
-                                     elem["tags_create"], elem["tags_modify"], elem["tags_delete"]))
+                        execute_sql(self._dbcurs, sql_fix, {
+                            "marker_id": marker_id,
+                            "diff_index": num,
+                            "elem_data_type": elem["type"][0].upper(),
+                            "elem_id": int(elem["id"]),
+                            "tags_create": elem["tags_create"],
+                            "tags_modify": elem["tags_modify"],
+                            "tags_delete": elem["tags_delete"],
+                        })
                 num += 1
 
 
