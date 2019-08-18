@@ -1,6 +1,6 @@
 #! /bin/sh
 
-psql osmose_frontend -A --tuples-only -c "
+psql -h "$DB_HOST" -U osmose osmose_frontend -A --tuples-only -c "
 SELECT
   left(pg_get_functiondef(p.oid), -1) || E';\n'
 FROM
@@ -26,4 +26,4 @@ ORDER BY
   END
 " > schema.sql
 
-pg_dump --no-tablespaces -s -O -x -t "backend|marker*|dynpoi_categ|dynpoi_class|class|dynpoi_item|source|source_password|dynpoi_stats|dynpoi_status|dynpoi_status_id_seq|dynpoi_update|dynpoi_update_last" osmose_frontend >> schema.sql
+pg_dump --no-tablespaces -s -O -x -t "backend|marker*|dynpoi_categ|dynpoi_class|class|dynpoi_item|source|source_password|dynpoi_stats|dynpoi_status|dynpoi_status_id_seq|dynpoi_update|dynpoi_update_last" -h "$DB_HOST" -U osmose osmose_frontend >> schema.sql
