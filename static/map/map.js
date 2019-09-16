@@ -1,5 +1,4 @@
 import { mapBases, mapOverlay } from './layers';
-import OsmoseCoverage from './Osmose.Coverage';
 import { OsmoseMenu, OsmoseMenuToggle } from './Osmose.Menu';
 import OsmoseExport from './Osmose.Export';
 import OsmoseEditor from './Osmose.Editor';
@@ -66,9 +65,6 @@ export function initMap() {
   map.addControl(permalink);
 
   // Layers
-  // // Layer Coverage
-  mapOverlay.Coverage = new OsmoseCoverage('/osmose-coverage.topojson.pbf');
-
   // // Layer Heatmap
   mapOverlay['Osmose Issues Heatmap'] = new OsmoseHeatmap(permalink, urlVars);
 
