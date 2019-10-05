@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, request, response, template, post, HTTPError
+from bottle import route, request, response, template, post, HTTPError, abort
 from tools import utils
 import tools.update
 import os
@@ -242,7 +242,7 @@ def send_update(db):
     response.content_type = "text/plain; charset=utf-8"
 
     if not code or not upload:
-        return "FAIL"
+        abort(401, 'FAIL')
 
     if src:
         # Deprecated, replaced by analyser & country
@@ -265,7 +265,7 @@ LIMIT 1
     res = db.fetchone()
 
     if not res and not os.environ.get("OSMOSE_UNLOCKED_UPDATE"):
-        return "AUTH FAIL"
+        abort(403, 'AUTH FAIL')
     if not res and os.environ.get("OSMOSE_UNLOCKED_UPDATE"):
         r = db.execute("SELECT COALESCE(MAX(id), 0) + 1 AS id FROM source")
         source_id = db.fetchone()["id"]
@@ -280,7 +280,7 @@ LIMIT 1
     try:
         (name, ext) = os.path.splitext(upload.filename)
         if ext not in ('.bz2','.gz','.xml'):
-            return 'FAIL: File extension not allowed.'
+            abort(406, 'FAIL: File extension not allowed.')
 
         save_filename = os.path.join(utils.dir_results, upload.filename)
         upload.save(save_filename, overwrite=True)
@@ -288,7 +288,7 @@ LIMIT 1
         os.unlink(save_filename)
 
     except tools.update.OsmoseUpdateAlreadyDone:
-        return 'FAIL: Already up to date'
+        abort(409, 'FAIL: Already up to date')
 
     except:
         import traceback
