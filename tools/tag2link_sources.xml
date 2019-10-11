@@ -20,25 +20,32 @@
 
     <!-- Global --> 
 
+    <src name="Search">
+        <rule>
+            <condition k="^(.+(:|_))?name((:|_).+)?$" />
+            <link name="Search on DuckDuckGo" href="https://duckduckgo.com/?q=%v%" />
+        </rule>
+    </src>
+
     <src name="Common">
         <rule>
-            <condition k="(contact:)?website" />
+            <condition k="^(.+(:|_))?website((:|_).+)?$" v="^(http:|https:|www\.).*" />
             <link name="View website" href="%v%" />
         </rule>
         <rule>
-            <condition k="url" />
+            <condition k="^(.+(:|_))?url((:|_).+)?$" v="^(http:|https:|www\.).*" />
             <link name="View URL" href="%v%" />
         </rule>
         <rule>
-            <condition k="(contact:)?email" v="[^@]+@[^@]+" />
+            <condition k="^(.+(:|_))?email((:|_).+)?$" v="[^@]+@[^@]+" />
             <link name="Send Email" href="mailto:%v%" />
         </rule>
         <rule>
-            <condition k="source" v="(http:|https:).*"/>
+            <condition k="^(.+(:|_))?source((:|_).+)?$" v="^(http:|https:|www\.).*"/>
             <link name="View website" href="%v%" />
         </rule>
         <rule>
-            <condition k="image" v="(http:|https:).*"/>
+            <condition k="image" v="^(http:|https:|www\.).*"/>
             <link name="View image" href="%v%" />
         </rule>
         <rule>
@@ -53,12 +60,20 @@
             <link name="View %name% article" href="https://%k.1:v.1:en%.wikipedia.org/wiki/%v.2:v.1%" />
         </rule>
         <rule>
-            <condition k="wikidata" />
+            <condition k="(operator:|network:|brand:|architect:|artist:|subject:|name:etymology:)?wikidata" />
             <link name="View Wikidata page" href="https://www.wikidata.org/wiki/%v%" />
         </rule>
         <rule>
             <condition k="species"/>
             <link name="View Wikispecies page" href="https://species.wikimedia.org/wiki/%v%" />
+        </rule>
+        <rule>
+            <condition k="wikimedia_commons" v="File:.*"/>
+            <link name="View Commons file" href="https://commons.wikimedia.org/wiki/%v%" />
+        </rule>
+        <rule>
+            <condition k="wikimedia_commons" v="Category:.*"/>
+            <link name="View Commons category" href="https://commons.wikimedia.org/wiki/%v%" />
         </rule>
     </src>
 
@@ -72,7 +87,7 @@
     <src name="Mapillary">
         <rule>
             <condition k="((ref|source):)?mapillary" v="[0-9a-zA-Z-_]+" />
-            <link name="View %name% image" href="http://www.mapillary.com/map/im/%v%" />
+            <link name="View %name% image" href="https://www.mapillary.com/app/?focus=photo&amp;pKey=%v%&amp;signs=true&amp;points=true" />
         </rule>
     </src>
 
@@ -143,9 +158,9 @@
     </src>
 
     <src name="IGN" country-code="FR">
-		<!-- 
-		http://geodesie.ign.fr/fiches/index.php?module=e&action=fichepdf&source=carte&sit_no=4509302&geo_cid=0&lambda=1.90024744&phi=48.03041621
-		 -->
+        <!-- 
+        http://geodesie.ign.fr/fiches/index.php?module=e&action=fichepdf&source=carte&sit_no=4509302&geo_cid=0&lambda=1.90024744&phi=48.03041621
+        -->
         <rule>
             <condition k="man_made" v="survey_point" />
             <condition k="source" v="©IGN .*" />
@@ -176,7 +191,7 @@
     <src name="FINESS" country-code="FR">
         <rule>
             <condition k="ref:(FR:)?FINESS" v="[A-Z0-9-]{8,9}" />
-            <link name="View %name% sheet of hospital/home" href="http://finess.sante.gouv.fr/finess/jsp/actionDetailEtablissement.do?noFiness=%v%" />
+            <link name="View %name% sheet of hospital/home" href="http://finess.sante.gouv.fr/fininter/jsp/actionDetailEtablissement.do?noFiness=%v%" />
         </rule>
     </src>
 
@@ -185,6 +200,15 @@
             <condition k="ref:FR:NAF" v="[A-Z0-9-]{5}" />
             <link name="View INSEE explanation of %name% code" href="http://recherche-naf.insee.fr/SIRENET_ClassesNaf/%v%.htm" />
         </rule>
+        <rule>
+            <condition k="ref:FR:NAF" v="[A-Z0-9-]{5}" />
+            <link name="View a map of %name% items" href="https://sidjy.github.io/ape.html?ape=%v%" />
+        </rule>
+        <!--  TODO map lat/lon of selected object
+        <rule>
+            <condition k="ref:FR:NAF" v="[A-Z0-9-]{5}" />
+            <link name="View a map of %name% items" href="https://sidjy.github.io/ape.html?ape=%v%#%zoom%/%lat%/%lon%" />
+        </rule> -->
     </src>
 
     <src name="SIRET" country-code="FR">
@@ -208,4 +232,42 @@
         </rule>
     </src>
 
+    <!-- RCE, Dutch heritage authority --> 
+
+    <src name="rce" country-code="NL">
+        <rule>
+            <condition k="ref:rce" />
+            <link name="RCE website" href="https://cultureelerfgoed.nl/monumenten/%v%" />
+        </rule>
+    </src>
+
+    <!-- BAG - Buildings in The Netherlands --> 
+
+    <src name="BAG" country-code="NL">
+       <rule>
+            <condition k="ref:bag" v="^[0-9]{16}$" />
+            <link name="Open in BAG Viewer" href="https://bagviewer.kadaster.nl/lvbag/bag-viewer/index.html#?searchQuery=%v%" />
+        </rule>
+        <rule>
+            <condition k="ref:bag" v="^[0-9]{15}$" />
+            <link name="Open in BAG Viewer" href="https://bagviewer.kadaster.nl/lvbag/bag-viewer/index.html#?searchQuery=0%v%" />
+        </rule>
+        <rule>
+            <condition k="ref:bag" v="^[0-9]{14}$" />
+            <link name="Open in BAG Viewer" href="https://bagviewer.kadaster.nl/lvbag/bag-viewer/index.html#?searchQuery=00%v%" />
+        </rule>
+        <rule>
+            <condition k="ref:bag" v="^[0-9]{13}$" />
+            <link name="Open in BAG Viewer" href="https://bagviewer.kadaster.nl/lvbag/bag-viewer/index.html#?searchQuery=000%v%" />
+        </rule>
+    </src>
+
+    <!-- reference id number of the building in the RUIAN database of properties of the Czech Republic --> 
+
+    <src name="Czech RUIAN" country-code="CZ">
+        <rule>
+            <condition k="ref:ruian:building" v="[0-9]+" />
+            <link name="View %name% object detail" href="https://vdp.cuzk.cz/vdp/ruian/stavebniobjekty/%v%" />
+        </rule>
+    </src>
 </tag2link>

@@ -1,7 +1,6 @@
 %rebase('layout.tpl', title=(_("How to help translation")))
 <h1>{{_("How to help translation")}}</h1>
-<p>{{_("Osmose tool is mainly developped by french people, and we aim to add more languages. We currently cover almost all the languages used by countries covered by analyses.")}}
-{{!_("The <a href='%s'>country coverage is available</a>.") % "map/#zoom=2&lat=37&lon=-25.9&layer=Mapnik&overlays=FFFFFFFFFFFFFFFFFTFF&item=xxxx&level=1%2C2%2C3&tags=&fixable=" }}
+<p>{{_("Osmose tool is mainly developped by french people, and we aim to add more languages.")}}
 <p>{{_("To make Osmose a real multi-lingual tool, we need your help to improve current translations, and add new translations")}}</p>
 
 

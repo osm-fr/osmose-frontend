@@ -119,19 +119,3 @@ cd tools/database/ && ./categ_menu_update.sh && ./item_menu_update.sh
 ```
 
 Add "tools/cron.sh" to crontab, to run once per day.
-
-
-Generation of coverage layer from backend
------------------------------------------
-
-On a backend repository
-```
-./tools/generate-polygons.py  # generate all countries on polygons.openstreetmap.fr
-./tools/generate-cover.sh     # generate file osmose-cover-simplified.topojson.pbf
-```
-
-On a frontend repository
-```
-cp ../backend/osmose-cover-simplified.topojson.pbf static/osmose-coverage.topojson.pbf.$(date +"%Y-%m-%d")
-ln -sf osmose-coverage.topojson.pbf.$(date +"%Y-%m-%d") osmose-coverage.topojson.pbf
-```
