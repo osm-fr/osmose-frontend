@@ -13,7 +13,13 @@ import beaker.middleware
 import assets
 
 
-app = bottle.default_app()
+class OsmoseBottle(bottle.Bottle):
+    def default_error_handler(self, res):
+        bottle.response.content_type = 'text/plain'
+        return res.body
+
+app = OsmoseBottle()
+bottle.default_app.push(app)
 
 assets.init_assets()
 
