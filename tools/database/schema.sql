@@ -178,7 +178,7 @@ CREATE SEQUENCE public.dynpoi_status_id_seq
 CREATE TABLE public.dynpoi_status (
     source integer NOT NULL,
     class integer NOT NULL,
-    subclass integer NOT NULL,
+    subclass bigint NOT NULL,
     elems character varying(128) NOT NULL,
     date timestamp with time zone,
     status character varying(128),
@@ -224,7 +224,7 @@ CREATE TABLE public.marker (
     id bigint NOT NULL,
     source integer,
     class integer,
-    subclass integer,
+    subclass bigint,
     lat numeric(9,7),
     lon numeric(10,7),
     elems text,
