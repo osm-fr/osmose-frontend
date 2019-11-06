@@ -197,7 +197,7 @@ class update_parser(handler.ContentHandler):
 
         elif name == u"error":
             self._class_id        = int(attrs["class"])
-            self._class_sub       = int(attrs.get("subclass", u"0"))%2147483647
+            self._class_sub       = int(attrs.get("subclass", u"0"))
             self._error_elements  = []
             self._error_locations = []
             self._error_texts     = {}
