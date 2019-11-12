@@ -106,7 +106,6 @@ def errors(db, lang):
                 'source': res["source"],
                 'classs': res["class"],
                 'elems': res["elems"],
-                'subclass': res["subclass"],
                 'subtitle': translate.select(res["subtitle"]),
                 'title': translate.select(res["title"]),
                 'level': res["level"],
