@@ -66,7 +66,7 @@ def _errors(db, lang, params):
             source    = res["source"]
             classs    = res["class"]
             elems     = res["elems"]
-            subclass  = res["subclass"]
+            subclass  = res["subclass"] % 2147483647
             subtitle  = translate.select(res["subtitle"])
             title     = translate.select(res["title"])
             level     = res["level"]
