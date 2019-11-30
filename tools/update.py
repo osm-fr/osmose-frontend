@@ -87,36 +87,12 @@ def update(source_id, fname, logger = printlogger(), remote_ip=""):
 UPDATE
   dynpoi_status
 SET
-  subtitle = marker.subtitle,
-  lat = marker.lat,
-  lon = marker.lon
-FROM
-  marker
-WHERE
-  marker.source = %s AND
-  marker.elems != '' AND
-  dynpoi_status.source = marker.source AND
-  dynpoi_status.class = marker.class AND
-  dynpoi_status.subclass = marker.subclass AND
-  dynpoi_status.elems = marker.elems
-""", (source_id, ))
-
-    execute_sql(dbcurs, """
-UPDATE
-  dynpoi_status
-SET
   subtitle = marker.subtitle
 FROM
   marker
 WHERE
   marker.source = %s AND
-  marker.elems = '' AND
-  dynpoi_status.source = marker.source AND
-  dynpoi_status.class = marker.class AND
-  dynpoi_status.subclass = marker.subclass AND
-  dynpoi_status.elems = marker.elems AND
-  dynpoi_status.lat = marker.lat AND
-  dynpoi_status.lon = marker.lon
+  dynpoi_status.uuid = marker.uuid
 """, (source_id, ))
 
     ## remove false positive no longer present
@@ -133,27 +109,7 @@ USING
   dynpoi_status
 WHERE
   marker.source = %s AND
-  marker.elems != '' AND
-  dynpoi_status.source = marker.source AND
-  dynpoi_status.class = marker.class AND
-  dynpoi_status.subclass = marker.subclass AND
-  dynpoi_status.elems = marker.elems
-""", (source_id, ))
-
-    execute_sql(dbcurs, """
-DELETE FROM
-  marker
-USING
-  dynpoi_status
-WHERE
-  marker.source = %s AND
-  marker.elems = '' AND
-  dynpoi_status.source = marker.source AND
-  dynpoi_status.class = marker.class AND
-  dynpoi_status.subclass = marker.subclass AND
-  dynpoi_status.elems = marker.elems AND
-  dynpoi_status.lat = marker.lat AND
-  dynpoi_status.lon = marker.lon
+  dynpoi_status.uuid = marker.uuid
 """, (source_id, ))
 
     execute_sql(dbcurs, """UPDATE dynpoi_class
@@ -275,8 +231,9 @@ class update_parser(handler.ContentHandler):
             all_elem  = all_elem.rstrip("_")
 
             ## sql template
-            sql_marker = u"INSERT INTO marker (source, class, subclass, item, lat, lon, elems, subtitle) "
-            sql_marker += u"VALUES (%(source)s, %(class)s, %(subclass)s, %(item)s, %(lat)s, %(lon)s, %(elems)s, %(subtitle)s) "
+            sql_marker = u"INSERT INTO marker (uuid, source, class, subclass, item, lat, lon, elems, subtitle) "
+            sql_marker += u"VALUES (('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid, "
+            sql_marker += u"%(source)s, %(class)s, %(subclass)s, %(item)s, %(lat)s, %(lon)s, %(elems)s, %(subtitle)s) "
             sql_marker += u"RETURNING id"
 
             ## add data at all location
