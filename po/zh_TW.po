@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2019-08-07 20:28+0000\n"
+"PO-Revision-Date: 2019-12-01 17:55+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -38,15 +38,15 @@ msgid "never generated"
 msgstr "不曾產生"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:187 ../false_positive.py:63 tmp.tpl:198
+#: ../error.py:187 ../false_positive.py:63 tmp.tpl:197
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
-#: ../errors.py:156 tmp.tpl:70
+#: ../errors.py:155 tmp.tpl:70
 msgid "False positives"
 msgstr "誤判"
 
-#: ../errors.py:162 tmp.tpl:68
+#: ../errors.py:161 tmp.tpl:68
 msgid "Informations"
 msgstr "資訊"
 
@@ -67,7 +67,7 @@ msgstr "聯絡我們"
 msgid "Help on wiki"
 msgstr "Wiki 上的說明頁"
 
-#: ../map.py:92 tmp.tpl:118 tmp.tpl:197
+#: ../map.py:92 tmp.tpl:118 tmp.tpl:196
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
@@ -411,32 +411,25 @@ msgstr "誤報錯誤"
 msgid "How to help translation"
 msgstr "如何幫忙翻譯"
 
-#: tmp.tpl:189
-msgid ""
-"Osmose tool is mainly developped by french people, and we aim to add more "
-"languages. We currently cover almost all the languages used by countries "
-"covered by analyses."
-msgstr "Osmose 工具主要由法國人開發，我們希望能加入更多語言。目前有被分析的國家所用的語言大多已含括在內了。"
-
-#: tmp.tpl:191
+#: tmp.tpl:190
 msgid ""
 "To make Osmose a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr "要讓 Osmose 成為真正的多語工具，我們需要你的協助來改善已有的翻譯、增加新的翻譯。"
 
-#: tmp.tpl:192
+#: tmp.tpl:191
 msgid "Pages to translate"
 msgstr "需要被翻譯的網頁"
 
-#: tmp.tpl:196
+#: tmp.tpl:195
 msgid "Wiki pages"
 msgstr "Wiki 頁面"
 
-#: tmp.tpl:193
+#: tmp.tpl:192
 msgid "Osmose pages"
 msgstr "Osmose 網頁"
 
-#: tmp.tpl:202
+#: tmp.tpl:201
 msgid "Bug tracking system"
 msgstr "Bug 追蹤系統"
 
@@ -588,7 +581,7 @@ msgstr "父標籤"
 msgid "street numbers"
 msgstr "門牌號碼"
 
-#: ../tools/database/item_menu.txt:36 ../tools/database/item_menu.txt:196
+#: ../tools/database/item_menu.txt:36 ../tools/database/item_menu.txt:200
 msgid "highway"
 msgstr "道路"
 
@@ -612,7 +605,7 @@ msgstr "不良的來源標籤"
 msgid "tagwatch cleaner"
 msgstr "tagwatch 清理器"
 
-#: ../tools/database/item_menu.txt:48 ../tools/database/item_menu.txt:203
+#: ../tools/database/item_menu.txt:48 ../tools/database/item_menu.txt:207
 msgid "wikipedia"
 msgstr "維基百科"
 
@@ -837,7 +830,7 @@ msgid "school, could be integrated"
 msgstr "學校，應當整合"
 
 #: ../tools/database/item_menu.txt:27 ../tools/database/item_menu.txt:138
-#: ../tools/database/item_menu.txt:204
+#: ../tools/database/item_menu.txt:208
 msgid "public transport"
 msgstr "大眾運輸"
 
@@ -917,25 +910,24 @@ msgstr "運動"
 msgid "sport, could be integrated"
 msgstr "運動，應當整合"
 
-#: tmp.tpl:195
+#: tmp.tpl:194
 msgid "Translation progress: osmose"
 msgstr "翻譯進度： osmose"
 
-#: tmp.tpl:199
+#: tmp.tpl:198
 msgid "For new language or countries"
 msgstr "新增語言或國家"
 
-#: tmp.tpl:190
 #, python-format
 msgid "The <a href='%s'>country coverage is available</a>."
 msgstr "<a href='%s'>目前已含蓋的國家</a>。"
 
-#: tmp.tpl:200
+#: tmp.tpl:199
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
 msgstr "你可以直接在 <a href='%s'>Transifex</a> 上新增一個語言。"
 
-#: tmp.tpl:194
+#: tmp.tpl:193
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr "翻譯是透過 <a href='%s'>Transifex</a> 所完成。"
@@ -1061,7 +1053,7 @@ msgid ""
 "other areas are funded by Mapbox."
 msgstr "分析資料的伺服器由 OpenStreetMap-France 及世界各地的貢獻者提供。其中北美等地的伺服器由 Mapbox 贊助。"
 
-#: ../errors.py:159
+#: ../errors.py:158
 msgid "Fixed issues"
 msgstr "已修正問題"
 
@@ -1142,7 +1134,7 @@ msgstr "問題地圖"
 msgid "Information on issues database"
 msgstr "問題資料庫資訊"
 
-#: tmp.tpl:198
+#: tmp.tpl:197
 msgid "Documentation on reported issues"
 msgstr "回報問題的說明文件"
 
@@ -1183,7 +1175,7 @@ msgstr "分割的建築"
 msgid "Control, verification and correction of %s issues"
 msgstr "控制、驗證和修正問題 %s"
 
-#: tmp.tpl:197
+#: tmp.tpl:196
 msgid "Osmose QA main page"
 msgstr "Osmose QA 主頁"
 
@@ -1196,7 +1188,7 @@ msgid ""
 "analyses."
 msgstr "應當在<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frnotend</a>回報網站問題臭蟲，或是在<a href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a>回報 OSM 資料問題，或是給予分析器的建議。"
 
-#: tmp.tpl:203
+#: tmp.tpl:202
 msgid ""
 "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
 "frontend</a> can be used to report any issue with translations."
@@ -1366,7 +1358,7 @@ msgstr "通過電子郵件<a href='mailto:{email}'>{email}</a>可以和我們取
 msgid "Level {level} issues ({count})"
 msgstr "等級{level}問題({count})"
 
-#: tmp.tpl:201
+#: tmp.tpl:200
 #, python-brace-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
@@ -1377,47 +1369,47 @@ msgstr "對於新增語言或某些國家及地區使用的語言版本，請直
 msgid "JOSM validator"
 msgstr "JOSM驗證器"
 
-#: ../tools/database/item_menu.txt:191
+#: ../tools/database/item_menu.txt:195
 msgid "seamark"
 msgstr "海標"
 
-#: ../tools/database/item_menu.txt:192
+#: ../tools/database/item_menu.txt:196
 msgid "addresses"
 msgstr "地址"
 
-#: ../tools/database/item_menu.txt:193
+#: ../tools/database/item_menu.txt:197
 msgid "combinations"
 msgstr "組合"
 
-#: ../tools/database/item_menu.txt:194
+#: ../tools/database/item_menu.txt:198
 msgid "deprecated"
 msgstr "棄用"
 
-#: ../tools/database/item_menu.txt:195
+#: ../tools/database/item_menu.txt:199
 msgid "geometry"
 msgstr "幾何"
 
-#: ../tools/database/item_menu.txt:197
+#: ../tools/database/item_menu.txt:201
 msgid "multiple"
 msgstr "多種"
 
-#: ../tools/database/item_menu.txt:198
+#: ../tools/database/item_menu.txt:202
 msgid "numeric"
 msgstr "數字"
 
-#: ../tools/database/item_menu.txt:199
+#: ../tools/database/item_menu.txt:203
 msgid "relation"
 msgstr "關係"
 
-#: ../tools/database/item_menu.txt:200
+#: ../tools/database/item_menu.txt:204
 msgid "religion"
 msgstr "宗教"
 
-#: ../tools/database/item_menu.txt:201
+#: ../tools/database/item_menu.txt:205
 msgid "territories"
 msgstr "領土"
 
-#: ../tools/database/item_menu.txt:202
+#: ../tools/database/item_menu.txt:206
 msgid "unnecessary"
 msgstr "多餘"
 
@@ -1514,7 +1506,7 @@ msgstr "在修復OSM資料數據問題後，請將其標記為已完成。如果
 msgid "zone:maxspeed"
 msgstr "zone:maxspeed"
 
-#: ../tools/database/item_menu.txt:207
+#: ../tools/database/item_menu.txt:211
 msgid "power transformer"
 msgstr "變電設施"
 
@@ -1575,11 +1567,11 @@ msgstr ""
 msgid "street objects"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:205
+#: ../tools/database/item_menu.txt:209
 msgid "openrailwaymap"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:206
+#: ../tools/database/item_menu.txt:210
 msgid "openrailwaymap in germany"
 msgstr ""
 
@@ -1589,4 +1581,26 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:177
 msgid "power plant"
+msgstr ""
+
+#: tmp.tpl:189
+msgid ""
+"Osmose tool is mainly developped by french people, and we aim to add more "
+"languages."
+msgstr ""
+
+#: ../tools/database/item_menu.txt:191
+msgid "defibrillator"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:192
+msgid "radio support"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:193
+msgid "radio support, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:194
+msgid "radio support, need update"
 msgstr ""

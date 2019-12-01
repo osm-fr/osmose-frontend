@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2019-08-07 20:28+0000\n"
+"PO-Revision-Date: 2019-12-01 17:55+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Finnish (http://www.transifex.com/openstreetmap-france/osmose/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -36,15 +36,15 @@ msgid "never generated"
 msgstr ""
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:187 ../false_positive.py:63 tmp.tpl:198
+#: ../error.py:187 ../false_positive.py:63 tmp.tpl:197
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
-#: ../errors.py:156 tmp.tpl:70
+#: ../errors.py:155 tmp.tpl:70
 msgid "False positives"
 msgstr ""
 
-#: ../errors.py:162 tmp.tpl:68
+#: ../errors.py:161 tmp.tpl:68
 msgid "Informations"
 msgstr "Tietoja"
 
@@ -65,7 +65,7 @@ msgstr "Yhteystiedot"
 msgid "Help on wiki"
 msgstr "Apua wikistä"
 
-#: ../map.py:92 tmp.tpl:118 tmp.tpl:197
+#: ../map.py:92 tmp.tpl:118 tmp.tpl:196
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
@@ -409,32 +409,25 @@ msgstr "väärä positiivinen"
 msgid "How to help translation"
 msgstr "Miten auttaa käännöksessä?"
 
-#: tmp.tpl:189
-msgid ""
-"Osmose tool is mainly developped by french people, and we aim to add more "
-"languages. We currently cover almost all the languages used by countries "
-"covered by analyses."
-msgstr "Osmose-työkalu on pääosin ranskalaisen porukan kehittämä, mutta aiomme lisätä uusia kieliä tarpeen mukaan. Tällä hetkellä palvelu on käännetty lähes kaikille kielille, joita puhutaan Osmosen kattamissa maissa."
-
-#: tmp.tpl:191
+#: tmp.tpl:190
 msgid ""
 "To make Osmose a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr "Voidaksemme tehdä Osmosesta todellisen monikielisen palvelun tarvitsemme apuasi nykyisten käännösten kehittämisessä ja uusien tekemisessä"
 
-#: tmp.tpl:192
+#: tmp.tpl:191
 msgid "Pages to translate"
 msgstr "Käännettäviä sivuja"
 
-#: tmp.tpl:196
+#: tmp.tpl:195
 msgid "Wiki pages"
 msgstr "Wiki-sivut"
 
-#: tmp.tpl:193
+#: tmp.tpl:192
 msgid "Osmose pages"
 msgstr "Osmose-sivuja"
 
-#: tmp.tpl:202
+#: tmp.tpl:201
 msgid "Bug tracking system"
 msgstr "Bugien seurantajärjestelmä"
 
@@ -586,7 +579,7 @@ msgstr ""
 msgid "street numbers"
 msgstr "talonnumerot"
 
-#: ../tools/database/item_menu.txt:36 ../tools/database/item_menu.txt:196
+#: ../tools/database/item_menu.txt:36 ../tools/database/item_menu.txt:200
 msgid "highway"
 msgstr "highway"
 
@@ -610,7 +603,7 @@ msgstr "huono lähdetägi"
 msgid "tagwatch cleaner"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:48 ../tools/database/item_menu.txt:203
+#: ../tools/database/item_menu.txt:48 ../tools/database/item_menu.txt:207
 msgid "wikipedia"
 msgstr "wikipedia"
 
@@ -835,7 +828,7 @@ msgid "school, could be integrated"
 msgstr "koulu, mahdollisesti yhdistettävissä"
 
 #: ../tools/database/item_menu.txt:27 ../tools/database/item_menu.txt:138
-#: ../tools/database/item_menu.txt:204
+#: ../tools/database/item_menu.txt:208
 msgid "public transport"
 msgstr "julkinen liikenne"
 
@@ -915,25 +908,24 @@ msgstr "urheilulaji"
 msgid "sport, could be integrated"
 msgstr "urheilulaji, mahdollisesti yhdistettävissä"
 
-#: tmp.tpl:195
+#: tmp.tpl:194
 msgid "Translation progress: osmose"
 msgstr "Käännöksen eteneminen: Osmose"
 
-#: tmp.tpl:199
+#: tmp.tpl:198
 msgid "For new language or countries"
 msgstr ""
 
-#: tmp.tpl:190
 #, python-format
 msgid "The <a href='%s'>country coverage is available</a>."
 msgstr ""
 
-#: tmp.tpl:200
+#: tmp.tpl:199
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
 msgstr ""
 
-#: tmp.tpl:194
+#: tmp.tpl:193
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr ""
@@ -1059,7 +1051,7 @@ msgid ""
 "other areas are funded by Mapbox."
 msgstr ""
 
-#: ../errors.py:159
+#: ../errors.py:158
 msgid "Fixed issues"
 msgstr "Korjattujen ongelmien määrä"
 
@@ -1140,7 +1132,7 @@ msgstr "Ongelmien kartta"
 msgid "Information on issues database"
 msgstr "Tietoja ongelmien tietokannasta"
 
-#: tmp.tpl:198
+#: tmp.tpl:197
 msgid "Documentation on reported issues"
 msgstr ""
 
@@ -1181,7 +1173,7 @@ msgstr "pilko rakennus"
 msgid "Control, verification and correction of %s issues"
 msgstr ""
 
-#: tmp.tpl:197
+#: tmp.tpl:196
 msgid "Osmose QA main page"
 msgstr ""
 
@@ -1194,7 +1186,7 @@ msgid ""
 "analyses."
 msgstr ""
 
-#: tmp.tpl:203
+#: tmp.tpl:202
 msgid ""
 "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
 "frontend</a> can be used to report any issue with translations."
@@ -1364,7 +1356,7 @@ msgstr ""
 msgid "Level {level} issues ({count})"
 msgstr ""
 
-#: tmp.tpl:201
+#: tmp.tpl:200
 #, python-brace-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
@@ -1375,47 +1367,47 @@ msgstr ""
 msgid "JOSM validator"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:191
+#: ../tools/database/item_menu.txt:195
 msgid "seamark"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:192
+#: ../tools/database/item_menu.txt:196
 msgid "addresses"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:193
+#: ../tools/database/item_menu.txt:197
 msgid "combinations"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:194
+#: ../tools/database/item_menu.txt:198
 msgid "deprecated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:195
+#: ../tools/database/item_menu.txt:199
 msgid "geometry"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:197
+#: ../tools/database/item_menu.txt:201
 msgid "multiple"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:198
+#: ../tools/database/item_menu.txt:202
 msgid "numeric"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:199
+#: ../tools/database/item_menu.txt:203
 msgid "relation"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:200
+#: ../tools/database/item_menu.txt:204
 msgid "religion"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:201
+#: ../tools/database/item_menu.txt:205
 msgid "territories"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:202
+#: ../tools/database/item_menu.txt:206
 msgid "unnecessary"
 msgstr ""
 
@@ -1512,7 +1504,7 @@ msgstr ""
 msgid "zone:maxspeed"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:207
+#: ../tools/database/item_menu.txt:211
 msgid "power transformer"
 msgstr ""
 
@@ -1573,11 +1565,11 @@ msgstr ""
 msgid "street objects"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:205
+#: ../tools/database/item_menu.txt:209
 msgid "openrailwaymap"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:206
+#: ../tools/database/item_menu.txt:210
 msgid "openrailwaymap in germany"
 msgstr ""
 
@@ -1587,4 +1579,26 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:177
 msgid "power plant"
+msgstr ""
+
+#: tmp.tpl:189
+msgid ""
+"Osmose tool is mainly developped by french people, and we aim to add more "
+"languages."
+msgstr ""
+
+#: ../tools/database/item_menu.txt:191
+msgid "defibrillator"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:192
+msgid "radio support"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:193
+msgid "radio support, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:194
+msgid "radio support, need update"
 msgstr ""

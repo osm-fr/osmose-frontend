@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2019-08-07 20:28+0000\n"
+"PO-Revision-Date: 2019-12-01 17:55+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -36,15 +36,15 @@ msgid "never generated"
 msgstr "هرگز تولید نشده"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:187 ../false_positive.py:63 tmp.tpl:198
+#: ../error.py:187 ../false_positive.py:63 tmp.tpl:197
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Fa:Osmose/issues"
 
-#: ../errors.py:156 tmp.tpl:70
+#: ../errors.py:155 tmp.tpl:70
 msgid "False positives"
 msgstr "مثبت‌های کاذب"
 
-#: ../errors.py:162 tmp.tpl:68
+#: ../errors.py:161 tmp.tpl:68
 msgid "Informations"
 msgstr "اطلاعات"
 
@@ -65,7 +65,7 @@ msgstr "تماس"
 msgid "Help on wiki"
 msgstr "راهنما در ویکی"
 
-#: ../map.py:92 tmp.tpl:118 tmp.tpl:197
+#: ../map.py:92 tmp.tpl:118 tmp.tpl:196
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Fa:Osmose"
 
@@ -409,32 +409,25 @@ msgstr "مثبت کاذب"
 msgid "How to help translation"
 msgstr "راه کمک به ترجمه"
 
-#: tmp.tpl:189
-msgid ""
-"Osmose tool is mainly developped by french people, and we aim to add more "
-"languages. We currently cover almost all the languages used by countries "
-"covered by analyses."
-msgstr "توسعه‌دهندگان Osmose بیشتر فرانسوی هستند اما مایلیم زبان‌های بیشتری را پشتیبانی کنیم. هم‌اکنون تقریباً همهٔ کشورهایی که در تحلیل‌ها می‌آیند زبانشان نیز پشتیبانی می‌شود."
-
-#: tmp.tpl:191
+#: tmp.tpl:190
 msgid ""
 "To make Osmose a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr "برای اینکه Osmose ابزاری چندزبانه باشد به کمک شما نیاز داریم تا ترجمه‌های موجود را بهبود بخشیم یا زبان‌های بیشتری را اضافه کنیم."
 
-#: tmp.tpl:192
+#: tmp.tpl:191
 msgid "Pages to translate"
 msgstr "صفحه‌هایی که نیازمند ترجمه است"
 
-#: tmp.tpl:196
+#: tmp.tpl:195
 msgid "Wiki pages"
 msgstr "صفحه‌های ویکی"
 
-#: tmp.tpl:193
+#: tmp.tpl:192
 msgid "Osmose pages"
 msgstr "صفحه‌های Osmose"
 
-#: tmp.tpl:202
+#: tmp.tpl:201
 msgid "Bug tracking system"
 msgstr "سامانهٔ پیگیری باگ‌های نرم‌افزاری"
 
@@ -586,7 +579,7 @@ msgstr "تگ مادر"
 msgid "street numbers"
 msgstr "street numbers"
 
-#: ../tools/database/item_menu.txt:36 ../tools/database/item_menu.txt:196
+#: ../tools/database/item_menu.txt:36 ../tools/database/item_menu.txt:200
 msgid "highway"
 msgstr "highway"
 
@@ -610,7 +603,7 @@ msgstr "تگ منبع بد"
 msgid "tagwatch cleaner"
 msgstr "پاک‌ساز تگ"
 
-#: ../tools/database/item_menu.txt:48 ../tools/database/item_menu.txt:203
+#: ../tools/database/item_menu.txt:48 ../tools/database/item_menu.txt:207
 msgid "wikipedia"
 msgstr "wikipedia"
 
@@ -835,7 +828,7 @@ msgid "school, could be integrated"
 msgstr "مدرسه، می‌تواند یکپارچه شود"
 
 #: ../tools/database/item_menu.txt:27 ../tools/database/item_menu.txt:138
-#: ../tools/database/item_menu.txt:204
+#: ../tools/database/item_menu.txt:208
 msgid "public transport"
 msgstr "public transport"
 
@@ -915,25 +908,24 @@ msgstr "sport"
 msgid "sport, could be integrated"
 msgstr "ورزش، می‌تواند یکپارچه شود"
 
-#: tmp.tpl:195
+#: tmp.tpl:194
 msgid "Translation progress: osmose"
 msgstr "پیشرفت ترجمه: Osmose"
 
-#: tmp.tpl:199
+#: tmp.tpl:198
 msgid "For new language or countries"
 msgstr "برای زبان یا کشورهای جدید"
 
-#: tmp.tpl:190
 #, python-format
 msgid "The <a href='%s'>country coverage is available</a>."
 msgstr "<a href='%s'>پوشش کشوری وجود دارد</a>."
 
-#: tmp.tpl:200
+#: tmp.tpl:199
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
 msgstr "در سایت <a href='%s'>Transifex</a> می‌توانید مستقیماً زبان جدیدی اضافه کنید."
 
-#: tmp.tpl:194
+#: tmp.tpl:193
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr "ترجمه در سایت <a href='%s'>Transifex</a> انجام می‌شود."
@@ -1059,7 +1051,7 @@ msgid ""
 "other areas are funded by Mapbox."
 msgstr "میزبان‌های موردنیاز برای تحلیل داده‌ها را OpenStreetMap-France فراهم کرده و بعضی از بخش‌های دیگر را مشارکت‌کنندگانی از سراسر جهان. آمریکای شمالی و سایر نواحی را Mapbox میزبانی می‌کند."
 
-#: ../errors.py:159
+#: ../errors.py:158
 msgid "Fixed issues"
 msgstr "مسائل حل‌شده"
 
@@ -1140,7 +1132,7 @@ msgstr "نقشهٔ مسائل"
 msgid "Information on issues database"
 msgstr "اطلاعاتی از پایگا‌ه‌دادهٔ مسئله‌ها"
 
-#: tmp.tpl:198
+#: tmp.tpl:197
 msgid "Documentation on reported issues"
 msgstr "مستندات مسائل گزارش‌شده"
 
@@ -1181,7 +1173,7 @@ msgstr "split building"
 msgid "Control, verification and correction of %s issues"
 msgstr "بررسی، اعتبارسنجی و اصلاح  مسائل %s"
 
-#: tmp.tpl:197
+#: tmp.tpl:196
 msgid "Osmose QA main page"
 msgstr "صفحهٔ اصلی پرسش‌وپاسخ Osmose"
 
@@ -1194,7 +1186,7 @@ msgid ""
 "analyses."
 msgstr "باگ‌های مربوط به خود وبسایت را در <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> گزارش کنید. اگر در گزارش‌های ارائه‌شده برای داده‌های OSM مشکلی وجود دارد، یا دربارهٔ تحلیل‌ها پیشنهادی دارید، در<a href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> گزارش کنید."
 
-#: tmp.tpl:203
+#: tmp.tpl:202
 msgid ""
 "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
 "frontend</a> can be used to report any issue with translations."
@@ -1364,7 +1356,7 @@ msgstr "برای تماس مستقیم با ما به نشانی <a href='mailto
 msgid "Level {level} issues ({count})"
 msgstr "مسائل سطح {level} ({count})"
 
-#: tmp.tpl:201
+#: tmp.tpl:200
 #, python-brace-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
@@ -1375,47 +1367,47 @@ msgstr "برای کشورهای جدید، مستقیماً به نشانی <a h
 msgid "JOSM validator"
 msgstr "‫اعتبارسنج JOSM‬"
 
-#: ../tools/database/item_menu.txt:191
+#: ../tools/database/item_menu.txt:195
 msgid "seamark"
 msgstr "seamark"
 
-#: ../tools/database/item_menu.txt:192
+#: ../tools/database/item_menu.txt:196
 msgid "addresses"
 msgstr "نشانی‌ها"
 
-#: ../tools/database/item_menu.txt:193
+#: ../tools/database/item_menu.txt:197
 msgid "combinations"
 msgstr "ترکیبات"
 
-#: ../tools/database/item_menu.txt:194
+#: ../tools/database/item_menu.txt:198
 msgid "deprecated"
 msgstr "deprecated"
 
-#: ../tools/database/item_menu.txt:195
+#: ../tools/database/item_menu.txt:199
 msgid "geometry"
 msgstr "هندسه"
 
-#: ../tools/database/item_menu.txt:197
+#: ../tools/database/item_menu.txt:201
 msgid "multiple"
 msgstr "چندگانه"
 
-#: ../tools/database/item_menu.txt:198
+#: ../tools/database/item_menu.txt:202
 msgid "numeric"
 msgstr "عددی"
 
-#: ../tools/database/item_menu.txt:199
+#: ../tools/database/item_menu.txt:203
 msgid "relation"
 msgstr "relation"
 
-#: ../tools/database/item_menu.txt:200
+#: ../tools/database/item_menu.txt:204
 msgid "religion"
 msgstr "دین"
 
-#: ../tools/database/item_menu.txt:201
+#: ../tools/database/item_menu.txt:205
 msgid "territories"
 msgstr "سرزمین‌ها"
 
-#: ../tools/database/item_menu.txt:202
+#: ../tools/database/item_menu.txt:206
 msgid "unnecessary"
 msgstr "غیرضروری"
 
@@ -1512,7 +1504,7 @@ msgstr "پس از اینکه مشکل داده‌ها اصلاح شد، آن ر�
 msgid "zone:maxspeed"
 msgstr "zone:maxspeed"
 
-#: ../tools/database/item_menu.txt:207
+#: ../tools/database/item_menu.txt:211
 msgid "power transformer"
 msgstr "power transformer"
 
@@ -1573,11 +1565,11 @@ msgstr ""
 msgid "street objects"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:205
+#: ../tools/database/item_menu.txt:209
 msgid "openrailwaymap"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:206
+#: ../tools/database/item_menu.txt:210
 msgid "openrailwaymap in germany"
 msgstr ""
 
@@ -1587,4 +1579,26 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:177
 msgid "power plant"
+msgstr ""
+
+#: tmp.tpl:189
+msgid ""
+"Osmose tool is mainly developped by french people, and we aim to add more "
+"languages."
+msgstr ""
+
+#: ../tools/database/item_menu.txt:191
+msgid "defibrillator"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:192
+msgid "radio support"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:193
+msgid "radio support, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:194
+msgid "radio support, need update"
 msgstr ""

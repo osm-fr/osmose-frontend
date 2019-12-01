@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2019-08-07 20:28+0000\n"
+"PO-Revision-Date: 2019-12-01 17:55+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -38,15 +38,15 @@ msgid "never generated"
 msgstr "soha nem lett létrehozva"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:187 ../false_positive.py:63 tmp.tpl:198
+#: ../error.py:187 ../false_positive.py:63 tmp.tpl:197
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
-#: ../errors.py:156 tmp.tpl:70
+#: ../errors.py:155 tmp.tpl:70
 msgid "False positives"
 msgstr "Téves hibajelzések"
 
-#: ../errors.py:162 tmp.tpl:68
+#: ../errors.py:161 tmp.tpl:68
 msgid "Informations"
 msgstr "Információk"
 
@@ -67,7 +67,7 @@ msgstr "Kapcsolat"
 msgid "Help on wiki"
 msgstr "Súgó a wikin"
 
-#: ../map.py:92 tmp.tpl:118 tmp.tpl:197
+#: ../map.py:92 tmp.tpl:118 tmp.tpl:196
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
@@ -411,32 +411,25 @@ msgstr "téves hibajelzés"
 msgid "How to help translation"
 msgstr "Hogyan segíthet a fordításban?"
 
-#: tmp.tpl:189
-msgid ""
-"Osmose tool is mainly developped by french people, and we aim to add more "
-"languages. We currently cover almost all the languages used by countries "
-"covered by analyses."
-msgstr "Az Osmose-t leginkább franciák fejlesztik, és szeretnénk több nyelvet hozzáadni. Jelenleg majdnem minden nyelv elérhető, amit az elemző által lefedett országokban beszélnek."
-
-#: tmp.tpl:191
+#: tmp.tpl:190
 msgid ""
 "To make Osmose a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr "Ahhoz, hogy az Osmose valóban többnyelvű legyen, a te segítségedre is szükségünk van. Adj hozzá új fordításokat, és javítsd a jelenlegieket"
 
-#: tmp.tpl:192
+#: tmp.tpl:191
 msgid "Pages to translate"
 msgstr "Lefordítandó oldalak"
 
-#: tmp.tpl:196
+#: tmp.tpl:195
 msgid "Wiki pages"
 msgstr "Wiki-oldalak"
 
-#: tmp.tpl:193
+#: tmp.tpl:192
 msgid "Osmose pages"
 msgstr "Osmose-oldalak"
 
-#: tmp.tpl:202
+#: tmp.tpl:201
 msgid "Bug tracking system"
 msgstr "Hibakövető rendszer"
 
@@ -588,7 +581,7 @@ msgstr "szülőcímke"
 msgid "street numbers"
 msgstr "házszámok"
 
-#: ../tools/database/item_menu.txt:36 ../tools/database/item_menu.txt:196
+#: ../tools/database/item_menu.txt:36 ../tools/database/item_menu.txt:200
 msgid "highway"
 msgstr "út"
 
@@ -612,7 +605,7 @@ msgstr "hibás forráscímke (source)"
 msgid "tagwatch cleaner"
 msgstr "tagwatch tisztítás"
 
-#: ../tools/database/item_menu.txt:48 ../tools/database/item_menu.txt:203
+#: ../tools/database/item_menu.txt:48 ../tools/database/item_menu.txt:207
 msgid "wikipedia"
 msgstr "Wikipédia"
 
@@ -837,7 +830,7 @@ msgid "school, could be integrated"
 msgstr "iskola, térképre lehetne tenni"
 
 #: ../tools/database/item_menu.txt:27 ../tools/database/item_menu.txt:138
-#: ../tools/database/item_menu.txt:204
+#: ../tools/database/item_menu.txt:208
 msgid "public transport"
 msgstr "tömegközlekedés"
 
@@ -917,25 +910,24 @@ msgstr "sport"
 msgid "sport, could be integrated"
 msgstr "sport, térképre lehetne tenni"
 
-#: tmp.tpl:195
+#: tmp.tpl:194
 msgid "Translation progress: osmose"
 msgstr "Fordítás haladása: osmose"
 
-#: tmp.tpl:199
+#: tmp.tpl:198
 msgid "For new language or countries"
 msgstr "Új nyelv vagy országok"
 
-#: tmp.tpl:190
 #, python-format
 msgid "The <a href='%s'>country coverage is available</a>."
 msgstr "Az <a href='%s'>ország lefedettsége elérhető</a>."
 
-#: tmp.tpl:200
+#: tmp.tpl:199
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
 msgstr "Létrehozhatsz egy nyelvet közvetlenül itt: <a href='%s'>Transifex.</a>"
 
-#: tmp.tpl:194
+#: tmp.tpl:193
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr "A fordítás a <a href='%s'>Transifex</a>en készül."
@@ -1061,7 +1053,7 @@ msgid ""
 "other areas are funded by Mapbox."
 msgstr "Az adatokat elemző szervereket az OpenStreetMap-France és világszerte néhány másik közreműködő biztosítja. Az észak-amerikai és más területi szervereket a Mapbox finanszírozza."
 
-#: ../errors.py:159
+#: ../errors.py:158
 msgid "Fixed issues"
 msgstr "Javított hibák"
 
@@ -1142,7 +1134,7 @@ msgstr "Hibatérkép"
 msgid "Information on issues database"
 msgstr "Tájékoztatás a hibaadatbázisról"
 
-#: tmp.tpl:198
+#: tmp.tpl:197
 msgid "Documentation on reported issues"
 msgstr "A jelentett hibák dokumentációja"
 
@@ -1183,7 +1175,7 @@ msgstr "széthasított épület"
 msgid "Control, verification and correction of %s issues"
 msgstr "%s hiba ellenőrzése, megvizsgálása és javítása"
 
-#: tmp.tpl:197
+#: tmp.tpl:196
 msgid "Osmose QA main page"
 msgstr "Osmose minőségbiztosítás – főoldal"
 
@@ -1196,7 +1188,7 @@ msgid ""
 "analyses."
 msgstr "A hibákat a következőképpen célszerű jelezni: a honlappal kapcsolatos észrevételeket az <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> felületen, az OpenStreetMap adatokkal kapcsolatos bejelentett hibákat és az elemzésekkel kapcsolatos javaslatokat pedig az <a href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> felületen."
 
-#: tmp.tpl:203
+#: tmp.tpl:202
 msgid ""
 "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
 "frontend</a> can be used to report any issue with translations."
@@ -1366,7 +1358,7 @@ msgstr "Közvetlenül is elérhetők vagyunk a következő e-mail címen: <a hre
 msgid "Level {level} issues ({count})"
 msgstr "{level}. szintű lehetséges hibák: {count}"
 
-#: tmp.tpl:201
+#: tmp.tpl:200
 #, python-brace-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
@@ -1377,47 +1369,47 @@ msgstr "Új országok felvétele érdekében közvetlenül is elérhetők vagyun
 msgid "JOSM validator"
 msgstr "JOSM-érvényesítő"
 
-#: ../tools/database/item_menu.txt:191
+#: ../tools/database/item_menu.txt:195
 msgid "seamark"
 msgstr "hajózásitérkép-jel"
 
-#: ../tools/database/item_menu.txt:192
+#: ../tools/database/item_menu.txt:196
 msgid "addresses"
 msgstr "címek"
 
-#: ../tools/database/item_menu.txt:193
+#: ../tools/database/item_menu.txt:197
 msgid "combinations"
 msgstr "kombinációk"
 
-#: ../tools/database/item_menu.txt:194
+#: ../tools/database/item_menu.txt:198
 msgid "deprecated"
 msgstr "elavult"
 
-#: ../tools/database/item_menu.txt:195
+#: ../tools/database/item_menu.txt:199
 msgid "geometry"
 msgstr "geometria"
 
-#: ../tools/database/item_menu.txt:197
+#: ../tools/database/item_menu.txt:201
 msgid "multiple"
 msgstr "többszörös"
 
-#: ../tools/database/item_menu.txt:198
+#: ../tools/database/item_menu.txt:202
 msgid "numeric"
 msgstr "numerikus"
 
-#: ../tools/database/item_menu.txt:199
+#: ../tools/database/item_menu.txt:203
 msgid "relation"
 msgstr "kapcsolat"
 
-#: ../tools/database/item_menu.txt:200
+#: ../tools/database/item_menu.txt:204
 msgid "religion"
 msgstr "vallás"
 
-#: ../tools/database/item_menu.txt:201
+#: ../tools/database/item_menu.txt:205
 msgid "territories"
 msgstr "területek"
 
-#: ../tools/database/item_menu.txt:202
+#: ../tools/database/item_menu.txt:206
 msgid "unnecessary"
 msgstr "fölösleges"
 
@@ -1514,7 +1506,7 @@ msgstr "Miután a hibát kijavítottad az OSM-adatbázisban, jelöld meg készk�
 msgid "zone:maxspeed"
 msgstr "zone:maxspeed"
 
-#: ../tools/database/item_menu.txt:207
+#: ../tools/database/item_menu.txt:211
 msgid "power transformer"
 msgstr "transzformátor"
 
@@ -1575,11 +1567,11 @@ msgstr "URL"
 msgid "street objects"
 msgstr "utcai tárgyak"
 
-#: ../tools/database/item_menu.txt:205
+#: ../tools/database/item_menu.txt:209
 msgid "openrailwaymap"
 msgstr "OpenRailwayMap"
 
-#: ../tools/database/item_menu.txt:206
+#: ../tools/database/item_menu.txt:210
 msgid "openrailwaymap in germany"
 msgstr "OpenRailwayMap Németországban"
 
@@ -1589,4 +1581,26 @@ msgstr "vasút"
 
 #: ../tools/database/item_menu.txt:177
 msgid "power plant"
+msgstr "erőmű"
+
+#: tmp.tpl:189
+msgid ""
+"Osmose tool is mainly developped by french people, and we aim to add more "
+"languages."
+msgstr ""
+
+#: ../tools/database/item_menu.txt:191
+msgid "defibrillator"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:192
+msgid "radio support"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:193
+msgid "radio support, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:194
+msgid "radio support, need update"
 msgstr ""
