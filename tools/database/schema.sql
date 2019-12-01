@@ -101,7 +101,7 @@ CREATE TABLE public.backend (
 CREATE TABLE public.class (
     item integer NOT NULL,
     class integer NOT NULL,
-    title public.hstore,
+    title jsonb,
     level integer,
     "timestamp" timestamp without time zone,
     tags character varying(255)[]
@@ -114,7 +114,7 @@ CREATE TABLE public.class (
 
 CREATE TABLE public.dynpoi_categ (
     categ integer NOT NULL,
-    menu public.hstore
+    menu jsonb
 );
 
 
@@ -140,7 +140,7 @@ CREATE TABLE public.dynpoi_item (
     categ integer,
     marker_color character varying(16),
     marker_flag character varying(16),
-    menu public.hstore,
+    menu jsonb,
     levels integer[],
     number integer[],
     tags character varying[]
@@ -184,7 +184,7 @@ CREATE TABLE public.dynpoi_status (
     status character varying(128),
     lat numeric(9,7) NOT NULL,
     lon numeric(10,7) NOT NULL,
-    subtitle public.hstore,
+    subtitle jsonb,
     id bigint DEFAULT nextval('public.dynpoi_status_id_seq'::regclass),
     uuid uuid NOT NULL
 );
@@ -230,7 +230,7 @@ CREATE TABLE public.marker (
     lon numeric(10,7),
     elems text,
     item integer,
-    subtitle public.hstore,
+    subtitle jsonb,
     uuid uuid NOT NULL
 )
 WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
@@ -245,7 +245,7 @@ CREATE TABLE public.marker_elem (
     elem_index integer NOT NULL,
     data_type character(1),
     id bigint,
-    tags public.hstore,
+    tags jsonb,
     username text
 )
 WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
@@ -260,8 +260,8 @@ CREATE TABLE public.marker_fix (
     diff_index integer NOT NULL,
     elem_data_type character(1) NOT NULL,
     elem_id bigint NOT NULL,
-    tags_create public.hstore,
-    tags_modify public.hstore,
+    tags_create jsonb,
+    tags_modify jsonb,
     tags_delete text[]
 );
 

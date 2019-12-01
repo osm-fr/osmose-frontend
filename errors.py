@@ -182,8 +182,8 @@ def index(db, lang, format=None):
             "dynpoi_update_last.timestamp"], [
             "dynpoi_item",
             "class"], [
-            "min(dynpoi_item.menu::text)::hstore AS menu",
-            "min(class.title::text)::hstore AS title"],
+            "min(dynpoi_item.menu::text)::jsonb AS menu",
+            "min(class.title::text)::jsonb AS title"],
         )
 
         total = 0

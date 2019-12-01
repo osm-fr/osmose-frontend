@@ -62,8 +62,9 @@ class PgSQLPlugin(object):
 
     def init_connection(self):
         #con = psycopg2.connect(dsn)
+        psycopg2.extensions.register_adapter(dict, psycopg2.extras.Json)
         self.con = psycopg2.extras.DictConnection(self.dsn)
-        psycopg2.extras.register_hstore(self.con, unicode=True)
+        psycopg2.extras.register_default_jsonb(self.con)
         # Using DictCursor lets us return result as a dictionary instead of the default list
 
     def setup(self, app):
