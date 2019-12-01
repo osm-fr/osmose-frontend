@@ -65,7 +65,8 @@ createuser -s osmose
 psql -c "ALTER ROLE osmose WITH PASSWORD '-osmose-';"
 createdb -E UTF8 -T template0 -O osmose osmose_frontend
 # Enable extensions
-psql -c "CREATE extension hstore" osmose_frontend
+psql -c "CREATE EXTENSION hstore" osmose_frontend
+psql -c "CREATE EXTENSION pgcrypto" osmose_frontend
 ```
 
 As normal user, create the database tables:
