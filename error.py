@@ -118,7 +118,6 @@ def display(db, lang, user, uuid):
 
     data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
 
-    print(elements)
     tags = columns_elements.index('tags')
     for e in elements:
         e[tags] = _expand_tags(e[tags], t2l.checkTags(e[tags]))
