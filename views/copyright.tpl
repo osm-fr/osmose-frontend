@@ -1,4 +1,4 @@
-%rebase('layout.tpl', title=_("Copyright informations"))
+%rebase('layout.tpl', title=_("Copyright information"))
 <h1>{{_("License")}}</h1>
 <p>This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
