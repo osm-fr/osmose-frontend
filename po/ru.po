@@ -3,8 +3,10 @@
 # This file is distributed under the same license as the osmose-frontend package.
 # 
 # Translators:
+# 4004 <transifex.4004@mailhero.io>, 2017
 # d1g <acroq3@gmail.com>, 2015
 # d1g <acroq3@gmail.com>, 2015
+# frodrigo <fred.rodrigo@gmail.com>, 2017
 # frodrigo <fred.rodrigo@gmail.com>, 2017
 # Jake Strine <jake.strine@gmail.com>, 2017
 # jekader <jekader@gmail.com>, 2014
@@ -18,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2019-12-01 17:55+0000\n"
+"PO-Revision-Date: 2019-12-03 20:28+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Russian (http://www.transifex.com/openstreetmap-france/osmose/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -189,7 +191,7 @@ msgid "timestamp"
 msgstr "метка времени"
 
 #: tmp.tpl:52
-msgid "Copyright informations"
+msgid "Copyright information"
 msgstr "Авторские права"
 
 #: tmp.tpl:53

@@ -264,8 +264,8 @@ msgid "timestamp"
 msgstr "timestamp"
 
 #: tmp.tpl:44
-msgid "Copyright informations"
-msgstr "Copyright informations"
+msgid "Copyright information"
+msgstr "Copyright information"
 
 #: tmp.tpl:45
 msgid "License"

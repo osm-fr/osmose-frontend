@@ -9,13 +9,13 @@
 # Michal Pustějovský <Michal.Pustejovsky@seznam.cz>, 2014
 # Petr Schönmann <pschonmann@gmail.com>, 2014,2018
 # TK, 2014-2015,2017
-# trendspotter <j.podhorecky@volny.cz>, 2018
+# trendspotter <j.podhorecky@volny.cz>, 2018-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2019-12-01 17:55+0000\n"
+"PO-Revision-Date: 2019-12-03 20:28+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -186,7 +186,7 @@ msgid "timestamp"
 msgstr "časové razítko"
 
 #: tmp.tpl:52
-msgid "Copyright informations"
+msgid "Copyright information"
 msgstr "Informace o copyrightu"
 
 #: tmp.tpl:53

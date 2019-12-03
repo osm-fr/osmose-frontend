@@ -6,17 +6,21 @@
 # Daniel Koć <daniel@xn--ko-wla.pl>, 2014
 # Debeat <krystian4842@gmail.com>, 2015
 # endro, 2014-2016
+# endro, 2014
+# frodrigo <fred.rodrigo@gmail.com>, 2017
 # frodrigo <fred.rodrigo@gmail.com>, 2017
 # Debeat <krystian4842@gmail.com>, 2015
 # maro21 OSM, 2019
+# maro21 OSM, 2019
 # Teiron, 2016
 # endro, 2014
+# Teiron, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2019-12-01 17:55+0000\n"
+"PO-Revision-Date: 2019-12-03 20:28+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -187,7 +191,7 @@ msgid "timestamp"
 msgstr "czas"
 
 #: tmp.tpl:52
-msgid "Copyright informations"
+msgid "Copyright information"
 msgstr "Informacje o prawach autorskich"
 
 #: tmp.tpl:53
@@ -1591,20 +1595,20 @@ msgstr "elektrownia [FR]"
 msgid ""
 "Osmose tool is mainly developped by french people, and we aim to add more "
 "languages."
-msgstr ""
+msgstr "Osmose jest narzędziem stworzonym głównie przez Francuzów. Zamierzamy dodać więcej języków."
 
 #: ../tools/database/item_menu.txt:191
 msgid "defibrillator"
-msgstr ""
+msgstr "defibrylator [FR]"
 
 #: ../tools/database/item_menu.txt:192
 msgid "radio support"
-msgstr ""
+msgstr "maszt radiowy [FR}"
 
 #: ../tools/database/item_menu.txt:193
 msgid "radio support, could be integrated"
-msgstr ""
+msgstr "maszt radiowy, może być zintegrowany [FR]"
 
 #: ../tools/database/item_menu.txt:194
 msgid "radio support, need update"
-msgstr ""
+msgstr "maszt radiowy, potrzebna aktualizacja [FR]"

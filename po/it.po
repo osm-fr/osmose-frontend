@@ -4,12 +4,14 @@
 # 
 # Translators:
 # canfe <canfe.news@gmail.com>, 2019
+# canfe <canfe.news@gmail.com>, 2019
 # frodrigo <fred.rodrigo@gmail.com>, 2014,2017
-# frodrigo <fred.rodrigo@gmail.com>, 2014
+# frodrigo <fred.rodrigo@gmail.com>, 2014,2017
+# Giuseppe Pignataro <rogepix@gmail.com>, 2017
 # Giuseppe Pignataro <rogepix@gmail.com>, 2017
 # Lorenzo Beltrami <lorenzo.beba@gmail.com>, 2014,2019
 # Manuel Tassi <manueltassi91@gmail.com>, 2018-2019
-# Marco <marcxosm@gmail.com>, 2019
+# Marco <marcxosm@gmail.com>, 2015,2018-2019
 # Marco <marcxosm@gmail.com>, 2015,2018
 # operon, 2012
 # operon, 2012
@@ -18,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2019-12-01 17:55+0000\n"
+"PO-Revision-Date: 2019-12-03 20:28+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Italian (http://www.transifex.com/openstreetmap-france/osmose/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -189,7 +191,7 @@ msgid "timestamp"
 msgstr "data e ora"
 
 #: tmp.tpl:52
-msgid "Copyright informations"
+msgid "Copyright information"
 msgstr "Informazioni sul copyright"
 
 #: tmp.tpl:53
