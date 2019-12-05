@@ -165,7 +165,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
       if (popup.isOpen) {
         // Popup still open, so download content
         $.ajax({
-          url: `../api/0.2/error/${e.layer.properties.issue_id}`,
+          url: `../api/0.3beta/issue/${e.layer.properties.issue_id}`,
           dataType: 'json',
           success: (data) => {
             // Get the OSM objects

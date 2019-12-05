@@ -52,6 +52,15 @@ def ext_filter(config):
     return regexp, to_python, to_url
 app.router.add_filter('ext', ext_filter)
 
+def uuid_filter(config):
+    regexp = r'[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}'
+    def to_python(match):
+        return match
+    def to_url(ext):
+        return ext
+    return regexp, to_python, to_url
+app.router.add_filter('uuid', uuid_filter)
+
 @route('/', name='root')
 def index(lang):
     translate = utils.translator(lang)

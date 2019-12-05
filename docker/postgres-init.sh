@@ -9,8 +9,8 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-E
 EOSQL
 
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "osmose_frontend" <<-EOSQL
-    CREATE extension IF NOT EXISTS hstore;
-    CREATE extension IF NOT EXISTS pgcrypto;
+    CREATE EXTENSION IF NOT EXISTS hstore;
+    CREATE EXTENSION IF NOT EXISTS pgcrypto;
 EOSQL
 
 psql -v ON_ERROR_STOP=1 --username "osmose" --dbname "osmose_frontend" < /schema.sql

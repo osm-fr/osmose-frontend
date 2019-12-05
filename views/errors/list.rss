@@ -30,7 +30,7 @@
 %    end
 </title>
     <description>
-      {{res["item"]}}({{res["level"]}})/{{res["class"]}}/{{res["subclass"]}} E{{res["id"]}}
+      {{res["item"]}}({{res["level"]}})/{{res["class"]}}/{{res["subclass"]}} E{{res["uuid"]}}
 %    e = gen if gen in ('error', 'false-positive') else 'error'
 %    printed_td = False
 %    if res["elems"]:

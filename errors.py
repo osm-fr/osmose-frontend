@@ -36,7 +36,7 @@ def _errors_geo(db, params):
     features = []
 
     for res in results:
-        properties = {"error_id": res["id"], "item": res["item"] or 0}
+        properties = {"error_id": res["uuid"], "item": res["item"] or 0}
         features.append({"type": "Feature", "geometry": {"type": "Point", "coordinates": [float(res["lon"]), float(res["lat"])]}, "properties": properties})
 
     return {"type": "FeatureCollection", "features": features}
@@ -94,14 +94,14 @@ def errors(db, lang):
         i = {
             'lat': float(res["lat"]),
             'lon': float(res["lon"]),
-            'id': res["id"],
+            'id': res["uuid"],
             'item': str(res["item"]),
         }
         if params.full:
             i.update({
                 'lat': float(res["lat"]),
                 'lon': float(res["lon"]),
-                'id': res["id"],
+                'id': res["uuid"],
                 'item': str(res["item"]),
                 'source': res["source"],
                 'classs': res["class"],

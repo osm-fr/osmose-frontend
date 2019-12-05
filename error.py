@@ -30,28 +30,47 @@ from tools import OsmSax
 t2l = tag2link.tag2link("tools/tag2link_sources.xml")
 
 
-def _get(db, err_id):
+def _get(db, err_id=None, uuid=None):
     columns_marker = ["marker.item", "marker.source", "marker.class", "marker.elems", "marker.subclass",
         "marker.lat", "marker.lon",
-        "class.title", "marker.subtitle", "dynpoi_class.timestamp"]
-    sql = "SELECT " + ",".join(columns_marker) + """
-    FROM
-        marker
-        JOIN dynpoi_class ON
-            marker.source = dynpoi_class.source AND
-            marker.class = dynpoi_class.class
-        JOIN class ON
-            marker.item = class.item AND
-            marker.class = class.class
-    WHERE
-        marker.id = %s
-    """
-    db.execute(sql, (err_id, ))
+        "class.title", "marker.subtitle", "dynpoi_class.timestamp",
+        "marker.id"]
+
+    if err_id:
+        sql = "SELECT " + ",".join(columns_marker) + """
+        FROM
+            marker
+            JOIN dynpoi_class ON
+                marker.source = dynpoi_class.source AND
+                marker.class = dynpoi_class.class
+            JOIN class ON
+                marker.item = class.item AND
+                marker.class = class.class
+        WHERE
+            marker.id = %s
+        """
+        db.execute(sql, (err_id, ))
+    else:
+        sql = "SELECT " + ",".join(columns_marker) + """
+        FROM
+            marker
+            JOIN dynpoi_class ON
+                marker.source = dynpoi_class.source AND
+                marker.class = dynpoi_class.class
+            JOIN class ON
+                marker.item = class.item AND
+                marker.class = class.class
+        WHERE
+            marker.uuid = %s
+        """
+        db.execute(sql, (uuid, ))
+
     marker = db.fetchone()
 
     if not marker:
         abort(410, "Id is not present in database.")
 
+    err_id = marker.pop()
     columns_elements = ["elem_index", "data_type", "id", "tags", "username"]
     sql = "SELECT " + ",".join(columns_elements) + """
     FROM
@@ -76,7 +95,7 @@ def _get(db, err_id):
     db.execute(sql, (err_id, ))
     fix = db.fetchall()
 
-    return (marker, columns_marker, elements, columns_elements, fix, columns_fix)
+    return (marker, columns_marker, elements, columns_elements, fix, columns_fix, err_id)
 
 
 def _expand_tags(tags, links, short = False):
@@ -93,13 +112,12 @@ def _expand_tags(tags, links, short = False):
   return t
 
 
-@route('/error/<err_id:int>')
-def display(db, lang, user, err_id):
-    (marker, columns_marker, elements, columns_elements, fix, columns_fix) = _get(db, err_id)
+@route('/error/<uuid:uuid>')
+def display(db, lang, user, uuid):
+    (marker, columns_marker, elements, columns_elements, fix, columns_fix, err_id) = _get(db, uuid=uuid)
 
     data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
 
-    print(elements)
     tags = columns_elements.index('tags')
     for e in elements:
         e[tags] = _expand_tags(e[tags], t2l.checkTags(e[tags]))
@@ -112,7 +130,7 @@ def display(db, lang, user, err_id):
         f[tags_modify] = _expand_tags(f[tags_modify], t2l.checkTags(f[tags_modify]))
         f[tags_delete] = _expand_tags(f[tags_delete], {}, True)
 
-    return template('error/index', translate=utils.translator(lang), err_id=err_id,
+    return template('error/index', translate=utils.translator(lang), uuid=uuid,
         marker=marker, columns_marker=columns_marker,
         elements=elements, columns_elements=columns_elements, user=user,
         fix=fix, columns_fix=columns_fix, main_website=utils.main_website, data_type=data_type)
@@ -120,9 +138,15 @@ def display(db, lang, user, err_id):
 
 @route('/api/0.2/error/<err_id:int>/fresh_elems')
 @route('/api/0.2/error/<err_id:int>/fresh_elems/<fix_num:int>')
-def fresh_elems(db, lang, err_id, fix_num=None):
-    (marker, columns_marker, elements, columns_elements, fix, columns_fix) = _get(db, err_id)
+def fresh_elems_err_id(db, lang, err_id, fix_num=None):
+    return _fresh_elems(2, db, lang, None, fix_num, *_get(db, err_id=err_id))
 
+@route('/api/0.3beta/issue/<uuid:uuid>/fresh_elems')
+@route('/api/0.3beta/issue/<uuid:uuid>/fresh_elems/<fix_num:int>')
+def fresh_elems_uuid(db, lang, uuid, fix_num=None):
+    return _fresh_elems(3, db, lang, uuid, fix_num, *_get(db, uuid=uuid))
+
+def _fresh_elems(version, db, lang, uuid, fix_num, marker, columns_marker, elements, columns_elements, fix, columns_fix, err_id):
     data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
 
     def expand_tags(tags):
@@ -146,7 +170,10 @@ def fresh_elems(db, lang, err_id, fix_num=None):
             elems[data_type[elem["data_type"]] + str(elem["id"])] = tmp_elem
 
     if fix_num != None:
-        res = _get_fix(db, err_id, fix_num)
+        if err_id:
+            res = _get_fix(db, fix_num, err_id=err_id)
+        else:
+            res = _get_fix(db, fix_num, uuid=uuid)
         tid = data_type[res["elem_data_type"]] + str(res["elem_id"])
         if elems.has_key(tid):
             fix_elem_tags = copy.copy(elems[tid]["tags"])
@@ -158,20 +185,33 @@ def fresh_elems(db, lang, err_id, fix_num=None):
             for (k, v) in res["tags_modify"].items():
                 fix_elem_tags[k] = v
 
-            ret = {
-                "error_id": err_id,
-                "elems": elems.values(),
-                "fix": {tid: fix_elem_tags}
-            }
+            if version == 2:
+                ret = {
+                    "error_id": err_id,
+                    "elems": elems.values(),
+                    "fix": {tid: fix_elem_tags}
+                }
+            else:
+                ret = {
+                    "uuid": uuid,
+                    "elems": elems.values(),
+                    "fix": {tid: fix_elem_tags}
+                }
 
             for elem in ret['elems']:
                 elem["tags"] = expand_tags(elem["tags"])
             return ret
 
-    ret = {
-        "error_id": err_id,
-        "elems": elems.values()
-    }
+    if version == 2:
+        ret = {
+            "error_id": err_id,
+            "elems": elems.values()
+        }
+    else:
+        ret = {
+            "uuid": uuid,
+            "elems": elems.values()
+        }
 
     for elem in ret['elems']:
         elem["tags"] = expand_tags(elem["tags"])
@@ -180,15 +220,20 @@ def fresh_elems(db, lang, err_id, fix_num=None):
 
 
 @route('/api/0.2/error/<err_id:int>')
-def error(db, lang, err_id):
+def error_err_id(db, lang, err_id):
+    return _error(2, db, lang, None, *_get(db, err_id=err_id))
+
+@route('/api/0.3beta/issue/<uuid:uuid>')
+def error_uuid(db, lang, uuid):
+    return _error(3, db, lang, uuid, *_get(db, uuid=uuid))
+
+def _error(version, db, lang, uuid, marker, columns_marker, elements, columns_elements, fixies, columns_fix, err_id):
     data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
 
     # TRANSLATORS: link to tooltip help
     url_help = _("http://wiki.openstreetmap.org/wiki/Osmose/errors")
 
     translate = utils.translator(lang)
-
-    (marker, columns_marker, elements, columns_elements, fixies, columns_fix) = _get(db, err_id)
 
     lat       = str(marker["lat"])
     lon       = str(marker["lon"])
@@ -235,43 +280,81 @@ def error(db, lang, err_id):
                                   "del": _expand_tags(fix["tags_delete"], {}, True),
                                  })
 
-    return {
-        "lat":lat, "lon":lon,
-        "minlat": float(lat) - 0.002, "maxlat": float(lat) + 0.002,
-        "minlon": float(lon) - 0.002, "maxlon": float(lon) + 0.002,
-        "error_id":err_id,
-        "title":title, "subtitle":subtitle,
-        "b_date":b_date.strftime("%Y-%m-%d"),
-        "item":item,
-        "elems":elems, "new_elems":new_elems,
-        "elems_id":marker["elems"].replace("_",","),
-        "url_help":url_help
-    }
+    if version == 2:
+        return {
+            "lat":lat, "lon":lon,
+            "minlat": float(lat) - 0.002, "maxlat": float(lat) + 0.002,
+            "minlon": float(lon) - 0.002, "maxlon": float(lon) + 0.002,
+            "error_id":err_id,
+            "title":title, "subtitle":subtitle,
+            "b_date":b_date.strftime("%Y-%m-%d"),
+            "item":item,
+            "elems":elems, "new_elems":new_elems,
+            "elems_id":marker["elems"].replace("_",","),
+            "url_help":url_help
+        }
+    else:
+        return {
+            "lat":lat, "lon":lon,
+            "minlat": float(lat) - 0.002, "maxlat": float(lat) + 0.002,
+            "minlon": float(lon) - 0.002, "maxlon": float(lon) + 0.002,
+            "uuid":uuid,
+            "title":title, "subtitle":subtitle,
+            "b_date":b_date.strftime("%Y-%m-%d"),
+            "item":item,
+            "elems":elems, "new_elems":new_elems,
+            "elems_id":marker["elems"].replace("_",","),
+            "url_help":url_help
+        }
 
 
 @route('/api/0.2/error/<err_id:int>/<status:re:(done|false)>')
-def status(err_id, status):
-    if osmose_common.remove_bug(err_id, status) == 0:
+def status_err_id(err_id, status):
+    if osmose_common.remove_bug_err_id(err_id, status) == 0:
+        return
+    else:
+        abort(410, "FAIL")
+
+@route('/api/0.3beta/issue/<uuid:uuid>/<status:re:(done|false)>')
+def status_uuid(uuid, status):
+    if osmose_common.remove_bug_uuid(uuid, status) == 0:
         return
     else:
         abort(410, "FAIL")
 
 
-def _get_fix(db, err_id, fix_num):
+def _get_fix(db, fix_num, err_id=None, uuid=None):
     columns = [ "diff_index", "elem_data_type", "elem_id", "tags_create", "tags_modify", "tags_delete" ]
-    sql = "SELECT " + ", ".join(columns) + """
+
+    if err_id:
+        sql = "SELECT " + ", ".join(columns) + """
 FROM marker_fix
 WHERE marker_id = %s AND diff_index = %s
 """
+        db.execute(sql, (err_id, fix_num))
+    else:
+        sql = "SELECT " + ", ".join(columns) + """
+FROM marker_fix
+    JOIN marker ON
+        marker.id = marker_fix.marker_id
+WHERE marker.uuid = %s AND diff_index = %s
+"""
+        db.execute(sql, (uuid, fix_num))
 
-    db.execute(sql, (err_id, fix_num))
     return db.fetchone()
 
 
 @route('/api/0.2/error/<err_id:int>/fix')
 @route('/api/0.2/error/<err_id:int>/fix/<fix_num:int>')
-def fix(db, err_id, fix_num=0):
-    res = _get_fix(db, err_id, fix_num)
+def fix_err_id(db, err_id, fix_num=0):
+    return _fix(2, db, None, fix_num, _get_fix(db, fix_num, err_id=err_id))
+
+@route('/api/0.3beta/issue/<uuid:uuid>/fix')
+@route('/api/0.3beta/issue/<uuid:uuid>/fix/<fix_num:int>')
+def fix_uuid(db, uuid, fix_num=0):
+    return _fix(3, db, uuid, fix_num, _get_fix(db, fix_num, uuid=uuid))
+
+def _fix(version, db, uuid, fix_num, res):
     if res:
         response.content_type = 'text/xml; charset=utf-8'
         if res["elem_id"] > 0:
@@ -294,8 +377,12 @@ def fix(db, err_id, fix_num=0):
             data["tag"] = {}
             for (k, v) in res["tags_create"].iteritems():
                 data["tag"][k] = v
-            sql = "SELECT lat, lon FROM marker WHERE id = %s"
-            db.execute(sql, (err_id, ))
+            if version == 2:
+                sql = "SELECT lat, lon FROM marker WHERE id = %s"
+                db.execute(sql, (err_id, ))
+            else:
+                sql = "SELECT lat, lon FROM marker WHERE uuid = %s"
+                db.execute(sql, (uuid, ))
             res2 = db.fetchone()
             data["lat"] = res2["lat"]
             data["lon"] = res2["lon"]
