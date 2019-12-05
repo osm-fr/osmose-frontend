@@ -70,8 +70,9 @@ def get_dbconn():
 #    return psycopg2.connect(host="localhost", database = pg_base, user = pg_user, password = pg_pass)
     psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
     psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
+    psycopg2.extensions.register_adapter(dict, psycopg2.extras.Json)
     conn = psycopg2.extras.DictConnection(db_string)
-    psycopg2.extras.register_hstore(conn, unicode=True)
+    psycopg2.extras.register_default_jsonb(conn)
     return conn
 
 def pg_escape(text):

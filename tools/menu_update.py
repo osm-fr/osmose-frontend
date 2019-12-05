@@ -41,7 +41,7 @@ if __name__ == "__main__":
   types = ("categ", "item")
 
   for typ in types:
-    sql = "update dynpoi_" + typ + " set menu = coalesce(menu, hstore(%s,''))|| hstore(%s, %s) where " + typ + " = %s;"
+    sql = "update dynpoi_" + typ + " set menu = coalesce(menu, json_build_object(%s,'')::jsonb) || json_build_object(%s, %s)::jsonb where " + typ + " = %s;"
 
     for line in codecs.open("database/" + typ + "_menu.txt", "r", "utf-8"):
       (item, s) = line.split("|")
