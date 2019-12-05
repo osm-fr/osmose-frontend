@@ -304,7 +304,7 @@ LIMIT 1
     return "OK"
 
 def _status_object(db, t, source):
-    db.execute('SELECT string_agg(DISTINCT marker_elem.id::text, \',\') AS id FROM marker JOIN marker_elem ON marker_elem.marker_id = marker.id WHERE source=%s AND data_type = %s', (source, t))
+    db.execute('SELECT elem->''id'' FROM (SELECT unnest(elems) AS elem FROM marker WHERE source=1) AS t WHERE elem->''type'' = ''"%s"''::jsonb', (source, t))
     s = db.fetchone()
     if s and s[0]:
         return map(int, s[0].split(','))

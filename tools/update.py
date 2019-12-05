@@ -24,6 +24,7 @@ import sys, os, time, urllib, tempfile, commands
 import psycopg2
 import utils
 import socket
+import json
 from xml.sax import make_parser, handler
 
 show = utils.show
@@ -208,11 +209,13 @@ class update_parser(handler.ContentHandler):
             self._class_texts[attrs["lang"]] = attrs["title"]
         elif name == u"delete":
             # used by files generated with an .osc file
-            execute_sql(self._dbcurs, """DELETE FROM marker
-                                    WHERE source = %s AND id IN
-                                          (SELECT marker_id FROM marker_elem
-                                           WHERE data_type = %s AND id = %s)""",
-                                 (self._source_id, attrs["type"][0].upper(), attrs["id"]))
+            execute_sql(self._dbcurs, """
+DELETE FROM
+    marker
+WHERE
+    source = %s AND
+    (SELECT bool_or(elem->\'type\' = \'"%s"\'::jsonb AND elem->\'id\' = \'%s\'::jsonb) FROM (SELECT unnest(elems)) AS t(elem))
+""", (self._source_id, attrs["type"][0].upper(), attrs["id"]))
 
         elif name == u"fixes":
             self.elem_mode = "fix"
@@ -231,20 +234,41 @@ class update_parser(handler.ContentHandler):
             all_elem  = all_elem.rstrip("_")
 
             ## sql template
-            sql_marker = u"INSERT INTO marker (uuid, source, class, subclass, item, lat, lon, elems, subtitle) "
-            sql_marker += u"VALUES (('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid, "
-            sql_marker += u"%(source)s, %(class)s, %(subclass)s, %(item)s, %(lat)s, %(lon)s, %(elems)s, %(subtitle)s) "
-            sql_marker += u"RETURNING id"
+            sql_marker = u"INSERT INTO marker (uuid, source, class, subclass, item, lat, lon, elems, fixes, subtitle) "
+            sql_marker += u"VALUES (('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid, "
+            sql_marker += u"%(source)s, %(class)s, %(subclass)s, %(item)s, %(lat)s, %(lon)s, %(elems)s::jsonb[], %(fixes)s::jsonb[], %(subtitle)s) "
+            sql_marker += u"RETURNING uuid"
 
             ## add data at all location
             if len(self._error_locations) == 0:
                 print "No location on error found on line %d" % self.locator.getLineNumber()
                 return
 
-            cpt = 0
-            for location in self._error_locations:
-                cpt += 1
+            elems = filter(lambda e: e, map(lambda elem: dict(filter(lambda (k, v): v, {
+                    'type': elem['type'][0].upper(),
+                    'id': int(elem['id']),
+                    'tags': elem['tag'],
+                    'username': elem['user'],
+                }.items())) if elem['type'] in ('node', 'way', 'relation') else dict(filter(lambda k, v: v, {
+                    'tags': elem['tag'],
+                    'username': elem['user'],
+                }.items())) if elem['type'] in ('infos') else
+                None,
+                self._error_elements
+            ))
 
+            fixes = map(lambda fix:
+                map(lambda elem: dict(filter(lambda (k, v): v, {
+                    'type': elem['type'][0].upper(),
+                    'id': int(elem['id']),
+                    'create': elem['create'],
+                    'modify': elem['modify'],
+                    'delete': elem['delete'],
+                }.items())), filter(lambda elem: elem['type'] in ('node', 'way', 'relation'), fix)),
+                self._fixes
+            )
+
+            for location in self._error_locations:
                 lat = float(location["lat"])
                 lon = float(location["lon"])
 
@@ -255,64 +279,20 @@ class update_parser(handler.ContentHandler):
                     "item": self._class_item[self._class_id],
                     "lat": lat,
                     "lon": lon,
-                    "elems": utils.pg_escape(all_elem),
+                    "elems_sig": '_'.join(map(lambda elem: elem['type'] + str(elem['id']), self._error_elements)),
+                    "elems": map(lambda elem: json.dumps(elem), elems),
+                    "fixes": map(lambda fix: json.dumps(fix), fixes),
                     "subtitle": self._error_texts,
                 })
-                marker_id = self._dbcurs.fetchone()[0]
-
-            ## add all elements
-            sql_elem  = u"INSERT INTO marker_elem (marker_id, elem_index, data_type, id, tags, username) "
-            sql_elem += u"VALUES (%(marker_id)s, %(elem_index)s, %(data_type)s, %(id)s, %(tags)s, %(username)s) "
-            num = 0
-            for elem in self._error_elements:
-                if elem["type"] in ("node", "way", "relation"):
-                    execute_sql(self._dbcurs, sql_elem, {
-                        "marker_id": marker_id,
-                        "elem_index": num,
-                        "data_type": elem["type"][0].upper(),
-                        "id": int(elem["id"]),
-                        "tags": elem["tag"],
-                        "username": elem["user"],
-                    })
-                    num += 1
-                if elem["type"] in ("infos"):
-                    execute_sql(self._dbcurs, sql_elem, {
-                        "marker_id": marker_id,
-                        "elem_index": num,
-                        "data_type": elem["type"][0].upper(),
-                        "id": 0,
-                        "tags": elem["tag"],
-                        "username": elem["user"],
-                    })
-                    num += 1
-
-            ## add quickfixes
-            sql_fix  = u"INSERT INTO marker_fix (marker_id, diff_index, elem_data_type, elem_id, tags_create, tags_modify, tags_delete) "
-            sql_fix += u"VALUES (%(marker_id)s, %(diff_index)s, %(elem_data_type)s, %(elem_id)s, %(tags_create)s, %(tags_modify)s, %(tags_delete)s) "
-            num = 0
-            for fix in self._fixes:
-                for elem in fix:
-                    if elem["type"] in ("node", "way", "relation"):
-                        execute_sql(self._dbcurs, sql_fix, {
-                            "marker_id": marker_id,
-                            "diff_index": num,
-                            "elem_data_type": elem["type"][0].upper(),
-                            "elem_id": int(elem["id"]),
-                            "tags_create": elem["tags_create"],
-                            "tags_modify": elem["tags_modify"],
-                            "tags_delete": elem["tags_delete"],
-                        })
-                num += 1
-
 
         elif name in [u"node", u"way", u"relation", u"infos"]:
             if self.elem_mode == "info":
                 self._elem[u"tag"] = self._elem_tags
                 self._error_elements.append(self._elem)
             else:
-                self._elem[u"tags_create"] = self._fix_create
-                self._elem[u"tags_modify"] = self._fix_modify
-                self._elem[u"tags_delete"] = self._fix_delete
+                self._elem[u"create"] = self._fix_create
+                self._elem[u"modify"] = self._fix_modify
+                self._elem[u"delete"] = self._fix_delete
                 self._fix.append(self._elem)
 
         elif name == u"class":

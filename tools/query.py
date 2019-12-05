@@ -97,8 +97,6 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
         tables.append("dynpoi_item")
         if useDevItem:
             tablesLeft.append("dynpoi_item")
-        if users or (osm_type and join.startswith("marker")):
-            tables.append("marker_elem")
     if last_update:
             tables.append("dynpoi_update_last")
 
@@ -129,11 +127,6 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
         JOIN dynpoi_update_last ON
             dynpoi_update_last.source = marker.source"""
 
-    if "marker_elem" in tables:
-        join += """
-        LEFT JOIN marker_elem ON
-            marker_elem.marker_id = marker.id"""
-
     if item != None:
         where.append(_build_where_item(item, itemField))
 
@@ -163,7 +156,7 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
         where.append("dynpoi_item.item IS NULL")
 
     if not status in ("done", "false") and users:
-        where.append("marker_elem.username IN ('%s')" % "','".join(users))
+        where.append("ARRAY['%s'] && marker_usernames(marker.elems)" % "','".join(map(lambda user: user.replace("'", "\\'"), users)))
 
     if stats:
         if start_date and end_date:
@@ -182,16 +175,28 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
         where.append("class.tags::text[] && ARRAY['%s']" % "','".join(map(utils.pg_escape, tags)))
 
     if fixable == 'online':
-        where.append("EXISTS (SELECT 1 FROM marker_fix WHERE marker_fix.marker_id = marker.id AND elem_id != 0)")
+        where.append("(SELECT bool_or(fix->'id' != '0'::jsonb) FROM (SELECT unnest(fixes)) AS t(fix))")
     elif fixable == 'josm':
-        where.append("EXISTS (SELECT 1 FROM marker_fix WHERE marker_fix.marker_id = marker.id)")
+        where.append("fixes IS NOT NULL")
 
-    if osm_type and join.startswith("marker"):
-        where.append("marker_elem.data_type = '%s'" % osm_type[0].upper())
-        if osm_id:
-            where.append("marker_elem.id = %s" % osm_id)
+    if osm_type and osm_id and join.startswith("marker"):
+        where.append('ARRAY[%s::bigint] <@ marker_elem_ids(elems)' % (osm_id, )) # Match the index
+        where.append('(SELECT bool_or(elem->\'type\' = \'"%s"\'::jsonb AND elem->\'id\' = \'%s\'::jsonb) FROM (SELECT unnest(elems)) AS t(elem))' % (osm_type[0].upper(), osm_id)) # Recheck with type
 
     return (join, " AND\n        ".join(where))
+
+
+def fixes_default(fixes):
+    if fixes:
+        fs = map(lambda fix_elems: map(lambda fix: dict(fix,
+            type=fix.get('type', 'N'),
+            id=fix.get('id', 0),
+            create=fix.get('create', {}),
+            modify=fix.get('modify', {}),
+            delete=fix.get('delete', []),
+        ), fix_elems), fixes)
+        fs = sum(fs, []) ### FIXME the array of fixes should not be flatten, for now keep for retrocompatibility
+        return fs
 
 
 def _params(max_limit=500):
@@ -285,12 +290,6 @@ def _gets(db, params):
         class.level,
         dynpoi_update_last.timestamp,
         dynpoi_item.menu"""
-        if not params.status in ("done", "false") and params.users:
-            sqlbase += """,
-        marker_elem.username"""
-        else:
-            sqlbase += """,
-        '' AS username"""
         if not params.status in ("done", "false"):
             sqlbase += """,
         -1 AS date"""
@@ -312,10 +311,7 @@ def _gets(db, params):
         %s""" % params.limit
 
     if params.full:
-        if not params.status in ("done", "false") and params.users:
-            forceTable = ["class", "source", "marker_elem"]
-        else:
-            forceTable = ["class", "source"]
+        forceTable = ["class", "source"]
     else:
         forceTable = []
 
@@ -323,6 +319,12 @@ def _gets(db, params):
     sql = sqlbase % (join, where)
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()
+
+    for res in results:
+       if 'elems' in res and res['elems']:
+           res['elems'] = map(lambda elem: dict(elem,
+               type_long={'N':'node', 'W':'way', 'R':'relation'}[elem['type']],
+           ), res['elems'])
 
     return results
 

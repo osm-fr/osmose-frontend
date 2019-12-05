@@ -30,25 +30,20 @@
 %    end
 </title>
     <description>
-      {{res["item"]}}({{res["level"]}})/{{res["class"]}}/{{res["subclass"]}} E{{res["uuid"]}}
+      {{res["item"]}}({{res["level"]}})/{{res["class"]}}/{{res["subclass"]}} {{res["uuid"]}}
 %    e = gen if gen in ('error', 'false-positive') else 'error'
 %    printed_td = False
 %    if res["elems"]:
-%        elems = res["elems"].split("_")
-%        for e in elems:
-%            m = re.match(r"([a-z]+)([0-9]+)", e)
-%            if m:
+%        for e in res['elems']:
 %                if not printed_td:
 %                    printed_td = True
 %                end
-%                cur_type = m.group(1)
-      {{main_website}}{{m.group(1)}}/{{m.group(2)}}
-%                if cur_type == "relation":
-      http://localhost:8111/import?url={{remote_url_read}}/api/0.6/relation/{{m.group(2)}}/full
+      {{main_website}}{{e['type_long']}}/{{e['id']}}
+%                if e['type'] == 'R':
+      http://localhost:8111/import?url={{remote_url_read}}/api/0.6/relation/{{e['id']}}/full
 %                else:
-      http://localhost:8111/load_object?objects={{cur_type[0]}}{{m.group(2)}}
+      http://localhost:8111/load_object?objects={{e['type'].lower()}}{{e['id']}}
 %                end
-%            end
 %        end
 %    end
 %    if not printed_td:

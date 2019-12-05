@@ -27,7 +27,7 @@ from tools import utils
 
 
 def _get(db, status, err_id=None, uuid=None):
-    columns = ["item", "source", "class", "elems", "subclass",
+    columns = ["item", "source", "class", "subclass",
         "lat", "lon",
         "title", "subtitle",
         "dynpoi_status.date", "dynpoi_class.timestamp"]

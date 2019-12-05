@@ -26,12 +26,13 @@ from tools import osmose_common
 from tools import utils
 from tools import tag2link
 from tools import OsmSax
+from tools.query import fixes_default
 
 t2l = tag2link.tag2link("tools/tag2link_sources.xml")
 
 
 def _get(db, err_id=None, uuid=None):
-    columns_marker = ["marker.item", "marker.source", "marker.class", "marker.elems", "marker.subclass",
+    columns_marker = ["marker.item", "marker.source", "marker.class", "marker.elems", "marker.fixes", "marker.subclass",
         "marker.lat", "marker.lon",
         "class.title", "marker.subtitle", "dynpoi_class.timestamp",
         "marker.id"]
@@ -70,32 +71,9 @@ def _get(db, err_id=None, uuid=None):
     if not marker:
         abort(410, "Id is not present in database.")
 
-    err_id = marker.pop()
-    columns_elements = ["elem_index", "data_type", "id", "tags", "username"]
-    sql = "SELECT " + ",".join(columns_elements) + """
-    FROM
-        marker_elem
-    WHERE
-        marker_id = %s
-    ORDER BY
-        elem_index
-    """
-    db.execute(sql, (err_id, ))
-    elements = db.fetchall()
+    marker['fixes'] = fixes_default(marker['fixes'])
 
-    columns_fix = ["diff_index", "elem_data_type", "elem_id", "tags_create", "tags_modify", "tags_delete"]
-    sql = "SELECT " + ",".join(columns_fix) + """
-    FROM
-        marker_fix
-    WHERE
-        marker_id = %s
-    ORDER BY
-        diff_index
-    """
-    db.execute(sql, (err_id, ))
-    fix = db.fetchall()
-
-    return (marker, columns_marker, elements, columns_elements, fix, columns_fix, err_id)
+    return marker
 
 
 def _expand_tags(tags, links, short = False):
@@ -114,39 +92,35 @@ def _expand_tags(tags, links, short = False):
 
 @route('/error/<uuid:uuid>')
 def display(db, lang, user, uuid):
-    (marker, columns_marker, elements, columns_elements, fix, columns_fix, err_id) = _get(db, uuid=uuid)
+    marker = _get(db, uuid=uuid)
 
     data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
 
-    tags = columns_elements.index('tags')
-    for e in elements:
-        e[tags] = _expand_tags(e[tags], t2l.checkTags(e[tags]))
+    for e in marker['elems'] or []:
+        e['tags'] = _expand_tags(e.get('tags', {}), t2l.checkTags(e.get('tags', {})))
 
-    tags_create = columns_fix.index('tags_create')
-    tags_modify = columns_fix.index('tags_modify')
-    tags_delete = columns_fix.index('tags_delete')
-    for f in fix:
-        f[tags_create] = _expand_tags(f[tags_create], t2l.checkTags(f[tags_create]))
-        f[tags_modify] = _expand_tags(f[tags_modify], t2l.checkTags(f[tags_modify]))
-        f[tags_delete] = _expand_tags(f[tags_delete], {}, True)
+    for f in marker['fixes'] or []:
+        f['create'] = _expand_tags(f['create'], t2l.checkTags(f['create']))
+        f['modify'] = _expand_tags(f['modify'], t2l.checkTags(f['modify']))
+        f['delete'] = _expand_tags(f['delete'], {}, True)
 
     return template('error/index', translate=utils.translator(lang), uuid=uuid,
-        marker=marker, columns_marker=columns_marker,
-        elements=elements, columns_elements=columns_elements, user=user,
-        fix=fix, columns_fix=columns_fix, main_website=utils.main_website, data_type=data_type)
+        marker=marker,
+        user=user,
+        main_website=utils.main_website, data_type=data_type)
 
 
 @route('/api/0.2/error/<err_id:int>/fresh_elems')
 @route('/api/0.2/error/<err_id:int>/fresh_elems/<fix_num:int>')
 def fresh_elems_err_id(db, lang, err_id, fix_num=None):
-    return _fresh_elems(2, db, lang, None, fix_num, *_get(db, err_id=err_id))
+    return _fresh_elems(2, db, lang, None, fix_num, _get(db, err_id=err_id))
 
 @route('/api/0.3beta/issue/<uuid:uuid>/fresh_elems')
 @route('/api/0.3beta/issue/<uuid:uuid>/fresh_elems/<fix_num:int>')
 def fresh_elems_uuid(db, lang, uuid, fix_num=None):
-    return _fresh_elems(3, db, lang, uuid, fix_num, *_get(db, uuid=uuid))
+    return _fresh_elems(3, db, lang, uuid, fix_num, _get(db, uuid=uuid))
 
-def _fresh_elems(version, db, lang, uuid, fix_num, marker, columns_marker, elements, columns_elements, fix, columns_fix, err_id):
+def _fresh_elems(version, db, lang, uuid, fix_num, marker):
     data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
 
     def expand_tags(tags):
@@ -156,38 +130,35 @@ def _fresh_elems(version, db, lang, uuid, fix_num, marker, columns_marker, eleme
       return t
 
     elems = {}
-    for elem in elements:
-      if elem["data_type"]:
-        fresh_elem = utils.fetch_osm_elem(data_type[elem["data_type"]], elem["id"])
+    for elem in marker['elems']:
+      if elem['type']:
+        fresh_elem = utils.fetch_osm_elem(data_type[elem['type']], elem['id'])
 
         if fresh_elem and len(fresh_elem) > 0:
-            tmp_elem = {data_type[elem["data_type"]]: True,
-                    "type": data_type[elem["data_type"]],
+            tmp_elem = {data_type[elem['type']]: True,
+                    "type": data_type[elem['type']],
                     "id": elem["id"],
                     "version": fresh_elem["version"],
                     "tags": fresh_elem[u'tag'],
                    }
-            elems[data_type[elem["data_type"]] + str(elem["id"])] = tmp_elem
+            elems[data_type[elem['type']] + str(elem['id'])] = tmp_elem
 
     if fix_num != None:
-        if err_id:
-            res = _get_fix(db, fix_num, err_id=err_id)
-        else:
-            res = _get_fix(db, fix_num, uuid=uuid)
-        tid = data_type[res["elem_data_type"]] + str(res["elem_id"])
+        res = marker['fixes'][fix_num]
+        tid = data_type[res['type']] + str(res['id'])
         if elems.has_key(tid):
             fix_elem_tags = copy.copy(elems[tid]["tags"])
             for k in res["tags_delete"]:
                 if fix_elem_tags.has_key(k):
                     del fix_elem_tags[k]
-            for (k, v) in res["tags_create"].items():
+            for (k, v) in res['create'].items():
                 fix_elem_tags[k] = v
-            for (k, v) in res["tags_modify"].items():
+            for (k, v) in res['modify'].items():
                 fix_elem_tags[k] = v
 
             if version == 2:
                 ret = {
-                    "error_id": err_id,
+                    "error_id": marker['id'],
                     "elems": elems.values(),
                     "fix": {tid: fix_elem_tags}
                 }
@@ -204,7 +175,7 @@ def _fresh_elems(version, db, lang, uuid, fix_num, marker, columns_marker, eleme
 
     if version == 2:
         ret = {
-            "error_id": err_id,
+            "error_id": marker['id'],
             "elems": elems.values()
         }
     else:
@@ -221,13 +192,13 @@ def _fresh_elems(version, db, lang, uuid, fix_num, marker, columns_marker, eleme
 
 @route('/api/0.2/error/<err_id:int>')
 def error_err_id(db, lang, err_id):
-    return _error(2, db, lang, None, *_get(db, err_id=err_id))
+    return _error(2, db, lang, None, _get(db, err_id=err_id))
 
 @route('/api/0.3beta/issue/<uuid:uuid>')
 def error_uuid(db, lang, uuid):
-    return _error(3, db, lang, uuid, *_get(db, uuid=uuid))
+    return _error(3, db, lang, uuid, _get(db, uuid=uuid))
 
-def _error(version, db, lang, uuid, marker, columns_marker, elements, columns_elements, fixies, columns_fix, err_id):
+def _error(version, db, lang, uuid, marker):
     data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
 
     # TRANSLATORS: link to tooltip help
@@ -243,41 +214,41 @@ def _error(version, db, lang, uuid, marker, columns_marker, elements, columns_el
     item      = marker["item"] or 0
 
     elems = []
-    for elem in elements:
-      if elem["data_type"]:
-        tags = elem["tags"]
-        tmp_elem = {data_type[elem["data_type"]]: True,
-                    "type": data_type[elem["data_type"]],
+    for elem in marker['elems'] or []:
+      if elem['type']:
+        tags = elem.get("tags", {})
+        tmp_elem = {data_type[elem['type']]: True,
+                    "type": data_type[elem['type']],
                     "id": elem["id"],
                     "tags": _expand_tags(tags, t2l.checkTags(tags)),
                     "fixes": [],
                    }
-        for fix in fixies:
-          if (fix["elem_data_type"] and
-              fix["elem_data_type"] == elem["data_type"] and
-              fix["elem_id"] == elem["id"]):
-            tmp_elem["fixes"].append({"num": fix["diff_index"],
-                                      "add": _expand_tags(fix["tags_create"], t2l.checkTags(fix["tags_create"])),
-                                      "mod": _expand_tags(fix["tags_modify"], t2l.checkTags(fix["tags_modify"])),
-                                      "del": _expand_tags(fix["tags_delete"], {}, True),
+        for fix_index, fix in enumerate(marker['fixes'] or []):
+          if (fix['type'] and
+              fix['type'] == elem['type'] and
+              fix['id'] == elem["id"]):
+            tmp_elem["fixes"].append({"num": fix_index,
+                                      "add": _expand_tags(fix['create'], t2l.checkTags(fix['create'])),
+                                      "mod": _expand_tags(fix['modify'], t2l.checkTags(fix['modify'])),
+                                      "del": _expand_tags(fix['delete'], {}, True),
                                      })
         elems.append(tmp_elem)
 
     new_elems = []
-    for fix in fixies:
-        if fix["elem_data_type"]:
+    for fix_index, fix in enumerate(marker['fixes'] or []):
+        if fix['type']:
             found = False
             for e in elems:
-                if (e["type"] == data_type[fix["elem_data_type"]] and
-                    e["id"] == fix[ "elem_id"]):
+                if (e["type"] == data_type[fix['type']] and
+                    e["id"] == fix['id']):
 
                     found = True
                     break
             if not found:
-                new_elems.append({"num": fix["diff_index"],
-                                  "add": _expand_tags(fix["tags_create"], t2l.checkTags(fix["tags_create"])),
-                                  "mod": _expand_tags(fix["tags_modify"], t2l.checkTags(fix["tags_modify"])),
-                                  "del": _expand_tags(fix["tags_delete"], {}, True),
+                new_elems.append({"num": fix_index,
+                                  "add": _expand_tags(fix['create'], t2l.checkTags(fix['create'])),
+                                  "mod": _expand_tags(fix['modify'], t2l.checkTags(fix['modify'])),
+                                  "del": _expand_tags(fix['delete'], {}, True),
                                  })
 
     if version == 2:
@@ -285,12 +256,12 @@ def _error(version, db, lang, uuid, marker, columns_marker, elements, columns_el
             "lat":lat, "lon":lon,
             "minlat": float(lat) - 0.002, "maxlat": float(lat) + 0.002,
             "minlon": float(lon) - 0.002, "maxlon": float(lon) + 0.002,
-            "error_id":err_id,
+            "error_id":makrer['id'],
             "title":title, "subtitle":subtitle,
             "b_date":b_date.strftime("%Y-%m-%d"),
             "item":item,
             "elems":elems, "new_elems":new_elems,
-            "elems_id":marker["elems"].replace("_",","),
+            "elems_id":','.join(map(lambda elem: elem['type_long'] + str(elem['id']), marker["elems"])),
             "url_help":url_help
         }
     else:
@@ -303,7 +274,6 @@ def _error(version, db, lang, uuid, marker, columns_marker, elements, columns_el
             "b_date":b_date.strftime("%Y-%m-%d"),
             "item":item,
             "elems":elems, "new_elems":new_elems,
-            "elems_id":marker["elems"].replace("_",","),
             "url_help":url_help
         }
 
@@ -324,24 +294,19 @@ def status_uuid(uuid, status):
 
 
 def _get_fix(db, fix_num, err_id=None, uuid=None):
-    columns = [ "diff_index", "elem_data_type", "elem_id", "tags_create", "tags_modify", "tags_delete" ]
-
     if err_id:
-        sql = "SELECT " + ", ".join(columns) + """
-FROM marker_fix
-WHERE marker_id = %s AND diff_index = %s
-"""
-        db.execute(sql, (err_id, fix_num))
+        sql = "SELECT fixes FROM marker WHERE id = %s"
+        db.execute(sql, (err_id, ))
     else:
-        sql = "SELECT " + ", ".join(columns) + """
-FROM marker_fix
-    JOIN marker ON
-        marker.id = marker_fix.marker_id
-WHERE marker.uuid = %s AND diff_index = %s
-"""
-        db.execute(sql, (uuid, fix_num))
+        sql = "SELECT fixes FROM marker WHERE uuid = %s"
+        db.execute(sql, (uuid, ))
 
-    return db.fetchone()
+    fix = db.fetchone()
+
+    if not fix:
+        abort(410, "Fix is not present in database.")
+
+    return fixes_default(fix[0])[fix_num]
 
 
 @route('/api/0.2/error/<err_id:int>/fix')
@@ -357,15 +322,15 @@ def fix_uuid(db, uuid, fix_num=0):
 def _fix(version, db, uuid, fix_num, res):
     if res:
         response.content_type = 'text/xml; charset=utf-8'
-        if res["elem_id"] > 0:
+        if 'id' in res and res['id']:
             out = StringIO.StringIO()
             o = OsmSaxFixWriter(out, "UTF-8",
-                                res["elem_data_type"], res["elem_id"],
-                                res["tags_create"], res["tags_modify"], res["tags_delete"])
+                                res['type'], res['id'],
+                                res['create'], res['modify'], res['delete'])
             o.startDocument()
 
             data_type = {"N": "node", "W": "way", "R": "relation"}
-            osm_read = utils.fetch_osm_data(data_type[res["elem_data_type"]], res["elem_id"])
+            osm_read = utils.fetch_osm_data(data_type[res['type']], res['id'])
             osm_read.CopyTo(o)
 
             return out.getvalue()
@@ -375,7 +340,7 @@ def _fix(version, db, uuid, fix_num, res):
             data = {}
             data["id"] = -1
             data["tag"] = {}
-            for (k, v) in res["tags_create"].iteritems():
+            for (k, v) in res['create'].iteritems():
                 data["tag"][k] = v
             if version == 2:
                 sql = "SELECT lat, lon FROM marker WHERE id = %s"
@@ -387,11 +352,11 @@ def _fix(version, db, uuid, fix_num, res):
             data["lat"] = res2["lat"]
             data["lon"] = res2["lon"]
 
-            if res["elem_data_type"] == 'N':
+            if 'type' not in res or res['type'] == 'N':
                 return OsmSax.NodeToXml(data, full=True)
-            elif res["elem_data_type"] == 'W':
+            elif res['type'] == 'W':
                 return OsmSax.WayToXml(data, full=True)
-            elif res["elem_data_type"] == 'R':
+            elif res['type'] == 'R':
                 return OsmSax.RelationToXml(data, full=True)
 
     else:

@@ -51,26 +51,21 @@
 %    end
 %    printed_td = False
 %    if res["elems"]:
-%        elems = res["elems"].split("_")
-%        for e in elems:
-%            m = re.match(r"([a-z]+)([0-9]+)", e)
-%            if m:
+%        for e in res["elems"]:
 %                if not printed_td:
-    <td sorttable_customkey="{{"%02d" % ord(m.group(1)[0])}}{{m.group(2)}}">
+    <td sorttable_customkey="{{"%02d" % ord(e['type'])}}{{e['id']}}">
 %                    printed_td = True
 %                else:
         &nbsp;
 %                end
-%                cur_type = m.group(1)
-        {{cur_type[0]}}&nbsp;
-        <a target="_blank" href="{{main_website}}{{m.group(1)}}/{{m.group(2)}}">{{m.group(2)}}</a>&nbsp;
+        {{e['type'].lower()}}&nbsp;
+        <a target="_blank" href="{{main_website}}{{e['type_long']}}/{{e['id']}}">{{e['id']}}</a>&nbsp;
         &nbsp;
-%                if cur_type == "relation":
-        <a title="josm" href="../josm_proxy?import?url={{remote_url_read}}/api/0.6/relation/{{m.group(2)}}/full" target="hiddenIframe" onclick="$.get('http://localhost:8111/zoom?left={%minlon%}&bottom={%minlat%}&right={%maxlon%}&top={%maxlat%}'); return true;">(j)</a>
+%                if e['type'] == "R":
+        <a title="josm" href="../josm_proxy?import?url={{remote_url_read}}/api/0.6/relation/{{e['id']}}/full" target="hiddenIframe" onclick="$.get('http://localhost:8111/zoom?left={%minlon%}&bottom={%minlat%}&right={%maxlon%}&top={%maxlat%}'); return true;">(j)</a>
 %                else:
-        <a title="josm" href="../josm_proxy?load_object?objects={{cur_type[0]}}{{m.group(2)}}" target="hiddenIframe">(j)</a>
+        <a title="josm" href="../josm_proxy?load_object?objects={{e['type'].lower()}}{{e['id']}}" target="hiddenIframe">(j)</a>
 %                end
-%            end
 %        end
 %    end
 %    if not printed_td:

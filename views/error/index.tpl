@@ -34,37 +34,6 @@
 %            end
             </table>
 %end
-%def show_html_results(columns, res):
-<table class="table table-striped table-bordered table-hover table-sm sortable" id ="table_marker">
-<thead class="thead-dark">
-<tr>
-    <th scope="col">{{_("key")}}</th>
-    <th scope="col">{{_("value")}}</th>
-</tr>
-</thead>
-%    i = 0
-%    for c in columns:
-%        c = c.split(" ")[-1]
-<tr>
-    <td>{{c}}</td>
-    <td>
-%        if 'tags' in c:
-%            show_html_tags(res[i])
-%        elif type(res[i]) is dict:
-%            show_html_dict(res[i])
-%        elif type(res[i]) is list:
-%            if len(res[i]) > 0:
-%                show_html_list(res[i])
-%            end
-%        else:
-{{res[i]}}
-%        end
-    </td>
-</tr>
-%        i += 1
-%    end
-</table>
-%end
 
 <h2>{{_("Marker")}}</h2>
 <table class="table table-striped table-bordered table-hover table-sm sortable" id ="table_marker">
@@ -78,7 +47,6 @@
 <tr><td>item</td><td><a target="_blank" href="/errors/?item={{marker['item']}}">{{marker['item']}}</a></td></tr>
 <tr><td>class</td><td><a target="_blank" href="/errors/?item={{marker['item']}}&amp;class={{marker['class']}}">{{marker['class']}}</a></td></tr>
 <tr><td>subclass</td><td><a target="_blank" href="/errors/?item={{marker['item']}}&amp;class={{marker['class']}}&subclass={{marker['subclass']}}">{{marker['subclass']}}</a></td></tr>
-<tr><td>elems</td><td>{{marker['elems']}}</td></tr>
 <tr><td>lat lon</td><td><a target="_blank" href="/map/?item={{marker['item']}}&amp;zoom=17&amp;lat={{marker['lat']}}&amp;lon={{marker['lon']}}">{{marker['lat']}}&nbsp;{{marker['lon']}}</a></td></tr>
 <tr><td>title</td><td>
 %show_html_dict(marker['title'])
@@ -91,28 +59,46 @@
 </br>
 
 <h2>{{_("Elements")}}</h2>
-%for element in elements:
-<table class="table table-striped table-bordered table-hover table-sm sortable" id ="table_marker">
+%for elem_index, element in enumerate(marker['elems'] or []):
+<table class="table table-striped table-bordered table-hover table-sm sortable" id="table_marker">
 <thead class="thead-dark">
 <tr>
     <th scope="col">{{_("key")}}</th>
     <th scope="col">{{_("value")}}</th>
 </tr>
 </thead>
-<tr><td>elem_index</td><td>{{element['elem_index']}}</td></tr>
-<tr><td>type id</td><td><a target="_blank" href="{{main_website}}{{data_type[element['data_type']]}}/{{element['id']}}">{{element['data_type']}}&nbsp;{{element['id']}}</a></td></tr>
+<tr><td>elem_index</td><td>{{elem_index}}</td></tr>
+<tr><td>type id</td><td><a target="_blank" href="{{main_website}}{{data_type[element['type']]}}/{{element['id']}}">{{element['type']}}&nbsp;{{element['id']}}</a></td></tr>
 <tr><td>tags</td><td>
 %     show_html_tags(element['tags'])
 </td></tr>
-%if user:
+%    if 'username' in element:
 <tr><td>username</td><td><a target="_blank" href="{{main_website}}user/{{element['username']}}">{{element['username']}}</a></td></tr>
-%end
+%    end
 </table>
 </br>
 %end
 
 <h2>{{_("Fixes")}}</h2>
-%for i in fix:
-%    show_html_results(columns_fix, i)
+%for fix_index, fix in enumerate(marker['fixes'] or []):
+<table class="table table-striped table-bordered table-hover table-sm sortable" id="table_marker">
+<thead class="thead-dark">
+<tr>
+    <th scope="col">{{_("key")}}</th>
+    <th scope="col">{{_("value")}}</th>
+</tr>
+</thead>
+<tr><td>fix_index</td><td>{{fix_index}}</td></tr>
+<tr><td>type id</td><td><a target="_blank" href="{{main_website}}{{data_type[fix['type']]}}/{{fix['id']}}">{{fix['type']}}&nbsp;{{fix['id']}}</a></td></tr>
+<tr><td>create</td><td>
+%    show_html_tags(fix['create'])
+</td></tr>
+<tr><td>modify</td><td>
+%    show_html_tags(fix['modify'])
+</td></tr>
+<tr><td>delete</td><td>
+%    show_html_tags(fix['delete'])
+</td></tr>
+</table>
 </br>
 %end

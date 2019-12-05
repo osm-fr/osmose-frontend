@@ -65,13 +65,13 @@ def _errors(db, lang, params):
         else:
             source    = res["source"]
             classs    = res["class"]
-            elems     = res["elems"]
+            elems     = '_'.join(map(lambda elem: {'N':'node', 'W':'way', 'R':'relation'}[elem['type']] + str(elem['id']), errors['elems'] or []))
             subclass  = res["subclass"] % 2147483647
             subtitle  = translate.select(res["subtitle"])
             title     = translate.select(res["title"])
             level     = res["level"]
             update    = res["timestamp"]
-            username  = res["username"] or ""
+            username  = map(lambda elem: elem["username"] or "", errors['elems'] or [])
             out["errors"].append([str(lat), str(lon), str(error_id), str(item), str(source), str(classs), str(elems), str(subclass), subtitle, title, str(level), str(update), username])
 
     return out
@@ -105,12 +105,11 @@ def errors(db, lang):
                 'item': str(res["item"]),
                 'source': res["source"],
                 'classs': res["class"],
-                'elems': res["elems"],
                 'subtitle': translate.select(res["subtitle"]),
                 'title': translate.select(res["title"]),
                 'level': res["level"],
                 'update': str(res["timestamp"]),
-                'username': res["username"] or None,
+                'usernames': map(lambda elem: elem["username"] or "", errors['elems'] or []),
             })
         out.append(i)
 
@@ -219,16 +218,7 @@ def index(db, lang, format=None):
         response.content_type = 'application/vnd.google-earth.kml+xml'
         tpl = 'errors/list.kml'
     elif format == 'josm':
-        objects = []
-        for res in errors:
-            if res["elems"]:
-                elems = res["elems"].split("_")
-                for e in elems:
-                    m = re.match(r"([a-z]+)([0-9]+)", e)
-                    if m:
-                        cur_type = m.group(1)
-                        objects.append(cur_type[0] + m.group(2))
-
+        objects = set(sum(map(lambda error: map(lambda elem: elem['type'].lower() + str(elem['id']), error['elems'] or []), errors), []))
         response.status = 302
         response.set_header('Location', 'http://localhost:8111/load_object?objects=%s' % ','.join(objects))
         return
@@ -238,7 +228,9 @@ def index(db, lang, format=None):
         h = ['id', 'source', 'item', 'class', 'subclass', 'level', 'title', 'subtitle', 'country', 'analyser', 'timestamp', 'username', 'lat', 'lon', 'elems']
         writer.writerow(h)
         for res in errors:
-            writer.writerow(map(lambda a: res[a], h))
+            usernames = map(lambda elem: elem.get("username", ""), res['elems'] or [])
+            elems = '_'.join(map(lambda elem: {'N':'node', 'W':'way', 'R':'relation'}[elem['type']] + str(elem['id']), res['elems'] or []))
+            writer.writerow(map(lambda a: usernames if a == 'username' else elems if a == 'elems' else res[a], h))
         response.content_type = 'text/csv'
         return output.getvalue()
     else:
