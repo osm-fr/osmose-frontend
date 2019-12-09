@@ -67,7 +67,7 @@
     <div class="bulle_elem">
       <div class="fix">
         <div class="fix_links">
-          <a href="../josm_proxy?import?url=http://{{website}}/api/0.3/issue/{%uuid%}/fix/{%num%}" target="hiddenIframe" class="josm" title="{{_('Add the new object in {where}').format(where='JOSM')}}" onclick="$.get('../josm_proxy?zoom?left={%minlon%}&bottom={%minlat%}&right={%maxlon%}&top={%maxlat%}'); return true;">fix-josm</a>
+          <a href="../josm_proxy?import?url=http://{{website}}/api/0.3beta/issue/{%uuid%}/fix/{%num%}" target="hiddenIframe" class="josm" title="{{_('Add the new object in {where}').format(where='JOSM')}}" onclick="$.get('../josm_proxy?zoom?left={%minlon%}&bottom={%minlat%}&right={%maxlon%}&top={%maxlat%}'); return true;">fix-josm</a>
         </div>
   {%#add%}
         <div class="add"><b>{%k%}</b> =
