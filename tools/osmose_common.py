@@ -23,8 +23,8 @@ def remove_bug_err_id(error_id, status):
   PgCursor.execute("DELETE FROM dynpoi_status WHERE uuid=%s", (uuid, ))
 
   PgCursor.execute("""INSERT INTO dynpoi_status
-                        (id,source,class,subclass,elems,date,status,lat,lon,subtitle,uuid)
-                      SELECT id,source,class,subclass,elems,NOW(),%s,
+                        (source,class,elems,date,status,lat,lon,subtitle,uuid)
+                      SELECT source,class,elems,NOW(),%s,
                              lat,lon,subtitle,uuid
                       FROM marker
                       WHERE uuid = %s
@@ -56,8 +56,8 @@ def remove_bug_uuid(uuid, status):
   PgCursor.execute("DELETE FROM dynpoi_status WHERE uuid=%s", (uuid, ))
 
   PgCursor.execute("""INSERT INTO dynpoi_status
-                        (id,source,class,subclass,elems,date,status,lat,lon,subtitle,uuid)
-                      SELECT id,source,class,subclass,elems,NOW(),%s,
+                        (source,class,elems,date,status,lat,lon,subtitle,uuid)
+                      SELECT source,class,elems,NOW(),%s,
                              lat,lon,subtitle,uuid
                       FROM marker
                       WHERE uuid = %s

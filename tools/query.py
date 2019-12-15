@@ -265,7 +265,6 @@ def _params(max_limit=500):
 def _gets(db, params):
     sqlbase = """
     SELECT
-        marker.id AS id,
         marker.uuid AS uuid,"""
     if not params.status in ("done", "false"):
         sqlbase += """
@@ -282,7 +281,6 @@ def _gets(db, params):
         sqlbase += """
         marker.source,
         marker.elems,
-        marker.subclass,
         marker.subtitle,
         source.country,
         source.analyser,

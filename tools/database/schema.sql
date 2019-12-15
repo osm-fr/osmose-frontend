@@ -91,12 +91,20 @@ AS $function$
   ) AS t(elem)
 $function$;
 
+CREATE OR REPLACE FUNCTION public.uuid_to_bigint(uuid uuid)
+ RETURNS bigint
+ LANGUAGE sql
+ IMMUTABLE STRICT
+AS $function$
+  SELECT ('x0' || replace(right(uuid::varchar, 16), '-', ''))::bit(64)::bigint
+$function$;
+
 --
 -- PostgreSQL database dump
 --
 
 -- Dumped from database version 11.6
--- Dumped by pg_dump version 11.5
+-- Dumped by pg_dump version 11.5 (Debian 11.5-1+deb10u1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -187,31 +195,17 @@ CREATE TABLE public.dynpoi_stats (
 
 
 --
--- Name: dynpoi_status_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.dynpoi_status_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
 -- Name: dynpoi_status; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.dynpoi_status (
     source integer NOT NULL,
     class integer NOT NULL,
-    subclass bigint NOT NULL,
     date timestamp with time zone,
     status character varying(128),
     lat numeric(9,7) NOT NULL,
     lon numeric(10,7) NOT NULL,
     subtitle jsonb,
-    id bigint DEFAULT nextval('public.dynpoi_status_id_seq'::regclass),
     uuid uuid NOT NULL,
     elems jsonb[]
 );
@@ -249,10 +243,8 @@ CREATE TABLE public.dynpoi_update_last (
 --
 
 CREATE TABLE public.marker (
-    id bigint NOT NULL,
     source integer,
     class integer,
-    subclass bigint,
     lat numeric(9,7),
     lon numeric(10,7),
     item integer,
@@ -262,25 +254,6 @@ CREATE TABLE public.marker (
     fixes jsonb[]
 )
 WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
---
--- Name: marker_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.marker_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: marker_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.marker_id_seq OWNED BY public.marker.id;
 
 
 --
@@ -302,13 +275,6 @@ CREATE TABLE public.source_password (
     source_id integer NOT NULL,
     password character varying(128) NOT NULL
 );
-
-
---
--- Name: marker id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.marker ALTER COLUMN id SET DEFAULT nextval('public.marker_id_seq'::regclass);
 
 
 --
@@ -374,14 +340,6 @@ ALTER TABLE public.dynpoi_stats CLUSTER ON dynpoi_stats_pkey;
 
 
 --
--- Name: dynpoi_status dynpoi_status_id; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.dynpoi_status
-    ADD CONSTRAINT dynpoi_status_id UNIQUE (id);
-
-
---
 -- Name: dynpoi_status dynpoi_status_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -414,9 +372,7 @@ ALTER TABLE public.dynpoi_update CLUSTER ON dynpoi_update_pkey;
 --
 
 ALTER TABLE ONLY public.marker
-    ADD CONSTRAINT marker_pkey PRIMARY KEY (id);
-
-ALTER TABLE public.marker CLUSTER ON marker_pkey;
+    ADD CONSTRAINT marker_pkey PRIMARY KEY (uuid);
 
 
 --
@@ -459,10 +415,24 @@ CREATE INDEX idx_dynpoi_class_source ON public.dynpoi_class USING btree (source)
 
 
 --
+-- Name: idx_dynpoi_status_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_dynpoi_status_id ON public.dynpoi_status USING btree ((((('x0'::text || replace("right"(((uuid)::character varying)::text, 16), '-'::text, ''::text)))::bit(64))::bigint));
+
+
+--
 -- Name: idx_marker_elem_ids; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_marker_elem_ids ON public.marker USING gin (public.marker_elem_ids(elems));
+
+
+--
+-- Name: idx_marker_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_marker_id ON public.marker USING btree ((((('x0'::text || replace("right"(((uuid)::character varying)::text, 16), '-'::text, ''::text)))::bit(64))::bigint));
 
 
 --
@@ -491,13 +461,6 @@ CREATE INDEX idx_marker_source_class_z_order_curve ON public.marker USING btree 
 --
 
 CREATE INDEX idx_marker_usernames ON public.marker USING gin (public.marker_usernames(elems));
-
-
---
--- Name: idx_marker_uuid; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX idx_marker_uuid ON public.marker USING btree (uuid);
 
 
 --

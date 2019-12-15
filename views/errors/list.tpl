@@ -3,13 +3,11 @@
 <thead class="thead-dark">
 <tr>
     <th scope="col" title="source">{{_("source")}}</th>
-%# TRANSLATORS: this should be replaced by a abbreviation for subclass
+%# TRANSLATORS: this should be replaced by a abbreviation for level
     <th scope="col" title="level">{{_("level (abbreviation)")}}</th>
     <th scope="col">{{_("item")}}</th>
 %# TRANSLATORS: this should be replaced by a abbreviation for class
     <th scope="col" title="class">{{_("class (abbreviation)")}}</th>
-%# TRANSLATORS: this should be replaced by a abbreviation for subclass
-    <th scope="col" title="subclass">{{_("subclass (abbreviation)")}}</th>
     <th scope="col" title="{{_("information on issue")}}">E</th>
     <th scope="col" title="{{_("position")}}">{{_("position (abbreviation)")}}</th>
     <th scope="col">{{_("elements (abbreviation)")}}</th>
@@ -37,7 +35,6 @@
 %        end
     </td>
     <td>{{res["class"]}}</td>
-    <td>{{res["subclass"]}}</td>
 %    e = gen if gen in ('error', 'false-positive') else 'error'
     <td title="{{_(u"issue n°")}}{{res["uuid"]}}"><a href="../{{e}}/{{res["uuid"]}}">E</a></td>
 %    if res["lat"] and res["lon"]:

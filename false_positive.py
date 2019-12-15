@@ -27,7 +27,7 @@ from tools import utils
 
 
 def _get(db, status, err_id=None, uuid=None):
-    columns = ["item", "source", "class", "subclass",
+    columns = ["item", "source", "class",
         "lat", "lon",
         "title", "subtitle",
         "dynpoi_status.date", "dynpoi_class.timestamp"]
@@ -39,7 +39,7 @@ def _get(db, status, err_id=None, uuid=None):
             JOIN dynpoi_class USING (source,class)
         WHERE
             dynpoi_status.status = %s AND
-            dynpoi_status.id = %s
+            uuid_to_bigint(dynpoi_status.uuid) = %s
         """
         db.execute(sql, (status, err_id))
     else:
@@ -120,19 +120,19 @@ def _fp(version, db, lang, uuid, marker, columns):
 
 @delete('/api/0.2/false-positive/<err_id:int>')
 def fp_delete_err_id(db, err_id):
-    db.execute("SELECT id FROM dynpoi_status WHERE status = %s AND id = %s", ('false', err_id))
+    db.execute("SELECT uuid FROM dynpoi_status WHERE status = %s AND uuid_to_bigint(dynpoi_status.uuid) = %s", ('false', err_id))
     m = db.fetchone()
     if not m:
         abort(410, "FAIL")
 
-    db.execute("DELETE FROM dynpoi_status WHERE status = %s AND id = %s", ('false', err_id))
+    db.execute("DELETE FROM dynpoi_status WHERE status = %s AND uuid_to_bigint(dynpoi_status.uuid) = %s", ('false', err_id))
     db.connection.commit()
 
     return
 
 @delete('/api/0.3beta/false-positive/<uuid:uuid>')
 def fp_delete_uuid(db, uuid):
-    db.execute("SELECT id FROM dynpoi_status WHERE status = %s AND uuid = %s", ('false', uuid))
+    db.execute("SELECT uuid FROM dynpoi_status WHERE status = %s AND uuid = %s", ('false', uuid))
     m = db.fetchone()
     if not m:
         abort(410, "FAIL")

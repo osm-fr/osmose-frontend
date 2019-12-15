@@ -66,7 +66,7 @@ def _errors(db, lang, params):
             source    = res["source"]
             classs    = res["class"]
             elems     = '_'.join(map(lambda elem: {'N':'node', 'W':'way', 'R':'relation'}[elem['type']] + str(elem['id']), res['elems'] or []))
-            subclass  = res["subclass"] % 2147483647
+            subclass  = 0
             subtitle  = translate.select(res["subtitle"])
             title     = translate.select(res["title"])
             level     = res["level"]
@@ -225,7 +225,7 @@ def index(db, lang, format=None):
     elif format == 'csv':
         output = StringIO.StringIO()
         writer = csv.writer(output)
-        h = ['id', 'source', 'item', 'class', 'subclass', 'level', 'title', 'subtitle', 'country', 'analyser', 'timestamp', 'username', 'lat', 'lon', 'elems']
+        h = ['uuid', 'source', 'item', 'class', 'level', 'title', 'subtitle', 'country', 'analyser', 'timestamp', 'username', 'lat', 'lon', 'elems']
         writer.writerow(h)
         for res in errors:
             usernames = map(lambda elem: elem.get("username", ""), res['elems'] or [])

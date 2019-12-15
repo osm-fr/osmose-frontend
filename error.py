@@ -32,10 +32,10 @@ t2l = tag2link.tag2link("tools/tag2link_sources.xml")
 
 
 def _get(db, err_id=None, uuid=None):
-    columns_marker = ["marker.item", "marker.source", "marker.class", "marker.elems", "marker.fixes", "marker.subclass",
+    columns_marker = ["marker.item", "marker.source", "marker.class", "marker.elems", "marker.fixes",
         "marker.lat", "marker.lon",
         "class.title", "marker.subtitle", "dynpoi_class.timestamp",
-        "marker.id"]
+        ]
 
     if err_id:
         sql = "SELECT " + ",".join(columns_marker) + """
@@ -48,7 +48,7 @@ def _get(db, err_id=None, uuid=None):
                 marker.item = class.item AND
                 marker.class = class.class
         WHERE
-            marker.id = %s
+            uuid_to_bigint(dynpoi_status.uuid) = %s
         """
         db.execute(sql, (err_id, ))
     else:

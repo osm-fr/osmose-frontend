@@ -98,7 +98,7 @@ WHERE
 
     ## remove false positive no longer present
 #    execute_sql(dbcurs, """DELETE FROM dynpoi_status
-#                      WHERE (source,class,subclass,elems) NOT IN (SELECT source,class,subclass,elems FROM marker WHERE source = %s) AND
+#                      WHERE (source,class,elems) NOT IN (SELECT source,class,elems FROM marker WHERE source = %s) AND
 #                            source = %s AND
 #                            date < now()-interval '7 day'""",
 #                   (source_id, source_id, ))
@@ -234,9 +234,9 @@ WHERE
             all_elem  = all_elem.rstrip("_")
 
             ## sql template
-            sql_marker = u"INSERT INTO marker (uuid, source, class, subclass, item, lat, lon, elems, fixes, subtitle) "
+            sql_marker = u"INSERT INTO marker (uuid, source, class, item, lat, lon, elems, fixes, subtitle) "
             sql_marker += u"VALUES (('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid, "
-            sql_marker += u"%(source)s, %(class)s, %(subclass)s, %(item)s, %(lat)s, %(lon)s, %(elems)s::jsonb[], %(fixes)s::jsonb[], %(subtitle)s) "
+            sql_marker += u"%(source)s, %(class)s, %(item)s, %(lat)s, %(lon)s, %(elems)s::jsonb[], %(fixes)s::jsonb[], %(subtitle)s) "
             sql_marker += u"RETURNING uuid"
 
             ## add data at all location
