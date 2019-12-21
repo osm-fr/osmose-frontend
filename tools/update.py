@@ -227,12 +227,6 @@ WHERE
 
     def endElement(self, name):
         if name == u"error":
-            ## build all_elem
-            all_elem   = u""
-            for e in self._error_elements:
-                all_elem  += e[u"type"] + e[u"id"] + "_"
-            all_elem  = all_elem.rstrip("_")
-
             ## sql template
             sql_marker = u"INSERT INTO marker (uuid, source, class, item, lat, lon, elems, fixes, subtitle) "
             sql_marker += u"VALUES (('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid, "
