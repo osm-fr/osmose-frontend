@@ -25,6 +25,7 @@ import psycopg2
 import utils
 import socket
 import json
+from collections import defaultdict
 from xml.sax import make_parser, handler
 
 show = utils.show
@@ -140,6 +141,8 @@ class update_parser(handler.ContentHandler):
         self._class_item       = {}
         self._tstamp_updated   = False
 
+        self.all_uuid = defaultdict(lambda: defaultdict(list))
+
     def setDocumentLocator(self, locator):
         self.locator = locator
 
@@ -226,13 +229,13 @@ WHERE
             self._fix_delete = []
 
     def endElement(self, name):
-        if name == u"error":
-            ## sql template
-            sql_marker = u"INSERT INTO marker (uuid, source, class, item, lat, lon, elems, fixes, subtitle) "
-            sql_marker += u"VALUES (('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid, "
-            sql_marker += u"%(source)s, %(class)s, %(item)s, %(lat)s, %(lon)s, %(elems)s::jsonb[], %(fixes)s::jsonb[], %(subtitle)s) "
-            sql_marker += u"RETURNING uuid"
+        if name == u"analysers":
+            for source_id, d in self.all_uuid.items():
+                for class_id, uuid in d.items():
+                    print(source_id, class_id, uuid)
+                    execute_sql(self._dbcurs, "DELETE FROM marker WHERE source = %s AND class = %s AND uuid != ALL (%s::uuid[])", (source_id, class_id, uuid))
 
+        elif name == u"error":
             ## add data at all location
             if len(self._error_locations) == 0:
                 print "No location on error found on line %d" % self.locator.getLineNumber()
@@ -262,6 +265,17 @@ WHERE
                 self._fixes
             )
 
+            ## sql template
+            sql_marker = u"INSERT INTO marker (uuid, source, class, item, lat, lon, elems, fixes, subtitle) "
+            sql_marker += u"VALUES (('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid, "
+            sql_marker += u"%(source)s, %(class)s, %(item)s, %(lat)s, %(lon)s, %(elems)s::jsonb[], %(fixes)s::jsonb[], %(subtitle)s) "
+            sql_marker += u"ON CONFLICT (uuid) DO "
+            sql_marker += u"UPDATE SET item = %(item)s, lat = %(lat)s, lon = %(lon)s, elems = %(elems)s::jsonb[], fixes = %(fixes)s::jsonb[], subtitle = %(subtitle)s "
+            sql_marker += u"WHERE marker.uuid = ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid AND "
+            sql_marker += u"      marker.source = %(source)s AND marker.class = %(class)s AND "
+            sql_marker += u"      (marker.item != %(item)s OR marker.lat != %(lat)s OR marker.lon != %(lon)s OR marker.elems != %(elems)s::jsonb[] OR marker.fixes != %(fixes)s::jsonb[] OR marker.subtitle != %(subtitle)s) "
+            sql_marker += u"RETURNING uuid"
+
             for location in self._error_locations:
                 lat = float(location["lat"])
                 lon = float(location["lon"])
@@ -278,6 +292,9 @@ WHERE
                     "fixes": map(lambda fix: json.dumps(fix), fixes),
                     "subtitle": self._error_texts,
                 })
+                r = self._dbcurs.fetchone()
+                if r and r[0]:
+                    self.all_uuid[self._source_id][self._class_id].append(r[0])
 
         elif name in [u"node", u"way", u"relation", u"infos"]:
             if self.elem_mode == "info":
@@ -311,10 +328,6 @@ WHERE
                     self._class_item[self._class_id],
                     utils.pg_escape(self.ts),
                    ]
-
-            if self.mode == "analyser":
-                execute_sql(self._dbcurs, "DELETE FROM marker WHERE source = %s AND class = %s;",
-                                     (self._source_id, self._class_id))
 
             sql  = u"INSERT INTO dynpoi_class (" + u','.join(keys) + u") "
             sql += u"VALUES (" + (u','.join(["%s"] * len(keys))) + u")"
