@@ -72,6 +72,9 @@ def _get(db, err_id=None, uuid=None):
         abort(410, "Id is not present in database.")
 
     marker['fixes'] = fixes_default(marker['fixes'])
+    marker['elems'] = map(lambda elem: dict(elem,
+        type_long={'N':'node', 'W':'way', 'R':'relation'}[elem['type']],
+    ), marker['elems'] or [])
 
     return marker
 
@@ -148,7 +151,7 @@ def _fresh_elems(version, db, lang, uuid, fix_num, marker):
         tid = data_type[res['type']] + str(res['id'])
         if elems.has_key(tid):
             fix_elem_tags = copy.copy(elems[tid]["tags"])
-            for k in res["tags_delete"]:
+            for k in res['delete']:
                 if fix_elem_tags.has_key(k):
                     del fix_elem_tags[k]
             for (k, v) in res['create'].items():
@@ -256,7 +259,7 @@ def _error(version, db, lang, uuid, marker):
             "lat":lat, "lon":lon,
             "minlat": float(lat) - 0.002, "maxlat": float(lat) + 0.002,
             "minlon": float(lon) - 0.002, "maxlon": float(lon) + 0.002,
-            "error_id":makrer['id'],
+            "error_id":marker['id'],
             "title":title, "subtitle":subtitle,
             "b_date":b_date.strftime("%Y-%m-%d"),
             "item":item,

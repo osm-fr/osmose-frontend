@@ -51,7 +51,7 @@ def _build_where_item(item, table):
     return where
 
 
-def _build_param(bbox, source, item, level, users, classs, country, useDevItem, status, tags, fixable, forceTable=[],
+def _build_param(db, bbox, source, item, level, users, classs, country, useDevItem, status, tags, fixable, forceTable=[],
                  summary=False, stats=False, start_date=None, end_date=None, last_update=None, tilex=None, tiley=None, zoom=None,
                  osm_type=None, osm_id=None):
     join = ""
@@ -156,7 +156,7 @@ def _build_param(bbox, source, item, level, users, classs, country, useDevItem, 
         where.append("dynpoi_item.item IS NULL")
 
     if not status in ("done", "false") and users:
-        where.append("ARRAY['%s'] && marker_usernames(marker.elems)" % "','".join(map(lambda user: user.replace("'", "\\'"), users)))
+        where.append("ARRAY['%s'] && marker_usernames(marker.elems)" % "','".join(map(lambda user: db.mogrify(user), users)))
 
     if stats:
         if start_date and end_date:
@@ -315,7 +315,7 @@ def _gets(db, params):
     else:
         forceTable = []
 
-    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, forceTable=forceTable, start_date=params.start_date, end_date=params.end_date, tilex=params.tilex, tiley=params.tiley, zoom=params.zoom, osm_type=params.osm_type, osm_id=params.osm_id)
+    join, where = _build_param(db, params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, forceTable=forceTable, start_date=params.start_date, end_date=params.end_date, tilex=params.tilex, tiley=params.tiley, zoom=params.zoom, osm_type=params.osm_type, osm_id=params.osm_id)
     sql = sqlbase % (join, where)
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()
@@ -365,7 +365,7 @@ def _count(db, params, by, extraFrom=[], extraFields=[], orderBy=False):
     if "dynpoi_update_last" in byTable:
         last_update = True
 
-    join, where = _build_param(params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, summary=summary, forceTable=byTable, start_date=params.start_date, end_date=params.end_date, last_update=last_update, tilex=params.tilex, tiley=params.tiley, zoom=params.zoom, osm_type=params.osm_type, osm_id=params.osm_id)
+    join, where = _build_param(db, params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, summary=summary, forceTable=byTable, start_date=params.start_date, end_date=params.end_date, last_update=last_update, tilex=params.tilex, tiley=params.tiley, zoom=params.zoom, osm_type=params.osm_type, osm_id=params.osm_id)
     sql = sqlbase % (select, join, where, groupBy, order)
     db.execute(sql) # FIXME pas de %
     results = db.fetchall()

@@ -65,13 +65,13 @@ def _errors(db, lang, params):
         else:
             source    = res["source"]
             classs    = res["class"]
-            elems     = '_'.join(map(lambda elem: {'N':'node', 'W':'way', 'R':'relation'}[elem['type']] + str(elem['id']), errors['elems'] or []))
+            elems     = '_'.join(map(lambda elem: {'N':'node', 'W':'way', 'R':'relation'}[elem['type']] + str(elem['id']), res['elems'] or []))
             subclass  = res["subclass"] % 2147483647
             subtitle  = translate.select(res["subtitle"])
             title     = translate.select(res["title"])
             level     = res["level"]
             update    = res["timestamp"]
-            username  = map(lambda elem: elem["username"] or "", errors['elems'] or [])
+            username  = ','.join(map(lambda elem: "username" in elem and elem["username"] or "", res['elems'] or []))
             out["errors"].append([str(lat), str(lon), str(error_id), str(item), str(source), str(classs), str(elems), str(subclass), subtitle, title, str(level), str(update), username])
 
     return out
@@ -109,7 +109,7 @@ def errors(db, lang):
                 'title': translate.select(res["title"]),
                 'level': res["level"],
                 'update': str(res["timestamp"]),
-                'usernames': map(lambda elem: elem["username"] or "", errors['elems'] or []),
+                'usernames': map(lambda elem: "username" in elem and elem["username"] or "", errors['elems'] or []),
             })
         out.append(i)
 
