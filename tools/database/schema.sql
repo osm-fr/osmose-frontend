@@ -65,12 +65,46 @@ AS $function$
   SELECT public.zoc18min(zoc, z) + power(2, 2 * (18 - z))::bigint - 1;
 $function$;
 
+CREATE OR REPLACE FUNCTION public.marker_elem_ids(elems jsonb[])
+ RETURNS bigint[]
+ LANGUAGE sql
+ IMMUTABLE STRICT
+AS $function$
+  SELECT
+    array_agg((elem->'id')::bigint)
+  FROM (
+    SELECT
+      unnest(elems)
+  ) AS t(elem)
+$function$;
+
+CREATE OR REPLACE FUNCTION public.marker_usernames(elems jsonb[])
+ RETURNS text[]
+ LANGUAGE sql
+ IMMUTABLE STRICT
+AS $function$
+  SELECT
+    array_agg((elem->'username')::text)
+  FROM (
+    SELECT
+      unnest(elems)
+  ) AS t(elem)
+$function$;
+
+CREATE OR REPLACE FUNCTION public.uuid_to_bigint(uuid uuid)
+ RETURNS bigint
+ LANGUAGE sql
+ IMMUTABLE STRICT
+AS $function$
+  SELECT ('x0' || replace(right(uuid::varchar, 16), '-', ''))::bit(64)::bigint
+$function$;
+
 --
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.10
--- Dumped by pg_dump version 9.6.10
+-- Dumped from database version 11.6
+-- Dumped by pg_dump version 11.5 (Debian 11.5-1+deb10u1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -79,6 +113,7 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
@@ -160,33 +195,19 @@ CREATE TABLE public.dynpoi_stats (
 
 
 --
--- Name: dynpoi_status_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.dynpoi_status_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
 -- Name: dynpoi_status; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.dynpoi_status (
     source integer NOT NULL,
     class integer NOT NULL,
-    subclass bigint NOT NULL,
-    elems character varying(128) NOT NULL,
     date timestamp with time zone,
     status character varying(128),
     lat numeric(9,7) NOT NULL,
     lon numeric(10,7) NOT NULL,
     subtitle jsonb,
-    id bigint DEFAULT nextval('public.dynpoi_status_id_seq'::regclass),
-    uuid uuid NOT NULL
+    uuid uuid NOT NULL,
+    elems jsonb[]
 );
 
 
@@ -222,67 +243,17 @@ CREATE TABLE public.dynpoi_update_last (
 --
 
 CREATE TABLE public.marker (
-    id bigint NOT NULL,
     source integer,
     class integer,
-    subclass bigint,
     lat numeric(9,7),
     lon numeric(10,7),
-    elems text,
     item integer,
     subtitle jsonb,
-    uuid uuid NOT NULL
+    uuid uuid NOT NULL,
+    elems jsonb[],
+    fixes jsonb[]
 )
 WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
---
--- Name: marker_elem; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.marker_elem (
-    marker_id bigint NOT NULL,
-    elem_index integer NOT NULL,
-    data_type character(1),
-    id bigint,
-    tags jsonb,
-    username text
-)
-WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
-
-
---
--- Name: marker_fix; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.marker_fix (
-    marker_id bigint NOT NULL,
-    diff_index integer NOT NULL,
-    elem_data_type character(1) NOT NULL,
-    elem_id bigint NOT NULL,
-    tags_create jsonb,
-    tags_modify jsonb,
-    tags_delete text[]
-);
-
-
---
--- Name: marker_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.marker_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: marker_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.marker_id_seq OWNED BY public.marker.id;
 
 
 --
@@ -304,13 +275,6 @@ CREATE TABLE public.source_password (
     source_id integer NOT NULL,
     password character varying(128) NOT NULL
 );
-
-
---
--- Name: marker id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.marker ALTER COLUMN id SET DEFAULT nextval('public.marker_id_seq'::regclass);
 
 
 --
@@ -376,19 +340,11 @@ ALTER TABLE public.dynpoi_stats CLUSTER ON dynpoi_stats_pkey;
 
 
 --
--- Name: dynpoi_status dynpoi_status_id; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.dynpoi_status
-    ADD CONSTRAINT dynpoi_status_id UNIQUE (id);
-
-
---
 -- Name: dynpoi_status dynpoi_status_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.dynpoi_status
-    ADD CONSTRAINT dynpoi_status_pkey PRIMARY KEY (source, class, subclass, elems, lat, lon);
+    ADD CONSTRAINT dynpoi_status_pkey PRIMARY KEY (source, class, uuid);
 
 
 --
@@ -412,33 +368,11 @@ ALTER TABLE public.dynpoi_update CLUSTER ON dynpoi_update_pkey;
 
 
 --
--- Name: marker_elem marker_elem_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.marker_elem
-    ADD CONSTRAINT marker_elem_pkey PRIMARY KEY (marker_id, elem_index);
-
-ALTER TABLE public.marker_elem CLUSTER ON marker_elem_pkey;
-
-
---
--- Name: marker_fix marker_fix_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.marker_fix
-    ADD CONSTRAINT marker_fix_pkey PRIMARY KEY (marker_id, diff_index, elem_data_type, elem_id);
-
-ALTER TABLE public.marker_fix CLUSTER ON marker_fix_pkey;
-
-
---
 -- Name: marker marker_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.marker
-    ADD CONSTRAINT marker_pkey PRIMARY KEY (id);
-
-ALTER TABLE public.marker CLUSTER ON marker_pkey;
+    ADD CONSTRAINT marker_pkey PRIMARY KEY (uuid);
 
 
 --
@@ -481,10 +415,24 @@ CREATE INDEX idx_dynpoi_class_source ON public.dynpoi_class USING btree (source)
 
 
 --
--- Name: idx_marker_elem_username; Type: INDEX; Schema: public; Owner: -
+-- Name: idx_dynpoi_status_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX idx_marker_elem_username ON public.marker_elem USING btree (username);
+CREATE INDEX idx_dynpoi_status_id ON public.dynpoi_status USING btree ((((('x0'::text || replace("right"(((uuid)::character varying)::text, 16), '-'::text, ''::text)))::bit(64))::bigint));
+
+
+--
+-- Name: idx_marker_elem_ids; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_marker_elem_ids ON public.marker USING gin (public.marker_elem_ids(elems));
+
+
+--
+-- Name: idx_marker_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_marker_id ON public.marker USING btree ((((('x0'::text || replace("right"(((uuid)::character varying)::text, 16), '-'::text, ''::text)))::bit(64))::bigint));
 
 
 --
@@ -509,10 +457,10 @@ CREATE INDEX idx_marker_source_class_z_order_curve ON public.marker USING btree 
 
 
 --
--- Name: idx_marker_uuid; Type: INDEX; Schema: public; Owner: -
+-- Name: idx_marker_usernames; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX idx_marker_uuid ON public.marker USING btree (uuid);
+CREATE INDEX idx_marker_usernames ON public.marker USING gin (public.marker_usernames(elems));
 
 
 --
@@ -559,22 +507,6 @@ ALTER TABLE ONLY public.dynpoi_status
 
 ALTER TABLE ONLY public.marker
     ADD CONSTRAINT marker_class_fkey FOREIGN KEY (source, class) REFERENCES public.dynpoi_class(source, class);
-
-
---
--- Name: marker_elem marker_elem_marker_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.marker_elem
-    ADD CONSTRAINT marker_elem_marker_id_fkey FOREIGN KEY (marker_id) REFERENCES public.marker(id) ON DELETE CASCADE;
-
-
---
--- Name: marker_fix marker_fix_marker_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.marker_fix
-    ADD CONSTRAINT marker_fix_marker_id_fkey FOREIGN KEY (marker_id) REFERENCES public.marker(id) ON DELETE CASCADE;
 
 
 --
