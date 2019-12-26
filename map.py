@@ -220,7 +220,7 @@ WHERE
     else:
         return HTTPError(404)
 
-    join, where = query._build_param(None, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, tilex=params.tilex, tiley=params.tiley, zoom=params.zoom)
+    join, where = query._build_param(db, None, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, tilex=params.tilex, tiley=params.tiley, zoom=params.zoom)
     join = join.replace("%", "%%")
     where = where.replace("%", "%%")
 

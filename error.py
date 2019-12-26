@@ -38,7 +38,7 @@ def _get(db, err_id=None, uuid=None):
         ]
 
     if err_id:
-        sql = "SELECT " + ",".join(columns_marker) + """
+        sql = "SELECT uuid_to_bigint(marker.uuid) AS id, " + ",".join(columns_marker) + """
         FROM
             marker
             JOIN dynpoi_class ON
@@ -48,7 +48,7 @@ def _get(db, err_id=None, uuid=None):
                 marker.item = class.item AND
                 marker.class = class.class
         WHERE
-            uuid_to_bigint(dynpoi_status.uuid) = %s
+            uuid_to_bigint(marker.uuid) = %s
         """
         db.execute(sql, (err_id, ))
     else:

@@ -10,7 +10,7 @@ def remove_bug_err_id(error_id, status):
   PgCursor = PgConn.cursor()
 
   # find source
-  PgCursor.execute("SELECT uuid,source,class FROM marker WHERE id = %s", (error_id, ))
+  PgCursor.execute("SELECT uuid,source,class FROM marker WHERE uuid_to_bigint(uuid) = %s", (error_id, ))
   source_id = None
   for res in PgCursor.fetchall():
       uuid = res["uuid"]

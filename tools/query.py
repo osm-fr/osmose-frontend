@@ -265,6 +265,7 @@ def _params(max_limit=500):
 def _gets(db, params):
     sqlbase = """
     SELECT
+        uuid_to_bigint(uuid) as id,
         marker.uuid AS uuid,"""
     if not params.status in ("done", "false"):
         sqlbase += """
