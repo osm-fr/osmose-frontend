@@ -109,7 +109,7 @@ def errors(db, lang):
                 'title': translate.select(res["title"]),
                 'level': res["level"],
                 'update': str(res["timestamp"]),
-                'usernames': map(lambda elem: "username" in elem and elem["username"] or "", errors['elems'] or []),
+                'usernames': map(lambda elem: "username" in elem and elem["username"] or "", res['elems'] or []),
             })
         out.append(i)
 
