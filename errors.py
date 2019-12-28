@@ -104,7 +104,7 @@ def errors(db, lang):
                 'id': res["uuid"],
                 'item': str(res["item"]),
                 'source': res["source"],
-                'classs': res["class"],
+                'class': res["class"],
                 'subtitle': translate.select(res["subtitle"]),
                 'title': translate.select(res["title"]),
                 'level': res["level"],
