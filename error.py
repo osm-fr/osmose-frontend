@@ -383,7 +383,8 @@ class OsmSaxFixWriter(OsmSax.OsmSaxWriter):
 
     def fix_tags(self, data):
         for k in self.tags_delete:
-            del data["tag"][k]
+            if k in data["tag"]:
+                del data["tag"][k]
         for (k, v) in self.tags_create.items():
             data["tag"][k] = v
         for (k, v) in self.tags_modify.items():
