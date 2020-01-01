@@ -12,7 +12,11 @@ FROM
     d.deptype = 'e'
 WHERE
   nspname = 'public' AND
-  NOT p.proisagg AND
+
+  p.prokind = 'f' AND
+-- Before Postgres 11:
+--  NOT p.proisagg AND
+
   d.objid IS NULL
 ORDER BY
   CASE p.proname

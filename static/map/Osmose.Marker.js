@@ -44,7 +44,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
       },
       interactive: true, // Make sure that this VectorGrid fires mouse/pointer events
       getFeatureId(f) {
-        return f.properties.issue_id;
+        return f.properties.uuid;
       },
     };
     L.VectorGrid.Protobuf.prototype.initialize.call(this, this._buildUrl(params), vectorTileOptions);
@@ -72,11 +72,11 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
     L.GridLayer.prototype.onAdd.call(this, map);
     /*
     this.on('mouseover', (e) => {
-      if (e.layer.properties.issue_id) {
+      if (e.layer.properties.uuid) {
         this._openPopup(e);
       }
     }).on('mouseout', (e) => {
-      if (e.layer.properties.issue_id && this.highlight != e.layer.properties.issue_id) {
+      if (e.layer.properties.uuid && this.highlight != e.layer.properties.uuid) {
         this._closePopup();
       }
     });
@@ -84,11 +84,11 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
     const click = (e) => {
       if (e.layer.properties.limit) {
         map.setZoomAround(e.latlng, map.getZoom() + 1);
-      } else if (e.layer.properties.issue_id) {
-        if (this.highlight === e.layer.properties.issue_id) {
+      } else if (e.layer.properties.uuid) {
+        if (this.highlight === e.layer.properties.uuid) {
           this._closePopup();
         } else {
-          this.highlight = e.layer.properties.issue_id;
+          this.highlight = e.layer.properties.uuid;
           this._openPopup(e);
         }
       }
@@ -135,7 +135,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
       }
       return o;
     }, {});
-    return `./issues/{z}/{x}/{y}.mvt${L.Util.getParamString(p)}`;
+    return `../api/0.3beta/issues/{z}/{x}/{y}.mvt${L.Util.getParamString(p)}`;
   },
 
   _closePopup() {
@@ -147,10 +147,10 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
   },
 
   _openPopup(e) {
-    if (this.open_popup === e.layer.properties.issue_id) {
+    if (this.open_popup === e.layer.properties.uuid) {
       return;
     }
-    this.open_popup = e.layer.properties.issue_id;
+    this.open_popup = e.layer.properties.uuid;
 
     const popup = L.responsivePopup({
       maxWidth: 280,
@@ -165,7 +165,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
       if (popup.isOpen) {
         // Popup still open, so download content
         $.ajax({
-          url: `../api/0.3beta/issue/${e.layer.properties.issue_id}`,
+          url: `../api/0.3beta/issue/${e.layer.properties.uuid}`,
           dataType: 'json',
           success: (data) => {
             // Get the OSM objects
@@ -226,7 +226,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
     this._closePopup();
 
     // Hack, removes the marker directly from the DOM since the style update of icon does not work with SVG renderer.
-    // this.setFeatureStyle(layer.properties.issue_id, {});
+    // this.setFeatureStyle(layer.properties.uuid, {});
     layer._path.remove();
   },
 });

@@ -232,7 +232,6 @@ WHERE
         if name == u"analysers":
             for source_id, d in self.all_uuid.items():
                 for class_id, uuid in d.items():
-                    print(source_id, class_id, uuid)
                     execute_sql(self._dbcurs, "DELETE FROM marker WHERE source = %s AND class = %s AND uuid != ALL (%s::uuid[])", (source_id, class_id, uuid))
 
         elif name == u"error":
