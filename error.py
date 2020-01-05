@@ -35,6 +35,7 @@ def _get(db, err_id=None, uuid=None):
     columns_marker = ["marker.item", "marker.source", "marker.class", "marker.elems", "marker.fixes",
         "marker.lat", "marker.lon",
         "class.title", "marker.subtitle", "dynpoi_class.timestamp",
+        "class.detail", "class.fix", "class.trap", "class.example", "class.source", "class.resource",
         ]
 
     if err_id:
