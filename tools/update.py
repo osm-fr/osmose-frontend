@@ -287,8 +287,8 @@ WHERE
                     "lat": lat,
                     "lon": lon,
                     "elems_sig": '_'.join(map(lambda elem: elem['type'] + str(elem['id']), self._error_elements)),
-                    "elems": map(lambda elem: json.dumps(elem), elems),
-                    "fixes": map(lambda fix: json.dumps(fix), fixes),
+                    "elems": map(lambda elem: json.dumps(elem), elems) if elems else None,
+                    "fixes": map(lambda fix: json.dumps(fix), fixes) if fixes else None,
                     "subtitle": self._error_texts,
                 })
                 r = self._dbcurs.fetchone()
