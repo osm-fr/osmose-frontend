@@ -38,7 +38,7 @@ def _class(db, lang):
         class
     """
     db.execute(sql)
-    return map(lambda r: dict(zip(["item", "class", "title", "level", "tags"], r)), db.fetchall())
+    return list(db.fetchall())
 
 
 def _items(db, lang):
@@ -121,35 +121,43 @@ def _categories(db, lang):
 
     return result
 
-def _items_3(db):
+def _items_3(db, item = None, classs = None):
     sql = """
     SELECT
         dynpoi_categ.categ,
-        dynpoi_categ.menu
+        dynpoi_categ.menu AS title
     FROM
         dynpoi_categ
+    WHERE
+        1 = 1""" + \
+        ("AND categ = (%(item)s / 1000)::int * 10" if item != None else '') + \
+    """
     ORDER BY
         categ
     """
-    db.execute(sql)
-    categs = map(lambda r: dict(zip(['categ', 'title'], r)), db.fetchall())
+    db.execute(sql, {'item': item})
+    categs = db.fetchall()
 
     sql = """
     SELECT
         item,
         categ,
-        marker_color,
-        menu,
+        marker_color AS color,
+        menu AS title,
         levels,
         number,
         tags
     FROM
         dynpoi_item
+    WHERE
+        1 = 1""" + \
+        ("AND item = %(item)s" if item != None else '') + \
+    """
     ORDER BY
         item
     """
-    db.execute(sql)
-    items = map(lambda r: dict(zip(['item', 'categ', 'color', 'title', 'levels', 'number', 'tags'], r)), db.fetchall())
+    db.execute(sql, {'item': item})
+    items = db.fetchall()
     items = map(lambda r: {
         'item': r['item'],
         'categ': r['categ'],
@@ -168,15 +176,26 @@ def _items_3(db):
         class,
         title,
         level,
-        tags
+        tags,
+        detail,
+        fix,
+        trap,
+        example,
+        source,
+        resource
     FROM
         class
+    WHERE
+        1 = 1""" + \
+        ("AND item = %(item)s" if item != None else '') + \
+        ("AND class = %(classs)s" if classs != None else '') + \
+    """
     ORDER BY
         item,
         class
     """
-    db.execute(sql)
-    classs = map(lambda r: dict(zip(['item', 'class', 'title', 'level', 'tags'], r)), db.fetchall())
+    db.execute(sql, {'item': item, 'classs': classs})
+    classs = db.fetchall()
     class_item = defaultdict(list)
     for c in classs:
         class_item[c['item']].append(c)
@@ -184,11 +203,12 @@ def _items_3(db):
     return map(lambda categ:
         dict(
             categ,
-            **{'items': map(lambda item:
+            items = map(lambda item:
                 dict(
                     item,
-                    **{'class': class_item[item['item']]}),
-                items_categ[categ['categ']])}
+                    **{'class': class_item[item['item']]}
+                ),
+                items_categ[categ['categ']])
         ),
         categs)
 

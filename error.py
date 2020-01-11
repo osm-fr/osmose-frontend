@@ -216,6 +216,7 @@ def _error(version, db, lang, uuid, marker):
     subtitle  = translate.select(marker["subtitle"])
     b_date    = marker["timestamp"] or ""
     item      = marker["item"] or 0
+    classs    = marker["class"] or 0
 
     elems = []
     for elem in marker['elems'] or []:
@@ -264,6 +265,7 @@ def _error(version, db, lang, uuid, marker):
             "title":title, "subtitle":subtitle,
             "b_date":b_date.strftime("%Y-%m-%d"),
             "item":item,
+            "class":classs,
             "elems":elems, "new_elems":new_elems,
             "elems_id":','.join(map(lambda elem: elem['type_long'] + str(elem['id']), marker["elems"])),
             "url_help":url_help
@@ -277,6 +279,7 @@ def _error(version, db, lang, uuid, marker):
             "title":title, "subtitle":subtitle,
             "b_date":b_date.strftime("%Y-%m-%d"),
             "item":item,
+            "class":classs,
             "elems":elems, "new_elems":new_elems,
             "url_help":url_help
         }

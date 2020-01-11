@@ -13,9 +13,10 @@ require('./Osmose.Marker.css');
 
 const OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
-  initialize(permalink, params, editor, featuresLayers, options) {
+  initialize(permalink, params, editor, doc, featuresLayers, options) {
     this._permalink = permalink;
     this._editor = editor;
+    this._doc = doc;
     this._featuresLayers = featuresLayers;
     this._remoteUrlRead = remoteUrlRead;
     L.Util.setOptions(this, options);
@@ -168,6 +169,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
           url: `../api/0.3beta/issue/${e.layer.properties.uuid}`,
           dataType: 'json',
           success: (data) => {
+            this._doc.load(data.item, data['class']);
             // Get the OSM objects
             this._featuresLayers.clearLayers();
             if (data.elems_id) {
@@ -205,6 +207,10 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
               setTimeout(() => {
                 this.corrected(e.layer);
               }, 200);
+            });
+            content.on('click', '.popup_help', (event) => {
+              this._doc.show(data.item, data['class']);
+              return false;
             });
             content.on('click', '.editor_edit, .editor_fix', (event) => {
               this._editor.edit(e.layer, event.currentTarget.getAttribute('data-error'), event.currentTarget.getAttribute('data-type'), event.currentTarget.getAttribute('data-id'), event.currentTarget.getAttribute('data-fix'));
