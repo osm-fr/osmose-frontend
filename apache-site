@@ -83,6 +83,9 @@
 		ExpiresActive Off
 		CacheDisable on
 	</LocationMatch>
+	<LocationMatch /[a-z]*/api/0.3beta/items/[0-9]*/class/[0-9]*>
+		ExpiresDefault "access plus 60 minutes"
+	</LocationMatch>
 
 	RewriteEngine On
 #	RewriteCond %{REQUEST_URI} !/maintenance.html$
