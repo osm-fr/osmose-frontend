@@ -60,12 +60,12 @@
 		ExpiresActive Off
 		CacheDisable on
 	</LocationMatch>
-	<LocationMatch /[a-z]*/map/heat>
+	<LocationMatch /[a-z]+/0\.3beta/issues/[0-9]+/[0-9]+/[0-9]+\.heat\.mvt>
 		ExpiresDefault "access plus 1 day"
 		CacheEnable disk
 		CacheHeader on
 	</LocationMatch>
-	<LocationMatch /[a-z]*/map/issues/>
+	<LocationMatch /[a-z]+/0\.3beta/issues/[0-9]+/[0-9]+/[0-9]+\.mvt>
 		ExpiresDefault "access plus 2 minutes"
 		CacheEnable disk
 		CacheHeader on

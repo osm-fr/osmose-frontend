@@ -175,7 +175,7 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
         where.append("class.tags::text[] && ARRAY['%s']" % "','".join(map(utils.pg_escape, tags)))
 
     if fixable == 'online':
-        where.append("(SELECT bool_or(fix->'id' != '0'::jsonb) FROM (SELECT unnest(fixes)) AS t(fix))")
+        where.append("(SELECT bool_or(fix->'id' != '0'::jsonb) FROM (SELECT jsonb_array_elements(unnest(fixes))) AS t(fix))")
     elif fixable == 'josm':
         where.append("fixes IS NOT NULL")
 

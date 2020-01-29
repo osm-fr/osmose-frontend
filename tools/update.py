@@ -137,7 +137,7 @@ class update_parser(handler.ContentHandler):
         self._remote_ip        = remote_ip
         self._dbconn           = dbconn
         self._dbcurs           = dbcurs
-        self._class_texts      = {}
+        self._class_title      = {}
         self._class_item       = {}
         self._tstamp_updated   = False
 
@@ -202,14 +202,14 @@ class update_parser(handler.ContentHandler):
                 self._class_level = int(attrs["level"])
             else:
                 self._class_level = 2
-            self._class_texts = {}
+            self._class_title = {}
             if "tag" in attrs:
                 self._class_tags = attrs["tag"].split(",")
             else:
                 self._class_tags = []
 
         elif name == u"classtext":
-            self._class_texts[attrs["lang"]] = attrs["title"]
+            self._class_title[attrs["lang"]] = attrs["title"]
         elif name == u"delete":
             # used by files generated with an .osc file
             execute_sql(self._dbcurs, """
@@ -287,8 +287,8 @@ WHERE
                     "lat": lat,
                     "lon": lon,
                     "elems_sig": '_'.join(map(lambda elem: elem['type'] + str(elem['id']), self._error_elements)),
-                    "elems": map(lambda elem: json.dumps(elem), elems),
-                    "fixes": map(lambda fix: json.dumps(fix), fixes),
+                    "elems": map(lambda elem: json.dumps(elem), elems) if elems else None,
+                    "fixes": map(lambda fix: json.dumps(fix), fixes) if fixes else None,
                     "subtitle": self._error_texts,
                 })
                 r = self._dbcurs.fetchone()
@@ -309,7 +309,7 @@ WHERE
             keys = ["class", "item", "title", "level", "tags", "timestamp"]
             vals = [self._class_id,
                     self._class_item[self._class_id],
-                    self._class_texts,
+                    self._class_title,
                     self._class_level,
                     self._class_tags,
                     utils.pg_escape(self.ts),
