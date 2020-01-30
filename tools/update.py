@@ -264,6 +264,8 @@ WHERE
                 self._fixes
             )
 
+            sql_uuid = u"SELECT ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid AS uuid"
+
             ## sql template
             sql_marker = u"INSERT INTO marker (uuid, source, class, item, lat, lon, elems, fixes, subtitle) "
             sql_marker += u"VALUES (('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid, "
@@ -279,7 +281,7 @@ WHERE
                 lat = float(location["lat"])
                 lon = float(location["lon"])
 
-                execute_sql(self._dbcurs, sql_marker, {
+                params = {
                     "source": self._source_id,
                     "class": self._class_id,
                     "subclass": self._class_sub,
@@ -290,10 +292,15 @@ WHERE
                     "elems": map(lambda elem: json.dumps(elem), elems) if elems else None,
                     "fixes": map(lambda fix: json.dumps(fix), fixes) if fixes else None,
                     "subtitle": self._error_texts,
-                })
+                }
+
+                execute_sql(self._dbcurs, sql_uuid, params)
                 r = self._dbcurs.fetchone()
                 if r and r[0]:
                     self.all_uuid[self._source_id][self._class_id].append(r[0])
+
+                execute_sql(self._dbcurs, sql_marker, params)
+                self._dbcurs.fetchone()
 
         elif name in [u"node", u"way", u"relation", u"infos"]:
             if self.elem_mode == "info":
