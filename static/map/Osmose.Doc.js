@@ -47,7 +47,7 @@ export const OsmoseDoc = L.Control.Sidebar.extend({
     this._$container.html('');
 
     $.ajax({
-      url: `../api/0.3beta/items/${item}/class/${classs}`,
+      url: `../api/0.3beta/items/${item}/class/${classs}?langs=auto`,
       dataType: 'json',
       success: (data) => {
         data = data['categories'][0]['items'][0]['class'][0];
@@ -60,13 +60,13 @@ export const OsmoseDoc = L.Control.Sidebar.extend({
         } catch { }
 
         data = {
-          title: data['title'] && data['title']['en'],
-          detail: data['detail'] && Marked(data['detail']['en']),
-          fix: data['fix'] && Marked(data['fix']['en']),
-          trap: data['trap'] && Marked(data['trap']['en']),
-          example: data['example'] && Marked(data['example']['en']),
+          title: data['title'] && data['title']['auto'],
+          detail: data['detail'] && Marked(data['detail']['auto']),
+          fix: data['fix'] && Marked(data['fix']['auto']),
+          trap: data['trap'] && Marked(data['trap']['auto']),
+          example: data['example'] && Marked(data['example']['auto']),
           source_link: data['source'],
-          source_title: path.basename(data['source']),
+          source_title: data['source'] && path.basename(data['source']),
           resource_link: data['resource'],
           resource_title: resource_url ? `${resource_url.protocol}//${resource_url.host}` : data['resource'],
         };
