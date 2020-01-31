@@ -43,6 +43,10 @@ export const OsmoseDoc = L.Control.Sidebar.extend({
   },
 
   _load(item, classs) {
+    if (item == this._last_item && classs == this._last_classs) {
+      return;
+    }
+
     const template = $('#docTpl').html();
     this._$container.html('');
 
@@ -50,6 +54,9 @@ export const OsmoseDoc = L.Control.Sidebar.extend({
       url: `../api/0.3beta/items/${item}/class/${classs}?langs=auto`,
       dataType: 'json',
       success: (data) => {
+        this._last_item = item;
+        this._last_classs = classs;
+
         data = data['categories'][0]['items'][0]['class'][0];
 
         var resource_url;
