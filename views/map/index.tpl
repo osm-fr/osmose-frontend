@@ -112,8 +112,12 @@
 </div>
 
 <div id="doc" class="container">
-<h5>ℹ {{_("Documentation")}}</h5>
-<p>{{_("Show help when issue popup is open.")}}</p>
+<h5>{{_("Welcome to Osmose-QA")}}</h5>
+<p>{{_("Osmose-QA a is quality assurance tools available to detect issues in OpenStreetMap data.")}}</p>
+<p>{{_("It detects a very wide range of issue types. It is also useful for integrating third-party data sets or conflation.")}}</p>
+<p>{{_("Feel free to report problem, idea or new OpenData you want to add to Osmose on our Github.")}}</p>
+<p>{{_("In no case Osmose-QA should provide you the absolute right way to map, always keep a critical eye.")}}</p>
+<p>{{_("You can find help on the wiki:")}} <a href="https://wiki.openstreetmap.org/wiki/Osmose" target="_blank">wiki.osm.org/Osmose</a></p>
 </div>
 
 <div id="map">
