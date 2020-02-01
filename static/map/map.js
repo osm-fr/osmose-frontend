@@ -1,5 +1,6 @@
 import { mapBases, mapOverlay } from './layers';
 import { OsmoseMenu, OsmoseMenuToggle } from './Osmose.Menu';
+import { OsmoseDoc, OsmoseDocToggle } from './Osmose.Doc';
 import OsmoseExport from './Osmose.Export';
 import OsmoseEditor from './Osmose.Editor';
 import OsmoseMarker from './Osmose.Marker';
@@ -55,6 +56,13 @@ export function initMap() {
   });
   map.addControl(editor);
 
+  // Doc
+  const doc = new OsmoseDoc('doc', {
+    position: 'right',
+  });
+  map.addControl(doc);
+  map.addControl(new OsmoseDocToggle(doc));
+
   // Permalink
   const permalink = new L.Control.Permalink({
     // layers: layers,
@@ -71,7 +79,7 @@ export function initMap() {
   // // Layer Marker
   const featureLayer = L.layerGroup();
   map.addLayer(featureLayer);
-  const osmoseLayer = new OsmoseMarker(permalink, urlVars, editor, featureLayer, remoteUrlRead);
+  const osmoseLayer = new OsmoseMarker(permalink, urlVars, editor, doc, featureLayer, remoteUrlRead);
   mapOverlay['Osmose Issues'] = osmoseLayer;
   editor.errors = osmoseLayer;
 
@@ -92,7 +100,7 @@ export function initMap() {
 
   // Widgets
   const scale = L.control.scale({
-    position: 'bottomright',
+    position: 'bottomleft',
   });
   map.addControl(scale);
 
@@ -120,6 +128,12 @@ export function initMap() {
     url: $('#popupTpl').attr('src'),
   }).done((html) => {
     $('#popupTpl').html(html);
+  });
+
+  $.ajax({
+    url: $('#docTpl').attr('src'),
+  }).done((html) => {
+    $('#docTpl').html(html);
   });
 
   $.ajax({

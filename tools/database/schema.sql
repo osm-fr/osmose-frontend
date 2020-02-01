@@ -139,7 +139,13 @@ CREATE TABLE public.class (
     title jsonb,
     level integer,
     "timestamp" timestamp without time zone,
-    tags character varying(255)[]
+    tags character varying(255)[],
+    detail jsonb,
+    fix jsonb,
+    trap jsonb,
+    example jsonb,
+    source text,
+    resource text
 );
 
 

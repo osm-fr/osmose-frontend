@@ -1,8 +1,10 @@
 var optimize = false;
 var webpack = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin');
 
 
 module.exports = {
+    mode: 'production',
     entry: {
         "static": "./static/webpack.index.js",
         "static/map": "./static/map/webpack.index.js",
@@ -46,6 +48,16 @@ module.exports = {
             { test: /\.gif$/, loaders: ["base64-image-loader"] },
         ]
     },
+    optimization: {
+        minimizer: [
+            new TerserPlugin({
+                parallel: true,
+                terserOptions: {
+                    ecma: 6,
+                },
+            }),
+        ]
+    },
     plugins: [
         new webpack.ProvidePlugin({
             $: "jquery",
@@ -55,13 +67,6 @@ module.exports = {
         new webpack.LoaderOptionsPlugin({
             minimize: true,
             debug: false
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            minimize: true,
-            output: {
-                comments: false
-            },
-            sourceMap: true
         }),
         function() {
             this.plugin("done", function(stats) {

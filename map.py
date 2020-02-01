@@ -320,6 +320,10 @@ def markers(db):
 def popup_template(lang):
     return template('map/popup', mustache_delimiter="{{={% %}=}}", website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read)
 
+@route('/tpl/doc.tpl')
+def doc_template(lang):
+    return template('map/doc', mustache_delimiter="{{={% %}=}}", website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read)
+
 @route('/tpl/editor.tpl')
 def editor_template(lang):
     return template('map/editor', mustache_delimiter="{{={% %}=}}", main_website=utils.main_website)

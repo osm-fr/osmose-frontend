@@ -20,6 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from bottle import request
 from collections import defaultdict
 
 
@@ -38,7 +39,7 @@ def _class(db, lang):
         class
     """
     db.execute(sql)
-    return map(lambda r: dict(zip(["item", "class", "title", "level", "tags"], r)), db.fetchall())
+    return list(db.fetchall())
 
 
 def _items(db, lang):
@@ -121,43 +122,77 @@ def _categories(db, lang):
 
     return result
 
-def _items_3(db):
+
+def parse_accept_language(langs):
+    if langs and 'auto' in langs:
+        langs = request.get_header('Accept-Language')
+    langs = map(lambda lang: lang.split(';')[0].strip(), langs.split(','))
+    langs += list(map(lambda lang: lang.split('_')[0].lower(), langs))
+    return langs
+
+
+def _i10n_select(translations, langs):
+    if not translations:
+        return None
+    elif langs is None:
+        return translations
+    else:
+        for lang in langs:
+            if lang in translations:
+                return {'auto': translations[lang]}
+        if 'en' in translations:
+            return {'auto': translations['en']}
+        else:
+            return None
+
+
+def _items_3(db, item = None, classs = None, langs = None):
+    if langs:
+        langs = parse_accept_language(langs)
+
     sql = """
     SELECT
         dynpoi_categ.categ,
-        dynpoi_categ.menu
+        dynpoi_categ.menu AS title
     FROM
         dynpoi_categ
+    WHERE
+        1 = 1 """ + \
+        ("AND categ = (%(item)s / 1000)::int * 10" if item != None else '') + \
+    """
     ORDER BY
         categ
     """
-    db.execute(sql)
-    categs = map(lambda r: dict(zip(['categ', 'title'], r)), db.fetchall())
+    db.execute(sql, {'item': item})
+    categs = db.fetchall()
+    for categ in categs:
+        categ['title'] = _i10n_select(categ['title'], langs)
 
     sql = """
     SELECT
         item,
         categ,
-        marker_color,
-        menu,
+        marker_color AS color,
+        menu AS title,
         levels,
         number,
         tags
     FROM
         dynpoi_item
+    WHERE
+        1 = 1""" + \
+        ("AND item = %(item)s" if item != None else '') + \
+    """
     ORDER BY
         item
     """
-    db.execute(sql)
-    items = map(lambda r: dict(zip(['item', 'categ', 'color', 'title', 'levels', 'number', 'tags'], r)), db.fetchall())
-    items = map(lambda r: {
-        'item': r['item'],
-        'categ': r['categ'],
-        'color': r['color'],
-        'title': r['title'] or {'en': '(name missing)'},
-        'levels': r['number'] and map(lambda (l, n): {'level': l, 'count': n}, zip(r['levels'], r['number'])) or map(lambda i: {'level': i, 'count': 0}, [1, 2, 3]),
-        'tags': r['tags']
-    }, items)
+    db.execute(sql, {'item': item})
+    items = db.fetchall()
+    items = map(lambda r: dict(
+        r,
+        title = _i10n_select(r['title'], langs),
+        levels = r['number'] and map(lambda (l, n): {'level': l, 'count': n}, zip(r['levels'], r['number'])) or map(lambda i: {'level': i, 'count': 0}, [1, 2, 3]),
+    ), items)
     items_categ = defaultdict(list)
     for i in items:
         items_categ[i['categ']].append(i)
@@ -168,15 +203,34 @@ def _items_3(db):
         class,
         title,
         level,
-        tags
+        tags,
+        detail,
+        fix,
+        trap,
+        example,
+        source,
+        resource
     FROM
         class
+    WHERE
+        1 = 1""" + \
+        ("AND item = %(item)s" if item != None else '') + \
+        ("AND class = %(classs)s" if classs != None else '') + \
+    """
     ORDER BY
         item,
         class
     """
-    db.execute(sql)
-    classs = map(lambda r: dict(zip(['item', 'class', 'title', 'level', 'tags'], r)), db.fetchall())
+    db.execute(sql, {'item': item, 'classs': classs})
+    classs = db.fetchall()
+    classs = map(lambda c: dict(
+        dict(c),
+        title = _i10n_select(c['title'], langs),
+        detail = _i10n_select(c['detail'], langs),
+        fix = _i10n_select(c['fix'], langs),
+        trap = _i10n_select(c['trap'], langs),
+        example = _i10n_select(c['example'], langs),
+    ), classs)
     class_item = defaultdict(list)
     for c in classs:
         class_item[c['item']].append(c)
@@ -184,11 +238,12 @@ def _items_3(db):
     return map(lambda categ:
         dict(
             categ,
-            **{'items': map(lambda item:
+            items = map(lambda item:
                 dict(
                     item,
-                    **{'class': class_item[item['item']]}),
-                items_categ[categ['categ']])}
+                    **{'class': class_item[item['item']]}
+                ),
+                items_categ[categ['categ']])
         ),
         categs)
 

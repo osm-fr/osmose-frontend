@@ -137,11 +137,12 @@ class update_parser(handler.ContentHandler):
         self._remote_ip        = remote_ip
         self._dbconn           = dbconn
         self._dbcurs           = dbcurs
-        self._class_title      = {}
         self._class_item       = {}
         self._tstamp_updated   = False
 
         self.all_uuid = defaultdict(lambda: defaultdict(list))
+
+        self.element_stack = []
 
     def setDocumentLocator(self, locator):
         self.locator = locator
@@ -207,9 +208,25 @@ class update_parser(handler.ContentHandler):
                 self._class_tags = attrs["tag"].split(",")
             else:
                 self._class_tags = []
+            self._class_source = attrs.get("source")
+            self._class_resource = attrs.get("resource")
+
+            self._class_title      = {}
+            self._class_detail     = {}
+            self._class_fix        = {}
+            self._class_trap       = {}
+            self._class_example    = {}
 
         elif name == u"classtext":
             self._class_title[attrs["lang"]] = attrs["title"]
+        elif name == u"detail":
+            self._class_detail[attrs["lang"]] = attrs["title"]
+        elif name == u"fix" and self.element_stack[-1] == u"class":
+            self._class_fix[attrs["lang"]] = attrs["title"]
+        elif name == u"trap":
+            self._class_trap[attrs["lang"]] = attrs["title"]
+        elif name == u"example":
+            self._class_example[attrs["lang"]] = attrs["title"]
         elif name == u"delete":
             # used by files generated with an .osc file
             execute_sql(self._dbcurs, """
@@ -222,13 +239,18 @@ WHERE
 
         elif name == u"fixes":
             self.elem_mode = "fix"
-        elif name == u"fix":
+        elif name == u"fix" and self.element_stack[-1] == u"fixes":
             self._fix = []
             self._fix_create = {}
             self._fix_modify = {}
             self._fix_delete = []
 
+        self.element_stack.append(name)
+
+
     def endElement(self, name):
+        self.element_stack.pop()
+
         if name == u"analysers":
             for source_id, d in self.all_uuid.items():
                 for class_id, uuid in d.items():
@@ -264,6 +286,8 @@ WHERE
                 self._fixes
             )
 
+            sql_uuid = u"SELECT ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid AS uuid"
+
             ## sql template
             sql_marker = u"INSERT INTO marker (uuid, source, class, item, lat, lon, elems, fixes, subtitle) "
             sql_marker += u"VALUES (('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid, "
@@ -279,7 +303,7 @@ WHERE
                 lat = float(location["lat"])
                 lon = float(location["lon"])
 
-                execute_sql(self._dbcurs, sql_marker, {
+                params = {
                     "source": self._source_id,
                     "class": self._class_id,
                     "subclass": self._class_sub,
@@ -290,10 +314,15 @@ WHERE
                     "elems": map(lambda elem: json.dumps(elem), elems) if elems else None,
                     "fixes": map(lambda fix: json.dumps(fix), fixes) if fixes else None,
                     "subtitle": self._error_texts,
-                })
+                }
+
+                execute_sql(self._dbcurs, sql_uuid, params)
                 r = self._dbcurs.fetchone()
                 if r and r[0]:
                     self.all_uuid[self._source_id][self._class_id].append(r[0])
+
+                execute_sql(self._dbcurs, sql_marker, params)
+                self._dbcurs.fetchone()
 
         elif name in [u"node", u"way", u"relation", u"infos"]:
             if self.elem_mode == "info":
@@ -306,38 +335,41 @@ WHERE
                 self._fix.append(self._elem)
 
         elif name == u"class":
-            keys = ["class", "item", "title", "level", "tags", "timestamp"]
-            vals = [self._class_id,
-                    self._class_item[self._class_id],
-                    self._class_title,
-                    self._class_level,
-                    self._class_tags,
-                    utils.pg_escape(self.ts),
-                   ]
-
-            sql  = u"INSERT INTO class (" + u','.join(keys) + u") "
-            sql += u"VALUES (" + (u','.join(["%s"] * len(keys))) + u") "
+            sql  = u"INSERT INTO class (class, item, title, level, tags, detail, fix, trap, example, source, resource, timestamp) "
+            sql += u"VALUES (%(class)s, %(item)s, %(title)s, %(level)s, %(tags)s, %(detail)s, %(fix)s, %(trap)s, %(example)s, %(source)s, %(resource)s, %(timestamp)s) "
             sql += u"ON CONFLICT (item, class) DO "
-            sql += u"UPDATE SET " + (u', '.join(map(lambda k: '"' + k + '" = %s', keys[2:]))) + " "
-            sql += u"WHERE class.class = %s AND class.item = %s AND class.timestamp < %s;"
-            execute_sql(self._dbcurs, sql, vals + vals[2:] + vals[0:2] + [vals[-1]])
+            sql += u"UPDATE SET title = %(title)s, level = %(level)s, tags = %(tags)s, detail = %(detail)s, fix = %(fix)s, trap = %(trap)s, example = %(example)s, source = %(source)s, resource = %(resource)s, timestamp = %(timestamp)s "
+            sql += u"WHERE class.class = %(class)s AND class.item = %(item)s AND class.timestamp < %(timestamp)s"
+            execute_sql(self._dbcurs, sql, {
+                'class': self._class_id,
+                'item': self._class_item[self._class_id],
+                'title': self._class_title,
+                'level': self._class_level,
+                'tags': self._class_tags,
+                'detail' : self._class_detail or None,
+                'fix' : self._class_fix or None,
+                'trap': self._class_trap or None,
+                'example': self._class_example or None,
+                'source': self._class_source or None,
+                'resource': self._class_resource or None,
+                'timestamp': utils.pg_escape(self.ts),
+            })
 
-            keys = ["source", "class", "item", "timestamp"]
-            vals = [self._source_id, self._class_id,
-                    self._class_item[self._class_id],
-                    utils.pg_escape(self.ts),
-                   ]
-
-            sql  = u"INSERT INTO dynpoi_class (" + u','.join(keys) + u") "
-            sql += u"VALUES (" + (u','.join(["%s"] * len(keys))) + u")"
+            sql  = u"INSERT INTO dynpoi_class (source, class, item, timestamp) "
+            sql += u"VALUES (%(source)s, %(class)s, %(item)s, %(timestamp)s)"
             sql += u"ON CONFLICT (source, class) DO "
-            sql += u"UPDATE SET " + (u' = %s, '.join(keys)) + u" = %s "
-            sql += u"WHERE dynpoi_class.source = %s AND dynpoi_class.class = %s"
-            execute_sql(self._dbcurs, sql, vals + vals + [self._source_id, self._class_id])
+            sql += u"UPDATE SET item = %(item)s, timestamp = %(timestamp)s "
+            sql += u"WHERE dynpoi_class.source = %(source)s AND dynpoi_class.class = %(class)s"
+            execute_sql(self._dbcurs, sql, {
+                'source': self._source_id,
+                'class': self._class_id,
+                'item': self._class_item[self._class_id],
+                'timestamp':  utils.pg_escape(self.ts),
+            })
 
         elif name == u"fixes":
             self.elem_mode = "info"
-        elif name == u"fix":
+        elif name == u"fix" and self.element_stack[-1] == u"fixes":
             self._fixes.append(self._fix)
 
     def update_timestamp(self, attrs):

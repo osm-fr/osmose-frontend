@@ -10,6 +10,7 @@
   <meta name="description" content="{{_("Control, verification and correction of %s issues") % main_project}}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <script id="popupTpl" type="text/template" src="{{get_url('static', filename='/tpl/popup.tpl')}}"></script>
+  <script id="docTpl" type="text/template" src="{{get_url('static', filename='/tpl/doc.tpl')}}"></script>
   <script id="editorTpl" type="text/template" src="{{get_url('static', filename='/tpl/editor.tpl')}}"></script>
 %from assets import assets
   <script type="text/javascript" src="{{get_url('static', filename=assets['static/map'][0])}}"></script>
@@ -108,6 +109,15 @@
 %end
   </div>
 </form>
+</div>
+
+<div id="doc" class="container">
+<h5>{{_("Welcome to Osmose-QA")}}</h5>
+<p>{{_("Osmose-QA a is quality assurance tools available to detect issues in OpenStreetMap data.")}}</p>
+<p>{{_("It detects a very wide range of issue types. It is also useful for integrating third-party data sets or conflation.")}}</p>
+<p>{{_("Feel free to report problem, idea or new OpenData you want to add to Osmose on our Github.")}}</p>
+<p>{{_("In no case Osmose-QA should provide you the absolute right way to map, always keep a critical eye.")}}</p>
+<p>{{_("You can find help on the wiki:")}} <a href="https://wiki.openstreetmap.org/wiki/Osmose" target="_blank">wiki.osm.org/Osmose</a></p>
 </div>
 
 <div id="map">

@@ -102,7 +102,7 @@
     </div>
     <div id="bulle_button">
       <div class="btn-group" role="group">
-        <a class="false_positive btn btn-info btn-sm" role="button" href='{%url_help%}#{%item%}' target="popup_help" title="{{_('Help on OSM Wiki')}}">ℹ</a>
+        <a class="false_positive btn btn-info btn-sm popup_help" role="button" href='#' title="{{_('Help')}}">ℹ</a>
         <a class="closePopup false_positive btn btn-danger btn-sm" role="button" href="../api/0.3beta/issue/{%uuid%}/false" target="hiddenIframe"
           onclick='return confirm("{{_('Report the issue as improper, if according to you is not an issue. The issue will not be displayed to anyone more.')}}")'
           title="{{_('false positive')}} - {{_('Report the issue as improper, if according to you is not an issue. The issue will not be displayed to anyone more.')}}">✘</a>
