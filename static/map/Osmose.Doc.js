@@ -18,9 +18,17 @@ export const OsmoseDoc = L.Control.Sidebar.extend({
   initialize(placeholder, options) {
     this._$container = $(`#${placeholder}`);
     L.Control.Sidebar.prototype.initialize.call(this, placeholder, options);
+
+    let show = localStorage.getItem('doc.show');
+    if (show !== null && JSON.parse(show) === false) {
+      L.Control.Sidebar.prototype.hide.call(this);
+    } else {
+      this.show();
+    }
   },
 
   toggle() {
+    localStorage.setItem('doc.show', !JSON.parse(localStorage.getItem('doc.show')));
     L.Control.Sidebar.prototype.toggle.call(this);
     if ($('.leaflet-active-area').css('right') === '0px') {
       $('.leaflet-active-area').css('right', '');
@@ -30,6 +38,7 @@ export const OsmoseDoc = L.Control.Sidebar.extend({
   },
 
   show(item, classs) {
+    localStorage.setItem('doc.show', true);
     L.Control.Sidebar.prototype.show.call(this);
     if (item !== undefined) {
       this._load(item, classs);

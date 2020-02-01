@@ -62,7 +62,6 @@ export function initMap() {
   });
   map.addControl(doc);
   map.addControl(new OsmoseDocToggle(doc));
-  doc.show();
 
   // Permalink
   const permalink = new L.Control.Permalink({
