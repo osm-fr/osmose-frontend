@@ -158,7 +158,10 @@ def _items_3(db, item = None, classs = None, langs = None):
         dynpoi_categ
     WHERE
         1 = 1 """ + \
-        ("AND categ = (%(item)s / 1000)::int * 10" if item != None else '') + \
+        ("""AND categ = CASE
+            WHEN %(item)s < 1000 THEN 10
+            ELSE (%(item)s / 1000)::int * 10
+         END""" if item != None else '') + \
     """
     ORDER BY
         categ
