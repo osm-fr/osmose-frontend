@@ -339,7 +339,8 @@ WHERE
             sql += u"VALUES (%(class)s, %(item)s, %(title)s, %(level)s, %(tags)s, %(detail)s, %(fix)s, %(trap)s, %(example)s, %(source)s, %(resource)s, %(timestamp)s) "
             sql += u"ON CONFLICT (item, class) DO "
             sql += u"UPDATE SET title = %(title)s, level = %(level)s, tags = %(tags)s, detail = %(detail)s, fix = %(fix)s, trap = %(trap)s, example = %(example)s, source = %(source)s, resource = %(resource)s, timestamp = %(timestamp)s "
-            sql += u"WHERE class.class = %(class)s AND class.item = %(item)s AND class.timestamp < %(timestamp)s"
+            sql += u"WHERE class.class = %(class)s AND class.item = %(item)s AND class.timestamp < %(timestamp)s AND "
+            sql += u"      (class.title != %(title)s OR class.level != %(level)s OR class.tags != %(tags)s::varchar[] OR class.detail != %(detail)s OR class.fix != %(fix)s OR class.trap != %(trap)s OR class.example != %(example)s OR class.source != %(source)s OR class.resource != %(resource)s)"
             execute_sql(self._dbcurs, sql, {
                 'class': self._class_id,
                 'item': self._class_item[self._class_id],
