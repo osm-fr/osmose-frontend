@@ -75,8 +75,11 @@ if __name__ == "__main__":
     sys.path.append("../../backend")
 
   # Don't load translations, as not necessary
-  builtins.T_ = lambda: None
-  builtins.T_f = lambda: None
+  def translate(str, *args):
+    pass
+
+  builtins.T_ = translate
+  builtins.T_f = translate
 
   import osmose_config
 
