@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the osmose-frontend package.
 # 
 # Translators:
-# Syver Stensholt <sssandum@gmail.com>, 2019
+# Syver Stensholt <sssandum@gmail.com>, 2019-2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-01-26 19:54+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2020-01-31 09:08+0000\n"
+"Last-Translator: Syver Stensholt <sssandum@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/openstreetmap-france/osmose/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -907,11 +907,11 @@ msgstr "sport, kan integreres"
 
 #: tmp.tpl:192
 msgid "Translation progress: osmose"
-msgstr ""
+msgstr "Fremgang på oversettelse: osmose"
 
 #: tmp.tpl:196
 msgid "For new language or countries"
-msgstr ""
+msgstr "For nye språk eller land"
 
 #, python-format
 msgid "The <a href='%s'>country coverage is available</a>."
@@ -920,12 +920,12 @@ msgstr ""
 #: tmp.tpl:197
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
-msgstr ""
+msgstr "Du kan lage et nytt språk direkte på <a href='%s'>Transifex.</a>"
 
 #: tmp.tpl:191
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
-msgstr ""
+msgstr "Oversettelser gjøres på <a href='%s'>Transifex.</a>"
 
 #: tmp.tpl:144
 msgid "Export"

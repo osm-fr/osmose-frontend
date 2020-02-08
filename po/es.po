@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-01-26 19:54+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2020-02-03 09:01+0000\n"
+"Last-Translator: Jorge Sanz <sanchi2@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1605,19 +1605,19 @@ msgstr "soporte de radio, necesita actualización"
 #: tmp.tpl:58
 #, python-format
 msgid "Information on issue %s"
-msgstr ""
+msgstr "Información sobre el problema %s"
 
 #: tmp.tpl:107
 #, python-format
 msgid "Mark issue #%s as false positive"
-msgstr ""
+msgstr "Marcar problema #%s como falso positivo"
 
 #: tmp.tpl:108
 #, python-format
 msgid "Mark issue #%s as fixed"
-msgstr ""
+msgstr "Marcar problema #%s como corregido"
 
 #: tmp.tpl:109
 #, python-format
 msgid "delete issue #%s"
-msgstr ""
+msgstr "borrar problema #%s"

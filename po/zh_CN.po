@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the osmose-frontend package.
 # 
 # Translators:
-# jie x, 2017-2019
+# jie x, 2017-2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-01-26 19:54+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2020-02-08 01:10+0000\n"
+"Last-Translator: jie x\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1548,70 +1548,70 @@ msgstr "潜在的拼写错误"
 
 #: ../tools/database/item_menu.txt:29
 msgid "enforcement"
-msgstr ""
+msgstr "强制执行"
 
 #: ../tools/database/item_menu.txt:59
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: ../tools/database/item_menu.txt:190
 msgid "street objects"
-msgstr ""
+msgstr "街头物体"
 
 #: ../tools/database/item_menu.txt:209
 msgid "openrailwaymap"
-msgstr ""
+msgstr "openrailwaymap"
 
 #: ../tools/database/item_menu.txt:210
 msgid "openrailwaymap in germany"
-msgstr ""
+msgstr "openrailwaymap在德国"
 
 #: ../tools/database/item_menu.txt:44
 msgid "railways"
-msgstr ""
+msgstr "铁路"
 
 #: ../tools/database/item_menu.txt:177
 msgid "power plant"
-msgstr ""
+msgstr "发电站"
 
 #: tmp.tpl:187
 msgid ""
 "Osmose tool is mainly developped by french people, and we aim to add more "
 "languages."
-msgstr ""
+msgstr "Osmose工具主要由法国人开发，我们的目标是添加更多语言。"
 
 #: ../tools/database/item_menu.txt:191
 msgid "defibrillator"
-msgstr ""
+msgstr "除颤器"
 
 #: ../tools/database/item_menu.txt:192
 msgid "radio support"
-msgstr ""
+msgstr "无线电支持"
 
 #: ../tools/database/item_menu.txt:193
 msgid "radio support, could be integrated"
-msgstr ""
+msgstr "可以整合的无线电支持"
 
 #: ../tools/database/item_menu.txt:194
 msgid "radio support, need update"
-msgstr ""
+msgstr "需要更新的无线电支持"
 
 #: tmp.tpl:58
 #, python-format
 msgid "Information on issue %s"
-msgstr ""
+msgstr "问题信息%s"
 
 #: tmp.tpl:107
 #, python-format
 msgid "Mark issue #%s as false positive"
-msgstr ""
+msgstr "将问题 #%s 标记为误报"
 
 #: tmp.tpl:108
 #, python-format
 msgid "Mark issue #%s as fixed"
-msgstr ""
+msgstr "将问题 #%s 标记为已修复"
 
 #: tmp.tpl:109
 #, python-format
 msgid "delete issue #%s"
-msgstr ""
+msgstr "删除问题 #%s"

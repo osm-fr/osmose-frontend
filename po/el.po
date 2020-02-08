@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-01-26 19:54+0000\n"
+"PO-Revision-Date: 2020-02-08 19:56+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Greek (http://www.transifex.com/openstreetmap-france/osmose/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgid "never generated"
 msgstr ""
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:208 ../false_positive.py:83 tmp.tpl:195
+#: ../error.py:209 ../false_positive.py:83 tmp.tpl:207
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
@@ -52,6 +52,7 @@ msgstr "Πληροφορίες"
 msgid "Relation analyser"
 msgstr "Αναλυτής σχέσεων"
 
+#. TRANSLATORS: link to source code
 #: ../map.py:88
 msgid "Statistics"
 msgstr "Στατιστικά"
@@ -64,7 +65,7 @@ msgstr "Επικοινωνία"
 msgid "Help on wiki"
 msgstr "Βοήθεια στο wiki"
 
-#: ../map.py:92 tmp.tpl:116 tmp.tpl:194
+#: ../map.py:92 tmp.tpl:116 tmp.tpl:206
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
@@ -231,7 +232,7 @@ msgstr "Επιδιορθωμένα"
 msgid "Graph"
 msgstr ""
 
-#: tmp.tpl:72 tmp.tpl:123
+#: tmp.tpl:72 tmp.tpl:129
 msgid "Map"
 msgstr "Χάρτης"
 
@@ -302,130 +303,130 @@ msgstr "Λίστα εσφαλμένων σημάνσεων"
 msgid "Last analysis updates"
 msgstr ""
 
-#: tmp.tpl:120
+#: tmp.tpl:126
 msgid "Tags Editor"
 msgstr "Επεξεργαστής Ετικετών"
 
-#: tmp.tpl:121 tmp.tpl:163
+#: tmp.tpl:127 tmp.tpl:175
 msgid "Cancel"
 msgstr "Ακύρωση"
 
-#: tmp.tpl:122
+#: tmp.tpl:128
 msgid "Valid"
 msgstr "Έγκυρο"
 
-#: tmp.tpl:125
+#: tmp.tpl:131
 msgid "no bubbles at this zoom factor"
 msgstr ""
 
-#: tmp.tpl:75 tmp.tpl:126
+#: tmp.tpl:75 tmp.tpl:132
 msgid "Severity"
 msgstr "Σοβαρότητα"
 
-#: tmp.tpl:132
+#: tmp.tpl:138
 msgid "Fixable"
 msgstr "Επισκευάσιμο"
 
-#: tmp.tpl:133
+#: tmp.tpl:139
 msgid "Show only markers with correction suggestions"
 msgstr "Εμφάνιση μόνο των δεικτών με προτεινόμενες διορθώσεις"
 
-#: tmp.tpl:134
+#: tmp.tpl:140
 msgid "Online"
 msgstr "Σε σύνδεση"
 
-#: tmp.tpl:135
+#: tmp.tpl:141
 msgid "Topic"
 msgstr "Θέμα"
 
-#: tmp.tpl:136
+#: tmp.tpl:142
 msgid "Select:"
 msgstr "Επιλογή:"
 
-#: tmp.tpl:137 tmp.tpl:140
+#: tmp.tpl:143 tmp.tpl:146
 msgid "all"
 msgstr "όλα"
 
-#: tmp.tpl:138 tmp.tpl:141
+#: tmp.tpl:144 tmp.tpl:147
 msgid "nothing"
 msgstr "τίποτα"
 
-#: tmp.tpl:139
+#: tmp.tpl:145
 msgid "invert"
 msgstr "αντιστροφή"
 
-#: tmp.tpl:143
+#: tmp.tpl:155
 msgid "Change language"
 msgstr "Αλλαγή γλώσσας"
 
-#: tmp.tpl:146
+#: tmp.tpl:158 tmp.tpl:193
 msgid "Help"
 msgstr "Βοήθεια"
 
-#: tmp.tpl:147
+#: tmp.tpl:159
 #, python-format
 msgid "Delay: %sd"
 msgstr "Καθυστέρηση: %sd"
 
-#: tmp.tpl:151
+#: tmp.tpl:163
 msgid "Logout"
 msgstr "Αποσύνδεση"
 
-#: tmp.tpl:152 tmp.tpl:154
+#: tmp.tpl:164 tmp.tpl:166
 msgid "Login"
 msgstr "Σύνδεση"
 
-#: tmp.tpl:153 tmp.tpl:164
+#: tmp.tpl:165 tmp.tpl:176
 msgid "Save"
 msgstr "Αποθήκευση"
 
-#: tmp.tpl:159
+#: tmp.tpl:171
 msgid "Fix with Osmose"
 msgstr "Διόρθωση με το Osmose"
 
-#: tmp.tpl:160
+#: tmp.tpl:172
 msgid "Source"
 msgstr ""
 
-#: tmp.tpl:161
+#: tmp.tpl:173
 msgid "Type"
 msgstr "Τύπος"
 
-#: tmp.tpl:162
+#: tmp.tpl:174
 msgid "Reuse changeset"
 msgstr ""
 
-#: tmp.tpl:184
+#: tmp.tpl:196
 msgid "corrected"
 msgstr "διορθωμένο"
 
-#: tmp.tpl:183
+#: tmp.tpl:195
 msgid "false positive"
 msgstr "εσφαλμένη σήμανση"
 
-#: tmp.tpl:185 tmp.tpl:186
+#: tmp.tpl:197 tmp.tpl:198
 msgid "How to help translation"
 msgstr "Πως να βοηθήσετε στη μετάφραση"
 
-#: tmp.tpl:188
+#: tmp.tpl:200
 msgid ""
 "To make Osmose a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr "Για να κάνουμε το Osmose ένα πραγματικά πολυγλωσσικό εργαλείο, χρειαζόμαστε τη βοήθειά σου για να βελτιώσουμε τις υπάρχουσες μεταφράσεις, και να προσθέσουμε καινούριες."
 
-#: tmp.tpl:189
+#: tmp.tpl:201
 msgid "Pages to translate"
 msgstr "Σελίδες προς μετάφραση"
 
-#: tmp.tpl:193
+#: tmp.tpl:205
 msgid "Wiki pages"
 msgstr "Σελίδες wiki"
 
-#: tmp.tpl:190
+#: tmp.tpl:202
 msgid "Osmose pages"
 msgstr "Σελίδες Osmose"
 
-#: tmp.tpl:199
+#: tmp.tpl:211
 msgid "Bug tracking system"
 msgstr ""
 
@@ -906,11 +907,11 @@ msgstr "άθλημα"
 msgid "sport, could be integrated"
 msgstr ""
 
-#: tmp.tpl:192
+#: tmp.tpl:204
 msgid "Translation progress: osmose"
 msgstr "Πρόοδος μετάφρασης: osmose"
 
-#: tmp.tpl:196
+#: tmp.tpl:208
 msgid "For new language or countries"
 msgstr "Για νέα γλώσσα ή χώρες"
 
@@ -918,21 +919,21 @@ msgstr "Για νέα γλώσσα ή χώρες"
 msgid "The <a href='%s'>country coverage is available</a>."
 msgstr "Η <a href='%s'>κάλυψη χωρών είναι διαθέσιμη</a>."
 
-#: tmp.tpl:197
+#: tmp.tpl:209
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
 msgstr "Μπορείτε να δημιουργήσετε μια νέα γλώσσα απευθείας στο <a href='%s'>Transifex.</a>"
 
-#: tmp.tpl:191
+#: tmp.tpl:203
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr "Η μετάφραση γίνεται στο <a href='%s'>Transifex</a>."
 
-#: tmp.tpl:144
+#: tmp.tpl:156
 msgid "Export"
 msgstr "Εξαγωγή"
 
-#: tmp.tpl:145
+#: tmp.tpl:157
 msgid "Html list"
 msgstr "Λίστα html"
 
@@ -972,15 +973,15 @@ msgstr "βενζινάδικο"
 msgid "position"
 msgstr "θέση"
 
-#: tmp.tpl:154
+#: tmp.tpl:166
 msgid "You must be logged in order to use the tag editor"
 msgstr "Πρέπει να είστε συνδεδεμένος για να μπορέσετε να χρησιμοποιήσετε τον επεξεργαστή ετικετών"
 
-#: tmp.tpl:155
+#: tmp.tpl:167
 msgid "Save changeset"
 msgstr "Αποθήκευση ομάδας αλλαγών"
 
-#: tmp.tpl:158
+#: tmp.tpl:170
 msgid "Comment"
 msgstr "Σχόλιο"
 
@@ -1128,7 +1129,7 @@ msgstr ""
 msgid "Information on issues database"
 msgstr ""
 
-#: tmp.tpl:195
+#: tmp.tpl:207
 msgid "Documentation on reported issues"
 msgstr ""
 
@@ -1164,12 +1165,12 @@ msgstr ""
 msgid "split building"
 msgstr ""
 
-#: tmp.tpl:124
+#: tmp.tpl:130
 #, python-format
 msgid "Control, verification and correction of %s issues"
 msgstr ""
 
-#: tmp.tpl:194
+#: tmp.tpl:206
 msgid "Osmose QA main page"
 msgstr ""
 
@@ -1182,7 +1183,7 @@ msgid ""
 "analyses."
 msgstr ""
 
-#: tmp.tpl:200
+#: tmp.tpl:212
 msgid ""
 "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
 "frontend</a> can be used to report any issue with translations."
@@ -1320,23 +1321,23 @@ msgstr ""
 msgid "traffic sign limitation"
 msgstr ""
 
-#: tmp.tpl:76 tmp.tpl:127
+#: tmp.tpl:76 tmp.tpl:133
 msgid "High"
 msgstr ""
 
-#: tmp.tpl:77 tmp.tpl:128
+#: tmp.tpl:77 tmp.tpl:134
 msgid "Normal or higher"
 msgstr ""
 
-#: tmp.tpl:78 tmp.tpl:129
+#: tmp.tpl:78 tmp.tpl:135
 msgid "All"
 msgstr ""
 
-#: tmp.tpl:79 tmp.tpl:130
+#: tmp.tpl:79 tmp.tpl:136
 msgid "Normal only"
 msgstr ""
 
-#: tmp.tpl:80 tmp.tpl:131
+#: tmp.tpl:80 tmp.tpl:137
 msgid "Low only"
 msgstr ""
 
@@ -1347,12 +1348,12 @@ msgid ""
 "href='mailto:{email}'>{email}</a>."
 msgstr ""
 
-#: tmp.tpl:148 tmp.tpl:149 tmp.tpl:150
+#: tmp.tpl:160 tmp.tpl:161 tmp.tpl:162
 #, python-brace-format
 msgid "Level {level} issues ({count})"
 msgstr ""
 
-#: tmp.tpl:198
+#: tmp.tpl:210
 #, python-brace-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
@@ -1427,68 +1428,67 @@ msgstr ""
 msgid "Mark issue #%d as fixed"
 msgstr ""
 
-#: tmp.tpl:156
+#: tmp.tpl:168
 msgid "Objects edited"
 msgstr ""
 
-#: tmp.tpl:157
+#: tmp.tpl:169
 msgid "Objects deleted"
 msgstr ""
 
-#: tmp.tpl:165
+#: tmp.tpl:177
 #, python-brace-format
 msgid "Show Object on {where}"
 msgstr ""
 
-#: tmp.tpl:166 tmp.tpl:167 tmp.tpl:168 tmp.tpl:169 tmp.tpl:170 tmp.tpl:171
-#: tmp.tpl:172
+#: tmp.tpl:178 tmp.tpl:179 tmp.tpl:180 tmp.tpl:181 tmp.tpl:182 tmp.tpl:183
+#: tmp.tpl:184
 #, python-brace-format
 msgid "Edit Object with {where}"
 msgstr ""
 
-#: tmp.tpl:172 tmp.tpl:174
+#: tmp.tpl:184 tmp.tpl:186
 msgid "online Osmose Editor"
 msgstr ""
 
-#: tmp.tpl:173 tmp.tpl:174
+#: tmp.tpl:185 tmp.tpl:186
 #, python-brace-format
 msgid "Load the fix in {where}"
 msgstr ""
 
-#: tmp.tpl:175
+#: tmp.tpl:187
 #, python-brace-format
 msgid "Add the new object in {where}"
 msgstr ""
 
-#: tmp.tpl:176
+#: tmp.tpl:188
 #, python-brace-format
 msgid "Show the area on {where}"
 msgstr ""
 
-#: tmp.tpl:177 tmp.tpl:178
+#: tmp.tpl:189 tmp.tpl:190
 #, python-brace-format
 msgid "Edit the area on {where}"
 msgstr ""
 
-#: tmp.tpl:179
+#: tmp.tpl:191
 msgid "details"
 msgstr ""
 
-#: tmp.tpl:180
+#: tmp.tpl:192
 msgid "Issue reported on:"
 msgstr ""
 
-#: tmp.tpl:181
 msgid "Help on OSM Wiki"
 msgstr ""
 
-#: tmp.tpl:182 tmp.tpl:183
+#: tmp.tpl:194 tmp.tpl:195
 msgid ""
 "Report the issue as improper, if according to you is not an issue. The issue"
 " will not be displayed to anyone more."
 msgstr ""
 
-#: tmp.tpl:184
+#: tmp.tpl:196
 msgid ""
 "After issue fixed on the OSM data, mark it as done. May also disappear "
 "automatically on next check if no more issue."
@@ -1502,7 +1502,7 @@ msgstr ""
 msgid "power transformer"
 msgstr ""
 
-#: tmp.tpl:142
+#: tmp.tpl:148
 #, python-format
 msgid "Item #%s"
 msgstr ""
@@ -1575,7 +1575,7 @@ msgstr ""
 msgid "power plant"
 msgstr ""
 
-#: tmp.tpl:187
+#: tmp.tpl:199
 msgid ""
 "Osmose tool is mainly developped by french people, and we aim to add more "
 "languages."
@@ -1615,4 +1615,60 @@ msgstr ""
 #: tmp.tpl:109
 #, python-format
 msgid "delete issue #%s"
+msgstr ""
+
+#: tmp.tpl:120
+msgid "How to Fix"
+msgstr ""
+
+#: tmp.tpl:121
+msgid "Trap to avoid"
+msgstr ""
+
+#: tmp.tpl:122
+msgid "Example"
+msgstr ""
+
+#: tmp.tpl:123
+msgid "Source Code"
+msgstr ""
+
+#: tmp.tpl:124
+msgid "Resource used"
+msgstr ""
+
+#: tmp.tpl:125
+msgid "Want to improve this control or this doc?"
+msgstr ""
+
+#: tmp.tpl:149
+msgid "Welcome to Osmose-QA"
+msgstr ""
+
+#: tmp.tpl:150
+msgid ""
+"Osmose-QA a is quality assurance tools available to detect issues in "
+"OpenStreetMap data."
+msgstr ""
+
+#: tmp.tpl:151
+msgid ""
+"It detects a very wide range of issue types. It is also useful for "
+"integrating third-party data sets or conflation."
+msgstr ""
+
+#: tmp.tpl:152
+msgid ""
+"Feel free to report problem, idea or new OpenData you want to add to Osmose "
+"on our Github."
+msgstr ""
+
+#: tmp.tpl:153
+msgid ""
+"In no case Osmose-QA should provide you the absolute right way to map, "
+"always keep a critical eye."
+msgstr ""
+
+#: tmp.tpl:154
+msgid "You can find help on the wiki:"
 msgstr ""
