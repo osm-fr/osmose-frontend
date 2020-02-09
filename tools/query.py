@@ -91,7 +91,7 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
 
     if (level and level != "1,2,3") or tags:
         tables.append("class")
-    if country:
+    if country is not None:
         tables.append("source")
     if not stats:
         tables.append("dynpoi_item")
@@ -147,8 +147,8 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
     if tilex and tiley and zoom:
         where.append("lonlat2z_order_curve(lon, lat) BETWEEN zoc18min(z_order_curve({x}, {y}), {z}) AND zoc18max(z_order_curve({x}, {y}), {z}) AND lat > -90".format(z=zoom, x=tilex, y=tiley))
 
-    if country:
-        if country[-1] == "*":
+    if country is not None:
+        if len(country) >= 1 and country[-1] == "*":
             country = country[:-1] + "%"
         where.append("source.country LIKE '%s'" % country)
 
@@ -240,7 +240,7 @@ def _params(max_limit=500):
     if params.limit > max_limit:
         params.limit = max_limit
     if params.country and not re.match(r"^([a-z_]+)(\*|)$", params.country):
-        params.country = None
+        params.country = ''
     if params.useDevItem == "true":
         params.useDevItem = True
     elif params.useDevItem == "all":
