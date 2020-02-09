@@ -169,6 +169,8 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
           url: `../api/0.3beta/issue/${e.layer.properties.uuid}`,
           dataType: 'json',
           success: (data) => {
+            data.elems_id = data.elems.map(elem => elem.type + elem.id).join(',');
+
             this._doc.load(data.item, data['class']);
             // Get the OSM objects
             this._featuresLayers.clearLayers();
