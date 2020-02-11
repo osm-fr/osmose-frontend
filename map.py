@@ -280,10 +280,10 @@ def issues_mvt(db, z, x, y, format):
 
     if params.zoom > 18:
         return
-    if (not params.users) and (not params.source) and (params.zoom < 6):
+    if (not params.users) and (not params.source) and (params.zoom < 7):
         return
 
-    results = query._gets(db, params) if z >= 6 else None
+    results = query._gets(db, params) if z >= 7 else None
 
     if format == 'mvt':
         tile = _errors_mvt(db, results, z, lon1, lat1, lon2, lat2, params.limit)
@@ -307,7 +307,7 @@ def issues_mvt(db, z, x, y, format):
 def markers(db):
     params = query._params()
 
-    if (not params.users) and (not params.source) and (params.zoom < 6):
+    if (not params.users) and (not params.source) and (params.zoom < 7):
         return
 
     params.limit = 200

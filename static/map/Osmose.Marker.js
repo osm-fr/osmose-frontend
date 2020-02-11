@@ -121,7 +121,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
   },
 
   _updateOsmoseLayer(e) {
-    if (this._map.getZoom() >= 6) {
+    if (this._map.getZoom() >= 7) {
       const newUrl = this._buildUrl(e.params);
       if (this._url !== newUrl) {
         this.setUrl(newUrl);

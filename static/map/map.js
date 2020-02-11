@@ -146,7 +146,7 @@ export function initMap() {
   function activeMenu(e) {
     const zoom = map.getZoom();
     const lat = Math.abs(map.getCenter().lat);
-    if (zoom >= 6 || (zoom >= 5 && lat > 60) || (zoom >= 4 && lat > 70) || (zoom >= 3 && lat > 75)) {
+    if (zoom >= 7 || (zoom >= 5 && lat > 60) || (zoom >= 4 && lat > 70) || (zoom >= 3 && lat > 75)) {
       $('#need_zoom').hide();
       $('#action_links, #tests').show();
     } else {
