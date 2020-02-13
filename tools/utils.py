@@ -36,6 +36,7 @@ languages_name["pt_BR"] = u"Português (Brasil)"
 languages_name["ro"] = u"Română"
 languages_name["ru"] = u"Русский"
 languages_name["uk"] = u"Українська"
+languages_name["vi"] = u"Tiếng Việt"
 languages_name["zh_CN"] = u"中文 (简体)"
 languages_name["zh_TW"] = u"中文 (繁體)"
 
