@@ -11,6 +11,7 @@
 # frodrigo <fred.rodrigo@gmail.com>, 2014,2019
 # frodrigo <fred.rodrigo@gmail.com>, 2014,2019
 # osmtools <osm@haraldhartmann.de>, 2017
+# kjon kjon <kjon@gmx.de>, 2020
 # Klumbumbus, 2015
 # Loo Nie <looniverse@gmail.com>, 2015
 # operon, 2012
@@ -24,14 +25,15 @@
 # Klumbumbus, 2015
 # sommerluk <sommerluk@gmail.com>, 2014
 # sommerluk <sommerluk@gmail.com>, 2014
+# ToniE <osm-ToniE@web.de>, 2020
 # xuiqzy xuiqzy <pirminbraun16@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-02-08 19:56+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2020-02-09 17:24+0000\n"
+"Last-Translator: ToniE <osm-ToniE@web.de>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1537,11 +1539,11 @@ msgstr "Krankenhaus"
 
 #: ../tools/database/item_menu.txt:125 ../tools/database/item_menu.txt:186
 msgid "social facility"
-msgstr ""
+msgstr "Sozialeinrichtung"
 
 #: ../tools/database/item_menu.txt:126 ../tools/database/item_menu.txt:188
 msgid "medical lab"
-msgstr ""
+msgstr "Medizinisches Labor"
 
 #: ../tools/database/item_menu.txt:185
 msgid "hospital, could be integrated"
@@ -1593,17 +1595,17 @@ msgstr "Eisenbahn"
 
 #: ../tools/database/item_menu.txt:177
 msgid "power plant"
-msgstr ""
+msgstr "Kraftwerk"
 
 #: tmp.tpl:199
 msgid ""
 "Osmose tool is mainly developped by french people, and we aim to add more "
 "languages."
-msgstr ""
+msgstr "Osmose wird hauptsächlich durch französische Leute entwickelt, unser Ziel ist es, mehr Sprachen hinzuzufügen."
 
 #: ../tools/database/item_menu.txt:191
 msgid "defibrillator"
-msgstr ""
+msgstr "Defibrillator"
 
 #: ../tools/database/item_menu.txt:192
 msgid "radio support"
@@ -1647,11 +1649,11 @@ msgstr ""
 
 #: tmp.tpl:122
 msgid "Example"
-msgstr ""
+msgstr "Beispiel"
 
 #: tmp.tpl:123
 msgid "Source Code"
-msgstr ""
+msgstr "Quellcode"
 
 #: tmp.tpl:124
 msgid "Resource used"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-02-13 11:15+0000\n"
+"PO-Revision-Date: 2020-02-13 15:11+0000\n"
 "Last-Translator: Mikel Ortega\n"
 "Language-Team: Basque (http://www.transifex.com/openstreetmap-france/osmose/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -100,7 +100,7 @@ msgstr "Erabiltzaile izena"
 #: tmp.tpl:12
 #, python-format
 msgid "User statistics for %s"
-msgstr ""
+msgstr "%s erabiltzailearen estatistikak"
 
 #: tmp.tpl:14
 msgid "This list is also available via rss."
@@ -1012,7 +1012,7 @@ msgstr "herrialdea"
 
 #: tmp.tpl:43
 msgid "analyser"
-msgstr ""
+msgstr "analizatzailea"
 
 #: ../tools/database/item_menu.txt:172
 msgid "postal code, could be integrated"

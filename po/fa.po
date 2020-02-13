@@ -4,14 +4,14 @@
 # 
 # Translators:
 # imni <iriman@chmail.ir>, 2018
-# imni <iriman@chmail.ir>, 2018-2019
+# imni <iriman@chmail.ir>, 2018-2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-02-08 19:56+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2020-02-10 10:11+0000\n"
+"Last-Translator: imni <iriman@chmail.ir>\n"
 "Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1600,75 +1600,75 @@ msgstr ""
 #: tmp.tpl:58
 #, python-format
 msgid "Information on issue %s"
-msgstr ""
+msgstr "اطلاعاتی دربارهٔ مسئلهٔ %s"
 
 #: tmp.tpl:107
 #, python-format
 msgid "Mark issue #%s as false positive"
-msgstr ""
+msgstr "نشانه‌گذاری مسئلهٔ #%s به‌عنوان مثبت کاذب"
 
 #: tmp.tpl:108
 #, python-format
 msgid "Mark issue #%s as fixed"
-msgstr ""
+msgstr "نشانه‌گذاری مسئلهٔ #%s به‌عنوان حل‌شده"
 
 #: tmp.tpl:109
 #, python-format
 msgid "delete issue #%s"
-msgstr ""
+msgstr "حذف مسئلهٔ #%s"
 
 #: tmp.tpl:120
 msgid "How to Fix"
-msgstr ""
+msgstr "چگونه اصلاح کنید"
 
 #: tmp.tpl:121
 msgid "Trap to avoid"
-msgstr ""
+msgstr "تله‌ها"
 
 #: tmp.tpl:122
 msgid "Example"
-msgstr ""
+msgstr "نمونه"
 
 #: tmp.tpl:123
 msgid "Source Code"
-msgstr ""
+msgstr "کد منبع"
 
 #: tmp.tpl:124
 msgid "Resource used"
-msgstr ""
+msgstr "منابع استفاده‌شده"
 
 #: tmp.tpl:125
 msgid "Want to improve this control or this doc?"
-msgstr ""
+msgstr "می‌خواهید این راهنما یا این کادر را بهبود بدهید؟"
 
 #: tmp.tpl:149
 msgid "Welcome to Osmose-QA"
-msgstr ""
+msgstr "به Osmose-QA خوش آمدید"
 
 #: tmp.tpl:150
 msgid ""
 "Osmose-QA a is quality assurance tools available to detect issues in "
 "OpenStreetMap data."
-msgstr ""
+msgstr "Osmose-QA یکی از ابزارهای تضمین کیفیت برای یافتن مسائل داده‌های اوپن‌استریت‌مپ است."
 
 #: tmp.tpl:151
 msgid ""
 "It detects a very wide range of issue types. It is also useful for "
 "integrating third-party data sets or conflation."
-msgstr ""
+msgstr "این ابزار انواع گسترده‌ای از مسائل را کشف می‌کند. همچنین برای تلفیق یا یکپارچه‌سازی مجموعه‌داده‌های ثالث مفید است."
 
 #: tmp.tpl:152
 msgid ""
 "Feel free to report problem, idea or new OpenData you want to add to Osmose "
 "on our Github."
-msgstr ""
+msgstr "لطفاً مشکل، ایده یا داده‌های باز را در گیت‌هاب ما گزارش کنید تا به Osmose بیفزاییم."
 
 #: tmp.tpl:153
 msgid ""
 "In no case Osmose-QA should provide you the absolute right way to map, "
 "always keep a critical eye."
-msgstr ""
+msgstr "هرگز نباید Osmose-QA را ملاک درست و دقیق برای نقشه‌کشی بدانید. همیشه نگاه انتقادی داشته باشید."
 
 #: tmp.tpl:154
 msgid "You can find help on the wiki:"
-msgstr ""
+msgstr "راهنما را در ویکی ببینید:"
