@@ -3,20 +3,21 @@
 # This file is distributed under the same license as the osmose-frontend package.
 # 
 # Translators:
+# Jakub Jelen <jakuje@gmail.com>, 2020
 # Jan Vršovský <vrs@email.cz>, 2015
 # trendspotter <j.podhorecky@volny.cz>, 2018
 # trendspotter <j.podhorecky@volny.cz>, 2019
 # Michal Pustějovský <Michal.Pustejovsky@seznam.cz>, 2014
 # Petr Schönmann <pschonmann@gmail.com>, 2014,2018
-# TK, 2014-2015,2017
+# TK, 2014-2015,2017,2020
 # trendspotter <j.podhorecky@volny.cz>, 2018-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-02-08 19:56+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2020-02-15 13:51+0000\n"
+"Last-Translator: Jakub Jelen <jakuje@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1501,7 +1502,7 @@ msgstr "Po vyřešení problému na základě údajů OSM označte jej jako hoto
 
 #: ../tools/database/item_menu.txt:43
 msgid "zone:maxspeed"
-msgstr ""
+msgstr "zone:maxspeed"
 
 #: ../tools/database/item_menu.txt:211
 msgid "power transformer"
@@ -1554,7 +1555,7 @@ msgstr "potenciální pravopisná chyba"
 
 #: ../tools/database/item_menu.txt:29
 msgid "enforcement"
-msgstr ""
+msgstr "vynucení"
 
 #: ../tools/database/item_menu.txt:59
 msgid "URL"
@@ -1562,118 +1563,118 @@ msgstr "URL"
 
 #: ../tools/database/item_menu.txt:190
 msgid "street objects"
-msgstr ""
+msgstr "objekty ulice"
 
 #: ../tools/database/item_menu.txt:209
 msgid "openrailwaymap"
-msgstr ""
+msgstr "openrailwaymap"
 
 #: ../tools/database/item_menu.txt:210
 msgid "openrailwaymap in germany"
-msgstr ""
+msgstr "openrailwaymap v Německu"
 
 #: ../tools/database/item_menu.txt:44
 msgid "railways"
-msgstr ""
+msgstr "železnice"
 
 #: ../tools/database/item_menu.txt:177
 msgid "power plant"
-msgstr ""
+msgstr "elektrárna"
 
 #: tmp.tpl:199
 msgid ""
 "Osmose tool is mainly developped by french people, and we aim to add more "
 "languages."
-msgstr ""
+msgstr "Nástroj Osmose je vyvíjený hlavně Francouzi, ale chtěli bychom přidat více jazyků."
 
 #: ../tools/database/item_menu.txt:191
 msgid "defibrillator"
-msgstr ""
+msgstr "defibrilátor"
 
 #: ../tools/database/item_menu.txt:192
 msgid "radio support"
-msgstr ""
+msgstr "podpora pro rádio"
 
 #: ../tools/database/item_menu.txt:193
 msgid "radio support, could be integrated"
-msgstr ""
+msgstr "podpora pro rádio, může být vestavěné"
 
 #: ../tools/database/item_menu.txt:194
 msgid "radio support, need update"
-msgstr ""
+msgstr "podpora pro rádio, potřebuje aktualizaci"
 
 #: tmp.tpl:58
 #, python-format
 msgid "Information on issue %s"
-msgstr ""
+msgstr "Informace o problému %s"
 
 #: tmp.tpl:107
 #, python-format
 msgid "Mark issue #%s as false positive"
-msgstr ""
+msgstr "Označ problém #%s jako \"není chyba\""
 
 #: tmp.tpl:108
 #, python-format
 msgid "Mark issue #%s as fixed"
-msgstr ""
+msgstr "Označ problém #%s jako opravený"
 
 #: tmp.tpl:109
 #, python-format
 msgid "delete issue #%s"
-msgstr ""
+msgstr "smazat problém #%s"
 
 #: tmp.tpl:120
 msgid "How to Fix"
-msgstr ""
+msgstr "Jak opravit"
 
 #: tmp.tpl:121
 msgid "Trap to avoid"
-msgstr ""
+msgstr "Past k vyhnutí se"
 
 #: tmp.tpl:122
 msgid "Example"
-msgstr ""
+msgstr "Příklad"
 
 #: tmp.tpl:123
 msgid "Source Code"
-msgstr ""
+msgstr "Zdrojový kód"
 
 #: tmp.tpl:124
 msgid "Resource used"
-msgstr ""
+msgstr "Použitý zdroj"
 
 #: tmp.tpl:125
 msgid "Want to improve this control or this doc?"
-msgstr ""
+msgstr "Chcete vylepšit tuto kontrolu nebo její dokumentaci?"
 
 #: tmp.tpl:149
 msgid "Welcome to Osmose-QA"
-msgstr ""
+msgstr "Vítejte v Osmose-QA"
 
 #: tmp.tpl:150
 msgid ""
 "Osmose-QA a is quality assurance tools available to detect issues in "
 "OpenStreetMap data."
-msgstr ""
+msgstr "Osmose-QA je nástroj zajištění kvality dostupný k nalezení problémů v datech OpenStreetMap."
 
 #: tmp.tpl:151
 msgid ""
 "It detects a very wide range of issue types. It is also useful for "
 "integrating third-party data sets or conflation."
-msgstr ""
+msgstr "Je schopný nalézt mnoho typů chyb. Je také užitečný pro integraci s datovými sadami třetích stran nebo jejich spojování."
 
 #: tmp.tpl:152
 msgid ""
 "Feel free to report problem, idea or new OpenData you want to add to Osmose "
 "on our Github."
-msgstr ""
+msgstr "Nebojte se nahlásit problém, navrhnout nápad, nebo nová otevřená data, která chcete přidat do Osmoze přímo na našem Githubu."
 
 #: tmp.tpl:153
 msgid ""
 "In no case Osmose-QA should provide you the absolute right way to map, "
 "always keep a critical eye."
-msgstr ""
+msgstr "V žádném případě by Osmose-QA nemělo poskytovat absolutní pravdu o tom jak mapovat. Vždy použijte kritické myšlení."
 
 #: tmp.tpl:154
 msgid "You can find help on the wiki:"
-msgstr ""
+msgstr "Pomoc najdete na wiki:"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-02-13 15:11+0000\n"
+"PO-Revision-Date: 2020-02-14 08:26+0000\n"
 "Last-Translator: Mikel Ortega\n"
 "Language-Team: Basque (http://www.transifex.com/openstreetmap-france/osmose/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -365,7 +365,7 @@ msgstr "Laguntza"
 #: tmp.tpl:159
 #, python-format
 msgid "Delay: %sd"
-msgstr ""
+msgstr "Atzerapena: %se"
 
 #: tmp.tpl:163
 msgid "Logout"
@@ -443,7 +443,7 @@ msgstr "Estruktura"
 
 #: ../tools/database/categ_menu.txt:2
 msgid "Missing tags"
-msgstr ""
+msgstr "Etiketak faltan"
 
 #: ../tools/database/categ_menu.txt:3
 msgid "Bad tag"
@@ -471,7 +471,7 @@ msgstr "Integrazioa"
 
 #: ../tools/database/item_menu.txt:1
 msgid "overlapping building"
-msgstr ""
+msgstr "eraikin bat bestearen gainean"
 
 #: ../tools/database/item_menu.txt:3
 msgid "duplicated node"
@@ -503,7 +503,7 @@ msgstr "nodo umezurtzak"
 
 #: ../tools/database/item_menu.txt:10
 msgid "sudden highway type change"
-msgstr ""
+msgstr "errepide motaren bapateko aldaketa"
 
 #: ../tools/database/item_menu.txt:11
 msgid "unclosed area"
@@ -535,7 +535,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:18
 msgid "double cycleway"
-msgstr ""
+msgstr "bide-gorri bikoitza"
 
 #: ../tools/database/item_menu.txt:19
 msgid "approximate way"
@@ -547,7 +547,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:21
 msgid "not-connected highway/cycleway"
-msgstr ""
+msgstr "konektatu gabeko errepidea/bidegorria"
 
 #: ../tools/database/item_menu.txt:22
 msgid "waterway"
@@ -555,7 +555,7 @@ msgstr "ubidea"
 
 #: ../tools/database/item_menu.txt:24
 msgid "duplicate geometry"
-msgstr ""
+msgstr "geometria errepikatua"
 
 #: ../tools/database/item_menu.txt:30
 msgid "junction=roundabout"
@@ -930,7 +930,7 @@ msgstr ""
 
 #: tmp.tpl:156
 msgid "Export"
-msgstr ""
+msgstr "Esportatu"
 
 #: tmp.tpl:157
 msgid "Html list"
@@ -1055,7 +1055,7 @@ msgstr "Konpondutako arazoak"
 
 #: ../map.py:85
 msgid "Issues by user"
-msgstr ""
+msgstr "Erabiltzaile bakoitzeko arazoak"
 
 #: tmp.tpl:2 tmp.tpl:3 tmp.tpl:4
 #, python-brace-format
@@ -1065,19 +1065,19 @@ msgstr ""
 #: tmp.tpl:6 tmp.tpl:15
 #, python-format
 msgid "Number of found issues: %d"
-msgstr ""
+msgstr "Aurkitutako arazo kopurua: %d"
 
 #: tmp.tpl:7 tmp.tpl:16
 #, python-format
 msgid "Number of found issues: more than %d"
-msgstr ""
+msgstr "Aurkitutako arazo kopurura: %d baina gehiago"
 
 #: tmp.tpl:13
 #, python-format
 msgid ""
 "This page shows issues on elements that were last modified by '%s'. This "
 "doesn't means that this user is responsible for all these issues."
-msgstr ""
+msgstr "Orri honetan '%s'k azken aldiz aldatu dituen elementuak agertzen dira. Honek ez du esan nahi erabiltzaile hau arazo guzti hauen erruduna denik."
 
 #: tmp.tpl:17
 msgid "Show issues on a map"
@@ -1350,7 +1350,7 @@ msgstr ""
 #: tmp.tpl:160 tmp.tpl:161 tmp.tpl:162
 #, python-brace-format
 msgid "Level {level} issues ({count})"
-msgstr ""
+msgstr "{level} mailako arazoak ({count})"
 
 #: tmp.tpl:210
 #, python-brace-format
@@ -1361,7 +1361,7 @@ msgstr ""
 
 #: ../tools/database/categ_menu.txt:9
 msgid "JOSM validator"
-msgstr ""
+msgstr "JOSM balidatzailea"
 
 #: ../tools/database/item_menu.txt:195
 msgid "seamark"
@@ -1499,7 +1499,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:211
 msgid "power transformer"
-msgstr ""
+msgstr "transformadore elektrikoa"
 
 #: tmp.tpl:148
 #, python-format
@@ -1642,13 +1642,13 @@ msgstr ""
 
 #: tmp.tpl:149
 msgid "Welcome to Osmose-QA"
-msgstr ""
+msgstr "Ongi etorri Osmose-QAra"
 
 #: tmp.tpl:150
 msgid ""
 "Osmose-QA a is quality assurance tools available to detect issues in "
 "OpenStreetMap data."
-msgstr ""
+msgstr "Osmose-QA OpenStreetMap datuetan arazoak aurkitu eta kalitatea bermatzeko tresna da."
 
 #: tmp.tpl:151
 msgid ""
