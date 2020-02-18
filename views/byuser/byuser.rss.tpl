@@ -23,7 +23,7 @@
         {{translate.select(res["subtitle"])}}
 %    end
         item={{res["item"]}}, class={{res["class"]}}, level={{res["level"]}}
-        {{'<a href="http://%s/error/%s">E</a>' % (website, res['id'])}}
+        {{'<a href="http://%s/error/%s">E</a>' % (website, res['uuid'])}}
 %    lat = res["lat"]
 %    lon = res["lon"]
 %    minlat = float(lat) - 0.002
