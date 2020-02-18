@@ -335,13 +335,16 @@ WHERE
                 self._fix.append(self._elem)
 
         elif name == u"class":
+            # Commit class update on its own transaction. Avoid lock the class table and block other updates.
+            dbconn = utils.get_dbconn()
+            dbcurs = dbconn.cursor()
             sql  = u"INSERT INTO class (class, item, title, level, tags, detail, fix, trap, example, source, resource, timestamp) "
             sql += u"VALUES (%(class)s, %(item)s, %(title)s, %(level)s, %(tags)s, %(detail)s, %(fix)s, %(trap)s, %(example)s, %(source)s, %(resource)s, %(timestamp)s) "
             sql += u"ON CONFLICT (item, class) DO "
             sql += u"UPDATE SET title = %(title)s, level = %(level)s, tags = %(tags)s, detail = %(detail)s, fix = %(fix)s, trap = %(trap)s, example = %(example)s, source = %(source)s, resource = %(resource)s, timestamp = %(timestamp)s "
             sql += u"WHERE class.class = %(class)s AND class.item = %(item)s AND class.timestamp < %(timestamp)s AND "
             sql += u"      (class.title != %(title)s OR class.level != %(level)s OR class.tags != %(tags)s::varchar[] OR class.detail != %(detail)s OR class.fix != %(fix)s OR class.trap != %(trap)s OR class.example != %(example)s OR class.source != %(source)s OR class.resource != %(resource)s)"
-            execute_sql(self._dbcurs, sql, {
+            execute_sql(dbcurs, sql, {
                 'class': self._class_id,
                 'item': self._class_item[self._class_id],
                 'title': self._class_title,
@@ -355,6 +358,8 @@ WHERE
                 'resource': self._class_resource or None,
                 'timestamp': utils.pg_escape(self.ts),
             })
+            dbconn.commit()
+            dbconn.close()
 
             sql  = u"INSERT INTO dynpoi_class (source, class, item, timestamp) "
             sql += u"VALUES (%(source)s, %(class)s, %(item)s, %(timestamp)s)"
