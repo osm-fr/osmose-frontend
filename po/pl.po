@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-02-08 23:04+0000\n"
+"PO-Revision-Date: 2020-02-17 23:02+0000\n"
 "Last-Translator: maro21 OSM\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -232,7 +232,7 @@ msgstr "Elementy"
 
 #: tmp.tpl:65
 msgid "Fixes"
-msgstr "Poprawek"
+msgstr "Poprawki"
 
 #: tmp.tpl:69
 msgid "Fixed"
@@ -839,7 +839,7 @@ msgstr "szkoła, powinna być zintegrowana [FR]"
 #: ../tools/database/item_menu.txt:27 ../tools/database/item_menu.txt:138
 #: ../tools/database/item_menu.txt:208
 msgid "public transport"
-msgstr "transport publiczny [FR]"
+msgstr "transport publiczny"
 
 #: ../tools/database/item_menu.txt:139
 msgid "public transport, could be integrated"
@@ -1297,7 +1297,7 @@ msgstr "prawie skrzyżowanie"
 
 #: ../tools/database/item_menu.txt:42
 msgid "public_transport route"
-msgstr "transport publiczny"
+msgstr "relacja transportu publicznego"
 
 #: ../tools/database/item_menu.txt:73
 msgid "recycling container"
@@ -1597,7 +1597,7 @@ msgstr "defibrylator [FR]"
 
 #: ../tools/database/item_menu.txt:192
 msgid "radio support"
-msgstr "maszt radiowy [FR}"
+msgstr "maszt radiowy [FR]"
 
 #: ../tools/database/item_menu.txt:193
 msgid "radio support, could be integrated"
