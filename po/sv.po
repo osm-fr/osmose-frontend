@@ -1,0 +1,1673 @@
+# Osmose frontend
+# Copyright (C) 2014
+# This file is distributed under the same license as the osmose-frontend package.
+# 
+# Translators:
+# Magnus Österlund, 2020
+msgid ""
+msgstr ""
+"Project-Id-Version: Osmose\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-18 22:25+0100\n"
+"PO-Revision-Date: 2020-02-17 12:58+0000\n"
+"Last-Translator: Magnus Österlund\n"
+"Language-Team: Swedish (http://www.transifex.com/openstreetmap-france/osmose/language/sv/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sv\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANSLATORS: days / hours / minutes since last source update, abbreviated
+#. to d / h / m
+#: ../control.py:51
+#, python-brace-format
+msgid "{day}d, {hour}h, {minute}m ago"
+msgstr "{day}d, {hour}t, {minute}m sedan"
+
+#: ../control.py:53
+#, python-brace-format
+msgid "in {day}d, {hour}h, {minute}m"
+msgstr "in {day}d, {hour}h, {minute}m"
+
+#: ../control.py:56
+msgid "never generated"
+msgstr ""
+
+#. TRANSLATORS: link to tooltip help
+#: ../error.py:209 ../false_positive.py:83 tmp.tpl:207
+msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
+msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
+
+#: ../errors.py:154 tmp.tpl:70
+msgid "False positives"
+msgstr "Positivt falska"
+
+#: ../errors.py:160 tmp.tpl:68
+msgid "Informations"
+msgstr "Information"
+
+#: ../map.py:86
+msgid "Relation analyser"
+msgstr ""
+
+#. TRANSLATORS: link to source code
+#: ../map.py:88
+msgid "Statistics"
+msgstr "Statistik"
+
+#: ../map.py:91 tmp.tpl:23
+msgid "Contact"
+msgstr "Kontakta"
+
+#: ../map.py:92
+msgid "Help on wiki"
+msgstr "Hjälp på wiki"
+
+#: ../map.py:92 tmp.tpl:116 tmp.tpl:206
+msgid "http://wiki.openstreetmap.org/wiki/Osmose"
+msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
+
+#: ../map.py:93
+msgid "Copyright"
+msgstr ""
+
+#: ../map.py:94
+msgid "Sources"
+msgstr "Källor"
+
+#: ../map.py:95
+msgid "Translation"
+msgstr "Översättning"
+
+#: tmp.tpl:1 tmp.tpl:5 tmp.tpl:11
+#, python-format
+msgid "Statistics for user %s"
+msgstr "Statistik för användare %s"
+
+#: tmp.tpl:8
+msgid "Users statistics"
+msgstr "Användarstatistik"
+
+#: tmp.tpl:9
+msgid "Number"
+msgstr ""
+
+#: tmp.tpl:10
+msgid "Username"
+msgstr "Användarnamn"
+
+#: tmp.tpl:12
+#, python-format
+msgid "User statistics for %s"
+msgstr "Användarstatistik för %s"
+
+#: tmp.tpl:14
+msgid "This list is also available via rss."
+msgstr ""
+
+#: tmp.tpl:18
+msgid "Statistics for user"
+msgstr "Statistik för användare"
+
+#: tmp.tpl:19
+msgid "User statistics"
+msgstr "Användarstatistik"
+
+#: tmp.tpl:22
+msgid "Username:"
+msgstr "Användarnamn:"
+
+#: tmp.tpl:24
+msgid "Bug tracker"
+msgstr ""
+
+#: tmp.tpl:26
+msgid "Providing patches"
+msgstr ""
+
+#: tmp.tpl:27
+msgid ""
+"Patches can be provided via merge requests on Github. This is the preferred "
+"way of handling patches."
+msgstr ""
+
+#: tmp.tpl:28
+msgid "Development"
+msgstr ""
+
+#: tmp.tpl:29
+msgid ""
+"Development of Osmose is made as free software by <a "
+"href='../copyright'>volunteers</a>."
+msgstr ""
+
+#: tmp.tpl:32
+msgid "Contacting maintainers"
+msgstr ""
+
+#: tmp.tpl:35 tmp.tpl:39
+msgid "Last updates"
+msgstr ""
+
+#: tmp.tpl:40
+msgid "Median delay:"
+msgstr ""
+
+#: tmp.tpl:41 tmp.tpl:48 tmp.tpl:83 tmp.tpl:93
+#: ../tools/database/item_menu.txt:33
+msgid "source"
+msgstr "källa"
+
+#: tmp.tpl:44
+msgid "last generation"
+msgstr ""
+
+#: tmp.tpl:45 tmp.tpl:46
+msgid "history"
+msgstr ""
+
+#: tmp.tpl:47
+msgid "Update"
+msgstr ""
+
+#: tmp.tpl:49
+msgid "remote url"
+msgstr ""
+
+#: tmp.tpl:50
+msgid "timestamp"
+msgstr ""
+
+#: tmp.tpl:52
+msgid "Copyright information"
+msgstr ""
+
+#: tmp.tpl:53
+msgid "License"
+msgstr "Lisens"
+
+#: tmp.tpl:54
+msgid "Authors"
+msgstr ""
+
+#: tmp.tpl:55
+msgid "And contributors"
+msgstr ""
+
+#: tmp.tpl:56
+msgid "Data are coming from"
+msgstr ""
+
+#: tmp.tpl:57
+msgid "copyright"
+msgstr ""
+
+#: tmp.tpl:60 tmp.tpl:63 tmp.tpl:66 tmp.tpl:111
+msgid "key"
+msgstr "nyckel"
+
+#: tmp.tpl:61 tmp.tpl:64 tmp.tpl:67 tmp.tpl:112
+msgid "value"
+msgstr "värde"
+
+#: tmp.tpl:59 tmp.tpl:113
+msgid "Marker"
+msgstr ""
+
+#: tmp.tpl:62
+msgid "Elements"
+msgstr ""
+
+#: tmp.tpl:65
+msgid "Fixes"
+msgstr "Fixar"
+
+#: tmp.tpl:69
+msgid "Fixed"
+msgstr "Fixade"
+
+#: tmp.tpl:71
+msgid "Graph"
+msgstr "Graf"
+
+#: tmp.tpl:72 tmp.tpl:129
+msgid "Map"
+msgstr ""
+
+#. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
+#: tmp.tpl:82
+msgid "Set"
+msgstr "Sätt"
+
+#. TRANSLATORS: this should be replaced by a abbreviation for class
+#: tmp.tpl:87 tmp.tpl:98
+msgid "class (abbreviation)"
+msgstr ""
+
+#: tmp.tpl:85 tmp.tpl:96
+msgid "item"
+msgstr ""
+
+#: tmp.tpl:88
+msgid "title"
+msgstr "titel"
+
+#: tmp.tpl:89
+msgid "count"
+msgstr "antal"
+
+#: tmp.tpl:90
+msgid "Total"
+msgstr ""
+
+#. TRANSLATORS: this should be replaced by a abbreviation for subclass
+msgid "subclass (abbreviation)"
+msgstr ""
+
+#. TRANSLATORS: this should be replaced by a abbreviation for level
+#: tmp.tpl:95
+msgid "level (abbreviation)"
+msgstr ""
+
+#: tmp.tpl:100
+msgid "position (abbreviation)"
+msgstr ""
+
+#: tmp.tpl:101
+msgid "elements (abbreviation)"
+msgstr ""
+
+#: tmp.tpl:102
+msgid "subtitle"
+msgstr ""
+
+#: tmp.tpl:103 ../tools/database/item_menu.txt:56
+msgid "date"
+msgstr "datum"
+
+#: tmp.tpl:114
+msgid "OpenStreetMap Oversight Search Engine"
+msgstr ""
+
+#: tmp.tpl:116
+msgid "Help on OSM wiki"
+msgstr "Hjälp på OSM-wiki"
+
+#: tmp.tpl:118
+msgid "False positives list"
+msgstr ""
+
+#: tmp.tpl:119
+msgid "Last analysis updates"
+msgstr ""
+
+#: tmp.tpl:126
+msgid "Tags Editor"
+msgstr ""
+
+#: tmp.tpl:127 tmp.tpl:175
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: tmp.tpl:128
+msgid "Valid"
+msgstr ""
+
+#: tmp.tpl:131
+msgid "no bubbles at this zoom factor"
+msgstr ""
+
+#: tmp.tpl:75 tmp.tpl:132
+msgid "Severity"
+msgstr "Allvarlighet"
+
+#: tmp.tpl:138
+msgid "Fixable"
+msgstr "Fixas"
+
+#: tmp.tpl:139
+msgid "Show only markers with correction suggestions"
+msgstr ""
+
+#: tmp.tpl:140
+msgid "Online"
+msgstr "Online"
+
+#: tmp.tpl:141
+msgid "Topic"
+msgstr "Ämne"
+
+#: tmp.tpl:142
+msgid "Select:"
+msgstr "Välj:"
+
+#: tmp.tpl:143 tmp.tpl:146
+msgid "all"
+msgstr "alla"
+
+#: tmp.tpl:144 tmp.tpl:147
+msgid "nothing"
+msgstr "inga"
+
+#: tmp.tpl:145
+msgid "invert"
+msgstr "invertera"
+
+#: tmp.tpl:155
+msgid "Change language"
+msgstr "Ändra språk"
+
+#: tmp.tpl:158 tmp.tpl:193
+msgid "Help"
+msgstr "Hjälp"
+
+#: tmp.tpl:159
+#, python-format
+msgid "Delay: %sd"
+msgstr ""
+
+#: tmp.tpl:163
+msgid "Logout"
+msgstr "Logga ut"
+
+#: tmp.tpl:164 tmp.tpl:166
+msgid "Login"
+msgstr "Logga in"
+
+#: tmp.tpl:165 tmp.tpl:176
+msgid "Save"
+msgstr "Spara"
+
+#: tmp.tpl:171
+msgid "Fix with Osmose"
+msgstr ""
+
+#: tmp.tpl:172
+msgid "Source"
+msgstr "Källa"
+
+#: tmp.tpl:173
+msgid "Type"
+msgstr "Typ"
+
+#: tmp.tpl:174
+msgid "Reuse changeset"
+msgstr ""
+
+#: tmp.tpl:196
+msgid "corrected"
+msgstr ""
+
+#: tmp.tpl:195
+msgid "false positive"
+msgstr "positivt falska"
+
+#: tmp.tpl:197 tmp.tpl:198
+msgid "How to help translation"
+msgstr ""
+
+#: tmp.tpl:200
+msgid ""
+"To make Osmose a real multi-lingual tool, we need your help to improve "
+"current translations, and add new translations"
+msgstr ""
+
+#: tmp.tpl:201
+msgid "Pages to translate"
+msgstr ""
+
+#: tmp.tpl:205
+msgid "Wiki pages"
+msgstr "Wiki-sida"
+
+#: tmp.tpl:202
+msgid "Osmose pages"
+msgstr ""
+
+#: tmp.tpl:211
+msgid "Bug tracking system"
+msgstr ""
+
+#: tmp.tpl:30
+msgid ""
+"Adding new functionality of <em>Osmose Editor</em>, initial support of "
+"mobile device and improvement of documentation was funded by region of "
+"Aquitaine, France; part of the OpenAquiMap project leading by <em>Les Petits"
+" Débrouillards d'Aquitaine</em>."
+msgstr ""
+
+#: ../tools/database/categ_menu.txt:1
+msgid "Structure"
+msgstr "Struktur"
+
+#: ../tools/database/categ_menu.txt:2
+msgid "Missing tags"
+msgstr "Saknade taggar"
+
+#: ../tools/database/categ_menu.txt:3
+msgid "Bad tag"
+msgstr "Felaktiga taggar"
+
+#: ../tools/database/categ_menu.txt:4
+msgid "Tags to remove"
+msgstr "Taggar att radera"
+
+#: ../tools/database/categ_menu.txt:5
+msgid "Tags name"
+msgstr "Tagg-namn"
+
+#: ../tools/database/categ_menu.txt:6
+msgid "Administrative"
+msgstr "Administrativt"
+
+#: ../tools/database/categ_menu.txt:7
+msgid "To map"
+msgstr "Att kartlägga"
+
+#: ../tools/database/categ_menu.txt:8
+msgid "Integration"
+msgstr "Integration"
+
+#: ../tools/database/item_menu.txt:1
+msgid "overlapping building"
+msgstr "överlappande byggnad"
+
+#: ../tools/database/item_menu.txt:3
+msgid "duplicated node"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:4
+msgid "way one node"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:5
+msgid "invalid polygon"
+msgstr "ogiltig polygon"
+
+#: ../tools/database/item_menu.txt:6
+msgid "reverse roundabout"
+msgstr "omvänd rondell"
+
+#: ../tools/database/item_menu.txt:7
+msgid "boundary intersect"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:8
+msgid "objects overlap"
+msgstr "objekt överlappar"
+
+#: ../tools/database/item_menu.txt:9
+msgid "orphan nodes"
+msgstr "föräldralösa noder"
+
+#: ../tools/database/item_menu.txt:10
+msgid "sudden highway type change"
+msgstr "plötslig förändring av vägtyp"
+
+#: ../tools/database/item_menu.txt:11
+msgid "unclosed area"
+msgstr "ej stängt område"
+
+#: ../tools/database/item_menu.txt:12
+msgid "bad *_link highway"
+msgstr "felaktig *_link-väg"
+
+#: ../tools/database/item_menu.txt:13
+msgid "broken highway continuity"
+msgstr "bruten vägskontinuitet"
+
+#: ../tools/database/item_menu.txt:14
+msgid "missing tag or role"
+msgstr "saknar tagg eller roll"
+
+#: ../tools/database/item_menu.txt:15
+msgid "surface intersection"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:16
+msgid "big relation"
+msgstr "stor relation"
+
+#: ../tools/database/item_menu.txt:17
+msgid "multipolygon"
+msgstr "multipolygon"
+
+#: ../tools/database/item_menu.txt:18
+msgid "double cycleway"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:19
+msgid "approximate way"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:20
+msgid "1-member relation"
+msgstr "relation med 1 medlem"
+
+#: ../tools/database/item_menu.txt:21
+msgid "not-connected highway/cycleway"
+msgstr "icke kopplad väg/cykelväg"
+
+#: ../tools/database/item_menu.txt:22
+msgid "waterway"
+msgstr "vattenväg"
+
+#: ../tools/database/item_menu.txt:24
+msgid "duplicate geometry"
+msgstr "duplicerad geometri"
+
+#: ../tools/database/item_menu.txt:30
+msgid "junction=roundabout"
+msgstr "junction=roundabout"
+
+#: ../tools/database/item_menu.txt:31
+msgid "elevation"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:32
+msgid "oneway"
+msgstr "enkelriktat"
+
+#: ../tools/database/item_menu.txt:34
+msgid "parent tag"
+msgstr "föräldrartagg"
+
+#: ../tools/database/item_menu.txt:35
+msgid "street numbers"
+msgstr "gatunummer"
+
+#: ../tools/database/item_menu.txt:36 ../tools/database/item_menu.txt:200
+msgid "highway"
+msgstr "väg"
+
+#: ../tools/database/item_menu.txt:37
+msgid "highway crossing"
+msgstr "vägkorsning"
+
+#: ../tools/database/item_menu.txt:38 ../tools/database/item_menu.txt:170
+msgid "pharmacy"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:45
+msgid "highway roundabout"
+msgstr "vägrondell"
+
+#: ../tools/database/item_menu.txt:46
+msgid "bad source tag"
+msgstr "felaktig source-tagg"
+
+#: ../tools/database/item_menu.txt:47
+msgid "tagwatch cleaner"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:48 ../tools/database/item_menu.txt:207
+msgid "wikipedia"
+msgstr "wikipedia"
+
+#: ../tools/database/item_menu.txt:49
+msgid "multiple tags"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:50
+msgid "saint hyphen"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:51
+msgid "incorrect tag"
+msgstr "inkorrekt tagg"
+
+#: ../tools/database/item_menu.txt:52
+msgid "bad tag key"
+msgstr "felaktig tagg-nyckel"
+
+#: ../tools/database/item_menu.txt:53
+msgid "similar values"
+msgstr "liknande värden"
+
+#: ../tools/database/item_menu.txt:54
+msgid "multiple values"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:57
+msgid "numeric value"
+msgstr "numeriskt värde"
+
+#: ../tools/database/item_menu.txt:60
+msgid "small farm"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:61
+msgid "note"
+msgstr "notering"
+
+#: ../tools/database/item_menu.txt:62
+msgid "tree"
+msgstr "träd"
+
+#: ../tools/database/item_menu.txt:63
+msgid "brand in name"
+msgstr "varumärke i namn"
+
+#: ../tools/database/item_menu.txt:64
+msgid "typo in tag"
+msgstr "skrivfel i tagg"
+
+#: ../tools/database/item_menu.txt:65
+msgid "incorrect "
+msgstr "inkorrekt"
+
+#: ../tools/database/item_menu.txt:66
+msgid "parking lane"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:67
+msgid "relation role"
+msgstr "relationsroll"
+
+#: ../tools/database/item_menu.txt:68
+msgid "relation type=restriction"
+msgstr "relationstyp=restriktiv"
+
+#: ../tools/database/item_menu.txt:69
+msgid "postcode"
+msgstr "postnummer"
+
+#: ../tools/database/item_menu.txt:76
+msgid "disused"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:77
+msgid "on junction=roundabout"
+msgstr "eller junction=roundabout"
+
+#: ../tools/database/item_menu.txt:78
+msgid "incompatible tags"
+msgstr "inkompatibla taggar"
+
+#: ../tools/database/item_menu.txt:79
+msgid "ref in name"
+msgstr "ref i namn"
+
+#: ../tools/database/item_menu.txt:82
+msgid "construction"
+msgstr "konstruktion"
+
+#: ../tools/database/item_menu.txt:83
+msgid "duplicate object"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:84
+msgid "unwanted tag on node"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:85
+msgid "bad usage"
+msgstr "felaktig användning"
+
+#: ../tools/database/item_menu.txt:89
+msgid "orthograph"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:90
+msgid "way type"
+msgstr "vägtyp"
+
+#: ../tools/database/item_menu.txt:91
+msgid "two names"
+msgstr "två namn"
+
+#: ../tools/database/item_menu.txt:92
+msgid "toponymy"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:97
+msgid "open polygon"
+msgstr "öppen polygon"
+
+#: ../tools/database/item_menu.txt:98
+msgid "duplicated way"
+msgstr "duplicerad väg"
+
+#: ../tools/database/item_menu.txt:99
+msgid "place without name"
+msgstr "plats utan namn"
+
+#: ../tools/database/item_menu.txt:100
+msgid "INSEE code"
+msgstr "INSEE-kod"
+
+#: ../tools/database/item_menu.txt:101
+msgid "admin_level"
+msgstr "admin_level"
+
+#: ../tools/database/item_menu.txt:102
+msgid "erroneous boundary"
+msgstr "felaktig gräns"
+
+#: ../tools/database/item_menu.txt:103
+msgid "out of boundary"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:104
+msgid "geodesic building"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:105
+msgid "building shape"
+msgstr "byggnadsform"
+
+#: ../tools/database/item_menu.txt:106
+msgid "bridge to tag"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:107
+msgid "admin boundary"
+msgstr "administrativ gräns"
+
+#: ../tools/database/item_menu.txt:108
+msgid "power lines"
+msgstr "kraftledning"
+
+#: ../tools/database/item_menu.txt:109 ../tools/database/item_menu.txt:130
+msgid "post office"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:111
+msgid "ODbL migration change"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:112
+msgid "school, not integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:113
+msgid "monument"
+msgstr "monument"
+
+#: ../tools/database/item_menu.txt:114
+msgid "node on ways"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:115 ../tools/database/item_menu.txt:141
+msgid "train station"
+msgstr "järnvägsstation"
+
+#: ../tools/database/item_menu.txt:116
+msgid "TMC"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:117
+msgid "relation type=boundary"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:118
+msgid "tunnel/bridge"
+msgstr "tunnel/bro"
+
+#: ../tools/database/item_menu.txt:127
+msgid "monument, museum"
+msgstr "monument, museum"
+
+#: ../tools/database/item_menu.txt:128
+msgid "monument, museum, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:131
+msgid "post office, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:135
+msgid "school"
+msgstr "skola"
+
+#: ../tools/database/item_menu.txt:136
+msgid "school, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:27 ../tools/database/item_menu.txt:138
+#: ../tools/database/item_menu.txt:208
+msgid "public transport"
+msgstr "kollektivtrafik"
+
+#: ../tools/database/item_menu.txt:139
+msgid "public transport, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:142
+msgid "train station, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:143
+msgid "level crossing"
+msgstr "plankorsning"
+
+#: ../tools/database/item_menu.txt:144
+msgid "geodesic point"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:145
+msgid "postal address"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:146
+msgid "wikipedia, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:147
+msgid "public service"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:148
+msgid "recycling"
+msgstr "återvinning"
+
+#: ../tools/database/item_menu.txt:149
+msgid "recycling, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:151
+msgid "parking"
+msgstr "parkering"
+
+#: ../tools/database/item_menu.txt:152
+msgid "parking, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:154
+msgid "accommodation"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:155
+msgid "accommodation, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:156
+msgid "cycle parking"
+msgstr "cykelparkering"
+
+#: ../tools/database/item_menu.txt:157
+msgid "cycle parking, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:158
+msgid "transport sharing"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:159
+msgid "transport sharing, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:161
+msgid "sport"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:162
+msgid "sport, could be integrated"
+msgstr ""
+
+#: tmp.tpl:204
+msgid "Translation progress: osmose"
+msgstr ""
+
+#: tmp.tpl:208
+msgid "For new language or countries"
+msgstr "För nya språk eller länder"
+
+#, python-format
+msgid "The <a href='%s'>country coverage is available</a>."
+msgstr ""
+
+#: tmp.tpl:209
+#, python-format
+msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
+msgstr "Du kan skapa ett nytt språk direkt på  <a href='%s'>Transifex.</a>"
+
+#: tmp.tpl:203
+#, python-format
+msgid "Translation is done on <a href='%s'>Transifex</a>."
+msgstr "Översättning är gjord på <a href='%s'>Transifex</a>."
+
+#: tmp.tpl:156
+msgid "Export"
+msgstr "Exportera"
+
+#: tmp.tpl:157
+msgid "Html list"
+msgstr "Html-lista"
+
+#: ../tools/database/item_menu.txt:25
+msgid "one-node way"
+msgstr "enkelriktad väg"
+
+#: ../tools/database/item_menu.txt:163
+msgid "toilets"
+msgstr "toaletter"
+
+#: ../tools/database/item_menu.txt:119
+msgid "transport sharing, not integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:164
+msgid "police"
+msgstr "polis"
+
+#: ../tools/database/item_menu.txt:165
+msgid "police, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:120
+msgid "pharmacy, not integrated "
+msgstr ""
+
+#: ../tools/database/item_menu.txt:171
+msgid "pharmacy, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:167
+msgid "gas station"
+msgstr ""
+
+#: tmp.tpl:100
+msgid "position"
+msgstr "position"
+
+#: tmp.tpl:166
+msgid "You must be logged in order to use the tag editor"
+msgstr ""
+
+#: tmp.tpl:167
+msgid "Save changeset"
+msgstr ""
+
+#: tmp.tpl:170
+msgid "Comment"
+msgstr "Kommentar"
+
+#: ../tools/database/item_menu.txt:70
+msgid "area"
+msgstr "område"
+
+#: ../tools/database/item_menu.txt:71
+msgid "noexit"
+msgstr ""
+
+#: tmp.tpl:34
+msgid ""
+"Keep in touch by watching at <a "
+"href='https://twitter.com/osmose_qa'>@osmose_qa</a> on twitter."
+msgstr ""
+
+#: ../tools/database/item_menu.txt:86
+msgid "incorrect layer"
+msgstr ""
+
+#: tmp.tpl:36 tmp.tpl:38
+msgid "Updates summary"
+msgstr ""
+
+#: tmp.tpl:42
+msgid "country"
+msgstr "land"
+
+#: tmp.tpl:43
+msgid "analyser"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:172
+msgid "postal code, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:173
+msgid "library"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:174
+msgid "restaurant"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:175
+msgid "winery"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:39
+msgid "missing object kind"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:121
+msgid "postal code, not integrated "
+msgstr ""
+
+#: ../tools/database/item_menu.txt:94
+msgid "local language"
+msgstr "lokalt språk"
+
+#: tmp.tpl:31
+msgid ""
+"The servers analysing data are provided by OpenStreetMap-France and some "
+"others by contributors around the world. The servers for north-america and "
+"other areas are funded by Mapbox."
+msgstr ""
+
+#: ../errors.py:157
+msgid "Fixed issues"
+msgstr "Fixade problem"
+
+#: ../map.py:85
+msgid "Issues by user"
+msgstr ""
+
+#: tmp.tpl:2 tmp.tpl:3 tmp.tpl:4
+#, python-brace-format
+msgid "Number of level {level} issues: {count}"
+msgstr ""
+
+#: tmp.tpl:6 tmp.tpl:15
+#, python-format
+msgid "Number of found issues: %d"
+msgstr "Antal hittade problem: %d"
+
+#: tmp.tpl:7 tmp.tpl:16
+#, python-format
+msgid "Number of found issues: more than %d"
+msgstr "Antal hittade problem: över %d"
+
+#: tmp.tpl:13
+#, python-format
+msgid ""
+"This page shows issues on elements that were last modified by '%s'. This "
+"doesn't means that this user is responsible for all these issues."
+msgstr ""
+
+#: tmp.tpl:17
+msgid "Show issues on a map"
+msgstr "Visa problem på en karta"
+
+#: tmp.tpl:20
+msgid "Osmose allows you to control your own issues."
+msgstr ""
+
+#: tmp.tpl:21
+msgid ""
+"By entering your OSM username in the following form, you will be able to see"
+" issues that are attached to your username. Note that the algorithm that "
+"attaches issues to username is not perfect, as Osmose only checks the last "
+"contributor of the relevant erroneous elements."
+msgstr ""
+
+#: tmp.tpl:110
+#, python-format
+msgid "Information on issue %d"
+msgstr ""
+
+#: tmp.tpl:91
+msgid "Show more issues"
+msgstr "Visa fler problem"
+
+#: tmp.tpl:92
+msgid "Show some issues"
+msgstr "Visa några problem"
+
+#: tmp.tpl:99
+msgid "information on issue"
+msgstr ""
+
+#: tmp.tpl:106
+msgid "issue n°"
+msgstr ""
+
+#, python-format
+msgid "delete issue #%d"
+msgstr ""
+
+#: tmp.tpl:115
+msgid "Map of issues"
+msgstr ""
+
+#: tmp.tpl:117
+msgid "Information on issues database"
+msgstr ""
+
+#: tmp.tpl:207
+msgid "Documentation on reported issues"
+msgstr ""
+
+#: tmp.tpl:51
+msgid "version"
+msgstr "version"
+
+#: ../tools/database/item_menu.txt:176
+msgid "geodesic"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:110 ../tools/database/item_menu.txt:133
+msgid "post box"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:134
+msgid "post box, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:40
+msgid "indoor"
+msgstr "Inomhus "
+
+#: ../tools/database/item_menu.txt:87
+msgid "roundabout as area"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:122
+msgid "road"
+msgstr "väg"
+
+#: ../tools/database/item_menu.txt:2
+msgid "split building"
+msgstr ""
+
+#: tmp.tpl:130
+#, python-format
+msgid "Control, verification and correction of %s issues"
+msgstr ""
+
+#: tmp.tpl:206
+msgid "Osmose QA main page"
+msgstr ""
+
+#: tmp.tpl:25
+msgid ""
+"Bug should be reported on <a href='https://github.com/osm-fr/osmose-"
+"frontend/issues'>osmose-frontend</a> for issues around the website, or on <a"
+" href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> "
+"for issues on the reported issues on OSM data, or for suggestion about "
+"analyses."
+msgstr ""
+
+#: tmp.tpl:212
+msgid ""
+"<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
+"frontend</a> can be used to report any issue with translations."
+msgstr ""
+
+#: ../tools/database/item_menu.txt:23
+msgid "far from water"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:80
+msgid "fixme import"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:26
+msgid "objects intersection"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:41 ../tools/database/item_menu.txt:72
+msgid "access"
+msgstr "åtkomst"
+
+#: ../tools/database/item_menu.txt:81
+msgid "fixme review"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:129
+msgid "monument, museum, need update"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:137
+msgid "school, need update"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:140
+msgid "public transport, need update"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:150
+msgid "recycling, need update"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:153
+msgid "parking, need update"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:160
+msgid "transport sharing, need update"
+msgstr ""
+
+#: tmp.tpl:37
+msgid "Analyser"
+msgstr ""
+
+#: tmp.tpl:37
+msgid "Count"
+msgstr "Antal"
+
+#: tmp.tpl:37
+msgid "Age"
+msgstr "Ålder"
+
+#: tmp.tpl:37
+msgid "Version"
+msgstr "Version"
+
+#: ../tools/database/item_menu.txt:132
+msgid "post office, need update"
+msgstr ""
+
+#: tmp.tpl:84
+msgid "age"
+msgstr "ålder"
+
+#: ../tools/database/item_menu.txt:95
+msgid "invalid character"
+msgstr "ogiltigt tecken"
+
+#: ../tools/database/item_menu.txt:169
+msgid "gas station, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:123 ../tools/database/item_menu.txt:178
+msgid "power substation"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:179
+msgid "power substation, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:180
+msgid "power support"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:181
+msgid "power support, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:28
+msgid "almost junction"
+msgstr "nästan sammankoppling"
+
+#: ../tools/database/item_menu.txt:42
+msgid "public_transport route"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:73
+msgid "recycling container"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:88
+msgid "duplicate wikipedia"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:74
+msgid "route access mismatch"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:96
+msgid "similar name"
+msgstr "liknande namn"
+
+#: ../tools/database/item_menu.txt:168
+msgid "gas station, need update"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:58
+msgid "phone number"
+msgstr "telefonnummer"
+
+#: ../tools/database/item_menu.txt:182
+msgid "traffic signs"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:183
+msgid "traffic sign limitation"
+msgstr ""
+
+#: tmp.tpl:76 tmp.tpl:133
+msgid "High"
+msgstr "Hög"
+
+#: tmp.tpl:77 tmp.tpl:134
+msgid "Normal or higher"
+msgstr "Normal eller hög"
+
+#: tmp.tpl:78 tmp.tpl:135
+msgid "All"
+msgstr "Alla"
+
+#: tmp.tpl:79 tmp.tpl:136
+msgid "Normal only"
+msgstr "Enbart normal"
+
+#: tmp.tpl:80 tmp.tpl:137
+msgid "Low only"
+msgstr "Enbart låg"
+
+#: tmp.tpl:33
+#, python-brace-format
+msgid ""
+"We can be contacted through a direct email to <a "
+"href='mailto:{email}'>{email}</a>."
+msgstr ""
+
+#: tmp.tpl:160 tmp.tpl:161 tmp.tpl:162
+#, python-brace-format
+msgid "Level {level} issues ({count})"
+msgstr ""
+
+#: tmp.tpl:210
+#, python-brace-format
+msgid ""
+"For new countries, we can be contacted through a direct email to <a "
+"href='mailto:{email}'>{email}</a>."
+msgstr ""
+
+#: ../tools/database/categ_menu.txt:9
+msgid "JOSM validator"
+msgstr "JOSM-validerare"
+
+#: ../tools/database/item_menu.txt:195
+msgid "seamark"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:196
+msgid "addresses"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:197
+msgid "combinations"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:198
+msgid "deprecated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:199
+msgid "geometry"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:201
+msgid "multiple"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:202
+msgid "numeric"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:203
+msgid "relation"
+msgstr "religion"
+
+#: ../tools/database/item_menu.txt:204
+msgid "religion"
+msgstr "religion"
+
+#: ../tools/database/item_menu.txt:205
+msgid "territories"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:206
+msgid "unnecessary"
+msgstr ""
+
+#: tmp.tpl:73
+msgid "Country"
+msgstr "Land"
+
+#: tmp.tpl:74
+msgid "Item"
+msgstr ""
+
+#: tmp.tpl:104
+msgid "False positive / Done"
+msgstr "Positivt falska/Klara"
+
+#, python-format
+msgid "Mark issue #%d as false positive"
+msgstr "Markera problem #%d som falskt positiv"
+
+#, python-format
+msgid "Mark issue #%d as fixed"
+msgstr "Markera problem #%d som fixat"
+
+#: tmp.tpl:168
+msgid "Objects edited"
+msgstr "Objekt ändrade"
+
+#: tmp.tpl:169
+msgid "Objects deleted"
+msgstr "Objekt raderade"
+
+#: tmp.tpl:177
+#, python-brace-format
+msgid "Show Object on {where}"
+msgstr ""
+
+#: tmp.tpl:178 tmp.tpl:179 tmp.tpl:180 tmp.tpl:181 tmp.tpl:182 tmp.tpl:183
+#: tmp.tpl:184
+#, python-brace-format
+msgid "Edit Object with {where}"
+msgstr ""
+
+#: tmp.tpl:184 tmp.tpl:186
+msgid "online Osmose Editor"
+msgstr ""
+
+#: tmp.tpl:185 tmp.tpl:186
+#, python-brace-format
+msgid "Load the fix in {where}"
+msgstr ""
+
+#: tmp.tpl:187
+#, python-brace-format
+msgid "Add the new object in {where}"
+msgstr ""
+
+#: tmp.tpl:188
+#, python-brace-format
+msgid "Show the area on {where}"
+msgstr ""
+
+#: tmp.tpl:189 tmp.tpl:190
+#, python-brace-format
+msgid "Edit the area on {where}"
+msgstr ""
+
+#: tmp.tpl:191
+msgid "details"
+msgstr "detaljer"
+
+#: tmp.tpl:192
+msgid "Issue reported on:"
+msgstr ""
+
+msgid "Help on OSM Wiki"
+msgstr "Hjälp på OSM-wiki"
+
+#: tmp.tpl:194 tmp.tpl:195
+msgid ""
+"Report the issue as improper, if according to you is not an issue. The issue"
+" will not be displayed to anyone more."
+msgstr ""
+
+#: tmp.tpl:196
+msgid ""
+"After issue fixed on the OSM data, mark it as done. May also disappear "
+"automatically on next check if no more issue."
+msgstr ""
+
+#: ../tools/database/item_menu.txt:43
+msgid "zone:maxspeed"
+msgstr "zone:maxspeed"
+
+#: ../tools/database/item_menu.txt:211
+msgid "power transformer"
+msgstr ""
+
+#: tmp.tpl:148
+#, python-format
+msgid "Item #%s"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:75
+msgid "opening hours"
+msgstr "öppettider"
+
+#: ../tools/database/item_menu.txt:124 ../tools/database/item_menu.txt:184
+msgid "hospital"
+msgstr "sjukhus"
+
+#: ../tools/database/item_menu.txt:125 ../tools/database/item_menu.txt:186
+msgid "social facility"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:126 ../tools/database/item_menu.txt:188
+msgid "medical lab"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:185
+msgid "hospital, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:187
+msgid "social facility, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:189
+msgid "medical lab, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:166
+msgid "police, need update"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:55
+msgid "swimming pool"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:93
+msgid "potential misspelling"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:29
+msgid "enforcement"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:59
+msgid "URL"
+msgstr "URL"
+
+#: ../tools/database/item_menu.txt:190
+msgid "street objects"
+msgstr "gatuobjekt"
+
+#: ../tools/database/item_menu.txt:209
+msgid "openrailwaymap"
+msgstr "openrailwaymap"
+
+#: ../tools/database/item_menu.txt:210
+msgid "openrailwaymap in germany"
+msgstr "openrailwaymap i Tyskland"
+
+#: ../tools/database/item_menu.txt:44
+msgid "railways"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:177
+msgid "power plant"
+msgstr ""
+
+#: tmp.tpl:199
+msgid ""
+"Osmose tool is mainly developped by french people, and we aim to add more "
+"languages."
+msgstr "Osmose-verktyget är främst utvecklat av franska människor, och vi strävar efter att lägga till fler språk."
+
+#: ../tools/database/item_menu.txt:191
+msgid "defibrillator"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:192
+msgid "radio support"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:193
+msgid "radio support, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:194
+msgid "radio support, need update"
+msgstr ""
+
+#: tmp.tpl:58
+#, python-format
+msgid "Information on issue %s"
+msgstr ""
+
+#: tmp.tpl:107
+#, python-format
+msgid "Mark issue #%s as false positive"
+msgstr "Markera problem #%s som falskt positiv"
+
+#: tmp.tpl:108
+#, python-format
+msgid "Mark issue #%s as fixed"
+msgstr "Markera problem #%s som fixat"
+
+#: tmp.tpl:109
+#, python-format
+msgid "delete issue #%s"
+msgstr ""
+
+#: tmp.tpl:120
+msgid "How to Fix"
+msgstr ""
+
+#: tmp.tpl:121
+msgid "Trap to avoid"
+msgstr ""
+
+#: tmp.tpl:122
+msgid "Example"
+msgstr "Exempel"
+
+#: tmp.tpl:123
+msgid "Source Code"
+msgstr "Källkod"
+
+#: tmp.tpl:124
+msgid "Resource used"
+msgstr ""
+
+#: tmp.tpl:125
+msgid "Want to improve this control or this doc?"
+msgstr ""
+
+#: tmp.tpl:149
+msgid "Welcome to Osmose-QA"
+msgstr ""
+
+#: tmp.tpl:150
+msgid ""
+"Osmose-QA a is quality assurance tools available to detect issues in "
+"OpenStreetMap data."
+msgstr ""
+
+#: tmp.tpl:151
+msgid ""
+"It detects a very wide range of issue types. It is also useful for "
+"integrating third-party data sets or conflation."
+msgstr ""
+
+#: tmp.tpl:152
+msgid ""
+"Feel free to report problem, idea or new OpenData you want to add to Osmose "
+"on our Github."
+msgstr ""
+
+#: tmp.tpl:153
+msgid ""
+"In no case Osmose-QA should provide you the absolute right way to map, "
+"always keep a critical eye."
+msgstr ""
+
+#: tmp.tpl:154
+msgid "You can find help on the wiki:"
+msgstr "Du kan hitta hjälp på wikin"
