@@ -31,5 +31,5 @@
 {%/resource_link%}
 
 <div id="doc_bottom">
-<p>{{_('Want to improve this control or this doc?')}} <a href="https://wiki.openstreetmap.org/wiki/Osmose#Help_and_issue_description" target="_blank">wiki.osm.org/Osmose#Help</a></p>
+<p>{{_('Want to improve this control or this doc?')}} <a href="https://wiki.openstreetmap.org/wiki/Osmose#Help_and_issues_description" target="_blank">wiki.osm.org/Osmose#Help</a></p>
 </div>
