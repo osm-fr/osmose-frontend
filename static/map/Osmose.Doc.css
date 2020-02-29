@@ -1,3 +1,7 @@
+#doc ~ a.close {
+  z-index: 800;
+}
+
 #doc_bottom {
   opacity: .5;
   bottom: 0;
