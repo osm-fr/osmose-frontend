@@ -103,7 +103,8 @@ def display(db, lang, user, uuid):
     for e in marker['elems'] or []:
         e['tags'] = _expand_tags(e.get('tags', {}), t2l.checkTags(e.get('tags', {})))
 
-    for f in marker['fixes'] or []:
+    for fix_group in marker['fixes'] or []:
+      for f in fix_group:
         f['create'] = _expand_tags(f['create'], t2l.checkTags(f['create']))
         f['modify'] = _expand_tags(f['modify'], t2l.checkTags(f['modify']))
         f['delete'] = _expand_tags(f['delete'], {}, True)
@@ -228,11 +229,12 @@ def _error(version, db, lang, uuid, marker):
                     "tags": _expand_tags(tags, t2l.checkTags(tags)),
                     "fixes": [],
                    }
-        for fix_index, fix in enumerate(marker['fixes'] or []):
-          if (fix['type'] and
-              fix['type'] == elem['type'] and
-              fix['id'] == elem["id"]):
-            tmp_elem["fixes"].append({"num": fix_index,
+        for fix_index, fix_group in enumerate(marker['fixes'] or []):
+          for fix in fix_group:
+            if (fix['type'] and
+                fix['type'] == elem['type'] and
+                fix['id'] == elem["id"]):
+              tmp_elem["fixes"].append({"num": fix_index,
                                       "add": _expand_tags(fix['create'], t2l.checkTags(fix['create'])),
                                       "mod": _expand_tags(fix['modify'], t2l.checkTags(fix['modify'])),
                                       "del": _expand_tags(fix['delete'], {}, True),
@@ -240,7 +242,8 @@ def _error(version, db, lang, uuid, marker):
         elems.append(tmp_elem)
 
     new_elems = []
-    for fix_index, fix in enumerate(marker['fixes'] or []):
+    for fix_index, fix_group in enumerate(marker['fixes'] or []):
+      for fix in fix_group:
         if fix['type']:
             found = False
             for e in elems:
@@ -326,9 +329,10 @@ def fix_err_id(db, err_id, fix_num=0):
 def fix_uuid(db, uuid, fix_num=0):
     return _fix(3, db, uuid, fix_num, _get_fix(db, fix_num, uuid=uuid))
 
-def _fix(version, db, uuid, fix_num, res):
-    if res:
-        response.content_type = 'text/xml; charset=utf-8'
+def _fix(version, db, uuid, fix_num, fix):
+    if fix:
+      response.content_type = 'text/xml; charset=utf-8'
+      for res in fix:
         if 'id' in res and res['id']:
             out = StringIO.StringIO()
             o = OsmSaxFixWriter(out, "UTF-8",

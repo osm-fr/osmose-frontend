@@ -195,7 +195,6 @@ def fixes_default(fixes):
             modify=fix.get('modify', {}),
             delete=fix.get('delete', []),
         ), fix_elems), fixes)
-        fs = sum(fs, []) ### FIXME the array of fixes should not be flatten, for now keep for retrocompatibility
         return fs
 
 

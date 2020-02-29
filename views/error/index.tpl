@@ -105,7 +105,9 @@
 %end
 
 <h2>{{_("Fixes")}}</h2>
-%for fix_index, fix in enumerate(marker['fixes'] or []):
+%for fix_index, fix_group in enumerate(marker['fixes'] or []):
+<h3>{{"#{0}".format(fix_index)}}</h3>
+%for fix in fix_group:
 <table class="table table-striped table-bordered table-hover table-sm sortable" id="table_marker">
 <thead class="thead-dark">
 <tr>
@@ -126,4 +128,5 @@
 </td></tr>
 </table>
 </br>
+%end
 %end
