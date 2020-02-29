@@ -74,8 +74,8 @@
 %show_html_dict(marker['example'])
 </td>
 %end
-%if marker['source']:
-<tr><td>source code</td><td><a href="{{marker['source']}}" target_="_blank">{{marker['source']}}</a></td>
+%if marker['source_code']:
+<tr><td>source code</td><td><a href="{{marker['source_code']}}" target_="_blank">{{marker['source_code']}}</a></td>
 %end
 %if marker['resource']:
 <tr><td>resource</td><td><a href="{{marker['resource']}}" target_="_blank">{{marker['resource']}}</a></td>
