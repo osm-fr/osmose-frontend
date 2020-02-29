@@ -28,7 +28,7 @@
 </head>
 <body>
 <iframe id="hiddenIframe" name="hiddenIframe"></iframe>
-<div id="menu" class="container">
+<div id="menu">
   <a href="#" id="togglemenu">-</a>
   <form id="myform" name="myform" action="#">
     <div id="need_zoom">{{_("no bubbles at this zoom factor")}}</div>
@@ -111,7 +111,7 @@
 </form>
 </div>
 
-<div id="doc" class="container">
+<div id="doc">
 <h5>{{_("Welcome to Osmose-QA")}}</h5>
 <p>{{_("Osmose-QA a is quality assurance tools available to detect issues in OpenStreetMap data.")}}</p>
 <p>{{_("It detects a very wide range of issue types. It is also useful for integrating third-party data sets or conflation.")}}</p>
