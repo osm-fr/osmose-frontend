@@ -27,7 +27,7 @@ from tools import utils
 
 
 def _get(db, status, err_id=None, uuid=None):
-    columns = ["item", "source", "class",
+    columns = ["item", "dynpoi_status.source", "class",
         "lat", "lon",
         "title", "subtitle",
         "dynpoi_status.date", "dynpoi_class.timestamp"]
@@ -37,6 +37,7 @@ def _get(db, status, err_id=None, uuid=None):
         FROM
             dynpoi_status
             JOIN dynpoi_class USING (source,class)
+            JOIN class USING (item, class)
         WHERE
             dynpoi_status.status = %s AND
             uuid_to_bigint(dynpoi_status.uuid) = %s
@@ -47,6 +48,7 @@ def _get(db, status, err_id=None, uuid=None):
         FROM
             dynpoi_status
             JOIN dynpoi_class USING (source,class)
+            JOIN class USING (item, class)
         WHERE
             dynpoi_status.status = %s AND
             dynpoi_status.uuid = %s

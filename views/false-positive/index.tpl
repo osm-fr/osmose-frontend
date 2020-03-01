@@ -1,4 +1,4 @@
-%rebase('layout.tpl', title=_("Information on issue %d") % uuid, favicon="../images/markers/marker-l-%s.png" % marker['item'])
+%rebase('layout.tpl', title=_("Information on issue %s") % uuid, favicon="../images/markers/marker-l-%s.png" % marker['item'])
 %def show_html_results(columns, res):
 <table class="table table-striped table-bordered table-hover table-sm sortable" id="table_marker">
 <thead class="thead-dark">
