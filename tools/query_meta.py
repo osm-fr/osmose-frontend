@@ -20,8 +20,8 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import request
 from collections import defaultdict
+from utils import i10n_select
 
 
 def _class(db, lang):
@@ -123,33 +123,7 @@ def _categories(db, lang):
     return result
 
 
-def parse_accept_language(langs):
-    if langs and 'auto' in langs:
-        langs = request.get_header('Accept-Language')
-    langs = map(lambda lang: lang.split(';')[0].strip(), langs.split(','))
-    langs += list(map(lambda lang: lang.split('_')[0].lower(), langs))
-    return langs
-
-
-def _i10n_select(translations, langs):
-    if not translations:
-        return None
-    elif langs is None:
-        return translations
-    else:
-        for lang in langs:
-            if lang in translations:
-                return {'auto': translations[lang]}
-        if 'en' in translations:
-            return {'auto': translations['en']}
-        else:
-            return None
-
-
 def _items_3(db, item = None, classs = None, langs = None):
-    if langs:
-        langs = parse_accept_language(langs)
-
     sql = """
     SELECT
         dynpoi_categ.categ,
@@ -169,7 +143,7 @@ def _items_3(db, item = None, classs = None, langs = None):
     db.execute(sql, {'item': item})
     categs = db.fetchall()
     for categ in categs:
-        categ['title'] = _i10n_select(categ['title'], langs)
+        categ['title'] = i10n_select(categ['title'], langs)
 
     sql = """
     SELECT
@@ -193,7 +167,7 @@ def _items_3(db, item = None, classs = None, langs = None):
     items = db.fetchall()
     items = map(lambda r: dict(
         r,
-        title = _i10n_select(r['title'], langs),
+        title = i10n_select(r['title'], langs),
         levels = r['number'] and map(lambda (l, n): {'level': l, 'count': n}, zip(r['levels'], r['number'])) or map(lambda i: {'level': i, 'count': 0}, [1, 2, 3]),
     ), items)
     items_categ = defaultdict(list)
@@ -228,11 +202,11 @@ def _items_3(db, item = None, classs = None, langs = None):
     classs = db.fetchall()
     classs = map(lambda c: dict(
         dict(c),
-        title = _i10n_select(c['title'], langs),
-        detail = _i10n_select(c['detail'], langs),
-        fix = _i10n_select(c['fix'], langs),
-        trap = _i10n_select(c['trap'], langs),
-        example = _i10n_select(c['example'], langs),
+        title = i10n_select(c['title'], langs),
+        detail = i10n_select(c['detail'], langs),
+        fix = i10n_select(c['fix'], langs),
+        trap = i10n_select(c['trap'], langs),
+        example = i10n_select(c['example'], langs),
     ), classs)
     class_item = defaultdict(list)
     for c in classs:

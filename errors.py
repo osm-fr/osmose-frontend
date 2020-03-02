@@ -84,10 +84,9 @@ def errors(db, lang):
 
 
 @route('/api/0.3beta/issues')
-def errors(db, lang):
+def errors(db, langs):
     params = query._params(max_limit=10000)
     results = query._gets(db, params)
-    translate = utils.translator(lang)
 
     out = []
     for res in results:
@@ -105,8 +104,8 @@ def errors(db, lang):
                 'item': str(res["item"]),
                 'source': res["source"],
                 'class': res["class"],
-                'subtitle': translate.select(res["subtitle"]),
-                'title': translate.select(res["title"]),
+                'subtitle': utils.i10n_select(res["subtitle"], langs),
+                'title': utils.i10n_select(res["title"], langs),
                 'level': res["level"],
                 'update': str(res["timestamp"]),
                 'usernames': map(lambda elem: "username" in elem and elem["username"] or "", res['elems'] or []),

@@ -75,21 +75,16 @@ def fp_err_id(db, lang, err_id):
     return _fp(2, db, lang, None, *_get(db, 'false', err_id=err_id))
 
 @route('/api/0.3beta/false-positive/<uuid:uuid>')
-def fp_uuid(db, lang, uuid):
-    return _fp(3, db, lang, uuid, *_get(db, 'false', uuid=uuid))
+def fp_uuid(db, langs, uuid):
+    return _fp(3, db, langs, uuid, *_get(db, 'false', uuid=uuid))
 
-def _fp(version, db, lang, uuid, marker, columns):
+def _fp(version, db, langs, uuid, marker, columns):
     data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
-
-    # TRANSLATORS: link to tooltip help
-    url_help = _("http://wiki.openstreetmap.org/wiki/Osmose/errors")
-
-    translate = utils.translator(lang)
 
     lat       = str(marker["lat"])
     lon       = str(marker["lon"])
-    title     = translate.select(marker["title"])
-    subtitle  = translate.select(marker["subtitle"])
+    title     = utils.i10n_select(marker["title"], langs)
+    subtitle  = utils.i10n_select(marker["subtitle"], langs)
     b_date    = marker["timestamp"] or ""
     item      = marker["item"] or 0
     date      = marker["date"].isoformat() or 0
@@ -100,11 +95,11 @@ def _fp(version, db, lang, uuid, marker, columns):
             "minlat": float(lat) - 0.002, "maxlat": float(lat) + 0.002,
             "minlon": float(lon) - 0.002, "maxlon": float(lon) + 0.002,
             "error_id":err_id,
-            "title":title, "subtitle":subtitle,
+            "title":title['auto'], "subtitle":subtitle['auto'],
             "b_date":b_date.strftime("%Y-%m-%d"),
             "item":item,
             "date":date,
-            "url_help":url_help
+            "url_help":"" # Keep for retro compatibility
         }
     else:
         return {
@@ -116,7 +111,6 @@ def _fp(version, db, lang, uuid, marker, columns):
             "b_date":b_date.strftime("%Y-%m-%d"),
             "item":item,
             "date":date,
-            "url_help":url_help
         }
 
 

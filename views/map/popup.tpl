@@ -2,9 +2,9 @@
 <div id="popup-{%id%}">
   <div class="bulle_msg">
     <div class="bulle_err">
-      <b>{% title %}</b>
+      <b>{%title.auto%}</b>
       <br>
-      {%subtitle%}
+      {%subtitle.auto%}
     </div>
 {%#elems%}
     <div class="bulle_elem">

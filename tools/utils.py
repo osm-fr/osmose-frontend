@@ -143,6 +143,22 @@ class translator:
                 return res[l]
         return no_translation
 
+
+def i10n_select(translations, langs):
+    if not translations:
+        return None
+    elif langs is None:
+        return translations
+    else:
+        for lang in langs:
+            if lang in translations:
+                return {'auto': translations[lang]}
+        if 'en' in translations:
+            return {'auto': translations['en']}
+        else:
+            return None
+
+
 ###########################################################################
 ## API
 

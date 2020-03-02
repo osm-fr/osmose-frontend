@@ -25,15 +25,12 @@ from tools import query_meta
 
 
 @route('/api/0.3beta/items')
-def items(db):
-    langs = request.params.get('langs')
+def items(db, langs):
     return {"categories": query_meta._items_3(db, langs = langs)}
 
 
-# langs = Accept-Language compatible string
 @route('/api/0.3beta/items/<item:int>/class/<classs:int>')
-def items(db, item, classs):
-    langs = request.params.get('langs')
+def items(db, langs, item, classs):
     return {"categories": query_meta._items_3(db, item = item, classs = classs, langs = langs)}
 
 

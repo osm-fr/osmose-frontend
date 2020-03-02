@@ -117,7 +117,7 @@ def display(db, lang, user, uuid):
 
 @route('/api/0.3beta/issue/<uuid:uuid>/fresh_elems')
 @route('/api/0.3beta/issue/<uuid:uuid>/fresh_elems/<fix_num:int>')
-def fresh_elems_uuid(db, lang, uuid, fix_num=None):
+def fresh_elems_uuid(db, uuid, fix_num=None):
     data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
 
     marker = _get(db, uuid=uuid)
@@ -174,21 +174,16 @@ def error_err_id(db, lang, err_id):
     return _error(2, db, lang, None, _get(db, err_id=err_id))
 
 @route('/api/0.3beta/issue/<uuid:uuid>')
-def error_uuid(db, lang, uuid):
-    return _error(3, db, lang, uuid, _get(db, uuid=uuid))
+def error_uuid(db, langs, uuid):
+    return _error(3, db, langs, uuid, _get(db, uuid=uuid))
 
-def _error(version, db, lang, uuid, marker):
+def _error(version, db, langs, uuid, marker):
     data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
-
-    # TRANSLATORS: link to tooltip help
-    url_help = _("http://wiki.openstreetmap.org/wiki/Osmose/errors")
-
-    translate = utils.translator(lang)
 
     lat       = str(marker["lat"])
     lon       = str(marker["lon"])
-    title     = translate.select(marker["title"])
-    subtitle  = translate.select(marker["subtitle"])
+    title     = utils.i10n_select(marker["title"], langs)
+    subtitle  = utils.i10n_select(marker["subtitle"], langs)
     b_date    = marker["timestamp"] or ""
     item      = marker["item"] or 0
     classs    = marker["class"] or 0
@@ -239,13 +234,13 @@ def _error(version, db, lang, uuid, marker):
             "minlat": float(lat) - 0.002, "maxlat": float(lat) + 0.002,
             "minlon": float(lon) - 0.002, "maxlon": float(lon) + 0.002,
             "error_id":marker['id'],
-            "title":title, "subtitle":subtitle,
+            "title":title['auto'], "subtitle":subtitle['auto'],
             "b_date":b_date.strftime("%Y-%m-%d"),
             "item":item,
             "class":classs,
             "elems":elems, "new_elems":new_elems,
             "elems_id":','.join(map(lambda elem: elem['type_long'] + str(elem['id']), marker["elems"])),
-            "url_help":url_help
+            "url_help":"" # Keep for retro compatibility
         }
     else:
         return {
@@ -258,7 +253,6 @@ def _error(version, db, lang, uuid, marker):
             "item":item,
             "class":classs,
             "elems":elems, "new_elems":new_elems,
-            "url_help":url_help
         }
 
 
