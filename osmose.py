@@ -150,7 +150,8 @@ import api_0_3_meta
 import api_user
 import web_byuser
 import control
-import error
+import api_issue
+import web_issue
 import errors
 import map
 import false_positive
