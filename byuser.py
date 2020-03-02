@@ -31,11 +31,7 @@ def byUser():
     redirect("byuser/")
 
 
-@route('/byuser/')
-@route('/byuser/<username>')
-@route('/byuser/<username>.<format:ext>')
-@route('/api/0.2/user/<username>')
-def user(db, lang, username=None, format=None):
+def _user(db, lang, username):
     params = query._params()
     if username:
         params.users = utils.pg_escape(username.decode("utf-8")).split(",")
@@ -43,24 +39,37 @@ def user(db, lang, username=None, format=None):
     params.full = True
     username = ",".join(params.users)
 
+    errors = query._gets(db, params)
+    return [params, username, errors]
+
+@route('/api/0.2/user/<username>')
+@route('/api/0.3beta/user/<username>')
+def user(db, lang, username):
+    params, username, errors = _user(db, lang, username)
+
+    out = OrderedDict()
+    for res in errors:
+        res["timestamp"] = str(res["timestamp"])
+        res["lat"] = float(res["lat"])
+        res["lon"] = float(res["lon"])
+    out["issues"] = map(dict, errors)
+    return out
+
+
+@route('/byuser/')
+@route('/byuser/<username>')
+@route('/byuser/<username>.<format:ext>')
+def user(db, lang, username=None, format=None):
+    params, username, errors = _user(db, lang, username)
+
     if not params.users:
         return template('byuser/index', translate=utils.translator(lang))
 
-    errors = query._gets(db, params)
     count = len(errors)
-    if request.path.startswith("/api") or format == "json":
-        out = OrderedDict()
-        for res in errors:
-            res["timestamp"] = str(res["timestamp"])
-            res["lat"] = float(res["lat"])
-            res["lon"] = float(res["lon"])
-        out["issues"] = map(dict, errors)
-        return out
 
-    elif format == 'rss':
+    if format == 'rss':
         response.content_type = "application/rss+xml"
         return template('byuser/byuser.rss', username=username, users=params.users, count=count, errors=errors, translate=utils.translator(lang), website=utils.website)
-
     else:
         return template('byuser/byuser', username=username, users=params.users, count=count, errors=errors, translate=utils.translator(lang), website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read, html_escape=html_escape)
 
@@ -81,35 +90,20 @@ def _user_count(db, username=None):
     return ret
 
 
-@route('/byuser_count/<username>')
-@route('/byuser_count/<username>.<format:ext>')
 @route('/api/0.2/user_count/<username>')
+@route('/api/0.3beta/user_count/<username>')
 def user_count(db, lang, username=None, format=None):
     count = _user_count(db, username)
-    if request.path.startswith("/api") or format == "json":
-        return count
+    return count
 
-    elif format == 'rss':
+
+@route('/byuser_count/<username>')
+@route('/byuser_count/<username>.<format:ext>')
+def user_count(db, lang, username=None, format=None):
+    count = _user_count(db, username)
+
+    if format == 'rss':
         response.content_type = "application/rss+xml"
         return template('byuser/byuser_count.rss', username=username, count=count, translate=utils.translator(lang), website=utils.website)
-
     else:
         return count
-
-
-def _users(db):
-    params = query._params()
-    return query._count(db, params, ["marker_elem.username"])
-
-
-@route('/byuser-stats')
-def byuser_stats(db, lang):
-    return template('byuser/byuser-stats', translate=utils.translator(lang), results=_users(db))
-
-
-@route('/api/0.2/users')
-def users(db):
-    out = OrderedDict()
-    out["description"] = ["username", "count"]
-    out["users"] = _users(db)
-    return out
