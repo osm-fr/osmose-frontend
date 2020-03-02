@@ -24,7 +24,6 @@ from bottle import route, request, template, response, redirect, abort, static_f
 from tools import utils, query, query_meta, tiles
 import urllib
 import api_user
-import errors
 import datetime
 import math, StringIO
 from shapely.geometry import Point, Polygon
@@ -303,6 +302,18 @@ def issues_mvt(db, z, x, y, format):
         return HTTPError(404)
 
 
+def _errors_geo(db, params):
+    results = query._gets(db, params)
+
+    features = []
+
+    for res in results:
+        properties = {"error_id": res["uuid"], "item": res["item"] or 0}
+        features.append({"type": "Feature", "geometry": {"type": "Point", "coordinates": [float(res["lon"]), float(res["lat"])]}, "properties": properties})
+
+    return {"type": "FeatureCollection", "features": features}
+
+
 @route('/map/markers')
 def markers(db):
     params = query._params()
@@ -313,7 +324,7 @@ def markers(db):
     params.limit = 200
     params.full = False
 
-    return errors._errors_geo(db, params)
+    return _errors_geo(db, params)
 
 
 @route('/tpl/popup.tpl')

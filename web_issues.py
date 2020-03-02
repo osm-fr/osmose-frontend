@@ -20,99 +20,13 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, request, template, response, abort, redirect
+from bottle import route, request, template, response
 from tools import utils
 from tools import query
 from tools import query_meta
-from tools.OrderedDict import OrderedDict
 import StringIO, re, csv
 
 import errors_graph
-
-
-def _errors_geo(db, params):
-    results = query._gets(db, params)
-
-    features = []
-
-    for res in results:
-        properties = {"error_id": res["uuid"], "item": res["item"] or 0}
-        features.append({"type": "Feature", "geometry": {"type": "Point", "coordinates": [float(res["lon"]), float(res["lat"])]}, "properties": properties})
-
-    return {"type": "FeatureCollection", "features": features}
-
-
-def _errors(db, lang, params):
-    results = query._gets(db, params)
-    out = OrderedDict()
-
-    if not params.full:
-        out["description"] = ["lat", "lon", "error_id", "item"]
-    else:
-        out["description"] = ["lat", "lon", "error_id", "item", "source", "class", "elems", "subclass", "subtitle", "title", "level", "update", "username"]
-    out["errors"] = []
-
-    translate = utils.translator(lang)
-
-    for res in results:
-        lat       = res["lat"]
-        lon       = res["lon"]
-        error_id  = res["id"]
-        item      = res["item"] or 0
-
-        if not params.full:
-            out["errors"].append([str(lat), str(lon), str(error_id), str(item)])
-        else:
-            source    = res["source"]
-            classs    = res["class"]
-            elems     = '_'.join(map(lambda elem: {'N':'node', 'W':'way', 'R':'relation'}[elem['type']] + str(elem['id']), res['elems'] or []))
-            subclass  = 0
-            subtitle  = translate.select(res["subtitle"])
-            title     = translate.select(res["title"])
-            level     = res["level"]
-            update    = res["timestamp"]
-            username  = ','.join(map(lambda elem: "username" in elem and elem["username"] or "", res['elems'] or []))
-            out["errors"].append([str(lat), str(lon), str(error_id), str(item), str(source), str(classs), str(elems), str(subclass), subtitle, title, str(level), str(update), username])
-
-    return out
-
-
-@route('/api/0.2/errors')
-def errors(db, lang):
-    params = query._params()
-    return _errors(db, lang, params)
-
-
-@route('/api/0.3beta/issues')
-def errors(db, langs):
-    params = query._params(max_limit=10000)
-    results = query._gets(db, params)
-
-    out = []
-    for res in results:
-        i = {
-            'lat': float(res["lat"]),
-            'lon': float(res["lon"]),
-            'id': res["uuid"],
-            'item': str(res["item"]),
-        }
-        if params.full:
-            i.update({
-                'lat': float(res["lat"]),
-                'lon': float(res["lon"]),
-                'id': res["uuid"],
-                'item': str(res["item"]),
-                'source': res["source"],
-                'class': res["class"],
-                'subtitle': utils.i10n_select(res["subtitle"], langs),
-                'title': utils.i10n_select(res["title"], langs),
-                'level': res["level"],
-                'update': str(res["timestamp"]),
-                'usernames': map(lambda elem: "username" in elem and elem["username"] or "", res['elems'] or []),
-            })
-        out.append(i)
-
-    return {'issues': out}
 
 
 def int_list(s):
