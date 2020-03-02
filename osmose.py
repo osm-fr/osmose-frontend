@@ -155,7 +155,8 @@ import web_issue
 import api_issues
 import web_issues
 import map
-import false_positive
+import api_false_positive
+import web_false_positive
 import web_editor
 
 @route('/<filename:path>', name='static')

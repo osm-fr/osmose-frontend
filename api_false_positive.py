@@ -19,10 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, request, template, response, abort, delete
-import StringIO, os, tempfile, urllib2
-
-from tools import osmose_common
+from bottle import route, abort, delete
 from tools import utils
 
 
@@ -61,13 +58,6 @@ def _get(db, status, err_id=None, uuid=None):
         abort(410, "Id is not present in database.")
 
     return (marker, columns)
-
-
-@route('/false-positive/<uuid:uuid>')
-def fp_(db, lang, uuid):
-    (marker, columns) = _get(db, 'false', uuid=uuid)
-
-    return template('false-positive/index', translate=utils.translator(lang), uuid=uuid, marker=marker, columns_marker=columns)
 
 
 @route('/api/0.2/false-positive/<err_id:int>')
