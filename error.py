@@ -142,6 +142,13 @@ def fresh_elems_uuid(db, lang, uuid, fix_num=None):
                    }
             elems[data_type[elem['type']] + str(elem['id'])] = tmp_elem
 
+    ret = {
+        "uuid": uuid,
+        "elems": elems.values(),
+    }
+    for elem in ret['elems']:
+        elem["tags"] = expand_tags(elem["tags"])
+
     if fix_num != None:
         res = marker['fixes'][fix_num]
         tid = data_type[res['type']] + str(res['id'])
@@ -155,23 +162,7 @@ def fresh_elems_uuid(db, lang, uuid, fix_num=None):
             for (k, v) in res['modify'].items():
                 fix_elem_tags[k] = v
 
-            ret = {
-                "uuid": uuid,
-                "elems": elems.values(),
-                "fix": {tid: fix_elem_tags}
-            }
-
-            for elem in ret['elems']:
-                elem["tags"] = expand_tags(elem["tags"])
-            return ret
-
-    ret = {
-        "uuid": uuid,
-        "elems": elems.values()
-    }
-
-    for elem in ret['elems']:
-        elem["tags"] = expand_tags(elem["tags"])
+            ret["fix"] = {tid: fix_elem_tags}
 
     return ret
 
