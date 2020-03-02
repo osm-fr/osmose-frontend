@@ -154,7 +154,8 @@ import api_issue
 import web_issue
 import api_issues
 import web_issues
-import map
+import web_map
+import api_issues_tiles
 import api_false_positive
 import web_false_positive
 import web_editor
