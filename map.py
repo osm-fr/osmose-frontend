@@ -23,7 +23,7 @@
 from bottle import route, request, template, response, redirect, abort, static_file, HTTPError
 from tools import utils, query, query_meta, tiles
 import urllib
-import byuser
+import api_user
 import errors
 import datetime
 import math, StringIO
@@ -116,7 +116,7 @@ OFFSET
 
     if user != None:
         if user:
-            user_error_count = byuser._user_count(db, user.encode('utf-8'))
+            user_error_count = api_user._user_count(db, user.encode('utf-8'))
         else: # user == False
             user = '[user name]'
             user_error_count = {1: 0, 2: 0, 3: 0}

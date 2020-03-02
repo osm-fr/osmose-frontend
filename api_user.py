@@ -20,15 +20,10 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, request, template, redirect, response, html_escape
+from bottle import route
 from tools import utils
 from tools import query
 from tools.OrderedDict import OrderedDict
-
-
-@route('/byuser')
-def byUser():
-    redirect("byuser/")
 
 
 def _user(db, lang, username):
@@ -56,24 +51,6 @@ def user(db, lang, username):
     return out
 
 
-@route('/byuser/')
-@route('/byuser/<username>')
-@route('/byuser/<username>.<format:ext>')
-def user(db, lang, username=None, format=None):
-    params, username, errors = _user(db, lang, username)
-
-    if not params.users:
-        return template('byuser/index', translate=utils.translator(lang))
-
-    count = len(errors)
-
-    if format == 'rss':
-        response.content_type = "application/rss+xml"
-        return template('byuser/byuser.rss', username=username, users=params.users, count=count, errors=errors, translate=utils.translator(lang), website=utils.website)
-    else:
-        return template('byuser/byuser', username=username, users=params.users, count=count, errors=errors, translate=utils.translator(lang), website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read, html_escape=html_escape)
-
-
 def _user_count(db, username=None):
     params = query._params()
     if username:
@@ -95,15 +72,3 @@ def _user_count(db, username=None):
 def user_count(db, lang, username=None, format=None):
     count = _user_count(db, username)
     return count
-
-
-@route('/byuser_count/<username>')
-@route('/byuser_count/<username>.<format:ext>')
-def user_count(db, lang, username=None, format=None):
-    count = _user_count(db, username)
-
-    if format == 'rss':
-        response.content_type = "application/rss+xml"
-        return template('byuser/byuser_count.rss', username=username, count=count, translate=utils.translator(lang), website=utils.website)
-    else:
-        return count

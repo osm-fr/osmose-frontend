@@ -147,7 +147,8 @@ def error404(error):
 
 import api_0_2_meta
 import api_0_3_meta
-import byuser
+import api_user
+import web_byuser
 import control
 import error
 import errors
