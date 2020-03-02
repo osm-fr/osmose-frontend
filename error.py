@@ -146,11 +146,11 @@ def fresh_elems_uuid(db, lang, uuid, fix_num=None):
         "uuid": uuid,
         "elems": elems.values(),
     }
-    for elem in ret['elems']:
-        elem["tags"] = expand_tags(elem["tags"])
 
     if fix_num != None:
-        res = marker['fixes'][fix_num]
+      ret["fix"] = {}
+      print(marker['fixes'][fix_num])
+      for res in marker['fixes'][fix_num]:
         tid = data_type[res['type']] + str(res['id'])
         if elems.has_key(tid):
             fix_elem_tags = copy.copy(elems[tid]["tags"])
@@ -162,7 +162,10 @@ def fresh_elems_uuid(db, lang, uuid, fix_num=None):
             for (k, v) in res['modify'].items():
                 fix_elem_tags[k] = v
 
-            ret["fix"] = {tid: fix_elem_tags}
+            ret["fix"][tid] = fix_elem_tags
+
+    for elem in ret['elems']:
+        elem["tags"] = expand_tags(elem["tags"])
 
     return ret
 
