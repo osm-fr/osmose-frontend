@@ -154,7 +154,7 @@ import error
 import errors
 import map
 import false_positive
-import editor
+import web_editor
 
 @route('/<filename:path>', name='static')
 def static(filename):
