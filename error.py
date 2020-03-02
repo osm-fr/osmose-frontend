@@ -115,18 +115,12 @@ def display(db, lang, user, uuid):
         main_website=utils.main_website, data_type=data_type)
 
 
-@route('/api/0.2/error/<err_id:int>/fresh_elems')
-@route('/api/0.2/error/<err_id:int>/fresh_elems/<fix_num:int>')
-def fresh_elems_err_id(db, lang, err_id, fix_num=None):
-    return _fresh_elems(2, db, lang, None, fix_num, _get(db, err_id=err_id))
-
 @route('/api/0.3beta/issue/<uuid:uuid>/fresh_elems')
 @route('/api/0.3beta/issue/<uuid:uuid>/fresh_elems/<fix_num:int>')
 def fresh_elems_uuid(db, lang, uuid, fix_num=None):
-    return _fresh_elems(3, db, lang, uuid, fix_num, _get(db, uuid=uuid))
-
-def _fresh_elems(version, db, lang, uuid, fix_num, marker):
     data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
+
+    marker = _get(db, uuid=uuid)
 
     def expand_tags(tags):
       t = []
@@ -161,33 +155,20 @@ def _fresh_elems(version, db, lang, uuid, fix_num, marker):
             for (k, v) in res['modify'].items():
                 fix_elem_tags[k] = v
 
-            if version == 2:
-                ret = {
-                    "error_id": marker['id'],
-                    "elems": elems.values(),
-                    "fix": {tid: fix_elem_tags}
-                }
-            else:
-                ret = {
-                    "uuid": uuid,
-                    "elems": elems.values(),
-                    "fix": {tid: fix_elem_tags}
-                }
+            ret = {
+                "uuid": uuid,
+                "elems": elems.values(),
+                "fix": {tid: fix_elem_tags}
+            }
 
             for elem in ret['elems']:
                 elem["tags"] = expand_tags(elem["tags"])
             return ret
 
-    if version == 2:
-        ret = {
-            "error_id": marker['id'],
-            "elems": elems.values()
-        }
-    else:
-        ret = {
-            "uuid": uuid,
-            "elems": elems.values()
-        }
+    ret = {
+        "uuid": uuid,
+        "elems": elems.values()
+    }
 
     for elem in ret['elems']:
         elem["tags"] = expand_tags(elem["tags"])
