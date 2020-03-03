@@ -29,8 +29,8 @@ from tools.query import fixes_default
 from api_issue_utils import t2l, _get, _expand_tags
 
 
-@route('/api/0.3beta/issue/<uuid:uuid>/fresh_elems')
-@route('/api/0.3beta/issue/<uuid:uuid>/fresh_elems/<fix_num:int>')
+@route('/0.3beta/issue/<uuid:uuid>/fresh_elems')
+@route('/0.3beta/issue/<uuid:uuid>/fresh_elems/<fix_num:int>')
 def fresh_elems_uuid(db, uuid, fix_num=None):
     data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
 
@@ -85,11 +85,11 @@ def fresh_elems_uuid(db, uuid, fix_num=None):
     return ret
 
 
-@route('/api/0.2/error/<err_id:int>')
+@route('/0.2/error/<err_id:int>')
 def error_err_id(db, lang, err_id):
     return _error(2, db, lang, None, _get(db, err_id=err_id))
 
-@route('/api/0.3beta/issue/<uuid:uuid>')
+@route('/0.3beta/issue/<uuid:uuid>')
 def error_uuid(db, langs, uuid):
     return _error(3, db, langs, uuid, _get(db, uuid=uuid))
 
@@ -175,14 +175,14 @@ def _error(version, db, langs, uuid, marker):
         }
 
 
-@route('/api/0.2/error/<err_id:int>/<status:re:(done|false)>')
+@route('/0.2/error/<err_id:int>/<status:re:(done|false)>')
 def status_err_id(err_id, status):
     if osmose_common.remove_bug_err_id(err_id, status) == 0:
         return
     else:
         abort(410, "FAIL")
 
-@route('/api/0.3beta/issue/<uuid:uuid>/<status:re:(done|false)>')
+@route('/0.3beta/issue/<uuid:uuid>/<status:re:(done|false)>')
 def status_uuid(uuid, status):
     if osmose_common.remove_bug_uuid(uuid, status) == 0:
         return
@@ -206,13 +206,13 @@ def _get_fix(db, fix_num, err_id=None, uuid=None):
     return fixes_default(fix[0])[fix_num]
 
 
-@route('/api/0.2/error/<err_id:int>/fix')
-@route('/api/0.2/error/<err_id:int>/fix/<fix_num:int>')
+@route('/0.2/error/<err_id:int>/fix')
+@route('/0.2/error/<err_id:int>/fix/<fix_num:int>')
 def fix_err_id(db, err_id, fix_num=0):
     return _fix(2, db, None, fix_num, _get_fix(db, fix_num, err_id=err_id))
 
-@route('/api/0.3beta/issue/<uuid:uuid>/fix')
-@route('/api/0.3beta/issue/<uuid:uuid>/fix/<fix_num:int>')
+@route('/0.3beta/issue/<uuid:uuid>/fix')
+@route('/0.3beta/issue/<uuid:uuid>/fix/<fix_num:int>')
 def fix_uuid(db, uuid, fix_num=0):
     return _fix(3, db, uuid, fix_num, _get_fix(db, fix_num, uuid=uuid))
 

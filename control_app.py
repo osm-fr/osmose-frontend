@@ -1,9 +1,9 @@
-#! /usr/bin/env python
-#-*- coding: utf-8 -*-
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
+## Copyrights Frederic Rodrigo 2020                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -20,27 +20,24 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route
-from tools.OrderedDict import OrderedDict
-from api_user_utils import _user, _user_count
+import bottle
+from tools import utils
+import bottle_pgsql
 
 
-@route('/0.2/user/<username>')
-@route('/0.3beta/user/<username>')
-def user(db, lang, username):
-    params, username, errors = _user(db, lang, username)
+class OsmoseControlBottle(bottle.Bottle):
+    def default_error_handler(self, res):
+        bottle.response.content_type = 'text/plain'
+        return res.body
 
-    out = OrderedDict()
-    for res in errors:
-        res["timestamp"] = str(res["timestamp"])
-        res["lat"] = float(res["lat"])
-        res["lon"] = float(res["lon"])
-    out["issues"] = map(dict, errors)
-    return out
+app = OsmoseControlBottle()
+bottle.default_app.push(app)
 
+app.install(bottle_pgsql.Plugin(utils.db_string))
 
-@route('/0.2/user_count/<username>')
-@route('/0.3beta/user_count/<username>')
-def user_count(db, lang, username=None, format=None):
-    count = _user_count(db, username)
-    return count
+import control
+
+bottle.default_app.pop()
+
+if __name__ == '__main__':
+    bottle.run(app=app, host='0.0.0.0', port=20009, reloader=True, debug=True)

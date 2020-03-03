@@ -87,7 +87,7 @@ def _errors_geojson(db, results, z, min_lon, min_lat, max_lon, max_lat, limit):
         return features_collection
 
 
-@route('/api/0.3beta/issues/<z:int>/<x:int>/<y:int>.heat.mvt')
+@route('/0.3beta/issues/<z:int>/<x:int>/<y:int>.heat.mvt')
 def heat(db, z, x, y):
     COUNT=32
 
@@ -161,7 +161,7 @@ GROUP BY
     }], extents=COUNT)
 
 
-@route('/api/0.3beta/issues/<z:int>/<x:int>/<y:int>.<format:ext>')
+@route('/0.3beta/issues/<z:int>/<x:int>/<y:int>.<format:ext>')
 def issues_mvt(db, z, x, y, format):
     lon1,lat2 = tiles.tile2lonlat(x,y,z)
     lon2,lat1 = tiles.tile2lonlat(x+1,y+1,z)

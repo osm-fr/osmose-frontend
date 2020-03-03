@@ -24,11 +24,11 @@ from tools import utils
 from api_false_positive_utils import _get
 
 
-@route('/api/0.2/false-positive/<err_id:int>')
+@route('/0.2/false-positive/<err_id:int>')
 def fp_err_id(db, lang, err_id):
     return _fp(2, db, lang, None, *_get(db, 'false', err_id=err_id))
 
-@route('/api/0.3beta/false-positive/<uuid:uuid>')
+@route('/0.3beta/false-positive/<uuid:uuid>')
 def fp_uuid(db, langs, uuid):
     return _fp(3, db, langs, uuid, *_get(db, 'false', uuid=uuid))
 
@@ -68,7 +68,7 @@ def _fp(version, db, langs, uuid, marker, columns):
         }
 
 
-@delete('/api/0.2/false-positive/<err_id:int>')
+@delete('/0.2/false-positive/<err_id:int>')
 def fp_delete_err_id(db, err_id):
     db.execute("SELECT uuid FROM dynpoi_status WHERE status = %s AND uuid_to_bigint(dynpoi_status.uuid) = %s", ('false', err_id))
     m = db.fetchone()
@@ -80,7 +80,7 @@ def fp_delete_err_id(db, err_id):
 
     return
 
-@delete('/api/0.3beta/false-positive/<uuid:uuid>')
+@delete('/0.3beta/false-positive/<uuid:uuid>')
 def fp_delete_uuid(db, uuid):
     db.execute("SELECT uuid FROM dynpoi_status WHERE status = %s AND uuid = %s", ('false', uuid))
     m = db.fetchone()

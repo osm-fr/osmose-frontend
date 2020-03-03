@@ -24,26 +24,26 @@ from bottle import route, response
 from tools import query_meta
 
 
-@route('/api/0.2/meta/class')
+@route('/0.2/meta/class')
 def items(db, lang):
     return {"class": query_meta._class(db, lang)}
 
 
-@route('/api/0.2/meta/items')
+@route('/0.2/meta/items')
 def items(db, lang):
     return {"items": query_meta._items(db, lang)}
 
 
-@route('/api/0.2/meta/countries')
+@route('/0.2/meta/countries')
 def items(db, lang):
     return {"countries": map(lambda x: x[0], query_meta._countries(db, lang))}
 
 
-@route('/api/0.2/meta/categories')
+@route('/0.2/meta/categories')
 def items(db, lang):
     return {"categories": query_meta._categories(db, lang)}
 
 
-@route('/api/0.2/meta/tags')
+@route('/0.2/meta/tags')
 def items(db, lang):
     return {"tags": query_meta._tags(db)}

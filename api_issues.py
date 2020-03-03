@@ -61,13 +61,13 @@ def _errors(db, lang, params):
     return out
 
 
-@route('/api/0.2/errors')
+@route('/0.2/errors')
 def errors(db, lang):
     params = query._params()
     return _errors(db, lang, params)
 
 
-@route('/api/0.3beta/issues')
+@route('/0.3beta/issues')
 def errors(db, langs):
     params = query._params(max_limit=10000)
     results = query._gets(db, params)

@@ -24,21 +24,21 @@ from bottle import route, response, request
 from tools import query_meta
 
 
-@route('/api/0.3beta/items')
+@route('/0.3beta/items')
 def items(db, langs):
     return {"categories": query_meta._items_3(db, langs = langs)}
 
 
-@route('/api/0.3beta/items/<item:int>/class/<classs:int>')
+@route('/0.3beta/items/<item:int>/class/<classs:int>')
 def items(db, langs, item, classs):
     return {"categories": query_meta._items_3(db, item = item, classs = classs, langs = langs)}
 
 
-@route('/api/0.3beta/countries')
+@route('/0.3beta/countries')
 def items(db):
     return {"countries": query_meta._countries_3(db)}
 
 
-@route('/api/0.3beta/tags')
+@route('/0.3beta/tags')
 def items(db):
     return {"tags": query_meta._tags(db)}
