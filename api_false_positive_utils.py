@@ -1,9 +1,8 @@
 #! /usr/bin/env python
 #-*- coding: utf-8 -*-
-
 ###########################################################################
 ##                                                                       ##
-## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
+## Copyrights Jocelyn Jaubert 2013                                       ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -20,27 +19,38 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route
-from tools.OrderedDict import OrderedDict
-from api_user_utils import _user, _user_count
+def _get(db, status, err_id=None, uuid=None):
+    columns = ["item", "dynpoi_status.source", "class",
+        "lat", "lon",
+        "title", "subtitle",
+        "dynpoi_status.date", "dynpoi_class.timestamp"]
 
+    if err_id:
+        sql = "SELECT " + ",".join(columns) + """
+        FROM
+            dynpoi_status
+            JOIN dynpoi_class USING (source,class)
+            JOIN class USING (item, class)
+        WHERE
+            dynpoi_status.status = %s AND
+            uuid_to_bigint(dynpoi_status.uuid) = %s
+        """
+        db.execute(sql, (status, err_id))
+    else:
+        sql = "SELECT " + ",".join(columns) + """
+        FROM
+            dynpoi_status
+            JOIN dynpoi_class USING (source,class)
+            JOIN class USING (item, class)
+        WHERE
+            dynpoi_status.status = %s AND
+            dynpoi_status.uuid = %s
+        """
+        db.execute(sql, (status, uuid))
 
-@route('/api/0.2/user/<username>')
-@route('/api/0.3beta/user/<username>')
-def user(db, lang, username):
-    params, username, errors = _user(db, lang, username)
+    marker = db.fetchone()
 
-    out = OrderedDict()
-    for res in errors:
-        res["timestamp"] = str(res["timestamp"])
-        res["lat"] = float(res["lat"])
-        res["lon"] = float(res["lon"])
-    out["issues"] = map(dict, errors)
-    return out
+    if not marker:
+        abort(410, "Id is not present in database.")
 
-
-@route('/api/0.2/user_count/<username>')
-@route('/api/0.3beta/user_count/<username>')
-def user_count(db, lang, username=None, format=None):
-    count = _user_count(db, username)
-    return count
+    return (marker, columns)

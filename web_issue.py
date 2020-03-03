@@ -22,12 +22,14 @@
 from bottle import route, template
 from tools import utils
 
-from api_issue import _get, _expand_tags, t2l
+from api_issue_utils import _get, _expand_tags, t2l
 
 
 @route('/error/<uuid:uuid>')
 def display(db, lang, user, uuid):
     marker = _get(db, uuid=uuid)
+    if not marker:
+        abort(410, "Id is not present in database.")
 
     data_type = { 'N': 'node', 'W': 'way', 'R': 'relation', 'I': 'infos'}
 

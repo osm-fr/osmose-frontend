@@ -22,7 +22,7 @@
 
 from bottle import route, request, template, redirect
 from tools import utils, query, query_meta
-import api_user
+from api_user_utils import _user_count
 from collections import defaultdict
 
 
@@ -95,7 +95,7 @@ OFFSET
 
     if user != None:
         if user:
-            user_error_count = api_user._user_count(db, user.encode('utf-8'))
+            user_error_count = _user_count(db, user.encode('utf-8'))
         else: # user == False
             user = '[user name]'
             user_error_count = {1: 0, 2: 0, 3: 0}

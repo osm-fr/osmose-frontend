@@ -20,27 +20,33 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route
-from tools.OrderedDict import OrderedDict
-from api_user_utils import _user, _user_count
+from tools import utils
+from tools import query
 
 
-@route('/api/0.2/user/<username>')
-@route('/api/0.3beta/user/<username>')
-def user(db, lang, username):
-    params, username, errors = _user(db, lang, username)
+def _user(db, lang, username):
+    params = query._params()
+    if username:
+        params.users = utils.pg_escape(username.decode("utf-8")).split(",")
+    params.limit = 500
+    params.full = True
+    username = ",".join(params.users)
 
-    out = OrderedDict()
-    for res in errors:
-        res["timestamp"] = str(res["timestamp"])
-        res["lat"] = float(res["lat"])
-        res["lon"] = float(res["lon"])
-    out["issues"] = map(dict, errors)
-    return out
+    errors = query._gets(db, params)
+    return [params, username, errors]
 
 
-@route('/api/0.2/user_count/<username>')
-@route('/api/0.3beta/user_count/<username>')
-def user_count(db, lang, username=None, format=None):
-    count = _user_count(db, username)
-    return count
+def _user_count(db, username=None):
+    params = query._params()
+    if username:
+        params.users = utils.pg_escape(username.decode("utf-8")).split(",")
+
+    if not params.users:
+        return
+
+    res = query._count(db, params, ['class.level'], ['class.level'])
+    ret = {1:0, 2:0, 3:0}
+    for (l, c) in res:
+        ret[l] = c
+
+    return ret

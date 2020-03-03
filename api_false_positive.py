@@ -21,43 +21,7 @@
 
 from bottle import route, abort, delete
 from tools import utils
-
-
-def _get(db, status, err_id=None, uuid=None):
-    columns = ["item", "dynpoi_status.source", "class",
-        "lat", "lon",
-        "title", "subtitle",
-        "dynpoi_status.date", "dynpoi_class.timestamp"]
-
-    if err_id:
-        sql = "SELECT " + ",".join(columns) + """
-        FROM
-            dynpoi_status
-            JOIN dynpoi_class USING (source,class)
-            JOIN class USING (item, class)
-        WHERE
-            dynpoi_status.status = %s AND
-            uuid_to_bigint(dynpoi_status.uuid) = %s
-        """
-        db.execute(sql, (status, err_id))
-    else:
-        sql = "SELECT " + ",".join(columns) + """
-        FROM
-            dynpoi_status
-            JOIN dynpoi_class USING (source,class)
-            JOIN class USING (item, class)
-        WHERE
-            dynpoi_status.status = %s AND
-            dynpoi_status.uuid = %s
-        """
-        db.execute(sql, (status, uuid))
-
-    marker = db.fetchone()
-
-    if not marker:
-        abort(410, "Id is not present in database.")
-
-    return (marker, columns)
+from api_false_positive_utils import _get
 
 
 @route('/api/0.2/false-positive/<err_id:int>')

@@ -24,74 +24,9 @@ import StringIO, copy
 
 from tools import osmose_common
 from tools import utils
-from tools import tag2link
 from tools import OsmSax
 from tools.query import fixes_default
-
-t2l = tag2link.tag2link("tools/tag2link_sources.xml")
-
-
-def _get(db, err_id=None, uuid=None):
-    columns_marker = ["marker.item", "marker.source", "marker.class", "marker.elems", "marker.fixes",
-        "marker.lat", "marker.lon",
-        "class.title", "marker.subtitle", "dynpoi_class.timestamp",
-        "class.detail", "class.fix", "class.trap", "class.example", "class.source AS source_code", "class.resource",
-        ]
-
-    if err_id:
-        sql = "SELECT uuid_to_bigint(marker.uuid) AS id, " + ",".join(columns_marker) + """
-        FROM
-            marker
-            JOIN dynpoi_class ON
-                marker.source = dynpoi_class.source AND
-                marker.class = dynpoi_class.class
-            JOIN class ON
-                marker.item = class.item AND
-                marker.class = class.class
-        WHERE
-            uuid_to_bigint(marker.uuid) = %s
-        """
-        db.execute(sql, (err_id, ))
-    else:
-        sql = "SELECT " + ",".join(columns_marker) + """
-        FROM
-            marker
-            JOIN dynpoi_class ON
-                marker.source = dynpoi_class.source AND
-                marker.class = dynpoi_class.class
-            JOIN class ON
-                marker.item = class.item AND
-                marker.class = class.class
-        WHERE
-            marker.uuid = %s
-        """
-        db.execute(sql, (uuid, ))
-
-    marker = db.fetchone()
-
-    if not marker:
-        abort(410, "Id is not present in database.")
-
-    marker['fixes'] = fixes_default(marker['fixes'])
-    marker['elems'] = map(lambda elem: dict(elem,
-        type_long={'N':'node', 'W':'way', 'R':'relation'}[elem['type']],
-    ), marker['elems'] or [])
-
-    return marker
-
-
-def _expand_tags(tags, links, short = False):
-  t = []
-  if short:
-    for k in tags:
-      t.append({"k": k})
-  else:
-    for (k, v) in sorted(tags.items()):
-      if links and links.has_key(k):
-        t.append({"k": k, "v": v, "vlink": links[k]})
-      else:
-        t.append({"k": k, "v": v})
-  return t
+from api_issue_utils import t2l, _get, _expand_tags
 
 
 @route('/api/0.3beta/issue/<uuid:uuid>/fresh_elems')
@@ -100,6 +35,8 @@ def fresh_elems_uuid(db, uuid, fix_num=None):
     data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
 
     marker = _get(db, uuid=uuid)
+    if not marker:
+        abort(410, "Id is not present in database.")
 
     def expand_tags(tags):
       t = []
@@ -157,6 +94,9 @@ def error_uuid(db, langs, uuid):
     return _error(3, db, langs, uuid, _get(db, uuid=uuid))
 
 def _error(version, db, langs, uuid, marker):
+    if not marker:
+        abort(410, "Id is not present in database.")
+
     data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
 
     lat       = str(marker["lat"])
