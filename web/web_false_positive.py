@@ -2,7 +2,7 @@
 #-*- coding: utf-8 -*-
 ###########################################################################
 ##                                                                       ##
-## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
+## Copyrights Jocelyn Jaubert 2013                                       ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -22,32 +22,11 @@
 from bottle import route, template
 from tools import utils
 
-from api_issue_utils import _get, _expand_tags, t2l
+from api.api_false_positive_utils import _get
 
 
-@route('/error/<uuid:uuid>')
-def display(db, lang, user, uuid):
-    marker = _get(db, uuid=uuid)
-    if not marker:
-        abort(410, "Id is not present in database.")
+@route('/false-positive/<uuid:uuid>')
+def fp_(db, lang, uuid):
+    (marker, columns) = _get(db, 'false', uuid=uuid)
 
-    data_type = { 'N': 'node', 'W': 'way', 'R': 'relation', 'I': 'infos'}
-
-    for e in marker['elems'] or []:
-        e['tags'] = _expand_tags(e.get('tags', {}), t2l.checkTags(e.get('tags', {})))
-
-    for fix_group in marker['fixes'] or []:
-        for f in fix_group:
-            f['create'] = _expand_tags(f['create'], t2l.checkTags(f['create']))
-            f['modify'] = _expand_tags(f['modify'], t2l.checkTags(f['modify']))
-            f['delete'] = _expand_tags(f['delete'], {}, True)
-
-    return template(
-        'error/index',
-        translate=utils.translator(lang),
-        uuid=uuid,
-        marker=marker,
-        user=user,
-        main_website=utils.main_website,
-        data_type=data_type,
-    )
+    return template('false-positive/index', translate=utils.translator(lang), uuid=uuid, marker=marker, columns_marker=columns)

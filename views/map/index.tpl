@@ -12,7 +12,7 @@
   <script id="popupTpl" type="text/template" src="{{get_url('static', filename='/tpl/popup.tpl')}}"></script>
   <script id="docTpl" type="text/template" src="{{get_url('static', filename='/tpl/doc.tpl')}}"></script>
   <script id="editorTpl" type="text/template" src="{{get_url('static', filename='/tpl/editor.tpl')}}"></script>
-%from assets import assets
+%from web.assets import assets
   <script type="text/javascript" src="{{get_url('static', filename=assets['static/map'][0])}}"></script>
   <script type="text/javascript">
     var itemLevels = {};

@@ -22,7 +22,7 @@
 
 import bottle
 from tools import utils
-import bottle_pgsql
+from modules import bottle_pgsql
 
 
 class OsmoseControlBottle(bottle.Bottle):

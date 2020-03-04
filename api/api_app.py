@@ -21,11 +21,11 @@
 ###########################################################################
 
 import bottle
-from osmose_bottle import uuid_filter, ext_filter
+from modules.osmose_bottle import uuid_filter, ext_filter
 from tools import utils
-import bottle_pgsql
-import bottle_cors
-import bottle_langs
+from modules import bottle_pgsql
+from modules import bottle_cors
+from modules import bottle_langs
 
 
 class OsmoseAPIBottle(bottle.Bottle):

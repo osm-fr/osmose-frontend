@@ -24,7 +24,7 @@ from bottle import route, template, redirect, response, html_escape
 from tools import utils
 from tools import query
 
-from api_user_utils import _user, _user_count
+from api.api_user_utils import _user, _user_count
 
 
 @route('/byuser')

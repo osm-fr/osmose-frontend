@@ -1,9 +1,8 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
+#! /usr/bin/env python
+#-*- coding: utf-8 -*-
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frederic Rodrigo 2020                                      ##
+## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -20,16 +19,35 @@
 ##                                                                       ##
 ###########################################################################
 
-import bottle
+from bottle import route, template
 from tools import utils
 
-from web import web_app
-app = web_app.app
-from control import control_app
-app.mount('/control/', control_app.app)
-from api import api_app
-web_app.app.mount('/api/', api_app.app)
+from api.api_issue_utils import _get, _expand_tags, t2l
 
-bottle.default_app.push(app)
 
-app_middleware = web_app.app_middleware
+@route('/error/<uuid:uuid>')
+def display(db, lang, user, uuid):
+    marker = _get(db, uuid=uuid)
+    if not marker:
+        abort(410, "Id is not present in database.")
+
+    data_type = { 'N': 'node', 'W': 'way', 'R': 'relation', 'I': 'infos'}
+
+    for e in marker['elems'] or []:
+        e['tags'] = _expand_tags(e.get('tags', {}), t2l.checkTags(e.get('tags', {})))
+
+    for fix_group in marker['fixes'] or []:
+        for f in fix_group:
+            f['create'] = _expand_tags(f['create'], t2l.checkTags(f['create']))
+            f['modify'] = _expand_tags(f['modify'], t2l.checkTags(f['modify']))
+            f['delete'] = _expand_tags(f['delete'], {}, True)
+
+    return template(
+        'error/index',
+        translate=utils.translator(lang),
+        uuid=uuid,
+        marker=marker,
+        user=user,
+        main_website=utils.main_website,
+        data_type=data_type,
+    )

@@ -1,8 +1,9 @@
-#! /usr/bin/env python
-#-*- coding: utf-8 -*-
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 ###########################################################################
 ##                                                                       ##
-## Copyrights Jocelyn Jaubert 2013                                       ##
+## Copyrights Frederic Rodrigo 2020                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -19,14 +20,19 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, template
-from tools import utils
+def ext_filter(config):
+    regexp = r'html|json|geojson|xml|rss|png|svg|pdf|gpx|kml|josm|csv|mvt'
+    def to_python(match):
+        return match if match in ('html', 'json', 'geojson', 'xml', 'rss', 'png', 'svg', 'pdf', 'gpx', 'kml', 'josm', 'csv', 'mvt') else 'html'
+    def to_url(ext):
+        return ext
+    return regexp, to_python, to_url
 
-from api_false_positive_utils import _get
 
-
-@route('/false-positive/<uuid:uuid>')
-def fp_(db, lang, uuid):
-    (marker, columns) = _get(db, 'false', uuid=uuid)
-
-    return template('false-positive/index', translate=utils.translator(lang), uuid=uuid, marker=marker, columns_marker=columns)
+def uuid_filter(config):
+    regexp = r'[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}'
+    def to_python(match):
+        return match
+    def to_url(ext):
+        return ext
+    return regexp, to_python, to_url

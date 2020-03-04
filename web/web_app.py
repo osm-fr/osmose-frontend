@@ -24,12 +24,13 @@ import bottle
 from bottle import route, view, template, error, redirect, request, hook
 from tools import utils, oauth, xmldict
 import beaker.middleware
+import os
 import assets
-from osmose_bottle import uuid_filter, ext_filter
-import bottle_pgsql
-import bottle_cors
-import bottle_gettext, os
-import bottle_user
+from modules.osmose_bottle import uuid_filter, ext_filter
+from modules import bottle_pgsql
+from modules import bottle_cors
+from modules import bottle_gettext
+from modules import bottle_user
 
 
 app = bottle.Bottle()
