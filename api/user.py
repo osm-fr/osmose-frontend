@@ -1,9 +1,9 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+#! /usr/bin/env python
+#-*- coding: utf-8 -*-
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frederic Rodrigo 2020                                      ##
+## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -20,37 +20,27 @@
 ##                                                                       ##
 ###########################################################################
 
-import bottle
-from modules.osmose_bottle import uuid_filter, ext_filter
-from tools import utils
-from modules import bottle_pgsql
-from modules import bottle_cors
-from modules import bottle_langs
+from bottle import route
+from tools.OrderedDict import OrderedDict
+from user_utils import _user, _user_count
 
 
-class OsmoseAPIBottle(bottle.Bottle):
-    def default_error_handler(self, res):
-        bottle.response.content_type = 'text/plain'
-        return res.body
+@route('/0.2/user/<username>')
+@route('/0.3beta/user/<username>')
+def user(db, lang, username):
+    params, username, errors = _user(db, lang, username)
 
-app = OsmoseAPIBottle()
-bottle.default_app.push(app)
-
-app.install(bottle_pgsql.Plugin(utils.db_string))
-app.install(bottle_cors.Plugin(allow_origin = '*', preflight_methods = ['GET', 'POST', 'PUT', 'DELETE']))
-app.install(bottle_langs.Plugin(utils.allowed_languages))
-
-app.router.add_filter('uuid', uuid_filter)
-app.router.add_filter('ext', ext_filter)
-
-import api_0_2_meta
-import api_0_3_meta
-import api_user
-import api_issue
-import api_issues
-import api_issues_tiles
-import api_false_positive
+    out = OrderedDict()
+    for res in errors:
+        res["timestamp"] = str(res["timestamp"])
+        res["lat"] = float(res["lat"])
+        res["lon"] = float(res["lon"])
+    out["issues"] = map(dict, errors)
+    return out
 
 
-if __name__ == '__main__':
-    bottle.run(app=app, host='0.0.0.0', port=20009, reloader=True, debug=True)
+@route('/0.2/user_count/<username>')
+@route('/0.3beta/user_count/<username>')
+def user_count(db, lang, username=None, format=None):
+    count = _user_count(db, username)
+    return count

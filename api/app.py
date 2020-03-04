@@ -1,8 +1,9 @@
-#! /usr/bin/env python
-#-*- coding: utf-8 -*-
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 ###########################################################################
 ##                                                                       ##
-## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
+## Copyrights Frederic Rodrigo 2020                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -19,35 +20,37 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, template
+import bottle
+from modules.osmose_bottle import uuid_filter, ext_filter
 from tools import utils
+from modules import bottle_pgsql
+from modules import bottle_cors
+from modules import bottle_langs
 
-from api.api_issue_utils import _get, _expand_tags, t2l
+
+class OsmoseAPIBottle(bottle.Bottle):
+    def default_error_handler(self, res):
+        bottle.response.content_type = 'text/plain'
+        return res.body
+
+app = OsmoseAPIBottle()
+bottle.default_app.push(app)
+
+app.install(bottle_pgsql.Plugin(utils.db_string))
+app.install(bottle_cors.Plugin(allow_origin = '*', preflight_methods = ['GET', 'POST', 'PUT', 'DELETE']))
+app.install(bottle_langs.Plugin(utils.allowed_languages))
+
+app.router.add_filter('uuid', uuid_filter)
+app.router.add_filter('ext', ext_filter)
+
+import meta_0_2
+import meta_0_3
+import user
+import issue
+import issues
+import issues_tiles
+import false_positive
 
 
-@route('/error/<uuid:uuid>')
-def display(db, lang, user, uuid):
-    marker = _get(db, uuid=uuid)
-    if not marker:
-        abort(410, "Id is not present in database.")
-
-    data_type = { 'N': 'node', 'W': 'way', 'R': 'relation', 'I': 'infos'}
-
-    for e in marker['elems'] or []:
-        e['tags'] = _expand_tags(e.get('tags', {}), t2l.checkTags(e.get('tags', {})))
-
-    for fix_group in marker['fixes'] or []:
-        for f in fix_group:
-            f['create'] = _expand_tags(f['create'], t2l.checkTags(f['create']))
-            f['modify'] = _expand_tags(f['modify'], t2l.checkTags(f['modify']))
-            f['delete'] = _expand_tags(f['delete'], {}, True)
-
-    return template(
-        'error/index',
-        translate=utils.translator(lang),
-        uuid=uuid,
-        marker=marker,
-        user=user,
-        main_website=utils.main_website,
-        data_type=data_type,
-    )
+if __name__ == '__main__':
+    bottle.run(app=app, host='0.0.0.0', port=20009, reloader=True, debug=True)

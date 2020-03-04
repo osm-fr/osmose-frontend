@@ -1,6 +1,5 @@
 #! /usr/bin/env python
 #-*- coding: utf-8 -*-
-
 ###########################################################################
 ##                                                                       ##
 ## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
@@ -20,27 +19,35 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route
-from tools.OrderedDict import OrderedDict
-from api_user_utils import _user, _user_count
+from bottle import route, template
+from tools import utils
+
+from api.issue_utils import _get, _expand_tags, t2l
 
 
-@route('/0.2/user/<username>')
-@route('/0.3beta/user/<username>')
-def user(db, lang, username):
-    params, username, errors = _user(db, lang, username)
+@route('/error/<uuid:uuid>')
+def display(db, lang, user, uuid):
+    marker = _get(db, uuid=uuid)
+    if not marker:
+        abort(410, "Id is not present in database.")
 
-    out = OrderedDict()
-    for res in errors:
-        res["timestamp"] = str(res["timestamp"])
-        res["lat"] = float(res["lat"])
-        res["lon"] = float(res["lon"])
-    out["issues"] = map(dict, errors)
-    return out
+    data_type = { 'N': 'node', 'W': 'way', 'R': 'relation', 'I': 'infos'}
 
+    for e in marker['elems'] or []:
+        e['tags'] = _expand_tags(e.get('tags', {}), t2l.checkTags(e.get('tags', {})))
 
-@route('/0.2/user_count/<username>')
-@route('/0.3beta/user_count/<username>')
-def user_count(db, lang, username=None, format=None):
-    count = _user_count(db, username)
-    return count
+    for fix_group in marker['fixes'] or []:
+        for f in fix_group:
+            f['create'] = _expand_tags(f['create'], t2l.checkTags(f['create']))
+            f['modify'] = _expand_tags(f['modify'], t2l.checkTags(f['modify']))
+            f['delete'] = _expand_tags(f['delete'], {}, True)
+
+    return template(
+        'error/index',
+        translate=utils.translator(lang),
+        uuid=uuid,
+        marker=marker,
+        user=user,
+        main_website=utils.main_website,
+        data_type=data_type,
+    )

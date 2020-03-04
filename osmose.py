@@ -23,11 +23,11 @@
 import bottle
 from tools import utils
 
-from web import web_app
+from web import app as web_app
 app = web_app.app
-from control import control_app
+from control import app as control_app
 app.mount('/control/', control_app.app)
-from api import api_app
+from api import app as api_app
 web_app.app.mount('/api/', api_app.app)
 
 bottle.default_app.push(app)

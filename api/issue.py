@@ -26,7 +26,7 @@ from tools import osmose_common
 from tools import utils
 from tools import OsmSax
 from tools.query import fixes_default
-from api_issue_utils import t2l, _get, _expand_tags
+from issue_utils import t2l, _get, _expand_tags
 
 
 @route('/0.3beta/issue/<uuid:uuid>/fresh_elems')

@@ -21,7 +21,7 @@
 
 from bottle import route, abort, delete
 from tools import utils
-from api_false_positive_utils import _get
+from false_positive_utils import _get
 
 
 @route('/0.2/false-positive/<err_id:int>')

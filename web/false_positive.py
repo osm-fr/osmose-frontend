@@ -22,7 +22,7 @@
 from bottle import route, template
 from tools import utils
 
-from api.api_false_positive_utils import _get
+from api.false_positive_utils import _get
 
 
 @route('/false-positive/<uuid:uuid>')

@@ -138,12 +138,12 @@ def error404(error):
     else:
         return {}
 
-import web_byuser
-import web_issue
-import web_issues
-import web_map
-import web_false_positive
-import web_editor
+import byuser
+import issue
+import issues
+import map
+import false_positive
+import editor
 
 @route('/<filename:path>', name='static')
 def static(filename):
