@@ -49,7 +49,7 @@ SimpleTemplate.defaults["get_url"] = app.get_url
 app.install(bottle_pgsql.Plugin(utils.db_string))
 # Temporary allow CORS on web
 app.install(bottle_cors.Plugin(allow_origin = '*', preflight_methods = ['GET', 'POST', 'PUT', 'DELETE']))
-app.install(bottle_gettext.Plugin('osmose-frontend', os.path.join("po", "mo"), utils.allowed_languages))
+app.install(bottle_gettext.Plugin('osmose-frontend', os.path.join("web", "po", "mo"), utils.allowed_languages))
 app.install(bottle_user.Plugin())
 
 app.router.add_filter('uuid', uuid_filter)
@@ -147,7 +147,7 @@ import editor
 
 @route('/<filename:path>', name='static')
 def static(filename):
-    return bottle.static_file(filename, root='static')
+    return bottle.static_file(filename, root='web/static')
 
 
 for l in utils.allowed_languages:
@@ -156,7 +156,7 @@ for l in utils.allowed_languages:
 
 session_opts = {
     'session.type': 'file',
-    'session.data_dir': './session/',
+    'session.data_dir': './web/session/',
     'session.cookie_expires': False,
 }
 app_middleware = beaker.middleware.SessionMiddleware(app, session_opts)

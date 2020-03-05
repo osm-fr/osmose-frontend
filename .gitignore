@@ -1,18 +1,18 @@
 *.pyc
 
-po/mo
-po/osmose-frontend.pot.tmp
-po/tmp.tpl
+web/po/mo
+web/po/osmose-frontend.pot.tmp
+web/po/tmp.tpl
 
-session/
+web/session/
 
-static/.webassets-cache/
-static/gen/
-static/osmose-coverage.json*
-static/osmose-coverage.topojson.pbf*
+web/static/.webassets-cache/
+web/static/gen/
+web/static/osmose-coverage.json*
+web/static/osmose-coverage.topojson.pbf*
 
-node_modules
+web/node_modules
 osmose-frontend-venv
 
-webpack.bundle-*.js
-webpack.bundle-*.js.map
+web/webpack.bundle-*.js
+web/webpack.bundle-*.js.map

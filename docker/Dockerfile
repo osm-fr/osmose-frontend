@@ -20,17 +20,19 @@ ADD ./requirements.txt /data/project/osmose/frontend/requirements.txt
 WORKDIR /data/project/osmose/frontend
 RUN pip install -r requirements.txt
 
-ADD ./package.json /data/project/osmose/frontend
-ADD ./package-lock.json /data/project/osmose/frontend
-ADD ./webpack.config.js /data/project/osmose/frontend
-ADD ./static /data/project/osmose/frontend/static
+RUN mkdir /data/project/osmose/frontend/web
+ADD ./web/package.json /data/project/osmose/frontend/web/
+ADD ./web/package-lock.json /data/project/osmose/frontend/web/
+ADD ./web/webpack.config.js /data/project/osmose/frontend/web/
 RUN mkdir ../node_modules && \
-    ln -s ../node_modules node_modules && \
+    ln -s ../../node_modules web/node_modules && \
+    cd web && \
     npm install
-RUN npm run build
+ADD ./web/static /data/project/osmose/frontend/web/static
+RUN cd web && npm run build
 
-ADD po /data/project/osmose/frontend/po
-RUN cd po && \
+ADD web/po /data/project/osmose/frontend/web/po
+RUN cd web/po && \
     make mo && \
     cd ..
 

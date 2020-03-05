@@ -9,17 +9,17 @@
 	WSGIDaemonProcess osmose processes=5 threads=6 user=osmose group=osmose maximum-requests=1000 graceful-timeout=600 python-path=/data/project/osmose/frontend/osmose-frontend-venv/lib/python2.7/site-packages
 	WSGIProcessGroup osmose
 
-	DocumentRoot /data/project/osmose/frontend/static/
+	DocumentRoot /data/project/osmose/frontend/web/static/
 
-	Alias /robots.txt /data/project/osmose/frontend/static/robots.txt
-	Alias /favicon.ico /data/project/osmose/frontend/static/favicon.ico
+	Alias /robots.txt /data/project/osmose/frontend/web/static/robots.txt
+	Alias /favicon.ico /data/project/osmose/frontend/web/static/favicon.ico
 	Alias /export /data/work/osmose/export
 
 	<Location />
 		Require all granted
 	</Location>
 
-	<Directory /data/project/osmose/frontend/static/>
+	<Directory /data/project/osmose/frontend/web/static/>
 		AddDefaultCharset UTF-8
 		AddHandler cgi-script .py
 		Options FollowSymLinks Indexes MultiViews

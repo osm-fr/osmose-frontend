@@ -23,6 +23,7 @@
 import bottle
 from tools import utils
 
+bottle.TEMPLATE_PATH.insert(0, './web/views/')
 from web import app as web_app
 app = web_app.app
 from control import app as control_app

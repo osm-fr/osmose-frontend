@@ -25,8 +25,9 @@ docker-compose -f docker-compose.yml -f docker-compose-test.yml -f docker-compos
 
 Once on container, first time of for development purpose:
 ```
+cd web
 cd po && make mo && cd ..
-ln -s ../node_modules/ node_modules
+ln -s ../../node_modules/ node_modules
 npm run build
 ```
 
