@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-02-28 21:18+0000\n"
+"PO-Revision-Date: 2020-03-07 19:26+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgid "never generated"
 msgstr "هرگز تولید نشده"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:209 ../false_positive.py:83 tmp.tpl:207
+#: ../error.py:184 ../false_positive.py:85 tmp.tpl:207
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Fa:Osmose/issues"
 
@@ -915,10 +915,6 @@ msgstr "پیشرفت ترجمه: Osmose"
 msgid "For new language or countries"
 msgstr "برای زبان یا کشورهای جدید"
 
-#, python-format
-msgid "The <a href='%s'>country coverage is available</a>."
-msgstr "<a href='%s'>پوشش کشوری وجود دارد</a>."
-
 #: tmp.tpl:209
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
@@ -1096,11 +1092,6 @@ msgid ""
 "contributor of the relevant erroneous elements."
 msgstr "پس از واردکردن نام کاربری OSM خود در فرم زیر، همهٔ مسائلی که به نام کاربری شما متصل شده را می‌توانید ببینید. توجه کنید، الگوریتمی که مسئله‌ها را به نام‌های کاربری نسبت می‌دهد کامل نیست؛ یعنی صرفاً آخرین کاربری که یک عنصر مسئله‌دار را ویرایش کرده برای Osmose قابل‌شناسایی است."
 
-#: tmp.tpl:110
-#, python-format
-msgid "Information on issue %d"
-msgstr "اطلاعاتی از مسئلهٔ %d"
-
 #: tmp.tpl:91
 msgid "Show more issues"
 msgstr "مسائل بیشتری نشان بده"
@@ -1116,10 +1107,6 @@ msgstr "اطلاعاتی دربارهٔ مسئله"
 #: tmp.tpl:106
 msgid "issue n°"
 msgstr "مسئلهٔ n°"
-
-#, python-format
-msgid "delete issue #%d"
-msgstr "حذف مسئلهٔ #%d"
 
 #: tmp.tpl:115
 msgid "Map of issues"
@@ -1420,14 +1407,6 @@ msgstr "آیتم"
 msgid "False positive / Done"
 msgstr "مثبت کاذب / حل‌شده"
 
-#, python-format
-msgid "Mark issue #%d as false positive"
-msgstr "نشانه‌گذاری مسئلهٔ #%d به‌عنوان مثبت کاذب"
-
-#, python-format
-msgid "Mark issue #%d as fixed"
-msgstr "نشانه‌گذاری مسئلهٔ #%d به‌عنوان حل‌شده"
-
 #: tmp.tpl:168
 msgid "Objects edited"
 msgstr "اشیای ویرایشی"
@@ -1478,9 +1457,6 @@ msgstr "جزئیات"
 #: tmp.tpl:192
 msgid "Issue reported on:"
 msgstr "تاریخ گزارش:"
-
-msgid "Help on OSM Wiki"
-msgstr "‫راهنمایی در ویکی OSM‬"
 
 #: tmp.tpl:194 tmp.tpl:195
 msgid ""
@@ -1597,7 +1573,7 @@ msgstr ""
 msgid "radio support, need update"
 msgstr ""
 
-#: tmp.tpl:58
+#: tmp.tpl:58 tmp.tpl:110
 #, python-format
 msgid "Information on issue %s"
 msgstr "اطلاعاتی دربارهٔ مسئلهٔ %s"

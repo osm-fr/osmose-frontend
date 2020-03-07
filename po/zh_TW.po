@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-02-28 21:18+0000\n"
+"PO-Revision-Date: 2020-03-07 19:26+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgid "never generated"
 msgstr "不曾產生"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:209 ../false_positive.py:83 tmp.tpl:207
+#: ../error.py:184 ../false_positive.py:85 tmp.tpl:207
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
@@ -918,10 +918,6 @@ msgstr "翻譯進度： osmose"
 msgid "For new language or countries"
 msgstr "新增語言或國家"
 
-#, python-format
-msgid "The <a href='%s'>country coverage is available</a>."
-msgstr "<a href='%s'>目前已含蓋的國家</a>。"
-
 #: tmp.tpl:209
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
@@ -1099,11 +1095,6 @@ msgid ""
 "contributor of the relevant erroneous elements."
 msgstr "只要在下方的表單填入你的 OSM 帳號名，就能看到列於你名下的問題。不過要注意到，關聯問題及帳號的算法並不完美，因為 Osmose 只看有問題的元素最後修改人。"
 
-#: tmp.tpl:110
-#, python-format
-msgid "Information on issue %d"
-msgstr "問題 %d 的資訊"
-
 #: tmp.tpl:91
 msgid "Show more issues"
 msgstr "顯示更多問題"
@@ -1119,10 +1110,6 @@ msgstr "問題的資訊"
 #: tmp.tpl:106
 msgid "issue n°"
 msgstr "問題 n°"
-
-#, python-format
-msgid "delete issue #%d"
-msgstr "刪除問題 #%d"
 
 #: tmp.tpl:115
 msgid "Map of issues"
@@ -1423,14 +1410,6 @@ msgstr "項目"
 msgid "False positive / Done"
 msgstr "誤判 / 已修正"
 
-#, python-format
-msgid "Mark issue #%d as false positive"
-msgstr "標記問題 #%d 為誤判"
-
-#, python-format
-msgid "Mark issue #%d as fixed"
-msgstr "標記問題 #%d 為已修正"
-
 #: tmp.tpl:168
 msgid "Objects edited"
 msgstr "編輯物件數"
@@ -1481,9 +1460,6 @@ msgstr "詳細"
 #: tmp.tpl:192
 msgid "Issue reported on:"
 msgstr "問題發現日期："
-
-msgid "Help on OSM Wiki"
-msgstr "於 OSM Wiki 取得幫助"
 
 #: tmp.tpl:194 tmp.tpl:195
 msgid ""
@@ -1600,7 +1576,7 @@ msgstr ""
 msgid "radio support, need update"
 msgstr ""
 
-#: tmp.tpl:58
+#: tmp.tpl:58 tmp.tpl:110
 #, python-format
 msgid "Information on issue %s"
 msgstr ""

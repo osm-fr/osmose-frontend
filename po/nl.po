@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-02-28 21:18+0000\n"
+"PO-Revision-Date: 2020-03-07 19:26+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgid "never generated"
 msgstr "nooit gegenereerd"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:209 ../false_positive.py:83 tmp.tpl:207
+#: ../error.py:184 ../false_positive.py:85 tmp.tpl:207
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/NL:Osmose/erreurs"
 
@@ -921,10 +921,6 @@ msgstr "Vertaling vooruitgang:osmose"
 msgid "For new language or countries"
 msgstr "Voor nieuwe talen of landen"
 
-#, python-format
-msgid "The <a href='%s'>country coverage is available</a>."
-msgstr "De beschikbare<a href='%s'>landen dekking zijn hier te vinden</a>."
-
 #: tmp.tpl:209
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
@@ -1102,11 +1098,6 @@ msgid ""
 "contributor of the relevant erroneous elements."
 msgstr "Door het invoeren van je OSM gebruikersnaam in het onderstaande formulier, zult u in staat zijn om opmerkingen te zien die zijn gekoppeld aan je gebruikersnaam.Merk op dat het algoritme niet perfect is omdat Osmose alleen de laatste bijdrager controleert van de betreffende foutieve elementen."
 
-#: tmp.tpl:110
-#, python-format
-msgid "Information on issue %d"
-msgstr "Informatie over melding %d"
-
 #: tmp.tpl:91
 msgid "Show more issues"
 msgstr "Laat meer meldingen zien"
@@ -1122,10 +1113,6 @@ msgstr "Informatie over melding"
 #: tmp.tpl:106
 msgid "issue n°"
 msgstr "melding n°"
-
-#, python-format
-msgid "delete issue #%d"
-msgstr "verwijder opmerking #%d"
 
 #: tmp.tpl:115
 msgid "Map of issues"
@@ -1426,14 +1413,6 @@ msgstr "item"
 msgid "False positive / Done"
 msgstr "Valse melding / hersteld"
 
-#, python-format
-msgid "Mark issue #%d as false positive"
-msgstr "Markeer probleem #%d als valse melding "
-
-#, python-format
-msgid "Mark issue #%d as fixed"
-msgstr "Markeer probleem #%d als hersteld"
-
 #: tmp.tpl:168
 msgid "Objects edited"
 msgstr "Objecten bewerkt"
@@ -1484,9 +1463,6 @@ msgstr "details"
 #: tmp.tpl:192
 msgid "Issue reported on:"
 msgstr "Melding gemeld op:"
-
-msgid "Help on OSM Wiki"
-msgstr "Help op OSM Wiki"
 
 #: tmp.tpl:194 tmp.tpl:195
 msgid ""
@@ -1603,7 +1579,7 @@ msgstr "Zendmast support, kan geintegreerd worden"
 msgid "radio support, need update"
 msgstr "Zendmast support, vereist een update"
 
-#: tmp.tpl:58
+#: tmp.tpl:58 tmp.tpl:110
 #, python-format
 msgid "Information on issue %s"
 msgstr ""

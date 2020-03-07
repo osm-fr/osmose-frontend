@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-02-28 21:18+0000\n"
+"PO-Revision-Date: 2020-03-07 19:26+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Romanian (http://www.transifex.com/openstreetmap-france/osmose/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -43,7 +43,7 @@ msgid "never generated"
 msgstr "niciodată generat"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:209 ../false_positive.py:83 tmp.tpl:207
+#: ../error.py:184 ../false_positive.py:85 tmp.tpl:207
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
@@ -922,10 +922,6 @@ msgstr "Progresul traducerii: osmose"
 msgid "For new language or countries"
 msgstr "Pentru noi limbi și tări"
 
-#, python-format
-msgid "The <a href='%s'>country coverage is available</a>."
-msgstr "<a href='%s'>Acoperirea țării este disponibilă</a>."
-
 #: tmp.tpl:209
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
@@ -1103,11 +1099,6 @@ msgid ""
 "contributor of the relevant erroneous elements."
 msgstr ""
 
-#: tmp.tpl:110
-#, python-format
-msgid "Information on issue %d"
-msgstr ""
-
 #: tmp.tpl:91
 msgid "Show more issues"
 msgstr ""
@@ -1123,10 +1114,6 @@ msgstr ""
 #: tmp.tpl:106
 msgid "issue n°"
 msgstr "problemă n°"
-
-#, python-format
-msgid "delete issue #%d"
-msgstr ""
 
 #: tmp.tpl:115
 msgid "Map of issues"
@@ -1427,14 +1414,6 @@ msgstr ""
 msgid "False positive / Done"
 msgstr ""
 
-#, python-format
-msgid "Mark issue #%d as false positive"
-msgstr ""
-
-#, python-format
-msgid "Mark issue #%d as fixed"
-msgstr ""
-
 #: tmp.tpl:168
 msgid "Objects edited"
 msgstr ""
@@ -1484,9 +1463,6 @@ msgstr "detalii"
 
 #: tmp.tpl:192
 msgid "Issue reported on:"
-msgstr ""
-
-msgid "Help on OSM Wiki"
 msgstr ""
 
 #: tmp.tpl:194 tmp.tpl:195
@@ -1604,7 +1580,7 @@ msgstr ""
 msgid "radio support, need update"
 msgstr ""
 
-#: tmp.tpl:58
+#: tmp.tpl:58 tmp.tpl:110
 #, python-format
 msgid "Information on issue %s"
 msgstr ""

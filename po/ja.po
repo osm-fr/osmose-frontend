@@ -6,6 +6,7 @@
 # 藤本理弘 <mfujimot@gmail.com>, 2014
 # Satoshi IIDA <nyampire@gmail.com>, 2016
 # Satoshi IIDA <nyampire@gmail.com>, 2016
+# Tom Konda <tom.konda.dev@gmail.com>, 2020
 # tomoya muramoto <muramototomoya@gmail.com>, 2016
 # 藤本理弘 <mfujimot@gmail.com>, 2014
 msgid ""
@@ -13,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-02-28 21:18+0000\n"
+"PO-Revision-Date: 2020-03-07 19:26+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +40,7 @@ msgid "never generated"
 msgstr "生成なし"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:209 ../false_positive.py:83 tmp.tpl:207
+#: ../error.py:184 ../false_positive.py:85 tmp.tpl:207
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
@@ -918,10 +919,6 @@ msgstr "翻訳の進捗: osmose"
 msgid "For new language or countries"
 msgstr "言語と国の追加"
 
-#, python-format
-msgid "The <a href='%s'>country coverage is available</a>."
-msgstr "<a href='%s'>国のカバー状況はこちらです</a>。"
-
 #: tmp.tpl:209
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
@@ -1099,11 +1096,6 @@ msgid ""
 "contributor of the relevant erroneous elements."
 msgstr "以下のフォームにOSMのユーザー名を入力することで、あなたのユーザー名に割り当てられた課題を見ることができます。なお、ユーザー名から課題を中取するアルゴリズムは完全ではなく、Osmoseはエラーのある要素における最終編集者のみをチェックします。"
 
-#: tmp.tpl:110
-#, python-format
-msgid "Information on issue %d"
-msgstr "課題%dの情報"
-
 #: tmp.tpl:91
 msgid "Show more issues"
 msgstr "さらに表示"
@@ -1119,10 +1111,6 @@ msgstr "関連情報"
 #: tmp.tpl:106
 msgid "issue n°"
 msgstr "課題 n°"
-
-#, python-format
-msgid "delete issue #%d"
-msgstr "課題 #%d を削除"
 
 #: tmp.tpl:115
 msgid "Map of issues"
@@ -1254,7 +1242,7 @@ msgstr "バージョン"
 
 #: ../tools/database/item_menu.txt:133
 msgid "post office, need update"
-msgstr ""
+msgstr "要更新・郵便局"
 
 #: tmp.tpl:84
 msgid "age"
@@ -1262,11 +1250,11 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:96
 msgid "invalid character"
-msgstr ""
+msgstr "無効な文字"
 
 #: ../tools/database/item_menu.txt:170
 msgid "gas station, could be integrated"
-msgstr ""
+msgstr "統合可能なガソリンスタンド"
 
 #: ../tools/database/item_menu.txt:124 ../tools/database/item_menu.txt:179
 msgid "power substation"
@@ -1286,19 +1274,19 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:28
 msgid "almost junction"
-msgstr ""
+msgstr "交差点に酷似"
 
 #: ../tools/database/item_menu.txt:42
 msgid "public_transport route"
-msgstr ""
+msgstr "public_transportルート"
 
 #: ../tools/database/item_menu.txt:73
 msgid "recycling container"
-msgstr ""
+msgstr "資源回収のコンテナ"
 
 #: ../tools/database/item_menu.txt:89
 msgid "duplicate wikipedia"
-msgstr ""
+msgstr "wikipediaの重複"
 
 #: ../tools/database/item_menu.txt:74
 msgid "route access mismatch"
@@ -1306,19 +1294,19 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:97
 msgid "similar name"
-msgstr ""
+msgstr "類似した名前"
 
 #: ../tools/database/item_menu.txt:169
 msgid "gas station, need update"
-msgstr ""
+msgstr "要更新・ガソリンスタンド"
 
 #: ../tools/database/item_menu.txt:58
 msgid "phone number"
-msgstr ""
+msgstr "電話番号"
 
 #: ../tools/database/item_menu.txt:183
 msgid "traffic signs"
-msgstr ""
+msgstr "交通標識"
 
 #: ../tools/database/item_menu.txt:184
 msgid "traffic sign limitation"
@@ -1326,30 +1314,30 @@ msgstr ""
 
 #: tmp.tpl:76 tmp.tpl:133
 msgid "High"
-msgstr ""
+msgstr "高"
 
 #: tmp.tpl:77 tmp.tpl:134
 msgid "Normal or higher"
-msgstr ""
+msgstr "中以上"
 
 #: tmp.tpl:78 tmp.tpl:135
 msgid "All"
-msgstr ""
+msgstr "すべて"
 
 #: tmp.tpl:79 tmp.tpl:136
 msgid "Normal only"
-msgstr ""
+msgstr "中"
 
 #: tmp.tpl:80 tmp.tpl:137
 msgid "Low only"
-msgstr ""
+msgstr "低"
 
 #: tmp.tpl:33
 #, python-brace-format
 msgid ""
 "We can be contacted through a direct email to <a "
 "href='mailto:{email}'>{email}</a>."
-msgstr ""
+msgstr "<a href='mailto:{email}'>{email}</a>に直接メールを送ってください。"
 
 #: tmp.tpl:160 tmp.tpl:161 tmp.tpl:162
 #, python-brace-format
@@ -1365,7 +1353,7 @@ msgstr ""
 
 #: ../tools/database/categ_menu.txt:9
 msgid "JOSM validator"
-msgstr ""
+msgstr "JOSMバリデーター"
 
 #: ../tools/database/item_menu.txt:199
 msgid "seamark"
@@ -1373,15 +1361,15 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:200
 msgid "addresses"
-msgstr ""
+msgstr "住所"
 
 #: ../tools/database/item_menu.txt:201
 msgid "combinations"
-msgstr ""
+msgstr "組み合わせ"
 
 #: ../tools/database/item_menu.txt:202
 msgid "deprecated"
-msgstr ""
+msgstr "非推奨"
 
 #: ../tools/database/item_menu.txt:203
 msgid "geometry"
@@ -1393,11 +1381,11 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:206
 msgid "numeric"
-msgstr ""
+msgstr "数値"
 
 #: ../tools/database/item_menu.txt:207
 msgid "relation"
-msgstr ""
+msgstr "リレーション"
 
 #: ../tools/database/item_menu.txt:208
 msgid "religion"
@@ -1409,26 +1397,18 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:210
 msgid "unnecessary"
-msgstr ""
+msgstr "不要"
 
 #: tmp.tpl:73
 msgid "Country"
-msgstr ""
+msgstr "国"
 
 #: tmp.tpl:74
 msgid "Item"
-msgstr ""
+msgstr "項目"
 
 #: tmp.tpl:104
 msgid "False positive / Done"
-msgstr ""
-
-#, python-format
-msgid "Mark issue #%d as false positive"
-msgstr ""
-
-#, python-format
-msgid "Mark issue #%d as fixed"
 msgstr ""
 
 #: tmp.tpl:168
@@ -1442,13 +1422,13 @@ msgstr ""
 #: tmp.tpl:177
 #, python-brace-format
 msgid "Show Object on {where}"
-msgstr ""
+msgstr "{where}上でオブジェクトの表示"
 
 #: tmp.tpl:178 tmp.tpl:179 tmp.tpl:180 tmp.tpl:181 tmp.tpl:182 tmp.tpl:183
 #: tmp.tpl:184
 #, python-brace-format
 msgid "Edit Object with {where}"
-msgstr ""
+msgstr "{where}を使ってオブジェクトの編集"
 
 #: tmp.tpl:184 tmp.tpl:186
 msgid "online Osmose Editor"
@@ -1467,7 +1447,7 @@ msgstr ""
 #: tmp.tpl:188
 #, python-brace-format
 msgid "Show the area on {where}"
-msgstr ""
+msgstr "{where}上でエリアの表示"
 
 #: tmp.tpl:189 tmp.tpl:190
 #, python-brace-format
@@ -1476,14 +1456,11 @@ msgstr ""
 
 #: tmp.tpl:191
 msgid "details"
-msgstr ""
+msgstr "詳細"
 
 #: tmp.tpl:192
 msgid "Issue reported on:"
-msgstr ""
-
-msgid "Help on OSM Wiki"
-msgstr ""
+msgstr "報告日:"
 
 #: tmp.tpl:194 tmp.tpl:195
 msgid ""
@@ -1516,7 +1493,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:125 ../tools/database/item_menu.txt:185
 msgid "hospital"
-msgstr ""
+msgstr "病院"
 
 #: ../tools/database/item_menu.txt:126 ../tools/database/item_menu.txt:187
 msgid "social facility"
@@ -1528,7 +1505,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:186
 msgid "hospital, could be integrated"
-msgstr ""
+msgstr "統合可能な病院"
 
 #: ../tools/database/item_menu.txt:188
 msgid "social facility, could be integrated"
@@ -1540,15 +1517,15 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:167
 msgid "police, need update"
-msgstr ""
+msgstr "要更新・警察署"
 
 #: ../tools/database/item_menu.txt:55
 msgid "swimming pool"
-msgstr ""
+msgstr "水泳プール"
 
 #: ../tools/database/item_menu.txt:94
 msgid "potential misspelling"
-msgstr ""
+msgstr "ミススペルの可能性"
 
 #: ../tools/database/item_menu.txt:29
 msgid "enforcement"
@@ -1556,7 +1533,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:59
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: ../tools/database/item_menu.txt:191
 msgid "street objects"
@@ -1572,7 +1549,7 @@ msgstr ""
 
 #: ../tools/database/item_menu.txt:44
 msgid "railways"
-msgstr ""
+msgstr "鉄道"
 
 #: ../tools/database/item_menu.txt:178
 msgid "power plant"
@@ -1582,11 +1559,11 @@ msgstr ""
 msgid ""
 "Osmose tool is mainly developped by french people, and we aim to add more "
 "languages."
-msgstr ""
+msgstr "Osmoseツールはフランスの人々が中心となって開発されており、もっと言語を追加したいと思っています。"
 
 #: ../tools/database/item_menu.txt:192
 msgid "defibrillator"
-msgstr ""
+msgstr "除細動器"
 
 #: ../tools/database/item_menu.txt:193
 msgid "radio support"
@@ -1600,7 +1577,7 @@ msgstr ""
 msgid "radio support, need update"
 msgstr ""
 
-#: tmp.tpl:58
+#: tmp.tpl:58 tmp.tpl:110
 #, python-format
 msgid "Information on issue %s"
 msgstr ""
@@ -1622,19 +1599,19 @@ msgstr ""
 
 #: tmp.tpl:120
 msgid "How to Fix"
-msgstr ""
+msgstr "修正方法"
 
 #: tmp.tpl:121
 msgid "Trap to avoid"
-msgstr ""
+msgstr "誤った修正の回避"
 
 #: tmp.tpl:122
 msgid "Example"
-msgstr ""
+msgstr "例"
 
 #: tmp.tpl:123
 msgid "Source Code"
-msgstr ""
+msgstr "ソースコード"
 
 #: tmp.tpl:124
 msgid "Resource used"
@@ -1646,7 +1623,7 @@ msgstr ""
 
 #: tmp.tpl:149
 msgid "Welcome to Osmose-QA"
-msgstr ""
+msgstr "Osmose-QAにようこそ"
 
 #: tmp.tpl:150
 msgid ""

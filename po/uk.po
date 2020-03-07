@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-02-28 21:18+0000\n"
+"PO-Revision-Date: 2020-03-07 19:26+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +44,7 @@ msgid "never generated"
 msgstr "ніколи не створювалось"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:209 ../false_positive.py:83 tmp.tpl:207
+#: ../error.py:184 ../false_positive.py:85 tmp.tpl:207
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
@@ -923,10 +923,6 @@ msgstr "Проґрес перекладу: osmose"
 msgid "For new language or countries"
 msgstr "Для нових мов або країн"
 
-#, python-format
-msgid "The <a href='%s'>country coverage is available</a>."
-msgstr " <a href='%s'>country coverage is available</a>."
-
 #: tmp.tpl:209
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
@@ -1104,11 +1100,6 @@ msgid ""
 "contributor of the relevant erroneous elements."
 msgstr "Ввівши своє ім’я користувача OSM у наступній формі, ви зможете побачити проблеми, які додаються до вашого імені користувача. Зауважте, що алгоритм, який прив’язує проблеми до імені користувача, не є ідеальним, оскільки Osmose перевіряє лише останнього картографа відповідних проблемних елементів."
 
-#: tmp.tpl:110
-#, python-format
-msgid "Information on issue %d"
-msgstr "Інформація про проблему %d"
-
 #: tmp.tpl:91
 msgid "Show more issues"
 msgstr "Показати ще проблеми"
@@ -1124,10 +1115,6 @@ msgstr "інформація про проблему"
 #: tmp.tpl:106
 msgid "issue n°"
 msgstr "проблема №"
-
-#, python-format
-msgid "delete issue #%d"
-msgstr "видалити проблему #%d"
 
 #: tmp.tpl:115
 msgid "Map of issues"
@@ -1428,14 +1415,6 @@ msgstr "Елемент"
 msgid "False positive / Done"
 msgstr "Помилкове спрацьовування / Виконано"
 
-#, python-format
-msgid "Mark issue #%d as false positive"
-msgstr "Позначити проблему #%d як помилку Osmose"
-
-#, python-format
-msgid "Mark issue #%d as fixed"
-msgstr "Позначити проблему #%d як виправлену"
-
 #: tmp.tpl:168
 msgid "Objects edited"
 msgstr "Об'єкти редаговані"
@@ -1486,9 +1465,6 @@ msgstr "тонкощі"
 #: tmp.tpl:192
 msgid "Issue reported on:"
 msgstr "Повідомлення про проблему:"
-
-msgid "Help on OSM Wiki"
-msgstr "Допомога на ОСМ Вікі"
 
 #: tmp.tpl:194 tmp.tpl:195
 msgid ""
@@ -1605,7 +1581,7 @@ msgstr "радіопідтримка, може інтеґруватися"
 msgid "radio support, need update"
 msgstr "радіопідтримка, слід оновити"
 
-#: tmp.tpl:58
+#: tmp.tpl:58 tmp.tpl:110
 #, python-format
 msgid "Information on issue %s"
 msgstr "Інформація про проблему %s"

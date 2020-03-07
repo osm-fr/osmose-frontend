@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-02-28 21:18+0000\n"
+"PO-Revision-Date: 2020-03-07 19:26+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgid "never generated"
 msgstr "nikdy nevygenerováno"
 
 #. TRANSLATORS: link to tooltip help
-#: ../error.py:209 ../false_positive.py:83 tmp.tpl:207
+#: ../error.py:184 ../false_positive.py:85 tmp.tpl:207
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
@@ -921,10 +921,6 @@ msgstr "Postup překladu: Osmose"
 msgid "For new language or countries"
 msgstr "Pro nové jazyky nebo státy"
 
-#, python-format
-msgid "The <a href='%s'>country coverage is available</a>."
-msgstr "Pokrytí státu <a href='%s'> je k dispozici </a>."
-
 #: tmp.tpl:209
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
@@ -1102,11 +1098,6 @@ msgid ""
 "contributor of the relevant erroneous elements."
 msgstr "Zadáním OSM uživatelského jména do následujícího formuláře budete schopni vidět problémy spojené s vaším jménem. Pozor na to, že algoritmus pro napojení problému na uživatelské jméno není perfektní - osmose kontroluje pouze posledního přispěvatele pro chybný element."
 
-#: tmp.tpl:110
-#, python-format
-msgid "Information on issue %d"
-msgstr "Informace k problému %d"
-
 #: tmp.tpl:91
 msgid "Show more issues"
 msgstr "Zobraz více problémů."
@@ -1122,10 +1113,6 @@ msgstr "Informace k problému"
 #: tmp.tpl:106
 msgid "issue n°"
 msgstr "problém č."
-
-#, python-format
-msgid "delete issue #%d"
-msgstr "smazat problém #%d"
 
 #: tmp.tpl:115
 msgid "Map of issues"
@@ -1426,14 +1413,6 @@ msgstr "Položka"
 msgid "False positive / Done"
 msgstr "Není chyba / Hotovo"
 
-#, python-format
-msgid "Mark issue #%d as false positive"
-msgstr "Označ problém #%d jako \"není chyba\""
-
-#, python-format
-msgid "Mark issue #%d as fixed"
-msgstr "Označ problém #%d jako vyřešený"
-
 #: tmp.tpl:168
 msgid "Objects edited"
 msgstr "Objekty upraveny"
@@ -1484,9 +1463,6 @@ msgstr "detaily"
 #: tmp.tpl:192
 msgid "Issue reported on:"
 msgstr "Záležitost nahlášena v:"
-
-msgid "Help on OSM Wiki"
-msgstr "Nápověda na OSM Wiki"
 
 #: tmp.tpl:194 tmp.tpl:195
 msgid ""
@@ -1603,7 +1579,7 @@ msgstr "podpora pro rádio, může být vestavěné"
 msgid "radio support, need update"
 msgstr "podpora pro rádio, potřebuje aktualizaci"
 
-#: tmp.tpl:58
+#: tmp.tpl:58 tmp.tpl:110
 #, python-format
 msgid "Information on issue %s"
 msgstr "Informace o problému %s"
