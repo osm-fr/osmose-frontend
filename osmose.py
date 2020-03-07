@@ -27,7 +27,7 @@ bottle.TEMPLATE_PATH.insert(0, './web/views/')
 from web import app as web_app
 app = web_app.app
 from control import app as control_app
-app.mount('/control/', control_app.app)
+web_app.app.mount('/control/', control_app.app)
 from api import app as api_app
 web_app.app.mount('/api/0.2/', api_app.app_0_2)
 web_app.app.mount('/api/0.3beta/', api_app.app_0_3)

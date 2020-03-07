@@ -20,4 +20,4 @@ app.plugins = filter(lambda x: isinstance(x,bottle.JSONPlugin) or isinstance(x,b
 
 import osmose
 
-application = osmose.app
+application = osmose.app_middleware

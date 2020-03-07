@@ -21,11 +21,13 @@
 ###########################################################################
 
 import bottle
+import os
 from modules.osmose_bottle import uuid_filter, ext_filter
 from tools import utils
 from modules import bottle_pgsql
 from modules import bottle_cors
 from modules import bottle_langs
+from modules import bottle_gettext
 
 
 class OsmoseAPIBottle(bottle.Bottle):
@@ -42,6 +44,7 @@ bottle.default_app.push(app_0_2)
 
 app_0_2.install(bottle_pgsql.Plugin(utils.db_string))
 app_0_2.install(bottle_cors.Plugin(allow_origin = '*', preflight_methods = ['GET', 'POST', 'PUT', 'DELETE']))
+app_0_2.install(bottle_gettext.Plugin('osmose-frontend', os.path.join("web", "po", "mo"), utils.allowed_languages))
 
 app_0_3.install(bottle_pgsql.Plugin(utils.db_string))
 app_0_3.install(bottle_cors.Plugin(allow_origin = '*', preflight_methods = ['GET', 'POST', 'PUT', 'DELETE']))

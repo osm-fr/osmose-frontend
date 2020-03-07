@@ -27,7 +27,7 @@ import os
 import sys
 from collections import defaultdict
 
-@route('/control/update')
+@route('/update')
 def updates(db, lang):
     db.execute("""
 SELECT
@@ -59,7 +59,7 @@ ORDER BY
     return template('control/updates', translate=utils.translator(lang), liste=liste)
 
 
-@route('/control/update_matrix')
+@route('/update_matrix')
 def updates(db, lang):
     remote = request.params.get('remote')
     country = request.params.get('country')
@@ -120,7 +120,7 @@ ORDER BY
     return template('control/updates_matrix', translate=utils.translator(lang), keys=keys, matrix=matrix, stats_analyser=stats_analyser, stats_country=stats_country)
 
 
-@route('/control/update_summary')
+@route('/update_summary')
 def updates(db, lang):
     db.execute("""
 SELECT
@@ -174,7 +174,7 @@ ORDER BY
     return template('control/updates_summary', translate=utils.translator(lang), summary=summary, hostnames=hostnames, max_versions=max_versions, min_versions=min_versions, remote_hashes=remote_hashes, max_count=max_count)
 
 
-@route('/control/update_summary_by_analyser')
+@route('/update_summary_by_analyser')
 def updates(db, lang):
     db.execute("""
 SELECT
@@ -209,19 +209,19 @@ ORDER BY
     return template('control/updates_summary_by_analyser', translate=utils.translator(lang), summary=summary, max_versions=max_versions)
 
 
-@route('/control/update/<source:int>')
+@route('/update/<source:int>')
 def update(db, lang, source=None):
     sql = "SELECT source,timestamp,remote_url,remote_ip,version FROM dynpoi_update WHERE source=%d ORDER BY timestamp DESC;" % source
     db.execute(sql)
     return template('control/update', translate=utils.translator(lang), liste=db.fetchall())
 
 
-@route('/control/i18n')
+@route('/i18n')
 def update():
     return os.popen("cd po && make statistics | sed -n '1h;2,$H;${g;s/\\n/<br>/g;p}'").read()
 
 
-@route('/control/lang')
+@route('/lang')
 def update(lang):
     out = "Accept-Language: " + request.headers['Accept-Language'] + "\n"
     if request.get_cookie('lang'):
@@ -231,7 +231,7 @@ def update(lang):
     return out
 
 
-@post('/control/send-update')
+@post('/send-update')
 def send_update(db):
     src = request.params.get('source', default=None) # Deprecated, replaced by analyser & country
     analyser = request.params.get('analyser', default=None)
@@ -309,7 +309,7 @@ def _status_object(db, t, source):
     if s and s[0]:
         return map(int, s[0].split(','))
 
-@route('/control/status/<country>/<analyser>')
+@route('/status/<country>/<analyser>')
 def status(db, country = None, analyser = None):
     if not country or not analyser:
         return HTTPError(400)
