@@ -20,25 +20,31 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, response, request
+from bottle import default_app, route, response, request
 from tools import query_meta
 
 
-@route('/0.3beta/items')
+app_0_2 = default_app.pop()
+
+
+@route('/items')
 def items(db, langs):
     return {"categories": query_meta._items_3(db, langs = langs)}
 
 
-@route('/0.3beta/items/<item:int>/class/<classs:int>')
+@route('/items/<item:int>/class/<classs:int>')
 def items(db, langs, item, classs):
     return {"categories": query_meta._items_3(db, item = item, classs = classs, langs = langs)}
 
 
-@route('/0.3beta/countries')
+@route('/countries')
 def items(db):
     return {"countries": query_meta._countries_3(db)}
 
 
-@route('/0.3beta/tags')
+@route('/tags')
 def items(db):
     return {"tags": query_meta._tags(db)}
+
+
+default_app.push(app_0_2)

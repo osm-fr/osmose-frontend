@@ -20,13 +20,16 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route
+from bottle import default_app, route
 from tools.OrderedDict import OrderedDict
 from user_utils import _user, _user_count
 
 
-@route('/0.2/user/<username>')
-@route('/0.3beta/user/<username>')
+app_0_2 = default_app.pop()
+
+
+@app_0_2.route('/user/<username>')
+@route('/user/<username>')
 def user(db, lang, username):
     params, username, errors = _user(db, lang, username)
 
@@ -39,8 +42,11 @@ def user(db, lang, username):
     return out
 
 
-@route('/0.2/user_count/<username>')
-@route('/0.3beta/user_count/<username>')
+@app_0_2.route('/user_count/<username>')
+@route('/user_count/<username>')
 def user_count(db, lang, username=None, format=None):
     count = _user_count(db, username)
     return count
+
+
+default_app.push(app_0_2)

@@ -20,11 +20,14 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, response, HTTPError
+from bottle import default_app, route, response, HTTPError
 from tools import query, tiles
 import math
 from shapely.geometry import Point, Polygon
 import mapbox_vector_tile
+
+
+app_0_2 = default_app.pop()
 
 
 def _errors_mvt(db, results, z, min_lon, min_lat, max_lon, max_lat, limit):
@@ -87,7 +90,7 @@ def _errors_geojson(db, results, z, min_lon, min_lat, max_lon, max_lat, limit):
         return features_collection
 
 
-@route('/0.3beta/issues/<z:int>/<x:int>/<y:int>.heat.mvt')
+@route('/issues/<z:int>/<x:int>/<y:int>.heat.mvt')
 def heat(db, z, x, y):
     COUNT=32
 
@@ -161,7 +164,7 @@ GROUP BY
     }], extents=COUNT)
 
 
-@route('/0.3beta/issues/<z:int>/<x:int>/<y:int>.<format:ext>')
+@route('/issues/<z:int>/<x:int>/<y:int>.<format:ext>')
 def issues_mvt(db, z, x, y, format):
     lon1,lat2 = tiles.tile2lonlat(x,y,z)
     lon2,lat1 = tiles.tile2lonlat(x+1,y+1,z)
@@ -199,3 +202,6 @@ def issues_mvt(db, z, x, y, format):
             return []
     else:
         return HTTPError(404)
+
+
+default_app.push(app_0_2)

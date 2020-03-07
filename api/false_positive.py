@@ -19,16 +19,19 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, abort, delete
+from bottle import default_app, route, abort, delete
 from tools import utils
 from false_positive_utils import _get
 
 
-@route('/0.2/false-positive/<err_id:int>')
+app_0_2 = default_app.pop()
+
+
+@app_0_2.route('/false-positive/<err_id:int>')
 def fp_err_id(db, lang, err_id):
     return _fp(2, db, lang, None, *_get(db, 'false', err_id=err_id))
 
-@route('/0.3beta/false-positive/<uuid:uuid>')
+@route('/false-positive/<uuid:uuid>')
 def fp_uuid(db, langs, uuid):
     return _fp(3, db, langs, uuid, *_get(db, 'false', uuid=uuid))
 
@@ -68,7 +71,7 @@ def _fp(version, db, langs, uuid, marker, columns):
         }
 
 
-@delete('/0.2/false-positive/<err_id:int>')
+@app_0_2.delete('/false-positive/<err_id:int>')
 def fp_delete_err_id(db, err_id):
     db.execute("SELECT uuid FROM dynpoi_status WHERE status = %s AND uuid_to_bigint(dynpoi_status.uuid) = %s", ('false', err_id))
     m = db.fetchone()
@@ -80,7 +83,7 @@ def fp_delete_err_id(db, err_id):
 
     return
 
-@delete('/0.3beta/false-positive/<uuid:uuid>')
+@delete('/false-positive/<uuid:uuid>')
 def fp_delete_uuid(db, uuid):
     db.execute("SELECT uuid FROM dynpoi_status WHERE status = %s AND uuid = %s", ('false', uuid))
     m = db.fetchone()
@@ -91,3 +94,6 @@ def fp_delete_uuid(db, uuid):
     db.connection.commit()
 
     return
+
+
+default_app.push(app_0_2)

@@ -20,10 +20,13 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route
+from bottle import default_app, route
 from tools import utils
 from tools import query
 from tools.OrderedDict import OrderedDict
+
+
+app_0_2 = default_app.pop()
 
 
 def _errors(db, lang, params):
@@ -61,13 +64,13 @@ def _errors(db, lang, params):
     return out
 
 
-@route('/0.2/errors')
+@app_0_2.route('/errors')
 def errors(db, lang):
     params = query._params()
     return _errors(db, lang, params)
 
 
-@route('/0.3beta/issues')
+@route('/issues')
 def errors(db, langs):
     params = query._params(max_limit=10000)
     results = query._gets(db, params)
@@ -97,3 +100,6 @@ def errors(db, langs):
         out.append(i)
 
     return {'issues': out}
+
+
+default_app.push(app_0_2)
