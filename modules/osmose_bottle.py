@@ -36,3 +36,16 @@ def uuid_filter(config):
     def to_url(ext):
         return ext
     return regexp, to_python, to_url
+
+
+def inspect_routes(app):
+    for route in app.routes:
+        if 'mountpoint' in route.config:
+            prefix = route.config['mountpoint']['prefix']
+            subapp = route.config['mountpoint']['target']
+
+            if not (len(prefix.strip('/')) == 2 or (len(prefix.strip('/')) == 5 and prefix.strip('/')[2] == '_')):
+                for prefixes, route in inspect_routes(subapp):
+                    yield [prefix] + prefixes, route
+        else:
+            yield [], route
