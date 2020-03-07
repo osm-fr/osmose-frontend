@@ -29,13 +29,13 @@ class GettextPlugin(object):
         lang = [None]
 
         if len(request.script_name) > 3:
-            tmp_lang = request.script_name[-3:-1]
+            tmp_lang = request.script_name[1:3]
             if tmp_lang in self.allowed_languages:
               return ([tmp_lang, self.allowed_languages[0]], False)
 
             # Handle longer languages like zh_TW
             if len(request.script_name) > 6 and request.script_name[-4] == "_":
-              tmp_lang = request.script_name[-6:-1]
+              tmp_lang = request.script_name[1:6]
               if tmp_lang in self.allowed_languages:
                 return ([tmp_lang, self.allowed_languages[0]], False)
 
