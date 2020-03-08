@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-03-07 19:26+0000\n"
+"PO-Revision-Date: 2020-03-08 17:45+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -156,7 +156,7 @@ msgid "Median delay:"
 msgstr "متوسط تأخیر:"
 
 #: tmp.tpl:41 tmp.tpl:48 tmp.tpl:83 tmp.tpl:93
-#: ../tools/database/item_menu.txt:33
+#: ../tools/database/item_menu.txt:34
 msgid "source"
 msgstr "source"
 
@@ -283,7 +283,7 @@ msgstr "عناصر"
 msgid "subtitle"
 msgstr "زیرعنوان"
 
-#: tmp.tpl:103 ../tools/database/item_menu.txt:56
+#: tmp.tpl:103 ../tools/database/item_menu.txt:57
 msgid "date"
 msgstr "تاریخ"
 
@@ -558,352 +558,352 @@ msgstr "waterway"
 msgid "duplicate geometry"
 msgstr "هندسهٔ تکراری"
 
-#: ../tools/database/item_menu.txt:30
+#: ../tools/database/item_menu.txt:31
 msgid "junction=roundabout"
 msgstr "junction=roundabout"
 
-#: ../tools/database/item_menu.txt:31
+#: ../tools/database/item_menu.txt:32
 msgid "elevation"
 msgstr "ارتفاع (ele)"
 
-#: ../tools/database/item_menu.txt:32
+#: ../tools/database/item_menu.txt:33
 msgid "oneway"
 msgstr "یکطرفه"
 
-#: ../tools/database/item_menu.txt:34
+#: ../tools/database/item_menu.txt:35
 msgid "parent tag"
 msgstr "تگ مادر"
 
-#: ../tools/database/item_menu.txt:35
+#: ../tools/database/item_menu.txt:36
 msgid "street numbers"
 msgstr "street numbers"
 
-#: ../tools/database/item_menu.txt:36 ../tools/database/item_menu.txt:204
+#: ../tools/database/item_menu.txt:37 ../tools/database/item_menu.txt:208
 msgid "highway"
 msgstr "highway"
 
-#: ../tools/database/item_menu.txt:37
+#: ../tools/database/item_menu.txt:38
 msgid "highway crossing"
 msgstr "highway crossing"
 
-#: ../tools/database/item_menu.txt:38 ../tools/database/item_menu.txt:171
+#: ../tools/database/item_menu.txt:39 ../tools/database/item_menu.txt:172
 msgid "pharmacy"
 msgstr "داروخانه"
 
-#: ../tools/database/item_menu.txt:45
+#: ../tools/database/item_menu.txt:46
 msgid "highway roundabout"
 msgstr "معبر فلکه"
 
-#: ../tools/database/item_menu.txt:46
+#: ../tools/database/item_menu.txt:47
 msgid "bad source tag"
 msgstr "تگ منبع بد"
 
-#: ../tools/database/item_menu.txt:47
+#: ../tools/database/item_menu.txt:48
 msgid "tagwatch cleaner"
 msgstr "پاک‌ساز تگ"
 
-#: ../tools/database/item_menu.txt:48 ../tools/database/item_menu.txt:211
+#: ../tools/database/item_menu.txt:49 ../tools/database/item_menu.txt:215
 msgid "wikipedia"
 msgstr "wikipedia"
 
-#: ../tools/database/item_menu.txt:49
+#: ../tools/database/item_menu.txt:50
 msgid "multiple tags"
 msgstr "چندین تگ"
 
-#: ../tools/database/item_menu.txt:50
+#: ../tools/database/item_menu.txt:51
 msgid "saint hyphen"
 msgstr "خط پیوند بعد از saint"
 
-#: ../tools/database/item_menu.txt:51
+#: ../tools/database/item_menu.txt:52
 msgid "incorrect tag"
 msgstr "تگ نادرست"
 
-#: ../tools/database/item_menu.txt:52
+#: ../tools/database/item_menu.txt:53
 msgid "bad tag key"
 msgstr "کلید بد در تگ"
 
-#: ../tools/database/item_menu.txt:53
+#: ../tools/database/item_menu.txt:54
 msgid "similar values"
 msgstr "مقادیر مشابه"
 
-#: ../tools/database/item_menu.txt:54
+#: ../tools/database/item_menu.txt:55
 msgid "multiple values"
 msgstr "چندین مقدار"
 
-#: ../tools/database/item_menu.txt:57
+#: ../tools/database/item_menu.txt:58
 msgid "numeric value"
 msgstr "مقدار عددی"
 
-#: ../tools/database/item_menu.txt:60
+#: ../tools/database/item_menu.txt:61
 msgid "small farm"
 msgstr "مزرعهٔ کوچک"
 
-#: ../tools/database/item_menu.txt:61
+#: ../tools/database/item_menu.txt:62
 msgid "note"
 msgstr "یادداشت"
 
-#: ../tools/database/item_menu.txt:62
+#: ../tools/database/item_menu.txt:63
 msgid "tree"
 msgstr "tree"
 
-#: ../tools/database/item_menu.txt:63
+#: ../tools/database/item_menu.txt:64
 msgid "brand in name"
 msgstr "برند در نام"
 
-#: ../tools/database/item_menu.txt:64
+#: ../tools/database/item_menu.txt:65
 msgid "typo in tag"
 msgstr "غلط املایی در تگ"
 
-#: ../tools/database/item_menu.txt:65
+#: ../tools/database/item_menu.txt:66
 msgid "incorrect "
 msgstr "نادرست"
 
-#: ../tools/database/item_menu.txt:66
+#: ../tools/database/item_menu.txt:67
 msgid "parking lane"
 msgstr "خط‌عبوری پارک خودرو"
 
-#: ../tools/database/item_menu.txt:67
+#: ../tools/database/item_menu.txt:68
 msgid "relation role"
 msgstr "نقش رابطه"
 
-#: ../tools/database/item_menu.txt:68
+#: ../tools/database/item_menu.txt:69
 msgid "relation type=restriction"
 msgstr "رابطهٔ type=restriction"
 
-#: ../tools/database/item_menu.txt:69
+#: ../tools/database/item_menu.txt:70
 msgid "postcode"
 msgstr "postcode"
 
-#: ../tools/database/item_menu.txt:77
+#: ../tools/database/item_menu.txt:78
 msgid "disused"
 msgstr "بی‌استفاده"
 
-#: ../tools/database/item_menu.txt:78
+#: ../tools/database/item_menu.txt:79
 msgid "on junction=roundabout"
 msgstr "روی junction=roundabout"
 
-#: ../tools/database/item_menu.txt:79
+#: ../tools/database/item_menu.txt:80
 msgid "incompatible tags"
 msgstr "تگ‌های ناسازگار"
 
-#: ../tools/database/item_menu.txt:80
+#: ../tools/database/item_menu.txt:81
 msgid "ref in name"
 msgstr "ref در نام"
 
-#: ../tools/database/item_menu.txt:83
+#: ../tools/database/item_menu.txt:84
 msgid "construction"
 msgstr "در دست ساخت"
 
-#: ../tools/database/item_menu.txt:84
+#: ../tools/database/item_menu.txt:85
 msgid "duplicate object"
 msgstr "شیء تکراری"
 
-#: ../tools/database/item_menu.txt:85
+#: ../tools/database/item_menu.txt:86
 msgid "unwanted tag on node"
 msgstr "تگ ناخواسته روی گره"
 
-#: ../tools/database/item_menu.txt:86
+#: ../tools/database/item_menu.txt:87
 msgid "bad usage"
 msgstr "کاربرد بد"
 
-#: ../tools/database/item_menu.txt:90
+#: ../tools/database/item_menu.txt:91
 msgid "orthograph"
 msgstr "نوشتار"
 
-#: ../tools/database/item_menu.txt:91
+#: ../tools/database/item_menu.txt:92
 msgid "way type"
 msgstr "نوع راه"
 
-#: ../tools/database/item_menu.txt:92
+#: ../tools/database/item_menu.txt:93
 msgid "two names"
 msgstr "دو نام"
 
-#: ../tools/database/item_menu.txt:93
+#: ../tools/database/item_menu.txt:94
 msgid "toponymy"
 msgstr "جای‌نام‌شناسی"
 
-#: ../tools/database/item_menu.txt:98
+#: ../tools/database/item_menu.txt:99
 msgid "open polygon"
 msgstr "چندضلعی باز"
 
-#: ../tools/database/item_menu.txt:99
+#: ../tools/database/item_menu.txt:100
 msgid "duplicated way"
 msgstr "راه تکراری"
 
-#: ../tools/database/item_menu.txt:100
+#: ../tools/database/item_menu.txt:101
 msgid "place without name"
 msgstr "مکان بدون نام"
 
-#: ../tools/database/item_menu.txt:101
+#: ../tools/database/item_menu.txt:102
 msgid "INSEE code"
 msgstr "کد INSEE "
 
-#: ../tools/database/item_menu.txt:102
+#: ../tools/database/item_menu.txt:103
 msgid "admin_level"
 msgstr "admin_level"
 
-#: ../tools/database/item_menu.txt:103
+#: ../tools/database/item_menu.txt:104
 msgid "erroneous boundary"
 msgstr "مرز خطادار"
 
-#: ../tools/database/item_menu.txt:104
+#: ../tools/database/item_menu.txt:105
 msgid "out of boundary"
 msgstr "بیرون از مرز"
 
-#: ../tools/database/item_menu.txt:105
+#: ../tools/database/item_menu.txt:106
 msgid "geodesic building"
 msgstr "geodesic building"
 
-#: ../tools/database/item_menu.txt:106
+#: ../tools/database/item_menu.txt:107
 msgid "building shape"
 msgstr "شکل ساختمان"
 
-#: ../tools/database/item_menu.txt:107
+#: ../tools/database/item_menu.txt:108
 msgid "bridge to tag"
 msgstr "تگ‌گذاری پل"
 
-#: ../tools/database/item_menu.txt:108
+#: ../tools/database/item_menu.txt:109
 msgid "admin boundary"
 msgstr "مرز سیاسی"
 
-#: ../tools/database/item_menu.txt:109
+#: ../tools/database/item_menu.txt:110
 msgid "power lines"
 msgstr "خطوط نیرو"
 
-#: ../tools/database/item_menu.txt:110 ../tools/database/item_menu.txt:131
+#: ../tools/database/item_menu.txt:111 ../tools/database/item_menu.txt:132
 msgid "post office"
 msgstr "اداره پست"
 
-#: ../tools/database/item_menu.txt:112
+#: ../tools/database/item_menu.txt:113
 msgid "ODbL migration change"
 msgstr "تغییر ناشی از مهاجرت به ODbL"
 
-#: ../tools/database/item_menu.txt:113
+#: ../tools/database/item_menu.txt:114
 msgid "school, not integrated"
 msgstr "مدرسه، یکپارچه نشده"
 
-#: ../tools/database/item_menu.txt:114
+#: ../tools/database/item_menu.txt:115
 msgid "monument"
 msgstr "monument"
 
-#: ../tools/database/item_menu.txt:115
+#: ../tools/database/item_menu.txt:116
 msgid "node on ways"
 msgstr "گره روی راه‌ها"
 
-#: ../tools/database/item_menu.txt:116 ../tools/database/item_menu.txt:142
+#: ../tools/database/item_menu.txt:117 ../tools/database/item_menu.txt:143
 msgid "train station"
 msgstr "ایستگاه قطار"
 
-#: ../tools/database/item_menu.txt:117
+#: ../tools/database/item_menu.txt:118
 msgid "TMC"
 msgstr "TMC"
 
-#: ../tools/database/item_menu.txt:118
+#: ../tools/database/item_menu.txt:119
 msgid "relation type=boundary"
 msgstr "رابطهٔ type=boundary"
 
-#: ../tools/database/item_menu.txt:119
+#: ../tools/database/item_menu.txt:120
 msgid "tunnel/bridge"
 msgstr "تونل/پل"
 
-#: ../tools/database/item_menu.txt:128
+#: ../tools/database/item_menu.txt:129
 msgid "monument, museum"
 msgstr "monument،‏ museum"
 
-#: ../tools/database/item_menu.txt:129
+#: ../tools/database/item_menu.txt:130
 msgid "monument, museum, could be integrated"
 msgstr "monument،‏ museum، می‌تواند یکپارچه شود"
 
-#: ../tools/database/item_menu.txt:132
+#: ../tools/database/item_menu.txt:133
 msgid "post office, could be integrated"
 msgstr "اداره پست، می‌تواند یکپارچه شود"
 
-#: ../tools/database/item_menu.txt:136
+#: ../tools/database/item_menu.txt:137
 msgid "school"
 msgstr "مدرسه"
 
-#: ../tools/database/item_menu.txt:137
+#: ../tools/database/item_menu.txt:138
 msgid "school, could be integrated"
 msgstr "مدرسه، می‌تواند یکپارچه شود"
 
-#: ../tools/database/item_menu.txt:27 ../tools/database/item_menu.txt:139
-#: ../tools/database/item_menu.txt:212
+#: ../tools/database/item_menu.txt:27 ../tools/database/item_menu.txt:140
+#: ../tools/database/item_menu.txt:216
 msgid "public transport"
 msgstr "public transport"
 
-#: ../tools/database/item_menu.txt:140
+#: ../tools/database/item_menu.txt:141
 msgid "public transport, could be integrated"
 msgstr "حمل‌ونقل عمومی، می‌تواند یکپارچه شود"
 
-#: ../tools/database/item_menu.txt:143
+#: ../tools/database/item_menu.txt:144
 msgid "train station, could be integrated"
 msgstr "ایستگاه قطار، می‌تواند یکپارچه شود"
 
-#: ../tools/database/item_menu.txt:144
+#: ../tools/database/item_menu.txt:145
 msgid "level crossing"
 msgstr "تقاطع همسطح راه‌آهن"
 
-#: ../tools/database/item_menu.txt:145
+#: ../tools/database/item_menu.txt:146
 msgid "geodesic point"
 msgstr "geodesic point"
 
-#: ../tools/database/item_menu.txt:146
+#: ../tools/database/item_menu.txt:147
 msgid "postal address"
 msgstr "postal address"
 
-#: ../tools/database/item_menu.txt:147
+#: ../tools/database/item_menu.txt:148
 msgid "wikipedia, could be integrated"
 msgstr "ویکی‌پدیا، می‌تواند یکپارچه شود"
 
-#: ../tools/database/item_menu.txt:148
+#: ../tools/database/item_menu.txt:149
 msgid "public service"
 msgstr "خدمت عمومی"
 
-#: ../tools/database/item_menu.txt:149
+#: ../tools/database/item_menu.txt:150
 msgid "recycling"
 msgstr "recycling"
 
-#: ../tools/database/item_menu.txt:150
+#: ../tools/database/item_menu.txt:151
 msgid "recycling, could be integrated"
 msgstr "بازیافت، می‌تواند یکپارچه شود"
 
-#: ../tools/database/item_menu.txt:152
+#: ../tools/database/item_menu.txt:153
 msgid "parking"
 msgstr "parking"
 
-#: ../tools/database/item_menu.txt:153
+#: ../tools/database/item_menu.txt:154
 msgid "parking, could be integrated"
 msgstr "پارکینگ، می‌تواند یکپارچه شود"
 
-#: ../tools/database/item_menu.txt:155
+#: ../tools/database/item_menu.txt:156
 msgid "accommodation"
 msgstr "اقامتگاه"
 
-#: ../tools/database/item_menu.txt:156
+#: ../tools/database/item_menu.txt:157
 msgid "accommodation, could be integrated"
 msgstr "اقامتگاه، می‌تواند یکپارچه شود"
 
-#: ../tools/database/item_menu.txt:157
+#: ../tools/database/item_menu.txt:158
 msgid "cycle parking"
 msgstr "پارکینگ دوچرخه"
 
-#: ../tools/database/item_menu.txt:158
+#: ../tools/database/item_menu.txt:159
 msgid "cycle parking, could be integrated"
 msgstr "پارکینگ دوچرخه، می‌تواند یکپارچه شود"
 
-#: ../tools/database/item_menu.txt:159
+#: ../tools/database/item_menu.txt:160
 msgid "transport sharing"
 msgstr "حمل‌ونقل اشتراکی"
 
-#: ../tools/database/item_menu.txt:160
+#: ../tools/database/item_menu.txt:161
 msgid "transport sharing, could be integrated"
 msgstr "حمل‌ونقل اشتراکی، می‌تواند یکپارچه شود"
 
-#: ../tools/database/item_menu.txt:162
+#: ../tools/database/item_menu.txt:163
 msgid "sport"
 msgstr "sport"
 
-#: ../tools/database/item_menu.txt:163
+#: ../tools/database/item_menu.txt:164
 msgid "sport, could be integrated"
 msgstr "ورزش، می‌تواند یکپارچه شود"
 
@@ -937,31 +937,31 @@ msgstr "فهرست HTML"
 msgid "one-node way"
 msgstr "راه تک‌گره"
 
-#: ../tools/database/item_menu.txt:164
+#: ../tools/database/item_menu.txt:165
 msgid "toilets"
 msgstr "سرویس بهداشتی"
 
-#: ../tools/database/item_menu.txt:120
+#: ../tools/database/item_menu.txt:121
 msgid "transport sharing, not integrated"
 msgstr "حمل‌ونقل اشتراکی، یکپارچه نشده"
 
-#: ../tools/database/item_menu.txt:165
+#: ../tools/database/item_menu.txt:166
 msgid "police"
 msgstr "پلیس"
 
-#: ../tools/database/item_menu.txt:166
+#: ../tools/database/item_menu.txt:167
 msgid "police, could be integrated"
 msgstr "پلیس، می‌تواند یکپارچه شود"
 
-#: ../tools/database/item_menu.txt:121
+#: ../tools/database/item_menu.txt:122
 msgid "pharmacy, not integrated "
 msgstr "داروخانه، یکپارچه نشده"
 
-#: ../tools/database/item_menu.txt:172
+#: ../tools/database/item_menu.txt:173
 msgid "pharmacy, could be integrated"
 msgstr "داروخانه، می‌تواند یکپارچه شود"
 
-#: ../tools/database/item_menu.txt:168
+#: ../tools/database/item_menu.txt:169
 msgid "gas station"
 msgstr "پمپ بنزین"
 
@@ -981,11 +981,11 @@ msgstr "ذخیره‌سازی بستهٔ تغییر"
 msgid "Comment"
 msgstr "توضیح"
 
-#: ../tools/database/item_menu.txt:70
+#: ../tools/database/item_menu.txt:71
 msgid "area"
 msgstr "محوطه"
 
-#: ../tools/database/item_menu.txt:71
+#: ../tools/database/item_menu.txt:72
 msgid "noexit"
 msgstr "noexit"
 
@@ -995,7 +995,7 @@ msgid ""
 "href='https://twitter.com/osmose_qa'>@osmose_qa</a> on twitter."
 msgstr "با دنبال‌کردن ‎<a href='https://twitter.com/osmose_qa'>@osmose_qa</a> در توئیتر با ما در ارتباط باشید."
 
-#: ../tools/database/item_menu.txt:87
+#: ../tools/database/item_menu.txt:88
 msgid "incorrect layer"
 msgstr "لایهٔ نادرست"
 
@@ -1011,31 +1011,31 @@ msgstr "کشور"
 msgid "analyser"
 msgstr "تحلیلگر"
 
-#: ../tools/database/item_menu.txt:173
+#: ../tools/database/item_menu.txt:174
 msgid "postal code, could be integrated"
 msgstr "postal code، می‌تواند یکپارچه شود"
 
-#: ../tools/database/item_menu.txt:174
+#: ../tools/database/item_menu.txt:175
 msgid "library"
 msgstr "کتابخانه"
 
-#: ../tools/database/item_menu.txt:175
+#: ../tools/database/item_menu.txt:176
 msgid "restaurant"
 msgstr "رستوران"
 
-#: ../tools/database/item_menu.txt:176
+#: ../tools/database/item_menu.txt:177
 msgid "winery"
 msgstr "winery"
 
-#: ../tools/database/item_menu.txt:39
+#: ../tools/database/item_menu.txt:40
 msgid "missing object kind"
 msgstr "کمبود نوع شیء"
 
-#: ../tools/database/item_menu.txt:122
+#: ../tools/database/item_menu.txt:123
 msgid "postal code, not integrated "
 msgstr "postal code، یکپارچه نشده"
 
-#: ../tools/database/item_menu.txt:95
+#: ../tools/database/item_menu.txt:96
 msgid "local language"
 msgstr "زبان محلی"
 
@@ -1124,27 +1124,27 @@ msgstr "مستندات مسائل گزارش‌شده"
 msgid "version"
 msgstr "نسخه"
 
-#: ../tools/database/item_menu.txt:177
+#: ../tools/database/item_menu.txt:178
 msgid "geodesic"
 msgstr "geodesic"
 
-#: ../tools/database/item_menu.txt:111 ../tools/database/item_menu.txt:134
+#: ../tools/database/item_menu.txt:112 ../tools/database/item_menu.txt:135
 msgid "post box"
 msgstr "صندوق پست"
 
-#: ../tools/database/item_menu.txt:135
+#: ../tools/database/item_menu.txt:136
 msgid "post box, could be integrated"
 msgstr "صندوق پست، می‌تواند یکپارچه شود"
 
-#: ../tools/database/item_menu.txt:40
+#: ../tools/database/item_menu.txt:41
 msgid "indoor"
 msgstr "indoor"
 
-#: ../tools/database/item_menu.txt:88
+#: ../tools/database/item_menu.txt:89
 msgid "roundabout as area"
 msgstr "فلکه در قالب محوطه"
 
-#: ../tools/database/item_menu.txt:123
+#: ../tools/database/item_menu.txt:124
 msgid "road"
 msgstr "جاده"
 
@@ -1180,7 +1180,7 @@ msgstr "اگر در ترجمه‌ها مشکلی مشاهده کردید آن ر
 msgid "far from water"
 msgstr "خیلی دور از آب"
 
-#: ../tools/database/item_menu.txt:81
+#: ../tools/database/item_menu.txt:82
 msgid "fixme import"
 msgstr "fixme import"
 
@@ -1188,35 +1188,35 @@ msgstr "fixme import"
 msgid "objects intersection"
 msgstr "اشتراک بین اشیا"
 
-#: ../tools/database/item_menu.txt:41 ../tools/database/item_menu.txt:72
+#: ../tools/database/item_menu.txt:42 ../tools/database/item_menu.txt:73
 msgid "access"
 msgstr "دسترسی"
 
-#: ../tools/database/item_menu.txt:82
+#: ../tools/database/item_menu.txt:83
 msgid "fixme review"
 msgstr "بازبینی fixme"
 
-#: ../tools/database/item_menu.txt:130
+#: ../tools/database/item_menu.txt:131
 msgid "monument, museum, need update"
 msgstr "monument،‏ museum، نیازمند به‌روزآوری"
 
-#: ../tools/database/item_menu.txt:138
+#: ../tools/database/item_menu.txt:139
 msgid "school, need update"
 msgstr "مدرسه، نیازمند به‌روزآوری"
 
-#: ../tools/database/item_menu.txt:141
+#: ../tools/database/item_menu.txt:142
 msgid "public transport, need update"
 msgstr "حمل‌ونقل عمومی، نیازمند به‌روزآوری"
 
-#: ../tools/database/item_menu.txt:151
+#: ../tools/database/item_menu.txt:152
 msgid "recycling, need update"
 msgstr "بازیافت، نیازمند به‌روزآوری"
 
-#: ../tools/database/item_menu.txt:154
+#: ../tools/database/item_menu.txt:155
 msgid "parking, need update"
 msgstr "پارکینگ، نیازمند به‌روزآوری"
 
-#: ../tools/database/item_menu.txt:161
+#: ../tools/database/item_menu.txt:162
 msgid "transport sharing, need update"
 msgstr "حمل‌ونقل اشتراکی، نیازمند به‌روزآوری"
 
@@ -1236,7 +1236,7 @@ msgstr "عمر"
 msgid "Version"
 msgstr "نسخه"
 
-#: ../tools/database/item_menu.txt:133
+#: ../tools/database/item_menu.txt:134
 msgid "post office, need update"
 msgstr "ادارهٔ پست، نیازمند به‌روزآوری"
 
@@ -1244,27 +1244,27 @@ msgstr "ادارهٔ پست، نیازمند به‌روزآوری"
 msgid "age"
 msgstr "عمر"
 
-#: ../tools/database/item_menu.txt:96
+#: ../tools/database/item_menu.txt:97
 msgid "invalid character"
 msgstr "نویسهٔ نامعتبر"
 
-#: ../tools/database/item_menu.txt:170
+#: ../tools/database/item_menu.txt:171
 msgid "gas station, could be integrated"
 msgstr "پمپ بنزین، می‌تواند یکپارچه شود"
 
-#: ../tools/database/item_menu.txt:124 ../tools/database/item_menu.txt:179
+#: ../tools/database/item_menu.txt:125 ../tools/database/item_menu.txt:180
 msgid "power substation"
 msgstr "power substation"
 
-#: ../tools/database/item_menu.txt:180
+#: ../tools/database/item_menu.txt:181
 msgid "power substation, could be integrated"
 msgstr "power substation، می‌تواند یکپارچه شود"
 
-#: ../tools/database/item_menu.txt:181
+#: ../tools/database/item_menu.txt:182
 msgid "power support"
 msgstr "power support"
 
-#: ../tools/database/item_menu.txt:182
+#: ../tools/database/item_menu.txt:183
 msgid "power support, could be integrated"
 msgstr "power support، می‌تواند یکپارچه شود"
 
@@ -1272,39 +1272,39 @@ msgstr "power support، می‌تواند یکپارچه شود"
 msgid "almost junction"
 msgstr "تقریباً تقاطع است"
 
-#: ../tools/database/item_menu.txt:42
+#: ../tools/database/item_menu.txt:43
 msgid "public_transport route"
 msgstr "مسیر public_transport"
 
-#: ../tools/database/item_menu.txt:73
+#: ../tools/database/item_menu.txt:74
 msgid "recycling container"
 msgstr "زباله‌دان بازیافت"
 
-#: ../tools/database/item_menu.txt:89
+#: ../tools/database/item_menu.txt:90
 msgid "duplicate wikipedia"
 msgstr "ویکی‌پدیای تکراری"
 
-#: ../tools/database/item_menu.txt:74
+#: ../tools/database/item_menu.txt:75
 msgid "route access mismatch"
 msgstr "دسترسی route همخوانی ندارد"
 
-#: ../tools/database/item_menu.txt:97
+#: ../tools/database/item_menu.txt:98
 msgid "similar name"
 msgstr "نام مشابه"
 
-#: ../tools/database/item_menu.txt:169
+#: ../tools/database/item_menu.txt:170
 msgid "gas station, need update"
 msgstr "پمپ بنزین، نیازمند به‌روزآوری"
 
-#: ../tools/database/item_menu.txt:58
+#: ../tools/database/item_menu.txt:59
 msgid "phone number"
 msgstr "شماره‌تلفن"
 
-#: ../tools/database/item_menu.txt:183
+#: ../tools/database/item_menu.txt:184
 msgid "traffic signs"
 msgstr "علائم راهنمایی‌ورانندگی"
 
-#: ../tools/database/item_menu.txt:184
+#: ../tools/database/item_menu.txt:185
 msgid "traffic sign limitation"
 msgstr "محدودیت علائم راهنمایی‌ورانندگی"
 
@@ -1351,47 +1351,47 @@ msgstr "برای کشورهای جدید، مستقیماً به نشانی <a h
 msgid "JOSM validator"
 msgstr "‫اعتبارسنج JOSM‬"
 
-#: ../tools/database/item_menu.txt:199
+#: ../tools/database/item_menu.txt:203
 msgid "seamark"
 msgstr "seamark"
 
-#: ../tools/database/item_menu.txt:200
+#: ../tools/database/item_menu.txt:204
 msgid "addresses"
 msgstr "نشانی‌ها"
 
-#: ../tools/database/item_menu.txt:201
+#: ../tools/database/item_menu.txt:205
 msgid "combinations"
 msgstr "ترکیبات"
 
-#: ../tools/database/item_menu.txt:202
+#: ../tools/database/item_menu.txt:206
 msgid "deprecated"
 msgstr "deprecated"
 
-#: ../tools/database/item_menu.txt:203
+#: ../tools/database/item_menu.txt:207
 msgid "geometry"
 msgstr "هندسه"
 
-#: ../tools/database/item_menu.txt:205
+#: ../tools/database/item_menu.txt:209
 msgid "multiple"
 msgstr "چندگانه"
 
-#: ../tools/database/item_menu.txt:206
+#: ../tools/database/item_menu.txt:210
 msgid "numeric"
 msgstr "عددی"
 
-#: ../tools/database/item_menu.txt:207
+#: ../tools/database/item_menu.txt:211
 msgid "relation"
 msgstr "relation"
 
-#: ../tools/database/item_menu.txt:208
+#: ../tools/database/item_menu.txt:212
 msgid "religion"
 msgstr "دین"
 
-#: ../tools/database/item_menu.txt:209
+#: ../tools/database/item_menu.txt:213
 msgid "territories"
 msgstr "سرزمین‌ها"
 
-#: ../tools/database/item_menu.txt:210
+#: ../tools/database/item_menu.txt:214
 msgid "unnecessary"
 msgstr "غیرضروری"
 
@@ -1470,11 +1470,11 @@ msgid ""
 "automatically on next check if no more issue."
 msgstr "پس از اینکه مشکل داده‌ها اصلاح شد، آن را در حالت حل‌شده قرار دهید. در بررسی بعدی، اگر مسئلهٔ دیگری نداشته باشد، به‌طور خودکار ناپدید می‌شود."
 
-#: ../tools/database/item_menu.txt:43
+#: ../tools/database/item_menu.txt:44
 msgid "zone:maxspeed"
 msgstr "zone:maxspeed"
 
-#: ../tools/database/item_menu.txt:215
+#: ../tools/database/item_menu.txt:219
 msgid "power transformer"
 msgstr "power transformer"
 
@@ -1483,43 +1483,43 @@ msgstr "power transformer"
 msgid "Item #%s"
 msgstr "آیتم #%s"
 
-#: ../tools/database/item_menu.txt:75
+#: ../tools/database/item_menu.txt:76
 msgid "opening hours"
 msgstr "ساعت کاری"
 
-#: ../tools/database/item_menu.txt:125 ../tools/database/item_menu.txt:185
+#: ../tools/database/item_menu.txt:126 ../tools/database/item_menu.txt:186
 msgid "hospital"
 msgstr "بیمارستان"
 
-#: ../tools/database/item_menu.txt:126 ../tools/database/item_menu.txt:187
+#: ../tools/database/item_menu.txt:127 ../tools/database/item_menu.txt:188
 msgid "social facility"
 msgstr "social facility"
 
-#: ../tools/database/item_menu.txt:127 ../tools/database/item_menu.txt:189
+#: ../tools/database/item_menu.txt:128 ../tools/database/item_menu.txt:190
 msgid "medical lab"
 msgstr "آزمایشگاه پزشکی"
 
-#: ../tools/database/item_menu.txt:186
+#: ../tools/database/item_menu.txt:187
 msgid "hospital, could be integrated"
 msgstr "بیمارستان، می‌تواند یکپارچه شود"
 
-#: ../tools/database/item_menu.txt:188
+#: ../tools/database/item_menu.txt:189
 msgid "social facility, could be integrated"
 msgstr "social facility، می‌تواند یکپارچه شود"
 
-#: ../tools/database/item_menu.txt:190
+#: ../tools/database/item_menu.txt:191
 msgid "medical lab, could be integrated"
 msgstr "آزمایشگاه پزشکی، می‌تواند یکپارچه شود"
 
-#: ../tools/database/item_menu.txt:167
+#: ../tools/database/item_menu.txt:168
 msgid "police, need update"
 msgstr "پلیس، نیازمند به‌روزآوری"
 
-#: ../tools/database/item_menu.txt:55
+#: ../tools/database/item_menu.txt:56
 msgid "swimming pool"
 msgstr "استخر شنا"
 
-#: ../tools/database/item_menu.txt:94
+#: ../tools/database/item_menu.txt:95
 msgid "potential misspelling"
 msgstr ""
 
@@ -1527,27 +1527,27 @@ msgstr ""
 msgid "enforcement"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:59
+#: ../tools/database/item_menu.txt:60
 msgid "URL"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:191
+#: ../tools/database/item_menu.txt:192
 msgid "street objects"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:213
+#: ../tools/database/item_menu.txt:217
 msgid "openrailwaymap"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:214
+#: ../tools/database/item_menu.txt:218
 msgid "openrailwaymap in germany"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:44
+#: ../tools/database/item_menu.txt:45
 msgid "railways"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:178
+#: ../tools/database/item_menu.txt:179
 msgid "power plant"
 msgstr ""
 
@@ -1557,19 +1557,19 @@ msgid ""
 "languages."
 msgstr "توسعه‌دهندگان Osmose بیشتر فرانسوی هستند اما مایلیم زبان‌های بیشتری را پشتیبانی کنیم."
 
-#: ../tools/database/item_menu.txt:192
+#: ../tools/database/item_menu.txt:193
 msgid "defibrillator"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:193
+#: ../tools/database/item_menu.txt:197
 msgid "radio support"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:194
+#: ../tools/database/item_menu.txt:198
 msgid "radio support, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:195
+#: ../tools/database/item_menu.txt:199
 msgid "radio support, need update"
 msgstr ""
 
@@ -1649,18 +1649,34 @@ msgstr "هرگز نباید Osmose-QA را ملاک درست و دقیق برا�
 msgid "You can find help on the wiki:"
 msgstr "راهنما را در ویکی ببینید:"
 
-#: ../tools/database/item_menu.txt:76
+#: ../tools/database/item_menu.txt:77
 msgid "ref:vatin"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:196
+#: ../tools/database/item_menu.txt:200
 msgid "charging station"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:197
+#: ../tools/database/item_menu.txt:201
 msgid "charging station, could be integrated"
 msgstr ""
 
-#: ../tools/database/item_menu.txt:198
+#: ../tools/database/item_menu.txt:202
 msgid "charging station, need update"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:30
+msgid "related objects"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:194
+msgid "wastewater"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:195
+msgid "wastewater, could be integrated"
+msgstr ""
+
+#: ../tools/database/item_menu.txt:196
+msgid "wastewater, need update"
 msgstr ""
