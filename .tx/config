@@ -2,7 +2,7 @@
 host = https://www.transifex.com
 
 [osmose.frontend]
-file_filter = po/<lang>.po
-source_file = po/osmose-frontend.pot
+file_filter = web/po/<lang>.po
+source_file = web/po/osmose-frontend.pot
 source_lang = en
 type = PO
