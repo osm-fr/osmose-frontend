@@ -160,7 +160,7 @@ if __name__ == "__main__":
     #all_items = [{"item":9999, "marker_flag":"=-", "marker_color":"#ff0000"}] # Test
 
 
-    marker_folder = os.path.join("..", "static", "images", "markers")
+    marker_folder = os.path.join("..", "web", "static", "images", "markers")
     commands.getstatusoutput("rm %s"%os.path.join(marker_folder,"*.png"))
     css = "/* sprite-loader-enable */\n"
     for i in all_items:

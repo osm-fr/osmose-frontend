@@ -11,13 +11,13 @@ class OsmoseTranslation:
     def __init__(self):
         self.languages = []
         self.trans = {}
-        for fn in os.listdir("../po/"):
+        for fn in os.listdir("../web/po/"):
             if not fn.endswith(".po"):
                 continue
 
             l = fn[:-3]
             self.languages.append(l)
-            po = polib.pofile("../po/" + l + ".po")
+            po = polib.pofile("../web/po/" + l + ".po")
             self.trans[l] = {}
             for entry in po:
                 if entry.msgstr != "":
