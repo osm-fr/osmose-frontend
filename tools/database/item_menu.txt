@@ -126,6 +126,7 @@
  7220 | _("hospital")
  7230 | _("social facility")
  7240 | _("medical lab")
+ 7250 | _("gas station, not integrated")
  8010 | _("monument, museum")
  8011 | _("monument, museum, could be integrated")
  8012 | _("monument, museum, need update")
