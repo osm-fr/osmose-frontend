@@ -156,7 +156,7 @@ def _error(version, db, langs, uuid, marker):
             "minlat": float(lat) - 0.002, "maxlat": float(lat) + 0.002,
             "minlon": float(lon) - 0.002, "maxlon": float(lon) + 0.002,
             "error_id":marker['id'],
-            "title":title['auto'], "subtitle":subtitle['auto'],
+            "title":title and title['auto'], "subtitle":subtitle and subtitle['auto'],
             "b_date":b_date.strftime("%Y-%m-%d"),
             "item":item,
             "class":classs,

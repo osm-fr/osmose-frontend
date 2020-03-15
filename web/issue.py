@@ -19,7 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, template
+from bottle import route, template, abort
 from tools import utils
 
 from api.issue_utils import _get, _expand_tags, t2l
