@@ -12,8 +12,8 @@ all: osmose-frontend.pot %.po mo
 
 tmp.tpl: $(TPLFILES) Makefile
 	cat $(TPLFILES) | \
-	  perl -pe 's/.*?_[(] ?u?"([^"]+)"[)]/ _("\1")\n/g' | \
-	  perl -pe "s/.*?_[(] ?u?'([^']+)'[)]/ _('\1')\n/g" | \
+	  perl -pe 's/(.*?)_[(] ?u?"([^"]+)"[)]/\1\n _("\2")\n/g' | \
+	  perl -pe "s/(.*?)_[(] ?u?'([^']+)'[)]/\1\n _('\2')\n/g" | \
 	  egrep -h "_\( ?u?[\"']|TRANSLATORS" | \
           sed -e 's/^%#/#/' > tmp.tpl
 
