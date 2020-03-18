@@ -39,57 +39,60 @@
 	ExpiresDefault "access plus 1 week"
 	CacheIgnoreHeaders Cookie Set-Cookie
 
-	<LocationMatch /[a-z]*/api>
+	<LocationMatch /[a-z_]+/api>
 		ExpiresActive Off
 		CacheDisable on
 	</LocationMatch>
-	<LocationMatch /[a-z]*/byuser>
+	<LocationMatch /[a-z_]+/byuser>
 		ExpiresDefault "access plus 5 minutes"
 	</LocationMatch>
-	<LocationMatch /[a-z]*/control>
+	<LocationMatch /[a-z_]+/control>
 		ExpiresDefault "access plus 5 minutes"
 	</LocationMatch>
-	<LocationMatch /[a-z]*/error>
+	<LocationMatch /[a-z_]+/error>
 		ExpiresActive Off
 		CacheDisable on
 	</LocationMatch>
-	<LocationMatch /[a-z]*/errors>
+	<LocationMatch /[a-z_]+/errors>
 		ExpiresDefault "access plus 5 minutes"
 	</LocationMatch>
-	<LocationMatch /[a-z]*/map>
+	<LocationMatch /[a-z_]+/map>
 		ExpiresActive Off
 		CacheDisable on
 	</LocationMatch>
-	<LocationMatch /[a-z]+/0\.3beta/issues/[0-9]+/[0-9]+/[0-9]+\.heat\.mvt>
+	<LocationMatch /0\.3beta/issues/[0-9]+/[0-9]+/[0-9]+\.heat\.mvt>
 		ExpiresDefault "access plus 1 day"
 		CacheEnable disk
 		CacheHeader on
 	</LocationMatch>
-	<LocationMatch /[a-z]+/0\.3beta/issues/[0-9]+/[0-9]+/[0-9]+\.mvt>
+	<LocationMatch /0\.3beta/issues/[0-9]+/[0-9]+/[0-9]+\.mvt>
 		ExpiresDefault "access plus 2 minutes"
 		CacheEnable disk
 		CacheHeader on
 	</LocationMatch>
-	<LocationMatch /[a-z]*/map/issues/[0-9]/*>
+	<LocationMatch /[a-z_]+/map/issues/[0-9]/*>
 		ExpiresDefault "access plus 1 day"
 		CacheEnable disk
 		CacheHeader on
 	</LocationMatch>
-	<LocationMatch /[a-z]*/map/marker>
+	<LocationMatch /[a-z_]+/map/marker>
 		ExpiresActive Off
 		CacheDisable on
 	</LocationMatch>
-	<LocationMatch /[a-z]*/map/markers>
+	<LocationMatch /[a-z_]+/map/markers>
 		ExpiresActive Off
 		CacheDisable on
 	</LocationMatch>
-	<LocationMatch /[a-z]*/api/0.3beta/items/[0-9]*/class/[0-9]*>
+	<LocationMatch /api/0\.3beta/items/[0-9]*/class/[0-9]*>
 		ExpiresDefault "access plus 60 minutes"
 	</LocationMatch>
 
 	RewriteEngine On
 #	RewriteCond %{REQUEST_URI} !/maintenance.html$
 #	RewriteRule !^maintenance.html$ maintenance.html [R=302,L]
+
+	RewriteRule "^(/api/0.2/.*)" "/en$1" [PT]
+	RewriteRule "^/([a-z_]+)(/api/0\.3beta/.*)" "$2?%{QUERY_STRING}&langs=$1" [PT]
 
 	RewriteRule ^/$ /map/ [R,L]
 	RewriteRule ^/map/cgi-bin/index.py$ /map [R,L]

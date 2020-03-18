@@ -9,11 +9,14 @@
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
   <meta name="description" content="{{_("Control, verification and correction of %s issues") % main_project}}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <script id="popupTpl" type="text/template" src="{{get_url('static', filename='/tpl/popup.tpl')}}"></script>
-  <script id="docTpl" type="text/template" src="{{get_url('static', filename='/tpl/doc.tpl')}}"></script>
-  <script id="editorTpl" type="text/template" src="{{get_url('static', filename='/tpl/editor.tpl')}}"></script>
+%from web.app import app
+%favicon = app.get_url('static', filename='favicon.png')
+  <link rel="icon" type="image/png" href="{{favicon}}">
+  <script id="popupTpl" type="text/template" src="{{app.get_url('static', filename='/tpl/popup.tpl')}}"></script>
+  <script id="docTpl" type="text/template" src="{{app.get_url('static', filename='/tpl/doc.tpl')}}"></script>
+  <script id="editorTpl" type="text/template" src="{{app.get_url('static', filename='/tpl/editor.tpl')}}"></script>
 %from web.assets import assets
-  <script type="text/javascript" src="{{get_url('static', filename=assets['static/map'][0])}}"></script>
+  <script type="text/javascript" src="{{app.get_url('static', filename=assets['static/map'][0])}}"></script>
   <script type="text/javascript">
     var itemLevels = {};
 %for (l, i) in item_levels.iteritems():

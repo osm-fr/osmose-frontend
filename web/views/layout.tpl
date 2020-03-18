@@ -8,9 +8,10 @@
   <title>Osmose - {{title or ''}}</title>
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 %from web.assets import assets
-  <script type="text/javascript" src="{{get_url('static', filename=assets['static'][0])}}"></script>
+%from web.app import app
+  <script type="text/javascript" src="{{app.get_url('static', filename=assets['static'][0])}}"></script>
 %if not 'favicon' in locals() or not favicon:
-%    favicon = get_url('static', filename='favicon.png')
+%    favicon = app.get_url('static', filename='favicon.png')
 %end
   <link rel="icon" type="image/png" href="{{favicon}}">
 %if 'rss' in locals() and rss:

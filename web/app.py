@@ -33,18 +33,29 @@ from modules import bottle_gettext
 from modules import bottle_user
 
 
-app = bottle.Bottle()
-bottle.default_app.push(app)
-
-assets.init_assets()
-
 @hook('before_request')
 def setup_request():
     if request:
         request.session = request.environ['beaker.session']
 
+session_opts = {
+    'session.type': 'file',
+    'session.data_dir': './web/session/',
+    'session.cookie_expires': False,
+}
+app_middleware = beaker.middleware.SessionMiddleware(bottle.default_app(), session_opts)
+
+
+assets.init_assets()
+
+app = bottle.default_app()
+
 from bottle import SimpleTemplate
 SimpleTemplate.defaults["get_url"] = app.get_url
+
+
+app = bottle.Bottle()
+bottle.default_app.push(app)
 
 app.install(bottle_pgsql.Plugin(utils.db_string))
 # Temporary allow CORS on web
@@ -144,25 +155,16 @@ import issues
 import map
 import false_positive
 import editor
+import control
 
 @route('/<filename:path>', name='static')
 def static(filename):
     return bottle.static_file(filename, root='web/static')
 
 
-for l in utils.allowed_languages:
-    app.mount('/' + l + '/', app)
+bottle.default_app.pop()
 
-
-session_opts = {
-    'session.type': 'file',
-    'session.data_dir': './web/session/',
-    'session.cookie_expires': False,
-}
-app_middleware = beaker.middleware.SessionMiddleware(app, session_opts)
 
 
 if __name__ == '__main__':
     bottle.run(app=app_middleware, host='0.0.0.0', port=20009, reloader=True, debug=True)
-else:
-    bottle.default_app.pop()

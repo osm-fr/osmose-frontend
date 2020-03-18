@@ -36,8 +36,6 @@ app = OsmoseControlBottle()
 bottle.default_app.push(app)
 
 app.install(bottle_pgsql.Plugin(utils.db_string))
-app.install(bottle_gettext.Plugin('osmose-frontend', os.path.join("web", "po", "mo"), utils.allowed_languages))
-
 
 import control
 

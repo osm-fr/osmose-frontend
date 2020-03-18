@@ -29,8 +29,8 @@ L.Control.Location = L.Control.extend({
 
   _createButton(html, title, className, container, fn, context) {
     const link = L.DomUtil.create('a', className, container);
-    link.style = 'background-image: url(/images/location.png)'; // Firefox
-    link.style['background-image'] = 'url(/images/location.png)'; // Chrome
+    link.style = 'background-image: url(../images/location.png)'; // Firefox
+    link.style['background-image'] = 'url(../images/location.png)'; // Chrome
     link.innerHTML = html;
     link.href = '#';
     link.title = title;

@@ -44,7 +44,8 @@ def inspect_routes(app):
             prefix = route.config['mountpoint']['prefix']
             subapp = route.config['mountpoint']['target']
 
-            if not (len(prefix.strip('/')) == 2 or (len(prefix.strip('/')) == 5 and prefix.strip('/')[2] == '_')):
+            p = prefix.split('/', 2)[1]
+            if not (len(p) == 2 or (len(p) == 5 and p[2] == '_')) or p == 'en':
                 for prefixes, route in inspect_routes(subapp):
                     yield [prefix] + prefixes, route
         else:

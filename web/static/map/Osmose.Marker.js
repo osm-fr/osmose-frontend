@@ -136,7 +136,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
       }
       return o;
     }, {});
-    return `../api/0.3beta/issues/{z}/{x}/{y}.mvt${L.Util.getParamString(p)}`;
+    return `/api/0.3beta/issues/{z}/{x}/{y}.mvt${L.Util.getParamString(p)}`;
   },
 
   _closePopup() {
@@ -166,7 +166,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
       if (popup.isOpen) {
         // Popup still open, so download content
         $.ajax({
-          url: `../api/0.3beta/issue/${e.layer.properties.uuid}?langs=auto`,
+          url: `/api/0.3beta/issue/${e.layer.properties.uuid}?langs=auto`,
           dataType: 'json',
           success: (data) => {
             data.elems_id = data.elems.map(elem => elem.type + elem.id).join(',');

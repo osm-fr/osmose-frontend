@@ -24,15 +24,32 @@ import bottle
 from tools import utils
 
 bottle.TEMPLATE_PATH.insert(0, './web/views/')
-from web import app as web_app
-app = web_app.app
-from control import app as control_app
-web_app.app.mount('/control/', control_app.app)
-from api import app as api_app
-web_app.app.mount('/api/0.2/', api_app.app_0_2)
-web_app.app.mount('/api/0.3beta/', api_app.app_0_3)
-#app.mount('/api/0.3beta/', api_app.app_0_3)
 
-bottle.default_app.push(app)
+
+app = bottle.default_app()
+
+from modules import bottle_gettext
+import os
+app.install(bottle_gettext.Plugin('osmose-frontend', os.path.join("web", "po", "mo"), utils.allowed_languages))
+
+from web import app as web_app
+for l in utils.allowed_languages:
+  app.mount('/' + l, web_app.app)
+
+@app.route('/')
+@app.route('/map')
+@app.route('/map/')
+def index(lang):
+    # Route to force a redirect, for missing langue in URL
+    pass
+
+from control import app as control_app
+app.mount('/control/', control_app.app)
+
+from api import app as api_app
+web_app.app.mount('api/0.2/', api_app.app_0_2)
+app.mount('/api/0.3beta/', api_app.app_0_3)
 
 app_middleware = web_app.app_middleware
+
+import modules.osmose_bottle

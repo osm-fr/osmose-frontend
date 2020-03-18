@@ -63,6 +63,8 @@ import issues
 import issues_tiles
 import false_positive
 
+bottle.default_app.pop()
+bottle.default_app.pop()
 
 if __name__ == '__main__':
     bottle.run(app=app_0_3, host='0.0.0.0', port=20009, reloader=True, debug=True)
