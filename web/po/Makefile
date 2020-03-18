@@ -10,10 +10,11 @@ MO:=$(patsubst %.po,mo/%/LC_MESSAGES/osmose-frontend.mo,$(PO))
 
 all: osmose-frontend.pot %.po mo
 
-tmp.tpl: $(TPLFILES)
-	egrep -h "_\( ?u?[\"']|TRANSLATORS" $(TPLFILES) | \
-	  perl -pe 's/.*?_[(] ?u?"([^"]+)"[)]/ _("\1") /g' | \
-	  perl -pe "s/.*?_[(] ?u?'([^']+)'[)]/ _('\1') /g" | \
+tmp.tpl: $(TPLFILES) Makefile
+	cat $(TPLFILES) | \
+	  perl -pe 's/.*?_[(] ?u?"([^"]+)"[)]/ _("\1")\n/g' | \
+	  perl -pe "s/.*?_[(] ?u?'([^']+)'[)]/ _('\1')\n/g" | \
+	  egrep -h "_\( ?u?[\"']|TRANSLATORS" | \
           sed -e 's/^%#/#/' > tmp.tpl
 
 osmose-frontend.pot: $(PYFILES) tmp.tpl $(DBFILES)
