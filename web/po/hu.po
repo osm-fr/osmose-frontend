@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-03-18 19:56+0000\n"
+"PO-Revision-Date: 2020-03-18 20:23+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgid "never generated"
 msgstr "soha nem lett létrehozva"
 
 #. TRANSLATORS: link to tooltip help
-#: tmp.tpl:218
+#: tmp.tpl:220
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
@@ -64,7 +64,7 @@ msgstr "Kapcsolat"
 msgid "Help on wiki"
 msgstr "Súgó a wikin"
 
-#: ../map.py:71 tmp.tpl:120 tmp.tpl:216
+#: ../map.py:71 tmp.tpl:120 tmp.tpl:218
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
@@ -358,7 +358,7 @@ msgstr "megfordítás"
 msgid "Change language"
 msgstr "Nyelv módosítása"
 
-#: tmp.tpl:163 tmp.tpl:201
+#: tmp.tpl:163 tmp.tpl:203
 msgid "Help"
 msgstr "Súgó"
 
@@ -395,37 +395,37 @@ msgstr "Típus"
 msgid "Reuse changeset"
 msgstr "Módosításcsomag újrafelhasználása"
 
-#: tmp.tpl:205
+#: tmp.tpl:207
 msgid "corrected"
 msgstr "javítva"
 
-#: tmp.tpl:203
+#: tmp.tpl:205
 msgid "false positive"
 msgstr "téves hibajelzés"
 
-#: tmp.tpl:207 tmp.tpl:208
+#: tmp.tpl:209 tmp.tpl:210
 msgid "How to help translation"
 msgstr "Hogyan segíthet a fordításban?"
 
-#: tmp.tpl:210
+#: tmp.tpl:212
 msgid ""
 "To make Osmose a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr "Ahhoz, hogy az Osmose valóban többnyelvű legyen, a te segítségedre is szükségünk van. Adj hozzá új fordításokat, és javítsd a jelenlegieket"
 
-#: tmp.tpl:211
+#: tmp.tpl:213
 msgid "Pages to translate"
 msgstr "Lefordítandó oldalak"
 
-#: tmp.tpl:215
+#: tmp.tpl:217
 msgid "Wiki pages"
 msgstr "Wiki-oldalak"
 
-#: tmp.tpl:212
+#: tmp.tpl:214
 msgid "Osmose pages"
 msgstr "Osmose-oldalak"
 
-#: tmp.tpl:223
+#: tmp.tpl:225
 msgid "Bug tracking system"
 msgstr "Hibakövető rendszer"
 
@@ -912,20 +912,20 @@ msgstr "sport"
 msgid "sport, could be integrated"
 msgstr "sport: kiegészíthető"
 
-#: tmp.tpl:214
+#: tmp.tpl:216
 msgid "Translation progress: osmose"
 msgstr "Fordítás haladása: osmose"
 
-#: tmp.tpl:220
+#: tmp.tpl:222
 msgid "For new language or countries"
 msgstr "Új nyelv vagy országok"
 
-#: tmp.tpl:221
+#: tmp.tpl:223
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
 msgstr "Létrehozhatsz egy nyelvet közvetlenül itt: <a href='%s'>Transifex.</a>"
 
-#: tmp.tpl:213
+#: tmp.tpl:215
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr "A fordítás a <a href='%s'>Transifex</a>en készül."
@@ -1121,7 +1121,7 @@ msgstr "Hibatérkép"
 msgid "Information on issues database"
 msgstr "Tájékoztatás a hibaadatbázisról"
 
-#: tmp.tpl:219
+#: tmp.tpl:221
 msgid "Documentation on reported issues"
 msgstr "A jelentett hibák dokumentációja"
 
@@ -1163,7 +1163,7 @@ msgstr "széthasított épület"
 msgid "Control, verification and correction of %s issues"
 msgstr "%s hiba ellenőrzése, megvizsgálása és javítása"
 
-#: tmp.tpl:217
+#: tmp.tpl:219
 msgid "Osmose QA main page"
 msgstr "Osmose minőségbiztosítás – főoldal"
 
@@ -1176,7 +1176,7 @@ msgid ""
 "analyses."
 msgstr "A hibákat a következőképpen célszerű jelezni: a honlappal kapcsolatos észrevételeket az <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> felületen, az OpenStreetMap adatokkal kapcsolatos bejelentett hibákat és az elemzésekkel kapcsolatos javaslatokat pedig az <a href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> felületen."
 
-#: tmp.tpl:224
+#: tmp.tpl:226
 msgid ""
 "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
 "frontend</a> can be used to report any issue with translations."
@@ -1347,7 +1347,7 @@ msgstr "Közvetlenül is elérhetők vagyunk a következő e-mail címen: <a hre
 msgid "Level {level} issues ({count})"
 msgstr "{level}. szintű lehetséges hibák: {count}"
 
-#: tmp.tpl:222
+#: tmp.tpl:224
 #, python-brace-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
@@ -1457,21 +1457,21 @@ msgstr "Terület megjelenítése itt: {where}"
 msgid "Edit the area on {where}"
 msgstr "Terület szerkesztése itt: {where}"
 
-#: tmp.tpl:199
+#: tmp.tpl:200
 msgid "details"
 msgstr "részletek"
 
-#: tmp.tpl:200
+#: tmp.tpl:202
 msgid "Issue reported on:"
 msgstr "Hiba jelentésének ideje:"
 
-#: tmp.tpl:202 tmp.tpl:204
+#: tmp.tpl:204 tmp.tpl:206
 msgid ""
 "Report the issue as improper, if according to you is not an issue. The issue"
 " will not be displayed to anyone more."
 msgstr "Ha szerinted ez nem hiba, jelöld meg helytelenként. A hiba többé senkinek sem fog megjelenni."
 
-#: tmp.tpl:206
+#: tmp.tpl:208
 msgid ""
 "After issue fixed on the OSM data, mark it as done. May also disappear "
 "automatically on next check if no more issue."
@@ -1561,7 +1561,7 @@ msgstr "vasút"
 msgid "power plant"
 msgstr "erőmű"
 
-#: tmp.tpl:209
+#: tmp.tpl:211
 msgid ""
 "Osmose tool is mainly developped by french people, and we aim to add more "
 "languages."
@@ -1697,4 +1697,12 @@ msgstr ""
 
 #: tmp.tpl:109
 msgid "delete issue"
+msgstr ""
+
+#: tmp.tpl:199
+msgid "Issue details"
+msgstr ""
+
+#: tmp.tpl:201
+msgid "Report based on data from date"
 msgstr ""

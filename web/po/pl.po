@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-03-18 19:56+0000\n"
+"PO-Revision-Date: 2020-03-18 20:23+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -43,7 +43,7 @@ msgid "never generated"
 msgstr "nigdy niewygenerowane"
 
 #. TRANSLATORS: link to tooltip help
-#: tmp.tpl:218
+#: tmp.tpl:220
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "https://wiki.openstreetmap.org/wiki/Osmose/issues"
 
@@ -72,7 +72,7 @@ msgstr "Kontakt"
 msgid "Help on wiki"
 msgstr "Pomoc na wiki"
 
-#: ../map.py:71 tmp.tpl:120 tmp.tpl:216
+#: ../map.py:71 tmp.tpl:120 tmp.tpl:218
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
@@ -366,7 +366,7 @@ msgstr "odwróć"
 msgid "Change language"
 msgstr "Zmień język"
 
-#: tmp.tpl:163 tmp.tpl:201
+#: tmp.tpl:163 tmp.tpl:203
 msgid "Help"
 msgstr "Pomoc"
 
@@ -403,37 +403,37 @@ msgstr "Typ"
 msgid "Reuse changeset"
 msgstr "Nie zamykaj zestawu zmian"
 
-#: tmp.tpl:205
+#: tmp.tpl:207
 msgid "corrected"
 msgstr "poprawione"
 
-#: tmp.tpl:203
+#: tmp.tpl:205
 msgid "false positive"
 msgstr "fałszywy alarm"
 
-#: tmp.tpl:207 tmp.tpl:208
+#: tmp.tpl:209 tmp.tpl:210
 msgid "How to help translation"
 msgstr "Jak pomóc w tłumaczeniu"
 
-#: tmp.tpl:210
+#: tmp.tpl:212
 msgid ""
 "To make Osmose a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr "Żeby Osmose stał się prawdziwym narzędziem wielojęzycznym, potrzebujemy twojej pomocy w poprawie obecnych tłumaczeń i dodawaniu nowych."
 
-#: tmp.tpl:211
+#: tmp.tpl:213
 msgid "Pages to translate"
 msgstr "Strony do przetłumaczenia"
 
-#: tmp.tpl:215
+#: tmp.tpl:217
 msgid "Wiki pages"
 msgstr "Strony wiki"
 
-#: tmp.tpl:212
+#: tmp.tpl:214
 msgid "Osmose pages"
 msgstr "Strony Osmose"
 
-#: tmp.tpl:223
+#: tmp.tpl:225
 msgid "Bug tracking system"
 msgstr "System zgłaszania błędów"
 
@@ -920,20 +920,20 @@ msgstr "sport [FR]"
 msgid "sport, could be integrated"
 msgstr "sport, może być zintegrowany"
 
-#: tmp.tpl:214
+#: tmp.tpl:216
 msgid "Translation progress: osmose"
 msgstr "Stan tłumaczenia: osmose"
 
-#: tmp.tpl:220
+#: tmp.tpl:222
 msgid "For new language or countries"
 msgstr "Nowe języki lub kraje"
 
-#: tmp.tpl:221
+#: tmp.tpl:223
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
 msgstr "Nowe tłumaczenie możesz stworzyć na <a href='%s'>Transifex.</a>"
 
-#: tmp.tpl:213
+#: tmp.tpl:215
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr "Tłumaczenia są zarządzane na <a href='%s'>Transifex</a>."
@@ -1129,7 +1129,7 @@ msgstr "Mapa problemów"
 msgid "Information on issues database"
 msgstr "Informacja o bazie problemów"
 
-#: tmp.tpl:219
+#: tmp.tpl:221
 msgid "Documentation on reported issues"
 msgstr "Dokumentacja zgłoszonych problemów"
 
@@ -1171,7 +1171,7 @@ msgstr "rozdzielone budynki"
 msgid "Control, verification and correction of %s issues"
 msgstr "Kontrola, weryfikacja i naprawa %s błędów"
 
-#: tmp.tpl:217
+#: tmp.tpl:219
 msgid "Osmose QA main page"
 msgstr "Osmose QA (pytania i odpowiedzi)"
 
@@ -1184,7 +1184,7 @@ msgid ""
 "analyses."
 msgstr "Problemy związane ze stroną można zgłaszać na stronie <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a>, a problemy dotyczące błędów w danych OSM lub propozycje nowych analiz na stronie <a href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a>."
 
-#: tmp.tpl:224
+#: tmp.tpl:226
 msgid ""
 "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
 "frontend</a> can be used to report any issue with translations."
@@ -1355,7 +1355,7 @@ msgstr "Można się z nami skontaktować bezpośrednio przez e-mail <a href='mai
 msgid "Level {level} issues ({count})"
 msgstr "Problemy poziomu {level} ({count})"
 
-#: tmp.tpl:222
+#: tmp.tpl:224
 #, python-brace-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
@@ -1465,21 +1465,21 @@ msgstr "Pokaż to miejsce na {where}"
 msgid "Edit the area on {where}"
 msgstr "Edytuj ten obiekt w {where}"
 
-#: tmp.tpl:199
+#: tmp.tpl:200
 msgid "details"
 msgstr "szczegóły"
 
-#: tmp.tpl:200
+#: tmp.tpl:202
 msgid "Issue reported on:"
 msgstr "Problem wykryto:"
 
-#: tmp.tpl:202 tmp.tpl:204
+#: tmp.tpl:204 tmp.tpl:206
 msgid ""
 "Report the issue as improper, if according to you is not an issue. The issue"
 " will not be displayed to anyone more."
 msgstr "Zgłoś ten problem jako niewłaściwy, jeśli według ciebie to nie błąd. Problem nie będzie się już wyświetlał."
 
-#: tmp.tpl:206
+#: tmp.tpl:208
 msgid ""
 "After issue fixed on the OSM data, mark it as done. May also disappear "
 "automatically on next check if no more issue."
@@ -1569,7 +1569,7 @@ msgstr "kolej"
 msgid "power plant"
 msgstr "elektrownia [FR]"
 
-#: tmp.tpl:209
+#: tmp.tpl:211
 msgid ""
 "Osmose tool is mainly developped by french people, and we aim to add more "
 "languages."
@@ -1705,4 +1705,12 @@ msgstr "stacja paliw, niezintegrowana"
 
 #: tmp.tpl:109
 msgid "delete issue"
+msgstr ""
+
+#: tmp.tpl:199
+msgid "Issue details"
+msgstr ""
+
+#: tmp.tpl:201
+msgid "Report based on data from date"
 msgstr ""
