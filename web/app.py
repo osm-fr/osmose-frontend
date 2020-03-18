@@ -62,22 +62,22 @@ def index(lang):
     return template('index', translate=utils.translator(lang))
 
 @route('/contact')
-def contact(lang, name=None):
+def contact(lang):
     translate = utils.translator(lang)
     return template('contact', translate=utils.translator(lang))
 
 @route('/copyright')
-def copyright(lang, name=None):
+def copyright(lang):
     translate = utils.translator(lang)
     return template('copyright', translate=utils.translator(lang), main_project=utils.main_project, main_website=utils.main_website)
 
 @route('/translation')
-def translation(lang, name=None):
+def translation(lang):
     translate = utils.translator(lang)
     return template('translation', translate=utils.translator(lang))
 
 @route('/login')
-def login(lang, name=None):
+def login(lang):
     if request.session.has_key('user'):
         del request.session['user'] # logout
     (url, oauth_tokens) = oauth.fetch_request_token()
@@ -86,14 +86,14 @@ def login(lang, name=None):
     redirect(url)
 
 @route('/logout')
-def login(lang, name=None):
+def login(lang):
     if request.session.has_key('user'):
         del request.session['user']
         request.session.save()
     redirect('map')
 
 @route('/oauth')
-def oauth_(lang, name=None):
+def oauth_(lang):
     try:
         oauth_tokens = request.session['oauth_tokens']
         oauth_tokens = oauth.fetch_access_token(request.session['oauth_tokens'], request)
