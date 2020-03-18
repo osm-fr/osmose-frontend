@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-03-14 22:33+0000\n"
+"PO-Revision-Date: 2020-03-18 19:56+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -41,15 +41,15 @@ msgid "never generated"
 msgstr "ніколи не створювалось"
 
 #. TRANSLATORS: link to tooltip help
-#: tmp.tpl:207
+#: tmp.tpl:218
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
-#: ../issues.py:67 tmp.tpl:70
+#: ../issues.py:67 tmp.tpl:73
 msgid "False positives"
 msgstr "Помилкові спрацьовування"
 
-#: ../issues.py:73 tmp.tpl:68
+#: ../issues.py:73 tmp.tpl:71
 msgid "Informations"
 msgstr "Інформація"
 
@@ -70,7 +70,7 @@ msgstr "Контакти"
 msgid "Help on wiki"
 msgstr "Довідка у вікі"
 
-#: ../map.py:71 tmp.tpl:116 tmp.tpl:206
+#: ../map.py:71 tmp.tpl:120 tmp.tpl:216
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
@@ -152,118 +152,118 @@ msgstr "Osmose — вільне програмне забезпечення, я
 msgid "Contacting maintainers"
 msgstr "Зв’язок із супроводжувачами"
 
-#: tmp.tpl:35 tmp.tpl:39
+#: tmp.tpl:35 tmp.tpl:42
 msgid "Last updates"
 msgstr "Останні оновлення"
 
-#: tmp.tpl:40
+#: tmp.tpl:43
 msgid "Median delay:"
 msgstr "Середня затримка:"
 
-#: tmp.tpl:41 tmp.tpl:48 tmp.tpl:83 tmp.tpl:93
+#: tmp.tpl:44 tmp.tpl:51 tmp.tpl:86 tmp.tpl:96
 #: ../../tools/database/item_menu.txt:34
 msgid "source"
 msgstr "джерело"
 
-#: tmp.tpl:44
+#: tmp.tpl:47
 msgid "last generation"
 msgstr "останнє створення"
 
-#: tmp.tpl:45 tmp.tpl:46
+#: tmp.tpl:48 tmp.tpl:49
 msgid "history"
 msgstr "історія"
 
-#: tmp.tpl:47
+#: tmp.tpl:50
 msgid "Update"
 msgstr "Оновити"
 
-#: tmp.tpl:49
+#: tmp.tpl:52
 msgid "remote url"
 msgstr "посилання"
 
-#: tmp.tpl:50
+#: tmp.tpl:53
 msgid "timestamp"
 msgstr "час"
 
-#: tmp.tpl:52
+#: tmp.tpl:55
 msgid "Copyright information"
 msgstr "Авторське право"
 
-#: tmp.tpl:53
+#: tmp.tpl:56
 msgid "License"
 msgstr "Ліцензія"
 
-#: tmp.tpl:54
+#: tmp.tpl:57
 msgid "Authors"
 msgstr "Автори"
 
-#: tmp.tpl:55
+#: tmp.tpl:58
 msgid "And contributors"
 msgstr "Та учасники"
 
-#: tmp.tpl:56
+#: tmp.tpl:59
 msgid "Data are coming from"
 msgstr "Дані отримані від"
 
-#: tmp.tpl:57
+#: tmp.tpl:60
 msgid "copyright"
 msgstr "авторське право"
 
-#: tmp.tpl:60 tmp.tpl:63 tmp.tpl:66 tmp.tpl:111
+#: tmp.tpl:63 tmp.tpl:66 tmp.tpl:69 tmp.tpl:115
 msgid "key"
 msgstr "ключ"
 
-#: tmp.tpl:61 tmp.tpl:64 tmp.tpl:67 tmp.tpl:112
+#: tmp.tpl:64 tmp.tpl:67 tmp.tpl:70 tmp.tpl:116
 msgid "value"
 msgstr "значення"
 
-#: tmp.tpl:59 tmp.tpl:113
+#: tmp.tpl:62 tmp.tpl:117
 msgid "Marker"
 msgstr "Мітка"
 
-#: tmp.tpl:62
+#: tmp.tpl:65
 msgid "Elements"
 msgstr "Елемент"
 
-#: tmp.tpl:65
+#: tmp.tpl:68
 msgid "Fixes"
 msgstr "Виправлення"
 
-#: tmp.tpl:69
+#: tmp.tpl:72
 msgid "Fixed"
 msgstr "Виправлено"
 
-#: tmp.tpl:71
+#: tmp.tpl:74
 msgid "Graph"
 msgstr "Графік"
 
-#: tmp.tpl:72 tmp.tpl:129
+#: tmp.tpl:75 tmp.tpl:134
 msgid "Map"
 msgstr "Мапа"
 
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
-#: tmp.tpl:82
+#: tmp.tpl:85
 msgid "Set"
 msgstr "Сформувати"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
-#: tmp.tpl:87 tmp.tpl:98
+#: tmp.tpl:90 tmp.tpl:101
 msgid "class (abbreviation)"
 msgstr "кл."
 
-#: tmp.tpl:85 tmp.tpl:96
+#: tmp.tpl:88 tmp.tpl:99
 msgid "item"
 msgstr "елемент"
 
-#: tmp.tpl:88
+#: tmp.tpl:91
 msgid "title"
 msgstr "назва"
 
-#: tmp.tpl:89
+#: tmp.tpl:92
 msgid "count"
 msgstr "кількість"
 
-#: tmp.tpl:90
+#: tmp.tpl:93
 msgid "Total"
 msgstr "Всього"
 
@@ -272,166 +272,166 @@ msgid "subclass (abbreviation)"
 msgstr "п/кл."
 
 #. TRANSLATORS: this should be replaced by a abbreviation for level
-#: tmp.tpl:95
+#: tmp.tpl:98
 msgid "level (abbreviation)"
 msgstr "р"
 
-#: tmp.tpl:100
+#: tmp.tpl:104
 msgid "position (abbreviation)"
 msgstr "позиція"
 
-#: tmp.tpl:101
+#: tmp.tpl:105
 msgid "elements (abbreviation)"
 msgstr "елемент(и)"
 
-#: tmp.tpl:102
+#: tmp.tpl:106
 msgid "subtitle"
 msgstr "підзаголовок"
 
-#: tmp.tpl:103 ../../tools/database/item_menu.txt:57
+#: tmp.tpl:107 ../../tools/database/item_menu.txt:57
 msgid "date"
 msgstr "дата"
 
-#: tmp.tpl:114
+#: tmp.tpl:118
 msgid "OpenStreetMap Oversight Search Engine"
 msgstr "OpenStreetMap Oversight Search Engine"
 
-#: tmp.tpl:116
+#: tmp.tpl:121
 msgid "Help on OSM wiki"
 msgstr "Довідка у вікі ОСМ"
 
-#: tmp.tpl:118
+#: tmp.tpl:123
 msgid "False positives list"
 msgstr "Список помилкових спрацьовувань"
 
-#: tmp.tpl:119
+#: tmp.tpl:124
 msgid "Last analysis updates"
 msgstr "Останні оновлені перевірки"
 
-#: tmp.tpl:126
+#: tmp.tpl:131
 msgid "Tags Editor"
 msgstr "Редактор Теґів"
 
-#: tmp.tpl:127 tmp.tpl:175
+#: tmp.tpl:132 tmp.tpl:181
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: tmp.tpl:128
+#: tmp.tpl:133
 msgid "Valid"
 msgstr "Вірно"
 
-#: tmp.tpl:131
+#: tmp.tpl:136
 msgid "no bubbles at this zoom factor"
 msgstr "у цьому масштабі маркери не відображаються"
 
-#: tmp.tpl:75 tmp.tpl:132
+#: tmp.tpl:78 tmp.tpl:137
 msgid "Severity"
 msgstr "Складність"
 
-#: tmp.tpl:138
+#: tmp.tpl:143
 msgid "Fixable"
 msgstr "Виправити"
 
-#: tmp.tpl:139
+#: tmp.tpl:144
 msgid "Show only markers with correction suggestions"
 msgstr "Показати тільки маркери з пропозиціями виправлення"
 
-#: tmp.tpl:140
+#: tmp.tpl:145
 msgid "Online"
 msgstr "Онлайн"
 
-#: tmp.tpl:141
+#: tmp.tpl:146
 msgid "Topic"
 msgstr "Тема"
 
-#: tmp.tpl:142
+#: tmp.tpl:147
 msgid "Select:"
 msgstr "Обрати:"
 
-#: tmp.tpl:143 tmp.tpl:146
+#: tmp.tpl:148 tmp.tpl:151
 msgid "all"
 msgstr "все"
 
-#: tmp.tpl:144 tmp.tpl:147
+#: tmp.tpl:149 tmp.tpl:152
 msgid "nothing"
 msgstr "нічого"
 
-#: tmp.tpl:145
+#: tmp.tpl:150
 msgid "invert"
 msgstr "інвертувати"
 
-#: tmp.tpl:155
+#: tmp.tpl:160
 msgid "Change language"
 msgstr "Змінити мову"
 
-#: tmp.tpl:158 tmp.tpl:193
+#: tmp.tpl:163 tmp.tpl:201
 msgid "Help"
 msgstr "Довідка"
 
-#: tmp.tpl:159
+#: tmp.tpl:164
 #, python-format
 msgid "Delay: %sd"
 msgstr "Затримка: %sd"
 
-#: tmp.tpl:163
+#: tmp.tpl:168
 msgid "Logout"
 msgstr "Вийти"
 
-#: tmp.tpl:164 tmp.tpl:166
+#: tmp.tpl:169 tmp.tpl:172
 msgid "Login"
 msgstr "Увійти"
 
-#: tmp.tpl:165 tmp.tpl:176
+#: tmp.tpl:170 tmp.tpl:182
 msgid "Save"
 msgstr "Зберегти"
 
-#: tmp.tpl:171
+#: tmp.tpl:177
 msgid "Fix with Osmose"
 msgstr "Виправити в "
 
-#: tmp.tpl:172
+#: tmp.tpl:178
 msgid "Source"
 msgstr "Джерело"
 
-#: tmp.tpl:173
+#: tmp.tpl:179
 msgid "Type"
 msgstr "Тип"
 
-#: tmp.tpl:174
+#: tmp.tpl:180
 msgid "Reuse changeset"
 msgstr "Використовувати набір змін"
 
-#: tmp.tpl:196
+#: tmp.tpl:205
 msgid "corrected"
 msgstr "виправлено"
 
-#: tmp.tpl:195
+#: tmp.tpl:203
 msgid "false positive"
 msgstr "помилкове спрацьовування"
 
-#: tmp.tpl:197 tmp.tpl:198
+#: tmp.tpl:207 tmp.tpl:208
 msgid "How to help translation"
 msgstr "Як допомогти з перекладом"
 
-#: tmp.tpl:200
+#: tmp.tpl:210
 msgid ""
 "To make Osmose a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr "Для того, щоб зробити Osmose дійсно багатомовним інструментом, нам потрібна ваша допомога в покращені існуючих перекладів, а також додані нових"
 
-#: tmp.tpl:201
+#: tmp.tpl:211
 msgid "Pages to translate"
 msgstr "Сторінки для перекладу"
 
-#: tmp.tpl:205
+#: tmp.tpl:215
 msgid "Wiki pages"
 msgstr "Сторінки Вікі"
 
-#: tmp.tpl:202
+#: tmp.tpl:212
 msgid "Osmose pages"
 msgstr "Сторінки Osmose "
 
-#: tmp.tpl:211
+#: tmp.tpl:223
 msgid "Bug tracking system"
 msgstr "Система відстежування вад"
 
@@ -918,29 +918,29 @@ msgstr "спорт"
 msgid "sport, could be integrated"
 msgstr "спорт, може інтеґруватися"
 
-#: tmp.tpl:204
+#: tmp.tpl:214
 msgid "Translation progress: osmose"
 msgstr "Проґрес перекладу: osmose"
 
-#: tmp.tpl:208
+#: tmp.tpl:220
 msgid "For new language or countries"
 msgstr "Для нових мов або країн"
 
-#: tmp.tpl:209
+#: tmp.tpl:221
 #, python-format
 msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
 msgstr "Ви можете створити ному мову безпосередньо в <a href='%s'>Transifex.</a>"
 
-#: tmp.tpl:203
+#: tmp.tpl:213
 #, python-format
 msgid "Translation is done on <a href='%s'>Transifex</a>."
 msgstr "Переклад зроблено на  <a href='%s'>Transifex</a>."
 
-#: tmp.tpl:156
+#: tmp.tpl:161
 msgid "Export"
 msgstr "Експорт"
 
-#: tmp.tpl:157
+#: tmp.tpl:162
 msgid "Html list"
 msgstr "Список html"
 
@@ -976,19 +976,19 @@ msgstr "аптека, може інтеґруватися"
 msgid "gas station"
 msgstr "АЗС"
 
-#: tmp.tpl:100
+#: tmp.tpl:103
 msgid "position"
 msgstr "позиція"
 
-#: tmp.tpl:166
+#: tmp.tpl:171
 msgid "You must be logged in order to use the tag editor"
 msgstr "Для користування редактором теґів вам слід залоґінитися"
 
-#: tmp.tpl:167
+#: tmp.tpl:173
 msgid "Save changeset"
 msgstr "Зберегти набір змін"
 
-#: tmp.tpl:170
+#: tmp.tpl:176
 msgid "Comment"
 msgstr "Коментар"
 
@@ -1010,15 +1010,15 @@ msgstr "Зв’яжіться, переглядаючи <a href='https://twitter
 msgid "incorrect layer"
 msgstr "невірний layer"
 
-#: tmp.tpl:36 tmp.tpl:38
+#: tmp.tpl:36 tmp.tpl:41
 msgid "Updates summary"
 msgstr "Резюме оновлень"
 
-#: tmp.tpl:42
+#: tmp.tpl:45
 msgid "country"
 msgstr "країна"
 
-#: tmp.tpl:43
+#: tmp.tpl:46
 msgid "analyser"
 msgstr "аналізатор"
 
@@ -1103,35 +1103,35 @@ msgid ""
 "contributor of the relevant erroneous elements."
 msgstr "Ввівши своє ім’я користувача OSM у наступній формі, ви зможете побачити проблеми, які додаються до вашого імені користувача. Зауважте, що алгоритм, який прив’язує проблеми до імені користувача, не є ідеальним, оскільки Osmose перевіряє лише останнього картографа відповідних проблемних елементів."
 
-#: tmp.tpl:91
+#: tmp.tpl:94
 msgid "Show more issues"
 msgstr "Показати ще проблеми"
 
-#: tmp.tpl:92
+#: tmp.tpl:95
 msgid "Show some issues"
 msgstr "Показати деякі проблеми"
 
-#: tmp.tpl:99
+#: tmp.tpl:102
 msgid "information on issue"
 msgstr "інформація про проблему"
 
-#: tmp.tpl:106
+#: tmp.tpl:110
 msgid "issue n°"
 msgstr "проблема №"
 
-#: tmp.tpl:115
+#: tmp.tpl:119
 msgid "Map of issues"
 msgstr "Мапа ймовірних помилок"
 
-#: tmp.tpl:117
+#: tmp.tpl:122
 msgid "Information on issues database"
 msgstr "БД з інформацією про проблеми"
 
-#: tmp.tpl:207
+#: tmp.tpl:219
 msgid "Documentation on reported issues"
 msgstr "Документація з повідомлень про проблеми"
 
-#: tmp.tpl:51
+#: tmp.tpl:54
 msgid "version"
 msgstr "версія"
 
@@ -1164,12 +1164,12 @@ msgstr "дорога"
 msgid "split building"
 msgstr "розділені будівлі"
 
-#: tmp.tpl:130
+#: tmp.tpl:135
 #, python-format
 msgid "Control, verification and correction of %s issues"
 msgstr "Контроль, перевірка та коригування з %s проблем"
 
-#: tmp.tpl:206
+#: tmp.tpl:217
 msgid "Osmose QA main page"
 msgstr "Головна сторінка Osmose QA"
 
@@ -1182,7 +1182,7 @@ msgid ""
 "analyses."
 msgstr "Про помилку слід повідомляти в <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> для питань, пов'язаних із веб-сайтом, або на <a href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> для вирішення проблем, що стосуються повідомлень про дані OSM, або для пропозицій щодо аналізу."
 
-#: tmp.tpl:212
+#: tmp.tpl:224
 msgid ""
 "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
 "frontend</a> can be used to report any issue with translations."
@@ -1236,15 +1236,15 @@ msgstr "автопрокат, слід оновити"
 msgid "Analyser"
 msgstr "Аналізатор"
 
-#: tmp.tpl:37
+#: tmp.tpl:38
 msgid "Count"
 msgstr "К-ть"
 
-#: tmp.tpl:37
+#: tmp.tpl:39
 msgid "Age"
 msgstr "Вік"
 
-#: tmp.tpl:37
+#: tmp.tpl:40
 msgid "Version"
 msgstr "Версія"
 
@@ -1252,7 +1252,7 @@ msgstr "Версія"
 msgid "post office, need update"
 msgstr "відділення зв’язку, слід оновити"
 
-#: tmp.tpl:84
+#: tmp.tpl:87
 msgid "age"
 msgstr "вік"
 
@@ -1321,23 +1321,23 @@ msgstr "дорожні знаки"
 msgid "traffic sign limitation"
 msgstr "дорожній знак обмеження"
 
-#: tmp.tpl:76 tmp.tpl:133
+#: tmp.tpl:79 tmp.tpl:138
 msgid "High"
 msgstr "Висока"
 
-#: tmp.tpl:77 tmp.tpl:134
+#: tmp.tpl:80 tmp.tpl:139
 msgid "Normal or higher"
 msgstr "Звичайна або висока"
 
-#: tmp.tpl:78 tmp.tpl:135
+#: tmp.tpl:81 tmp.tpl:140
 msgid "All"
 msgstr "Усі"
 
-#: tmp.tpl:79 tmp.tpl:136
+#: tmp.tpl:82 tmp.tpl:141
 msgid "Normal only"
 msgstr "Лише звичайна"
 
-#: tmp.tpl:80 tmp.tpl:137
+#: tmp.tpl:83 tmp.tpl:142
 msgid "Low only"
 msgstr "Лише низька"
 
@@ -1348,12 +1348,12 @@ msgid ""
 "href='mailto:{email}'>{email}</a>."
 msgstr "З нами можна зв'язатися електронною поштою <a href='mailto:{email}'>{email}</a>."
 
-#: tmp.tpl:160 tmp.tpl:161 tmp.tpl:162
+#: tmp.tpl:165 tmp.tpl:166 tmp.tpl:167
 #, python-brace-format
 msgid "Level {level} issues ({count})"
 msgstr "Проблеми {level} рівня ({count})"
 
-#: tmp.tpl:210
+#: tmp.tpl:222
 #, python-brace-format
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
@@ -1408,76 +1408,76 @@ msgstr "території"
 msgid "unnecessary"
 msgstr "непотрібний"
 
-#: tmp.tpl:73
+#: tmp.tpl:76
 msgid "Country"
 msgstr "Країна"
 
-#: tmp.tpl:74
+#: tmp.tpl:77
 msgid "Item"
 msgstr "Елемент"
 
-#: tmp.tpl:104
+#: tmp.tpl:108
 msgid "False positive / Done"
 msgstr "Помилкове спрацьовування / Виконано"
 
-#: tmp.tpl:168
+#: tmp.tpl:174
 msgid "Objects edited"
 msgstr "Об'єкти редаговані"
 
-#: tmp.tpl:169
+#: tmp.tpl:175
 msgid "Objects deleted"
 msgstr "Об'єкти видалені"
 
-#: tmp.tpl:177
+#: tmp.tpl:183
 #, python-brace-format
 msgid "Show Object on {where}"
 msgstr "Показати Об'єкт на {where}"
 
-#: tmp.tpl:178 tmp.tpl:179 tmp.tpl:180 tmp.tpl:181 tmp.tpl:182 tmp.tpl:183
-#: tmp.tpl:184
+#: tmp.tpl:184 tmp.tpl:185 tmp.tpl:186 tmp.tpl:187 tmp.tpl:188 tmp.tpl:189
+#: tmp.tpl:190
 #, python-brace-format
 msgid "Edit Object with {where}"
 msgstr "Редагувати Об'єкт на {where}"
 
-#: tmp.tpl:184 tmp.tpl:186
+#: tmp.tpl:191 tmp.tpl:194
 msgid "online Osmose Editor"
 msgstr "Онлайн-редактор Osmose"
 
-#: tmp.tpl:185 tmp.tpl:186
+#: tmp.tpl:192 tmp.tpl:193
 #, python-brace-format
 msgid "Load the fix in {where}"
 msgstr "Завантажити виправлення в {where}"
 
-#: tmp.tpl:187
+#: tmp.tpl:195
 #, python-brace-format
 msgid "Add the new object in {where}"
 msgstr "Додати новий об'єкт в {where}"
 
-#: tmp.tpl:188
+#: tmp.tpl:196
 #, python-brace-format
 msgid "Show the area on {where}"
 msgstr "Показати ділянку на {where}"
 
-#: tmp.tpl:189 tmp.tpl:190
+#: tmp.tpl:197 tmp.tpl:198
 #, python-brace-format
 msgid "Edit the area on {where}"
 msgstr "Редагувати ділянку на {where}"
 
-#: tmp.tpl:191
+#: tmp.tpl:199
 msgid "details"
 msgstr "тонкощі"
 
-#: tmp.tpl:192
+#: tmp.tpl:200
 msgid "Issue reported on:"
 msgstr "Повідомлення про проблему:"
 
-#: tmp.tpl:194 tmp.tpl:195
+#: tmp.tpl:202 tmp.tpl:204
 msgid ""
 "Report the issue as improper, if according to you is not an issue. The issue"
 " will not be displayed to anyone more."
 msgstr "Повідомте про помилку, як про невідповідну, якщо ви вважаєте, що це не помилка. Повідомлення більше не з'являтиметься."
 
-#: tmp.tpl:196
+#: tmp.tpl:206
 msgid ""
 "After issue fixed on the OSM data, mark it as done. May also disappear "
 "automatically on next check if no more issue."
@@ -1491,7 +1491,7 @@ msgstr "zone:maxspeed"
 msgid "power transformer"
 msgstr "трансформатор"
 
-#: tmp.tpl:148
+#: tmp.tpl:153
 #, python-format
 msgid "Item #%s"
 msgstr "Пункт #%s"
@@ -1567,7 +1567,7 @@ msgstr "залізниця"
 msgid "power plant"
 msgstr "електростанція"
 
-#: tmp.tpl:199
+#: tmp.tpl:209
 msgid ""
 "Osmose tool is mainly developped by french people, and we aim to add more "
 "languages."
@@ -1589,79 +1589,79 @@ msgstr "радіопідтримка, може інтеґруватися"
 msgid "radio support, need update"
 msgstr "радіопідтримка, слід оновити"
 
-#: tmp.tpl:58 tmp.tpl:110
+#: tmp.tpl:61 tmp.tpl:114
 #, python-format
 msgid "Information on issue %s"
 msgstr "Інформація про проблему %s"
 
-#: tmp.tpl:107
+#: tmp.tpl:111
 #, python-format
 msgid "Mark issue #%s as false positive"
 msgstr "Позначити проблему #%s як помилкову"
 
-#: tmp.tpl:108
+#: tmp.tpl:112
 #, python-format
 msgid "Mark issue #%s as fixed"
 msgstr "Позначити проблему #%s як виправлену"
 
-#: tmp.tpl:109
+#: tmp.tpl:113
 #, python-format
 msgid "delete issue #%s"
 msgstr "видалити проблему #%s"
 
-#: tmp.tpl:120
+#: tmp.tpl:125
 msgid "How to Fix"
 msgstr "Як виправляти"
 
-#: tmp.tpl:121
+#: tmp.tpl:126
 msgid "Trap to avoid"
 msgstr "Уникання пасток"
 
-#: tmp.tpl:122
+#: tmp.tpl:127
 msgid "Example"
 msgstr "Приклад"
 
-#: tmp.tpl:123
+#: tmp.tpl:128
 msgid "Source Code"
 msgstr "Сирці"
 
-#: tmp.tpl:124
+#: tmp.tpl:129
 msgid "Resource used"
 msgstr "Використані ресурси"
 
-#: tmp.tpl:125
+#: tmp.tpl:130
 msgid "Want to improve this control or this doc?"
 msgstr ""
 
-#: tmp.tpl:149
+#: tmp.tpl:154
 msgid "Welcome to Osmose-QA"
 msgstr ""
 
-#: tmp.tpl:150
+#: tmp.tpl:155
 msgid ""
 "Osmose-QA a is quality assurance tools available to detect issues in "
 "OpenStreetMap data."
 msgstr ""
 
-#: tmp.tpl:151
+#: tmp.tpl:156
 msgid ""
 "It detects a very wide range of issue types. It is also useful for "
 "integrating third-party data sets or conflation."
 msgstr ""
 
-#: tmp.tpl:152
+#: tmp.tpl:157
 msgid ""
 "Feel free to report problem, idea or new OpenData you want to add to Osmose "
 "on our Github."
 msgstr ""
 
-#: tmp.tpl:153
+#: tmp.tpl:158
 msgid ""
 "In no case Osmose-QA should provide you the absolute right way to map, "
 "always keep a critical eye."
 msgstr ""
 
-#: tmp.tpl:154
+#: tmp.tpl:159
 msgid "You can find help on the wiki:"
 msgstr ""
 
@@ -1699,4 +1699,8 @@ msgstr ""
 
 #: ../../tools/database/item_menu.txt:129
 msgid "gas station, not integrated"
+msgstr ""
+
+#: tmp.tpl:109
+msgid "delete issue"
 msgstr ""
