@@ -19,7 +19,7 @@
     <th title="{{_("False positive / Done")}}">✘/✔</th>
 %end
 %if gen == "false-positive":
-    <th title="{{_("delete issue"")}}">✘</th>
+    <th title="{{_("delete issue")}}">✘</th>
 %end
 </tr>
 </thead>
