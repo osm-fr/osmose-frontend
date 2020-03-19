@@ -25,7 +25,6 @@ import psycopg2
 import utils
 import socket
 import json
-from collections import defaultdict
 from xml.sax import make_parser, handler
 
 show = utils.show
@@ -140,8 +139,6 @@ class update_parser(handler.ContentHandler):
         self._class_item       = {}
         self._tstamp_updated   = False
 
-        self.all_uuid = defaultdict(lambda: defaultdict(list))
-
         self.element_stack = []
 
     def setDocumentLocator(self, locator):
@@ -149,6 +146,7 @@ class update_parser(handler.ContentHandler):
 
     def startElement(self, name, attrs):
         if name == u"analyser":
+            self.all_uuid = {}
             self.mode = "analyser"
             self.update_timestamp(attrs)
 
@@ -251,10 +249,9 @@ WHERE
     def endElement(self, name):
         self.element_stack.pop()
 
-        if name == u"analysers":
-            for source_id, d in self.all_uuid.items():
-                for class_id, uuid in d.items():
-                    execute_sql(self._dbcurs, "DELETE FROM marker WHERE source = %s AND class = %s AND uuid != ALL (%s::uuid[])", (source_id, class_id, uuid))
+        if name == u"analyser":
+            for class_id, uuid in self.all_uuid.items():
+                execute_sql(self._dbcurs, "DELETE FROM marker WHERE source = %s AND class = %s AND uuid != ALL (%s::uuid[])", (self._source_id, class_id, uuid))
 
         elif name == u"error":
             ## add data at all location
@@ -319,7 +316,7 @@ WHERE
                 execute_sql(self._dbcurs, sql_uuid, params)
                 r = self._dbcurs.fetchone()
                 if r and r[0]:
-                    self.all_uuid[self._source_id][self._class_id].append(r[0])
+                    self.all_uuid[self._class_id].append(r[0])
 
                 execute_sql(self._dbcurs, sql_marker, params)
                 self._dbcurs.fetchone()
@@ -335,6 +332,8 @@ WHERE
                 self._fix.append(self._elem)
 
         elif name == u"class":
+            self.all_uuid[self._class_id] = []
+
             # Commit class update on its own transaction. Avoid lock the class table and block other updates.
             dbconn = utils.get_dbconn()
             dbcurs = dbconn.cursor()
