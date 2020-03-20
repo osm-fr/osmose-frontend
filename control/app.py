@@ -24,7 +24,6 @@ import bottle
 import os
 from tools import utils
 from modules import bottle_pgsql
-from modules import bottle_gettext
 
 
 class OsmoseControlBottle(bottle.Bottle):

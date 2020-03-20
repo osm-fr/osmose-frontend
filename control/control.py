@@ -27,21 +27,6 @@ import os
 import sys
 
 
-@route('/i18n')
-def update():
-    return os.popen("cd web/po && make statistics | sed -n '1h;2,$H;${g;s/\\n/<br>/g;p}'").read()
-
-
-@route('/lang')
-def update(lang):
-    out = "Accept-Language: " + request.headers['Accept-Language'] + "\n"
-    if request.get_cookie('lang'):
-        out += "Cookie: " + request.get_cookie('lang') + "\n"
-    out += "Chosen languages: " + (",".join(lang)) + "\n"
-    response.content_type = "text/plain; charset=utf-8"
-    return out
-
-
 @post('/send-update')
 def send_update(db):
     src = request.params.get('source', default=None) # Deprecated, replaced by analyser & country
