@@ -19,10 +19,11 @@
 ##                                                                       ##
 ###########################################################################
 
-from tools import tag2link
+import os
+from tool import tag2link
 from tools.query import fixes_default
 
-t2l = tag2link.tag2link("tools/tag2link_sources.xml")
+t2l = tag2link.tag2link(os.path.dirname(os.path.realpath(__file__)) + "/tool/tag2link_sources.xml")
 
 
 def _get(db, err_id=None, uuid=None):
