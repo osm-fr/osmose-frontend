@@ -23,7 +23,7 @@
 from bottle import default_app, route
 from tools import utils
 from tools import query
-from tools.OrderedDict import OrderedDict
+from collections import OrderedDict
 
 
 app_0_2 = default_app.pop()
