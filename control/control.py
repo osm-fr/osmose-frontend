@@ -22,7 +22,7 @@
 
 from bottle import route, request, response, post, HTTPError, abort
 from tools import utils
-import tools.update
+import update
 import os
 import sys
 
@@ -80,10 +80,10 @@ LIMIT 1
 
         save_filename = os.path.join(utils.dir_results, upload.filename)
         upload.save(save_filename, overwrite=True)
-        tools.update.update(source_id, save_filename, remote_ip=remote_ip)
+        update.update(source_id, save_filename, remote_ip=remote_ip)
         os.unlink(save_filename)
 
-    except tools.update.OsmoseUpdateAlreadyDone:
+    except update.OsmoseUpdateAlreadyDone:
         abort(409, 'FAIL: Already up to date')
 
     except:
