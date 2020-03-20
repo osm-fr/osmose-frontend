@@ -23,6 +23,7 @@
 import bottle
 from bottle import route, view, template, error, redirect, request, hook
 from tools import utils, oauth, xmldict
+import re
 import beaker.middleware
 import os
 import assets
@@ -137,15 +138,15 @@ def josm_proxy():
 def enable_cors_generic_route():
     pass
 
+_404_marker_b = re.compile('(.*/images/markers/marker-b-)[0-9]+(.png)')
+
 @error(404)
 @view('404')
 def error404(error):
     if 'map/issues/' in request.path:
         return ""
     elif 'images/markers/marker-b-' in request.path:
-        redirect('/images/markers/marker-b-0.png')
-    elif 'images/markers/marker-l-' in request.path:
-        redirect('/images/markers/marker-l-0.png')
+        redirect(_404_marker_b.sub(r'\g<1>0\g<2>', request.urlparts.path))
     else:
         return {}
 
