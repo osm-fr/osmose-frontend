@@ -20,10 +20,9 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, os, time, urllib, tempfile, commands
+import sys, time
 import psycopg2
 import utils
-import socket
 import json
 from xml.sax import make_parser, handler
 
@@ -43,10 +42,9 @@ class OsmoseUpdateAlreadyDone(Exception):
     pass
 
 num_sql_run = 0
-prev_sql = ""
 
 def execute_sql(dbcurs, sql, args = None):
-    global prev_sql, num_sql_run
+    global num_sql_run
     try:
         if args == None:
             dbcurs.execute(sql)
