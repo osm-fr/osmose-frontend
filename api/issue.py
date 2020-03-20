@@ -22,7 +22,6 @@
 from bottle import default_app, route, response, abort
 import StringIO, copy
 
-from tools import osmose_common
 from tools import utils
 from tools import OsmSax
 from tools.query import fixes_default
@@ -30,6 +29,69 @@ from issue_utils import t2l, _get, _expand_tags
 
 
 app_0_2 = default_app.pop()
+
+
+def _remove_bug_err_id(db, error_id, status):
+  # find source
+  db.execute("SELECT uuid,source,class FROM marker WHERE uuid_to_bigint(uuid) = %s", (error_id, ))
+  source_id = None
+  for res in db.fetchall():
+      uuid = res["uuid"]
+      source_id = res["source"]
+      class_id = res["class"]
+
+  if not source_id:
+      return -1
+
+  db.execute("DELETE FROM dynpoi_status WHERE uuid=%s", (uuid, ))
+
+  db.execute("""INSERT INTO dynpoi_status
+                        (source,class,elems,date,status,lat,lon,subtitle,uuid)
+                      SELECT source,class,elems,NOW(),%s,
+                             lat,lon,subtitle,uuid
+                      FROM marker
+                      WHERE uuid = %s
+                      ON CONFLICT DO NOTHING""",
+                   (status, uuid))
+
+  db.execute("DELETE FROM marker WHERE uuid = %s", (uuid, ))
+  db.execute("UPDATE dynpoi_class SET count = count - 1 WHERE source = %s AND class = %s;", (source_id, class_id))
+  db.connection.commit()
+
+  return 0
+
+
+def _remove_bug_uuid(db, uuid, status):
+
+  PgConn   = utils.get_dbconn()
+  db = PgConn.cursor()
+
+  # find source
+  db.execute("SELECT source,class FROM marker WHERE uuid = %s", (uuid, ))
+  source_id = None
+  for res in db.fetchall():
+      source_id = res["source"]
+      class_id = res["class"]
+
+  if not source_id:
+      return -1
+
+  db.execute("DELETE FROM dynpoi_status WHERE uuid=%s", (uuid, ))
+
+  db.execute("""INSERT INTO dynpoi_status
+                        (source,class,elems,date,status,lat,lon,subtitle,uuid)
+                      SELECT source,class,elems,NOW(),%s,
+                             lat,lon,subtitle,uuid
+                      FROM marker
+                      WHERE uuid = %s
+                      ON CONFLICT DO NOTHING""",
+                   (status, uuid))
+
+  db.execute("DELETE FROM marker WHERE uuid = %s", (uuid, ))
+  db.execute("UPDATE dynpoi_class SET count = count - 1 WHERE source = %s AND class = %s;", (source_id, class_id))
+  db.connection.commit()
+
+  return 0
 
 
 @route('/issue/<uuid:uuid>/fresh_elems')
@@ -179,15 +241,15 @@ def _error(version, db, langs, uuid, marker):
 
 
 @app_0_2.route('/error/<err_id:int>/<status:re:(done|false)>')
-def status_err_id(err_id, status):
-    if osmose_common.remove_bug_err_id(err_id, status) == 0:
+def status_err_id(db, err_id, status):
+    if _remove_bug_err_id(db, err_id, status) == 0:
         return
     else:
         abort(410, "FAIL")
 
 @route('/issue/<uuid:uuid>/<status:re:(done|false)>')
-def status_uuid(uuid, status):
-    if osmose_common.remove_bug_uuid(uuid, status) == 0:
+def status_uuid(db, uuid, status):
+    if _remove_bug_uuid(db, uuid, status) == 0:
         return
     else:
         abort(410, "FAIL")
