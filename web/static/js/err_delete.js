@@ -8,7 +8,7 @@ $(document).ready(() => {
 
     $.ajax({
       type: verb,
-      url: `../api/0.3beta/${path}`,
+      url: `/api/0.3beta/${path}`,
       cache: false,
       beforeSend() {
         Container.parent().css({ backgroundColor: 'red' });
