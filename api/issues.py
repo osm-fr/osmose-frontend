@@ -29,7 +29,9 @@ from collections import OrderedDict
 app_0_2 = default_app.pop()
 
 
-def _errors(db, lang, params):
+@app_0_2.route('/errors')
+def errors(db, lang):
+    params = query._params()
     results = query._gets(db, params)
     out = OrderedDict()
 
@@ -62,12 +64,6 @@ def _errors(db, lang, params):
             out["errors"].append([str(lat), str(lon), str(error_id), str(item), str(source), str(classs), str(elems), str(subclass), subtitle, title, str(level), str(update), username])
 
     return out
-
-
-@app_0_2.route('/errors')
-def errors(db, lang):
-    params = query._params()
-    return _errors(db, lang, params)
 
 
 @route('/issues')
