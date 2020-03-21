@@ -20,7 +20,7 @@
 ###########################################################################
 
 from bottle import route, template
-from tools import utils
+from tool.translation import translator
 
 from api.false_positive_utils import _get
 
@@ -29,4 +29,4 @@ from api.false_positive_utils import _get
 def fp_(db, lang, uuid):
     (marker, columns) = _get(db, 'false', uuid=uuid)
 
-    return template('false-positive/index', translate=utils.translator(lang), uuid=uuid, marker=marker, columns_marker=columns)
+    return template('false-positive/index', translate=translator(lang), uuid=uuid, marker=marker, columns_marker=columns)

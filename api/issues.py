@@ -41,8 +41,6 @@ def errors(db, lang):
         out["description"] = ["lat", "lon", "error_id", "item", "source", "class", "elems", "subclass", "subtitle", "title", "level", "update", "username"]
     out["errors"] = []
 
-    translate = utils.translator(lang)
-
     for res in results:
         lat       = res["lat"]
         lon       = res["lon"]
@@ -56,8 +54,13 @@ def errors(db, lang):
             classs    = res["class"]
             elems     = '_'.join(map(lambda elem: {'N':'node', 'W':'way', 'R':'relation'}[elem['type']] + str(elem['id']), res['elems'] or []))
             subclass  = 0
-            subtitle  = translate.select(res["subtitle"])
-            title     = translate.select(res["title"])
+
+            subtitle  = utils.i10n_select(res['subtitle'], lang)
+            subtitle  = subtitle and subtitle['auto'] or ''
+
+            title     = utils.i10n_select(res['title'], lang)
+            title     = title and title['auto'] or ''
+
             level     = res["level"]
             update    = res["timestamp"]
             username  = ','.join(map(lambda elem: "username" in elem and elem["username"] or "", res['elems'] or []))

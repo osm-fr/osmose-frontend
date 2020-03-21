@@ -22,6 +22,7 @@
 
 from bottle import route, template, redirect, response, html_escape
 from tools import utils
+from tool.translation import translator
 from tools import query
 
 from api.user_utils import _user, _user_count
@@ -39,15 +40,15 @@ def user(db, lang, username=None, format=None):
     params, username, errors = _user(db, lang, username)
 
     if not params.users:
-        return template('byuser/index', translate=utils.translator(lang))
+        return template('byuser/index', translate=translator(lang))
 
     count = len(errors)
 
     if format == 'rss':
         response.content_type = "application/rss+xml"
-        return template('byuser/byuser.rss', username=username, users=params.users, count=count, errors=errors, translate=utils.translator(lang), website=utils.website)
+        return template('byuser/byuser.rss', username=username, users=params.users, count=count, errors=errors, translate=translator(lang), website=utils.website)
     else:
-        return template('byuser/byuser', username=username, users=params.users, count=count, errors=errors, translate=utils.translator(lang), website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read, html_escape=html_escape)
+        return template('byuser/byuser', username=username, users=params.users, count=count, errors=errors, translate=translator(lang), website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read, html_escape=html_escape)
 
 
 @route('/byuser_count/<username>')
@@ -57,6 +58,6 @@ def user_count(db, lang, username=None, format=None):
 
     if format == 'rss':
         response.content_type = "application/rss+xml"
-        return template('byuser/byuser_count.rss', username=username, count=count, translate=utils.translator(lang), website=utils.website)
+        return template('byuser/byuser_count.rss', username=username, count=count, translate=translator(lang), website=utils.website)
     else:
         return count

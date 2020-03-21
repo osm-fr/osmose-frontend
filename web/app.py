@@ -23,6 +23,7 @@
 import bottle
 from bottle import route, view, template, error, redirect, request, hook
 from tools import utils
+from tool.translation import translator
 from tool import oauth, xmldict
 import re
 import beaker.middleware
@@ -71,23 +72,19 @@ app.router.add_filter('ext', ext_filter)
 
 @route('/', name='root')
 def index(lang):
-    translate = utils.translator(lang)
-    return template('index', translate=utils.translator(lang))
+    return template('index', translate=translator(lang))
 
 @route('/contact')
 def contact(lang):
-    translate = utils.translator(lang)
-    return template('contact', translate=utils.translator(lang))
+    return template('contact', translate=translator(lang))
 
 @route('/copyright')
 def copyright(lang):
-    translate = utils.translator(lang)
-    return template('copyright', translate=utils.translator(lang), main_project=utils.main_project, main_website=utils.main_website)
+    return template('copyright', translate=translator(lang), main_project=utils.main_project, main_website=utils.main_website)
 
 @route('/translation')
 def translation(lang):
-    translate = utils.translator(lang)
-    return template('translation', translate=utils.translator(lang))
+    return template('translation', translate=translator(lang))
 
 @route('/login')
 def login(lang):

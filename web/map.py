@@ -22,6 +22,7 @@
 
 from bottle import route, request, template, redirect
 from tools import utils, query, query_meta
+from tool.translation import translator
 from api.user_utils import _user_count
 from collections import defaultdict
 
@@ -103,7 +104,7 @@ OFFSET
         user_error_count = None
 
     return template('map/index', categories=categories, item_tags=item_tags, tags=tags, item_levels=item_levels,
-        main_project=utils.main_project, urls=urls, helps=helps, delay=delay, languages_name=utils.languages_name, translate=utils.translator(lang),
+        main_project=utils.main_project, urls=urls, helps=helps, delay=delay, languages_name=utils.languages_name, translate=translator(lang),
         website=utils.website, remote_url_read=utils.remote_url_read, request=request,
         user=user, user_error_count=user_error_count)
 

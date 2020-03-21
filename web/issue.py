@@ -21,6 +21,7 @@
 
 from bottle import route, template, abort
 from tools import utils
+from tool.translation import translator
 
 from api.issue_utils import _get, _expand_tags, t2l
 
@@ -44,7 +45,7 @@ def display(db, lang, user, uuid):
 
     return template(
         'error/index',
-        translate=utils.translator(lang),
+        translate=translator(lang),
         uuid=uuid,
         marker=marker,
         user=user,

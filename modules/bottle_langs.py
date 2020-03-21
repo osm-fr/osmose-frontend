@@ -18,8 +18,7 @@ class LangsPlugin(object):
     name = 'langs'
     api  = 2
 
-    def __init__(self, allowed_languages, keyword='langs'):
-        self.allowed_languages = allowed_languages
+    def __init__(self, keyword='langs'):
         self.keyword = keyword
         self.cache = {}
 
@@ -38,9 +37,7 @@ class LangsPlugin(object):
             langs = self.parse_accept_language(langs)
 
         if not langs and len(request.script_name) > 3:
-            lang = request.script_name[-3:-1]
-            if lang in self.allowed_languages:
-                langs = [lang]
+            langs = [request.script_name[-3:-1]]
 
         return langs
 
