@@ -36,7 +36,7 @@ def items(db, lang):
 
 @route('/meta/countries')
 def items(db, lang):
-    return {"countries": map(lambda x: x[0], query_meta._countries(db, lang))}
+    return {"countries": list(map(lambda x: x[0], query_meta._countries(db, lang)))}
 
 
 @route('/meta/categories')

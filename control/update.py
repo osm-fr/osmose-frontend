@@ -257,7 +257,7 @@ WHERE
                 print("No location on error found on line %d" % self.locator.getLineNumber())
                 return
 
-            elems = filter(lambda e: e, map(lambda elem: dict(filter(lambda k_v: k_v[1], {
+            elems = list(filter(lambda e: e, map(lambda elem: dict(filter(lambda k_v: k_v[1], {
                     'type': elem['type'][0].upper(),
                     'id': int(elem['id']),
                     'tags': elem['tag'],
@@ -268,18 +268,18 @@ WHERE
                 }.items())) if elem['type'] in ('infos') else
                 None,
                 self._error_elements
-            ))
+            )))
 
-            fixes = map(lambda fix:
-                map(lambda elem: dict(filter(lambda k_v: k_v[1], {
+            fixes = list(map(lambda fix:
+                list(map(lambda elem: dict(filter(lambda k_v: k_v[1], {
                     'type': elem['type'][0].upper(),
                     'id': int(elem['id']),
                     'create': elem['create'],
                     'modify': elem['modify'],
                     'delete': elem['delete'],
-                }.items())), filter(lambda elem: elem['type'] in ('node', 'way', 'relation'), fix)),
+                }.items())), filter(lambda elem: elem['type'] in ('node', 'way', 'relation'), fix))),
                 self._fixes
-            )
+            ))
 
             sql_uuid = u"SELECT ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid AS uuid"
 
@@ -306,8 +306,8 @@ WHERE
                     "lat": lat,
                     "lon": lon,
                     "elems_sig": '_'.join(map(lambda elem: elem['type'] + str(elem['id']), self._error_elements)),
-                    "elems": map(lambda elem: json.dumps(elem), elems) if elems else None,
-                    "fixes": map(lambda fix: json.dumps(fix), fixes) if fixes else None,
+                    "elems": list(map(lambda elem: json.dumps(elem), elems)) if elems else None,
+                    "fixes": list(map(lambda fix: json.dumps(fix), fixes)) if fixes else None,
                     "subtitle": self._error_texts,
                 }
 

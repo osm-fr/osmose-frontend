@@ -188,13 +188,13 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
 
 def fixes_default(fixes):
     if fixes:
-        fs = map(lambda fix_elems: map(lambda fix: dict(fix,
+        fs = list(map(lambda fix_elems: list(map(lambda fix: dict(fix,
             type=fix.get('type', 'N'),
             id=fix.get('id', 0),
             create=fix.get('create', {}),
             modify=fix.get('modify', {}),
             delete=fix.get('delete', []),
-        ), fix_elems), fixes)
+        ), fix_elems)), fixes))
         return fs
 
 
@@ -231,7 +231,7 @@ def _params(max_limit=500):
             params.level = "1,2,3"
     if params.bbox:
         try:
-            params.bbox = map(lambda x: float(x), params.bbox.split(','))
+            params.bbox = list(map(lambda x: float(x), params.bbox.split(',')))
         except:
             params.bbox = None
     if params.users:
@@ -320,9 +320,9 @@ def _gets(db, params):
 
     for res in results:
        if 'elems' in res and res['elems']:
-           res['elems'] = map(lambda elem: dict(elem,
+           res['elems'] = list(map(lambda elem: dict(elem,
                type_long={'N':'node', 'W':'way', 'R':'relation'}[elem['type']],
-           ), res['elems'])
+           ), res['elems']))
 
     return results
 
@@ -337,7 +337,7 @@ def _count(db, params, by, extraFrom=[], extraFields=[], orderBy=False):
         summary = True
         countField = [ "SUM(marker.count) AS count" ]
 
-    byTable = set(map(lambda x: x.split('.')[0], by) + extraFrom)
+    byTable = set(list(map(lambda x: x.split('.')[0], by)) + extraFrom)
     sqlbase  = """
     SELECT
         %s

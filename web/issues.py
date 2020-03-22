@@ -31,7 +31,7 @@ from . import errors_graph
 
 
 def int_list(s):
-    return map(lambda x: int(x), filter(lambda x: x and x!='',s).split(','))
+    return list(map(lambda x: int(x), filter(lambda x: x and x!='',s)).split(','))
 
 @route('/errors/graph.<format:ext>')
 def graph(db, format='png'):
@@ -132,7 +132,7 @@ def index(db, lang, format=None):
         response.content_type = 'application/vnd.google-earth.kml+xml'
         tpl = 'errors/list.kml'
     elif format == 'josm':
-        objects = set(sum(map(lambda error: map(lambda elem: elem['type'].lower() + str(elem['id']), error['elems'] or []), errors), []))
+        objects = set(sum(map(lambda error: list(map(lambda elem: elem['type'].lower() + str(elem['id']), error['elems'] or [])), errors), []))
         response.status = 302
         response.set_header('Location', 'http://localhost:8111/load_object?objects=%s' % ','.join(objects))
         return
@@ -142,9 +142,9 @@ def index(db, lang, format=None):
         h = ['uuid', 'source', 'item', 'class', 'level', 'title', 'subtitle', 'country', 'analyser', 'timestamp', 'username', 'lat', 'lon', 'elems']
         writer.writerow(h)
         for res in errors:
-            usernames = map(lambda elem: elem.get("username", ""), res['elems'] or [])
+            usernames = list(map(lambda elem: elem.get("username", ""), res['elems'] or []))
             elems = '_'.join(map(lambda elem: {'N':'node', 'W':'way', 'R':'relation'}[elem['type']] + str(elem['id']), res['elems'] or []))
-            writer.writerow(map(lambda a: usernames if a == 'username' else elems if a == 'elems' else res[a], h))
+            writer.writerow(list(map(lambda a: usernames if a == 'username' else elems if a == 'elems' else res[a], h)))
         response.content_type = 'text/csv'
         return output.getvalue()
     else:

@@ -78,7 +78,7 @@ def _countries_3(db):
         country
     """
     db.execute(sql)
-    return map(lambda x: x[0], db.fetchall())
+    return list(map(lambda x: x[0], db.fetchall()))
 
 
 def _categories(db, lang):
@@ -165,11 +165,11 @@ def _items_3(db, item = None, classs = None, langs = None):
     """
     db.execute(sql, {'item': item})
     items = db.fetchall()
-    items = map(lambda r: dict(
+    items = list(map(lambda r: dict(
         r,
         title = i10n_select(r['title'], langs),
-        levels = r['number'] and map(lambda l_n: {'level': l_n[0], 'count': l_n[1]}, zip(r['levels'], r['number'])) or map(lambda i: {'level': i, 'count': 0}, [1, 2, 3]),
-    ), items)
+        levels = r['number'] and list(map(lambda l_n: {'level': l_n[0], 'count': l_n[1]}, zip(r['levels'], r['number']))) or list(map(lambda i: {'level': i, 'count': 0}, [1, 2, 3])),
+    ), items))
     items_categ = defaultdict(list)
     for i in items:
         items_categ[i['categ']].append(i)
@@ -200,29 +200,29 @@ def _items_3(db, item = None, classs = None, langs = None):
     """
     db.execute(sql, {'item': item, 'classs': classs})
     classs = db.fetchall()
-    classs = map(lambda c: dict(
+    classs = list(map(lambda c: dict(
         dict(c),
         title = i10n_select(c['title'], langs),
         detail = i10n_select(c['detail'], langs),
         fix = i10n_select(c['fix'], langs),
         trap = i10n_select(c['trap'], langs),
         example = i10n_select(c['example'], langs),
-    ), classs)
+    ), classs))
     class_item = defaultdict(list)
     for c in classs:
         class_item[c['item']].append(c)
 
-    return map(lambda categ:
+    return list(map(lambda categ:
         dict(
             categ,
-            items = map(lambda item:
+            items = list(map(lambda item:
                 dict(
                     item,
                     **{'class': class_item[item['item']]}
                 ),
-                items_categ[categ['categ']])
+                items_categ[categ['categ']]))
         ),
-        categs)
+        categs))
 
 
 def _tags(db):
@@ -242,4 +242,4 @@ def _tags(db):
         tag
     """
     db.execute(sql)
-    return map(lambda x: x[0], db.fetchall())
+    return list(map(lambda x: x[0], db.fetchall()))

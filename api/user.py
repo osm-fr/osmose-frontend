@@ -38,7 +38,7 @@ def user(db, lang, username):
         res["timestamp"] = str(res["timestamp"])
         res["lat"] = float(res["lat"])
         res["lon"] = float(res["lon"])
-    out["issues"] = map(dict, errors)
+    out["issues"] = list(map(dict, errors))
     return out
 
 

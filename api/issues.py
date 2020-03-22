@@ -94,7 +94,7 @@ def errors(db, langs):
                 'title': utils.i10n_select(res["title"], langs),
                 'level': res["level"],
                 'update': str(res["timestamp"]),
-                'usernames': map(lambda elem: "username" in elem and elem["username"] or "", res['elems'] or []),
+                'usernames': list(map(lambda elem: "username" in elem and elem["username"] or "", res['elems'] or [])),
             })
         out.append(i)
 

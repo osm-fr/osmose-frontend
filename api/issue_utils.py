@@ -68,9 +68,9 @@ def _get(db, err_id=None, uuid=None):
         return None
 
     marker['fixes'] = fixes_default(marker['fixes'])
-    marker['elems'] = map(lambda elem: dict(elem,
+    marker['elems'] = list(map(lambda elem: dict(elem,
         type_long={'N':'node', 'W':'way', 'R':'relation'}[elem['type']],
-    ), marker['elems'] or [])
+    ), marker['elems'] or []))
 
     return marker
 

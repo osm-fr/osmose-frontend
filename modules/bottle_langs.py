@@ -27,7 +27,7 @@ class LangsPlugin(object):
             langs = request.get_header('Accept-Language')
         if not langs:
             langs = 'en'
-        langs = map(lambda lang: lang.split(';')[0].strip(), langs.split(','))
+        langs = list(map(lambda lang: lang.split(';')[0].strip(), langs.split(',')))
         langs += list(map(lambda lang: lang.split('_')[0].lower(), langs))
         return langs
 

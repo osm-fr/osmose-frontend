@@ -42,7 +42,7 @@ def index(db, user, lang):
     tags = query_meta._tags(db)
 
     db.execute("SELECT item FROM dynpoi_item GROUP BY item;")
-    all_items = map(lambda res: int(res[0]), db.fetchall())
+    all_items = list(map(lambda res: int(res[0]), db.fetchall()))
 
     categories = query_meta._items_3(db)
 

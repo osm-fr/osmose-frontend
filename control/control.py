@@ -103,7 +103,7 @@ def _status_object(db, t, source):
     db.execute('SELECT elem->''id'' FROM (SELECT unnest(elems) AS elem FROM marker WHERE source=1) AS t WHERE elem->''type'' = ''"%s"''::jsonb', (source, t))
     s = db.fetchone()
     if s and s[0]:
-        return map(int, s[0].split(','))
+        return list(map(int, s[0].split(',')))
 
 @route('/status/<country>/<analyser>')
 def status(db, country = None, analyser = None):
