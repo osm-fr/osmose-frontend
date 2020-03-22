@@ -257,12 +257,12 @@ WHERE
                 print("No location on error found on line %d" % self.locator.getLineNumber())
                 return
 
-            elems = filter(lambda e: e, map(lambda elem: dict(filter(lambda (k, v): v, {
+            elems = filter(lambda e: e, map(lambda elem: dict(filter(lambda k_v: k_v[1], {
                     'type': elem['type'][0].upper(),
                     'id': int(elem['id']),
                     'tags': elem['tag'],
                     'username': elem['user'],
-                }.items())) if elem['type'] in ('node', 'way', 'relation') else dict(filter(lambda k, v: v, {
+                }.items())) if elem['type'] in ('node', 'way', 'relation') else dict(filter(lambda k_v: k_v[1], {
                     'tags': elem['tag'],
                     'username': elem['user'],
                 }.items())) if elem['type'] in ('infos') else
@@ -271,7 +271,7 @@ WHERE
             ))
 
             fixes = map(lambda fix:
-                map(lambda elem: dict(filter(lambda (k, v): v, {
+                map(lambda elem: dict(filter(lambda k_v: k_v[1], {
                     'type': elem['type'][0].upper(),
                     'id': int(elem['id']),
                     'create': elem['create'],

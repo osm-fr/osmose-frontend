@@ -168,7 +168,7 @@ def _items_3(db, item = None, classs = None, langs = None):
     items = map(lambda r: dict(
         r,
         title = i10n_select(r['title'], langs),
-        levels = r['number'] and map(lambda (l, n): {'level': l, 'count': n}, zip(r['levels'], r['number'])) or map(lambda i: {'level': i, 'count': 0}, [1, 2, 3]),
+        levels = r['number'] and map(lambda l_n: {'level': l_n[0], 'count': l_n[1]}, zip(r['levels'], r['number'])) or map(lambda i: {'level': i, 'count': 0}, [1, 2, 3]),
     ), items)
     items_categ = defaultdict(list)
     for i in items:
