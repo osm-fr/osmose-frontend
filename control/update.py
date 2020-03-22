@@ -394,7 +394,7 @@ WHERE
                                      (self._source_id, utils.pg_escape(self.ts)))
                 r = self._dbcurs.fetchone()
                 if r["count"] == 1:
-                    raise OsmoseUpdateAlreadyDone, "source=%s and timestamp=%s are already present" % (self._source_id, utils.pg_escape(self.ts))
+                    raise OsmoseUpdateAlreadyDone("source=%s and timestamp=%s are already present" % (self._source_id, utils.pg_escape(self.ts)))
                 else:
                     raise
 
