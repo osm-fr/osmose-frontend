@@ -156,7 +156,7 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
         where.append("dynpoi_item.item IS NULL")
 
     if not status in ("done", "false") and users:
-        where.append("ARRAY['%s'] && marker_usernames(marker.elems)" % "','".join(map(lambda user: db.mogrify(user), users)))
+        where.append("ARRAY['%s'] && marker_usernames(marker.elems)" % "','".join(map(lambda user: db.mogrify(user).decode('utf-8'), users)))
 
     if stats:
         if start_date and end_date:
@@ -204,7 +204,7 @@ def _params(max_limit=500):
         item     = request.params.get('item')
         source   = request.params.get('source', default='')
         classs   = request.params.get('class', default='')
-        users    = utils.pg_escape(request.params.get('username', default='').decode('utf-8'))
+        users    = utils.pg_escape(request.params.get('username', default=''))
         level    = request.params.get('level', default='1,2,3')
         full     = request.params.get('full', default=False)
         zoom     = request.params.get('zoom', type=int, default=10)

@@ -91,7 +91,7 @@ class GettextPlugin(object):
             else:
                 gt = gettext.translation(self.domain, localedir=self.localedir, languages=language)
                 self.cache[k] = gt
-            gt.install(unicode=1)
+            gt.install()
 
             # Add the language as a keyword argument.
             kwargs[keyword] = language

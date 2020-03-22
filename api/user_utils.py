@@ -27,7 +27,7 @@ from .tools import query
 def _user(db, lang, username):
     params = query._params()
     if username:
-        params.users = utils.pg_escape(username.decode("utf-8")).split(",")
+        params.users = utils.pg_escape(username).split(",")
     params.limit = 500
     params.full = True
     username = ",".join(params.users)
@@ -39,7 +39,7 @@ def _user(db, lang, username):
 def _user_count(db, username=None):
     params = query._params()
     if username:
-        params.users = utils.pg_escape(username.decode("utf-8")).split(",")
+        params.users = utils.pg_escape(username).split(",")
 
     if not params.users:
         return

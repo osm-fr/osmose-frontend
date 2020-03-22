@@ -13,7 +13,7 @@ def xml_to_dict(root_or_str, strict=True):
 
     """
     root = root_or_str
-    if isinstance(root, str) or isinstance(root, unicode):
+    if isinstance(root, str):
         import xml.etree.cElementTree as ElementTree
         root = ElementTree.XML(root_or_str)
     return {root.tag: _from_xml(root, strict)}

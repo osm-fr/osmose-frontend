@@ -111,7 +111,7 @@ def oauth_(lang):
         try:
             user_request = oauth.get(oauth_tokens, utils.remote_url + 'api/0.6/user/details')
             if user_request:
-                request.session['user'] = xmldict.xml_to_dict(user_request.encode('utf-8'))
+                request.session['user'] = xmldict.xml_to_dict(user_request)
         except Exception as e:
             pass
         if 'user' not in request.session:

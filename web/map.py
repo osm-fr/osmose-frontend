@@ -96,7 +96,7 @@ OFFSET
 
     if user != None:
         if user:
-            user_error_count = _user_count(db, user.encode('utf-8'))
+            user_error_count = _user_count(db, user)
         else: # user == False
             user = '[user name]'
             user_error_count = {1: 0, 2: 0, 3: 0}
