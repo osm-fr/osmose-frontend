@@ -303,7 +303,7 @@ def _fix(version, db, uuid, fix_num, fix):
             data = {}
             data["id"] = -1
             data["tag"] = {}
-            for (k, v) in res['create'].iteritems():
+            for (k, v) in res['create'].items():
                 data["tag"][k] = v
             if version == 2:
                 sql = "SELECT lat, lon FROM marker WHERE id = %s"

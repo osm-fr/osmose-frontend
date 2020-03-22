@@ -48,7 +48,7 @@ if __name__ == "__main__":
       item = int(item)
       s = s.strip()[3:-2]
       translations = t.translate(s)
-      for (l, s) in translations.iteritems():
+      for (l, s) in translations.items():
         dbcurs.execute(sql, (l, l, s, item))
 
   dbconn.commit()

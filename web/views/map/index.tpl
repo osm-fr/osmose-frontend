@@ -19,11 +19,11 @@
   <script type="text/javascript" src="{{app.get_url('static', filename=assets['static/map'][0])}}"></script>
   <script type="text/javascript">
     var itemLevels = {};
-%for (l, i) in item_levels.iteritems():
+%for (l, i) in item_levels.items():
     itemLevels["{{l}}"] = {{list(i)}};
 %end
     var itemTags = {};
-%for (t, i) in item_tags.iteritems():
+%for (t, i) in item_tags.items():
     itemTags["{{t}}"] = {{list(i)}};
 %end
     var remoteUrlRead = "{{remote_url_read}}";
