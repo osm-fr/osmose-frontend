@@ -19,7 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import re, bz2, gzip, cStringIO
+import re, bz2, gzip, io
 from xml.sax import make_parser, handler
 from xml.sax.saxutils import XMLGenerator, quoteattr
 
@@ -458,7 +458,7 @@ class OsmDictWriter:
             self.data[u'relation'].append(data)
 
 def NodeToXml(data, full = False):
-    o = cStringIO.StringIO()
+    o = io.StringIO()
     w = OsmSaxWriter(o, "UTF-8")
     if full:
         w.startDocument()
@@ -470,7 +470,7 @@ def NodeToXml(data, full = False):
     return o.getvalue()
 
 def WayToXml(data, full = False):
-    o = cStringIO.StringIO()
+    o = io.StringIO()
     w = OsmSaxWriter(o, "UTF-8")
     if full:
         w.startDocument()
@@ -482,7 +482,7 @@ def WayToXml(data, full = False):
     return o.getvalue()
 
 def RelationToXml(data, full = False):
-    o = cStringIO.StringIO()
+    o = io.StringIO()
     w = OsmSaxWriter(o, "UTF-8")
     if full:
         w.startDocument()

@@ -20,7 +20,7 @@
 ###########################################################################
 
 from bottle import default_app, route, response, abort
-import StringIO, copy
+import io, copy
 
 from tools import utils
 from tools import OsmSax
@@ -286,7 +286,7 @@ def _fix(version, db, uuid, fix_num, fix):
       response.content_type = 'text/xml; charset=utf-8'
       for res in fix:
         if 'id' in res and res['id']:
-            out = StringIO.StringIO()
+            out = io.StringIO()
             o = OsmSaxFixWriter(out, "UTF-8",
                                 res['type'], res['id'],
                                 res['create'], res['modify'], res['delete'])

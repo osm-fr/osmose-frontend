@@ -88,7 +88,7 @@ LIMIT 1
 
     except:
         import traceback
-        from cStringIO import StringIO
+        from io import StringIO
         import smtplib
         s = StringIO()
         sys.stderr = s

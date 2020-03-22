@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import StringIO
+import io
 
 from bottle import post, request, abort
 from tools import OsmSax
@@ -71,7 +71,7 @@ def save(db, lang):
         request.session.save()
 
     # OsmChange
-    out = StringIO.StringIO()
+    out = io.StringIO()
     o = OsmSax.OsmSaxWriter(out, "UTF-8")
     o.startDocument()
     o.startElement('osmChange', {"version": "0.6", "generator": "OsmSax"})
@@ -102,7 +102,7 @@ def save(db, lang):
 
 
 def _osm_changeset(tags, id='0'):
-    out = StringIO.StringIO()
+    out = io.StringIO()
     o = OsmSax.OsmSaxWriter(out, "UTF-8")
     o.startDocument()
     o.startElement('osm', {"version": "0.6", "generator": u"Osmose"})

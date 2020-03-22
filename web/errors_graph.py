@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import time, sys, datetime, StringIO, os, tempfile
+import time, sys, datetime, io, os, tempfile
 from datetime import timedelta
 os.environ['MPLCONFIGDIR'] = tempfile.mkdtemp()
 import matplotlib
@@ -170,7 +170,7 @@ def plot(data, title, format):
 
     fig.autofmt_xdate()
 
-    buf = StringIO.StringIO()
+    buf = io.BytesIO()
     fig.savefig(buf, format = format)
     matplotlib.pyplot.close(fig)
     return buf.getvalue()

@@ -25,7 +25,7 @@ from tools import utils
 from tool.translation import translator
 from tools import query
 from tools import query_meta
-import StringIO, re, csv
+import io, re, csv
 
 import errors_graph
 
@@ -51,7 +51,7 @@ def graph(db, format='png'):
     except Exception, e:
         response.content_type = "text/plain"
         import traceback
-        out = StringIO.StringIO()
+        out = io.StringIO()
         traceback.print_exc(file=out)
         return out.getvalue() + "\n"
 
@@ -137,7 +137,7 @@ def index(db, lang, format=None):
         response.set_header('Location', 'http://localhost:8111/load_object?objects=%s' % ','.join(objects))
         return
     elif format == 'csv':
-        output = StringIO.StringIO()
+        output = io.StringIO()
         writer = csv.writer(output)
         h = ['uuid', 'source', 'item', 'class', 'level', 'title', 'subtitle', 'country', 'analyser', 'timestamp', 'username', 'lat', 'lon', 'elems']
         writer.writerow(h)
