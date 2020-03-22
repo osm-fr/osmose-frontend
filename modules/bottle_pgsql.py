@@ -95,7 +95,7 @@ class PgSQLPlugin(object):
                     self.init_connection()
 
                 cur = self.con.cursor()
-            except HTTPResponse, e:
+            except HTTPResponse as e:
                 raise HTTPError(500, "Database Error", e)
             except psycopg2.InterfaceError:
                 self.init_connection()
@@ -110,12 +110,12 @@ class PgSQLPlugin(object):
                     self.con.commit()
                 if autorollback:
                     self.con.rollback()
-            except psycopg2.ProgrammingError, e:
+            except psycopg2.ProgrammingError as e:
                 import traceback
                 print(traceback.print_exc())
                 self.con.rollback()
                 raise HTTPError(500, "Database Error", e)
-            except psycopg2.OperationalError, e:
+            except psycopg2.OperationalError as e:
                 import traceback
                 print(traceback.print_exc())
                 try:
@@ -124,9 +124,9 @@ class PgSQLPlugin(object):
                     pass
                 self.con = None
                 raise HTTPError(500, "Database Operational Error", e)
-            except HTTPError, e:
+            except HTTPError as e:
                 raise
-            except HTTPResponse, e:
+            except HTTPResponse as e:
                 if autocommit:
                     self.con.commit()
                 raise

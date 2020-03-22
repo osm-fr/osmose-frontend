@@ -48,7 +48,7 @@ def graph(db, format='png'):
         data = errors_graph.make_plt(db, options, format)
         response.content_type = {'png':'image/png', 'svg':'image/svg+xml', 'pdf':'application/pdf'}[format]
         return data
-    except Exception, e:
+    except Exception as e:
         response.content_type = "text/plain"
         import traceback
         out = io.StringIO()
