@@ -24,8 +24,8 @@ class Exact(xml.sax.handler.ContentHandler):
             self.rules[-1]['conditions'].append({
                 'kk': attrs['k'],
                 'k':re.compile('^' + self.unposix(attrs['k']) + '$'),
-                'v': re.compile('^' + self.unposix(attrs['v']) + '$') if attrs.has_key('v') else None,
-                'id': attrs['id'] if attrs.has_key('id') else None
+                'v': re.compile('^' + self.unposix(attrs['v']) + '$') if 'v' in attrs else None,
+                'id': attrs['id'] if 'id' in attrs else None
             })
         elif name == 'link':
             link = attrs['href']

@@ -97,7 +97,7 @@ ORDER BY
             min = v if not min or v < min else min
             max = v if not max or v > max else max
             sum += v
-            if not stats_country.has_key(country):
+            if country not in stats_country:
                 min_c = v
                 sum_c = v
                 max_c = v

@@ -32,7 +32,7 @@ class UserPlugin(object):
             return callback
 
         def wrapper(*args, **kwargs):
-            if request.session.has_key('user'):
+            if 'user' in request.session:
                 if request.session['user']:
                     user = request.session['user']['osm']['user']['@display_name']
                 else:

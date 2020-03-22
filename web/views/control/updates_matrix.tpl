@@ -37,7 +37,7 @@
 {{"%0.1f"%stats_analyser[r][i]}}</th>
 %    end
 %    for k in keys:
-%        if matrix[r].has_key(k):
+%        if k in matrix[r]:
 %            v = matrix[r][k][0]
 %            col('td', v)
 <a href="update/{{matrix[r][k][1]}}">{{"%0.1f"%v}}</a></td>

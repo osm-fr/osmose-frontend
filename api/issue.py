@@ -132,10 +132,10 @@ def fresh_elems_uuid(db, uuid, fix_num=None):
       ret["fix"] = {}
       for res in marker['fixes'][fix_num]:
         tid = data_type[res['type']] + str(res['id'])
-        if elems.has_key(tid):
+        if tid in elems:
             fix_elem_tags = copy.copy(elems[tid]["tags"])
             for k in res['delete']:
-                if fix_elem_tags.has_key(k):
+                if k in fix_elem_tags:
                     del fix_elem_tags[k]
             for (k, v) in res['create'].items():
                 fix_elem_tags[k] = v

@@ -88,7 +88,7 @@ def translation(lang):
 
 @route('/login')
 def login(lang):
-    if request.session.has_key('user'):
+    if 'user' in request.session:
         del request.session['user'] # logout
     (url, oauth_tokens) = oauth.fetch_request_token()
     request.session['oauth_tokens'] = oauth_tokens
@@ -97,7 +97,7 @@ def login(lang):
 
 @route('/logout')
 def login(lang):
-    if request.session.has_key('user'):
+    if 'user' in request.session:
         del request.session['user']
         request.session.save()
     redirect('map')
@@ -114,7 +114,7 @@ def oauth_(lang):
                 request.session['user'] = xmldict.xml_to_dict(user_request.encode('utf-8'))
         except Exception as e:
             pass
-        if not request.session.has_key('user'):
+        if 'user' not in request.session:
             request.session['user'] = None
     except:
         pass

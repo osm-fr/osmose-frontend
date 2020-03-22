@@ -86,7 +86,7 @@ class GettextPlugin(object):
 
             # Setup Gettext
             k = ','.join(language)
-            if self.cache.has_key(k):
+            if k in self.cache:
                 gt = self.cache[k]
             else:
                 gt = gettext.translation(self.domain, localedir=self.localedir, languages=language)

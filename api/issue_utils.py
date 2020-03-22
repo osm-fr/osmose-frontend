@@ -82,7 +82,7 @@ def _expand_tags(tags, links, short = False):
       t.append({"k": k})
   else:
     for (k, v) in sorted(tags.items()):
-      if links and links.has_key(k):
+      if links and k in links:
         t.append({"k": k, "v": v, "vlink": links[k]})
       else:
         t.append({"k": k, "v": v})

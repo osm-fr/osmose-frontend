@@ -32,16 +32,16 @@ from tool import oauth
 @post('/editor/save')
 def save(db, lang):
     json = request.json
-    if not json.has_key('tag'):
+    if 'tag' not in json:
         abort(422)
 
     # Changeset tags
     tags = json['tag']
-    if not tags.has_key('comment') or tags['comment'].strip() == '':
+    if 'comment' not in tags or tags['comment'].strip() == '':
         tags['comment'] = u'Fix with Osmose'
-    if not tags.has_key('source') or tags['source'].strip() == '':
+    if 'source' not in tags or tags['source'].strip() == '':
         tags['source'] = u'Osmose'
-    if not tags.has_key('type') or tags['type'].strip() == '':
+    if 'type' not in tags or tags['type'].strip() == '':
         tags['type'] = u'fix'
     tags['created_by'] = u'Osmose Editor'
 
@@ -78,7 +78,7 @@ def save(db, lang):
 
     methode = {'node': o.NodeCreate, 'way': o.WayCreate, 'relation': o.RelationCreate}
     for action in ('modify', 'delete'):
-        if json.has_key(action) and len(json[action]) > 0:
+        if action in json and len(json[action]) > 0:
             o.startElement(action, {})
             for (k, e) in json[action].items():
                 try:
