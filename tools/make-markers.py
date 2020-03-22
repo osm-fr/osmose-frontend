@@ -164,7 +164,7 @@ if __name__ == "__main__":
     commands.getstatusoutput("rm %s"%os.path.join(marker_folder,"*.png"))
     css = "/* sprite-loader-enable */\n"
     for i in all_items:
-        print i
+        print(i)
         for m in "LB":
             file_svg = os.path.join(marker_folder, "marker-%s-%d.svg"%(m.lower(), i["item"]))
             file_png = os.path.join(marker_folder, "marker-%s-%d.png"%(m.lower(), i["item"]))

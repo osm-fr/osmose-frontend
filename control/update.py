@@ -33,7 +33,7 @@ show = utils.show
 
 class printlogger:
     def log(self, text):
-        print text
+        print(text)
 
 ###########################################################################
 ## updater
@@ -51,11 +51,11 @@ def execute_sql(dbcurs, sql, args = None):
         else:
             dbcurs.execute(sql, args)
     except:
-        print sql, args
+        print(sql, args)
         raise
     num_sql_run += 1
     if num_sql_run % 10000 == 0:
-        print ".",
+        print(".", end=' ')
         sys.stdout.flush()
 
 def update(source_id, fname, logger = printlogger(), remote_ip=""):
@@ -254,7 +254,7 @@ WHERE
         elif name == u"error":
             ## add data at all location
             if len(self._error_locations) == 0:
-                print "No location on error found on line %d" % self.locator.getLineNumber()
+                print("No location on error found on line %d" % self.locator.getLineNumber())
                 return
 
             elems = filter(lambda e: e, map(lambda elem: dict(filter(lambda (k, v): v, {

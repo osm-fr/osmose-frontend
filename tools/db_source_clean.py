@@ -33,4 +33,4 @@ if __name__ == "__main__":
         dbcurs.execute("SELECT source FROM %s GROUP BY source;"%t)
         for res in dbcurs.fetchall():
             if res[0] not in sources:
-                print "DELETE FROM %s WHERE source = %d;"%(t, res[0])
+                print("DELETE FROM %s WHERE source = %d;"%(t, res[0]))

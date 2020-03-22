@@ -44,7 +44,7 @@ class dummyout:
         self._r += 1
         return
     def __del__(self):
-        print self._n, self._w, self._r
+        print(self._n, self._w, self._r)
 
 ###########################################################################
 
@@ -142,7 +142,7 @@ class OsmSaxReader(handler.ContentHandler):
             try:
                 self._output.NodeCreate(self._data)
             except:
-                print self._data
+                print(self._data)
                 raise
         elif name == u"way":
             self._data[u"tag"] = self._tags
@@ -150,7 +150,7 @@ class OsmSaxReader(handler.ContentHandler):
             try:
                 self._output.WayCreate(self._data)
             except:
-                print self._data
+                print(self._data)
                 raise
         elif name == u"relation":
             self._data[u"tag"]    = self._tags
@@ -158,7 +158,7 @@ class OsmSaxReader(handler.ContentHandler):
             try:
                 self._output.RelationCreate(self._data)
             except:
-                print self._data
+                print(self._data)
                 raise
         elif name == u"osm":
             self._output.end()

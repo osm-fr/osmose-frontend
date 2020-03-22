@@ -35,7 +35,7 @@ if __name__ == "__main__":
       dbcurs.execute("INSERT INTO source_password (source_id, password) VALUES ((SELECT id FROM source WHERE country=%s AND analyser=%s), %s);",
                      (country, analyser, password))
       if dbcurs.rowcount == 1:
-        print "created password=%s where country=%s analyser=%s" % (password, country, analyser)
+        print("created password=%s where country=%s analyser=%s" % (password, country, analyser))
         return
 
     elif dbcurs.rowcount == 0:
@@ -45,7 +45,7 @@ if __name__ == "__main__":
         cur_source = dbcurs.fetchone()["id"]
         dbcurs.execute("INSERT INTO source_password (source_id, password) VALUES (%s, %s);",
                        (cur_source, password))
-        print "inserted password=%s where country=%s analyser=%s" % (password, country, analyser)
+        print("inserted password=%s where country=%s analyser=%s" % (password, country, analyser))
         return
 
     if dbcurs.rowcount > 0:
@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
     if dbcurs.rowcount == 0:
       # otherwise, create a new entry in database
-      print "inserting country=%s analyser=%s source=%s password=%s" % (country, analyser, source, password)
+      print("inserting country=%s analyser=%s source=%s password=%s" % (country, analyser, source, password))
       try:
         dbcurs.execute("INSERT INTO source (id, country, analyser) VALUES (%s, %s, %s);",
                        (source, country, analyser))
@@ -62,11 +62,11 @@ if __name__ == "__main__":
         source += 1
 
       except psycopg2.IntegrityError:
-        print "failure on country=%s analyser=%s password=%s" % (country, analyser, password)
+        print("failure on country=%s analyser=%s password=%s" % (country, analyser, password))
         raise
 
     else:
-      print "updated country=%s analyser=%s where password=%s" % (country, analyser, password)
+      print("updated country=%s analyser=%s where password=%s" % (country, analyser, password))
       return
 
   if len(sys.argv) > 1:

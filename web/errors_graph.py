@@ -79,7 +79,7 @@ ORDER BY
     sql = sqlbase % (join, where, where2)
 
     if len(sys.argv)>1:
-      print sql
+      print(sql)
 
     result = []
     db.execute(sql)
@@ -193,5 +193,5 @@ if __name__ == "__main__":
     f.write(data)
     f.close()
     end = time.clock()
-    print "graph.png generated in %ims"%((end-start)*1000)
+    print("graph.png generated in %ims"%((end-start)*1000))
     sys.exit(0)

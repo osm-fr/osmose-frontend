@@ -107,7 +107,7 @@ def get_sources():
     return config
 
 def show(s):
-    print s.encode("utf8")
+    print(s.encode("utf8"))
 
 def str_to_datetime(s):
     patterns = [

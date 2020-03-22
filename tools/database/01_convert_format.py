@@ -23,7 +23,7 @@ num_err = 0
 many_res = cur.fetchmany(1000)
 
 while many_res:
-  print num_err, "\r",
+  print(num_err, "\r", end=' ')
   sys.stdout.flush()
   num_err += 1000
   for res in many_res:

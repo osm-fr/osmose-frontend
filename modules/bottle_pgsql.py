@@ -112,12 +112,12 @@ class PgSQLPlugin(object):
                     self.con.rollback()
             except psycopg2.ProgrammingError, e:
                 import traceback
-                print traceback.print_exc()
+                print(traceback.print_exc())
                 self.con.rollback()
                 raise HTTPError(500, "Database Error", e)
             except psycopg2.OperationalError, e:
                 import traceback
-                print traceback.print_exc()
+                print(traceback.print_exc())
                 try:
                     self.con.close()
                 except:

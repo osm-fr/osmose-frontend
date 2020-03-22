@@ -62,9 +62,9 @@ order by m.item;"""
         continue
 
     if not chosen_color:
-      print "not enough available flags for item=%d" % item
+      print("not enough available flags for item=%d" % item)
       continue
 
-    print "insert into dynpoi_item values (%d, %d, '%s', '%s', NULL, ARRAY[1, 2, 3]);" % (item, categ, chosen_color, chosen_flag.replace("'", "''"))
+    print("insert into dynpoi_item values (%d, %d, '%s', '%s', NULL, ARRAY[1, 2, 3]);" % (item, categ, chosen_color, chosen_flag.replace("'", "''")))
     avail_flags[chosen_color].remove(chosen_flag)
 
