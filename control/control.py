@@ -21,8 +21,8 @@
 ###########################################################################
 
 from bottle import route, request, response, post, HTTPError, abort
-from tools import utils
-import update
+from .tools import utils
+from . import update
 import os
 import sys
 

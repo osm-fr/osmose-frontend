@@ -21,7 +21,7 @@
 ###########################################################################
 
 from collections import defaultdict
-from utils import i10n_select
+from .utils import i10n_select
 
 
 def _class(db, lang):

@@ -21,11 +21,11 @@
 ###########################################################################
 
 from bottle import route, template, redirect, response, html_escape
-from tools import utils
-from tool.translation import translator
-from tools import query
+from .tools import utils
+from .tool.translation import translator
+from .tools import query
 
-from api.user_utils import _user, _user_count
+from .api.user_utils import _user, _user_count
 
 
 @route('/byuser')

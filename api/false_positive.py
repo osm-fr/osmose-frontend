@@ -20,8 +20,8 @@
 ###########################################################################
 
 from bottle import default_app, route, abort, delete
-from tools import utils
-from false_positive_utils import _get
+from .tools import utils
+from .false_positive_utils import _get
 
 
 app_0_2 = default_app.pop()

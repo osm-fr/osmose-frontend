@@ -20,8 +20,8 @@
 ##                                                                       ##
 ###########################################################################
 
-from tools import utils
-from tools import query
+from .tools import utils
+from .tools import query
 
 
 def _user(db, lang, username):

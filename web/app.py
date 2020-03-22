@@ -22,18 +22,18 @@
 
 import bottle
 from bottle import route, view, template, error, redirect, request, hook
-from tools import utils
-from tool.translation import translator
-from tool import oauth, xmldict
+from .tools import utils
+from .tool.translation import translator
+from .tool import oauth, xmldict
 import re
 import beaker.middleware
 import os
-import assets
-from modules.osmose_bottle import uuid_filter, ext_filter
-from modules import bottle_pgsql
-from modules import bottle_cors
-from modules import bottle_gettext
-from modules import bottle_user
+from . import assets
+from .modules.osmose_bottle import uuid_filter, ext_filter
+from .modules import bottle_pgsql
+from .modules import bottle_cors
+from .modules import bottle_gettext
+from .modules import bottle_user
 
 
 @hook('before_request')
@@ -148,13 +148,13 @@ def error404(error):
     else:
         return {}
 
-import byuser
-import issue
-import issues
-import map
-import false_positive
-import editor
-import control
+from . import byuser
+from . import issue
+from . import issues
+from . import map
+from . import false_positive
+from . import editor
+from . import control
 
 @route('/<filename:path>', name='static')
 def static(filename):

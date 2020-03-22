@@ -22,8 +22,8 @@
 
 import bottle
 import os
-from tools import utils
-from modules import bottle_pgsql
+from .tools import utils
+from .modules import bottle_pgsql
 
 
 class OsmoseControlBottle(bottle.Bottle):
@@ -36,7 +36,7 @@ bottle.default_app.push(app)
 
 app.install(bottle_pgsql.Plugin(utils.db_string))
 
-import control
+from . import control
 
 bottle.default_app.pop()
 

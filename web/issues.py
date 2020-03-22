@@ -21,13 +21,13 @@
 ###########################################################################
 
 from bottle import route, request, template, response
-from tools import utils
-from tool.translation import translator
-from tools import query
-from tools import query_meta
+from .tools import utils
+from .tool.translation import translator
+from .tools import query
+from .tools import query_meta
 import io, re, csv
 
-import errors_graph
+from . import errors_graph
 
 
 def int_list(s):

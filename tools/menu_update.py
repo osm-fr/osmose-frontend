@@ -4,7 +4,7 @@
 import codecs
 import os
 import polib
-import utils
+from . import utils
 
 class OsmoseTranslation:
 

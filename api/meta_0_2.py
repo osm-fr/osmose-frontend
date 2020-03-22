@@ -21,7 +21,7 @@
 ###########################################################################
 
 from bottle import route, response
-from tools import query_meta
+from .tools import query_meta
 
 
 @route('/meta/class')

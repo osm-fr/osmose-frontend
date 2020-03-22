@@ -28,7 +28,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot
 import matplotlib.dates
-from tools import query
+from .tools import query
 
 
 def get_data(db, options):

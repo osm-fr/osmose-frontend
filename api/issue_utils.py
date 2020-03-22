@@ -20,8 +20,8 @@
 ###########################################################################
 
 import os
-from tool import tag2link
-from tools.query import fixes_default
+from .tool import tag2link
+from .tools.query import fixes_default
 
 t2l = tag2link.tag2link(os.path.dirname(os.path.realpath(__file__)) + "/tool/tag2link_sources.xml")
 

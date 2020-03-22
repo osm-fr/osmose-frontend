@@ -20,10 +20,10 @@
 ###########################################################################
 
 from bottle import route, template, abort
-from tools import utils
-from tool.translation import translator
+from .tools import utils
+from .tool.translation import translator
 
-from api.issue_utils import _get, _expand_tags, t2l
+from .api.issue_utils import _get, _expand_tags, t2l
 
 
 @route('/error/<uuid:uuid>')

@@ -10,7 +10,7 @@ import inspect
 import os
 import psycopg2
 import sys
-import utils
+from . import utils
 
 if __name__ == "__main__":
 

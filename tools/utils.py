@@ -5,7 +5,7 @@ import os
 import datetime, urllib.request
 from collections import OrderedDict
 import pwd
-import OsmSax
+from . import OsmSax
 
 ################################################################################
 

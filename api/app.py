@@ -22,12 +22,12 @@
 
 import bottle
 import os
-from modules.osmose_bottle import uuid_filter, ext_filter
-from tools import utils
-from modules import bottle_pgsql
-from modules import bottle_cors
-from modules import bottle_langs
-from modules import bottle_gettext
+from .modules.osmose_bottle import uuid_filter, ext_filter
+from .tools import utils
+from .modules import bottle_pgsql
+from .modules import bottle_cors
+from .modules import bottle_langs
+from .modules import bottle_gettext
 
 
 class OsmoseAPIBottle(bottle.Bottle):
@@ -55,13 +55,13 @@ app_0_3.router.add_filter('ext', ext_filter)
 
 app_0_3.router.add_filter('uuid', uuid_filter)
 
-import meta_0_2
-import meta_0_3
-import user
-import issue
-import issues
-import issues_tiles
-import false_positive
+from . import meta_0_2
+from . import meta_0_3
+from . import user
+from . import issue
+from . import issues
+from . import issues_tiles
+from . import false_positive
 
 bottle.default_app.pop()
 bottle.default_app.pop()
