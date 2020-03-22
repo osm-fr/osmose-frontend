@@ -127,15 +127,15 @@
 %    str_more = _("Show more issues")
 %    include("web/views/errors/list.tpl", errors=errors, gen=gen, opt_date=opt_date, translate=translate, main_website=main_website, remote_url_read=remote_url_read, page_args="")
 %
-%    import urlparse, urllib
-%    query_dict = urlparse.parse_qs(query)
-%    limit = int((query_dict.has_key("limit") and query_dict["limit"][0])) or 100
+%    import urllib
+%    query_dict = urllib.parse.parse_qs(query)
+%    limit = int(("limit" in query_dict and query_dict["limit"][0])) or 100
 %    if limit < total:
 %        limit *= 5
 %    end
 %    query_dict["limit"] = limit
 <br>
-<a href="?{{urllib.urlencode(query_dict, True)}}">{{str_more}}</a>
+<a href="?{{urllib.parse.urlencode(query_dict, True)}}">{{str_more}}</a>
 %else:
 <a href="?{{query}}&amp;limit=100">{{_("Show some issues")}}</a>
 %end

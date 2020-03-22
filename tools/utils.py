@@ -2,7 +2,7 @@
 #-*- coding: utf-8 -*-
 
 import os
-import datetime, urllib2
+import datetime, urllib.request
 from collections import OrderedDict
 import pwd
 import OsmSax
@@ -149,7 +149,7 @@ def fetch_osm_data(type, id, full=True):
     if type == "way" and full:
         elem_url = os.path.join(elem_url, "full")
     try:
-        elem_io = urllib2.urlopen(elem_url)
+        elem_io = urllib.request.urlopen(elem_url)
         osm_read = OsmSax.OsmSaxReader(elem_io)
         return osm_read
     except:

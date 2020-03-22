@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import StringIO, urllib2
+import StringIO
 
 from bottle import post, request, abort
 from tools import OsmSax
