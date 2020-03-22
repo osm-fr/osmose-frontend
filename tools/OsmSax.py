@@ -67,7 +67,7 @@ class OsmSaxReader(handler.ContentHandler):
             raise OsmSaxNotXMLFile("File %s is not XML" % filename)
         
     def _GetFile(self):
-        if isinstance(self._filename, basestring):
+        if isinstance(self._filename, str):
             if self._filename.endswith(".bz2"):
                 return bz2.BZ2File(self._filename)
             elif self._filename.endswith(".gz"):

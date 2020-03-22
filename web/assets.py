@@ -26,6 +26,6 @@ def init_assets():
     global assets
     assets = {}
     for k, v in json.load(open('web/webpack.stats.json')).items():
-        if isinstance(v, basestring):
+        if isinstance(v, str):
             v = [v]
         assets[k] = map(lambda s: s.replace('static/', ''), v)

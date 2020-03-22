@@ -94,7 +94,7 @@ class tag2link:
                 replace = []
                 for sub in rule['link']['subs']:
                     for v in sub:
-                        if isinstance(v, basestring):
+                        if isinstance(v, str):
                             replace.append(v)
                             break
                         else:
