@@ -129,7 +129,7 @@ def josm_proxy():
     query = request.query_string
     r = None
     if query.startswith('errors.josm'):
-        r = "http://%s/%s" % (utils.website, query) # Explicit http, not https
+        r = "http://%s/en/%s" % (utils.website, query) # Explicit http, not https
     else:
         r = "http://localhost:8111/%s" % query
     return "<img src='%s'/>" % r
