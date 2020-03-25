@@ -17,14 +17,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. TRANSLATORS: days / hours / minutes since last source update, abbreviated to d / h / m
+#: ../control.py:49
 #, python-brace-format
 msgid "{day}d, {hour}h, {minute}m ago"
 msgstr ""
 
+#: ../control.py:51
 #, python-brace-format
 msgid "in {day}d, {hour}h, {minute}m"
 msgstr ""
 
+#: ../control.py:54
 msgid "never generated"
 msgstr ""
 

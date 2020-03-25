@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-03-19 01:30+0000\n"
+"PO-Revision-Date: 2020-03-23 23:57+0000\n"
 "Last-Translator: maro21 OSM\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -722,7 +722,7 @@ msgstr "błąd ortograficzny"
 
 #: ../../tools/database/item_menu.txt:92
 msgid "way type"
-msgstr "typ drogi [FR]"
+msgstr "typ drogi"
 
 #: ../../tools/database/item_menu.txt:93
 msgid "two names"
@@ -968,7 +968,7 @@ msgstr "policja, może być zintegrowana [FR]"
 
 #: ../../tools/database/item_menu.txt:122
 msgid "pharmacy, not integrated "
-msgstr "apteka, niezintegrowana [FR]"
+msgstr "apteka, niezintegrowana [FR, IT]"
 
 #: ../../tools/database/item_menu.txt:174
 msgid "pharmacy, could be integrated"
@@ -1701,7 +1701,7 @@ msgstr "oczyszczalnia ścieków, potrzebna aktualizacja [FR]"
 
 #: ../../tools/database/item_menu.txt:129
 msgid "gas station, not integrated"
-msgstr "stacja paliw, niezintegrowana"
+msgstr "stacja paliw, niezintegrowana [IT]"
 
 #: tmp.tpl:109
 msgid "delete issue"
