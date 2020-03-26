@@ -11,7 +11,7 @@
 %if len(errors) > 0:
     <lastBuildDate>{{errors[0]["timestamp"].ctime()}}</lastBuildDate>
 %end
-    <link>http://{{website}}/errors/?{{query}}</link>
+    <link>http://{{website}}/{{lang}}/errors/?{{query}}</link>
 %for res in errors:
 %    if res["lat"] and res["lon"]:
 %        lat = res["lat"]
@@ -55,7 +55,7 @@
 %    end
     </description>
     <category>{{res["item"]}}</category>
-%    url = 'http://%s/map/#%s&zoom=13&lat=%s&lon=%s&level=%s' % (website, query, lat, lon, res["level"])
+%    url = 'http://%s/%s/map/#%s&zoom=13&lat=%s&lon=%s&level=%s' % (website, lang, query, lat, lon, res["level"])
     <link>{{url}}</link>
     <guid>{{url}}</guid>
 </item>

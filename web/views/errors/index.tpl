@@ -6,7 +6,7 @@
 %        favicon = "../images/markers/marker-l-%s.png" % res["item"]
 %    end
 %end
-%rss="http://"+website+"/errors.rss?%s" % query
+%rss="http://"+website+"/"+lang+"/errors.rss?%s" % query
 %rebase('layout.tpl', title=title, favicon=favicon, rss=rss)
 <nav class="navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-dark" style="background-color: #212529;">
 %if favicon:
