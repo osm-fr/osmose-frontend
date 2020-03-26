@@ -52,7 +52,7 @@ ORDER BY
             liste.append((country, analyser, age, txt, source))
         else:
             liste.append((country, analyser, 1e10, _("never generated"), source))
-    liste.sort(lambda x, y: -cmp(x[2], y[2]))
+    liste.sort(key = lambda a: a[2])
 
     return template('control/updates', translate=translator(lang), liste=liste)
 

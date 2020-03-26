@@ -125,7 +125,7 @@ def fresh_elems_uuid(db, uuid, fix_num=None):
 
     ret = {
         "uuid": uuid,
-        "elems": elems.values(),
+        "elems": list(elems.values()),
     }
 
     if fix_num != None:

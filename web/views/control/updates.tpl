@@ -1,5 +1,5 @@
 %rebase('layout.tpl', title=_("Last updates"))
-<p>{{_("Median delay:")}} {{(liste[len(liste)/2][2]) if len(liste)>0 else ""}}</p>
+<p>{{_("Median delay:")}} {{(liste[len(liste)//2][2]) if len(liste)>0 else ""}}</p>
 <table class="table table-striped table-bordered table-hover table-sm sortable">
 <thead class="thead-dark">
 <tr>
