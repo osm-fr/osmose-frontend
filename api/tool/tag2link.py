@@ -58,7 +58,7 @@ class tag2link:
         parser = xml.sax.make_parser()
         handler = Exact()
         parser.setContentHandler(handler)
-        parser.parse(open(rulesFiles))
+        parser.parse(open(rulesFiles, "r", encoding="utf-8"))
         self.rules = handler.rules
         self.all = re.compile('.*')
 
