@@ -47,8 +47,8 @@ def get(oauth_tokens, url):
         raise Exception(resp.status_code)
 
 def put(oauth_tokens, url, data=None):
-    headers = {'content-type': 'text/xml'}
-    resp = _session(oauth_tokens).put(url, data=data, headers=headers)
+    headers = {'content-type': 'text/xml; charset=utf-8'}
+    resp = _session(oauth_tokens).put(url, data=data.encode('utf-8'), headers=headers)
     print(resp)
     if resp and resp.status_code == requests.codes.ok:
         return resp.text
@@ -56,8 +56,8 @@ def put(oauth_tokens, url, data=None):
         raise Exception(resp.status_code)
 
 def post(oauth_tokens, url, data):
-    headers = {'content-type': 'text/xml'}
-    resp = _session(oauth_tokens).post(url, data=data, headers=headers)
+    headers = {'content-type': 'text/xml; charset=utf-8'}
+    resp = _session(oauth_tokens).post(url, data=data.encode('utf-8'), headers=headers)
     print(resp)
     if resp and resp.status_code == requests.codes.ok:
         return resp.text
