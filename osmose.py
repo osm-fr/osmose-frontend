@@ -28,6 +28,19 @@ bottle.TEMPLATE_PATH.insert(0, './web/views/')
 
 app = bottle.default_app()
 
+####### Monkey patch bootle 0.12 - To be removed on 0.13
+# https://github.com/bottlepy/bottle/issues/602#issuecomment-591434275
+import functools
+def pathinfo_adjust_wrapper(func):
+    # A wrapper for _handle() method
+    @functools.wraps(func)
+    def _(environ):
+        environ["PATH_INFO"] = environ["PATH_INFO"].encode("utf8").decode("latin1")
+        return func(environ)
+    return _
+app._handle = pathinfo_adjust_wrapper(app._handle)
+#######
+
 from modules import bottle_gettext
 import os
 app.install(bottle_gettext.Plugin('osmose-frontend', os.path.join("web", "po", "mo"), utils.allowed_languages))
