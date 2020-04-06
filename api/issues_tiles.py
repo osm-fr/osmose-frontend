@@ -21,6 +21,7 @@
 ###########################################################################
 
 from bottle import default_app, route, response, HTTPError
+from .modules.params import Params
 from .tools import query, tiles
 import math
 from shapely.geometry import Point, Polygon
@@ -97,7 +98,7 @@ def heat(db, z, x, y):
     lon1,lat2 = tiles.tile2lonlat(x,y,z)
     lon2,lat1 = tiles.tile2lonlat(x+1,y+1,z)
 
-    params = query._params()
+    params = Params()
     items = query._build_where_item(params.item, "dynpoi_item")
     params.tilex = x
     params.tiley = y
@@ -171,7 +172,7 @@ def issues_mvt(db, z, x, y, format):
     dlon = (lon2 - lon1) / 256
     dlat = (lat2 - lat1) / 256
 
-    params = query._params(max_limit=50 if z > 18 else 10000)
+    params = Params(max_limit=50 if z > 18 else 10000)
     params.tilex = x
     params.tiley = y
     params.zoom = z

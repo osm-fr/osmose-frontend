@@ -23,6 +23,7 @@
 from bottle import default_app, route
 from .tools import utils
 from .tools import query
+from .modules.params import Params
 from collections import OrderedDict
 
 
@@ -31,7 +32,7 @@ app_0_2 = default_app.pop()
 
 @app_0_2.route('/errors')
 def errors(db, lang):
-    params = query._params()
+    params = Params()
     results = query._gets(db, params)
     out = OrderedDict()
 
@@ -71,7 +72,7 @@ def errors(db, lang):
 
 @route('/issues')
 def errors(db, langs):
-    params = query._params(max_limit=10000)
+    params = Params(max_limit=10000)
     results = query._gets(db, params)
 
     out = []

@@ -23,6 +23,7 @@
 from bottle import route, request, template, response
 from .tools import utils
 from .tool.translation import translator
+from .modules.params import Params
 from .tools import query
 from .tools import query_meta
 import io, re, csv
@@ -80,7 +81,7 @@ def index(db, lang, format=None):
     countries = query_meta._countries(db, lang) if format == None else None
     items = query_meta._items(db, lang)
 
-    params = query._params()
+    params = Params()
     params.status = {"error":"open", "false-positive": "false", "done":"done"}[gen]
     params.limit = None
     params.fixable = None

@@ -21,6 +21,7 @@
 ###########################################################################
 
 from bottle import route, request, template, redirect
+from .modules.params import Params
 from .tools import utils, query, query_meta
 from .tool.translation import translator
 from .api.user_utils import _user_count
@@ -123,7 +124,7 @@ def _errors_geo(db, params):
 
 @route('/map/markers')
 def markers(db):
-    params = query._params()
+    params = Params()
 
     if (not params.users) and (not params.source) and (params.zoom < 7):
         return

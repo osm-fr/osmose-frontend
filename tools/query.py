@@ -20,9 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, request, response
 from tools import utils, tiles
-import datetime, re
 
 
 def _build_where_item(item, table):
@@ -156,7 +154,7 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
         where.append("dynpoi_item.item IS NULL")
 
     if not status in ("done", "false") and users:
-        where.append("ARRAY['%s'] && marker_usernames(marker.elems)" % "','".join(map(lambda user: db.mogrify(user).decode('utf-8'), users)))
+        where.append("ARRAY['%s'] && marker_usernames(marker.elems)" % "','".join(map(lambda user: utils.pg_escape(db.mogrify(user).decode('utf-8')), users)))
 
     if stats:
         if start_date and end_date:
@@ -196,69 +194,6 @@ def fixes_default(fixes):
             delete=fix.get('delete', []),
         ), fix_elems)), fixes))
         return fs
-
-
-def _params(max_limit=500):
-    class Params:
-        bbox     = request.params.get('bbox', default=None)
-        item     = request.params.get('item')
-        source   = request.params.get('source', default='')
-        classs   = request.params.get('class', default='')
-        users    = utils.pg_escape(request.params.get('username', default=''))
-        level    = request.params.get('level', default='1,2,3')
-        full     = request.params.get('full', default=False)
-        zoom     = request.params.get('zoom', type=int, default=10)
-        limit    = request.params.get('limit', type=int, default=100)
-        country  = request.params.get('country', default=None)
-        useDevItem= request.params.get('useDevItem', default=False)
-        status   = request.params.get('status', default="open")
-        start_date = request.params.get('start_date', default=None)
-        end_date = request.params.get('end_date', default=None)
-        tags     = request.params.get('tags', default=None)
-        fixable  = request.params.get('fixable', default=None)
-        osm_type = request.params.get('osm_type', default=None)
-        osm_id   = request.params.get('osm_id', type=int, default=None)
-        tilex    = request.params.get('tilex', default=None)
-        tiley    = request.params.get('tiley', default=None)
-
-    params = Params()
-
-    if params.level:
-        params.level = params.level.split(",")
-        try:
-            params.level = ",".join([str(int(x)) for x in params.level if x])
-        except:
-            params.level = "1,2,3"
-    if params.bbox:
-        try:
-            params.bbox = list(map(lambda x: float(x), params.bbox.split(',')))
-        except:
-            params.bbox = None
-    if params.users:
-        params.users = params.users.split(",")
-    if params.limit > max_limit:
-        params.limit = max_limit
-    if params.country and not re.match(r"^([a-z_]+)(\*|)$", params.country):
-        params.country = ''
-    if params.useDevItem == "true":
-        params.useDevItem = True
-    elif params.useDevItem == "all":
-        pass
-    else:
-        params.useDevItem = False
-    if params.start_date:
-        params.start_date = utils.str_to_datetime(params.start_date)
-    if params.end_date:
-        params.end_date = utils.str_to_datetime(params.end_date)
-    if params.tags:
-        params.tags = params.tags.split(",")
-
-    if params.osm_type and params.osm_type not in ['node', 'way', 'relation']:
-        params.osm_type = None
-    if params.osm_id and not params.osm_type:
-        params.osm_id = None
-
-    return params
 
 
 def _gets(db, params):

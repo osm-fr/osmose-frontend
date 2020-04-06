@@ -28,6 +28,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot
 import matplotlib.dates
+from modules.params import Params
 from .tools import query
 
 
@@ -68,7 +69,7 @@ ORDER BY
     date
 """
 
-    params = query._params()
+    params = Params()
     join, where = query._build_param(db, None, params.source, params.item, params.level, None, params.classs, params.country, params.useDevItem, None, params.tags, None, stats=True, start_date=params.start_date, end_date=params.end_date)
     where2 = ["1 = 1"]
     if params.start_date:
