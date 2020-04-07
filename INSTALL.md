@@ -5,7 +5,7 @@ Manual Installation
 
 Generate translation files
 ```
-cd po && make mo
+(cd web/po && make mo)
 ```
 
 
@@ -35,8 +35,7 @@ Generate markers
 
 Install javascript libraries with npm
 ```
-npm install
-npm run build
+(cd web && npm install && npm run build)
 ```
 
 
