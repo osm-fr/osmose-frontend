@@ -46,19 +46,6 @@ source osmose-frontend-venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Generate markers
-```
-(cd tools && ./make-markers.py)
-```
-
-
-### JavaScript
-
-Install javascript libraries with npm
-```
-(cd web && npm install && npm run build)
-```
-
 
 ### Database
 
@@ -78,6 +65,20 @@ psql osmose_frontend -f tools/database/schema.sql
 ```
 
 Check data base parameter into `tools/utils.py`.
+
+
+### Generate markers
+```
+(cd tools && ./make-markers.py)
+```
+
+
+### Web assets
+
+To package web assets, including previously generated markers, run
+```
+(cd web && npm install && npm run build)
+```
 
 
 ### Web Server
