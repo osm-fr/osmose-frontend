@@ -83,7 +83,11 @@ To package web assets, including previously generated markers, run
 
 ### Web Server
 
-As root user, copy `apache-site` to `/etc/apache2/sites-available/osmose.conf`.
+As root user, copy `apache-site` to `/etc/apache2/sites-available/osmose.conf`:
+```
+cp apache-site /etc/apache2/sites-available/osmose.conf
+```
+
 Adjust the config, if needed. Especially the user and group running the process in
 `WSGIDaemonProcess` and `WSGIProcessGroup`, and path in `WSGIScriptAlias`,
 `DocumentRoot`, `Alias`s and `Directory`.
