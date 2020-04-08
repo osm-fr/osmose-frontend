@@ -99,8 +99,7 @@ Enable the new config:
 ```
 a2dissite 000-default.conf
 a2ensite osmose.conf
-a2enmod expires.load
-a2enmod rewrite.load
+a2enmod rewrite.load wsgi.load expires.load cache_disk.load cache.load
 service apache2 reload
 ```
 
