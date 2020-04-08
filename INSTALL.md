@@ -106,12 +106,17 @@ service apache2 reload
 Change the server URL into `website` in file `tools/utils.py`.
 
 
-Database translations
----------------------
+### Database translations
 
-When some issues are in the database, to get translations
+When some issues are in the database, to get translations use (still in virtualenv):
 ```
-cd tools/database/ && ./categ_menu_update.sh && ./item_menu_update.sh
+cd tools && ./menu_update.py
 ```
 
-Add "tools/cron.sh" to crontab, to run once per day.
+### Daily tasks
+
+Adjust DIR_DUMP at the start of `tools/cron.sh` then set this script to execute once a day (with `crontab` for example)
+Depending on your database configuration, you may need to pass additional environment variables (see `man 1 psql`):
+```
+tools/cron.sh
+```
