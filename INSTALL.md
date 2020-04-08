@@ -49,7 +49,7 @@ pip install -r requirements.txt
 
 ### Database
 
-As postgres user:
+Start the postgrsql server, then as the `postgres` user:
 ```
 createuser -s osmose
 # Set your own password
@@ -59,9 +59,9 @@ createdb -E UTF8 -T template0 -O osmose osmose_frontend
 psql -c "CREATE EXTENSION pgcrypto" osmose_frontend
 ```
 
-As normal user, create the database tables:
+Go back to your original user and create the database tables.
 ```
-psql osmose_frontend -f tools/database/schema.sql
+psql --user osmose osmose_frontend -f tools/database/schema.sql
 ```
 
 Check data base parameter into `tools/utils.py`.
