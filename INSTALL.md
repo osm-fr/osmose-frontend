@@ -1,9 +1,9 @@
 Manual Installation
 -------------------
 
-### Dependencies
+This guide is compatible with Ubuntu 18.04 and Ubuntu 20.04
 
-For Ubuntu Server 16.04
+### Dependencies
 
 ```
 apt install python3 python3-dev virtualenv gcc pkg-config libpng-dev libjpeg-dev libfreetype6-dev postgresql-server-dev-all libgeos-dev g++ python3-shapely nodejs npm
