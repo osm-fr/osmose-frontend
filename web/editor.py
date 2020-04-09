@@ -38,7 +38,7 @@ def save(db, lang):
     # Changeset tags
     tags = json['tag']
     if 'comment' not in tags or tags['comment'].strip() == '':
-        tags['comment'] = u'Fix with Osmose'
+        tags['comment'] = u'Fixed with Osmose'
     if 'source' not in tags or tags['source'].strip() == '':
         tags['source'] = u'Osmose'
     if 'type' not in tags or tags['type'].strip() == '':
