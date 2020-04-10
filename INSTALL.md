@@ -6,7 +6,7 @@ Manual Installation
 For Ubuntu Server 16.04
 
 ```
-apt install python2.7 python2.7-dev virtualenv gcc pkg-config libpng-dev libjpeg-dev libfreetype6-dev postgresql-server-dev-all libgeos-dev g++ python-shapely nodejs npm
+apt install python3 python3-dev virtualenv gcc pkg-config libpng-dev libjpeg-dev libfreetype6-dev postgresql-server-dev-all libgeos-dev g++ python3-shapely nodejs npm
 ```
 
 #### Database
@@ -18,7 +18,7 @@ apt install postgresql postgresql-contrib
 #### Web server
 
 ```
-apt install apache2 libapache2-mod-wsgi
+apt install apache2 libapache2-mod-wsgi-py3
 ```
 
 #### Internationalisation and SVG rendering
@@ -37,11 +37,11 @@ Generate translation files
 
 ### Python
 
-Osmose QA frontend requires python > 2.6 and < 3
+Osmose QA frontend requires python >= 3
 
 Create a python virtualenv, active it and install python dependencies
 ```
-virtualenv --python=python2.7 osmose-frontend-venv
+virtualenv --python=python3 osmose-frontend-venv
 source osmose-frontend-venv/bin/activate
 pip install -r requirements.txt
 ```
@@ -92,7 +92,7 @@ Adjust the config, if needed. Especially the user and group running the process 
 `WSGIDaemonProcess` and `WSGIProcessGroup`, and path in `WSGIScriptAlias`,
 `DocumentRoot`, `Alias`s and `Directory`.
 
-If you setup a python virtualenv add the appropriate `python-path=/home/osmose/osmose-frontend-venv/lib/python2.7/site-packages`
+If you setup a python virtualenv add the appropriate `python-path=/home/osmose/osmose-frontend-venv/lib/python3.8/site-packages`
 at the and of WSGIDaemonProcess line.
 
 Enable the new config:
@@ -110,7 +110,7 @@ Change the server URL into `website` in file `tools/utils.py`.
 
 When some issues are in the database, to get translations use (still in virtualenv):
 ```
-cd tools && ./menu_update.py
+(cd tools && ./menu_update.py)
 ```
 
 ### Daily tasks
