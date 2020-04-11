@@ -221,7 +221,7 @@ $(function() {
           <div class="form-group row">
             <label for="comment" class="col-sm-4 col-form-label">{{_("Comment")}}</label>
             <div class="col-sm-8">
-              <input class="form-control" type="text" name="comment" id="comment" value="{{_("Fix with Osmose")}}"/>
+              <input class="form-control" type="text" name="comment" id="comment" value="{{_("Fixed with Osmose")}}"/>
             </div>
           </div>
           <div class="form-group row">
