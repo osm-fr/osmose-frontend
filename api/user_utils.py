@@ -20,8 +20,8 @@
 ##                                                                       ##
 ###########################################################################
 
-from .modules.params import Params
-from .tools import query
+from modules.params import Params
+from tools import query
 
 
 def _user(db, lang, username):

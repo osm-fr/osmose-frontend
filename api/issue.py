@@ -22,9 +22,9 @@
 from bottle import default_app, route, response, abort
 import io, copy
 
-from .tools import utils
-from .tools import OsmSax
-from .tools.query import fixes_default
+from tools import utils
+from tools import OsmSax
+from tools.query import fixes_default
 from .issue_utils import t2l, _get, _expand_tags
 
 

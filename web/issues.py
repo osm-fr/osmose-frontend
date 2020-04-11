@@ -21,11 +21,11 @@
 ###########################################################################
 
 from bottle import route, request, template, response
-from .tools import utils
+from tools import utils
 from .tool.translation import translator
-from .modules.params import Params
-from .tools import query
-from .tools import query_meta
+from modules.params import Params
+from tools import query
+from tools import query_meta
 import io, re, csv
 
 from . import errors_graph

@@ -6,8 +6,8 @@ import requests
 
 ################################################################################
 
-oauth_client_key = "zGtBQ4zQfaWqy0G3HtRua2d00gvIcSfS4iHHwH2s"
-oauth_client_secret = "2KOQG8eUVvcHcTGV5I12XsseRuaeBW0vcmRTTuli"
+oauth_client_key = "lVhUDUfU4LL52nWRBNqO2JpdmQdwRIDZ2iMdVp8s"
+oauth_client_secret = "ATIOP1AbYcQRvXbWYD2JWs4EZDG1GBT2Z4eK5E5a"
 oauth_server = "https://www.openstreetmap.org/oauth/"
 
 ################################################################################
