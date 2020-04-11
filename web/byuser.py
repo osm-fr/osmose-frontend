@@ -21,9 +21,9 @@
 ###########################################################################
 
 from bottle import route, template, redirect, response, html_escape
-from tools import utils
+from modules import utils
 from .tool.translation import translator
-from tools import query
+from modules import query
 
 from api.user_utils import _user, _user_count
 

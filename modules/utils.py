@@ -46,11 +46,10 @@ allowed_languages = list(languages_name)
 pg_host           = os.environ.get('DB_HOST', '') # Use socket by default
 pg_port           = "5432"
 pg_user           = "osmose"
-pg_pass           = "-osmose-"
+pg_pass           = "clostAdtoi"
 pg_base           = "osmose_frontend"
 db_string         = "host='%s' port='%s' dbname='%s' user='%s' password='%s'" % (pg_host, pg_port, pg_base, pg_user, pg_pass)
-
-website           = os.environ.get('URL_FRONTEND') or "osmose.openstreetmap.fr"
+website           = os.environ.get('URL_FRONTEND') or "localhost:20009"
 
 main_project      = "OpenStreetMap"
 main_website      = "https://www.openstreetmap.org/"

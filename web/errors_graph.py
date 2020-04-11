@@ -29,7 +29,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot
 import matplotlib.dates
 from modules.params import Params
-from tools import query
+from modules import query
 
 
 def get_data(db, options):

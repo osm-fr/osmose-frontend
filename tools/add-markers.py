@@ -4,7 +4,7 @@
 all_flags = ["O", "L", "K", "P", "M", "F", "=", "|", "||", "::", ".:.", "T", "t", "X", "><", "L'", "[]", ".", ".l", "'.", "/", "=-", "H", "h"]
 
 import pprint
-from tools import utils
+from modules import utils
 
 if __name__ == "__main__":
 

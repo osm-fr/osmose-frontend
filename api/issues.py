@@ -21,8 +21,8 @@
 ###########################################################################
 
 from bottle import default_app, route
-from tools import utils
-from tools import query
+from modules import utils
+from modules import query
 from modules.params import Params
 from collections import OrderedDict
 

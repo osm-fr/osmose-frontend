@@ -72,7 +72,7 @@ class GettextPlugin(object):
             (language, redirect) = self.get_language()
 
             if redirect:
-                from tools import utils
+                from . import utils
                 from bottle import redirect
                 url = request.urlparts
                 new_url = []

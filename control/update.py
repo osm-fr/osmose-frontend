@@ -22,7 +22,7 @@
 
 import sys, time
 import psycopg2
-from tools import utils
+from modules import utils
 import json
 from xml.sax import make_parser, handler
 

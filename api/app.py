@@ -23,7 +23,7 @@
 import bottle
 import os
 from modules.osmose_bottle import uuid_filter, ext_filter
-from tools import utils
+from modules import utils
 from modules import bottle_pgsql
 from modules import bottle_cors
 from modules import bottle_langs

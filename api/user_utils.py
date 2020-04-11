@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.params import Params
-from tools import query
+from modules import query
 
 
 def _user(db, lang, username):

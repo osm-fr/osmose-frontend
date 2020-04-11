@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import subprocess, sys, os
-from tools import utils, query_meta
+from modules import utils, query_meta
 
 ################################################################################
 ## symboles

@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from tools import utils, tiles
+from . import utils, tiles
 
 
 def _build_where_item(item, table):
