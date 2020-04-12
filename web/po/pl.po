@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-03-23 23:57+0000\n"
+"PO-Revision-Date: 2020-04-09 14:00+0000\n"
 "Last-Translator: maro21 OSM\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -511,7 +511,7 @@ msgstr "samotne węzły"
 
 #: ../../tools/database/item_menu.txt:10
 msgid "sudden highway type change"
-msgstr "niespodziewana zmiana typu drogi"
+msgstr "nagła zmiana typu drogi"
 
 #: ../../tools/database/item_menu.txt:11
 msgid "unclosed area"
