@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
 all_flags = ["O", "L", "K", "P", "M", "F", "=", "|", "||", "::", ".:.", "T", "t", "X", "><", "L'", "[]", ".", ".l", "'.", "/", "=-", "H", "h"]
 
 import pprint
-from . import utils
+from tools import utils
 
 if __name__ == "__main__":
 

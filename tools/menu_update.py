@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
 import codecs
 import os
 import polib
-from . import utils
+from tools import utils
 
 class OsmoseTranslation:
 
