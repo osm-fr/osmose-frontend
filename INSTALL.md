@@ -54,7 +54,7 @@ Start the postgrsql server, then as the `postgres` user:
 createuser -s osmose
 # Set your own password
 psql -c "ALTER ROLE osmose WITH PASSWORD '-osmose-';"
-createdb -E UTF8 -T template0 -O osmose osmose_frontend
+createdb -E UTF8 -T template0 --lc-collate=fr_FR.UTF-8 --lc-ctype=fr_FR.UTF-8 -O osmose osmose_frontend
 # Enable extensions
 psql -c "CREATE EXTENSION pgcrypto" osmose_frontend
 ```
