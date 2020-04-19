@@ -64,7 +64,7 @@ Go back to your original user and create the database tables.
 psql --user osmose osmose_frontend -f tools/database/schema.sql
 ```
 
-Check data base parameter into `tools/utils.py`.
+Check data base parameter into `modules/utils.py`.
 
 
 ### Generate markers
@@ -103,7 +103,7 @@ a2enmod rewrite.load wsgi.load expires.load cache_disk.load cache.load
 service apache2 reload
 ```
 
-Change the server URL into `website` in file `tools/utils.py`.
+Change the server URL into `website` in file `modules/utils.py`.
 
 
 ### Database translations
