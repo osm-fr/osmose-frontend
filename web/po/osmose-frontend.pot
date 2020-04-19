@@ -376,10 +376,6 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: tmp.tpl:177
-msgid "Fix with Osmose"
-msgstr ""
-
 #: tmp.tpl:178
 msgid "Source"
 msgstr ""
@@ -1722,4 +1718,8 @@ msgstr ""
 
 #: ../../tools/database/item_menu.txt:225
 msgid "specific france"
+msgstr ""
+
+#: tmp.tpl:177
+msgid "Fixed with Osmose"
 msgstr ""

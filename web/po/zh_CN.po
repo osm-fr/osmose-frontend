@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-03-18 20:23+0000\n"
+"PO-Revision-Date: 2020-04-19 15:02+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -20,14 +20,17 @@ msgstr ""
 
 #. TRANSLATORS: days / hours / minutes since last source update, abbreviated
 #. to d / h / m
+#: ../control.py:49
 #, python-brace-format
 msgid "{day}d, {hour}h, {minute}m ago"
 msgstr "{day}天{hour}小时{minute}分钟前"
 
+#: ../control.py:51
 #, python-brace-format
 msgid "in {day}d, {hour}h, {minute}m"
 msgstr "在{day}天{hour}小时{minute}分钟后"
 
+#: ../control.py:54
 msgid "never generated"
 msgstr "从未生成"
 
@@ -36,44 +39,44 @@ msgstr "从未生成"
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
-#: ../issues.py:67 tmp.tpl:73
+#: ../issues.py:69 tmp.tpl:73
 msgid "False positives"
 msgstr "误报"
 
-#: ../issues.py:73 tmp.tpl:71
+#: ../issues.py:75 tmp.tpl:71
 msgid "Informations"
 msgstr "信息"
 
-#: ../map.py:65
+#: ../map.py:67
 msgid "Relation analyser"
 msgstr "关系分析器"
 
 #. TRANSLATORS: link to source code
-#: ../map.py:67
+#: ../map.py:69
 msgid "Statistics"
 msgstr "统计"
 
-#: ../map.py:70 tmp.tpl:23
+#: ../map.py:72 tmp.tpl:23
 msgid "Contact"
 msgstr "联系我们"
 
-#: ../map.py:71
+#: ../map.py:73
 msgid "Help on wiki"
 msgstr "Wiki上使用帮助"
 
-#: ../map.py:71 tmp.tpl:120 tmp.tpl:218
+#: ../map.py:73 tmp.tpl:120 tmp.tpl:218
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
-#: ../map.py:72
+#: ../map.py:74
 msgid "Copyright"
 msgstr "版权所有"
 
-#: ../map.py:73
+#: ../map.py:75
 msgid "Sources"
 msgstr "源代码"
 
-#: ../map.py:74
+#: ../map.py:76
 msgid "Translation"
 msgstr "翻译"
 
@@ -376,10 +379,6 @@ msgstr "登录"
 msgid "Save"
 msgstr "保存"
 
-#: tmp.tpl:177
-msgid "Fix with Osmose"
-msgstr "用Osmose修复"
-
 #: tmp.tpl:178
 msgid "Source"
 msgstr "来源"
@@ -575,7 +574,7 @@ msgid "street numbers"
 msgstr "门牌号码"
 
 #: ../../tools/database/item_menu.txt:37
-#: ../../tools/database/item_menu.txt:209
+#: ../../tools/database/item_menu.txt:212
 msgid "highway"
 msgstr "highway"
 
@@ -601,7 +600,7 @@ msgid "tagwatch cleaner"
 msgstr "标签查看清理器"
 
 #: ../../tools/database/item_menu.txt:49
-#: ../../tools/database/item_menu.txt:216
+#: ../../tools/database/item_menu.txt:219
 msgid "wikipedia"
 msgstr "维基百科"
 
@@ -829,7 +828,7 @@ msgstr "可以整合的学校"
 
 #: ../../tools/database/item_menu.txt:27
 #: ../../tools/database/item_menu.txt:141
-#: ../../tools/database/item_menu.txt:217
+#: ../../tools/database/item_menu.txt:220
 msgid "public transport"
 msgstr "公共交通"
 
@@ -1013,19 +1012,19 @@ msgstr "国家及地区"
 msgid "analyser"
 msgstr "分析器"
 
-#: ../../tools/database/item_menu.txt:175
+#: ../../tools/database/item_menu.txt:176
 msgid "postal code, could be integrated"
 msgstr "可以整合的邮政编码"
 
-#: ../../tools/database/item_menu.txt:176
+#: ../../tools/database/item_menu.txt:177
 msgid "library"
 msgstr "图书馆"
 
-#: ../../tools/database/item_menu.txt:177
+#: ../../tools/database/item_menu.txt:178
 msgid "restaurant"
 msgstr "餐厅"
 
-#: ../../tools/database/item_menu.txt:178
+#: ../../tools/database/item_menu.txt:179
 msgid "winery"
 msgstr "酒厂"
 
@@ -1048,11 +1047,11 @@ msgid ""
 "other areas are funded by Mapbox."
 msgstr "分析资料的服务器由OpenStreetMap-法国及世界各地的贡献者提供。其中北美等地的服务器由Mapbox赞助。"
 
-#: ../issues.py:70
+#: ../issues.py:72
 msgid "Fixed issues"
 msgstr "修正问题"
 
-#: ../map.py:64
+#: ../map.py:66
 msgid "Issues by user"
 msgstr "用户问题"
 
@@ -1126,7 +1125,7 @@ msgstr "关于报告问题的文件"
 msgid "version"
 msgstr "版本"
 
-#: ../../tools/database/item_menu.txt:179
+#: ../../tools/database/item_menu.txt:180
 msgid "geodesic"
 msgstr "测量"
 
@@ -1256,19 +1255,19 @@ msgid "gas station, could be integrated"
 msgstr "可以整合的加油站"
 
 #: ../../tools/database/item_menu.txt:125
-#: ../../tools/database/item_menu.txt:181
+#: ../../tools/database/item_menu.txt:182
 msgid "power substation"
 msgstr "变电所"
 
-#: ../../tools/database/item_menu.txt:182
+#: ../../tools/database/item_menu.txt:183
 msgid "power substation, could be integrated"
 msgstr "可以整合的变电所"
 
-#: ../../tools/database/item_menu.txt:183
+#: ../../tools/database/item_menu.txt:185
 msgid "power support"
 msgstr "电线塔"
 
-#: ../../tools/database/item_menu.txt:184
+#: ../../tools/database/item_menu.txt:186
 msgid "power support, could be integrated"
 msgstr "可以整合的电线塔"
 
@@ -1304,11 +1303,11 @@ msgstr "需要更新的加油站"
 msgid "phone number"
 msgstr "电话号码"
 
-#: ../../tools/database/item_menu.txt:185
+#: ../../tools/database/item_menu.txt:187
 msgid "traffic signs"
 msgstr "交通标志"
 
-#: ../../tools/database/item_menu.txt:186
+#: ../../tools/database/item_menu.txt:189
 msgid "traffic sign limitation"
 msgstr "交通标志限制"
 
@@ -1355,47 +1354,47 @@ msgstr "对于新增语言或某些国家及地区使用的语言版本，请直
 msgid "JOSM validator"
 msgstr "JOSM验证器"
 
-#: ../../tools/database/item_menu.txt:204
+#: ../../tools/database/item_menu.txt:207
 msgid "seamark"
 msgstr "海标"
 
-#: ../../tools/database/item_menu.txt:205
+#: ../../tools/database/item_menu.txt:208
 msgid "addresses"
 msgstr "地址"
 
-#: ../../tools/database/item_menu.txt:206
+#: ../../tools/database/item_menu.txt:209
 msgid "combinations"
 msgstr "组合"
 
-#: ../../tools/database/item_menu.txt:207
+#: ../../tools/database/item_menu.txt:210
 msgid "deprecated"
 msgstr "弃用"
 
-#: ../../tools/database/item_menu.txt:208
+#: ../../tools/database/item_menu.txt:211
 msgid "geometry"
 msgstr "几何"
 
-#: ../../tools/database/item_menu.txt:210
+#: ../../tools/database/item_menu.txt:213
 msgid "multiple"
 msgstr "多种"
 
-#: ../../tools/database/item_menu.txt:211
+#: ../../tools/database/item_menu.txt:214
 msgid "numeric"
 msgstr "数字"
 
-#: ../../tools/database/item_menu.txt:212
+#: ../../tools/database/item_menu.txt:215
 msgid "relation"
 msgstr "关系"
 
-#: ../../tools/database/item_menu.txt:213
+#: ../../tools/database/item_menu.txt:216
 msgid "religion"
 msgstr "宗教"
 
-#: ../../tools/database/item_menu.txt:214
+#: ../../tools/database/item_menu.txt:217
 msgid "territories"
 msgstr "领土"
 
-#: ../../tools/database/item_menu.txt:215
+#: ../../tools/database/item_menu.txt:218
 msgid "unnecessary"
 msgstr "多余"
 
@@ -1478,7 +1477,7 @@ msgstr "在OSM数据上修复问题后，将其标记为已完成。如果没有
 msgid "zone:maxspeed"
 msgstr "zone:最大速度"
 
-#: ../../tools/database/item_menu.txt:220
+#: ../../tools/database/item_menu.txt:226
 msgid "power transformer"
 msgstr "变压器"
 
@@ -1492,29 +1491,29 @@ msgid "opening hours"
 msgstr "营业时间"
 
 #: ../../tools/database/item_menu.txt:126
-#: ../../tools/database/item_menu.txt:187
+#: ../../tools/database/item_menu.txt:190
 msgid "hospital"
 msgstr "医院"
 
 #: ../../tools/database/item_menu.txt:127
-#: ../../tools/database/item_menu.txt:189
+#: ../../tools/database/item_menu.txt:192
 msgid "social facility"
 msgstr "社会设施"
 
 #: ../../tools/database/item_menu.txt:128
-#: ../../tools/database/item_menu.txt:191
+#: ../../tools/database/item_menu.txt:194
 msgid "medical lab"
 msgstr "医学实验室"
 
-#: ../../tools/database/item_menu.txt:188
+#: ../../tools/database/item_menu.txt:191
 msgid "hospital, could be integrated"
 msgstr "可以整合的医院"
 
-#: ../../tools/database/item_menu.txt:190
+#: ../../tools/database/item_menu.txt:193
 msgid "social facility, could be integrated"
 msgstr "可以整合的社会设施"
 
-#: ../../tools/database/item_menu.txt:192
+#: ../../tools/database/item_menu.txt:195
 msgid "medical lab, could be integrated"
 msgstr "可以整合的医学实验室"
 
@@ -1538,15 +1537,15 @@ msgstr "强制执行"
 msgid "URL"
 msgstr "URL"
 
-#: ../../tools/database/item_menu.txt:193
+#: ../../tools/database/item_menu.txt:196
 msgid "street objects"
 msgstr "街头物体"
 
-#: ../../tools/database/item_menu.txt:218
+#: ../../tools/database/item_menu.txt:221
 msgid "openrailwaymap"
 msgstr "openrailwaymap"
 
-#: ../../tools/database/item_menu.txt:219
+#: ../../tools/database/item_menu.txt:222
 msgid "openrailwaymap in germany"
 msgstr "openrailwaymap在德国"
 
@@ -1554,7 +1553,7 @@ msgstr "openrailwaymap在德国"
 msgid "railways"
 msgstr "铁路"
 
-#: ../../tools/database/item_menu.txt:180
+#: ../../tools/database/item_menu.txt:181
 msgid "power plant"
 msgstr "发电站"
 
@@ -1564,19 +1563,19 @@ msgid ""
 "languages."
 msgstr "Osmose工具主要由法国人开发，我们的目标是添加更多语言。"
 
-#: ../../tools/database/item_menu.txt:194
+#: ../../tools/database/item_menu.txt:197
 msgid "defibrillator"
 msgstr "除颤器"
 
-#: ../../tools/database/item_menu.txt:198
+#: ../../tools/database/item_menu.txt:201
 msgid "radio support"
 msgstr "无线电支持"
 
-#: ../../tools/database/item_menu.txt:199
+#: ../../tools/database/item_menu.txt:202
 msgid "radio support, could be integrated"
 msgstr "可以整合的无线电支持"
 
-#: ../../tools/database/item_menu.txt:200
+#: ../../tools/database/item_menu.txt:203
 msgid "radio support, need update"
 msgstr "需要更新的无线电支持"
 
@@ -1660,15 +1659,15 @@ msgstr ""
 msgid "ref:vatin"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:201
+#: ../../tools/database/item_menu.txt:204
 msgid "charging station"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:202
+#: ../../tools/database/item_menu.txt:205
 msgid "charging station, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:203
+#: ../../tools/database/item_menu.txt:206
 msgid "charging station, need update"
 msgstr ""
 
@@ -1676,15 +1675,15 @@ msgstr ""
 msgid "related objects"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:195
+#: ../../tools/database/item_menu.txt:198
 msgid "wastewater"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:196
+#: ../../tools/database/item_menu.txt:199
 msgid "wastewater, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:197
+#: ../../tools/database/item_menu.txt:200
 msgid "wastewater, need update"
 msgstr ""
 
@@ -1702,4 +1701,32 @@ msgstr ""
 
 #: tmp.tpl:201
 msgid "Report based on data from date"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:175
+msgid "pharmacy, need update"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:184
+msgid "power substation, need update"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:188
+msgid "shop"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:223
+msgid "specific russia"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:224
+msgid "specific brazil"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:225
+msgid "specific france"
+msgstr ""
+
+#: tmp.tpl:177
+msgid "Fixed with Osmose"
 msgstr ""

@@ -45,7 +45,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-03-18 20:23+0000\n"
+"PO-Revision-Date: 2020-04-19 15:02+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -56,14 +56,17 @@ msgstr ""
 
 #. TRANSLATORS: days / hours / minutes since last source update, abbreviated
 #. to d / h / m
+#: ../control.py:49
 #, python-brace-format
 msgid "{day}d, {hour}h, {minute}m ago"
 msgstr "il y a {day} j, {hour} h, {minute} min"
 
+#: ../control.py:51
 #, python-brace-format
 msgid "in {day}d, {hour}h, {minute}m"
 msgstr "dans {day} j, {hour} h, {minute} min"
 
+#: ../control.py:54
 msgid "never generated"
 msgstr "jamais généré"
 
@@ -72,44 +75,44 @@ msgstr "jamais généré"
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "https://wiki.openstreetmap.org/wiki/FR:Osmose/erreurs"
 
-#: ../issues.py:67 tmp.tpl:73
+#: ../issues.py:69 tmp.tpl:73
 msgid "False positives"
 msgstr "Faux positifs"
 
-#: ../issues.py:73 tmp.tpl:71
+#: ../issues.py:75 tmp.tpl:71
 msgid "Informations"
 msgstr "Informations"
 
-#: ../map.py:65
+#: ../map.py:67
 msgid "Relation analyser"
 msgstr "Analyseur de relation"
 
 #. TRANSLATORS: link to source code
-#: ../map.py:67
+#: ../map.py:69
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: ../map.py:70 tmp.tpl:23
+#: ../map.py:72 tmp.tpl:23
 msgid "Contact"
 msgstr "Contact"
 
-#: ../map.py:71
+#: ../map.py:73
 msgid "Help on wiki"
 msgstr "Aide sur le wiki"
 
-#: ../map.py:71 tmp.tpl:120 tmp.tpl:218
+#: ../map.py:73 tmp.tpl:120 tmp.tpl:218
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "https://wiki.openstreetmap.org/wiki/FR:Osmose"
 
-#: ../map.py:72
+#: ../map.py:74
 msgid "Copyright"
 msgstr "Copyright"
 
-#: ../map.py:73
+#: ../map.py:75
 msgid "Sources"
 msgstr "Sources"
 
-#: ../map.py:74
+#: ../map.py:76
 msgid "Translation"
 msgstr "Traduction"
 
@@ -412,10 +415,6 @@ msgstr "Connexion"
 msgid "Save"
 msgstr "Sauver"
 
-#: tmp.tpl:177
-msgid "Fix with Osmose"
-msgstr "Corrections avec Osmose"
-
 #: tmp.tpl:178
 msgid "Source"
 msgstr "Source"
@@ -611,7 +610,7 @@ msgid "street numbers"
 msgstr "numéros de rue"
 
 #: ../../tools/database/item_menu.txt:37
-#: ../../tools/database/item_menu.txt:209
+#: ../../tools/database/item_menu.txt:212
 msgid "highway"
 msgstr "highway"
 
@@ -637,7 +636,7 @@ msgid "tagwatch cleaner"
 msgstr "tagwatch cleaner"
 
 #: ../../tools/database/item_menu.txt:49
-#: ../../tools/database/item_menu.txt:216
+#: ../../tools/database/item_menu.txt:219
 msgid "wikipedia"
 msgstr "Wikipédia"
 
@@ -865,7 +864,7 @@ msgstr "école, intégration possible"
 
 #: ../../tools/database/item_menu.txt:27
 #: ../../tools/database/item_menu.txt:141
-#: ../../tools/database/item_menu.txt:217
+#: ../../tools/database/item_menu.txt:220
 msgid "public transport"
 msgstr "transport en commun"
 
@@ -1049,19 +1048,19 @@ msgstr "pays"
 msgid "analyser"
 msgstr "analyseur"
 
-#: ../../tools/database/item_menu.txt:175
+#: ../../tools/database/item_menu.txt:176
 msgid "postal code, could be integrated"
 msgstr "code postal, intégration possible"
 
-#: ../../tools/database/item_menu.txt:176
+#: ../../tools/database/item_menu.txt:177
 msgid "library"
 msgstr "bibliothèque"
 
-#: ../../tools/database/item_menu.txt:177
+#: ../../tools/database/item_menu.txt:178
 msgid "restaurant"
 msgstr "restaurant"
 
-#: ../../tools/database/item_menu.txt:178
+#: ../../tools/database/item_menu.txt:179
 msgid "winery"
 msgstr "chai viticole"
 
@@ -1084,11 +1083,11 @@ msgid ""
 "other areas are funded by Mapbox."
 msgstr "Les serveurs d’analyse des données sont fournis par OpenStreetMap-France et quelques autres par des contributeurs à travers le monde. Les serveurs pour l’Amérique du Nord et d’autres régions sont financés par MapBox."
 
-#: ../issues.py:70
+#: ../issues.py:72
 msgid "Fixed issues"
 msgstr "Signalements corrigés"
 
-#: ../map.py:64
+#: ../map.py:66
 msgid "Issues by user"
 msgstr "Signalements par utilisateur"
 
@@ -1162,7 +1161,7 @@ msgstr "Documentation sur les signalements"
 msgid "version"
 msgstr "version"
 
-#: ../../tools/database/item_menu.txt:179
+#: ../../tools/database/item_menu.txt:180
 msgid "geodesic"
 msgstr "géodésique"
 
@@ -1292,19 +1291,19 @@ msgid "gas station, could be integrated"
 msgstr "Station-service, intégration possible"
 
 #: ../../tools/database/item_menu.txt:125
-#: ../../tools/database/item_menu.txt:181
+#: ../../tools/database/item_menu.txt:182
 msgid "power substation"
 msgstr "poste transformateur électrique"
 
-#: ../../tools/database/item_menu.txt:182
+#: ../../tools/database/item_menu.txt:183
 msgid "power substation, could be integrated"
 msgstr "poste transformateur électrique, intégration possible"
 
-#: ../../tools/database/item_menu.txt:183
+#: ../../tools/database/item_menu.txt:185
 msgid "power support"
 msgstr "support électrique"
 
-#: ../../tools/database/item_menu.txt:184
+#: ../../tools/database/item_menu.txt:186
 msgid "power support, could be integrated"
 msgstr "support électrique, intégration possible"
 
@@ -1340,11 +1339,11 @@ msgstr "Station-service, à mettre à jour"
 msgid "phone number"
 msgstr "Numéro de téléphone"
 
-#: ../../tools/database/item_menu.txt:185
+#: ../../tools/database/item_menu.txt:187
 msgid "traffic signs"
 msgstr "Panneaux de signalisation"
 
-#: ../../tools/database/item_menu.txt:186
+#: ../../tools/database/item_menu.txt:189
 msgid "traffic sign limitation"
 msgstr "Panneaux de signalisation : limitation"
 
@@ -1391,47 +1390,47 @@ msgstr "Pour les nouveaux pays, nous pouvons être contactés directement par un
 msgid "JOSM validator"
 msgstr "Validateur JOSM"
 
-#: ../../tools/database/item_menu.txt:204
+#: ../../tools/database/item_menu.txt:207
 msgid "seamark"
 msgstr "Marqueurs nautiques"
 
-#: ../../tools/database/item_menu.txt:205
+#: ../../tools/database/item_menu.txt:208
 msgid "addresses"
 msgstr "adresses"
 
-#: ../../tools/database/item_menu.txt:206
+#: ../../tools/database/item_menu.txt:209
 msgid "combinations"
 msgstr "combinaisons"
 
-#: ../../tools/database/item_menu.txt:207
+#: ../../tools/database/item_menu.txt:210
 msgid "deprecated"
 msgstr "obsolète"
 
-#: ../../tools/database/item_menu.txt:208
+#: ../../tools/database/item_menu.txt:211
 msgid "geometry"
 msgstr "géométrie"
 
-#: ../../tools/database/item_menu.txt:210
+#: ../../tools/database/item_menu.txt:213
 msgid "multiple"
 msgstr "multiple"
 
-#: ../../tools/database/item_menu.txt:211
+#: ../../tools/database/item_menu.txt:214
 msgid "numeric"
 msgstr "numérique"
 
-#: ../../tools/database/item_menu.txt:212
+#: ../../tools/database/item_menu.txt:215
 msgid "relation"
 msgstr "relation"
 
-#: ../../tools/database/item_menu.txt:213
+#: ../../tools/database/item_menu.txt:216
 msgid "religion"
 msgstr "religion"
 
-#: ../../tools/database/item_menu.txt:214
+#: ../../tools/database/item_menu.txt:217
 msgid "territories"
 msgstr "territoires"
 
-#: ../../tools/database/item_menu.txt:215
+#: ../../tools/database/item_menu.txt:218
 msgid "unnecessary"
 msgstr "inutile"
 
@@ -1514,7 +1513,7 @@ msgstr "Après avoir corrigé le signalement dans les données d'OSM, le marquer
 msgid "zone:maxspeed"
 msgstr "zone:maxspeed"
 
-#: ../../tools/database/item_menu.txt:220
+#: ../../tools/database/item_menu.txt:226
 msgid "power transformer"
 msgstr "transformateur de tensions"
 
@@ -1528,29 +1527,29 @@ msgid "opening hours"
 msgstr "Heures d'ouverture"
 
 #: ../../tools/database/item_menu.txt:126
-#: ../../tools/database/item_menu.txt:187
+#: ../../tools/database/item_menu.txt:190
 msgid "hospital"
 msgstr "Hôpital"
 
 #: ../../tools/database/item_menu.txt:127
-#: ../../tools/database/item_menu.txt:189
+#: ../../tools/database/item_menu.txt:192
 msgid "social facility"
 msgstr "Structure sociale"
 
 #: ../../tools/database/item_menu.txt:128
-#: ../../tools/database/item_menu.txt:191
+#: ../../tools/database/item_menu.txt:194
 msgid "medical lab"
 msgstr "Laboratoire d'analyses médicales"
 
-#: ../../tools/database/item_menu.txt:188
+#: ../../tools/database/item_menu.txt:191
 msgid "hospital, could be integrated"
 msgstr "Hôpital, intégration possible"
 
-#: ../../tools/database/item_menu.txt:190
+#: ../../tools/database/item_menu.txt:193
 msgid "social facility, could be integrated"
 msgstr "Structure sociale, intégration possible"
 
-#: ../../tools/database/item_menu.txt:192
+#: ../../tools/database/item_menu.txt:195
 msgid "medical lab, could be integrated"
 msgstr "Laboratoire d'analyses médicales, intégration possible"
 
@@ -1574,15 +1573,15 @@ msgstr "Radars"
 msgid "URL"
 msgstr "URL"
 
-#: ../../tools/database/item_menu.txt:193
+#: ../../tools/database/item_menu.txt:196
 msgid "street objects"
 msgstr "objets de rue"
 
-#: ../../tools/database/item_menu.txt:218
+#: ../../tools/database/item_menu.txt:221
 msgid "openrailwaymap"
 msgstr "openrailwaymap"
 
-#: ../../tools/database/item_menu.txt:219
+#: ../../tools/database/item_menu.txt:222
 msgid "openrailwaymap in germany"
 msgstr "openrailwaymap en Allemagne"
 
@@ -1590,7 +1589,7 @@ msgstr "openrailwaymap en Allemagne"
 msgid "railways"
 msgstr "rails"
 
-#: ../../tools/database/item_menu.txt:180
+#: ../../tools/database/item_menu.txt:181
 msgid "power plant"
 msgstr "Centrale électrique"
 
@@ -1600,19 +1599,19 @@ msgid ""
 "languages."
 msgstr "L'outil Osmose est principalement développé par des Français et nous avons l'intention d'ajouter davantage de langues."
 
-#: ../../tools/database/item_menu.txt:194
+#: ../../tools/database/item_menu.txt:197
 msgid "defibrillator"
 msgstr "Défibrillateur"
 
-#: ../../tools/database/item_menu.txt:198
+#: ../../tools/database/item_menu.txt:201
 msgid "radio support"
 msgstr "support radio"
 
-#: ../../tools/database/item_menu.txt:199
+#: ../../tools/database/item_menu.txt:202
 msgid "radio support, could be integrated"
 msgstr "support radio, intégration possible"
 
-#: ../../tools/database/item_menu.txt:200
+#: ../../tools/database/item_menu.txt:203
 msgid "radio support, need update"
 msgstr "support radio, mise à jour nécessaire"
 
@@ -1696,15 +1695,15 @@ msgstr "Vous pouvez trouver de l'aide sur le wiki :"
 msgid "ref:vatin"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:201
+#: ../../tools/database/item_menu.txt:204
 msgid "charging station"
 msgstr "Station de recharge"
 
-#: ../../tools/database/item_menu.txt:202
+#: ../../tools/database/item_menu.txt:205
 msgid "charging station, could be integrated"
 msgstr "Station de recharge, intégration possible"
 
-#: ../../tools/database/item_menu.txt:203
+#: ../../tools/database/item_menu.txt:206
 msgid "charging station, need update"
 msgstr "station de recharge, à mettre à jour"
 
@@ -1712,15 +1711,15 @@ msgstr "station de recharge, à mettre à jour"
 msgid "related objects"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:195
+#: ../../tools/database/item_menu.txt:198
 msgid "wastewater"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:196
+#: ../../tools/database/item_menu.txt:199
 msgid "wastewater, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:197
+#: ../../tools/database/item_menu.txt:200
 msgid "wastewater, need update"
 msgstr ""
 
@@ -1738,4 +1737,32 @@ msgstr ""
 
 #: tmp.tpl:201
 msgid "Report based on data from date"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:175
+msgid "pharmacy, need update"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:184
+msgid "power substation, need update"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:188
+msgid "shop"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:223
+msgid "specific russia"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:224
+msgid "specific brazil"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:225
+msgid "specific france"
+msgstr ""
+
+#: tmp.tpl:177
+msgid "Fixed with Osmose"
 msgstr ""

@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-03-18 20:23+0000\n"
+"PO-Revision-Date: 2020-04-19 15:02+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -21,14 +21,17 @@ msgstr ""
 
 #. TRANSLATORS: days / hours / minutes since last source update, abbreviated
 #. to d / h / m
+#: ../control.py:49
 #, python-brace-format
 msgid "{day}d, {hour}h, {minute}m ago"
 msgstr "{day}ر و {hour}س و {minute}د پیش"
 
+#: ../control.py:51
 #, python-brace-format
 msgid "in {day}d, {hour}h, {minute}m"
 msgstr "در {day}ر و {hour}س و {minute}د"
 
+#: ../control.py:54
 msgid "never generated"
 msgstr "هرگز تولید نشده"
 
@@ -37,44 +40,44 @@ msgstr "هرگز تولید نشده"
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Fa:Osmose/issues"
 
-#: ../issues.py:67 tmp.tpl:73
+#: ../issues.py:69 tmp.tpl:73
 msgid "False positives"
 msgstr "مثبت‌های کاذب"
 
-#: ../issues.py:73 tmp.tpl:71
+#: ../issues.py:75 tmp.tpl:71
 msgid "Informations"
 msgstr "اطلاعات"
 
-#: ../map.py:65
+#: ../map.py:67
 msgid "Relation analyser"
 msgstr "تحلیلگر رابطه"
 
 #. TRANSLATORS: link to source code
-#: ../map.py:67
+#: ../map.py:69
 msgid "Statistics"
 msgstr "آمار"
 
-#: ../map.py:70 tmp.tpl:23
+#: ../map.py:72 tmp.tpl:23
 msgid "Contact"
 msgstr "تماس"
 
-#: ../map.py:71
+#: ../map.py:73
 msgid "Help on wiki"
 msgstr "راهنما در ویکی"
 
-#: ../map.py:71 tmp.tpl:120 tmp.tpl:218
+#: ../map.py:73 tmp.tpl:120 tmp.tpl:218
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Fa:Osmose"
 
-#: ../map.py:72
+#: ../map.py:74
 msgid "Copyright"
 msgstr "حق تکثیر"
 
-#: ../map.py:73
+#: ../map.py:75
 msgid "Sources"
 msgstr "کد منبع"
 
-#: ../map.py:74
+#: ../map.py:76
 msgid "Translation"
 msgstr "ترجمه"
 
@@ -377,10 +380,6 @@ msgstr "ورود"
 msgid "Save"
 msgstr "ذخیره"
 
-#: tmp.tpl:177
-msgid "Fix with Osmose"
-msgstr "اصلاح با اوسموز"
-
 #: tmp.tpl:178
 msgid "Source"
 msgstr "منبع"
@@ -576,7 +575,7 @@ msgid "street numbers"
 msgstr "street numbers"
 
 #: ../../tools/database/item_menu.txt:37
-#: ../../tools/database/item_menu.txt:209
+#: ../../tools/database/item_menu.txt:212
 msgid "highway"
 msgstr "highway"
 
@@ -602,7 +601,7 @@ msgid "tagwatch cleaner"
 msgstr "پاک‌ساز تگ"
 
 #: ../../tools/database/item_menu.txt:49
-#: ../../tools/database/item_menu.txt:216
+#: ../../tools/database/item_menu.txt:219
 msgid "wikipedia"
 msgstr "wikipedia"
 
@@ -830,7 +829,7 @@ msgstr "مدرسه، می‌تواند یکپارچه شود"
 
 #: ../../tools/database/item_menu.txt:27
 #: ../../tools/database/item_menu.txt:141
-#: ../../tools/database/item_menu.txt:217
+#: ../../tools/database/item_menu.txt:220
 msgid "public transport"
 msgstr "public transport"
 
@@ -1014,19 +1013,19 @@ msgstr "کشور"
 msgid "analyser"
 msgstr "تحلیلگر"
 
-#: ../../tools/database/item_menu.txt:175
+#: ../../tools/database/item_menu.txt:176
 msgid "postal code, could be integrated"
 msgstr "postal code، می‌تواند یکپارچه شود"
 
-#: ../../tools/database/item_menu.txt:176
+#: ../../tools/database/item_menu.txt:177
 msgid "library"
 msgstr "کتابخانه"
 
-#: ../../tools/database/item_menu.txt:177
+#: ../../tools/database/item_menu.txt:178
 msgid "restaurant"
 msgstr "رستوران"
 
-#: ../../tools/database/item_menu.txt:178
+#: ../../tools/database/item_menu.txt:179
 msgid "winery"
 msgstr "winery"
 
@@ -1049,11 +1048,11 @@ msgid ""
 "other areas are funded by Mapbox."
 msgstr "میزبان‌های موردنیاز برای تحلیل داده‌ها را OpenStreetMap-France فراهم کرده و بعضی از بخش‌های دیگر را مشارکت‌کنندگانی از سراسر جهان. آمریکای شمالی و سایر نواحی را Mapbox میزبانی می‌کند."
 
-#: ../issues.py:70
+#: ../issues.py:72
 msgid "Fixed issues"
 msgstr "مسائل حل‌شده"
 
-#: ../map.py:64
+#: ../map.py:66
 msgid "Issues by user"
 msgstr "مسائل بر اساس کاربر"
 
@@ -1127,7 +1126,7 @@ msgstr "مستندات مسائل گزارش‌شده"
 msgid "version"
 msgstr "نسخه"
 
-#: ../../tools/database/item_menu.txt:179
+#: ../../tools/database/item_menu.txt:180
 msgid "geodesic"
 msgstr "geodesic"
 
@@ -1257,19 +1256,19 @@ msgid "gas station, could be integrated"
 msgstr "پمپ بنزین، می‌تواند یکپارچه شود"
 
 #: ../../tools/database/item_menu.txt:125
-#: ../../tools/database/item_menu.txt:181
+#: ../../tools/database/item_menu.txt:182
 msgid "power substation"
 msgstr "power substation"
 
-#: ../../tools/database/item_menu.txt:182
+#: ../../tools/database/item_menu.txt:183
 msgid "power substation, could be integrated"
 msgstr "power substation، می‌تواند یکپارچه شود"
 
-#: ../../tools/database/item_menu.txt:183
+#: ../../tools/database/item_menu.txt:185
 msgid "power support"
 msgstr "power support"
 
-#: ../../tools/database/item_menu.txt:184
+#: ../../tools/database/item_menu.txt:186
 msgid "power support, could be integrated"
 msgstr "power support، می‌تواند یکپارچه شود"
 
@@ -1305,11 +1304,11 @@ msgstr "پمپ بنزین، نیازمند به‌روزآوری"
 msgid "phone number"
 msgstr "شماره‌تلفن"
 
-#: ../../tools/database/item_menu.txt:185
+#: ../../tools/database/item_menu.txt:187
 msgid "traffic signs"
 msgstr "علائم راهنمایی‌ورانندگی"
 
-#: ../../tools/database/item_menu.txt:186
+#: ../../tools/database/item_menu.txt:189
 msgid "traffic sign limitation"
 msgstr "محدودیت علائم راهنمایی‌ورانندگی"
 
@@ -1356,47 +1355,47 @@ msgstr "برای کشورهای جدید، مستقیماً به نشانی <a h
 msgid "JOSM validator"
 msgstr "‫اعتبارسنج JOSM‬"
 
-#: ../../tools/database/item_menu.txt:204
+#: ../../tools/database/item_menu.txt:207
 msgid "seamark"
 msgstr "seamark"
 
-#: ../../tools/database/item_menu.txt:205
+#: ../../tools/database/item_menu.txt:208
 msgid "addresses"
 msgstr "نشانی‌ها"
 
-#: ../../tools/database/item_menu.txt:206
+#: ../../tools/database/item_menu.txt:209
 msgid "combinations"
 msgstr "ترکیبات"
 
-#: ../../tools/database/item_menu.txt:207
+#: ../../tools/database/item_menu.txt:210
 msgid "deprecated"
 msgstr "deprecated"
 
-#: ../../tools/database/item_menu.txt:208
+#: ../../tools/database/item_menu.txt:211
 msgid "geometry"
 msgstr "هندسه"
 
-#: ../../tools/database/item_menu.txt:210
+#: ../../tools/database/item_menu.txt:213
 msgid "multiple"
 msgstr "چندگانه"
 
-#: ../../tools/database/item_menu.txt:211
+#: ../../tools/database/item_menu.txt:214
 msgid "numeric"
 msgstr "عددی"
 
-#: ../../tools/database/item_menu.txt:212
+#: ../../tools/database/item_menu.txt:215
 msgid "relation"
 msgstr "relation"
 
-#: ../../tools/database/item_menu.txt:213
+#: ../../tools/database/item_menu.txt:216
 msgid "religion"
 msgstr "دین"
 
-#: ../../tools/database/item_menu.txt:214
+#: ../../tools/database/item_menu.txt:217
 msgid "territories"
 msgstr "سرزمین‌ها"
 
-#: ../../tools/database/item_menu.txt:215
+#: ../../tools/database/item_menu.txt:218
 msgid "unnecessary"
 msgstr "غیرضروری"
 
@@ -1479,7 +1478,7 @@ msgstr "پس از اینکه مشکل داده‌ها اصلاح شد، آن ر�
 msgid "zone:maxspeed"
 msgstr "zone:maxspeed"
 
-#: ../../tools/database/item_menu.txt:220
+#: ../../tools/database/item_menu.txt:226
 msgid "power transformer"
 msgstr "power transformer"
 
@@ -1493,29 +1492,29 @@ msgid "opening hours"
 msgstr "ساعت کاری"
 
 #: ../../tools/database/item_menu.txt:126
-#: ../../tools/database/item_menu.txt:187
+#: ../../tools/database/item_menu.txt:190
 msgid "hospital"
 msgstr "بیمارستان"
 
 #: ../../tools/database/item_menu.txt:127
-#: ../../tools/database/item_menu.txt:189
+#: ../../tools/database/item_menu.txt:192
 msgid "social facility"
 msgstr "social facility"
 
 #: ../../tools/database/item_menu.txt:128
-#: ../../tools/database/item_menu.txt:191
+#: ../../tools/database/item_menu.txt:194
 msgid "medical lab"
 msgstr "آزمایشگاه پزشکی"
 
-#: ../../tools/database/item_menu.txt:188
+#: ../../tools/database/item_menu.txt:191
 msgid "hospital, could be integrated"
 msgstr "بیمارستان، می‌تواند یکپارچه شود"
 
-#: ../../tools/database/item_menu.txt:190
+#: ../../tools/database/item_menu.txt:193
 msgid "social facility, could be integrated"
 msgstr "social facility، می‌تواند یکپارچه شود"
 
-#: ../../tools/database/item_menu.txt:192
+#: ../../tools/database/item_menu.txt:195
 msgid "medical lab, could be integrated"
 msgstr "آزمایشگاه پزشکی، می‌تواند یکپارچه شود"
 
@@ -1539,15 +1538,15 @@ msgstr ""
 msgid "URL"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:193
+#: ../../tools/database/item_menu.txt:196
 msgid "street objects"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:218
+#: ../../tools/database/item_menu.txt:221
 msgid "openrailwaymap"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:219
+#: ../../tools/database/item_menu.txt:222
 msgid "openrailwaymap in germany"
 msgstr ""
 
@@ -1555,7 +1554,7 @@ msgstr ""
 msgid "railways"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:180
+#: ../../tools/database/item_menu.txt:181
 msgid "power plant"
 msgstr ""
 
@@ -1565,19 +1564,19 @@ msgid ""
 "languages."
 msgstr "توسعه‌دهندگان Osmose بیشتر فرانسوی هستند اما مایلیم زبان‌های بیشتری را پشتیبانی کنیم."
 
-#: ../../tools/database/item_menu.txt:194
+#: ../../tools/database/item_menu.txt:197
 msgid "defibrillator"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:198
+#: ../../tools/database/item_menu.txt:201
 msgid "radio support"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:199
+#: ../../tools/database/item_menu.txt:202
 msgid "radio support, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:200
+#: ../../tools/database/item_menu.txt:203
 msgid "radio support, need update"
 msgstr ""
 
@@ -1661,15 +1660,15 @@ msgstr "راهنما را در ویکی ببینید:"
 msgid "ref:vatin"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:201
+#: ../../tools/database/item_menu.txt:204
 msgid "charging station"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:202
+#: ../../tools/database/item_menu.txt:205
 msgid "charging station, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:203
+#: ../../tools/database/item_menu.txt:206
 msgid "charging station, need update"
 msgstr ""
 
@@ -1677,15 +1676,15 @@ msgstr ""
 msgid "related objects"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:195
+#: ../../tools/database/item_menu.txt:198
 msgid "wastewater"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:196
+#: ../../tools/database/item_menu.txt:199
 msgid "wastewater, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:197
+#: ../../tools/database/item_menu.txt:200
 msgid "wastewater, need update"
 msgstr ""
 
@@ -1703,4 +1702,32 @@ msgstr ""
 
 #: tmp.tpl:201
 msgid "Report based on data from date"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:175
+msgid "pharmacy, need update"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:184
+msgid "power substation, need update"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:188
+msgid "shop"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:223
+msgid "specific russia"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:224
+msgid "specific brazil"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:225
+msgid "specific france"
+msgstr ""
+
+#: tmp.tpl:177
+msgid "Fixed with Osmose"
 msgstr ""
