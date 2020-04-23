@@ -25,6 +25,7 @@ from modules import utils
 from modules import query
 from modules.params import Params
 from collections import OrderedDict
+from itertools import groupby
 
 
 app_0_2 = default_app.pop()
@@ -96,6 +97,10 @@ def errors(db, langs):
                 'level': res["level"],
                 'update': str(res["timestamp"]),
                 'usernames': list(map(lambda elem: "username" in elem and elem["username"] or "", res['elems'] or [])),
+                'osm_ids': dict(map(lambda k_g: [
+                    {'N':'nodes', 'W':'ways', 'R':'relations'}[k_g[0]],
+                    list(map(lambda g: g['id'], k_g[1]))
+                ], groupby(sorted(res['elems'] or [], key=lambda e: e['type']), lambda e: e['type']))),
             })
         out.append(i)
 
