@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 %import re
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
+%rss="http://"+website+"/"+lang+"/errors.rss?%s" % query
+    <atom:link href="{{rss}}" rel="self" type="application/rss+xml" />
 %for res in items:
 %    if item == str(res["item"]):
 %        title += ' - ' + translate.select(res['menu'])
 %    end
 %end
     <title>Osmose{{title}}</title>
+    <description>{{query}}</description>
 %if len(errors) > 0:
-    <lastBuildDate>{{errors[0]["timestamp"].ctime()}}</lastBuildDate>
+%time = errors[0]["timestamp"]
+%ctime = time.ctime()
+%rfc822 = '{0}, {1:02d} {2}'.format(ctime[0:3], time.day, ctime[4:7]) + time.strftime(' %Y %H:%M:%S %z')
+    <lastBuildDate>{{rfc822}}</lastBuildDate>
 %end
     <link>http://{{website}}/{{lang}}/errors/?{{query}}</link>
 %for res in errors:
@@ -57,7 +63,7 @@
     <category>{{res["item"]}}</category>
 %    url = 'http://%s/%s/map/#%s&zoom=13&lat=%s&lon=%s&level=%s' % (website, lang, query, lat, lon, res["level"])
     <link>{{url}}</link>
-    <guid>{{url}}</guid>
+    <guid>http://{{website}}/{{lang}}/error/{{res['uuid']}}</guid>
 </item>
 %end
 %end

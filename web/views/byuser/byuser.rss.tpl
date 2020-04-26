@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
+%rss="https://"+website+"/byuser/"+username+".rss"
+    <atom:link href="{{rss}}" rel="self" type="application/rss+xml" />
     <title>Osmose - {{", ".join(users)}}</title>
     <description>{{_("Statistics for user %s") % ", ".join(users)}}.
 %if count < 500:
@@ -9,11 +11,12 @@
     {{_("Number of found issues: more than %d") % count}}.
 %end
     </description>
-    <lastBuildDate>\\
 %if len(errors) > 0:
-{{errors[0]["timestamp"].ctime()}}\\
+%time = errors[0]["timestamp"]
+%ctime = time.ctime()
+%rfc822 = '{0}, {1:02d} {2}'.format(ctime[0:3], time.day, ctime[4:7]) + time.strftime(' %Y %H:%M:%S %z')
+    <lastBuildDate>{{rfc822}}</lastBuildDate>
 %end
-</lastBuildDate>
     <link>http://{{website}}/byuser/{{username}}</link>
 %for res in errors:
     <item>
@@ -41,7 +44,7 @@
 %    lon_s = "%.2f" % lon
 %    url = 'http://%s/map/#zoom=16&lat=%s&lon=%s&item=%s&level=%s' % (website, lat, lon, item, level)
         <link>{{url}}</link>
-        <guid>{{url}}</guid>
+        <guid>http://{{website}}/error/{{res['uuid']}}</guid>
     </item>
 %end
 </channel>

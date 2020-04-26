@@ -1,4 +1,4 @@
-%rss="http://"+website+"/byuser/"+username+".rss"
+%rss="https://"+website+"/byuser/"+username+".rss"
 %rebase('layout.tpl', title=(_("Statistics for user %s") % ", ".join(users)), rss=rss)
 <h1>{{_("User statistics for %s") % ", ".join(users)}}</h1>
 <p>{{_("This page shows issues on elements that were last modified by '%s'. This doesn't means that this user is responsible for all these issues.") % "', '".join(users)}}</p>

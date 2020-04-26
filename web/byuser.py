@@ -46,9 +46,9 @@ def user(db, lang, username=None, format=None):
 
     if format == 'rss':
         response.content_type = "application/rss+xml"
-        return template('byuser/byuser.rss', username=username, users=params.users, count=count, errors=errors, translate=translator(lang), website=utils.website)
+        return template('byuser/byuser.rss', username=username, users=params.users, count=count, errors=errors, translate=translator(lang), website=utils.website + '/' + lang[0])
     else:
-        return template('byuser/byuser', username=username, users=params.users, count=count, errors=errors, translate=translator(lang), website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read, html_escape=html_escape)
+        return template('byuser/byuser', username=username, users=params.users, count=count, errors=errors, translate=translator(lang), website=utils.website + '/' + lang[0], main_website=utils.main_website, remote_url_read=utils.remote_url_read, html_escape=html_escape)
 
 
 @route('/byuser_count/<username>')
