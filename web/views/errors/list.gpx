@@ -1,5 +1,5 @@
-%import re
 <?xml version="1.0" encoding="UTF-8"?>
+%import re
 <gpx version="1.0" creator="http://osmose.openstreetmap.fr"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns="http://www.topografix.com/GPX/1/0"
