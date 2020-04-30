@@ -9,7 +9,7 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "geobuf": "^3.0.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "js-cookie": "^2.2.0",
     "leaflet": "=1.0.3",
     "leaflet-active-area": "=1.1.0",
