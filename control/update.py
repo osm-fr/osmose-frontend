@@ -291,7 +291,7 @@ WHERE
             sql_marker += u"UPDATE SET item = %(item)s, lat = %(lat)s, lon = %(lon)s, elems = %(elems)s::jsonb[], fixes = %(fixes)s::jsonb[], subtitle = %(subtitle)s "
             sql_marker += u"WHERE marker.uuid = ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid AND "
             sql_marker += u"      marker.source = %(source)s AND marker.class = %(class)s AND "
-            sql_marker += u"      (marker.item != %(item)s OR marker.lat != %(lat)s OR marker.lon != %(lon)s OR marker.elems != %(elems)s::jsonb[] OR marker.fixes != %(fixes)s::jsonb[] OR marker.subtitle != %(subtitle)s) "
+            sql_marker += u"      (marker.item IS DISTINCT FROM %(item)s OR marker.lat IS DISTINCT FROM %(lat)s OR marker.lon IS DISTINCT FROM %(lon)s OR marker.elems IS DISTINCT FROM %(elems)s::jsonb[] OR marker.fixes IS DISTINCT FROM %(fixes)s::jsonb[] OR marker.subtitle IS DISTINCT FROM %(subtitle)s) "
             sql_marker += u"RETURNING uuid"
 
             for location in self._error_locations:
@@ -340,7 +340,7 @@ WHERE
             sql += u"ON CONFLICT (item, class) DO "
             sql += u"UPDATE SET title = %(title)s, level = %(level)s, tags = %(tags)s, detail = %(detail)s, fix = %(fix)s, trap = %(trap)s, example = %(example)s, source = %(source)s, resource = %(resource)s, timestamp = %(timestamp)s "
             sql += u"WHERE class.class = %(class)s AND class.item = %(item)s AND class.timestamp < %(timestamp)s AND "
-            sql += u"      (class.title != %(title)s OR class.level != %(level)s OR class.tags != %(tags)s::varchar[] OR class.detail != %(detail)s OR class.fix != %(fix)s OR class.trap != %(trap)s OR class.example != %(example)s OR class.source != %(source)s OR class.resource != %(resource)s)"
+            sql += u"      (class.title IS DISTINCT FROM %(title)s OR class.level IS DISTINCT FROM %(level)s OR class.tags IS DISTINCT FROM %(tags)s::varchar[] OR class.detail IS DISTINCT FROM %(detail)s OR class.fix IS DISTINCT FROM %(fix)s OR class.trap IS DISTINCT FROM %(trap)s OR class.example IS DISTINCT FROM %(example)s OR class.source IS DISTINCT FROM %(source)s OR class.resource IS DISTINCT FROM %(resource)s)"
             execute_sql(dbcurs, sql, {
                 'class': self._class_id,
                 'item': self._class_item[self._class_id],
