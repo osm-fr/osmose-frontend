@@ -71,7 +71,7 @@ CREATE OR REPLACE FUNCTION public.marker_elem_ids(elems jsonb[])
  IMMUTABLE STRICT
 AS $function$
   SELECT
-    array_agg((elem->'id')::bigint)
+    array_agg((elem->>'id')::bigint)
   FROM (
     SELECT
       unnest(elems)
@@ -84,7 +84,7 @@ CREATE OR REPLACE FUNCTION public.marker_usernames(elems jsonb[])
  IMMUTABLE STRICT
 AS $function$
   SELECT
-    array_agg((elem->'username')::text)
+    array_agg(elem->>'username')
   FROM (
     SELECT
       unnest(elems)
@@ -103,8 +103,8 @@ $function$;
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 11.6
--- Dumped by pg_dump version 11.5 (Debian 11.5-1+deb10u1)
+-- Dumped from database version 9.6.17
+-- Dumped by pg_dump version 9.6.17
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -185,18 +185,6 @@ CREATE TABLE public.dynpoi_item (
     levels integer[],
     number integer[],
     tags character varying[]
-);
-
-
---
--- Name: dynpoi_stats; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.dynpoi_stats (
-    source integer NOT NULL,
-    class integer NOT NULL,
-    "timestamp" timestamp without time zone NOT NULL,
-    count integer NOT NULL
 );
 
 
@@ -336,21 +324,11 @@ ALTER TABLE public.dynpoi_item CLUSTER ON dynpoi_item_pkey;
 
 
 --
--- Name: dynpoi_stats dynpoi_stats_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.dynpoi_stats
-    ADD CONSTRAINT dynpoi_stats_pkey PRIMARY KEY (source, class, "timestamp");
-
-ALTER TABLE public.dynpoi_stats CLUSTER ON dynpoi_stats_pkey;
-
-
---
 -- Name: dynpoi_status dynpoi_status_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.dynpoi_status
-    ADD CONSTRAINT dynpoi_status_pkey PRIMARY KEY (source, class, uuid);
+    ADD CONSTRAINT dynpoi_status_pkey PRIMARY KEY (uuid);
 
 
 --
@@ -424,7 +402,14 @@ CREATE INDEX idx_dynpoi_class_source ON public.dynpoi_class USING btree (source)
 -- Name: idx_dynpoi_status_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX idx_dynpoi_status_id ON public.dynpoi_status USING btree ((((('x0'::text || replace("right"(((uuid)::character varying)::text, 16), '-'::text, ''::text)))::bit(64))::bigint));
+CREATE INDEX idx_dynpoi_status_id ON public.dynpoi_status USING btree (public.uuid_to_bigint(uuid));
+
+
+--
+-- Name: idx_dynpoi_status_source_class; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_dynpoi_status_source_class ON public.dynpoi_status USING btree (source, class);
 
 
 --
@@ -438,7 +423,7 @@ CREATE INDEX idx_marker_elem_ids ON public.marker USING gin (public.marker_elem_
 -- Name: idx_marker_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX idx_marker_id ON public.marker USING btree ((((('x0'::text || replace("right"(((uuid)::character varying)::text, 16), '-'::text, ''::text)))::bit(64))::bigint));
+CREATE INDEX idx_marker_id ON public.marker USING btree (public.uuid_to_bigint(uuid));
 
 
 --
@@ -487,7 +472,7 @@ CREATE INDEX idx_marker_z_order_curve_item ON public.marker USING btree (public.
 -- Name: source_country_analyser; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX source_country_analyser ON public.source USING btree (country, analyser);
+CREATE INDEX source_country_analyser ON public.source USING btree (country, analyser);
 
 
 --
