@@ -449,6 +449,13 @@ CREATE INDEX idx_marker_item ON public.marker USING btree (item);
 
 
 --
+-- Name: idx_marker_item_lat_lon; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_marker_item_lat_lon ON public.marker USING btree (item, lat, lon);
+
+
+--
 -- Name: idx_marker_source_class; Type: INDEX; Schema: public; Owner: -
 --
 
