@@ -18,9 +18,15 @@ The server will be running at http://localhost:20009/en/map/
 Docker for development
 ----------------------
 
-Run a configuration and password less instance:
+Create a container nammed `frontend` by running a configuration and password less instance:
 ```
 docker-compose -f docker-compose.yml -f docker-compose-test.yml -f docker-compose-dev.yml run --name frontend -p 20009:20009 frontend
+```
+The named container is required to be access from the backend.
+
+Once the it is created, you can enter it again with:
+```
+docker start frontend && docker exec -ti frontend bash
 ```
 
 Once on container, first time of for development purpose:
