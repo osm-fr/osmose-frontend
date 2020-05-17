@@ -26,6 +26,7 @@ The named container is required to be access from the backend.
 
 Once the it is created, you can enter it again with:
 ```
+docker-compose up -d postgres
 docker start frontend && docker exec -ti frontend bash
 ```
 

@@ -17,6 +17,8 @@ services:
       #- type: bind
       #  source: ./postgresql-data:
       #  target: /var/lib/postgresql/data
+    environment:
+     - POSTGRES_PASSWORD=ohch3utiP0io8shu1ahWeighohw1chah
     networks:
       - osmose-frontend-internal
 
