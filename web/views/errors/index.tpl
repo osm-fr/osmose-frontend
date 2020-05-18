@@ -35,10 +35,10 @@
       <option value=''></option>
 %for res in countries:
       <option\\
-%    if country == res['country']:
+%    if country == res['country'] + '*':
  selected='selected'\\
 %    end
- value='{{res['country']}}'>{{res['country']}}</option>
+ value='{{res['country'] + '*'}}'>{{res['country']}}</option>
 %end
     </select>
   </div>
