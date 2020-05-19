@@ -64,7 +64,7 @@ class GettextPlugin(object):
 
         # Test if the original callback accepts a 'lang' keyword.
         # Ignore it if it does not need a gettext handle.
-        args = inspect.getargspec(route.callback)[0]
+        args = inspect.getfullargspec(route.callback)[0]
         if keyword not in args:
             return callback
 
