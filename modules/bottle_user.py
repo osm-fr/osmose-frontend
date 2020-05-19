@@ -27,7 +27,7 @@ class UserPlugin(object):
 
         # Test if the original callback accepts a 'user' keyword.
         # Ignore it if it does not need a database handle.
-        args = inspect.getargspec(route.callback)[0]
+        args = inspect.getfullargspec(route.callback)[0]
         if keyword not in args:
             return callback
 
