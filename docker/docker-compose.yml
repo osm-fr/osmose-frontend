@@ -18,7 +18,8 @@ services:
       #  source: ./postgresql-data:
       #  target: /var/lib/postgresql/data
     environment:
-     - POSTGRES_PASSWORD=ohch3utiP0io8shu1ahWeighohw1chah
+     - POSTGRES_PASSWORD=osmose
+     - POSTGRES_HOST_AUTH_METHOD=trust
     networks:
       - osmose-frontend-internal
 
