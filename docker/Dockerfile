@@ -31,12 +31,11 @@ RUN mkdir ../node_modules && \
 ADD ./web/static /data/project/osmose/frontend/web/static
 RUN cd web && npm run build
 
-ADD web/po /data/project/osmose/frontend/web/po
+ADD . /data/project/osmose/frontend
+
 RUN cd web/po && \
     make mo && \
     cd ..
-
-ADD . /data/project/osmose/frontend
 
 ENV LANG en_US.UTF-8
 CMD ./osmose-standalone-bottle.py
