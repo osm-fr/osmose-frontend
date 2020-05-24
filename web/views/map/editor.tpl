@@ -17,6 +17,6 @@
   </br>
   <div id="buttons">
     <input type="button" id="cancel" class="btn btn-secondary" value="{{_("Cancel")}}"/>
-    <input type="button" id="validate" class="btn btn-primary" value="{{_("Valid")}}"/>
+    <input type="button" id="validate" class="btn btn-primary" value="{{_("Validate")}}"/>
   </div>
 </form>
