@@ -41,8 +41,8 @@ def uuid_filter(config):
 def inspect_routes(app):
     for route in app.routes:
         if 'mountpoint' in route.config:
-            prefix = route.config['mountpoint']['prefix']
-            subapp = route.config['mountpoint']['target']
+            prefix = route.config['mountpoint.prefix']
+            subapp = route.config['mountpoint.target']
 
             p = prefix.split('/', 2)[1]
             if not (len(p) == 2 or (len(p) == 5 and p[2] == '_')) or p == 'en':
