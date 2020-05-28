@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-04-19 15:02+0000\n"
+"PO-Revision-Date: 2020-05-28 18:30+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Basque (http://www.transifex.com/openstreetmap-france/osmose/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -161,7 +161,7 @@ msgstr "jatorria"
 
 #: tmp.tpl:47
 msgid "last generation"
-msgstr ""
+msgstr "azken sorkuntza"
 
 #: tmp.tpl:48 tmp.tpl:49
 msgid "history"
@@ -181,7 +181,7 @@ msgstr "denbora marka"
 
 #: tmp.tpl:55
 msgid "Copyright information"
-msgstr ""
+msgstr "Copyrightari buruzko informazioa"
 
 #: tmp.tpl:56
 msgid "License"
@@ -205,7 +205,7 @@ msgstr ""
 
 #: tmp.tpl:63 tmp.tpl:66 tmp.tpl:69 tmp.tpl:115
 msgid "key"
-msgstr ""
+msgstr "gakoa"
 
 #: tmp.tpl:64 tmp.tpl:67 tmp.tpl:70 tmp.tpl:116
 msgid "value"
@@ -221,11 +221,11 @@ msgstr "Elementuak"
 
 #: tmp.tpl:68
 msgid "Fixes"
-msgstr ""
+msgstr "Zuzenketak"
 
 #: tmp.tpl:72
 msgid "Fixed"
-msgstr ""
+msgstr "Zuzenduta"
 
 #: tmp.tpl:74
 msgid "Graph"
@@ -238,7 +238,7 @@ msgstr "Mapa"
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
 #: tmp.tpl:85
 msgid "Set"
-msgstr ""
+msgstr "Multzo"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
 #: tmp.tpl:90 tmp.tpl:101
@@ -309,10 +309,6 @@ msgstr ""
 #: tmp.tpl:132 tmp.tpl:181
 msgid "Cancel"
 msgstr "Etiketa editorea"
-
-#: tmp.tpl:133
-msgid "Valid"
-msgstr ""
 
 #: tmp.tpl:136
 msgid "no bubbles at this zoom factor"
@@ -389,7 +385,7 @@ msgstr "Mota"
 
 #: tmp.tpl:180
 msgid "Reuse changeset"
-msgstr ""
+msgstr "Aldaketa multzoa berrerabili"
 
 #: tmp.tpl:207
 msgid "corrected"
@@ -423,7 +419,7 @@ msgstr "Osmose orriak"
 
 #: tmp.tpl:225
 msgid "Bug tracking system"
-msgstr ""
+msgstr "Akatsak jarraitzeko sistema"
 
 #: tmp.tpl:30
 msgid ""
@@ -451,15 +447,15 @@ msgstr "Ezabatzeko etiketak"
 
 #: ../../tools/database/categ_menu.txt:5
 msgid "Tags name"
-msgstr ""
+msgstr "Etiketa izenak"
 
 #: ../../tools/database/categ_menu.txt:6
 msgid "Administrative"
-msgstr ""
+msgstr "Administratiboak"
 
 #: ../../tools/database/categ_menu.txt:7
 msgid "To map"
-msgstr ""
+msgstr "Mapeatzeke"
 
 #: ../../tools/database/categ_menu.txt:8
 msgid "Integration"
@@ -487,11 +483,11 @@ msgstr "alderantzizko biribilgunea"
 
 #: ../../tools/database/item_menu.txt:7
 msgid "boundary intersect"
-msgstr ""
+msgstr "Mugak elkar gurutzatzea"
 
 #: ../../tools/database/item_menu.txt:8
 msgid "objects overlap"
-msgstr ""
+msgstr "Gainjarritako objektuak"
 
 #: ../../tools/database/item_menu.txt:9
 msgid "orphan nodes"
@@ -563,11 +559,11 @@ msgstr "garaiera"
 
 #: ../../tools/database/item_menu.txt:33
 msgid "oneway"
-msgstr ""
+msgstr "norantza bakarra"
 
 #: ../../tools/database/item_menu.txt:35
 msgid "parent tag"
-msgstr ""
+msgstr "guraso etiketa"
 
 #: ../../tools/database/item_menu.txt:36
 msgid "street numbers"
@@ -580,7 +576,7 @@ msgstr "errepidea"
 
 #: ../../tools/database/item_menu.txt:38
 msgid "highway crossing"
-msgstr ""
+msgstr "errepide bidegurutzea"
 
 #: ../../tools/database/item_menu.txt:39
 #: ../../tools/database/item_menu.txt:173
@@ -706,11 +702,11 @@ msgstr "erabilpen okerra"
 
 #: ../../tools/database/item_menu.txt:91
 msgid "orthograph"
-msgstr ""
+msgstr "ortografia"
 
 #: ../../tools/database/item_menu.txt:92
 msgid "way type"
-msgstr ""
+msgstr "errepide mota"
 
 #: ../../tools/database/item_menu.txt:93
 msgid "two names"
@@ -726,7 +722,7 @@ msgstr "poligono irekia"
 
 #: ../../tools/database/item_menu.txt:100
 msgid "duplicated way"
-msgstr ""
+msgstr "errepide bikoiztua"
 
 #: ../../tools/database/item_menu.txt:101
 msgid "place without name"
@@ -746,7 +742,7 @@ msgstr "muga okerra"
 
 #: ../../tools/database/item_menu.txt:105
 msgid "out of boundary"
-msgstr ""
+msgstr "mugatik kanpo"
 
 #: ../../tools/database/item_menu.txt:106
 msgid "geodesic building"
@@ -988,7 +984,7 @@ msgstr "eremua"
 
 #: ../../tools/database/item_menu.txt:72
 msgid "noexit"
-msgstr ""
+msgstr "irteeratik gabe"
 
 #: tmp.tpl:34
 msgid ""
@@ -998,7 +994,7 @@ msgstr ""
 
 #: ../../tools/database/item_menu.txt:88
 msgid "incorrect layer"
-msgstr ""
+msgstr "geruza okerra"
 
 #: tmp.tpl:36 tmp.tpl:41
 msgid "Updates summary"
@@ -1248,7 +1244,7 @@ msgstr "adina"
 
 #: ../../tools/database/item_menu.txt:97
 msgid "invalid character"
-msgstr ""
+msgstr "karaktere baliogabea"
 
 #: ../../tools/database/item_menu.txt:172
 msgid "gas station, could be integrated"
@@ -1297,7 +1293,7 @@ msgstr "antzeko izena"
 
 #: ../../tools/database/item_menu.txt:171
 msgid "gas station, need update"
-msgstr ""
+msgstr "gasolindegia, eguneraketa behar du"
 
 #: ../../tools/database/item_menu.txt:59
 msgid "phone number"
@@ -1368,11 +1364,11 @@ msgstr ""
 
 #: ../../tools/database/item_menu.txt:210
 msgid "deprecated"
-msgstr ""
+msgstr "zaharkitua"
 
 #: ../../tools/database/item_menu.txt:211
 msgid "geometry"
-msgstr ""
+msgstr "geometria"
 
 #: ../../tools/database/item_menu.txt:213
 msgid "multiple"
@@ -1404,7 +1400,7 @@ msgstr "Herrialdea"
 
 #: tmp.tpl:77
 msgid "Item"
-msgstr ""
+msgstr "Elementua"
 
 #: tmp.tpl:108
 msgid "False positive / Done"
@@ -1412,11 +1408,11 @@ msgstr ""
 
 #: tmp.tpl:174
 msgid "Objects edited"
-msgstr ""
+msgstr "Editatutako objektuak"
 
 #: tmp.tpl:175
 msgid "Objects deleted"
-msgstr ""
+msgstr "Ezabatutako objektuak"
 
 #: tmp.tpl:183
 #, python-brace-format
@@ -1431,7 +1427,7 @@ msgstr ""
 
 #: tmp.tpl:191 tmp.tpl:194
 msgid "online Osmose Editor"
-msgstr ""
+msgstr "Osmose online editorea"
 
 #: tmp.tpl:192 tmp.tpl:193
 #, python-brace-format
@@ -1484,11 +1480,11 @@ msgstr "transformadore elektrikoa"
 #: tmp.tpl:153
 #, python-format
 msgid "Item #%s"
-msgstr ""
+msgstr "Elementua #%s"
 
 #: ../../tools/database/item_menu.txt:76
 msgid "opening hours"
-msgstr ""
+msgstr "irekiera ordua"
 
 #: ../../tools/database/item_menu.txt:126
 #: ../../tools/database/item_menu.txt:190
@@ -1498,7 +1494,7 @@ msgstr "eritetxea"
 #: ../../tools/database/item_menu.txt:127
 #: ../../tools/database/item_menu.txt:192
 msgid "social facility"
-msgstr ""
+msgstr "gizarte etxea"
 
 #: ../../tools/database/item_menu.txt:128
 #: ../../tools/database/item_menu.txt:194
@@ -1527,11 +1523,11 @@ msgstr "igerilekua"
 
 #: ../../tools/database/item_menu.txt:95
 msgid "potential misspelling"
-msgstr ""
+msgstr "balizko idazketa okerra"
 
 #: ../../tools/database/item_menu.txt:29
 msgid "enforcement"
-msgstr ""
+msgstr "trafikoaren kontrola"
 
 #: ../../tools/database/item_menu.txt:60
 msgid "URL"
@@ -1627,24 +1623,6 @@ msgstr ""
 msgid "Welcome to Osmose-QA"
 msgstr "Ongi etorri Osmose-QAra"
 
-#: tmp.tpl:155
-msgid ""
-"Osmose-QA a is quality assurance tools available to detect issues in "
-"OpenStreetMap data."
-msgstr "Osmose-QA OpenStreetMap datuetan arazoak aurkitu eta kalitatea bermatzeko tresna da."
-
-#: tmp.tpl:156
-msgid ""
-"It detects a very wide range of issue types. It is also useful for "
-"integrating third-party data sets or conflation."
-msgstr ""
-
-#: tmp.tpl:157
-msgid ""
-"Feel free to report problem, idea or new OpenData you want to add to Osmose "
-"on our Github."
-msgstr ""
-
 #: tmp.tpl:158
 msgid ""
 "In no case Osmose-QA should provide you the absolute right way to map, "
@@ -1655,13 +1633,9 @@ msgstr ""
 msgid "You can find help on the wiki:"
 msgstr "Wikian laguntza aurkitu dezakezu:"
 
-#: ../../tools/database/item_menu.txt:77
-msgid "ref:vatin"
-msgstr ""
-
 #: ../../tools/database/item_menu.txt:204
 msgid "charging station"
-msgstr ""
+msgstr "karga estazioa"
 
 #: ../../tools/database/item_menu.txt:205
 msgid "charging station, could be integrated"
@@ -1673,7 +1647,7 @@ msgstr ""
 
 #: ../../tools/database/item_menu.txt:30
 msgid "related objects"
-msgstr ""
+msgstr "erlazionatutako objektuak"
 
 #: ../../tools/database/item_menu.txt:198
 msgid "wastewater"
@@ -1689,15 +1663,15 @@ msgstr ""
 
 #: ../../tools/database/item_menu.txt:129
 msgid "gas station, not integrated"
-msgstr ""
+msgstr "Integratu gabeko gasolindegia"
 
 #: tmp.tpl:109
 msgid "delete issue"
-msgstr ""
+msgstr "arazoa ezabatu"
 
 #: tmp.tpl:199
 msgid "Issue details"
-msgstr ""
+msgstr "Arazoari buruzko xehetasunak"
 
 #: tmp.tpl:201
 msgid "Report based on data from date"
@@ -1713,7 +1687,7 @@ msgstr ""
 
 #: ../../tools/database/item_menu.txt:188
 msgid "shop"
-msgstr ""
+msgstr "denda"
 
 #: ../../tools/database/item_menu.txt:223
 msgid "specific russia"
@@ -1729,4 +1703,30 @@ msgstr ""
 
 #: tmp.tpl:177
 msgid "Fixed with Osmose"
+msgstr "Osmoserekin konpondu"
+
+#: tmp.tpl:133
+msgid "Done"
+msgstr ""
+
+#: tmp.tpl:155
+msgid ""
+"Osmose-QA is a quality assurance tool that detects issues in OpenStreetMap "
+"data."
+msgstr ""
+
+#: tmp.tpl:156
+msgid ""
+"It detects a very wide range of issue types. It is also useful for "
+"integrating third-party data sets by conflation."
+msgstr ""
+
+#: tmp.tpl:157
+msgid ""
+"Feel free to report any problem, idea or new open data you want to add to "
+"Osmose on our Github."
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:77
+msgid "VAT"
 msgstr ""

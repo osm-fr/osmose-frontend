@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-04-19 15:02+0000\n"
+"PO-Revision-Date: 2020-05-28 18:30+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -316,10 +316,6 @@ msgstr "Tags Editor"
 #: tmp.tpl:132 tmp.tpl:181
 msgid "Cancel"
 msgstr "Annuleren"
-
-#: tmp.tpl:133
-msgid "Valid"
-msgstr "Geldig"
 
 #: tmp.tpl:136
 msgid "no bubbles at this zoom factor"
@@ -1634,24 +1630,6 @@ msgstr ""
 msgid "Welcome to Osmose-QA"
 msgstr ""
 
-#: tmp.tpl:155
-msgid ""
-"Osmose-QA a is quality assurance tools available to detect issues in "
-"OpenStreetMap data."
-msgstr ""
-
-#: tmp.tpl:156
-msgid ""
-"It detects a very wide range of issue types. It is also useful for "
-"integrating third-party data sets or conflation."
-msgstr ""
-
-#: tmp.tpl:157
-msgid ""
-"Feel free to report problem, idea or new OpenData you want to add to Osmose "
-"on our Github."
-msgstr ""
-
 #: tmp.tpl:158
 msgid ""
 "In no case Osmose-QA should provide you the absolute right way to map, "
@@ -1660,10 +1638,6 @@ msgstr ""
 
 #: tmp.tpl:159
 msgid "You can find help on the wiki:"
-msgstr ""
-
-#: ../../tools/database/item_menu.txt:77
-msgid "ref:vatin"
 msgstr ""
 
 #: ../../tools/database/item_menu.txt:204
@@ -1736,4 +1710,30 @@ msgstr ""
 
 #: tmp.tpl:177
 msgid "Fixed with Osmose"
+msgstr ""
+
+#: tmp.tpl:133
+msgid "Done"
+msgstr ""
+
+#: tmp.tpl:155
+msgid ""
+"Osmose-QA is a quality assurance tool that detects issues in OpenStreetMap "
+"data."
+msgstr ""
+
+#: tmp.tpl:156
+msgid ""
+"It detects a very wide range of issue types. It is also useful for "
+"integrating third-party data sets by conflation."
+msgstr ""
+
+#: tmp.tpl:157
+msgid ""
+"Feel free to report any problem, idea or new open data you want to add to "
+"Osmose on our Github."
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:77
+msgid "VAT"
 msgstr ""
