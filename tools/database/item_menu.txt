@@ -74,7 +74,7 @@
  3230 | _("recycling container")
  3240 | _("route access mismatch")
  3250 | _("opening hours")
- 3260 | _("ref:vatin")
+ 3260 | _("VAT")
  4010 | _("disused")
  4020 | _("on junction=roundabout")
  4030 | _("incompatible tags")
