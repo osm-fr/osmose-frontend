@@ -59,6 +59,7 @@
 .marker-l-3093 { background-image: url(marker-l-3093.png); }
 .marker-l-3110 { background-image: url(marker-l-3110.png); }
 .marker-l-3120 { background-image: url(marker-l-3120.png); }
+.marker-l-3130 { background-image: url(marker-l-3130.png); }
 .marker-l-3150 { background-image: url(marker-l-3150.png); }
 .marker-l-3160 { background-image: url(marker-l-3160.png); }
 .marker-l-3161 { background-image: url(marker-l-3161.png); }
@@ -112,7 +113,6 @@
 .marker-l-7110 { background-image: url(marker-l-7110.png); }
 .marker-l-7120 { background-image: url(marker-l-7120.png); }
 .marker-l-7130 { background-image: url(marker-l-7130.png); }
-.marker-l-7140 { background-image: url(marker-l-7140.png); }
 .marker-l-7150 { background-image: url(marker-l-7150.png); }
 .marker-l-7160 { background-image: url(marker-l-7160.png); }
 .marker-l-7170 { background-image: url(marker-l-7170.png); }
@@ -142,6 +142,7 @@
 .marker-l-8110 { background-image: url(marker-l-8110.png); }
 .marker-l-8120 { background-image: url(marker-l-8120.png); }
 .marker-l-8121 { background-image: url(marker-l-8121.png); }
+.marker-l-8122 { background-image: url(marker-l-8122.png); }
 .marker-l-8130 { background-image: url(marker-l-8130.png); }
 .marker-l-8131 { background-image: url(marker-l-8131.png); }
 .marker-l-8132 { background-image: url(marker-l-8132.png); }
@@ -160,6 +161,7 @@
 .marker-l-8202 { background-image: url(marker-l-8202.png); }
 .marker-l-8210 { background-image: url(marker-l-8210.png); }
 .marker-l-8211 { background-image: url(marker-l-8211.png); }
+.marker-l-8212 { background-image: url(marker-l-8212.png); }
 .marker-l-8221 { background-image: url(marker-l-8221.png); }
 .marker-l-8230 { background-image: url(marker-l-8230.png); }
 .marker-l-8240 { background-image: url(marker-l-8240.png); }
@@ -168,8 +170,10 @@
 .marker-l-8270 { background-image: url(marker-l-8270.png); }
 .marker-l-8280 { background-image: url(marker-l-8280.png); }
 .marker-l-8281 { background-image: url(marker-l-8281.png); }
+.marker-l-8282 { background-image: url(marker-l-8282.png); }
 .marker-l-8290 { background-image: url(marker-l-8290.png); }
 .marker-l-8300 { background-image: url(marker-l-8300.png); }
+.marker-l-8310 { background-image: url(marker-l-8310.png); }
 .marker-l-8320 { background-image: url(marker-l-8320.png); }
 .marker-l-8330 { background-image: url(marker-l-8330.png); }
 .marker-l-8331 { background-image: url(marker-l-8331.png); }
@@ -185,9 +189,12 @@
 .marker-l-8390 { background-image: url(marker-l-8390.png); }
 .marker-l-8391 { background-image: url(marker-l-8391.png); }
 .marker-l-8392 { background-image: url(marker-l-8392.png); }
+.marker-l-8400 { background-image: url(marker-l-8400.png); }
+.marker-l-8401 { background-image: url(marker-l-8401.png); }
 .marker-l-8410 { background-image: url(marker-l-8410.png); }
 .marker-l-8411 { background-image: url(marker-l-8411.png); }
 .marker-l-8412 { background-image: url(marker-l-8412.png); }
+.marker-l-8420 { background-image: url(marker-l-8420.png); }
 .marker-l-9000 { background-image: url(marker-l-9000.png); }
 .marker-l-9001 { background-image: url(marker-l-9001.png); }
 .marker-l-9002 { background-image: url(marker-l-9002.png); }
@@ -202,4 +209,7 @@
 .marker-l-9014 { background-image: url(marker-l-9014.png); }
 .marker-l-9015 { background-image: url(marker-l-9015.png); }
 .marker-l-9016 { background-image: url(marker-l-9016.png); }
+.marker-l-9017 { background-image: url(marker-l-9017.png); }
+.marker-l-9018 { background-image: url(marker-l-9018.png); }
+.marker-l-9019 { background-image: url(marker-l-9019.png); }
 .marker-l-9100 { background-image: url(marker-l-9100.png); }
