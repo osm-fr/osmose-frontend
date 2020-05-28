@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-05-28 18:30+0000\n"
+"PO-Revision-Date: 2020-05-28 19:17+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -581,7 +581,7 @@ msgid "street numbers"
 msgstr "numery ulicy"
 
 #: ../../tools/database/item_menu.txt:37
-#: ../../tools/database/item_menu.txt:212
+#: ../../tools/database/item_menu.txt:215
 msgid "highway"
 msgstr "highway"
 
@@ -607,7 +607,7 @@ msgid "tagwatch cleaner"
 msgstr "tagwatch cleaner"
 
 #: ../../tools/database/item_menu.txt:49
-#: ../../tools/database/item_menu.txt:219
+#: ../../tools/database/item_menu.txt:222
 msgid "wikipedia"
 msgstr "wikipedia"
 
@@ -835,7 +835,7 @@ msgstr "szkoła, powinna być zintegrowana [FR]"
 
 #: ../../tools/database/item_menu.txt:27
 #: ../../tools/database/item_menu.txt:141
-#: ../../tools/database/item_menu.txt:220
+#: ../../tools/database/item_menu.txt:223
 msgid "public transport"
 msgstr "transport publiczny"
 
@@ -1361,47 +1361,47 @@ msgstr "W sprawie nowych krajów można się z nami skontaktować bezpośrednio 
 msgid "JOSM validator"
 msgstr "Walidator JOSM"
 
-#: ../../tools/database/item_menu.txt:207
+#: ../../tools/database/item_menu.txt:210
 msgid "seamark"
 msgstr "znak nawigacyjny"
 
-#: ../../tools/database/item_menu.txt:208
+#: ../../tools/database/item_menu.txt:211
 msgid "addresses"
 msgstr "adresy"
 
-#: ../../tools/database/item_menu.txt:209
+#: ../../tools/database/item_menu.txt:212
 msgid "combinations"
 msgstr "kombinacje tagów"
 
-#: ../../tools/database/item_menu.txt:210
+#: ../../tools/database/item_menu.txt:213
 msgid "deprecated"
 msgstr "przestarzałe tagi"
 
-#: ../../tools/database/item_menu.txt:211
+#: ../../tools/database/item_menu.txt:214
 msgid "geometry"
 msgstr "geometria"
 
-#: ../../tools/database/item_menu.txt:213
+#: ../../tools/database/item_menu.txt:216
 msgid "multiple"
 msgstr "wiele wartości"
 
-#: ../../tools/database/item_menu.txt:214
+#: ../../tools/database/item_menu.txt:217
 msgid "numeric"
 msgstr "liczbowe"
 
-#: ../../tools/database/item_menu.txt:215
+#: ../../tools/database/item_menu.txt:218
 msgid "relation"
 msgstr "relacje"
 
-#: ../../tools/database/item_menu.txt:216
+#: ../../tools/database/item_menu.txt:219
 msgid "religion"
 msgstr "religia"
 
-#: ../../tools/database/item_menu.txt:217
+#: ../../tools/database/item_menu.txt:220
 msgid "territories"
 msgstr "ulice [DE, AT, FR]"
 
-#: ../../tools/database/item_menu.txt:218
+#: ../../tools/database/item_menu.txt:221
 msgid "unnecessary"
 msgstr "zbędne tagi"
 
@@ -1484,7 +1484,7 @@ msgstr "Po naprawieniu błędu na OSM, oznacz jako zrobione. Ten problem zniknie
 msgid "zone:maxspeed"
 msgstr "zone:maxspeed [FR, DE]"
 
-#: ../../tools/database/item_menu.txt:226
+#: ../../tools/database/item_menu.txt:229
 msgid "power transformer"
 msgstr "stacje transformatorowe"
 
@@ -1548,11 +1548,11 @@ msgstr "strona internetowa"
 msgid "street objects"
 msgstr "obiekty przy drodze"
 
-#: ../../tools/database/item_menu.txt:221
+#: ../../tools/database/item_menu.txt:224
 msgid "openrailwaymap"
 msgstr "openrailwaymap"
 
-#: ../../tools/database/item_menu.txt:222
+#: ../../tools/database/item_menu.txt:225
 msgid "openrailwaymap in germany"
 msgstr "openrailwaymap Niemcy"
 
@@ -1644,15 +1644,15 @@ msgstr "Osmose tylko podpowiada, gdzie mogą występować błędy. Nie poprawiaj
 msgid "You can find help on the wiki:"
 msgstr "Możesz znaleźć pomoc na Wiki:"
 
-#: ../../tools/database/item_menu.txt:204
+#: ../../tools/database/item_menu.txt:206
 msgid "charging station"
 msgstr "stacja ładowania [FR]"
 
-#: ../../tools/database/item_menu.txt:205
+#: ../../tools/database/item_menu.txt:207
 msgid "charging station, could be integrated"
 msgstr "stacja ładowania, może być zintegrowana [FR]"
 
-#: ../../tools/database/item_menu.txt:206
+#: ../../tools/database/item_menu.txt:208
 msgid "charging station, need update"
 msgstr "stacja ładowania, potrzebna aktualizacja [FR]"
 
@@ -1700,15 +1700,15 @@ msgstr "Podstacja elektryczna, potrzebna aktualizacja [FR]"
 msgid "shop"
 msgstr "sklep [FR]"
 
-#: ../../tools/database/item_menu.txt:223
+#: ../../tools/database/item_menu.txt:226
 msgid "specific russia"
 msgstr "Rosja"
 
-#: ../../tools/database/item_menu.txt:224
+#: ../../tools/database/item_menu.txt:227
 msgid "specific brazil"
 msgstr "Brazylia"
 
-#: ../../tools/database/item_menu.txt:225
+#: ../../tools/database/item_menu.txt:228
 msgid "specific france"
 msgstr "Francja"
 
@@ -1740,4 +1740,16 @@ msgstr ""
 
 #: ../../tools/database/item_menu.txt:77
 msgid "VAT"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:204
+msgid "health centre"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:205
+msgid "health centre, could be integrated"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:209
+msgid "tourism"
 msgstr ""

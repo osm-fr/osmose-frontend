@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-05-28 18:30+0000\n"
+"PO-Revision-Date: 2020-05-28 19:17+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Portuguese (http://www.transifex.com/openstreetmap-france/osmose/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -577,7 +577,7 @@ msgid "street numbers"
 msgstr "números de porta"
 
 #: ../../tools/database/item_menu.txt:37
-#: ../../tools/database/item_menu.txt:212
+#: ../../tools/database/item_menu.txt:215
 msgid "highway"
 msgstr "rodovia"
 
@@ -603,7 +603,7 @@ msgid "tagwatch cleaner"
 msgstr "corretor de etiquetas"
 
 #: ../../tools/database/item_menu.txt:49
-#: ../../tools/database/item_menu.txt:219
+#: ../../tools/database/item_menu.txt:222
 msgid "wikipedia"
 msgstr "wikipedia"
 
@@ -831,7 +831,7 @@ msgstr "escola, pode ser integrada"
 
 #: ../../tools/database/item_menu.txt:27
 #: ../../tools/database/item_menu.txt:141
-#: ../../tools/database/item_menu.txt:220
+#: ../../tools/database/item_menu.txt:223
 msgid "public transport"
 msgstr "transporte público"
 
@@ -1357,47 +1357,47 @@ msgstr "Para novos países podemos ser contactados diretamente através de email
 msgid "JOSM validator"
 msgstr "Validação JOSM"
 
-#: ../../tools/database/item_menu.txt:207
+#: ../../tools/database/item_menu.txt:210
 msgid "seamark"
 msgstr "baliza costeira"
 
-#: ../../tools/database/item_menu.txt:208
+#: ../../tools/database/item_menu.txt:211
 msgid "addresses"
 msgstr "moradas"
 
-#: ../../tools/database/item_menu.txt:209
+#: ../../tools/database/item_menu.txt:212
 msgid "combinations"
 msgstr "combinações"
 
-#: ../../tools/database/item_menu.txt:210
+#: ../../tools/database/item_menu.txt:213
 msgid "deprecated"
 msgstr "depreciado"
 
-#: ../../tools/database/item_menu.txt:211
+#: ../../tools/database/item_menu.txt:214
 msgid "geometry"
 msgstr "geometria"
 
-#: ../../tools/database/item_menu.txt:213
+#: ../../tools/database/item_menu.txt:216
 msgid "multiple"
 msgstr "múltiplo"
 
-#: ../../tools/database/item_menu.txt:214
+#: ../../tools/database/item_menu.txt:217
 msgid "numeric"
 msgstr "numérico"
 
-#: ../../tools/database/item_menu.txt:215
+#: ../../tools/database/item_menu.txt:218
 msgid "relation"
 msgstr "relação"
 
-#: ../../tools/database/item_menu.txt:216
+#: ../../tools/database/item_menu.txt:219
 msgid "religion"
 msgstr "religião"
 
-#: ../../tools/database/item_menu.txt:217
+#: ../../tools/database/item_menu.txt:220
 msgid "territories"
 msgstr "territórios"
 
-#: ../../tools/database/item_menu.txt:218
+#: ../../tools/database/item_menu.txt:221
 msgid "unnecessary"
 msgstr "desnecessário"
 
@@ -1480,7 +1480,7 @@ msgstr "Após o erro ser corrigido nos dados do OSM, marque-o como resolvido. Po
 msgid "zone:maxspeed"
 msgstr "zone:maxspeed"
 
-#: ../../tools/database/item_menu.txt:226
+#: ../../tools/database/item_menu.txt:229
 msgid "power transformer"
 msgstr "transformador"
 
@@ -1544,11 +1544,11 @@ msgstr "URL"
 msgid "street objects"
 msgstr "objetos da rua"
 
-#: ../../tools/database/item_menu.txt:221
+#: ../../tools/database/item_menu.txt:224
 msgid "openrailwaymap"
 msgstr "openrailwaymap"
 
-#: ../../tools/database/item_menu.txt:222
+#: ../../tools/database/item_menu.txt:225
 msgid "openrailwaymap in germany"
 msgstr "openrailwaymap na alemanha"
 
@@ -1640,15 +1640,15 @@ msgstr ""
 msgid "You can find help on the wiki:"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:204
+#: ../../tools/database/item_menu.txt:206
 msgid "charging station"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:205
+#: ../../tools/database/item_menu.txt:207
 msgid "charging station, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:206
+#: ../../tools/database/item_menu.txt:208
 msgid "charging station, need update"
 msgstr ""
 
@@ -1696,15 +1696,15 @@ msgstr ""
 msgid "shop"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:223
+#: ../../tools/database/item_menu.txt:226
 msgid "specific russia"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:224
+#: ../../tools/database/item_menu.txt:227
 msgid "specific brazil"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:225
+#: ../../tools/database/item_menu.txt:228
 msgid "specific france"
 msgstr ""
 
@@ -1736,4 +1736,16 @@ msgstr ""
 
 #: ../../tools/database/item_menu.txt:77
 msgid "VAT"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:204
+msgid "health centre"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:205
+msgid "health centre, could be integrated"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:209
+msgid "tourism"
 msgstr ""

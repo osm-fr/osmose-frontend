@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-05-28 18:30+0000\n"
+"PO-Revision-Date: 2020-05-28 19:17+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -573,7 +573,7 @@ msgid "street numbers"
 msgstr "házszámok"
 
 #: ../../tools/database/item_menu.txt:37
-#: ../../tools/database/item_menu.txt:212
+#: ../../tools/database/item_menu.txt:215
 msgid "highway"
 msgstr "út"
 
@@ -599,7 +599,7 @@ msgid "tagwatch cleaner"
 msgstr "tagwatch tisztítás"
 
 #: ../../tools/database/item_menu.txt:49
-#: ../../tools/database/item_menu.txt:219
+#: ../../tools/database/item_menu.txt:222
 msgid "wikipedia"
 msgstr "Wikipédia"
 
@@ -827,7 +827,7 @@ msgstr "iskola: kiegészíthető"
 
 #: ../../tools/database/item_menu.txt:27
 #: ../../tools/database/item_menu.txt:141
-#: ../../tools/database/item_menu.txt:220
+#: ../../tools/database/item_menu.txt:223
 msgid "public transport"
 msgstr "tömegközlekedés"
 
@@ -1353,47 +1353,47 @@ msgstr "Új országok felvétele érdekében közvetlenül is elérhetők vagyun
 msgid "JOSM validator"
 msgstr "JOSM-érvényesítő"
 
-#: ../../tools/database/item_menu.txt:207
+#: ../../tools/database/item_menu.txt:210
 msgid "seamark"
 msgstr "hajózásitérkép-jel"
 
-#: ../../tools/database/item_menu.txt:208
+#: ../../tools/database/item_menu.txt:211
 msgid "addresses"
 msgstr "címek"
 
-#: ../../tools/database/item_menu.txt:209
+#: ../../tools/database/item_menu.txt:212
 msgid "combinations"
 msgstr "kombinációk"
 
-#: ../../tools/database/item_menu.txt:210
+#: ../../tools/database/item_menu.txt:213
 msgid "deprecated"
 msgstr "elavult"
 
-#: ../../tools/database/item_menu.txt:211
+#: ../../tools/database/item_menu.txt:214
 msgid "geometry"
 msgstr "geometria"
 
-#: ../../tools/database/item_menu.txt:213
+#: ../../tools/database/item_menu.txt:216
 msgid "multiple"
 msgstr "többszörös"
 
-#: ../../tools/database/item_menu.txt:214
+#: ../../tools/database/item_menu.txt:217
 msgid "numeric"
 msgstr "numerikus"
 
-#: ../../tools/database/item_menu.txt:215
+#: ../../tools/database/item_menu.txt:218
 msgid "relation"
 msgstr "kapcsolat"
 
-#: ../../tools/database/item_menu.txt:216
+#: ../../tools/database/item_menu.txt:219
 msgid "religion"
 msgstr "vallás"
 
-#: ../../tools/database/item_menu.txt:217
+#: ../../tools/database/item_menu.txt:220
 msgid "territories"
 msgstr "területek"
 
-#: ../../tools/database/item_menu.txt:218
+#: ../../tools/database/item_menu.txt:221
 msgid "unnecessary"
 msgstr "fölösleges"
 
@@ -1476,7 +1476,7 @@ msgstr "Miután a hibát kijavítottad az OSM-adatbázisban, jelöld meg készk�
 msgid "zone:maxspeed"
 msgstr "zone:maxspeed"
 
-#: ../../tools/database/item_menu.txt:226
+#: ../../tools/database/item_menu.txt:229
 msgid "power transformer"
 msgstr "transzformátor"
 
@@ -1540,11 +1540,11 @@ msgstr "URL"
 msgid "street objects"
 msgstr "utcai tárgyak"
 
-#: ../../tools/database/item_menu.txt:221
+#: ../../tools/database/item_menu.txt:224
 msgid "openrailwaymap"
 msgstr "OpenRailwayMap"
 
-#: ../../tools/database/item_menu.txt:222
+#: ../../tools/database/item_menu.txt:225
 msgid "openrailwaymap in germany"
 msgstr "OpenRailwayMap Németországban"
 
@@ -1636,15 +1636,15 @@ msgstr "Az Osmose-QA semmiképpen sem képes megmutatni a térképezés tökéle
 msgid "You can find help on the wiki:"
 msgstr "További segítséget talál a wikin:"
 
-#: ../../tools/database/item_menu.txt:204
+#: ../../tools/database/item_menu.txt:206
 msgid "charging station"
 msgstr "elektromos töltőállomás"
 
-#: ../../tools/database/item_menu.txt:205
+#: ../../tools/database/item_menu.txt:207
 msgid "charging station, could be integrated"
 msgstr "elektromos töltőállomás: kiegészíthető"
 
-#: ../../tools/database/item_menu.txt:206
+#: ../../tools/database/item_menu.txt:208
 msgid "charging station, need update"
 msgstr "elektromos töltőállomás: frissítendő"
 
@@ -1692,15 +1692,15 @@ msgstr "elektromos alállomás, frissítendő"
 msgid "shop"
 msgstr "bolt"
 
-#: ../../tools/database/item_menu.txt:223
+#: ../../tools/database/item_menu.txt:226
 msgid "specific russia"
 msgstr "Oroszország-specifikus"
 
-#: ../../tools/database/item_menu.txt:224
+#: ../../tools/database/item_menu.txt:227
 msgid "specific brazil"
 msgstr "Brazília-specifikus"
 
-#: ../../tools/database/item_menu.txt:225
+#: ../../tools/database/item_menu.txt:228
 msgid "specific france"
 msgstr "Franciaország-specifikus"
 
@@ -1732,4 +1732,16 @@ msgstr ""
 
 #: ../../tools/database/item_menu.txt:77
 msgid "VAT"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:204
+msgid "health centre"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:205
+msgid "health centre, could be integrated"
+msgstr ""
+
+#: ../../tools/database/item_menu.txt:209
+msgid "tourism"
 msgstr ""
