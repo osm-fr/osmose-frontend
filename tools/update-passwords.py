@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 
 try:
     import builtins
@@ -10,11 +10,11 @@ import inspect
 import os
 import psycopg2
 import sys
-from modules import utils
+import modules.utils
 
 if __name__ == "__main__":
 
-  dbconn = utils.get_dbconn()
+  dbconn = modules.utils.get_dbconn()
   dbcurs = dbconn.cursor()
 
   dbcurs.execute("SELECT COALESCE(max(id)+1, 1) FROM source;")
@@ -70,9 +70,9 @@ if __name__ == "__main__":
       return
 
   if len(sys.argv) > 1:
-    sys.path.append(sys.argv[1])
+    sys.path.insert(0, sys.argv[1])
   else:
-    sys.path.append("../../backend")
+    sys.path.insert(0, "../../backend")
 
   # Don't load translations, as not necessary
   def translate(str, *args):
@@ -81,6 +81,7 @@ if __name__ == "__main__":
   builtins.T_ = translate
   builtins.T_f = translate
 
+  importlib.reload(modules)  # needed as was loaded by import modules.utils
   import osmose_config
 
   for (country, country_config) in osmose_config.config.items():
