@@ -272,6 +272,18 @@ CREATE TABLE public.source_password (
 
 
 --
+-- Name: stats; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.stats (
+    source integer,
+    class integer,
+    count integer,
+    timestamp_range tsrange
+);
+
+
+--
 -- Name: backend backend_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -466,6 +478,13 @@ CREATE INDEX idx_marker_usernames ON public.marker USING gin (public.marker_user
 --
 
 CREATE INDEX idx_marker_z_order_curve_item ON public.marker USING btree (public.lonlat2z_order_curve((lon)::double precision, (lat)::double precision), item) WHERE (lat > ('-90'::integer)::numeric);
+
+
+--
+-- Name: idx_stats; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_stats ON public.stats USING btree (source, class);
 
 
 --
