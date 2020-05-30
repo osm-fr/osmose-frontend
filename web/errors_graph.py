@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import time, sys, datetime, io, os, tempfile
+import time, sys, datetime, io, os, tempfile, json, csv
 from datetime import timedelta
 os.environ['MPLCONFIGDIR'] = tempfile.mkdtemp()
 import matplotlib
@@ -142,39 +142,56 @@ class AutoDateLocatorDay(matplotlib.dates.AutoDateLocator):
 
 
 def plot(data, title, format):
-    dates = [q[0] for q in data]
-    opens = [q[1] for q in data]
+    if format == 'json':
+        jsonData = {}
+        for d in data:
+            jsonData[d[0].strftime("%Y-%m-%dT%H:%M:%SZ")] = int(d[1])
 
-    fig = matplotlib.pyplot.figure()
-    ax = fig.add_subplot(111)
-    ax.plot_date(dates, opens, '-', color='r')
-    ax.set_title(title)
-    # format the ticks
-    ax.relim()
-    if len(opens) > 1:
-       ytop = float(max(opens)) * 1.05 + 1
+        return json.dumps({
+            'title': title,
+            'data': jsonData
+        })
+    elif format == 'csv':
+        output = io.StringIO()
+        writer = csv.writer(output)
+        h = ['timestamp', 'value']
+        writer.writerow(h)
+        for d in data:
+            writer.writerow([d[0].strftime("%Y-%m-%dT%H:%M:%SZ"), int(d[1])])
+        return output.getvalue()
     else:
-       ytop = None
-    ax.set_ylim(bottom=0, top=ytop)
-    ax.autoscale_view()
-    # format the coords message box
-    ax.fmt_ydata = lambda x: '$%1.2f'%x
-    ax.grid(True)
+        dates = [q[0] for q in data]
+        opens = [q[1] for q in data]
+        fig = matplotlib.pyplot.figure()
+        ax = fig.add_subplot(111)
+        ax.plot_date(dates, opens, '-', color='r')
+        ax.set_title(title)
+        # format the ticks
+        ax.relim()
+        if len(opens) > 1:
+            ytop = float(max(opens)) * 1.05 + 1
+        else:
+            ytop = None
+        ax.set_ylim(bottom=0, top=ytop)
+        ax.autoscale_view()
+        # format the coords message box
+        ax.fmt_ydata = lambda x: '$%1.2f'%x
+        ax.grid(True)
 
-    locator = AutoDateLocatorDay()
-    locator.set_axis(ax.xaxis)
-    locator.refresh()
-    formatter = matplotlib.dates.AutoDateFormatter(locator)
-    formatter.scaled[30.] = '%Y-%m'
-    formatter.scaled[1.0] = '%Y-%m-%d'
-    ax.xaxis.set_major_formatter(formatter)
+        locator = AutoDateLocatorDay()
+        locator.set_axis(ax.xaxis)
+        locator.refresh()
+        formatter = matplotlib.dates.AutoDateFormatter(locator)
+        formatter.scaled[30.] = '%Y-%m'
+        formatter.scaled[1.0] = '%Y-%m-%d'
+        ax.xaxis.set_major_formatter(formatter)
 
-    fig.autofmt_xdate()
+        fig.autofmt_xdate()
 
-    buf = io.BytesIO()
-    fig.savefig(buf, format = format)
-    matplotlib.pyplot.close(fig)
-    return buf.getvalue()
+        buf = io.BytesIO()
+        fig.savefig(buf, format = format)
+        matplotlib.pyplot.close(fig)
+        return buf.getvalue()
 
 
 if __name__ == "__main__":
