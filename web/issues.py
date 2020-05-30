@@ -47,7 +47,7 @@ def graph(db, format='png'):
 
     try:
         data = errors_graph.make_plt(db, options, format)
-        response.content_type = {'png':'image/png', 'svg':'image/svg+xml', 'pdf':'application/pdf'}[format]
+        response.content_type = {'png':'image/png', 'svg':'image/svg+xml', 'pdf':'application/pdf', 'csv':'text/csv', 'json':'application/json'}[format]
         return data
     except Exception as e:
         response.content_type = "text/plain"
