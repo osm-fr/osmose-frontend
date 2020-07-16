@@ -61,7 +61,7 @@ app.mount('/control/', control_app.app)
 
 from api import app as api_app
 web_app.app.mount('api/0.2/', api_app.app_0_2)
-app.mount('/api/0.3beta/', api_app.app_0_3)
+app.mount('/api/0.3/', api_app.app_0_3)
 
 app_middleware = web_app.app_middleware
 
