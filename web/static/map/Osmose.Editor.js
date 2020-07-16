@@ -56,7 +56,7 @@ const OsmoseEditor = L.Control.Sidebar.extend({
     }
 
     this._$container.html("<center><img src='../images/throbbler.gif' alt='downloading'></center>");
-    const url = `/api/0.3beta/issue/${error}/fresh_elems${fix ? `/${fix}` : ''}`;
+    const url = `/api/0.3/issue/${error}/fresh_elems${fix ? `/${fix}` : ''}`;
     $.ajax({
       url,
       dataType: 'json',
@@ -67,7 +67,7 @@ const OsmoseEditor = L.Control.Sidebar.extend({
       $('#validate', this._$container).click((event) => {
         this._validate(event.currentTarget);
         $.ajax({
-          url: `/api/0.3beta/issue/${error}/done`,
+          url: `/api/0.3/issue/${error}/done`,
         }).done((d) => {
           this.errors.corrected(layer);
         });

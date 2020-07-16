@@ -60,7 +60,7 @@ export const OsmoseDoc = L.Control.Sidebar.extend({
     this._$container.html('');
 
     $.ajax({
-      url: `/api/0.3beta/items/${item}/class/${classs}?langs=auto`,
+      url: `/api/0.3/items/${item}/class/${classs}?langs=auto`,
       dataType: 'json',
       success: (data) => {
         this._last_item = item;
