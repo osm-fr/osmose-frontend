@@ -9,16 +9,17 @@
 # frodrigo <fred.rodrigo@gmail.com>, 2019
 # Hugoren Martinako <aumpfbahn@gmail.com>, 2020
 # Jorge Sanz <sanchi2@gmail.com>, 2019-2020
-# Marco Antonio <marcoantoniofrias@gmail.com>, 2014
-# Marco Antonio <marcoantoniofrias@gmail.com>, 2014-2017,2020
+# Juan Carlos, 2020
+# 3c4f354c26c2c190ba28f9c2666d7fdb_003e9d1 <b28923423b98dace80389ae64c99bf93_129697>, 2014
+# 3c4f354c26c2c190ba28f9c2666d7fdb_003e9d1 <b28923423b98dace80389ae64c99bf93_129697>, 2014-2017,2020
 # Mikel Ortega, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-05-28 19:17+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2020-07-09 18:26+0000\n"
+"Last-Translator: Juan Carlos\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1715,38 +1716,38 @@ msgstr "Corregir con osmose"
 
 #: tmp.tpl:133
 msgid "Done"
-msgstr ""
+msgstr "Hecho"
 
 #: tmp.tpl:155
 msgid ""
 "Osmose-QA is a quality assurance tool that detects issues in OpenStreetMap "
 "data."
-msgstr ""
+msgstr "Osmose-QA es una herramienta de control de calidad que detecta problemas en los datos de OpenStreetMap."
 
 #: tmp.tpl:156
 msgid ""
 "It detects a very wide range of issue types. It is also useful for "
 "integrating third-party data sets by conflation."
-msgstr ""
+msgstr "Detecta un amplio rango de tipos de problemas. También es útil para integrar conjuntos de datos o datos de terceros por fusión."
 
 #: tmp.tpl:157
 msgid ""
 "Feel free to report any problem, idea or new open data you want to add to "
 "Osmose on our Github."
-msgstr ""
+msgstr "Siéntase libre de informar sobre cualquier problema, idea o nuevos datos abiertos que desee añadir a Osmose en nuestro Github."
 
 #: ../../tools/database/item_menu.txt:77
 msgid "VAT"
-msgstr ""
+msgstr "VAT"
 
 #: ../../tools/database/item_menu.txt:204
 msgid "health centre"
-msgstr ""
+msgstr "centro de salud"
 
 #: ../../tools/database/item_menu.txt:205
 msgid "health centre, could be integrated"
-msgstr ""
+msgstr "centro de salud, podría ser integrado"
 
 #: ../../tools/database/item_menu.txt:209
 msgid "tourism"
-msgstr ""
+msgstr "turismo"

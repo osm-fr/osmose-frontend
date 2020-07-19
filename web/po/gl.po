@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the osmose-frontend package.
 # 
 # Translators:
+# ccpr1l <csdpe0810-tf@yahoo.es>, 2020
 # Navhy, 2019
 # Navhy, 2019
 # Navhy, 2019
@@ -11,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-05-28 19:17+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2020-07-15 15:06+0000\n"
+"Last-Translator: ccpr1l <csdpe0810-tf@yahoo.es>\n"
 "Language-Team: Galician (http://www.transifex.com/openstreetmap-france/osmose/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1559,188 +1560,188 @@ msgstr "planta de enerxía"
 msgid ""
 "Osmose tool is mainly developped by french people, and we aim to add more "
 "languages."
-msgstr ""
+msgstr "A ferramenta Osmose está desenvolvida principalmente por franceses, e intentamos engadir máis idiomas."
 
 #: ../../tools/database/item_menu.txt:197
 msgid "defibrillator"
-msgstr ""
+msgstr "desfibrilador"
 
 #: ../../tools/database/item_menu.txt:201
 msgid "radio support"
-msgstr ""
+msgstr "instalación de radio"
 
 #: ../../tools/database/item_menu.txt:202
 msgid "radio support, could be integrated"
-msgstr ""
+msgstr "instalación de radio, podería integrarse"
 
 #: ../../tools/database/item_menu.txt:203
 msgid "radio support, need update"
-msgstr ""
+msgstr "instalación de radio, necesita actualización"
 
 #: tmp.tpl:61 tmp.tpl:114
 #, python-format
 msgid "Information on issue %s"
-msgstr ""
+msgstr "Información do problema %s"
 
 #: tmp.tpl:111
 #, python-format
 msgid "Mark issue #%s as false positive"
-msgstr ""
+msgstr "Marcar problema #%s como falso positivo"
 
 #: tmp.tpl:112
 #, python-format
 msgid "Mark issue #%s as fixed"
-msgstr ""
+msgstr "Marcar problema #%s como arranxado"
 
 #: tmp.tpl:113
 #, python-format
 msgid "delete issue #%s"
-msgstr ""
+msgstr "borrar problema #%s"
 
 #: tmp.tpl:125
 msgid "How to Fix"
-msgstr ""
+msgstr "Como se arranxa"
 
 #: tmp.tpl:126
 msgid "Trap to avoid"
-msgstr ""
+msgstr "Trampa a evitar"
 
 #: tmp.tpl:127
 msgid "Example"
-msgstr ""
+msgstr "Exemplo"
 
 #: tmp.tpl:128
 msgid "Source Code"
-msgstr ""
+msgstr "Código fonte"
 
 #: tmp.tpl:129
 msgid "Resource used"
-msgstr ""
+msgstr "Recurso usado"
 
 #: tmp.tpl:130
 msgid "Want to improve this control or this doc?"
-msgstr ""
+msgstr "Queres mellorar este control ou este documento?"
 
 #: tmp.tpl:154
 msgid "Welcome to Osmose-QA"
-msgstr ""
+msgstr "Benvido a Osmose-QA"
 
 #: tmp.tpl:158
 msgid ""
 "In no case Osmose-QA should provide you the absolute right way to map, "
 "always keep a critical eye."
-msgstr ""
+msgstr "Osmose-QA en ningún caso che debería indicar a forma absolutamente correcta de mapear; mantén sempre un ollo crítico."
 
 #: tmp.tpl:159
 msgid "You can find help on the wiki:"
-msgstr ""
+msgstr "Podes obter axuda na wiki:"
 
 #: ../../tools/database/item_menu.txt:206
 msgid "charging station"
-msgstr ""
+msgstr "estación de carga"
 
 #: ../../tools/database/item_menu.txt:207
 msgid "charging station, could be integrated"
-msgstr ""
+msgstr "estación de carga, podería integrarse"
 
 #: ../../tools/database/item_menu.txt:208
 msgid "charging station, need update"
-msgstr ""
+msgstr "estación de carga, necesita actualización"
 
 #: ../../tools/database/item_menu.txt:30
 msgid "related objects"
-msgstr ""
+msgstr "obxectos relacionados"
 
 #: ../../tools/database/item_menu.txt:198
 msgid "wastewater"
-msgstr ""
+msgstr "augas residuais"
 
 #: ../../tools/database/item_menu.txt:199
 msgid "wastewater, could be integrated"
-msgstr ""
+msgstr "augas residuais, podería integrarse"
 
 #: ../../tools/database/item_menu.txt:200
 msgid "wastewater, need update"
-msgstr ""
+msgstr "augas residuais, necesita actualización"
 
 #: ../../tools/database/item_menu.txt:129
 msgid "gas station, not integrated"
-msgstr ""
+msgstr "gasolineira, non integrada"
 
 #: tmp.tpl:109
 msgid "delete issue"
-msgstr ""
+msgstr "borrar problema"
 
 #: tmp.tpl:199
 msgid "Issue details"
-msgstr ""
+msgstr "Detalles do problema"
 
 #: tmp.tpl:201
 msgid "Report based on data from date"
-msgstr ""
+msgstr "Informe baseado nos datos dende a data"
 
 #: ../../tools/database/item_menu.txt:175
 msgid "pharmacy, need update"
-msgstr ""
+msgstr "farmacia, necesita actualización"
 
 #: ../../tools/database/item_menu.txt:184
 msgid "power substation, need update"
-msgstr ""
+msgstr "subestación de enerxía, necesita actualización"
 
 #: ../../tools/database/item_menu.txt:188
 msgid "shop"
-msgstr ""
+msgstr "tenda"
 
 #: ../../tools/database/item_menu.txt:226
 msgid "specific russia"
-msgstr ""
+msgstr "específico de Rusia"
 
 #: ../../tools/database/item_menu.txt:227
 msgid "specific brazil"
-msgstr ""
+msgstr "específico de Brasil"
 
 #: ../../tools/database/item_menu.txt:228
 msgid "specific france"
-msgstr ""
+msgstr "específico de Francia"
 
 #: tmp.tpl:177
 msgid "Fixed with Osmose"
-msgstr ""
+msgstr "Arranxado por Osmose"
 
 #: tmp.tpl:133
 msgid "Done"
-msgstr ""
+msgstr "Feito"
 
 #: tmp.tpl:155
 msgid ""
 "Osmose-QA is a quality assurance tool that detects issues in OpenStreetMap "
 "data."
-msgstr ""
+msgstr "Osmose-QA é unha ferrementa de control de calidade que detecta problemas nos datos de OpenStreetMap."
 
 #: tmp.tpl:156
 msgid ""
 "It detects a very wide range of issue types. It is also useful for "
 "integrating third-party data sets by conflation."
-msgstr ""
+msgstr "Detecta unha gran variedade de tipos de problemas. Tamén é útil para integrar conxuntos de datos de terceiros por combinación."
 
 #: tmp.tpl:157
 msgid ""
 "Feel free to report any problem, idea or new open data you want to add to "
 "Osmose on our Github."
-msgstr ""
+msgstr "Non dubides en informar de calquera problema, idea ou novos datos abertos que queiras engadir a Osmose no noso Github."
 
 #: ../../tools/database/item_menu.txt:77
 msgid "VAT"
-msgstr ""
+msgstr "IVE"
 
 #: ../../tools/database/item_menu.txt:204
 msgid "health centre"
-msgstr ""
+msgstr "centro de saúde"
 
 #: ../../tools/database/item_menu.txt:205
 msgid "health centre, could be integrated"
-msgstr ""
+msgstr "centro de saúde, podería integrarse"
 
 #: ../../tools/database/item_menu.txt:209
 msgid "tourism"
-msgstr ""
+msgstr "turismo"
