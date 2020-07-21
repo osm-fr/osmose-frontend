@@ -169,8 +169,6 @@ GROUP BY
 def issues_mvt(db, z, x, y, format):
     lon1,lat2 = tiles.tile2lonlat(x,y,z)
     lon2,lat1 = tiles.tile2lonlat(x+1,y+1,z)
-    dlon = (lon2 - lon1) / 256
-    dlat = (lat2 - lat1) / 256
 
     params = Params(max_limit=50 if z > 18 else 10000)
     params.tilex = x
