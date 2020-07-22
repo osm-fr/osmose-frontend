@@ -9,7 +9,7 @@ for i in $*; do
 
   psql -d osmose_frontend -c  "DELETE FROM marker
                       WHERE source IN (SELECT id FROM source WHERE country = '$i');"
-  psql -d osmose_frontend -c  "DELETE FROM dynpoi_update_last
+  psql -d osmose_frontend -c  "DELETE FROM updates_last
                       WHERE source IN (SELECT id FROM source WHERE country = '$i');"
   psql -d osmose_frontend -c  "DELETE FROM dynpoi_class
                       WHERE source IN (SELECT id FROM source WHERE country = '$i');"

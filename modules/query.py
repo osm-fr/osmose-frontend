@@ -96,7 +96,7 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
         if useDevItem:
             tablesLeft.append("items")
     if last_update:
-            tables.append("dynpoi_update_last")
+            tables.append("updates_last")
 
     if "dynpoi_class" in tables:
         join += """
@@ -120,10 +120,10 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
         %sJOIN items ON
             %s.item = items.item""" % ("LEFT " if "items" in tablesLeft else "", itemField)
 
-    if "dynpoi_update_last" in tables:
+    if "updates_last" in tables:
         join += """
-        JOIN dynpoi_update_last ON
-            dynpoi_update_last.source = marker.source"""
+        JOIN updates_last ON
+            updates_last.source_id = marker.source"""
 
     if item != None:
         where.append(_build_where_item(item, itemField))
@@ -222,7 +222,7 @@ def _gets(db, params):
         source.analyser,
         class.title,
         class.level,
-        dynpoi_update_last.timestamp,
+        updates_last.timestamp,
         items.menu"""
         if not params.status in ("done", "false"):
             sqlbase += """,
@@ -233,11 +233,11 @@ def _gets(db, params):
     sqlbase = sqlbase[0:-1] + """
     FROM
         %s
-        JOIN dynpoi_update_last ON
-            marker.source = dynpoi_update_last.source
+        JOIN updates_last ON
+            marker.source = updates_last.source_id
     WHERE
         %s AND
-        dynpoi_update_last.timestamp > (now() - interval '3 months')
+        updates_last.timestamp > (now() - interval '3 months')
     """
     if params.limit:
         sqlbase += """
@@ -296,7 +296,7 @@ def _count(db, params, by, extraFrom=[], extraFields=[], orderBy=False):
     if params.limit:
         sqlbase += " LIMIT %s" % params.limit
     last_update = False
-    if "dynpoi_update_last" in byTable:
+    if "updates_last" in byTable:
         last_update = True
 
     join, where = _build_param(db, params.bbox, params.source, params.item, params.level, params.users, params.classs, params.country, params.useDevItem, params.status, params.tags, params.fixable, summary=summary, forceTable=byTable, start_date=params.start_date, end_date=params.end_date, last_update=last_update, tilex=params.tilex, tiley=params.tiley, zoom=params.zoom, osm_type=params.osm_type, osm_id=params.osm_id)

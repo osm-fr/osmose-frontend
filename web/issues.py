@@ -93,7 +93,7 @@ def index(db, lang, format=None):
             "marker.class",
             "source.country",
             "source.analyser",
-            "dynpoi_update_last.timestamp"], [
+            "updates_last.timestamp"], [
             "items",
             "class"], [
             "min(items.menu::text)::jsonb AS menu",

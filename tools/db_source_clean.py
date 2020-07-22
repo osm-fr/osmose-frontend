@@ -28,9 +28,16 @@ if __name__ == "__main__":
     dbconn  = utils.get_dbconn()
     dbcurs  = dbconn.cursor()
 
-    tables  = ["dynpoi_class", "marker", "dynpoi_status", "dynpoi_update"]
+    tables  = ["dynpoi_class", "marker", "dynpoi_status"]
     for t in tables:
         dbcurs.execute("SELECT source FROM %s GROUP BY source;"%t)
         for res in dbcurs.fetchall():
             if res[0] not in sources:
                 print("DELETE FROM %s WHERE source = %d;"%(t, res[0]))
+
+    tables  = ["updates"]
+    for t in tables:
+        dbcurs.execute("SELECT source_id FROM %s GROUP BY source_id;"%t)
+        for res in dbcurs.fetchall():
+            if res[0] not in sources:
+                print("DELETE FROM %s WHERE source_id = %d;"%(t, res[0]))

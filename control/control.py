@@ -112,16 +112,16 @@ def status(db, country = None, analyser = None):
 
     objects = request.params.get('objects', default=False)
 
-    db.execute('SELECT timestamp, source, analyser_version FROM dynpoi_update_last WHERE source = (SELECT id FROM source WHERE analyser = %s AND country = %s)', (analyser, country))
+    db.execute('SELECT timestamp, source_id, analyser_version FROM updates_last WHERE source_id = (SELECT id FROM source WHERE analyser = %s AND country = %s)', (analyser, country))
     r = db.fetchone()
     if r and r['timestamp']:
         return {
            'version': 1,
            'timestamp': str(r['timestamp'].replace(tzinfo=None)),
            'analyser_version': str(r['analyser_version'] or ''),
-           'nodes': _status_object(db, 'N', r['source']) if objects != False else None,
-           'ways': _status_object(db, 'W', r['source']) if objects != False else None,
-           'relations': _status_object(db, 'R', r['source']) if objects != False else None,
+           'nodes': _status_object(db, 'N', r['source_id']) if objects != False else None,
+           'ways': _status_object(db, 'W', r['source_id']) if objects != False else None,
+           'relations': _status_object(db, 'R', r['source_id']) if objects != False else None,
         }
     else:
         return HTTPError(404)
