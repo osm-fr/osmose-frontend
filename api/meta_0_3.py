@@ -27,14 +27,24 @@ from modules import query_meta
 app_0_2 = default_app.pop()
 
 
+def _map_items(categories):
+    for categorie in categories:
+        categorie['categ'] = categorie['id']
+        del categorie['id']
+        for item in categorie['items']:
+            item['categ'] = item['categorie_id']
+            del item['categorie_id']
+    return categories
+
+
 @route('/items')
 def items(db, langs):
-    return {"categories": query_meta._items_3(db, langs = langs)}
+    return {"categories": _map_items(query_meta._items_3(db, langs = langs))}
 
 
 @route('/items/<item:int>/class/<classs:int>')
 def items(db, langs, item, classs):
-    return {"categories": query_meta._items_3(db, item = item, classs = classs, langs = langs)}
+    return {"categories": (query_meta._items_3(db, item = item, classs = classs, langs = langs))}
 
 
 @route('/countries')

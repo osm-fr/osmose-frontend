@@ -27,8 +27,8 @@ SELECT item FROM t WHERE item IS NOT NULL;
   sql = """
 select m.item 
 from marker_list_item m
-left join dynpoi_item on dynpoi_item.item = m.item
-where dynpoi_item.item IS NULL
+left join items on items.item = m.item
+where items.item IS NULL
 order by m.item;"""
   dbcurs.execute(sql)
 
@@ -43,7 +43,7 @@ order by m.item;"""
       prev_cat = categ
       colors = set()
       avail_flags = {}
-      sql = "select item, marker_color, marker_flag from dynpoi_item where categ = %s order by item"
+      sql = "select item, marker_color, marker_flag from items where categorie_id = %s order by item"
       dbcurs.execute(sql, (categ,))
       for m in dbcurs.fetchall():
         color = m["marker_color"]
@@ -65,6 +65,6 @@ order by m.item;"""
       print("not enough available flags for item=%d" % item)
       continue
 
-    print("insert into dynpoi_item values (%d, %d, '%s', '%s', NULL, ARRAY[1, 2, 3]);" % (item, categ, chosen_color, chosen_flag.replace("'", "''")))
+    print("insert into items values (%d, %d, '%s', '%s', NULL, ARRAY[1, 2, 3]);" % (item, categ, chosen_color, chosen_flag.replace("'", "''")))
     avail_flags[chosen_color].remove(chosen_flag)
 

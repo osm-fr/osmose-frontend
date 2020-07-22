@@ -92,9 +92,9 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
     if country is not None:
         tables.append("source")
     if not stats:
-        tables.append("dynpoi_item")
+        tables.append("items")
         if useDevItem:
-            tablesLeft.append("dynpoi_item")
+            tablesLeft.append("items")
     if last_update:
             tables.append("dynpoi_update_last")
 
@@ -115,10 +115,10 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
         JOIN source ON
             marker.source = source.id"""
 
-    if "dynpoi_item" in tables:
+    if "items" in tables:
         join += """
-        %sJOIN dynpoi_item ON
-            %s.item = dynpoi_item.item""" % ("LEFT " if "dynpoi_item" in tablesLeft else "", itemField)
+        %sJOIN items ON
+            %s.item = items.item""" % ("LEFT " if "items" in tablesLeft else "", itemField)
 
     if "dynpoi_update_last" in tables:
         join += """
@@ -152,7 +152,7 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
         where.append("source.country LIKE '%s'" % country)
 
     if not status in ("done", "false") and useDevItem == True:
-        where.append("dynpoi_item.item IS NULL")
+        where.append("items.item IS NULL")
 
     if not status in ("done", "false") and users:
         where.append("ARRAY['%s'] && marker_usernames(marker.elems)" % "','".join(map(lambda user: utils.pg_escape(db.mogrify(user).decode('utf-8')), users)))
@@ -223,7 +223,7 @@ def _gets(db, params):
         class.title,
         class.level,
         dynpoi_update_last.timestamp,
-        dynpoi_item.menu"""
+        items.menu"""
         if not params.status in ("done", "false"):
             sqlbase += """,
         -1 AS date"""
