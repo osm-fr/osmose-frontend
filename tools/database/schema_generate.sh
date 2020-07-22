@@ -30,4 +30,4 @@ ORDER BY
   END
 " > schema.sql
 
-pg_dump --no-tablespaces -s -O -x -t "backend|marker*|dynpoi_categ|dynpoi_class|class|dynpoi_item|source|source_password|stats|dynpoi_status|dynpoi_status_id_seq|dynpoi_update|dynpoi_update_last" -h "$DB_HOST" -U osmose osmose_frontend >> schema.sql
+pg_dump --no-tablespaces -s -O -x -t "backend|marker*|categories|dynpoi_class|class|items|source|source_password|stats|dynpoi_status|dynpoi_status_id_seq|dynpoi_update|dynpoi_update_last" -h "$DB_HOST" -U osmose osmose_frontend >> schema.sql

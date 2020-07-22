@@ -99,7 +99,7 @@ def heat(db, z, x, y):
     lon2,lat1 = tiles.tile2lonlat(x+1,y+1,z)
 
     params = Params()
-    items = query._build_where_item(params.item, "dynpoi_item")
+    items = query._build_where_item(params.item, "items")
     params.tilex = x
     params.tiley = y
     params.zoom = z
@@ -113,7 +113,7 @@ def heat(db, z, x, y):
 SELECT
     SUM((SELECT SUM(t) FROM UNNEST(number) t))
 FROM
-    dynpoi_item
+    items
 WHERE
 """ + items)
     limit = db.fetchone()
@@ -131,7 +131,7 @@ SELECT
     COUNT(*),
     ((lon-%(lon1)s) * %(count)s / (%(lon2)s-%(lon1)s) + 0.5)::int AS latn,
     ((lat-%(lat1)s) * %(count)s / (%(lat2)s-%(lat1)s) + 0.5)::int AS lonn,
-    mode() WITHIN GROUP (ORDER BY dynpoi_item.marker_color) AS color
+    mode() WITHIN GROUP (ORDER BY items.marker_color) AS color
 FROM
 """ + join + """
 WHERE

@@ -95,7 +95,7 @@ def get_text(db, options):
     elif len(options.items)==1 and len(options.classes)==1:
         db.execute("SELECT title->'en' FROM class WHERE class=%s AND item=%s LIMIT 1;", (options.classes[0], options.items[0]))
     elif len(options.items)==1:
-        db.execute("SELECT menu->'en' FROM dynpoi_item WHERE item=%s LIMIT 1;", (options.items[0],))
+        db.execute("SELECT menu->'en' FROM items WHERE item=%s LIMIT 1;", (options.items[0],))
     else:
         return ""
 

@@ -103,8 +103,8 @@ $function$;
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.17
--- Dumped by pg_dump version 9.6.17
+-- Dumped from database version 11.8
+-- Dumped by pg_dump version 11.7 (Debian 11.7-0+deb10u1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -130,6 +130,16 @@ CREATE TABLE public.backend (
 
 
 --
+-- Name: categories; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.categories (
+    id integer NOT NULL,
+    menu jsonb
+);
+
+
+--
 -- Name: class; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -150,16 +160,6 @@ CREATE TABLE public.class (
 
 
 --
--- Name: dynpoi_categ; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.dynpoi_categ (
-    categ integer NOT NULL,
-    menu jsonb
-);
-
-
---
 -- Name: dynpoi_class; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -169,22 +169,6 @@ CREATE TABLE public.dynpoi_class (
     item integer,
     "timestamp" timestamp without time zone,
     count integer
-);
-
-
---
--- Name: dynpoi_item; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.dynpoi_item (
-    item integer NOT NULL,
-    categ integer,
-    marker_color character varying(16),
-    marker_flag character varying(16),
-    menu jsonb,
-    levels integer[],
-    number integer[],
-    tags character varying[]
 );
 
 
@@ -229,6 +213,22 @@ CREATE TABLE public.dynpoi_update_last (
     version text,
     remote_ip character varying(128) DEFAULT NULL::character varying,
     analyser_version text
+);
+
+
+--
+-- Name: items; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.items (
+    item integer NOT NULL,
+    categorie_id integer NOT NULL,
+    marker_color character varying(16),
+    marker_flag character varying(16),
+    menu jsonb,
+    levels integer[],
+    number integer[],
+    tags character varying[]
 );
 
 
@@ -292,21 +292,21 @@ ALTER TABLE ONLY public.backend
 
 
 --
+-- Name: categories categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_pkey PRIMARY KEY (id);
+
+ALTER TABLE public.categories CLUSTER ON categories_pkey;
+
+
+--
 -- Name: class class_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.class
     ADD CONSTRAINT class_pkey PRIMARY KEY (item, class);
-
-
---
--- Name: dynpoi_categ dynpoi_categ_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.dynpoi_categ
-    ADD CONSTRAINT dynpoi_categ_pkey PRIMARY KEY (categ);
-
-ALTER TABLE public.dynpoi_categ CLUSTER ON dynpoi_categ_pkey;
 
 
 --
@@ -318,21 +318,11 @@ ALTER TABLE ONLY public.dynpoi_class
 
 
 --
--- Name: dynpoi_item dynpoi_item_marker; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: items dynpoi_item_marker; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.dynpoi_item
+ALTER TABLE ONLY public.items
     ADD CONSTRAINT dynpoi_item_marker UNIQUE (marker_color, marker_flag);
-
-
---
--- Name: dynpoi_item dynpoi_item_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.dynpoi_item
-    ADD CONSTRAINT dynpoi_item_pkey PRIMARY KEY (item);
-
-ALTER TABLE public.dynpoi_item CLUSTER ON dynpoi_item_pkey;
 
 
 --
@@ -361,6 +351,16 @@ ALTER TABLE ONLY public.dynpoi_update
     ADD CONSTRAINT dynpoi_update_pkey PRIMARY KEY (source, "timestamp");
 
 ALTER TABLE public.dynpoi_update CLUSTER ON dynpoi_update_pkey;
+
+
+--
+-- Name: items items_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.items
+    ADD CONSTRAINT items_pkey PRIMARY KEY (item);
+
+ALTER TABLE public.items CLUSTER ON items_pkey;
 
 
 --
@@ -516,6 +516,14 @@ ALTER TABLE ONLY public.dynpoi_class
 
 ALTER TABLE ONLY public.dynpoi_status
     ADD CONSTRAINT dynpoi_status_source_fkey FOREIGN KEY (source) REFERENCES public.source(id);
+
+
+--
+-- Name: items item_categorie_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.items
+    ADD CONSTRAINT item_categorie_fkey FOREIGN KEY (categorie_id) REFERENCES public.categories(id);
 
 
 --

@@ -9,5 +9,5 @@ for i in $*; do
 
   psql -d osmose_frontend -c  "DELETE FROM marker where item = '$i'"
   psql -d osmose_frontend -c  "DELETE FROM class where item = '$i'"
-  psql -d osmose_frontend -c  "DELETE FROM dynpoi_item where item = '$i'"
+  psql -d osmose_frontend -c  "DELETE FROM items where item = '$i'"
 done

@@ -48,7 +48,7 @@ def _items(db, lang):
         item,
         menu
     FROM
-        dynpoi_item
+        items
     ORDER BY
         item
     """
@@ -84,30 +84,30 @@ def _countries_3(db):
 def _categories(db, lang):
     sql = """
     SELECT
-        dynpoi_categ.categ,
-        dynpoi_categ.menu AS categ_menu,
-        dynpoi_item.item,
-        dynpoi_item.menu,
-        dynpoi_item.marker_color,
-        dynpoi_item.marker_flag,
-        dynpoi_item.levels,
-        dynpoi_item.number,
-        dynpoi_item.tags
+        items.categorie_id,
+        categories.menu AS categ_menu,
+        items.item,
+        items.menu,
+        items.marker_color,
+        items.marker_flag,
+        items.levels,
+        items.number,
+        items.tags
     FROM
-        dynpoi_categ
-        JOIN dynpoi_item ON
-            dynpoi_categ.categ = dynpoi_item.categ
+        categories
+        JOIN items ON
+            categories.id = items.categorie_id
     WHERE
-        NOT dynpoi_item.levels = '{}'
+        NOT items.levels = '{}'
     ORDER BY
-        categ,
+        categorie_id,
         item
     """
     result = []
     db.execute(sql)
     for res in db.fetchall():
-        if result == [] or result[-1]["categ"] != res["categ"]:
-            ret = {"categ":res["categ"], "menu": "no translation", "item": []}
+        if result == [] or result[-1]["categorie_id"] != res["categorie_id"]:
+            ret = {"categorie_id":res["categorie_id"], "menu": "no translation", "item": []}
             result.append(ret)
             ret["menu_lang"] = {k: v for k, v in res["categ_menu"].items() if v}
             for l in lang:
@@ -126,19 +126,19 @@ def _categories(db, lang):
 def _items_3(db, item = None, classs = None, langs = None):
     sql = """
     SELECT
-        dynpoi_categ.categ,
-        dynpoi_categ.menu AS title
+        id,
+        menu AS title
     FROM
-        dynpoi_categ
+        categories
     WHERE
         1 = 1 """ + \
-        ("""AND categ = CASE
+        ("""AND id = CASE
             WHEN %(item)s < 1000 THEN 10
             ELSE (%(item)s / 1000)::int * 10
          END""" if item != None else '') + \
     """
     ORDER BY
-        categ
+        id
     """
     db.execute(sql, {'item': item})
     categs = db.fetchall()
@@ -148,14 +148,14 @@ def _items_3(db, item = None, classs = None, langs = None):
     sql = """
     SELECT
         item,
-        categ,
+        categorie_id,
         marker_color AS color,
         menu AS title,
         levels,
         number,
         tags
     FROM
-        dynpoi_item
+        items
     WHERE
         1 = 1""" + \
         ("AND item = %(item)s" if item != None else '') + \
@@ -172,7 +172,7 @@ def _items_3(db, item = None, classs = None, langs = None):
     ), items))
     items_categ = defaultdict(list)
     for i in items:
-        items_categ[i['categ']].append(i)
+        items_categ[i['categorie_id']].append(i)
 
     sql = """
     SELECT
@@ -220,7 +220,7 @@ def _items_3(db, item = None, classs = None, langs = None):
                     item,
                     **{'class': class_item[item['item']]}
                 ),
-                items_categ[categ['categ']]))
+                items_categ[categ['id']]))
         ),
         categs))
 
