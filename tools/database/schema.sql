@@ -190,33 +190,6 @@ CREATE TABLE public.dynpoi_status (
 
 
 --
--- Name: dynpoi_update; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.dynpoi_update (
-    source integer NOT NULL,
-    "timestamp" timestamp with time zone NOT NULL,
-    remote_url character varying(2048),
-    remote_ip character varying(128),
-    version text,
-    analyser_version text
-);
-
-
---
--- Name: dynpoi_update_last; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.dynpoi_update_last (
-    source integer NOT NULL,
-    "timestamp" timestamp with time zone,
-    version text,
-    remote_ip character varying(128) DEFAULT NULL::character varying,
-    analyser_version text
-);
-
-
---
 -- Name: items; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -284,6 +257,33 @@ CREATE TABLE public.stats (
 
 
 --
+-- Name: updates; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.updates (
+    source_id integer NOT NULL,
+    "timestamp" timestamp with time zone NOT NULL,
+    remote_url character varying(2048),
+    remote_ip character varying(128),
+    version text,
+    analyser_version text
+);
+
+
+--
+-- Name: updates_last; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.updates_last (
+    source_id integer NOT NULL,
+    "timestamp" timestamp with time zone,
+    version text,
+    remote_ip character varying(128) DEFAULT NULL::character varying,
+    analyser_version text
+);
+
+
+--
 -- Name: backend backend_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -318,14 +318,6 @@ ALTER TABLE ONLY public.dynpoi_class
 
 
 --
--- Name: items dynpoi_item_marker; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.items
-    ADD CONSTRAINT dynpoi_item_marker UNIQUE (marker_color, marker_flag);
-
-
---
 -- Name: dynpoi_status dynpoi_status_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -334,23 +326,11 @@ ALTER TABLE ONLY public.dynpoi_status
 
 
 --
--- Name: dynpoi_update_last dynpoi_update_last_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: items items_marker_color_flag; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.dynpoi_update_last
-    ADD CONSTRAINT dynpoi_update_last_pkey PRIMARY KEY (source);
-
-ALTER TABLE public.dynpoi_update_last CLUSTER ON dynpoi_update_last_pkey;
-
-
---
--- Name: dynpoi_update dynpoi_update_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.dynpoi_update
-    ADD CONSTRAINT dynpoi_update_pkey PRIMARY KEY (source, "timestamp");
-
-ALTER TABLE public.dynpoi_update CLUSTER ON dynpoi_update_pkey;
+ALTER TABLE ONLY public.items
+    ADD CONSTRAINT items_marker_color_flag UNIQUE (marker_color, marker_flag);
 
 
 --
@@ -385,6 +365,26 @@ ALTER TABLE ONLY public.source_password
 
 ALTER TABLE ONLY public.source
     ADD CONSTRAINT source_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: updates_last updates_last_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.updates_last
+    ADD CONSTRAINT updates_last_pkey PRIMARY KEY (source_id);
+
+ALTER TABLE public.updates_last CLUSTER ON updates_last_pkey;
+
+
+--
+-- Name: updates updates_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.updates
+    ADD CONSTRAINT updates_pkey PRIMARY KEY (source_id, "timestamp");
+
+ALTER TABLE public.updates CLUSTER ON updates_pkey;
 
 
 --
@@ -548,6 +548,22 @@ ALTER TABLE ONLY public.marker
 
 ALTER TABLE ONLY public.source_password
     ADD CONSTRAINT source_password_source_fkey FOREIGN KEY (source_id) REFERENCES public.source(id);
+
+
+--
+-- Name: updates_last updates_last_source_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.updates_last
+    ADD CONSTRAINT updates_last_source_id_fkey FOREIGN KEY (source_id) REFERENCES public.source(id);
+
+
+--
+-- Name: updates updates_source_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.updates
+    ADD CONSTRAINT updates_source_id_fkey FOREIGN KEY (source_id) REFERENCES public.source(id);
 
 
 --

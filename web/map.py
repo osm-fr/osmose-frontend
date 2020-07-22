@@ -76,13 +76,13 @@ def index(db, user, lang):
 SELECT
     EXTRACT(EPOCH FROM ((now())-timestamp)) AS age
 FROM
-    dynpoi_update_last
+    updates_last
 ORDER BY
     timestamp
 LIMIT
     1
 OFFSET
-    (SELECT COUNT(*)/2 FROM dynpoi_update_last)
+    (SELECT COUNT(*)/2 FROM updates_last)
 ;
 """
     db.execute(sql)
