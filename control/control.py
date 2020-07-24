@@ -48,9 +48,9 @@ def send_update(db):
 SELECT
     id
 FROM
-    source
-    JOIN source_password ON
-        source.id = source_id
+    sources
+    JOIN sources_password ON
+        sources.id = source_id
 WHERE
     analyser = %(analyser)s AND
     country = %(country)s AND
@@ -63,10 +63,10 @@ LIMIT 1
     if not res and not os.environ.get("OSMOSE_UNLOCKED_UPDATE"):
         abort(403, 'AUTH FAIL')
     if not res and os.environ.get("OSMOSE_UNLOCKED_UPDATE"):
-        r = db.execute("SELECT COALESCE(MAX(id), 0) + 1 AS id FROM source")
+        r = db.execute("SELECT COALESCE(MAX(id), 0) + 1 AS id FROM sources")
         source_id = db.fetchone()["id"]
-        db.execute("INSERT INTO source(id, country, analyser) VALUES (%s, %s, %s)", (source_id, country, analyser))
-        db.execute("INSERT INTO source_password(source_id, password) VALUES(%s, %s)", (source_id, code))
+        db.execute("INSERT INTO sources(id, country, analyser) VALUES (%s, %s, %s)", (source_id, country, analyser))
+        db.execute("INSERT INTO sources_password(source_id, password) VALUES(%s, %s)", (source_id, code))
         db.connection.commit()
     else:
         source_id = res["id"]
@@ -112,7 +112,7 @@ def status(db, country = None, analyser = None):
 
     objects = request.params.get('objects', default=False)
 
-    db.execute('SELECT timestamp, source_id, analyser_version FROM updates_last WHERE source_id = (SELECT id FROM source WHERE analyser = %s AND country = %s)', (analyser, country))
+    db.execute('SELECT timestamp, source_id, analyser_version FROM updates_last WHERE source_id = (SELECT id FROM sources WHERE analyser = %s AND country = %s)', (analyser, country))
     r = db.fetchone()
     if r and r['timestamp']:
         return {

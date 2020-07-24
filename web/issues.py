@@ -91,8 +91,8 @@ def index(db, lang, format=None):
             "dynpoi_class.item",
             "marker.source",
             "marker.class",
-            "source.country",
-            "source.analyser",
+            "sources.country",
+            "sources.analyser",
             "updates_last.timestamp"], [
             "items",
             "class"], [

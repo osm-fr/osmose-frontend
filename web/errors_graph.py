@@ -108,7 +108,7 @@ def get_text(db, options):
 
 def get_src(db, options):
     if len(options.sources) == 1:
-        db.execute("SELECT country, analyser FROM source WHERE id=%s;", (options.sources[0], ))
+        db.execute("SELECT country, analyser FROM sources WHERE id=%s;", (options.sources[0], ))
         r = db.fetchone()
         return r[0] + " - " + r[1]
 

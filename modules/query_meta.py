@@ -61,7 +61,7 @@ def _countries(db, lang):
     SELECT DISTINCT
         country
     FROM
-        source
+        sources
     ORDER BY
         country
     """
@@ -73,7 +73,7 @@ def _countries_3(db):
     SELECT DISTINCT
         country
     FROM
-        source
+        sources
     ORDER BY
         country
     """

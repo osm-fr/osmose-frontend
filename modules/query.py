@@ -90,7 +90,7 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
     if (level and level != "1,2,3") or tags:
         tables.append("class")
     if country is not None:
-        tables.append("source")
+        tables.append("sources")
     if not stats:
         tables.append("items")
         if useDevItem:
@@ -110,10 +110,10 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
             """ + itemField + """.item = class.item AND
             """ + itemField + """.class = class.class"""
 
-    if "source" in tables:
+    if "sources" in tables:
         join += """
-        JOIN source ON
-            marker.source = source.id"""
+        JOIN sources ON
+            marker.source = sources.id"""
 
     if "items" in tables:
         join += """
@@ -149,7 +149,7 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
     if country is not None:
         if len(country) >= 1 and country[-1] == "*":
             country = country[:-1] + "%"
-        where.append("source.country LIKE '%s'" % country)
+        where.append("sources.country LIKE '%s'" % country)
 
     if not status in ("done", "false") and useDevItem == True:
         where.append("items.item IS NULL")
@@ -218,8 +218,8 @@ def _gets(db, params):
         marker.source,
         marker.elems,
         marker.subtitle,
-        source.country,
-        source.analyser,
+        sources.country,
+        sources.analyser,
         class.title,
         class.level,
         updates_last.timestamp,
@@ -245,7 +245,7 @@ def _gets(db, params):
         %s""" % params.limit
 
     if params.full:
-        forceTable = ["class", "source"]
+        forceTable = ["class", "sources"]
     else:
         forceTable = []
 

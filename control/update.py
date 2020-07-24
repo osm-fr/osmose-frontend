@@ -444,13 +444,13 @@ class Test(unittest.TestCase):
         self.dbcurs.execute(open("tools/database/schema.sql", "r").read())
         # Re-initialise search_path as cleared by schema.sql
         self.dbcurs.execute("SET search_path TO \"$user\", public;")
-        self.dbcurs.execute("INSERT INTO source (id, country, analyser) VALUES (%s, %s, %s);",
+        self.dbcurs.execute("INSERT INTO sources (id, country, analyser) VALUES (%s, %s, %s);",
                        (1, "xx1", "yy1"))
-        self.dbcurs.execute("INSERT INTO source (id, country, analyser) VALUES (%s, %s, %s);",
+        self.dbcurs.execute("INSERT INTO sources (id, country, analyser) VALUES (%s, %s, %s);",
                        (2, "xx2", "yy2"))
-        self.dbcurs.execute("INSERT INTO source_password (source_id, password) VALUES (%s, %s);",
+        self.dbcurs.execute("INSERT INTO sources_password (source_id, password) VALUES (%s, %s);",
                        (1, "xx1"))
-        self.dbcurs.execute("INSERT INTO source_password (source_id, password) VALUES (%s, %s);",
+        self.dbcurs.execute("INSERT INTO sources_password (source_id, password) VALUES (%s, %s);",
                        (2, "xx2"))
         self.dbconn.commit()
 
