@@ -32,7 +32,7 @@
   {%#fixes%}
       <div class="fix">
         <div class="fix_links">
-            <a href="../josm_proxy?import?url=http://{{website}}/api/0.3beta/issue/{%uuid%}/fix/{%num%}" target="hiddenIframe" class="josm" title="{{_('Load the fix in {where}').format(where='JOSM')}}" onclick="$.get('../josm_proxy?zoom?left={%minlon%}&bottom={%minlat%}&right={%maxlon%}&top={%maxlat%}'); return true;">fix-josm</a>
+            <a href="../josm_proxy?import?url=http://{{website}}/api/0.3/issue/{%uuid%}/fix/{%num%}" target="hiddenIframe" class="josm" title="{{_('Load the fix in {where}').format(where='JOSM')}}" onclick="$.get('../josm_proxy?zoom?left={%minlon%}&bottom={%minlat%}&right={%maxlon%}&top={%maxlat%}'); return true;">fix-josm</a>
             <a href="#" class="editor_fix" data-type="{%type%}" data-id="{%id%}" data-error="{%uuid%}" data-fix="{%num%}" title="{{_('Load the fix in {where}').format(where=_('online Osmose Editor'))}}">fix-edit</a>
         </div>
     {%#add%}
@@ -67,7 +67,7 @@
     <div class="bulle_elem">
       <div class="fix">
         <div class="fix_links">
-          <a href="../josm_proxy?import?url=http://{{website}}/api/0.3beta/issue/{%uuid%}/fix/{%num%}" target="hiddenIframe" class="josm" title="{{_('Add the new object in {where}').format(where='JOSM')}}" onclick="$.get('../josm_proxy?zoom?left={%minlon%}&bottom={%minlat%}&right={%maxlon%}&top={%maxlat%}'); return true;">fix-josm</a>
+          <a href="../josm_proxy?import?url=http://{{website}}/api/0.3/issue/{%uuid%}/fix/{%num%}" target="hiddenIframe" class="josm" title="{{_('Add the new object in {where}').format(where='JOSM')}}" onclick="$.get('../josm_proxy?zoom?left={%minlon%}&bottom={%minlat%}&right={%maxlon%}&top={%maxlat%}'); return true;">fix-josm</a>
         </div>
   {%#add%}
         <div class="add"><b>{%k%}</b> =
@@ -103,10 +103,10 @@
     <div id="bulle_button">
       <div class="btn-group" role="group">
         <a class="false_positive btn btn-info btn-sm popup_help" role="button" href='#' title="{{_('Help')}}">ℹ</a>
-        <a class="closePopup false_positive btn btn-danger btn-sm" role="button" href="/api/0.3beta/issue/{%uuid%}/false" target="hiddenIframe"
+        <a class="closePopup false_positive btn btn-danger btn-sm" role="button" href="/api/0.3/issue/{%uuid%}/false" target="hiddenIframe"
           onclick='return confirm("{{_('Report the issue as improper, if according to you is not an issue. The issue will not be displayed to anyone more.')}}")'
           title="{{_('false positive')}} - {{_('Report the issue as improper, if according to you is not an issue. The issue will not be displayed to anyone more.')}}">✘</a>
-        <a class="closePopup corrected btn btn-success btn-sm" role="button" href="/api/0.3beta/issue/{%uuid%}/done" target="hiddenIframe"
+        <a class="closePopup corrected btn btn-success btn-sm" role="button" href="/api/0.3/issue/{%uuid%}/done" target="hiddenIframe"
           title="{{_('corrected')}} - {{_('After issue fixed on the OSM data, mark it as done. May also disappear automatically on next check if no more issue.')}}">✔</a>
       </div>
     </div>
