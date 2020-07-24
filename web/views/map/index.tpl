@@ -152,7 +152,7 @@
   <li><a data-href="../errors.rss" target="_blank">RSS</a></li>
   <li><a data-href="../errors.gpx">GPX</a></li>
   <li><a data-href="../errors.kml">KML</a></li>
-  <li><a data-href="/api/0.3beta/issues" target="_blank">Json</a></li>
+  <li><a data-href="/api/0.3/issues" target="_blank">Json</a></li>
   <li><a data-href="../errors.csv" target="_blank">CSV</a></li>
   <li><a data-href="markers" target="_blank">GeoJson</a></li>
 </ul>
