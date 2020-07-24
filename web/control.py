@@ -29,14 +29,14 @@ from collections import defaultdict
 def updates(db, lang):
     db.execute("""
 SELECT
-    source.id,
+    sources.id,
     EXTRACT(EPOCH FROM ((now())-updates_last.timestamp)) AS age,
-    source.country,
-    source.analyser
+    sources.country,
+    sources.analyser
 FROM
-    source
+    sources
     LEFT JOIN updates_last ON
-        source.id = updates_last.source_id
+        sources.id = updates_last.source_id
 ORDER BY
     updates_last.timestamp DESC
 """)
@@ -62,22 +62,22 @@ def updates(db, lang):
     remote = request.params.get('remote')
     country = request.params.get('country')
     db.execute("""
-SELECT DISTINCT ON (source.id)
-    source.id,
+SELECT DISTINCT ON (sources.id)
+    sources.id,
     EXTRACT(EPOCH FROM ((now())-updates_last.timestamp)) AS age,
     country,
     analyser
 FROM
-    source
+    sources
     JOIN updates_last ON
-        source.id = updates_last.source_id
+        sources.id = updates_last.source_id
 WHERE
 """ + ("""
     RIGHT(MD5(remote_ip), 4) = %(remote)s AND """ if remote else "") + ("""
-    source.country LIKE %(country)s AND """ if country else "") + """
+    sources.country LIKE %(country)s AND """ if country else "") + """
     true
 ORDER BY
-    source.id ASC,
+    sources.id ASC,
     updates_last.timestamp DESC
 """, {"remote": remote, "country": country and country.replace("*", "%")})
 
@@ -132,9 +132,9 @@ SELECT
     MIN(updates_last.version) AS min_version,
     count(*) AS count
 FROM
-    source
+    sources
     JOIN updates_last ON
-        source.id = updates_last.source_id
+        sources.id = updates_last.source_id
     LEFT JOIN backend ON
         updates_last.remote_ip = backend.ip
 GROUP BY
@@ -183,9 +183,9 @@ SELECT
     MIN(updates_last.version) AS min_version,
     MAX(updates_last.version) AS max_version
 FROM
-    source
+    sources
     JOIN updates_last ON
-        source.id = updates_last.source_id
+        sources.id = updates_last.source_id
 WHERE
     updates_last.version IS NOT NULL AND
     updates_last.version NOT IN ('(None)', '(unknown)')

@@ -17,14 +17,14 @@ if __name__ == "__main__":
   dbconn = modules.utils.get_dbconn()
   dbcurs = dbconn.cursor()
 
-  dbcurs.execute("SELECT COALESCE(max(id)+1, 1) FROM source;")
+  dbcurs.execute("SELECT COALESCE(max(id)+1, 1) FROM sources;")
   for res in dbcurs.fetchall():
     source = res[0]
 
   def update_pass(country, analyser, password, contact="Jocelyn Jaubert <jocelyn@osm1.crans.org>"):
     global source
 
-    dbcurs.execute("SELECT id, password FROM source JOIN source_password ON source.id = source_id WHERE country=%s AND analyser=%s;",
+    dbcurs.execute("SELECT id, password FROM sources JOIN sources_password ON sources.id = source_id WHERE country=%s AND analyser=%s;",
                    (country, analyser))
     if dbcurs.rowcount >= 1:
       for r in dbcurs:
@@ -32,18 +32,18 @@ if __name__ == "__main__":
         if prev_password == password:
           return
       # try to update password for an analyse
-      dbcurs.execute("INSERT INTO source_password (source_id, password) VALUES ((SELECT id FROM source WHERE country=%s AND analyser=%s), %s);",
+      dbcurs.execute("INSERT INTO sources_password (source_id, password) VALUES ((SELECT id FROM sources WHERE country=%s AND analyser=%s), %s);",
                      (country, analyser, password))
       if dbcurs.rowcount == 1:
         print("created password=%s where country=%s analyser=%s" % (password, country, analyser))
         return
 
     elif dbcurs.rowcount == 0:
-      dbcurs.execute("SELECT id FROM source WHERE country=%s AND analyser=%s;",
+      dbcurs.execute("SELECT id FROM sources WHERE country=%s AND analyser=%s;",
                      (country, analyser))
       if dbcurs.rowcount == 1:
         cur_source = dbcurs.fetchone()["id"]
-        dbcurs.execute("INSERT INTO source_password (source_id, password) VALUES (%s, %s);",
+        dbcurs.execute("INSERT INTO sources_password (source_id, password) VALUES (%s, %s);",
                        (cur_source, password))
         print("inserted password=%s where country=%s analyser=%s" % (password, country, analyser))
         return
@@ -55,9 +55,9 @@ if __name__ == "__main__":
       # otherwise, create a new entry in database
       print("inserting country=%s analyser=%s source=%s password=%s" % (country, analyser, source, password))
       try:
-        dbcurs.execute("INSERT INTO source (id, country, analyser) VALUES (%s, %s, %s);",
+        dbcurs.execute("INSERT INTO sources (id, country, analyser) VALUES (%s, %s, %s);",
                        (source, country, analyser))
-        dbcurs.execute("INSERT INTO source_password (source_id, password) VALUES (%s, %s);",
+        dbcurs.execute("INSERT INTO sources_password (source_id, password) VALUES (%s, %s);",
                        (source, password))
         source += 1
 

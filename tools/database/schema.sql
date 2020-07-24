@@ -224,10 +224,10 @@ WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
 
 
 --
--- Name: source; Type: TABLE; Schema: public; Owner: -
+-- Name: sources; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.source (
+CREATE TABLE public.sources (
     id integer NOT NULL,
     country character varying(256),
     analyser character varying(256)
@@ -235,10 +235,10 @@ CREATE TABLE public.source (
 
 
 --
--- Name: source_password; Type: TABLE; Schema: public; Owner: -
+-- Name: sources_password; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.source_password (
+CREATE TABLE public.sources_password (
     source_id integer NOT NULL,
     password character varying(128) NOT NULL
 );
@@ -352,19 +352,19 @@ ALTER TABLE ONLY public.marker
 
 
 --
--- Name: source_password source_password_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: sources_password sources_password_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.source_password
-    ADD CONSTRAINT source_password_pkey PRIMARY KEY (source_id, password);
+ALTER TABLE ONLY public.sources_password
+    ADD CONSTRAINT sources_password_pkey PRIMARY KEY (source_id, password);
 
 
 --
--- Name: source source_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: sources sources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.source
-    ADD CONSTRAINT source_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.sources
+    ADD CONSTRAINT sources_pkey PRIMARY KEY (id);
 
 
 --
@@ -488,10 +488,10 @@ CREATE INDEX idx_stats ON public.stats USING btree (source, class);
 
 
 --
--- Name: source_country_analyser; Type: INDEX; Schema: public; Owner: -
+-- Name: sources_country_analyser; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX source_country_analyser ON public.source USING btree (country, analyser);
+CREATE INDEX sources_country_analyser ON public.sources USING btree (country, analyser);
 
 
 --
@@ -507,7 +507,7 @@ ALTER TABLE ONLY public.dynpoi_class
 --
 
 ALTER TABLE ONLY public.dynpoi_class
-    ADD CONSTRAINT dynpoi_class_source_fkey FOREIGN KEY (source) REFERENCES public.source(id);
+    ADD CONSTRAINT dynpoi_class_source_fkey FOREIGN KEY (source) REFERENCES public.sources(id);
 
 
 --
@@ -515,7 +515,7 @@ ALTER TABLE ONLY public.dynpoi_class
 --
 
 ALTER TABLE ONLY public.dynpoi_status
-    ADD CONSTRAINT dynpoi_status_source_fkey FOREIGN KEY (source) REFERENCES public.source(id);
+    ADD CONSTRAINT dynpoi_status_source_fkey FOREIGN KEY (source) REFERENCES public.sources(id);
 
 
 --
@@ -539,15 +539,15 @@ ALTER TABLE ONLY public.marker
 --
 
 ALTER TABLE ONLY public.marker
-    ADD CONSTRAINT marker_source_fkey FOREIGN KEY (source) REFERENCES public.source(id);
+    ADD CONSTRAINT marker_source_fkey FOREIGN KEY (source) REFERENCES public.sources(id);
 
 
 --
--- Name: source_password source_password_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sources_password sources_password_source_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.source_password
-    ADD CONSTRAINT source_password_source_fkey FOREIGN KEY (source_id) REFERENCES public.source(id);
+ALTER TABLE ONLY public.sources_password
+    ADD CONSTRAINT sources_password_source_id_fkey FOREIGN KEY (source_id) REFERENCES public.sources(id);
 
 
 --
@@ -555,7 +555,7 @@ ALTER TABLE ONLY public.source_password
 --
 
 ALTER TABLE ONLY public.updates_last
-    ADD CONSTRAINT updates_last_source_id_fkey FOREIGN KEY (source_id) REFERENCES public.source(id);
+    ADD CONSTRAINT updates_last_source_id_fkey FOREIGN KEY (source_id) REFERENCES public.sources(id);
 
 
 --
@@ -563,7 +563,7 @@ ALTER TABLE ONLY public.updates_last
 --
 
 ALTER TABLE ONLY public.updates
-    ADD CONSTRAINT updates_source_id_fkey FOREIGN KEY (source_id) REFERENCES public.source(id);
+    ADD CONSTRAINT updates_source_id_fkey FOREIGN KEY (source_id) REFERENCES public.sources(id);
 
 
 --

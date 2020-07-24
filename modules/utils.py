@@ -89,7 +89,7 @@ def pg_escape(text):
 def get_sources():
     conn = get_dbconn()
     curs = conn.cursor()
-    curs.execute("SELECT id, password, country, analyser FROM source JOIN source_password ON source.id = source_id;")
+    curs.execute("SELECT id, password, country, analyser FROM sources JOIN sources_password ON sources.id = source_id;")
     config = {}
     for res in curs.fetchall():
         src = {}
