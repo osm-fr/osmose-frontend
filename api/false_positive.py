@@ -73,24 +73,24 @@ def _fp(version, db, langs, uuid, marker, columns):
 
 @app_0_2.delete('/false-positive/<err_id:int>')
 def fp_delete_err_id(db, err_id):
-    db.execute("SELECT uuid FROM dynpoi_status WHERE status = %s AND uuid_to_bigint(dynpoi_status.uuid) = %s", ('false', err_id))
+    db.execute("SELECT uuid FROM markers_status WHERE status = %s AND uuid_to_bigint(markers_status.uuid) = %s", ('false', err_id))
     m = db.fetchone()
     if not m:
         abort(410, "FAIL")
 
-    db.execute("DELETE FROM dynpoi_status WHERE status = %s AND uuid_to_bigint(dynpoi_status.uuid) = %s", ('false', err_id))
+    db.execute("DELETE FROM markers_status WHERE status = %s AND uuid_to_bigint(markers_status.uuid) = %s", ('false', err_id))
     db.connection.commit()
 
     return
 
 @delete('/false-positive/<uuid:uuid>')
 def fp_delete_uuid(db, uuid):
-    db.execute("SELECT uuid FROM dynpoi_status WHERE status = %s AND uuid = %s", ('false', uuid))
+    db.execute("SELECT uuid FROM markers_status WHERE status = %s AND uuid = %s", ('false', uuid))
     m = db.fetchone()
     if not m:
         abort(410, "FAIL")
 
-    db.execute("DELETE FROM dynpoi_status WHERE status = %s AND uuid = %s", ('false', uuid))
+    db.execute("DELETE FROM markers_status WHERE status = %s AND uuid = %s", ('false', uuid))
     db.connection.commit()
 
     return

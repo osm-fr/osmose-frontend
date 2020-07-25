@@ -13,8 +13,8 @@ for i in $*; do
                       WHERE source IN (SELECT id FROM sources WHERE country = '$i');"
   psql -d osmose_frontend -c  "DELETE FROM dynpoi_class
                       WHERE source IN (SELECT id FROM sources WHERE country = '$i');"
-  psql -d osmose_frontend -c  "DELETE FROM dynpoi_status
-                      WHERE source IN (SELECT id FROM sources WHERE country = '$i');"
+  psql -d osmose_frontend -c  "DELETE FROM markers_status
+                      WHERE source_id IN (SELECT id FROM sources WHERE country = '$i');"
   psql -d osmose_frontend -c  "DELETE FROM sources_password
                       WHERE source_id IN (SELECT id FROM sources WHERE country = '$i');"
 

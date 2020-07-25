@@ -84,20 +84,20 @@ def update(source_id, fname, logger = printlogger(), remote_ip=""):
     ## update subtitle from new errors
     execute_sql(dbcurs, """
 UPDATE
-  dynpoi_status
+  markers_status
 SET
   subtitle = marker.subtitle
 FROM
   marker
 WHERE
   marker.source = %s AND
-  dynpoi_status.uuid = marker.uuid
+  markers_status.uuid = marker.uuid
 """, (source_id, ))
 
     ## remove false positive no longer present
-#    execute_sql(dbcurs, """DELETE FROM dynpoi_status
-#                      WHERE (source,class,elems) NOT IN (SELECT source,class,elems FROM marker WHERE source = %s) AND
-#                            source = %s AND
+#    execute_sql(dbcurs, """DELETE FROM markers_status
+#                      WHERE (source_id,class,elems) NOT IN (SELECT source,class,elems FROM marker WHERE source = %s) AND
+#                            source_id = %s AND
 #                            date < now()-interval '7 day'""",
 #                   (source_id, source_id, ))
 
@@ -105,10 +105,10 @@ WHERE
 DELETE FROM
   marker
 USING
-  dynpoi_status
+  markers_status
 WHERE
   marker.source = %s AND
-  dynpoi_status.uuid = marker.uuid
+  markers_status.uuid = marker.uuid
 """, (source_id, ))
 
     execute_sql(dbcurs, """UPDATE dynpoi_class

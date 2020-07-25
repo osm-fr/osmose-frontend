@@ -43,10 +43,10 @@ def _remove_bug_err_id(db, error_id, status):
   if not source_id:
       return -1
 
-  db.execute("DELETE FROM dynpoi_status WHERE uuid=%s", (uuid, ))
+  db.execute("DELETE FROM markers_status WHERE uuid=%s", (uuid, ))
 
-  db.execute("""INSERT INTO dynpoi_status
-                        (source,class,elems,date,status,lat,lon,subtitle,uuid)
+  db.execute("""INSERT INTO markers_status
+                        (source_id,class,elems,date,status,lat,lon,subtitle,uuid)
                       SELECT source,class,elems,NOW(),%s,
                              lat,lon,subtitle,uuid
                       FROM marker
@@ -76,10 +76,10 @@ def _remove_bug_uuid(db, uuid, status):
   if not source_id:
       return -1
 
-  db.execute("DELETE FROM dynpoi_status WHERE uuid=%s", (uuid, ))
+  db.execute("DELETE FROM markers_status WHERE uuid=%s", (uuid, ))
 
-  db.execute("""INSERT INTO dynpoi_status
-                        (source,class,elems,date,status,lat,lon,subtitle,uuid)
+  db.execute("""INSERT INTO markers_status
+                        (source_id,class,elems,date,status,lat,lon,subtitle,uuid)
                       SELECT source,class,elems,NOW(),%s,
                              lat,lon,subtitle,uuid
                       FROM marker

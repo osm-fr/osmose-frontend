@@ -60,7 +60,7 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
     elif stats:
         join += "stats AS marker"
     elif status in ("done", "false"):
-        join += "dynpoi_status AS marker"
+        join += "markers_status AS marker"
         where.append("marker.status = '%s'" % status)
     else:
         join += "marker"

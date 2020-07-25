@@ -9,7 +9,7 @@ DIR_DUMP="/data/work/$(whoami)/"
 # Update various tables in database
 
 psql -d $DATABASE -c "
-DELETE FROM dynpoi_status
+DELETE FROM markers_status
 WHERE date < now()-interval '7 day' AND status = 'done';
 "
 
@@ -119,7 +119,7 @@ mkdir -p "$DIR_DUMP/export"
 
 # Dump of errors - commented, because it takes a long time on a big database
 
-#pg_dump -t dynpoi_status_id_seq -t categories -t dynpoi_class -t items -t updates_last -t marker -t marker_elem -t marker_fix -t sources $DATABASE \
+#pg_dump -t categories -t dynpoi_class -t items -t updates_last -t marker -t marker_elem -t marker_fix -t sources $DATABASE \
 #  | bzip2 > "$DIR_DUMP/tmp/osmose-planet-latest.sql.bz2.tmp"
 #mv "$DIR_DUMP/tmp/osmose-planet-latest.sql.bz2.tmp" "$DIR_DUMP/export/osmose-planet-latest.sql.bz2"
 #
