@@ -173,23 +173,6 @@ CREATE TABLE public.dynpoi_class (
 
 
 --
--- Name: dynpoi_status; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.dynpoi_status (
-    source integer NOT NULL,
-    class integer NOT NULL,
-    date timestamp with time zone,
-    status character varying(128),
-    lat numeric(9,7) NOT NULL,
-    lon numeric(10,7) NOT NULL,
-    subtitle jsonb,
-    uuid uuid NOT NULL,
-    elems jsonb[]
-);
-
-
---
 -- Name: items; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -221,6 +204,23 @@ CREATE TABLE public.marker (
     fixes jsonb[]
 )
 WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
+
+
+--
+-- Name: markers_status; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.markers_status (
+    source_id integer NOT NULL,
+    class integer NOT NULL,
+    date timestamp with time zone,
+    status character varying(128),
+    lat numeric(9,7) NOT NULL,
+    lon numeric(10,7) NOT NULL,
+    subtitle jsonb,
+    uuid uuid NOT NULL,
+    elems jsonb[]
+);
 
 
 --
@@ -315,14 +315,6 @@ ALTER TABLE ONLY public.class
 
 ALTER TABLE ONLY public.dynpoi_class
     ADD CONSTRAINT dynpoi_class_pkey PRIMARY KEY (source, class);
-
-
---
--- Name: dynpoi_status dynpoi_status_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.dynpoi_status
-    ADD CONSTRAINT dynpoi_status_pkey PRIMARY KEY (uuid);
 
 
 --
@@ -511,11 +503,11 @@ ALTER TABLE ONLY public.dynpoi_class
 
 
 --
--- Name: dynpoi_status dynpoi_status_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: markers_status dynpoi_status_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.dynpoi_status
-    ADD CONSTRAINT dynpoi_status_source_fkey FOREIGN KEY (source) REFERENCES public.sources(id);
+ALTER TABLE ONLY public.markers_status
+    ADD CONSTRAINT dynpoi_status_source_fkey FOREIGN KEY (source_id) REFERENCES public.sources(id);
 
 
 --

@@ -20,31 +20,35 @@
 ###########################################################################
 
 def _get(db, status, err_id=None, uuid=None):
-    columns = ["item", "dynpoi_status.source", "class",
+    columns = ["item", "markers_status.source_id", "class",
         "lat", "lon",
         "title", "subtitle",
-        "dynpoi_status.date", "dynpoi_class.timestamp"]
+        "markers_status.date", "dynpoi_class.timestamp"]
 
     if err_id:
         sql = "SELECT " + ",".join(columns) + """
         FROM
-            dynpoi_status
-            JOIN dynpoi_class USING (source,class)
+            markers_status
+            JOIN dynpoi_class ON
+                dynpoi_class.source = markers_status.source_id AND
+                dynpoi_class.class = markers_status.class
             JOIN class USING (item, class)
         WHERE
-            dynpoi_status.status = %s AND
-            uuid_to_bigint(dynpoi_status.uuid) = %s
+            markers_status.status = %s AND
+            uuid_to_bigint(markers_status.uuid) = %s
         """
         db.execute(sql, (status, err_id))
     else:
         sql = "SELECT " + ",".join(columns) + """
         FROM
-            dynpoi_status
-            JOIN dynpoi_class USING (source,class)
+            markers_status
+            JOIN dynpoi_class ON
+                dynpoi_class.source = markers_status.source_id AND
+                dynpoi_class.class = markers_status.class
             JOIN class USING (item, class)
         WHERE
-            dynpoi_status.status = %s AND
-            dynpoi_status.uuid = %s
+            markers_status.status = %s AND
+            markers_status.uuid = %s
         """
         db.execute(sql, (status, uuid))
 
