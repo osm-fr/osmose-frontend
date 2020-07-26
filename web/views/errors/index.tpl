@@ -93,7 +93,7 @@
 <tbody>
 %for res in errors_groups:
 <tr>
-    <td><a href="?source={{res["source"]}}">{{res["source"]}}</a></td>
+    <td><a href="?source={{res["source_id"]}}">{{res["source_id"]}}</a></td>
     <td>{{res["analyser"]}}-<a href="?country={{res["country"]}}">{{res["country"]}}</a></td>
     <td>{{round((datetime.now(res["timestamp"].tzinfo) - res["timestamp"]).total_seconds()/60/60/24, 1)}}</td>
     <td>
@@ -109,7 +109,7 @@
 %    if count == -1:
 %        count = "N/A"
 %    end
-    <td><a href="?source={{res["source"]}}&amp;item={{res["item"]}}&amp;class={{res["class"]}}">{{count}}</a></td>
+    <td><a href="?source={{res["source_id"]}}&amp;item={{res["item"]}}&amp;class={{res["class"]}}">{{count}}</a></td>
 </tr>
 %end
 </tbody>

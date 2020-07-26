@@ -55,7 +55,7 @@ def _remove_bug_err_id(db, error_id, status):
                    (status, uuid))
 
   db.execute("DELETE FROM markers WHERE uuid = %s", (uuid, ))
-  db.execute("UPDATE dynpoi_class SET count = count - 1 WHERE source = %s AND class = %s;", (source_id, class_id))
+  db.execute("UPDATE markers_counts SET count = count - 1 WHERE source_id = %s AND class = %s;", (source_id, class_id))
   db.connection.commit()
 
   return 0
@@ -88,7 +88,7 @@ def _remove_bug_uuid(db, uuid, status):
                    (status, uuid))
 
   db.execute("DELETE FROM markers WHERE uuid = %s", (uuid, ))
-  db.execute("UPDATE dynpoi_class SET count = count - 1 WHERE source = %s AND class = %s;", (source_id, class_id))
+  db.execute("UPDATE markers_counts SET count = count - 1 WHERE source_id = %s AND class = %s;", (source_id, class_id))
   db.connection.commit()
 
   return 0

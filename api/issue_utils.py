@@ -29,7 +29,7 @@ t2l = tag2link.tag2link(os.path.dirname(os.path.realpath(__file__)) + "/tool/tag
 def _get(db, err_id=None, uuid=None):
     columns_marker = ["markers.item", "markers.source_id", "markers.class", "markers.elems", "markers.fixes",
         "markers.lat", "markers.lon",
-        "class.title", "markers.subtitle", "dynpoi_class.timestamp",
+        "class.title", "markers.subtitle", "markers_counts.timestamp",
         "class.detail", "class.fix", "class.trap", "class.example", "class.source AS source_code", "class.resource",
         ]
 
@@ -37,9 +37,9 @@ def _get(db, err_id=None, uuid=None):
         sql = "SELECT uuid_to_bigint(markers.uuid) AS id, " + ",".join(columns_marker) + """
         FROM
             markers
-            JOIN dynpoi_class ON
-                markers.source_id = dynpoi_class.source AND
-                markers.class = dynpoi_class.class
+            JOIN markers_counts ON
+                markers.source_id = markers_counts.source_id AND
+                markers.class = markers_counts.class
             JOIN class ON
                 markers.item = class.item AND
                 markers.class = class.class
@@ -51,9 +51,9 @@ def _get(db, err_id=None, uuid=None):
         sql = "SELECT " + ",".join(columns_marker) + """
         FROM
             markers
-            JOIN dynpoi_class ON
-                markers.source_id = dynpoi_class.source AND
-                markers.class = dynpoi_class.class
+            JOIN markers_counts ON
+                markers.source_id = markers_counts.source_id AND
+                markers.class = markers_counts.class
             JOIN class ON
                 markers.item = class.item AND
                 markers.class = class.class

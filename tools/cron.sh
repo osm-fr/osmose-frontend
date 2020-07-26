@@ -22,16 +22,16 @@ SELECT
   c.count
 FROM (
   SELECT
-    dynpoi_class.source,
-    dynpoi_class.class,
+    markers_counts.source_id,
+    markers_counts.class,
     count(markers.source_id) AS count
-  FROM dynpoi_class
+  FROM markers_counts
     LEFT JOIN markers ON
-      dynpoi_class.source = markers.source_id AND
-      dynpoi_class.class = markers.class
+      markers_counts.source_id = markers.source_id AND
+      markers_counts.class = markers.class
   GROUP BY
-    dynpoi_class.source,
-    dynpoi_class.class
+    markers_counts.source,
+    markers_counts.class
   ) AS c
     LEFT JOIN stats ON
       stats.source = c.source AND
@@ -119,7 +119,7 @@ mkdir -p "$DIR_DUMP/export"
 
 # Dump of errors - commented, because it takes a long time on a big database
 
-#pg_dump -t categories -t dynpoi_class -t items -t updates_last -t markers -t sources $DATABASE \
+#pg_dump -t categories -t markers_counts -t items -t updates_last -t markers -t sources $DATABASE \
 #  | bzip2 > "$DIR_DUMP/tmp/osmose-planet-latest.sql.bz2.tmp"
 #mv "$DIR_DUMP/tmp/osmose-planet-latest.sql.bz2.tmp" "$DIR_DUMP/export/osmose-planet-latest.sql.bz2"
 #

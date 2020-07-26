@@ -52,17 +52,22 @@ def _build_where_item(item, table):
 def _build_param(db, bbox, source, item, level, users, classs, country, useDevItem, status, tags, fixable, forceTable=[],
                  summary=False, stats=False, start_date=None, end_date=None, last_update=None, tilex=None, tiley=None, zoom=None,
                  osm_type=None, osm_id=None):
+    base_table = None
     join = ""
     where = ["1=1"]
 
     if summary:
-        join += "dynpoi_class AS markers"
+        base_table = "markers_counts"
+        join += "markers_counts AS markers"
     elif stats:
+        base_table = "stats"
         join += "stats AS markers"
     elif status in ("done", "false"):
+        base_table = "markers_status"
         join += "markers_status AS markers"
         where.append("markers.status = '%s'" % status)
     else:
+        base_table = "markers"
         join += "markers"
 
     if source:
@@ -80,12 +85,12 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
     tables = list(forceTable)
     tablesLeft = []
 
-    if join.startswith("markers"):
+    if base_table == "markers":
         itemField = "markers"
     else:
         if item:
-            tables.append("dynpoi_class")
-        itemField = "dynpoi_class"
+            tables.append("markers_counts")
+        itemField = "markers_counts"
 
     if (level and level != "1,2,3") or tags:
         tables.append("class")
@@ -98,11 +103,11 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
     if last_update:
             tables.append("updates_last")
 
-    if "dynpoi_class" in tables:
+    if "markers_counts" in tables:
         join += """
-        JOIN dynpoi_class ON
-            markers.source_id = dynpoi_class.source AND
-            markers.class = dynpoi_class.class"""
+        JOIN markers_counts ON
+            markers.source_id = markers_counts.source_id AND
+            markers.class = markers_counts.class"""
 
     if "class" in tables:
         join += """
@@ -178,7 +183,7 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
     elif fixable == 'josm':
         where.append("fixes IS NOT NULL")
 
-    if osm_type and osm_id and join.startswith("markers"):
+    if osm_type and osm_id and base_table == "markers":
         where.append('ARRAY[%s::bigint] <@ marker_elem_ids(elems)' % (osm_id, )) # Match the index
         where.append('(SELECT bool_or(elem->\'type\' = \'"%s"\'::jsonb AND elem->\'id\' = \'%s\'::jsonb) FROM (SELECT unnest(elems)) AS t(elem))' % (osm_type[0].upper(), osm_id)) # Recheck with type
 
@@ -208,8 +213,8 @@ def _gets(db, params):
         markers.class,"""
     else:
         sqlbase += """
-        dynpoi_class.item,
-        dynpoi_class.class,"""
+        markers_counts.item,
+        markers_counts.class,"""
     sqlbase += """
         markers.lat,
         markers.lon,"""

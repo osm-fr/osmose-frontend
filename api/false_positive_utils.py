@@ -23,15 +23,15 @@ def _get(db, status, err_id=None, uuid=None):
     columns = ["item", "markers_status.source_id", "class",
         "lat", "lon",
         "title", "subtitle",
-        "markers_status.date", "dynpoi_class.timestamp"]
+        "markers_status.date", "markers_counts.timestamp"]
 
     if err_id:
         sql = "SELECT " + ",".join(columns) + """
         FROM
             markers_status
-            JOIN dynpoi_class ON
-                dynpoi_class.source = markers_status.source_id AND
-                dynpoi_class.class = markers_status.class
+            JOIN markers_counts ON
+                markers_counts.source_id = markers_status.source_id AND
+                markers_counts.class = markers_status.class
             JOIN class USING (item, class)
         WHERE
             markers_status.status = %s AND
@@ -42,9 +42,9 @@ def _get(db, status, err_id=None, uuid=None):
         sql = "SELECT " + ",".join(columns) + """
         FROM
             markers_status
-            JOIN dynpoi_class ON
-                dynpoi_class.source = markers_status.source_id AND
-                dynpoi_class.class = markers_status.class
+            JOIN markers_counts ON
+                markers_counts.source_id = markers_status.source_id AND
+                markers_counts.class = markers_status.class
             JOIN class USING (item, class)
         WHERE
             markers_status.status = %s AND
