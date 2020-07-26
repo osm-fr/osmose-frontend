@@ -88,7 +88,7 @@ def index(db, lang, format=None):
 
     if format == None and params.item:
         errors_groups = query._count(db, params, [
-            "dynpoi_class.item",
+            "markers_counts.item",
             "markers.source_id",
             "markers.class",
             "sources.country",

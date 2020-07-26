@@ -37,7 +37,7 @@
         </description>
         <category>{{res["item"]}}</category>
 %    cl = res["class"]
-%    source = res["source"]
+%    source = res["source_id"]
 %    item = res["item"]
 %    level = res["level"]
 %    lat_s = "%.2f" % lat

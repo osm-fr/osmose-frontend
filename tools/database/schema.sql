@@ -160,19 +160,6 @@ CREATE TABLE public.class (
 
 
 --
--- Name: dynpoi_class; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.dynpoi_class (
-    source integer NOT NULL,
-    class integer NOT NULL,
-    item integer,
-    "timestamp" timestamp without time zone,
-    count integer
-);
-
-
---
 -- Name: items; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -204,6 +191,19 @@ CREATE TABLE public.markers (
     fixes jsonb[]
 )
 WITH (autovacuum_enabled='true', toast.autovacuum_enabled='true');
+
+
+--
+-- Name: markers_counts; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.markers_counts (
+    source_id integer NOT NULL,
+    class integer NOT NULL,
+    item integer,
+    "timestamp" timestamp without time zone,
+    count integer
+);
 
 
 --
@@ -310,14 +310,6 @@ ALTER TABLE ONLY public.class
 
 
 --
--- Name: dynpoi_class dynpoi_class_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.dynpoi_class
-    ADD CONSTRAINT dynpoi_class_pkey PRIMARY KEY (source, class);
-
-
---
 -- Name: items items_marker_color_flag; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -333,6 +325,14 @@ ALTER TABLE ONLY public.items
     ADD CONSTRAINT items_pkey PRIMARY KEY (item);
 
 ALTER TABLE public.items CLUSTER ON items_pkey;
+
+
+--
+-- Name: markers_counts markers_counts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.markers_counts
+    ADD CONSTRAINT markers_counts_pkey PRIMARY KEY (source_id, class);
 
 
 --
@@ -391,23 +391,23 @@ ALTER TABLE public.updates CLUSTER ON updates_pkey;
 -- Name: idx_dynpoi_class_class; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX idx_dynpoi_class_class ON public.dynpoi_class USING btree (class);
+CREATE INDEX idx_dynpoi_class_class ON public.markers_counts USING btree (class);
 
-ALTER TABLE public.dynpoi_class CLUSTER ON idx_dynpoi_class_class;
+ALTER TABLE public.markers_counts CLUSTER ON idx_dynpoi_class_class;
 
 
 --
 -- Name: idx_dynpoi_class_item; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX idx_dynpoi_class_item ON public.dynpoi_class USING btree (item);
+CREATE INDEX idx_dynpoi_class_item ON public.markers_counts USING btree (item);
 
 
 --
 -- Name: idx_dynpoi_class_source; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX idx_dynpoi_class_source ON public.dynpoi_class USING btree (source);
+CREATE INDEX idx_dynpoi_class_source ON public.markers_counts USING btree (source_id);
 
 
 --
@@ -495,22 +495,6 @@ CREATE INDEX sources_country_analyser ON public.sources USING btree (country, an
 
 
 --
--- Name: dynpoi_class class_item_class_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.dynpoi_class
-    ADD CONSTRAINT class_item_class_fkey FOREIGN KEY (item, class) REFERENCES public.class(item, class);
-
-
---
--- Name: dynpoi_class dynpoi_class_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.dynpoi_class
-    ADD CONSTRAINT dynpoi_class_source_fkey FOREIGN KEY (source) REFERENCES public.sources(id);
-
-
---
 -- Name: markers_status dynpoi_status_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -524,6 +508,22 @@ ALTER TABLE ONLY public.markers_status
 
 ALTER TABLE ONLY public.items
     ADD CONSTRAINT item_categorie_fkey FOREIGN KEY (categorie_id) REFERENCES public.categories(id);
+
+
+--
+-- Name: markers_counts markers_counts_item_class_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.markers_counts
+    ADD CONSTRAINT markers_counts_item_class_fkey FOREIGN KEY (item, class) REFERENCES public.class(item, class);
+
+
+--
+-- Name: markers_counts markers_counts_source_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.markers_counts
+    ADD CONSTRAINT markers_counts_source_id_fkey FOREIGN KEY (source_id) REFERENCES public.sources(id);
 
 
 --

@@ -25,7 +25,7 @@
 </thead>
 %for res in errors:
 <tr>
-    <td title="{{res["country"] + "-" + res["analyser"]}}"><a href="?{{!page_args}}source={{res["source"]}}">{{res["source"]}}</a></td>
+    <td title="{{res["country"] + "-" + res["analyser"]}}"><a href="?{{!page_args}}source={{res["source_id"]}}">{{res["source_id"]}}</a></td>
     <td>{{res["level"]}}</td>
     <td>
         <img src="../images/markers/marker-l-{{res["item"]}}.png" alt="{{res["item"]}}">

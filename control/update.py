@@ -91,7 +91,7 @@ FROM
   markers
 WHERE
   markers.source_id = %s AND
-  markers_status.uuid = marker.uuid
+  markers_status.uuid = markers.uuid
 """, (source_id, ))
 
     ## remove false positive no longer present
@@ -111,11 +111,11 @@ WHERE
   markers_status.uuid = markers.uuid
 """, (source_id, ))
 
-    execute_sql(dbcurs, """UPDATE dynpoi_class
+    execute_sql(dbcurs, """UPDATE markers_counts
                       SET count = (SELECT count(*) FROM markers
-                                   WHERE markers.source_id = dynpoi_class.source AND
-                                         markers.class = dynpoi_class.class)
-                      WHERE dynpoi_class.source = %s""",
+                                   WHERE markers.source_id = markers_counts.source_id AND
+                                         markers.class = markers_counts.class)
+                      WHERE markers_counts.source_id = %s""",
                    (source_id, ))
 
     ## commit and close
@@ -358,11 +358,11 @@ WHERE
             dbconn.commit()
             dbconn.close()
 
-            sql  = u"INSERT INTO dynpoi_class (source, class, item, timestamp) "
+            sql  = u"INSERT INTO markers_counts (source_id, class, item, timestamp) "
             sql += u"VALUES (%(source)s, %(class)s, %(item)s, %(timestamp)s)"
-            sql += u"ON CONFLICT (source, class) DO "
+            sql += u"ON CONFLICT (source_id, class) DO "
             sql += u"UPDATE SET item = %(item)s, timestamp = %(timestamp)s "
-            sql += u"WHERE dynpoi_class.source = %(source)s AND dynpoi_class.class = %(class)s"
+            sql += u"WHERE markers_counts.source_id = %(source)s AND markers_counts.class = %(class)s"
             execute_sql(self._dbcurs, sql, {
                 'source': self._source_id,
                 'class': self._class_id,

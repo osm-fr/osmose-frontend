@@ -10,5 +10,5 @@ echo "confirm?"
 read ln
 
 psql -d osmose_frontend -c  "DELETE FROM markers where item = '$item' and class='$cl'"
-psql -d osmose_frontend -c  "DELETE FROM dynpoi_class where item = '$item' and class='$cl'"
+psql -d osmose_frontend -c  "DELETE FROM markers_counts where item = '$item' and class='$cl'"
 psql -d osmose_frontend -c  "DELETE FROM class where item = '$item' and class='$cl'"
