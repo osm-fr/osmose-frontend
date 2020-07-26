@@ -86,35 +86,35 @@ def update(source_id, fname, logger = printlogger(), remote_ip=""):
 UPDATE
   markers_status
 SET
-  subtitle = marker.subtitle
+  subtitle = markers.subtitle
 FROM
-  marker
+  markers
 WHERE
-  marker.source = %s AND
+  markers.source_id = %s AND
   markers_status.uuid = marker.uuid
 """, (source_id, ))
 
     ## remove false positive no longer present
 #    execute_sql(dbcurs, """DELETE FROM markers_status
-#                      WHERE (source_id,class,elems) NOT IN (SELECT source,class,elems FROM marker WHERE source = %s) AND
+#                      WHERE (source_id,class,elems) NOT IN (SELECT source_id,class,elems FROM markers WHERE source_id = %s) AND
 #                            source_id = %s AND
 #                            date < now()-interval '7 day'""",
 #                   (source_id, source_id, ))
 
     execute_sql(dbcurs, """
 DELETE FROM
-  marker
+  markers
 USING
   markers_status
 WHERE
-  marker.source = %s AND
-  markers_status.uuid = marker.uuid
+  markers.source_id = %s AND
+  markers_status.uuid = markers.uuid
 """, (source_id, ))
 
     execute_sql(dbcurs, """UPDATE dynpoi_class
-                      SET count = (SELECT count(*) FROM marker
-                                   WHERE marker.source = dynpoi_class.source AND
-                                         marker.class = dynpoi_class.class)
+                      SET count = (SELECT count(*) FROM markers
+                                   WHERE markers.source_id = dynpoi_class.source AND
+                                         markers.class = dynpoi_class.class)
                       WHERE dynpoi_class.source = %s""",
                    (source_id, ))
 
@@ -227,9 +227,9 @@ class update_parser(handler.ContentHandler):
             # used by files generated with an .osc file
             execute_sql(self._dbcurs, """
 DELETE FROM
-    marker
+    markers
 WHERE
-    source = %s AND
+    source_id = %s AND
     (SELECT bool_or(elem->\'type\' = \'"%s"\'::jsonb AND elem->\'id\' = \'%s\'::jsonb) FROM (SELECT unnest(elems)) AS t(elem))
 """, (self._source_id, attrs["type"][0].upper(), attrs["id"]))
 
@@ -249,7 +249,7 @@ WHERE
 
         if name == u"analyser":
             for class_id, uuid in self.all_uuid.items():
-                execute_sql(self._dbcurs, "DELETE FROM marker WHERE source = %s AND class = %s AND uuid != ALL (%s::uuid[])", (self._source_id, class_id, uuid))
+                execute_sql(self._dbcurs, "DELETE FROM markers WHERE source_id = %s AND class = %s AND uuid != ALL (%s::uuid[])", (self._source_id, class_id, uuid))
 
         elif name == u"error":
             ## add data at all location
@@ -284,14 +284,14 @@ WHERE
             sql_uuid = u"SELECT ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid AS uuid"
 
             ## sql template
-            sql_marker = u"INSERT INTO marker (uuid, source, class, item, lat, lon, elems, fixes, subtitle) "
+            sql_marker = u"INSERT INTO markers (uuid, source_id, class, item, lat, lon, elems, fixes, subtitle) "
             sql_marker += u"VALUES (('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid, "
             sql_marker += u"%(source)s, %(class)s, %(item)s, %(lat)s, %(lon)s, %(elems)s::jsonb[], %(fixes)s::jsonb[], %(subtitle)s) "
             sql_marker += u"ON CONFLICT (uuid) DO "
             sql_marker += u"UPDATE SET item = %(item)s, lat = %(lat)s, lon = %(lon)s, elems = %(elems)s::jsonb[], fixes = %(fixes)s::jsonb[], subtitle = %(subtitle)s "
-            sql_marker += u"WHERE marker.uuid = ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid AND "
-            sql_marker += u"      marker.source = %(source)s AND marker.class = %(class)s AND "
-            sql_marker += u"      (marker.item IS DISTINCT FROM %(item)s OR marker.lat IS DISTINCT FROM %(lat)s OR marker.lon IS DISTINCT FROM %(lon)s OR marker.elems IS DISTINCT FROM %(elems)s::jsonb[] OR marker.fixes IS DISTINCT FROM %(fixes)s::jsonb[] OR marker.subtitle IS DISTINCT FROM %(subtitle)s) "
+            sql_marker += u"WHERE markers.uuid = ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid AND "
+            sql_marker += u"      markers.source_id = %(source)s AND markers.class = %(class)s AND "
+            sql_marker += u"      (markers.item IS DISTINCT FROM %(item)s OR markers.lat IS DISTINCT FROM %(lat)s OR markers.lon IS DISTINCT FROM %(lon)s OR markers.elems IS DISTINCT FROM %(elems)s::jsonb[] OR markers.fixes IS DISTINCT FROM %(fixes)s::jsonb[] OR markers.subtitle IS DISTINCT FROM %(subtitle)s) "
             sql_marker += u"RETURNING uuid"
 
             for location in self._error_locations:
@@ -459,7 +459,7 @@ class Test(unittest.TestCase):
 
 
     def check_num_marker(self, num):
-        self.dbcurs.execute("SELECT count(*) FROM marker")
+        self.dbcurs.execute("SELECT count(*) FROM markers")
         cur_num = self.dbcurs.fetchone()[0]
         self.assertEquals(num, cur_num)
 

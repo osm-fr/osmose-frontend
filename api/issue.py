@@ -33,11 +33,11 @@ app_0_2 = default_app.pop()
 
 def _remove_bug_err_id(db, error_id, status):
   # find source
-  db.execute("SELECT uuid,source,class FROM marker WHERE uuid_to_bigint(uuid) = %s", (error_id, ))
+  db.execute("SELECT uuid,source_id,class FROM markers WHERE uuid_to_bigint(uuid) = %s", (error_id, ))
   source_id = None
   for res in db.fetchall():
       uuid = res["uuid"]
-      source_id = res["source"]
+      source_id = res["source_id"]
       class_id = res["class"]
 
   if not source_id:
@@ -47,14 +47,14 @@ def _remove_bug_err_id(db, error_id, status):
 
   db.execute("""INSERT INTO markers_status
                         (source_id,class,elems,date,status,lat,lon,subtitle,uuid)
-                      SELECT source,class,elems,NOW(),%s,
+                      SELECT source_id,class,elems,NOW(),%s,
                              lat,lon,subtitle,uuid
-                      FROM marker
+                      FROM markers
                       WHERE uuid = %s
                       ON CONFLICT DO NOTHING""",
                    (status, uuid))
 
-  db.execute("DELETE FROM marker WHERE uuid = %s", (uuid, ))
+  db.execute("DELETE FROM markers WHERE uuid = %s", (uuid, ))
   db.execute("UPDATE dynpoi_class SET count = count - 1 WHERE source = %s AND class = %s;", (source_id, class_id))
   db.connection.commit()
 
@@ -67,10 +67,10 @@ def _remove_bug_uuid(db, uuid, status):
   db = PgConn.cursor()
 
   # find source
-  db.execute("SELECT source,class FROM marker WHERE uuid = %s", (uuid, ))
+  db.execute("SELECT source_id,class FROM markers WHERE uuid = %s", (uuid, ))
   source_id = None
   for res in db.fetchall():
-      source_id = res["source"]
+      source_id = res["source_id"]
       class_id = res["class"]
 
   if not source_id:
@@ -80,14 +80,14 @@ def _remove_bug_uuid(db, uuid, status):
 
   db.execute("""INSERT INTO markers_status
                         (source_id,class,elems,date,status,lat,lon,subtitle,uuid)
-                      SELECT source,class,elems,NOW(),%s,
+                      SELECT source_id,class,elems,NOW(),%s,
                              lat,lon,subtitle,uuid
-                      FROM marker
+                      FROM markers
                       WHERE uuid = %s
                       ON CONFLICT DO NOTHING""",
                    (status, uuid))
 
-  db.execute("DELETE FROM marker WHERE uuid = %s", (uuid, ))
+  db.execute("DELETE FROM markers WHERE uuid = %s", (uuid, ))
   db.execute("UPDATE dynpoi_class SET count = count - 1 WHERE source = %s AND class = %s;", (source_id, class_id))
   db.connection.commit()
 
@@ -257,10 +257,10 @@ def status_uuid(db, uuid, status):
 
 def _get_fix(db, fix_num, err_id=None, uuid=None):
     if err_id:
-        sql = "SELECT fixes FROM marker WHERE id = %s"
+        sql = "SELECT fixes FROM markers WHERE id = %s"
         db.execute(sql, (err_id, ))
     else:
-        sql = "SELECT fixes FROM marker WHERE uuid = %s"
+        sql = "SELECT fixes FROM markers WHERE uuid = %s"
         db.execute(sql, (uuid, ))
 
     fix = db.fetchone()
@@ -306,10 +306,10 @@ def _fix(version, db, uuid, fix_num, fix):
             for (k, v) in res['create'].items():
                 data["tag"][k] = v
             if version == 2:
-                sql = "SELECT lat, lon FROM marker WHERE id = %s"
+                sql = "SELECT lat, lon FROM markers WHERE id = %s"
                 db.execute(sql, (err_id, ))
             else:
-                sql = "SELECT lat, lon FROM marker WHERE uuid = %s"
+                sql = "SELECT lat, lon FROM markers WHERE uuid = %s"
                 db.execute(sql, (uuid, ))
             res2 = db.fetchone()
             data["lat"] = res2["lat"]

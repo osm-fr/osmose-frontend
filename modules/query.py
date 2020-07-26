@@ -56,14 +56,14 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
     where = ["1=1"]
 
     if summary:
-        join += "dynpoi_class AS marker"
+        join += "dynpoi_class AS markers"
     elif stats:
-        join += "stats AS marker"
+        join += "stats AS markers"
     elif status in ("done", "false"):
-        join += "markers_status AS marker"
-        where.append("marker.status = '%s'" % status)
+        join += "markers_status AS markers"
+        where.append("markers.status = '%s'" % status)
     else:
-        join += "marker"
+        join += "markers"
 
     if source:
         sources = source.split(",")
@@ -71,17 +71,17 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
         for source in sources:
             source = source.split("-")
             if len(source)==1:
-                source2.append("(marker.source=%d)"%int(source[0]))
+                source2.append("(markers.source_id=%d)"%int(source[0]))
             else:
-                source2.append("(marker.source=%d AND marker.class=%d)"%(int(source[0]), int(source[1])))
+                source2.append("(markers.source_id=%d AND markers.class=%d)"%(int(source[0]), int(source[1])))
         sources2 = " OR ".join(source2)
         where.append("(%s)" % sources2)
 
     tables = list(forceTable)
     tablesLeft = []
 
-    if join.startswith("marker"):
-        itemField = "marker"
+    if join.startswith("markers"):
+        itemField = "markers"
     else:
         if item:
             tables.append("dynpoi_class")
@@ -101,8 +101,8 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
     if "dynpoi_class" in tables:
         join += """
         JOIN dynpoi_class ON
-            marker.source = dynpoi_class.source AND
-            marker.class = dynpoi_class.class"""
+            markers.source_id = dynpoi_class.source AND
+            markers.class = dynpoi_class.class"""
 
     if "class" in tables:
         join += """
@@ -113,7 +113,7 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
     if "sources" in tables:
         join += """
         JOIN sources ON
-            marker.source = sources.id"""
+            markers.source_id = sources.id"""
 
     if "items" in tables:
         join += """
@@ -123,7 +123,7 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
     if "updates_last" in tables:
         join += """
         JOIN updates_last ON
-            updates_last.source_id = marker.source"""
+            updates_last.source_id = markers.source_id"""
 
     if item != None:
         where.append(_build_where_item(item, itemField))
@@ -132,10 +132,10 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
         where.append("class.level IN (%s)" % level)
 
     if classs:
-        where.append("marker.class IN (%s)" % ','.join(map(lambda c: str(int(c)), classs.split(','))))
+        where.append("markers.class IN (%s)" % ','.join(map(lambda c: str(int(c)), classs.split(','))))
 
     if bbox:
-        where.append("marker.lat BETWEEN %f AND %f AND marker.lon BETWEEN %f AND %f" % (bbox[1], bbox[3], bbox[0], bbox[2]))
+        where.append("markers.lat BETWEEN %f AND %f AND markers.lon BETWEEN %f AND %f" % (bbox[1], bbox[3], bbox[0], bbox[2]))
         if item is None:
             # Compute a tile to use index
             tilex, tiley, zoom = tiles.bbox2tile(*bbox)
@@ -155,20 +155,20 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
         where.append("items.item IS NULL")
 
     if not status in ("done", "false") and users:
-        where.append("ARRAY['%s'] && marker_usernames(marker.elems)" % "','".join(map(lambda user: utils.pg_escape(db.mogrify(user).decode('utf-8')), users)))
+        where.append("ARRAY['%s'] && marker_usernames(markers.elems)" % "','".join(map(lambda user: utils.pg_escape(db.mogrify(user).decode('utf-8')), users)))
 
     if stats:
         if start_date and end_date:
-            where.append("marker.timestamp_range && tsrange('{0}', '{1}', '[]')".format(start_date.isoformat(), end_date.isoformat()))
+            where.append("markers.timestamp_range && tsrange('{0}', '{1}', '[]')".format(start_date.isoformat(), end_date.isoformat()))
         elif start_date:
-            where.append("marker.timestamp_range && tsrange('{0}', NULL, '[)')".format(start_date.isoformat()))
+            where.append("markers.timestamp_range && tsrange('{0}', NULL, '[)')".format(start_date.isoformat()))
         elif end_date:
-            where.append("marker.timestamp_range && tsrange(NULL, '{1}', '(]')".format(end_date.isoformat()))
+            where.append("markers.timestamp_range && tsrange(NULL, '{1}', '(]')".format(end_date.isoformat()))
     elif status in ("done", "false"):
         if start_date:
-            where.append("marker.date > '%s'" % start_date.isoformat())
+            where.append("markers.date > '%s'" % start_date.isoformat())
         if end_date:
-            where.append("marker.date < '%s'" % end_date.isoformat())
+            where.append("markers.date < '%s'" % end_date.isoformat())
 
     if tags:
         where.append("class.tags::text[] && ARRAY['%s']" % "','".join(map(utils.pg_escape, tags)))
@@ -178,7 +178,7 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
     elif fixable == 'josm':
         where.append("fixes IS NOT NULL")
 
-    if osm_type and osm_id and join.startswith("marker"):
+    if osm_type and osm_id and join.startswith("markers"):
         where.append('ARRAY[%s::bigint] <@ marker_elem_ids(elems)' % (osm_id, )) # Match the index
         where.append('(SELECT bool_or(elem->\'type\' = \'"%s"\'::jsonb AND elem->\'id\' = \'%s\'::jsonb) FROM (SELECT unnest(elems)) AS t(elem))' % (osm_type[0].upper(), osm_id)) # Recheck with type
 
@@ -201,23 +201,23 @@ def _gets(db, params):
     sqlbase = """
     SELECT
         uuid_to_bigint(uuid) as id,
-        marker.uuid AS uuid,"""
+        markers.uuid AS uuid,"""
     if not params.status in ("done", "false"):
         sqlbase += """
-        marker.item,
-        marker.class,"""
+        markers.item,
+        markers.class,"""
     else:
         sqlbase += """
         dynpoi_class.item,
         dynpoi_class.class,"""
     sqlbase += """
-        marker.lat,
-        marker.lon,"""
+        markers.lat,
+        markers.lon,"""
     if params.full:
         sqlbase += """
-        marker.source,
-        marker.elems,
-        marker.subtitle,
+        markers.source_id,
+        markers.elems,
+        markers.subtitle,
         sources.country,
         sources.analyser,
         class.title,
@@ -229,12 +229,12 @@ def _gets(db, params):
         -1 AS date"""
         else:
             sqlbase += """,
-        marker.date,"""
+        markers.date,"""
     sqlbase = sqlbase[0:-1] + """
     FROM
         %s
         JOIN updates_last ON
-            marker.source = updates_last.source_id
+            markers.source_id = updates_last.source_id
     WHERE
         %s AND
         updates_last.timestamp > (now() - interval '3 months')
@@ -271,7 +271,7 @@ def _count(db, params, by, extraFrom=[], extraFields=[], orderBy=False):
         countField = [ "count(*) AS count" ]
     else:
         summary = True
-        countField = [ "SUM(marker.count) AS count" ]
+        countField = [ "SUM(markers.count) AS count" ]
 
     byTable = set(list(map(lambda x: x.split('.')[0], by)) + extraFrom)
     sqlbase  = """

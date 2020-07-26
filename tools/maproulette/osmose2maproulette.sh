@@ -14,10 +14,10 @@ CHALLENGE_INSTRUCTION="$5 http://wiki.openstreetmap.org/wiki/Osmose/errors#$ITEM
 
 if [ "$CLASS" = "" ]; then
 SLUG="osmose-$ITEM-$NICK"
-QUERY="SELECT lat, lon, elems AS osmoseid FROM marker WHERE item=$ITEM"
+QUERY="SELECT lat, lon, elems AS osmoseid FROM markers WHERE item=$ITEM"
 else
 SLUG="osmose-$ITEM-$CLASS-$NICK"
-QUERY="SELECT lat, lon, elems AS osmoseid FROM marker WHERE item=$ITEM AND class=$CLASS"
+QUERY="SELECT lat, lon, elems AS osmoseid FROM markers WHERE item=$ITEM AND class=$CLASS"
 fi
 
 #ssh -L 5000:localhost:80 challenges@maproulette.org
