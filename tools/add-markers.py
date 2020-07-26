@@ -14,9 +14,9 @@ if __name__ == "__main__":
   sql = """
 CREATE TEMP TABLE marker_list_item AS
 WITH RECURSIVE t AS (
-   (SELECT item FROM marker ORDER BY item LIMIT 1)  -- parentheses required
+   (SELECT item FROM markers ORDER BY item LIMIT 1)  -- parentheses required
    UNION ALL
-   SELECT (SELECT item FROM marker WHERE item > t.item ORDER BY item LIMIT 1)
+   SELECT (SELECT item FROM markers WHERE item > t.item ORDER BY item LIMIT 1)
    FROM t
    WHERE t.item IS NOT NULL
    )

@@ -43,9 +43,9 @@ FROM (
         AVG(count) AS count
     FROM (
         SELECT
-            marker.source,
-            marker.class,
-            marker.count,
+            markers.source,
+            markers.class,
+            markers.count,
             generate_series(
                 lower(timestamp_range),
                 coalesce(upper(timestamp_range) - '23 hour'::interval, now()),

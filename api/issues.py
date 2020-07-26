@@ -52,7 +52,7 @@ def errors(db, lang):
         if not params.full:
             out["errors"].append([str(lat), str(lon), str(error_id), str(item)])
         else:
-            source    = res["source"]
+            source    = res["source_id"]
             classs    = res["class"]
             elems     = '_'.join(map(lambda elem: {'N':'node', 'W':'way', 'R':'relation'}[elem['type']] + str(elem['id']), res['elems'] or []))
             subclass  = 0
@@ -90,7 +90,7 @@ def errors(db, langs):
                 'lon': float(res["lon"]),
                 'id': res["uuid"],
                 'item': str(res["item"]),
-                'source': res["source"],
+                'source': res["source_id"],
                 'class': res["class"],
                 'subtitle': utils.i10n_select(res["subtitle"], langs),
                 'title': utils.i10n_select(res["title"], langs),

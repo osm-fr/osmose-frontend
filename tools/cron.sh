@@ -24,11 +24,11 @@ FROM (
   SELECT
     dynpoi_class.source,
     dynpoi_class.class,
-    count(marker.source) AS count
+    count(markers.source_id) AS count
   FROM dynpoi_class
-    LEFT JOIN marker ON
-      dynpoi_class.source = marker.source AND
-      dynpoi_class.class = marker.class
+    LEFT JOIN markers ON
+      dynpoi_class.source = markers.source_id AND
+      dynpoi_class.class = markers.class
   GROUP BY
     dynpoi_class.source,
     dynpoi_class.class
@@ -86,9 +86,9 @@ psql -d $DATABASE -c "
 UPDATE items SET number = (
   SELECT array_agg(n)
   FROM (
-    SELECT sum(CASE WHEN marker.item IS NOT NULL THEN 1 ELSE 0 END) AS n
+    SELECT sum(CASE WHEN markers.item IS NOT NULL THEN 1 ELSE 0 END) AS n
     FROM class
-      LEFT JOIN marker ON marker.item = items.item
+      LEFT JOIN markers ON markers.item = items.item
     WHERE class.item = items.item
     GROUP BY level
     ORDER BY level
@@ -119,20 +119,20 @@ mkdir -p "$DIR_DUMP/export"
 
 # Dump of errors - commented, because it takes a long time on a big database
 
-#pg_dump -t categories -t dynpoi_class -t items -t updates_last -t marker -t marker_elem -t marker_fix -t sources $DATABASE \
+#pg_dump -t categories -t dynpoi_class -t items -t updates_last -t markers -t sources $DATABASE \
 #  | bzip2 > "$DIR_DUMP/tmp/osmose-planet-latest.sql.bz2.tmp"
 #mv "$DIR_DUMP/tmp/osmose-planet-latest.sql.bz2.tmp" "$DIR_DUMP/export/osmose-planet-latest.sql.bz2"
 #
 #psql $DATABASE -c "COPY (SELECT source.country,
 #             source.analyser,
-#             marker.lat,
-#             marker.lon,
-#             marker.elems,
-#             marker.class,
-#             marker.subclass,
-#             marker.item
-#      FROM marker
-#      LEFT JOIN sources ON sources.id = marker.source)
+#             markers.lat,
+#             markers.lon,
+#             markers.elems,
+#             markers.class,
+#             markers.subclass,
+#             markers.item
+#      FROM markers
+#      LEFT JOIN sources ON sources.id = markers.source_id)
 #TO STDOUT WITH CSV HEADER;" | bzip2 > "$DIR_DUMP/tmp/osmose-planet-latest.csv.bz2"
 #mv "$DIR_DUMP/tmp/osmose-planet-latest.csv.bz2" "$DIR_DUMP/export/osmose-planet-latest.csv.bz2"
 

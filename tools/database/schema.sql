@@ -189,11 +189,11 @@ CREATE TABLE public.items (
 
 
 --
--- Name: marker; Type: TABLE; Schema: public; Owner: -
+-- Name: markers; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.marker (
-    source integer,
+CREATE TABLE public.markers (
+    source_id integer,
     class integer,
     lat numeric(9,7),
     lon numeric(10,7),
@@ -336,11 +336,19 @@ ALTER TABLE public.items CLUSTER ON items_pkey;
 
 
 --
--- Name: marker marker_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: markers markers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.marker
-    ADD CONSTRAINT marker_pkey PRIMARY KEY (uuid);
+ALTER TABLE ONLY public.markers
+    ADD CONSTRAINT markers_pkey PRIMARY KEY (uuid);
+
+
+--
+-- Name: markers_status markers_status_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.markers_status
+    ADD CONSTRAINT markers_status_pkey PRIMARY KEY (uuid);
 
 
 --
@@ -403,73 +411,73 @@ CREATE INDEX idx_dynpoi_class_source ON public.dynpoi_class USING btree (source)
 
 
 --
--- Name: idx_dynpoi_status_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_dynpoi_status_id ON public.dynpoi_status USING btree (public.uuid_to_bigint(uuid));
-
-
---
--- Name: idx_dynpoi_status_source_class; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_dynpoi_status_source_class ON public.dynpoi_status USING btree (source, class);
-
-
---
 -- Name: idx_marker_elem_ids; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX idx_marker_elem_ids ON public.marker USING gin (public.marker_elem_ids(elems));
+CREATE INDEX idx_marker_elem_ids ON public.markers USING gin (public.marker_elem_ids(elems));
 
 
 --
 -- Name: idx_marker_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX idx_marker_id ON public.marker USING btree (public.uuid_to_bigint(uuid));
+CREATE INDEX idx_marker_id ON public.markers USING btree (public.uuid_to_bigint(uuid));
 
 
 --
 -- Name: idx_marker_item; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX idx_marker_item ON public.marker USING btree (item);
+CREATE INDEX idx_marker_item ON public.markers USING btree (item);
 
 
 --
 -- Name: idx_marker_item_lat_lon; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX idx_marker_item_lat_lon ON public.marker USING btree (item, lat, lon);
+CREATE INDEX idx_marker_item_lat_lon ON public.markers USING btree (item, lat, lon);
 
 
 --
 -- Name: idx_marker_source_class; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX idx_marker_source_class ON public.marker USING btree (source, class);
+CREATE INDEX idx_marker_source_class ON public.markers USING btree (source_id, class);
 
 
 --
 -- Name: idx_marker_source_class_z_order_curve; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX idx_marker_source_class_z_order_curve ON public.marker USING btree (source, class, public.lonlat2z_order_curve((lon)::double precision, (lat)::double precision)) WHERE (lat > ('-90'::integer)::numeric);
+CREATE INDEX idx_marker_source_class_z_order_curve ON public.markers USING btree (source_id, class, public.lonlat2z_order_curve((lon)::double precision, (lat)::double precision)) WHERE (lat > ('-90'::integer)::numeric);
 
 
 --
 -- Name: idx_marker_usernames; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX idx_marker_usernames ON public.marker USING gin (public.marker_usernames(elems));
+CREATE INDEX idx_marker_usernames ON public.markers USING gin (public.marker_usernames(elems));
 
 
 --
 -- Name: idx_marker_z_order_curve_item; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX idx_marker_z_order_curve_item ON public.marker USING btree (public.lonlat2z_order_curve((lon)::double precision, (lat)::double precision), item) WHERE (lat > ('-90'::integer)::numeric);
+CREATE INDEX idx_marker_z_order_curve_item ON public.markers USING btree (public.lonlat2z_order_curve((lon)::double precision, (lat)::double precision), item) WHERE (lat > ('-90'::integer)::numeric);
+
+
+--
+-- Name: idx_markers_status_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_markers_status_id ON public.markers_status USING btree (public.uuid_to_bigint(uuid));
+
+
+--
+-- Name: idx_markers_status_source_id_class; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_markers_status_source_id_class ON public.markers_status USING btree (source_id, class);
 
 
 --
@@ -519,19 +527,19 @@ ALTER TABLE ONLY public.items
 
 
 --
--- Name: marker marker_class_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: markers markers_item_class_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.marker
-    ADD CONSTRAINT marker_class_fkey FOREIGN KEY (source, class) REFERENCES public.dynpoi_class(source, class);
+ALTER TABLE ONLY public.markers
+    ADD CONSTRAINT markers_item_class_fkey FOREIGN KEY (item, class) REFERENCES public.class(item, class);
 
 
 --
--- Name: marker marker_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: markers markers_sources_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.marker
-    ADD CONSTRAINT marker_source_fkey FOREIGN KEY (source) REFERENCES public.sources(id);
+ALTER TABLE ONLY public.markers
+    ADD CONSTRAINT markers_sources_fkey FOREIGN KEY (source_id) REFERENCES public.sources(id);
 
 
 --

@@ -7,8 +7,8 @@ for i in $*; do
   echo "confirm?"
   read ln
 
-  psql -d osmose_frontend -c  "DELETE FROM marker
-                      WHERE source IN (SELECT id FROM sources WHERE country = '$i');"
+  psql -d osmose_frontend -c  "DELETE FROM markers
+                      WHERE source_id IN (SELECT id FROM sources WHERE country = '$i');"
   psql -d osmose_frontend -c  "DELETE FROM updates_last
                       WHERE source IN (SELECT id FROM sources WHERE country = '$i');"
   psql -d osmose_frontend -c  "DELETE FROM dynpoi_class

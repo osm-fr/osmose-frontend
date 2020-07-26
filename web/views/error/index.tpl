@@ -43,7 +43,7 @@
     <th scope="col">{{_("value")}}</th>
 </tr>
 </thead>
-<tr><td>source</td><td><a target="_blank" href="../errors/?item=xxxx&amp;source={{marker['source']}}">{{marker['source']}}<a></td></tr>
+<tr><td>source</td><td><a target="_blank" href="../errors/?item=xxxx&amp;source={{marker['source_id']}}">{{marker['source_id']}}<a></td></tr>
 <tr><td>item</td><td><a target="_blank" href="../errors/?item={{marker['item']}}">{{marker['item']}}</a></td></tr>
 <tr><td>class</td><td><a target="_blank" href="../errors/?item={{marker['item']}}&amp;class={{marker['class']}}">{{marker['class']}}</a></td></tr>
 <tr><td>lat lon</td><td><a target="_blank" href="../map/?item={{marker['item']}}&amp;zoom=17&amp;lat={{marker['lat']}}&amp;lon={{marker['lon']}}">{{marker['lat']}}&nbsp;{{marker['lon']}}</a></td></tr>
