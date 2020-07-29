@@ -19,7 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, template
+from bottle import route, template, abort
 from .tool.translation import translator
 
 from api.false_positive_utils import _get
@@ -27,6 +27,8 @@ from api.false_positive_utils import _get
 
 @route('/false-positive/<uuid:uuid>')
 def fp_(db, lang, uuid):
-    (marker, columns) = _get(db, 'false', uuid=uuid)
+    marker, columns = _get(db, 'false', uuid=uuid)
+    if not marker:
+        abort(410, "Id is not present in database.")
 
     return template('false-positive/index', translate=translator(lang), uuid=uuid, marker=marker, columns_marker=columns)
