@@ -201,7 +201,6 @@ CREATE TABLE public.markers_counts (
     source_id integer NOT NULL,
     class integer NOT NULL,
     item integer,
-    "timestamp" timestamp without time zone,
     count integer
 );
 

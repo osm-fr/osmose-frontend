@@ -359,16 +359,15 @@ WHERE
             dbconn.commit()
             dbconn.close()
 
-            sql  = u"INSERT INTO markers_counts (source_id, class, item, timestamp) "
-            sql += u"VALUES (%(source)s, %(class)s, %(item)s, %(timestamp)s)"
+            sql  = u"INSERT INTO markers_counts (source_id, class, item) "
+            sql += u"VALUES (%(source)s, %(class)s, %(item)s) "
             sql += u"ON CONFLICT (source_id, class) DO "
-            sql += u"UPDATE SET item = %(item)s, timestamp = %(timestamp)s "
+            sql += u"UPDATE SET item = %(item)s "
             sql += u"WHERE markers_counts.source_id = %(source)s AND markers_counts.class = %(class)s"
             execute_sql(self._dbcurs, sql, {
                 'source': self._source_id,
                 'class': self._class_id,
                 'item': self._class_item[self._class_id],
-                'timestamp':  utils.pg_escape(self.ts),
             })
 
         elif name == u"fixes":
