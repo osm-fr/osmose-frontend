@@ -20,35 +20,35 @@
 ###########################################################################
 
 def _get(db, status, err_id=None, uuid=None):
-    columns = ["item", "markers_status.source_id", "class",
+    columns = [
+        "markers_status.item", "source_id", "markers_status.class",
         "lat", "lon",
         "title", "subtitle",
-        "markers_status.date", "markers_counts.timestamp"]
+        "date",
+    ]
 
     if err_id:
         sql = "SELECT " + ",".join(columns) + """
         FROM
             markers_status
-            JOIN markers_counts ON
-                markers_counts.source_id = markers_status.source_id AND
-                markers_counts.class = markers_status.class
-            JOIN class USING (item, class)
+            JOIN class ON
+                class.item = markers_status.item AND
+                class.class = markers_status.class
         WHERE
-            markers_status.status = %s AND
-            uuid_to_bigint(markers_status.uuid) = %s
+            status = %s AND
+            uuid_to_bigint(uuid) = %s
         """
         db.execute(sql, (status, err_id))
     else:
         sql = "SELECT " + ",".join(columns) + """
         FROM
             markers_status
-            JOIN markers_counts ON
-                markers_counts.source_id = markers_status.source_id AND
-                markers_counts.class = markers_status.class
-            JOIN class USING (item, class)
+        JOIN class ON
+            class.item = markers_status.item AND
+            class.class = markers_status.class
         WHERE
-            markers_status.status = %s AND
-            markers_status.uuid = %s
+            status = %s AND
+            uuid = %s
         """
         db.execute(sql, (status, uuid))
 
