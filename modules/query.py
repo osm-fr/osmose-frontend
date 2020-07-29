@@ -23,7 +23,7 @@
 from . import utils, tiles
 
 
-def _build_where_item(item, table):
+def _build_where_item(table, item):
     if item == '':
         where = "1=2"
     elif item == None or item == 'xxxx':
@@ -61,7 +61,10 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
         join += "markers_counts AS markers"
     elif stats:
         base_table = "stats"
-        join += "stats AS markers"
+        if item:
+            join += "(SELECT stats.*, stats.source AS source_id, item FROM stats JOIN markers_counts ON markers_counts.source_id = stats.source AND markers_counts.class = stats.class) AS markers"
+        else:
+            join += "stats AS markers"
     elif status in ("done", "false"):
         base_table = "markers_status"
         join += "markers_status AS markers"
@@ -85,13 +88,6 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
     tables = list(forceTable)
     tablesLeft = []
 
-    if base_table == "markers":
-        itemField = "markers"
-    else:
-        if item:
-            tables.append("markers_counts")
-        itemField = "markers_counts"
-
     if (level and level != "1,2,3") or tags:
         tables.append("class")
     if country is not None:
@@ -112,8 +108,8 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
     if "class" in tables:
         join += """
         JOIN class ON
-            """ + itemField + """.item = class.item AND
-            """ + itemField + """.class = class.class"""
+            markers.item = class.item AND
+            markers.class = class.class"""
 
     if "sources" in tables:
         join += """
@@ -123,7 +119,7 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
     if "items" in tables:
         join += """
         %sJOIN items ON
-            %s.item = items.item""" % ("LEFT " if "items" in tablesLeft else "", itemField)
+            markers.item = items.item""" % ("LEFT " if "items" in tablesLeft else "")
 
     if "updates_last" in tables:
         join += """
@@ -131,7 +127,7 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
             updates_last.source_id = markers.source_id"""
 
     if item != None:
-        where.append(_build_where_item(item, itemField))
+        where.append(_build_where_item("markers", item))
 
     if level and level != "1,2,3":
         where.append("class.level IN (%s)" % level)
@@ -206,16 +202,9 @@ def _gets(db, params):
     sqlbase = """
     SELECT
         uuid_to_bigint(uuid) as id,
-        markers.uuid AS uuid,"""
-    if not params.status in ("done", "false"):
-        sqlbase += """
+        markers.uuid AS uuid,
         markers.item,
-        markers.class,"""
-    else:
-        sqlbase += """
-        markers_counts.item,
-        markers_counts.class,"""
-    sqlbase += """
+        markers.class,
         markers.lat,
         markers.lon,"""
     if params.full:
