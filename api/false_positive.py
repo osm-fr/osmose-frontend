@@ -48,7 +48,6 @@ def _fp(version, db, langs, uuid, marker, columns):
     lon       = str(marker["lon"])
     title     = utils.i10n_select(marker["title"], langs)
     subtitle  = utils.i10n_select(marker["subtitle"], langs)
-    b_date    = marker["timestamp"] or ""
     item      = marker["item"] or 0
     date      = marker["date"].isoformat() or 0
 
@@ -59,7 +58,7 @@ def _fp(version, db, langs, uuid, marker, columns):
             "minlon": float(lon) - 0.002, "maxlon": float(lon) + 0.002,
             "error_id":err_id,
             "title":title['auto'], "subtitle":subtitle['auto'],
-            "b_date":b_date.strftime("%Y-%m-%d"),
+            "b_date":None, # Keep for retro compatibility
             "item":item,
             "date":date,
             "url_help":"" # Keep for retro compatibility
@@ -71,7 +70,7 @@ def _fp(version, db, langs, uuid, marker, columns):
             "minlon": float(lon) - 0.002, "maxlon": float(lon) + 0.002,
             "id":uuid,
             "title":title, "subtitle":subtitle,
-            "b_date":b_date.strftime("%Y-%m-%d"),
+            "b_date":None, # Keep for retro compatibility
             "item":item,
             "date":date,
         }
