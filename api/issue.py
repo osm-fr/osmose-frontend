@@ -46,8 +46,8 @@ def _remove_bug_err_id(db, error_id, status):
   db.execute("DELETE FROM markers_status WHERE uuid=%s", (uuid, ))
 
   db.execute("""INSERT INTO markers_status
-                        (source_id,class,elems,date,status,lat,lon,subtitle,uuid)
-                      SELECT source_id,class,elems,NOW(),%s,
+                        (source_id,item,class,elems,date,status,lat,lon,subtitle,uuid)
+                      SELECT source_id,item,class,elems,NOW(),%s,
                              lat,lon,subtitle,uuid
                       FROM markers
                       WHERE uuid = %s
@@ -79,8 +79,8 @@ def _remove_bug_uuid(db, uuid, status):
   db.execute("DELETE FROM markers_status WHERE uuid=%s", (uuid, ))
 
   db.execute("""INSERT INTO markers_status
-                        (source_id,class,elems,date,status,lat,lon,subtitle,uuid)
-                      SELECT source_id,class,elems,NOW(),%s,
+                        (source_id,item,class,elems,date,status,lat,lon,subtitle,uuid)
+                      SELECT source_id,item,class,elems,NOW(),%s,
                              lat,lon,subtitle,uuid
                       FROM markers
                       WHERE uuid = %s

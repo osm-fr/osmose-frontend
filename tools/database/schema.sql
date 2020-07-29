@@ -219,7 +219,8 @@ CREATE TABLE public.markers_status (
     lon numeric(10,7) NOT NULL,
     subtitle jsonb,
     uuid uuid NOT NULL,
-    elems jsonb[]
+    elems jsonb[],
+    item integer NOT NULL
 );
 
 
@@ -540,6 +541,14 @@ ALTER TABLE ONLY public.markers
 
 ALTER TABLE ONLY public.markers
     ADD CONSTRAINT markers_sources_fkey FOREIGN KEY (source_id) REFERENCES public.sources(id);
+
+
+--
+-- Name: markers_status markers_status_item_class_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.markers_status
+    ADD CONSTRAINT markers_status_item_class_fkey FOREIGN KEY (item, class) REFERENCES public.class(item, class);
 
 
 --

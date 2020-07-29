@@ -91,6 +91,7 @@ FROM
   markers
 WHERE
   markers.source_id = %s AND
+  markers_status.item = markers.item AND
   markers_status.uuid = markers.uuid
 """, (source_id, ))
 
