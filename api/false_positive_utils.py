@@ -54,7 +54,4 @@ def _get(db, status, err_id=None, uuid=None):
 
     marker = db.fetchone()
 
-    if not marker:
-        abort(410, "Id is not present in database.")
-
     return (marker, columns)

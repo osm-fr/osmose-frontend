@@ -29,15 +29,21 @@ app_0_2 = default_app.pop()
 
 @app_0_2.route('/false-positive/<err_id:int>')
 def fp_err_id(db, lang, err_id):
-    return _fp(2, db, lang, None, *_get(db, 'false', err_id=err_id))
+    marker, columns = _get(db, 'false', err_id=err_id)
+    if not marker:
+        abort(410, "Id is not present in database.")
+
+    return _fp(2, db, lang, None, marker, columns)
 
 @route('/false-positive/<uuid:uuid>')
 def fp_uuid(db, langs, uuid):
-    return _fp(3, db, langs, uuid, *_get(db, 'false', uuid=uuid))
+    marker, columns = _get(db, 'false', uuid=uuid)
+    if not marker:
+        abort(410, "Id is not present in database.")
+
+    return _fp(3, db, langs, uuid, marker, columns)
 
 def _fp(version, db, langs, uuid, marker, columns):
-    data_type = { "N": "node", "W": "way", "R": "relation", "I": "infos"}
-
     lat       = str(marker["lat"])
     lon       = str(marker["lon"])
     title     = utils.i10n_select(marker["title"], langs)
