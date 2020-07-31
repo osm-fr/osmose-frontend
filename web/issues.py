@@ -36,17 +36,8 @@ def int_list(s):
 
 @route('/errors/graph.<format:ext>')
 def graph(db, format='png'):
-    class options:
-        sources = request.params.get('source', type=int_list, default=[])
-        classes = request.params.get('class', type=int_list, default=[])
-        items   = request.params.get('item', type=int_list, default=[])
-        levels  = request.params.get('level', type=int_list, default=[])
-        country = request.params.get('country')
-        if country != None and not re.match(r"^([a-z_]+(\*|))$", country):
-            country = None
-
     try:
-        data = errors_graph.make_plt(db, options, format)
+        data = errors_graph.make_plt(db, Params(), format)
         response.content_type = {'png':'image/png', 'svg':'image/svg+xml', 'pdf':'application/pdf', 'csv':'text/csv', 'json':'application/json'}[format]
         return data
     except Exception as e:
