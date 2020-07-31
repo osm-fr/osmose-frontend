@@ -49,6 +49,10 @@ def _build_where_item(table, item):
     return where
 
 
+def _build_where_class(table, classs):
+    return "{0}.class IN ({1})".format(table, ','.join(map(lambda c: str(int(c)), classs.split(','))))
+
+
 def _build_param(db, bbox, source, item, level, users, classs, country, useDevItem, status, tags, fixable, forceTable=[],
                  summary=False, stats=False, start_date=None, end_date=None, last_update=None, tilex=None, tiley=None, zoom=None,
                  osm_type=None, osm_id=None):
@@ -133,7 +137,7 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
         where.append("class.level IN (%s)" % level)
 
     if classs:
-        where.append("markers.class IN (%s)" % ','.join(map(lambda c: str(int(c)), classs.split(','))))
+        where.append(_build_where_class("markers", classs))
 
     if bbox:
         where.append("markers.lat BETWEEN %f AND %f AND markers.lon BETWEEN %f AND %f" % (bbox[1], bbox[3], bbox[0], bbox[2]))

@@ -32,7 +32,7 @@ from modules.params import Params
 from modules import query
 
 
-def get_data(db, options):
+def get_data(db, params):
     sqlbase = """
 SELECT
     date,
@@ -69,7 +69,6 @@ ORDER BY
     date
 """
 
-    params = Params()
     join, where = query._build_param(db, None, params.source, params.item, params.level, None, params.classs, params.country, params.useDevItem, None, params.tags, None, stats=True, start_date=params.start_date, end_date=params.end_date)
     where2 = ["1 = 1"]
     if params.start_date:
@@ -89,13 +88,13 @@ ORDER BY
     return result
 
 
-def get_text(db, options):
-    if len(options.sources)==1 and len(options.classes)==1:
-        db.execute("SELECT title->'en' FROM markers_counts JOIN class ON class.item = markers_counts.item AND class.class = markers_counts.class WHERE markers_counts.source_id=%s AND class.class=%s;", (options.sources[0], options.classes[0]))
-    elif len(options.items)==1 and len(options.classes)==1:
-        db.execute("SELECT title->'en' FROM class WHERE class=%s AND item=%s LIMIT 1;", (options.classes[0], options.items[0]))
-    elif len(options.items)==1:
-        db.execute("SELECT menu->'en' FROM items WHERE item=%s LIMIT 1;", (options.items[0],))
+def get_text(db, params):
+    if len(params.source)==1 and len(params.classs)==1:
+        db.execute("SELECT title->'en' FROM markers_counts JOIN class ON class.item = markers_counts.item AND class.class = markers_counts.class WHERE markers_counts.source_id=%s AND class.class=%s;", (params.source[0], params.classs[0]))
+    elif len(params.item)==1 and len(params.classs)==1:
+        db.execute("SELECT title->'en' FROM class WHERE class=%s AND item=%s LIMIT 1;", (params.classs[0], params.item[0]))
+    elif len(params.item)==1:
+        db.execute("SELECT menu->'en' FROM items WHERE item=%s LIMIT 1;", (params.item[0],))
     else:
         return ""
 
@@ -106,17 +105,34 @@ def get_text(db, options):
         return ""
 
 
-def get_src(db, options):
-    if len(options.sources) == 1:
-        db.execute("SELECT country, analyser FROM sources WHERE id=%s;", (options.sources[0], ))
+def get_src(db, params):
+    ret = []
+    if params.item:
+        db.execute("SELECT menu->'en' FROM items WHERE {0}".format(
+            query._build_where_item("items", params.item)
+        ))
         r = db.fetchone()
-        return r[0] + " - " + r[1]
+        ret.append(r[0])
 
-    elif options.country:
-        return str(options.country)
+    if params.item and params.classs:
+        db.execute(
+            "SELECT title->'en' FROM class WHERE {0} AND {1};".format(
+                query._build_where_item("class", params.item),
+                query._build_where_class("class", params.classs)
+        ))
+        r = db.fetchone()
+        ret.append(r[0])
 
-    else:
-        return "All"
+    if len(params.source) == 1:
+        db.execute("SELECT country, analyser FROM sources WHERE id=%s;", (params.source[0], ))
+        r = db.fetchone()
+        ret.append(r[0])
+        ret.append(r[1])
+
+    if params.country:
+        ret.append(str(params.country))
+
+    return " - ".join(ret) if ret else "All"
 
 
 def convIntsToStr(values):
@@ -126,10 +142,10 @@ def convIntsToStr(values):
     return ", ".join([str(elt) for elt in values])
 
 
-def make_plt(db, options, format):
-    data = get_data(db, options)
-    text = get_text(db, options)
-    src = get_src(db, options)
+def make_plt(db, params, format):
+    data = get_data(db, params)
+    text = get_text(db, params)
+    src = get_src(db, params)
     return plot(data, text+' '+src, format)
 
 
@@ -199,10 +215,10 @@ if __name__ == "__main__":
     start = time.clock()
 
     parser = OptionParser()
-    parser.add_option("--source", dest="sources", type="int", action="append", default=[])
-    parser.add_option("--class", dest="classes", type="int", action="append", default=[])
-    parser.add_option("--item", dest="items", type="int", action="append", default=[])
-    parser.add_option("--level", dest="levels", type="int", action="append", default=[])
+    parser.add_option("--source", dest="source", type="int", action="append", default=[])
+    parser.add_option("--class", dest="classs", type="int", action="append", default=[])
+    parser.add_option("--item", dest="item", type="int", action="append", default=[])
+    parser.add_option("--level", dest="level", type="int", action="append", default=[])
     parser.add_option("--country", dest="country", type="string", default=None)
     (options, args) = parser.parse_args()
 
