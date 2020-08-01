@@ -120,10 +120,10 @@ SET row_security = off;
 SET default_with_oids = false;
 
 --
--- Name: backend; Type: TABLE; Schema: public; Owner: -
+-- Name: backends; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.backend (
+CREATE TABLE public.backends (
     ip character varying(128) NOT NULL,
     hostname character varying(256) NOT NULL
 );
@@ -249,7 +249,7 @@ CREATE TABLE public.sources_password (
 --
 
 CREATE TABLE public.stats (
-    source integer,
+    source_id integer,
     class integer,
     count integer,
     timestamp_range tsrange
@@ -284,10 +284,10 @@ CREATE TABLE public.updates_last (
 
 
 --
--- Name: backend backend_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: backends backend_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.backend
+ALTER TABLE ONLY public.backends
     ADD CONSTRAINT backend_pkey PRIMARY KEY (ip, hostname);
 
 
@@ -484,7 +484,7 @@ CREATE INDEX idx_markers_status_source_id_class ON public.markers_status USING b
 -- Name: idx_stats; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX idx_stats ON public.stats USING btree (source, class);
+CREATE INDEX idx_stats ON public.stats USING btree (source_id, class);
 
 
 --
@@ -556,6 +556,14 @@ ALTER TABLE ONLY public.markers_status
 
 ALTER TABLE ONLY public.sources_password
     ADD CONSTRAINT sources_password_source_id_fkey FOREIGN KEY (source_id) REFERENCES public.sources(id);
+
+
+--
+-- Name: stats stats_source_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.stats
+    ADD CONSTRAINT stats_source_id_fkey FOREIGN KEY (source_id) REFERENCES public.sources(id);
 
 
 --

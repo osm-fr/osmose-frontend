@@ -16,7 +16,7 @@ WHERE date < now()-interval '7 day' AND status = 'done';
 psql -d $DATABASE -c "
 CREATE TEMP TABLE stats_update AS
 SELECT
-  c.source,
+  c.source_id,
   c.class,
   now()::timestamp AS timestamp,
   c.count
@@ -30,11 +30,11 @@ FROM (
       markers_counts.source_id = markers.source_id AND
       markers_counts.class = markers.class
   GROUP BY
-    markers_counts.source,
+    markers_counts.source_id,
     markers_counts.class
   ) AS c
     LEFT JOIN stats ON
-      stats.source = c.source AND
+      stats.source_id = c.source_id AND
       stats.class = c.class
 WHERE
   stats.count IS NULL OR
@@ -52,7 +52,7 @@ SET
 FROM
   stats_update
 WHERE
-  stats_update.source = stats.source AND
+  stats_update.source_id = stats.source_id AND
   stats_update.class = stats.class AND
   upper(stats.timestamp_range) IS NULL
 ;
@@ -60,7 +60,7 @@ WHERE
 -- Open new range
 INSERT INTO stats (
   SELECT
-    source,
+    source_id,
     class,
     count,
     tsrange(timestamp, NULL)

@@ -122,7 +122,7 @@ ORDER BY
 def updates(db, lang):
     db.execute("""
 SELECT
-    backend.hostname AS hostname,
+    backends.hostname AS hostname,
     updates_last.remote_ip AS remote,
     RIGHT(MD5(remote_ip), 4) AS remote_ip_hash,
     country,
@@ -135,8 +135,8 @@ FROM
     sources
     JOIN updates_last ON
         sources.id = updates_last.source_id
-    LEFT JOIN backend ON
-        updates_last.remote_ip = backend.ip
+    LEFT JOIN backends ON
+        updates_last.remote_ip = backends.ip
 GROUP BY
     hostname,
     remote_ip,

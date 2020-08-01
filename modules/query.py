@@ -66,7 +66,7 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
     elif stats:
         base_table = "stats"
         if item:
-            join += "(SELECT stats.*, stats.source AS source_id, item FROM stats JOIN markers_counts ON markers_counts.source_id = stats.source AND markers_counts.class = stats.class) AS markers"
+            join += "(SELECT stats.*, item FROM stats JOIN markers_counts ON markers_counts.source_id = stats.source_id AND markers_counts.class = stats.class) AS markers"
         else:
             join += "stats AS markers"
     elif status in ("done", "false"):

@@ -43,7 +43,7 @@ FROM (
         AVG(count) AS count
     FROM (
         SELECT
-            markers.source,
+            markers.source_id,
             markers.class,
             markers.count,
             generate_series(
@@ -59,7 +59,7 @@ FROM (
     WHERE
         %s
     GROUP BY
-        source,
+        source_id,
         class,
         date_trunc('day', timestamp)
     ) AS t
