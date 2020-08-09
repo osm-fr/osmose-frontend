@@ -112,7 +112,8 @@ def get_src(db, params):
             query._build_where_item("items", params.item)
         ))
         r = db.fetchone()
-        ret.append(r[0])
+        if r and r[0]:
+            ret.append(r[0])
 
     if params.item and params.classs:
         db.execute(
@@ -121,13 +122,15 @@ def get_src(db, params):
                 query._build_where_class("class", params.classs)
         ))
         r = db.fetchone()
-        ret.append(r[0])
+        if r and r[0]:
+            ret.append(r[0])
 
     if len(params.source) == 1:
         db.execute("SELECT country, analyser FROM sources WHERE id=%s;", (params.source[0], ))
         r = db.fetchone()
-        ret.append(r[0])
-        ret.append(r[1])
+        if r:
+            ret.append(r[0])
+            ret.append(r[1])
 
     if params.country:
         ret.append(str(params.country))
