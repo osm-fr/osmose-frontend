@@ -12,7 +12,7 @@ export const mapBases = {
   'Mapnik-osmfr': L.tileLayer('//tile-{s}.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', { attribution: osmAttribution }),
   HOT: L.tileLayer('//tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png', { attribution: osmAttribution }),
   Bing: L.bingLayer('AmQcQsaJ4WpRqn2_k0rEToboqaM1ind8HMmM0XwKwW9R8bChmHEbczHwjnjFpuNP', { type: 'Aerial' }),
-  'MapBox Satellite': L.tileLayer('//{s}.tiles.mapbox.com/v4/openstreetmap.map-inh7ifmo/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoib3BlbnN0cmVldG1hcCIsImEiOiJhNVlHd29ZIn0.ti6wATGDWOmCnCYen-Ip7Q'),
+  'MapBox Satellite': L.tileLayer('//{s}.tiles.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.jpg?access_token=pk.eyJ1Ijoib3BlbnN0cmVldG1hcCIsImEiOiJjaml5MjVyb3MwMWV0M3hxYmUzdGdwbzE4In0.q548FjhsSJzvXsGlPsFxAQ'),
   // OpenGeoFiction
   // 'Standard': L.tileLayer('http://opengeofiction.net/osm_tiles/{z}/{x}/{y}.png', {attribution: osmAttribution}),
   // 'TopoMap': L.tileLayer('http://opengeofiction.net/tiles-topo/{z}/{x}/{y}.png', {attribution: osmAttribution}),
