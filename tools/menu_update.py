@@ -38,10 +38,13 @@ if __name__ == "__main__":
   dbconn = utils.get_dbconn()
   dbcurs = dbconn.cursor()
 
-  types = ("categories", "items")
+  types = {
+    "categories": "id",
+    "items": "item"
+  }
 
-  for typ in types:
-    sql = "update " + typ + " set menu = coalesce(menu, json_build_object(%s,'')::jsonb) || json_build_object(%s, %s)::jsonb where " + typ + " = %s;"
+  for typ, id in types.items():
+    sql = "update " + typ + " set menu = coalesce(menu, json_build_object(%s,'')::jsonb) || json_build_object(%s, %s)::jsonb where " + id + " = %s;"
 
     for line in codecs.open("database/" + typ + "_menu.txt", "r", "utf-8"):
       (item, s) = line.split("|")
