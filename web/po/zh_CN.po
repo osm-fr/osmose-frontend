@@ -4,13 +4,14 @@
 # 
 # Translators:
 # jie x, 2017-2020
+# Steve Lee <stevel2520@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-05-28 19:17+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2020-07-29 08:17+0000\n"
+"Last-Translator: Steve Lee <stevel2520@gmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1597,7 +1598,7 @@ msgstr "删除问题 #%s"
 
 #: tmp.tpl:125
 msgid "How to Fix"
-msgstr ""
+msgstr "如何修复"
 
 #: tmp.tpl:126
 msgid "Trap to avoid"
@@ -1605,11 +1606,11 @@ msgstr ""
 
 #: tmp.tpl:127
 msgid "Example"
-msgstr ""
+msgstr "示例"
 
 #: tmp.tpl:128
 msgid "Source Code"
-msgstr ""
+msgstr "源代码"
 
 #: tmp.tpl:129
 msgid "Resource used"
@@ -1617,7 +1618,7 @@ msgstr ""
 
 #: tmp.tpl:130
 msgid "Want to improve this control or this doc?"
-msgstr ""
+msgstr "想要改善此控件或此文档？"
 
 #: tmp.tpl:154
 msgid "Welcome to Osmose-QA"
@@ -1631,11 +1632,11 @@ msgstr ""
 
 #: tmp.tpl:159
 msgid "You can find help on the wiki:"
-msgstr ""
+msgstr "您可以在Wiki上找到帮助："
 
 #: ../../tools/database/item_menu.txt:206
 msgid "charging station"
-msgstr ""
+msgstr "充电站"
 
 #: ../../tools/database/item_menu.txt:207
 msgid "charging station, could be integrated"
@@ -1647,11 +1648,11 @@ msgstr ""
 
 #: ../../tools/database/item_menu.txt:30
 msgid "related objects"
-msgstr ""
+msgstr "相关对象"
 
 #: ../../tools/database/item_menu.txt:198
 msgid "wastewater"
-msgstr ""
+msgstr "废水"
 
 #: ../../tools/database/item_menu.txt:199
 msgid "wastewater, could be integrated"
@@ -1667,11 +1668,11 @@ msgstr ""
 
 #: tmp.tpl:109
 msgid "delete issue"
-msgstr ""
+msgstr "删除问题"
 
 #: tmp.tpl:199
 msgid "Issue details"
-msgstr ""
+msgstr "问题详情"
 
 #: tmp.tpl:201
 msgid "Report based on data from date"
@@ -1687,7 +1688,7 @@ msgstr ""
 
 #: ../../tools/database/item_menu.txt:188
 msgid "shop"
-msgstr ""
+msgstr "商店"
 
 #: ../../tools/database/item_menu.txt:226
 msgid "specific russia"
@@ -1707,7 +1708,7 @@ msgstr ""
 
 #: tmp.tpl:133
 msgid "Done"
-msgstr ""
+msgstr "完成"
 
 #: tmp.tpl:155
 msgid ""
@@ -1741,4 +1742,4 @@ msgstr ""
 
 #: ../../tools/database/item_menu.txt:209
 msgid "tourism"
-msgstr ""
+msgstr "旅游"

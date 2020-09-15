@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-05-28 19:17+0000\n"
+"PO-Revision-Date: 2020-09-15 18:28+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Basque (http://www.transifex.com/openstreetmap-france/osmose/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -39,44 +39,44 @@ msgstr ""
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr ""
 
-#: ../issues.py:69 tmp.tpl:73
+#: ../issues.py:60 tmp.tpl:73
 msgid "False positives"
 msgstr "Positibo faltsuak"
 
-#: ../issues.py:75 tmp.tpl:71
+#: ../issues.py:66 tmp.tpl:71
 msgid "Informations"
 msgstr "Informazioak"
 
-#: ../map.py:67
+#: ../map.py:64
 msgid "Relation analyser"
 msgstr "Erlazio analizatzailea"
 
 #. TRANSLATORS: link to source code
-#: ../map.py:69
+#: ../map.py:66
 msgid "Statistics"
 msgstr "Estatistikak"
 
-#: ../map.py:72 tmp.tpl:23
+#: ../map.py:69 tmp.tpl:23
 msgid "Contact"
 msgstr "Kontaktua"
 
-#: ../map.py:73
+#: ../map.py:70
 msgid "Help on wiki"
 msgstr "Laguntza Wikian"
 
-#: ../map.py:73 tmp.tpl:120 tmp.tpl:218
+#: ../map.py:70 tmp.tpl:120 tmp.tpl:218
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
-#: ../map.py:74
+#: ../map.py:71
 msgid "Copyright"
 msgstr ""
 
-#: ../map.py:75
+#: ../map.py:72
 msgid "Sources"
 msgstr "Iturburuak"
 
-#: ../map.py:76
+#: ../map.py:73
 msgid "Translation"
 msgstr "Itzulpena"
 
@@ -155,7 +155,7 @@ msgid "Median delay:"
 msgstr "Batazbesteko atzerapena:"
 
 #: tmp.tpl:44 tmp.tpl:51 tmp.tpl:86 tmp.tpl:96
-#: ../../tools/database/item_menu.txt:34
+#: ../../tools/database/items_menu.txt:34
 msgid "source"
 msgstr "jatorria"
 
@@ -282,7 +282,7 @@ msgstr ""
 msgid "subtitle"
 msgstr "azpititulua"
 
-#: tmp.tpl:107 ../../tools/database/item_menu.txt:57
+#: tmp.tpl:107 ../../tools/database/items_menu.txt:57
 msgid "date"
 msgstr "data"
 
@@ -429,478 +429,478 @@ msgid ""
 " Débrouillards d'Aquitaine</em>."
 msgstr ""
 
-#: ../../tools/database/categ_menu.txt:1
+#: ../../tools/database/categories_menu.txt:1
 msgid "Structure"
 msgstr "Estruktura"
 
-#: ../../tools/database/categ_menu.txt:2
+#: ../../tools/database/categories_menu.txt:2
 msgid "Missing tags"
 msgstr "Etiketak faltan"
 
-#: ../../tools/database/categ_menu.txt:3
+#: ../../tools/database/categories_menu.txt:3
 msgid "Bad tag"
 msgstr "Etiketa okerra"
 
-#: ../../tools/database/categ_menu.txt:4
+#: ../../tools/database/categories_menu.txt:4
 msgid "Tags to remove"
 msgstr "Ezabatzeko etiketak"
 
-#: ../../tools/database/categ_menu.txt:5
+#: ../../tools/database/categories_menu.txt:5
 msgid "Tags name"
 msgstr "Etiketa izenak"
 
-#: ../../tools/database/categ_menu.txt:6
+#: ../../tools/database/categories_menu.txt:6
 msgid "Administrative"
 msgstr "Administratiboak"
 
-#: ../../tools/database/categ_menu.txt:7
+#: ../../tools/database/categories_menu.txt:7
 msgid "To map"
 msgstr "Mapeatzeke"
 
-#: ../../tools/database/categ_menu.txt:8
+#: ../../tools/database/categories_menu.txt:8
 msgid "Integration"
 msgstr "Integrazioa"
 
-#: ../../tools/database/item_menu.txt:1
+#: ../../tools/database/items_menu.txt:1
 msgid "overlapping building"
 msgstr "eraikin bat bestearen gainean"
 
-#: ../../tools/database/item_menu.txt:3
+#: ../../tools/database/items_menu.txt:3
 msgid "duplicated node"
 msgstr "nodo bikoitza"
 
-#: ../../tools/database/item_menu.txt:4
+#: ../../tools/database/items_menu.txt:4
 msgid "way one node"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:5
+#: ../../tools/database/items_menu.txt:5
 msgid "invalid polygon"
 msgstr "baliogabeko poligonoa"
 
-#: ../../tools/database/item_menu.txt:6
+#: ../../tools/database/items_menu.txt:6
 msgid "reverse roundabout"
 msgstr "alderantzizko biribilgunea"
 
-#: ../../tools/database/item_menu.txt:7
+#: ../../tools/database/items_menu.txt:7
 msgid "boundary intersect"
 msgstr "Mugak elkar gurutzatzea"
 
-#: ../../tools/database/item_menu.txt:8
+#: ../../tools/database/items_menu.txt:8
 msgid "objects overlap"
 msgstr "Gainjarritako objektuak"
 
-#: ../../tools/database/item_menu.txt:9
+#: ../../tools/database/items_menu.txt:9
 msgid "orphan nodes"
 msgstr "nodo umezurtzak"
 
-#: ../../tools/database/item_menu.txt:10
+#: ../../tools/database/items_menu.txt:10
 msgid "sudden highway type change"
 msgstr "errepide motaren bapateko aldaketa"
 
-#: ../../tools/database/item_menu.txt:11
+#: ../../tools/database/items_menu.txt:11
 msgid "unclosed area"
 msgstr "itxi gabeko eremua"
 
-#: ../../tools/database/item_menu.txt:12
+#: ../../tools/database/items_menu.txt:12
 msgid "bad *_link highway"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:13
+#: ../../tools/database/items_menu.txt:13
 msgid "broken highway continuity"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:14
+#: ../../tools/database/items_menu.txt:14
 msgid "missing tag or role"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:15
+#: ../../tools/database/items_menu.txt:15
 msgid "surface intersection"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:16
+#: ../../tools/database/items_menu.txt:16
 msgid "big relation"
 msgstr "erlazio handia"
 
-#: ../../tools/database/item_menu.txt:17
+#: ../../tools/database/items_menu.txt:17
 msgid "multipolygon"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:18
+#: ../../tools/database/items_menu.txt:18
 msgid "double cycleway"
 msgstr "bide-gorri bikoitza"
 
-#: ../../tools/database/item_menu.txt:19
+#: ../../tools/database/items_menu.txt:19
 msgid "approximate way"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:20
+#: ../../tools/database/items_menu.txt:20
 msgid "1-member relation"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:21
+#: ../../tools/database/items_menu.txt:21
 msgid "not-connected highway/cycleway"
 msgstr "konektatu gabeko errepidea/bidegorria"
 
-#: ../../tools/database/item_menu.txt:22
+#: ../../tools/database/items_menu.txt:22
 msgid "waterway"
 msgstr "ubidea"
 
-#: ../../tools/database/item_menu.txt:24
+#: ../../tools/database/items_menu.txt:24
 msgid "duplicate geometry"
 msgstr "geometria errepikatua"
 
-#: ../../tools/database/item_menu.txt:31
+#: ../../tools/database/items_menu.txt:31
 msgid "junction=roundabout"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:32
+#: ../../tools/database/items_menu.txt:32
 msgid "elevation"
 msgstr "garaiera"
 
-#: ../../tools/database/item_menu.txt:33
+#: ../../tools/database/items_menu.txt:33
 msgid "oneway"
 msgstr "norantza bakarra"
 
-#: ../../tools/database/item_menu.txt:35
+#: ../../tools/database/items_menu.txt:35
 msgid "parent tag"
 msgstr "guraso etiketa"
 
-#: ../../tools/database/item_menu.txt:36
+#: ../../tools/database/items_menu.txt:36
 msgid "street numbers"
 msgstr "kale zenbakiak"
 
-#: ../../tools/database/item_menu.txt:37
-#: ../../tools/database/item_menu.txt:215
+#: ../../tools/database/items_menu.txt:37
+#: ../../tools/database/items_menu.txt:219
 msgid "highway"
 msgstr "errepidea"
 
-#: ../../tools/database/item_menu.txt:38
+#: ../../tools/database/items_menu.txt:38
 msgid "highway crossing"
 msgstr "errepide bidegurutzea"
 
-#: ../../tools/database/item_menu.txt:39
-#: ../../tools/database/item_menu.txt:173
+#: ../../tools/database/items_menu.txt:39
+#: ../../tools/database/items_menu.txt:175
 msgid "pharmacy"
 msgstr "botika"
 
-#: ../../tools/database/item_menu.txt:46
+#: ../../tools/database/items_menu.txt:46
 msgid "highway roundabout"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:47
+#: ../../tools/database/items_menu.txt:47
 msgid "bad source tag"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:48
+#: ../../tools/database/items_menu.txt:48
 msgid "tagwatch cleaner"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:49
-#: ../../tools/database/item_menu.txt:222
+#: ../../tools/database/items_menu.txt:49
+#: ../../tools/database/items_menu.txt:226
 msgid "wikipedia"
 msgstr "wikipedia"
 
-#: ../../tools/database/item_menu.txt:50
+#: ../../tools/database/items_menu.txt:50
 msgid "multiple tags"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:51
+#: ../../tools/database/items_menu.txt:51
 msgid "saint hyphen"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:52
+#: ../../tools/database/items_menu.txt:52
 msgid "incorrect tag"
 msgstr "etiketa okerra"
 
-#: ../../tools/database/item_menu.txt:53
+#: ../../tools/database/items_menu.txt:53
 msgid "bad tag key"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:54
+#: ../../tools/database/items_menu.txt:54
 msgid "similar values"
 msgstr "antzeko balioak"
 
-#: ../../tools/database/item_menu.txt:55
+#: ../../tools/database/items_menu.txt:55
 msgid "multiple values"
 msgstr "balio anitz"
 
-#: ../../tools/database/item_menu.txt:58
+#: ../../tools/database/items_menu.txt:58
 msgid "numeric value"
 msgstr "zenbakizko balioa"
 
-#: ../../tools/database/item_menu.txt:61
+#: ../../tools/database/items_menu.txt:61
 msgid "small farm"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:62
+#: ../../tools/database/items_menu.txt:62
 msgid "note"
 msgstr "oharra"
 
-#: ../../tools/database/item_menu.txt:63
+#: ../../tools/database/items_menu.txt:63
 msgid "tree"
 msgstr "zuhaitza"
 
-#: ../../tools/database/item_menu.txt:64
+#: ../../tools/database/items_menu.txt:64
 msgid "brand in name"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:65
+#: ../../tools/database/items_menu.txt:65
 msgid "typo in tag"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:66
+#: ../../tools/database/items_menu.txt:66
 msgid "incorrect "
 msgstr "okerra"
 
-#: ../../tools/database/item_menu.txt:67
+#: ../../tools/database/items_menu.txt:67
 msgid "parking lane"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:68
+#: ../../tools/database/items_menu.txt:68
 msgid "relation role"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:69
+#: ../../tools/database/items_menu.txt:69
 msgid "relation type=restriction"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:70
+#: ../../tools/database/items_menu.txt:70
 msgid "postcode"
 msgstr "posta kodea"
 
-#: ../../tools/database/item_menu.txt:78
+#: ../../tools/database/items_menu.txt:78
 msgid "disused"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:79
+#: ../../tools/database/items_menu.txt:79
 msgid "on junction=roundabout"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:80
+#: ../../tools/database/items_menu.txt:80
 msgid "incompatible tags"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:81
+#: ../../tools/database/items_menu.txt:81
 msgid "ref in name"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:84
+#: ../../tools/database/items_menu.txt:84
 msgid "construction"
 msgstr "eraikuntza"
 
-#: ../../tools/database/item_menu.txt:85
+#: ../../tools/database/items_menu.txt:85
 msgid "duplicate object"
 msgstr "objetu bikoiztua"
 
-#: ../../tools/database/item_menu.txt:86
+#: ../../tools/database/items_menu.txt:86
 msgid "unwanted tag on node"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:87
+#: ../../tools/database/items_menu.txt:87
 msgid "bad usage"
 msgstr "erabilpen okerra"
 
-#: ../../tools/database/item_menu.txt:91
+#: ../../tools/database/items_menu.txt:91
 msgid "orthograph"
 msgstr "ortografia"
 
-#: ../../tools/database/item_menu.txt:92
+#: ../../tools/database/items_menu.txt:92
 msgid "way type"
 msgstr "errepide mota"
 
-#: ../../tools/database/item_menu.txt:93
+#: ../../tools/database/items_menu.txt:93
 msgid "two names"
 msgstr "bi izen"
 
-#: ../../tools/database/item_menu.txt:94
+#: ../../tools/database/items_menu.txt:94
 msgid "toponymy"
 msgstr "toponimia"
 
-#: ../../tools/database/item_menu.txt:99
+#: ../../tools/database/items_menu.txt:99
 msgid "open polygon"
 msgstr "poligono irekia"
 
-#: ../../tools/database/item_menu.txt:100
+#: ../../tools/database/items_menu.txt:100
 msgid "duplicated way"
 msgstr "errepide bikoiztua"
 
-#: ../../tools/database/item_menu.txt:101
+#: ../../tools/database/items_menu.txt:101
 msgid "place without name"
 msgstr "izenik gabeko lekua"
 
-#: ../../tools/database/item_menu.txt:102
+#: ../../tools/database/items_menu.txt:102
 msgid "INSEE code"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:103
+#: ../../tools/database/items_menu.txt:103
 msgid "admin_level"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:104
+#: ../../tools/database/items_menu.txt:104
 msgid "erroneous boundary"
 msgstr "muga okerra"
 
-#: ../../tools/database/item_menu.txt:105
+#: ../../tools/database/items_menu.txt:105
 msgid "out of boundary"
 msgstr "mugatik kanpo"
 
-#: ../../tools/database/item_menu.txt:106
+#: ../../tools/database/items_menu.txt:106
 msgid "geodesic building"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:107
+#: ../../tools/database/items_menu.txt:107
 msgid "building shape"
 msgstr "eraikin forma"
 
-#: ../../tools/database/item_menu.txt:108
+#: ../../tools/database/items_menu.txt:108
 msgid "bridge to tag"
 msgstr "etiketatzeko zubia"
 
-#: ../../tools/database/item_menu.txt:109
+#: ../../tools/database/items_menu.txt:109
 msgid "admin boundary"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:110
+#: ../../tools/database/items_menu.txt:110
 msgid "power lines"
 msgstr "linea elektrikoak"
 
-#: ../../tools/database/item_menu.txt:111
-#: ../../tools/database/item_menu.txt:133
+#: ../../tools/database/items_menu.txt:111
+#: ../../tools/database/items_menu.txt:133
 msgid "post office"
 msgstr "postetxea"
 
-#: ../../tools/database/item_menu.txt:113
+#: ../../tools/database/items_menu.txt:113
 msgid "ODbL migration change"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:114
+#: ../../tools/database/items_menu.txt:114
 msgid "school, not integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:115
+#: ../../tools/database/items_menu.txt:115
 msgid "monument"
 msgstr "monumentua"
 
-#: ../../tools/database/item_menu.txt:116
+#: ../../tools/database/items_menu.txt:116
 msgid "node on ways"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:117
-#: ../../tools/database/item_menu.txt:144
+#: ../../tools/database/items_menu.txt:117
+#: ../../tools/database/items_menu.txt:144
 msgid "train station"
 msgstr "tren estazioa"
 
-#: ../../tools/database/item_menu.txt:118
+#: ../../tools/database/items_menu.txt:118
 msgid "TMC"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:119
+#: ../../tools/database/items_menu.txt:119
 msgid "relation type=boundary"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:120
+#: ../../tools/database/items_menu.txt:120
 msgid "tunnel/bridge"
 msgstr "tunela/zubia"
 
-#: ../../tools/database/item_menu.txt:130
+#: ../../tools/database/items_menu.txt:130
 msgid "monument, museum"
 msgstr "monumentua, museoa"
 
-#: ../../tools/database/item_menu.txt:131
+#: ../../tools/database/items_menu.txt:131
 msgid "monument, museum, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:134
+#: ../../tools/database/items_menu.txt:134
 msgid "post office, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:138
+#: ../../tools/database/items_menu.txt:138
 msgid "school"
 msgstr "eskola"
 
-#: ../../tools/database/item_menu.txt:139
+#: ../../tools/database/items_menu.txt:139
 msgid "school, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:27
-#: ../../tools/database/item_menu.txt:141
-#: ../../tools/database/item_menu.txt:223
+#: ../../tools/database/items_menu.txt:27
+#: ../../tools/database/items_menu.txt:141
+#: ../../tools/database/items_menu.txt:227
 msgid "public transport"
 msgstr "garraio publikoa"
 
-#: ../../tools/database/item_menu.txt:142
+#: ../../tools/database/items_menu.txt:142
 msgid "public transport, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:145
+#: ../../tools/database/items_menu.txt:145
 msgid "train station, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:146
+#: ../../tools/database/items_menu.txt:146
 msgid "level crossing"
 msgstr "trenbide-pasagunea"
 
-#: ../../tools/database/item_menu.txt:147
+#: ../../tools/database/items_menu.txt:147
 msgid "geodesic point"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:148
+#: ../../tools/database/items_menu.txt:148
 msgid "postal address"
 msgstr "helbide postala"
 
-#: ../../tools/database/item_menu.txt:149
+#: ../../tools/database/items_menu.txt:151
 msgid "wikipedia, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:150
+#: ../../tools/database/items_menu.txt:152
 msgid "public service"
 msgstr "zerbitzu publikoa"
 
-#: ../../tools/database/item_menu.txt:151
+#: ../../tools/database/items_menu.txt:153
 msgid "recycling"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:152
+#: ../../tools/database/items_menu.txt:154
 msgid "recycling, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:154
+#: ../../tools/database/items_menu.txt:156
 msgid "parking"
 msgstr "aparkalekua"
 
-#: ../../tools/database/item_menu.txt:155
+#: ../../tools/database/items_menu.txt:157
 msgid "parking, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:157
+#: ../../tools/database/items_menu.txt:159
 msgid "accommodation"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:158
+#: ../../tools/database/items_menu.txt:160
 msgid "accommodation, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:159
+#: ../../tools/database/items_menu.txt:161
 msgid "cycle parking"
 msgstr "bizikletentzako aparkalekua"
 
-#: ../../tools/database/item_menu.txt:160
+#: ../../tools/database/items_menu.txt:162
 msgid "cycle parking, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:161
+#: ../../tools/database/items_menu.txt:163
 msgid "transport sharing"
 msgstr "garraio partekatzea"
 
-#: ../../tools/database/item_menu.txt:162
+#: ../../tools/database/items_menu.txt:164
 msgid "transport sharing, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:164
+#: ../../tools/database/items_menu.txt:166
 msgid "sport"
 msgstr "kirola"
 
-#: ../../tools/database/item_menu.txt:165
+#: ../../tools/database/items_menu.txt:167
 msgid "sport, could be integrated"
 msgstr ""
 
@@ -930,35 +930,35 @@ msgstr "Esportatu"
 msgid "Html list"
 msgstr "Html zerrenda"
 
-#: ../../tools/database/item_menu.txt:25
+#: ../../tools/database/items_menu.txt:25
 msgid "one-node way"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:166
+#: ../../tools/database/items_menu.txt:168
 msgid "toilets"
 msgstr "komunak"
 
-#: ../../tools/database/item_menu.txt:121
+#: ../../tools/database/items_menu.txt:121
 msgid "transport sharing, not integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:167
+#: ../../tools/database/items_menu.txt:169
 msgid "police"
 msgstr "polizia"
 
-#: ../../tools/database/item_menu.txt:168
+#: ../../tools/database/items_menu.txt:170
 msgid "police, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:122
+#: ../../tools/database/items_menu.txt:122
 msgid "pharmacy, not integrated "
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:174
+#: ../../tools/database/items_menu.txt:176
 msgid "pharmacy, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:170
+#: ../../tools/database/items_menu.txt:172
 msgid "gas station"
 msgstr "gasolindegia"
 
@@ -978,11 +978,11 @@ msgstr ""
 msgid "Comment"
 msgstr "Iruzkina"
 
-#: ../../tools/database/item_menu.txt:71
+#: ../../tools/database/items_menu.txt:71
 msgid "area"
 msgstr "eremua"
 
-#: ../../tools/database/item_menu.txt:72
+#: ../../tools/database/items_menu.txt:72
 msgid "noexit"
 msgstr "irteeratik gabe"
 
@@ -992,7 +992,7 @@ msgid ""
 "href='https://twitter.com/osmose_qa'>@osmose_qa</a> on twitter."
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:88
+#: ../../tools/database/items_menu.txt:88
 msgid "incorrect layer"
 msgstr "geruza okerra"
 
@@ -1008,31 +1008,31 @@ msgstr "herrialdea"
 msgid "analyser"
 msgstr "analizatzailea"
 
-#: ../../tools/database/item_menu.txt:176
+#: ../../tools/database/items_menu.txt:178
 msgid "postal code, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:177
+#: ../../tools/database/items_menu.txt:179
 msgid "library"
 msgstr "liburutegia"
 
-#: ../../tools/database/item_menu.txt:178
+#: ../../tools/database/items_menu.txt:180
 msgid "restaurant"
 msgstr "jatetxea"
 
-#: ../../tools/database/item_menu.txt:179
+#: ../../tools/database/items_menu.txt:181
 msgid "winery"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:40
+#: ../../tools/database/items_menu.txt:40
 msgid "missing object kind"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:123
+#: ../../tools/database/items_menu.txt:123
 msgid "postal code, not integrated "
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:96
+#: ../../tools/database/items_menu.txt:96
 msgid "local language"
 msgstr "bertako hizkuntza"
 
@@ -1043,11 +1043,11 @@ msgid ""
 "other areas are funded by Mapbox."
 msgstr ""
 
-#: ../issues.py:72
+#: ../issues.py:63
 msgid "Fixed issues"
 msgstr "Konpondutako arazoak"
 
-#: ../map.py:66
+#: ../map.py:63
 msgid "Issues by user"
 msgstr "Erabiltzaile bakoitzeko arazoak"
 
@@ -1121,32 +1121,32 @@ msgstr ""
 msgid "version"
 msgstr "bertsioa"
 
-#: ../../tools/database/item_menu.txt:180
+#: ../../tools/database/items_menu.txt:182
 msgid "geodesic"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:112
-#: ../../tools/database/item_menu.txt:136
+#: ../../tools/database/items_menu.txt:112
+#: ../../tools/database/items_menu.txt:136
 msgid "post box"
 msgstr "postontzia"
 
-#: ../../tools/database/item_menu.txt:137
+#: ../../tools/database/items_menu.txt:137
 msgid "post box, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:41
+#: ../../tools/database/items_menu.txt:41
 msgid "indoor"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:89
+#: ../../tools/database/items_menu.txt:89
 msgid "roundabout as area"
 msgstr "eremu bezala markatutako biribilgunea"
 
-#: ../../tools/database/item_menu.txt:124
+#: ../../tools/database/items_menu.txt:124
 msgid "road"
 msgstr "errepidea"
 
-#: ../../tools/database/item_menu.txt:2
+#: ../../tools/database/items_menu.txt:2
 msgid "split building"
 msgstr ""
 
@@ -1174,47 +1174,48 @@ msgid ""
 "frontend</a> can be used to report any issue with translations."
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:23
+#: ../../tools/database/items_menu.txt:23
 msgid "far from water"
 msgstr "uretatik urrun"
 
-#: ../../tools/database/item_menu.txt:82
+#: ../../tools/database/items_menu.txt:82
 msgid "fixme import"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:26
+#: ../../tools/database/items_menu.txt:26
 msgid "objects intersection"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:42 ../../tools/database/item_menu.txt:73
+#: ../../tools/database/items_menu.txt:42
+#: ../../tools/database/items_menu.txt:73
 msgid "access"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:83
+#: ../../tools/database/items_menu.txt:83
 msgid "fixme review"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:132
+#: ../../tools/database/items_menu.txt:132
 msgid "monument, museum, need update"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:140
+#: ../../tools/database/items_menu.txt:140
 msgid "school, need update"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:143
+#: ../../tools/database/items_menu.txt:143
 msgid "public transport, need update"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:153
+#: ../../tools/database/items_menu.txt:155
 msgid "recycling, need update"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:156
+#: ../../tools/database/items_menu.txt:158
 msgid "parking, need update"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:163
+#: ../../tools/database/items_menu.txt:165
 msgid "transport sharing, need update"
 msgstr ""
 
@@ -1234,7 +1235,7 @@ msgstr "Adina"
 msgid "Version"
 msgstr "Bertsioa"
 
-#: ../../tools/database/item_menu.txt:135
+#: ../../tools/database/items_menu.txt:135
 msgid "post office, need update"
 msgstr ""
 
@@ -1242,68 +1243,68 @@ msgstr ""
 msgid "age"
 msgstr "adina"
 
-#: ../../tools/database/item_menu.txt:97
+#: ../../tools/database/items_menu.txt:97
 msgid "invalid character"
 msgstr "karaktere baliogabea"
 
-#: ../../tools/database/item_menu.txt:172
+#: ../../tools/database/items_menu.txt:174
 msgid "gas station, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:125
-#: ../../tools/database/item_menu.txt:182
+#: ../../tools/database/items_menu.txt:125
+#: ../../tools/database/items_menu.txt:184
 msgid "power substation"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:183
+#: ../../tools/database/items_menu.txt:185
 msgid "power substation, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:185
+#: ../../tools/database/items_menu.txt:187
 msgid "power support"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:186
+#: ../../tools/database/items_menu.txt:188
 msgid "power support, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:28
+#: ../../tools/database/items_menu.txt:28
 msgid "almost junction"
 msgstr "ia bidegurutzea"
 
-#: ../../tools/database/item_menu.txt:43
+#: ../../tools/database/items_menu.txt:43
 msgid "public_transport route"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:74
+#: ../../tools/database/items_menu.txt:74
 msgid "recycling container"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:90
+#: ../../tools/database/items_menu.txt:90
 msgid "duplicate wikipedia"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:75
+#: ../../tools/database/items_menu.txt:75
 msgid "route access mismatch"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:98
+#: ../../tools/database/items_menu.txt:98
 msgid "similar name"
 msgstr "antzeko izena"
 
-#: ../../tools/database/item_menu.txt:171
+#: ../../tools/database/items_menu.txt:173
 msgid "gas station, need update"
 msgstr "gasolindegia, eguneraketa behar du"
 
-#: ../../tools/database/item_menu.txt:59
+#: ../../tools/database/items_menu.txt:59
 msgid "phone number"
 msgstr "telefono zenbakia"
 
-#: ../../tools/database/item_menu.txt:187
+#: ../../tools/database/items_menu.txt:189
 msgid "traffic signs"
 msgstr "zirkulazio seinaleak"
 
-#: ../../tools/database/item_menu.txt:189
+#: ../../tools/database/items_menu.txt:191
 msgid "traffic sign limitation"
 msgstr ""
 
@@ -1346,51 +1347,51 @@ msgid ""
 "href='mailto:{email}'>{email}</a>."
 msgstr ""
 
-#: ../../tools/database/categ_menu.txt:9
+#: ../../tools/database/categories_menu.txt:9
 msgid "JOSM validator"
 msgstr "JOSM balidatzailea"
 
-#: ../../tools/database/item_menu.txt:210
+#: ../../tools/database/items_menu.txt:214
 msgid "seamark"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:211
+#: ../../tools/database/items_menu.txt:215
 msgid "addresses"
 msgstr "helbideak"
 
-#: ../../tools/database/item_menu.txt:212
+#: ../../tools/database/items_menu.txt:216
 msgid "combinations"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:213
+#: ../../tools/database/items_menu.txt:217
 msgid "deprecated"
 msgstr "zaharkitua"
 
-#: ../../tools/database/item_menu.txt:214
+#: ../../tools/database/items_menu.txt:218
 msgid "geometry"
 msgstr "geometria"
 
-#: ../../tools/database/item_menu.txt:216
+#: ../../tools/database/items_menu.txt:220
 msgid "multiple"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:217
+#: ../../tools/database/items_menu.txt:221
 msgid "numeric"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:218
+#: ../../tools/database/items_menu.txt:222
 msgid "relation"
 msgstr "erlazioa"
 
-#: ../../tools/database/item_menu.txt:219
+#: ../../tools/database/items_menu.txt:223
 msgid "religion"
 msgstr "erlijioa"
 
-#: ../../tools/database/item_menu.txt:220
+#: ../../tools/database/items_menu.txt:224
 msgid "territories"
 msgstr "lurraldeak"
 
-#: ../../tools/database/item_menu.txt:221
+#: ../../tools/database/items_menu.txt:225
 msgid "unnecessary"
 msgstr "alferrikakoa"
 
@@ -1469,11 +1470,11 @@ msgid ""
 "automatically on next check if no more issue."
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:44
+#: ../../tools/database/items_menu.txt:44
 msgid "zone:maxspeed"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:229
+#: ../../tools/database/items_menu.txt:233
 msgid "power transformer"
 msgstr "transformadore elektrikoa"
 
@@ -1482,74 +1483,74 @@ msgstr "transformadore elektrikoa"
 msgid "Item #%s"
 msgstr "Elementua #%s"
 
-#: ../../tools/database/item_menu.txt:76
+#: ../../tools/database/items_menu.txt:76
 msgid "opening hours"
 msgstr "irekiera ordua"
 
-#: ../../tools/database/item_menu.txt:126
-#: ../../tools/database/item_menu.txt:190
+#: ../../tools/database/items_menu.txt:126
+#: ../../tools/database/items_menu.txt:192
 msgid "hospital"
 msgstr "eritetxea"
 
-#: ../../tools/database/item_menu.txt:127
-#: ../../tools/database/item_menu.txt:192
+#: ../../tools/database/items_menu.txt:127
+#: ../../tools/database/items_menu.txt:194
 msgid "social facility"
 msgstr "gizarte etxea"
 
-#: ../../tools/database/item_menu.txt:128
-#: ../../tools/database/item_menu.txt:194
+#: ../../tools/database/items_menu.txt:128
+#: ../../tools/database/items_menu.txt:196
 msgid "medical lab"
 msgstr "medikuntza laborategia"
 
-#: ../../tools/database/item_menu.txt:191
+#: ../../tools/database/items_menu.txt:193
 msgid "hospital, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:193
+#: ../../tools/database/items_menu.txt:195
 msgid "social facility, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:195
+#: ../../tools/database/items_menu.txt:197
 msgid "medical lab, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:169
+#: ../../tools/database/items_menu.txt:171
 msgid "police, need update"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:56
+#: ../../tools/database/items_menu.txt:56
 msgid "swimming pool"
 msgstr "igerilekua"
 
-#: ../../tools/database/item_menu.txt:95
+#: ../../tools/database/items_menu.txt:95
 msgid "potential misspelling"
 msgstr "balizko idazketa okerra"
 
-#: ../../tools/database/item_menu.txt:29
+#: ../../tools/database/items_menu.txt:29
 msgid "enforcement"
 msgstr "trafikoaren kontrola"
 
-#: ../../tools/database/item_menu.txt:60
+#: ../../tools/database/items_menu.txt:60
 msgid "URL"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:196
+#: ../../tools/database/items_menu.txt:198
 msgid "street objects"
 msgstr "kaleko objektuak"
 
-#: ../../tools/database/item_menu.txt:224
+#: ../../tools/database/items_menu.txt:228
 msgid "openrailwaymap"
 msgstr "openrailwaymap"
 
-#: ../../tools/database/item_menu.txt:225
+#: ../../tools/database/items_menu.txt:229
 msgid "openrailwaymap in germany"
 msgstr "openrailwaymap Alemanian"
 
-#: ../../tools/database/item_menu.txt:45
+#: ../../tools/database/items_menu.txt:45
 msgid "railways"
 msgstr "trenbideak"
 
-#: ../../tools/database/item_menu.txt:181
+#: ../../tools/database/items_menu.txt:183
 msgid "power plant"
 msgstr ""
 
@@ -1559,19 +1560,19 @@ msgid ""
 "languages."
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:197
+#: ../../tools/database/items_menu.txt:199
 msgid "defibrillator"
 msgstr "desfibriladorea"
 
-#: ../../tools/database/item_menu.txt:201
+#: ../../tools/database/items_menu.txt:203
 msgid "radio support"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:202
+#: ../../tools/database/items_menu.txt:204
 msgid "radio support, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:203
+#: ../../tools/database/items_menu.txt:205
 msgid "radio support, need update"
 msgstr ""
 
@@ -1633,35 +1634,35 @@ msgstr ""
 msgid "You can find help on the wiki:"
 msgstr "Wikian laguntza aurkitu dezakezu:"
 
-#: ../../tools/database/item_menu.txt:206
+#: ../../tools/database/items_menu.txt:208
 msgid "charging station"
 msgstr "karga estazioa"
 
-#: ../../tools/database/item_menu.txt:207
+#: ../../tools/database/items_menu.txt:209
 msgid "charging station, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:208
+#: ../../tools/database/items_menu.txt:210
 msgid "charging station, need update"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:30
+#: ../../tools/database/items_menu.txt:30
 msgid "related objects"
 msgstr "erlazionatutako objektuak"
 
-#: ../../tools/database/item_menu.txt:198
+#: ../../tools/database/items_menu.txt:200
 msgid "wastewater"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:199
+#: ../../tools/database/items_menu.txt:201
 msgid "wastewater, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:200
+#: ../../tools/database/items_menu.txt:202
 msgid "wastewater, need update"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:129
+#: ../../tools/database/items_menu.txt:129
 msgid "gas station, not integrated"
 msgstr "Integratu gabeko gasolindegia"
 
@@ -1677,27 +1678,27 @@ msgstr "Arazoari buruzko xehetasunak"
 msgid "Report based on data from date"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:175
+#: ../../tools/database/items_menu.txt:177
 msgid "pharmacy, need update"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:184
+#: ../../tools/database/items_menu.txt:186
 msgid "power substation, need update"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:188
+#: ../../tools/database/items_menu.txt:190
 msgid "shop"
 msgstr "denda"
 
-#: ../../tools/database/item_menu.txt:226
+#: ../../tools/database/items_menu.txt:230
 msgid "specific russia"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:227
+#: ../../tools/database/items_menu.txt:231
 msgid "specific brazil"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:228
+#: ../../tools/database/items_menu.txt:232
 msgid "specific france"
 msgstr ""
 
@@ -1721,24 +1722,45 @@ msgid ""
 "integrating third-party data sets by conflation."
 msgstr ""
 
-#: tmp.tpl:157
 msgid ""
 "Feel free to report any problem, idea or new open data you want to add to "
 "Osmose on our Github."
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:77
+#: ../../tools/database/items_menu.txt:77
 msgid "VAT"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:204
+#: ../../tools/database/items_menu.txt:206
 msgid "health centre"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:205
+#: ../../tools/database/items_menu.txt:207
 msgid "health centre, could be integrated"
 msgstr ""
 
-#: ../../tools/database/item_menu.txt:209
+#: ../../tools/database/items_menu.txt:211
 msgid "tourism"
+msgstr ""
+
+#: tmp.tpl:157
+msgid ""
+"Feel free to report any problem, idea or new open data you want to add to "
+"Osmose on our Github:"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:149
+msgid "fire hydrant"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:150
+msgid "fire hydrant, could be integrated"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:212
+msgid "milestone"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:213
+msgid "milestone, could be integrated"
 msgstr ""
