@@ -1,7 +1,7 @@
 
 PYFILES=$(shell find .. -name '*.py' -not -type l -not -path '*/externals/*' | sort)
 TPLFILES=$(shell find ../views -name '*.tpl' | sort)
-DBFILES=../../tools/database/categ_menu.txt ../../tools/database/item_menu.txt
+DBFILES=../../tools/database/categories_menu.txt ../../tools/database/items_menu.txt
 
 PO:=$(wildcard *.po)
 MO:=$(patsubst %.po,mo/%/LC_MESSAGES/osmose-frontend.mo,$(PO))
