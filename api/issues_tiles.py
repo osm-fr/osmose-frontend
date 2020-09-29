@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import default_app, route, response, HTTPError
+from bottle import default_app, route, response, HTTPError, HTTPResponse
 from modules.params import Params
 from modules import query, tiles
 import math
@@ -191,7 +191,7 @@ def issues_mvt(db, z, x, y, format):
             response.content_type = 'application/vnd.mapbox-vector-tile'
             return tile
         else:
-            return HTTPError(404)
+            return HTTPResponse(status=204, headers={'Access-Control-Allow-Origin': '*'})
     elif format in ('geojson', 'json'):  # Fall back to GeoJSON
         tile = _errors_geojson(db, results, z, lon1, lat1, lon2, lat2, params.limit)
         if tile:
