@@ -150,6 +150,7 @@ class update_parser(handler.ContentHandler):
             self.update_timestamp(attrs)
 
         elif name == u"analyserChange":
+            self.all_uuid = None
             self.mode = "analyserChange"
             self.update_timestamp(attrs)
 
@@ -248,7 +249,7 @@ WHERE
     def endElement(self, name):
         self.element_stack.pop()
 
-        if name == u"analyser":
+        if name == "analyser" and self.all_uuid:
             for class_id, uuid in self.all_uuid.items():
                 execute_sql(self._dbcurs, "DELETE FROM markers WHERE source_id = %s AND class = %s AND uuid != ALL (%s::uuid[])", (self._source_id, class_id, uuid))
 
@@ -314,7 +315,7 @@ WHERE
 
                 execute_sql(self._dbcurs, sql_uuid, params)
                 r = self._dbcurs.fetchone()
-                if r and r[0]:
+                if r and r[0] and self.all_uuid is not None:
                     self.all_uuid[self._class_id].append(r[0])
 
                 execute_sql(self._dbcurs, sql_marker, params)
@@ -331,7 +332,8 @@ WHERE
                 self._fix.append(self._elem)
 
         elif name == u"class":
-            self.all_uuid[self._class_id] = []
+            if self.all_uuid is not None:
+                self.all_uuid[self._class_id] = []
 
             # Commit class update on its own transaction. Avoid lock the class table and block other updates.
             dbconn = utils.get_dbconn()
