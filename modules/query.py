@@ -179,13 +179,13 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
         where.append("class.tags::text[] && ARRAY['%s']" % "','".join(map(utils.pg_escape, tags)))
 
     if fixable == 'online':
-        where.append("(SELECT bool_or(fix->'id' != '0'::jsonb) FROM (SELECT jsonb_array_elements(unnest(fixes))) AS t(fix))")
+        where.append("(SELECT bool_or(fix->>'id' != '0') FROM (SELECT jsonb_array_elements(unnest(fixes))) AS t(fix))")
     elif fixable == 'josm':
         where.append("fixes IS NOT NULL")
 
     if osm_type and osm_id and base_table == "markers":
         where.append('ARRAY[%s::bigint] <@ marker_elem_ids(elems)' % (osm_id, )) # Match the index
-        where.append('(SELECT bool_or(elem->\'type\' = \'"%s"\'::jsonb AND elem->\'id\' = \'%s\'::jsonb) FROM (SELECT unnest(elems)) AS t(elem))' % (osm_type[0].upper(), osm_id)) # Recheck with type
+        where.append('(SELECT bool_or(elem->>\'type\' = \'%s\' AND elem->>\'id\' = \'%s\') FROM (SELECT unnest(elems)) AS t(elem))' % (osm_type[0].upper(), osm_id)) # Recheck with type
 
     return (join, " AND\n        ".join(where))
 
