@@ -25,6 +25,7 @@ from modules import utils
 from . import update
 import os
 import sys
+import traceback
 
 
 @post('/send-update')
@@ -95,7 +96,7 @@ LIMIT 1
         traceback.print_exc()
         sys.stderr = sys.__stderr__
         traceback = s.getvalue()
-        return traceback.rstrip()
+        abort(500, traceback.rstrip())
 
     return "OK"
 
