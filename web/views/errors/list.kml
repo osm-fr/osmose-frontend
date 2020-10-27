@@ -54,7 +54,7 @@
 %                end
       {{main_website}}{{e['type_long']}}/{{e['id']}}
 %                if e['type'] == 'R':
-      http://localhost:8111/import?url={{remote_url_read}}/api/0.6/relation/{{e['id']}}/full
+      http://localhost:8111/import?url={{remote_url_read}}api/0.6/relation/{{e['id']}}/full
 %                else:
       http://localhost:8111/load_object?objects={{e['type'].lower()}}{{e['id']}}
 %                end

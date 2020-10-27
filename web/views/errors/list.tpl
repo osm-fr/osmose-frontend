@@ -59,7 +59,7 @@
         <a target="_blank" href="{{main_website}}{{e['type_long']}}/{{e['id']}}">{{e['id']}}</a>&nbsp;
         &nbsp;
 %                if e['type'] == "R":
-        <a title="josm" href="../josm_proxy?import?url={{remote_url_read}}/api/0.6/relation/{{e['id']}}/full" target="hiddenIframe" onclick="$.get('http://localhost:8111/zoom?left={%minlon%}&bottom={%minlat%}&right={%maxlon%}&top={%maxlat%}'); return true;">(j)</a>
+        <a title="josm" href="../josm_proxy?import?url={{remote_url_read}}api/0.6/relation/{{e['id']}}/full" target="hiddenIframe" onclick="$.get('http://localhost:8111/zoom?left={%minlon%}&bottom={%minlat%}&right={%maxlon%}&top={%maxlat%}'); return true;">(j)</a>
 %                else:
         <a title="josm" href="../josm_proxy?load_object?objects={{e['type'].lower()}}{{e['id']}}" target="hiddenIframe">(j)</a>
 %                end
