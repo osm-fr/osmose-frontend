@@ -98,12 +98,12 @@
     <td>{{round((datetime.now(res["timestamp"].tzinfo) - res["timestamp"]).total_seconds()/60/60/24, 1)}}</td>
     <td>
         <img src="../images/markers/marker-l-{{res["item"]}}.png" alt="{{res["item"]}}">
-        <a href="?item={{res["item"]}}">{{res["item"]}}</a>
+        <a href="?item={{res["item"]}}&amp;country={{res["country"]}}">{{res["item"]}}</a>
 %        if res["menu"]:
             {{translate.select(res["menu"])}}
 %        end
     </td>
-    <td><a href="?item={{res["item"]}}&amp;class={{res["class"]}}">{{res["class"]}}</a></td>
+    <td><a href="?item={{res["item"]}}&amp;class={{res["class"]}}&amp;country={{res["country"]}}">{{res["class"]}}</a></td>
     <td>{{translate.select(res["title"])}}</td>
 %    count = res["count"]
 %    if count == -1:
