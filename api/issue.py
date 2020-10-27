@@ -314,6 +314,7 @@ def _fix(version, db, uuid, fix_num, fix):
             res2 = db.fetchone()
             data["lat"] = res2["lat"]
             data["lon"] = res2["lon"]
+            data["action"] = "modify"  # Even for creation action is 'modify'
 
             if 'type' not in res or res['type'] == 'N':
                 return OsmSax.NodeToXml(data, full=True)
