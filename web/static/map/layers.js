@@ -6,10 +6,12 @@ require('leaflet-plugins/layer/tile/Bing.js');
 const osmAttribution = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors';
 export const mapBases = {
   // OpenStreetMap
-  Mapnik: L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: osmAttribution }),
+  'carto': L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: osmAttribution }),
+  'CyclOSM': L.tileLayer('//{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png', { attribution: osmAttribution }),
   'ÖPNV Karte': L.tileLayer('http://tile.memomaps.de/tilegen/{z}/{x}/{y}.png'),
   'White background': L.tileLayer('//a.layers.openstreetmap.fr/blanc.png'),
-  'Mapnik-osmfr': L.tileLayer('//tile-{s}.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', { attribution: osmAttribution }),
+  'carto-de': L.tileLayer('//{s}.tile.openstreetmap.de/{z}/{x}/{y}.png', { attribution: osmAttribution }),
+  'carto-fr': L.tileLayer('//{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', { attribution: osmAttribution }),
   HOT: L.tileLayer('//tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png', { attribution: osmAttribution }),
   Bing: L.bingLayer('AmQcQsaJ4WpRqn2_k0rEToboqaM1ind8HMmM0XwKwW9R8bChmHEbczHwjnjFpuNP', { type: 'Aerial' }),
   'MapBox Satellite': L.tileLayer('//{s}.tiles.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.jpg?access_token=pk.eyJ1Ijoib3BlbnN0cmVldG1hcCIsImEiOiJjaml5MjVyb3MwMWV0M3hxYmUzdGdwbzE4In0.q548FjhsSJzvXsGlPsFxAQ'),
