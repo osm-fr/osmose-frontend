@@ -6,6 +6,7 @@
 # Christian Ostermann, 2015
 # Christian Ostermann, 2015
 # Christian Ostermann, 2017-2019
+# Christopher <github@1011.link>, 2020
 # Claudius Henrichs <claudius.h@gmx.de>, 2018
 # David Haberthür <email@davidhaberthuer.ch>, 2020
 # Ettore Atalan <atalanttore@googlemail.com>, 2014-2018
@@ -34,7 +35,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-09-15 18:28+0000\n"
+"PO-Revision-Date: 2020-11-29 16:15+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -79,7 +80,7 @@ msgstr "Analyse von Relationen"
 #. TRANSLATORS: link to source code
 #: ../map.py:66
 msgid "Statistics"
-msgstr "Statistiken"
+msgstr "Statistik"
 
 #: ../map.py:69 tmp.tpl:23
 msgid "Contact"
@@ -112,7 +113,7 @@ msgstr "Statistik für den Benutzer %s"
 
 #: tmp.tpl:8
 msgid "Users statistics"
-msgstr "Benutzerstatistiken"
+msgstr "Benutzerstatistik"
 
 #: tmp.tpl:9
 msgid "Number"
@@ -125,7 +126,7 @@ msgstr "Benutzername"
 #: tmp.tpl:12
 #, python-format
 msgid "User statistics for %s"
-msgstr "Benutzerstatistiken für %s"
+msgstr "Benutzerstatistik für %s"
 
 #: tmp.tpl:14
 msgid "This list is also available via rss."
@@ -137,7 +138,7 @@ msgstr "Statistik für Benutzer"
 
 #: tmp.tpl:19
 msgid "User statistics"
-msgstr "Benutzerstatistiken"
+msgstr "Benutzerstatistik"
 
 #: tmp.tpl:22
 msgid "Username:"
@@ -341,7 +342,7 @@ msgstr "keine Markierungen bei diesem Zoom-Faktor"
 
 #: tmp.tpl:78 tmp.tpl:137
 msgid "Severity"
-msgstr "Schwere"
+msgstr "Priorität"
 
 #: tmp.tpl:143
 msgid "Fixable"
@@ -377,7 +378,7 @@ msgstr "umkehren"
 
 #: tmp.tpl:160
 msgid "Change language"
-msgstr "Sprache ändern"
+msgstr "Sprache wählen"
 
 #: tmp.tpl:163 tmp.tpl:203
 msgid "Help"
@@ -595,7 +596,7 @@ msgid "street numbers"
 msgstr "Hausnummern"
 
 #: ../../tools/database/items_menu.txt:37
-#: ../../tools/database/items_menu.txt:219
+#: ../../tools/database/items_menu.txt:222
 msgid "highway"
 msgstr "highway=..."
 
@@ -621,7 +622,7 @@ msgid "tagwatch cleaner"
 msgstr "Tagwatch-Bereinigung"
 
 #: ../../tools/database/items_menu.txt:49
-#: ../../tools/database/items_menu.txt:226
+#: ../../tools/database/items_menu.txt:229
 msgid "wikipedia"
 msgstr "Wikipedia"
 
@@ -849,7 +850,7 @@ msgstr "Schule, Eintragung möglich"
 
 #: ../../tools/database/items_menu.txt:27
 #: ../../tools/database/items_menu.txt:141
-#: ../../tools/database/items_menu.txt:227
+#: ../../tools/database/items_menu.txt:230
 msgid "public transport"
 msgstr "Öffentliche Verkehrsmittel"
 
@@ -873,7 +874,6 @@ msgstr "fehlender geodätischer Punkt"
 msgid "postal address"
 msgstr "Adresse, Eintragung möglich"
 
-#: ../../tools/database/items_menu.txt:151
 msgid "wikipedia, could be integrated"
 msgstr "Wikipedia, Eintragung möglich"
 
@@ -1376,47 +1376,47 @@ msgstr "Für neue Länder können wir per E-Mail an <a href='mailto:{email}'>{em
 msgid "JOSM validator"
 msgstr "JOSM-Validator"
 
-#: ../../tools/database/items_menu.txt:214
+#: ../../tools/database/items_menu.txt:217
 msgid "seamark"
 msgstr "Seezeichen"
 
-#: ../../tools/database/items_menu.txt:215
+#: ../../tools/database/items_menu.txt:218
 msgid "addresses"
 msgstr "Adressen"
 
-#: ../../tools/database/items_menu.txt:216
+#: ../../tools/database/items_menu.txt:219
 msgid "combinations"
 msgstr "Kombinationen"
 
-#: ../../tools/database/items_menu.txt:217
+#: ../../tools/database/items_menu.txt:220
 msgid "deprecated"
 msgstr "Veraltet"
 
-#: ../../tools/database/items_menu.txt:218
+#: ../../tools/database/items_menu.txt:221
 msgid "geometry"
 msgstr "Geometrie"
 
-#: ../../tools/database/items_menu.txt:220
+#: ../../tools/database/items_menu.txt:223
 msgid "multiple"
 msgstr "Mehrere"
 
-#: ../../tools/database/items_menu.txt:221
+#: ../../tools/database/items_menu.txt:224
 msgid "numeric"
 msgstr "Numerisch"
 
-#: ../../tools/database/items_menu.txt:222
+#: ../../tools/database/items_menu.txt:225
 msgid "relation"
 msgstr "Relation"
 
-#: ../../tools/database/items_menu.txt:223
+#: ../../tools/database/items_menu.txt:226
 msgid "religion"
 msgstr "Religion"
 
-#: ../../tools/database/items_menu.txt:224
+#: ../../tools/database/items_menu.txt:227
 msgid "territories"
 msgstr "Territorien"
 
-#: ../../tools/database/items_menu.txt:225
+#: ../../tools/database/items_menu.txt:228
 msgid "unnecessary"
 msgstr "nicht benötigt"
 
@@ -1499,7 +1499,7 @@ msgstr "Nachdem das Problem in den OSM-Daten behoben wurden, markiere es als beh
 msgid "zone:maxspeed"
 msgstr "zone:maxspeed"
 
-#: ../../tools/database/items_menu.txt:233
+#: ../../tools/database/items_menu.txt:236
 msgid "power transformer"
 msgstr "Umspannwerke"
 
@@ -1563,11 +1563,11 @@ msgstr "URL"
 msgid "street objects"
 msgstr "Straßenobjekte"
 
-#: ../../tools/database/items_menu.txt:228
+#: ../../tools/database/items_menu.txt:231
 msgid "openrailwaymap"
 msgstr "OpenRailwayMap"
 
-#: ../../tools/database/items_menu.txt:229
+#: ../../tools/database/items_menu.txt:232
 msgid "openrailwaymap in germany"
 msgstr "OpenRailwayMap in Deutschland"
 
@@ -1715,21 +1715,21 @@ msgstr "Transformatorenstation, Update nötig"
 msgid "shop"
 msgstr "Geschäft"
 
-#: ../../tools/database/items_menu.txt:230
+#: ../../tools/database/items_menu.txt:233
 msgid "specific russia"
 msgstr "spezifisch russisch"
 
-#: ../../tools/database/items_menu.txt:231
+#: ../../tools/database/items_menu.txt:234
 msgid "specific brazil"
 msgstr "spezifisch brasilianisch"
 
-#: ../../tools/database/items_menu.txt:232
+#: ../../tools/database/items_menu.txt:235
 msgid "specific france"
 msgstr "spezifisch französisch"
 
 #: tmp.tpl:177
 msgid "Fixed with Osmose"
-msgstr "Mit Osmose reparierent"
+msgstr "Mit Osmose repariert"
 
 #: tmp.tpl:133
 msgid "Done"
@@ -1772,20 +1772,36 @@ msgstr "Tourismus"
 msgid ""
 "Feel free to report any problem, idea or new open data you want to add to "
 "Osmose on our Github:"
-msgstr ""
+msgstr "Du kannst jedes Problem, jede Idee oder neue offene Daten, die du Osmose hinzufügen möchtest, auf unserem Github melden:"
 
 #: ../../tools/database/items_menu.txt:149
 msgid "fire hydrant"
-msgstr ""
+msgstr "Hydrant"
 
 #: ../../tools/database/items_menu.txt:150
 msgid "fire hydrant, could be integrated"
-msgstr ""
+msgstr "Hydrant, Eintragung möglich"
 
 #: ../../tools/database/items_menu.txt:212
 msgid "milestone"
-msgstr ""
+msgstr "Kilometerstein"
 
 #: ../../tools/database/items_menu.txt:213
 msgid "milestone, could be integrated"
+msgstr "Kilometerstein, Eintragung möglich"
+
+#: ../../tools/database/items_menu.txt:151
+msgid "church"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:214
+msgid "viewpoint"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:215
+msgid "picnic"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:216
+msgid "bicycle infrastructure"
 msgstr ""

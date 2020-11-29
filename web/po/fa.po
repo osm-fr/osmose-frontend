@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-09-15 18:28+0000\n"
+"PO-Revision-Date: 2020-11-29 16:15+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -571,7 +571,7 @@ msgid "street numbers"
 msgstr "street numbers"
 
 #: ../../tools/database/items_menu.txt:37
-#: ../../tools/database/items_menu.txt:219
+#: ../../tools/database/items_menu.txt:222
 msgid "highway"
 msgstr "highway"
 
@@ -597,7 +597,7 @@ msgid "tagwatch cleaner"
 msgstr "پاک‌ساز تگ"
 
 #: ../../tools/database/items_menu.txt:49
-#: ../../tools/database/items_menu.txt:226
+#: ../../tools/database/items_menu.txt:229
 msgid "wikipedia"
 msgstr "wikipedia"
 
@@ -825,7 +825,7 @@ msgstr "مدرسه، می‌تواند یکپارچه شود"
 
 #: ../../tools/database/items_menu.txt:27
 #: ../../tools/database/items_menu.txt:141
-#: ../../tools/database/items_menu.txt:227
+#: ../../tools/database/items_menu.txt:230
 msgid "public transport"
 msgstr "public transport"
 
@@ -849,7 +849,6 @@ msgstr "geodesic point"
 msgid "postal address"
 msgstr "postal address"
 
-#: ../../tools/database/items_menu.txt:151
 msgid "wikipedia, could be integrated"
 msgstr "ویکی‌پدیا، می‌تواند یکپارچه شود"
 
@@ -1352,47 +1351,47 @@ msgstr "برای کشورهای جدید، مستقیماً به نشانی <a h
 msgid "JOSM validator"
 msgstr "‫اعتبارسنج JOSM‬"
 
-#: ../../tools/database/items_menu.txt:214
+#: ../../tools/database/items_menu.txt:217
 msgid "seamark"
 msgstr "seamark"
 
-#: ../../tools/database/items_menu.txt:215
+#: ../../tools/database/items_menu.txt:218
 msgid "addresses"
 msgstr "نشانی‌ها"
 
-#: ../../tools/database/items_menu.txt:216
+#: ../../tools/database/items_menu.txt:219
 msgid "combinations"
 msgstr "ترکیبات"
 
-#: ../../tools/database/items_menu.txt:217
+#: ../../tools/database/items_menu.txt:220
 msgid "deprecated"
 msgstr "deprecated"
 
-#: ../../tools/database/items_menu.txt:218
+#: ../../tools/database/items_menu.txt:221
 msgid "geometry"
 msgstr "هندسه"
 
-#: ../../tools/database/items_menu.txt:220
+#: ../../tools/database/items_menu.txt:223
 msgid "multiple"
 msgstr "چندگانه"
 
-#: ../../tools/database/items_menu.txt:221
+#: ../../tools/database/items_menu.txt:224
 msgid "numeric"
 msgstr "عددی"
 
-#: ../../tools/database/items_menu.txt:222
+#: ../../tools/database/items_menu.txt:225
 msgid "relation"
 msgstr "relation"
 
-#: ../../tools/database/items_menu.txt:223
+#: ../../tools/database/items_menu.txt:226
 msgid "religion"
 msgstr "دین"
 
-#: ../../tools/database/items_menu.txt:224
+#: ../../tools/database/items_menu.txt:227
 msgid "territories"
 msgstr "سرزمین‌ها"
 
-#: ../../tools/database/items_menu.txt:225
+#: ../../tools/database/items_menu.txt:228
 msgid "unnecessary"
 msgstr "غیرضروری"
 
@@ -1475,7 +1474,7 @@ msgstr "پس از اینکه مشکل داده‌ها اصلاح شد، آن ر�
 msgid "zone:maxspeed"
 msgstr "zone:maxspeed"
 
-#: ../../tools/database/items_menu.txt:233
+#: ../../tools/database/items_menu.txt:236
 msgid "power transformer"
 msgstr "power transformer"
 
@@ -1539,11 +1538,11 @@ msgstr ""
 msgid "street objects"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:228
+#: ../../tools/database/items_menu.txt:231
 msgid "openrailwaymap"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:229
+#: ../../tools/database/items_menu.txt:232
 msgid "openrailwaymap in germany"
 msgstr ""
 
@@ -1691,15 +1690,15 @@ msgstr ""
 msgid "shop"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:230
+#: ../../tools/database/items_menu.txt:233
 msgid "specific russia"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:231
+#: ../../tools/database/items_menu.txt:234
 msgid "specific brazil"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:232
+#: ../../tools/database/items_menu.txt:235
 msgid "specific france"
 msgstr ""
 
@@ -1764,4 +1763,20 @@ msgstr ""
 
 #: ../../tools/database/items_menu.txt:213
 msgid "milestone, could be integrated"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:151
+msgid "church"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:214
+msgid "viewpoint"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:215
+msgid "picnic"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:216
+msgid "bicycle infrastructure"
 msgstr ""

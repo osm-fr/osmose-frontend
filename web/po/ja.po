@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-09-15 18:28+0000\n"
+"PO-Revision-Date: 2020-11-29 16:15+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -578,7 +578,7 @@ msgid "street numbers"
 msgstr "道路番号"
 
 #: ../../tools/database/items_menu.txt:37
-#: ../../tools/database/items_menu.txt:219
+#: ../../tools/database/items_menu.txt:222
 msgid "highway"
 msgstr "highway"
 
@@ -604,7 +604,7 @@ msgid "tagwatch cleaner"
 msgstr "タグ監視クリーナー"
 
 #: ../../tools/database/items_menu.txt:49
-#: ../../tools/database/items_menu.txt:226
+#: ../../tools/database/items_menu.txt:229
 msgid "wikipedia"
 msgstr "wikipedia"
 
@@ -832,7 +832,7 @@ msgstr "含められる学校"
 
 #: ../../tools/database/items_menu.txt:27
 #: ../../tools/database/items_menu.txt:141
-#: ../../tools/database/items_menu.txt:227
+#: ../../tools/database/items_menu.txt:230
 msgid "public transport"
 msgstr "公共交通"
 
@@ -856,7 +856,6 @@ msgstr "測地点"
 msgid "postal address"
 msgstr "住所"
 
-#: ../../tools/database/items_menu.txt:151
 msgid "wikipedia, could be integrated"
 msgstr "含められるwikipedia"
 
@@ -1359,47 +1358,47 @@ msgstr "新しい国の追加は、直接メールで <a href='mailto:{email}'>{
 msgid "JOSM validator"
 msgstr "JOSMバリデーター"
 
-#: ../../tools/database/items_menu.txt:214
+#: ../../tools/database/items_menu.txt:217
 msgid "seamark"
 msgstr "航路標識"
 
-#: ../../tools/database/items_menu.txt:215
+#: ../../tools/database/items_menu.txt:218
 msgid "addresses"
 msgstr "住所"
 
-#: ../../tools/database/items_menu.txt:216
+#: ../../tools/database/items_menu.txt:219
 msgid "combinations"
 msgstr "組み合わせ"
 
-#: ../../tools/database/items_menu.txt:217
+#: ../../tools/database/items_menu.txt:220
 msgid "deprecated"
 msgstr "非推奨"
 
-#: ../../tools/database/items_menu.txt:218
+#: ../../tools/database/items_menu.txt:221
 msgid "geometry"
 msgstr "ジオメトリ"
 
-#: ../../tools/database/items_menu.txt:220
+#: ../../tools/database/items_menu.txt:223
 msgid "multiple"
 msgstr "複数"
 
-#: ../../tools/database/items_menu.txt:221
+#: ../../tools/database/items_menu.txt:224
 msgid "numeric"
 msgstr "数値"
 
-#: ../../tools/database/items_menu.txt:222
+#: ../../tools/database/items_menu.txt:225
 msgid "relation"
 msgstr "リレーション"
 
-#: ../../tools/database/items_menu.txt:223
+#: ../../tools/database/items_menu.txt:226
 msgid "religion"
 msgstr "宗教"
 
-#: ../../tools/database/items_menu.txt:224
+#: ../../tools/database/items_menu.txt:227
 msgid "territories"
 msgstr "領土"
 
-#: ../../tools/database/items_menu.txt:225
+#: ../../tools/database/items_menu.txt:228
 msgid "unnecessary"
 msgstr "不要"
 
@@ -1482,7 +1481,7 @@ msgstr "OSMデータの問題を解決したら、完了とマークして下さ
 msgid "zone:maxspeed"
 msgstr "zone:maxspeed"
 
-#: ../../tools/database/items_menu.txt:233
+#: ../../tools/database/items_menu.txt:236
 msgid "power transformer"
 msgstr "変圧器"
 
@@ -1546,11 +1545,11 @@ msgstr "URL"
 msgid "street objects"
 msgstr "路上のオブジェクト"
 
-#: ../../tools/database/items_menu.txt:228
+#: ../../tools/database/items_menu.txt:231
 msgid "openrailwaymap"
 msgstr "OpenRailwayMap"
 
-#: ../../tools/database/items_menu.txt:229
+#: ../../tools/database/items_menu.txt:232
 msgid "openrailwaymap in germany"
 msgstr "ドイツのopenrailwaymap"
 
@@ -1636,7 +1635,7 @@ msgstr "Osmose-QAにようこそ"
 msgid ""
 "In no case Osmose-QA should provide you the absolute right way to map, "
 "always keep a critical eye."
-msgstr "Osmose-QAはいつでも、絶対正しいマッピング方法を提供するはずだと期待してはいけません。何が正しいかは常に意識してください。"
+msgstr "Osmose-QAがいつでも絶対正しいマッピング方法を提供するはずだと期待してはいけません。常に批判的な目を忘れずに。"
 
 #: tmp.tpl:159
 msgid "You can find help on the wiki:"
@@ -1698,15 +1697,15 @@ msgstr "要更新・変電所"
 msgid "shop"
 msgstr "店舗"
 
-#: ../../tools/database/items_menu.txt:230
+#: ../../tools/database/items_menu.txt:233
 msgid "specific russia"
 msgstr "ロシア固有"
 
-#: ../../tools/database/items_menu.txt:231
+#: ../../tools/database/items_menu.txt:234
 msgid "specific brazil"
 msgstr "ブラジル固有"
 
-#: ../../tools/database/items_menu.txt:232
+#: ../../tools/database/items_menu.txt:235
 msgid "specific france"
 msgstr "フランス固有"
 
@@ -1755,20 +1754,36 @@ msgstr "観光"
 msgid ""
 "Feel free to report any problem, idea or new open data you want to add to "
 "Osmose on our Github:"
-msgstr ""
+msgstr "問題、アイデア、Osmoseに加えたい新たなオープンデータの報告は我々のGithubにお寄せください："
 
 #: ../../tools/database/items_menu.txt:149
 msgid "fire hydrant"
-msgstr ""
+msgstr "消火栓"
 
 #: ../../tools/database/items_menu.txt:150
 msgid "fire hydrant, could be integrated"
-msgstr ""
+msgstr "含められる消火栓"
 
 #: ../../tools/database/items_menu.txt:212
 msgid "milestone"
-msgstr ""
+msgstr "マイルストン"
 
 #: ../../tools/database/items_menu.txt:213
 msgid "milestone, could be integrated"
+msgstr "含められるマイルストン"
+
+#: ../../tools/database/items_menu.txt:151
+msgid "church"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:214
+msgid "viewpoint"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:215
+msgid "picnic"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:216
+msgid "bicycle infrastructure"
 msgstr ""

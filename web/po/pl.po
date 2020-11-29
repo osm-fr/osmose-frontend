@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-09-15 18:28+0000\n"
+"PO-Revision-Date: 2020-11-29 16:15+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -582,7 +582,7 @@ msgid "street numbers"
 msgstr "numery ulicy"
 
 #: ../../tools/database/items_menu.txt:37
-#: ../../tools/database/items_menu.txt:219
+#: ../../tools/database/items_menu.txt:222
 msgid "highway"
 msgstr "highway"
 
@@ -608,7 +608,7 @@ msgid "tagwatch cleaner"
 msgstr "tagwatch cleaner"
 
 #: ../../tools/database/items_menu.txt:49
-#: ../../tools/database/items_menu.txt:226
+#: ../../tools/database/items_menu.txt:229
 msgid "wikipedia"
 msgstr "wikipedia"
 
@@ -774,7 +774,7 @@ msgstr "granica administracyjna"
 
 #: ../../tools/database/items_menu.txt:110
 msgid "power lines"
-msgstr "linia energetyczna"
+msgstr "linie elektroenergetyczne"
 
 #: ../../tools/database/items_menu.txt:111
 #: ../../tools/database/items_menu.txt:133
@@ -836,7 +836,7 @@ msgstr "szkoła, powinna być zintegrowana [FR]"
 
 #: ../../tools/database/items_menu.txt:27
 #: ../../tools/database/items_menu.txt:141
-#: ../../tools/database/items_menu.txt:227
+#: ../../tools/database/items_menu.txt:230
 msgid "public transport"
 msgstr "transport publiczny"
 
@@ -860,7 +860,6 @@ msgstr "punkt geodezyjny [FR]"
 msgid "postal address"
 msgstr "adres pocztowy [FR]"
 
-#: ../../tools/database/items_menu.txt:151
 msgid "wikipedia, could be integrated"
 msgstr "wikipedia, może być zintegrowana"
 
@@ -1169,7 +1168,7 @@ msgstr "Kontrola, weryfikacja i naprawa %s błędów"
 
 #: tmp.tpl:219
 msgid "Osmose QA main page"
-msgstr "Osmose QA (pytania i odpowiedzi)"
+msgstr "Osmose"
 
 #: tmp.tpl:25
 msgid ""
@@ -1357,53 +1356,53 @@ msgstr "Problemy poziomu {level} ({count})"
 msgid ""
 "For new countries, we can be contacted through a direct email to <a "
 "href='mailto:{email}'>{email}</a>."
-msgstr "W sprawie nowych krajów można się z nami skontaktować bezpośrednio przez e-mail<a href='mailto:{email}'>{email}</a>."
+msgstr "W sprawie nowych krajów można się z nami skontaktować bezpośrednio przez e-mail <a href='mailto:{email}'>{email}</a>."
 
 #: ../../tools/database/categories_menu.txt:9
 msgid "JOSM validator"
 msgstr "Walidator JOSM"
 
-#: ../../tools/database/items_menu.txt:214
+#: ../../tools/database/items_menu.txt:217
 msgid "seamark"
 msgstr "znak nawigacyjny"
 
-#: ../../tools/database/items_menu.txt:215
+#: ../../tools/database/items_menu.txt:218
 msgid "addresses"
 msgstr "adresy"
 
-#: ../../tools/database/items_menu.txt:216
+#: ../../tools/database/items_menu.txt:219
 msgid "combinations"
 msgstr "kombinacje tagów"
 
-#: ../../tools/database/items_menu.txt:217
+#: ../../tools/database/items_menu.txt:220
 msgid "deprecated"
 msgstr "przestarzałe tagi"
 
-#: ../../tools/database/items_menu.txt:218
+#: ../../tools/database/items_menu.txt:221
 msgid "geometry"
 msgstr "geometria"
 
-#: ../../tools/database/items_menu.txt:220
+#: ../../tools/database/items_menu.txt:223
 msgid "multiple"
 msgstr "wiele wartości"
 
-#: ../../tools/database/items_menu.txt:221
+#: ../../tools/database/items_menu.txt:224
 msgid "numeric"
 msgstr "liczbowe"
 
-#: ../../tools/database/items_menu.txt:222
+#: ../../tools/database/items_menu.txt:225
 msgid "relation"
 msgstr "relacje"
 
-#: ../../tools/database/items_menu.txt:223
+#: ../../tools/database/items_menu.txt:226
 msgid "religion"
 msgstr "religia"
 
-#: ../../tools/database/items_menu.txt:224
+#: ../../tools/database/items_menu.txt:227
 msgid "territories"
 msgstr "ulice [DE, AT, FR]"
 
-#: ../../tools/database/items_menu.txt:225
+#: ../../tools/database/items_menu.txt:228
 msgid "unnecessary"
 msgstr "zbędne tagi"
 
@@ -1486,7 +1485,7 @@ msgstr "Po naprawieniu błędu na OSM, oznacz jako zrobione. Ten problem zniknie
 msgid "zone:maxspeed"
 msgstr "zone:maxspeed [FR, DE]"
 
-#: ../../tools/database/items_menu.txt:233
+#: ../../tools/database/items_menu.txt:236
 msgid "power transformer"
 msgstr "stacje transformatorowe"
 
@@ -1550,11 +1549,11 @@ msgstr "strona internetowa"
 msgid "street objects"
 msgstr "obiekty przy drodze"
 
-#: ../../tools/database/items_menu.txt:228
+#: ../../tools/database/items_menu.txt:231
 msgid "openrailwaymap"
 msgstr "openrailwaymap"
 
-#: ../../tools/database/items_menu.txt:229
+#: ../../tools/database/items_menu.txt:232
 msgid "openrailwaymap in germany"
 msgstr "openrailwaymap Niemcy"
 
@@ -1702,15 +1701,15 @@ msgstr "podstacja elektryczna, potrzebna aktualizacja [FR]"
 msgid "shop"
 msgstr "sklep [FR]"
 
-#: ../../tools/database/items_menu.txt:230
+#: ../../tools/database/items_menu.txt:233
 msgid "specific russia"
 msgstr "Rosja"
 
-#: ../../tools/database/items_menu.txt:231
+#: ../../tools/database/items_menu.txt:234
 msgid "specific brazil"
 msgstr "Brazylia"
 
-#: ../../tools/database/items_menu.txt:232
+#: ../../tools/database/items_menu.txt:235
 msgid "specific france"
 msgstr "Francja"
 
@@ -1759,20 +1758,36 @@ msgstr "turystyka [FR]"
 msgid ""
 "Feel free to report any problem, idea or new open data you want to add to "
 "Osmose on our Github:"
-msgstr ""
+msgstr "Możesz zgłosić błąd, pomysł lub zbiór otwartych danych do dodania na Osmose na naszym GitHubie:"
 
 #: ../../tools/database/items_menu.txt:149
 msgid "fire hydrant"
-msgstr ""
+msgstr "hydrant [FR]"
 
 #: ../../tools/database/items_menu.txt:150
 msgid "fire hydrant, could be integrated"
-msgstr ""
+msgstr "hydrant, może być zintegrowany [FR]"
 
 #: ../../tools/database/items_menu.txt:212
 msgid "milestone"
-msgstr ""
+msgstr "słupek pikietażowy [FR]"
 
 #: ../../tools/database/items_menu.txt:213
 msgid "milestone, could be integrated"
+msgstr "słupek pikietażowy, może być zintegrowany [FR]"
+
+#: ../../tools/database/items_menu.txt:151
+msgid "church"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:214
+msgid "viewpoint"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:215
+msgid "picnic"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:216
+msgid "bicycle infrastructure"
 msgstr ""

@@ -16,12 +16,13 @@
 # Semigradsky Dmitry <semigradskyd@gmail.com>, 2017
 # 4004 <transifex.4004@mailhero.io>, 2017
 # Yes Me <xangel1@mail.ru>, 2019
+# Андрей Коваленко, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-09-15 18:28+0000\n"
+"PO-Revision-Date: 2020-11-29 16:15+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Russian (http://www.transifex.com/openstreetmap-france/osmose/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -582,7 +583,7 @@ msgid "street numbers"
 msgstr "номера улиц"
 
 #: ../../tools/database/items_menu.txt:37
-#: ../../tools/database/items_menu.txt:219
+#: ../../tools/database/items_menu.txt:222
 msgid "highway"
 msgstr "дорога"
 
@@ -608,7 +609,7 @@ msgid "tagwatch cleaner"
 msgstr "tagwatch cleaner"
 
 #: ../../tools/database/items_menu.txt:49
-#: ../../tools/database/items_menu.txt:226
+#: ../../tools/database/items_menu.txt:229
 msgid "wikipedia"
 msgstr "wikipedia"
 
@@ -836,7 +837,7 @@ msgstr "школа, может быть интегрирована"
 
 #: ../../tools/database/items_menu.txt:27
 #: ../../tools/database/items_menu.txt:141
-#: ../../tools/database/items_menu.txt:227
+#: ../../tools/database/items_menu.txt:230
 msgid "public transport"
 msgstr "общественный транспорт"
 
@@ -860,7 +861,6 @@ msgstr "геодезический пункт"
 msgid "postal address"
 msgstr "почтовый адрес"
 
-#: ../../tools/database/items_menu.txt:151
 msgid "wikipedia, could be integrated"
 msgstr "wikipedia, может быть интегрирована"
 
@@ -1363,47 +1363,47 @@ msgstr "Для добавления стран, пожалуйста свяжи�
 msgid "JOSM validator"
 msgstr "Валидация JOSM"
 
-#: ../../tools/database/items_menu.txt:214
+#: ../../tools/database/items_menu.txt:217
 msgid "seamark"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:215
+#: ../../tools/database/items_menu.txt:218
 msgid "addresses"
 msgstr "адреса"
 
-#: ../../tools/database/items_menu.txt:216
+#: ../../tools/database/items_menu.txt:219
 msgid "combinations"
 msgstr "наборы"
 
-#: ../../tools/database/items_menu.txt:217
+#: ../../tools/database/items_menu.txt:220
 msgid "deprecated"
 msgstr "устаревшее"
 
-#: ../../tools/database/items_menu.txt:218
+#: ../../tools/database/items_menu.txt:221
 msgid "geometry"
 msgstr "геометрия"
 
-#: ../../tools/database/items_menu.txt:220
+#: ../../tools/database/items_menu.txt:223
 msgid "multiple"
 msgstr "множество"
 
-#: ../../tools/database/items_menu.txt:221
+#: ../../tools/database/items_menu.txt:224
 msgid "numeric"
 msgstr "числовое"
 
-#: ../../tools/database/items_menu.txt:222
+#: ../../tools/database/items_menu.txt:225
 msgid "relation"
 msgstr "отношение"
 
-#: ../../tools/database/items_menu.txt:223
+#: ../../tools/database/items_menu.txt:226
 msgid "religion"
 msgstr "религия"
 
-#: ../../tools/database/items_menu.txt:224
+#: ../../tools/database/items_menu.txt:227
 msgid "territories"
 msgstr "границы"
 
-#: ../../tools/database/items_menu.txt:225
+#: ../../tools/database/items_menu.txt:228
 msgid "unnecessary"
 msgstr "необязательно"
 
@@ -1486,7 +1486,7 @@ msgstr "После исправления ошибки в данных OSM, по
 msgid "zone:maxspeed"
 msgstr "зона:максимальная_скорость"
 
-#: ../../tools/database/items_menu.txt:233
+#: ../../tools/database/items_menu.txt:236
 msgid "power transformer"
 msgstr "трансформаторная подстанция"
 
@@ -1550,11 +1550,11 @@ msgstr "ссылка"
 msgid "street objects"
 msgstr "уличные объекты"
 
-#: ../../tools/database/items_menu.txt:228
+#: ../../tools/database/items_menu.txt:231
 msgid "openrailwaymap"
 msgstr "openrailwaymap"
 
-#: ../../tools/database/items_menu.txt:229
+#: ../../tools/database/items_menu.txt:232
 msgid "openrailwaymap in germany"
 msgstr "openrailwaymap в Германии"
 
@@ -1596,17 +1596,17 @@ msgstr "Информация о проблеме %s"
 #: tmp.tpl:111
 #, python-format
 msgid "Mark issue #%s as false positive"
-msgstr ""
+msgstr "Пометить #%s как ложное срабатывание"
 
 #: tmp.tpl:112
 #, python-format
 msgid "Mark issue #%s as fixed"
-msgstr ""
+msgstr "Пометить #%s как выполнено"
 
 #: tmp.tpl:113
 #, python-format
 msgid "delete issue #%s"
-msgstr ""
+msgstr "удалить проблему #%s"
 
 #: tmp.tpl:125
 msgid "How to Fix"
@@ -1634,17 +1634,17 @@ msgstr ""
 
 #: tmp.tpl:154
 msgid "Welcome to Osmose-QA"
-msgstr ""
+msgstr "Добро пожаловать в Osmose-QA"
 
 #: tmp.tpl:158
 msgid ""
 "In no case Osmose-QA should provide you the absolute right way to map, "
 "always keep a critical eye."
-msgstr ""
+msgstr "Ни в коем случае не считайте Osmose-QA руководством по правильному маппингу."
 
 #: tmp.tpl:159
 msgid "You can find help on the wiki:"
-msgstr ""
+msgstr "Описание и порядок работы можно найти на wiki:"
 
 #: ../../tools/database/items_menu.txt:208
 msgid "charging station"
@@ -1680,11 +1680,11 @@ msgstr ""
 
 #: tmp.tpl:109
 msgid "delete issue"
-msgstr ""
+msgstr "удалить проблему"
 
 #: tmp.tpl:199
 msgid "Issue details"
-msgstr ""
+msgstr "Описание проблемы"
 
 #: tmp.tpl:201
 msgid "Report based on data from date"
@@ -1702,15 +1702,15 @@ msgstr ""
 msgid "shop"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:230
+#: ../../tools/database/items_menu.txt:233
 msgid "specific russia"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:231
+#: ../../tools/database/items_menu.txt:234
 msgid "specific brazil"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:232
+#: ../../tools/database/items_menu.txt:235
 msgid "specific france"
 msgstr ""
 
@@ -1726,18 +1726,18 @@ msgstr ""
 msgid ""
 "Osmose-QA is a quality assurance tool that detects issues in OpenStreetMap "
 "data."
-msgstr ""
+msgstr "Osmose-QA это инструментарий для контроля качества данных OpenStreetMap."
 
 #: tmp.tpl:156
 msgid ""
 "It detects a very wide range of issue types. It is also useful for "
 "integrating third-party data sets by conflation."
-msgstr ""
+msgstr "Он обнаруживает широкий перечень типов проблем. Его можно использовать при объединении сторонних наборов данных с данными OSM."
 
 msgid ""
 "Feel free to report any problem, idea or new open data you want to add to "
 "Osmose on our Github."
-msgstr ""
+msgstr "Не стесняйтесь сообщать о любых проблемах, идеях или новых открытых данных, которые можно добавить в Osmose на нашем Github."
 
 #: ../../tools/database/items_menu.txt:77
 msgid "VAT"
@@ -1759,7 +1759,7 @@ msgstr ""
 msgid ""
 "Feel free to report any problem, idea or new open data you want to add to "
 "Osmose on our Github:"
-msgstr ""
+msgstr "Не стесняйтесь сообщать о любых проблемах, идеях или новых открытых данных, которые можно добавить в Osmose на нашем Github:"
 
 #: ../../tools/database/items_menu.txt:149
 msgid "fire hydrant"
@@ -1775,4 +1775,20 @@ msgstr ""
 
 #: ../../tools/database/items_menu.txt:213
 msgid "milestone, could be integrated"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:151
+msgid "church"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:214
+msgid "viewpoint"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:215
+msgid "picnic"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:216
+msgid "bicycle infrastructure"
 msgstr ""

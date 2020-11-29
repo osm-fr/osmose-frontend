@@ -8,6 +8,7 @@
 # ali zaroili <ali.zaroili@gmail.com>, 2014,2016,2018
 # frodrigo <fred.rodrigo@gmail.com>, 2017
 # frodrigo <fred.rodrigo@gmail.com>, 2017
+# Ivo Pit, 2020
 # operon, 2012
 # operon, 2012
 # d8c0ea79bf25224e2a05d5edf10ab5e4_c9b605c, 2014,2017-2020
@@ -16,7 +17,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-09-15 18:28+0000\n"
+"PO-Revision-Date: 2020-11-29 16:15+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -470,7 +471,7 @@ msgstr "Integratie"
 
 #: ../../tools/database/items_menu.txt:1
 msgid "overlapping building"
-msgstr "overlappende gebouw"
+msgstr "overlappend gebouw"
 
 #: ../../tools/database/items_menu.txt:3
 msgid "duplicated node"
@@ -494,7 +495,7 @@ msgstr "kruising van grens"
 
 #: ../../tools/database/items_menu.txt:8
 msgid "objects overlap"
-msgstr "kruising tussen weg en een gebouw"
+msgstr "objecten overlappen elkaar"
 
 #: ../../tools/database/items_menu.txt:9
 msgid "orphan nodes"
@@ -577,7 +578,7 @@ msgid "street numbers"
 msgstr "huisnummers"
 
 #: ../../tools/database/items_menu.txt:37
-#: ../../tools/database/items_menu.txt:219
+#: ../../tools/database/items_menu.txt:222
 msgid "highway"
 msgstr "highway"
 
@@ -603,7 +604,7 @@ msgid "tagwatch cleaner"
 msgstr "tagwatch cleaner"
 
 #: ../../tools/database/items_menu.txt:49
-#: ../../tools/database/items_menu.txt:226
+#: ../../tools/database/items_menu.txt:229
 msgid "wikipedia"
 msgstr "wikipedia"
 
@@ -831,7 +832,7 @@ msgstr "school, kan geintegreerd worden"
 
 #: ../../tools/database/items_menu.txt:27
 #: ../../tools/database/items_menu.txt:141
-#: ../../tools/database/items_menu.txt:227
+#: ../../tools/database/items_menu.txt:230
 msgid "public transport"
 msgstr "openbaar trein station"
 
@@ -855,7 +856,6 @@ msgstr "Geodesisch punt ontbreekt"
 msgid "postal address"
 msgstr "adres"
 
-#: ../../tools/database/items_menu.txt:151
 msgid "wikipedia, could be integrated"
 msgstr "wikipedia, kan geintegreerd worden"
 
@@ -1358,47 +1358,47 @@ msgstr "Voor nieuwe landen, zijn we te bereiken via email <a href='mailto:{email
 msgid "JOSM validator"
 msgstr "JOSM validator"
 
-#: ../../tools/database/items_menu.txt:214
+#: ../../tools/database/items_menu.txt:217
 msgid "seamark"
 msgstr "betonning"
 
-#: ../../tools/database/items_menu.txt:215
+#: ../../tools/database/items_menu.txt:218
 msgid "addresses"
 msgstr "adressen"
 
-#: ../../tools/database/items_menu.txt:216
+#: ../../tools/database/items_menu.txt:219
 msgid "combinations"
 msgstr "kombinaties"
 
-#: ../../tools/database/items_menu.txt:217
+#: ../../tools/database/items_menu.txt:220
 msgid "deprecated"
 msgstr "deprecated"
 
-#: ../../tools/database/items_menu.txt:218
+#: ../../tools/database/items_menu.txt:221
 msgid "geometry"
 msgstr "geometrie"
 
-#: ../../tools/database/items_menu.txt:220
+#: ../../tools/database/items_menu.txt:223
 msgid "multiple"
 msgstr "meerdere"
 
-#: ../../tools/database/items_menu.txt:221
+#: ../../tools/database/items_menu.txt:224
 msgid "numeric"
 msgstr "numeriek"
 
-#: ../../tools/database/items_menu.txt:222
+#: ../../tools/database/items_menu.txt:225
 msgid "relation"
 msgstr "relatie"
 
-#: ../../tools/database/items_menu.txt:223
+#: ../../tools/database/items_menu.txt:226
 msgid "religion"
 msgstr "religie"
 
-#: ../../tools/database/items_menu.txt:224
+#: ../../tools/database/items_menu.txt:227
 msgid "territories"
 msgstr "grondgebieden"
 
-#: ../../tools/database/items_menu.txt:225
+#: ../../tools/database/items_menu.txt:228
 msgid "unnecessary"
 msgstr "onnodig"
 
@@ -1481,7 +1481,7 @@ msgstr "Nadat het probleem is opgelost bij de OSM-data, markeert u het als herst
 msgid "zone:maxspeed"
 msgstr "zone:maxspeed"
 
-#: ../../tools/database/items_menu.txt:233
+#: ../../tools/database/items_menu.txt:236
 msgid "power transformer"
 msgstr "transformator"
 
@@ -1545,11 +1545,11 @@ msgstr "URL"
 msgid "street objects"
 msgstr "straat objecten"
 
-#: ../../tools/database/items_menu.txt:228
+#: ../../tools/database/items_menu.txt:231
 msgid "openrailwaymap"
 msgstr "openrailwaymap"
 
-#: ../../tools/database/items_menu.txt:229
+#: ../../tools/database/items_menu.txt:232
 msgid "openrailwaymap in germany"
 msgstr "openrailwaymap in duitsland"
 
@@ -1586,38 +1586,38 @@ msgstr "Zendmast support, vereist een update"
 #: tmp.tpl:61 tmp.tpl:114
 #, python-format
 msgid "Information on issue %s"
-msgstr ""
+msgstr "Informatie over melding %s"
 
 #: tmp.tpl:111
 #, python-format
 msgid "Mark issue #%s as false positive"
-msgstr ""
+msgstr "Markeer melding %s als valse melding"
 
 #: tmp.tpl:112
 #, python-format
 msgid "Mark issue #%s as fixed"
-msgstr ""
+msgstr "Markeer melding %s als hersteld"
 
 #: tmp.tpl:113
 #, python-format
 msgid "delete issue #%s"
-msgstr ""
+msgstr "verwijder melding #%s"
 
 #: tmp.tpl:125
 msgid "How to Fix"
-msgstr ""
+msgstr "Hoe te herstellen"
 
 #: tmp.tpl:126
 msgid "Trap to avoid"
-msgstr ""
+msgstr "Te vermijden valkuil"
 
 #: tmp.tpl:127
 msgid "Example"
-msgstr ""
+msgstr "Voorbeeld"
 
 #: tmp.tpl:128
 msgid "Source Code"
-msgstr ""
+msgstr "Broncode"
 
 #: tmp.tpl:129
 msgid "Resource used"
@@ -1639,47 +1639,47 @@ msgstr ""
 
 #: tmp.tpl:159
 msgid "You can find help on the wiki:"
-msgstr ""
+msgstr "Je kunt hulp vinden op de wiki"
 
 #: ../../tools/database/items_menu.txt:208
 msgid "charging station"
-msgstr ""
+msgstr "laadstation"
 
 #: ../../tools/database/items_menu.txt:209
 msgid "charging station, could be integrated"
-msgstr ""
+msgstr "laadstation, kan geïntegreerd worden"
 
 #: ../../tools/database/items_menu.txt:210
 msgid "charging station, need update"
-msgstr ""
+msgstr "laadstation, moet worden bijgewerkt"
 
 #: ../../tools/database/items_menu.txt:30
 msgid "related objects"
-msgstr ""
+msgstr "gerelateerde objecten"
 
 #: ../../tools/database/items_menu.txt:200
 msgid "wastewater"
-msgstr ""
+msgstr "afvalwater"
 
 #: ../../tools/database/items_menu.txt:201
 msgid "wastewater, could be integrated"
-msgstr ""
+msgstr "afvalwater, kan geintegreerd worden"
 
 #: ../../tools/database/items_menu.txt:202
 msgid "wastewater, need update"
-msgstr ""
+msgstr "afvalwater, moet worden bijgewerkt"
 
 #: ../../tools/database/items_menu.txt:129
 msgid "gas station, not integrated"
-msgstr ""
+msgstr "tankstation, niet geïntegreerd"
 
 #: tmp.tpl:109
 msgid "delete issue"
-msgstr ""
+msgstr "verwijder melding"
 
 #: tmp.tpl:199
 msgid "Issue details"
-msgstr ""
+msgstr "Details van melding"
 
 #: tmp.tpl:201
 msgid "Report based on data from date"
@@ -1687,7 +1687,7 @@ msgstr ""
 
 #: ../../tools/database/items_menu.txt:177
 msgid "pharmacy, need update"
-msgstr ""
+msgstr "apotheek, moet worden bijgewerkt"
 
 #: ../../tools/database/items_menu.txt:186
 msgid "power substation, need update"
@@ -1695,27 +1695,27 @@ msgstr ""
 
 #: ../../tools/database/items_menu.txt:190
 msgid "shop"
-msgstr ""
+msgstr "winkel"
 
-#: ../../tools/database/items_menu.txt:230
+#: ../../tools/database/items_menu.txt:233
 msgid "specific russia"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:231
+#: ../../tools/database/items_menu.txt:234
 msgid "specific brazil"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:232
+#: ../../tools/database/items_menu.txt:235
 msgid "specific france"
 msgstr ""
 
 #: tmp.tpl:177
 msgid "Fixed with Osmose"
-msgstr ""
+msgstr "Hersteld met Osmose"
 
 #: tmp.tpl:133
 msgid "Done"
-msgstr ""
+msgstr "Gereed"
 
 #: tmp.tpl:155
 msgid ""
@@ -1736,11 +1736,11 @@ msgstr ""
 
 #: ../../tools/database/items_menu.txt:77
 msgid "VAT"
-msgstr ""
+msgstr "BTW"
 
 #: ../../tools/database/items_menu.txt:206
 msgid "health centre"
-msgstr ""
+msgstr "gezondheidscentrum"
 
 #: ../../tools/database/items_menu.txt:207
 msgid "health centre, could be integrated"
@@ -1748,7 +1748,7 @@ msgstr ""
 
 #: ../../tools/database/items_menu.txt:211
 msgid "tourism"
-msgstr ""
+msgstr "toerisme"
 
 #: tmp.tpl:157
 msgid ""
@@ -1766,8 +1766,24 @@ msgstr ""
 
 #: ../../tools/database/items_menu.txt:212
 msgid "milestone"
-msgstr ""
+msgstr "mijlpaal"
 
 #: ../../tools/database/items_menu.txt:213
 msgid "milestone, could be integrated"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:151
+msgid "church"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:214
+msgid "viewpoint"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:215
+msgid "picnic"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:216
+msgid "bicycle infrastructure"
 msgstr ""
