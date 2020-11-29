@@ -33,21 +33,33 @@ order by m.item;"""
   dbcurs.execute(sql)
 
   prev_cat = ""
+  colors = {}
+  items = {}
 
   for res in dbcurs.fetchall():
   #  print res
     item = int(res[0])
     categ = int(item / 1000) * 10
+    if categ == 80:
+      fullcateg = categ + (item % 10)
+    else:
+      fullcateg = categ
 
     if prev_cat != categ:
       prev_cat = categ
-      colors = set()
       avail_flags = {}
       sql = "select item, marker_color, marker_flag from items where categorie_id = %s order by item"
       dbcurs.execute(sql, (categ,))
       for m in dbcurs.fetchall():
+        items[m["item"]] = (m["marker_color"], m["marker_flag"])
+        if categ == 80:
+          fullcateg_i = categ + (m["item"] % 10)
+        else:
+          fullcateg_i = categ
         color = m["marker_color"]
-        colors.add(color)
+        if not fullcateg_i in colors:
+          colors[fullcateg_i] = set()
+        colors[fullcateg_i].add(color)
         if color not in avail_flags:
           avail_flags[color] = all_flags[:]
         if m["marker_flag"] in avail_flags[color]:
@@ -55,11 +67,28 @@ order by m.item;"""
 
     chosen_color = None
     chosen_flag = None
-    for c in colors:
-      if len(avail_flags[c]) > 0:
-        chosen_color = c
-        chosen_flag = avail_flags[c][0]
-        continue
+
+    if categ == 80:
+      item_group = (item // 10) * 10
+      if (item_group + 0) in items:
+        chosen_flag = items[item_group+0][1]
+      elif (item_group + 1) in items:
+        chosen_flag = items[item_group+1][1]
+      elif (item_group + 2) in items:
+        chosen_flag = items[item_group+2][1]
+
+    if chosen_flag:
+      for c in colors[fullcateg]:
+        if chosen_flag in avail_flags[c]:
+          chosen_color = c
+          continue
+
+    else:
+      for c in colors[fullcateg]:
+        if len(avail_flags[c]) > 0:
+          chosen_color = c
+          chosen_flag = avail_flags[c][0]
+          continue
 
     if not chosen_color:
       print("not enough available flags for item=%d" % item)
@@ -67,4 +96,5 @@ order by m.item;"""
 
     print("insert into items values (%d, %d, '%s', '%s', NULL, ARRAY[1, 2, 3]);" % (item, categ, chosen_color, chosen_flag.replace("'", "''")))
     avail_flags[chosen_color].remove(chosen_flag)
+    items[item] = (chosen_color, chosen_flag)
 
