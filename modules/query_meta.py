@@ -97,8 +97,6 @@ def _categories(db, lang):
         categories
         JOIN items ON
             categories.id = items.categorie_id
-    WHERE
-        NOT items.levels = '{}'
     ORDER BY
         categorie_id,
         item
