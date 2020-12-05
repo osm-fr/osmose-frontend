@@ -140,7 +140,7 @@ def _build_param(db, bbox, source, item, level, users, classs, country, useDevIt
         where.append(_build_where_class("markers", classs))
 
     if bbox:
-        where.append("markers.lat BETWEEN %f AND %f AND markers.lon BETWEEN %f AND %f" % (bbox[1], bbox[3], bbox[0], bbox[2]))
+        where.append("markers.lat BETWEEN %f AND %f AND markers.lon BETWEEN (%f + 180) %% 360 - 180 AND (%f + 180) %% 360 - 180" % (bbox[1], bbox[3], bbox[0], bbox[2]))
         if item is None:
             # Compute a tile to use index
             tilex, tiley, zoom = tiles.bbox2tile(*bbox)
