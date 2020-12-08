@@ -26,7 +26,7 @@ import re
 
 
 class Params:
-    def __init__(self, max_limit = 500):
+    def __init__(self, default_limit = 100, max_limit = 500):
         self.bbox       = request.query.getunicode('bbox', default=None)
         self.item       = request.query.getunicode('item')
         self.source     = request.query.getunicode('source', default='')
@@ -35,7 +35,7 @@ class Params:
         self.level      = request.query.getunicode('level', default='1,2,3')
         self.full       = request.query.getunicode('full', default=False)
         self.zoom       = request.query.get('zoom', type=int, default=10)
-        self.limit      = request.query.get('limit', type=int, default=100)
+        self.limit      = request.query.get('limit', type=int, default=default_limit)
         self.country    = request.query.getunicode('country', default=None)
         self.useDevItem = request.query.getunicode('useDevItem', default=False)
         self.status     = request.query.getunicode('status', default="open")
@@ -61,7 +61,7 @@ class Params:
                 self.bbox = None
         if self.users:
             self.users = self.users.split(",")
-        if self.limit > max_limit:
+        if self.limit is not None and self.limit > max_limit:
             self.limit = max_limit
         if self.country and not re.match(r"^([a-z_]+)(\*|)$", self.country):
             self.country = ''

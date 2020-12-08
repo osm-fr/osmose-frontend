@@ -26,6 +26,7 @@ from .tool.translation import translator
 from modules.params import Params
 from modules import query
 from modules import query_meta
+from collections import defaultdict
 import io, re, csv
 
 from . import errors_graph
@@ -143,3 +144,27 @@ def index(db, lang, format=None):
         tpl = 'errors/index'
 
     return template(tpl, countries=countries, items=items, errors_groups=errors_groups, total=total, errors=errors, query=request.query_string, country=params.country, item=params.item, level=params.level, lang=lang[0], translate=translator(lang), gen=gen, opt_date=opt_date, title=title, website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read)
+
+
+@route('/issues/matrix')
+def matrix(db, lang):
+    params = Params(default_limit=None)
+    errors_groups = query._count(db, params, [
+        "markers.item",
+        "markers.class",
+        "sources.country",
+        "items.menu->'en'"]
+    )
+    analysers = defaultdict(lambda: defaultdict(int))
+    analysers_sum = defaultdict(int)
+    countries_sum = defaultdict(int)
+    total = 0
+    for row in errors_groups:
+        item, class_, country, menu, count = row
+        analyser = '{}/{} {}'.format(item, class_, menu)
+        analysers[analyser][country] += count
+        analysers_sum[analyser] += count
+        countries_sum[country] += count
+        total += count
+
+    return template('errors/matrix', total=total, countries_sum=countries_sum, analysers_sum=analysers_sum, analysers=analysers)
