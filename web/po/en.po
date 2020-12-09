@@ -47,7 +47,7 @@ msgstr "Fixed errors"
 
 #: ../errors.py:129 tmp.tpl:56
 msgid "Informations"
-msgstr "Informations"
+msgstr "Information"
 
 #. TRANSLATORS: link to help in appropriate language
 #: ../map.py:136
