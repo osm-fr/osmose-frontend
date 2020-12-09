@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "dependencies": {
-    "bootstrap": "^4.3.1",
+    "bootstrap": "^4.5.3",
     "geobuf": "^3.0.1",
     "jquery": "^3.5.0",
     "js-cookie": "^2.2.0",
@@ -16,7 +16,7 @@
     "leaflet-control-geocoder": "^1.13.0",
     "leaflet-loading": "^0.1.24",
     "leaflet-osm": "git://github.com/openstreetmap/leaflet-osm.git#master",
-    "leaflet-plugins": "^3.1.0",
+    "leaflet-plugins": "^3.3.2",
     "leaflet-responsive-popup": "^0.5.0",
     "leaflet-sidebar": "^0.2.2",
     "leaflet-textpath": "^1.2.3",
@@ -26,19 +26,19 @@
     "popper.js": "^1.16.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.6",
-    "@babel/preset-env": "^7.9.6",
-    "babel-loader": "^8.1.0",
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "babel-loader": "^8.2.2",
     "base64-image-loader": "^1.2.0",
     "css-loader": "^0.28.7",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-loader": "^2.1.2",
-    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-import": "^2.22.1",
     "sprite-loader": "git://github.com/youzan/sprite-loader.git#master",
     "style-loader": "^0.19.0",
     "terser-webpack-plugin": "^2.3.6",
-    "webpack": "^4.43.0",
+    "webpack": "^4.44.2",
     "webpack-cli": "^3.3.11"
   },
   "scripts": {
