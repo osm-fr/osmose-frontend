@@ -64,7 +64,7 @@ def index(db, lang, format=None):
         title = _("Fixed issues")
         gen = "done"
     else:
-        title = _("Informations")
+        title = _("Information")
         gen = "error"
 
     if not format in ('rss', 'gpx', 'kml', 'josm', 'csv'):
