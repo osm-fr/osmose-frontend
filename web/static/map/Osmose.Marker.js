@@ -90,7 +90,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
           this._closePopup();
         } else {
           this.highlight = e.layer.properties.uuid;
-          this._openPopup(e);
+          this._openPopup(e.layer.properties.uuid, e.latlng, e.layer);
         }
       }
     };
@@ -147,17 +147,17 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
     }
   },
 
-  _openPopup(e) {
-    if (this.open_popup === e.layer.properties.uuid) {
+  _openPopup(uuid, latlng, layer) {
+    if (this.open_popup === uuid) {
       return;
     }
-    this.open_popup = e.layer.properties.uuid;
+    this.open_popup = uuid;
 
     const popup = L.responsivePopup({
       maxWidth: 280,
       autoPan: false,
       offset: L.point(0, -8),
-    }).setLatLng(e.latlng)
+    }).setLatLng(latlng)
       .setContent("<center><img src='../images/throbbler.gif' alt='downloading'></center>")
       .openOn(this._map);
     this.popup = popup;
@@ -166,7 +166,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
       if (popup.isOpen) {
         // Popup still open, so download content
         $.ajax({
-          url: `/api/0.3/issue/${e.layer.properties.uuid}?langs=auto`,
+          url: `/api/0.3/issue/${uuid}?langs=auto`,
           dataType: 'json',
           success: (data) => {
             data.elems_id = data.elems.map(elem => elem.type + elem.id).join(',');
@@ -207,7 +207,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
             const content = $(Mustache.render(template, data));
             content.on('click', '.closePopup', () => {
               setTimeout(() => {
-                this.corrected(e.layer);
+                this.corrected(layer);
               }, 200);
             });
             content.on('click', '.popup_help', (event) => {
@@ -215,7 +215,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
               return false;
             });
             content.on('click', '.editor_edit, .editor_fix', (event) => {
-              this._editor.edit(e.layer, event.currentTarget.getAttribute('data-error'), event.currentTarget.getAttribute('data-type'), event.currentTarget.getAttribute('data-id'), event.currentTarget.getAttribute('data-fix'));
+              this._editor.edit(layer, event.currentTarget.getAttribute('data-error'), event.currentTarget.getAttribute('data-type'), event.currentTarget.getAttribute('data-id'), event.currentTarget.getAttribute('data-fix'));
               return false;
             });
             popup.setContent(content[0]);
