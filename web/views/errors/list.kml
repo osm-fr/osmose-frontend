@@ -34,7 +34,7 @@
 {{translate.select(res["title"])}}\\
 %    end
 </name>
-    <url>http://{{website}}/{{lang}}/map/#{{query}}&amp;zoom=13&amp;lat={{lat}}&amp;lon={{lon}}&amp;level={{res["level"]}}&amp;tags=&amp;fixable=&amp;errorId={{res["uuid"]}}</url>
+    <url>http://{{website}}/{{lang}}/map/#{{query}}&amp;zoom=16&amp;lat={{lat}}&amp;lon={{lon}}&amp;level={{res["level"]}}&amp;tags=&amp;fixable=&amp;errorId={{res["uuid"]}}</url>
     <description>\\
 %    if res["menu"]:
 {{translate.select(res["menu"])}} - \\
