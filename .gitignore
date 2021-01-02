@@ -15,3 +15,4 @@ web/node_modules
 osmose-frontend-venv
 
 web/**/webpack.bundle-*.js*
+web/webpack.stats.json
