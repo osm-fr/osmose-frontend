@@ -106,6 +106,11 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
     };
     this.on('click', click);
 
+    this._map.on('popupclose', (e) => {
+      this._permalink.update_item({ errorId: null });
+    });
+
+
     map.on('zoomend moveend', L.Util.bind(this._mapChange, this));
     const bindClosePopup = L.Util.bind(this._closePopup, this);
     map.on('zoomstart', bindClosePopup);
@@ -162,6 +167,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
       return;
     }
     this.open_popup = uuid;
+    this._permalink.update_item({ errorId: uuid });
 
     const popup = L.responsivePopup({
       maxWidth: 280,
