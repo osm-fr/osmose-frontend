@@ -37,6 +37,7 @@ export function initMap() {
   urlVars.level = urlVars.level || Cookies.get('last_level') || '1';
   urlVars.tags = urlVars.tags || Cookies.get('last_tags');
   urlVars.fixable = urlVars.fixable || Cookies.get('last_fixable');
+  urlVars.errorId = urlVars.errorId || Cookies.get('error_id');
 
   const layers = [];
   $.each(mapBases, (name, layer) => {

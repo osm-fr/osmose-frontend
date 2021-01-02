@@ -14,6 +14,7 @@ require('./Osmose.Marker.css');
 const OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
   initialize(permalink, params, editor, doc, featuresLayers, options) {
+    this.opened_initial_issue = false;
     this._permalink = permalink;
     this._editor = editor;
     this._doc = doc;
@@ -48,6 +49,15 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
         return f.properties.uuid;
       },
     };
+    this.on('load', (e) => {
+      if (params.errorId && !this.opened_initial_issue) {
+        // Hack : This should use error coordinates from osmose api coordinates
+        // instead of trusting URL params
+        this._openPopup(params.errorId, [params.lat, params.lon], this);
+        // Disarm initial popup opening on further vector tile loads
+        this.opened_initial_issue = true;
+      }
+    });
     L.VectorGrid.Protobuf.prototype.initialize.call(this, this._buildUrl(params), vectorTileOptions);
   },
 
