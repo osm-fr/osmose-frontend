@@ -31,7 +31,7 @@ def _get(db, err_id=None, uuid=None):
         "markers.item",
         "markers.source_id", "markers.class",
         "elems", "fixes",
-        "lat", "lon",
+        "lat::float", "lon::float",
         "title", "subtitle", "updates_last.timestamp",
         "detail", "fix", "trap", "example", "source AS source_code", "resource",
     ]

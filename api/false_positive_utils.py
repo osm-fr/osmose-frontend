@@ -22,7 +22,7 @@
 def _get(db, status, err_id=None, uuid=None):
     columns = [
         "markers_status.item", "source_id", "markers_status.class",
-        "lat", "lon",
+        "lat::float", "lon::float",
         "title", "subtitle",
         "date",
     ]
