@@ -1,6 +1,7 @@
 var optimize = false;
 var webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 
 module.exports = {
@@ -8,6 +9,7 @@ module.exports = {
     entry: {
         "issues": "./static/webpack.index.js",
         "map": "./static/map/webpack.index.js",
+        "app": "./static/app/webpack.index.js",
     },
     output: {
         path: __dirname + '/static/dist',
@@ -15,6 +17,11 @@ module.exports = {
         publicPath: "/en/dist/",
     },
     devtool: 'source-map',
+    resolve: {
+        alias: {
+            vue: 'vue/dist/vue.js'
+        },
+    },
     module: {
         rules: [
 /*
@@ -39,6 +46,10 @@ module.exports = {
                 options: {
                     presets: ['@babel/preset-env']
                 }
+            },
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader',
             },
             { test: /\.css$/, use: [
                 { loader: "style-loader" },
@@ -65,6 +76,7 @@ module.exports = {
             jQuery: "jquery",
             Mustache: "mustache",
         }),
+        new VueLoaderPlugin(),
         new webpack.LoaderOptionsPlugin({
             minimize: true,
             debug: false
