@@ -50,10 +50,10 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
       },
     };
     this.on('load', (e) => {
-      if (params.errorId && !this.opened_initial_issue) {
+      if (params.marker_uuid && !this.opened_initial_issue) {
         // Hack : This should use error coordinates from osmose api coordinates
         // instead of trusting URL params
-        this._openPopup(params.errorId, [params.lat, params.lon], this);
+        this._openPopup(params.marker_uuid, [params.lat, params.lon], this);
         // Disarm initial popup opening on further vector tile loads
         this.opened_initial_issue = true;
       }
@@ -107,7 +107,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
     this.on('click', click);
 
     this._map.on('popupclose', (e) => {
-      this._permalink.update_item({ errorId: null });
+      this._permalink.update_item({ marker_uuid: null });
     });
 
 
@@ -167,7 +167,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
       return;
     }
     this.open_popup = uuid;
-    this._permalink.update_item({ errorId: uuid });
+    this._permalink.update_item({ marker_uuid: uuid });
 
     const popup = L.responsivePopup({
       maxWidth: 280,

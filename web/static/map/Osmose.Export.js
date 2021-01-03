@@ -21,7 +21,7 @@ const OsmoseExport = L.Class.extend({
     const params = Object.assign({}, e.params);
     delete params.lat;
     delete params.lon;
-    delete params.errorId;
+    delete params.marker_uuid;
     this._params_last = params;
     params.limit = 500;
     params.bbox = this._map.getBounds().toBBoxString();

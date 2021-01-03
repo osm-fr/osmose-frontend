@@ -62,7 +62,7 @@ http://www.topografix.com/GPX/1/0/gpx.xsd">
       http://localhost:8111/load_and_zoom?left={{minlon}}&amp;bottom={{minlat}}&amp;right={{maxlon}}&amp;top={{maxlat}}
 %    end
     </desc>
-    <url>http://{{website}}/{{lang}}/map/#{{query}}&amp;zoom=16&amp;lat={{lat}}&amp;lon={{lon}}&amp;level={{res["level"]}}&amp;tags=&amp;fixable=&amp;errorId={{res["uuid"]}}</url>
+    <url>http://{{website}}/{{lang}}/map/#{{query}}&amp;zoom=16&amp;lat={{lat}}&amp;lon={{lon}}&amp;level={{res["level"]}}&amp;tags=&amp;fixable=&amp;marker_uuid={{res["uuid"]}}</url>
 </wpt>
 %end
 %end
