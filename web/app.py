@@ -157,6 +157,7 @@ from . import editor
 from . import control
 
 @route('/error/<uuid:uuid>')
+@route('/false-positive/<uuid:uuid>')
 def display(db, uuid):
     return template('layout-vue')
 

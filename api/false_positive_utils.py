@@ -24,7 +24,7 @@ def _get(db, status, err_id=None, uuid=None):
         "markers_status.item", "source_id", "markers_status.class",
         "lat::float", "lon::float",
         "title", "subtitle",
-        "date",
+        "date AS timestamp",
     ]
 
     if err_id:
