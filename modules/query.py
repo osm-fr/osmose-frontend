@@ -209,8 +209,8 @@ def _gets(db, params):
         markers.uuid AS uuid,
         markers.item,
         markers.class,
-        markers.lat,
-        markers.lon,"""
+        markers.lat::float,
+        markers.lon::float,"""
     if params.full:
         sqlbase += """
         markers.source_id,
