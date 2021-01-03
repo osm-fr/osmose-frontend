@@ -22,7 +22,7 @@
 
 from bottle import route, request, template, response
 from modules import utils
-from .tool.translation import translator
+from modules.utils import i10n_select_auto
 from modules.params import Params
 from modules import query
 from modules import query_meta
@@ -94,6 +94,8 @@ def index(db, lang, format=None):
 
         total = 0
         for res in errors_groups:
+            res["title"] = i10n_select_auto(res["title"], lang)
+            res["menu"] = i10n_select_auto(res["menu"], lang)
             if res["count"] != -1:
                 total += res["count"]
     else:
@@ -107,6 +109,12 @@ def index(db, lang, format=None):
     if (total > 0 and total < 1000) or params.limit:
         params.full = True
         errors = query._gets(db, params)
+
+        for error in errors:
+            error["subtitle"] = i10n_select_auto(error["subtitle"], lang)
+            error["title"] = i10n_select_auto(error["title"], lang)
+            error["menu"] = i10n_select_auto(error["menu"], lang)
+
         if gen in ("false-positive", "done"):
             opt_date = "date"
         else:
@@ -143,7 +151,7 @@ def index(db, lang, format=None):
     else:
         tpl = 'errors/index'
 
-    return template(tpl, countries=countries, items=items, errors_groups=errors_groups, total=total, errors=errors, query=request.query_string, country=params.country, item=params.item, level=params.level, lang=lang[0], translate=translator(lang), gen=gen, opt_date=opt_date, title=title, website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read)
+    return template(tpl, countries=countries, items=items, errors_groups=errors_groups, total=total, errors=errors, query=request.query_string, country=params.country, item=params.item, level=params.level, lang=lang[0], gen=gen, opt_date=opt_date, title=title, website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read)
 
 
 @route('/issues/matrix')

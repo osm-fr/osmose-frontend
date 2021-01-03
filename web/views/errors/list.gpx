@@ -24,19 +24,19 @@ http://www.topografix.com/GPX/1/0/gpx.xsd">
 <wpt lat="{{lat}}" lon="{{lon}}">
     <name>\\
 %    if res["subtitle"]:
-{{translate.select(res["subtitle"])[:30]}}\\
+{{res["subtitle"][:30]}}\\
 %    elif res["title"]:
-{{translate.select(res["title"])[:30]}}\\
+{{res["title"][:30]}}\\
 %    end
 </name>
     <desc>\\
 %    if res["menu"]:
-{{translate.select(res["menu"])}} - \\
+{{res["menu"]}} - \\
 %    end
 %    if res["subtitle"]:
-{{translate.select(res["subtitle"])}}
+{{res["subtitle"]}}
 %    elif res["title"]:
-{{translate.select(res["title"])}}
+{{res["title"]}}
 %    end
       {{res["item"]}}({{res["level"]}})/{{res["class"]}} {{res["uuid"]}}
 %    e = gen if gen in ('error', 'false-positive') else 'error'

@@ -79,7 +79,7 @@
 %it = set()
 %for categ in categories:
     <div class="test_group" id="categ{{categ["id"]}}">
-    <h1><i class="toggleCategIco"></i><a href="#" class="toggleCateg">{{translate.select(categ["title"])}}</a>
+    <h1><i class="toggleCategIco"></i><a href="#" class="toggleCateg">{{categ["title"]["auto"]}}</a>
     <span class="count">-/-</span>
     <a href="#" class="toggleAllItem" data-view="all">{{_("all")}}</a>
     <a href="#" class="toggleAllItem" data-view="nothing">{{_("nothing")}}</a></h1>
@@ -88,7 +88,7 @@
 %        it.add(err["item"])
         <li id='item_desc{{err["item"]}}' class="item" title="{{_("Item #%s") % err["item"]}}
 %for classs in err["class"]:
-{{classs["class"]}}. {{translate.select(classs["title"])}}
+{{classs["class"]}}. {{classs["title"]["auto"]}}
 %end
 "
 >
@@ -104,7 +104,7 @@
 %        end
             </div>
             <input type='checkbox' id='item{{"{:04d}".format(err["item"])}}' name='item{{"{:04d}".format(err["item"])}}'/>
-            <a target="_blank" href="../errors/?item={{err["item"]}}">{{translate.select(err["title"])}}</a>
+            <a target="_blank" href="../errors/?item={{err["item"]}}">{{err["title"]["auto"]}}</a>
         </li>
 %    end
     </ul>

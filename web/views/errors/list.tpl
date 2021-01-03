@@ -31,7 +31,7 @@
         <img src="../images/markers/marker-l-{{res["item"]}}.png" alt="{{res["item"]}}">
         <a href="?{{!page_args}}item={{res["item"]}}">{{res["item"]}}</a>
 %        if res["menu"]:
-            {{translate.select(res["menu"])}}
+            {{res["menu"]}}
 %        end
     </td>
     <td>{{res["class"]}}</td>
@@ -75,9 +75,9 @@
     </td>
 %    end
 %    if res["subtitle"]:
-    <td>{{translate.select(res["subtitle"])}}</td>
+    <td>{{res["subtitle"]}}</td>
 %    elif res["title"]:
-    <td>{{translate.select(res["title"])}}</td>
+    <td>{{res["title"]}}</td>
 %    else:
     <td></td>
 %    end

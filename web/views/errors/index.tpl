@@ -100,11 +100,11 @@
         <img src="../images/markers/marker-l-{{res["item"]}}.png" alt="{{res["item"]}}">
         <a href="?item={{res["item"]}}&amp;country={{res["country"]}}">{{res["item"]}}</a>
 %        if res["menu"]:
-            {{translate.select(res["menu"])}}
+            {{res["menu"]}}
 %        end
     </td>
     <td><a href="?item={{res["item"]}}&amp;class={{res["class"]}}&amp;country={{res["country"]}}">{{res["class"]}}</a></td>
-    <td>{{translate.select(res["title"])}}</td>
+    <td>{{res["title"]}}</td>
 %    count = res["count"]
 %    if count == -1:
 %        count = "N/A"
@@ -125,7 +125,7 @@
 <br>
 %if errors:
 %    str_more = _("Show more issues")
-%    include("web/views/errors/list.tpl", errors=errors, gen=gen, opt_date=opt_date, translate=translate, main_website=main_website, remote_url_read=remote_url_read, page_args="")
+%    include("web/views/errors/list.tpl", errors=errors, gen=gen, opt_date=opt_date, main_website=main_website, remote_url_read=remote_url_read, page_args="")
 %
 %    import urllib
 %    query_dict = urllib.parse.parse_qs(query)

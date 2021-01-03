@@ -27,12 +27,12 @@
 <item>
     <title>\\
 %    if res["menu"]:
-{{translate.select(res["menu"])}} - \\
+{{res["menu"]}} - \\
 %    end
 %    if res["subtitle"]:
-{{translate.select(res["subtitle"])}}\\
+{{res["subtitle"]}}\\
 %    elif res["title"]:
-{{translate.select(res["title"])}}\\
+{{res["title"]}}\\
 %    end
 </title>
     <description>

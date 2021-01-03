@@ -22,7 +22,7 @@
 
 from bottle import route, template, redirect, response, html_escape
 from modules import utils
-from .tool.translation import translator
+from modules.utils import i10n_select_auto
 from modules import query
 
 from api.user_utils import _user, _user_count
@@ -39,16 +39,21 @@ def byUser():
 def user(db, lang, username=None, format=None):
     params, username, errors = _user(db, lang, username)
 
+    for error in errors:
+        error["subtitle"] = i10n_select_auto(error["subtitle"], lang)
+        error["title"] = i10n_select_auto(error["title"], lang)
+        error["menu"] = i10n_select_auto(error["menu"], lang)
+
     if not params.users:
-        return template('byuser/index', translate=translator(lang))
+        return template('byuser/index')
 
     count = len(errors)
 
     if format == 'rss':
         response.content_type = "application/rss+xml"
-        return template('byuser/byuser.rss', username=username, users=params.users, count=count, errors=errors, translate=translator(lang), website=utils.website + '/' + lang[0])
+        return template('byuser/byuser.rss', username=username, users=params.users, count=count, errors=errors, website=utils.website + '/' + lang[0])
     else:
-        return template('byuser/byuser', username=username, users=params.users, count=count, errors=errors, translate=translator(lang), website=utils.website + '/' + lang[0], main_website=utils.main_website, remote_url_read=utils.remote_url_read, html_escape=html_escape)
+        return template('byuser/byuser', username=username, users=params.users, count=count, errors=errors, website=utils.website + '/' + lang[0], main_website=utils.main_website, remote_url_read=utils.remote_url_read, html_escape=html_escape)
 
 
 @route('/byuser_count/<username>')
@@ -58,6 +63,6 @@ def user_count(db, lang, username=None, format=None):
 
     if format == 'rss':
         response.content_type = "application/rss+xml"
-        return template('byuser/byuser_count.rss', username=username, count=count, translate=translator(lang), website=utils.website)
+        return template('byuser/byuser_count.rss', username=username, count=count, website=utils.website)
     else:
         return count

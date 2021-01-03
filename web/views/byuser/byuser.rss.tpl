@@ -20,10 +20,10 @@
     <link>http://{{website}}/byuser/{{username}}</link>
 %for res in errors:
     <item>
-        <title>{{translate.select(res["title"])}}</title>
+        <title>{{res["title"]}}</title>
         <description>
 %    if res["subtitle"]:
-        {{translate.select(res["subtitle"])}}
+        {{res["subtitle"]}}
 %    end
         item={{res["item"]}}, class={{res["class"]}}, level={{res["level"]}}
         {{'<a href="http://%s/error/%s">E</a>' % (website, res['uuid'])}}
