@@ -24,7 +24,7 @@ from collections import defaultdict
 from .utils import i10n_select
 
 
-def _items(db, lang):
+def _items_menu(db, langs):
     sql = """
     SELECT
         item,
@@ -35,7 +35,10 @@ def _items(db, lang):
         item
     """
     db.execute(sql)
-    return db.fetchall()
+    items = db.fetchall()
+    for item in items:
+        item['menu'] = i10n_select(item['menu'], langs)
+    return items
 
 
 def _countries_3(db):

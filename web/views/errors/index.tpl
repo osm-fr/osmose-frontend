@@ -2,7 +2,7 @@
 %favicon=None
 %for res in items:
 %    if item == str(res["item"]):
-%        title += ' - ' + translate.select(res['menu'])
+%        title += ' - ' + res['menu']['auto']
 %        favicon = "../images/markers/marker-l-%s.png" % res["item"]
 %    end
 %end
@@ -52,7 +52,7 @@
 %    if str(item) == str(res['item']):
  selected='selected'\\
 %    end
- value='{{res['item']}}'>{{res['item']}} - {{translate.select(res['menu'])}}</option>
+ value='{{res['item']}}'>{{res['item']}} - {{res['menu']['auto']}}</option>
 %end
     </select>
   </div>

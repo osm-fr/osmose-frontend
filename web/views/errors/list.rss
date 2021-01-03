@@ -6,7 +6,7 @@
     <atom:link href="{{rss}}" rel="self" type="application/rss+xml" />
 %for res in items:
 %    if item == str(res["item"]):
-%        title += ' - ' + translate.select(res['menu'])
+%        title += ' - ' + res['menu']['auto']
 %    end
 %end
     <title>Osmose{{title}}</title>

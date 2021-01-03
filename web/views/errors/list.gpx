@@ -7,7 +7,7 @@ xsi:schemaLocation="http://www.topografix.com/GPX/1/0
 http://www.topografix.com/GPX/1/0/gpx.xsd">
 %for res in items:
 %    if item == str(res["item"]):
-%        title += ' - ' + translate.select(res['menu'])
+%        title += ' - ' + res['menu']['auto']
 %    end
 %end
     <name>Osmose {{title}}</name>

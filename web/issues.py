@@ -71,7 +71,7 @@ def index(db, lang, format=None):
         format = None
 
     countries = query_meta._countries_3(db) if format == None else None
-    items = query_meta._items(db, lang)
+    items = query_meta._items_menu(db, lang)
 
     params = Params()
     params.status = {"error":"open", "false-positive": "false", "done":"done"}[gen]
