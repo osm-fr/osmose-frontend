@@ -55,7 +55,6 @@ app_0_3.router.add_filter('ext', ext_filter)
 
 app_0_3.router.add_filter('uuid', uuid_filter)
 
-from . import meta_0_2
 from . import meta_0_3
 from . import user
 from . import issue

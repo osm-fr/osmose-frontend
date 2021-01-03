@@ -24,24 +24,6 @@ from collections import defaultdict
 from .utils import i10n_select
 
 
-def _class(db, lang):
-    sql = """
-    SELECT
-        item,
-        class,
-        title,
-        level,
-        tags
-    FROM
-        class
-    ORDER BY
-        item,
-        class
-    """
-    db.execute(sql)
-    return list(db.fetchall())
-
-
 def _items(db, lang):
     sql = """
     SELECT
