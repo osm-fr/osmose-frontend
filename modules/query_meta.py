@@ -41,7 +41,7 @@ def _items_menu(db, langs):
     return items
 
 
-def _countries_3(db):
+def _countries(db):
     sql = """
     SELECT DISTINCT
         country
@@ -54,7 +54,7 @@ def _countries_3(db):
     return list(map(lambda x: x[0], db.fetchall()))
 
 
-def _items_3(db, item = None, classs = None, langs = None):
+def _items(db, item = None, classs = None, langs = None):
     sql = """
     SELECT
         id,

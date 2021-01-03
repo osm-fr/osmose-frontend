@@ -42,7 +42,7 @@ def index(db, user, lang):
 
     tags = query_meta._tags(db)
 
-    categories = query_meta._items_3(db)
+    categories = query_meta._items(db)
 
     item_tags = defaultdict(set)
     item_levels = {'1': set(), '2': set(), '3': set()}

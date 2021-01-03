@@ -39,17 +39,17 @@ def _map_items(categories):
 
 @route('/items')
 def items(db, langs):
-    return {"categories": _map_items(query_meta._items_3(db, langs = langs))}
+    return {"categories": _map_items(query_meta._items(db, langs = langs))}
 
 
 @route('/items/<item:int>/class/<classs:int>')
 def items(db, langs, item, classs):
-    return {"categories": (query_meta._items_3(db, item = item, classs = classs, langs = langs))}
+    return {"categories": (query_meta._items(db, item = item, classs = classs, langs = langs))}
 
 
 @route('/countries')
 def items(db):
-    return {"countries": query_meta._countries_3(db)}
+    return {"countries": query_meta._countries(db)}
 
 
 @route('/tags')

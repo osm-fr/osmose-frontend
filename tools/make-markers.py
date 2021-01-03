@@ -153,7 +153,7 @@ if __name__ == "__main__":
     conn = utils.get_dbconn()
     db = conn.cursor()
     all_items = []
-    for g in query_meta._items_3(db):
+    for g in query_meta._items(db):
         all_items += g["items"]
     #all_items = [{"item":9999, "marker_flag":"=-", "marker_color":"#ff0000"}] # Test
 

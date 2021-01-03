@@ -70,7 +70,7 @@ def index(db, lang, format=None):
     if not format in ('rss', 'gpx', 'kml', 'josm', 'csv'):
         format = None
 
-    countries = query_meta._countries_3(db) if format == None else None
+    countries = query_meta._countries(db) if format == None else None
     items = query_meta._items_menu(db, lang)
 
     params = Params()
