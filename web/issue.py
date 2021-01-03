@@ -26,13 +26,11 @@ from .tool.translation import translator
 from api.issue_utils import _get, _expand_tags, t2l
 
 
-@route('/error/<uuid:uuid>')
-def display(db, lang, user, uuid):
+@route('/error/<uuid:uuid>.json')
+def display(db, lang, uuid):
     marker = _get(db, uuid=uuid)
     if not marker:
         abort(410, "Id is not present in database.")
-
-    data_type = { 'N': 'node', 'W': 'way', 'R': 'relation', 'I': 'infos'}
 
     for e in marker['elems'] or []:
         e['tags'] = _expand_tags(e.get('tags', {}), t2l.checkTags(e.get('tags', {})))
@@ -43,12 +41,10 @@ def display(db, lang, user, uuid):
             f['modify'] = _expand_tags(f['modify'], t2l.checkTags(f['modify']))
             f['delete'] = _expand_tags(f['delete'], {}, True)
 
-    return template(
-        'error/index',
-        translate=translator(lang),
-        uuid=uuid,
-        marker=marker,
-        user=user,
-        main_website=utils.main_website,
-        data_type=data_type,
+    marker = dict(marker)
+    marker['timestamp'] = str(marker['timestamp'])
+    return dict(
+        uuid = uuid,
+        marker = marker,
+        main_website = utils.main_website,
     )
