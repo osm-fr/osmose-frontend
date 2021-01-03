@@ -38,18 +38,6 @@ def _items(db, lang):
     return db.fetchall()
 
 
-def _countries(db, lang):
-    sql = """
-    SELECT DISTINCT
-        country
-    FROM
-        sources
-    ORDER BY
-        country
-    """
-    db.execute(sql)
-    return db.fetchall()
-
 def _countries_3(db):
     sql = """
     SELECT DISTINCT
