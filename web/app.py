@@ -156,6 +156,10 @@ from . import false_positive
 from . import editor
 from . import control
 
+@route('/error/<uuid:uuid>')
+def display(db, uuid):
+    return template('layout-vue')
+
 @route('/<filename:path>', name='static')
 def static(filename):
     return bottle.static_file(filename, root='web/static')

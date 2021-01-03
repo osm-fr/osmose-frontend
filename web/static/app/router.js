@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import IssueIndex from './issue/index.vue'
+import IssueIndex from './pages/issue/index.vue'
 
 Vue.use(VueRouter)
 
