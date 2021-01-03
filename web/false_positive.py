@@ -25,10 +25,15 @@ from .tool.translation import translator
 from api.false_positive_utils import _get
 
 
-@route('/false-positive/<uuid:uuid>')
+@route('/false-positive/<uuid:uuid>.json')
 def fp_(db, lang, uuid):
     marker, columns = _get(db, 'false', uuid=uuid)
     if not marker:
         abort(410, "Id is not present in database.")
 
-    return template('false-positive/index', translate=translator(lang), uuid=uuid, marker=marker, columns_marker=columns)
+    marker = dict(marker)
+    marker['timestamp'] = str(marker['timestamp'])
+    return dict(
+        uuid=uuid,
+        marker=marker,
+    )
