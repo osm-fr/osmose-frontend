@@ -6,12 +6,13 @@ const TerserPlugin = require('terser-webpack-plugin');
 module.exports = {
     mode: 'production',
     entry: {
-        "static": "./static/webpack.index.js",
-        "static/map": "./static/map/webpack.index.js",
+        "issues": "./static/webpack.index.js",
+        "map": "./static/map/webpack.index.js",
     },
     output: {
-        path: __dirname,
-        filename: "[name]/webpack.bundle-[hash].js"
+        path: __dirname + '/static/dist',
+        filename: "[name]/webpack.bundle-[hash].js",
+        publicPath: "/en/dist/",
     },
     devtool: 'source-map',
     module: {
@@ -42,7 +43,7 @@ module.exports = {
             { test: /\.css$/, use: [
                 { loader: "style-loader" },
                 { loader: "css-loader" },
-                { loader: "sprite-loader", options: { name: "[hash].png", outputPath: "./static/images/", cssImagePath: "/en/images/", padding: 0 } }
+                { loader: "sprite-loader", options: { name: "[hash].png", outputPath: "images/", cssImagePath: "/en/dist/images/", padding: 0 } }
             ] },
             { test: /\.png$/, loaders: ["base64-image-loader"] },
             { test: /\.gif$/, loaders: ["base64-image-loader"] },

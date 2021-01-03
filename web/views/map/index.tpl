@@ -16,7 +16,7 @@
   <script id="docTpl" type="text/template" src="{{app.get_url('static', filename='/tpl/doc.tpl')}}"></script>
   <script id="editorTpl" type="text/template" src="{{app.get_url('static', filename='/tpl/editor.tpl')}}"></script>
 %from web.assets import assets
-  <script type="text/javascript" src="{{app.get_url('static', filename=assets['static/map'][0])}}"></script>
+  <script type="text/javascript" src="{{app.get_url('static', filename='dist/' + assets['map'])}}"></script>
   <script type="text/javascript">
     var itemLevels = {};
 %for (l, i) in item_levels.items():

@@ -9,7 +9,7 @@
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 %from web.assets import assets
 %from web.app import app
-  <script type="text/javascript" src="{{app.get_url('static', filename=assets['static'][0])}}"></script>
+  <script type="text/javascript" src="{{app.get_url('static', filename='dist/' + assets['issues'])}}"></script>
 %if not 'favicon' in locals() or not favicon:
 %    favicon = app.get_url('static', filename='favicon.png')
 %end
