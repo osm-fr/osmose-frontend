@@ -153,8 +153,8 @@ if __name__ == "__main__":
     conn = utils.get_dbconn()
     db = conn.cursor()
     all_items = []
-    for g in query_meta._categories(db, "en"):
-        all_items += g["item"]
+    for g in query_meta._items_3(db):
+        all_items += g["items"]
     #all_items = [{"item":9999, "marker_flag":"=-", "marker_color":"#ff0000"}] # Test
 
 
@@ -166,7 +166,7 @@ if __name__ == "__main__":
         for m in "LB":
             file_svg = os.path.join(marker_folder, "marker-%s-%d.svg"%(m.lower(), i["item"]))
             file_png = os.path.join(marker_folder, "marker-%s-%d.png"%(m.lower(), i["item"]))
-            open(file_svg,"w").write(get_marker(m, i["marker_flag"], i["marker_color"]))
+            open(file_svg,"w").write(get_marker(m, i["flag"], i["color"]))
             #subprocess.getstatusoutput("rsvg %s %s"%(file_svg, file_png))
             subprocess.getstatusoutput("rsvg-convert %s > %s"%(file_svg, file_png))
         css += ".marker-l-{0} {{ background-image: url(marker-l-{0}.png); }}\n".format(i["item"])

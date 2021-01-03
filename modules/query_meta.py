@@ -63,46 +63,6 @@ def _countries_3(db):
     return list(map(lambda x: x[0], db.fetchall()))
 
 
-def _categories(db, lang):
-    sql = """
-    SELECT
-        items.categorie_id,
-        categories.menu AS categ_menu,
-        items.item,
-        items.menu,
-        items.marker_color,
-        items.marker_flag,
-        items.levels,
-        items.number,
-        items.tags
-    FROM
-        categories
-        JOIN items ON
-            categories.id = items.categorie_id
-    ORDER BY
-        categorie_id,
-        item
-    """
-    result = []
-    db.execute(sql)
-    for res in db.fetchall():
-        if result == [] or result[-1]["categorie_id"] != res["categorie_id"]:
-            ret = {"categorie_id":res["categorie_id"], "menu": "no translation", "item": []}
-            result.append(ret)
-            ret["menu_lang"] = {k: v for k, v in res["categ_menu"].items() if v}
-            for l in lang:
-                if l in res["categ_menu"]:
-                    ret["menu"] = res["categ_menu"][l]
-                    break
-        ret["item"].append({"item":res["item"], "menu":"no translation", "marker_color":res["marker_color"], "marker_flag":res["marker_flag"], "levels":res["levels"], "number":res["number"], "tags":res["tags"]})
-        for l in lang:
-            if res["menu"] and l in res["menu"]:
-                ret["item"][-1]["menu"] = res["menu"][l]
-                break
-
-    return result
-
-
 def _items_3(db, item = None, classs = None, langs = None):
     sql = """
     SELECT
@@ -130,6 +90,7 @@ def _items_3(db, item = None, classs = None, langs = None):
         item,
         categorie_id,
         marker_color AS color,
+        marker_flag AS flag,
         menu AS title,
         levels,
         number,
