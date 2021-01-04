@@ -158,6 +158,9 @@ from . import control
 
 @route('/error/<uuid:uuid>')
 @route('/false-positive/<uuid:uuid>')
+@route('/errors/')
+@route('/errors/done')
+@route('/errors/false-positive')
 @route('/byuser/')
 @route('/byuser/<username>')
 def vue(db, uuid=None, username=None):
