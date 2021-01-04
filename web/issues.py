@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, request, template, response
+from bottle import route, request, template, response, redirect
 from modules import utils
 from modules.utils import i10n_select_auto
 from modules.params import Params
@@ -50,13 +50,19 @@ def graph(db, format='png'):
 
 
 @route('/errors')
+def errors():
+    redirect("errors/")
+
+
 @route('/errors.<format:ext>')
-@route('/errors/')
-@route('/errors/done')
+def errors_(format):
+    redirect("/errors/" + format)
+
+
+@route('/errors/.<format:ext>')
 @route('/errors/done.<format:ext>')
-@route('/errors/false-positive')
 @route('/errors/false-positive.<format:ext>')
-def index(db, lang, format=None):
+def index(db, lang, format):
     if "false-positive" in request.path:
         title = _("False positives")
         gen = "false-positive"
@@ -67,61 +73,26 @@ def index(db, lang, format=None):
         title = _("Information")
         gen = "error"
 
-    if not format in ('rss', 'gpx', 'kml', 'josm', 'csv'):
-        format = None
-
-    countries = query_meta._countries(db) if format == None else None
-    items = query_meta._items_menu(db, lang)
-
     params = Params()
     params.status = {"error":"open", "false-positive": "false", "done":"done"}[gen]
     params.limit = None
     params.fixable = None
 
-    if format == None and params.item:
-        errors_groups = query._count(db, params, [
-            "markers_counts.item",
-            "markers.source_id",
-            "markers.class",
-            "sources.country",
-            "sources.analyser",
-            "updates_last.timestamp"], [
-            "items",
-            "class"], [
-            "min(items.menu::text)::jsonb AS menu",
-            "min(class.title::text)::jsonb AS title"],
-        )
-
-        total = 0
-        for res in errors_groups:
-            res["title"] = i10n_select_auto(res["title"], lang)
-            res["menu"] = i10n_select_auto(res["menu"], lang)
-            if res["count"] != -1:
-                total += res["count"]
-    else:
-        errors_groups = []
-        total = 0
+    items = query_meta._items_menu(db, lang)
+    for res in items:
+        if params.item == str(res["item"]):
+            title += ' - ' + res['menu']['auto']
 
     params.limit = request.params.get('limit', type=int, default=100)
     if params.limit > 10000:
         params.limit = 10000
 
-    if (total > 0 and total < 1000) or params.limit:
-        params.full = True
-        errors = query._gets(db, params)
-
-        for error in errors:
-            error["subtitle"] = i10n_select_auto(error["subtitle"], lang)
-            error["title"] = i10n_select_auto(error["title"], lang)
-            error["menu"] = i10n_select_auto(error["menu"], lang)
-
-        if gen in ("false-positive", "done"):
-            opt_date = "date"
-        else:
-            opt_date = "-1"
-    else:
-        opt_date = None
-        errors = None
+    params.full = True
+    errors = query._gets(db, params)
+    for error in errors:
+        error["subtitle"] = i10n_select_auto(error["subtitle"], lang)
+        error["title"] = i10n_select_auto(error["title"], lang)
+        error["menu"] = i10n_select_auto(error["menu"], lang)
 
     if format == 'rss':
         response.content_type = 'application/rss+xml'
@@ -149,9 +120,52 @@ def index(db, lang, format=None):
         response.content_type = 'text/csv'
         return output.getvalue()
     else:
-        tpl = 'errors/index'
+        countries = query_meta._countries(db)
+        items = list(map(dict, items))
 
-    return template(tpl, countries=countries, items=items, errors_groups=errors_groups, total=total, errors=errors, query=request.query_string, country=params.country, item=params.item, level=params.level, lang=lang[0], gen=gen, opt_date=opt_date, title=title, website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read)
+        if params.item:
+            errors_groups = query._count(db, params, [
+                "markers_counts.item",
+                "markers.source_id",
+                "markers.class",
+                "sources.country",
+                "sources.analyser",
+                "updates_last.timestamp"], [
+                "items",
+                "class"], [
+                "min(items.menu::text)::jsonb AS menu",
+                "min(class.title::text)::jsonb AS title"],
+            )
+
+            total = 0
+            for res in errors_groups:
+                res["title"] = i10n_select_auto(res["title"], lang)
+                res["menu"] = i10n_select_auto(res["menu"], lang)
+                if res["count"] != -1:
+                    total += res["count"]
+        else:
+            errors_groups = []
+            total = 0
+
+        if params.limit:
+            if gen in ("false-positive", "done"):
+                opt_date = "date"
+            else:
+                opt_date = None
+        else:
+            opt_date = None
+
+        errors_groups = list(map(dict, errors_groups))
+        for res in errors_groups:
+            res['timestamp'] = str(res['timestamp'])
+        errors = list(map(dict, errors))
+        for res in errors:
+            res['timestamp'] = str(res['timestamp'])
+            if 'date' in res:
+                res['date'] = str(res['date'])
+        return dict(countries=countries, items=items, errors_groups=errors_groups, total=total, errors=errors, gen=gen, opt_date=opt_date, website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read)
+
+    return template(tpl, items=items, errors=errors, query=request.query_string, lang=lang[0], gen=gen, title=title, website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read)
 
 
 @route('/issues/matrix')

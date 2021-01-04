@@ -4,11 +4,6 @@
 <channel>
 %rss="http://"+website+"/"+lang+"/errors.rss?%s" % query
     <atom:link href="{{rss}}" rel="self" type="application/rss+xml" />
-%for res in items:
-%    if item == str(res["item"]):
-%        title += ' - ' + res['menu']['auto']
-%    end
-%end
     <title>Osmose{{title}}</title>
     <description>{{query}}</description>
 %if len(errors) > 0:

@@ -9,11 +9,6 @@
       </Icon>
     </IconStyle>
   </Style>
-%for res in items:
-%    if item == str(res["item"]):
-%        title += ' - ' + res['menu']['auto']
-%    end
-%end
     <name>Osmose {{title}}\
 %if len(errors) > 0:
 ({{errors[0]["timestamp"].strftime("%Y-%m-%dT%H:%M:%SZ")}})\

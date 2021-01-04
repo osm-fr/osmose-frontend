@@ -5,11 +5,6 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns="http://www.topografix.com/GPX/1/0"
 xsi:schemaLocation="http://www.topografix.com/GPX/1/0
 http://www.topografix.com/GPX/1/0/gpx.xsd">
-%for res in items:
-%    if item == str(res["item"]):
-%        title += ' - ' + res['menu']['auto']
-%    end
-%end
     <name>Osmose {{title}}</name>
     <url>http://{{website}}/{{lang}}/errors/?{{query}}</url>
 %if len(errors) > 0:
