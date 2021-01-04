@@ -158,7 +158,9 @@ from . import control
 
 @route('/error/<uuid:uuid>')
 @route('/false-positive/<uuid:uuid>')
-def display(db, uuid):
+@route('/byuser/')
+@route('/byuser/<username>')
+def vue(db, uuid=None, username=None):
     return template('layout-vue')
 
 @route('/<filename:path>', name='static')
