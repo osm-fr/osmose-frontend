@@ -33,8 +33,6 @@ def byUser():
     redirect("byuser/")
 
 
-@route('/byuser/')
-@route('/byuser/<username>')
 @route('/byuser/<username>.<format:ext>')
 def user(db, lang, username=None, format=None):
     params, username, errors = _user(db, lang, username)
@@ -43,9 +41,7 @@ def user(db, lang, username=None, format=None):
         error["subtitle"] = i10n_select_auto(error["subtitle"], lang)
         error["title"] = i10n_select_auto(error["title"], lang)
         error["menu"] = i10n_select_auto(error["menu"], lang)
-
-    if not params.users:
-        return template('byuser/index')
+        error['timestamp'] = str(error['timestamp'])
 
     count = len(errors)
 
@@ -53,7 +49,7 @@ def user(db, lang, username=None, format=None):
         response.content_type = "application/rss+xml"
         return template('byuser/byuser.rss', username=username, users=params.users, count=count, errors=errors, website=utils.website + '/' + lang[0])
     else:
-        return template('byuser/byuser', username=username, users=params.users, count=count, errors=errors, website=utils.website + '/' + lang[0], main_website=utils.main_website, remote_url_read=utils.remote_url_read, html_escape=html_escape)
+        return dict(username=username, users=params.users, count=count, errors=list(map(dict, errors)), website=utils.website + '/' + lang[0], main_website=utils.main_website, remote_url_read=utils.remote_url_read)
 
 
 @route('/byuser_count/<username>')
