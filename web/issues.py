@@ -168,7 +168,7 @@ def index(db, lang, format):
     return template(tpl, items=items, errors=errors, query=request.query_string, lang=lang[0], gen=gen, title=title, website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read)
 
 
-@route('/issues/matrix')
+@route('/issues/matrix.json')
 def matrix(db, lang):
     params = Params(default_limit=None)
     errors_groups = query._count(db, params, [
@@ -189,4 +189,4 @@ def matrix(db, lang):
         countries_sum[country] += count
         total += count
 
-    return template('errors/matrix', total=total, countries_sum=countries_sum, analysers_sum=analysers_sum, analysers=analysers)
+    return dict(total=total, countries_sum=countries_sum, analysers_sum=analysers_sum, analysers=analysers)
