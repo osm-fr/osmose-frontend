@@ -70,22 +70,6 @@ app.router.add_filter('uuid', uuid_filter)
 app.router.add_filter('ext', ext_filter)
 
 
-@route('/', name='root')
-def index(lang):
-    return template('index', translate=translator(lang))
-
-@route('/contact')
-def contact(lang):
-    return template('contact', translate=translator(lang))
-
-@route('/copyright')
-def copyright(lang):
-    return template('copyright', translate=translator(lang), main_project=utils.main_project, main_website=utils.main_website)
-
-@route('/translation')
-def translation(lang):
-    return template('translation', translate=translator(lang))
-
 @route('/login')
 def login(lang):
     if 'user' in request.session:
@@ -156,6 +140,10 @@ from . import false_positive
 from . import editor
 from . import control
 
+@route('/')
+@route('/contact')
+@route('/copyright')
+@route('/translation')
 @route('/error/<uuid:uuid>')
 @route('/false-positive/<uuid:uuid>')
 @route('/errors/')
