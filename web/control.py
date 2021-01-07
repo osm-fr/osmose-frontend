@@ -25,12 +25,12 @@ from .tool.translation import translator
 from collections import defaultdict
 
 
-@route('/control/update')
-def updates(db, lang):
+@route('/control/update.json')
+def updates(db):
     db.execute("""
 SELECT
     sources.id,
-    EXTRACT(EPOCH FROM ((now())-updates_last.timestamp)) AS age,
+    updates_last.timestamp,
     sources.country,
     sources.analyser
 FROM
@@ -40,25 +40,14 @@ FROM
 ORDER BY
     updates_last.timestamp DESC
 """)
-    liste = []
-    for res in db.fetchall():
-        (source, age, country, analyser) = (res[0], res[1], res[2], res[3])
-        if age:
-            if age >= 0:
-                # TRANSLATORS: days / hours / minutes since last source update, abbreviated to d / h / m
-                txt = _("{day}d, {hour}h, {minute}m ago").format(day=int(age/86400), hour=int(age/3600)%24, minute=int(age/60)%60)
-            else:
-                txt = _("in {day}d, {hour}h, {minute}m").format(day=int(-age/86400), hour=int(-age/3600)%24, minute=int(-age/60)%60)
-            liste.append((country, analyser, age, txt, source))
-        else:
-            liste.append((country, analyser, 1e10, _("never generated"), source))
-    liste.sort(key = lambda a: a[2])
-
-    return template('control/updates', translate=translator(lang), liste=liste)
+    list_ = list(map(dict, db.fetchall()))
+    for res in list_:
+        res['timestamp'] = str(res['timestamp'])
+    return dict(list=list_)
 
 
-@route('/control/update_matrix')
-def updates(db, lang):
+@route('/control/update_matrix.json')
+def updates(db):
     remote = request.params.get('remote')
     country = request.params.get('country')
     db.execute("""
@@ -73,7 +62,7 @@ FROM
         sources.id = updates_last.source_id
 WHERE
 """ + ("""
-    RIGHT(MD5(remote_ip), 4) = %(remote)s AND """ if remote else "") + ("""
+    remote_ip = %(remote)s AND """ if remote else "") + ("""
     sources.country LIKE %(country)s AND """ if country else "") + """
     true
 ORDER BY
@@ -110,21 +99,21 @@ ORDER BY
                 n_c += 1
             stats_country[country] = [min_c, sum_c, max_c, n_c]
         stats_analyser[analyser] = [min, sum/len(matrix[analyser]), max]
-    avg_country = {}
     for country in stats_country:
         stats_country[country][1] = stats_country[country][1]/stats_country[country][3]
-    keys = sorted(keys.keys())
 
-    return template('control/updates_matrix', translate=translator(lang), keys=keys, matrix=matrix, stats_analyser=stats_analyser, stats_country=stats_country)
+    keys = sorted(keys, key=lambda k: -stats_country[k][2])
+    matrix_keys = sorted(matrix.keys(), key=lambda k: -stats_analyser[k][2])
+
+    return dict(keys=keys, matrix=matrix, matrix_keys=matrix_keys, stats_analyser=stats_analyser, stats_country=stats_country)
 
 
-@route('/control/update_summary')
-def updates(db, lang):
+@route('/control/update_summary.json')
+def updates(db):
     db.execute("""
 SELECT
     backends.hostname AS hostname,
     updates_last.remote_ip AS remote,
-    RIGHT(MD5(remote_ip), 4) AS remote_ip_hash,
     country,
     MAX(EXTRACT(EPOCH FROM ((now())-updates_last.timestamp))) AS max_age,
     MIN(EXTRACT(EPOCH FROM ((now())-updates_last.timestamp))) AS min_age,
@@ -140,23 +129,20 @@ FROM
 GROUP BY
     hostname,
     remote_ip,
-    remote_ip_hash,
     country
 ORDER BY
     min_age ASC
 """)
 
     summary = defaultdict(list)
-    remote_hashes = {}
     hostnames = defaultdict(list)
     max_versions = defaultdict(list)
     min_versions = defaultdict(list)
     max_count = 0
     for res in db.fetchall():
-        (hostname, remote, remote_hash, country, max_age, min_age, max_version, min_version, count) = res
+        (hostname, remote, country, max_age, min_age, max_version, min_version, count) = res
         max_count = max(max_count, count)
         summary[remote].append({'hostname': hostname, 'country': country, 'max_age': max_age/60/60/24, 'min_age': min_age/60/60/24, 'count': count})
-        remote_hashes[remote] = remote_hash
         hostnames[remote].append(hostname)
         max_versions[remote].append(max_version)
         min_versions[remote].append(min_version)
@@ -169,11 +155,12 @@ ORDER BY
         if min_versions[remote] and '-' in min_versions[remote]:
           min_versions[remote] = '-'.join(min_versions[remote].split('-')[1:5])
 
-    return template('control/updates_summary', translate=translator(lang), summary=summary, hostnames=hostnames, max_versions=max_versions, min_versions=min_versions, remote_hashes=remote_hashes, max_count=max_count)
+    remote_keys = sorted(summary.keys(), key=lambda remote: hostnames[remote] or '')
+    return dict(summary=summary, hostnames=hostnames, max_versions=max_versions, min_versions=min_versions, remote_keys=remote_keys, max_count=max_count)
 
 
-@route('/control/update_summary_by_analyser')
-def updates(db, lang):
+@route('/control/update_summary_by_analyser.json')
+def updates(db):
     db.execute("""
 SELECT
     analyser,
@@ -204,11 +191,26 @@ ORDER BY
 
     max_versions = '-'.join((max_versions or '').split('-')[1:5])
 
-    return template('control/updates_summary_by_analyser', translate=translator(lang), summary=summary, max_versions=max_versions)
+    return dict(summary=summary, max_versions=max_versions)
 
 
-@route('/control/update/<source:int>')
-def update(db, lang, source=None):
-    sql = "SELECT source_id,timestamp,remote_url,remote_ip,version FROM updates WHERE source_id=%d ORDER BY timestamp DESC;" % source
-    db.execute(sql)
-    return template('control/update', translate=translator(lang), liste=db.fetchall())
+@route('/control/update/<source:int>.json')
+def update(db, source):
+    db.execute("""
+SELECT
+    source_id,
+    timestamp,
+    remote_url,
+    remote_ip,
+    version
+FROM
+    updates
+WHERE
+    source_id=%s
+ORDER BY
+    timestamp DESC
+""", (source,) )
+    list_ = list(map(dict, db.fetchall()))
+    for res in list_:
+        res['timestamp'] = str(res['timestamp'])
+    return dict(list=list_)

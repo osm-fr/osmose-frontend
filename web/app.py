@@ -152,7 +152,12 @@ from . import control
 @route('/issues/matrix')
 @route('/byuser/')
 @route('/byuser/<username>')
-def vue(db, uuid=None, username=None):
+@route('/control/update')
+@route('/control/update/<source:int>')
+@route('/control/update_matrix')
+@route('/control/update_summary')
+@route('/control/update_summary_by_analyser')
+def vue(db, uuid=None, username=None, source=None):
     return template('layout-vue')
 
 @route('/<filename:path>', name='static')
