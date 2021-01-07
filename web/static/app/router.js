@@ -13,6 +13,16 @@ import IssuesMatrix from './pages/issues/matrix.vue'
 import ByUserIndex from './pages/byuser/index.vue'
 import ByUserList from './pages/byuser/byuser.vue'
 
+import ControlUpdate from './pages/control/update.vue'
+import ControlUpdates from './pages/control/updates.vue'
+import ControlUpdateMatrix from './pages/control/update_matrix.vue'
+import ControlUpdateSummary from './pages/control/update_summary.vue'
+import ControlUpdateSummaryByAanalyser from './pages/control/update_summary_by_analyser.vue'
+// TODO
+// ControlUpdateSummaryByAanalyser =
+//     import ( /* webpackChunkName: "control" */ './pages/control/update_summary_by_analyser.vue')
+
+
 Vue.use(VueRouter)
 
 export const router = new VueRouter({
@@ -31,5 +41,11 @@ export const router = new VueRouter({
         { path: '/:lang/issues/matrix', component: IssuesMatrix },
         { path: '/:lang/byuser', component: ByUserIndex },
         { path: '/:lang/byuser/:user', component: ByUserList },
+
+        { path: '/:lang/control/update', component: ControlUpdates },
+        { path: '/:lang/control/update/:source_id', component: ControlUpdate },
+        { path: '/:lang/control/update_matrix', component: ControlUpdateMatrix },
+        { path: '/:lang/control/update_summary', component: ControlUpdateSummary },
+        { path: '/:lang/control/update_summary_by_analyser', component: ControlUpdateSummaryByAanalyser },
     ],
 });
