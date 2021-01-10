@@ -1,26 +1,38 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Index from './pages/index.vue'
-import Contact from './pages/contact.vue'
-import Copyright from './pages/copyright.vue'
-import Translation from './pages/translation.vue'
+const Index = () =>
+    import ( /* webpackChunkName: "index" */ './pages/index.vue');
+const Contact = () =>
+    import ( /* webpackChunkName: "contact" */ './pages/contact.vue');
+const Copyright = () =>
+    import ( /* webpackChunkName: "copyright" */ './pages/copyright.vue');
+const Translation = () =>
+    import ( /* webpackChunkName: "translation" */ './pages/translation.vue');
 
-import IssueIndex from './pages/issue/index.vue'
-import FalsepositiveIndex from './pages/false-positive/index.vue'
-import IssuesIndex from './pages/issues/index.vue'
-import IssuesMatrix from './pages/issues/matrix.vue'
-import ByUserIndex from './pages/byuser/index.vue'
-import ByUserList from './pages/byuser/byuser.vue'
+const IssueIndex = () =>
+    import ( /* webpackChunkName: "issue" */ './pages/issue/index.vue');
+const FalsepositiveIndex = () =>
+    import ( /* webpackChunkName: "issue" */ './pages/false-positive/index.vue');
+const IssuesIndex = () =>
+    import ( /* webpackChunkName: "issues" */ './pages/issues/index.vue');
+const ByUserIndex = () =>
+    import ( /* webpackChunkName: "issues" */ './pages/byuser/index.vue');
+const ByUserList = () =>
+    import ( /* webpackChunkName: "issues" */ './pages/byuser/byuser.vue');
+const IssuesMatrix = () =>
+    import ( /* webpackChunkName: "issues_matrix" */ './pages/issues/matrix.vue');
 
-import ControlUpdate from './pages/control/update.vue'
-import ControlUpdates from './pages/control/updates.vue'
-import ControlUpdateMatrix from './pages/control/update_matrix.vue'
-import ControlUpdateSummary from './pages/control/update_summary.vue'
-import ControlUpdateSummaryByAanalyser from './pages/control/update_summary_by_analyser.vue'
-// TODO
-// ControlUpdateSummaryByAanalyser =
-//     import ( /* webpackChunkName: "control" */ './pages/control/update_summary_by_analyser.vue')
+const ControlUpdate = () =>
+    import ( /* webpackChunkName: "control" */ './pages/control/update.vue');
+const ControlUpdates = () =>
+    import ( /* webpackChunkName: "control" */ './pages/control/updates.vue');
+const ControlUpdateMatrix = () =>
+    import ( /* webpackChunkName: "control" */ './pages/control/update_matrix.vue');
+const ControlUpdateSummary = () =>
+    import ( /* webpackChunkName: "control" */ './pages/control/update_summary.vue');
+const ControlUpdateSummaryByAanalyser = () =>
+    import ( /* webpackChunkName: "control" */ './pages/control/update_summary_by_analyser.vue');
 
 
 Vue.use(VueRouter)
