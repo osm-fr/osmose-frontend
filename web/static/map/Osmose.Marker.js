@@ -159,7 +159,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
     const popup = L.responsivePopup({
       maxWidth: 280,
       autoPan: false,
-      offset: L.point(0, -8),
+      offset: L.point(0, 24),
     }).setLatLng(initialLatlng)
       .setContent("<center><img src='../images/throbbler.gif' alt='downloading'></center>")
       .openOn(this._map);
