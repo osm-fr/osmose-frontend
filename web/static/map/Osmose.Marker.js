@@ -87,7 +87,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
           this._closePopup();
         } else {
           this.highlight = e.layer.properties.uuid;
-          this._openPopup(e.layer.properties.uuid, e.latlng, e.layer);
+          this._openPopup(e.layer.properties.uuid, [e.latlng.lat, e.latlng.lng], e.layer);
         }
       }
     };
@@ -172,7 +172,9 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
           url: `/api/0.3/issue/${uuid}?langs=auto`,
           dataType: 'json',
           success: (data) => {
-            popup.setLatLng([data.lat, data.lon]);
+            // "Unwrap" API Coordinates if user pan map out of projection bounds
+            const wrapCount = Math.floor(parseFloat(initialLatlng[1]) / 360);
+            popup.setLatLng([data.lat, parseFloat(data.lon) + wrapCount * 360]);
             data.elems_id = data.elems.map(elem => elem.type + elem.id).join(',');
 
             this._doc.load(data.item, data['class']);
