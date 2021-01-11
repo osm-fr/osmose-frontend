@@ -79,17 +79,6 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
   onAdd(map) {
     this._map = map;
     L.GridLayer.prototype.onAdd.call(this, map);
-    /*
-    this.on('mouseover', (e) => {
-      if (e.layer.properties.uuid) {
-        this._openPopup(e);
-      }
-    }).on('mouseout', (e) => {
-      if (e.layer.properties.uuid && this.highlight != e.layer.properties.uuid) {
-        this._closePopup();
-      }
-    });
-*/
     const click = (e) => {
       if (e.layer.properties.limit) {
         map.setZoomAround(e.latlng, map.getZoom() + 1);
