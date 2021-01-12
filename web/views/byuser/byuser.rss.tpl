@@ -42,7 +42,7 @@
 %    level = res["level"]
 %    lat_s = "%.2f" % lat
 %    lon_s = "%.2f" % lon
-%    url = 'http://%s/map/#zoom=16&lat=%s&lon=%s&item=%s&level=%s&marker_uuid=%s' % (website, lat, lon, item, level, res["uuid"])
+%    url = 'http://%s/map/#zoom=16&lat=%s&lon=%s&item=%s&level=%s&issue_uuid=%s' % (website, lat, lon, item, level, res["uuid"])
         <link>{{url}}</link>
         <guid>http://{{website}}/error/{{res['uuid']}}</guid>
     </item>
