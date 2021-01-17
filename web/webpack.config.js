@@ -7,7 +7,6 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 module.exports = {
     mode: 'production',
     entry: {
-        "issues": "./static/webpack.index.js",
         "map": "./static/map/webpack.index.js",
         "app": "./static/app/webpack.index.js",
     },
