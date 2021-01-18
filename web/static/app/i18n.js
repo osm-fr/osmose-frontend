@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import messages from './i18n/en'
+import messages from '../../po/en.po'
 
 Vue.use(VueI18n)
 
@@ -32,7 +32,7 @@ export function loadLanguageAsync(lang) {
     }
 
     // If the language hasn't been loaded yet
-    return import(/* webpackChunkName: "lang-[request]" */ `./i18n/${lang}.js`).then(
+    return import ( /* webpackChunkName: "lang-[request]" */ `../../po/${lang}.po`).then(
         messages => {
             i18n.setLocaleMessage(lang, messages.default)
             loadedLanguages.push(lang)
