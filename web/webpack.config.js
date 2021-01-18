@@ -50,13 +50,26 @@ module.exports = {
                 test: /\.vue$/,
                 loader: 'vue-loader',
             },
-            { test: /\.css$/, use: [
-                { loader: "style-loader" },
-                { loader: "css-loader" },
-                { loader: "sprite-loader", options: { name: "[hash].png", outputPath: "images/", cssImagePath: "/en/dist/images/", padding: 0 } }
-            ] },
+            {
+                test: /\.css$/,
+                use: [
+                    { loader: "style-loader" },
+                    { loader: "css-loader" },
+                    { loader: "sprite-loader", options: { name: "[hash].png", outputPath: "images/", cssImagePath: "/en/dist/images/", padding: 0 } }
+                ]
+            },
             { test: /\.png$/, loaders: ["base64-image-loader"] },
             { test: /\.gif$/, loaders: ["base64-image-loader"] },
+            {
+                test: /\.po$/,
+                type: "json",
+                use: [{
+                    loader: "po-loader",
+                    options: {
+                        format: "mf"
+                    }
+                }]
+            },
         ]
     },
     optimization: {

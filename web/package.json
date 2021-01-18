@@ -43,6 +43,8 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-loader": "^2.1.2",
     "eslint-plugin-import": "^2.22.1",
+    "po-loader": "^0.5.0",
+    "po2json": "^0.4.5",
     "sprite-loader": "git://github.com/youzan/sprite-loader.git#master",
     "style-loader": "^0.19.0",
     "terser-webpack-plugin": "^2.3.6",
