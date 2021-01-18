@@ -46,9 +46,9 @@ export const router = new VueRouter({
         { path: '/:lang/translation', component: Translation },
 
         { path: '/:lang/error/:uuid', component: IssueIndex },
-        { path: '/:lang/errors/', component: IssuesIndex },
-        { path: '/:lang/errors/done', component: IssuesIndex },
-        { path: '/:lang/errors/false-positive', component: IssuesIndex },
+        { path: '/:lang/errors/', component: IssuesIndex, name: 'issues/open' },
+        { path: '/:lang/errors/done', component: IssuesIndex, name: 'issues/done' },
+        { path: '/:lang/errors/false-positive', component: IssuesIndex, name: 'issues/false-positive' },
         { path: '/:lang/false-positive/:uuid', component: FalsepositiveIndex },
         { path: '/:lang/issues/matrix', component: IssuesMatrix },
         { path: '/:lang/byuser', component: ByUserIndex },

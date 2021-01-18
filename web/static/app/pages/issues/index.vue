@@ -223,16 +223,11 @@ export default Vue.extend({
   created() {
     this.query = window.location.search.substring(1);
 
-    let title = "";
-    // TODO, FIXME utiliser le routeur
-    // TODO, ça fait doublon avec le back
-    if (window.location.pathname.includes("false-positive")) {
-      title = this.$t("False positives");
-    } else if (window.location.pathname.includes("done")) {
-      title = this.$t("Fixed issues");
-    } else {
-      title = this.$t("Information");
-    }
+    let title = {
+      "issues/open": this.$t("Information"),
+      "issues/done": this.$t("Fixed issues"),
+      "issues/false-positive": this.$t("False positives"),
+    }[this.$route.name];
 
     fetch(window.location.pathname + ".json" + window.location.search, {
       headers: new Headers({
