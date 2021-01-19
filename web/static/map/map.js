@@ -48,6 +48,7 @@ export function initMap() {
     center: new L.LatLng(urlVars.lat, urlVars.lon),
     zoom: urlVars.zoom,
     layers: layers[0],
+    worldCopyJump: true,
   }).setActiveArea('leaflet-active-area', true);
 
   // Editor

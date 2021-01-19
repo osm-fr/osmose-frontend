@@ -150,11 +150,6 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
   },
 
   _openPopup(uuid, initialLatlng, layer) {
-    // Hack : Move viewport back to bounds
-    // to allow display of OSM data and popup
-    if (initialLatlng[1] < -180 || initialLatlng[1] > 180) {
-      this._map.panTo([initialLatlng[0], initialLatlng[1] % 180]);
-    }
     if (this.open_popup === uuid) {
       return;
     }
