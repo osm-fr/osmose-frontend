@@ -48,6 +48,11 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
         return f.properties.uuid;
       },
     };
+    this.on('add', (e) => {
+      if (params.issue_uuid) {
+        this._openPopup(params.issue_uuid, [params.lat, params.lon], this);
+      }
+    });
     L.VectorGrid.Protobuf.prototype.initialize.call(this, this._buildUrl(params), vectorTileOptions);
   },
 
@@ -71,17 +76,6 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
   onAdd(map) {
     this._map = map;
     L.GridLayer.prototype.onAdd.call(this, map);
-    /*
-    this.on('mouseover', (e) => {
-      if (e.layer.properties.uuid) {
-        this._openPopup(e);
-      }
-    }).on('mouseout', (e) => {
-      if (e.layer.properties.uuid && this.highlight != e.layer.properties.uuid) {
-        this._closePopup();
-      }
-    });
-*/
     const click = (e) => {
       if (e.layer.properties.limit) {
         map.setZoomAround(e.latlng, map.getZoom() + 1);
@@ -90,11 +84,18 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
           this._closePopup();
         } else {
           this.highlight = e.layer.properties.uuid;
-          this._openPopup(e);
+          this._openPopup(e.layer.properties.uuid, [e.latlng.lat, e.latlng.lng], e.layer);
         }
       }
     };
     this.on('click', click);
+
+    this._map.on('popupclose', (e) => {
+      this._permalink.update_item({ issue_uuid: null });
+      this.open_popup = null;
+      this._featuresLayers.clearLayers();
+    });
+
 
     map.on('zoomend moveend', L.Util.bind(this._mapChange, this));
     const bindClosePopup = L.Util.bind(this._closePopup, this);
@@ -147,17 +148,18 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
     }
   },
 
-  _openPopup(e) {
-    if (this.open_popup === e.layer.properties.uuid) {
+  _openPopup(uuid, initialLatlng, layer) {
+    if (this.open_popup === uuid) {
       return;
     }
-    this.open_popup = e.layer.properties.uuid;
+    this.open_popup = uuid;
+    this._permalink.update_item({ issue_uuid: uuid });
 
     const popup = L.responsivePopup({
       maxWidth: 280,
       autoPan: false,
-      offset: L.point(0, -8),
-    }).setLatLng(e.latlng)
+      offset: L.point(0, 24),
+    }).setLatLng(initialLatlng)
       .setContent("<center><img src='../images/throbbler.gif' alt='downloading'></center>")
       .openOn(this._map);
     this.popup = popup;
@@ -166,14 +168,14 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
       if (popup.isOpen) {
         // Popup still open, so download content
         $.ajax({
-          url: `/api/0.3/issue/${e.layer.properties.uuid}?langs=auto`,
+          url: `/api/0.3/issue/${uuid}?langs=auto`,
           dataType: 'json',
           success: (data) => {
+            popup.setLatLng([data.lat, data.lon]);
             data.elems_id = data.elems.map(elem => elem.type + elem.id).join(',');
 
             this._doc.load(data.item, data['class']);
             // Get the OSM objects
-            this._featuresLayers.clearLayers();
             if (data.elems_id) {
               let shift = -1; const palette = ['#ff3333', '#59b300', '#3388ff']; const
                 colors = {};
@@ -207,7 +209,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
             const content = $(Mustache.render(template, data));
             content.on('click', '.closePopup', () => {
               setTimeout(() => {
-                this.corrected(e.layer);
+                this.corrected(layer);
               }, 200);
             });
             content.on('click', '.popup_help', (event) => {
@@ -215,7 +217,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
               return false;
             });
             content.on('click', '.editor_edit, .editor_fix', (event) => {
-              this._editor.edit(e.layer, event.currentTarget.getAttribute('data-error'), event.currentTarget.getAttribute('data-type'), event.currentTarget.getAttribute('data-id'), event.currentTarget.getAttribute('data-fix'));
+              this._editor.edit(layer, event.currentTarget.getAttribute('data-error'), event.currentTarget.getAttribute('data-type'), event.currentTarget.getAttribute('data-id'), event.currentTarget.getAttribute('data-fix'));
               return false;
             });
             popup.setContent(content[0]);
