@@ -92,6 +92,8 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
     this._map.on('popupclose', (e) => {
       this._permalink.update_item({ issue_uuid: null });
+      this.open_popup = null;
+      this._featuresLayers.clearLayers();
     });
 
 
@@ -174,7 +176,6 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
             this._doc.load(data.item, data['class']);
             // Get the OSM objects
-            this._featuresLayers.clearLayers();
             if (data.elems_id) {
               let shift = -1; const palette = ['#ff3333', '#59b300', '#3388ff']; const
                 colors = {};
