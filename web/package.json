@@ -39,6 +39,7 @@
     "babel-loader": "^8.2.2",
     "base64-image-loader": "^1.2.0",
     "css-loader": "^0.28.7",
+    "easygettext": "^2.16.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-loader": "^2.1.2",
