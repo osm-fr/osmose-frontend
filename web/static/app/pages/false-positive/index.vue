@@ -1,5 +1,5 @@
 <template>
-  <marker-detail :marker="marker" :uuid="uuid" />
+  <marker-details :marker="marker" :uuid="uuid" />
 </template>
 
 <script>
@@ -14,7 +14,7 @@ export default Vue.extend({
     };
   },
   components: {
-    "marker-detail": MarkerDetails,
+    MarkerDetails,
   },
   created() {
     fetch(window.location.pathname + ".json" + window.location.search, {

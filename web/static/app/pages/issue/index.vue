@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>{{ $t("Marker") }}</h2>
-    <marker-detail :marker="marker" :uuid="uuid" />
+    <marker-details :marker="marker" :uuid="uuid" />
     <br />
 
     <h2>{{ $t("Elements") }}</h2>
@@ -126,8 +126,8 @@ export default Vue.extend({
     };
   },
   components: {
-    "marker-detail": MarkerDetails,
-    "show-tags": ShowTags,
+    MarkerDetails,
+    ShowTags,
   },
   created() {
     fetch(window.location.pathname + ".json" + window.location.search, {
