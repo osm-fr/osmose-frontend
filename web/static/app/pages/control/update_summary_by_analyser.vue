@@ -2,10 +2,10 @@
   <table class="table table-striped table-bordered table-hover table-sm">
     <thead class="thead-dark">
       <tr>
-        <th>{{ $t("Analyser") }}</th>
-        <th>{{ $t("Count") }}</th>
-        <th>{{ $t("Age") }}</th>
-        <th>{{ $t("Version") }}</th>
+        <th><translate>Analyser</translate></th>
+        <th><translate>Count</translate></th>
+        <th><translate>Age</translate></th>
+        <th><translate>Version</translate></th>
       </tr>
     </thead>
     <tbody>
@@ -16,18 +16,18 @@
           <delay :v="summary[analyser].min_age">
             {{ summary[analyser].min_age | numFormat("0.0") }}-
             <delay :v="summary[analyser].max_age">
-              {{ summary[analyser].max_age | numFormat("0.0") }}</delay
-            ></delay
-          >
+              {{ summary[analyser].max_age | numFormat("0.0") }}
+            </delay>
+          </delay>
         </td>
         <td>
           <version :max="max_versions" :v="summary[analyser].min_version">
-            {{ summary[analyser].min_version }}</version
-          >
+            {{ summary[analyser].min_version }}
+          </version>
           -
           <version :max="max_versions" :v="summary[analyser].max_version">
-            {{ summary[analyser].max_version }}</version
-          >
+            {{ summary[analyser].max_version }}
+          </version>
         </td>
       </tr>
     </tbody>

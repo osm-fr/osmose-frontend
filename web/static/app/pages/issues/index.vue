@@ -9,23 +9,21 @@
       </span>
       <div class="collapse navbar-collapse">
         <div class="navbar-nav">
-          <a class="nav-item nav-link active" :href="`.?${query}`">{{
-            $t("Informations")
-          }}</a>
-          <a class="nav-item nav-link active" :href="`done?${query}`">{{
-            $t("Fixed")
-          }}</a>
-          <a
-            class="nav-item nav-link active"
-            :href="`false-positive?${query}`"
-            >{{ $t("False positives") }}</a
-          >
-          <a class="nav-item nav-link active" :href="`graph.png?${query}`">{{
-            $t("Graph")
-          }}</a>
-          <a class="nav-item nav-link active" :href="`../map/#${query}`">{{
-            $t("Map")
-          }}</a>
+          <a class="nav-item nav-link active" :href="`.?${query}`">
+            <translate>Informations</translate>
+          </a>
+          <a class="nav-item nav-link active" :href="`done?${query}`">
+            <translate>Fixed</translate>
+          </a>
+          <a class="nav-item nav-link active" :href="`false-positive?${query}`">
+            <translate>False positives</translate>
+          </a>
+          <a class="nav-item nav-link active" :href="`graph.png?${query}`">
+            <translate>Graph</translate>
+          </a>
+          <a class="nav-item nav-link active" :href="`../map/#${query}`">
+            <translate>Map</translate>
+          </a>
         </div>
       </div>
     </nav>
@@ -35,7 +33,9 @@
       <form method="get" action="" id="errors-list">
         <div class="form-row">
           <div class="form-group col-sm-3 col-md-3">
-            <label for="item">{{ $t("Country") }}</label>
+            <label for="item">
+              <translate>Country</translate>
+            </label>
             <select
               v-model="country"
               class="form-control form-control-sm"
@@ -49,7 +49,9 @@
           </div>
 
           <div class="form-group col-sm-3 col-md-3">
-            <label for="item">{{ $t("Item") }}</label>
+            <label for="item">
+              <translate>Item</translate>
+            </label>
             <select
               v-model="item"
               class="form-control form-control-sm"
@@ -63,22 +65,30 @@
           </div>
 
           <div class="form-group col-sm-3 col-md-3">
-            <label for="level">{{ $t("Severity") }}</label>
+            <label for="level">
+              <translate>Severity</translate>
+            </label>
             <select
               v-model="level"
               name="level"
               class="form-control form-control-sm"
             >
-              <option class="level-1__" value="1">{{ $t("High") }}</option>
-              <option class="level-12_" value="1,2">
-                {{ $t("Normal or higher") }}
+              <option class="level-1__" value="1">
+                <translate>High</translate>
               </option>
-              <option class="level-123" value="1,2,3">{{ $t("All") }}</option>
+              <option class="level-12_" value="1,2">
+                <translate>Normal or higher</translate>
+              </option>
+              <option class="level-123" value="1,2,3">
+                <translate>All</translate>
+              </option>
               <option disabled="disabled"></option>
               <option class="level-_2_" value="2">
-                {{ $t("Normal only") }}
+                <translate>Normal only</translate>
               </option>
-              <option class="level-__3" value="3">{{ $t("Low only") }}</option>
+              <option class="level-__3" value="3">
+                <translate>Low only</translate>
+              </option>
             </select>
           </div>
 
@@ -103,25 +113,25 @@
         <tr>
           <th scope="col"><sort-link name="source_id">#</sort-link></th>
           <th scope="col">
-            <sort-link name="source">{{ $t("source") }}</sort-link>
+            <sort-link name="source"><translate>source</translate></sort-link>
           </th>
           <th scope="col">
-            <sort-link name="age">{{ $t("age") }}</sort-link>
+            <sort-link name="age"><translate>age</translate></sort-link>
           </th>
           <th scope="col">
-            <sort-link name="item">{{ $t("item") }}</sort-link>
+            <sort-link name="item"><translate>item</translate></sort-link>
           </th>
           <th scope="col" title="class">
             <sort-link name="class">
               <!-- {{ TRANSLATORS: this should be replaced by a abbreviation for class }} -->
-              {{ $t("class (abbreviation)") }}</sort-link
-            >
+              <translate>class (abbreviation)</translate>
+            </sort-link>
           </th>
           <th scope="col">
-            <sort-link name="title">{{ $t("title") }}</sort-link>
+            <sort-link name="title"><translate>title</translate></sort-link>
           </th>
           <th scope="col">
-            <sort-link name="count">{{ $t("count") }}</sort-link>
+            <sort-link name="count"><translate>count</translate></sort-link>
           </th>
         </tr>
       </thead>
@@ -167,7 +177,7 @@
       </template>
       <tfoot v-if="total > 0" class="thead-dark">
         <tr>
-          <th colspan="6">{{ $t("Total") }}</th>
+          <th colspan="6"><translate>Total</translate></th>
           <th style="text-align: left">{{ total }}</th>
         </tr>
       </tfoot>
@@ -182,12 +192,12 @@
         :main_website="main_website"
         :remote_url_read="remote_url_read"
       />
-      <a v-if="limit" :href="`?limit=${limit * 5}`">{{
-        $t("Show some issues")
-      }}</a>
-      <a v-else :href="`?${query}&amp;limit=100`">{{
-        $t("Show some issues")
-      }}</a>
+      <a v-if="limit" :href="`?limit=${limit * 5}`">
+        <translate>Show more issues</translate>
+      </a>
+      <a v-else :href="`?${query}&amp;limit=100`">
+        <translate>Show more issues</translate>
+      </a>
     </div>
   </div>
 </template>

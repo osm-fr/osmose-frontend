@@ -1,17 +1,19 @@
 <template>
   <div>
     <p>
-      {{ $t("Median delay:") }}
+      <translate>Median delay:</translate>
       <time-ago v-if="median_delay" :datetime="median_delay" tooltip />
     </p>
     <table class="table table-striped table-bordered table-hover table-sm">
       <thead class="thead-dark">
         <tr>
-          <th>{{ $t("source") }}</th>
-          <th style="min-width: 100px">{{ $t("country") }}</th>
-          <th style="min-width: 100px">{{ $t("analyser") }}</th>
-          <th style="min-width: 200px">{{ $t("last generation") }}</th>
-          <th>{{ $t("history") }}</th>
+          <th><translate>source</translate></th>
+          <th style="min-width: 100px"><translate>country</translate></th>
+          <th style="min-width: 100px"><translate>analyser</translate></th>
+          <th style="min-width: 200px">
+            <translate>last generation</translate>
+          </th>
+          <th><translate>history</translate></th>
         </tr>
       </thead>
       <tbody>
@@ -20,9 +22,9 @@
           :key="source.source + '|' + source.timestamp"
         >
           <td>
-            <a :href="`../errors/?source=${source.id}`">{{
-              source.id
-            }}</a>
+            <a :href="`../errors/?source=${source.id}`">
+              {{ source.id }}
+            </a>
           </td>
           <td>{{ source.country }}</td>
           <td>{{ source.analyser }}</td>
@@ -32,10 +34,10 @@
               :datetime="source.timestamp"
               tooltip
             />
-            <span v-else>_("never generated")</span>
+            <span v-else><translate>never generated</translate></span>
           </td>
           <td>
-            <a :href="`update/{{source[4]}}`">{{ $t("history") }}</a>
+            <a :href="`update/{{source[4]}}`"><translate>history</translate></a>
           </td>
         </tr>
       </tbody>

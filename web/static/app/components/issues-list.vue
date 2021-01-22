@@ -7,35 +7,39 @@
       <thead class="thead-dark">
         <tr>
           <th scope="col" title="source">
-            <sort-link name="source">{{ $t("source") }}</sort-link>
+            <sort-link name="source">
+              <translate>source</translate>
+            </sort-link>
           </th>
           <th scope="col" title="level">
             <sort-link name="level">
               <!-- {{ TRANSLATORS: this should be replaced by a abbreviation for level }} -->
-              {{ $t("level (abbreviation)") }}</sort-link
-            >
+              <translate>level (abbreviation)</translate>
+            </sort-link>
           </th>
           <th scope="col">
-            <sort-link name="item">{{ $t("item") }}</sort-link>
+            <sort-link name="item"><translate>item</translate></sort-link>
           </th>
           <th scope="col" title="class">
             <sort-link name="class">
               <!-- {{ TRANSLATORS: this should be replaced by a abbreviation for class }} -->
-              {{ $t("class (abbreviation)") }}
+              <translate>class (abbreviation)</translate>
             </sort-link>
           </th>
           <th scope="col" :title="$t('information on issue')">E</th>
           <th scope="col" :title="$t('position')">
-            {{ $t("position (abbreviation)") }}
+            <translate>position (abbreviation)</translate>
           </th>
           <th scope="col">
-            {{ $t("elements (abbreviation)") }}
+            <translate>elements (abbreviation)</translate>
           </th>
           <th scope="col">
-            <sort-link name="subtitle">{{ $t("subtitle") }}</sort-link>
+            <sort-link name="subtitle">
+              <translate>subtitle</translate>
+            </sort-link>
           </th>
           <th v-if="opt_date" scope="col">
-            <sort-link name="date">{{ $t("date") }}</sort-link>
+            <sort-link name="date"><translate>date</translate></sort-link>
           </th>
           <th
             v-if="['error', 'info'].includes(gen)"
@@ -50,9 +54,9 @@
         <tbody>
           <tr v-for="res in sort.values" :key="res.uuid">
             <td :title="`${res.country}-${res.analyser}`">
-              <a :href="`?${page_args}source=${res.source_id}`">{{
-                res.source_id
-              }}</a>
+              <a :href="`?${page_args}source=${res.source_id}`">
+                {{ res.source_id }}
+              </a>
             </td>
             <td>{{ res.level }}</td>
             <td>
@@ -69,15 +73,17 @@
                 :href="`../${
                   'false-positive' == gen ? 'false-positive' : 'error'
                 }/${res.uuid}`"
-                >E</a
               >
+                E
+              </a>
             </td>
             <td>
               <a
                 v-if="res.lat !== undefined && res.lon !== undefined"
                 :href="`/map/#${query}&amp;item=${res.item}&amp;zoom=17&amp;lat=${res.lat}&amp;lon=${res.lon}&amp;level=${res.level}&tags=&fixable=&issue_uuid=${res.uuid}`"
-                >{{ res.lon.toFixed(2) }}&nbsp;{{ res.lat.toFixed(2) }}</a
               >
+                {{ res.lon.toFixed(2) }}&nbsp;{{ res.lat.toFixed(2) }}
+              </a>
             </td>
             <td v-if="res.elems">
               <span v-for="e in res.elems" :key="e.id">
@@ -85,8 +91,7 @@
                   target="_blank"
                   :href="`${main_website}${e.type_long}/${e.id}`"
                   >{{ e.type.toLocaleLowerCase() }}{{ e.id }}</a
-                >&nbsp;
-                <a
+                >&nbsp;<a
                   v-if="e.type == 'R'"
                   title="josm"
                   :href="`../josm_proxy?import?url=${remote_url_read}api/0.6/relation/${e.id}/full`"
@@ -96,8 +101,9 @@
                   }&bottom=${res.lat - 0.002}&right=${res.lon + 0.002}&top=${
                     res.lat + 0.002
                   }'); return true;`"
-                  >(j)</a
                 >
+                  (j)
+                </a>
                 <a
                   v-else
                   title="josm"
@@ -105,8 +111,9 @@
                     e.id
                   }`"
                   target="hiddenIframe"
-                  >(j)</a
                 >
+                  (j)
+                </a>
               </span>
             </td>
             <td v-else>
@@ -116,8 +123,9 @@
                 }&amp;bottom=${lat - 0.002}&amp;right=${lon + 0.002}&amp;top=${
                   lat + 0.002
                 }`"
-                >josm</a
               >
+                josm
+              </a>
             </td>
             <td>{{ res.subtitle || res.title || "" }}</td>
             <td v-if="opt_date">
@@ -133,15 +141,17 @@
                 :title="
                   $t('Mark issue #{uuid} as false positive', { uuid: res.uuid })
                 "
-                >✘</a
+              >
+                ✘ </a
               >/
               <a
                 href="#"
                 v-on:click="issue_action"
                 :id="`GET=issue/${res.uuid}/done`"
                 :title="$t('Mark issue #{uuid} as fixed', { uuid: res.uuid })"
-                >✔</a
               >
+                ✔
+              </a>
             </td>
             <td
               v-if="gen == 'false-positive'"
@@ -151,8 +161,9 @@
                 href="#"
                 v-on:click="issue_action"
                 :id="`DELETE=${gen}/${res.uuid}`"
-                >✘</a
               >
+                ✘
+              </a>
             </td>
           </tr>
         </tbody>

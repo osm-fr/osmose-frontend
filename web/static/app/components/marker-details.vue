@@ -5,8 +5,8 @@
   >
     <thead class="thead-dark">
       <tr>
-        <th scope="col">{{ $t("key") }}</th>
-        <th scope="col">{{ $t("value") }}</th>
+        <th scope="col"><translate>key</translate></th>
+        <th scope="col"><translate>value</translate></th>
       </tr>
     </thead>
     <tbody>
@@ -16,16 +16,17 @@
           <a
             target="_blank"
             :href="`../errors/?item=xxxx&amp;source=${marker.source_id}`"
-            >{{ marker.source_id }}</a
           >
+            {{ marker.source_id }}
+          </a>
         </td>
       </tr>
       <tr>
         <td>item</td>
         <td>
-          <a target="_blank" :href="`../errors/?item=${marker.item}`">{{
-            marker.item
-          }}</a>
+          <a target="_blank" :href="`../errors/?item=${marker.item}`">
+            {{ marker.item }}
+          </a>
         </td>
       </tr>
       <tr>
@@ -34,8 +35,9 @@
           <a
             target="_blank"
             :href="`../errors/?item=${marker.item}&amp;class=${marker.class}`"
-            >{{ marker.class }}</a
           >
+            {{ marker.class }}
+          </a>
         </td>
       </tr>
       <tr>
@@ -44,8 +46,9 @@
           <a
             target="_blank"
             :href="`../map/?item=${marker.item}&amp;zoom=17&amp;lat=${marker.lat}&amp;lon=${marker.lon}&amp;issue_uuid=${uuid}`"
-            >{{ marker.lat }}&nbsp;{{ marker.lon }}</a
           >
+            {{ marker.lat }}&nbsp;{{ marker.lon }}
+          </a>
         </td>
       </tr>
       <tr>
@@ -91,9 +94,9 @@
       <tr v-if="marker.source_code">
         <td>source code</td>
         <td>
-          <a :href="marker.source_code" target_="_blank">{{
-            marker.source_code
-          }}</a>
+          <a :href="marker.source_code" target_="_blank">
+            {{ marker.source_code }}
+          </a>
         </td>
       </tr>
       <tr v-if="marker.resource">

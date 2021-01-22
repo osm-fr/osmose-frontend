@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h2>{{ $t("Marker") }}</h2>
+    <h2><translate>Marker</translate></h2>
     <marker-details :marker="marker" :uuid="uuid" />
     <br />
 
-    <h2>{{ $t("Elements") }}</h2>
+    <h2><translate>Elements</translate></h2>
     <template v-if="marker.elems">
       <div v-for="(element, elem_index) in marker.elems" :key="element.id">
         <table
@@ -13,8 +13,8 @@
         >
           <thead class="thead-dark">
             <tr>
-              <th scope="col">{{ $t("key") }}</th>
-              <th scope="col">{{ $t("value") }}</th>
+              <th scope="col"><translate>key</translate></th>
+              <th scope="col"><translate>value</translate></th>
             </tr>
           </thead>
           <tbody>
@@ -56,7 +56,7 @@
       </div>
     </template>
 
-    <h2>{{ $t("Fixes") }}</h2>
+    <h2><translate>Fixes</translate></h2>
     <template v-if="marker.fixes">
       <div v-for="(fix_group, fix_index) in marker.fixes" :key="fix_index">
         <h3>#{{ fix_index }}</h3>
@@ -67,8 +67,8 @@
           >
             <thead class="thead-dark">
               <tr>
-                <th scope="col">{{ $t("key") }}</th>
-                <th scope="col">{{ $t("value") }}</th>
+                <th scope="col"><translate>key</translate></th>
+                <th scope="col"><translate>value</translate></th>
               </tr>
             </thead>
             <tbody>
