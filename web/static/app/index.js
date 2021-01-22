@@ -6,9 +6,13 @@ import numeral from 'numeral'
 import numFormat from 'vue-filter-number-format'
 
 import App from './app.vue'
+import Translate from "./components/translate.vue";
+import TranslateSlot from "./components/translate-slot.vue";
 
 Vue.use(SortedTablePlugin);
 Vue.filter('numFormat', numFormat(numeral));
+Vue.component('translate', Translate)
+Vue.component('translate-slot', TranslateSlot)
 
 document.addEventListener("DOMContentLoaded", (event) => {
     router.beforeEach((to, from, next) => {
