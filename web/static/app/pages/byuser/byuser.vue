@@ -53,7 +53,7 @@ export default Vue.extend({
     },
   },
   components: {
-    "issues-list": IssuesList,
+    IssuesList,
   },
   created() {
     this.query = window.location.search.substring(1);

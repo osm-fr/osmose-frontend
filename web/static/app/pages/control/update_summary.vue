@@ -51,7 +51,7 @@ export default Vue.extend({
     };
   },
   components: {
-    delay: Delay,
+    Delay,
   },
   created() {
     fetch(window.location.pathname + ".json" + window.location.search, {
