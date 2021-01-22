@@ -2,18 +2,18 @@
   <table class="table table-striped table-bordered table-hover table-sm">
     <thead class="thead-dark">
       <tr>
-        <th>{{ $t("source") }}</th>
-        <th style="min-width: 800px">{{ $t("remote url") }}</th>
-        <th>{{ $t("timestamp") }}</th>
-        <th>{{ $t("version") }}</th>
+        <th><translate>source</translate></th>
+        <th style="min-width: 800px"><translate>remote url</translate></th>
+        <th><translate>timestamp</translate></th>
+        <th><translate>version</translate></th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="res in list" :key="res.timestamp">
         <td>
-          <a :href="`../../errors/?source={res.source_id}`">{{
-            res.source_id
-          }}</a>
+          <a :href="`../../errors/?source={res.source_id}`">
+            {{ res.source_id }}
+          </a>
         </td>
         <td>{{ remote(res) }}</td>
         <td>{{ res.timestamp }}</td>

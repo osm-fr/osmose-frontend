@@ -3,22 +3,26 @@
     <h1>Osmose-QA</h1>
     <ul>
       <li>
-        <a href="map/">{{ $t("Map of issues") }}</a>
+        <a href="map/"><translate>Map of issues</translate></a>
       </li>
       <li>
-        <a :href="$t('http://wiki.openstreetmap.org/wiki/Osmose')">{{
-          $t("Help on OSM wiki")
-        }}</a>
+        <a :href="$t('http://wiki.openstreetmap.org/wiki/Osmose')">
+          <translate>Help on OSM wiki</translate>
+        </a>
       </li>
     </ul>
 
-    <h2>{{ $t("Information on issues database") }}</h2>
+    <h2><translate>Information on issues database</translate></h2>
     <ul>
       <li>
-        <a href="errors/false-positive">{{ $t("False positives list") }}</a>
+        <a href="errors/false-positive">
+          <translate>False positives list</translate>
+        </a>
       </li>
       <li>
-        <a href="control/update">{{ $t("Last analysis updates") }}</a>
+        <a href="control/update">
+          <translate>Last analysis updates</translate>
+        </a>
       </li>
     </ul>
   </div>

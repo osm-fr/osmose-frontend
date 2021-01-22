@@ -1,30 +1,36 @@
 <template>
   <div>
     <h1>
-      {{ $t("User statistics for {users}", { users: users.join(", ") }) }}
+      <translate :params="{ users: users.join(', ') }">
+        User statistics for {users}
+      </translate>
     </h1>
     <p>
-      {{
-        $t(
-          "This page shows issues on elements that were last modified by '{users}'. This doesn't means that this user is responsible for all these issues.",
-          users.join("', '")
-        )
-      }}
+      <translate :params="{ users: users.join('\', \'') }">
+        This page shows issues on elements that were last modified by '{users}'.
+        This doesn't means that this user is responsible for all these issues.
+      </translate>
     </p>
     <p>
-      <a :href="rss">{{ $t("This list is also available via rss.") }}</a>
+      <a :href="rss">
+        <translate>This list is also available via rss.</translate>
+      </a>
     </p>
     <p>
-      <span v-if="count < 500">{{
-        $t("Number of found issues: {count}", { count: count })
-      }}</span>
-      <span v-else>{{
-        $t("Number of found issues: more than {count}", { count: count })
-      }}</span>
+      <span v-if="count < 500">
+        <translate :params="{ count: count }">
+          Number of found issues: {count}
+        </translate>
+      </span>
+      <span v-else>
+        <translate :params="{ count: count }">
+          Number of found issues: more than {count}
+        </translate>
+      </span>
       -
-      <a :href="`../map/#username=${username}`">{{
-        $t("Show issues on a map")
-      }}</a>
+      <a :href="`../map/#username=${username}`">
+        <translate>Show issues on a map</translate>
+      </a>
     </p>
 
     <issues-list

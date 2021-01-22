@@ -4,9 +4,9 @@
       <thead :key="'h' + remote" class="thead-dark">
         <tr>
           <th>
-            <a :href="`update_matrix?remote=${remote}`">{{
-              hostnames[remote] || remote
-            }}</a>
+            <a :href="`update_matrix?remote=${remote}`">
+              {{ hostnames[remote] || remote }}
+            </a>
             ({{ min_versions[remote] }} - {{ max_versions[remote] }})
           </th>
         </tr>
@@ -20,18 +20,18 @@
               :v="country.min_age"
               :opacity="opacity(country.count, max_count)"
             >
-              <a :href="`../errors/?country=${country.country}&item=xxxx`">{{
-                country.country
-              }}</a
-              ><sup>{{ country.count }}</sup>
+              <a :href="`../errors/?country=${country.country}&item=xxxx`">
+                {{ country.country }}
+              </a>
+              <sup>{{ country.count }}</sup>
               <delay
                 :v="country.max_age"
                 :opacity="opacity(country.count, max_count)"
               >
-                {{ country.max_age | numFormat("0.0") }}</delay
-              >
-              -{{ country.min_age | numFormat("0.0") }}</delay
-            >
+                {{ country.max_age | numFormat("0.0") }}
+              </delay>
+              -{{ country.min_age | numFormat("0.0") }}
+            </delay>
           </td>
         </tr>
       </tbody>
