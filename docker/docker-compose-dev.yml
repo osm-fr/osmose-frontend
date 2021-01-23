@@ -7,3 +7,5 @@ services:
         source: ..
         target: /data/project/osmose/frontend
     command: bash
+    ports:
+      - 8080:8080

@@ -2,6 +2,9 @@ var optimize = false;
 var webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackRootPlugin = require('html-webpack-root-plugin');
+const path = require('path');
 
 
 module.exports = {
@@ -83,12 +86,20 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.HotModuleReplacementPlugin(),
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
             Mustache: "mustache",
         }),
         new VueLoaderPlugin(),
+        new HtmlWebpackPlugin({
+            title: 'app',
+            chunks: ['app'],
+            inject: 'body', // Inject all scripts into the body
+            filename: 'index.html'
+        }),
+        new HtmlWebpackRootPlugin('app'),
         new webpack.LoaderOptionsPlugin({
             minimize: true,
             debug: false
@@ -101,4 +112,9 @@ module.exports = {
             });
         }
     ],
+    devServer: {
+        contentBase: path.join(__dirname, 'static/dist/'),
+        compress: true,
+        host: '0.0.0.0'
+    },
 };
