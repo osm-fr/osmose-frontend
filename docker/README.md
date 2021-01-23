@@ -20,7 +20,7 @@ Docker for development
 
 Create a container nammed `frontend` by running a configuration and password less instance:
 ```
-docker-compose -f docker-compose.yml -f docker-compose-test.yml -f docker-compose-dev.yml run --name frontend -p 20009:20009 frontend
+docker-compose -f docker-compose.yml -f docker-compose-test.yml -f docker-compose-dev.yml run --name frontend -p 20009:20009 -p 8080:8080 frontend
 ```
 The named container is required to be access from the backend.
 
