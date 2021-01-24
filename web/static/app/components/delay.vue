@@ -1,10 +1,10 @@
 <template>
-  <span
-    :class="v > 2.05 ? 'delay-error' : v > 1.05 ? 'elay-warning' : null"
+  <div
+    :class="v > 2.05 ? 'delay-error' : v > 1.05 ? 'delay-warning' : null"
     :style="`background-opacity: ${opacity}`"
   >
     <slot></slot>
-  </span>
+  </div>
 </template>
 
 <script>
@@ -17,3 +17,12 @@ export default Vue.extend({
   },
 });
 </script>
+
+<style scoped>
+.delay-warning {
+  background: orange !important;
+}
+.delay-error {
+  background: red !important;
+}
+</style>

@@ -1,7 +1,7 @@
 <template>
-  <span :class="v !== '' && v != max ? 'delay-warning' : null">
+  <div :class="v !== '' && v != max ? 'version-warning' : null">
     <slot></slot>
-  </span>
+  </div>
 </template>
 
 <script>
@@ -11,3 +11,9 @@ export default Vue.extend({
   props: ["v", "max"],
 });
 </script>
+
+<style scoped>
+.version-warning {
+  background: orange !important;
+}
+</style>
