@@ -12,8 +12,8 @@
         </tr>
         <tr v-for="i in 3" :key="i">
           <th v-for="k in keys" :key="k">
-            <delay :v="stats_country[k][i]">
-              {{ stats_country[k][i] | numFormat("0.0") }}
+            <delay :v="stats_country[k][i - 1]">
+              {{ stats_country[k][i - 1] | numFormat("0.0") }}
             </delay>
           </th>
         </tr>
@@ -22,8 +22,8 @@
         <tr v-for="r in matrix_keys" :key="r">
           <th style="text-align: left">{{ r }}</th>
           <th v-for="i in 3" :key="i">
-            <delay :v="stats_analyser[r][i]">
-              {{ stats_analyser[r][i] | numFormat("0.0") }}
+            <delay :v="stats_analyser[r][i - 1]">
+              {{ stats_analyser[r][i - 1] | numFormat("0.0") }}
             </delay>
           </th>
           <td v-for="k in keys" :key="k">
