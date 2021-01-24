@@ -138,7 +138,7 @@ def i10n_select(translations, langs):
         if 'en' in translations:
             return {'auto': translations['en']}
         else:
-            return {'auto': translations.values()[0]}
+            return {'auto': list(translations.values())[0]}
 
 def i10n_select_auto(translations, langs):
     if translations:
