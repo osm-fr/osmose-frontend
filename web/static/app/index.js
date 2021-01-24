@@ -4,11 +4,13 @@ import { i18n, loadLanguageAsync } from './i18n.js'
 import SortedTablePlugin from "vue-sorted-table"
 import numeral from 'numeral'
 import numFormat from 'vue-filter-number-format'
+import vueTopprogress from 'vue-top-progress'
 
 import App from './app.vue'
 import Translate from "./components/translate.vue";
 import TranslateSlot from "./components/translate-slot.vue";
 
+Vue.use(vueTopprogress)
 Vue.use(SortedTablePlugin);
 Vue.filter('numFormat', numFormat(numeral));
 Vue.component('translate', Translate)

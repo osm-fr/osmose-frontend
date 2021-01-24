@@ -1,5 +1,6 @@
 <template>
   <div>
+    <vue-topprogress ref="topProgress"></vue-topprogress>
     <h1>
       <translate :params="{ users: users.join(', ') }">
         User statistics for {users}
@@ -65,7 +66,8 @@ export default Vue.extend({
   components: {
     IssuesList,
   },
-  created() {
+  mounted() {
+    this.$refs.topProgress.start();
     this.query = window.location.search.substring(1);
 
     fetch(window.location.pathname + ".json" + window.location.search, {
@@ -75,6 +77,8 @@ export default Vue.extend({
     })
       .then((response) => response.json())
       .then((response) => {
+        this.$refs.topProgress.done();
+
         Object.assign(this, response);
         document.title =
           "Osmose - " +

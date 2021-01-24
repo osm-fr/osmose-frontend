@@ -1,5 +1,6 @@
 <template>
   <div style="font-size: 50%">
+    <vue-topprogress ref="topProgress"></vue-topprogress>
     <table class="table table-striped table-bordered table-hover table-sm">
       <thead>
         <tr>
@@ -55,7 +56,8 @@ export default Vue.extend({
       sorted_analysers_sum: [],
     };
   },
-  created() {
+  mounted() {
+    this.$refs.topProgress.start();
     fetch(window.location.pathname + ".json" + window.location.search, {
       headers: new Headers({
         "Accept-Language": this.$route.params.lang,
@@ -63,6 +65,8 @@ export default Vue.extend({
     })
       .then((response) => response.json())
       .then((response) => {
+        this.$refs.topProgress.done();
+
         Object.assign(this, response);
         this.sorted_countries_sum = this.sortObject(this.countries_sum);
         this.sorted_analysers_sum = this.sortObject(this.analysers_sum);

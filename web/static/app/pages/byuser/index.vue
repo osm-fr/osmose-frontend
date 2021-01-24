@@ -27,7 +27,7 @@ export default Vue.extend({
       username: null,
     };
   },
-  created() {
+  mounted() {
     document.title = "Osmose - " + this.$t("Statistics for user");
   },
   methods: {

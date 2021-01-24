@@ -1,5 +1,8 @@
 <template>
-  <marker-details v-if="marker" :marker="marker" :uuid="uuid" />
+  <div>
+    <vue-topprogress ref="topProgress"></vue-topprogress>
+    <marker-details v-if="marker" :marker="marker" :uuid="uuid" />
+  </div>
 </template>
 
 <script>
@@ -17,7 +20,8 @@ export default Vue.extend({
   components: {
     MarkerDetails,
   },
-  created() {
+  mounted() {
+    this.$refs.topProgress.start();
     fetch(window.location.pathname + ".json" + window.location.search, {
       headers: new Headers({
         "Accept-Language": this.$route.params.lang,
@@ -25,6 +29,8 @@ export default Vue.extend({
     })
       .then((response) => response.json())
       .then((response) => {
+        this.$refs.topProgress.done();
+
         Object.assign(this, response);
         document.title =
           "Osmose - " +
