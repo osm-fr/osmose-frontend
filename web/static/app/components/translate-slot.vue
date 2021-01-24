@@ -1,5 +1,5 @@
 <template>
-  <i18n tag="span" :path="text">
+  <i18n tag="span" v-if="text" :path="text">
     <template v-for="(index, name) in $slots" v-slot:[name]>
       <slot :name="name" />
     </template>
