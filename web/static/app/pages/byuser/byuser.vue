@@ -50,7 +50,11 @@ import IssuesList from "../../components/issues-list.vue";
 export default Vue.extend({
   data() {
     return {
-      users: null,
+      users: [],
+      username: "",
+      count: 0,
+      errors: [],
+      main_website: "",
     };
   },
   computed: {

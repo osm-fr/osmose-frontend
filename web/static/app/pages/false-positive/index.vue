@@ -1,5 +1,5 @@
 <template>
-  <marker-details :marker="marker" :uuid="uuid" />
+  <marker-details v-if="marker" :marker="marker" :uuid="uuid" />
 </template>
 
 <script>
@@ -10,6 +10,7 @@ import MarkerDetails from "../../components/marker-details.vue";
 export default Vue.extend({
   data() {
     return {
+      uuid: "",
       marker: null,
     };
   },

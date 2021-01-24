@@ -122,7 +122,11 @@ import ShowTags from "../../components/show-tags.vue";
 export default Vue.extend({
   data() {
     return {
-      marker: null,
+      uuid: "",
+      marker: {
+        elems: [],
+        fixes: [],
+      },
     };
   },
   components: {

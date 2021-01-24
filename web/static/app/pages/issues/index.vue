@@ -175,7 +175,7 @@
           </tr>
         </tbody>
       </template>
-      <tfoot v-if="total > 0" class="thead-dark">
+      <tfoot class="thead-dark">
         <tr>
           <th colspan="6"><translate>Total</translate></th>
           <th style="text-align: left">{{ total }}</th>
@@ -212,11 +212,15 @@ export default Vue.extend({
   data() {
     return {
       favicon: null,
-      countries: null,
-      items: null,
-      errors_groups: null,
-      total: null,
-      errors: null,
+      countries: [],
+      items: [],
+      errors_groups: [],
+      total: 0,
+      errors: [],
+      opt_date: false,
+      main_website: "",
+      remote_url_read: "",
+      query: "",
       country: this.$route.query.country,
       item: this.$route.query.item,
       level: this.$route.query.level,
