@@ -1,5 +1,6 @@
 <template>
   <div>
+    <vue-topprogress ref="topProgress"></vue-topprogress>
     <nav
       class="navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-dark"
       style="background-color: #212529"
@@ -234,7 +235,8 @@ export default Vue.extend({
     IssuesList,
     TimeAgo,
   },
-  created() {
+  mounted() {
+    this.$refs.topProgress.start();
     this.query = window.location.search.substring(1);
 
     let title = {
@@ -250,6 +252,8 @@ export default Vue.extend({
     })
       .then((response) => response.json())
       .then((response) => {
+        this.$refs.topProgress.done();
+
         Object.assign(this, response);
 
         var res = this.items.find((e) => e.item == this.item);

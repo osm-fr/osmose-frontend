@@ -1,5 +1,6 @@
 <template>
   <div style="font-size: 50%">
+    <vue-topprogress ref="topProgress"></vue-topprogress>
     <table class="table table-striped table-bordered table-hover table-sm">
       <thead>
         <tr>
@@ -56,7 +57,8 @@ export default Vue.extend({
   components: {
     Delay,
   },
-  created() {
+  mounted() {
+    this.$refs.topProgress.start();
     fetch(window.location.pathname + ".json" + window.location.search, {
       headers: new Headers({
         "Accept-Language": this.$route.params.lang,
@@ -64,6 +66,8 @@ export default Vue.extend({
     })
       .then((response) => response.json())
       .then((response) => {
+        this.$refs.topProgress.done();
+
         Object.assign(this, response);
       });
     document.title = "Osmose - " + this.$t("Last updates");

@@ -112,7 +112,7 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  created() {
+  mounted() {
     document.title = "Osmose - " + this.$t("How to help translation");
   },
 });

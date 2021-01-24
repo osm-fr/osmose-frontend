@@ -1,5 +1,6 @@
 <template>
   <div>
+    <vue-topprogress ref="topProgress"></vue-topprogress>
     <p>
       <translate>Median delay:</translate>
       <time-ago v-if="median_delay" :datetime="median_delay" tooltip />
@@ -65,7 +66,8 @@ export default Vue.extend({
   components: {
     TimeAgo,
   },
-  created() {
+  mounted() {
+    this.$refs.topProgress.start();
     fetch(window.location.pathname + ".json" + window.location.search, {
       headers: new Headers({
         "Accept-Language": this.$route.params.lang,
@@ -73,6 +75,8 @@ export default Vue.extend({
     })
       .then((response) => response.json())
       .then((response) => {
+        this.$refs.topProgress.done();
+
         Object.assign(this, response);
       });
     document.title = "Osmose - " + this.$t("Last updates");
