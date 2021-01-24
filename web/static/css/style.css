@@ -37,16 +37,6 @@ th.country .rotate-90 {
   max-width: 1.5em;
 }
 
-.delay-normal {
-    background: #64db64 !important;
-}
-.delay-warning {
-    background: orange !important;
-}
-.delay-error {
-    background: red !important;
-}
-
 #errors-list select {
     width: 100%;
 }
