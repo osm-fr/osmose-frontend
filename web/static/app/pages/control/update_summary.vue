@@ -14,7 +14,8 @@
       <tbody :key="'b' + remote">
         <tr>
           <td>
-            <delay
+            <span
+              is="delay"
               v-for="country in summary[remote]"
               :key="country.country"
               :v="country.min_age"
@@ -24,14 +25,15 @@
                 {{ country.country }}
               </a>
               <sup>{{ country.count }}</sup>
-              <delay
+              <span
+                is="delay"
                 :v="country.max_age"
                 :opacity="opacity(country.count, max_count)"
               >
                 {{ country.max_age | numFormat("0.0") }}
-              </delay>
+              </span>
               -{{ country.min_age | numFormat("0.0") }}
-            </delay>
+            </span>
           </td>
         </tr>
       </tbody>
