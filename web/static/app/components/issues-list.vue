@@ -1,13 +1,13 @@
 <template>
   <div>
     <sorted-table
-      :values="errors"
+      :values="sortable(errors)"
       class="table table-striped table-bordered table-hover table-sm"
     >
       <thead class="thead-dark">
         <tr>
           <th scope="col" title="source">
-            <sort-link name="source">
+            <sort-link name="source_id">
               <translate>source</translate>
             </sort-link>
           </th>
@@ -34,7 +34,7 @@
             <translate>elements (abbreviation)</translate>
           </th>
           <th scope="col">
-            <sort-link name="subtitle">
+            <sort-link name="subtitle_or_title">
               <translate>subtitle</translate>
             </sort-link>
           </th>
@@ -127,7 +127,7 @@
                 josm
               </a>
             </td>
-            <td>{{ res.subtitle || res.title || "" }}</td>
+            <td>{{ res.subtitle_or_title }}</td>
             <td v-if="opt_date">
               {{ res.date.substring(0, 10) }}&nbsp;{{
                 res.date.substring(11, 16)
@@ -187,6 +187,12 @@ export default Vue.extend({
     page_args: { default: "" },
   },
   methods: {
+    sortable: (data) => {
+      return data.map((res) => {
+        res.subtitle_or_title = res.subtitle || res.title || "";
+        return res;
+      });
+    },
     issue_action: (event) => {
       $("#load").fadeIn();
       const Container = $(event.currentTarget).parent();
