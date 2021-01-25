@@ -106,7 +106,7 @@
     </div>
 
     <sorted-table
-      :values="errors_groups"
+      :values="sortable(errors_groups)"
       class="table table-striped table-bordered table-hover table-sm"
       id="table_source"
     >
@@ -114,10 +114,12 @@
         <tr>
           <th scope="col"><sort-link name="source_id">#</sort-link></th>
           <th scope="col">
-            <sort-link name="source"><translate>source</translate></sort-link>
+            <sort-link name="analyser_country">
+              <translate>source</translate>
+            </sort-link>
           </th>
           <th scope="col">
-            <sort-link name="age"><translate>age</translate></sort-link>
+            <sort-link name="timestamp"><translate>age</translate></sort-link>
           </th>
           <th scope="col">
             <sort-link name="item"><translate>item</translate></sort-link>
@@ -140,12 +142,15 @@
         <tbody>
           <tr v-for="res in sort.values" :key="res.source_id + '|' + res.class">
             <td>
-              <a :href="`?source=${res.source_id}`">{{ res.source_id }}</a>
+              <a :href="`?source=${res.source_id}`">
+                {{ res.source_id }}
+              </a>
             </td>
             <td>
-              {{ res.analyser }}-<a :href="`?country=${res.country}`">{{
-                res.country
-              }}</a>
+              {{ res.analyser }}-
+              <a :href="`?country=${res.country}`">
+                {{ res.country }}
+              </a>
             </td>
             <td>
               <time-ago :datetime="res.timestamp" tooltip />
@@ -155,23 +160,25 @@
                 :src="`../images/markers/marker-l-${res.item}.png`"
                 :alt="res.item"
               />
-              <a :href="`?item=${res.item}&amp;country=${res.country}`">{{
-                res.item
-              }}</a>
+              <a :href="`?item=${res.item}&amp;country=${res.country}`">
+                {{ res.item }}
+              </a>
               <span v-if="res.menu">{{ res.menu }}</span>
             </td>
             <td>
               <a
                 :href="`?item=${res.item}&amp;class=${res.class}&amp;country=${res.country}`"
-                >{{ res.class }}</a
               >
+                {{ res.class }}
+              </a>
             </td>
             <td>{{ res.title }}</td>
             <td>
               <a
                 :href="`?source=${res.source_id}&amp;item=${res.item}&amp;class=${res.class}`"
-                >{{ res.count === -1 ? "N/A" : res.count }}</a
               >
+                {{ res.count === -1 ? "N/A" : res.count }}
+              </a>
             </td>
           </tr>
         </tbody>
@@ -280,6 +287,14 @@ export default Vue.extend({
         });
         document.head.appendChild(rss);
       });
+  },
+  methods: {
+    sortable: (data) => {
+      return data.map((res) => {
+        res.analyser_country = res.analyser + "-" + res.country;
+        return res;
+      });
+    },
   },
 });
 </script>
