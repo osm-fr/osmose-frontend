@@ -14,9 +14,9 @@ module.exports = {
         "app": "./static/app/webpack.index.js",
     },
     output: {
-        path: __dirname + '/static/dist',
+        path: path.resolve(__dirname, 'static/dist'),
         filename: "[name]/webpack.bundle-[hash].js",
-        publicPath: "/en/dist/",
+        publicPath: "/",
     },
     devtool: 'source-map',
     resolve: {
@@ -113,7 +113,10 @@ module.exports = {
         }
     ],
     devServer: {
-        contentBase: path.join(__dirname, 'static/dist/'),
+        contentBase: './static/dist/',
+        historyApiFallback: true,
+        open: true,
+        openPage: 'en/',
         compress: true,
         host: '0.0.0.0'
     },
