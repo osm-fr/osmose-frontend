@@ -34,6 +34,7 @@
 %    minlon = float(lon) - 0.002
 %    maxlon = float(lon) + 0.002
         {{'<a href="http://localhost:8111/load_and_zoom?left=%s&amp;bottom=%s&amp;right=%s&amp;top=%s">josm</a>' % (minlon, minlat, maxlon, maxlat)}}
+        {{'<a href="https://www.openstreetmap.org/edit#map=%s/%s/%s">iD</a>' % (19, lat, lon)}}
         </description>
         <category>{{res["item"]}}</category>
 %    cl = res["class"]
