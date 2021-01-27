@@ -23,18 +23,16 @@
                 :v="country.min_age"
                 :opacity="opacity(country.count, max_count)"
               >
-                <a :href="`../errors/?country=${country.country}&item=xxxx`">
-                  {{ country.country }}
-                </a>
-                <sup>{{ country.count }}</sup>
-                <span
+                <a :href="`../errors/?country=${country.country}&item=xxxx`">{{
+                  country.country
+                }}</a
+                ><sup>{{ country.count }}</sup
+                >&nbsp;{{ country.min_age | numFormat("0.0") }}-<span
                   is="delay"
                   :v="country.max_age"
                   :opacity="opacity(country.count, max_count)"
-                >
-                  {{ country.max_age | numFormat("0.0") }}
+                  >{{ country.max_age | numFormat("0.0") }}
                 </span>
-                -{{ country.min_age | numFormat("0.0") }}
               </span>
             </td>
           </tr>
