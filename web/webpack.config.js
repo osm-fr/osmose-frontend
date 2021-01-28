@@ -105,10 +105,6 @@ module.exports = (env, argv) => {
                     Mustache: "mustache",
                 }),
                 new VueLoaderPlugin(),
-                new webpack.LoaderOptionsPlugin({
-                    minimize: true,
-                    debug: false
-                }),
                 function() {
                     this.plugin("done", function(stats) {
                         require("fs").writeFileSync(
