@@ -252,7 +252,7 @@ export default Vue.extend({
       "issues/false-positive": this.$t("False positives"),
     }[this.$route.name];
 
-    fetch(window.location.pathname + ".json" + window.location.search, {
+    fetch(API_URL + window.location.pathname + ".json" + window.location.search, {
       headers: new Headers({
         "Accept-Language": this.$route.params.lang,
       }),
