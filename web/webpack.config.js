@@ -104,6 +104,9 @@ module.exports = (env, argv) => {
                     jQuery: "jquery",
                     Mustache: "mustache",
                 }),
+                new webpack.DefinePlugin({
+                    API_URL: JSON.stringify(argv.mode === 'development' ? 'http://localhost:20009/' : '')
+                }),
                 new VueLoaderPlugin(),
                 function() {
                     this.plugin("done", function(stats) {
