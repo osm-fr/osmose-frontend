@@ -58,7 +58,7 @@ export default Vue.extend({
   },
   mounted() {
     this.$refs.topProgress.start();
-    fetch(window.location.pathname + ".json" + window.location.search, {
+    fetch(API_URL + window.location.pathname + ".json" + window.location.search, {
       headers: new Headers({
         "Accept-Language": this.$route.params.lang,
       }),
