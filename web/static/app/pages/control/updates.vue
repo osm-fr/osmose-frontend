@@ -18,10 +18,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="source in list"
-          :key="source.source + '|' + source.timestamp"
-        >
+        <tr v-for="source in list" :key="source.id">
           <td>
             <router-link :to="`../errors/?source=${source.id}`">
               {{ source.id }}
@@ -55,7 +52,7 @@ import TimeAgo from "vue2-timeago";
 export default Vue.extend({
   data() {
     return {
-      list: null,
+      list: [],
     };
   },
   computed: {

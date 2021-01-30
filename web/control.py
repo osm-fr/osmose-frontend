@@ -42,7 +42,8 @@ ORDER BY
 """)
     list_ = list(map(dict, db.fetchall()))
     for res in list_:
-        res['timestamp'] = str(res['timestamp'])
+        if res['timestamp']:
+            res['timestamp'] = str(res['timestamp'])
     return dict(list=list_)
 
 
