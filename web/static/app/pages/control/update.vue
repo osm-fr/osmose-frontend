@@ -37,11 +37,14 @@ export default Vue.extend({
   },
   mounted() {
     this.$refs.topProgress.start();
-    fetch(API_URL + window.location.pathname + ".json" + window.location.search, {
-      headers: new Headers({
-        "Accept-Language": this.$route.params.lang,
-      }),
-    })
+    fetch(
+      API_URL + window.location.pathname + ".json" + window.location.search,
+      {
+        headers: new Headers({
+          "Accept-Language": this.$route.params.lang,
+        }),
+      }
+    )
       .then((response) => response.json())
       .then((response) => {
         this.$refs.topProgress.done();
