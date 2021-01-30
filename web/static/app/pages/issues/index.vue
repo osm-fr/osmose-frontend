@@ -233,7 +233,7 @@ export default Vue.extend({
       item: this.$route.query.item,
       level: this.$route.query.level,
       limit: this.$route.query.limit,
-      gen: window.location.pathname.includes("false-positive")
+      gen: API_URL + window.location.pathname.includes("false-positive")
         ? "false-positive"
         : "gen",
     };
