@@ -10,21 +10,27 @@
       </span>
       <div class="collapse navbar-collapse">
         <div class="navbar-nav">
-          <a class="nav-item nav-link active" :href="`.?${query}`">
+          <router-link class="nav-item nav-link active" :to="`./?${query}`">
             <translate>Informations</translate>
-          </a>
-          <a class="nav-item nav-link active" :href="`done?${query}`">
+          </router-link>
+          <router-link class="nav-item nav-link active" :to="`done?${query}`">
             <translate>Fixed</translate>
-          </a>
-          <a class="nav-item nav-link active" :href="`false-positive?${query}`">
+          </router-link>
+          <router-link
+            class="nav-item nav-link active"
+            :to="`false-positive?${query}`"
+          >
             <translate>False positives</translate>
-          </a>
+          </router-link>
           <a class="nav-item nav-link active" :href="`graph.png?${query}`">
             <translate>Graph</translate>
           </a>
-          <a class="nav-item nav-link active" :href="`../map/#${query}`">
+          <router-link
+            class="nav-item nav-link active"
+            :to="`../map/#${query}`"
+          >
             <translate>Map</translate>
-          </a>
+          </router-link>
         </div>
       </div>
     </nav>
@@ -142,15 +148,15 @@
         <tbody>
           <tr v-for="res in sort.values" :key="res.source_id + '|' + res.class">
             <td>
-              <a :href="`?source=${res.source_id}`">
+              <router-link :to="`?source=${res.source_id}`">
                 {{ res.source_id }}
-              </a>
+              </router-link>
             </td>
             <td>
               {{ res.analyser }}-
-              <a :href="`?country=${res.country}`">
+              <router-link :to="`?country=${res.country}`">
                 {{ res.country }}
-              </a>
+              </router-link>
             </td>
             <td>
               <time-ago :datetime="res.timestamp" tooltip />
@@ -160,25 +166,25 @@
                 :src="`../images/markers/marker-l-${res.item}.png`"
                 :alt="res.item"
               />
-              <a :href="`?item=${res.item}&amp;country=${res.country}`">
+              <router-link :to="`?item=${res.item}&amp;country=${res.country}`">
                 {{ res.item }}
-              </a>
+              </router-link>
               <span v-if="res.menu">{{ res.menu }}</span>
             </td>
             <td>
-              <a
-                :href="`?item=${res.item}&amp;class=${res.class}&amp;country=${res.country}`"
+              <router-link
+                :to="`?item=${res.item}&amp;class=${res.class}&amp;country=${res.country}`"
               >
                 {{ res.class }}
-              </a>
+              </router-link>
             </td>
             <td>{{ res.title }}</td>
             <td>
-              <a
-                :href="`?source=${res.source_id}&amp;item=${res.item}&amp;class=${res.class}`"
+              <router-link
+                :to="`?source=${res.source_id}&amp;item=${res.item}&amp;class=${res.class}`"
               >
                 {{ res.count === -1 ? "N/A" : res.count }}
-              </a>
+              </router-link>
             </td>
           </tr>
         </tbody>
@@ -200,12 +206,12 @@
         :main_website="main_website"
         :remote_url_read="remote_url_read"
       />
-      <a v-if="limit" :href="`?limit=${limit * 5}`">
+      <router-link v-if="limit" :to="`?limit=${limit * 5}`">
         <translate>Show more issues</translate>
-      </a>
-      <a v-else :href="`?${query}&amp;limit=100`">
+      </router-link>
+      <router-link v-else :to="`?${query}&amp;limit=100`">
         <translate>Show more issues</translate>
-      </a>
+      </router-link>
     </div>
   </div>
 </template>
@@ -233,60 +239,23 @@ export default Vue.extend({
       item: this.$route.query.item,
       level: this.$route.query.level,
       limit: this.$route.query.limit,
-      gen: API_URL + window.location.pathname.includes("false-positive")
-        ? "false-positive"
-        : "gen",
+      gen:
+        API_URL + window.location.pathname.includes("false-positive")
+          ? "false-positive"
+          : "gen",
     };
   },
   components: {
     IssuesList,
     TimeAgo,
   },
+  watch: {
+    $route() {
+      this.render();
+    },
+  },
   mounted() {
-    this.$refs.topProgress.start();
-    this.query = window.location.search.substring(1);
-
-    let title = {
-      "issues/open": this.$t("Information"),
-      "issues/done": this.$t("Fixed issues"),
-      "issues/false-positive": this.$t("False positives"),
-    }[this.$route.name];
-
-    fetch(API_URL + window.location.pathname + ".json" + window.location.search, {
-      headers: new Headers({
-        "Accept-Language": this.$route.params.lang,
-      }),
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        this.$refs.topProgress.done();
-
-        Object.assign(this, response);
-
-        var res = this.items.find((e) => e.item == this.item);
-        if (res) {
-          title += " - " + res.menu.auto;
-          const favicon = document.getElementById("favicon");
-          this.favicon = `../images/markers/marker-l-${this.item}.png`;
-          favicon.href = this.favicon;
-        }
-
-        document.title = "Osmose - " + title;
-
-        var rss = document.getElementById("rss");
-        if (rss) {
-          rss.remove();
-        }
-        rss = document.createElement("link");
-        Object.assign(rss, {
-          id: "rss",
-          href: `http://${this.website}/${this.$route.params.lang}/errors.rss?${this.query}`,
-          rel: "alternate",
-          type: "application/rss+xml",
-          title: document.title,
-        });
-        document.head.appendChild(rss);
-      });
+    this.render();
   },
   methods: {
     sortable: (data) => {
@@ -294,6 +263,60 @@ export default Vue.extend({
         res.analyser_country = res.analyser + "-" + res.country;
         return res;
       });
+    },
+    render: function () {
+      this.country = this.$route.query.country;
+      this.item = this.$route.query.item;
+      this.level = this.$route.query.level;
+      this.limit = this.$route.query.limit;
+
+      this.$refs.topProgress.start();
+      this.query = window.location.search.substring(1);
+
+      let title = {
+        "issues/open": this.$t("Information"),
+        "issues/done": this.$t("Fixed issues"),
+        "issues/false-positive": this.$t("False positives"),
+      }[this.$route.name];
+
+      fetch(
+        API_URL + window.location.pathname + ".json" + window.location.search,
+        {
+          headers: new Headers({
+            "Accept-Language": this.$route.params.lang,
+          }),
+        }
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          this.$refs.topProgress.done();
+
+          Object.assign(this, response);
+
+          var res = this.items.find((e) => e.item == this.item);
+          if (res) {
+            title += " - " + res.menu.auto;
+            const favicon = document.getElementById("favicon");
+            this.favicon = `../images/markers/marker-l-${this.item}.png`;
+            favicon.href = this.favicon;
+          }
+
+          document.title = "Osmose - " + title;
+
+          var rss = document.getElementById("rss");
+          if (rss) {
+            rss.remove();
+          }
+          rss = document.createElement("link");
+          Object.assign(rss, {
+            id: "rss",
+            href: `http://${this.website}/${this.$route.params.lang}/errors.rss?${this.query}`,
+            rel: "alternate",
+            type: "application/rss+xml",
+            title: document.title,
+          });
+          document.head.appendChild(rss);
+        });
     },
   },
 });

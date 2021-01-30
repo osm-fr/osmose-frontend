@@ -54,9 +54,9 @@
         <tbody>
           <tr v-for="res in sort.values" :key="res.uuid">
             <td :title="`${res.country}-${res.analyser}`">
-              <a :href="`?${page_args}source=${res.source_id}`">
+              <router-link :to="`?${page_args}source=${res.source_id}`">
                 {{ res.source_id }}
-              </a>
+              </router-link>
             </td>
             <td>{{ res.level }}</td>
             <td>
@@ -64,26 +64,28 @@
                 :src="`../images/markers/marker-l-${res.item}.png`"
                 :alt="res.item"
               />
-              <a :href="`?${page_args}item=${res.item}`">{{ res.item }}</a>
+              <router-link :to="`?${page_args}item=${res.item}`">
+                {{ res.item }}
+              </router-link>
               <span v_if="res.menu">{{ res["menu"] }}</span>
             </td>
             <td>{{ res.class }}</td>
             <td :title="$t('issue n°') + res.uuid">
-              <a
-                :href="`../${
+              <router-link
+                :to="`../${
                   'false-positive' == gen ? 'false-positive' : 'error'
                 }/${res.uuid}`"
               >
                 E
-              </a>
+              </router-link>
             </td>
             <td>
-              <a
+              <router-link
                 v-if="res.lat !== undefined && res.lon !== undefined"
-                :href="`/map/#${query}&amp;item=${res.item}&amp;zoom=17&amp;lat=${res.lat}&amp;lon=${res.lon}&amp;level=${res.level}&tags=&fixable=&issue_uuid=${res.uuid}`"
+                :to="`/map/#${query}&amp;item=${res.item}&amp;zoom=17&amp;lat=${res.lat}&amp;lon=${res.lon}&amp;level=${res.level}&tags=&fixable=&issue_uuid=${res.uuid}`"
               >
                 {{ res.lon.toFixed(2) }}&nbsp;{{ res.lat.toFixed(2) }}
-              </a>
+              </router-link>
             </td>
             <td v-if="res.elems">
               <span v-for="e in res.elems" :key="e.id">

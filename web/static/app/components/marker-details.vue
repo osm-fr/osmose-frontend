@@ -13,42 +13,39 @@
       <tr>
         <td>source</td>
         <td>
-          <a
-            target="_blank"
-            :href="`../errors/?item=xxxx&amp;source=${marker.source_id}`"
+          <router-link
+            :to="`../errors/?item=xxxx&amp;source=${marker.source_id}`"
           >
             {{ marker.source_id }}
-          </a>
+          </router-link>
         </td>
       </tr>
       <tr>
         <td>item</td>
         <td>
-          <a target="_blank" :href="`../errors/?item=${marker.item}`">
+          <router-link :to="`../errors/?item=${marker.item}`">
             {{ marker.item }}
-          </a>
+          </router-link>
         </td>
       </tr>
       <tr>
         <td>class</td>
         <td>
-          <a
-            target="_blank"
-            :href="`../errors/?item=${marker.item}&amp;class=${marker.class}`"
+          <router-link
+            :to="`../errors/?item=${marker.item}&amp;class=${marker.class}`"
           >
             {{ marker.class }}
-          </a>
+          </router-link>
         </td>
       </tr>
       <tr>
         <td>lat lon</td>
         <td>
-          <a
-            target="_blank"
-            :href="`../map/?item=${marker.item}&amp;zoom=17&amp;lat=${marker.lat}&amp;lon=${marker.lon}&amp;issue_uuid=${uuid}`"
+          <router-link
+            :to="`../map/?item=${marker.item}&amp;zoom=17&amp;lat=${marker.lat}&amp;lon=${marker.lon}&amp;issue_uuid=${uuid}`"
           >
             {{ marker.lat }}&nbsp;{{ marker.lon }}
-          </a>
+          </router-link>
         </td>
       </tr>
       <tr>
@@ -94,15 +91,17 @@
       <tr v-if="marker.source_code">
         <td>source code</td>
         <td>
-          <a :href="marker.source_code" target_="_blank">
+          <router-link :to="marker.source_code">
             {{ marker.source_code }}
-          </a>
+          </router-link>
         </td>
       </tr>
       <tr v-if="marker.resource">
         <td>resource</td>
         <td>
-          <a :href="marker.resource" target_="_blank">{{ marker.resource }}</a>
+          <router-link :to="marker.resource">
+            {{ marker.resource }}
+          </router-link>
         </td>
       </tr>
     </tbody>

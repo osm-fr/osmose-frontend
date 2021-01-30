@@ -1,5 +1,5 @@
 <template>
-  <div style="font-size: 50%">
+  <div>
     <vue-topprogress ref="topProgress"></vue-topprogress>
     <table class="table table-striped table-bordered table-hover table-sm">
       <thead>
@@ -7,7 +7,9 @@
           <th colspan="4" rowspan="4" />
           <th v-for="k in keys" :key="k" class="country">
             <div class="rotate-90">
-              <a href="`../errors/?country=${k}&item=xxxx`">{{ k }}</a>
+              <router-link :to="`../errors/?country=${k}&item=xxxx`">
+                {{ k }}
+              </router-link>
             </div>
           </th>
         </tr>
@@ -30,9 +32,9 @@
           </th>
           <template v-for="k in keys">
             <td is="delay" v-if="matrix[r][k]" :key="k" :v="matrix[r][k][0]">
-              <a :href="`update/{{matrix[r][k][1]}}`">
+              <router-link :to="`update/${matrix[r][k][1]}`">
                 {{ matrix[r][k][0] | numFormat("0.0") }}
-              </a>
+              </router-link>
             </td>
             <td v-else :key="k" />
           </template>

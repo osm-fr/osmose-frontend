@@ -23,9 +23,9 @@
           :key="source.source + '|' + source.timestamp"
         >
           <td>
-            <a :href="`../errors/?source=${source.id}`">
+            <router-link :to="`../errors/?source=${source.id}`">
               {{ source.id }}
-            </a>
+            </router-link>
           </td>
           <td>{{ source.country }}</td>
           <td>{{ source.analyser }}</td>
@@ -38,7 +38,9 @@
             <span v-else><translate>never generated</translate></span>
           </td>
           <td>
-            <a :href="`update/{{source[4]}}`"><translate>history</translate></a>
+            <router-link :to="`update/{{source[4]}}`">
+              <translate>history</translate>
+            </router-link>
           </td>
         </tr>
       </tbody>

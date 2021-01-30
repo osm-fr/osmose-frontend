@@ -44,7 +44,7 @@
           Development of Osmose is made as free software by {volunteers}.
         </span>
         <template v-slot:volunteers>
-          <a href="../copyright">volunteers</a>
+          <router-link to="copyright">volunteers</router-link>
         </template>
       </translate-slot>
     </p>
