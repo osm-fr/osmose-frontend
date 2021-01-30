@@ -6,9 +6,9 @@
         <thead :key="'h' + remote" class="thead-dark">
           <tr>
             <th>
-              <a :href="`update_matrix?remote=${remote}`">
+              <router-link :to="`update_matrix?remote=${remote}`">
                 {{ hostnames[remote] || remote }}
-              </a>
+              </router-link>
               ({{ min_versions[remote] }} - {{ max_versions[remote] }})
             </th>
           </tr>
@@ -23,9 +23,9 @@
                 :v="country.min_age"
                 :opacity="opacity(country.count, max_count)"
               >
-                <a :href="`../errors/?country=${country.country}&item=xxxx`">{{
-                  country.country
-                }}</a
+                <router-link
+                  :to="`../errors/?country=${country.country}&item=xxxx`"
+                  >{{ country.country }}</router-link
                 ><sup>{{ country.count }}</sup
                 >&nbsp;{{ country.min_age | numFormat("0.0") }}-<span
                   is="delay"

@@ -29,9 +29,9 @@
         </translate>
       </span>
       -
-      <a :href="`../map/#username=${username}`">
+      <router-link :to="`../map/#username=${username}`">
         <translate>Show issues on a map</translate>
-      </a>
+      </router-link>
     </p>
 
     <issues-list

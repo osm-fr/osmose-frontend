@@ -13,7 +13,9 @@
             :key="'1_' + country"
           >
             <div class="rotate-90">
-              <a :href="`../errors/?country=${country}`">{{ country }}</a>
+              <router-link :to="`../errors/?country=${country}`">
+                {{ country }}
+              </router-link>
             </div>
           </th>
         </tr>

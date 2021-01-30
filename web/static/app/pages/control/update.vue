@@ -13,9 +13,9 @@
       <tbody>
         <tr v-for="res in list" :key="res.timestamp">
           <td>
-            <a :href="`../../errors/?source={res.source_id}`">
+            <router-link :to="`../../errors/?source=${res.source_id}`">
               {{ res.source_id }}
-            </a>
+            </router-link>
           </td>
           <td>{{ remote(res) }}</td>
           <td>{{ res.timestamp }}</td>

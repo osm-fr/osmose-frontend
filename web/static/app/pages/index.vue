@@ -3,7 +3,9 @@
     <h1>Osmose-QA</h1>
     <ul>
       <li>
-        <a href="map/"><translate>Map of issues</translate></a>
+        <router-link to="map/">
+          <translate>Map of issues</translate>
+        </router-link>
       </li>
       <li>
         <a :href="$t('http://wiki.openstreetmap.org/wiki/Osmose')">
@@ -15,14 +17,14 @@
     <h2><translate>Information on issues database</translate></h2>
     <ul>
       <li>
-        <a href="errors/false-positive">
+        <router-link to="errors/false-positive">
           <translate>False positives list</translate>
-        </a>
+        </router-link>
       </li>
       <li>
-        <a href="control/update">
+        <router-link to="control/update">
           <translate>Last analysis updates</translate>
-        </a>
+        </router-link>
       </li>
     </ul>
   </div>
