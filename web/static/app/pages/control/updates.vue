@@ -5,50 +5,59 @@
       <translate>Median delay:</translate>
       <time-ago v-if="median_delay" :datetime="median_delay" tooltip />
     </p>
-    <table class="table table-striped table-bordered table-hover table-sm">
-      <thead class="thead-dark">
-        <tr>
-          <th><translate>source</translate></th>
-          <th style="min-width: 100px"><translate>country</translate></th>
-          <th style="min-width: 100px"><translate>analyser</translate></th>
-          <th style="min-width: 200px">
-            <translate>last generation</translate>
-          </th>
-          <th><translate>history</translate></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="source in list"
-          :key="source.source + '|' + source.timestamp"
+    <virtual-scroller
+      page-mode
+      class="scroller"
+      :items="list"
+      :item-size="30"
+      v-if="list"
+      style="display: table; width: 100%;"
+    >
+      <template #before>
+        <header style="display: table-row; width: 100%;">
+            <div style="display: table-cell; width: 20%;"><translate>source</translate></div>
+            <div style="display: table-cell; width: 20%;"><translate>country</translate></div>
+            <div style="display: table-cell; width: 20%;"><translate>analyser</translate></div>
+            <div style="display: table-cell; width: 20%;">
+              <translate>last generation</translate>
+            </div>
+            <div style="display: table-cell; width: 20%;"><translate>history</translate></div>
+        </header>
+      </template>
+
+      <template v-slot="{ item }">
+        <div style="display: table-row;"
+          :key="item.source + '|' + item.timestamp"
         >
-          <td>
-            <a :href="`../errors/?source=${source.id}`">
-              {{ source.id }}
+          <div style="display: table-cell; width: 20%;">
+            <a :href="`../errors/?source=${item.id}`">
+              {{ item.id }}
             </a>
-          </td>
-          <td>{{ source.country }}</td>
-          <td>{{ source.analyser }}</td>
-          <td>
+          </div>
+          <div style="display: table-cell; width: 20%;">{{ item.country }}</div>
+          <div style="display: table-cell; width: 20%;">{{ item.analyser }}</div>
+          <div style="display: table-cell; width: 20%;">
             <time-ago
-              v-if="source.timestamp"
-              :datetime="source.timestamp"
+              v-if="item.timestamp"
+              :datetime="item.timestamp"
               tooltip
             />
             <span v-else><translate>never generated</translate></span>
-          </td>
-          <td>
-            <a :href="`update/{{source[4]}}`"><translate>history</translate></a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          </div>
+          <div style="display: table-cell; width: 20%;">
+            <a :href="`update/{{item[4]}}`"><translate>history</translate></a>
+          </div>
+        </div>
+      </template>
+    </virtual-scroller>
   </div>
 </template>
 
 <script>
 import Vue from "vue";
 import TimeAgo from "vue2-timeago";
+import 'vue-virtual-scroller/dist/vue-virtual-scroller.css';
+import { RecycleScroller } from 'vue-virtual-scroller'
 
 export default Vue.extend({
   data() {
@@ -65,6 +74,7 @@ export default Vue.extend({
   },
   components: {
     TimeAgo,
+    'virtual-scroller': RecycleScroller
   },
   mounted() {
     this.$refs.topProgress.start();
