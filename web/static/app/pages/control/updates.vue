@@ -35,7 +35,7 @@
             <span v-else><translate>never generated</translate></span>
           </td>
           <td>
-            <router-link :to="`update/{{source[4]}}`">
+            <router-link :to="`update/${source.id}`">
               <translate>history</translate>
             </router-link>
           </td>
