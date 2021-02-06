@@ -23,13 +23,13 @@
             </delay>
           </td>
           <td>
-            <version :max="max_versions" :v="summary[analyser].min_version">
+            <span is="version" :max="max_versions" :v="summary[analyser].min_version">
               {{ summary[analyser].min_version }}
-            </version>
+            </span>
             -
-            <version :max="max_versions" :v="summary[analyser].max_version">
+            <span is="version" :max="max_versions" :v="summary[analyser].max_version">
               {{ summary[analyser].max_version }}
-            </version>
+            </span>
           </td>
         </tr>
       </tbody>

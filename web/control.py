@@ -187,7 +187,7 @@ ORDER BY
     max_versions = None
     for res in db.fetchall():
         (analyser, count, min_age, max_age, min_version, max_version) = res
-        max_versions = max_version if max_version > max_versions else max_versions
+        max_versions = max_version if max_versions is None or max_version > max_versions else max_versions
         summary[analyser] = {'count': count, 'min_age': min_age, 'max_age': max_age, 'max_version': '-'.join((max_version or '').split('-')[1:5]), 'min_version': '-'.join((min_version or '').split('-')[1:5])}
 
     max_versions = '-'.join((max_versions or '').split('-')[1:5])
