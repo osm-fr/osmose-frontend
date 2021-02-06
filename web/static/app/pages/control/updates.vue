@@ -5,7 +5,10 @@
       <translate>Median delay:</translate>
       <time-ago v-if="median_delay" :datetime="median_delay" tooltip />
     </p>
-    <table class="table table-striped table-bordered table-hover table-sm">
+    <table
+      v-if="render"
+      class="table table-striped table-bordered table-hover table-sm"
+    >
       <thead class="thead-dark">
         <tr>
           <th><translate>source</translate></th>
@@ -52,7 +55,8 @@ import TimeAgo from "vue2-timeago";
 export default Vue.extend({
   data() {
     return {
-      list: [],
+      median_delay: null,
+      render: false,
     };
   },
   computed: {
@@ -80,6 +84,7 @@ export default Vue.extend({
         this.$refs.topProgress.done();
 
         Object.assign(this, response);
+        this.render = true;
       });
     document.title = "Osmose - " + this.$t("Last updates");
   },
