@@ -61,7 +61,7 @@
             <td>{{ res.level }}</td>
             <td>
               <img
-                :src="`../images/markers/marker-l-${res.item}.png`"
+                :src="API_URL + `/en/images/markers/marker-l-${res.item}.png`"
                 :alt="res.item"
               />
               <router-link :to="`?${page_args}item=${res.item}`">

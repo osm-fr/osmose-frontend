@@ -80,7 +80,7 @@ export function initMap() {
   // // Layer Marker
   const featureLayer = L.layerGroup();
   map.addLayer(featureLayer);
-  const osmoseLayer = new OsmoseMarker(permalink, urlVars, editor, doc, featureLayer, remoteUrlRead);
+  const osmoseLayer = new OsmoseMarker(permalink, urlVars, editor, doc, featureLayer);
   mapOverlay['Osmose Issues'] = osmoseLayer;
   editor.errors = osmoseLayer;
 
@@ -124,25 +124,6 @@ export function initMap() {
   map.addControl(loadingControl);
 
   map.addLayer(osmoseLayer);
-
-  $.ajax({
-    url: $('#popupTpl').attr('src'),
-  }).done((html) => {
-    $('#popupTpl').html(html);
-  });
-
-  $.ajax({
-    url: $('#docTpl').attr('src'),
-  }).done((html) => {
-    $('#docTpl').html(html);
-  });
-
-  $.ajax({
-    url: $('#editorTpl').attr('src'),
-  }).done((html) => {
-    $('#editorTpl').html(html);
-  });
-
 
   function activeMenu(e) {
     const zoom = map.getZoom();

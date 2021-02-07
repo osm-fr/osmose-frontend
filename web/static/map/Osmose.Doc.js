@@ -56,11 +56,11 @@ export const OsmoseDoc = L.Control.Sidebar.extend({
       return;
     }
 
-    const template = $('#docTpl').html();
+    const template = $('#docTpl').html().replace('&amp;', '&');
     this._$container.html('');
 
     $.ajax({
-      url: `/api/0.3/items/${item}/class/${classs}?langs=auto`,
+      url: API_URL + `/api/0.3/items/${item}/class/${classs}?langs=auto`,
       dataType: 'json',
       success: (data) => {
         this._last_item = item;

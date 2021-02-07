@@ -40,7 +40,8 @@ export default Vue.extend({
           this.$t("Information on issue {uuid}", { uuid: this.uuid });
 
         const favicon = document.getElementById("favicon");
-        favicon.href = `../images/markers/marker-l-${this.marker.item}.png`;
+        favicon.href =
+          URL_API + `/en/images/markers/marker-l-${this.marker.item}.png`;
       });
   },
 });

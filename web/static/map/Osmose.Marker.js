@@ -9,6 +9,7 @@ require('mustache');
 const Cookies = require('js-cookie');
 
 require('./Osmose.Marker.css');
+import IconLimit from '../images/limit.png';
 
 
 const OsmoseMarker = L.VectorGrid.Protobuf.extend({
@@ -18,7 +19,6 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
     this._editor = editor;
     this._doc = doc;
     this._featuresLayers = featuresLayers;
-    this._remoteUrlRead = remoteUrlRead;
     L.Util.setOptions(this, options);
     const vectorTileOptions = {
       rendererFactory: L.svg.tile,
@@ -26,7 +26,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
         issues(properties, zoom) {
           return {
             icon: L.icon({
-              iconUrl: `../images/markers/marker-b-${properties.item}.png`,
+              iconUrl: API_URL + `/en/images/markers/marker-b-${properties.item}.png`,
               iconSize: [17, 33],
               iconAnchor: [8, 33],
             }),
@@ -36,7 +36,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
           properties.limit = true;
           return {
             icon: L.icon({
-              iconUrl: '../images/limit.png',
+              iconUrl: IconLimit,
               iconSize: L.point(256, 256),
               iconAnchor: L.point(128, 128),
             }),
@@ -137,7 +137,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
       }
       return o;
     }, {});
-    return `/api/0.3/issues/{z}/{x}/{y}.mvt${L.Util.getParamString(p)}`;
+    return API_URL + `/api/0.3/issues/{z}/{x}/{y}.mvt${L.Util.getParamString(p)}`;
   },
 
   _closePopup() {
@@ -168,7 +168,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
       if (popup.isOpen) {
         // Popup still open, so download content
         $.ajax({
-          url: `/api/0.3/issue/${uuid}?langs=auto`,
+          url: API_URL + `/api/0.3/issue/${uuid}?langs=auto`,
           dataType: 'json',
           success: (data) => {
             popup.setLatLng([data.lat, data.lon]);
@@ -182,8 +182,8 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
               data.elems.forEach((elem) => {
                 colors[elem.type + elem.id] = palette[(shift += 1) % 3];
                 $.ajax({
-                  url: elem.type === 'node' ? `${this._remoteUrlRead}api/0.6/node/${elem.id}`
-                    : `${this._remoteUrlRead}api/0.6/${elem.type}/${elem.id}/full`,
+                  url: elem.type === 'node' ? API_URL + `api/0.6/node/${elem.id}`
+                    : API_URL + `api/0.6/${elem.type}/${elem.id}/full`,
                   dataType: 'xml',
                   success: (xml) => {
                     const layer = new L.OSM.DataLayer(xml);

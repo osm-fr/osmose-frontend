@@ -163,7 +163,7 @@
             </td>
             <td>
               <img
-                :src="`../images/markers/marker-l-${res.item}.png`"
+                :src="API_URL + `/en/images/markers/marker-l-${res.item}.png`"
                 :alt="res.item"
               />
               <router-link :to="`?item=${res.item}&amp;country=${res.country}`">
@@ -297,7 +297,8 @@ export default Vue.extend({
           if (res) {
             title += " - " + res.menu.auto;
             const favicon = document.getElementById("favicon");
-            this.favicon = `../images/markers/marker-l-${this.item}.png`;
+            this.favicon =
+              API_URL + `/en/images/markers/marker-l-${this.item}.png`;
             favicon.href = this.favicon;
           }
 

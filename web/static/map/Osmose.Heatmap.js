@@ -41,7 +41,7 @@ const OsmoseHeatmap = L.VectorGrid.Protobuf.extend({
       }
       return o;
     }, {});
-    return `/api/0.3/issues/{z}/{x}/{y}.heat.mvt${L.Util.getParamString(p)}`;
+    return API_URL + `/api/0.3/issues/{z}/{x}/{y}.heat.mvt${L.Util.getParamString(p)}`;
   },
 
   _setUrl(e) {

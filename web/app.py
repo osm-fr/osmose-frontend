@@ -144,6 +144,7 @@ from . import control
 @route('/contact')
 @route('/copyright')
 @route('/translation')
+@route('/map/')
 @route('/error/<uuid:uuid>')
 @route('/false-positive/<uuid:uuid>')
 @route('/errors/')
@@ -158,7 +159,7 @@ from . import control
 @route('/control/update_summary')
 @route('/control/update_summary_by_analyser')
 def vue(db, uuid=None, username=None, source=None):
-    return template('layout-vue')
+    return template('layout')
 
 @route('/<filename:path>', name='static')
 def static(filename):

@@ -23,19 +23,11 @@
 from bottle import route, request, template, redirect
 from modules.params import Params
 from modules import utils, query, query_meta
-from .tool.translation import translator
 from api.user_utils import _user_count
 from collections import defaultdict
 
 
-@route('/map')
-def index_redirect():
-    new_url = "map/"
-    if request.query_string:
-        new_url += "#" + request.query_string
-    redirect(new_url)
-
-@route('/map/')
+@route('/map/.json')
 def index(db, user, lang):
     if request.query_string:
         redirect("./#" + request.query_string)
@@ -53,24 +45,11 @@ def index(db, user, lang):
             if item['tags']:
                 for tag in item['tags']:
                     item_tags[tag].add(item['item'])
+    item_tags = list(item_tags)
 
     item_levels['1,2'] = item_levels['1'] | item_levels['2']
     item_levels['1,2,3'] = item_levels['1,2'] | item_levels['3']
-
-    urls = []
-    # TRANSLATORS: link to help in appropriate language
-    if user:
-        urls.append(("byuser", _("Issues by user"), "../byuser/"))
-    urls.append(("relation_analyser", _("Relation analyser"), "http://analyser.openstreetmap.fr/"))
-    # TRANSLATORS: link to source code
-    urls.append(("statistics", _("Statistics"), "../control/update_matrix"))
-
-    helps = []
-    helps.append((_("Contact"), "../contact"))
-    helps.append((_("Help on wiki"), _("http://wiki.openstreetmap.org/wiki/Osmose")))
-    helps.append((_("Copyright"), "../copyright"))
-    helps.append((_("Sources"), "https://github.com/osm-fr?q=osmose"))
-    helps.append((_("Translation"), "../translation"))
+    item_levels = {k: list(v) for k, v in item_levels.items()}
 
     sql = """
 SELECT
@@ -101,10 +80,10 @@ OFFSET
     else:
         user_error_count = None
 
-    return template('map/index', categories=categories, item_tags=item_tags, tags=tags, item_levels=item_levels,
-        main_project=utils.main_project, urls=urls, helps=helps, delay=delay, languages_name=utils.languages_name, translate=translator(lang),
-        website=utils.website, remote_url_read=utils.remote_url_read, request=request,
-        user=user, user_error_count=user_error_count)
+    return dict(categories=categories, item_tags=item_tags, tags=tags, item_levels=item_levels,
+        main_project=utils.main_project, delay=delay, languages_name=utils.languages_name, lang=lang[0],
+        website=utils.website, remote_url_read=utils.remote_url_read,
+        user=user, user_error_count=user_error_count, main_website=utils.main_website)
 
 
 def _errors_geo(db, params):
@@ -130,16 +109,3 @@ def markers(db):
     params.full = False
 
     return _errors_geo(db, params)
-
-
-@route('/tpl/popup.tpl')
-def popup_template(lang):
-    return template('map/popup', mustache_delimiter="{{={% %}=}}", website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read)
-
-@route('/tpl/doc.tpl')
-def doc_template(lang):
-    return template('map/doc', mustache_delimiter="{{={% %}=}}", website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read)
-
-@route('/tpl/editor.tpl')
-def editor_template(lang):
-    return template('map/editor', mustache_delimiter="{{={% %}=}}", main_website=utils.main_website)
