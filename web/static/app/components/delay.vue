@@ -3,6 +3,8 @@ import Vue from "vue";
 
 export default Vue.extend({
   props: {
+    warning: { default: 1.05 },
+    error: { default: 2.05 },
     v: null,
     opacity: { default: 1 },
   },
@@ -12,9 +14,9 @@ export default Vue.extend({
         this.$vnode.data.tag,
         {
           class:
-            this.v > 2.05
+            this.v > this.error
               ? "delay-error"
-              : this.v > 1.05
+              : this.v > this.warning
               ? "delay-warning"
               : null,
           attrs: {
