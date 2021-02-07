@@ -83,12 +83,12 @@
               </router-link>
             </td>
             <td>
-              <a
+              <router-link
                 v-if="res.lat !== undefined && res.lon !== undefined"
-                :href="`/map/#${query}&amp;item=${res.item}&amp;zoom=17&amp;lat=${res.lat}&amp;lon=${res.lon}&amp;level=${res.level}&tags=&fixable=&issue_uuid=${res.uuid}`"
+                :to="`/map/#${query}&amp;item=${res.item}&amp;zoom=17&amp;lat=${res.lat}&amp;lon=${res.lon}&amp;level=${res.level}&tags=&fixable=&issue_uuid=${res.uuid}`"
               >
                 {{ res.lon.toFixed(2) }}&nbsp;{{ res.lat.toFixed(2) }}
-              </a>
+              </router-link>
             </td>
             <td v-if="res.elems">
               <span v-for="e in res.elems" :key="e.id">
@@ -99,7 +99,10 @@
                 >&nbsp;<a
                   v-if="e.type === 'R'"
                   title="josm"
-                  :href="`../josm_proxy?import?url=${remote_url_read}api/0.6/relation/${e.id}/full`"
+                  :href="
+                    api_url +
+                    `/en/josm_proxy?import?url=${remote_url_read}api/0.6/relation/${e.id}/full`
+                  "
                   target="hiddenIframe"
                   v-on:click="onJosmRelation(res)"
                 >
@@ -108,9 +111,12 @@
                 <a
                   v-else
                   title="josm"
-                  :href="`../josm_proxy?load_object?objects=${e.type.toLocaleLowerCase()}${
-                    e.id
-                  }`"
+                  :href="
+                    api_url +
+                    `/en/josm_proxy?load_object?objects=${e.type.toLocaleLowerCase()}${
+                      e.id
+                    }`
+                  "
                   target="hiddenIframe"
                 >
                   (j)
@@ -186,6 +192,9 @@ export default Vue.extend({
     main_website: null,
     remote_url_read: null,
     page_args: { default: "" },
+  },
+  computed: {
+    api_url: () => API_URL
   },
   methods: {
     sortable: (data) => {

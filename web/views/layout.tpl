@@ -5,20 +5,16 @@
 <html>
 %end
 <head>
-  <title>Osmose - {{title or ''}}</title>
+  <title>Osmose</title>
+  <meta name="description" id="description">
+  <meta name="viewport" id="viewport">
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 %from web.assets import assets
 %from web.app import app
-  <script type="text/javascript" src="{{app.get_url('static', filename='dist/' + assets['issues'])}}"></script>
-%if not 'favicon' in locals() or not favicon:
-%    favicon = app.get_url('static', filename='favicon.png')
-%end
-  <link rel="icon" type="image/png" href="{{favicon}}">
-%if 'rss' in locals() and rss:
-  <link href="{{rss}}" rel="alternate" type="application/rss+xml" title="Osmose - {{title or ''}}">
-%end
+  <script type="text/javascript" src="{{app.get_url('static', filename='dist/' + assets['app'])}}"></script>
+  <link rel="icon" id="favicon" type="image/png" href="{{app.get_url('static', filename='favicon.png')}}">
 </head>
 <body>
-%include
+<div id="app">Loading...</div>
 </body>
 </html>

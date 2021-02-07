@@ -90,10 +90,7 @@
     },
     "globals": {
       "L": false,
-      "Mustache": false,
-      "remoteUrlRead": false,
-      "itemLevels": false,
-      "itemTags": false
+      "Mustache": false
     }
   }
 }

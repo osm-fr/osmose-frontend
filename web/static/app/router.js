@@ -10,6 +10,9 @@ const Copyright = () =>
 const Translation = () =>
     import ( /* webpackChunkName: "translation" */ './pages/translation.vue');
 
+const Map = () =>
+    import ( /* webpackChunkName: "map" */ './pages/map/index.vue');
+
 const IssueIndex = () =>
     import ( /* webpackChunkName: "issue" */ './pages/issue/index.vue');
 const FalsepositiveIndex = () =>
@@ -42,6 +45,8 @@ export const router = new VueRouter({
         { path: '/:lang/contact', component: Contact },
         { path: '/:lang/copyright', component: Copyright },
         { path: '/:lang/translation', component: Translation },
+
+        { path: '/:lang/map', component: Map },
 
         { path: '/:lang/error/:uuid', component: IssueIndex },
         { path: '/:lang/errors/', component: IssuesIndex, name: 'issues/open' },

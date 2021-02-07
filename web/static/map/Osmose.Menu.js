@@ -4,6 +4,7 @@ require('leaflet-sidebar/src/L.Control.Sidebar.css');
 const Cookies = require('js-cookie');
 
 require('./Osmose.Menu.css');
+import IconMenu from '../images/menu.png';
 
 
 export const OsmoseMenu = L.Control.Sidebar.extend({
@@ -254,8 +255,8 @@ export const OsmoseMenuToggle = L.Control.extend({
 
   _createButton(html, title, className, container, fn, context) {
     const link = L.DomUtil.create('a', className, container);
-    link.style = 'background-image: url(../images/menu.png)'; // Firefox
-    link.style['background-image'] = 'url(../images/menu.png)'; // Chrome
+    link.style = `background-image: url(${IconMenu})`; // Firefox
+    link.style['background-image'] = `url(${IconMenu})`; // Chrome
     link.innerHTML = html;
     link.href = '#';
     link.title = title;

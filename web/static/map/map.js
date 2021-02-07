@@ -125,25 +125,6 @@ export function initMap() {
 
   map.addLayer(osmoseLayer);
 
-  $.ajax({
-    url: $('#popupTpl').attr('src'),
-  }).done((html) => {
-    $('#popupTpl').html(html);
-  });
-
-  $.ajax({
-    url: $('#docTpl').attr('src'),
-  }).done((html) => {
-    $('#docTpl').html(html);
-  });
-
-  $.ajax({
-    url: $('#editorTpl').attr('src'),
-  }).done((html) => {
-    $('#editorTpl').html(html);
-  });
-
-
   function activeMenu(e) {
     const zoom = map.getZoom();
     const lat = Math.abs(map.getCenter().lat);

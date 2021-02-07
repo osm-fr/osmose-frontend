@@ -66,13 +66,13 @@
       </translate>
     </p>
     <img
-      src="images/logo-aquitaine.png"
+      src="~../../images/logo-aquitaine.png"
       alt="Logo of region of Aquitaine"
       width="340"
       height="100"
     />
     <img
-      src="images/logo-mapbox.png"
+      src="~../../images/logo-mapbox.png"
       alt="Logo of Mapbox"
       width="340"
       height="100"

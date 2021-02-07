@@ -9,7 +9,6 @@ const path = require('path');
 module.exports = (env, argv) => {
     return {
         entry: {
-            "map": "./static/map/webpack.index.js",
             "app": "./static/app/webpack.index.js",
         },
         output: {

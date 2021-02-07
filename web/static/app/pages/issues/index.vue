@@ -25,12 +25,12 @@
           <a class="nav-item nav-link active" :href="`graph.png?${query}`">
             <translate>Graph</translate>
           </a>
-          <a
+          <router-link
             class="nav-item nav-link active"
-            :href="`../map/#${query}`"
+            :to="`../map/#${query}`"
           >
             <translate>Map</translate>
-          </a>
+          </router-link>
         </div>
       </div>
     </nav>
@@ -166,7 +166,7 @@
             </td>
             <td>
               <img
-                :src="`../images/markers/marker-l-${res.item}.png`"
+                :src="api_url + `/en/images/markers/marker-l-${res.item}.png`"
                 :alt="res.item"
               />
               <router-link :to="`?item=${res.item}&amp;country=${res.country}`">
@@ -245,6 +245,9 @@ export default Vue.extend({
           : "gen",
     };
   },
+  computed: {
+    api_url: () => API_URL,
+  },
   components: {
     IssuesList,
     TimeAgo,
@@ -297,7 +300,8 @@ export default Vue.extend({
           if (res) {
             title += " - " + res.menu.auto;
             const favicon = document.getElementById("favicon");
-            this.favicon = `../images/markers/marker-l-${this.item}.png`;
+            this.favicon =
+              API_URL + `/en/images/markers/marker-l-${this.item}.png`;
             favicon.href = this.favicon;
           }
 

@@ -41,11 +41,11 @@
       <tr>
         <td>lat lon</td>
         <td>
-          <a
-            :href="`../map/?item=${marker.item}&amp;zoom=17&amp;lat=${marker.lat}&amp;lon=${marker.lon}&amp;issue_uuid=${uuid}`"
+          <router-link
+            :to="`../map/?item=${marker.item}&amp;zoom=17&amp;lat=${marker.lat}&amp;lon=${marker.lon}&amp;issue_uuid=${uuid}`"
           >
             {{ marker.lat }}&nbsp;{{ marker.lon }}
-          </a>
+          </router-link>
         </td>
       </tr>
       <tr>
