@@ -105,7 +105,7 @@ module.exports = (env, argv) => {
                     Mustache: "mustache",
                 }),
                 new webpack.DefinePlugin({
-                    API_URL: JSON.stringify(argv.mode === 'development' ? env.API : '')
+                    API_URL: JSON.stringify(argv.mode === 'development' ? env && env.API || 'http://localhost:20009' : '')
                 }),
                 new VueLoaderPlugin(),
                 function() {
