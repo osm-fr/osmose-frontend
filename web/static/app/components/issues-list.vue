@@ -77,12 +77,12 @@
               </router-link>
             </td>
             <td>
-              <router-link
+              <a
                 v-if="res.lat !== undefined && res.lon !== undefined"
-                :to="`/map/#${query}&amp;item=${res.item}&amp;zoom=17&amp;lat=${res.lat}&amp;lon=${res.lon}&amp;level=${res.level}&tags=&fixable=&issue_uuid=${res.uuid}`"
+                :href="`/map/#${query}&amp;item=${res.item}&amp;zoom=17&amp;lat=${res.lat}&amp;lon=${res.lon}&amp;level=${res.level}&tags=&fixable=&issue_uuid=${res.uuid}`"
               >
                 {{ res.lon.toFixed(2) }}&nbsp;{{ res.lat.toFixed(2) }}
-              </router-link>
+              </a>
             </td>
             <td v-if="res.elems">
               <span v-for="e in res.elems" :key="e.id">

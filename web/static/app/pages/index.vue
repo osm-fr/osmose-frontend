@@ -3,9 +3,9 @@
     <h1>Osmose-QA</h1>
     <ul>
       <li>
-        <router-link to="map/">
+        <a href="map/">
           <translate>Map of issues</translate>
-        </router-link>
+        </a>
       </li>
       <li>
         <a :href="$t('http://wiki.openstreetmap.org/wiki/Osmose')">

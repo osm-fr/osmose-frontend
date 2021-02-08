@@ -25,12 +25,12 @@
           <a class="nav-item nav-link active" :href="`graph.png?${query}`">
             <translate>Graph</translate>
           </a>
-          <router-link
+          <a
             class="nav-item nav-link active"
-            :to="`../map/#${query}`"
+            :href="`../map/#${query}`"
           >
             <translate>Map</translate>
-          </router-link>
+          </a>
         </div>
       </div>
     </nav>
