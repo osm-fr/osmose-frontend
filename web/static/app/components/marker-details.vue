@@ -91,17 +91,17 @@
       <tr v-if="marker.source_code">
         <td>source code</td>
         <td>
-          <router-link :to="marker.source_code">
+          <a :href="marker.source_code">
             {{ marker.source_code }}
-          </router-link>
+          </a>
         </td>
       </tr>
       <tr v-if="marker.resource">
         <td>resource</td>
         <td>
-          <router-link :to="marker.resource">
+          <a :href="marker.resource">
             {{ marker.resource }}
-          </router-link>
+          </a>
         </td>
       </tr>
     </tbody>
