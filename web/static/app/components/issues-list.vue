@@ -60,10 +60,7 @@
             </td>
             <td>{{ res.level }}</td>
             <td>
-              <img
-                :src="`../images/markers/marker-l-${res.item}.png`"
-                :alt="res.item"
-              />
+              <img :src="getMakerImgSrc(res)" :alt="res.item" />
               <router-link :to="`?${page_args}item=${res.item}`">
                 {{ res.item }}
               </router-link>
@@ -94,15 +91,11 @@
                   :href="`${main_website}${e.type_long}/${e.id}`"
                   >{{ e.type.toLocaleLowerCase() }}{{ e.id }}</a
                 >&nbsp;<a
-                  v-if="e.type == 'R'"
+                  v-if="e.type === 'R'"
                   title="josm"
                   :href="`../josm_proxy?import?url=${remote_url_read}api/0.6/relation/${e.id}/full`"
                   target="hiddenIframe"
-                  :onclick="`$.get('http://localhost:8111/zoom?left=${
-                    res.lon - 0.002
-                  }&bottom=${res.lat - 0.002}&right=${res.lon + 0.002}&top=${
-                    res.lat + 0.002
-                  }'); return true;`"
+                  v-on:click="onJosmRelation(res)"
                 >
                   (j)
                 </a>
@@ -194,6 +187,17 @@ export default Vue.extend({
         res.subtitle_or_title = res.subtitle || res.title || "";
         return res;
       });
+    },
+    onJosmRelation: (res) => {
+      fetch(
+        `http://localhost:8111/zoom?left=${res.lon - 0.002}&bottom=${
+          res.lat - 0.002
+        }&right=${res.lon + 0.002}&top=${res.lat + 0.002}`
+      ).then();
+      return true;
+    },
+    getMakerImgSrc: (res) => {
+      return API_URL + `/en/images/markers/marker-l-${res.item}.png`;
     },
     issue_action: (event) => {
       $("#load").fadeIn();
