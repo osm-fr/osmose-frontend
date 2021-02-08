@@ -19,7 +19,13 @@ tmp.tpl: $(TPLFILES) Makefile
           sed -e 's/^%#/#/' > tmp.tpl
 
 vue.pot: $(VUEFILES)
-	../node_modules/easygettext/src/extract-cli.js --removeHTMLWhitespaces --attribute=path --output $@ $(VUEFILES)
+	../node_modules/easygettext/src/extract-cli.js --removeHTMLWhitespaces --attribute=path --output $@.tmp $(VUEFILES)
+	# extract header from original .pot, to get Content-Type=UTF-8
+	sed -e '/^$$/q' osmose-frontend.pot > $@.tmp2
+	# remove header from vue.pot
+	sed -n '/^$$/,$$p' $@.tmp >> $@.tmp2
+	mv $@.tmp2 $@
+	rm $@.tmp
 
 python.pot: $(PYFILES) tmp.tpl $(DBFILES)
 	sed -i "s/^#: .*//" osmose-frontend.pot
@@ -28,7 +34,10 @@ python.pot: $(PYFILES) tmp.tpl $(DBFILES)
           --output=$@ $(PYFILES) tmp.tpl $(DBFILES)
 
 osmose-frontend.pot: python.pot vue.pot
-	msgcat python.pot vue.pot > $@
+	sed "s/^#: .*//" $@ > $@.nofiles
+	msgcat $@.nofiles python.pot vue.pot > $@.tmp
+	mv $@.tmp $@
+	rm $@.nofiles
 
 %.po:
 	tx pull -a --minimum-perc=10
