@@ -28,11 +28,9 @@ RUN mkdir ../node_modules && \
     ln -s ../../node_modules web/node_modules && \
     cd web && \
     npm install
-ADD ./web/static /data/project/osmose/frontend/web/static
-RUN cd web && npm run build
 
 ADD . /data/project/osmose/frontend
-
+RUN cd web && npm run build
 RUN cd web/po && \
     make mo && \
     cd ..
