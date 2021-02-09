@@ -61,9 +61,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode=production",
+    "build-dev": "webpack --mode=development",
     "clean": "rm -fr static/dist/*",
-    "dev": "webpack-dev-server --mode=development --inline --progress --colors",
-    "dev-public": "webpack-dev-server --mode=development --env.API=http://osmose.openstreetmap.fr/ --inline --progress --colors"
+    "dev-server": "webpack-dev-server --mode=development --env.API_URL=http://localhost:20009 --env.DEV_SERVER=1 --inline --progress --colors",
+    "dev-server-public": "webpack-dev-server --mode=development --env.API_URL=http://beta.osmose.openstreetmap.fr/ --env.DEV_SERVER=1 --inline --progress --colors"
   },
   "repository": {
     "type": "git",

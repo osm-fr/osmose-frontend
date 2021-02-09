@@ -15,7 +15,7 @@ module.exports = (env, argv) => {
         output: {
             path: path.resolve(__dirname, 'static/dist'),
             filename: "[name]/webpack.bundle-[hash].js",
-            publicPath: argv.mode === 'development' ? "/" : "/en/dist/",
+            publicPath: env && env.DEV_SERVER ? "/" : "/en/dist/",
         },
         devtool: argv.mode === 'development' ? 'source-map' : void 0,
         resolve: {
@@ -52,7 +52,7 @@ module.exports = (env, argv) => {
                     test: /\.vue$/,
                     loader: 'vue-loader',
                     options: {
-                        hotReload: argv.mode === 'development'
+                        hotReload: env && env.DEV_SERVER
                     }
                 },
                 {
@@ -105,7 +105,7 @@ module.exports = (env, argv) => {
                     Mustache: "mustache",
                 }),
                 new webpack.DefinePlugin({
-                    API_URL: JSON.stringify(argv.mode === 'development' ? env && env.API || 'http://localhost:20009' : '')
+                    API_URL: JSON.stringify(env && env.API_URL || '')
                 }),
                 new VueLoaderPlugin(),
                 function() {
