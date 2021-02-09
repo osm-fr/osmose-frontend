@@ -51,12 +51,12 @@ def graph(db, format='png'):
 
 @route('/errors')
 def errors():
-    redirect("errors/")
+    redirect("errors/?" + request.query_string)
 
 
 @route('/errors.<format:ext>')
 def errors_(format):
-    redirect("/errors/" + format)
+    redirect("errors/." + format + "?" + request.query_string)
 
 
 @route('/errors/.<format:ext>')
