@@ -9,7 +9,7 @@
           <li
             v-for="(v, k) in languages_name"
             :key="k"
-            :class="lang == k ? 'bold' : ''"
+            :class="$route.params.lang == k ? 'bold' : ''"
           >
             <router-link :to="'/' + k + location">
               {{ v }} ({{ k }})

@@ -78,7 +78,7 @@ OFFSET
         user_error_count = None
 
     return dict(categories=categories, item_tags=item_tags, tags=tags, item_levels=item_levels,
-        main_project=utils.main_project, timestamp=timestamp, languages_name=utils.languages_name, lang=lang[0],
+        main_project=utils.main_project, timestamp=timestamp, languages_name=utils.languages_name,
         website=utils.website, remote_url_read=utils.remote_url_read,
         user=user, user_error_count=user_error_count, main_website=utils.main_website)
 

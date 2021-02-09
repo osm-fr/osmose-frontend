@@ -4,7 +4,6 @@
     <div>
       <top
         :languages_name="languages_name"
-        :lang="lang"
         :user="user"
         :user_error_count="user_error_count"
         :timestamp="timestamp"
@@ -51,7 +50,6 @@ export default Vue.extend({
   data() {
     return {
       languages_name: [],
-      lang: null,
       user: null,
       user_error_count: null,
       timestamp: null,
