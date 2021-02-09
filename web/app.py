@@ -23,7 +23,6 @@
 import bottle
 from bottle import route, view, template, error, redirect, request, hook
 from modules import utils
-from .tool.translation import translator
 from .tool import oauth, xmldict
 import re
 import beaker.middleware

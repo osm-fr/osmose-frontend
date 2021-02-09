@@ -11,8 +11,11 @@
             :key="k"
             :class="$route.params.lang == k ? 'bold' : ''"
           >
-            <router-link :to="'/' + k + location">
-              {{ v }} ({{ k }})
+            <router-link
+              :to="'/' + k + location"
+              v-on:click.native="changeLang(v)"
+            >
+              {{ v.name }} ({{ k }})
             </router-link>
           </li>
         </ul>
@@ -183,6 +186,11 @@ export default Vue.extend({
   components: {
     Delay,
     TimeAgo,
+  },
+  methods: {
+    changeLang: (lang) => {
+      window.document.dir = lang.direction;
+    },
   },
 });
 </script>

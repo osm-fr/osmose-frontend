@@ -21,7 +21,6 @@
 
 from bottle import route, template, abort
 from modules import utils
-from .tool.translation import translator
 
 from api.issue_utils import _get, _expand_tags, t2l
 

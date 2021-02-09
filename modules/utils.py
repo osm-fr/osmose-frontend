@@ -11,38 +11,40 @@ from . import OsmSax
 ################################################################################
 
 languages_name = OrderedDict()
-languages_name["en"] = u"English"
+languages_name["en"] = {"name": "English"}
 
 # language names from http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
-languages_name["ca"] = u"Català"
-languages_name["cs"] = u"Čeština"
-languages_name["da"] = u"Dansk"
-languages_name["de"] = u"Deutsch"
-languages_name["el"] = u"Ελληνικά"
-languages_name["es"] = u"Español"
-languages_name["eu"] = u"Euskara"
-languages_name["fa"] = u"فارسی"
-languages_name["fi"] = u"Suomi"
-languages_name["fr"] = u"Français"
-languages_name["gl"] = u"Galego"
-languages_name["hu"] = u"Magyar"
-languages_name["it"] = u"Italiano"
-languages_name["ja"] = u"日本語"
-languages_name["lt"] = u"Lietuvių"
-languages_name["nb"] = u"Norsk bokmål"
-languages_name["nl"] = u"Nederlands"
-languages_name["pl"] = u"Polski"
-languages_name["pt"] = u"Português"
-languages_name["pt_BR"] = u"Português (Brasil)"
-languages_name["ro"] = u"Română"
-languages_name["ru"] = u"Русский"
-languages_name["sv"] = u"Svenska"
-languages_name["uk"] = u"Українська"
-languages_name["vi"] = u"Tiếng Việt"
-languages_name["zh_CN"] = u"中文 (简体)"
-languages_name["zh_TW"] = u"中文 (繁體)"
+# _direction_rtl = ['fa', 'ar', 'he', 'ff', 'yi', 'ur', 'rgh', 'man', 'syc', 'mid', 'dv']
+languages_name["ca"] = {"name": "Català"}
+languages_name["cs"] = {"name": "Čeština"}
+languages_name["da"] = {"name": "Dansk"}
+languages_name["de"] = {"name": "Deutsch"}
+languages_name["el"] = {"name": "Ελληνικά"}
+languages_name["es"] = {"name": "Español"}
+languages_name["eu"] = {"name": "Euskara"}
+languages_name["fa"] = {"name": "فارسی", "direction": "rtl"}
+languages_name["fi"] = {"name": "Suomi"}
+languages_name["fr"] = {"name": "Français"}
+languages_name["gl"] = {"name": "Galego"}
+languages_name["hu"] = {"name": "Magyar"}
+languages_name["it"] = {"name": "Italiano"}
+languages_name["ja"] = {"name": "日本語"}
+languages_name["lt"] = {"name": "Lietuvių"}
+languages_name["nb"] = {"name": "Norsk bokmål"}
+languages_name["nl"] = {"name": "Nederlands"}
+languages_name["pl"] = {"name": "Polski"}
+languages_name["pt"] = {"name": "Português"}
+languages_name["pt_BR"] ={"name": u"Português (Brasil)"}
+languages_name["ro"] = {"name": "Română"}
+languages_name["ru"] = {"name": "Русский"}
+languages_name["sv"] = {"name": "Svenska"}
+languages_name["uk"] = {"name": "Українська"}
+languages_name["vi"] = {"name": "Tiếng Việt"}
+languages_name["zh_CN"] ={"name": u"中文 (简体)"}
+languages_name["zh_TW"] ={"name": u"中文 (繁體)"}
 
-allowed_languages = list(languages_name)
+
+allowed_languages = list(languages_name.keys())
 pg_host           = os.environ.get("DB_HOST", "") # Use socket by default
 pg_port           = os.environ.get("DB_PORT", "5432")
 pg_user           = os.environ.get("DB_USER", "osmose")

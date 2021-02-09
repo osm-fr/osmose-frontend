@@ -21,7 +21,6 @@
 ###########################################################################
 
 from bottle import route, request, template
-from .tool.translation import translator
 from collections import defaultdict
 
 

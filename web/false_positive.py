@@ -20,7 +20,6 @@
 ###########################################################################
 
 from bottle import route, template, abort
-from .tool.translation import translator
 
 from api.false_positive_utils import _get
 
