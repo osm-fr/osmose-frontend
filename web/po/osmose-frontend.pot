@@ -51,7 +51,7 @@ msgstr ""
 msgid "Help on wiki"
 msgstr ""
 
-#: ../map.py:70 ../static/app/pages/index.vue:32
+#: ../map.py:70 ../static/app/pages/index.vue:30
 #: ../static/app/pages/translation.vue:133
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr ""
@@ -204,7 +204,7 @@ msgid "Map"
 msgstr ""
 
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
-#: ../static/app/pages/issues/index.vue:299
+#: ../static/app/pages/issues/index.vue:296
 msgid "Set"
 msgstr ""
 
@@ -895,7 +895,7 @@ msgstr ""
 msgid "gas station"
 msgstr ""
 
-#: ../static/app/components/issues-list.vue:262
+#: ../static/app/components/issues-list.vue:253
 msgid "position"
 msgstr ""
 
@@ -1015,7 +1015,7 @@ msgstr ""
 msgid "Show more issues"
 msgstr ""
 
-#: ../static/app/components/issues-list.vue:258
+#: ../static/app/components/issues-list.vue:249
 msgid "information on issue"
 msgstr ""
 
@@ -1288,7 +1288,7 @@ msgstr ""
 msgid "Item"
 msgstr ""
 
-#: ../static/app/components/issues-list.vue:310
+#: ../static/app/components/issues-list.vue:301
 msgid "False positive / Done"
 msgstr ""
 
@@ -1530,7 +1530,7 @@ msgstr ""
 msgid "gas station, not integrated"
 msgstr ""
 
-#: ../static/app/components/issues-list.vue:316
+#: ../static/app/components/issues-list.vue:307
 msgid "delete issue"
 msgstr ""
 
@@ -1676,12 +1676,6 @@ msgstr ""
 msgid "fire station"
 msgstr ""
 
-#: ../static/app/components/translate-slot.vue:1
-msgid ""
-"<template v-for=\"(index, name) in $slots\" v-slot:[name]=\"\"> <slot :name="
-"\"name\"/> </template>"
-msgstr ""
-
 #: ../static/app/pages/contact.vue:51
 msgid ""
 "Adding new functionality of \"Osmose Editor\", initial support of mobile "
@@ -1690,7 +1684,7 @@ msgid ""
 "Débrouillards d'Aquitaine\"."
 msgstr ""
 
-#: ../static/app/components/issues-list.vue:186
+#: ../static/app/components/issues-list.vue:177
 msgid "delete issue #{uuid}"
 msgstr ""
 
@@ -1703,11 +1697,11 @@ msgstr ""
 msgid "Issue counts matrix"
 msgstr ""
 
-#: ../static/app/components/issues-list.vue:171
+#: ../static/app/components/issues-list.vue:162
 msgid "Mark issue #{uuid} as false positive"
 msgstr ""
 
-#: ../static/app/components/issues-list.vue:179
+#: ../static/app/components/issues-list.vue:170
 msgid "Mark issue #{uuid} as fixed"
 msgstr ""
 

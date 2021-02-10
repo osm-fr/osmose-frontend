@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2020-11-29 16:15+0000\n"
+"PO-Revision-Date: 2021-02-10 19:21+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/openstreetmap-france/osmose/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -23,32 +23,21 @@ msgstr ""
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#. TRANSLATORS: days / hours / minutes since last source update, abbreviated
-#. to d / h / m
-#: ../control.py:49
-#, python-brace-format
-msgid "{day}d, {hour}h, {minute}m ago"
-msgstr "{day}d, {hour}h, {minute}m atrás"
-
-#: ../control.py:51
-#, python-brace-format
-msgid "in {day}d, {hour}h, {minute}m"
-msgstr "em {day}d, {hour}h, {minute}m"
-
-#: ../control.py:54
+#: ../static/app/pages/control/updates.vue:30
 msgid "never generated"
 msgstr "nunca gerado"
 
 #. TRANSLATORS: link to tooltip help
-#: tmp.tpl:220
+#: ../static/app/pages/translation.vue:145
 msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
-#: ../issues.py:60 tmp.tpl:73
+#: ../issues.py:67 ../static/app/pages/issues/index.vue:16
+#: ../static/app/pages/issues/index.vue:60
 msgid "False positives"
 msgstr "Falsos positivos"
 
-#: ../issues.py:66 tmp.tpl:71
+#: ../static/app/pages/issues/index.vue:10
 msgid "Informations"
 msgstr "Informações"
 
@@ -61,7 +50,7 @@ msgstr "Analisador de relação"
 msgid "Statistics"
 msgstr "Estatísticas"
 
-#: ../map.py:69 tmp.tpl:23
+#: ../map.py:69 ../static/app/pages/contact.vue:5
 msgid "Contact"
 msgstr "Contato"
 
@@ -69,7 +58,8 @@ msgstr "Contato"
 msgid "Help on wiki"
 msgstr "Ajuda no wiki"
 
-#: ../map.py:70 tmp.tpl:120 tmp.tpl:218
+#: ../map.py:70 ../static/app/pages/index.vue:30
+#: ../static/app/pages/translation.vue:133
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
@@ -85,354 +75,321 @@ msgstr "Fontes"
 msgid "Translation"
 msgstr "Tradução"
 
-#: tmp.tpl:1 tmp.tpl:5 tmp.tpl:11
+#: tmp.tpl:1 tmp.tpl:5
 #, python-format
 msgid "Statistics for user %s"
 msgstr "Estatísticas para o usuário %s"
 
-#: tmp.tpl:8
-msgid "Users statistics"
-msgstr "Estatísticas de usuários"
-
-#: tmp.tpl:9
-msgid "Number"
-msgstr "Número"
-
-#: tmp.tpl:10
-msgid "Username"
-msgstr "Nome de usuário"
-
-#: tmp.tpl:12
-#, python-format
-msgid "User statistics for %s"
-msgstr "Estatísticas do usuário %s"
-
-#: tmp.tpl:14
+#: ../static/app/pages/byuser/byuser.vue:16
 msgid "This list is also available via rss."
 msgstr "Esta lista também está disponível através de RSS."
 
-#: tmp.tpl:18
+#: ../static/app/pages/byuser/index.vue:10
 msgid "Statistics for user"
 msgstr "Estatísticas do usuário"
 
-#: tmp.tpl:19
+#: ../static/app/pages/byuser/index.vue:2
 msgid "User statistics"
 msgstr "Estatísticas do usuário"
 
-#: tmp.tpl:22
+#: ../static/app/pages/byuser/index.vue:13
 msgid "Username:"
 msgstr "Nome de usuário:"
 
-#: tmp.tpl:24
+#: ../static/app/pages/contact.vue:2
 msgid "Bug tracker"
 msgstr "Bug Tracker"
 
-#: tmp.tpl:26
+#: ../static/app/pages/contact.vue:23
 msgid "Providing patches"
 msgstr "Fornecer patches"
 
-#: tmp.tpl:27
+#: ../static/app/pages/contact.vue:25
 msgid ""
 "Patches can be provided via merge requests on Github. This is the preferred "
 "way of handling patches."
 msgstr "Podem ser fornecidas correções (patches) através de pedidos de fusão (merge) no Github. Este é o método preferido para lidar com correções."
 
-#: tmp.tpl:28
+#: ../static/app/pages/contact.vue:39
 msgid "Development"
 msgstr "Desenvolvimento"
 
-#: tmp.tpl:29
-msgid ""
-"Development of Osmose is made as free software by <a "
-"href='../copyright'>volunteers</a>."
-msgstr "Desenvolvimento de Osmose é feito como software livre por <a href='../copyright'>voluntários</a>."
-
-#: tmp.tpl:32
+#: ../static/app/pages/contact.vue:68
 msgid "Contacting maintainers"
 msgstr "Entrando em contato com os mantenedores"
 
-#: tmp.tpl:35 tmp.tpl:42
+#: ../static/app/pages/control/update_matrix.vue:31
+#: ../static/app/pages/control/updates.vue:38
 msgid "Last updates"
 msgstr "Últimas atualizações"
 
-#: tmp.tpl:43
+#: ../static/app/pages/control/updates.vue:4
 msgid "Median delay:"
 msgstr "Atraso Médio:"
 
-#: tmp.tpl:44 tmp.tpl:51 tmp.tpl:86 tmp.tpl:96
 #: ../../tools/database/items_menu.txt:34
+#: ../static/app/components/issues-list.vue:7
+#: ../static/app/pages/control/update.vue:6
+#: ../static/app/pages/control/updates.vue:10
+#: ../static/app/pages/issues/index.vue:94
 msgid "source"
 msgstr "fonte"
 
-#: tmp.tpl:47
+#: ../static/app/pages/control/updates.vue:14
 msgid "last generation"
 msgstr "última geração"
 
-#: tmp.tpl:48 tmp.tpl:49
+#: ../static/app/pages/control/updates.vue:16
+#: ../static/app/pages/control/updates.vue:34
 msgid "history"
 msgstr "história"
 
-#: tmp.tpl:50
+#: ../static/app/pages/control/update.vue:25
 msgid "Update"
 msgstr "Atualizar"
 
-#: tmp.tpl:52
+#: ../static/app/pages/control/update.vue:7
 msgid "remote url"
 msgstr "url remoto"
 
-#: tmp.tpl:53
+#: ../static/app/pages/control/update.vue:8
 msgid "timestamp"
 msgstr "timestamp"
 
-#: tmp.tpl:55
+#: ../static/app/pages/copyright.vue:5
 msgid "Copyright information"
 msgstr "Informações de direitos autorais"
 
-#: tmp.tpl:56
+#: ../static/app/pages/copyright.vue:2
 msgid "License"
 msgstr "Licença"
 
-#: tmp.tpl:57
+#: ../static/app/pages/copyright.vue:20
 msgid "Authors"
 msgstr "Autores"
 
-#: tmp.tpl:58
+#: ../static/app/pages/copyright.vue:25
 msgid "And contributors"
 msgstr "E contribuidores"
 
-#: tmp.tpl:59
-msgid "Data are coming from"
-msgstr "Os dados são provenientes de"
-
-#: tmp.tpl:60
-msgid "copyright"
-msgstr "direitos autorais"
-
-#: tmp.tpl:63 tmp.tpl:66 tmp.tpl:69 tmp.tpl:115
+#: ../static/app/components/marker-details.vue:4
+#: ../static/app/pages/issue/index.vue:13
+#: ../static/app/pages/issue/index.vue:56
+#: ../static/app/pages/issue/index.vue:5 ../static/app/pages/issue/index.vue:7
 msgid "key"
 msgstr "chave"
 
-#: tmp.tpl:64 tmp.tpl:67 tmp.tpl:70 tmp.tpl:116
+#: ../static/app/components/marker-details.vue:5
+#: ../static/app/pages/issue/index.vue:14
+#: ../static/app/pages/issue/index.vue:57
+#: ../static/app/pages/issue/index.vue:6 ../static/app/pages/issue/index.vue:8
 msgid "value"
 msgstr "valor"
 
-#: tmp.tpl:62 tmp.tpl:117
+#: ../static/app/pages/issue/index.vue:3
 msgid "Marker"
 msgstr "Marcador"
 
-#: tmp.tpl:65
+#: ../static/app/pages/issue/index.vue:7
 msgid "Elements"
 msgstr "Elementos"
 
-#: tmp.tpl:68
+#: ../static/app/pages/issue/index.vue:48
 msgid "Fixes"
 msgstr "Correções"
 
-#: tmp.tpl:72
+#: ../static/app/pages/issues/index.vue:13
 msgid "Fixed"
 msgstr "Corrigido"
 
-#: tmp.tpl:74
+#: ../static/app/pages/issues/index.vue:19
 msgid "Graph"
 msgstr "Gráfico"
 
-#: tmp.tpl:75 tmp.tpl:134
+#: tmp.tpl:17 ../static/app/pages/issues/index.vue:22
 msgid "Map"
 msgstr "Mapa"
 
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
-#: tmp.tpl:85
+#: ../static/app/pages/issues/index.vue:296
 msgid "Set"
 msgstr "Aplicar"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
-#: tmp.tpl:90 tmp.tpl:101
+#: ../static/app/components/issues-list.vue:22
+#: ../static/app/pages/issues/index.vue:106
 msgid "class (abbreviation)"
 msgstr "c"
 
-#: tmp.tpl:88 tmp.tpl:99
+#: ../static/app/components/issues-list.vue:17
+#: ../static/app/pages/issues/index.vue:101
 msgid "item"
 msgstr "item"
 
-#: tmp.tpl:91
+#: ../static/app/pages/issues/index.vue:110
 msgid "title"
 msgstr "título"
 
-#: tmp.tpl:92
+#: ../static/app/pages/issues/index.vue:113
 msgid "count"
 msgstr "contar"
 
-#: tmp.tpl:93
+#: ../static/app/pages/issues/index.vue:157
 msgid "Total"
 msgstr "Total"
 
-#. TRANSLATORS: this should be replaced by a abbreviation for subclass
-msgid "subclass (abbreviation)"
-msgstr "s"
-
 #. TRANSLATORS: this should be replaced by a abbreviation for level
-#: tmp.tpl:98
+#: ../static/app/components/issues-list.vue:13
 msgid "level (abbreviation)"
 msgstr "n"
 
-#: tmp.tpl:104
+#: ../static/app/components/issues-list.vue:27
 msgid "position (abbreviation)"
 msgstr "pos"
 
-#: tmp.tpl:105
+#: ../static/app/components/issues-list.vue:30
 msgid "elements (abbreviation)"
 msgstr "elem"
 
-#: tmp.tpl:106
+#: ../static/app/components/issues-list.vue:34
 msgid "subtitle"
 msgstr "subtítulo"
 
-#: tmp.tpl:107 ../../tools/database/items_menu.txt:57
+#: ../../tools/database/items_menu.txt:57
+#: ../static/app/components/issues-list.vue:38
 msgid "date"
 msgstr "data"
 
-#: tmp.tpl:118
-msgid "OpenStreetMap Oversight Search Engine"
-msgstr "OpenStreetMap Oversight Search Engine"
-
-#: tmp.tpl:121
+#: ../static/app/pages/index.vue:11
 msgid "Help on OSM wiki"
 msgstr "Ajuda no OSM wiki"
 
-#: tmp.tpl:123
+#: ../static/app/pages/index.vue:20
 msgid "False positives list"
 msgstr "Lista de falsos positivos"
 
-#: tmp.tpl:124
+#: ../static/app/pages/index.vue:25
 msgid "Last analysis updates"
 msgstr "Atualizações de últimas análises"
 
-#: tmp.tpl:131
+#: tmp.tpl:14
 msgid "Tags Editor"
 msgstr "Editor de Etiquetas"
 
-#: tmp.tpl:132 tmp.tpl:181
+#: tmp.tpl:15 tmp.tpl:64
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: tmp.tpl:136
+#: tmp.tpl:19
 msgid "no bubbles at this zoom factor"
 msgstr "sem bolhas neste fator de zoom"
 
-#: tmp.tpl:78 tmp.tpl:137
+#: tmp.tpl:20 ../static/app/pages/issues/index.vue:58
 msgid "Severity"
 msgstr "Gravidade"
 
-#: tmp.tpl:143
+#: tmp.tpl:26
 msgid "Fixable"
 msgstr "Corrigível"
 
-#: tmp.tpl:144
+#: tmp.tpl:27
 msgid "Show only markers with correction suggestions"
 msgstr "Mostrar apenas marcadores com sugestões de correção"
 
-#: tmp.tpl:145
+#: tmp.tpl:28
 msgid "Online"
 msgstr "Online"
 
-#: tmp.tpl:146
+#: tmp.tpl:29
 msgid "Topic"
 msgstr "Tópico"
 
-#: tmp.tpl:147
+#: tmp.tpl:30
 msgid "Select:"
 msgstr "Selecionar:"
 
-#: tmp.tpl:148 tmp.tpl:151
+#: tmp.tpl:31 tmp.tpl:34
 msgid "all"
 msgstr "tudo"
 
-#: tmp.tpl:149 tmp.tpl:152
+#: tmp.tpl:32 tmp.tpl:35
 msgid "nothing"
 msgstr "nada"
 
-#: tmp.tpl:150
+#: tmp.tpl:33
 msgid "invert"
 msgstr "invertido"
 
-#: tmp.tpl:160
+#: tmp.tpl:43
 msgid "Change language"
 msgstr "Mudar o idioma"
 
-#: tmp.tpl:163 tmp.tpl:203
+#: tmp.tpl:46 tmp.tpl:86
 msgid "Help"
 msgstr "Ajuda"
 
-#: tmp.tpl:164
+#: tmp.tpl:47
 #, python-format
 msgid "Delay: %sd"
 msgstr "Atraso: %sd"
 
-#: tmp.tpl:168
+#: tmp.tpl:51
 msgid "Logout"
 msgstr "Sair"
 
-#: tmp.tpl:169 tmp.tpl:172
+#: tmp.tpl:52 tmp.tpl:55
 msgid "Login"
 msgstr "Entrar"
 
-#: tmp.tpl:170 tmp.tpl:182
+#: tmp.tpl:53 tmp.tpl:65
 msgid "Save"
 msgstr "Guardar"
 
-#: tmp.tpl:178
+#: tmp.tpl:61
 msgid "Source"
 msgstr "Fonte"
 
-#: tmp.tpl:179
+#: tmp.tpl:62
 msgid "Type"
 msgstr "Tipo"
 
-#: tmp.tpl:180
+#: tmp.tpl:63
 msgid "Reuse changeset"
 msgstr "Reutilizar conjunto de alterações"
 
-#: tmp.tpl:207
+#: tmp.tpl:90
 msgid "corrected"
 msgstr "corrigido"
 
-#: tmp.tpl:205
+#: tmp.tpl:88
 msgid "false positive"
 msgstr "falso positivo"
 
-#: tmp.tpl:209 tmp.tpl:210
+#: ../static/app/pages/translation.vue:2 ../static/app/pages/translation.vue:5
 msgid "How to help translation"
 msgstr "Como ajudar na tradução"
 
-#: tmp.tpl:212
+#: ../static/app/pages/translation.vue:10
 msgid ""
 "To make Osmose a real multi-lingual tool, we need your help to improve "
 "current translations, and add new translations"
 msgstr "Para fazer Osmose uma ferramenta multi-lingual real, precisamos de sua ajuda para melhorar as traduções atuais e adicionar novas traduções."
 
-#: tmp.tpl:213
+#: ../static/app/pages/translation.vue:16
 msgid "Pages to translate"
 msgstr "Páginas para traduzir"
 
-#: tmp.tpl:217
+#: ../static/app/pages/translation.vue:42
 msgid "Wiki pages"
 msgstr "Páginas Wiki"
 
-#: tmp.tpl:214
+#: ../static/app/pages/translation.vue:17
 msgid "Osmose pages"
 msgstr "Páginas Osmose"
 
-#: tmp.tpl:225
+#: ../static/app/pages/translation.vue:81
 msgid "Bug tracking system"
 msgstr "Sistema de acompanhamento de bugs"
-
-#: tmp.tpl:30
-msgid ""
-"Adding new functionality of <em>Osmose Editor</em>, initial support of "
-"mobile device and improvement of documentation was funded by region of "
-"Aquitaine, France; part of the OpenAquiMap project leading by <em>Les Petits"
-" Débrouillards d'Aquitaine</em>."
-msgstr "A adição de novas funcionalidades do <em>Editor Osmose</em>, o suporte inicial a dispositivos móveis e o melhoramento da documentação foram fundados pela região de Aquitânia, em França; que faz parte do projeto gerido por <em>Les Petits Débrouillards d'Aquitaine</em>."
 
 #: ../../tools/database/categories_menu.txt:1
 msgid "Structure"
@@ -575,7 +532,7 @@ msgid "street numbers"
 msgstr "números de porta"
 
 #: ../../tools/database/items_menu.txt:37
-#: ../../tools/database/items_menu.txt:222
+#: ../../tools/database/items_menu.txt:227
 msgid "highway"
 msgstr "rodovia"
 
@@ -601,7 +558,7 @@ msgid "tagwatch cleaner"
 msgstr "corretor de etiquetas"
 
 #: ../../tools/database/items_menu.txt:49
-#: ../../tools/database/items_menu.txt:229
+#: ../../tools/database/items_menu.txt:234
 msgid "wikipedia"
 msgstr "wikipedia"
 
@@ -807,14 +764,6 @@ msgstr "relation type=boundary"
 msgid "tunnel/bridge"
 msgstr "túnel / ponte"
 
-#: ../../tools/database/items_menu.txt:130
-msgid "monument, museum"
-msgstr "monumento / museu"
-
-#: ../../tools/database/items_menu.txt:131
-msgid "monument, museum, could be integrated"
-msgstr "monumento, museu, pode ser integrado"
-
 #: ../../tools/database/items_menu.txt:134
 msgid "post office, could be integrated"
 msgstr "correios, pode ser integrado"
@@ -829,7 +778,7 @@ msgstr "escola, pode ser integrada"
 
 #: ../../tools/database/items_menu.txt:27
 #: ../../tools/database/items_menu.txt:141
-#: ../../tools/database/items_menu.txt:230
+#: ../../tools/database/items_menu.txt:235
 msgid "public transport"
 msgstr "transporte público"
 
@@ -852,9 +801,6 @@ msgstr "ponto geodésico"
 #: ../../tools/database/items_menu.txt:148
 msgid "postal address"
 msgstr "endereço postal"
-
-msgid "wikipedia, could be integrated"
-msgstr "wikipedia, poderia ser integrado"
 
 #: ../../tools/database/items_menu.txt:152
 msgid "public service"
@@ -908,29 +854,19 @@ msgstr "esporte"
 msgid "sport, could be integrated"
 msgstr "esporte, poderia ser integrado"
 
-#: tmp.tpl:216
+#: ../static/app/pages/translation.vue:30
 msgid "Translation progress: osmose"
 msgstr "Progresso da tradução: osmose"
 
-#: tmp.tpl:222
+#: ../static/app/pages/translation.vue:56
 msgid "For new language or countries"
 msgstr "Para novo idioma ou países"
 
-#: tmp.tpl:223
-#, python-format
-msgid "You can create a new language directly on <a href='%s'>Transifex.</a>"
-msgstr "Você pode criar um novo idioma diretamente em <a href='%s'>Transifex</a>."
-
-#: tmp.tpl:215
-#, python-format
-msgid "Translation is done on <a href='%s'>Transifex</a>."
-msgstr "A tradução é feita em <a href='%s'>Transifex</a>."
-
-#: tmp.tpl:161
+#: tmp.tpl:44
 msgid "Export"
 msgstr "Exportar"
 
-#: tmp.tpl:162
+#: tmp.tpl:45
 msgid "Html list"
 msgstr "Lista html"
 
@@ -966,19 +902,19 @@ msgstr "farmácia, pode ser integrada"
 msgid "gas station"
 msgstr "estação de combustível"
 
-#: tmp.tpl:103
+#: ../static/app/components/issues-list.vue:253
 msgid "position"
 msgstr "posição"
 
-#: tmp.tpl:171
+#: tmp.tpl:54
 msgid "You must be logged in order to use the tag editor"
 msgstr "Tem de ter a sessão iniciada para usar o editor de etiquetas"
 
-#: tmp.tpl:173
+#: tmp.tpl:56
 msgid "Save changeset"
 msgstr "Gravar conjunto de alterações"
 
-#: tmp.tpl:176
+#: tmp.tpl:59
 msgid "Comment"
 msgstr "Comentário"
 
@@ -990,25 +926,20 @@ msgstr "área"
 msgid "noexit"
 msgstr "sem saída"
 
-#: tmp.tpl:34
-msgid ""
-"Keep in touch by watching at <a "
-"href='https://twitter.com/osmose_qa'>@osmose_qa</a> on twitter."
-msgstr "Mantenha-se atualizado em <a href='https://twitter.com/osmose_qa'>@osmose_qa</a> no Twitter."
-
 #: ../../tools/database/items_menu.txt:88
 msgid "incorrect layer"
 msgstr "camada incorreta"
 
-#: tmp.tpl:36 tmp.tpl:41
+#: ../static/app/pages/control/update_summary.vue:30
+#: ../static/app/pages/control/update_summary_by_analyser.vue:37
 msgid "Updates summary"
 msgstr "Sumário de atualizações"
 
-#: tmp.tpl:45
+#: ../static/app/pages/control/updates.vue:11
 msgid "country"
 msgstr "país"
 
-#: tmp.tpl:46
+#: ../static/app/pages/control/updates.vue:12
 msgid "analyser"
 msgstr "analisador"
 
@@ -1040,14 +971,14 @@ msgstr "código postal, não integrado"
 msgid "local language"
 msgstr "língua local"
 
-#: tmp.tpl:31
+#: ../static/app/pages/contact.vue:59
 msgid ""
 "The servers analysing data are provided by OpenStreetMap-France and some "
 "others by contributors around the world. The servers for north-america and "
 "other areas are funded by Mapbox."
 msgstr "Os servidores usados para analisar os dados são fornecidos pela OpenStreetMap-France e alguns outros por contribuidores à volta do mundo. Os servidores que servem a América do Norte e outras áreas são financiados pela Mapbox."
 
-#: ../issues.py:63
+#: ../issues.py:70 ../static/app/pages/issues/index.vue:59
 msgid "Fixed issues"
 msgstr "Erros corrigidos"
 
@@ -1060,32 +991,25 @@ msgstr "Erros por usuário"
 msgid "Number of level {level} issues: {count}"
 msgstr "Número de erros do nível {level}: {count}"
 
-#: tmp.tpl:6 tmp.tpl:15
+#: tmp.tpl:6
 #, python-format
 msgid "Number of found issues: %d"
 msgstr "Quantidade de erros encontrados: %d"
 
-#: tmp.tpl:7 tmp.tpl:16
+#: tmp.tpl:7
 #, python-format
 msgid "Number of found issues: more than %d"
 msgstr "Quantidade de erros encontrados: superiores a %d"
 
-#: tmp.tpl:13
-#, python-format
-msgid ""
-"This page shows issues on elements that were last modified by '%s'. This "
-"doesn't means that this user is responsible for all these issues."
-msgstr "Esta página mostra erros em elementos reportados que foram alterados na última vez por '%s'. Isto não quer dizer que este usuário seja quem reportou esses erros, mas sim o último que os alterou."
-
-#: tmp.tpl:17
+#: ../static/app/pages/byuser/byuser.vue:32
 msgid "Show issues on a map"
 msgstr "Mostrar erros num mapa"
 
-#: tmp.tpl:20
+#: ../static/app/pages/byuser/index.vue:3
 msgid "Osmose allows you to control your own issues."
 msgstr "O Osmose permite-lhe controlar os seus próprios erros reportados."
 
-#: tmp.tpl:21
+#: ../static/app/pages/byuser/index.vue:5
 msgid ""
 "By entering your OSM username in the following form, you will be able to see"
 " issues that are attached to your username. Note that the algorithm that "
@@ -1093,35 +1017,32 @@ msgid ""
 "contributor of the relevant erroneous elements."
 msgstr "Ao introduzir o seu nome de usuário do OSM no formulário seguinte, poderá ver problemas ligados ao seu nome de usuário. Note que o algoritmo que liga problemas a usuários não é perfeito, umas vez que o Osmose apenas verifica o último usuário que criou ou alterou os elementos errados relevantes."
 
-#: tmp.tpl:94
+#: ../static/app/pages/issues/index.vue:167
+#: ../static/app/pages/issues/index.vue:170
 msgid "Show more issues"
 msgstr "Mostrar mais erros"
 
-#: tmp.tpl:95
-msgid "Show some issues"
-msgstr "Mostrar mais erros"
-
-#: tmp.tpl:102
+#: ../static/app/components/issues-list.vue:249
 msgid "information on issue"
 msgstr "informação do erro"
 
-#: tmp.tpl:110
+#: ../static/app/components/issues-list.vue:91
 msgid "issue n°"
 msgstr "erro nº"
 
-#: tmp.tpl:119
+#: ../static/app/pages/index.vue:6
 msgid "Map of issues"
 msgstr "Mapa dos erros"
 
-#: tmp.tpl:122
+#: ../static/app/pages/index.vue:16
 msgid "Information on issues database"
 msgstr "Informação no banco de dados de erros"
 
-#: tmp.tpl:221
+#: ../static/app/pages/translation.vue:51
 msgid "Documentation on reported issues"
 msgstr "Documentação em erros reportados"
 
-#: tmp.tpl:54
+#: ../static/app/pages/control/update.vue:9
 msgid "version"
 msgstr "versão"
 
@@ -1154,29 +1075,14 @@ msgstr "estrada"
 msgid "split building"
 msgstr "dividir edifício"
 
-#: tmp.tpl:135
+#: tmp.tpl:18
 #, python-format
 msgid "Control, verification and correction of %s issues"
 msgstr "Controle, verificação e correção de %s erros reportados"
 
-#: tmp.tpl:219
+#: ../static/app/pages/translation.vue:46
 msgid "Osmose QA main page"
 msgstr "Página principal Osmose QA"
-
-#: tmp.tpl:25
-msgid ""
-"Bug should be reported on <a href='https://github.com/osm-fr/osmose-"
-"frontend/issues'>osmose-frontend</a> for issues around the website, or on <a"
-" href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> "
-"for issues on the reported issues on OSM data, or for suggestion about "
-"analyses."
-msgstr "Os bugs devem ser reportados em <a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> no caso de problemas com o site web, ou em <a href='https://github.com/osm-fr/osmose-backend/issues'>osmose-backend</a> para problemas com os erros reportados nos dados OSM, ou sugestão sobre análises."
-
-#: tmp.tpl:226
-msgid ""
-"<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-"
-"frontend</a> can be used to report any issue with translations."
-msgstr "<a href='https://github.com/osm-fr/osmose-frontend/issues'>osmose-frontend</a> pode ser usado para reportar qualquer problema com as traduções."
 
 #: ../../tools/database/items_menu.txt:23
 msgid "far from water"
@@ -1199,10 +1105,6 @@ msgstr "acesso"
 msgid "fixme review"
 msgstr "revisão de fixme"
 
-#: ../../tools/database/items_menu.txt:132
-msgid "monument, museum, need update"
-msgstr "monumento / museu, necessita de atualização"
-
 #: ../../tools/database/items_menu.txt:140
 msgid "school, need update"
 msgstr "escola, necessita de atualização"
@@ -1223,19 +1125,19 @@ msgstr "estacionamento, necessita de atualização"
 msgid "transport sharing, need update"
 msgstr "partilha de transporte, necessita de atualização"
 
-#: tmp.tpl:37
+#: ../static/app/pages/control/update_summary_by_analyser.vue:6
 msgid "Analyser"
 msgstr "Analisador"
 
-#: tmp.tpl:38
+#: ../static/app/pages/control/update_summary_by_analyser.vue:7
 msgid "Count"
 msgstr "Contagem"
 
-#: tmp.tpl:39
+#: ../static/app/pages/control/update_summary_by_analyser.vue:8
 msgid "Age"
 msgstr "Idade"
 
-#: tmp.tpl:40
+#: ../static/app/pages/control/update_summary_by_analyser.vue:9
 msgid "Version"
 msgstr "Versão"
 
@@ -1243,7 +1145,7 @@ msgstr "Versão"
 msgid "post office, need update"
 msgstr "posto de correios, necessita de atualização"
 
-#: tmp.tpl:87
+#: ../static/app/pages/issues/index.vue:98
 msgid "age"
 msgstr "idade"
 
@@ -1312,163 +1214,149 @@ msgstr "sinais de trânsito"
 msgid "traffic sign limitation"
 msgstr "limitação de sinais de trânsito"
 
-#: tmp.tpl:79 tmp.tpl:138
+#: tmp.tpl:21 ../static/app/pages/issues/index.vue:62
 msgid "High"
 msgstr "Alto"
 
-#: tmp.tpl:80 tmp.tpl:139
+#: tmp.tpl:22 ../static/app/pages/issues/index.vue:65
 msgid "Normal or higher"
 msgstr "Normal ou alto"
 
-#: tmp.tpl:81 tmp.tpl:140
+#: tmp.tpl:23 ../static/app/pages/issues/index.vue:68
 msgid "All"
 msgstr "Tudo"
 
-#: tmp.tpl:82 tmp.tpl:141
+#: tmp.tpl:24 ../static/app/pages/issues/index.vue:72
 msgid "Normal only"
 msgstr "Apenas normal"
 
-#: tmp.tpl:83 tmp.tpl:142
+#: tmp.tpl:25 ../static/app/pages/issues/index.vue:75
 msgid "Low only"
 msgstr "Apenas baixo"
 
-#: tmp.tpl:33
-#, python-brace-format
-msgid ""
-"We can be contacted through a direct email to <a "
-"href='mailto:{email}'>{email}</a>."
-msgstr "Podemos ser contactados diretamente através de email para <a href='mailto:{email}'>{email}</a>."
-
-#: tmp.tpl:165 tmp.tpl:166 tmp.tpl:167
+#: tmp.tpl:48 tmp.tpl:49 tmp.tpl:50
 #, python-brace-format
 msgid "Level {level} issues ({count})"
 msgstr "{count} problemas de nível {level}"
-
-#: tmp.tpl:224
-#, python-brace-format
-msgid ""
-"For new countries, we can be contacted through a direct email to <a "
-"href='mailto:{email}'>{email}</a>."
-msgstr "Para novos países podemos ser contactados diretamente através de email para <a href='mailto:{email}'>{email}</a>."
 
 #: ../../tools/database/categories_menu.txt:9
 msgid "JOSM validator"
 msgstr "Validação JOSM"
 
-#: ../../tools/database/items_menu.txt:217
+#: ../../tools/database/items_menu.txt:222
 msgid "seamark"
 msgstr "baliza costeira"
 
-#: ../../tools/database/items_menu.txt:218
+#: ../../tools/database/items_menu.txt:223
 msgid "addresses"
 msgstr "moradas"
 
-#: ../../tools/database/items_menu.txt:219
+#: ../../tools/database/items_menu.txt:224
 msgid "combinations"
 msgstr "combinações"
 
-#: ../../tools/database/items_menu.txt:220
+#: ../../tools/database/items_menu.txt:225
 msgid "deprecated"
 msgstr "depreciado"
 
-#: ../../tools/database/items_menu.txt:221
+#: ../../tools/database/items_menu.txt:226
 msgid "geometry"
 msgstr "geometria"
 
-#: ../../tools/database/items_menu.txt:223
+#: ../../tools/database/items_menu.txt:228
 msgid "multiple"
 msgstr "múltiplo"
 
-#: ../../tools/database/items_menu.txt:224
+#: ../../tools/database/items_menu.txt:229
 msgid "numeric"
 msgstr "numérico"
 
-#: ../../tools/database/items_menu.txt:225
+#: ../../tools/database/items_menu.txt:230
 msgid "relation"
 msgstr "relação"
 
-#: ../../tools/database/items_menu.txt:226
+#: ../../tools/database/items_menu.txt:231
 msgid "religion"
 msgstr "religião"
 
-#: ../../tools/database/items_menu.txt:227
+#: ../../tools/database/items_menu.txt:232
 msgid "territories"
 msgstr "territórios"
 
-#: ../../tools/database/items_menu.txt:228
+#: ../../tools/database/items_menu.txt:233
 msgid "unnecessary"
 msgstr "desnecessário"
 
-#: tmp.tpl:76
+#: ../static/app/pages/issues/index.vue:34
 msgid "Country"
 msgstr "País"
 
-#: tmp.tpl:77
+#: ../static/app/pages/issues/index.vue:46
 msgid "Item"
 msgstr "Item"
 
-#: tmp.tpl:108
+#: ../static/app/components/issues-list.vue:301
 msgid "False positive / Done"
 msgstr "Positivo falso / Feito"
 
-#: tmp.tpl:174
+#: tmp.tpl:57
 msgid "Objects edited"
 msgstr "Objetos editados"
 
-#: tmp.tpl:175
+#: tmp.tpl:58
 msgid "Objects deleted"
 msgstr "Objetos eliminados"
 
-#: tmp.tpl:183
+#: tmp.tpl:66
 #, python-brace-format
 msgid "Show Object on {where}"
 msgstr "Mostrar objeto em {where}"
 
-#: tmp.tpl:184 tmp.tpl:185 tmp.tpl:186 tmp.tpl:187 tmp.tpl:188 tmp.tpl:189
-#: tmp.tpl:190
+#: tmp.tpl:67 tmp.tpl:68 tmp.tpl:69 tmp.tpl:70 tmp.tpl:71 tmp.tpl:72
+#: tmp.tpl:73
 #, python-brace-format
 msgid "Edit Object with {where}"
 msgstr "Editar objeto com {where}"
 
-#: tmp.tpl:191 tmp.tpl:194
+#: tmp.tpl:74 tmp.tpl:77
 msgid "online Osmose Editor"
 msgstr "editor online Osmose"
 
-#: tmp.tpl:192 tmp.tpl:193
+#: tmp.tpl:75 tmp.tpl:76
 #, python-brace-format
 msgid "Load the fix in {where}"
 msgstr ""
 
-#: tmp.tpl:195
+#: tmp.tpl:78
 #, python-brace-format
 msgid "Add the new object in {where}"
 msgstr "Adicionar o novo objeto em {where}"
 
-#: tmp.tpl:196
+#: tmp.tpl:79
 #, python-brace-format
 msgid "Show the area on {where}"
 msgstr "Mostrar a área em {where}"
 
-#: tmp.tpl:197 tmp.tpl:198
+#: tmp.tpl:80 tmp.tpl:81
 #, python-brace-format
 msgid "Edit the area on {where}"
 msgstr "Editar a área em {where}"
 
-#: tmp.tpl:200
+#: tmp.tpl:83
 msgid "details"
 msgstr "detalhes"
 
-#: tmp.tpl:202
+#: tmp.tpl:85
 msgid "Issue reported on:"
 msgstr "Erro reportado em:"
 
-#: tmp.tpl:204 tmp.tpl:206
+#: tmp.tpl:87 tmp.tpl:89
 msgid ""
 "Report the issue as improper, if according to you is not an issue. The issue"
 " will not be displayed to anyone more."
 msgstr "Reportar o erro como impróprio, se não considerar um erro. O erro não será mostrado a mais ninguém."
 
-#: tmp.tpl:208
+#: tmp.tpl:91
 msgid ""
 "After issue fixed on the OSM data, mark it as done. May also disappear "
 "automatically on next check if no more issue."
@@ -1478,11 +1366,11 @@ msgstr ""
 msgid "zone:maxspeed"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:236
+#: ../../tools/database/items_menu.txt:241
 msgid "power transformer"
 msgstr "transformador"
 
-#: tmp.tpl:153
+#: tmp.tpl:36
 #, python-format
 msgid "Item #%s"
 msgstr "Item #%s"
@@ -1542,11 +1430,11 @@ msgstr "URL"
 msgid "street objects"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:231
+#: ../../tools/database/items_menu.txt:236
 msgid "openrailwaymap"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:232
+#: ../../tools/database/items_menu.txt:237
 msgid "openrailwaymap in germany"
 msgstr ""
 
@@ -1558,7 +1446,7 @@ msgstr ""
 msgid "power plant"
 msgstr ""
 
-#: tmp.tpl:211
+#: ../static/app/pages/translation.vue:4
 msgid ""
 "Osmose tool is mainly developped by french people, and we aim to add more "
 "languages."
@@ -1580,61 +1468,41 @@ msgstr ""
 msgid "radio support, need update"
 msgstr ""
 
-#: tmp.tpl:61 tmp.tpl:114
-#, python-format
-msgid "Information on issue %s"
-msgstr ""
-
-#: tmp.tpl:111
-#, python-format
-msgid "Mark issue #%s as false positive"
-msgstr ""
-
-#: tmp.tpl:112
-#, python-format
-msgid "Mark issue #%s as fixed"
-msgstr ""
-
-#: tmp.tpl:113
-#, python-format
-msgid "delete issue #%s"
-msgstr ""
-
-#: tmp.tpl:125
+#: tmp.tpl:8
 msgid "How to Fix"
 msgstr ""
 
-#: tmp.tpl:126
+#: tmp.tpl:9
 msgid "Trap to avoid"
 msgstr ""
 
-#: tmp.tpl:127
+#: tmp.tpl:10
 msgid "Example"
 msgstr ""
 
-#: tmp.tpl:128
+#: tmp.tpl:11
 msgid "Source Code"
 msgstr ""
 
-#: tmp.tpl:129
+#: tmp.tpl:12
 msgid "Resource used"
 msgstr ""
 
-#: tmp.tpl:130
+#: tmp.tpl:13
 msgid "Want to improve this control or this doc?"
 msgstr ""
 
-#: tmp.tpl:154
+#: tmp.tpl:37
 msgid "Welcome to Osmose-QA"
 msgstr ""
 
-#: tmp.tpl:158
+#: tmp.tpl:41
 msgid ""
 "In no case Osmose-QA should provide you the absolute right way to map, "
 "always keep a critical eye."
 msgstr ""
 
-#: tmp.tpl:159
+#: tmp.tpl:42
 msgid "You can find help on the wiki:"
 msgstr ""
 
@@ -1670,15 +1538,15 @@ msgstr ""
 msgid "gas station, not integrated"
 msgstr ""
 
-#: tmp.tpl:109
+#: ../static/app/components/issues-list.vue:307
 msgid "delete issue"
 msgstr ""
 
-#: tmp.tpl:199
+#: tmp.tpl:82
 msgid "Issue details"
 msgstr ""
 
-#: tmp.tpl:201
+#: tmp.tpl:84
 msgid "Report based on data from date"
 msgstr ""
 
@@ -1694,41 +1562,36 @@ msgstr ""
 msgid "shop"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:233
+#: ../../tools/database/items_menu.txt:238
 msgid "specific russia"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:234
+#: ../../tools/database/items_menu.txt:239
 msgid "specific brazil"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:235
+#: ../../tools/database/items_menu.txt:240
 msgid "specific france"
 msgstr ""
 
-#: tmp.tpl:177
+#: tmp.tpl:60
 msgid "Fixed with Osmose"
 msgstr ""
 
-#: tmp.tpl:133
+#: tmp.tpl:16
 msgid "Done"
 msgstr ""
 
-#: tmp.tpl:155
+#: tmp.tpl:38
 msgid ""
 "Osmose-QA is a quality assurance tool that detects issues in OpenStreetMap "
 "data."
 msgstr ""
 
-#: tmp.tpl:156
+#: tmp.tpl:39
 msgid ""
 "It detects a very wide range of issue types. It is also useful for "
 "integrating third-party data sets by conflation."
-msgstr ""
-
-msgid ""
-"Feel free to report any problem, idea or new open data you want to add to "
-"Osmose on our Github."
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:77
@@ -1747,7 +1610,7 @@ msgstr ""
 msgid "tourism"
 msgstr ""
 
-#: tmp.tpl:157
+#: tmp.tpl:40
 msgid ""
 "Feel free to report any problem, idea or new open data you want to add to "
 "Osmose on our Github:"
@@ -1769,10 +1632,6 @@ msgstr ""
 msgid "milestone, could be integrated"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:151
-msgid "church"
-msgstr ""
-
 #: ../../tools/database/items_menu.txt:214
 msgid "viewpoint"
 msgstr ""
@@ -1783,4 +1642,99 @@ msgstr ""
 
 #: ../../tools/database/items_menu.txt:216
 msgid "bicycle infrastructure"
+msgstr ""
+
+#: ../issues.py:73 ../static/app/pages/issues/index.vue:58
+msgid "Information"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:130
+msgid "monument, megalith, museum"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:131
+msgid "monument, megalith, museum, could be integrated"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:132
+msgid "monument, megalith, museum, need update"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:151
+msgid "place of worship"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:217
+msgid "cemetery"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:218
+msgid "man made"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:219
+msgid "water infrastructure"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:220
+msgid "water"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:221
+msgid "fire station"
+msgstr ""
+
+#: ../static/app/pages/contact.vue:51
+msgid ""
+"Adding new functionality of \"Osmose Editor\", initial support of mobile "
+"device and improvement of documentation was funded by region of Aquitaine, "
+"France; part of the OpenAquiMap project leading by \"Les Petits "
+"Débrouillards d'Aquitaine\"."
+msgstr ""
+
+#: ../static/app/components/issues-list.vue:177
+msgid "delete issue #{uuid}"
+msgstr ""
+
+#: ../static/app/pages/false-positive/index.vue:32
+#: ../static/app/pages/issue/index.vue:37
+msgid "Information on issue {uuid}"
+msgstr ""
+
+#: ../static/app/pages/issues/matrix.vue:29
+msgid "Issue counts matrix"
+msgstr ""
+
+#: ../static/app/components/issues-list.vue:162
+msgid "Mark issue #{uuid} as false positive"
+msgstr ""
+
+#: ../static/app/components/issues-list.vue:170
+msgid "Mark issue #{uuid} as fixed"
+msgstr ""
+
+#: ../static/app/pages/byuser/byuser.vue:21
+msgid "Number of found issues: {count}"
+msgstr ""
+
+#: ../static/app/pages/byuser/byuser.vue:26
+msgid "Number of found issues: more than {count}"
+msgstr ""
+
+#: ../static/app/pages/byuser/byuser.vue:42
+msgid "Statistics for user {user}"
+msgstr ""
+
+#: ../static/app/components/translate.vue:15
+msgid "text"
+msgstr ""
+
+#: ../static/app/pages/byuser/byuser.vue:9
+msgid ""
+"This page shows issues on elements that were last modified by '{users}'. "
+"This doesn't means that this user is responsible for all these issues."
+msgstr ""
+
+#: ../static/app/pages/byuser/byuser.vue:4
+msgid "User statistics for {users}"
 msgstr ""
