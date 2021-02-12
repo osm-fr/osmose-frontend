@@ -64,7 +64,7 @@
     "build-dev": "webpack --mode=development",
     "clean": "rm -fr static/dist/*",
     "dev-server": "webpack-dev-server --mode=development --env.API_URL=http://localhost:20009 --env.DEV_SERVER=1 --inline --progress --colors",
-    "dev-server-public": "webpack-dev-server --mode=development --env.API_URL=http://beta.osmose.openstreetmap.fr/ --env.DEV_SERVER=1 --inline --progress --colors"
+    "dev-server-public": "webpack-dev-server --mode=development --env.API_URL=http://beta.osmose.openstreetmap.fr --env.DEV_SERVER=1 --inline --progress --colors"
   },
   "repository": {
     "type": "git",
