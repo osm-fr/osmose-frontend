@@ -83,7 +83,7 @@ def login(lang):
     if 'user' in request.session:
         del request.session['user']
         request.session.save()
-    redirect('map')
+    redirect('map/')
 
 @route('/oauth')
 def oauth_(lang):
@@ -103,7 +103,7 @@ def oauth_(lang):
         pass
     finally:
         request.session.save()
-    redirect('map')
+    redirect('map/')
 
 @route('/josm_proxy')
 def josm_proxy():

@@ -46,7 +46,7 @@ export const router = new VueRouter({
         { path: '/:lang/copyright', component: Copyright },
         { path: '/:lang/translation', component: Translation },
 
-        { path: '/:lang/map', component: Map },
+        { path: '/:lang/map/', component: Map },
 
         { path: '/:lang/error/:uuid', component: IssueIndex },
         { path: '/:lang/errors/', component: IssuesIndex, name: 'issues/open' },

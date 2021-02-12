@@ -27,6 +27,11 @@ from api.user_utils import _user_count
 from collections import defaultdict
 
 
+@route('/map')
+def errors():
+    redirect("map/?" + request.query_string)
+
+
 @route('/map/.json')
 def index(db, user, lang):
     if request.query_string:
