@@ -117,7 +117,7 @@
           </div>
           <div class="modal-body" id="save_uploading" style="display: none">
             <center>
-              <img src="~../../../images/throbbler.gif" alt="downloading" />
+              <img src="~../../../static/images/throbbler.gif" alt="downloading" />
             </center>
           </div>
           <div class="modal-footer">

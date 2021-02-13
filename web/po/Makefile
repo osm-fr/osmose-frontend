@@ -1,7 +1,7 @@
 
 PYFILES=$(shell find ../../web_api -name '*.py' -not -type l -not -path '*/externals/*' | sort)
 TPLFILES=$(shell find ../../web_api/views -name '*.tpl' | sort)
-VUEFILES=$(shell find ../static -name '*.vue' | grep -v translate-slot.vue | sort)
+VUEFILES=$(shell find ../src -name '*.vue' | grep -v translate-slot.vue | sort)
 DBFILES=../../tools/database/categories_menu.txt ../../tools/database/items_menu.txt
 
 PO:=$(wildcard *.po)

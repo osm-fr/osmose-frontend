@@ -9,7 +9,7 @@ const path = require('path');
 module.exports = (env, argv) => {
     return {
         entry: {
-            "app": "./static/app/webpack.index.js",
+            "app": "./src/webpack.index.js",
         },
         output: {
             path: path.resolve(__dirname, 'static/dist'),

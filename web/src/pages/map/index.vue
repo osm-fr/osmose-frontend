@@ -23,13 +23,13 @@
 <script>
 // --- Legacy
 import $ from "jquery";
-import { initMap } from "../../../map/map.js";
+import { initMap } from "../../../static/map/map.js";
 
 require("leaflet");
 require("leaflet/dist/leaflet.css");
 
-require("../../../map/style.css");
-require("../../../images/markers/markers-l.css");
+require("../../../static/map/style.css");
+require("../../../static/images/markers/markers-l.css");
 
 // Retro-compact hack for Leaflet.VectorGrid
 L.DomEvent.fakeStop = L.DomEvent._fakeStop;
