@@ -29,11 +29,13 @@ RUN mkdir ../node_modules && \
     cd web && \
     npm install
 
-ADD . /data/project/osmose/frontend
+ADD web /data/project/osmose/frontend/web
 RUN cd web && npm run build
 RUN cd web/po && \
     make mo && \
-    cd ..
+    cd ../..
+
+ADD . /data/project/osmose/frontend
 
 ENV LANG en_US.UTF-8
 CMD ./osmose-standalone-bottle.py

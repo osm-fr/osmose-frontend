@@ -23,7 +23,7 @@
 import bottle
 from modules import utils
 
-bottle.TEMPLATE_PATH.insert(0, './web/views/')
+bottle.TEMPLATE_PATH.insert(0, './web_api/views/')
 
 
 app = bottle.default_app()
@@ -45,7 +45,7 @@ from modules import bottle_gettext
 import os
 app.install(bottle_gettext.Plugin('osmose-frontend', os.path.join("web", "po", "mo"), utils.allowed_languages))
 
-from web import app as web_app
+from web_api import app as web_app
 for l in utils.allowed_languages:
   app.mount('/' + l, web_app.app)
 

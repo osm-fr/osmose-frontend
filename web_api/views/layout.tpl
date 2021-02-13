@@ -9,8 +9,8 @@
   <meta name="description" id="description">
   <meta name="viewport" id="viewport">
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-%from web.assets import assets
-%from web.app import app
+%from web_api.assets import assets
+%from web_api.app import app
   <script type="text/javascript" src="{{app.get_url('static', filename='dist/' + assets['app'])}}"></script>
   <link rel="icon" id="favicon" type="image/png" href="{{app.get_url('static', filename='favicon.png')}}">
 </head>

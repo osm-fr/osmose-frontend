@@ -42,7 +42,7 @@ def setup_request():
 
 session_opts = {
     'session.type': 'file',
-    'session.data_dir': './web/session/',
+    'session.data_dir': './web_api/session/',
     'session.cookie_expires': False,
 }
 app_middleware = beaker.middleware.SessionMiddleware(bottle.default_app(), session_opts)
