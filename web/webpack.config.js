@@ -12,9 +12,9 @@ module.exports = (env, argv) => {
             "app": "./src/webpack.index.js",
         },
         output: {
-            path: path.resolve(__dirname, 'static/dist'),
+            path: path.resolve(__dirname, 'public/assets'),
             filename: "[name]/webpack.bundle-[hash].js",
-            publicPath: env && env.DEV_SERVER ? "/" : "/en/dist/",
+            publicPath: env && env.DEV_SERVER ? "/" : "/en/assets/",
         },
         devtool: argv.mode === 'development' ? 'source-map' : void 0,
         resolve: {
@@ -59,7 +59,7 @@ module.exports = (env, argv) => {
                     use: [
                         { loader: "style-loader" },
                         { loader: "css-loader" },
-                        { loader: "sprite-loader", options: { name: "[hash].png", outputPath: "images/", cssImagePath: "/en/dist/images/", padding: 0 } }
+                        { loader: "sprite-loader", options: { name: "[hash].png", outputPath: "images/", cssImagePath: "/en/assets/images/", padding: 0 } }
                     ]
                 },
                 { test: /\.png$/, loaders: ["base64-image-loader"] },
@@ -118,7 +118,7 @@ module.exports = (env, argv) => {
             ])
         })(),
         devServer: {
-            contentBase: "./static/dist/",
+            contentBase: "./public/assets/",
             historyApiFallback: true,
             open: true,
             openPage: "en/",

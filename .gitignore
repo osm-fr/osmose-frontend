@@ -14,5 +14,5 @@ web/static/osmose-coverage.topojson.pbf*
 web/node_modules
 osmose-frontend-venv
 
-web/**/webpack.bundle-*.js*
+web/public/assets
 web/webpack.stats.json
