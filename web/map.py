@@ -45,6 +45,12 @@ def index(db, user, lang):
     item_levels = {'1': set(), '2': set(), '3': set()}
     for categ in categories:
         for item in categ['items']:
+            del(item['number'])
+            for index, classs in enumerate(item['class']):
+                item['class'][index] = {
+                    'class': classs['class'],
+                    'title': classs['title'],
+                }
             for level in item['levels']:
                 item_levels[str(level['level'])].add(item['item'])
             if item['tags']:
