@@ -11,7 +11,7 @@
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 %from web_api.assets import assets
 %from web_api.app import app
-  <script type="text/javascript" src="{{app.get_url('static', filename='dist/' + assets['app'])}}"></script>
+  <script type="text/javascript" src="{{app.get_url('static', filename='assets/' + assets['app'])}}"></script>
   <link rel="icon" id="favicon" type="image/png" href="{{app.get_url('static', filename='favicon.png')}}">
 </head>
 <body>
