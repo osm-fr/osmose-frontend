@@ -19,7 +19,7 @@
     <ul>
       <li>
         <translate-slot>
-          <span>Translation is done on {Transifex}</span>
+          <span translate>Translation is done on {Transifex}</span>
           <template v-slot:Transifex>
             <a href="http://www.transifex.com/projects/p/osmose/">Transifex</a>
           </template>
@@ -69,7 +69,9 @@
     <ul>
       <li>
         <translate-slot>
-          <span>You can create a new language directly on {Transifex}.</span>
+          <span translate>
+            You can create a new language directly on {Transifex}.
+          </span>
           <template v-slot:Transifex>
             <a href="http://www.transifex.com/projects/p/osmose/">Transifex.</a>
           </template>
@@ -77,7 +79,7 @@
       </li>
       <li>
         <translate-slot>
-          <span>
+          <span translate>
             For new countries, we can be contacted through a direct email to
             {email}.
           </span>
@@ -94,7 +96,7 @@
     <ul>
       <li>
         <translate-slot>
-          <span>
+          <span translate>
             {osmose-frontend} can be used to report any issue with translations.
           </span>
           <template v-slot:osmose-frontend>

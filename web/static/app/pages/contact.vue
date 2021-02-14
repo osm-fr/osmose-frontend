@@ -3,7 +3,7 @@
     <h1><translate>Bug tracker</translate></h1>
     <p>
       <translate-slot>
-        <span>
+        <span translate>
           Bug should be reported on {osmose-frontend} for issues around the
           website, or on {osmose-backend} for issues on the reported issues on
           OSM data, or for suggestion about analyses.
@@ -40,7 +40,7 @@
     <h1><translate>Development</translate></h1>
     <p>
       <translate-slot>
-        <span>
+        <span translate>
           Development of Osmose is made as free software by {volunteers}.
         </span>
         <template v-slot:volunteers>
@@ -79,7 +79,9 @@
     <h1><translate>Contacting maintainers</translate></h1>
     <p>
       <translate-slot>
-        <span>We can be contacted through a direct email to {email}.</span>
+        <span translate>
+          We can be contacted through a direct email to {email}.
+        </span>
         <template v-slot:email>
           <a href="mailto:osmose-contact@openstreetmap.fr">
             osmose-contact@openstreetmap.fr
@@ -89,7 +91,9 @@
     </p>
     <p>
       <translate-slot>
-        <span>Keep in touch by watching at {osmose_qa} on twitter.</span>
+        <span translate>
+          Keep in touch by watching at {osmose_qa} on twitter.
+        </span>
         <template v-slot:osmose_qa>
           <a href="https://twitter.com/osmose_qa">@osmose_qa</a>
         </template>
