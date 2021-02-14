@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2021-02-10 19:21+0000\n"
+"PO-Revision-Date: 2021-02-14 20:33+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -220,46 +220,46 @@ msgstr "セット"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
 #: ../static/app/components/issues-list.vue:22
-#: ../static/app/pages/issues/index.vue:106
+#: ../static/app/pages/issues/index.vue:105
 msgid "class (abbreviation)"
 msgstr "クラス"
 
-#: ../static/app/components/issues-list.vue:17
+#: ../static/app/components/issues-list.vue:18
 #: ../static/app/pages/issues/index.vue:101
 msgid "item"
 msgstr "項目"
 
-#: ../static/app/pages/issues/index.vue:110
+#: ../static/app/pages/issues/index.vue:111
 msgid "title"
 msgstr "件名"
 
-#: ../static/app/pages/issues/index.vue:113
+#: ../static/app/pages/issues/index.vue:114
 msgid "count"
 msgstr "回数"
 
-#: ../static/app/pages/issues/index.vue:157
+#: ../static/app/pages/issues/index.vue:158
 msgid "Total"
 msgstr "合計"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for level
-#: ../static/app/components/issues-list.vue:13
+#: ../static/app/components/issues-list.vue:12
 msgid "level (abbreviation)"
 msgstr "Lv"
 
-#: ../static/app/components/issues-list.vue:27
+#: ../static/app/components/issues-list.vue:29
 msgid "position (abbreviation)"
 msgstr "位置"
 
-#: ../static/app/components/issues-list.vue:30
+#: ../static/app/components/issues-list.vue:32
 msgid "elements (abbreviation)"
 msgstr "要素"
 
-#: ../static/app/components/issues-list.vue:34
+#: ../static/app/components/issues-list.vue:36
 msgid "subtitle"
 msgstr "サブタイトル"
 
 #: ../../tools/database/items_menu.txt:57
-#: ../static/app/components/issues-list.vue:38
+#: ../static/app/components/issues-list.vue:40
 msgid "date"
 msgstr "日付"
 
@@ -390,7 +390,7 @@ msgstr "Wikiページ"
 msgid "Osmose pages"
 msgstr "Osmoseの各ページ"
 
-#: ../static/app/pages/translation.vue:81
+#: ../static/app/pages/translation.vue:83
 msgid "Bug tracking system"
 msgstr "バグ追跡システム"
 
@@ -905,7 +905,7 @@ msgstr "統合可能な薬局"
 msgid "gas station"
 msgstr "ガソリンスタンド"
 
-#: ../static/app/components/issues-list.vue:253
+#: ../static/app/components/issues-list.vue:251
 msgid "position"
 msgstr "位置"
 
@@ -1020,12 +1020,12 @@ msgid ""
 "contributor of the relevant erroneous elements."
 msgstr "以下のフォームにあなたのOSMユーザー名を入力することで、あなたのユーザー名に結びつけられた問題を見ることができます。なお、アルゴリズムは完全ではなく、Osmoseはエラーのある要素における最終編集者のみをチェックします。"
 
-#: ../static/app/pages/issues/index.vue:167
-#: ../static/app/pages/issues/index.vue:170
+#: ../static/app/pages/issues/index.vue:168
+#: ../static/app/pages/issues/index.vue:171
 msgid "Show more issues"
 msgstr "さらに表示"
 
-#: ../static/app/components/issues-list.vue:249
+#: ../static/app/components/issues-list.vue:247
 msgid "information on issue"
 msgstr "関連情報"
 
@@ -1298,7 +1298,7 @@ msgstr "国"
 msgid "Item"
 msgstr "項目"
 
-#: ../static/app/components/issues-list.vue:301
+#: ../static/app/components/issues-list.vue:299
 msgid "False positive / Done"
 msgstr "誤検出/修正済み"
 
@@ -1541,7 +1541,7 @@ msgstr "要更新・下水処理場"
 msgid "gas station, not integrated"
 msgstr "未統合のガソリンスタンド"
 
-#: ../static/app/components/issues-list.vue:307
+#: ../static/app/components/issues-list.vue:305
 msgid "delete issue"
 msgstr "問題を削除"
 
@@ -1740,4 +1740,40 @@ msgstr ""
 
 #: ../static/app/pages/byuser/byuser.vue:4
 msgid "User statistics for {users}"
+msgstr ""
+
+#: ../static/app/pages/translation.vue:87
+msgid "{osmose-frontend} can be used to report any issue with translations."
+msgstr ""
+
+#: ../static/app/pages/contact.vue:5
+msgid ""
+"Bug should be reported on {osmose-frontend} for issues around the website, "
+"or on {osmose-backend} for issues on the reported issues on OSM data, or for"
+" suggestion about analyses."
+msgstr ""
+
+#: ../static/app/pages/contact.vue:42
+msgid "Development of Osmose is made as free software by {volunteers}."
+msgstr ""
+
+#: ../static/app/pages/translation.vue:70
+msgid ""
+"For new countries, we can be contacted through a direct email to {email}."
+msgstr ""
+
+#: ../static/app/pages/contact.vue:83
+msgid "Keep in touch by watching at {osmose_qa} on twitter."
+msgstr ""
+
+#: ../static/app/pages/translation.vue:21
+msgid "Translation is done on {Transifex}"
+msgstr ""
+
+#: ../static/app/pages/contact.vue:71
+msgid "We can be contacted through a direct email to {email}."
+msgstr ""
+
+#: ../static/app/pages/translation.vue:60
+msgid "You can create a new language directly on {Transifex}."
 msgstr ""
