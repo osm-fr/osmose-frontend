@@ -14,7 +14,7 @@ module.exports = (env, argv) => {
         output: {
             path: path.resolve(__dirname, 'public/assets'),
             filename: "[name]/webpack.bundle-[hash].js",
-            publicPath: env && env.DEV_SERVER ? "/" : "/en/assets/",
+            publicPath: env && env.DEV_SERVER ? "/" : "/assets/",
         },
         devtool: argv.mode === 'development' ? 'source-map' : void 0,
         resolve: {
@@ -59,7 +59,7 @@ module.exports = (env, argv) => {
                     use: [
                         { loader: "style-loader" },
                         { loader: "css-loader" },
-                        { loader: "sprite-loader", options: { name: "[hash].png", outputPath: "images/", cssImagePath: "/en/assets/images/", padding: 0 } }
+                        { loader: "sprite-loader", options: { name: "[hash].png", outputPath: "images/", cssImagePath: "/assets/images/", padding: 0 } }
                     ]
                 },
                 { test: /\.png$/, loaders: ["base64-image-loader"] },

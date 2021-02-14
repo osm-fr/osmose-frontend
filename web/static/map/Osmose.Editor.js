@@ -55,7 +55,7 @@ const OsmoseEditor = L.Control.Sidebar.extend({
       return;
     }
 
-    this._$container.html("<center><img src='" + API_URL + "/en/images/throbbler.gif' alt='downloading'></center>");
+    this._$container.html("<center><img src='" + API_URL + "/mages/throbbler.gif' alt='downloading'></center>");
     const url = API_URL + `/api/0.3/issue/${error}/fresh_elems${fix ? `/${fix}` : ''}`;
     $.ajax({
       url,

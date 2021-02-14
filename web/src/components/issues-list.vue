@@ -212,7 +212,7 @@ export default Vue.extend({
       return true;
     },
     getMakerImgSrc: (res) => {
-      return API_URL + `/en/images/markers/marker-l-${res.item}.png`;
+      return API_URL + `/images/markers/marker-l-${res.item}.png`;
     },
     issue_action: (event) => {
       $("#load").fadeIn();

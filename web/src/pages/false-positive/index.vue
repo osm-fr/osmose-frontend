@@ -41,7 +41,7 @@ export default Vue.extend({
 
         const favicon = document.getElementById("favicon");
         favicon.href =
-          URL_API + `/en/images/markers/marker-l-${this.marker.item}.png`;
+          URL_API + `/images/markers/marker-l-${this.marker.item}.png`;
       });
   },
 });

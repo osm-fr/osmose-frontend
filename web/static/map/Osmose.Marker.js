@@ -27,7 +27,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
         issues(properties, zoom) {
           return {
             icon: L.icon({
-              iconUrl: API_URL + `/en/images/markers/marker-b-${properties.item}.png`,
+              iconUrl: API_URL + `/images/markers/marker-b-${properties.item}.png`,
               iconSize: [17, 33],
               iconAnchor: [8, 33],
             }),

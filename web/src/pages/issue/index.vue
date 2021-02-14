@@ -165,7 +165,7 @@ export default Vue.extend({
 
         const favicon = document.getElementById("favicon");
         favicon.href =
-          API_URL + `/en/images/markers/marker-l-${this.marker.item}.png`;
+          API_URL + `/images/markers/marker-l-${this.marker.item}.png`;
       })
       .catch((error) => {
         this.error = error;
