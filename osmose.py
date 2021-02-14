@@ -63,6 +63,10 @@ from api import app as api_app
 web_app.app.mount('api/0.2/', api_app.app_0_2)
 app.mount('/api/0.3/', api_app.app_0_3)
 
+@bottle.route('/<filename:path>', name='static')
+def static(filename):
+    return bottle.static_file(filename, root='web/public')
+
 app_middleware = web_app.app_middleware
 
 import modules.osmose_bottle

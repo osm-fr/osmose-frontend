@@ -159,10 +159,6 @@ from . import control
 def vue(db, uuid=None, username=None, source=None):
     return template('layout')
 
-@route('/<filename:path>', name='static')
-def static(filename):
-    return bottle.static_file(filename, root='web/static')
-
 
 bottle.default_app.pop()
 

@@ -10,9 +10,8 @@
   <meta name="viewport" id="viewport">
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 %from web_api.assets import assets
-%from web_api.app import app
-  <script type="text/javascript" src="{{app.get_url('static', filename='assets/' + assets['app'])}}"></script>
-  <link rel="icon" id="favicon" type="image/png" href="{{app.get_url('static', filename='favicon.png')}}">
+  <script type="text/javascript" src="/assets/{{assets['app']}}"></script>
+  <link rel="icon" id="favicon" type="image/png" href="/favicon.png">
 </head>
 <body>
 <div id="app">Loading...</div>
