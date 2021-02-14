@@ -87,36 +87,24 @@ module.exports = (env, argv) => {
                 }),
             ]
         },
-        plugins: (function () {
-            const plugins = []
-            if (argv.mode === 'development') {
-                plugins.push(new HtmlWebpackPlugin({
-                    title: "app",
-                    chunks: ["app"],
-                    inject: "body", // Inject all scripts into the body
-                    filename: "index.html"
-                    }))
-                plugins.push(new HtmlWebpackRootPlugin("app"))
-            }
-            return plugins.concat([
-                new webpack.ProvidePlugin({
-                    $: "jquery",
-                    jQuery: "jquery",
-                    Mustache: "mustache",
-                }),
-                new webpack.DefinePlugin({
-                    API_URL: JSON.stringify(env && env.API_URL || '')
-                }),
-                new VueLoaderPlugin(),
-                function() {
-                    this.plugin("done", function(stats) {
-                        require("fs").writeFileSync(
-                            __dirname + "/webpack.stats.json",
-                            JSON.stringify(stats.toJson().assetsByChunkName));
-                    });
-                }
-            ])
-        })(),
+        plugins: [
+            new HtmlWebpackPlugin({
+                template: "src/index.html",
+                chunks: ["app"],
+                inject: "body", // Inject all scripts into the body
+                filename: "index.html"
+            }),
+            new HtmlWebpackRootPlugin("app"),
+            new webpack.ProvidePlugin({
+                $: "jquery",
+                jQuery: "jquery",
+                Mustache: "mustache",
+            }),
+            new webpack.DefinePlugin({
+                API_URL: JSON.stringify(env && env.API_URL || '')
+            }),
+            new VueLoaderPlugin(),
+        ],
         devServer: {
             contentBase: "./public/assets/",
             historyApiFallback: true,

@@ -15,4 +15,3 @@ web/node_modules
 osmose-frontend-venv
 
 web/public/assets
-web/webpack.stats.json

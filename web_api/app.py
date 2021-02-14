@@ -27,7 +27,6 @@ from .tool import oauth, xmldict
 import re
 import beaker.middleware
 import os
-from . import assets
 from modules.osmose_bottle import uuid_filter, ext_filter
 from modules import bottle_pgsql
 from modules import bottle_cors
@@ -47,8 +46,6 @@ session_opts = {
 }
 app_middleware = beaker.middleware.SessionMiddleware(bottle.default_app(), session_opts)
 
-
-assets.init_assets()
 
 app = bottle.default_app()
 
@@ -157,7 +154,7 @@ from . import control
 @route('/control/update_summary')
 @route('/control/update_summary_by_analyser')
 def vue(db, uuid=None, username=None, source=None):
-    return template('layout')
+    return bottle.static_file("assets/index.html", root='web/public')
 
 
 bottle.default_app.pop()
