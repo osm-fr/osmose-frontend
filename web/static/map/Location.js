@@ -1,4 +1,5 @@
 require('leaflet');
+import IconLocation from '../images/location.png';
 
 
 L.Control.Location = L.Control.extend({
@@ -29,8 +30,8 @@ L.Control.Location = L.Control.extend({
 
   _createButton(html, title, className, container, fn, context) {
     const link = L.DomUtil.create('a', className, container);
-    link.style = 'background-image: url(' + API_URL + '/images/location.png)'; // Firefox
-    link.style['background-image'] = 'url(' + API_URL + '/images/location.png)'; // Chrome
+    link.style = `background-image: url(${IconLocation})`; // Firefox
+    link.style[`background-image'] = 'url(${IconLocation})`]; // Chrome
     link.innerHTML = html;
     link.href = '#';
     link.title = title;
