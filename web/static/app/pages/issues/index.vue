@@ -132,8 +132,11 @@
           </th>
           <th scope="col" title="class">
             <sort-link name="class">
-              <!-- {{ TRANSLATORS: this should be replaced by a abbreviation for class }} -->
-              <translate>class (abbreviation)</translate>
+              <translate
+                translate-comment="this should be replaced by a abbreviation for class"
+              >
+                class (abbreviation)
+              </translate>
             </sort-link>
           </th>
           <th scope="col">
