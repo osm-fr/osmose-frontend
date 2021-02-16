@@ -58,11 +58,6 @@
           <translate>Osmose QA main page</translate>
         </a>
       </li>
-      <li>
-        <a :href="$t('http://wiki.openstreetmap.org/wiki/Osmose/errors')">
-          <translate>Documentation on reported issues</translate>
-        </a>
-      </li>
     </ul>
 
     <h2><translate>For new language or countries</translate></h2>

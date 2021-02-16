@@ -44,7 +44,9 @@
           Development of Osmose is made as free software by {volunteers}.
         </span>
         <template v-slot:volunteers>
-          <router-link to="copyright">volunteers</router-link>
+          <router-link to="copyright">
+            <translate>volunteers</translate>
+          </router-link>
         </template>
       </translate-slot>
     </p>
@@ -59,7 +61,7 @@
     <p>
       <translate>
         The servers analysing data are provided by OpenStreetMap-France and some
-        others by contributors around the world. The servers for north-america
+        others by contributors around the world. The servers for North America
         and other areas are funded by Mapbox.
       </translate>
     </p>
@@ -92,7 +94,7 @@
     <p>
       <translate-slot>
         <span translate>
-          Keep in touch by watching at {osmose_qa} on twitter.
+          Keep in touch by watching at {osmose_qa} on Twitter.
         </span>
         <template v-slot:osmose_qa>
           <a href="https://twitter.com/osmose_qa">@osmose_qa</a>
