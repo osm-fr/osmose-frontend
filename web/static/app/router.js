@@ -25,8 +25,6 @@ const IssuesMatrix = () =>
 
 const ControlUpdate = () =>
     import ( /* webpackChunkName: "control" */ './pages/control/update.vue');
-const ControlUpdates = () =>
-    import ( /* webpackChunkName: "control" */ './pages/control/updates.vue');
 const ControlUpdateMatrix = () =>
     import ( /* webpackChunkName: "control" */ './pages/control/update_matrix.vue');
 const ControlUpdateSummary = () =>
@@ -54,7 +52,6 @@ export const router = new VueRouter({
         { path: '/:lang/byuser', component: ByUserIndex },
         { path: '/:lang/byuser/:user', component: ByUserList },
 
-        { path: '/:lang/control/update', component: ControlUpdates },
         { path: '/:lang/control/update/:source_id', component: ControlUpdate },
         { path: '/:lang/control/update_matrix', component: ControlUpdateMatrix },
         { path: '/:lang/control/update_summary', component: ControlUpdateSummary },

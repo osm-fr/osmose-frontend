@@ -152,7 +152,6 @@ from . import control
 @route('/issues/matrix')
 @route('/byuser/')
 @route('/byuser/<username>')
-@route('/control/update')
 @route('/control/update/<source:int>')
 @route('/control/update_matrix')
 @route('/control/update_summary')
