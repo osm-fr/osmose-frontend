@@ -12,8 +12,7 @@
       <b><a target="_blank" href="{{main_website}}{%type%}/{%id%}" title="{{_('Show Object on {where}').format(where=main_website)}}">{%type%} {%id%}</a></b>
   {%/infos%}
   {%#relation%}
-      <a target="_blank" href="http://analyser.openstreetmap.fr/cgi-bin/index.py?relation={%id%}">analyse1</a>
-      <a target="_blank" href="http://polygons.openstreetmap.fr/~osmbin/analyse-relation-open.py?{%id%}">analyse2</a>
+      <a target="_blank" href="http://polygons.openstreetmap.fr/?id={%id%}">analyser</a>
   {%/relation%}
   {%#node%}
       <a href="../josm_proxy?load_object?objects=n{%id%}" target="hiddenIframe" class="josm" title="{{_('Edit Object with {where}').format(where='JOSM')}}">josm</a>

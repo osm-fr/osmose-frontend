@@ -61,7 +61,6 @@ def index(db, user, lang):
     # TRANSLATORS: link to help in appropriate language
     if user:
         urls.append(("byuser", _("Issues by user"), "../byuser/"))
-    urls.append(("relation_analyser", _("Relation analyser"), "http://analyser.openstreetmap.fr/"))
     # TRANSLATORS: link to source code
     urls.append(("statistics", _("Statistics"), "../control/update_matrix"))
 
