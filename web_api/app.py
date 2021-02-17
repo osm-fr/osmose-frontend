@@ -24,7 +24,6 @@ import bottle
 from bottle import route, view, template, error, redirect, request, hook
 from modules import utils
 from .tool import oauth, xmldict
-import re
 import beaker.middleware
 import os
 from modules.osmose_bottle import uuid_filter, ext_filter
@@ -57,7 +56,6 @@ app = bottle.Bottle()
 bottle.default_app.push(app)
 
 app.install(bottle_pgsql.Plugin(utils.db_string))
-# Temporary allow CORS on web
 app.install(bottle_cors.Plugin(allow_origin = '*', preflight_methods = ['GET', 'POST', 'PUT', 'DELETE']))
 app.install(bottle_gettext.Plugin('osmose-frontend', os.path.join("web", "po", "mo"), utils.allowed_languages))
 app.install(bottle_user.Plugin())
@@ -116,17 +114,10 @@ def josm_proxy():
 def enable_cors_generic_route():
     pass
 
-_404_marker_b = re.compile('(.*/images/markers/marker-b-)[0-9]+(.png)')
-
 @error(404)
 @view('404')
 def error404(error):
-    if 'map/issues/' in request.path:
-        return ""
-    elif 'images/markers/marker-b-' in request.path:
-        redirect(_404_marker_b.sub(r'\g<1>0\g<2>', request.urlparts.path))
-    else:
-        return {}
+    return {}
 
 from . import byuser
 from . import issue

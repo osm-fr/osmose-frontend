@@ -22,6 +22,7 @@
 
 import bottle
 from modules import utils
+import os.path
 
 bottle.TEMPLATE_PATH.insert(0, './web_api/views/')
 
@@ -62,6 +63,13 @@ app.mount('/control/', control_app.app)
 from api import app as api_app
 web_app.app.mount('api/0.2/', api_app.app_0_2)
 app.mount('/api/0.3/', api_app.app_0_3)
+
+@bottle.route('/images/markers/<filename:path>.png')
+def marker(filename):
+    if os.path.isfile('web/static' + bottle.request.path):
+        return bottle.static_file(bottle.request.path, root='web/static')
+    else:
+        return bottle.static_file('/images/markers/marker-b-0.png', root='web/static')
 
 @bottle.route('/<filename:path>', name='static')
 def static(filename):
