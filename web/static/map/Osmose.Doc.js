@@ -1,11 +1,8 @@
 require('leaflet');
 require('leaflet-sidebar');
 require('leaflet-sidebar/src/L.Control.Sidebar.css');
-const Cookies = require('js-cookie');
-const Marked = require('marked');
-const path = require('path');
 
-require('./Osmose.Doc.css');
+import ExternalVueAppEvent from '../../src/ExternalVueAppEvent.js'
 
 
 export const OsmoseDoc = L.Control.Sidebar.extend({
@@ -16,7 +13,6 @@ export const OsmoseDoc = L.Control.Sidebar.extend({
   },
 
   initialize(placeholder, options) {
-    this._$container = $(`#${placeholder}`);
     L.Control.Sidebar.prototype.initialize.call(this, placeholder, options);
 
     let show = localStorage.getItem('doc.show');
@@ -52,45 +48,7 @@ export const OsmoseDoc = L.Control.Sidebar.extend({
   },
 
   _load(item, classs) {
-    if (item == this._last_item && classs == this._last_classs) {
-      return;
-    }
-
-    const template = $('#docTpl').html().replace('&amp;', '&');
-    this._$container.html('');
-
-    $.ajax({
-      url: API_URL + `/api/0.3/items/${item}/class/${classs}?langs=auto`,
-      dataType: 'json',
-      success: (data) => {
-        this._last_item = item;
-        this._last_classs = classs;
-
-        data = data['categories'][0]['items'][0]['class'][0];
-
-        var resource_url;
-        try {
-          if (data['resource']) {
-            resource_url = new URL(data['resource']);
-          }
-        } catch { }
-
-        data = {
-          title: data['title'] && data['title']['auto'],
-          detail: data['detail'] && Marked(data['detail']['auto']),
-          fix: data['fix'] && Marked(data['fix']['auto']),
-          trap: data['trap'] && Marked(data['trap']['auto']),
-          example: data['example'] && Marked(data['example']['auto']),
-          source_link: data['source'],
-          source_title: data['source'] && path.basename(data['source']),
-          resource_link: data['resource'],
-          resource_title: resource_url ? `${resource_url.protocol}//${resource_url.host}` : data['resource'],
-        };
-
-        const content = Mustache.render(template, data);
-        this._$container.html(content);
-      }
-    });
+    ExternalVueAppEvent.$emit("load-doc", item, classs);
   },
 });
 

@@ -9,7 +9,6 @@
         :timestamp="timestamp"
       />
       <items :tags="tags" :categories="categories" />
-      <doc-component />
       <doc />
       <div id="map"></div>
       <editor-component :user="user" />
@@ -40,7 +39,6 @@ import Vue from "vue";
 
 import Top from "./top.vue";
 import Items from "./items.vue";
-import DocComponent from "./doc-component.vue";
 import Doc from "./doc.vue";
 import EditorComponent from "./editor-component.vue";
 import Editor from "./editor.vue";
@@ -62,7 +60,6 @@ export default Vue.extend({
   components: {
     Top,
     Items,
-    DocComponent,
     Doc,
     EditorComponent,
     Editor,
