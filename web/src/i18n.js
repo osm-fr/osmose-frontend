@@ -21,6 +21,10 @@ function setI18nLanguage(lang) {
 }
 
 export function loadLanguageAsync(lang) {
+    if (!lang) {
+        return Promise.resolve();
+    }
+
     // If the same language
     if (i18n.locale === lang) {
         return Promise.resolve(setI18nLanguage(lang))
@@ -32,7 +36,7 @@ export function loadLanguageAsync(lang) {
     }
 
     // If the language hasn't been loaded yet
-    return import ( /* webpackChunkName: "lang-[request]" */ `../po/${lang}.po`).then(
+    return import( /* webpackChunkName: "lang-[request]" */ `../po/${lang}.po`).then(
         messages => {
             i18n.setLocaleMessage(lang, messages.default)
             loadedLanguages.push(lang)

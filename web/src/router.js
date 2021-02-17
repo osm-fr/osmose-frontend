@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import NotFound from './components/404.vue'
 
 const Index = () =>
     import ( /* webpackChunkName: "index" */ './pages/index.vue');
@@ -61,5 +62,7 @@ export const router = new VueRouter({
         { path: '/:lang/control/update_matrix', component: ControlUpdateMatrix },
         { path: '/:lang/control/update_summary', component: ControlUpdateSummary },
         { path: '/:lang/control/update_summary_by_analyser', component: ControlUpdateSummaryByAanalyser },
+
+        { path: '*', component: NotFound }
     ],
 });
