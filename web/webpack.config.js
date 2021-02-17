@@ -71,7 +71,8 @@ module.exports = (env, argv) => {
                     use: [{
                         loader: "po-loader",
                         options: {
-                            format: "mf"
+                            format: "mf",
+                            "fallback-to-msgid": true,
                         }
                     }]
                 },
