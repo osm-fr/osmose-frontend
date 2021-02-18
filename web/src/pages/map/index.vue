@@ -67,43 +67,55 @@ export default Vue.extend({
   },
   mounted() {
     this.$refs.topProgress.start();
-    fetch(
-      API_URL + window.location.pathname + ".json" + window.location.search,
-      {
-        headers: new Headers({
-          "Accept-Language": this.$route.params.lang,
-        }),
+    this.setData().then(() => {
+      this.$refs.topProgress.done();
+    });
+  },
+  watch: {
+    $route(to, from) {
+      if (to.params.lang != from.params.lang) {
+        this.setData();
       }
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        this.$refs.topProgress.done();
-
-        // Legacy global variables
-        window.itemLevels = response.item_levels;
-        window.itemTags = response.item_tags;
-        window.remoteUrlRead = response.remote_url_read;
-        window.API_URL = API_URL;
-
-        document.title = "Osmose";
-        const description = document.getElementById("description");
-        if (description) {
-          description.content = this.$t(
-            "Control, verification and correction of {project} issues",
-            { project: response.main_project }
-          );
+    },
+  },
+  methods: {
+    setData() {
+      return fetch(
+        API_URL + window.location.pathname + ".json" + window.location.search,
+        {
+          headers: new Headers({
+            "Accept-Language": this.$route.params.lang,
+          }),
         }
-        const viewport = document.getElementById("viewport");
-        if (viewport) {
-          viewport.content =
-            "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
-        }
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          // Legacy global variables
+          window.itemLevels = response.item_levels;
+          window.itemTags = response.item_tags;
+          window.remoteUrlRead = response.remote_url_read;
+          window.API_URL = API_URL;
 
-        Object.assign(this, response);
-        this.$nextTick(() => {
-          initMap();
+          document.title = "Osmose";
+          const description = document.getElementById("description");
+          if (description) {
+            description.content = this.$t(
+              "Control, verification and correction of {project} issues",
+              { project: response.main_project }
+            );
+          }
+          const viewport = document.getElementById("viewport");
+          if (viewport) {
+            viewport.content =
+              "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
+          }
+
+          Object.assign(this, response);
+          this.$nextTick(() => {
+            initMap();
+          });
         });
-      });
+    },
   },
 });
 </script>
