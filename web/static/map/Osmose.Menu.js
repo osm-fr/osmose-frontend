@@ -17,7 +17,12 @@ export const OsmoseMenu = L.Control.Sidebar.extend({
   initialize(placeholder, permalink, params, options) {
     this._$container = $(`#${placeholder}`);
     this._permalink = permalink;
+    this._params = params;
 
+    L.Control.Sidebar.prototype.initialize.call(this, placeholder, options);
+  },
+
+  init() {
     $("div#tests input[type='checkbox']").change((event) => {
       this._checkbox_click(event.currentTarget);
     });
@@ -41,11 +46,10 @@ export const OsmoseMenu = L.Control.Sidebar.extend({
       return false;
     });
 
-    this._setParams({ params });
+    this._setParams({ params: this._params });
     this._change_tags_level_fixable();
     this._countItemAll();
 
-    L.Control.Sidebar.prototype.initialize.call(this, placeholder, options);
     this._permalink.on('update', this._setParams, this);
   },
 

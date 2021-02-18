@@ -103,7 +103,8 @@
       >
         <router-link to="../control/update_summary">
           {{ $t("Delay:") }}
-          <time-ago :datetime="timestamp" tooltip />
+          <time-ago v-if="timestamp" :datetime="timestamp" tooltip />
+          <span v-else>-</span>
         </router-link>
       </li>
 

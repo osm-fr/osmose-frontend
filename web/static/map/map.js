@@ -140,6 +140,8 @@ export function initMap() {
   map.on('zoomend', activeMenu);
   map.on('moveend', activeMenu);
   activeMenu();
+
+  return menu;
 }
 
 export { initMap as default };

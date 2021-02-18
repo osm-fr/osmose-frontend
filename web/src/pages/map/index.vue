@@ -66,6 +66,10 @@ export default Vue.extend({
     Popup,
   },
   mounted() {
+    // FIXME - Hardcode legacy to avoind waiting for JSON to init the map
+    window.remoteUrlRead = "https://www.openstreetmap.org/";
+    this._menu = initMap();
+
     this.$refs.topProgress.start();
     this.setData().then(() => {
       this.$refs.topProgress.done();
@@ -93,7 +97,6 @@ export default Vue.extend({
           // Legacy global variables
           window.itemLevels = response.item_levels;
           window.itemTags = response.item_tags;
-          window.remoteUrlRead = response.remote_url_read;
           window.API_URL = API_URL;
 
           document.title = "Osmose";
@@ -112,7 +115,7 @@ export default Vue.extend({
 
           Object.assign(this, response);
           this.$nextTick(() => {
-            initMap();
+            this._menu.init();
           });
         });
     },

@@ -9,25 +9,21 @@ export default Vue.extend({
     opacity: { default: 1 },
   },
   render: function (createElement) {
-    if (this.v) {
-      return createElement(
-        this.$vnode.data.tag,
-        {
-          class:
-            this.v > this.error
-              ? "delay-error"
-              : this.v > this.warning
-              ? "delay-warning"
-              : null,
-          attrs: {
-            style: `background-opacity: ${this.opacity}`,
-          },
+    return createElement(
+      this.$vnode.data.tag,
+      {
+        class:
+          this.v > this.error
+            ? "delay-error"
+            : this.v > this.warning
+            ? "delay-warning"
+            : null,
+        attrs: {
+          style: `background-opacity: ${this.opacity}`,
         },
-        this.$slots.default
-      );
-    } else {
-      return createElement(this.$vnode.data.tag);
-    }
+      },
+      this.$slots.default
+    );
   },
 });
 </script>
