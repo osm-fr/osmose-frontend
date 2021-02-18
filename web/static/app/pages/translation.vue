@@ -68,7 +68,7 @@
             You can create a new language directly on {Transifex}.
           </span>
           <template v-slot:Transifex>
-            <a href="http://www.transifex.com/projects/p/osmose/">Transifex.</a>
+            <a href="http://www.transifex.com/projects/p/osmose/">Transifex</a>
           </template>
         </translate-slot>
       </li>
