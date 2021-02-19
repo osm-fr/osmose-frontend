@@ -10,6 +10,7 @@ const Cookies = require('js-cookie');
 
 require('./Osmose.Marker.css');
 import IconLimit from '../images/limit.png';
+import IconThrobbler from '../images/throbbler.gif';
 
 
 const OsmoseMarker = L.VectorGrid.Protobuf.extend({
@@ -161,7 +162,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
       autoPan: false,
       offset: L.point(0, 24),
     }).setLatLng(initialLatlng)
-      .setContent("<center><img src='../images/throbbler.gif' alt='downloading'></center>")
+      .setContent(`<center><img src='${IconThrobbler}' alt='downloading'></center>`)
       .openOn(this._map);
     this.popup = popup;
 

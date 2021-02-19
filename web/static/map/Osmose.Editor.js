@@ -2,6 +2,7 @@ require('leaflet');
 require('mustache');
 
 require('./Osmose.Editor.css');
+import IconThrobbler from '../images/throbbler.gif';
 
 
 const OsmoseEditor = L.Control.Sidebar.extend({
@@ -55,7 +56,7 @@ const OsmoseEditor = L.Control.Sidebar.extend({
       return;
     }
 
-    this._$container.html("<center><img src='" + API_URL + "/mages/throbbler.gif' alt='downloading'></center>");
+    this._$container.html(`<center><img src='${IconThrobbler}' alt='downloading'></center>`);
     const url = API_URL + `/api/0.3/issue/${error}/fresh_elems${fix ? `/${fix}` : ''}`;
     $.ajax({
       url,
