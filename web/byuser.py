@@ -41,7 +41,6 @@ def user(db, lang, username=None, format=None):
         error["subtitle"] = i10n_select_auto(error["subtitle"], lang)
         error["title"] = i10n_select_auto(error["title"], lang)
         error["menu"] = i10n_select_auto(error["menu"], lang)
-        error['timestamp'] = str(error['timestamp'])
 
     count = len(errors)
 
@@ -49,6 +48,8 @@ def user(db, lang, username=None, format=None):
         response.content_type = "application/rss+xml"
         return template('byuser/byuser.rss', username=username, users=params.users, count=count, errors=errors, website=utils.website + '/' + lang[0])
     else:
+        for error in errors:
+            error['timestamp'] = str(error['timestamp'])
         return dict(username=username, users=params.users, count=count, errors=list(map(dict, errors)), website=utils.website + '/' + lang[0], main_website=utils.main_website, remote_url_read=utils.remote_url_read)
 
 
