@@ -1,263 +1,287 @@
 <template>
-  <div id="popupTpl" style="display: none">
-    <template v-pre>{{={% %}=}}</template>
-    <div id="popup-{%id%}">
+  <div id="popupTpl">
+    <div v-if="status == 'clean'"></div>
+    <div v-if="status == 'error'">{{ error }}</div>
+    <div v-if="status == 'loading'">
+      <center>
+        <img src="~../../../static/images/throbbler.gif" alt="downloading" />
+      </center>
+    </div>
+    <div v-if="status == 'fill'">
       <div class="bulle_msg">
         <div class="bulle_err">
-          <b>{%title.auto%}</b>
+          <b>{{ title.auto }}</b>
           <br />
-          {%subtitle.auto%}
+          <span v-if="subtitle">{{ subtitle.auto }}</span>
         </div>
-        {%#elems%}
-        <div class="bulle_elem">
-          {%^infos%}
-          <b>
-            <a
-              target="_blank"
-              :href="main_website + '{%type%}/{%id%}'"
-              :title="$t('Show Object on {where}', { where: main_website })"
-            >
-              {%type%} {%id%}
-            </a>
-          </b>
-          {%/infos%} {%#relation%}
+        <div
+          v-for="elem in elems"
+          :key="`${elem.type}/${elem.id}`"
+          class="bulle_elem"
+        >
+          <template v-if="!elem.infos">
+            <b>
+              <a
+                target="_blank"
+                :href="main_website + `${elem.type}/${elem.id}`"
+                :title="$t('Show Object on {where}', { where: main_website })"
+              >
+                {{ elem.type }} {{ elem.id }}</a
+              >
+            </b>
+          </template>
           <a
+            v-if="elem.type == 'relation'"
             target="_blank"
-            href="http://polygons.openstreetmap.fr/?id={%id%}"
+            :href="`http://polygons.openstreetmap.fr/?id=${elem.id}`"
           >
             analyser
           </a>
-          {%/relation%} {%#node%}
           <a
-            :href="api_url + '/en/josm_proxy?load_object?objects=n{%id%}'"
+            v-if="elem.type == 'node'"
+            :href="api_url + `/en/josm_proxy?load_object?objects=n${elem.id}`"
             target="hiddenIframe"
             class="josm"
             :title="$t('Edit Object with {where}', { where: 'JOSM' })"
           >
-            josm
-          </a>
+            josm</a
+          >
           <a
-            :href="main_website + 'edit?editor=id&node={%id%}'"
+            v-if="elem.type == 'node'"
+            :href="main_website + `edit?editor=id&node=${elem.id}`"
             target="_blank"
             class="id"
             :title="$t('Edit Object with {where}', { where: 'iD' })"
           >
-            iD
-          </a>
-          {%/node%} {%#way%}
+            iD</a
+          >
           <a
-            :href="api_url + '/en/josm_proxy?load_object?objects=w{%id%}'"
+            v-if="elem.type == 'way'"
+            :href="api_url + `/en/josm_proxy?load_object?objects=w${elem.id}`"
             target="hiddenIframe"
             class="josm"
             :title="$t('Edit Object with {where}', { where: 'JOSM' })"
           >
-            josm
-          </a>
+            josm</a
+          >
           <a
-            :href="main_website + 'edit?editor=id&way={%id%}'"
+            v-if="elem.type == 'way'"
+            :href="main_website + `edit?editor=id&way=${elem.id}`"
             target="_blank"
             class="id"
             :title="$t('Edit Object with {where}', { where: 'iD' })"
           >
-            iD
-          </a>
-          {%/way%} {%#relation%}
+            iD</a
+          >
           <a
-            :href="api_url + '/en/josm_proxy?import?url=' + remote_url_read + '/api/0.6/{%type%}/{%id%}/full'"
+            v-if="elem.type == 'relation'"
+            :href="
+              api_url +
+              `/en/josm_proxy?import?url=${remote_url_read}/api/0.6/${elem.type}/${elem.id}/full`
+            "
             target="hiddenIframe"
             class="josm"
             :title="$t('Edit Object with {where}', { where: 'JOSM' })"
-            :onclick="`$.get('` + api_url + `/en/josm_proxy?zoom?left={%minlon%}&bottom={%minlat%}&right={%maxlon%}&top={%maxlat%}'); return true;`"
+            :onclick="
+              `$.get('` +
+              api_url +
+              `/en/josm_proxy?zoom?left=${minlon}&bottom=${minlat}&right=${maxlon}&top=${maxlat}'); return true;`
+            "
           >
-            josm
-          </a>
+            josm</a
+          >
           <a
-            :href="main_website + 'edit?editor=id&relation={%id%}'"
+            v-if="elem.type == 'relation'"
+            :href="main_website + `edit?editor=id&relation=${elem.id}`"
             target="_blank"
             class="id"
             :title="$t('Edit Object with {where}', { where: 'iD' })"
           >
-            iD
-          </a>
-          {%/relation%}
+            iD</a
+          >
           <a
             href="#"
+            v-on:click.stop.prevent="editor(uuid, elem.type, elem.id)"
             class="editor_edit"
-            data-type="{%type%}"
-            data-id="{%id%}"
-            data-error="{%uuid%}"
             :title="
               $t('Edit Object with {where}', {
                 where: $t('online Osmose Editor'),
               })
             "
           >
-            edit
-          </a>
+            edit</a
+          >
           <br />
-          {%#fixes%}
-          <div class="fix">
+          <div v-for="fix in elem.fixes" :key="fix.num" class="fix">
             <div class="fix_links">
               <a
                 :href="
-                  api_url + '/en/josm_proxy?import?url=' +
                   api_url +
-                  '/api/0.3/issue/{%uuid%}/fix/{%num%}'
+                  '/en/josm_proxy?import?url=' +
+                  api_url +
+                  `/api/0.3/issue/${uuid}/fix/${fix.num}`
                 "
                 target="hiddenIframe"
                 class="josm"
                 :title="$t('Load the fix in {where}', { where: 'JOSM' })"
-                :onclick="`$.get('` + api_url + `/en/josm_proxy?zoom?left={%minlon%}&bottom={%minlat%}&right={%maxlon%}&top={%maxlat%}'); return true;`"
+                :onclick="
+                  `$.get('` +
+                  api_url +
+                  `/en/josm_proxy?zoom?left=${minlon}&bottom=${minlat}&right=${maxlon}&top=${maxlat}'); return true;`
+                "
               >
-                fix-josm
-              </a>
+                fix-josm</a
+              >
               <a
                 href="#"
+                v-on:click.stop.prevent="
+                  editor(uuid, elem.type, elem.id, fix.num)
+                "
                 class="editor_fix"
-                data-type="{%type%}"
-                data-id="{%id%}"
-                data-error="{%uuid%}"
-                data-fix="{%num%}"
                 :title="
                   $t('Load the fix in {where}', {
                     where: $t('online Osmose Editor'),
                   })
                 "
               >
-                fix-edit
-              </a>
+                fix-edit</a
+              >
             </div>
-            {%#add%}
-            <div class="add">
-              <b>{%k%}</b> = {%#vlink%}
-              <a href="{%vlink%}" target="popup_tag2link">
-                {%/vlink%} {%v%} {%#vlink%}
+            <div v-for="o in fix.add" :key="o.k" class="add">
+              <b>{{ o.k }}</b> =
+              <a v-if="o.vlink" :href="o.vlink" target="popup_tag2link">
+                {{ o.v }}
               </a>
-              {%/vlink%}
+              <span v-else>
+                {{ o.v }}
+              </span>
             </div>
-            {%/add%} {%#mod%}
-            <div class="mod">
-              <b>{%k%}</b> = {%#vlink%}
-              <a href="{%vlink%}" target="popup_tag2link">
-                {%/vlink%} {%v%} {%#vlink%}
+            <div v-for="o in fix.mod" :key="o.k" class="mod">
+              <b>{{ o.k }}</b> =
+              <a v-if="o.vlink" :href="o.vlink" target="popup_tag2link">
+                {{ o.v }}
               </a>
-              {%/vlink%}
+              <span v-else>
+                {{ o.v }}
+              </span>
             </div>
-            {%/mod%} {%#del%}
-            <div class="del"><b>{%k%}</b></div>
-            {%/del%}
+            <div v-for="o in fix.del" :key="o.k" class="del">
+              <b>{{ o.k }}</b>
+            </div>
           </div>
-          {%/fixes%} {%#tags%}
-          <b>{%k%}</b> = {%#vlink%}
-          <a href="{%vlink%}" target="popup_tag2link">
-            {%/vlink%} {%v%} {%#vlink%}
-          </a>
-          {%/vlink%}
-          <br />
-          {%/tags%}
+          <div v-for="tag in elem.tags" :key="tag.k">
+            <b>{{ tag.k }}</b> =
+            <a v-if="tag.vlink" :href="tag.vlink" target="popup_tag2link">
+              {{ tag.v }}
+            </a>
+            <span v-else>
+              {{ tag.v }}
+            </span>
+          </div>
         </div>
-        {%/elems%} {%#new_elems%}
-        <div class="bulle_elem">
+        <div v-for="fix in new_elems" :key="fix.num" class="bulle_elem">
           <div class="fix">
             <div class="fix_links">
               <a
                 :href="
-                  api_url + '/en/josm_proxy?import?url=' +
                   api_url +
-                  '/api/0.3/issue/{%uuid%}/fix/{%num%}'
+                  '/en/josm_proxy?import?url=' +
+                  api_url +
+                  `/api/0.3/issue/${uuid}/fix/${fix.num}`
                 "
                 target="hiddenIframe"
                 class="josm"
                 :title="$t('Add the new object in {where}', { where: 'JOSM' })"
-                :onclick="`$.get('` + api_url + `/en/josm_proxy?zoom?left={%minlon%}&bottom={%minlat%}&right={%maxlon%}&top={%maxlat%}'); return true;`"
+                :onclick="
+                  `$.get('` +
+                  api_url +
+                  `/en/josm_proxy?zoom?left=${minlon}&bottom=${minlat}&right=${maxlon}&top=${maxlat}'); return true;`
+                "
               >
-                fix-josm
-              </a>
+                fix-josm</a
+              >
             </div>
-            {%#add%}
-            <div class="add">
-              <b>{%k%}</b> = {%#vlink%}
-              <a href="{%vlink%}" target="popup_tag2link">
-                {%/vlink%} {%v%} {%#vlink%}
+            <div v-for="o in fix.add" :key="o.k" class="add">
+              <b>{{ o.k }}</b> =
+              <a v-if="o.vlink" :href="o.vlink" target="popup_tag2link">
+                {{ o.v }}
               </a>
-              {%/vlink%}
+              <span v-else>
+                {{ o.v }}
+              </span>
             </div>
-            {%/add%} {%#mod%}
-            <div class="mod">
-              <b>{%k%}</b> = {%#vlink%}
-              <a href="{%vlink%}" target="popup_tag2link">
-                {%/vlink%} {%v%} {%#vlink%}
+            <div v-for="o in fix.mod" :key="o.k" class="mod">
+              <b>{{ o.k }}</b> =
+              <a v-if="o.vlink" :href="o.vlink" target="popup_tag2link">
+                {{ o.v }}
               </a>
-              {%/vlink%}
+              <span v-else>
+                {{ o.v }}
+              </span>
             </div>
-            {%/mod%} {%#del%}
-            <div class="del"><b>{%k%}</b></div>
-            {%/del%}
+            <div v-for="o in fix.del" :key="o.k" class="del">
+              <b>{{ o.k }}</b>
+            </div>
           </div>
         </div>
-        {%/new_elems%}
       </div>
       <div class="bulle_verif">
         <a
-          :href="
-            main_website + '?mlat={%lat%}&mlon={%lon%}#map=18/{%lat%}/{%lon%}'
-          "
+          :href="main_website + `?mlat=${lat}&mlon=${lon}#map=18/${lat}/${lon}`"
           target="popup_osm"
           :title="$t('Show the area on {where}', { where: main_website })"
         >
-          osm-show
-        </a>
+          osm-show</a
+        >
         <a
-          :href="main_website + 'edit#map=18/{%lat%}/{%lon%}'"
+          :href="main_website + `edit#map=18/${lat}/${lon}`"
           target="_blank"
           :title="$t('Edit the area on {where}', { where: main_website })"
         >
-          osm-edit
-        </a>
+          iD-zone</a
+        >
         <a
-          :href="api_url + '../josm_proxy?load_and_zoom?left={%minlon%}&bottom={%minlat%}&right={%maxlon%}&top={%maxlat%}&select={%elems_id%}'"
+          :href="
+            api_url +
+            `/en/josm_proxy?load_and_zoom?left=${minlon}&bottom=${minlat}&right=${maxlon}&top=${maxlat}`
+          "
           target="hiddenIframe"
           class="josm"
           :title="$t('Edit the area on {where}', { where: 'JOSM' })"
         >
-          josm-zone
-        </a>
+          josm-zone</a
+        >
         <a
-          href="../error/{%uuid%}"
+          :href="`../error/${uuid}`"
           target="_blank"
           :title="$t('Issue details')"
         >
-          <translate>details</translate>
-        </a>
+          <translate>details</translate></a
+        >
       </div>
       <div id="bulle_footer">
         <div id="bulle_maj">
           <span :title="$t('Report based on data from date')">
-            <translate>Issue reported on:</translate> {%b_date%}
+            <translate>Issue reported on:</translate> {{ b_date }}
           </span>
         </div>
         <div id="bulle_button">
           <div class="btn-group" role="group">
             <a
-              class="false_positive btn btn-info btn-sm popup_help"
+              class="popup_help btn btn-info btn-sm"
               role="button"
               href="#"
+              v-on:click.stop.prevent="doc(item, classs)"
               :title="$t('Help')"
             >
               ℹ
             </a>
             <a
-              class="closePopup false_positive btn btn-danger btn-sm"
+              class="false_positive btn btn-danger btn-sm"
               role="button"
-              href="/api/0.3/issue/{%uuid%}/false"
+              href="#"
               target="hiddenIframe"
-              :onclick="
-                'return confirm(&quote;' +
-                $t(
-                  'Report the issue as improper, if according to you is not an issue. The issue will not be displayed to anyone more.'
-                ) +
-                '&quote;)'
-              "
+              v-on:click="setFalsePositive(uuid)"
               :title="
                 $t('false positive') +
                 ' - ' +
@@ -269,10 +293,11 @@
               ✘
             </a>
             <a
-              class="closePopup corrected btn btn-success btn-sm"
+              class="corrected btn btn-success btn-sm"
               role="button"
-              :href="api_url + '/api/0.3/issue/{%uuid%}/done'"
+              href="#"
               target="hiddenIframe"
+              v-on:click="setDone(uuid)"
               :title="
                 $t('corrected') +
                 ' - ' +
@@ -293,10 +318,98 @@
 <script>
 import Vue from "vue";
 
+import ExternalVueAppEvent from "../../ExternalVueAppEvent.js";
+
 export default Vue.extend({
-  props: ["main_website", "remote_url_read"],
+  props: ["main_website", "remote_url_read", "layerMarker"],
+  data() {
+    return {
+      status: "clean",
+      error: null,
+      uuid: null,
+      item: null,
+      class: null,
+      title: null,
+      subtitle: null,
+      b_date: null,
+      elems: [],
+      new_elems: [],
+      lon: null,
+      lat: null,
+      minlat: null,
+      maxlat: null,
+      minlon: null,
+      maxlon: null,
+    };
+  },
   computed: {
     api_url: () => API_URL,
+    classs: function () {
+      return this.class;
+    },
+  },
+  mounted() {
+    ExternalVueAppEvent.$on("popup-status", (status) => {
+      this.status = status;
+    });
+    ExternalVueAppEvent.$on("popup-load", this.load);
+  },
+  methods: {
+    load(uuid) {
+      fetch(API_URL + `/api/0.3/issue/${uuid}?langs=auto`, {
+        headers: new Headers({
+          "Accept-Language": this.$route.params.lang,
+        }),
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          Object.assign(this, response);
+          this.status = "fill";
+
+          this.layerMarker._setPopup(response);
+        })
+        .catch((error) => {
+          this.error = error.message;
+          this.status = "error";
+        });
+    },
+    setDone(uuid) {
+      fetch(API_URL + `/api/0.3/issue/${uuid}/done`);
+      this.layerMarker._dismissMarker();
+    },
+    setFalsePositive(uuid) {
+      const message = this.$t(
+        "Report the issue as improper, if according to you is not an issue. The issue will not be displayed to anyone more."
+      );
+      if (confirm(message)) {
+        fetch(API_URL + `/api/0.3/issue/${uuid}/false`);
+        this.layerMarker._dismissMarker();
+      }
+    },
+    editor(uuid, type, id, fix) {
+      this.layerMarker._editor(uuid, type, id, fix);
+    },
+    doc(item, classs) {
+      this.layerMarker._help(item, classs);
+    },
   },
 });
 </script>
+
+<style>
+#map svg.leaflet-tile g image[width="17px"][height="33px"] {
+  cursor: pointer;
+}
+</style>
+
+<style scoped>
+.bulle_elem .add b:before {
+  content: " + ";
+}
+.bulle_elem .del b:before {
+  content: " - ";
+}
+.bulle_elem .mod b:before {
+  content: " ~ ";
+}
+</style>

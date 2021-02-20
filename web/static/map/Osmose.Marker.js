@@ -5,12 +5,10 @@ require('leaflet-responsive-popup/leaflet.responsive.popup.css');
 require('leaflet-responsive-popup/leaflet.responsive.popup.rtl.css');
 require('leaflet-osm');
 require('leaflet-textpath');
-require('mustache');
 const Cookies = require('js-cookie');
 
-require('./Osmose.Marker.css');
+import ExternalVueAppEvent from '../../src/ExternalVueAppEvent.js'
 import IconLimit from '../images/limit.png';
-import IconThrobbler from '../images/throbbler.gif';
 
 
 const OsmoseMarker = L.VectorGrid.Protobuf.extend({
@@ -56,6 +54,13 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
       }
     });
     L.VectorGrid.Protobuf.prototype.initialize.call(this, this._buildUrl(params), vectorTileOptions);
+
+    // this.popup = L.responsivePopup({
+    this.popup = L.popup({
+      maxWidth: 280,
+      minWidth: 240,
+      autoPan: false,
+    }).setContent(document.getElementById('popupTpl'))
   },
 
   _tileReady(coords, err, tile) {
@@ -157,81 +162,68 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
     this.open_popup = uuid;
     this._permalink.update_item({ issue_uuid: uuid });
 
-    const popup = L.responsivePopup({
-      maxWidth: 280,
-      autoPan: false,
-      offset: L.point(0, 24),
-    }).setLatLng(initialLatlng)
-      .setContent(`<center><img src='${IconThrobbler}' alt='downloading'></center>`)
-      .openOn(this._map);
-    this.popup = popup;
+    ExternalVueAppEvent.$emit('popup-status', 'loading');
+    delete this.popup.options.offset;
+    this.popup.setLatLng(initialLatlng).openOn(this._map);
 
     setTimeout(() => {
-      if (popup.isOpen) {
+      if (this.popup.isOpen) {
         // Popup still open, so download content
-        $.ajax({
-          url: API_URL + `/api/0.3/issue/${uuid}?langs=auto`,
-          dataType: 'json',
-          success: (data) => {
-            popup.setLatLng([data.lat, data.lon]);
-            data.elems_id = data.elems.map(elem => elem.type + elem.id).join(',');
-
-            this._doc.load(data.item, data['class']);
-            // Get the OSM objects
-            if (data.elems_id) {
-              let shift = -1; const palette = ['#ff3333', '#59b300', '#3388ff']; const
-                colors = {};
-              data.elems.forEach((elem) => {
-                colors[elem.type + elem.id] = palette[(shift += 1) % 3];
-                $.ajax({
-                  url: elem.type === 'node' ? `${this._remoteUrlRead}api/0.6/node/${elem.id}`
-                    : `${this._remoteUrlRead}api/0.6/${elem.type}/${elem.id}/full`,
-                  dataType: 'xml',
-                  success: (xml) => {
-                    const layer = new L.OSM.DataLayer(xml);
-                    layer.setStyle({
-                      color: colors[elem.type + elem.id],
-                      fillColor: colors[elem.type + elem.id],
-                    });
-                    layer.setText('  ►  ', {
-                      repeat: true,
-                      attributes: {
-                        fill: colors[elem.type + elem.id],
-                      },
-                    });
-                    this._featuresLayers.addLayer(layer);
-                  },
-                });
-              });
-            }
-            // Display Popup
-            const template = $('#popupTpl').html();
-
-
-            const content = $(Mustache.render(template, data));
-            content.on('click', '.closePopup', () => {
-              setTimeout(() => {
-                this.corrected(layer);
-              }, 200);
-            });
-            content.on('click', '.popup_help', (event) => {
-              this._doc.show(data.item, data['class']);
-              return false;
-            });
-            content.on('click', '.editor_edit, .editor_fix', (event) => {
-              this._editor.edit(layer, event.currentTarget.getAttribute('data-error'), event.currentTarget.getAttribute('data-type'), event.currentTarget.getAttribute('data-id'), event.currentTarget.getAttribute('data-fix'));
-              return false;
-            });
-            popup.setContent(content[0]);
-          },
-          error: (jqXHR, textStatus, errorThrown) => {
-            popup.setContent(textStatus);
-          },
-        });
+        ExternalVueAppEvent.$emit('popup-load', uuid);
+        this.layer = layer;
       } else {
-        popup.setContent(null);
+        ExternalVueAppEvent.$emit('popup-status', 'clean');
       }
     }, 100);
+  },
+
+  _setPopup(data) {
+    this.popup.options.offset = L.point(0, -24);
+    this.popup.setLatLng([data.lat, data.lon]);
+    data.elems_id = data.elems.map(elem => elem.type + elem.id).join(',');
+
+    this._doc.load(data.item, data['class']);
+    // Get the OSM objects
+    if (data.elems_id) {
+      let shift = -1; const palette = ['#ff3333', '#59b300', '#3388ff']; const
+        colors = {};
+      data.elems.forEach((elem) => {
+        colors[elem.type + elem.id] = palette[(shift += 1) % 3];
+        $.ajax({
+          url: elem.type === 'node' ? `${this._remoteUrlRead}api/0.6/node/${elem.id}`
+            : `${this._remoteUrlRead}api/0.6/${elem.type}/${elem.id}/full`,
+          dataType: 'xml',
+          success: (xml) => {
+            const layer = new L.OSM.DataLayer(xml);
+            layer.setStyle({
+              color: colors[elem.type + elem.id],
+              fillColor: colors[elem.type + elem.id],
+            });
+            layer.setText('  ►  ', {
+              repeat: true,
+              attributes: {
+                fill: colors[elem.type + elem.id],
+              },
+            });
+            this._featuresLayers.addLayer(layer);
+          },
+        });
+      });
+    }
+  },
+
+  _dismissMarker() {
+    setTimeout(() => {
+      this.corrected(this.layer);
+    }, 200);
+  },
+
+  _help(item, classs) {
+    this._doc.show(item, classs);
+  },
+
+  _editor(uuid, type, id, fix) {
+    this._editor.edit(this.layer, uuid, type, id, fix);
   },
 
   corrected(layer) {

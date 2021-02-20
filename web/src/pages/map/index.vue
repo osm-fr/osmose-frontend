@@ -14,7 +14,11 @@
       <editor-component :user="user" />
       <editor :main_website="main_website" />
       <iframe id="hiddenIframe" name="hiddenIframe"></iframe>
-      <popup :main_website="main_website" :remote_url_read="remote_url_read" />
+      <popup
+        :main_website="main_website"
+        :remote_url_read="remote_url_read"
+        :layerMarker="layerMarker"
+      />
     </div>
   </div>
 </template>
@@ -55,6 +59,7 @@ export default Vue.extend({
       categories: [],
       main_website: "",
       remote_url_read: "",
+      layerMarker: null,
     };
   },
   components: {
@@ -68,7 +73,9 @@ export default Vue.extend({
   mounted() {
     // FIXME - Hardcode legacy to avoind waiting for JSON to init the map
     window.remoteUrlRead = "https://www.openstreetmap.org/";
-    this._menu = initMap();
+    const a = initMap();
+    this._menu = a[0];
+    this.layerMarker = a[1];
 
     this.$refs.topProgress.start();
     this.setData().then(() => {
