@@ -1,8 +1,7 @@
 require('leaflet');
-require('mustache');
 
 require('./Osmose.Editor.css');
-import IconThrobbler from '../images/throbbler.gif';
+import ExternalVueAppEvent from '../../src/ExternalVueAppEvent.js'
 
 
 const OsmoseEditor = L.Control.Sidebar.extend({
@@ -50,45 +49,26 @@ const OsmoseEditor = L.Control.Sidebar.extend({
     L.Control.Sidebar.prototype.initialize.call(this, placeholder, options);
   },
 
-  edit(layer, error, type, id, fix) {
+  edit(layer, uuid, fix) {
     this.show();
     if (this._$container.data().user != true) {
       return;
     }
 
-    this._$container.html(`<center><img src='${IconThrobbler}' alt='downloading'></center>`);
-    const url = API_URL + `/api/0.3/issue/${error}/fresh_elems${fix ? `/${fix}` : ''}`;
-    $.ajax({
-      url,
-      dataType: 'json',
-    }).done((data) => {
-      const template = $('#editorTpl').html();
-      const content = $(Mustache.render(template, data));
-      this._$container.html(content);
-      $('#validate', this._$container).click((event) => {
-        this._validate(event.currentTarget);
-        $.ajax({
-          url: API_URL + `/api/0.3/issue/${error}/done`,
-        }).done((d) => {
-          this.errors.corrected(layer);
-        });
-      });
-      $('#cancel', this._$container).click((event) => {
-        this._cancel(event.currentTarget);
-      });
+    this.layer = layer;
+    ExternalVueAppEvent.$emit('editor-load', uuid, fix);
+  },
 
-      $.each(data.elems, (i, elem) => {
-        const reftags = {};
-        $.each(elem.tags, (ii, ee) => {
-          reftags[ee.k] = ee.v;
-        });
-        this._build(elem.type, elem.id, reftags, (data.fix && data.fix[elem.type + elem.id]) || reftags);
-        $(`.tags[data-type="${elem.type}"][data-id="${elem.id}"]`, this._$container).data('reftags', reftags);
+  _setTags(data) {
+    data.elems.forEach((elem) => {
+      const reftags = {};
+      elem.tags.forEach((ee) => {
+        reftags[ee.k] = ee.v;
       });
-      $(`form .tags[data-type="${type}"][data-id="${id}"] input[type="text"]:last`, this._$container).focus();
-    }).fail((xhr, err) => {
-      this._$container.html(`Fails get ${url}</br>readyState: ${xhr.readyState}</br>status: ${xhr.status}`);
+      this._build(elem.type, elem.id, reftags, (data.fix && data.fix[elem.type + elem.id]) || reftags);
+      $(`.tags[data-type="${elem.type}"][data-id="${elem.id}"]`, this._$container).data('reftags', reftags);
     });
+    $('#editor form input[type="text"]:last').focus();
   },
 
   _beforeunload() {
@@ -124,17 +104,23 @@ const OsmoseEditor = L.Control.Sidebar.extend({
     }).always(always);
   },
 
-  _save(e) {
+  _save() {
     this.saveModal.find('#editor-modify-count').val(Object.keys(this._modifiyObjectStack).length);
     this.saveModal.find('#editor-delete-count').val(Object.keys(this._deleteObjectStack).length);
     this.saveModal.modal('show');
   },
 
-  _cancel(e) {
+  _cancel() {
     this.hide();
   },
 
-  _validate(e) {
+  _validate(uuid) {
+    $.ajax({
+      url: API_URL + `/api/0.3/issue/${uuid}/done`,
+    }).done((d) => {
+      this.errors.corrected(this.layer);
+    });
+
     $.each(this._extractData(), (i, elem) => {
       if (elem.touched) {
         this._modifiyObjectStack[i] = elem;
@@ -202,7 +188,7 @@ const OsmoseEditor = L.Control.Sidebar.extend({
     let touched = false;
     const del = $('.del', tags);
     del.empty();
-    $.each(reftags, (e) => {
+    Object.keys(reftags).forEach((e) => {
       if (data[e] === undefined) {
         var h = $(`<span class="line"><span>-</span><input type="text" name="tags_del[]"/><a href="#">×</a></span>`)
         $('input', h).attr('value', `${e}=${reftags[e]}`);
@@ -214,7 +200,7 @@ const OsmoseEditor = L.Control.Sidebar.extend({
 
     const same = $('.same', tags);
     same.empty();
-    $.each(reftags, (e) => {
+    Object.keys(reftags).forEach((e) => {
       if (data[e] !== undefined && data[e] === reftags[e]) {
         var h = $(`<span class="line"><span>=</span><input type="text" name="tags_del[]"/><a href="#">×</a></span>`);
         $('input', h).attr('value', `${e}=${reftags[e]}`);
@@ -225,7 +211,7 @@ const OsmoseEditor = L.Control.Sidebar.extend({
 
     const mod = $('.mod', tags);
     mod.empty();
-    $.each(reftags, (e) => {
+    Object.keys(reftags).forEach((e) => {
       if (data[e] !== undefined && data[e] !== reftags[e]) {
         var h = $(`<span class="line"><span>~</span><input type="text" name="tags_mod[]"/><a href="#">×</a></span>`);
         $('input', h).attr('value', `${e}=${data[e]}`);
@@ -238,7 +224,7 @@ const OsmoseEditor = L.Control.Sidebar.extend({
 
     const add = $('.add', tags);
     add.empty();
-    $.each(data, (e) => {
+    Object.keys(data).forEach((e) => {
       if (reftags[e] === undefined) {
         var h = $(`<span class="line"><span>+</span><input type="text" name="tags_add[]"/><a href="#">×</a></span>`);
         $('input', h).attr('value', `${e}=${data[e]}`);

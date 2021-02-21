@@ -11,9 +11,8 @@
       <items :tags="tags" :categories="categories" />
       <doc />
       <div id="map"></div>
-      <editor-component :user="user" />
       <editor-modal />
-      <editor :main_website="main_website" />
+      <editor :main_website="main_website" :user="user" :editor="editor" />
       <iframe id="hiddenIframe" name="hiddenIframe"></iframe>
       <popup
         :main_website="main_website"
@@ -45,7 +44,6 @@ import Vue from "vue";
 import Top from "./top.vue";
 import Items from "./items.vue";
 import Doc from "./doc.vue";
-import EditorComponent from "./editor-component.vue";
 import EditorModal from "./editor-modal.vue";
 import Editor from "./editor.vue";
 import Popup from "./popup.vue";
@@ -62,13 +60,13 @@ export default Vue.extend({
       main_website: "",
       remote_url_read: "",
       layerMarker: null,
+      editor: null,
     };
   },
   components: {
     Top,
     Items,
     Doc,
-    EditorComponent,
     EditorModal,
     Editor,
     Popup,
@@ -79,6 +77,7 @@ export default Vue.extend({
     const a = initMap();
     this._menu = a[0];
     this.layerMarker = a[1];
+    this.editor = a[2];
 
     this.$refs.topProgress.start();
     this.setData().then(() => {

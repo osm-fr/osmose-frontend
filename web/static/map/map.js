@@ -141,7 +141,7 @@ export function initMap() {
   map.on('moveend', activeMenu);
   activeMenu();
 
-  return [menu, osmoseLayerMarker];
+  return [menu, osmoseLayerMarker, editor];
 }
 
 export { initMap as default };
