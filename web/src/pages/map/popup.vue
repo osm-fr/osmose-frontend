@@ -82,11 +82,6 @@
             target="hiddenIframe"
             class="josm"
             :title="$t('Edit Object with {where}', { where: 'JOSM' })"
-            :onclick="
-              `$.get('` +
-              api_url +
-              `/en/josm_proxy?zoom?left=${minlon}&bottom=${minlat}&right=${maxlon}&top=${maxlat}'); return true;`
-            "
           >
             josm</a
           >
@@ -124,11 +119,6 @@
                 target="hiddenIframe"
                 class="josm"
                 :title="$t('Load the fix in {where}', { where: 'JOSM' })"
-                :onclick="
-                  `$.get('` +
-                  api_url +
-                  `/en/josm_proxy?zoom?left=${minlon}&bottom=${minlat}&right=${maxlon}&top=${maxlat}'); return true;`
-                "
               >
                 fix-josm</a
               >
@@ -190,11 +180,6 @@
                 target="hiddenIframe"
                 class="josm"
                 :title="$t('Add the new object in {where}', { where: 'JOSM' })"
-                :onclick="
-                  `$.get('` +
-                  api_url +
-                  `/en/josm_proxy?zoom?left=${minlon}&bottom=${minlat}&right=${maxlon}&top=${maxlat}'); return true;`
-                "
               >
                 fix-josm</a
               >
