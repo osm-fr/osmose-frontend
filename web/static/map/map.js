@@ -39,7 +39,7 @@ export function initMap() {
   urlVars.fixable = urlVars.fixable || Cookies.get('last_fixable');
 
   const layers = [];
-  $.each(mapBases, (name, layer) => {
+  Object.values(mapBases).forEach((layer) => {
     layers.push(layer);
   });
 

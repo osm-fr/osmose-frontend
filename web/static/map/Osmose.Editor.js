@@ -121,7 +121,7 @@ const OsmoseEditor = L.Control.Sidebar.extend({
       this.errors.corrected(this.layer);
     });
 
-    $.each(this._extractData(), (i, elem) => {
+    Object.entries(this._extractData()).forEach(([i, elem]) => {
       if (elem.touched) {
         this._modifiyObjectStack[i] = elem;
         delete this._modifiyObjectStack[i].touched;

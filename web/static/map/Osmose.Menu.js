@@ -206,7 +206,7 @@ export const OsmoseMenu = L.Control.Sidebar.extend({
     if (params.item) {
       const checkbox = $('.test_group:not(#categUnactiveItem) :checkbox');
       checkbox.attr('checked', false).prop('checked', false);
-      $.each(params.item.split(','), (i, item) => {
+      params.item.split(',').forEach((item) => {
         const itemRe = new RegExp(`item${item.replace(/x/g, '.')}`);
         checkbox.filter((ii, ee) => itemRe.test(ee.id)).attr('checked', true).prop('checked', true);
       });
