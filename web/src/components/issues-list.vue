@@ -143,7 +143,7 @@
             <td v-if="['error', 'info'].includes(gen)">
               <a
                 href="#"
-                v-on:click="issue_action"
+                v-on:click.stop.prevent="issue_action"
                 :id="`GET=issue/${res.uuid}/false`"
                 :title="
                   $t('Mark issue #{uuid} as false positive', { uuid: res.uuid })
@@ -153,7 +153,7 @@
               >/
               <a
                 href="#"
-                v-on:click="issue_action"
+                v-on:click.stop.prevent="issue_action"
                 :id="`GET=issue/${res.uuid}/done`"
                 :title="$t('Mark issue #{uuid} as fixed', { uuid: res.uuid })"
               >
@@ -166,7 +166,7 @@
             >
               <a
                 href="#"
-                v-on:click="issue_action"
+                v-on:click.stop.prevent="issue_action"
                 :id="`DELETE=${gen}/${res.uuid}`"
               >
                 ✘
@@ -221,14 +221,12 @@ export default Vue.extend({
       const verb = id[0];
       const path = id[1];
 
-      $.ajax({
-        type: verb,
-        url: `/api/0.3/${path}`,
-        cache: false,
-        beforeSend() {
-          Container.parent().css({ backgroundColor: "red" });
-        },
-        success: (response) => {
+      Container.parent().css({ backgroundColor: "red" });
+      fetch(`/api/0.3/${path}`, {
+        method: verb,
+        cache: "no-store",
+      })
+        .then((response) => {
           Container.parent()
             .find("td")
             .wrapInner('<div style="display: block;" />')
@@ -237,13 +235,10 @@ export default Vue.extend({
             .slideUp(700, () =>
               $(event.currentTarget).parent().parent().remove()
             );
-        },
-        error: (xhr, ajaxOptions, thrownError) => {
+        })
+        .catch((error) => {
           Container.parent().css({ backgroundColor: "" });
-        },
-      });
-
-      return false;
+        });
     },
   },
 });

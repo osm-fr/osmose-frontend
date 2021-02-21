@@ -80,11 +80,12 @@ const OsmoseEditor = L.Control.Sidebar.extend({
 
   _upload(comment, source, type, reuseChangeset, always) {
     const url = '../editor/save';
-    $.ajax({
-      url,
-      type: 'POST',
-      contentType: 'application/json',
-      data: JSON.stringify({
+    fetch(url, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
         tag: {
           comment,
           source,
@@ -93,15 +94,18 @@ const OsmoseEditor = L.Control.Sidebar.extend({
         reuseChangeset,
         modify: this._modifiyObjectStack,
         delete: this._deleteObjectStack,
-      }),
-    }).done(() => {
+      })
+    })
+    .then((response) => {
       this._modifiyObjectStack = {};
       this._deleteObjectStack = {};
       this._count_touched();
       this.saveModal.modal('hide');
-    }).fail((xhr, err) => {
-      alert(`Fails post to ${url}\nreadyState: ${xhr.readyState}\nstatus: ${xhr.status}`);
-    }).always(always);
+    })
+    .catch(function(error) {
+      alert(`Fails post to ${url}\n${error}`);
+    })
+    .finally(always);
   },
 
   _save() {
@@ -115,11 +119,10 @@ const OsmoseEditor = L.Control.Sidebar.extend({
   },
 
   _validate(uuid) {
-    $.ajax({
-      url: API_URL + `/api/0.3/issue/${uuid}/done`,
-    }).done((d) => {
-      this.errors.corrected(this.layer);
-    });
+    fetch(API_URL + `/api/0.3/issue/${uuid}/done`)
+      .then((response) => {
+        this.errors.corrected(this.layer);
+      });
 
     Object.entries(this._extractData()).forEach(([i, elem]) => {
       if (elem.touched) {

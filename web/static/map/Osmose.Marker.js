@@ -189,12 +189,12 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
         colors = {};
       data.elems.forEach((elem) => {
         colors[elem.type + elem.id] = palette[(shift += 1) % 3];
-        $.ajax({
-          url: elem.type === 'node' ? `${this._remoteUrlRead}api/0.6/node/${elem.id}`
-            : `${this._remoteUrlRead}api/0.6/${elem.type}/${elem.id}/full`,
-          dataType: 'xml',
-          success: (xml) => {
-            const layer = new L.OSM.DataLayer(xml);
+        fetch(elem.type === 'node' ? `${this._remoteUrlRead}api/0.6/node/${elem.id}`
+        : `${this._remoteUrlRead}api/0.6/${elem.type}/${elem.id}/full`)
+          .then(response => response.text())
+          .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
+          .then((xml) => {
+              const layer = new L.OSM.DataLayer(xml);
             layer.setStyle({
               color: colors[elem.type + elem.id],
               fillColor: colors[elem.type + elem.id],
@@ -206,8 +206,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
               },
             });
             this._featuresLayers.addLayer(layer);
-          },
-        });
+          });
       });
     }
   },
