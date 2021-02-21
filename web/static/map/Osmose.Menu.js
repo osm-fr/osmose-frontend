@@ -133,7 +133,7 @@ export const OsmoseMenu = L.Control.Sidebar.extend({
   _change_tags_level_fixable_display(tag, level, fixable) {
     $('div#tests li.item').each((i, elem) => {
       const id = parseInt($(elem).attr('id').replace(/item_desc/, ''), 10);
-      if ($.inArray(id, itemLevels[level]) >= 0 && (!(tag in itemTags) || $.inArray(id, itemTags[tag]) >= 0)) {
+      if (itemLevels[level].indexOf(id) >= 0 && (!(tag in itemTags) || itemTags[tag].indexOf(id) >= 0)) {
         $(`#item_desc${id}`).show();
       } else {
         $(`#item_desc${id}`).hide();
@@ -142,7 +142,7 @@ export const OsmoseMenu = L.Control.Sidebar.extend({
 
     const ll = level.split(',');
     for (let i = 1; i <= 3; i += 1) {
-      if ($.inArray(i.toString(), ll) >= 0) {
+      if (ll.indexOf(i.toString()) >= 0) {
         $(`.level-${i}`).removeClass('disabled');
       } else {
         $(`.level-${i}`).addClass('disabled');
