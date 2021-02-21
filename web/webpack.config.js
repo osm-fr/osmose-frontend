@@ -98,7 +98,6 @@ module.exports = (env, argv) => {
             new webpack.ProvidePlugin({
                 $: "jquery",
                 jQuery: "jquery",
-                Mustache: "mustache",
             }),
             new webpack.DefinePlugin({
                 API_URL: JSON.stringify(env && env.API_URL || '')
