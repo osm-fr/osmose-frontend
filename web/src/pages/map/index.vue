@@ -12,6 +12,7 @@
       <doc />
       <div id="map"></div>
       <editor-component :user="user" />
+      <editor-modal />
       <editor :main_website="main_website" />
       <iframe id="hiddenIframe" name="hiddenIframe"></iframe>
       <popup
@@ -45,6 +46,7 @@ import Top from "./top.vue";
 import Items from "./items.vue";
 import Doc from "./doc.vue";
 import EditorComponent from "./editor-component.vue";
+import EditorModal from "./editor-modal.vue";
 import Editor from "./editor.vue";
 import Popup from "./popup.vue";
 
@@ -67,6 +69,7 @@ export default Vue.extend({
     Items,
     Doc,
     EditorComponent,
+    EditorModal,
     Editor,
     Popup,
   },

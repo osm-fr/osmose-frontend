@@ -222,8 +222,8 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
     this._doc.show(item, classs);
   },
 
-  _editor(uuid, type, id, fix) {
-    this._editor.edit(this.layer, uuid, type, id, fix);
+  _edit(uuid, fix) {
+    this._editor.edit(this.layer, uuid, fix);
   },
 
   corrected(layer) {

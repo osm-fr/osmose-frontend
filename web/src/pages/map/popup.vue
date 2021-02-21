@@ -101,7 +101,7 @@
           >
           <a
             href="#"
-            v-on:click.stop.prevent="editor(uuid, elem.type, elem.id)"
+            v-on:click.stop.prevent="editor(uuid)"
             class="editor_edit"
             :title="
               $t('Edit Object with {where}', {
@@ -134,9 +134,7 @@
               >
               <a
                 href="#"
-                v-on:click.stop.prevent="
-                  editor(uuid, elem.type, elem.id, fix.num)
-                "
+                v-on:click.stop.prevent="editor(uuid, fix.num)"
                 class="editor_fix"
                 :title="
                   $t('Load the fix in {where}', {
@@ -366,7 +364,9 @@ export default Vue.extend({
           Object.assign(this, response);
           this.status = "fill";
 
-          this.layerMarker._setPopup(response);
+          this.$nextTick(() => {
+            this.layerMarker._setPopup(response);
+          });
         })
         .catch((error) => {
           this.error = error.message;
@@ -386,8 +386,8 @@ export default Vue.extend({
         this.layerMarker._dismissMarker();
       }
     },
-    editor(uuid, type, id, fix) {
-      this.layerMarker._editor(uuid, type, id, fix);
+    editor(uuid, fix) {
+      this.layerMarker._edit(uuid, fix);
     },
     doc(item, classs) {
       this.layerMarker._help(item, classs);
