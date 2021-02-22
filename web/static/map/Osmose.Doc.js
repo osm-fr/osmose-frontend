@@ -26,10 +26,11 @@ export const OsmoseDoc = L.Control.Sidebar.extend({
   toggle() {
     localStorage.setItem('doc.show', !JSON.parse(localStorage.getItem('doc.show')));
     L.Control.Sidebar.prototype.toggle.call(this);
-    if ($('.leaflet-active-area').css('right') === '0px') {
-      $('.leaflet-active-area').css('right', '');
+    const active_area = document.getElementsByClassName("leaflet-active-area")[0];
+    if (active_area.style.right === '0px') {
+      active_area.style.right = '';
     } else {
-      $('.leaflet-active-area').css('right', '0px');
+      active_area.style.right = '0px';
     }
   },
 

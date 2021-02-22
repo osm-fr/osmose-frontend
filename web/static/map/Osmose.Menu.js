@@ -56,10 +56,11 @@ export const OsmoseMenu = L.Control.Sidebar.extend({
   // Menu
   toggle() {
     L.Control.Sidebar.prototype.toggle.call(this);
-    if ($('.leaflet-active-area').css('left') === '0px') {
-      $('.leaflet-active-area').css('left', '');
+    const active_area = document.getElementsByClassName("leaflet-active-area")[0];
+    if (active_area.style.left === '0px') {
+      active_area.style.left = '';
     } else {
-      $('.leaflet-active-area').css('left', '0px');
+      active_area.style.left = '0px';
     }
     this._itemChanged();
   },
