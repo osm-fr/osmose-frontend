@@ -215,26 +215,20 @@ export default Vue.extend({
       return API_URL + `/images/markers/marker-l-${res.item}.png`;
     },
     issue_action: (event) => {
-      $("#load").fadeIn();
-      const Container = $(event.currentTarget).parent();
-      const id = $(event.currentTarget).attr("id").split("=");
+      const Container = event.currentTarget.parentElement;
+      const id = event.currentTarget.id.split("=");
       const verb = id[0];
       const path = id[1];
 
-      Container.parent().css({ backgroundColor: "red" });
+      Container.parentElement.classList = ["delete-row"];
       fetch(`/api/0.3/${path}`, {
         method: verb,
         cache: "no-store",
       })
         .then((response) => {
-          Container.parent()
-            .find("td")
-            .wrapInner('<div style="display: block;" />')
-            .parent()
-            .find("td > div")
-            .slideUp(700, () =>
-              $(event.currentTarget).parent().parent().remove()
-            );
+          setTimeout(() => {
+            Container.parentElement.remove();
+          }, 1000);
         })
         .catch((error) => {
           Container.parent().css({ backgroundColor: "" });
@@ -243,3 +237,10 @@ export default Vue.extend({
   },
 });
 </script>
+
+<style>
+tr.delete-row td {
+  background-color: red;
+  transition: all 0.7s linear;
+}
+</style>
