@@ -38,28 +38,45 @@
         </router-link>
       </li>
 
-      <li id="menu-export">
+      <li>
         <a href="#" onclick="return false;"><translate>Export</translate> ▼</a>
         <ul class="submenu">
           <li>
-            <a data-href="../errors/" target="_blank">
+            <a class="menu-export" data-href="../errors/" target="_blank">
               <translate>Html list</translate>
             </a>
           </li>
           <li>
             <a
+              class="menu-export"
               :data-href="api_url + '/en/josm_proxy?errors.josm'"
               target="hiddenIframe"
             >
               JOSM
             </a>
           </li>
-          <li><a data-href="../errors.rss" target="_blank">RSS</a></li>
-          <li><a data-href="../errors.gpx">GPX</a></li>
-          <li><a data-href="../errors.kml">KML</a></li>
-          <li><a data-href="/api/0.3/issues" target="_blank">Json</a></li>
-          <li><a data-href="../errors.csv" target="_blank">CSV</a></li>
-          <li><a data-href="markers" target="_blank">GeoJson</a></li>
+          <li>
+            <a class="menu-export" data-href="../errors.rss" target="_blank">
+              RSS
+            </a>
+          </li>
+          <li><a class="menu-export" data-href="../errors.gpx">GPX</a></li>
+          <li><a class="menu-export" data-href="../errors.kml">KML</a></li>
+          <li>
+            <a class="menu-export" data-href="/api/0.3/issues" target="_blank">
+              Json
+            </a>
+          </li>
+          <li>
+            <a class="menu-export" data-href="../errors.csv" target="_blank">
+              CSV
+            </a>
+          </li>
+          <li>
+            <a class="menu-export" data-href="markers" target="_blank">
+              GeoJson
+            </a>
+          </li>
         </ul>
       </li>
 
