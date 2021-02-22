@@ -129,11 +129,13 @@ export function initMap() {
     const zoom = map.getZoom();
     const lat = Math.abs(map.getCenter().lat);
     if (zoom >= 7 || (zoom >= 5 && lat > 60) || (zoom >= 4 && lat > 70) || (zoom >= 3 && lat > 75)) {
-      $('#need_zoom').hide();
-      $('#action_links, #tests').show();
+      document.getElementById("need_zoom").style.display = "none";
+      document.getElementById("action_links").style.display = "block";
+      document.getElementById("tests").style.display = "block";
     } else {
-      $('#need_zoom').show();
-      $('#action_links, #tests').hide();
+      document.getElementById("need_zoom").style.display = "block";
+      document.getElementById("action_links").style.display = "none";
+      document.getElementById("tests").style.display = "none";
     }
   }
 
