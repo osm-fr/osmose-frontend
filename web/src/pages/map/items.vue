@@ -1,7 +1,7 @@
 <template>
   <div id="menu">
     <a href="#" id="togglemenu">-</a>
-    <form id="myform" name="myform" action="#">
+    <form action="#">
       <div id="need_zoom">
         <translate>no bubbles at this zoom factor</translate>
       </div>
@@ -11,7 +11,7 @@
             <translate>Severity</translate>
           </label>
           <div class="col-sm-9">
-            <select id="level" class="form-control form-control-sm">
+            <select v-model="level" class="form-control form-control-sm">
               <option class="level-1__" value="1">
                 <translate>High</translate>
               </option>
@@ -37,7 +37,8 @@
           </label>
           <div class="col-sm-9">
             <select
-              id="fixable"
+              v-model="fixable"
+              name="fixable"
               class="form-control form-control-sm"
               :title="$t('Show only markers with correction suggestions')"
             >
@@ -52,7 +53,11 @@
             <translate>Topic</translate>
           </label>
           <div class="col-sm-9">
-            <select id="tags" class="form-control form-control-sm">
+            <select
+              v-model="selected_tags"
+              name="tags"
+              class="form-control form-control-sm"
+            >
               <option value=""></option>
               <option v-for="tag in tags" :key="tag" :value="tag">
                 {{ $t(tag) }}
@@ -61,13 +66,13 @@
           </div>
         </div>
         <translate>Select:</translate>
-        <a href="#" class="toggleAllItem" data-view="all">
+        <a href="#" v-on:click.stop.prevent="toggle_all(true)">
           <translate>all</translate>
         </a>
-        <a href="#" class="toggleAllItem" data-view="nothing">
+        <a href="#" v-on:click.stop.prevent="toggle_all(false)">
           <translate>nothing</translate>
         </a>
-        <a href="#" class="invertAllItem">
+        <a href="#" v-on:click.stop.prevent="toggle_all(-1)">
           <translate>invert</translate>
         </a>
       </div>
@@ -76,28 +81,38 @@
           v-for="categ in categories_format"
           :key="categ.id"
           class="test_group"
-          :id="`categ${categ.id}`"
         >
           <h1>
-            <i class="toggleCategIco"></i>
-            <a href="#" class="toggleCateg">
+            <a
+              href="#"
+              v-on:click.stop.prevent="toggle_categorie_block(categ.id)"
+            >
+              <i class="toggleCategIco"></i>
               {{ categ.title.auto }}
             </a>
-            <span class="count">-/-</span>
-            <a href="#" class="toggleAllItem" data-view="all">
+            <span class="count">
+              {{ count_items[categ.id] }}/{{ total_items[categ.id] }}
+            </span>
+            <a
+              href="#"
+              v-on:click.stop.prevent="toggle_categorie(categ.id, true)"
+            >
               <translate>all</translate>
             </a>
-            <a href="#" class="toggleAllItem" data-view="nothing">
+            <a
+              href="#"
+              v-on:click.stop.prevent="toggle_categorie(categ.id, false)"
+            >
               <translate>nothing</translate>
             </a>
           </h1>
-          <ul>
+          <ul :id="`categorie_block_${categ.id}`">
             <li
               v-for="item in categ.items"
               :key="item.item"
-              :id="`item_desc${item.item}`"
               class="item"
               :title="item.class_format"
+              :style="showItem(item) ? '' : 'display:none'"
             >
               <div :class="`marker-l marker-l-${item.item}`"></div>
               <div class="level">
@@ -105,7 +120,11 @@
                   <div
                     v-if="item.levels_format[level]"
                     :key="level"
-                    :class="`level-${level}`"
+                    :class="`level-${level} ${
+                      active_levels.indexOf(level.toString()) >= 0
+                        ? ''
+                        : 'disabled'
+                    }`"
                   >
                     <span>{{ item.levels_format[level] }}</span>
                   </div>
@@ -114,8 +133,8 @@
               </div>
               <input
                 type="checkbox"
-                :id="`item${item.item_format}`"
-                :name="`item${item.item_format}`"
+                v-model="item.selected"
+                @change="toggle_item"
               />
               <router-link target="_blank" :to="`../errors/?item=${item.item}`">
                 {{ item.title.auto }}
@@ -131,11 +150,36 @@
 <script>
 import Vue from "vue";
 
+import ExternalVueAppEvent from "../../ExternalVueAppEvent.js";
+
 export default Vue.extend({
-  props: ["tags", "categories"],
+  props: ["menu", "tags", "categories", "item_levels", "item_tags"],
+  data() {
+    return {
+      level: "1",
+      fixable: null,
+      selected_tags: null,
+      active_levels: ["1", "2", "3"],
+      total_items: {},
+      count_items: {},
+    };
+  },
+  watch: {
+    level: function (level) {
+      this.active_levels = level.split(",");
+      this.itemsChanged();
+    },
+    fixable: function () {
+      this.itemsChanged();
+    },
+    selected_tags: function () {
+      this.itemsChanged();
+    },
+  },
   computed: {
     categories_format() {
       return this.categories.map((categorie) => {
+        this.total_items[categorie.id] = categorie.items.length;
         categorie.items = categorie.items.map((item) => {
           item.class_format =
             this.$t("Item #{item}", { item: item.item }) +
@@ -150,6 +194,104 @@ export default Vue.extend({
         });
         return categorie;
       });
+    },
+  },
+  mounted() {
+    ExternalVueAppEvent.$on("item-params-changed", this.setParams);
+  },
+  methods: {
+    _select_items_loop(callback, categ_id) {
+      this.categories.forEach((categorie) => {
+        if (!categ_id || categorie.id == categ_id) {
+          this.count_items[categorie.id] = 0;
+          categorie.items.forEach((item) => {
+            if (callback) {
+              item.selected = callback(item);
+            }
+            if (item.selected) {
+              this.count_items[categorie.id]++;
+            }
+          });
+        }
+      });
+    },
+    setParams(params) {
+      if (params.item !== undefined) {
+        const itemRegex = params.item
+          .split(",")
+          .filter((item) => item != "")
+          .map((item) => new RegExp(item.replace(/x/g, ".")));
+        this._select_items_loop((item) =>
+          itemRegex.some((regex) => regex.test(item.item_format))
+        );
+      }
+
+      if (params.level !== undefined) {
+        this.level = params.level;
+      }
+
+      if (params.fixable !== undefined) {
+        this.fixable = params.fixable;
+      }
+
+      if (params.tags !== undefined) {
+        this.selected_tags = params.tags;
+      }
+      this.$forceUpdate();
+    },
+    showItem(item) {
+      return (
+        this.item_levels[this.level].indexOf(item.item) >= 0 &&
+        (!this.selected_tags ||
+          (item.tags && item.tags.indexOf(this.selected_tags) >= 0))
+      );
+    },
+    toggle_all(how) {
+      this._select_items_loop((item) => (how === -1 ? !item.selected : how));
+      this.$forceUpdate();
+      this.itemsChanged();
+    },
+    toggle_categorie(categ_id, how) {
+      this._select_items_loop((item) => how, categ_id);
+      this.$forceUpdate();
+      this.itemsChanged();
+    },
+    toggle_item() {
+      this._select_items_loop();
+      this.$forceUpdate();
+      this.itemsChanged();
+    },
+    toggle_categorie_block(categ_id) {
+      const block = document.getElementById(`categorie_block_${categ_id}`);
+      block.style.height = block.style.height == "0px" ? "" : "0px";
+    },
+    itemsChanged() {
+      var full_categ = 0;
+      var item_mask = this.categories
+        .filter((categorie) => this.count_items[categorie.id] > 0)
+        .map((categorie) => {
+          if (
+            this.total_items[categorie.id] == this.count_items[categorie.id]
+          ) {
+            full_categ++;
+            return `${categorie.id / 10}xxx`;
+          } else {
+            return categorie.items
+              .filter((item) => item.selected)
+              .map((item) => item.item_format)
+              .join(",");
+          }
+        })
+        .join(",");
+      if (full_categ == this.categories.length) {
+        item_mask = "xxxx";
+      }
+      this.menu._itemChanged(
+        item_mask,
+        this.level,
+        this.fixable,
+        this.selected_tags
+      );
     },
   },
 });

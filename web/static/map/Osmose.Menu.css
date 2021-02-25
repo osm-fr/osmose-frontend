@@ -63,6 +63,8 @@ div#menu div.test_group ul {
   margin: 0px;
   padding-left: 0px;
   padding-right: 0px;
+  overflow: hidden;
+  transition: height 1s ease-in-out 1s;
 }
 div#menu div.test_group li {
   padding-left: 2px;

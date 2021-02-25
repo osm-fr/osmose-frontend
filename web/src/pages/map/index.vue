@@ -8,7 +8,13 @@
         :user_error_count="user_error_count"
         :timestamp="timestamp"
       />
-      <items :tags="tags" :categories="categories" />
+      <items
+        :menu="menu"
+        :tags="tags"
+        :categories="categories"
+        :item_levels="item_levels"
+        :item_tags="item_tags"
+      />
       <doc />
       <div id="map"></div>
       <editor-modal />
@@ -61,6 +67,9 @@ export default Vue.extend({
       remote_url_read: "",
       layerMarker: null,
       editor: null,
+      menu: null,
+      item_levels: {},
+      item_tags: [],
     };
   },
   components: {
@@ -75,7 +84,7 @@ export default Vue.extend({
     // FIXME - Hardcode legacy to avoind waiting for JSON to init the map
     window.remoteUrlRead = "https://www.openstreetmap.org/";
     const a = initMap();
-    this._menu = a[0];
+    this.menu = a[0];
     this.layerMarker = a[1];
     this.editor = a[2];
 
@@ -104,8 +113,6 @@ export default Vue.extend({
         .then((response) => response.json())
         .then((response) => {
           // Legacy global variables
-          window.itemLevels = response.item_levels;
-          window.itemTags = response.item_tags;
           window.API_URL = API_URL;
 
           document.title = "Osmose";
@@ -124,7 +131,7 @@ export default Vue.extend({
 
           Object.assign(this, response);
           this.$nextTick(() => {
-            this._menu.init();
+            this.menu.init();
           });
         });
     },
