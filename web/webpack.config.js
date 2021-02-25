@@ -100,7 +100,7 @@ module.exports = (env, argv) => {
                 jQuery: "jquery",
             }),
             new webpack.DefinePlugin({
-                API_URL: JSON.stringify(env && env.API_URL || '')
+                API_URL: JSON.stringify(env.API_URL)
             }),
             new VueLoaderPlugin(),
         ],
