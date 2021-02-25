@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2021-02-14 20:33+0000\n"
+"PO-Revision-Date: 2021-02-25 20:14+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/openstreetmap-france/osmose/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -17,15 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: ../static/app/pages/control/updates.vue:30
-msgid "never generated"
-msgstr "aldri generert"
-
-#. TRANSLATORS: link to tooltip help
-#: ../static/app/pages/translation.vue:145
-msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
-msgstr ""
 
 #: ../issues.py:67 ../static/app/pages/issues/index.vue:16
 #: ../static/app/pages/issues/index.vue:60
@@ -36,37 +27,33 @@ msgstr "Falske positiver"
 msgid "Informations"
 msgstr "Informasjon"
 
-#: ../map.py:64
-msgid "Relation analyser"
-msgstr "Relasjonsanalyserer"
-
 #. TRANSLATORS: link to source code
-#: ../map.py:66
+#: ../map.py:65
 msgid "Statistics"
 msgstr "Statistikker"
 
-#: ../map.py:69 ../static/app/pages/contact.vue:5
+#: ../map.py:68 ../static/app/pages/contact.vue:5
 msgid "Contact"
 msgstr "Kontakt"
 
-#: ../map.py:70
+#: ../map.py:69
 msgid "Help on wiki"
 msgstr "Hjelp på wikien"
 
-#: ../map.py:70 ../static/app/pages/index.vue:30
-#: ../static/app/pages/translation.vue:133
+#: ../map.py:69 ../static/app/pages/index.vue:30
+#: ../static/app/pages/translation.vue:132
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr ""
 
-#: ../map.py:71
+#: ../map.py:70
 msgid "Copyright"
 msgstr "Copyright"
 
-#: ../map.py:72
+#: ../map.py:71
 msgid "Sources"
 msgstr "Kilder"
 
-#: ../map.py:73
+#: ../map.py:72
 msgid "Translation"
 msgstr "Oversettelse"
 
@@ -109,35 +96,20 @@ msgstr ""
 msgid "Development"
 msgstr "Utvikling"
 
-#: ../static/app/pages/contact.vue:68
+#: ../static/app/pages/contact.vue:70
 msgid "Contacting maintainers"
 msgstr "Kontakte vedlikeholderne"
 
 #: ../static/app/pages/control/update_matrix.vue:31
-#: ../static/app/pages/control/updates.vue:38
 msgid "Last updates"
 msgstr "Siste oppdateringer"
-
-#: ../static/app/pages/control/updates.vue:4
-msgid "Median delay:"
-msgstr "Median-forsinkelse:"
 
 #: ../../tools/database/items_menu.txt:34
 #: ../static/app/components/issues-list.vue:7
 #: ../static/app/pages/control/update.vue:6
-#: ../static/app/pages/control/updates.vue:10
 #: ../static/app/pages/issues/index.vue:94
 msgid "source"
 msgstr "kilde"
-
-#: ../static/app/pages/control/updates.vue:14
-msgid "last generation"
-msgstr "siste generasjon"
-
-#: ../static/app/pages/control/updates.vue:16
-#: ../static/app/pages/control/updates.vue:34
-msgid "history"
-msgstr "historikk"
 
 #: ../static/app/pages/control/update.vue:25
 msgid "Update"
@@ -382,7 +354,7 @@ msgstr "Wiki-sider"
 msgid "Osmose pages"
 msgstr "Osmose-sider"
 
-#: ../static/app/pages/translation.vue:83
+#: ../static/app/pages/translation.vue:78
 msgid "Bug tracking system"
 msgstr "Feilsøkingsystem"
 
@@ -853,7 +825,7 @@ msgstr "sport, kan integreres"
 msgid "Translation progress: osmose"
 msgstr "Fremgang på oversettelse: osmose"
 
-#: ../static/app/pages/translation.vue:56
+#: ../static/app/pages/translation.vue:51
 msgid "For new language or countries"
 msgstr "For nye språk eller land"
 
@@ -930,14 +902,6 @@ msgstr "ugyldig lag"
 msgid "Updates summary"
 msgstr "Oppdateringsammendrag"
 
-#: ../static/app/pages/control/updates.vue:11
-msgid "country"
-msgstr "land"
-
-#: ../static/app/pages/control/updates.vue:12
-msgid "analyser"
-msgstr "analyserer"
-
 #: ../../tools/database/items_menu.txt:178
 msgid "postal code, could be integrated"
 msgstr "postkode, kan integreres"
@@ -965,13 +929,6 @@ msgstr "postkode, ikke integrert"
 #: ../../tools/database/items_menu.txt:96
 msgid "local language"
 msgstr "lokalt språk"
-
-#: ../static/app/pages/contact.vue:59
-msgid ""
-"The servers analysing data are provided by OpenStreetMap-France and some "
-"others by contributors around the world. The servers for north-america and "
-"other areas are funded by Mapbox."
-msgstr "Tjenerene som analyserer dataene er levert av OpenStreetMap-France og noen andre bidragsytere rundt om i verden. Tjenerene for Nord-Amerika og andre områder er finansiert av Mapbox."
 
 #: ../issues.py:70 ../static/app/pages/issues/index.vue:59
 msgid "Fixed issues"
@@ -1032,10 +989,6 @@ msgstr "Kart over problemer"
 #: ../static/app/pages/index.vue:16
 msgid "Information on issues database"
 msgstr "Informasjon på problem-databasen"
-
-#: ../static/app/pages/translation.vue:51
-msgid "Documentation on reported issues"
-msgstr "Dokumentasjon på raporterte problemer"
 
 #: ../static/app/pages/control/update.vue:9
 msgid "version"
@@ -1679,7 +1632,7 @@ msgstr ""
 msgid "fire station"
 msgstr ""
 
-#: ../static/app/pages/contact.vue:51
+#: ../static/app/pages/contact.vue:53
 msgid ""
 "Adding new functionality of \"Osmose Editor\", initial support of mobile "
 "device and improvement of documentation was funded by region of Aquitaine, "
@@ -1734,7 +1687,7 @@ msgstr ""
 msgid "User statistics for {users}"
 msgstr ""
 
-#: ../static/app/pages/translation.vue:87
+#: ../static/app/pages/translation.vue:82
 msgid "{osmose-frontend} can be used to report any issue with translations."
 msgstr ""
 
@@ -1749,23 +1702,34 @@ msgstr ""
 msgid "Development of Osmose is made as free software by {volunteers}."
 msgstr ""
 
-#: ../static/app/pages/translation.vue:70
+#: ../static/app/pages/translation.vue:65
 msgid ""
 "For new countries, we can be contacted through a direct email to {email}."
-msgstr ""
-
-#: ../static/app/pages/contact.vue:83
-msgid "Keep in touch by watching at {osmose_qa} on twitter."
 msgstr ""
 
 #: ../static/app/pages/translation.vue:21
 msgid "Translation is done on {Transifex}"
 msgstr ""
 
-#: ../static/app/pages/contact.vue:71
+#: ../static/app/pages/contact.vue:73
 msgid "We can be contacted through a direct email to {email}."
 msgstr ""
 
-#: ../static/app/pages/translation.vue:60
+#: ../static/app/pages/translation.vue:55
 msgid "You can create a new language directly on {Transifex}."
+msgstr ""
+
+#: ../static/app/pages/contact.vue:85
+msgid "Keep in touch by watching at {osmose_qa} on Twitter."
+msgstr ""
+
+#: ../static/app/pages/contact.vue:61
+msgid ""
+"The servers analysing data are provided by OpenStreetMap-France and some "
+"others by contributors around the world. The servers for North America and "
+"other areas are funded by Mapbox."
+msgstr ""
+
+#: ../static/app/pages/contact.vue:47 ../static/app/pages/contact.vue:2
+msgid "volunteers"
 msgstr ""

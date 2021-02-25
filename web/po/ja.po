@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2021-02-14 20:33+0000\n"
+"PO-Revision-Date: 2021-02-25 20:14+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -25,15 +25,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-#: ../static/app/pages/control/updates.vue:30
-msgid "never generated"
-msgstr "生成なし"
-
-#. TRANSLATORS: link to tooltip help
-#: ../static/app/pages/translation.vue:145
-msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
-msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
 #: ../issues.py:67 ../static/app/pages/issues/index.vue:16
 #: ../static/app/pages/issues/index.vue:60
@@ -44,37 +35,33 @@ msgstr "誤検出"
 msgid "Informations"
 msgstr "情報"
 
-#: ../map.py:64
-msgid "Relation analyser"
-msgstr "リレーションアナライザー"
-
 #. TRANSLATORS: link to source code
-#: ../map.py:66
+#: ../map.py:65
 msgid "Statistics"
 msgstr "統計"
 
-#: ../map.py:69 ../static/app/pages/contact.vue:5
+#: ../map.py:68 ../static/app/pages/contact.vue:5
 msgid "Contact"
 msgstr "コンタクト"
 
-#: ../map.py:70
+#: ../map.py:69
 msgid "Help on wiki"
 msgstr "Wikiのヘルプ"
 
-#: ../map.py:70 ../static/app/pages/index.vue:30
-#: ../static/app/pages/translation.vue:133
+#: ../map.py:69 ../static/app/pages/index.vue:30
+#: ../static/app/pages/translation.vue:132
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
-#: ../map.py:71
+#: ../map.py:70
 msgid "Copyright"
 msgstr "著作権"
 
-#: ../map.py:72
+#: ../map.py:71
 msgid "Sources"
 msgstr "ソースファイル"
 
-#: ../map.py:73
+#: ../map.py:72
 msgid "Translation"
 msgstr "翻訳"
 
@@ -117,35 +104,20 @@ msgstr "パッチはGithub経由でリクエストされることでマージさ
 msgid "Development"
 msgstr "開発"
 
-#: ../static/app/pages/contact.vue:68
+#: ../static/app/pages/contact.vue:70
 msgid "Contacting maintainers"
 msgstr "管理者への連絡"
 
 #: ../static/app/pages/control/update_matrix.vue:31
-#: ../static/app/pages/control/updates.vue:38
 msgid "Last updates"
 msgstr "最新状況"
-
-#: ../static/app/pages/control/updates.vue:4
-msgid "Median delay:"
-msgstr "中間集計:"
 
 #: ../../tools/database/items_menu.txt:34
 #: ../static/app/components/issues-list.vue:7
 #: ../static/app/pages/control/update.vue:6
-#: ../static/app/pages/control/updates.vue:10
 #: ../static/app/pages/issues/index.vue:94
 msgid "source"
 msgstr "ソース"
-
-#: ../static/app/pages/control/updates.vue:14
-msgid "last generation"
-msgstr "最終生成"
-
-#: ../static/app/pages/control/updates.vue:16
-#: ../static/app/pages/control/updates.vue:34
-msgid "history"
-msgstr "履歴"
 
 #: ../static/app/pages/control/update.vue:25
 msgid "Update"
@@ -390,7 +362,7 @@ msgstr "Wikiページ"
 msgid "Osmose pages"
 msgstr "Osmoseの各ページ"
 
-#: ../static/app/pages/translation.vue:83
+#: ../static/app/pages/translation.vue:78
 msgid "Bug tracking system"
 msgstr "バグ追跡システム"
 
@@ -861,7 +833,7 @@ msgstr "含められるスポーツ"
 msgid "Translation progress: osmose"
 msgstr "翻訳の進捗: osmose"
 
-#: ../static/app/pages/translation.vue:56
+#: ../static/app/pages/translation.vue:51
 msgid "For new language or countries"
 msgstr "言語と国の追加"
 
@@ -938,14 +910,6 @@ msgstr "レイヤ指定ミス"
 msgid "Updates summary"
 msgstr "更新サマリ"
 
-#: ../static/app/pages/control/updates.vue:11
-msgid "country"
-msgstr "国"
-
-#: ../static/app/pages/control/updates.vue:12
-msgid "analyser"
-msgstr "アナライザー"
-
 #: ../../tools/database/items_menu.txt:178
 msgid "postal code, could be integrated"
 msgstr "統合可能な郵便番号"
@@ -973,13 +937,6 @@ msgstr "未統合の郵便番号"
 #: ../../tools/database/items_menu.txt:96
 msgid "local language"
 msgstr "現地表記"
-
-#: ../static/app/pages/contact.vue:59
-msgid ""
-"The servers analysing data are provided by OpenStreetMap-France and some "
-"others by contributors around the world. The servers for north-america and "
-"other areas are funded by Mapbox."
-msgstr "サーバー分析データはオープンストリートマップ・フランスにより提供されています。また世界中の貢献者により提供されているデータもあります。北米および他地域向けサーバーはMapbox社の提供です。"
 
 #: ../issues.py:70 ../static/app/pages/issues/index.vue:59
 msgid "Fixed issues"
@@ -1040,10 +997,6 @@ msgstr "課題一覧"
 #: ../static/app/pages/index.vue:16
 msgid "Information on issues database"
 msgstr "課題データベース情報"
-
-#: ../static/app/pages/translation.vue:51
-msgid "Documentation on reported issues"
-msgstr "報告された課題関連ドキュメント"
 
 #: ../static/app/pages/control/update.vue:9
 msgid "version"
@@ -1687,7 +1640,7 @@ msgstr ""
 msgid "fire station"
 msgstr ""
 
-#: ../static/app/pages/contact.vue:51
+#: ../static/app/pages/contact.vue:53
 msgid ""
 "Adding new functionality of \"Osmose Editor\", initial support of mobile "
 "device and improvement of documentation was funded by region of Aquitaine, "
@@ -1742,7 +1695,7 @@ msgstr ""
 msgid "User statistics for {users}"
 msgstr ""
 
-#: ../static/app/pages/translation.vue:87
+#: ../static/app/pages/translation.vue:82
 msgid "{osmose-frontend} can be used to report any issue with translations."
 msgstr ""
 
@@ -1757,23 +1710,34 @@ msgstr ""
 msgid "Development of Osmose is made as free software by {volunteers}."
 msgstr ""
 
-#: ../static/app/pages/translation.vue:70
+#: ../static/app/pages/translation.vue:65
 msgid ""
 "For new countries, we can be contacted through a direct email to {email}."
-msgstr ""
-
-#: ../static/app/pages/contact.vue:83
-msgid "Keep in touch by watching at {osmose_qa} on twitter."
 msgstr ""
 
 #: ../static/app/pages/translation.vue:21
 msgid "Translation is done on {Transifex}"
 msgstr ""
 
-#: ../static/app/pages/contact.vue:71
+#: ../static/app/pages/contact.vue:73
 msgid "We can be contacted through a direct email to {email}."
 msgstr ""
 
-#: ../static/app/pages/translation.vue:60
+#: ../static/app/pages/translation.vue:55
 msgid "You can create a new language directly on {Transifex}."
+msgstr ""
+
+#: ../static/app/pages/contact.vue:85
+msgid "Keep in touch by watching at {osmose_qa} on Twitter."
+msgstr ""
+
+#: ../static/app/pages/contact.vue:61
+msgid ""
+"The servers analysing data are provided by OpenStreetMap-France and some "
+"others by contributors around the world. The servers for North America and "
+"other areas are funded by Mapbox."
+msgstr ""
+
+#: ../static/app/pages/contact.vue:47 ../static/app/pages/contact.vue:2
+msgid "volunteers"
 msgstr ""

@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2021-02-10 19:21+0000\n"
+"PO-Revision-Date: 2021-02-25 20:14+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -18,15 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-#: ../static/app/pages/control/updates.vue:30
-msgid "never generated"
-msgstr "从未生成"
-
-#. TRANSLATORS: link to tooltip help
-#: ../static/app/pages/translation.vue:145
-msgid "http://wiki.openstreetmap.org/wiki/Osmose/errors"
-msgstr "http://wiki.openstreetmap.org/wiki/Osmose/errors"
 
 #: ../issues.py:67 ../static/app/pages/issues/index.vue:16
 #: ../static/app/pages/issues/index.vue:60
@@ -37,37 +28,33 @@ msgstr "误报"
 msgid "Informations"
 msgstr "信息"
 
-#: ../map.py:64
-msgid "Relation analyser"
-msgstr "关系分析器"
-
 #. TRANSLATORS: link to source code
-#: ../map.py:66
+#: ../map.py:65
 msgid "Statistics"
 msgstr "统计"
 
-#: ../map.py:69 ../static/app/pages/contact.vue:5
+#: ../map.py:68 ../static/app/pages/contact.vue:5
 msgid "Contact"
 msgstr "联系我们"
 
-#: ../map.py:70
+#: ../map.py:69
 msgid "Help on wiki"
 msgstr "Wiki上使用帮助"
 
-#: ../map.py:70 ../static/app/pages/index.vue:30
-#: ../static/app/pages/translation.vue:133
+#: ../map.py:69 ../static/app/pages/index.vue:30
+#: ../static/app/pages/translation.vue:132
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
-#: ../map.py:71
+#: ../map.py:70
 msgid "Copyright"
 msgstr "版权所有"
 
-#: ../map.py:72
+#: ../map.py:71
 msgid "Sources"
 msgstr "源代码"
 
-#: ../map.py:73
+#: ../map.py:72
 msgid "Translation"
 msgstr "翻译"
 
@@ -110,35 +97,20 @@ msgstr "可以使用 Github 的 merge request 功能来提交 patch。这是我�
 msgid "Development"
 msgstr "开发"
 
-#: ../static/app/pages/contact.vue:68
+#: ../static/app/pages/contact.vue:70
 msgid "Contacting maintainers"
 msgstr "联系网站维护人员"
 
 #: ../static/app/pages/control/update_matrix.vue:31
-#: ../static/app/pages/control/updates.vue:38
 msgid "Last updates"
 msgstr "最后更新"
-
-#: ../static/app/pages/control/updates.vue:4
-msgid "Median delay:"
-msgstr "平均延迟:"
 
 #: ../../tools/database/items_menu.txt:34
 #: ../static/app/components/issues-list.vue:7
 #: ../static/app/pages/control/update.vue:6
-#: ../static/app/pages/control/updates.vue:10
 #: ../static/app/pages/issues/index.vue:94
 msgid "source"
 msgstr "来源"
-
-#: ../static/app/pages/control/updates.vue:14
-msgid "last generation"
-msgstr "上次产生"
-
-#: ../static/app/pages/control/updates.vue:16
-#: ../static/app/pages/control/updates.vue:34
-msgid "history"
-msgstr "历史"
 
 #: ../static/app/pages/control/update.vue:25
 msgid "Update"
@@ -213,46 +185,46 @@ msgstr "设定"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
 #: ../static/app/components/issues-list.vue:22
-#: ../static/app/pages/issues/index.vue:106
+#: ../static/app/pages/issues/index.vue:105
 msgid "class (abbreviation)"
 msgstr "类 (缩写)"
 
-#: ../static/app/components/issues-list.vue:17
+#: ../static/app/components/issues-list.vue:18
 #: ../static/app/pages/issues/index.vue:101
 msgid "item"
 msgstr "项目"
 
-#: ../static/app/pages/issues/index.vue:110
+#: ../static/app/pages/issues/index.vue:111
 msgid "title"
 msgstr "标题"
 
-#: ../static/app/pages/issues/index.vue:113
+#: ../static/app/pages/issues/index.vue:114
 msgid "count"
 msgstr "数量"
 
-#: ../static/app/pages/issues/index.vue:157
+#: ../static/app/pages/issues/index.vue:158
 msgid "Total"
 msgstr "总计"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for level
-#: ../static/app/components/issues-list.vue:13
+#: ../static/app/components/issues-list.vue:12
 msgid "level (abbreviation)"
 msgstr "级别 (缩写)"
 
-#: ../static/app/components/issues-list.vue:27
+#: ../static/app/components/issues-list.vue:29
 msgid "position (abbreviation)"
 msgstr "位置 (缩写)"
 
-#: ../static/app/components/issues-list.vue:30
+#: ../static/app/components/issues-list.vue:32
 msgid "elements (abbreviation)"
 msgstr "内容 (缩写)"
 
-#: ../static/app/components/issues-list.vue:34
+#: ../static/app/components/issues-list.vue:36
 msgid "subtitle"
 msgstr "小标题"
 
 #: ../../tools/database/items_menu.txt:57
-#: ../static/app/components/issues-list.vue:38
+#: ../static/app/components/issues-list.vue:40
 msgid "date"
 msgstr "日期"
 
@@ -383,7 +355,7 @@ msgstr "Wiki 页面"
 msgid "Osmose pages"
 msgstr "Osmose 页面"
 
-#: ../static/app/pages/translation.vue:81
+#: ../static/app/pages/translation.vue:78
 msgid "Bug tracking system"
 msgstr "漏洞追踪系统"
 
@@ -854,7 +826,7 @@ msgstr "可以整合的运动类"
 msgid "Translation progress: osmose"
 msgstr "翻译进度：osmose"
 
-#: ../static/app/pages/translation.vue:56
+#: ../static/app/pages/translation.vue:51
 msgid "For new language or countries"
 msgstr "对于新增语言或某些国家及地区使用的语言版本"
 
@@ -898,7 +870,7 @@ msgstr "可以整合的药店"
 msgid "gas station"
 msgstr "加油站"
 
-#: ../static/app/components/issues-list.vue:253
+#: ../static/app/components/issues-list.vue:251
 msgid "position"
 msgstr "位置"
 
@@ -931,14 +903,6 @@ msgstr "layer不正确"
 msgid "Updates summary"
 msgstr "更新摘要"
 
-#: ../static/app/pages/control/updates.vue:11
-msgid "country"
-msgstr "国家及地区"
-
-#: ../static/app/pages/control/updates.vue:12
-msgid "analyser"
-msgstr "分析器"
-
 #: ../../tools/database/items_menu.txt:178
 msgid "postal code, could be integrated"
 msgstr "可以整合的邮政编码"
@@ -966,13 +930,6 @@ msgstr "不能整合的邮政编码"
 #: ../../tools/database/items_menu.txt:96
 msgid "local language"
 msgstr "本地语言"
-
-#: ../static/app/pages/contact.vue:59
-msgid ""
-"The servers analysing data are provided by OpenStreetMap-France and some "
-"others by contributors around the world. The servers for north-america and "
-"other areas are funded by Mapbox."
-msgstr "分析资料的服务器由OpenStreetMap-法国及世界各地的贡献者提供。其中北美等地的服务器由Mapbox赞助。"
 
 #: ../issues.py:70 ../static/app/pages/issues/index.vue:59
 msgid "Fixed issues"
@@ -1013,12 +970,12 @@ msgid ""
 "contributor of the relevant erroneous elements."
 msgstr "只要在下方的表单填入你的OSM用户名，就能看到列于你名下的问题。不过要注意，关联问题和帐号的算法并不完美，因为Osmose只看有问题编辑建立的最后修改人。"
 
-#: ../static/app/pages/issues/index.vue:167
-#: ../static/app/pages/issues/index.vue:170
+#: ../static/app/pages/issues/index.vue:168
+#: ../static/app/pages/issues/index.vue:171
 msgid "Show more issues"
 msgstr "显示更多问题"
 
-#: ../static/app/components/issues-list.vue:249
+#: ../static/app/components/issues-list.vue:247
 msgid "information on issue"
 msgstr "问题的信息"
 
@@ -1033,10 +990,6 @@ msgstr "问题地图"
 #: ../static/app/pages/index.vue:16
 msgid "Information on issues database"
 msgstr "关于问题数据库信息"
-
-#: ../static/app/pages/translation.vue:51
-msgid "Documentation on reported issues"
-msgstr "关于报告问题的文件"
 
 #: ../static/app/pages/control/update.vue:9
 msgid "version"
@@ -1291,7 +1244,7 @@ msgstr "国家及地区"
 msgid "Item"
 msgstr "项目"
 
-#: ../static/app/components/issues-list.vue:301
+#: ../static/app/components/issues-list.vue:299
 msgid "False positive / Done"
 msgstr "误报/完成"
 
@@ -1534,7 +1487,7 @@ msgstr ""
 msgid "gas station, not integrated"
 msgstr ""
 
-#: ../static/app/components/issues-list.vue:307
+#: ../static/app/components/issues-list.vue:305
 msgid "delete issue"
 msgstr "删除问题"
 
@@ -1680,7 +1633,7 @@ msgstr ""
 msgid "fire station"
 msgstr ""
 
-#: ../static/app/pages/contact.vue:51
+#: ../static/app/pages/contact.vue:53
 msgid ""
 "Adding new functionality of \"Osmose Editor\", initial support of mobile "
 "device and improvement of documentation was funded by region of Aquitaine, "
@@ -1733,4 +1686,51 @@ msgstr ""
 
 #: ../static/app/pages/byuser/byuser.vue:4
 msgid "User statistics for {users}"
+msgstr ""
+
+#: ../static/app/pages/translation.vue:82
+msgid "{osmose-frontend} can be used to report any issue with translations."
+msgstr ""
+
+#: ../static/app/pages/contact.vue:5
+msgid ""
+"Bug should be reported on {osmose-frontend} for issues around the website, "
+"or on {osmose-backend} for issues on the reported issues on OSM data, or for"
+" suggestion about analyses."
+msgstr ""
+
+#: ../static/app/pages/contact.vue:42
+msgid "Development of Osmose is made as free software by {volunteers}."
+msgstr ""
+
+#: ../static/app/pages/translation.vue:65
+msgid ""
+"For new countries, we can be contacted through a direct email to {email}."
+msgstr ""
+
+#: ../static/app/pages/translation.vue:21
+msgid "Translation is done on {Transifex}"
+msgstr ""
+
+#: ../static/app/pages/contact.vue:73
+msgid "We can be contacted through a direct email to {email}."
+msgstr ""
+
+#: ../static/app/pages/translation.vue:55
+msgid "You can create a new language directly on {Transifex}."
+msgstr ""
+
+#: ../static/app/pages/contact.vue:85
+msgid "Keep in touch by watching at {osmose_qa} on Twitter."
+msgstr ""
+
+#: ../static/app/pages/contact.vue:61
+msgid ""
+"The servers analysing data are provided by OpenStreetMap-France and some "
+"others by contributors around the world. The servers for North America and "
+"other areas are funded by Mapbox."
+msgstr ""
+
+#: ../static/app/pages/contact.vue:47 ../static/app/pages/contact.vue:2
+msgid "volunteers"
 msgstr ""
