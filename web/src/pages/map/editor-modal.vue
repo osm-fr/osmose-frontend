@@ -1,122 +1,142 @@
 <template>
-  <div
-    class="modal"
-    id="dialog_editor_save_modal"
-    data-backdrop="static"
-    tabindex="-1"
-    role="dialog"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title"><translate>Save changeset</translate></h5>
+  <div>
+    <h1><translate>Save changeset</translate></h1>
+    <div v-if="status == 'save'">
+      <form id="editor_save_form">
+        <div class="form-group">
+          <label for="editor-modify-count">
+            <translate>Objects edited</translate>
+          </label>
+          <input
+            type="text"
+            readonly
+            class="form-control-plaintext"
+            id="editor-modify-count"
+            :value="edition_stack.length"
+          />
         </div>
-        <div class="modal-body" id="save_changeset">
-          <form id="editor_save_form">
-            <div class="form-group row">
-              <label for="editor-modify-count" class="col-sm-4 col-form-label">
-                <translate>Objects edited</translate>
-              </label>
-              <div class="col-sm-8">
-                <input
-                  type="text"
-                  readonly
-                  class="form-control-plaintext"
-                  id="editor-modify-count"
-                  value=""
-                />
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="editor-delete-count" class="col-sm-4 col-form-label">
-                <translate>Objects deleted</translate>
-              </label>
-              <div class="col-sm-8">
-                <input
-                  type="text"
-                  readonly
-                  class="form-control-plaintext"
-                  id="editor-delete-count"
-                  value=""
-                />
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="comment" class="col-sm-4 col-form-label">
-                <translate>Comment</translate>
-              </label>
-              <div class="col-sm-8">
-                <input
-                  class="form-control"
-                  type="text"
-                  name="comment"
-                  id="comment"
-                  :value="$t('Fixed with Osmose')"
-                />
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="source" class="col-sm-4 col-form-label">
-                <translate>Source</translate>
-              </label>
-              <div class="col-sm-8">
-                <input
-                  class="form-control"
-                  type="text"
-                  name="source"
-                  id="source"
-                  value=""
-                />
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="type" class="col-sm-4 col-form-label">
-                <translate>Type</translate>
-              </label>
-              <div class="col-sm-8">
-                <input
-                  class="form-control"
-                  type="text"
-                  name="type"
-                  id="type"
-                  value="fix"
-                />
-              </div>
-            </div>
-            <div class="form-group" row>
-              <div class="col-sm-12">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  name="reuse_changeset"
-                  id="reuse_changeset"
-                  checked="checked"
-                />
-                <label class="form-check-label" for="reuse_changeset">
-                  <translate>Reuse changeset</translate>
-                </label>
-              </div>
-            </div>
-          </form>
+        <div class="form-group">
+          <label for="comment">
+            <translate>Comment</translate>
+          </label>
+          <input
+            class="form-control"
+            type="text"
+            id="comment"
+            v-model="comment"
+          />
         </div>
-        <div class="modal-body" id="save_uploading" style="display: none">
-          <center>
-            <img
-              src="~../../../static/images/throbbler.gif"
-              alt="downloading"
-            />
-          </center>
+        <div class="form-group">
+          <label for="source">
+            <translate>Source</translate>
+          </label>
+          <input
+            class="form-control"
+            type="text"
+            id="source"
+            v-model="source"
+          />
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+        <div class="form-group">
+          <label for="type">
+            <translate>Type</translate>
+          </label>
+          <input class="form-control" type="text" id="type" v-model="type" />
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="reuse_changeset"
+            v-model="reuse_changeset"
+          />
+          <label class="form-check-label" for="reuse_changeset">
+            <translate>Reuse changeset</translate>
+          </label>
+        </div>
+        <br />
+        <div id="buttons">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            v-on:click="$emit('cancel')"
+          >
             <translate>Cancel</translate>
           </button>
-          <button type="button" class="btn btn-primary" id="save_button">
+          <button type="button" class="btn btn-primary" v-on:click="save()">
             <translate>Save</translate>
           </button>
         </div>
+      </form>
+    </div>
+    <div v-if="status == 'upload'">
+      <center>
+        <img src="~../../../static/images/throbbler.gif" alt="downloading" />
+      </center>
+    </div>
+    <div v-if="status == 'error'">
+      {{ error }}
+      <br />
+      <div id="buttons">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          v-on:click="$emit('cancel')"
+        >
+          <translate>Cancel</translate>
+        </button>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import Vue from "vue";
+
+export default Vue.extend({
+  props: ["edition_stack"],
+  data() {
+    return {
+      comment: this.$t("Fixed with Osmose"),
+      source: "",
+      type: "fix",
+      reuse_changeset: true,
+      status: "save",
+      error: null,
+    };
+  },
+  methods: {
+    save() {
+      this.status = "upload";
+      fetch(API_URL + "/en/editor/save", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          tag: {
+            comment: this.comment,
+            source: this.source,
+            type: this.type,
+          },
+          reuse_changeset: this.reuse_changeset,
+          modify: this.edition_stack,
+        }),
+      })
+        .then((response) => {
+          this.$emit("saved");
+        })
+        .catch((error) => {
+          this.status = "error";
+          this.error = error;
+        });
+    },
+  },
+});
+</script>
+
+<style scoped>
+#buttons {
+  float: right;
+}
+</style>

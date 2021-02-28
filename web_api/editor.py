@@ -80,14 +80,14 @@ def save(db, lang):
     for action in ('modify', 'delete'):
         if action in json and len(json[action]) > 0:
             o.startElement(action, {})
-            for (k, e) in json[action].items():
+            for e in json[action]:
                 try:
                     ee = utils.fetch_osm_elem(e['type'], e["id"])
                 except:
                     ee = None
                 if ee and ee['version'] == int(e['version']):
                     ee[u'changeset'] = changeset
-                    ee['tag'] = e['tag']
+                    ee['tag'] = e['tags']
                     methode[e['type']](ee)
                 else:
                     # FIXME reject

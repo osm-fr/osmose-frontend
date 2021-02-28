@@ -17,7 +17,6 @@
       />
       <doc />
       <div id="map"></div>
-      <editor-modal />
       <editor :main_website="main_website" :user="user" :editor="editor" />
       <iframe id="hiddenIframe" name="hiddenIframe"></iframe>
       <popup
@@ -31,7 +30,6 @@
 
 <script>
 // --- Legacy
-import $ from "jquery";
 import { initMap } from "../../../static/map/map.js";
 
 require("leaflet");
@@ -42,7 +40,6 @@ require("../../../static/images/markers/markers-l.css");
 
 // Retro-compact hack for Leaflet.VectorGrid
 L.DomEvent.fakeStop = L.DomEvent._fakeStop;
-window.$ = $;
 // --- End Legacy
 
 import Vue from "vue";
@@ -50,7 +47,6 @@ import Vue from "vue";
 import Top from "./top.vue";
 import Items from "./items.vue";
 import Doc from "./doc.vue";
-import EditorModal from "./editor-modal.vue";
 import Editor from "./editor.vue";
 import Popup from "./popup.vue";
 
@@ -76,7 +72,6 @@ export default Vue.extend({
     Top,
     Items,
     Doc,
-    EditorModal,
     Editor,
     Popup,
   },

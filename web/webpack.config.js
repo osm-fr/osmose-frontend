@@ -95,10 +95,6 @@ module.exports = (env, argv) => {
                 filename: "index.html"
             }),
             new HtmlWebpackRootPlugin("app"),
-            new webpack.ProvidePlugin({
-                $: "jquery",
-                jQuery: "jquery",
-            }),
             new webpack.DefinePlugin({
                 API_URL: JSON.stringify(env.API_URL)
             }),

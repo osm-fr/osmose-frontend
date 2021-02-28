@@ -174,12 +174,7 @@
           <translate>Login</translate>
         </a>
       </li>
-      <li id="menu-editor-save" style="display: none">
-        <a href="#">
-          <translate>Save</translate>
-          (<span id="menu-editor-save-number" />)
-        </a>
-      </li>
+      <li is="editor-menu" />
     </ul>
   </div>
 </template>
@@ -189,6 +184,7 @@ import Vue from "vue";
 import TimeAgo from "vue2-timeago";
 
 import Delay from "../../components/delay.vue";
+import EditorMenu from "./editor-menu.vue";
 
 export default Vue.extend({
   props: ["languages_name", "lang", "user", "user_error_count", "timestamp"],
@@ -203,6 +199,7 @@ export default Vue.extend({
   },
   components: {
     Delay,
+    EditorMenu,
     TimeAgo,
   },
   methods: {
@@ -214,7 +211,7 @@ export default Vue.extend({
 </script>
 
 
-<style scoped>
+<style>
 div#top_links {
   background-color: #ffffff;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
