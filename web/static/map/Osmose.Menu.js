@@ -35,12 +35,14 @@ export const OsmoseMenu = L.Control.Sidebar.extend({
   // Menu
   toggle() {
     L.Control.Sidebar.prototype.toggle.call(this);
-    const active_area = document.getElementsByClassName("leaflet-active-area")[0];
-    if (active_area.style.left === '0px') {
-      active_area.style.left = '';
-    } else {
-      active_area.style.left = '0px';
-    }
+    // Not working well with Vue JS
+    // const active_area = document.getElementsByClassName("leaflet-active-area")[0];
+    // const style = window.getComputedStyle(active_area);
+    // if (style.left === '0px') {
+    //   active_area.style.left = '';
+    // } else {
+    //   active_area.style.left = '0px';
+    // }
   },
 
   _itemChanged(item_mask, level, fixable, tags) {
