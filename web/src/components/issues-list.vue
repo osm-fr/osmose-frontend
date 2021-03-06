@@ -194,7 +194,7 @@ export default Vue.extend({
     page_args: { default: "" },
   },
   computed: {
-    api_url: () => API_URL
+    api_url: () => API_URL,
   },
   methods: {
     sortable: (data) => {
@@ -221,7 +221,7 @@ export default Vue.extend({
       const path = id[1];
 
       Container.parentElement.classList = ["delete-row"];
-      fetch(`/api/0.3/${path}`, {
+      fetch(API_URL + `/api/0.3/${path}`, {
         method: verb,
         cache: "no-store",
       })
