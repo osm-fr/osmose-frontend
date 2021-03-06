@@ -1,18 +1,19 @@
 <template>
   <div>
     <vue-topprogress ref="topProgress"></vue-topprogress>
-    <marker-details v-if="marker" :marker="marker" :uuid="uuid" />
+    <div v-if="error">{{ error }}</div>
+    <marker-details v-else-if="marker" :marker="marker" :uuid="uuid" />
   </div>
 </template>
 
 <script>
-import Vue from "vue";
-
+import VueParent from "../Parent.vue";
 import MarkerDetails from "../../components/marker-details.vue";
 
-export default Vue.extend({
+export default VueParent.extend({
   data() {
     return {
+      error: false,
       uuid: "",
       marker: null,
     };
@@ -21,20 +22,9 @@ export default Vue.extend({
     MarkerDetails,
   },
   mounted() {
-    this.$refs.topProgress.start();
-    fetch(
+    this.fetchJsonProgressAssign(
       API_URL + window.location.pathname + ".json" + window.location.search,
-      {
-        headers: new Headers({
-          "Accept-Language": this.$route.params.lang,
-        }),
-      }
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        this.$refs.topProgress.done();
-
-        Object.assign(this, response);
+      (response) => {
         document.title =
           "Osmose - " +
           this.$t("Information on issue {uuid}", { uuid: this.uuid });
@@ -42,7 +32,8 @@ export default Vue.extend({
         const favicon = document.getElementById("favicon");
         favicon.href =
           URL_API + `/images/markers/marker-l-${this.marker.item}.png`;
-      });
+      }
+    );
   },
 });
 </script>

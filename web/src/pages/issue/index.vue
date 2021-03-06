@@ -1,9 +1,8 @@
 <template>
   <div>
+    <vue-topprogress ref="topProgress"></vue-topprogress>
     <div v-if="error">{{ error }}</div>
-
     <div v-else>
-      <vue-topprogress ref="topProgress"></vue-topprogress>
       <h2><translate>Marker</translate></h2>
       <marker-details :marker="marker" :uuid="uuid" />
       <br />
@@ -119,12 +118,11 @@
 </template>
 
 <script>
-import Vue from "vue";
-
+import VueParent from "../Parent.vue";
 import MarkerDetails from "../../components/marker-details.vue";
 import ShowTags from "../../components/show-tags.vue";
 
-export default Vue.extend({
+export default VueParent.extend({
   data() {
     return {
       error: false,
@@ -140,25 +138,9 @@ export default Vue.extend({
     ShowTags,
   },
   mounted() {
-    this.$refs.topProgress.start();
-    fetch(
+    this.fetchJsonProgressAssign(
       API_URL + window.location.pathname + ".json" + window.location.search,
-      {
-        headers: new Headers({
-          "Accept-Language": this.$route.params.lang,
-        }),
-      }
-    )
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`${response.status} ${response.statusText}`);
-        }
-        return response.json();
-      })
-      .then((response) => {
-        this.$refs.topProgress.done();
-
-        Object.assign(this, response);
+      (response) => {
         document.title =
           "Osmose - " +
           this.$t("Information on issue {uuid}", { uuid: this.uuid });
@@ -166,10 +148,8 @@ export default Vue.extend({
         const favicon = document.getElementById("favicon");
         favicon.href =
           API_URL + `/images/markers/marker-l-${this.marker.item}.png`;
-      })
-      .catch((error) => {
-        this.error = error;
-      });
+      }
+    );
   },
   methods: {
     data_type: (type) =>

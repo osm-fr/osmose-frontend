@@ -1,7 +1,11 @@
 <template>
   <div style="font-size: 50%">
     <vue-topprogress ref="topProgress"></vue-topprogress>
-    <table class="table table-striped table-bordered table-hover table-sm">
+    <div v-if="error">{{ error }}</div>
+    <table
+      v-else
+      class="table table-striped table-bordered table-hover table-sm"
+    >
       <thead>
         <tr>
           <th class="n" colspan="2" rowspan="2">
@@ -48,36 +52,27 @@
 </template>
 
 <script>
-import Vue from "vue";
+import VueParent from "../Parent.vue";
 
-export default Vue.extend({
+export default VueParent.extend({
   data() {
     return {
+      error: false,
       total: null,
       sorted_countries_sum: [],
       sorted_analysers_sum: [],
     };
   },
   mounted() {
-    this.$refs.topProgress.start();
-    fetch(
+    this.fetchJsonProgressAssign(
       API_URL + window.location.pathname + ".json" + window.location.search,
-      {
-        headers: new Headers({
-          "Accept-Language": this.$route.params.lang,
-        }),
-      }
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        this.$refs.topProgress.done();
-
-        Object.assign(this, response);
+      (response) => {
         this.sorted_countries_sum = this.sortObject(this.countries_sum);
         this.sorted_analysers_sum = this.sortObject(this.analysers_sum);
 
         document.title = "Osmose - " + this.$t("Issue counts matrix");
-      });
+      }
+    );
   },
   methods: {
     sortObject: (o) =>

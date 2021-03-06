@@ -1,56 +1,60 @@
 <template>
   <div>
     <vue-topprogress ref="topProgress"></vue-topprogress>
-    <h1>
-      <translate :params="{ users: users.join(', ') }">
-        User statistics for {users}
-      </translate>
-    </h1>
-    <p>
-      <translate :params="{ users: users.join('\', \'') }">
-        This page shows issues on elements that were last modified by '{users}'.
-        This doesn't means that this user is responsible for all these issues.
-      </translate>
-    </p>
-    <p>
-      <a :href="rss">
-        <translate>This list is also available via rss.</translate>
-      </a>
-    </p>
-    <p>
-      <span v-if="count < 500">
-        <translate :params="{ count: count }">
-          Number of found issues: {count}
+    <div v-if="error">{{ error }}</div>
+    <div v-else>
+      <h1>
+        <translate :params="{ users: users.join(', ') }">
+          User statistics for {users}
         </translate>
-      </span>
-      <span v-else>
-        <translate :params="{ count: count }">
-          Number of found issues: more than {count}
+      </h1>
+      <p>
+        <translate :params="{ users: users.join('\', \'') }">
+          This page shows issues on elements that were last modified by
+          '{users}'. This doesn't means that this user is responsible for all
+          these issues.
         </translate>
-      </span>
-      -
-      <router-link :to="`../map/#username=${username}`">
-        <translate>Show issues on a map</translate>
-      </router-link>
-    </p>
+      </p>
+      <p>
+        <a :href="rss">
+          <translate>This list is also available via rss.</translate>
+        </a>
+      </p>
+      <p>
+        <span v-if="count < 500">
+          <translate :params="{ count: count }">
+            Number of found issues: {count}
+          </translate>
+        </span>
+        <span v-else>
+          <translate :params="{ count: count }">
+            Number of found issues: more than {count}
+          </translate>
+        </span>
+        -
+        <router-link :to="`../map/#username=${username}`">
+          <translate>Show issues on a map</translate>
+        </router-link>
+      </p>
 
-    <issues-list
-      :errors="errors"
-      gen="info"
-      :main_website="main_website"
-      :page_args="`username=${username}&`"
-    />
+      <issues-list
+        :errors="errors"
+        gen="info"
+        :main_website="main_website"
+        :page_args="`username=${username}&`"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import Vue from "vue";
-
+import VueParent from "../Parent.vue";
 import IssuesList from "../../components/issues-list.vue";
 
-export default Vue.extend({
+export default VueParent.extend({
   data() {
     return {
+      error: false,
       users: [],
       username: "",
       count: 0,
@@ -76,22 +80,11 @@ export default Vue.extend({
   },
   methods: {
     render() {
-      this.$refs.topProgress.start();
       this.query = window.location.search.substring(1);
 
-      fetch(
+      this.fetchJsonProgressAssign(
         API_URL + window.location.pathname + ".json" + window.location.search,
-        {
-          headers: new Headers({
-            "Accept-Language": this.$route.params.lang,
-          }),
-        }
-      )
-        .then((response) => response.json())
-        .then((response) => {
-          this.$refs.topProgress.done();
-
-          Object.assign(this, response);
+        (response) => {
           document.title =
             "Osmose - " +
             this.$t("Statistics for user {user}", {
@@ -111,7 +104,8 @@ export default Vue.extend({
             title: document.title,
           });
           document.head.appendChild(rss);
-        });
+        }
+      );
     },
   },
 });

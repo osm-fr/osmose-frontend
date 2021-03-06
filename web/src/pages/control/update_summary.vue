@@ -1,7 +1,11 @@
 <template>
   <div>
     <vue-topprogress ref="topProgress"></vue-topprogress>
-    <table class="table table-striped table-bordered table-hover table-sm">
+    <div v-if="error">{{ error }}</div>
+    <table
+      v-else
+      class="table table-striped table-bordered table-hover table-sm"
+    >
       <template v-for="remote in remote_keys">
         <thead :key="'h' + remote" class="thead-dark">
           <tr>
@@ -43,13 +47,13 @@
 </template>
 
 <script>
-import Vue from "vue";
-
+import VueParent from "../Parent.vue";
 import Delay from "../../components/delay.vue";
 
-export default Vue.extend({
+export default VueParent.extend({
   data() {
     return {
+      error: false,
       remote_keys: null,
     };
   },
@@ -57,21 +61,9 @@ export default Vue.extend({
     Delay,
   },
   mounted() {
-    this.$refs.topProgress.start();
-    fetch(
-      API_URL + window.location.pathname + ".json" + window.location.search,
-      {
-        headers: new Headers({
-          "Accept-Language": this.$route.params.lang,
-        }),
-      }
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        this.$refs.topProgress.done();
-
-        Object.assign(this, response);
-      });
+    this.fetchJsonProgressAssign(
+      API_URL + window.location.pathname + ".json" + window.location.search
+    );
     document.title = "Osmose - " + this.$t("Updates summary");
   },
   methods: {

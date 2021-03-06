@@ -1,5 +1,7 @@
 <template>
   <div id="doc">
+    <div v-if="error">{{ error }}</div>
+
     <div v-if="welcome">
       <h5><translate>Welcome to Osmose-QA</translate></h5>
       <p>
@@ -89,15 +91,16 @@
 </template>
 
 <script>
-import Vue from "vue";
 import Marked from "marked";
 import path from "path";
 
+import VueParent from "../Parent.vue";
 import ExternalVueAppEvent from "../../ExternalVueAppEvent.js";
 
-export default Vue.extend({
+export default VueParent.extend({
   data() {
     return {
+      error: false,
       welcome: true,
       title: null,
       detail: null,
@@ -131,13 +134,9 @@ export default Vue.extend({
         return;
       }
 
-      fetch(API_URL + `/api/0.3/items/${item}/class/${classs}?langs=auto`, {
-        headers: new Headers({
-          "Accept-Language": this.$route.params.lang,
-        }),
-      })
-        .then((response) => response.json())
-        .then((response) => {
+      this.fetchJson(
+        API_URL + `/api/0.3/items/${item}/class/${classs}?langs=auto`,
+        (response) => {
           this._last_lang = this.$route.params.lang;
           this._last_item = item;
           this._last_classs = classs;
@@ -164,7 +163,8 @@ export default Vue.extend({
           this.resource_title = resource_url
             ? `${resource_url.protocol}//${resource_url.host}`
             : data.resource;
-        });
+        }
+      );
     },
   },
 });

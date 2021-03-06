@@ -1,7 +1,11 @@
 <template>
   <div>
     <vue-topprogress ref="topProgress"></vue-topprogress>
-    <table class="table table-striped table-bordered table-hover table-sm">
+    <div v-if="error">{{ error }}</div>
+    <table
+      v-else
+      class="table table-striped table-bordered table-hover table-sm"
+    >
       <thead class="thead-dark">
         <tr>
           <th><translate>Analyser</translate></th>
@@ -23,11 +27,19 @@
             </delay>
           </td>
           <td>
-            <span is="version" :max="max_versions" :v="summary[analyser].min_version">
+            <span
+              is="version"
+              :max="max_versions"
+              :v="summary[analyser].min_version"
+            >
               {{ summary[analyser].min_version }}
             </span>
             -
-            <span is="version" :max="max_versions" :v="summary[analyser].max_version">
+            <span
+              is="version"
+              :max="max_versions"
+              :v="summary[analyser].max_version"
+            >
               {{ summary[analyser].max_version }}
             </span>
           </td>
@@ -38,14 +50,14 @@
 </template>
 
 <script>
-import Vue from "vue";
-
+import VueParent from "../Parent.vue";
 import Delay from "../../components/delay.vue";
 import Version from "../../components/version.vue";
 
-export default Vue.extend({
+export default VueParent.extend({
   data() {
     return {
+      error: false,
       summary: null,
     };
   },
@@ -59,21 +71,9 @@ export default Vue.extend({
     Version,
   },
   mounted() {
-    this.$refs.topProgress.start();
-    fetch(
-      API_URL + window.location.pathname + ".json" + window.location.search,
-      {
-        headers: new Headers({
-          "Accept-Language": this.$route.params.lang,
-        }),
-      }
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        this.$refs.topProgress.done();
-
-        Object.assign(this, response);
-      });
+    this.fetchJsonProgressAssign(
+      API_URL + window.location.pathname + ".json" + window.location.search
+    );
     document.title = "Osmose - " + this.$t("Updates summary");
   },
 });

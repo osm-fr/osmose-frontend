@@ -1,8 +1,9 @@
 <template>
   <div>
     <vue-topprogress ref="topProgress"></vue-topprogress>
+    <div v-if="error">{{ error }}</div>
     <table
-      v-if="render"
+      v-else-if="render"
       class="table table-striped table-bordered table-hover table-sm"
     >
       <thead>
@@ -48,13 +49,13 @@
 </template>
 
 <script>
-import Vue from "vue";
-
+import VueParent from "../Parent.vue";
 import Delay from "../../components/delay.vue";
 
-export default Vue.extend({
+export default VueParent.extend({
   data() {
     return {
+      error: false,
       render: false,
     };
   },
@@ -62,22 +63,12 @@ export default Vue.extend({
     Delay,
   },
   mounted() {
-    this.$refs.topProgress.start();
-    fetch(
+    this.fetchJsonProgressAssign(
       API_URL + window.location.pathname + ".json" + window.location.search,
-      {
-        headers: new Headers({
-          "Accept-Language": this.$route.params.lang,
-        }),
-      }
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        this.$refs.topProgress.done();
-
-        Object.assign(this, response);
+      (response) => {
         this.render = true;
-      });
+      }
+    );
     document.title = "Osmose - " + this.$t("Last updates");
   },
 });

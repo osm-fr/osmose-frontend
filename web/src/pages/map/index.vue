@@ -1,6 +1,7 @@
 <template>
   <div>
     <vue-topprogress ref="topProgress"></vue-topprogress>
+    <div v-if="error">{{ error }}</div>
     <div>
       <top
         :languages_name="languages_name"
@@ -14,6 +15,7 @@
         :categories="categories"
         :item_levels="item_levels"
         :item_tags="item_tags"
+        :error="error"
       />
       <doc />
       <div id="map"></div>
@@ -42,17 +44,17 @@ require("../../../static/images/markers/markers-l.css");
 L.DomEvent.fakeStop = L.DomEvent._fakeStop;
 // --- End Legacy
 
-import Vue from "vue";
-
+import VueParent from "../Parent.vue";
 import Top from "./top.vue";
 import Items from "./items.vue";
 import Doc from "./doc.vue";
 import Editor from "./editor.vue";
 import Popup from "./popup.vue";
 
-export default Vue.extend({
+export default VueParent.extend({
   data() {
     return {
+      error: false,
       languages_name: [],
       user: null,
       user_error_count: null,
@@ -83,10 +85,7 @@ export default Vue.extend({
     this.layerMarker = a[1];
     this.editor = a[2];
 
-    this.$refs.topProgress.start();
-    this.setData().then(() => {
-      this.$refs.topProgress.done();
-    });
+    this.setData();
   },
   watch: {
     $route(to, from) {
@@ -97,16 +96,9 @@ export default Vue.extend({
   },
   methods: {
     setData() {
-      return fetch(
+      this.fetchJsonProgressAssign(
         API_URL + window.location.pathname + ".json" + window.location.search,
-        {
-          headers: new Headers({
-            "Accept-Language": this.$route.params.lang,
-          }),
-        }
-      )
-        .then((response) => response.json())
-        .then((response) => {
+        (response) => {
           // Legacy global variables
           window.API_URL = API_URL;
 
@@ -124,11 +116,11 @@ export default Vue.extend({
               "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
           }
 
-          Object.assign(this, response);
           this.$nextTick(() => {
             this.menu.init();
           });
-        });
+        }
+      );
     },
   },
 });

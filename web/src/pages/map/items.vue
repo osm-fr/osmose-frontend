@@ -1,7 +1,8 @@
 <template>
   <div id="menu">
     <a href="#" id="togglemenu">-</a>
-    <form action="#">
+    <div v-if="error">{{ error }}</div>
+    <form v-else action="#">
       <div id="need_zoom">
         <translate>no bubbles at this zoom factor</translate>
       </div>
@@ -153,7 +154,7 @@ import Vue from "vue";
 import ExternalVueAppEvent from "../../ExternalVueAppEvent.js";
 
 export default Vue.extend({
-  props: ["menu", "tags", "categories", "item_levels", "item_tags"],
+  props: ["error", "menu", "tags", "categories", "item_levels", "item_tags"],
   data() {
     return {
       level: "1",
