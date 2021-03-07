@@ -66,43 +66,53 @@ export default Vue.extend({
   components: {
     IssuesList,
   },
+  watch: {
+    $route() {
+      this.render();
+    },
+  },
   mounted() {
-    this.$refs.topProgress.start();
-    this.query = window.location.search.substring(1);
+    this.render();
+  },
+  methods: {
+    render() {
+      this.$refs.topProgress.start();
+      this.query = window.location.search.substring(1);
 
-    fetch(
-      API_URL + window.location.pathname + ".json" + window.location.search,
-      {
-        headers: new Headers({
-          "Accept-Language": this.$route.params.lang,
-        }),
-      }
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        this.$refs.topProgress.done();
-
-        Object.assign(this, response);
-        document.title =
-          "Osmose - " +
-          this.$t("Statistics for user {user}", {
-            user: this.users.join(", "),
-          });
-
-        var rss = document.getElementById("rss");
-        if (rss) {
-          rss.remove();
+      fetch(
+        API_URL + window.location.pathname + ".json" + window.location.search,
+        {
+          headers: new Headers({
+            "Accept-Language": this.$route.params.lang,
+          }),
         }
-        rss = document.createElement("link");
-        Object.assign(rss, {
-          id: "rss",
-          href: `http://${this.website}/${this.$route.params.lang}/byuser/${this.$route.params.user}.rss?${this.query}`,
-          rel: "alternate",
-          type: "application/rss+xml",
-          title: document.title,
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          this.$refs.topProgress.done();
+
+          Object.assign(this, response);
+          document.title =
+            "Osmose - " +
+            this.$t("Statistics for user {user}", {
+              user: this.users.join(", "),
+            });
+
+          var rss = document.getElementById("rss");
+          if (rss) {
+            rss.remove();
+          }
+          rss = document.createElement("link");
+          Object.assign(rss, {
+            id: "rss",
+            href: `http://${this.website}/${this.$route.params.lang}/byuser/${this.$route.params.user}.rss?${this.query}`,
+            rel: "alternate",
+            type: "application/rss+xml",
+            title: document.title,
+          });
+          document.head.appendChild(rss);
         });
-        document.head.appendChild(rss);
-      });
+    },
   },
 });
 </script>
