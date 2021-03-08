@@ -3,7 +3,7 @@
     <vue-topprogress ref="topProgress"></vue-topprogress>
     <div v-if="error">{{ error }}</div>
     <table
-      v-else-if="render"
+      v-else
       class="table table-striped table-bordered table-hover table-sm"
     >
       <thead>
@@ -35,12 +35,14 @@
             {{ stats_analyser[r][i - 1] | numFormat("0.0") }}
           </th>
           <template v-for="k in keys">
-            <td is="delay" v-if="matrix[r][k]" :key="k" :v="matrix[r][k][0]">
-              <router-link :to="`update/${matrix[r][k][1]}`">
-                {{ matrix[r][k][0] | numFormat("0.0") }}
-              </router-link>
-            </td>
-            <td v-else :key="k" />
+            <template v-if="stats_country[k][2] > 1">
+              <td is="delay" v-if="matrix[r][k]" :key="k" :v="matrix[r][k][0]">
+                <router-link :to="`update/${matrix[r][k][1]}`">
+                  {{ matrix[r][k][0] | numFormat("0.0") }}
+                </router-link>
+              </td>
+              <td v-else :key="k" />
+            </template>
           </template>
         </tr>
       </tbody>
@@ -56,7 +58,10 @@ export default VueParent.extend({
   data() {
     return {
       error: false,
-      render: false,
+      keys: [],
+      matrix_keys: [],
+      matrix: [],
+      stats_country: [],
     };
   },
   components: {
@@ -64,10 +69,7 @@ export default VueParent.extend({
   },
   mounted() {
     this.fetchJsonProgressAssign(
-      API_URL + window.location.pathname + ".json" + window.location.search,
-      (response) => {
-        this.render = true;
-      }
+      API_URL + window.location.pathname + ".json" + window.location.search
     );
     document.title = "Osmose - " + this.$t("Last updates");
   },
