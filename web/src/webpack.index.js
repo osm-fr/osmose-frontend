@@ -1,5 +1,4 @@
-require('bootstrap');
-require('bootstrap/dist/css/bootstrap.css');
+require('bootstrap/dist/css/bootstrap.min.css');
 
 require('../static/css/style.css');
 
