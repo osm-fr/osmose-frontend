@@ -209,12 +209,9 @@
         :main_website="main_website"
         :remote_url_read="remote_url_read"
       />
-      <router-link v-if="limit" :to="`?limit=${limit * 5}`">
+      <a href="#" v-on:click.stop.prevent="show_more()">
         <translate>Show more issues</translate>
-      </router-link>
-      <router-link v-else :to="`?${query}&amp;limit=100`">
-        <translate>Show more issues</translate>
-      </router-link>
+      </a>
     </div>
   </div>
 </template>
@@ -320,6 +317,11 @@ export default Vue.extend({
           });
           document.head.appendChild(rss);
         });
+    },
+    show_more: function () {
+      var query = Object.assign({}, this.$route.query);
+      query.limit = this.limit ? this.limit * 5 : 500;
+      this.$router.push({ name: this.$route.name, query });
     },
   },
 });
