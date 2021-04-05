@@ -111,11 +111,12 @@ def index(db, lang, format):
         output = io.StringIO()
         writer = csv.writer(output)
         h = ['uuid', 'source', 'item', 'class', 'level', 'title', 'subtitle', 'country', 'analyser', 'timestamp', 'username', 'lat', 'lon', 'elems']
+        hh = {'source': 'source_id'}
         writer.writerow(h)
         for res in errors:
             usernames = list(map(lambda elem: elem.get("username", ""), res['elems'] or []))
             elems = '_'.join(map(lambda elem: {'N':'node', 'W':'way', 'R':'relation'}[elem['type']] + str(elem['id']), res['elems'] or []))
-            writer.writerow(list(map(lambda a: usernames if a == 'username' else elems if a == 'elems' else res[a], h)))
+            writer.writerow(list(map(lambda a: usernames if a == 'username' else elems if a == 'elems' else res[a], map(lambda y: hh.get(y, y), h))))
         response.content_type = 'text/csv'
         return output.getvalue()
     else:
