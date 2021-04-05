@@ -75,7 +75,6 @@ def index(db, lang, format):
 
     params = Params()
     params.status = {"error":"open", "false-positive": "false", "done":"done"}[gen]
-    params.limit = None
     params.fixable = None
 
     items = query_meta._items_menu(db, lang)
@@ -124,6 +123,7 @@ def index(db, lang, format):
         items = list(map(dict, items))
 
         if params.item:
+            params.limit = None
             errors_groups = query._count(db, params, [
                 "markers_counts.item",
                 "markers.source_id",
@@ -147,11 +147,8 @@ def index(db, lang, format):
             errors_groups = []
             total = 0
 
-        if params.limit:
-            if gen in ("false-positive", "done"):
-                opt_date = "date"
-            else:
-                opt_date = None
+        if gen in ("false-positive", "done"):
+            opt_date = "date"
         else:
             opt_date = None
 
