@@ -14,7 +14,6 @@
         :tags="tags"
         :categories="categories"
         :item_levels="item_levels"
-        :item_tags="item_tags"
         :error="error"
       />
       <doc />
@@ -67,7 +66,6 @@ export default VueParent.extend({
       editor: null,
       menu: null,
       item_levels: {},
-      item_tags: [],
     };
   },
   components: {

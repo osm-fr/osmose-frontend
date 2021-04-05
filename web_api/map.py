@@ -41,7 +41,6 @@ def index(db, user, lang):
 
     categories = query_meta._items(db, langs = lang)
 
-    item_tags = defaultdict(set)
     item_levels = {'1': set(), '2': set(), '3': set()}
     for categ in categories:
         for item in categ['items']:
@@ -53,10 +52,6 @@ def index(db, user, lang):
                 }
             for level in item['levels']:
                 item_levels[str(level['level'])].add(item['item'])
-            if item['tags']:
-                for tag in item['tags']:
-                    item_tags[tag].add(item['item'])
-    item_tags = list(item_tags)
 
     item_levels['1,2'] = item_levels['1'] | item_levels['2']
     item_levels['1,2,3'] = item_levels['1,2'] | item_levels['3']
@@ -88,7 +83,7 @@ OFFSET
     else:
         user_error_count = None
 
-    return dict(categories=categories, item_tags=item_tags, tags=tags, item_levels=item_levels,
+    return dict(categories=categories, tags=tags, item_levels=item_levels,
         main_project=utils.main_project, timestamp=timestamp, languages_name=utils.languages_name,
         website=utils.website, remote_url_read=utils.remote_url_read,
         user=user, user_error_count=user_error_count, main_website=utils.main_website)

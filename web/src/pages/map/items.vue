@@ -154,7 +154,7 @@ import Vue from "vue";
 import ExternalVueAppEvent from "../../ExternalVueAppEvent.js";
 
 export default Vue.extend({
-  props: ["error", "menu", "tags", "categories", "item_levels", "item_tags"],
+  props: ["error", "menu", "tags", "categories", "item_levels"],
   data() {
     return {
       level: "1",
