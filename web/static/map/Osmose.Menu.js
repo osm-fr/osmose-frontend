@@ -51,10 +51,29 @@ export const OsmoseMenu = L.Control.Sidebar.extend({
       path: '/',
     };
 
-    Cookies.set('last_level', level, cookiesOptions);
-    Cookies.set('last_item', item_mask, cookiesOptions);
-    Cookies.set('last_tags', tags, cookiesOptions);
-    Cookies.set('last_fixable', fixable, cookiesOptions);
+    if (!level) {
+      Cookies.remove('last_level', cookiesOptions);
+    } else {
+      Cookies.set('last_level', level, cookiesOptions);
+    }
+
+    if (!item_mask) {
+      Cookies.set('last_item', '', cookiesOptions);
+    } else {
+      Cookies.set('last_item', item_mask, cookiesOptions);
+    }
+
+    if (!tags) {
+      Cookies.remove('last_tags', cookiesOptions);
+    } else {
+      Cookies.set('last_tags', tags, cookiesOptions);
+    }
+
+    if (!fixable) {
+      Cookies.remove('last_fixable', cookiesOptions);
+    } else {
+      Cookies.set('last_fixable', fixable, cookiesOptions);
+    }
 
     this._permalink.update_item({
       item: item_mask,

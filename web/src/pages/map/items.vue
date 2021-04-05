@@ -237,11 +237,11 @@ export default Vue.extend({
 
       if (params.tags !== undefined) {
         if (this.tags.indexOf(params.tags) < 0) {
-          this.selected_tags = null;
-        } else {
-          this.selected_tags = params.tags;
+          this.tags.push(params.tags);
         }
+        this.selected_tags = params.tags;
       }
+
       this.$forceUpdate();
     },
     showItem(item) {
