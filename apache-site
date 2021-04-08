@@ -60,12 +60,12 @@
 		ExpiresActive Off
 		CacheDisable on
 	</LocationMatch>
-	<LocationMatch /0\.3beta/issues/[0-9]+/[0-9]+/[0-9]+\.heat\.mvt>
+	<LocationMatch /0\.3/issues/[0-9]+/[0-9]+/[0-9]+\.heat\.mvt>
 		ExpiresDefault "access plus 1 day"
 		CacheEnable disk
 		CacheHeader on
 	</LocationMatch>
-	<LocationMatch /0\.3beta/issues/[0-9]+/[0-9]+/[0-9]+\.mvt>
+	<LocationMatch /0\.3/issues/[0-9]+/[0-9]+/[0-9]+\.mvt>
 		ExpiresDefault "access plus 2 minutes"
 		CacheEnable disk
 		CacheHeader on
@@ -83,7 +83,7 @@
 		ExpiresActive Off
 		CacheDisable on
 	</LocationMatch>
-	<LocationMatch /api/0\.3beta/items/[0-9]*/class/[0-9]*>
+	<LocationMatch /api/0\.3/items/[0-9]*/class/[0-9]*>
 		ExpiresDefault "access plus 60 minutes"
 	</LocationMatch>
 
@@ -93,7 +93,7 @@
 
 	RewriteRule ^/oauth$ /en/oauth [PT]
 	RewriteRule "^(/api/0.2/.*)" "/en$1" [PT]
-	RewriteRule "^/([a-z_]+)(/api/0\.3beta/.*)" "$2?%{QUERY_STRING}&langs=$1" [PT]
+	RewriteRule "^/([a-z_]+)(/api/0\.3/.*)" "$2?%{QUERY_STRING}&langs=$1" [PT]
 
 	RewriteRule ^/$ /map/ [R,L]
 	RewriteRule ^/map/cgi-bin/index.py$ /map [R,L]
