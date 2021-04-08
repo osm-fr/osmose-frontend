@@ -25,6 +25,11 @@ const OsmoseExport = L.Class.extend({
     this._params_last = params;
     params.limit = 500;
     params.bbox = this._map.getBounds().toBBoxString();
+    Object.keys(params).forEach(key => {
+      if (params[key] === undefined) {
+        delete params[key];
+      }
+    });
     Object.values(document.getElementsByClassName("menu-export")).forEach((a) => {
       a.href = a.dataset.href + L.Util.getParamString(params);
     });
