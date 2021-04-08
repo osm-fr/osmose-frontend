@@ -214,7 +214,8 @@ export default Vue.extend({
 <style>
 div#top_links {
   background-color: #ffffff;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+  background-clip: padding-box;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
   position: absolute;
   height: 24px;
   width: 100%;
@@ -222,16 +223,7 @@ div#top_links {
   top: 0px;
   opacity: 0.9;
   font-size: 13px;
-
-  vertical-align: middle;
-  text-align: center;
   z-index: 1025;
-}
-
-.leaflet-touch + div#top_links {
-  box-shadow: none;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
-  background-clip: padding-box;
 }
 
 #topmenu {
