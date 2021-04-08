@@ -23,17 +23,28 @@ services:
     networks:
       - osmose-frontend-internal
 
-  frontend:
+  api:
     build:
       context: ..
-      dockerfile: docker/Dockerfile
-    image: osm-fr/osmose_frontend
+      dockerfile: docker/Dockerfile-api
+    image: osm-fr/osmose_frontend_api
     depends_on:
       - postgres
     environment:
       - DB_HOST=postgres
     ports:
       - 20009:20009
+    networks:
+      - osmose-frontend-internal
+      - osmose-frontend
+
+  web:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile-web
+    image: osm-fr/osmose_frontend_web
+    ports:
+      - 8080:8080
     networks:
       - osmose-frontend-internal
       - osmose-frontend

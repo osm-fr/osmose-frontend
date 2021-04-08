@@ -1,11 +1,16 @@
 version: '3.3'
 
 services:
-  frontend:
+  api:
     volumes:
       - type: bind
         source: ..
         target: /data/project/osmose/frontend
     command: bash
-    ports:
-      - 8080:8080
+
+  web:
+    volumes:
+      - type: bind
+        source: ../web
+        target: /data/project/osmose/frontend/web
+    entrypoint: /bin/sh

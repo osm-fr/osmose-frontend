@@ -1,5 +1,4 @@
-Docker
-======
+# Docker
 
 Build the Docker image, within the docker directory:
 ```
@@ -12,42 +11,47 @@ Run the containers:
 docker-compose up
 ```
 
-The server will be running at http://localhost:20009/en/map/
+The API server will be running at http://localhost:20009/
+The Web server will be at https://localhost:8080/en/map/
 
 
-Docker for development
-----------------------
+## Docker for development
 
-Create a container nammed `frontend` by running a configuration and password less instance:
-```
-docker-compose -f docker-compose.yml -f docker-compose-test.yml -f docker-compose-dev.yml run --name frontend -p 20009:20009 -p 8080:8080 frontend
-```
-The named container is required to be access from the backend.
-
-Once the it is created, you can enter it again with:
+Run the database int the background:
 ```
 docker-compose up -d postgres
-docker start frontend && docker exec -ti frontend bash
 ```
 
-Once on container, first time of for development purpose:
+### API
 ```
-cd web
-cd po && make mo && cd ..
-ln -s ../../node_modules/ node_modules
-npm run build
+docker-compose -f docker-compose.yml -f docker-compose-dev.yml -f docker-compose-test.yml run -p 20009:20009 api
 ```
 
-Then run the standalone web server
+Once on container, run the standalone API server
 ```
 ./osmose-standalone-bottle.py
 ```
 
-To upload data to Osmose Frontend see the Osmose Backend.
-
-Show the results at: http://localhost:20009/en/errors?item=xxxx&useDevItem=true
-
-Acces to the database with
+Acces to the database from the API container with
 ```
 psql -h postgres osmose_frontend osmose
 ```
+
+### Web Server
+You can work on Web part easyily without Docker, look at main (README.md)[./README.md]
+
+Using Docker:
+```
+docker-compose -f docker-compose.yml -f docker-compose-dev.yml run -p 8080:8080 web
+```
+
+Once on container, for first time:
+```
+cd po && make mo && cd ..
+npm run dev-server
+```
+
+## Data from Osmose Backend
+To upload data to Osmose Frontend see the Osmose Backend.
+
+Show the results at: http://localhost:8080/en/errors?item=xxxx&useDevItem=true
