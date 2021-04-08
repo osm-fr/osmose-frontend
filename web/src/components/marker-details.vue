@@ -42,7 +42,7 @@
         <td>lat lon</td>
         <td>
           <router-link
-            :to="`../map/?item=${marker.item}&amp;zoom=17&amp;lat=${marker.lat}&amp;lon=${marker.lon}&amp;issue_uuid=${uuid}`"
+            :to="`../map/#item=${marker.item}&amp;zoom=17&amp;lat=${marker.lat}&amp;lon=${marker.lon}&amp;issue_uuid=${uuid}`"
           >
             {{ marker.lat }}&nbsp;{{ marker.lon }}
           </router-link>
