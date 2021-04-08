@@ -144,6 +144,9 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
       }
       return o;
     }, {});
+    if (!('level' in p)) {
+      p['level'] = '1';
+    }
     return API_URL + `/api/0.3/issues/{z}/{x}/{y}.mvt${L.Util.getParamString(p)}`;
   },
 
