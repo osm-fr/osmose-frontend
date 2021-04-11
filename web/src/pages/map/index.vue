@@ -10,13 +10,14 @@
         :timestamp="timestamp"
       />
       <items
+        ref="items"
         :menu="menu"
         :tags="tags"
         :categories="categories"
         :item_levels="item_levels"
         :error="error"
       />
-      <doc />
+      <doc v-on:hide-item-markers="onHideItemMarkers($event)" />
       <div id="map"></div>
       <editor :main_website="main_website" :user="user" :editor="editor" />
       <iframe id="hiddenIframe" name="hiddenIframe"></iframe>
@@ -76,7 +77,7 @@ export default VueParent.extend({
     Popup,
   },
   mounted() {
-    // FIXME - Hardcode legacy to avoind waiting for JSON to init the map
+    // FIXME - Hardcode legacy to avoid waiting for JSON to init the map
     window.remoteUrlRead = "https://www.openstreetmap.org/";
     const a = initMap();
     this.menu = a[0];
@@ -120,6 +121,9 @@ export default VueParent.extend({
         }
       );
     },
+    onHideItemMarkers(disabled_item) {
+      this.$refs.items.toggle_item(disabled_item, false);
+    }
   },
 });
 </script>
