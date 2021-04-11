@@ -135,7 +135,7 @@
               <input
                 type="checkbox"
                 v-model="item.selected"
-                @change="toggle_item"
+                @change="toggle_item(item.item, item.selected)"
               />
               <router-link target="_blank" :to="`../errors/?item=${item.item}`">
                 {{ item.title.auto }}
@@ -261,8 +261,8 @@ export default Vue.extend({
       this.$forceUpdate();
       this.itemsChanged();
     },
-    toggle_item() {
-      this._select_items_loop();
+    toggle_item(item_id, selected) {
+      this._select_items_loop((item) => (item.item === item_id) ? selected : item.selected);
       this.$forceUpdate();
       this.itemsChanged();
     },

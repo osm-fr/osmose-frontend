@@ -61,6 +61,15 @@
         <p v-html="example"></p>
       </template>
 
+      <h6>👁️ <translate>Hide markers</translate></h6>
+      <p><translate-slot>
+        <span translate>Do not want to see {title} markers?</span>
+        <template v-slot:title>
+          <i>{{ title }}</i>
+        </template>
+      </translate-slot></p>
+      <button class="mb-3 btn btn-info btn-sm" v-on:click.stop.prevent="$emit('hide-item-markers', item)"><translate>Hide from map</translate></button>
+
       <template v-if="source_link">
         <h6>🔗 <translate>Source Code</translate></h6>
         <p>
@@ -109,6 +118,7 @@ export default VueParent.extend({
       example: null,
       source_link: null,
       resource_link: null,
+      item: null,
     };
   },
   mounted() {
@@ -163,6 +173,7 @@ export default VueParent.extend({
           this.resource_title = resource_url
             ? `${resource_url.protocol}//${resource_url.host}`
             : data.resource;
+          this.item = data.item;
         }
       );
     },
@@ -175,9 +186,14 @@ export default VueParent.extend({
   z-index: 800;
 }
 
+#doc > div {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
 #doc_bottom {
   opacity: 0.5;
-  bottom: 0;
-  position: absolute;
+  margin-top: auto;
 }
 </style>
