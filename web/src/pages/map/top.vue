@@ -21,7 +21,7 @@
         </ul>
       </li>
 
-      <li v-if="!user" id="menu-byuser">
+      <li id="menu-byuser">
         <router-link :to="user ? `../byuser/${user}` : '../byuser/'">
           <translate
             translate-comment="TRANSLATORS: link to help in appropriate language"
