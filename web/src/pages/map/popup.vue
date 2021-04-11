@@ -326,7 +326,8 @@ export default Vue.extend({
     };
   },
   computed: {
-    api_url: () => API_URL,
+    api_url: () =>
+      (API_URL.startsWith("http") ? "" : location.protocol) + API_URL,
     classs: function () {
       return this.class;
     },
