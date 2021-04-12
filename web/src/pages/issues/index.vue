@@ -11,28 +11,70 @@
           <img :src="favicon" />
         </span>
         <div class="collapse navbar-collapse">
-          <div class="navbar-nav">
-            <router-link class="nav-item nav-link active" :to="`./?${query}`">
-              <translate>Informations</translate>
-            </router-link>
-            <router-link class="nav-item nav-link active" :to="`done?${query}`">
-              <translate>Fixed</translate>
-            </router-link>
-            <router-link
-              class="nav-item nav-link active"
-              :to="`false-positive?${query}`"
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <router-link class="nav-link" :to="`./?${query}`">
+                <translate>Informations</translate>
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :to="`done?${query}`">
+                <translate>Fixed</translate>
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :to="`false-positive?${query}`">
+                <translate>False positives</translate>
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" :href="`graph.png?${query}`">
+                <translate>Graph</translate>
+              </a>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :to="`../map/#${query}`">
+                <translate>Map</translate>
+              </router-link>
+            </li>
+          </ul>
+          <div class="form-inline my-2 my-lg-0">
+            <a
+              :href="`${api_url_path}.rss?${query}`"
+              class="badge badge-secondary"
             >
-              <translate>False positives</translate>
-            </router-link>
-            <a class="nav-item nav-link active" :href="`graph.png?${query}`">
-              <translate>Graph</translate>
+              .rss </a
+            >&nbsp;
+            <a
+              :href="`${api_url_path}.gpx?${query}`"
+              class="badge badge-secondary"
+            >
+              .gpx </a
+            >&nbsp;
+            <a
+              :href="`${api_url_path}.kml?${query}`"
+              class="badge badge-secondary"
+            >
+              .kml </a
+            >&nbsp;
+            <a
+              :href="`${api_url_path}.csv?${query}`"
+              class="badge badge-secondary"
+            >
+              .csv </a
+            >&nbsp;
+            <a
+              :href="`${api_url_path}.json?${query}`"
+              class="badge badge-secondary"
+            >
+              .json </a
+            >&nbsp;
+            <a
+              :href="`${api_url_path}.geojson?${query}`"
+              class="badge badge-secondary"
+            >
+              .geojon
             </a>
-            <router-link
-              class="nav-item nav-link active"
-              :to="`../map/#${query}`"
-            >
-              <translate>Map</translate>
-            </router-link>
           </div>
         </div>
       </nav>
@@ -256,6 +298,7 @@ export default VueParent.extend({
   },
   computed: {
     api_url: () => API_URL,
+    api_url_path: () => API_URL + window.location.pathname,
   },
   components: {
     IssuesList,
@@ -328,3 +371,9 @@ export default VueParent.extend({
   },
 });
 </script>
+
+<style scoped>
+a.badge:visited {
+  color: #fff; /* Unclicked color for bootstrap badge-secondary */
+}
+</style>
