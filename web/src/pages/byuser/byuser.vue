@@ -3,22 +3,42 @@
     <vue-topprogress ref="topProgress"></vue-topprogress>
     <div v-if="error">{{ error }}</div>
     <div v-else>
-      <h1>
-        <translate :params="{ users: users.join(', ') }">
-          User statistics for {users}
-        </translate>
-      </h1>
+      <nav
+        class="navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-dark"
+        style="background-color: #212529"
+      >
+        <span class="navbar-brand">
+          <translate :params="{ users: users.join(', ') }">
+            User statistics for {users}
+          </translate>
+        </span>
+
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <router-link
+                class="nav-link"
+                :to="`../map/#username=${username}`"
+              >
+                <translate>Map</translate>
+              </router-link>
+            </li>
+          </ul>
+          <div class="form-inline my-2 my-lg-0">
+            <a :href="`${api_url_path}.rss`" class="badge badge-secondary">
+              .rss</a
+            >
+          </div>
+        </div>
+      </nav>
+      <br />
+
       <p>
         <translate :params="{ users: users.join('\', \'') }">
           This page shows issues on elements that were last modified by
           '{users}'. This doesn't means that this user is responsible for all
           these issues.
         </translate>
-      </p>
-      <p>
-        <a :href="rss">
-          <translate>This list is also available via rss.</translate>
-        </a>
       </p>
       <p>
         <span v-if="count < 500">
@@ -31,10 +51,6 @@
             Number of found issues: more than {count}
           </translate>
         </span>
-        -
-        <router-link :to="`../map/#username=${username}`">
-          <translate>Show issues on a map</translate>
-        </router-link>
       </p>
 
       <issues-list
@@ -63,9 +79,7 @@ export default VueParent.extend({
     };
   },
   computed: {
-    rss() {
-      return `https://${this.website}/byuser/${this.username}.rss`;
-    },
+    api_url_path: () => API_URL + window.location.pathname,
   },
   components: {
     IssuesList,
@@ -110,3 +124,9 @@ export default VueParent.extend({
   },
 });
 </script>
+
+<style scoped>
+a.badge:visited {
+  color: #fff; /* Unclicked color for bootstrap badge-secondary */
+}
+</style>
