@@ -64,10 +64,16 @@
               .csv </a
             >&nbsp;
             <a
-              :href="`${api_url_path}.json?${query}`"
+              :href="`${api_url}/api/0.3/issues?${query}`"
               class="badge badge-secondary"
             >
               .json </a
+            >&nbsp;
+            <a
+              :href="`${api_url}/api/0.3/issues?${query}&full=true`"
+              class="badge badge-secondary"
+            >
+              .json full</a
             >&nbsp;
             <a
               :href="`${api_url_path}.geojson?${query}`"
