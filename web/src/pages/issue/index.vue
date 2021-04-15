@@ -7,8 +7,8 @@
       <marker-details :marker="marker" :uuid="uuid" />
       <br />
 
-      <h2><translate>Elements</translate></h2>
       <template v-if="marker.elems">
+        <h2><translate>Elements</translate></h2>
         <div v-for="(element, elem_index) in marker.elems" :key="element.id">
           <table
             class="table table-striped table-bordered table-hover table-sm"
@@ -59,8 +59,8 @@
         </div>
       </template>
 
-      <h2><translate>Fixes</translate></h2>
       <template v-if="marker.fixes">
+        <h2><translate>Fixes</translate></h2>
         <div v-for="(fix_group, fix_index) in marker.fixes" :key="fix_index">
           <h3>#{{ fix_index }}</h3>
           <div v-for="(fix, fix_index) in fix_group" :key="'fix|' + fix_index">

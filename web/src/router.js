@@ -16,8 +16,6 @@ const Map = () =>
 
 const IssueIndex = () =>
     import ( /* webpackChunkName: "issue" */ './pages/issue/index.vue');
-const FalsepositiveIndex = () =>
-    import ( /* webpackChunkName: "issue" */ './pages/false-positive/index.vue');
 const IssuesIndex = () =>
     import ( /* webpackChunkName: "issues" */ './pages/issues/index.vue');
 const ByUserIndex = () =>
@@ -53,7 +51,7 @@ export const router = new VueRouter({
         { path: '/:lang/errors/', component: IssuesIndex, name: 'issues/open' },
         { path: '/:lang/errors/done', component: IssuesIndex, name: 'issues/done' },
         { path: '/:lang/errors/false-positive', component: IssuesIndex, name: 'issues/false-positive' },
-        { path: '/:lang/false-positive/:uuid', component: FalsepositiveIndex },
+        { path: '/:lang/false-positive/:uuid', component: IssueIndex },
         { path: '/:lang/issues/matrix', component: IssuesMatrix },
         { path: '/:lang/byuser', component: ByUserIndex },
         { path: '/:lang/byuser/:user', component: ByUserList },
