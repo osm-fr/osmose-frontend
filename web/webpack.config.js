@@ -19,7 +19,7 @@ module.exports = (env, argv) => {
         devtool: argv.mode === 'development' ? 'source-map' : void 0,
         resolve: {
             alias: {
-                vue: 'vue/dist/vue.js'
+                vue: argv.mode === 'development' ? 'vue/dist/vue.js' : 'vue/dist/vue.min.js'
             },
         },
         module: {
