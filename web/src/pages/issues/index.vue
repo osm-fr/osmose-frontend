@@ -76,10 +76,16 @@
               .json full</a
             >&nbsp;
             <a
-              :href="`${api_url_path}.geojson?${query}`"
+              :href="`${api_url}/api/0.3/issues.geojson?${query}`"
               class="badge badge-secondary"
             >
-              .geojon
+              .geojon </a
+            >&nbsp;
+            <a
+              :href="`${api_url}/api/0.3/issues.geojson?${query}&full=true`"
+              class="badge badge-secondary"
+            >
+              .geojon full
             </a>
           </div>
         </div>

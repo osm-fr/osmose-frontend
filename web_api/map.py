@@ -87,28 +87,3 @@ OFFSET
         main_project=utils.main_project, timestamp=timestamp, languages_name=utils.languages_name,
         website=utils.website, remote_url_read=utils.remote_url_read,
         user=user, user_error_count=user_error_count, main_website=utils.main_website)
-
-
-def _errors_geo(db, params):
-    results = query._gets(db, params)
-
-    features = []
-
-    for res in results:
-        properties = {"error_id": res["uuid"], "item": res["item"] or 0}
-        features.append({"type": "Feature", "geometry": {"type": "Point", "coordinates": [float(res["lon"]), float(res["lat"])]}, "properties": properties})
-
-    return {"type": "FeatureCollection", "features": features}
-
-
-@route('/map/markers')
-def markers(db):
-    params = Params()
-
-    if (not params.users) and (not params.source) and (params.zoom < 7):
-        return
-
-    params.limit = 200
-    params.full = False
-
-    return _errors_geo(db, params)

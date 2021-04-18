@@ -73,7 +73,7 @@
             </a>
           </li>
           <li>
-            <a class="menu-export" data-href="markers" target="_blank">
+            <a class="menu-export" data-href="/api/0.3/issues.geosjon" target="_blank">
               GeoJson
             </a>
           </li>

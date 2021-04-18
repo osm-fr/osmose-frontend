@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import default_app, route
+from bottle import default_app, route, response
 from modules import utils
 from modules import query
 from modules.params import Params
@@ -72,7 +72,8 @@ def errors(db, lang):
 
 
 @route('/issues')
-def errors(db, langs):
+@route('/issues.<format:ext>')
+def errors(db, langs, format = None):
     params = Params(max_limit=10000)
     results = query._gets(db, params)
 
@@ -104,7 +105,20 @@ def errors(db, langs):
             })
         out.append(i)
 
-    return {'issues': out}
-
+    if format != 'geojson':
+        return {'issues': out}
+    else:
+        response.content_type = 'application/vnd.geo+json'
+        return {
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [properties["lon"], properties["lat"]]
+                },
+                "properties": {k: v for k, v in properties.items() if k not in ("lon", "lat")}
+            } for properties in out]
+        }
 
 default_app.push(app_0_2)
