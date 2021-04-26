@@ -7,4 +7,4 @@ mapbox-vector-tile
 pyclipper
 # Use a patch fork, for unmaintened rauth, https://github.com/litl/rauth/issues/185
 git+git://github.com/hendi/rauth.git@37615b738a944684bb02ea1c9ea5f3bbde84f0e7
-bottle == 0.12.13
+bottle == 0.12.19
