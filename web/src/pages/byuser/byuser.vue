@@ -18,7 +18,7 @@
             <li class="nav-item">
               <router-link
                 class="nav-link"
-                :to="`../map/#username=${username}`"
+                :to="`../map/#${query}`"
               >
                 <translate>Map</translate>
               </router-link>
