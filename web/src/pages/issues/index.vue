@@ -94,6 +94,7 @@
 
       <div class="form-inline col-sm-12 col-md-12">
         <form method="get" action="" id="errors-list">
+          <h1 v-if="full_filter">Class filters</h1>
           <div class="form-row">
             <div class="form-group col-sm-3 col-md-3">
               <label for="item">
@@ -155,13 +156,142 @@
               </select>
             </div>
 
-            <div class="form-group col-sm-3 col-md-3">
+            <div class="form-group col-sm-3 col-md-3 buttons">
               <!-- {{ TRANSLATORS: 'Set' is used to choose a specific country/item on /errors }} -->
               <input
                 type="submit"
-                class="btn btn-outline-secondary btn-sm"
+                class="btn btn-secondary btn-sm"
                 :value="$t('Set')"
               />
+              &nbsp;
+              <button
+                v-if="!full_filter"
+                type="button"
+                class="btn btn-outline-secondary btn-sm"
+                v-on:click="full_filter = true"
+              >
+                <translate>More filters</translate>
+                <span
+                  v-if="extra_filter_number"
+                  class="badge badge-secondary"
+                  >{{ extra_filter_number }}</span
+                >
+              </button>
+              <button
+                v-else
+                type="button"
+                class="btn btn-outline-secondary btn-sm"
+                v-on:click="full_filter = false"
+              >
+                <translate>Less filters</translate>
+              </button>
+            </div>
+          </div>
+
+          <div v-if="full_filter">
+            <div class="form-row">
+              <div class="form-group col-sm-3 col-md-3">
+                <label for="source">
+                  <translate>Source id</translate>
+                </label>
+                <input
+                  v-model="source"
+                  name="source"
+                  type="text"
+                  class="form-control form-control-sm"
+                />
+              </div>
+
+              <div class="form-group col-sm-3 col-md-3">
+                <label for="class">
+                  <translate>Class id</translate>
+                </label>
+                <input
+                  v-model="class_"
+                  name="class"
+                  type="text"
+                  class="form-control form-control-sm"
+                />
+              </div>
+
+              <div class="form-group col-sm-3 col-md-3">
+                <label for="tags">
+                  <translate>Tag</translate>
+                </label>
+                <select
+                  v-model="tags"
+                  name="tags"
+                  class="form-control form-control-sm"
+                >
+                  <option value=""></option>
+                  <option v-for="tag in tags_list" :key="tag" :value="tag">
+                    {{ $t(tag) }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group col-sm-3 col-md-3">
+                <label for="useDevItem">
+                  <translate>Show hidden items</translate>
+                </label>
+                <select
+                  v-model="useDevItem"
+                  name="useDevItem"
+                  class="form-control form-control-sm"
+                >
+                  <option value="">
+                    <translate>No (Default)</translate>
+                  </option>
+                  <option value="all">
+                    <translate>All</translate>
+                  </option>
+                  <option value="true">
+                    <translate>Only</translate>
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <h1>Issue filters</h1>
+            <div class="form-row">
+              <div class="form-group col-sm-3 col-md-3">
+                <label for="username">
+                  <translate>OSM Username</translate>
+                </label>
+                <input
+                  v-model="username"
+                  name="username"
+                  type="text"
+                  class="form-control form-control-sm"
+                />
+              </div>
+
+              <div class="form-group col-sm-3 col-md-3">
+                <label for="bbox">
+                  <translate>BBox</translate>
+                </label>
+                <input
+                  v-model="bbox"
+                  name="bbox"
+                  type="text"
+                  class="form-control form-control-sm"
+                />
+              </div>
+
+              <div class="form-group col-sm-3 col-md-3">
+                <label for="fixable">
+                  <translate>Fixable</translate>
+                </label>
+                <select
+                  v-model="fixable"
+                  name="fixable"
+                  class="form-control form-control-sm"
+                >
+                  <option value=""></option>
+                  <option value="online"><translate>Online</translate></option>
+                  <option value="josm">JOSM</option>
+                </select>
+              </div>
             </div>
           </div>
         </form>
@@ -283,6 +413,7 @@ import TimeAgo from "vue2-timeago";
 
 import VueParent from "../Parent.vue";
 import IssuesList from "../../components/issues-list.vue";
+import Translate from "../../components/translate.vue";
 
 export default VueParent.extend({
   data() {
@@ -302,6 +433,16 @@ export default VueParent.extend({
       item: this.$route.query.item,
       level: this.$route.query.level,
       limit: this.$route.query.limit,
+      source: null,
+      class_: null,
+      tags_list: [],
+      tags: null,
+      useDevItem: null,
+      username: null,
+      bbox: null,
+      fixable: null,
+      full_filter: false,
+      extra_filter_number: 0,
       gen:
         API_URL + window.location.pathname.includes("false-positive")
           ? "false-positive"
@@ -315,6 +456,7 @@ export default VueParent.extend({
   components: {
     IssuesList,
     TimeAgo,
+    Translate,
   },
   watch: {
     $route() {
@@ -336,6 +478,18 @@ export default VueParent.extend({
       this.item = this.$route.query.item;
       this.level = this.$route.query.level;
       this.limit = this.$route.query.limit;
+      this.source = this.$route.query.source;
+      this.class_ = this.$route.query.class;
+      this.tags = this.$route.query.tags;
+      this.useDevItem = this.$route.query.useDevItem;
+      this.username = this.$route.query.username;
+      this.bbox = this.$route.query.bbox;
+      this.fixable = this.$route.query.fixable;
+      this.count_extra_filter_number();
+
+      if (this.extra_filter_number) {
+        this.full_filter = true;
+      }
 
       this.query = window.location.search.substring(1);
 
@@ -344,6 +498,10 @@ export default VueParent.extend({
         "issues/done": this.$t("Fixed issues"),
         "issues/false-positive": this.$t("False positives"),
       }[this.$route.name];
+
+      this.fetchJson(API_URL + "/api/0.3/tags", (response) => {
+        this.tags_list = response.tags;
+      });
 
       this.fetchJsonProgressAssign(
         API_URL + window.location.pathname + ".json" + window.location.search,
@@ -380,6 +538,16 @@ export default VueParent.extend({
       query.limit = this.limit ? this.limit * 5 : 500;
       this.$router.push({ name: this.$route.name, query });
     },
+    count_extra_filter_number() {
+      this.extra_filter_number =
+        (this.source ? 1 : 0) +
+        (this.class_ || this.class_ === 0 || this.class_ === "0" ? 1 : 0) +
+        (this.tags ? 1 : 0) +
+        (this.useDevItem ? 1 : 0) +
+        (this.username ? 1 : 0) +
+        (this.bbox ? 1 : 0) +
+        (this.fixable ? 1 : 0);
+    },
   },
 });
 </script>
@@ -387,5 +555,11 @@ export default VueParent.extend({
 <style scoped>
 a.badge:visited {
   color: #fff; /* Unclicked color for bootstrap badge-secondary */
+}
+input[type="text"] {
+  width: 100%;
+}
+.buttons {
+  align-content: end;
 }
 </style>
