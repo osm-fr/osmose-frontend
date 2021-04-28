@@ -18,7 +18,7 @@
             <li class="nav-item">
               <router-link
                 class="nav-link"
-                :to="`../map/#${query}`"
+                :to="nav_link"
               >
                 <translate>Map</translate>
               </router-link>
@@ -76,10 +76,16 @@ export default VueParent.extend({
       count: 0,
       errors: [],
       main_website: "",
+      query: ""
     };
   },
   computed: {
     api_url_path: () => API_URL + window.location.pathname,
+    nav_link() {
+      const params = new URLSearchParams(this.query)
+      params.set("username", this.username)
+      return `../map/#${params.toString()}`
+    }
   },
   components: {
     IssuesList,
