@@ -127,9 +127,9 @@
               <a
                 :href="`http://localhost:8111/load_and_zoom?left=${
                   res.lon - 0.002
-                }&amp;bottom=${lat - 0.002}&amp;right=${lon + 0.002}&amp;top=${
-                  lat + 0.002
-                }`"
+                }&amp;bottom=${res.lat - 0.002}&amp;right=${
+                  res.lon + 0.002
+                }&amp;top=${res.lat + 0.002}`"
               >
                 josm
               </a>
