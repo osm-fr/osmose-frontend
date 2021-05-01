@@ -42,38 +42,62 @@
         <a href="#" onclick="return false;"><translate>Export</translate> ▼</a>
         <ul class="submenu">
           <li>
-            <a class="menu-export" data-href="../errors/" target="_blank">
+            <a class="menu-export" data-href="../issues/open" target="_blank">
               <translate>Html list</translate>
             </a>
           </li>
           <li>
             <a
               class="menu-export"
-              :data-href="api_url + '/en/josm_proxy?errors.josm'"
+              :data-href="`${api_url}/${lang}/josm_proxy?issues/open.josm`"
               target="hiddenIframe"
             >
               JOSM
             </a>
           </li>
           <li>
-            <a class="menu-export" data-href="../errors.rss" target="_blank">
+            <a
+              class="menu-export"
+              :data-href="`${api_url}/${lang}/issues/open.rss`"
+              target="_blank"
+            >
               RSS
             </a>
           </li>
-          <li><a class="menu-export" data-href="../errors.gpx">GPX</a></li>
-          <li><a class="menu-export" data-href="../errors.kml">KML</a></li>
+          <li>
+            <a
+              class="menu-export"
+              :data-href="`${api_url}/${lang}/issues/open.gpx`"
+              >GPX</a
+            >
+          </li>
+          <li>
+            <a
+              class="menu-export"
+              :data-href="`${api_url}/${lang}/issues/open.kml`"
+              >KML</a
+            >
+          </li>
           <li>
             <a class="menu-export" data-href="/api/0.3/issues" target="_blank">
               Json
             </a>
           </li>
           <li>
-            <a class="menu-export" data-href="../errors.csv" target="_blank">
+            <a
+              class="menu-export"
+              :data-href="`${api_url}/${lang}/issues/open.csv`"
+              target="_blank"
+            >
               CSV
             </a>
           </li>
           <li>
-            <a class="menu-export" data-href="/api/0.3/issues.geosjon" target="_blank">
+            <a
+              class="menu-export"
+              data-href="/api/0.3/issues.geosjon"
+              target="_blank"
+            >
               GeoJson
             </a>
           </li>
@@ -190,6 +214,9 @@ export default Vue.extend({
   props: ["languages_name", "lang", "user", "user_error_count", "timestamp"],
   computed: {
     api_url: () => API_URL,
+    lang() {
+      return this.$route.params.lang;
+    },
     location() {
       const i = window.location.pathname.indexOf("/", 1);
       return (

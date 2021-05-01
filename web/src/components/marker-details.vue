@@ -14,7 +14,7 @@
         <td>source</td>
         <td>
           <router-link
-            :to="`../errors/?item=xxxx&amp;source=${marker.source_id}`"
+            :to="`../issues/open?item=xxxx&amp;source=${marker.source_id}`"
           >
             {{ marker.source_id }}
           </router-link>
@@ -23,7 +23,7 @@
       <tr>
         <td>item</td>
         <td>
-          <router-link :to="`../errors/?item=${marker.item}`">
+          <router-link :to="`../issues/open?item=${marker.item}`">
             {{ marker.item }}
           </router-link>
         </td>
@@ -32,7 +32,7 @@
         <td>class</td>
         <td>
           <router-link
-            :to="`../errors/?item=${marker.item}&amp;class=${marker.class}`"
+            :to="`../issues/open?item=${marker.item}&amp;class=${marker.class}`"
           >
             {{ marker.class }}
           </router-link>

@@ -35,7 +35,7 @@ from . import errors_graph
 def int_list(s):
     return list(map(lambda x: int(x), filter(lambda x: x and x!='',s)).split(','))
 
-@route('/errors/graph.<format:ext>')
+@route('/issues/graph.<format:ext>')
 def graph(db, format='png'):
     try:
         data = errors_graph.make_plt(db, Params(), format)
@@ -49,19 +49,9 @@ def graph(db, format='png'):
         return out.getvalue() + "\n"
 
 
-@route('/errors')
-def errors():
-    redirect("errors/?" + request.query_string)
-
-
-@route('/errors.<format:ext>')
-def errors_(format):
-    redirect("errors/." + format + "?" + request.query_string)
-
-
-@route('/errors/.<format:ext>')
-@route('/errors/done.<format:ext>')
-@route('/errors/false-positive.<format:ext>')
+@route('/issues/open.<format:ext>')
+@route('/issues/done.<format:ext>')
+@route('/issues/false-positive.<format:ext>')
 def index(db, lang, format):
     if "false-positive" in request.path:
         title = _("False positives")
@@ -70,11 +60,11 @@ def index(db, lang, format):
         title = _("Fixed issues")
         gen = "done"
     else:
-        title = _("Information")
-        gen = "error"
+        title = _("Open issues")
+        gen = "issue"
 
     params = Params()
-    params.status = {"error":"open", "false-positive": "false", "done":"done"}[gen]
+    params.status = {"issue":"open", "false-positive": "false", "done":"done"}[gen]
     params.fixable = None
 
     items = query_meta._items_menu(db, lang)
@@ -95,13 +85,13 @@ def index(db, lang, format):
 
     if format == 'rss':
         response.content_type = 'application/rss+xml'
-        tpl = 'errors/list.rss'
+        tpl = 'issues/list.rss'
     elif format == 'gpx':
         response.content_type = 'application/gpx+xml'
-        tpl = 'errors/list.gpx'
+        tpl = 'issues/list.gpx'
     elif format == 'kml':
         response.content_type = 'application/vnd.google-earth.kml+xml'
-        tpl = 'errors/list.kml'
+        tpl = 'issues/list.kml'
     elif format == 'josm':
         objects = set(sum(map(lambda error: list(map(lambda elem: elem['type'].lower() + str(elem['id']), error['elems'] or [])), errors), []))
         response.status = 302

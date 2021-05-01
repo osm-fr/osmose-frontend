@@ -25,7 +25,7 @@ from modules import utils
 from api.issue_utils import _get, _expand_tags, t2l
 
 
-@route('/error/<uuid:uuid>.json')
+@route('/issue/<uuid:uuid>.json')
 def display(db, lang, uuid):
     marker = _get(db, uuid=uuid)
     if not marker:

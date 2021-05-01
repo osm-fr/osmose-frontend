@@ -28,7 +28,7 @@
                 :opacity="opacity(country.count, max_count)"
               >
                 <router-link
-                  :to="`../errors/?country=${country.country}&item=xxxx`"
+                  :to="`../issues/open?country=${country.country}&item=xxxx`"
                   >{{ country.country }}</router-link
                 ><sup>{{ country.count }}</sup
                 >&nbsp;{{ country.min_age | numFormat("0.0") }}-<span

@@ -17,7 +17,7 @@
             :key="'1_' + country"
           >
             <div class="rotate-90">
-              <router-link :to="`../errors/?country=${country}`">
+              <router-link :to="`../issues/open?country=${country}`">
                 {{ country }}
               </router-link>
             </div>

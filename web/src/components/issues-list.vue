@@ -48,7 +48,7 @@
             <sort-link name="date"><translate>date</translate></sort-link>
           </th>
           <th
-            v-if="['error', 'info'].includes(gen)"
+            v-if="['issue', 'info'].includes(gen)"
             :title="$t('False positive / Done')"
           >
             ✘/✔
@@ -76,7 +76,7 @@
             <td :title="$t('issue n°') + res.uuid">
               <router-link
                 :to="`../${
-                  'false-positive' == gen ? 'false-positive' : 'error'
+                  'false-positive' == gen ? 'false-positive' : 'issue'
                 }/${res.uuid}`"
               >
                 E
@@ -140,7 +140,7 @@
                 res.date.substring(11, 16)
               }}
             </td>
-            <td v-if="['error', 'info'].includes(gen)">
+            <td v-if="['issue', 'info'].includes(gen)">
               <a
                 href="#"
                 v-on:click.stop.prevent="issue_action"

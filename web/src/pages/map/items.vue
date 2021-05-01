@@ -137,7 +137,7 @@
                 v-model="item.selected"
                 @change="toggle_item(item.item, item.selected)"
               />
-              <router-link target="_blank" :to="`../errors/?item=${item.item}`">
+              <router-link target="_blank" :to="`../issues/open?item=${item.item}`">
                 {{ item.title.auto }}
               </router-link>
             </li>

@@ -235,7 +235,7 @@
           josm-zone</a
         >
         <a
-          :href="`../error/${uuid}`"
+          :href="`../issue/${uuid}`"
           target="_blank"
           :title="$t('Issue details')"
         >

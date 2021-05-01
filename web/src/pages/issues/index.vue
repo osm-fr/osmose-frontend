@@ -13,8 +13,8 @@
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <router-link class="nav-link" :to="`./?${query}`">
-                <translate>Informations</translate>
+              <router-link class="nav-link" :to="`open?${query}`">
+                <translate>Open</translate>
               </router-link>
             </li>
             <li class="nav-item">
@@ -28,7 +28,10 @@
               </router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link" :href="`graph.png?${query}`">
+              <a
+                class="nav-link"
+                :href="`${api_url}/${this.$route.params.lang}/issues/graph.png?${query}`"
+              >
                 <translate>Graph</translate>
               </a>
             </li>
@@ -524,7 +527,7 @@ export default VueParent.extend({
           rss = document.createElement("link");
           Object.assign(rss, {
             id: "rss",
-            href: `http://${this.website}/${this.$route.params.lang}/errors.rss?${this.query}`,
+            href: `http://${this.website}/${this.$route.params.lang}/issues/open.rss?${this.query}`,
             rel: "alternate",
             type: "application/rss+xml",
             title: document.title,

@@ -11,7 +11,7 @@
           <th colspan="4" rowspan="4" />
           <th v-for="k in keys" :key="k" class="country">
             <div class="rotate-90">
-              <router-link :to="`../errors/?country=${k}&item=xxxx`">
+              <router-link :to="`../issues/open?country=${k}&item=xxxx`">
                 {{ k }}
               </router-link>
             </div>

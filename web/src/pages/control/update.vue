@@ -17,7 +17,7 @@
       <tbody>
         <tr v-for="res in list" :key="res.timestamp">
           <td>
-            <router-link :to="`../../errors/?source=${res.source_id}`">
+            <router-link :to="`../../issues/open?source=${res.source_id}`">
               {{ res.source_id }}
             </router-link>
           </td>
