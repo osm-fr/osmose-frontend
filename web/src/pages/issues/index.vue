@@ -79,13 +79,13 @@
               :href="`${api_url}/api/0.3/issues.geojson?${query}`"
               class="badge badge-secondary"
             >
-              .geojon </a
+              .geojson </a
             >&nbsp;
             <a
               :href="`${api_url}/api/0.3/issues.geojson?${query}&full=true`"
               class="badge badge-secondary"
             >
-              .geojon full
+              .geojson full
             </a>
           </div>
         </div>
