@@ -27,6 +27,8 @@ from modules.params import Params
 from modules import query
 from modules import query_meta
 from collections import defaultdict
+from lxml import etree
+from lxml.builder import E, ElementMaker
 import io, re, csv
 
 from . import errors_graph
@@ -85,13 +87,16 @@ def index(db, lang, format):
 
     if format == 'rss':
         response.content_type = 'application/rss+xml'
-        tpl = 'issues/list.rss'
+        xml = rss(title=title, website=utils.website, lang=lang[0], query=request.query_string, main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
+        return etree.tostring(xml, pretty_print=True)
     elif format == 'gpx':
         response.content_type = 'application/gpx+xml'
-        tpl = 'issues/list.gpx'
+        xml = gpx(title=title, website=utils.website, lang=lang[0], query=request.query_string, main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
+        return etree.tostring(xml, pretty_print=True)
     elif format == 'kml':
         response.content_type = 'application/vnd.google-earth.kml+xml'
-        tpl = 'issues/list.kml'
+        xml = kml(title=title, website=utils.website, lang=lang[0], query=request.query_string, main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
+        return etree.tostring(xml, pretty_print=True)
     elif format == 'josm':
         objects = set(sum(map(lambda error: list(map(lambda elem: elem['type'].lower() + str(elem['id']), error['elems'] or [])), errors), []))
         response.status = 302
@@ -153,8 +158,6 @@ def index(db, lang, format):
                 res['date'] = str(res['date'])
         return dict(countries=countries, items=items, errors_groups=errors_groups, total=total, errors=errors, gen=gen, opt_date=opt_date, website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read)
 
-    return template(tpl, items=items, errors=errors, query=request.query_string, lang=lang[0], gen=gen, title=title, website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read)
-
 
 @route('/issues/matrix.json')
 def matrix(db, lang):
@@ -178,3 +181,131 @@ def matrix(db, lang):
         total += count
 
     return dict(total=total, countries_sum=countries_sum, analysers_sum=analysers_sum, analysers=analysers)
+
+
+def xml_issue(res, website, lang, query, main_website, remote_url_read):
+    name = (res['menu'] or '') + ' - ' + (res['subtitle'] or res['title'] or '')
+
+    lat = res['lat']
+    lon = res['lon']
+
+    desc = f'{res["item"]}({res["level"]})/{res["class"]} {res["uuid"]}'
+    if res['elems']:
+        for e in res['elems']:
+            desc += f' {main_website}{e["type_long"]}/{e["id"]}'
+            if e['type'] == 'R':
+                desc += f' http://localhost:8111/import?url={remote_url_read}api/0.6/relation/{e["id"]}/full'
+            else:
+                desc += f' http://localhost:8111/load_object?objects={e["type"].lower()}{e["id"]}'
+    else:
+        minlat = float(lat) - 0.002
+        maxlat = float(lat) + 0.002
+        minlon = float(lon) - 0.002
+        maxlon = float(lon) + 0.002
+        desc += f' http://localhost:8111/load_and_zoom?left={minlon}&amp;bottom={minlat}&amp;right={maxlon}&amp;top={maxlat}'
+
+    return lat, lon, name, desc
+
+
+def gpx_issue(res, website, lang, query, main_website, remote_url_read):
+    lat, lon, name, desc = xml_issue(res, website, lang, query, main_website, remote_url_read)
+    return E.wpt(
+        E.name(name),
+        E.desc(desc),
+        E.url(f'http://{website}/{lang}/map/#{query}&amp;zoom=16&amp;lat={lat}&amp;lon={lon}&amp;level={res["level"]}&amp;tags=&amp;fixable=&amp;issue_uuid={res["uuid"]}'),
+        lat=str(lat),
+        lon=str(lon),
+    )
+
+def gpx(title, website, lang, query, main_website, remote_url_read, issues):
+    content = []
+    if len(issues) > 0:
+        content.append(E.time(issues[0]['timestamp'].strftime('%Y-%m-%dT%H:%M:%SZ')))
+    content += list(map(lambda issue: gpx_issue(issue, website, lang, query, main_website, remote_url_read), issues))
+
+    return E.gpx(
+        E.name(f'Osmose {title}'),
+        E.url(f'http://{website}/{lang}/issues/open?{query}'),
+        *content,
+        version = '1.0',
+        creator = 'http://osmose.openstreetmap.fr',
+        xmlns = 'http://www.topografix.com/GPX/1/0',
+        # xmlns:xsi = 'http://www.w3.org/2001/XMLSchema-instance',
+        # xsi:schemaLocation = 'http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd',
+    )
+
+
+def kml_issue(res, website, lang, query, main_website, remote_url_read):
+    lat, lon, name, desc = xml_issue(res, website, lang, query, main_website, remote_url_read)
+    return E.Placemark(
+        E.name(name),
+        E.url(f'http://{website}/{lang}/map/#{query}&amp;zoom=16&amp;lat={lat}&amp;lon={lon}&amp;level={res["level"]}&amp;tags=&amp;fixable=&amp;issue_uuid={res["uuid"]}'),
+        E.description(desc),
+        E.styleUrl('#placemark-purple'),
+        E.Point(
+            E.coordinates(f'{lon},{lat}'),
+        ),
+    )
+
+def kml(title, website, lang, query, main_website, remote_url_read, issues):
+    content = map(lambda issue: kml_issue(issue, website, lang, query, main_website, remote_url_read), issues)
+
+    name = f'Osmose {title}'
+    if len(issues) > 0:
+        name += ' (' + issues[0]['timestamp'].strftime('%Y-%m-%dT%H:%M:%SZ') + ')'
+
+    return E.kml(
+        E.Document(
+            E.Style(
+                E.IconStyle(
+                    E.Icon(
+                        E.href('http://maps.me/placemarks/placemark-purple.png')
+                    ),
+                ),
+                id = 'placemark-purple'
+            ),
+            E.name(name),
+            E.url(f'http://{website}/{lang}/issues/open?{query}'),
+        ),
+        *content,
+        xmlns = 'http://www.opengis.net/kml/2.2',
+    )
+
+
+def rss_issue(res, website, lang, query, main_website, remote_url_read):
+    lat, lon, name, desc = xml_issue(res, website, lang, query, main_website, remote_url_read)
+    return E.item(
+        E.title(name),
+        E.description(desc),
+        E.category(str(res['item'])),
+        E.link(f'http://{website}/{lang}/map/#{query}&amp;zoom=16&amp;lat={lat}&amp;lon={lon}&amp;level={res["level"]}&amp;tags=&amp;fixable=&amp;issue_uuid={res["uuid"]}'),
+        E.guid(res['uuid']),
+    )
+
+def rss(title, website, lang, query, main_website, remote_url_read, issues):
+    content = map(lambda issue: rss_issue(issue, website, lang, query, main_website, remote_url_read), issues)
+
+    lastBuildDate = []
+    if len(issues) > 0:
+        time = issues[0]['timestamp']
+        ctime = time.ctime()
+        rfc822 = '{0}, {1:02d} {2}'.format(ctime[0:3], time.day, ctime[4:7]) + time.strftime(' %Y %H:%M:%S %z')
+        lastBuildDate = [E.lastBuildDate(rfc822)]
+
+    E_atom = ElementMaker(namespace='http://www.w3.org/2005/Atom', nsmap={'atom':'http://www.w3.org/2005/Atom'})
+
+    return E.rss(
+        E.channel(
+            E_atom.link(
+                href=f'http://{website}/{lang}/issues/open.rss?{query}',
+                rel='self',
+                type='application/rss+xml',
+            ),
+            E.title(f'Osmose {title}'),
+            E.description(query),
+            *lastBuildDate,
+            E.link(f'http://{website}/{lang}/issues/open?{query}'),
+            *content,
+        ),
+        version = '2.0',
+    )
