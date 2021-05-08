@@ -77,7 +77,7 @@
             v-if="elem.type == 'relation'"
             :href="
               api_url +
-              `/en/josm_proxy?import?url=${remote_url_read}/api/0.6/${elem.type}/${elem.id}/full`
+              `/en/josm_proxy?import?url=${remote_url_read}api/0.6/${elem.type}/${elem.id}/full`
             "
             target="hiddenIframe"
             class="josm"
