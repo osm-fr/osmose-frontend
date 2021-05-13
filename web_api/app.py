@@ -114,11 +114,6 @@ def josm_proxy():
 def enable_cors_generic_route():
     pass
 
-@error(404)
-@view('404')
-def error404(error):
-    return {}
-
 from . import byuser
 from . import issue
 from . import issues
