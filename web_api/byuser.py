@@ -24,8 +24,11 @@ from bottle import route, template, redirect, response, html_escape
 from modules import utils
 from modules.utils import i10n_select_auto
 from modules import query
+from lxml import etree
+from lxml.builder import E, ElementMaker
 
 from api.user_utils import _user, _user_count
+from .issues import rss, gpx, kml
 
 
 @route('/byuser')
@@ -42,24 +45,50 @@ def user(db, lang, username=None, format=None):
         error["title"] = i10n_select_auto(error["title"], lang)
         error["menu"] = i10n_select_auto(error["menu"], lang)
 
-    count = len(errors)
-
     if format == 'rss':
-        response.content_type = "application/rss+xml"
-        return template('byuser/byuser.rss', username=username, users=params.users, count=count, errors=errors, website=utils.website + '/' + lang[0])
+        response.content_type = 'application/rss+xml'
+        xml = rss(website=utils.website, lang=lang[0], params=params, query=f'users={username}', main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
+        return etree.tostring(xml, pretty_print=True)
+    elif format == 'gpx':
+        response.content_type = 'application/gpx+xml'
+        xml = gpx(website=utils.website, lang=lang[0], params=params, query=f'users={username}', main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
+        return etree.tostring(xml, pretty_print=True)
+    elif format == 'kml':
+        response.content_type = 'application/vnd.google-earth.kml+xml'
+        xml = kml(website=utils.website, lang=lang[0], params=params, query=f'users={username}', main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
+        return etree.tostring(xml, pretty_print=True)
     else:
+        count = len(errors)
         for error in errors:
             error['timestamp'] = str(error['timestamp'])
         return dict(username=username, users=params.users, count=count, errors=list(map(dict, errors)), website=utils.website + '/' + lang[0], main_website=utils.main_website, remote_url_read=utils.remote_url_read)
 
 
-@route('/byuser_count/<username>')
-@route('/byuser_count/<username>.<format:ext>')
-def user_count(db, lang, username=None, format=None):
+@route('/byuser_count/<username>.rss')
+def user_count(db, lang, username=None):
     count = _user_count(db, username)
+    print(count)
+    response.content_type = "application/rss+xml"
+    xml = E.rss(
+        E.channel(
+            E.title(f'Osmose - {username}'),
+            E.description(_("Statistics for user {0}").format(username)),
+            E.link(f'http://{utils.website}/byuser/{username}'),
+            E.item(
+                E.title(_("Number of level {level} issues: {count}").format(level=1, count=count[1]))
+            ),
+            E.item(
+                E.title(_("Number of level {level} issues: {count}").format(level=2, count=count[2]))
+            ),
+            E.item(
+                E.title(_("Number of level {level} issues: {count}").format(level=3, count=count[3]))
+            ),
+        ),
+        version = '2.0',
+    )
+    return etree.tostring(xml, pretty_print=True)
 
-    if format == 'rss':
-        response.content_type = "application/rss+xml"
-        return template('byuser/byuser_count.rss', username=username, count=count, website=utils.website)
-    else:
-        return count
+
+@route('/byuser_count/<username>')
+def user_count(db, lang, username=None):
+    return _user_count(db, username)

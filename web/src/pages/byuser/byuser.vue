@@ -16,18 +16,39 @@
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <router-link
-                class="nav-link"
-                :to="nav_link"
-              >
+              <router-link class="nav-link" :to="nav_link">
                 <translate>Map</translate>
               </router-link>
             </li>
           </ul>
           <div class="form-inline my-2 my-lg-0">
-            <a :href="`${api_url_path}.rss`" class="badge badge-secondary">
-              .rss</a
+            <a
+              :href="`${api_url_path.replace(
+                '/byuser/',
+                '/byuser_count/'
+              )}.rss?${query}`"
+              class="badge badge-secondary"
             >
+              .rss <translate>count</translate></a
+            >&nbsp;
+            <a
+              :href="`${api_url_path}.rss?${query}`"
+              class="badge badge-secondary"
+            >
+              .rss </a
+            >&nbsp;
+            <a
+              :href="`${api_url_path}.gpx?${query}`"
+              class="badge badge-secondary"
+            >
+              .gpx </a
+            >&nbsp;
+            <a
+              :href="`${api_url_path}.kml?${query}`"
+              class="badge badge-secondary"
+            >
+              .kml
+            </a>
           </div>
         </div>
       </nav>
@@ -76,16 +97,16 @@ export default VueParent.extend({
       count: 0,
       errors: [],
       main_website: "",
-      query: ""
+      query: "",
     };
   },
   computed: {
     api_url_path: () => API_URL + window.location.pathname,
     nav_link() {
-      const params = new URLSearchParams(this.query)
-      params.set("username", this.username)
-      return `../map/#${params.toString()}`
-    }
+      const params = new URLSearchParams(this.query);
+      params.set("username", this.username);
+      return `../map/#${params.toString()}`;
+    },
   },
   components: {
     IssuesList,

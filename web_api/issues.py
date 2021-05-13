@@ -87,15 +87,15 @@ def index(db, lang, format):
 
     if format == 'rss':
         response.content_type = 'application/rss+xml'
-        xml = rss(title=title, website=utils.website, lang=lang[0], query=request.query_string, main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
+        xml = rss(title=title, website=utils.website, lang=lang[0], params=params, query=request.query_string, main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
         return etree.tostring(xml, pretty_print=True)
     elif format == 'gpx':
         response.content_type = 'application/gpx+xml'
-        xml = gpx(title=title, website=utils.website, lang=lang[0], query=request.query_string, main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
+        xml = gpx(title=title, website=utils.website, lang=lang[0], params=params, query=request.query_string, main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
         return etree.tostring(xml, pretty_print=True)
     elif format == 'kml':
         response.content_type = 'application/vnd.google-earth.kml+xml'
-        xml = kml(title=title, website=utils.website, lang=lang[0], query=request.query_string, main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
+        xml = kml(title=title, website=utils.website, lang=lang[0], params=params, query=request.query_string, main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
         return etree.tostring(xml, pretty_print=True)
     elif format == 'josm':
         objects = set(sum(map(lambda error: list(map(lambda elem: elem['type'].lower() + str(elem['id']), error['elems'] or [])), errors), []))
@@ -183,6 +183,18 @@ def matrix(db, lang):
     return dict(total=total, countries_sum=countries_sum, analysers_sum=analysers_sum, analysers=analysers)
 
 
+def xml_header(params, title, website, lang):
+    if params.users:
+        title = 'Osmose - ' + ', '.join(params.users)
+        description = _("Statistics for user {0}").format(', '.join(params.users))
+        url = f'http://{website}/byuser/{params.users}'
+    else:
+        title = f'Osmose {title}'
+        description = None
+        url = f'http://{website}/{lang}/issues/open?{query}'
+    return title, description, url
+
+
 def xml_issue(res, website, lang, query, main_website, remote_url_read):
     name = (res['menu'] or '') + ' - ' + (res['subtitle'] or res['title'] or '')
 
@@ -217,15 +229,16 @@ def gpx_issue(res, website, lang, query, main_website, remote_url_read):
         lon=str(lon),
     )
 
-def gpx(title, website, lang, query, main_website, remote_url_read, issues):
+def gpx(website, lang, params, query, main_website, remote_url_read, issues, title = None):
     content = []
     if len(issues) > 0:
         content.append(E.time(issues[0]['timestamp'].strftime('%Y-%m-%dT%H:%M:%SZ')))
     content += list(map(lambda issue: gpx_issue(issue, website, lang, query, main_website, remote_url_read), issues))
 
+    title, _, url = xml_header(params, title, website, lang)
     return E.gpx(
-        E.name(f'Osmose {title}'),
-        E.url(f'http://{website}/{lang}/issues/open?{query}'),
+        E.name(title),
+        E.url(url),
         *content,
         version = '1.0',
         creator = 'http://osmose.openstreetmap.fr',
@@ -247,13 +260,12 @@ def kml_issue(res, website, lang, query, main_website, remote_url_read):
         ),
     )
 
-def kml(title, website, lang, query, main_website, remote_url_read, issues):
+def kml(website, lang, params, query, main_website, remote_url_read, issues, title = None):
     content = map(lambda issue: kml_issue(issue, website, lang, query, main_website, remote_url_read), issues)
 
-    name = f'Osmose {title}'
+    title, _, url = xml_header(params, title, website, lang)
     if len(issues) > 0:
-        name += ' (' + issues[0]['timestamp'].strftime('%Y-%m-%dT%H:%M:%SZ') + ')'
-
+        title += ' (' + issues[0]['timestamp'].strftime('%Y-%m-%dT%H:%M:%SZ') + ')'
     return E.kml(
         E.Document(
             E.Style(
@@ -264,8 +276,8 @@ def kml(title, website, lang, query, main_website, remote_url_read, issues):
                 ),
                 id = 'placemark-purple'
             ),
-            E.name(name),
-            E.url(f'http://{website}/{lang}/issues/open?{query}'),
+            E.name(title),
+            E.url(url),
         ),
         *content,
         xmlns = 'http://www.opengis.net/kml/2.2',
@@ -282,7 +294,7 @@ def rss_issue(res, website, lang, query, main_website, remote_url_read):
         E.guid(res['uuid']),
     )
 
-def rss(title, website, lang, query, main_website, remote_url_read, issues):
+def rss(website, lang, params, query, main_website, remote_url_read, issues, title = None):
     content = map(lambda issue: rss_issue(issue, website, lang, query, main_website, remote_url_read), issues)
 
     lastBuildDate = []
@@ -292,8 +304,8 @@ def rss(title, website, lang, query, main_website, remote_url_read, issues):
         rfc822 = '{0}, {1:02d} {2}'.format(ctime[0:3], time.day, ctime[4:7]) + time.strftime(' %Y %H:%M:%S %z')
         lastBuildDate = [E.lastBuildDate(rfc822)]
 
+    title, description, url = xml_header(params, title, website, lang)
     E_atom = ElementMaker(namespace='http://www.w3.org/2005/Atom', nsmap={'atom':'http://www.w3.org/2005/Atom'})
-
     return E.rss(
         E.channel(
             E_atom.link(
@@ -301,10 +313,10 @@ def rss(title, website, lang, query, main_website, remote_url_read, issues):
                 rel='self',
                 type='application/rss+xml',
             ),
-            E.title(f'Osmose {title}'),
-            E.description(query),
+            E.title(title),
+            E.description(description or query),
             *lastBuildDate,
-            E.link(f'http://{website}/{lang}/issues/open?{query}'),
+            E.link(url),
             *content,
         ),
         version = '2.0',
