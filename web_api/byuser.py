@@ -47,15 +47,15 @@ def user(db, lang, username=None, format=None):
 
     if format == 'rss':
         response.content_type = 'application/rss+xml'
-        xml = rss(website=utils.website, lang=lang[0], params=params, query=f'users={username}', main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
+        xml = rss(website=utils.website, lang=lang[0], params=params, query='users={0}'.format(username), main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
         return etree.tostring(xml, pretty_print=True)
     elif format == 'gpx':
         response.content_type = 'application/gpx+xml'
-        xml = gpx(website=utils.website, lang=lang[0], params=params, query=f'users={username}', main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
+        xml = gpx(website=utils.website, lang=lang[0], params=params, query='users={0}'.format(username), main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
         return etree.tostring(xml, pretty_print=True)
     elif format == 'kml':
         response.content_type = 'application/vnd.google-earth.kml+xml'
-        xml = kml(website=utils.website, lang=lang[0], params=params, query=f'users={username}', main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
+        xml = kml(website=utils.website, lang=lang[0], params=params, query='users={0}'.format(username), main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
         return etree.tostring(xml, pretty_print=True)
     else:
         count = len(errors)
@@ -71,9 +71,9 @@ def user_count(db, lang, username=None):
     response.content_type = "application/rss+xml"
     xml = E.rss(
         E.channel(
-            E.title(f'Osmose - {username}'),
+            E.title('Osmose - ' + username),
             E.description(_("Statistics for user {0}").format(username)),
-            E.link(f'http://{utils.website}/byuser/{username}'),
+            E.link('http://{}/byuser/{}'.format(utils.website, username)),
             E.item(
                 E.title(_("Number of level {level} issues: {count}").format(level=1, count=count[1]))
             ),

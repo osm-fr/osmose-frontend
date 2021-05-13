@@ -183,15 +183,15 @@ def matrix(db, lang):
     return dict(total=total, countries_sum=countries_sum, analysers_sum=analysers_sum, analysers=analysers)
 
 
-def xml_header(params, title, website, lang):
+def xml_header(params, title, website, lang, query):
     if params.users:
         title = 'Osmose - ' + ', '.join(params.users)
-        description = _("Statistics for user {0}").format(', '.join(params.users))
-        url = f'http://{website}/byuser/{params.users}'
+        description = _("Statistics for user {}").format(', '.join(params.users))
+        url = 'http://{}/byuser/{}'.format(website, ', '.join(params.users))
     else:
-        title = f'Osmose {title}'
+        title = 'Osmose - ' + title
         description = None
-        url = f'http://{website}/{lang}/issues/open?{query}'
+        url = 'http://{}/{}/issues/open?{}'.format(website, lang, query)
     return title, description, url
 
 
@@ -201,30 +201,32 @@ def xml_issue(res, website, lang, query, main_website, remote_url_read):
     lat = res['lat']
     lon = res['lon']
 
-    desc = f'{res["item"]}({res["level"]})/{res["class"]} {res["uuid"]}'
+    map_url = 'http://{}/{}/map/#{}&amp;zoom=16&amp;lat={}&amp;lon={}&amp;level={}&amp;tags=&amp;fixable=&amp;issue_uuid={}'.format(website, lang, query, lat, lon, res["level"], res["uuid"])
+
+    desc = '{}({})/{} {}'.format(res["item"], res["level"], res["class"], res["uuid"])
     if res['elems']:
         for e in res['elems']:
-            desc += f' {main_website}{e["type_long"]}/{e["id"]}'
+            desc += ' {}{}/{}'.format(main_website, e["type_long"], e["id"])
             if e['type'] == 'R':
-                desc += f' http://localhost:8111/import?url={remote_url_read}api/0.6/relation/{e["id"]}/full'
+                desc += ' http://localhost:8111/import?url={}api/0.6/relation/{}/full'.format(remote_url_read, e["id"])
             else:
-                desc += f' http://localhost:8111/load_object?objects={e["type"].lower()}{e["id"]}'
+                desc += ' http://localhost:8111/load_object?objects={}{}'.format(e["type"].lower(), e["id"])
     else:
         minlat = float(lat) - 0.002
         maxlat = float(lat) + 0.002
         minlon = float(lon) - 0.002
         maxlon = float(lon) + 0.002
-        desc += f' http://localhost:8111/load_and_zoom?left={minlon}&amp;bottom={minlat}&amp;right={maxlon}&amp;top={maxlat}'
+        desc += ' http://localhost:8111/load_and_zoom?left={}&amp;bottom={}&amp;right={}&amp;top={}'.format(minlon, minlat, maxlon, maxlat)
 
-    return lat, lon, name, desc
+    return lat, lon, name, desc, map_url
 
 
 def gpx_issue(res, website, lang, query, main_website, remote_url_read):
-    lat, lon, name, desc = xml_issue(res, website, lang, query, main_website, remote_url_read)
+    lat, lon, name, desc, map_url = xml_issue(res, website, lang, query, main_website, remote_url_read)
     return E.wpt(
         E.name(name),
         E.desc(desc),
-        E.url(f'http://{website}/{lang}/map/#{query}&amp;zoom=16&amp;lat={lat}&amp;lon={lon}&amp;level={res["level"]}&amp;tags=&amp;fixable=&amp;issue_uuid={res["uuid"]}'),
+        E.url(map_url),
         lat=str(lat),
         lon=str(lon),
     )
@@ -235,7 +237,7 @@ def gpx(website, lang, params, query, main_website, remote_url_read, issues, tit
         content.append(E.time(issues[0]['timestamp'].strftime('%Y-%m-%dT%H:%M:%SZ')))
     content += list(map(lambda issue: gpx_issue(issue, website, lang, query, main_website, remote_url_read), issues))
 
-    title, _, url = xml_header(params, title, website, lang)
+    title, _, url = xml_header(params, title, website, lang, query)
     return E.gpx(
         E.name(title),
         E.url(url),
@@ -249,21 +251,21 @@ def gpx(website, lang, params, query, main_website, remote_url_read, issues, tit
 
 
 def kml_issue(res, website, lang, query, main_website, remote_url_read):
-    lat, lon, name, desc = xml_issue(res, website, lang, query, main_website, remote_url_read)
+    lat, lon, name, desc, map_url = xml_issue(res, website, lang, query, main_website, remote_url_read)
     return E.Placemark(
         E.name(name),
-        E.url(f'http://{website}/{lang}/map/#{query}&amp;zoom=16&amp;lat={lat}&amp;lon={lon}&amp;level={res["level"]}&amp;tags=&amp;fixable=&amp;issue_uuid={res["uuid"]}'),
+        E.url(map_url),
         E.description(desc),
         E.styleUrl('#placemark-purple'),
         E.Point(
-            E.coordinates(f'{lon},{lat}'),
+            E.coordinates('{},{}'.format(lon, lat)),
         ),
     )
 
 def kml(website, lang, params, query, main_website, remote_url_read, issues, title = None):
     content = map(lambda issue: kml_issue(issue, website, lang, query, main_website, remote_url_read), issues)
 
-    title, _, url = xml_header(params, title, website, lang)
+    title, _, url = xml_header(params, title, website, lang, query)
     if len(issues) > 0:
         title += ' (' + issues[0]['timestamp'].strftime('%Y-%m-%dT%H:%M:%SZ') + ')'
     return E.kml(
@@ -285,12 +287,12 @@ def kml(website, lang, params, query, main_website, remote_url_read, issues, tit
 
 
 def rss_issue(res, website, lang, query, main_website, remote_url_read):
-    lat, lon, name, desc = xml_issue(res, website, lang, query, main_website, remote_url_read)
+    _, _, name, desc, map_url = xml_issue(res, website, lang, query, main_website, remote_url_read)
     return E.item(
         E.title(name),
         E.description(desc),
         E.category(str(res['item'])),
-        E.link(f'http://{website}/{lang}/map/#{query}&amp;zoom=16&amp;lat={lat}&amp;lon={lon}&amp;level={res["level"]}&amp;tags=&amp;fixable=&amp;issue_uuid={res["uuid"]}'),
+        E.link(map_url),
         E.guid(res['uuid']),
     )
 
@@ -304,12 +306,12 @@ def rss(website, lang, params, query, main_website, remote_url_read, issues, tit
         rfc822 = '{0}, {1:02d} {2}'.format(ctime[0:3], time.day, ctime[4:7]) + time.strftime(' %Y %H:%M:%S %z')
         lastBuildDate = [E.lastBuildDate(rfc822)]
 
-    title, description, url = xml_header(params, title, website, lang)
+    title, description, url = xml_header(params, title, website, lang, query)
     E_atom = ElementMaker(namespace='http://www.w3.org/2005/Atom', nsmap={'atom':'http://www.w3.org/2005/Atom'})
     return E.rss(
         E.channel(
             E_atom.link(
-                href=f'http://{website}/{lang}/issues/open.rss?{query}',
+                href='http://{}/{}/issues/open.rss?{}'.format(website, lang, query),
                 rel='self',
                 type='application/rss+xml',
             ),
