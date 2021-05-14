@@ -16,7 +16,7 @@ export default Vue.extend({
       })
         .then((response) => {
           if (!response.ok) {
-            Promise.reject(response);
+            throw new Error(response.status + " " + response.statusText);
           }
           return response.json();
         })
