@@ -17,7 +17,8 @@ export default Vue.extend({
   props: ["tags"],
   methods: {
     sortObject(o) {
-      return o.sort((a, b) => (a.k === b.k ? 0 : a.k < b.k ? -1 : 1));
+      // Clone the array as workaround infinite loop on sort
+      return [...o].sort((a, b) => (a.k === b.k ? 0 : a.k < b.k ? -1 : 1));
     },
   },
 });
