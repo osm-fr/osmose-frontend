@@ -127,7 +127,7 @@ from . import control
 @route('/copyright')
 @route('/translation')
 @route('/map/')
-@route('/issues/<uuid:uuid>')
+@route('/issue/<uuid:uuid>')
 @route('/false-positive/<uuid:uuid>')
 @route('/issues/open')
 @route('/issues/done')
