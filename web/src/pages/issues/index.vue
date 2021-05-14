@@ -322,9 +322,9 @@
             <th scope="col" title="class">
               <sort-link name="class">
                 <translate
-                  translate-comment="TRANSLATORS: this should be replaced by a abbreviation for class"
+                  translate-comment="TRANSLATORS: this should be replaced by a abbreviation for 'class'"
                 >
-                  class (abbreviation)
+                  cl
                 </translate>
               </sort-link>
             </th>

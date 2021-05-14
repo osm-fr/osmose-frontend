@@ -14,9 +14,9 @@
           <th scope="col" title="level">
             <sort-link name="level">
               <translate
-                translate-comment="TRANSLATORS: this should be replaced by a abbreviation for level"
+                translate-comment="TRANSLATORS: this should be replaced by a abbreviation for 'level'"
               >
-                level (abbreviation)
+                lvl
               </translate>
             </sort-link>
           </th>
@@ -26,18 +26,26 @@
           <th scope="col" title="class">
             <sort-link name="class">
               <translate
-                translate-comment="TRANSLATORS: this should be replaced by a abbreviation for class"
+                translate-comment="TRANSLATORS: this should be replaced by a abbreviation for 'class'"
               >
-                class (abbreviation)
+                cl
               </translate>
             </sort-link>
           </th>
           <th scope="col" :title="$t('information on issue')">E</th>
-          <th scope="col" :title="$t('position')">
-            <translate>position (abbreviation)</translate>
+          <th scope="col" :title="$t('location')">
+            <translate
+              translate-comment="TRANSLATORS: this should be replaced by a abbreviation for 'location'"
+            >
+              loc
+            </translate>
           </th>
           <th scope="col">
-            <translate>elements (abbreviation)</translate>
+            <translate
+              translate-comment="TRANSLATORS: this should be replaced by a abbreviation for 'elements'"
+            >
+              elms
+            </translate>
           </th>
           <th scope="col">
             <sort-link name="subtitle_or_title">
