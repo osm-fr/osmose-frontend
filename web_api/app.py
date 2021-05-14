@@ -142,6 +142,9 @@ from . import control
 def vue(db, uuid=None, username=None, source=None):
     return bottle.static_file("assets/index.html", root='web/public')
 
+@route('/public/<filename>')
+def callback(filename):
+    return bottle.static_file(filename, root='web/public')
 
 bottle.default_app.pop()
 
