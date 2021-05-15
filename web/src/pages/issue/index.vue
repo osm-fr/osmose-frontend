@@ -140,7 +140,7 @@ export default VueParent.extend({
   mounted() {
     this.fetchJsonProgressAssign(
       API_URL + window.location.pathname + ".json" + window.location.search,
-      (response) => {
+      () => {
         document.title =
           "Osmose - " +
           this.$t("Information on issue {uuid}", { uuid: this.uuid });

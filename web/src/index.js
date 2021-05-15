@@ -16,7 +16,7 @@ Vue.filter('numFormat', numFormat(numeral));
 Vue.component('translate', Translate)
 Vue.component('translate-slot', TranslateSlot)
 
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("DOMContentLoaded", () => {
     router.beforeEach((to, from, next) => {
         const lang = to.params.lang
         loadLanguageAsync(lang).then(() => next())

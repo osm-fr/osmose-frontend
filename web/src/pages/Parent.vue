@@ -8,7 +8,7 @@ export default Vue.extend({
     };
   },
   methods: {
-    fetchJson(url, callback = (response) => {}, errorCallback = (error) => {}) {
+    fetchJson(url, callback = () => {}, errorCallback = () => {}) {
       fetch(url, {
         headers: new Headers({
           "Accept-Language": this.$route.params.lang,
@@ -26,7 +26,7 @@ export default Vue.extend({
           errorCallback(error);
         });
     },
-    fetchJsonProgressAssign(url, callback = (response) => {}) {
+    fetchJsonProgressAssign(url, callback = () => {}) {
       this.$refs.topProgress.start();
       this.fetchJson(
         url,
@@ -35,7 +35,7 @@ export default Vue.extend({
           Object.assign(this, response);
           callback(response);
         },
-        (error) => {
+        () => {
           this.$refs.topProgress.done();
         }
       );

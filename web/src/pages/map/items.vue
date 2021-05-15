@@ -259,7 +259,7 @@ export default Vue.extend({
       this.itemsChanged();
     },
     toggle_categorie(categ_id, how) {
-      this._select_items_loop((item) => how, categ_id);
+      this._select_items_loop(() => how, categ_id);
       this.$forceUpdate();
       this.itemsChanged();
     },

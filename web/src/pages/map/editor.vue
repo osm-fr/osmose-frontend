@@ -175,7 +175,7 @@ export default Vue.extend({
         }
       );
 
-      fetch(API_URL + `/api/0.3/issue/${uuid}/done`).then((response) => {
+      fetch(API_URL + `/api/0.3/issue/${uuid}/done`).then(() => {
         this.editor._validate(uuid);
       });
 

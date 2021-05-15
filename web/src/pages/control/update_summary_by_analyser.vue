@@ -62,7 +62,7 @@ export default VueParent.extend({
     };
   },
   computed: {
-    summary_keys(a) {
+    summary_keys() {
       return this.summary && Object.keys(this.summary).sort();
     },
   },

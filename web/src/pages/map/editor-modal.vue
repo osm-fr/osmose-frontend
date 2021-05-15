@@ -123,7 +123,7 @@ export default Vue.extend({
           modify: this.edition_stack,
         }),
       })
-        .then((response) => {
+        .then(() => {
           this.$emit("saved");
         })
         .catch((error) => {

@@ -233,12 +233,12 @@ export default Vue.extend({
         method: verb,
         cache: "no-store",
       })
-        .then((response) => {
+        .then(() => {
           setTimeout(() => {
             Container.parentElement.remove();
           }, 1000);
         })
-        .catch((error) => {
+        .catch(() => {
           Container.parent().css({ backgroundColor: "" });
         });
     },

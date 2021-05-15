@@ -66,7 +66,7 @@ export default VueParent.extend({
   mounted() {
     this.fetchJsonProgressAssign(
       API_URL + window.location.pathname + ".json" + window.location.search,
-      (response) => {
+      () => {
         this.sorted_countries_sum = this.sortObject(this.countries_sum);
         this.sorted_analysers_sum = this.sortObject(this.analysers_sum);
 

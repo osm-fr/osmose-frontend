@@ -125,7 +125,7 @@ export default VueParent.extend({
 
       this.fetchJsonProgressAssign(
         API_URL + window.location.pathname + ".json" + window.location.search,
-        (response) => {
+        () => {
           document.title =
             "Osmose - " +
             this.$t("Statistics for user {user}", {

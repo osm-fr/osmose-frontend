@@ -508,7 +508,7 @@ export default VueParent.extend({
 
       this.fetchJsonProgressAssign(
         API_URL + window.location.pathname + ".json" + window.location.search,
-        (response) => {
+        () => {
           var res = this.items.find((e) => e.item == this.item);
           if (res) {
             title += " - " + res.menu.auto;
