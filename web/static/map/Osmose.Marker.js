@@ -1,11 +1,11 @@
-require('leaflet');
-require('leaflet.vectorgrid/dist/Leaflet.VectorGrid.js');
-require('leaflet-responsive-popup');
-require('leaflet-responsive-popup/leaflet.responsive.popup.css');
-require('leaflet-responsive-popup/leaflet.responsive.popup.rtl.css');
-require('leaflet-osm');
-require('leaflet-textpath');
-const Cookies = require('js-cookie');
+import 'leaflet';
+import 'leaflet.vectorgrid/dist/Leaflet.VectorGrid.js';
+import 'leaflet-responsive-popup';
+import 'leaflet-responsive-popup/leaflet.responsive.popup.css';
+import 'leaflet-responsive-popup/leaflet.responsive.popup.rtl.css';
+import 'leaflet-osm';
+import 'leaflet-textpath';
+import * as Cookies from 'js-cookie';
 
 import ExternalVueAppEvent from '../../src/ExternalVueAppEvent.js'
 import IconLimit from '../images/limit.png';

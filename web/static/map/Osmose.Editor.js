@@ -1,4 +1,4 @@
-require('leaflet');
+import 'leaflet';
 
 import ExternalVueAppEvent from '../../src/ExternalVueAppEvent.js'
 

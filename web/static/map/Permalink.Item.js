@@ -1,5 +1,5 @@
-require('leaflet');
-require('leaflet-plugins/control/Permalink.js');
+import 'leaflet';
+import 'leaflet-plugins/control/Permalink.js';
 
 
 L.Control.Permalink.include({

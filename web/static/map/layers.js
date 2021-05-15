@@ -1,7 +1,7 @@
 import L from 'leaflet';
 import Mapillary from './Mapillary';
 
-require('leaflet-plugins/layer/tile/Bing.js');
+import 'leaflet-plugins/layer/tile/Bing.js';
 
 const osmAttribution = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors';
 export const mapBases = {

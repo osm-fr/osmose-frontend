@@ -34,11 +34,11 @@
 // --- Legacy
 import { initMap } from "../../../static/map/map.js";
 
-require("leaflet");
-require("leaflet/dist/leaflet.css");
+import "leaflet";
+import "leaflet/dist/leaflet.css";
 
-require("../../../static/map/style.css");
-require("../../../static/images/markers/markers-l.css");
+import "../../../static/map/style.css";
+import "../../../static/images/markers/markers-l.css";
 
 // Retro-compact hack for Leaflet.VectorGrid
 L.DomEvent.fakeStop = L.DomEvent._fakeStop;

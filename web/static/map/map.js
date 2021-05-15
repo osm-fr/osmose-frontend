@@ -6,14 +6,14 @@ import OsmoseEditor from './Osmose.Editor';
 import OsmoseMarker from './Osmose.Marker';
 import OsmoseHeatmap from './Osmose.Heatmap';
 
-require('leaflet-active-area/src/leaflet.activearea.js');
-require('./Permalink.Item.js');
-require('./Location.js');
-require('leaflet-control-geocoder/src/index.js');
-require('leaflet-control-geocoder/Control.Geocoder.css');
-require('leaflet-loading');
-require('leaflet-loading/src/Control.Loading.css');
-const Cookies = require('js-cookie');
+import 'leaflet-active-area/src/leaflet.activearea.js';
+import './Permalink.Item.js';
+import './Location.js';
+import 'leaflet-control-geocoder/src/index.js';
+import 'leaflet-control-geocoder/Control.Geocoder.css';
+import 'leaflet-loading';
+import 'leaflet-loading/src/Control.Loading.css';
+import * as Cookies from 'js-cookie';
 
 function getUrlVars() {
   const vars = {};

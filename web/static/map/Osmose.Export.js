@@ -1,4 +1,4 @@
-require('leaflet');
+import 'leaflet';
 
 
 const OsmoseExport = L.Class.extend({

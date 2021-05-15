@@ -1,9 +1,9 @@
-require('leaflet');
-require('leaflet-sidebar');
-require('leaflet-sidebar/src/L.Control.Sidebar.css');
-const Cookies = require('js-cookie');
+import 'leaflet';
+import 'leaflet-sidebar';
+import 'leaflet-sidebar/src/L.Control.Sidebar.css';
+import * as Cookies from 'js-cookie';
 
-require('./Osmose.Menu.css');
+import './Osmose.Menu.css';
 import IconMenu from '../images/menu.png';
 import ExternalVueAppEvent from '../../src/ExternalVueAppEvent.js'
 

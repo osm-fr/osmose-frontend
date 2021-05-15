@@ -1,9 +1,9 @@
-require('bootstrap/dist/css/bootstrap.min.css');
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-require('../static/css/style.css');
+import '../static/css/style.css';
 
-require('vue')
-require('vue-router')
-require('vue-i18n')
+import 'vue';
+import 'vue-router';
+import 'vue-i18n';
 
-require('./index.js');
+import './index.js';

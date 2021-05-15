@@ -1,4 +1,4 @@
-require('leaflet.vectorgrid/dist/Leaflet.VectorGrid.js');
+import 'leaflet.vectorgrid/dist/Leaflet.VectorGrid.js';
 
 
 const Mapillary = L.VectorGrid.Protobuf.extend({

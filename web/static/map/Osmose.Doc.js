@@ -1,6 +1,6 @@
-require('leaflet');
-require('leaflet-sidebar');
-require('leaflet-sidebar/src/L.Control.Sidebar.css');
+import 'leaflet';
+import 'leaflet-sidebar';
+import 'leaflet-sidebar/src/L.Control.Sidebar.css';
 
 import ExternalVueAppEvent from '../../src/ExternalVueAppEvent.js'
 

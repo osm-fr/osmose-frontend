@@ -1,4 +1,4 @@
-require('leaflet');
+import 'leaflet';
 import IconLocation from '../images/location.png';
 
 
