@@ -21,7 +21,7 @@
 ###########################################################################
 
 import bottle
-from bottle import route, view, template, error, redirect, request, hook, HTTPError
+from bottle import route, view, error, redirect, request, hook, HTTPError
 from modules import utils
 from .tool import oauth, xmldict
 import beaker.middleware

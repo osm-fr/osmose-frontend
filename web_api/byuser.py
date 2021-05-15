@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, template, redirect, response, html_escape
+from bottle import route, redirect, response, html_escape
 from modules import utils
 from modules.utils import i10n_select_auto
 from modules import query

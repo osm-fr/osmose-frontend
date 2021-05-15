@@ -19,7 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, template, abort
+from bottle import route, abort
 
 from api.false_positive_utils import _get
 

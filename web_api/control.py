@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, request, template
+from bottle import route, request
 from collections import defaultdict
 
 

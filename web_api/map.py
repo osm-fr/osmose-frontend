@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, request, template, redirect
+from bottle import route, request, redirect
 from modules.params import Params
 from modules import utils, query, query_meta
 from api.user_utils import _user_count

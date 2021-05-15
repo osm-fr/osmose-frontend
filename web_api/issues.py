@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, request, template, response, redirect
+from bottle import route, request, response, redirect
 from modules import utils
 from modules.utils import i10n_select_auto
 from modules.params import Params
