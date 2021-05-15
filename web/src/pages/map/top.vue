@@ -211,7 +211,7 @@ import Delay from "../../components/delay.vue";
 import EditorMenu from "./editor-menu.vue";
 
 export default Vue.extend({
-  props: ["languages_name", "lang", "user", "user_error_count", "timestamp"],
+  props: ["languages_name", "user", "user_error_count", "timestamp"],
   computed: {
     api_url: () => API_URL,
     lang() {
