@@ -160,7 +160,9 @@ export default VueParent.extend({
             if (data.resource) {
               resource_url = new URL(data.resource);
             }
-          } catch {}
+          } catch {
+            // Ignore error
+          }
 
           this.title = data.title && data.title.auto;
           this.detail = data.detail && Marked(data.detail.auto);
