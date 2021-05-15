@@ -20,6 +20,11 @@ npm run dev-server-public
 
 Then go to http://localhost:8081/
 
+Chack your code with ESLint
+```
+npm run lint
+```
+
 ### API Server
 
 To run Osmose Frontend API Server, preferably use Docker. Follow the documentation in the [docker](docker/README.md) directory. You can also install the Frontend manually by following the [install guide](INSTALL.md).
