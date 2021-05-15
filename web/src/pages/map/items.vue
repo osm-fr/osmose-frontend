@@ -154,9 +154,10 @@ import Vue from "vue";
 import ExternalVueAppEvent from "../../ExternalVueAppEvent.js";
 
 export default Vue.extend({
-  props: ["error", "menu", "tags", "categories", "item_levels"],
+  props: ["error", "menu", "original_tags", "categories", "item_levels"],
   data() {
     return {
+      tags: [],
       level: "1",
       fixable: null,
       selected_tags: null,
@@ -198,6 +199,7 @@ export default Vue.extend({
     },
   },
   mounted() {
+    this.tags = this.original_tags;
     ExternalVueAppEvent.$on("item-params-changed", this.setParams);
   },
   methods: {

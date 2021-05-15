@@ -12,7 +12,7 @@
       <items
         ref="items"
         :menu="menu"
-        :tags="tags"
+        :original_tags="tags"
         :categories="categories"
         :item_levels="item_levels"
         :error="error"
