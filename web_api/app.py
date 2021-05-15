@@ -21,7 +21,7 @@
 ###########################################################################
 
 import bottle
-from bottle import route, view, template, error, redirect, request, hook
+from bottle import route, view, template, error, redirect, request, hook, HTTPError
 from modules import utils
 from .tool import oauth, xmldict
 import beaker.middleware
@@ -141,6 +141,11 @@ from . import control
 @route('/control/update_summary_by_analyser')
 def vue(db, uuid=None, username=None, source=None):
     return bottle.static_file("assets/index.html", root='web/public')
+
+@bottle.route('/<filename:path>')
+def static(filename):
+    return HTTPError(404)
+
 
 bottle.default_app.pop()
 
