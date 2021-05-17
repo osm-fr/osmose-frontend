@@ -201,7 +201,7 @@ def xml_issue(res, website, lang, query, main_website, remote_url_read):
     lat = res['lat']
     lon = res['lon']
 
-    map_url = 'http://{}/{}/map/#{}&amp;zoom=16&amp;lat={}&amp;lon={}&amp;level={}&amp;tags=&amp;fixable=&amp;issue_uuid={}'.format(website, lang, query, lat, lon, res["level"], res["uuid"])
+    map_url = 'http://{}/{}/map/#{}&zoom=16&lat={}&lon={}&level={}&tags=&fixable=&issue_uuid={}'.format(website, lang, query, lat, lon, res["level"], res["uuid"])
 
     desc = '{}({})/{} {}'.format(res["item"], res["level"], res["class"], res["uuid"])
     if res['elems']:
@@ -216,7 +216,7 @@ def xml_issue(res, website, lang, query, main_website, remote_url_read):
         maxlat = float(lat) + 0.002
         minlon = float(lon) - 0.002
         maxlon = float(lon) + 0.002
-        desc += ' http://localhost:8111/load_and_zoom?left={}&amp;bottom={}&amp;right={}&amp;top={}'.format(minlon, minlat, maxlon, maxlat)
+        desc += ' http://localhost:8111/load_and_zoom?left={}&bottom={}&right={}&top={}'.format(minlon, minlat, maxlon, maxlat)
 
     return lat, lon, name, desc, map_url
 
