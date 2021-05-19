@@ -230,9 +230,9 @@ def xml_issue(res, website, lang, query, main_website, remote_url_read):
                     " ",
                     H.A("iD", href="{}edit?editor=id&{}={}".format(main_website, e["type_long"], e["id"])),
                     H.BR(),
-                    H.A(_("Mark issue as fixed"), href="{}/api/0.3/issue/{}/done".format(website, res["uuid"])),
+                    H.A(_("Mark issue as fixed"), href="http://{}/api/0.3/issue/{}/done".format(website, res["uuid"])),
                     " ",
-                    H.A(_("Mark issue as false positive"), href="{}/api/0.3/issue/{}/false".format(website, res["uuid"])),
+                    H.A(_("Mark issue as false positive"), href="http://{}/api/0.3/issue/{}/false".format(website, res["uuid"])),
                 )
             )
             plain_desc += "\nOsmose: {}".format(map_url)
