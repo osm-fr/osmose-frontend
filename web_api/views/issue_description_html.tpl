@@ -21,4 +21,6 @@
 %else:
     <a href="{{ fallback_url }}"></a>
 %end
+<a href="{{ website }}/api/0.3/issue/{{ res["uuid"] }}/done">{{ _("Mark issue as fixed") }}</a>
+<a href="{{ website }}/api/0.3/issue/{{ res["uuid"] }}/false">{{ _("Mark issue as false positive") }}</a>
 <p>{{ _("Issue reported on:") }} {{ res["timestamp"].strftime("%Y-%m-%d") }}</p>
