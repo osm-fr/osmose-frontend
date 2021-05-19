@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import route, request, response, redirect, template
+from bottle import route, request, response, redirect
 from modules import utils
 from modules.utils import i10n_select_auto
 from modules.params import Params
@@ -29,6 +29,7 @@ from modules import query_meta
 from collections import defaultdict
 from lxml import etree
 from lxml.builder import E, ElementMaker
+from lxml.html import builder as H
 import io, re, csv
 
 from . import errors_graph
@@ -207,36 +208,58 @@ def xml_issue(res, website, lang, query, main_website, remote_url_read):
                 e['object_josm_url'] = "http://localhost:8111/import?url={}api/0.6/relation/{}/full".format(remote_url_read, e["id"])
             else:
                 e['object_josm_url'] = "http://localhost:8111/load_object?objects={}{}".format(e["type"].lower(), e["id"])
-            e['object_id_url'] = "{}edit?editor=id&{}={}".format(main_website, e["type_long"], e["id"])
-
-    fallback_url = 'http://localhost:8111/load_and_zoom?left={}&bottom={}&right={}&top={}'.format(
-        float(lon) - 0.002,
-        float(lat) - 0.002,
-        float(lon) + 0.002,
-        float(lat) + 0.002,
-    )
 
     map_url = 'http://{}/{}/map/#{}&zoom=16&lat={}&lon={}&level={}&tags=&fixable=&issue_uuid={}'.format(website, lang, query, lat, lon, res["level"], res["uuid"])
 
-    html_desc = template(
-        'issue_description_html',
-        fallback_url=fallback_url,
-        main_website=main_website,
-        map_url=map_url,
-        res=res,
-        website=website,
-    )
+    issue_summary_string = "{}({})/{} {}".format(res["item"], res["level"], res["class"], res["uuid"])
 
-    plain_desc = template(
-        'issue_description_plain',
-        fallback_url=fallback_url,
-        main_website=main_website,
-        map_url=map_url,
-        res=res,
-        website=website,
+    html_desc = H.DIV(
+        H.P(issue_summary_string)
     )
+    plain_desc = issue_summary_string
 
-    return lat, lon, name, plain_desc, map_url, html_desc
+    if res["elems"]:
+        for e in res["elems"]:
+            html_desc.append(
+                H.P(
+                    H.A("{} {}".format(e["type_long"], e["id"]), href="{}{}/{}".format(main_website, e["type_long"], e["id"])),
+                    " ",
+                    H.A("Osmose", href=map_url),
+                    " ",
+                    H.A("JOSM", href=e["object_josm_url"]),
+                    " ",
+                    H.A("iD", href="{}edit?editor=id&{}={}".format(main_website, e["type_long"], e["id"])),
+                )
+            )
+            plain_desc += "\nOsmose: {}".format(map_url)
+            if "tags" in e:
+                html_desc.append(H.P("Tags:"))
+                tags_ul = H.UL()
+                plain_desc += "\nTags:"
+                for k, v in e["tags"].items():
+                    tags_ul.append(H.LI("{}={}".format(k, v)))
+                    plain_desc += "\n- {}={}".format(k, v)
+                html_desc.append(tags_ul)
+    else:
+        fallback_url = "http://localhost:8111/load_and_zoom?left={}&bottom={}&right={}&top={}".format(
+            float(lon) - 0.002,
+            float(lat) - 0.002,
+            float(lon) + 0.002,
+            float(lat) + 0.002,
+        )
+        html_desc.append(H.A("Osmose", href=fallback_url))
+        plain_desc += "\n{}".format(fallback_url)
+    html_desc.append(H.P(
+        H.A(_("Mark issue as fixed"), href="{}/api/0.3/issue/{}/done".format(website, res["uuid"])),
+        " ",
+        H.A(_("Mark issue as false positive"), href="{}/api/0.3/issue/{}/false".format(website, res["uuid"])),
+    ))
+    issue_reported_at = "{} {}".format(_("Issue reported on:"), res["timestamp"].strftime("%Y-%m-%d"))
+    html_desc.append(H.P(issue_reported_at))
+    plain_desc += "\n{}".format(issue_reported_at)
+
+
+    return lat, lon, name, plain_desc, map_url, etree.tostring(html_desc, encoding='unicode', xml_declaration=False)
 
 
 def gpx_issue(res, website, lang, query, main_website, remote_url_read):
