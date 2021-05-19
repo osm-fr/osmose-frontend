@@ -229,6 +229,10 @@ def xml_issue(res, website, lang, query, main_website, remote_url_read):
                     H.A("JOSM", href=e["object_josm_url"]),
                     " ",
                     H.A("iD", href="{}edit?editor=id&{}={}".format(main_website, e["type_long"], e["id"])),
+                    H.BR(),
+                    H.A(_("Mark issue as fixed"), href="{}/api/0.3/issue/{}/done".format(website, res["uuid"])),
+                    " ",
+                    H.A(_("Mark issue as false positive"), href="{}/api/0.3/issue/{}/false".format(website, res["uuid"])),
                 )
             )
             plain_desc += "\nOsmose: {}".format(map_url)
@@ -249,11 +253,6 @@ def xml_issue(res, website, lang, query, main_website, remote_url_read):
         )
         html_desc.append(H.A("Osmose", href=fallback_url))
         plain_desc += "\n{}".format(fallback_url)
-    html_desc.append(H.P(
-        H.A(_("Mark issue as fixed"), href="{}/api/0.3/issue/{}/done".format(website, res["uuid"])),
-        " ",
-        H.A(_("Mark issue as false positive"), href="{}/api/0.3/issue/{}/false".format(website, res["uuid"])),
-    ))
     issue_reported_at = "{} {}".format(_("Issue reported on:"), res["timestamp"].strftime("%Y-%m-%d"))
     html_desc.append(H.P(issue_reported_at))
     plain_desc += "\n{}".format(issue_reported_at)
