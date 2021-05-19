@@ -237,7 +237,7 @@ def xml_issue(res, website, lang, query, main_website, remote_url_read):
             )
             plain_desc += "\nOsmose: {}".format(map_url)
             if "tags" in e:
-                html_desc.append(H.P("Tags:"))
+                html_desc.append(H.P(_("Tags:")))
                 tags_ul = H.UL()
                 plain_desc += "\nTags:"
                 for k, v in e["tags"].items():
