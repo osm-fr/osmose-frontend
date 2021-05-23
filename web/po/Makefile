@@ -24,8 +24,9 @@ python.pot: $(PYFILES) $(DBFILES)
           --keyword=_ --omit-header --from-code UTF-8 \
           --output=$@ $(PYFILES) $(DBFILES)
 
+.PHONY: osmose-frontend.pot
 osmose-frontend.pot: python.pot vue.pot
-	sed "s/^#: .*//" $@ > $@.nofiles
+	sed '/^#\. #-#-#-#-#/d' $@ > $@.nofiles
 	msgcat $@.nofiles python.pot vue.pot > $@.tmp
 	mv $@.tmp $@
 	rm $@.nofiles
