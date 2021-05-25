@@ -9,8 +9,10 @@ MO:=$(patsubst %.po,mo/%/LC_MESSAGES/osmose-frontend.mo,$(PO))
 
 all: osmose-frontend.pot %.po mo
 
-vue.pot: $(VUEFILES)
-	[ -f ../node_modules/easygettext/src/extract-cli.js ] || (echo 'easygettext missing. Please install node dependencies with `npm install --dev`' && exit 1)
+../node_modules/easygettext/src/extract-cli.js:
+	$(error 'easygettext missing. Please install node dependencies with `npm install --dev`')
+
+vue.pot: $(VUEFILES) ../node_modules/easygettext/src/extract-cli.js
 	../node_modules/easygettext/src/extract-cli.js --removeHTMLWhitespaces --attribute=path --output $@.tmp $(VUEFILES)
 	# extract header from original .pot, to get Content-Type=UTF-8
 	sed -e '/^$$/q' osmose-frontend.pot > $@.tmp2
