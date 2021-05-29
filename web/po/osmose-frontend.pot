@@ -912,7 +912,6 @@ msgstr ""
 msgid "Fixed issues"
 msgstr ""
 
-#. #-#-#-#-#  vue.pot (PACKAGE VERSION)  #-#-#-#-#
 #. TRANSLATORS: link to help in appropriate language
 #: ../src/pages/map/top.vue:18
 msgid "Issues by user"

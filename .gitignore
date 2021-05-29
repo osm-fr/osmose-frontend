@@ -3,6 +3,8 @@ __pycache__
 web/po/mo
 web/po/osmose-frontend.pot.tmp
 web/po/tmp.tpl
+web/po/python.pot
+web/po/vue.pot
 
 web_api/session/
 
