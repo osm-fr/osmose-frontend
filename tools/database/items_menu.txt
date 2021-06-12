@@ -219,6 +219,7 @@
  8500 | _("water infrastructure")
  8510 | _("water")
  8520 | _("fire station")
+ 8530 | _("natural")
  9012 | _("seamark")
  9000 | _("addresses")
  9001 | _("combinations")
