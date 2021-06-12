@@ -104,7 +104,7 @@ def oauth_(lang):
 def josm_proxy():
     query = request.query_string
     r = None
-    if query.startswith('errors.josm'):
+    if query.startswith('issues/open.josm'):
         r = "http://%s/en/%s" % (utils.website, query) # Explicit http, not https
     else:
         r = "http://localhost:8111/%s" % query
