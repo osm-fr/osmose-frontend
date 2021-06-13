@@ -167,6 +167,11 @@ export default Vue.extend({
     };
   },
   watch: {
+    original_tags: function (original_tags) {
+      if (original_tags) {
+        this.tags = this.original_tags;
+      }
+    },
     level: function (level) {
       this.active_levels = level.split(",");
       this.itemsChanged();
@@ -199,7 +204,6 @@ export default Vue.extend({
     },
   },
   mounted() {
-    this.tags = this.original_tags;
     ExternalVueAppEvent.$on("item-params-changed", this.setParams);
   },
   methods: {
