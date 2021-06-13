@@ -137,7 +137,10 @@
                 v-model="item.selected"
                 @change="toggle_item(item.item, item.selected)"
               />
-              <router-link target="_blank" :to="`../issues/open?item=${item.item}`">
+              <router-link
+                target="_blank"
+                :to="`../issues/open?item=${item.item}`"
+              >
                 {{ item.title.auto }}
               </router-link>
             </li>
@@ -268,7 +271,9 @@ export default Vue.extend({
       this.itemsChanged();
     },
     toggle_item(item_id, selected) {
-      this._select_items_loop((item) => (item.item === item_id) ? selected : item.selected);
+      this._select_items_loop((item) =>
+        item.item === item_id ? selected : item.selected
+      );
       this.$forceUpdate();
       this.itemsChanged();
     },
