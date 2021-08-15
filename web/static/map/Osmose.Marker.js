@@ -13,9 +13,8 @@ import IconLimit from '../images/limit.png';
 
 const OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
-  initialize(permalink, params, editor, doc, featuresLayers, remoteUrlRead, options) {
+  initialize(permalink, params, doc, featuresLayers, remoteUrlRead, options) {
     this._permalink = permalink;
-    this._editor = editor;
     this._doc = doc;
     this._featuresLayers = featuresLayers;
     this._remoteUrlRead = remoteUrlRead;
@@ -217,7 +216,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
   _dismissMarker() {
     setTimeout(() => {
-      this.corrected(this.layer);
+      this.corrected();
     }, 200);
   },
 
@@ -225,16 +224,12 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
     this._doc.show(item, classs);
   },
 
-  _edit(uuid, fix) {
-    this._editor.edit(this.layer, uuid, fix);
-  },
-
-  corrected(layer) {
+  corrected() {
     this._closePopup();
 
     // Hack, removes the marker directly from the DOM since the style update of icon does not work with SVG renderer.
     // this.setFeatureStyle(layer.properties.uuid, {});
-    layer._path.remove();
+    this.layer._path.remove();
   },
 });
 

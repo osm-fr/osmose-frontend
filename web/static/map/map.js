@@ -80,9 +80,8 @@ export function initMap() {
   // // Layer Marker
   const featureLayer = L.layerGroup();
   map.addLayer(featureLayer);
-  const osmoseLayerMarker = new OsmoseMarker(permalink, urlVars, editor, doc, featureLayer, remoteUrlRead);
+  const osmoseLayerMarker = new OsmoseMarker(permalink, urlVars, doc, featureLayer, remoteUrlRead);
   mapOverlay['Osmose Issues'] = osmoseLayerMarker;
-  editor.errors = osmoseLayerMarker;
 
   // Control Layer
   const controlLayers = L.control.layers(mapBases, mapOverlay);

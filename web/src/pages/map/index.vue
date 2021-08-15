@@ -19,12 +19,19 @@
       />
       <doc v-on:hide-item-markers="onHideItemMarkers($event)" />
       <div id="map"></div>
-      <editor :main_website="main_website" :user="user" :editor="editor" />
+      <editor
+        ref="editor"
+        :main_website="main_website"
+        :user="user"
+        :editor="editor"
+        v-on:issue-done="layerMarker.corrected()"
+      />
       <iframe id="hiddenIframe" name="hiddenIframe"></iframe>
       <popup
         :main_website="main_website"
         :remote_url_read="remote_url_read"
         :layerMarker="layerMarker"
+        v-on:fix-edit="$refs.editor.load($event.uuid, $event.fix)"
       />
     </div>
   </div>
@@ -123,7 +130,7 @@ export default VueParent.extend({
     },
     onHideItemMarkers(disabled_item) {
       this.$refs.items.toggle_item(disabled_item, false);
-    }
+    },
   },
 });
 </script>

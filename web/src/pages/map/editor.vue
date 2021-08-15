@@ -125,7 +125,6 @@ export default Vue.extend({
     window.removeEventListener("beforeunload", this.beforeunload);
   },
   mounted() {
-    ExternalVueAppEvent.$on("editor-load", this.load);
     ExternalVueAppEvent.$on("editor-save", () => {
       this.status = "saving";
     });
@@ -176,7 +175,7 @@ export default Vue.extend({
       );
 
       fetch(API_URL + `/api/0.3/issue/${uuid}/done`).then(() => {
-        this.editor._validate(uuid);
+        this.$emit("issue-done");
       });
 
       this.status = null;

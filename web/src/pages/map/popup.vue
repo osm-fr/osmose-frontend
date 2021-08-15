@@ -373,7 +373,7 @@ export default Vue.extend({
       }
     },
     editor(uuid, fix) {
-      this.layerMarker._edit(uuid, fix);
+      this.$emit("fix-edit", { uuid, fix });
     },
     doc(item, classs) {
       this.layerMarker._help(item, classs);
