@@ -188,16 +188,17 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
     this._doc.load(data.item, data['class']);
     // Get the OSM objects
     if (data.elems_id) {
-      let shift = -1; const palette = ['#ff3333', '#59b300', '#3388ff']; const
-        colors = {};
+      let shift = -1;
+      const palette = ['#ff3333', '#59b300', '#3388ff'];
+      const colors = {};
       data.elems.forEach((elem) => {
         colors[elem.type + elem.id] = palette[(shift += 1) % 3];
-        fetch(elem.type === 'node' ? `${this._remoteUrlRead}api/0.6/node/${elem.id}`
-        : `${this._remoteUrlRead}api/0.6/${elem.type}/${elem.id}/full`)
+        fetch(elem.type === 'node' ? `${this._remoteUrlRead}api/0.6/node/${elem.id}` :
+            `${this._remoteUrlRead}api/0.6/${elem.type}/${elem.id}/full`)
           .then(response => response.text())
           .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
           .then((xml) => {
-              const layer = new L.OSM.DataLayer(xml);
+            const layer = new L.OSM.DataLayer(xml);
             layer.setStyle({
               color: colors[elem.type + elem.id],
               fillColor: colors[elem.type + elem.id],

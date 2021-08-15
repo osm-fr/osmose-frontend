@@ -62,13 +62,20 @@
       </template>
 
       <h6>👁️ <translate>Hide markers</translate></h6>
-      <p><translate-slot>
-        <span translate>Do not want to see {title} markers?</span>
-        <template v-slot:title>
-          <i>{{ title }}</i>
-        </template>
-      </translate-slot></p>
-      <button class="mb-3 btn btn-info btn-sm" v-on:click.stop.prevent="$emit('hide-item-markers', item)"><translate>Hide from map</translate></button>
+      <p>
+        <translate-slot>
+          <span translate>Do not want to see {title} markers?</span>
+          <template v-slot:title>
+            <i>{{ title }}</i>
+          </template>
+        </translate-slot>
+      </p>
+      <button
+        class="mb-3 btn btn-info btn-sm"
+        v-on:click.stop.prevent="$emit('hide-item-markers', item)"
+      >
+        <translate>Hide from map</translate>
+      </button>
 
       <template v-if="source_link">
         <h6>🔗 <translate>Source Code</translate></h6>
