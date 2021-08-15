@@ -1,6 +1,7 @@
 import { mapBases, mapOverlay } from './layers';
-import { OsmoseMenu, OsmoseMenuToggle } from './Osmose.Menu';
-import { OsmoseDoc, OsmoseDocToggle } from './Osmose.Doc';
+import ToggleControl from './ToggleControl';
+import OsmoseMenu from './Osmose.Menu';
+import OsmoseDoc from './Osmose.Doc';
 import OsmoseExport from './Osmose.Export';
 import OsmoseMarker from './Osmose.Marker';
 import OsmoseHeatmap from './Osmose.Heatmap';
@@ -55,7 +56,11 @@ export function initMap() {
     position: 'right',
   });
   map.addControl(doc);
-  map.addControl(new OsmoseDocToggle(doc));
+  map.addControl(new ToggleControl(doc, {
+    position: 'topright',
+    menuText: 'ℹ',
+    menuTitle: 'Doc',
+  }));
 
   // Permalink
   const permalink = new L.Control.Permalink({
@@ -85,7 +90,11 @@ export function initMap() {
     position: 'left',
   });
   map.addControl(menu);
-  map.addControl(new OsmoseMenuToggle(menu));
+  map.addControl(new ToggleControl(menu, {
+    position: 'topleft',
+    menuText: '☰',
+    menuTitle: 'Menu',
+  }));
   menu.show();
 
   // Export Menu
