@@ -1,47 +1,27 @@
-import 'leaflet';
-import 'leaflet-sidebar';
-import 'leaflet-sidebar/src/L.Control.Sidebar.css';
 import * as Cookies from 'js-cookie';
 
 import './Osmose.Menu.css';
+import SidebarToggle from './SidebarToggle.js';
 import ExternalVueAppEvent from '../../src/ExternalVueAppEvent.js'
 
 
-const OsmoseMenu = L.Control.Sidebar.extend({
+const OsmoseMenu = SidebarToggle.extend({
 
   options: {
     closeButton: false,
-    autoPan: false,
+    localStorageProperty: "menu.show",
   },
 
   initialize(placeholder, permalink, params, options) {
     this._permalink = permalink;
     this._params = params;
 
-    L.Control.Sidebar.prototype.initialize.call(this, placeholder, options);
+    SidebarToggle.prototype.initialize.call(this, placeholder, options);
   },
 
   init() {
-    document.getElementById('togglemenu').onclick = () => {
-      this.toggle();
-      return false;
-    };
-
     this._setParams({ params: this._params });
     this._permalink.on('update', this._setParams, this);
-  },
-
-  // Menu
-  toggle() {
-    L.Control.Sidebar.prototype.toggle.call(this);
-    // Not working well with Vue JS
-    // const active_area = document.getElementsByClassName("leaflet-active-area")[0];
-    // const style = window.getComputedStyle(active_area);
-    // if (style.left === '0px') {
-    //   active_area.style.left = '';
-    // } else {
-    //   active_area.style.left = '0px';
-    // }
   },
 
   _itemChanged(item_mask, level, fixable, tags) {
