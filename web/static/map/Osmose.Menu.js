@@ -4,7 +4,6 @@ import 'leaflet-sidebar/src/L.Control.Sidebar.css';
 import * as Cookies from 'js-cookie';
 
 import './Osmose.Menu.css';
-import IconMenu from '../images/menu.png';
 import ExternalVueAppEvent from '../../src/ExternalVueAppEvent.js'
 
 
@@ -94,7 +93,7 @@ export const OsmoseMenuToggle = L.Control.extend({
 
   options: {
     position: 'topleft',
-    menuText: '',
+    menuText: '☰',
     menuTitle: 'Menu',
   },
 
@@ -118,8 +117,6 @@ export const OsmoseMenuToggle = L.Control.extend({
 
   _createButton(html, title, className, container, fn, context) {
     const link = L.DomUtil.create('a', className, container);
-    link.style = `background-image: url(${IconMenu})`; // Firefox
-    link.style['background-image'] = `url(${IconMenu})`; // Chrome
     link.innerHTML = html;
     link.href = '#';
     link.title = title;
