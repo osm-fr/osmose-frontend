@@ -2,7 +2,6 @@ import { mapBases, mapOverlay } from './layers';
 import { OsmoseMenu, OsmoseMenuToggle } from './Osmose.Menu';
 import { OsmoseDoc, OsmoseDocToggle } from './Osmose.Doc';
 import OsmoseExport from './Osmose.Export';
-import OsmoseEditor from './Osmose.Editor';
 import OsmoseMarker from './Osmose.Marker';
 import OsmoseHeatmap from './Osmose.Heatmap';
 
@@ -50,12 +49,6 @@ export function initMap() {
     layers: layers[0],
     worldCopyJump: true,
   }).setActiveArea('leaflet-active-area', true);
-
-  // Editor
-  const editor = new OsmoseEditor('editor', {
-    position: 'right',
-  });
-  map.addControl(editor);
 
   // Doc
   const doc = new OsmoseDoc('doc', {
@@ -142,7 +135,7 @@ export function initMap() {
   map.on('moveend', activeMenu);
   activeMenu();
 
-  return [menu, osmoseLayerMarker, editor];
+  return [map, menu, osmoseLayerMarker];
 }
 
 export { initMap as default };

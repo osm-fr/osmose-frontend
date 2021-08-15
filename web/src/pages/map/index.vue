@@ -21,9 +21,9 @@
       <div id="map"></div>
       <editor
         ref="editor"
+        :map="map"
         :main_website="main_website"
         :user="user"
-        :editor="editor"
         v-on:issue-done="layerMarker.corrected()"
       />
       <iframe id="hiddenIframe" name="hiddenIframe"></iframe>
@@ -70,8 +70,8 @@ export default VueParent.extend({
       categories: [],
       main_website: "",
       remote_url_read: "",
+      map: null,
       layerMarker: null,
-      editor: null,
       menu: null,
       item_levels: {},
     };
@@ -87,9 +87,9 @@ export default VueParent.extend({
     // FIXME - Hardcode legacy to avoid waiting for JSON to init the map
     window.remoteUrlRead = "https://www.openstreetmap.org/";
     const a = initMap();
-    this.menu = a[0];
-    this.layerMarker = a[1];
-    this.editor = a[2];
+    this.map = a[0];
+    this.menu = a[1];
+    this.layerMarker = a[2];
 
     this.setData();
   },

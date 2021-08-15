@@ -89,9 +89,10 @@ import EditorTag from "./editor-tag.vue";
 import EditorModal from "./editor-modal.vue";
 
 export default Vue.extend({
-  props: ["user", "main_website", "editor"],
+  props: ["map", "user", "main_website"],
   data() {
     return {
+      leafletSideBar: null,
       status: null,
       uuid: null,
       elems: {},
@@ -102,7 +103,7 @@ export default Vue.extend({
   },
   watch: {
     status: function () {
-      this.status ? this.editor.show() : this.editor.hide();
+      this.status ? this.leafletSideBar.show() : this.leafletSideBar.hide();
     },
     elems: {
       deep: true,
@@ -112,6 +113,14 @@ export default Vue.extend({
     },
     edition_stack: function () {
       ExternalVueAppEvent.$emit("editor-count", this.edition_stack.length);
+    },
+    map: function () {
+      this.leafletSideBar = L.control.sidebar("editor", {
+        closeButton: false,
+        autoPan: false,
+        position: "right",
+      });
+      this.map.addControl(this.leafletSideBar);
     },
   },
   components: {
