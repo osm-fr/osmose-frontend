@@ -12,11 +12,11 @@ const OsmoseMenu = SidebarToggle.extend({
     localStorageProperty: "menu.show",
   },
 
-  initialize(placeholder, permalink, params, options) {
+  initialize(map, placeholder, permalink, params, options) {
     this._permalink = permalink;
     this._params = params;
 
-    SidebarToggle.prototype.initialize.call(this, placeholder, options);
+    SidebarToggle.prototype.initialize.call(this, map, placeholder, options);
   },
 
   init() {

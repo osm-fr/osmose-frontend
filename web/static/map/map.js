@@ -1,5 +1,4 @@
 import { mapBases, mapOverlay } from './layers';
-import ToggleControl from './ToggleControl';
 import OsmoseMenu from './Osmose.Menu';
 import OsmoseDoc from './Osmose.Doc';
 import OsmoseExport from './Osmose.Export';
@@ -52,15 +51,15 @@ export function initMap() {
   }).setActiveArea('leaflet-active-area', true);
 
   // Doc
-  const doc = new OsmoseDoc('doc', {
+  const doc = new OsmoseDoc(map, 'doc', {
     position: 'right',
+    toggle: {
+      position: 'topright',
+      menuText: 'ℹ',
+      menuTitle: 'Doc',
+    }
   });
   map.addControl(doc);
-  map.addControl(new ToggleControl(doc, {
-    position: 'topright',
-    menuText: 'ℹ',
-    menuTitle: 'Doc',
-  }));
 
   // Permalink
   const permalink = new L.Control.Permalink({
@@ -86,15 +85,15 @@ export function initMap() {
   map.addControl(controlLayers);
 
   // Menu
-  const menu = new OsmoseMenu('menu', permalink, urlVars, {
+  const menu = new OsmoseMenu(map, 'menu', permalink, urlVars, {
     position: 'left',
+    toggle: {
+      position: 'topleft',
+      menuText: '☰',
+      menuTitle: 'Menu',
+    }
   });
   map.addControl(menu);
-  map.addControl(new ToggleControl(menu, {
-    position: 'topleft',
-    menuText: '☰',
-    menuTitle: 'Menu',
-  }));
   menu.show();
 
   // Export Menu

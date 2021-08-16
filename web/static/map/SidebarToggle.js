@@ -2,6 +2,8 @@ import 'leaflet';
 import 'leaflet-sidebar';
 import 'leaflet-sidebar/src/L.Control.Sidebar.css';
 
+import ToggleControl from './ToggleControl';
+
 
 const SidebarToggle = L.Control.Sidebar.extend({
 
@@ -10,8 +12,10 @@ const SidebarToggle = L.Control.Sidebar.extend({
     localStorageProperty: "sidebar-toggle",
   },
 
-  initialize(placeholder, options) {
+  initialize(map, placeholder, options) {
     L.Control.Sidebar.prototype.initialize.call(this, placeholder, options);
+
+    map.addControl(new ToggleControl(this, options.toggle));
 
     let show = localStorage.getItem(this.options.localStorageProperty);
     if (show !== null && JSON.parse(show) === false) {
