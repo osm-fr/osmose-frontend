@@ -111,9 +111,11 @@ import Marked from "marked";
 import path from "path";
 
 import VueParent from "../Parent.vue";
+import SidebarToggle from "../../../static/map/SidebarToggle.js";
 import ExternalVueAppEvent from "../../ExternalVueAppEvent.js";
 
 export default VueParent.extend({
+  props: ["map"],
   data() {
     return {
       error: false,
@@ -129,7 +131,8 @@ export default VueParent.extend({
     };
   },
   mounted() {
-    ExternalVueAppEvent.$on("load-doc", this.setDoc);
+    ExternalVueAppEvent.$on("show-doc", (e) => this.showDoc(e.item, e.classs));
+    ExternalVueAppEvent.$on("load-doc", (e) => this.setDoc(e.item, e.classs));
   },
   watch: {
     $route(to, from) {
@@ -140,8 +143,24 @@ export default VueParent.extend({
         this.setDoc(this._last_item, this._last_classs);
       }
     },
+    map: function () {
+      this.leafletSideBar = new SidebarToggle(this.map, "doc", {
+        position: "right",
+        localStorageProperty: "doc.show",
+        toggle: {
+          position: "topright",
+          menuText: "ℹ",
+          menuTitle: "Doc",
+        },
+      });
+      this.map.addControl(this.leafletSideBar);
+    },
   },
   methods: {
+    showDoc(item, classs) {
+      this.leafletSideBar.show();
+      this.setDoc(item, classs);
+    },
     setDoc(item, classs) {
       if (
         item == this._last_item &&

@@ -17,7 +17,7 @@
         :item_levels="item_levels"
         :error="error"
       />
-      <doc v-on:hide-item-markers="onHideItemMarkers($event)" />
+      <doc :map="map" v-on:hide-item-markers="onHideItemMarkers($event)" />
       <div id="map"></div>
       <editor
         ref="editor"

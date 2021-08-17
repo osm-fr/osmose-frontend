@@ -184,7 +184,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
     this.popup.setLatLng([data.lat, data.lon]);
     data.elems_id = data.elems.map(elem => elem.type + elem.id).join(',');
 
-    this._doc.load(data.item, data['class']);
+    ExternalVueAppEvent.$emit("load-doc", { item: data.item, classs: data['class'] });
     // Get the OSM objects
     if (data.elems_id) {
       let shift = -1;
@@ -221,7 +221,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
   },
 
   _help(item, classs) {
-    this._doc.show(item, classs);
+    ExternalVueAppEvent.$emit("show-doc", { item, classs });
   },
 
   corrected() {

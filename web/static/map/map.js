@@ -1,6 +1,5 @@
 import { mapBases, mapOverlay } from './layers';
 import OsmoseMenu from './Osmose.Menu';
-import OsmoseDoc from './Osmose.Doc';
 import OsmoseExport from './Osmose.Export';
 import OsmoseMarker from './Osmose.Marker';
 import OsmoseHeatmap from './Osmose.Heatmap';
@@ -49,17 +48,6 @@ export function initMap() {
     layers: layers[0],
     worldCopyJump: true,
   }).setActiveArea('leaflet-active-area', true);
-
-  // Doc
-  const doc = new OsmoseDoc(map, 'doc', {
-    position: 'right',
-    toggle: {
-      position: 'topright',
-      menuText: 'ℹ',
-      menuTitle: 'Doc',
-    }
-  });
-  map.addControl(doc);
 
   // Permalink
   const permalink = new L.Control.Permalink({
