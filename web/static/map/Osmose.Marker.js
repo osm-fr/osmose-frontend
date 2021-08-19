@@ -5,7 +5,6 @@ import 'leaflet-responsive-popup/leaflet.responsive.popup.css';
 import 'leaflet-responsive-popup/leaflet.responsive.popup.rtl.css';
 import 'leaflet-osm';
 import 'leaflet-textpath';
-import * as Cookies from 'js-cookie';
 
 import ExternalVueAppEvent from '../../src/ExternalVueAppEvent.js'
 import IconLimit from '../images/limit.png';
@@ -13,7 +12,7 @@ import IconLimit from '../images/limit.png';
 
 const OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
-  initialize(permalink, params, doc, featuresLayers, remoteUrlRead, options) {
+  initialize(permalink, mapState, itemState, doc, featuresLayers, remoteUrlRead, options) {
     this._permalink = permalink;
     this._doc = doc;
     this._featuresLayers = featuresLayers;
@@ -48,11 +47,11 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
       },
     };
     this.on('add', (e) => {
-      if (params.issue_uuid) {
-        this._openPopup(params.issue_uuid, [params.lat, params.lon], this);
+      if (mapState.issue_uuid) {
+        this._openPopup(mapState.issue_uuid, [mapState.lat, mapState.lon], this);
       }
     });
-    L.VectorGrid.Protobuf.prototype.initialize.call(this, this._buildUrl(params), vectorTileOptions);
+    L.VectorGrid.Protobuf.prototype.initialize.call(this, this._buildUrl(itemState), vectorTileOptions);
 
     // this.popup = L.responsivePopup({
     this.popup = L.popup({
@@ -103,7 +102,6 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
     });
 
 
-    map.on('zoomend moveend', L.Util.bind(this._mapChange, this));
     const bindClosePopup = L.Util.bind(this._closePopup, this);
     map.on('zoomstart', bindClosePopup);
 
@@ -114,17 +112,6 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
       map.off('zoomstart', bindClosePopup);
       this._permalink.off('update', this._updateOsmoseLayer, this);
     }, this);
-  },
-
-  _mapChange() {
-    const cookiesOptions = {
-      expires: 365,
-      path: '/',
-    };
-
-    Cookies.set('last_zoom', this._map.getZoom(), cookiesOptions);
-    Cookies.set('last_lat', this._map.getCenter().lat, cookiesOptions);
-    Cookies.set('last_lon', this._map.getCenter().lng, cookiesOptions);
   },
 
   _updateOsmoseLayer(e) {

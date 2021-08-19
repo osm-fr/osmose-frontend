@@ -7,14 +7,14 @@ const OsmoseExport = L.Class.extend({
 
   _params_last: {},
 
-  initialize(map, permalink, params) {
+  initialize(map, permalink, mapState, itemState) {
     this._map = map;
     permalink.on('update', this._setUrl, this);
     map.on('moveend', (e) => {
       this._setUrl({ params: this._params_last });
     });
-    this._params_last = params;
-    this._setUrl({ params });
+    this._params_last = {...mapState, ...itemState};
+    this._setUrl({...mapState, ...itemState});
   },
 
   _setUrl(e) {

@@ -4,7 +4,7 @@ import 'leaflet.vectorgrid/dist/Leaflet.VectorGrid.js';
 
 const OsmoseHeatmap = L.VectorGrid.Protobuf.extend({
 
-  initialize(permalink, params, options) {
+  initialize(permalink, itemState, options) {
     this._permalink = permalink;
 
     const vectorTileOptions = {
@@ -21,7 +21,7 @@ const OsmoseHeatmap = L.VectorGrid.Protobuf.extend({
       },
     };
 
-    L.VectorGrid.Protobuf.prototype.initialize.call(this, this._buildUrl(params), vectorTileOptions);
+    L.VectorGrid.Protobuf.prototype.initialize.call(this, this._buildUrl(itemState), vectorTileOptions);
   },
 
   onAdd(map) {

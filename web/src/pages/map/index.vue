@@ -11,6 +11,7 @@
       />
       <items
         ref="items"
+        :state="itemState"
         :menu="menu"
         :original_tags="tags"
         :categories="categories"
@@ -74,6 +75,19 @@ export default VueParent.extend({
       layerMarker: null,
       menu: null,
       item_levels: {},
+      itemState: {
+        zoom: 16,
+        item: "xxxx",
+        level: "1",
+        // TODO filtrer on existing tagss
+        tags: null,
+        fixable: null,
+      },
+      mapState: {
+        lat: 46.97,
+        lon: 2.75,
+        zoom: 16,
+      },
     };
   },
   components: {
@@ -83,13 +97,33 @@ export default VueParent.extend({
     Editor,
     Popup,
   },
+  created() {
+    this.initializeItemState();
+    this.initializeMapState();
+  },
   mounted() {
     // FIXME - Hardcode legacy to avoid waiting for JSON to init the map
     window.remoteUrlRead = "https://www.openstreetmap.org/";
-    const a = initMap();
+    const a = initMap(this.itemState, this.mapState);
     this.map = a[0];
     this.menu = a[1];
     this.layerMarker = a[2];
+    this.permalink = a[3];
+
+    this.map.on("zoomend moveend", (e) => {
+      this.mapState.lat = this.map.getCenter().lat;
+      this.mapState.lon = this.map.getCenter().lng;
+      this.mapState.zoom = this.map.getZoom();
+    });
+
+    // FIXME legacy code
+    this.permalink.on("update", (e) => {
+      Object.keys(this.itemState).forEach((k) => {
+        if (this.itemState[k] != e.params[k]) {
+          this.itemState[k] = e.params[k];
+        }
+      });
+    });
 
     this.setData();
   },
@@ -99,8 +133,90 @@ export default VueParent.extend({
         this.setData();
       }
     },
+    itemState: {
+      deep: true,
+      handler(newItemState) {
+        this.saveItemState(newItemState);
+      },
+    },
+    mapState: {
+      deep: true,
+      handler(newMapState) {
+        this.saveMapState(newMapState);
+      },
+    },
   },
   methods: {
+    getUrlVars() {
+      const vars = {};
+      let hash;
+      if (window.location.href.indexOf("#") >= 0) {
+        const hashes = window.location.href
+          .slice(window.location.href.indexOf("#") + 1)
+          .split("&");
+        for (let i = 0; i < hashes.length; i += 1) {
+          hash = hashes[i].split("=");
+          vars[decodeURIComponent(hash[0])] = decodeURIComponent(hash[1]);
+        }
+      }
+      return vars;
+    },
+    filter(keys, state) {
+      return Object.fromEntries(
+        Object.entries(state).filter(
+          ([key, val]) => typeof val !== "undefined" && keys.includes(key)
+        )
+      );
+    },
+    initializeItemState() {
+      const keys = Object.keys(this.itemState);
+
+      const urlState = this.filter(keys, this.getUrlVars());
+
+      let localStorageState = {};
+      if (
+        Object.keys(urlState).length == 0 &&
+        localStorage.getItem("itemState")
+      ) {
+        localStorageState = this.filter(
+          keys,
+          JSON.parse(localStorage.getItem("itemState"))
+        );
+      }
+
+      Object.assign(this.itemState, localStorageState, urlState);
+    },
+    initializeMapState() {
+      const keys = Object.keys(this.mapState);
+
+      const urlState = this.filter(keys, this.getUrlVars());
+
+      let localStorageState = {};
+      if (
+        Object.keys(urlState).length == 0 &&
+        localStorage.getItem("mapState")
+      ) {
+        localStorageState = this.filter(
+          keys,
+          JSON.parse(localStorage.getItem("mapState"))
+        );
+      }
+
+      Object.assign(this.mapState, localStorageState, urlState);
+    },
+    saveItemState(itemState) {
+      localStorage.setItem("itemState", JSON.stringify(itemState));
+
+      this.permalink.update_item({
+        item: itemState.item,
+        level: itemState.level,
+        tags: itemState.tags,
+        fixable: itemState.fixable,
+      });
+    },
+    saveMapState(mapState) {
+      localStorage.setItem("mapState", JSON.stringify(mapState));
+    },
     setData() {
       this.fetchJsonProgressAssign(
         API_URL + window.location.pathname + ".json" + window.location.search,
@@ -121,10 +237,6 @@ export default VueParent.extend({
             viewport.content =
               "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
           }
-
-          this.$nextTick(() => {
-            this.menu.init();
-          });
         }
       );
     },

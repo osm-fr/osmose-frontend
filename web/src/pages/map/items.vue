@@ -12,7 +12,7 @@
             <translate>Severity</translate>
           </label>
           <div class="col-sm-9">
-            <select v-model="level" class="form-control form-control-sm">
+            <select v-model="state.level" class="form-control form-control-sm">
               <option class="level-1__" value="1">
                 <translate>High</translate>
               </option>
@@ -38,7 +38,7 @@
           </label>
           <div class="col-sm-9">
             <select
-              v-model="fixable"
+              v-model="state.fixable"
               name="fixable"
               class="form-control form-control-sm"
               :title="$t('Show only markers with correction suggestions')"
@@ -55,7 +55,7 @@
           </label>
           <div class="col-sm-9">
             <select
-              v-model="selected_tags"
+              v-model="state.tags"
               name="tags"
               class="form-control form-control-sm"
             >
@@ -154,16 +154,18 @@
 <script>
 import Vue from "vue";
 
-import ExternalVueAppEvent from "../../ExternalVueAppEvent.js";
-
 export default Vue.extend({
-  props: ["error", "menu", "original_tags", "categories", "item_levels"],
+  props: [
+    "error",
+    "menu",
+    "original_tags",
+    "categories",
+    "item_levels",
+    "state",
+  ],
   data() {
     return {
       tags: [],
-      level: "1",
-      fixable: null,
-      selected_tags: null,
       active_levels: ["1", "2", "3"],
       total_items: {},
       count_items: {},
@@ -175,15 +177,14 @@ export default Vue.extend({
         this.tags = this.original_tags;
       }
     },
-    level: function (level) {
-      this.active_levels = level.split(",");
-      this.itemsChanged();
+    categories: function (value) {
+      this.set_item(this.state);
     },
-    fixable: function () {
-      this.itemsChanged();
-    },
-    selected_tags: function () {
-      this.itemsChanged();
+    state: {
+      deep: true,
+      handler(newState) {
+        this.set_item(newState);
+      },
     },
   },
   computed: {
@@ -206,9 +207,6 @@ export default Vue.extend({
       });
     },
   },
-  mounted() {
-    ExternalVueAppEvent.$on("item-params-changed", this.setParams);
-  },
   methods: {
     _select_items_loop(callback, categ_id) {
       this.categories.forEach((categorie) => {
@@ -225,39 +223,21 @@ export default Vue.extend({
         }
       });
     },
-    setParams(params) {
-      if (params.item !== undefined) {
-        const itemRegex = params.item
-          .split(",")
-          .filter((item) => item != "")
-          .map((item) => new RegExp(item.replace(/x/g, ".")));
-        this._select_items_loop((item) =>
-          itemRegex.some((regex) => regex.test(item.item_format))
-        );
-      }
-
-      if (params.level !== undefined) {
-        this.level = params.level;
-      }
-
-      if (params.fixable !== undefined) {
-        this.fixable = params.fixable;
-      }
-
-      if (params.tags !== undefined) {
-        if (this.tags.indexOf(params.tags) < 0) {
-          this.tags.push(params.tags);
-        }
-        this.selected_tags = params.tags;
-      }
-
+    set_item(newState) {
+      const itemRegex = newState.item
+        .split(",")
+        .filter((item) => item != "")
+        .map((item) => new RegExp(item.replace(/x/g, ".")));
+      this._select_items_loop((item) =>
+        itemRegex.some((regex) => regex.test(("000" + item.item).slice(-4)))
+      );
       this.$forceUpdate();
     },
     showItem(item) {
       return (
-        this.item_levels[this.level].indexOf(item.item) >= 0 &&
-        (!this.selected_tags ||
-          (item.tags && item.tags.indexOf(this.selected_tags) >= 0))
+        this.item_levels[this.state.level].indexOf(item.item) >= 0 &&
+        (!this.state.tags ||
+          (item.tags && item.tags.indexOf(this.state.tags) >= 0))
       );
     },
     toggle_all(how) {
@@ -302,12 +282,7 @@ export default Vue.extend({
       if (full_categ == this.categories.length) {
         item_mask = "xxxx";
       }
-      this.menu._itemChanged(
-        item_mask,
-        this.level,
-        this.fixable,
-        this.selected_tags
-      );
+      this.state.item = item_mask;
     },
   },
 });

@@ -11,31 +11,8 @@ import 'leaflet-control-geocoder/src/index.js';
 import 'leaflet-control-geocoder/Control.Geocoder.css';
 import 'leaflet-loading';
 import 'leaflet-loading/src/Control.Loading.css';
-import * as Cookies from 'js-cookie';
 
-function getUrlVars() {
-  const vars = {};
-  let hash;
-  if (window.location.href.indexOf('#') >= 0) {
-    const hashes = window.location.href.slice(window.location.href.indexOf('#') + 1).split('&');
-    for (let i = 0; i < hashes.length; i += 1) {
-      hash = hashes[i].split('=');
-      vars[decodeURIComponent(hash[0])] = decodeURIComponent(hash[1]);
-    }
-  }
-  return vars;
-}
-
-export function initMap() {
-  const urlVars = getUrlVars();
-  urlVars.lat = urlVars.lat || Cookies.get('last_lat') || 46.97;
-  urlVars.lon = urlVars.lon || Cookies.get('last_lon') || 2.75;
-  urlVars.zoom = urlVars.zoom || Cookies.get('last_zoom') || 6;
-  urlVars.item = urlVars.item || Cookies.get('last_item') || 'xxxx';
-  urlVars.level = urlVars.level || Cookies.get('last_level') || '1';
-  urlVars.tags = urlVars.tags || Cookies.get('last_tags');
-  urlVars.fixable = urlVars.fixable || Cookies.get('last_fixable');
-
+export function initMap(itemState, mapState) {
   const layers = [];
   Object.values(mapBases).forEach((layer) => {
     layers.push(layer);
@@ -43,8 +20,8 @@ export function initMap() {
 
   // Map
   const map = L.map('map', {
-    center: new L.LatLng(urlVars.lat, urlVars.lon),
-    zoom: urlVars.zoom,
+    center: new L.LatLng(mapState.lat, mapState.lon),
+    zoom: mapState.zoom,
     layers: layers[0],
     worldCopyJump: true,
   }).setActiveArea('leaflet-active-area', true);
@@ -60,12 +37,12 @@ export function initMap() {
 
   // Layers
   // // Layer Heatmap
-  mapOverlay['Osmose Issues Heatmap'] = new OsmoseHeatmap(permalink, urlVars);
+  mapOverlay['Osmose Issues Heatmap'] = new OsmoseHeatmap(permalink, itemState);
 
   // // Layer Marker
   const featureLayer = L.layerGroup();
   map.addLayer(featureLayer);
-  const osmoseLayerMarker = new OsmoseMarker(permalink, urlVars, doc, featureLayer, remoteUrlRead);
+  const osmoseLayerMarker = new OsmoseMarker(permalink, mapState, itemState, doc, featureLayer, remoteUrlRead);
   mapOverlay['Osmose Issues'] = osmoseLayerMarker;
 
   // Control Layer
@@ -73,7 +50,7 @@ export function initMap() {
   map.addControl(controlLayers);
 
   // Menu
-  const menu = new OsmoseMenu(map, 'menu', permalink, urlVars, {
+  const menu = new OsmoseMenu(map, 'menu', {
     position: 'left',
     toggle: {
       position: 'topleft',
@@ -85,7 +62,7 @@ export function initMap() {
   menu.show();
 
   // Export Menu
-  new OsmoseExport(map, permalink, urlVars);
+  new OsmoseExport(map, permalink, mapState, itemState);
 
   // Widgets
   const scale = L.control.scale({
@@ -100,7 +77,7 @@ export function initMap() {
     position: 'topleft',
     showResultIcons: true,
   });
-  geocode.markGeocode = function (result) {
+  geocode.markGeocode = function(result) {
     this._map.fitBounds(result.geocode.bbox);
     return this;
   };
@@ -131,7 +108,7 @@ export function initMap() {
   map.on('moveend', activeMenu);
   activeMenu();
 
-  return [map, menu, osmoseLayerMarker];
+  return [map, menu, osmoseLayerMarker, permalink];
 }
 
 export { initMap as default };

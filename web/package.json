@@ -9,7 +9,6 @@
   "dependencies": {
     "bootstrap": "^4.6.0",
     "geobuf": "^3.0.1",
-    "js-cookie": "^2.2.0",
     "leaflet": "=1.0.3",
     "leaflet-active-area": "=1.1.0",
     "leaflet-control-geocoder": "^1.13.0",
