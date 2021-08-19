@@ -386,9 +386,125 @@ export default Vue.extend({
 #map svg.leaflet-tile g image[width="17px"][height="33px"] {
   cursor: pointer;
 }
+
+/* Allow direction ltr in popup */
+.leaflet-popup {
+  text-align: inherit;
+}
+.leaflet-popup-content-wrapper {
+  text-align: inherit;
+}
+
+.leaflet-popup-content .btn {
+  color: #fff;
+}
+.leaflet-popup-content .bulle_msg a,
+.leaflet-popup-content .bulle_verif a {
+  text-decoration: underline;
+}
 </style>
 
 <style scoped>
+.bulle_msg {
+  min-width: 200px;
+  max-height: 200px;
+  overflow: auto;
+  word-wrap: break-word;
+}
+.bulle_msg div.closebubble {
+  float: right;
+  color: #eeeeee;
+  font-weight: bold;
+  background-color: #aaaaaa;
+  margin-right: 2px;
+  text-decoration: none;
+}
+.bulle_msg div.closebubble a:link,
+.bulle_msg div.closebubble a:visited {
+  color: #eeeeee;
+}
+.bulle_msg div.closebubble a:hover {
+  color: #000000;
+}
+.bulle_msg div.help {
+  background-color: #0083ff;
+}
+.bulle_msg div.help a:hover {
+  color: #d1d1d1;
+}
+
+.bulle_err,
+a.bulle_err:link,
+a.bulle_err:visited,
+a.bulle_err:hover {
+  color: #ff5555;
+}
+
+.bulle_elem {
+  direction: ltr;
+}
+
+.bulle_elem,
+.bulle_elem a:link,
+.bulle_elem a:visited {
+  color: #5555ff;
+}
+.bulle_elem a:hover {
+  color: #5555ff;
+}
+
+.bulle_elem .fix {
+  border: solid 1px lightgray;
+}
+.bulle_elem .fix_links {
+  float: right;
+}
+.bulle_elem .fix .add {
+  color: green;
+}
+.bulle_elem .fix .mod {
+  color: darkorange;
+}
+.bulle_elem .fix .del {
+  color: red;
+}
+
+.bulle_verif {
+  font-size: 90%;
+}
+.bulle_verif a:link,
+.bulle_verif a:visited,
+.bulle_verif a:hover {
+  color: #55aa55;
+}
+
+#bulle_footer {
+  display: table;
+  width: 100%;
+}
+
+#bulle_maj {
+  display: table-cell;
+  font-size: 80%;
+  vertical-align: top;
+}
+
+#bulle_button {
+  display: table-cell;
+  float: right;
+  padding-top: 5px;
+  padding-left: 5px;
+}
+html[dir="rtl"] #bulle_button {
+  float: left;
+  padding-left: 0px;
+  padding-right: 5px;
+}
+
+#bulle_button .btn-group {
+  direction: ltr;
+}
+
 .bulle_elem .add b:before {
   content: " + ";
 }
