@@ -167,7 +167,7 @@ export default VueParent.extend({
     filter(keys, state) {
       return Object.fromEntries(
         Object.entries(state).filter(
-          ([key, val]) => typeof val !== "undefined" && keys.includes(key)
+          ([key, val]) => val !== undefined && val != null && keys.includes(key)
         )
       );
     },
