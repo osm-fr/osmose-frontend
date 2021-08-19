@@ -3,16 +3,19 @@
     <a href="#" id="togglemenu">-</a>
     <div v-if="error">{{ error }}</div>
     <form v-else action="#">
-      <div id="need_zoom">
-        <translate>no bubbles at this zoom factor</translate>
+      <div v-if="need_zoom" id="need_zoom">
+        <translate>Zoom in to see issues.</translate>
       </div>
-      <div id="action_links">
+      <div v-if="!need_zoom" id="action_links">
         <div id="level-span" class="form-group row">
           <label for="level" class="col-sm-3 col-form-label">
             <translate>Severity</translate>
           </label>
           <div class="col-sm-9">
-            <select v-model="state.level" class="form-control form-control-sm">
+            <select
+              v-model="itemState.level"
+              class="form-control form-control-sm"
+            >
               <option class="level-1__" value="1">
                 <translate>High</translate>
               </option>
@@ -38,7 +41,7 @@
           </label>
           <div class="col-sm-9">
             <select
-              v-model="state.fixable"
+              v-model="itemState.fixable"
               name="fixable"
               class="form-control form-control-sm"
               :title="$t('Show only markers with correction suggestions')"
@@ -55,7 +58,7 @@
           </label>
           <div class="col-sm-9">
             <select
-              v-model="state.tags"
+              v-model="itemState.tags"
               name="tags"
               class="form-control form-control-sm"
             >
@@ -77,7 +80,7 @@
           <translate>invert</translate>
         </a>
       </div>
-      <div id="tests">
+      <div v-if="!need_zoom" id="tests">
         <div
           v-for="categ in categories_format"
           :key="categ.id"
@@ -163,7 +166,8 @@ export default Vue.extend({
     "original_tags",
     "categories",
     "item_levels",
-    "state",
+    "itemState",
+    "mapState",
   ],
   data() {
     return {
@@ -196,9 +200,9 @@ export default Vue.extend({
       }
     },
     categories: function (value) {
-      this.set_item(this.state);
+      this.set_item(this.itemState);
     },
-    state: {
+    itemState: {
       deep: true,
       handler(newState) {
         this.set_item(newState);
@@ -206,6 +210,14 @@ export default Vue.extend({
     },
   },
   computed: {
+    need_zoom() {
+      return !(
+        this.mapState.zoom >= 7 ||
+        (this.mapState.zoom >= 5 && this.mapState.lat > 60) ||
+        (this.mapState.zoom >= 4 && this.mapState.lat > 70) ||
+        (this.mapState.zoom >= 3 && this.mapState.lat > 75)
+      );
+    },
     categories_format() {
       return this.categories.map((categorie) => {
         this.total_items[categorie.id] = categorie.items.length;
@@ -253,9 +265,9 @@ export default Vue.extend({
     },
     showItem(item) {
       return (
-        this.item_levels[this.state.level].indexOf(item.item) >= 0 &&
-        (!this.state.tags ||
-          (item.tags && item.tags.indexOf(this.state.tags) >= 0))
+        this.item_levels[this.itemState.level].indexOf(item.item) >= 0 &&
+        (!this.itemState.tags ||
+          (item.tags && item.tags.indexOf(this.itemState.tags) >= 0))
       );
     },
     toggle_all(how) {
@@ -300,7 +312,7 @@ export default Vue.extend({
       if (full_categ == this.categories.length) {
         item_mask = "xxxx";
       }
-      this.state.item = item_mask;
+      this.itemState.item = item_mask;
     },
   },
 });
@@ -317,7 +329,6 @@ div#tests {
   overflow-y: auto;
 }
 div#menu div#need_zoom {
-  display: none;
   font-size: 14px;
   font-weight: bold;
   color: #ff0000;

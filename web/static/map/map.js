@@ -73,24 +73,6 @@ export function initMap(itemState, mapState) {
 
   map.addLayer(osmoseLayerMarker);
 
-  function activeMenu(e) {
-    const zoom = map.getZoom();
-    const lat = Math.abs(map.getCenter().lat);
-    if (zoom >= 7 || (zoom >= 5 && lat > 60) || (zoom >= 4 && lat > 70) || (zoom >= 3 && lat > 75)) {
-      document.getElementById("need_zoom").style.display = "none";
-      document.getElementById("action_links").style.display = "block";
-      document.getElementById("tests").style.display = "block";
-    } else {
-      document.getElementById("need_zoom").style.display = "block";
-      document.getElementById("action_links").style.display = "none";
-      document.getElementById("tests").style.display = "none";
-    }
-  }
-
-  map.on('zoomend', activeMenu);
-  map.on('moveend', activeMenu);
-  activeMenu();
-
   return [map, osmoseLayerMarker, permalink];
 }
 

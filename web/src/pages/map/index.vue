@@ -14,7 +14,8 @@
       />
       <items
         ref="items"
-        :state="itemState"
+        :itemState="itemState"
+        :mapState="mapState"
         :map="map"
         :original_tags="tags"
         :categories="categories"
