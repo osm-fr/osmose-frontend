@@ -45,9 +45,6 @@ import { initMap } from "../../../static/map/map.js";
 import "leaflet";
 import "leaflet/dist/leaflet.css";
 
-import "../../../static/map/style.css";
-import "../../../static/images/markers/markers-l.css";
-
 // Retro-compact hack for Leaflet.VectorGrid
 L.DomEvent.fakeStop = L.DomEvent._fakeStop;
 // --- End Legacy
@@ -58,6 +55,9 @@ import Items from "./items.vue";
 import Doc from "./doc.vue";
 import Editor from "./editor.vue";
 import Popup from "./popup.vue";
+
+import "../../../static/map/style.css";
+import "../../../static/images/markers/markers-l.css";
 
 export default VueParent.extend({
   data() {
