@@ -311,4 +311,35 @@ div#top_links {
 #topmenu li:hover > .submenu {
   display: block;
 }
+
+@media (max-width: 399px) {
+  #topmenu #menu-lang,
+  #topmenu #menu-openstreetmapfr,
+  #topmenu #menu-byuser,
+  #topmenu #menu-relation_analyser,
+  #topmenu #menu-statistics,
+  #topmenu #menu-help,
+  #topmenu #menu-delay {
+    display: none;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 767px) {
+  #topmenu #menu-byuser,
+  #topmenu #menu-relation_analyser,
+  #topmenu #menu-statistics,
+  #topmenu #menu-help,
+  #topmenu #menu-delay {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  #topmenu #menu-byuser,
+  #topmenu #menu-relation_analyser,
+  #topmenu#menu-statistics,
+  #topmenu #menu-help {
+    display: none;
+  }
+}
 </style>
