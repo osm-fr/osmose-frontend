@@ -12,7 +12,7 @@
       <items
         ref="items"
         :state="itemState"
-        :menu="menu"
+        :map="map"
         :original_tags="tags"
         :categories="categories"
         :item_levels="item_levels"
@@ -106,9 +106,8 @@ export default VueParent.extend({
     window.remoteUrlRead = "https://www.openstreetmap.org/";
     const a = initMap(this.itemState, this.mapState);
     this.map = a[0];
-    this.menu = a[1];
-    this.layerMarker = a[2];
-    this.permalink = a[3];
+    this.layerMarker = a[1];
+    this.permalink = a[2];
 
     this.map.on("zoomend moveend", (e) => {
       this.mapState.lat = this.map.getCenter().lat;

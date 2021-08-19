@@ -1,5 +1,4 @@
 import { mapBases, mapOverlay } from './layers';
-import OsmoseMenu from './Osmose.Menu';
 import OsmoseExport from './Osmose.Export';
 import OsmoseMarker from './Osmose.Marker';
 import OsmoseHeatmap from './Osmose.Heatmap';
@@ -49,18 +48,6 @@ export function initMap(itemState, mapState) {
   const controlLayers = L.control.layers(mapBases, mapOverlay);
   map.addControl(controlLayers);
 
-  // Menu
-  const menu = new OsmoseMenu(map, 'menu', {
-    position: 'left',
-    toggle: {
-      position: 'topleft',
-      menuText: '☰',
-      menuTitle: 'Menu',
-    }
-  });
-  map.addControl(menu);
-  menu.show();
-
   // Export Menu
   new OsmoseExport(map, permalink, mapState, itemState);
 
@@ -108,7 +95,7 @@ export function initMap(itemState, mapState) {
   map.on('moveend', activeMenu);
   activeMenu();
 
-  return [map, menu, osmoseLayerMarker, permalink];
+  return [map, osmoseLayerMarker, permalink];
 }
 
 export { initMap as default };

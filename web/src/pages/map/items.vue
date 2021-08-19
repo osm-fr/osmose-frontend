@@ -154,10 +154,12 @@
 <script>
 import Vue from "vue";
 
+import SidebarToggle from "../../../static/map/SidebarToggle.js";
+
 export default Vue.extend({
   props: [
     "error",
-    "menu",
+    "map",
     "original_tags",
     "categories",
     "item_levels",
@@ -172,6 +174,22 @@ export default Vue.extend({
     };
   },
   watch: {
+    map: function () {
+      if (this.map) {
+        const leafletSideBar = new SidebarToggle(this.map, "menu", {
+          position: "left",
+          closeButton: false,
+          localStorageProperty: "menu.show",
+          toggle: {
+            position: "topleft",
+            menuText: "☰",
+            menuTitle: "Menu",
+          },
+        });
+        this.map.addControl(leafletSideBar);
+        leafletSideBar.show();
+      }
+    },
     original_tags: function (original_tags) {
       if (original_tags) {
         this.tags = this.original_tags;
