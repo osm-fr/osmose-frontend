@@ -50,6 +50,10 @@ ul.leaflet-control-geocoder-alternatives {
   bottom: 0px;
 }
 
+.leaflet-sidebar {
+  z-index: 1010;
+}
+
 @media(min-width:768px) and (max-width:991px) {
   .leaflet-sidebar {
     width: 270px;
