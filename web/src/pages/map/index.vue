@@ -4,6 +4,9 @@
     <div v-if="error">{{ error }}</div>
     <div>
       <top
+        :map="map"
+        :itemState="itemState"
+        :mapState="mapState"
         :languages_name="languages_name"
         :user="user"
         :user_error_count="user_error_count"

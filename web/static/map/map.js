@@ -1,5 +1,4 @@
 import { mapBases, mapOverlay } from './layers';
-import OsmoseExport from './Osmose.Export';
 import OsmoseMarker from './Osmose.Marker';
 import OsmoseHeatmap from './Osmose.Heatmap';
 
@@ -47,9 +46,6 @@ export function initMap(itemState, mapState) {
   // Control Layer
   const controlLayers = L.control.layers(mapBases, mapOverlay);
   map.addControl(controlLayers);
-
-  // Export Menu
-  new OsmoseExport(map, permalink, mapState, itemState);
 
   // Widgets
   const scale = L.control.scale({

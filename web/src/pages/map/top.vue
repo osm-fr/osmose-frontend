@@ -42,14 +42,13 @@
         <a href="#" onclick="return false;"><translate>Export</translate> ▼</a>
         <ul class="submenu">
           <li>
-            <a class="menu-export" data-href="../issues/open" target="_blank">
+            <a :href="`../issues/open?${params}`" target="_blank">
               <translate>Html list</translate>
             </a>
           </li>
           <li>
             <a
-              class="menu-export"
-              :data-href="`${api_url}/${lang}/josm_proxy?issues/open.josm`"
+              :href="`${api_url}/${lang}/josm_proxy?issues/open.josm?${params}`"
               target="hiddenIframe"
             >
               JOSM
@@ -57,47 +56,31 @@
           </li>
           <li>
             <a
-              class="menu-export"
-              :data-href="`${api_url}/${lang}/issues/open.rss`"
+              :href="`${api_url}/${lang}/issues/open.rss?${params}`"
               target="_blank"
             >
               RSS
             </a>
           </li>
           <li>
-            <a
-              class="menu-export"
-              :data-href="`${api_url}/${lang}/issues/open.gpx`"
-              >GPX</a
-            >
+            <a :href="`${api_url}/${lang}/issues/open.gpx?${params}`">GPX</a>
+          </li>
+          <li>
+            <a :href="`${api_url}/${lang}/issues/open.kml?${params}`">KML</a>
+          </li>
+          <li>
+            <a :href="`/api/0.3/issues?${params}`" target="_blank"> Json </a>
           </li>
           <li>
             <a
-              class="menu-export"
-              :data-href="`${api_url}/${lang}/issues/open.kml`"
-              >KML</a
-            >
-          </li>
-          <li>
-            <a class="menu-export" data-href="/api/0.3/issues" target="_blank">
-              Json
-            </a>
-          </li>
-          <li>
-            <a
-              class="menu-export"
-              :data-href="`${api_url}/${lang}/issues/open.csv`"
+              :href="`${api_url}/${lang}/issues/open.csv?${params}`"
               target="_blank"
             >
               CSV
             </a>
           </li>
           <li>
-            <a
-              class="menu-export"
-              data-href="/api/0.3/issues.geosjon"
-              target="_blank"
-            >
+            <a :href="`/api/0.3/issues.geosjon?${params}`" target="_blank">
               GeoJson
             </a>
           </li>
@@ -211,7 +194,20 @@ import Delay from "../../components/delay.vue";
 import EditorMenu from "./editor-menu.vue";
 
 export default Vue.extend({
-  props: ["languages_name", "user", "user_error_count", "timestamp"],
+  props: [
+    "map",
+    "mapState",
+    "itemState",
+    "languages_name",
+    "user",
+    "user_error_count",
+    "timestamp",
+  ],
+  data() {
+    return {
+      params: "",
+    };
+  },
   computed: {
     api_url: () => API_URL,
     lang() {
@@ -229,9 +225,35 @@ export default Vue.extend({
     EditorMenu,
     TimeAgo,
   },
+  watch: {
+    itemState: {
+      deep: true,
+      handler() {
+        this.setParams();
+      },
+    },
+    mapState: {
+      deep: true,
+      handler() {
+        this.setParams();
+      },
+    },
+  },
   methods: {
     changeLang: (lang) => {
       window.document.dir = lang.direction;
+    },
+    setParams() {
+      const params = { ...this.mapState, ...this.itemState };
+      delete params.lat;
+      delete params.lon;
+      delete params.issue_uuid;
+      params.limit = 500;
+      params.bbox = this.map.getBounds().toBBoxString();
+      this.params = Object.entries(params)
+        .filter(([k, v]) => v !== undefined && v != null)
+        .map(([k, v]) => encodeURIComponent(k) + "=" + encodeURIComponent(v))
+        .join("&");
     },
   },
 });
