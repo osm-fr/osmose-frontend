@@ -48,6 +48,7 @@ import { initMap } from "../../../static/map/map.js";
 
 import "leaflet";
 import "leaflet/dist/leaflet.css";
+import "leaflet-plugins/control/Permalink.js";
 
 // Retro-compact hack for Leaflet.VectorGrid
 L.DomEvent.fakeStop = L.DomEvent._fakeStop;
@@ -118,7 +119,6 @@ export default VueParent.extend({
     this.map = a[0];
     this.layerMarker = a[1];
     this.heatmapLayer = a[2];
-    this.permalink = a[3];
 
     this.map.on("zoomend moveend", (e) => {
       this.mapState.lat = this.map.getCenter().lat;
@@ -126,7 +126,12 @@ export default VueParent.extend({
       this.mapState.zoom = this.map.getZoom();
     });
 
-    // FIXME legacy code
+    // Permalink
+    this.permalink = new L.Control.Permalink({
+      useLocation: true,
+      text: '',
+    });
+    this.map.addControl(this.permalink);
     this.permalink.on("update", (e) => {
       Object.keys(this.itemState).forEach((k) => {
         if (this.itemState[k] != e.params[k]) {
@@ -217,7 +222,7 @@ export default VueParent.extend({
     },
     saveItemState(itemState) {
       localStorage.setItem("itemState", JSON.stringify(itemState));
-      this.permalink.update_item(itemState);
+      this.permalink._update(itemState);
     },
     saveMapState(mapState) {
       localStorage.setItem("mapState", JSON.stringify(mapState));

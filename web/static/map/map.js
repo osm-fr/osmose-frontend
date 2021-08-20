@@ -3,7 +3,6 @@ import OsmoseMarker from './Osmose.Marker';
 import OsmoseHeatmap from './Osmose.Heatmap';
 
 import 'leaflet-active-area/src/leaflet.activearea.js';
-import './Permalink.Item.js';
 import './Location.js';
 import 'leaflet-control-geocoder/src/index.js';
 import 'leaflet-control-geocoder/Control.Geocoder.css';
@@ -23,15 +22,6 @@ export function initMap(itemState, mapState, tileQuery) {
     layers: layers[0],
     worldCopyJump: true,
   }).setActiveArea('leaflet-active-area', true);
-
-  // Permalink
-  const permalink = new L.Control.Permalink({
-    // layers: layers,
-    text: '',
-    useLocation: true,
-    position: 'bottomright',
-  });
-  map.addControl(permalink);
 
   // Layers
   // // Layer Heatmap
@@ -74,7 +64,7 @@ export function initMap(itemState, mapState, tileQuery) {
 
   map.addLayer(markerLayer);
 
-  return [map, markerLayer, heatmapLayer, permalink];
+  return [map, markerLayer, heatmapLayer];
 }
 
 export { initMap as default };
