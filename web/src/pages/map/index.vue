@@ -44,7 +44,7 @@
 
 <script>
 // --- Legacy
-import { initMap } from "../../../static/map/map.js";
+import initMap from "../../../static/map/map.js";
 
 import "leaflet";
 import "leaflet/dist/leaflet.css";

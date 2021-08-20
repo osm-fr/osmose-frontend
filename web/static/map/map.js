@@ -9,60 +9,46 @@ import 'leaflet-control-geocoder/Control.Geocoder.css';
 import 'leaflet-loading';
 import 'leaflet-loading/src/Control.Loading.css';
 
-export function initMap(itemState, mapState, tileQuery) {
-  const layers = [];
-  Object.values(mapBases).forEach((layer) => {
-    layers.push(layer);
-  });
+export default function initMap(itemState, mapState, tileQuery) {
+  // Layers
+  const markerLayer = new OsmoseMarker(mapState, itemState, tileQuery, remoteUrlRead);
+  mapOverlay['Osmose Issues'] = markerLayer;
+
+  const heatmapLayer = new OsmoseHeatmap(itemState, tileQuery);
+  mapOverlay['Osmose Issues Heatmap'] = heatmapLayer
 
   // Map
   const map = L.map('map', {
     center: new L.LatLng(mapState.lat, mapState.lon),
     zoom: mapState.zoom,
-    layers: layers[0],
+    layers: [mapBases['carto'], markerLayer],
     worldCopyJump: true,
   }).setActiveArea('leaflet-active-area', true);
 
-  // Layers
-  // // Layer Heatmap
-  const heatmapLayer = new OsmoseHeatmap(itemState, tileQuery);
-  mapOverlay['Osmose Issues Heatmap'] = heatmapLayer
-
-  // // Layer Marker
-  const markerLayer = new OsmoseMarker(mapState, itemState, tileQuery, remoteUrlRead);
-  mapOverlay['Osmose Issues'] = markerLayer;
-
   // Control Layer
-  const controlLayers = L.control.layers(mapBases, mapOverlay);
-  map.addControl(controlLayers);
+  map.addControl(L.control.layers(mapBases, mapOverlay));
 
   // Widgets
-  const scale = L.control.scale({
-    position: 'bottomleft',
-  });
-  map.addControl(scale);
 
-  const location = L.control.location();
-  map.addControl(location);
+  map.addControl(L.control.scale({
+    position: 'bottomleft',
+  }));
+
+  map.addControl(L.control.location());
 
   const geocode = L.Control.geocoder({
     position: 'topleft',
     showResultIcons: true,
   });
-  geocode.markGeocode = function(result) {
+  geocode.markGeocode = function (result) {
     this._map.fitBounds(result.geocode.bbox);
     return this;
   };
   map.addControl(geocode);
 
-  const loadingControl = L.Control.loading({
+  map.addControl(L.Control.loading({
     separate: true,
-  });
-  map.addControl(loadingControl);
-
-  map.addLayer(markerLayer);
+  }));
 
   return [map, markerLayer, heatmapLayer];
 }
-
-export { initMap as default };
