@@ -21,6 +21,7 @@
         :categories="categories"
         :item_levels="item_levels"
         :error="error"
+        v-on:state-update="itemState = $event"
       />
       <doc :map="map" v-on:hide-item-markers="onHideItemMarkers($event)" />
       <div id="map"></div>
