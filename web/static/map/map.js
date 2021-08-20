@@ -35,7 +35,7 @@ export function initMap(itemState, mapState) {
 
   // Layers
   // // Layer Heatmap
-  mapOverlay['Osmose Issues Heatmap'] = new OsmoseHeatmap(permalink, itemState);
+  mapOverlay['Osmose Issues Heatmap'] = new OsmoseHeatmap(itemState);
 
   // // Layer Marker
   const featureLayer = L.layerGroup();
