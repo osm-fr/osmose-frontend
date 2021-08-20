@@ -12,7 +12,7 @@ import IconLimit from '../images/limit.png';
 
 const OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
-  initialize(permalink, mapState, itemState, doc, featuresLayers, remoteUrlRead, options) {
+  initialize(permalink, mapState, itemState, query, doc, featuresLayers, remoteUrlRead, options) {
     this._permalink = permalink;
     this._doc = doc;
     this._featuresLayers = featuresLayers;
@@ -51,7 +51,8 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
         this._openPopup(itemState.issue_uuid, [mapState.lat, mapState.lon], this);
       }
     });
-    L.VectorGrid.Protobuf.prototype.initialize.call(this, this._buildUrl(itemState), vectorTileOptions);
+    L.VectorGrid.Protobuf.prototype.initialize.call(this, "fakeURL", vectorTileOptions);
+    this.setURLQuery(query);
 
     // this.popup = L.responsivePopup({
     this.popup = L.popup({
@@ -105,36 +106,17 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
     const bindClosePopup = L.Util.bind(this._closePopup, this);
     map.on('zoomstart', bindClosePopup);
 
-    this._permalink.on('update', this._updateOsmoseLayer, this);
-
     this.once('remove', () => {
       this.off('click', click);
       map.off('zoomstart', bindClosePopup);
-      this._permalink.off('update', this._updateOsmoseLayer, this);
     }, this);
   },
 
-  _updateOsmoseLayer(e) {
-    if (this._map.getZoom() >= 7) {
-      const newUrl = this._buildUrl(e.params);
-      if (this._url !== newUrl) {
-        this.setUrl(newUrl);
-      }
+  setURLQuery(query) {
+    const newUrl = API_URL + `/api/0.3/issues/{z}/{x}/{y}.mvt?${query}`;
+    if (this._url !== newUrl) {
+      this.setUrl(newUrl);
     }
-  },
-
-  _buildUrl(params) {
-    params = Object.assign({}, params);
-    delete params.lat;
-    delete params.lon;
-    delete params.issue_uuid;
-
-    const query = this.params = Object.entries(params)
-      .filter(([k, v]) => v !== undefined && v != null)
-      .map(([k, v]) => encodeURIComponent(k) + "=" + encodeURIComponent(v))
-      .join("&");
-
-    return API_URL + `/api/0.3/issues/{z}/{x}/{y}.mvt?${query}`;
   },
 
   _closePopup() {

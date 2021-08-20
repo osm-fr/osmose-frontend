@@ -10,7 +10,7 @@ import 'leaflet-control-geocoder/Control.Geocoder.css';
 import 'leaflet-loading';
 import 'leaflet-loading/src/Control.Loading.css';
 
-export function initMap(itemState, mapState) {
+export function initMap(itemState, mapState, tileQuery) {
   const layers = [];
   Object.values(mapBases).forEach((layer) => {
     layers.push(layer);
@@ -35,13 +35,14 @@ export function initMap(itemState, mapState) {
 
   // Layers
   // // Layer Heatmap
-  mapOverlay['Osmose Issues Heatmap'] = new OsmoseHeatmap(itemState);
+  const heatmapLayer = new OsmoseHeatmap(itemState, tileQuery);
+  mapOverlay['Osmose Issues Heatmap'] = heatmapLayer
 
   // // Layer Marker
   const featureLayer = L.layerGroup();
   map.addLayer(featureLayer);
-  const osmoseLayerMarker = new OsmoseMarker(permalink, mapState, itemState, doc, featureLayer, remoteUrlRead);
-  mapOverlay['Osmose Issues'] = osmoseLayerMarker;
+  const markerLayer = new OsmoseMarker(permalink, mapState, itemState, tileQuery, doc, featureLayer, remoteUrlRead);
+  mapOverlay['Osmose Issues'] = markerLayer;
 
   // Control Layer
   const controlLayers = L.control.layers(mapBases, mapOverlay);
@@ -71,9 +72,9 @@ export function initMap(itemState, mapState) {
   });
   map.addControl(loadingControl);
 
-  map.addLayer(osmoseLayerMarker);
+  map.addLayer(markerLayer);
 
-  return [map, osmoseLayerMarker, permalink];
+  return [map, markerLayer, heatmapLayer, permalink];
 }
 
 export { initMap as default };

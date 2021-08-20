@@ -4,7 +4,7 @@ import 'leaflet.vectorgrid/dist/Leaflet.VectorGrid.js';
 
 const OsmoseHeatmap = L.VectorGrid.Protobuf.extend({
 
-  initialize(itemState, options) {
+  initialize(itemState, query, options) {
     const vectorTileOptions = {
       vectorTileLayerStyles: {
         issues(properties, zoom) {
@@ -19,25 +19,12 @@ const OsmoseHeatmap = L.VectorGrid.Protobuf.extend({
       },
     };
 
-    L.VectorGrid.Protobuf.prototype.initialize.call(this, this._buildUrl(itemState), vectorTileOptions);
+    L.VectorGrid.Protobuf.prototype.initialize.call(this, "fakeURL", vectorTileOptions);
+    this.setURLQuery(query);
   },
 
-  _buildUrl(params) {
-    params = Object.assign({}, params);
-    delete params.lat;
-    delete params.lon;
-    delete params.issue_uuid;
-
-    const query = this.params = Object.entries(params)
-      .filter(([k, v]) => v !== undefined && v != null)
-      .map(([k, v]) => encodeURIComponent(k) + "=" + encodeURIComponent(v))
-      .join("&");
-
-    return API_URL + `/api/0.3/issues/{z}/{x}/{y}.heat.mvt?${query}`;
-  },
-
-  _setUrl(e) {
-    const newUrl = this._buildUrl(e.params);
+  setURLQuery(query) {
+    const newUrl = API_URL + `/api/0.3/issues/{z}/{x}/{y}.heat.mvt?${query}`;
     if (this._url !== newUrl) {
       this.setUrl(newUrl);
     }

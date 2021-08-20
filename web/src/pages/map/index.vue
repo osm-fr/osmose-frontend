@@ -77,6 +77,7 @@ export default VueParent.extend({
       remote_url_read: "",
       map: null,
       layerMarker: null,
+      heatmapLayer: null,
       menu: null,
       item_levels: {},
       itemState: {
@@ -113,10 +114,11 @@ export default VueParent.extend({
   mounted() {
     // FIXME - Hardcode legacy to avoid waiting for JSON to init the map
     window.remoteUrlRead = "https://www.openstreetmap.org/";
-    const a = initMap(this.itemState, this.mapState);
+    const a = initMap(this.itemState, this.mapState, this.tileQuery());
     this.map = a[0];
     this.layerMarker = a[1];
-    this.permalink = a[2];
+    this.heatmapLayer = a[2];
+    this.permalink = a[3];
 
     this.map.on("zoomend moveend", (e) => {
       this.mapState.lat = this.map.getCenter().lat;
@@ -145,6 +147,7 @@ export default VueParent.extend({
       deep: true,
       handler(newItemState) {
         this.saveItemState(newItemState);
+        this.updateLayer();
       },
     },
     mapState: {
@@ -224,6 +227,20 @@ export default VueParent.extend({
     },
     saveMapState(mapState) {
       localStorage.setItem("mapState", JSON.stringify(mapState));
+    },
+    tileQuery() {
+      const state = Object.assign({}, this.itemState);
+      delete state.issue_uuid;
+
+      return Object.entries(state)
+        .filter(([k, v]) => v !== undefined && v != null)
+        .map(([k, v]) => encodeURIComponent(k) + "=" + encodeURIComponent(v))
+        .join("&");
+    },
+    updateLayer() {
+      const query = this.tileQuery();
+      this.layerMarker.setURLQuery(query);
+      this.heatmapLayer.setURLQuery(query);
     },
     setData() {
       this.fetchJsonProgressAssign(
