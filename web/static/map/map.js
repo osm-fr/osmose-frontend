@@ -11,7 +11,7 @@ import 'leaflet-loading/src/Control.Loading.css';
 
 export default function initMap(itemState, mapState, tileQuery) {
   // Layers
-  const markerLayer = new OsmoseMarker(mapState, itemState, tileQuery, remoteUrlRead);
+  const markerLayer = new OsmoseMarker(itemState, tileQuery, remoteUrlRead);
   mapOverlay['Osmose Issues'] = markerLayer;
 
   const heatmapLayer = new OsmoseHeatmap(itemState, tileQuery);

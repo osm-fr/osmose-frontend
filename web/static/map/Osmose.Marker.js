@@ -12,7 +12,7 @@ import IconLimit from '../images/limit.png';
 
 const OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
-  initialize(mapState, itemState, query, remoteUrlRead, options) {
+  initialize(itemState, query, remoteUrlRead, options) {
     this._itemState = itemState;
     this._remoteUrlRead = remoteUrlRead;
     L.Util.setOptions(this, options);
@@ -46,7 +46,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
     };
     this.on('add', (e) => {
       if (itemState.issue_uuid) {
-        this._openPopup(itemState.issue_uuid, [mapState.lat, mapState.lon], this);
+        this._openPopup(itemState.issue_uuid, [0, 0], this);
       }
     });
     L.VectorGrid.Protobuf.prototype.initialize.call(this, "fakeURL", vectorTileOptions);
