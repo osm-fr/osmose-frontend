@@ -12,9 +12,8 @@ import IconLimit from '../images/limit.png';
 
 const OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
-  initialize(mapState, itemState, query, featuresLayers, remoteUrlRead, options) {
+  initialize(mapState, itemState, query, remoteUrlRead, options) {
     this._itemState = itemState;
-    this._featuresLayers = featuresLayers;
     this._remoteUrlRead = remoteUrlRead;
     L.Util.setOptions(this, options);
     const vectorTileOptions = {
@@ -80,6 +79,10 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
   onAdd(map) {
     this._map = map;
+
+    this._featuresLayers = L.layerGroup();
+    map.addLayer(this._featuresLayers);
+
     L.GridLayer.prototype.onAdd.call(this, map);
     const click = (e) => {
       if (e.layer.properties.limit) {

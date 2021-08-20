@@ -29,9 +29,7 @@ export function initMap(itemState, mapState, tileQuery) {
   mapOverlay['Osmose Issues Heatmap'] = heatmapLayer
 
   // // Layer Marker
-  const featureLayer = L.layerGroup();
-  map.addLayer(featureLayer);
-  const markerLayer = new OsmoseMarker(mapState, itemState, tileQuery, featureLayer, remoteUrlRead);
+  const markerLayer = new OsmoseMarker(mapState, itemState, tileQuery, remoteUrlRead);
   mapOverlay['Osmose Issues'] = markerLayer;
 
   // Control Layer
