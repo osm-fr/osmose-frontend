@@ -6,7 +6,7 @@
       <div v-if="need_zoom" id="need_zoom">
         <translate>Zoom in to see issues.</translate>
       </div>
-      <div v-if="!need_zoom" id="action_links">
+      <div v-if="!need_zoom" id="filters">
         <div id="level-span" class="form-group row">
           <label for="level" class="col-sm-3 col-form-label">
             <translate>Severity</translate>
@@ -66,18 +66,20 @@
             </select>
           </div>
         </div>
-        <translate>Select:</translate>
-        <a href="#" v-on:click.stop.prevent="toggle_all(true)">
-          <translate>all</translate>
-        </a>
-        <a href="#" v-on:click.stop.prevent="toggle_all(false)">
-          <translate>nothing</translate>
-        </a>
-        <a href="#" v-on:click.stop.prevent="toggle_all(-1)">
-          <translate>invert</translate>
-        </a>
       </div>
       <div v-if="!need_zoom" id="tests">
+        <div id="action_links">
+          <translate>Select:</translate>
+          <a href="#" v-on:click.stop.prevent="toggle_all(true)">
+            <translate>all</translate>
+          </a>
+          <a href="#" v-on:click.stop.prevent="toggle_all(false)">
+            <translate>nothing</translate>
+          </a>
+          <a href="#" v-on:click.stop.prevent="toggle_all(-1)">
+            <translate>invert</translate>
+          </a>
+        </div>
         <div
           v-for="categ in categories_format"
           :key="categ.id"
@@ -356,13 +358,13 @@ div#menu div#action_links {
   font-size: 10px;
   text-align: center;
 }
-div#menu div#action_links > div {
+div#menu div#filters > div {
   margin-bottom: 0px;
   margin-right: 0px;
   margin-left: 0px;
 }
-div#menu div#action_links > div > label,
-div#menu div#action_links > div > div {
+div#menu div#filters > div > label,
+div#menu div#filters > div > div {
   padding-right: 0px;
   padding-left: 0px;
 }
