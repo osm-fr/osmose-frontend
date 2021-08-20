@@ -41,7 +41,7 @@ export function initMap(itemState, mapState, tileQuery) {
   // // Layer Marker
   const featureLayer = L.layerGroup();
   map.addLayer(featureLayer);
-  const markerLayer = new OsmoseMarker(permalink, mapState, itemState, tileQuery, doc, featureLayer, remoteUrlRead);
+  const markerLayer = new OsmoseMarker(mapState, itemState, tileQuery, doc, featureLayer, remoteUrlRead);
   mapOverlay['Osmose Issues'] = markerLayer;
 
   // Control Layer

@@ -12,8 +12,8 @@ import IconLimit from '../images/limit.png';
 
 const OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
-  initialize(permalink, mapState, itemState, query, doc, featuresLayers, remoteUrlRead, options) {
-    this._permalink = permalink;
+  initialize(mapState, itemState, query, doc, featuresLayers, remoteUrlRead, options) {
+    this._itemState = itemState;
     this._doc = doc;
     this._featuresLayers = featuresLayers;
     this._remoteUrlRead = remoteUrlRead;
@@ -97,7 +97,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
     this.on('click', click);
 
     this._map.on('popupclose', (e) => {
-      this._permalink.update_item({ issue_uuid: null });
+      this._itemState.issue_uuid = null;
       this.open_popup = null;
       this._featuresLayers.clearLayers();
     });
@@ -132,7 +132,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
       return;
     }
     this.open_popup = uuid;
-    this._permalink.update_item({ issue_uuid: uuid });
+    this._itemState.issue_uuid = uuid;
 
     ExternalVueAppEvent.$emit('popup-status', 'loading');
     delete this.popup.options.offset;

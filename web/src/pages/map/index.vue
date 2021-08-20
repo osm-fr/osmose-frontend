@@ -217,13 +217,7 @@ export default VueParent.extend({
     },
     saveItemState(itemState) {
       localStorage.setItem("itemState", JSON.stringify(itemState));
-
-      this.permalink.update_item({
-        item: itemState.item,
-        level: itemState.level,
-        tags: itemState.tags,
-        fixable: itemState.fixable,
-      });
+      this.permalink.update_item(itemState);
     },
     saveMapState(mapState) {
       localStorage.setItem("mapState", JSON.stringify(mapState));
