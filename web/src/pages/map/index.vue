@@ -151,15 +151,15 @@ export default VueParent.extend({
     },
     itemState: {
       deep: true,
-      handler(newItemState) {
-        this.saveItemState(newItemState);
+      handler() {
+        this.saveItemState();
         this.updateLayer();
       },
     },
     mapState: {
       deep: true,
-      handler(newMapState) {
-        this.saveMapState(newMapState);
+      handler() {
+        this.saveMapState();
       },
     },
   },
@@ -221,12 +221,12 @@ export default VueParent.extend({
 
       Object.assign(this.mapState, localStorageState, urlState);
     },
-    saveItemState(itemState) {
-      localStorage.setItem("itemState", JSON.stringify(itemState));
-      this.permalink._update(itemState);
+    saveItemState() {
+      localStorage.setItem("itemState", JSON.stringify(this.itemState));
+      this.permalink._update(this.itemState);
     },
-    saveMapState(mapState) {
-      localStorage.setItem("mapState", JSON.stringify(mapState));
+    saveMapState() {
+      localStorage.setItem("mapState", JSON.stringify(this.mapState));
     },
     tileQuery() {
       const state = Object.assign({}, this.itemState);

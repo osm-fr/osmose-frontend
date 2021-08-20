@@ -192,8 +192,8 @@ export default Vue.extend({
         leafletSideBar.show();
       }
     },
-    original_tags: function (original_tags) {
-      if (original_tags) {
+    original_tags: function () {
+      if (this.original_tags) {
         this.tags = this.original_tags;
       }
     },
@@ -208,10 +208,10 @@ export default Vue.extend({
     },
     itemState: {
       deep: true,
-      handler(newState) {
-        if (newState != this.state) {
-          this.state = newState;
-          this.set_item(newState);
+      handler() {
+        if (this.itemState != this.state) {
+          this.state = this.itemState;
+          this.set_item(this.itemState);
         }
       },
     },
