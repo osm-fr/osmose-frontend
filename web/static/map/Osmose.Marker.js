@@ -12,9 +12,8 @@ import IconLimit from '../images/limit.png';
 
 const OsmoseMarker = L.VectorGrid.Protobuf.extend({
 
-  initialize(mapState, itemState, query, doc, featuresLayers, remoteUrlRead, options) {
+  initialize(mapState, itemState, query, featuresLayers, remoteUrlRead, options) {
     this._itemState = itemState;
-    this._doc = doc;
     this._featuresLayers = featuresLayers;
     this._remoteUrlRead = remoteUrlRead;
     L.Util.setOptions(this, options);
