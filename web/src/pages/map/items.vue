@@ -199,7 +199,7 @@ export default Vue.extend({
         this.tags = this.original_tags;
       }
     },
-    categories: function (value) {
+    categories: function () {
       this.set_item(this.itemState);
     },
     itemState: {

@@ -120,7 +120,7 @@ export default VueParent.extend({
     this.layerMarker = a[1];
     this.heatmapLayer = a[2];
 
-    this.map.on("zoomend moveend", (e) => {
+    this.map.on("zoomend moveend", () => {
       this.mapState.lat = this.map.getCenter().lat;
       this.mapState.lon = this.map.getCenter().lng;
       this.mapState.zoom = this.map.getZoom();
@@ -129,7 +129,7 @@ export default VueParent.extend({
     // Permalink
     this.permalink = new L.Control.Permalink({
       useLocation: true,
-      text: '',
+      text: "",
     });
     this.map.addControl(this.permalink);
     this.permalink.on("update", (e) => {
@@ -232,7 +232,7 @@ export default VueParent.extend({
       delete state.issue_uuid;
 
       return Object.entries(state)
-        .filter(([k, v]) => v !== undefined && v != null)
+        .filter(([, v]) => v !== undefined && v != null)
         .map(([k, v]) => encodeURIComponent(k) + "=" + encodeURIComponent(v))
         .join("&");
     },

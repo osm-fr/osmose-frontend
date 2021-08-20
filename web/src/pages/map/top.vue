@@ -251,7 +251,7 @@ export default Vue.extend({
       params.limit = 500;
       params.bbox = this.map.getBounds().toBBoxString();
       this.params = Object.entries(params)
-        .filter(([k, v]) => v !== undefined && v != null)
+        .filter(([, v]) => v !== undefined && v != null)
         .map(([k, v]) => encodeURIComponent(k) + "=" + encodeURIComponent(v))
         .join("&");
     },
