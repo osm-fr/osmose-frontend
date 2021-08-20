@@ -47,8 +47,8 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
       },
     };
     this.on('add', (e) => {
-      if (mapState.issue_uuid) {
-        this._openPopup(mapState.issue_uuid, [mapState.lat, mapState.lon], this);
+      if (itemState.issue_uuid) {
+        this._openPopup(itemState.issue_uuid, [mapState.lat, mapState.lon], this);
       }
     });
     L.VectorGrid.Protobuf.prototype.initialize.call(this, this._buildUrl(itemState), vectorTileOptions);
@@ -124,16 +124,17 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
   },
 
   _buildUrl(params) {
-    const p = ['level', 'fix', 'tags', 'item', 'class', 'fixable', 'useDevItem', 'source', 'username', 'country'].reduce((o, k) => {
-      if (params[k] !== undefined) {
-        o[k] = params[k];
-      }
-      return o;
-    }, {});
-    if (!('level' in p)) {
-      p['level'] = '1';
-    }
-    return API_URL + `/api/0.3/issues/{z}/{x}/{y}.mvt${L.Util.getParamString(p)}`;
+    params = Object.assign({}, params);
+    delete params.lat;
+    delete params.lon;
+    delete params.issue_uuid;
+
+    const query = this.params = Object.entries(params)
+      .filter(([k, v]) => v !== undefined && v != null)
+      .map(([k, v]) => encodeURIComponent(k) + "=" + encodeURIComponent(v))
+      .join("&");
+
+    return API_URL + `/api/0.3/issues/{z}/{x}/{y}.mvt?${query}`;
   },
 
   _closePopup() {

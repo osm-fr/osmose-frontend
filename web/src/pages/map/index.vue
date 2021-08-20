@@ -80,12 +80,17 @@ export default VueParent.extend({
       menu: null,
       item_levels: {},
       itemState: {
-        zoom: 16,
         item: "xxxx",
         level: "1",
         // TODO filtrer on existing tagss
         tags: null,
         fixable: null,
+        class: null,
+        useDevItem: null,
+        source: null,
+        username: null,
+        country: null,
+        issue_uuid: null,
       },
       mapState: {
         lat: 46.97,

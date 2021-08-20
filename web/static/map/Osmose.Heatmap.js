@@ -35,13 +35,17 @@ const OsmoseHeatmap = L.VectorGrid.Protobuf.extend({
   },
 
   _buildUrl(params) {
-    const p = ['level', 'fix', 'tags', 'item', 'class', 'fixable', 'useDevItem', 'source', 'username', 'country'].reduce((o, k) => {
-      if (params[k] !== undefined) {
-        o[k] = params[k];
-      }
-      return o;
-    }, {});
-    return API_URL + `/api/0.3/issues/{z}/{x}/{y}.heat.mvt${L.Util.getParamString(p)}`;
+    params = Object.assign({}, params);
+    delete params.lat;
+    delete params.lon;
+    delete params.issue_uuid;
+
+    const query = this.params = Object.entries(params)
+      .filter(([k, v]) => v !== undefined && v != null)
+      .map(([k, v]) => encodeURIComponent(k) + "=" + encodeURIComponent(v))
+      .join("&");
+
+    return API_URL + `/api/0.3/issues/{z}/{x}/{y}.heat.mvt?${query}`;
   },
 
   _setUrl(e) {
