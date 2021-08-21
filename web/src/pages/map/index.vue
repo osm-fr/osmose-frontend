@@ -26,7 +26,7 @@
         />
       </items>
       <doc :map="map" v-on:hide-item-markers="onHideItemMarkers($event)" />
-      <div id="map"></div>
+      <l-map />
       <editor
         ref="editor"
         :map="map"
@@ -59,6 +59,7 @@ L.DomEvent.fakeStop = L.DomEvent._fakeStop;
 
 import VueParent from "../Parent.vue";
 import Top from "./top.vue";
+import LMap from "./map.vue";
 import Items from "./items.vue";
 import ItemsFilters from "./items-filters.vue";
 import ItemsList from "./items-list.vue";
@@ -66,7 +67,6 @@ import Doc from "./doc.vue";
 import Editor from "./editor.vue";
 import Popup from "./popup.vue";
 
-import "../../../static/map/style.css";
 import "../../../static/images/markers/markers-l.css";
 
 export default VueParent.extend({
@@ -108,6 +108,7 @@ export default VueParent.extend({
   },
   components: {
     Top,
+    LMap,
     Items,
     ItemsFilters,
     ItemsList,
@@ -277,3 +278,89 @@ export default VueParent.extend({
   },
 });
 </script>
+
+<style>
+body {
+  margin: 0;
+  font-family: arial, helvetica, sans-serif;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+@media (max-width: 640px) {
+  .leaflet-touch .josm {
+    display: none;
+  }
+}
+
+.leaflet-sidebar {
+  z-index: 1010;
+}
+
+.leaflet-active-area {
+  position: absolute;
+  top: 0px;
+  left: 300px;
+  right: 300px;
+  bottom: 0px;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .leaflet-sidebar {
+    width: 270px;
+  }
+
+  .leaflet-sidebar.left.visible ~ .leaflet-left {
+    left: 270px;
+  }
+
+  .leaflet-sidebar.right.visible ~ .leaflet-right {
+    right: 270px;
+  }
+
+  .leaflet-active-area {
+    left: 270px;
+    right: 270px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .leaflet-sidebar {
+    width: 285px;
+  }
+
+  .leaflet-sidebar.left.visible ~ .leaflet-left {
+    left: 285px;
+  }
+
+  .leaflet-sidebar.right.visible ~ .leaflet-right {
+    right: 285px;
+  }
+
+  .leaflet-active-area {
+    left: 285px;
+    right: 285px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .leaflet-sidebar {
+    width: 300px;
+  }
+
+  .leaflet-sidebar.left.visible ~ .leaflet-left {
+    left: 300px;
+  }
+
+  .leaflet-sidebar.right.visible ~ .leaflet-right {
+    right: 300px;
+  }
+
+  .leaflet-active-area {
+    left: 300px;
+    right: 300px;
+  }
+}
+</style>
