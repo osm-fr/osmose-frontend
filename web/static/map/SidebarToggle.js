@@ -19,28 +19,28 @@ const SidebarToggle = L.Control.Sidebar.extend({
 
     let show = localStorage.getItem(this.options.localStorageProperty);
     if (show !== null && JSON.parse(show) === false) {
-      L.Control.Sidebar.prototype.hide.call(this);
+      this.hide();
     } else {
       this.show();
     }
   },
 
-  toggle() {
-    localStorage.setItem(this.options.localStorageProperty, !JSON.parse(localStorage.getItem(this.options.localStorageProperty)));
-    L.Control.Sidebar.prototype.toggle.call(this);
-
+  setStyleBorder(border) {
     const active_area = document.getElementsByClassName("leaflet-active-area")[0];
     const style = window.getComputedStyle(active_area);
-    if (style[this.options.position] === '0px') {
-      active_area.style[this.options.position] = '';
-    } else {
-      active_area.style[this.options.position] = '0px';
-    }
+    active_area.style[this.options.position] = border;
   },
 
   show() {
     localStorage.setItem(this.options.localStorageProperty, true);
+    this.setStyleBorder('');
     L.Control.Sidebar.prototype.show.call(this);
+  },
+
+  hide() {
+    localStorage.setItem(this.options.localStorageProperty, false);
+    this.setStyleBorder('0px');
+    L.Control.Sidebar.prototype.hide.call(this);
   },
 });
 
