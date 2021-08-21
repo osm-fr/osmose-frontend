@@ -1,6 +1,8 @@
 <template>
   <div id="menu">
-    <a href="#" id="togglemenu">-</a>
+    <a href="#" id="togglemenu" v-on:click.stop.prevent="leafletSideBar.hide()"
+      >☰</a
+    >
     <div v-if="error">{{ error }}</div>
     <form v-else action="#">
       <div v-if="need_zoom" id="need_zoom">
@@ -20,10 +22,15 @@ import SidebarToggle from "../../../static/map/SidebarToggle.js";
 
 export default Vue.extend({
   props: ["error", "map", "mapState"],
+  data() {
+    return {
+      leafletSideBar: null,
+    };
+  },
   watch: {
     map: function () {
       if (this.map) {
-        const leafletSideBar = new SidebarToggle(this.map, "menu", {
+        this.leafletSideBar = new SidebarToggle(this.map, "menu", {
           position: "left",
           closeButton: false,
           localStorageProperty: "menu.show",
@@ -33,8 +40,8 @@ export default Vue.extend({
             menuTitle: "Menu",
           },
         });
-        this.map.addControl(leafletSideBar);
-        leafletSideBar.show();
+        this.map.addControl(this.leafletSideBar);
+        this.leafletSideBar.show();
       }
     },
   },
