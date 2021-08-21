@@ -44,9 +44,9 @@ ul.leaflet-control-geocoder-alternatives {
 
 .leaflet-active-area {
   position: absolute;
-  top: 24px;
+  top: 0px;
   left: 300px;
-  right: 0px;
+  right: 300px;
   bottom: 0px;
 }
 
@@ -69,6 +69,7 @@ ul.leaflet-control-geocoder-alternatives {
 
   .leaflet-active-area {
     left: 270px;
+    right: 270px;
   }
 }
 
@@ -87,6 +88,7 @@ ul.leaflet-control-geocoder-alternatives {
 
   .leaflet-active-area {
     left: 285px;
+    right: 285px;
   }
 }
 
@@ -105,5 +107,6 @@ ul.leaflet-control-geocoder-alternatives {
 
   .leaflet-active-area {
     left: 300px;
+    right: 300px;
   }
 }

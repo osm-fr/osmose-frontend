@@ -28,14 +28,14 @@ const SidebarToggle = L.Control.Sidebar.extend({
   toggle() {
     localStorage.setItem(this.options.localStorageProperty, !JSON.parse(localStorage.getItem(this.options.localStorageProperty)));
     L.Control.Sidebar.prototype.toggle.call(this);
-    // Not working well with Vue JS
-    // const active_area = document.getElementsByClassName("leaflet-active-area")[0];
-    // const style = window.getComputedStyle(active_area);
-    // if (style.right === '0px') {
-    //   active_area.style.right = '';
-    // } else {
-    //   active_area.style.right = '0px';
-    // }
+
+    const active_area = document.getElementsByClassName("leaflet-active-area")[0];
+    const style = window.getComputedStyle(active_area);
+    if (style[this.options.position] === '0px') {
+      active_area.style[this.options.position] = '';
+    } else {
+      active_area.style[this.options.position] = '0px';
+    }
   },
 
   show() {
