@@ -304,7 +304,7 @@ import Vue from "vue";
 import ExternalVueAppEvent from "../../ExternalVueAppEvent.js";
 
 export default Vue.extend({
-  props: ["main_website", "remote_url_read", "layerMarker"],
+  props: ["main_website", "remote_url_read", "markerLayer"],
   data() {
     return {
       status: "clean",
@@ -351,7 +351,7 @@ export default Vue.extend({
           this.status = "fill";
 
           this.$nextTick(() => {
-            this.layerMarker._setPopup(response);
+            this.markerLayer._setPopup(response);
           });
         })
         .catch((error) => {
@@ -361,7 +361,7 @@ export default Vue.extend({
     },
     setDone(uuid) {
       fetch(API_URL + `/api/0.3/issue/${uuid}/done`);
-      this.layerMarker._dismissMarker();
+      this.markerLayer._dismissMarker();
     },
     setFalsePositive(uuid) {
       const message = this.$t(
@@ -369,14 +369,14 @@ export default Vue.extend({
       );
       if (confirm(message)) {
         fetch(API_URL + `/api/0.3/issue/${uuid}/false`);
-        this.layerMarker._dismissMarker();
+        this.markerLayer._dismissMarker();
       }
     },
     editor(uuid, fix) {
       this.$emit("fix-edit", { uuid, fix });
     },
     doc(item, classs) {
-      this.layerMarker._help(item, classs);
+      this.markerLayer._help(item, classs);
     },
   },
 });

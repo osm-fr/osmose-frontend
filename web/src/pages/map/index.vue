@@ -26,19 +26,27 @@
         />
       </items>
       <doc :map="map" v-on:hide-item-markers="onHideItemMarkers($event)" />
-      <l-map />
+      <l-map
+        :itemState="itemState"
+        :mapState="mapState"
+        v-on:set-map="
+          map = $event.map;
+          markerLayer = $event.markerLayer;
+          heatmapLayer = $event.heatmapLayer;
+        "
+      />
       <editor
         ref="editor"
         :map="map"
         :main_website="main_website"
         :user="user"
-        v-on:issue-done="layerMarker.corrected()"
+        v-on:issue-done="markerLayer.corrected()"
       />
       <iframe id="hiddenIframe" name="hiddenIframe"></iframe>
       <popup
         :main_website="main_website"
         :remote_url_read="remote_url_read"
-        :layerMarker="layerMarker"
+        :markerLayer="markerLayer"
         v-on:fix-edit="$refs.editor.load($event.uuid, $event.fix)"
       />
     </div>
@@ -46,17 +54,6 @@
 </template>
 
 <script>
-// --- Legacy
-import initMap from "../../../static/map/map.js";
-
-import "leaflet";
-import "leaflet/dist/leaflet.css";
-import "leaflet-plugins/control/Permalink.js";
-
-// Retro-compact hack for Leaflet.VectorGrid
-L.DomEvent.fakeStop = L.DomEvent._fakeStop;
-// --- End Legacy
-
 import VueParent from "../Parent.vue";
 import Top from "./top.vue";
 import LMap from "./map.vue";
@@ -82,7 +79,7 @@ export default VueParent.extend({
       main_website: "",
       remote_url_read: "",
       map: null,
-      layerMarker: null,
+      markerLayer: null,
       heatmapLayer: null,
       menu: null,
       item_levels: {},
@@ -121,33 +118,6 @@ export default VueParent.extend({
     this.initializeMapState();
   },
   mounted() {
-    // FIXME - Hardcode legacy to avoid waiting for JSON to init the map
-    window.remoteUrlRead = "https://www.openstreetmap.org/";
-    const a = initMap(this.itemState, this.mapState, this.tileQuery());
-    this.map = a[0];
-    this.layerMarker = a[1];
-    this.heatmapLayer = a[2];
-
-    this.map.on("zoomend moveend", () => {
-      this.mapState.lat = this.map.getCenter().lat;
-      this.mapState.lon = this.map.getCenter().lng;
-      this.mapState.zoom = this.map.getZoom();
-    });
-
-    // Permalink
-    this.permalink = new L.Control.Permalink({
-      useLocation: true,
-      text: "",
-    });
-    this.map.addControl(this.permalink);
-    this.permalink.on("update", (e) => {
-      Object.keys(this.itemState).forEach((k) => {
-        if (this.itemState[k] != e.params[k]) {
-          this.itemState[k] = e.params[k];
-        }
-      });
-    });
-
     this.setData();
   },
   watch: {
@@ -156,11 +126,33 @@ export default VueParent.extend({
         this.setData();
       }
     },
+    map(newMap, oldMap) {
+      if (!oldMap && newMap) {
+        this.map.on("zoomend moveend", () => {
+          this.mapState.lat = this.map.getCenter().lat;
+          this.mapState.lon = this.map.getCenter().lng;
+          this.mapState.zoom = this.map.getZoom();
+        });
+
+        // Permalink
+        this.permalink = new L.Control.Permalink({
+          useLocation: true,
+          text: "",
+        });
+        this.map.addControl(this.permalink);
+        this.permalink.on("update", (e) => {
+          Object.keys(this.itemState).forEach((k) => {
+            if (this.itemState[k] != e.params[k]) {
+              this.itemState[k] = e.params[k];
+            }
+          });
+        });
+      }
+    },
     itemState: {
       deep: true,
       handler() {
         this.saveItemState();
-        this.updateLayer();
       },
     },
     mapState: {
@@ -234,20 +226,6 @@ export default VueParent.extend({
     },
     saveMapState() {
       localStorage.setItem("mapState", JSON.stringify(this.mapState));
-    },
-    tileQuery() {
-      const state = Object.assign({}, this.itemState);
-      delete state.issue_uuid;
-
-      return Object.entries(state)
-        .filter(([, v]) => v !== undefined && v != null)
-        .map(([k, v]) => encodeURIComponent(k) + "=" + encodeURIComponent(v))
-        .join("&");
-    },
-    updateLayer() {
-      const query = this.tileQuery();
-      this.layerMarker.setURLQuery(query);
-      this.heatmapLayer.setURLQuery(query);
     },
     setData() {
       this.fetchJsonProgressAssign(
