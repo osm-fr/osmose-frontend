@@ -12,17 +12,19 @@
         :user_error_count="user_error_count"
         :timestamp="timestamp"
       />
-      <items
-        ref="items"
-        :itemState="itemState"
-        :mapState="mapState"
-        :map="map"
-        :original_tags="tags"
-        :categories="categories"
-        :item_levels="item_levels"
-        :error="error"
-        v-on:state-update="itemState = $event"
-      />
+      <items ref="items" :mapState="mapState" :map="map" :error="error">
+        <items-filters
+          :original_tags="tags"
+          :itemState="itemState"
+          v-on:state-update="itemState = $event"
+        />
+        <items-list
+          :categories="categories"
+          :item_levels="item_levels"
+          :itemState="itemState"
+          v-on:state-update="itemState = $event"
+        />
+      </items>
       <doc :map="map" v-on:hide-item-markers="onHideItemMarkers($event)" />
       <div id="map"></div>
       <editor
@@ -58,6 +60,8 @@ L.DomEvent.fakeStop = L.DomEvent._fakeStop;
 import VueParent from "../Parent.vue";
 import Top from "./top.vue";
 import Items from "./items.vue";
+import ItemsFilters from "./items-filters.vue";
+import ItemsList from "./items-list.vue";
 import Doc from "./doc.vue";
 import Editor from "./editor.vue";
 import Popup from "./popup.vue";
@@ -105,6 +109,8 @@ export default VueParent.extend({
   components: {
     Top,
     Items,
+    ItemsFilters,
+    ItemsList,
     Doc,
     Editor,
     Popup,
