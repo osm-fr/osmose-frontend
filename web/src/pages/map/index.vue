@@ -19,6 +19,7 @@
           v-on:state-update="itemState = $event"
         />
         <items-list
+          ref="items-list"
           :categories="categories"
           :item_levels="item_levels"
           :itemState="itemState"
@@ -251,7 +252,7 @@ export default VueParent.extend({
       );
     },
     onHideItemMarkers(disabled_item) {
-      this.$refs.items.toggle_item(disabled_item, false);
+      this.$refs["items-list"].toggle_item(disabled_item, false);
     },
   },
 });
