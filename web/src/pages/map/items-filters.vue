@@ -106,6 +106,10 @@ form {
   height: 100%;
 }
 
+label {
+  text-align: center;
+}
+
 div#filters > div {
   margin-bottom: 0px;
   margin-right: 0px;
