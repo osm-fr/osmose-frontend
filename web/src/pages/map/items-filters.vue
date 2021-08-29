@@ -180,7 +180,6 @@ export default Vue.extend({
     };
   },
   mounted() {
-    console.error(this.state);
     if (
       this.state.class != null ||
       this.state.useDevItem ||

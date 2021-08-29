@@ -7,6 +7,8 @@ web/po/python.pot
 web/po/vue.pot
 
 web_api/session/
+web_api/public/
+web_api/static/node_modules/
 
 web/static/.webassets-cache/
 web/static/gen/

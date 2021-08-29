@@ -66,14 +66,17 @@ app.mount('/api/0.3/', api_app.app_0_3)
 
 @bottle.route('/images/markers/<filename:path>.png')
 def marker(filename):
-    if os.path.isfile('web/static' + bottle.request.path):
-        return bottle.static_file(bottle.request.path, root='web/static')
+    if os.path.isfile('web_api/static' + bottle.request.path):
+        return bottle.static_file(bottle.request.path, root='web_api/static')
     else:
-        return bottle.static_file('/images/markers/marker-b-0.png', root='web/static')
+        return bottle.static_file('/images/markers/marker-b-0.png', root='web_api/static')
 
 @bottle.route('/<filename:path>', name='static')
 def static(filename):
-    return bottle.static_file(filename, root='web/public')
+    if os.path.isfile('web_api/public' + bottle.request.path):
+        return bottle.static_file(filename, root='web_api/public')
+    else:
+        return bottle.static_file(filename, root='web/public')
 
 app_middleware = web_app.app_middleware
 

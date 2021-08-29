@@ -65,8 +65,6 @@ import Doc from "./doc.vue";
 import Editor from "./editor.vue";
 import Popup from "./popup.vue";
 
-import "../../../static/images/markers/markers-l.css";
-
 export default VueParent.extend({
   data() {
     return {
@@ -115,6 +113,9 @@ export default VueParent.extend({
     Popup,
   },
   created() {
+    document.querySelector(
+      "head"
+    ).innerHTML += `<link rel="stylesheet" href="${API_URL}/assets/sprites.css" type="text/css"/>`;
     this.initializeItemState();
     this.initializeMapState();
   },

@@ -59,7 +59,6 @@ module.exports = (env, argv) => {
                     use: [
                         { loader: "style-loader" },
                         { loader: "css-loader" },
-                        { loader: "sprite-loader", options: { name: "[hash].png", outputPath: "images/", cssImagePath: "/assets/images/", padding: 0 } }
                     ]
                 },
                 { test: /\.png$/, loaders: ["base64-image-loader"] },
