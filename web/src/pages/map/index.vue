@@ -343,3 +343,10 @@ body {
   }
 }
 </style>
+
+<style scoped>
+a:link,
+a:visited {
+  color: rgb(0, 123, 255);
+}
+</style>

@@ -203,11 +203,6 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-a:link,
-a:visited {
-  color: rgb(0, 123, 255);
-}
-
 div#tests {
   overflow-y: auto;
 }
