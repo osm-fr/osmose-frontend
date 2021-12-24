@@ -27,8 +27,8 @@
 # Simon Legner <simon.legner@gmail.com>, 2014
 # Simon Legner <simon.legner@gmail.com>, 2014
 # Klumbumbus, 2015
-# sommerluk <sommerluk@gmail.com>, 2014
-# sommerluk <sommerluk@gmail.com>, 2014
+# Lukas Sommer, 2014
+# Lukas Sommer, 2014
 # ToniE <osm-ToniE@web.de>, 2020
 # xuiqzy xuiqzy <pirminbraun16@gmail.com>, 2019
 msgid ""
@@ -36,7 +36,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2021-05-23 18:59+0000\n"
+"PO-Revision-Date: 2021-12-24 13:16+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../../web_api/issues.py:60 ../src/pages/issues/index.vue:23
+#: ../../web_api/issues.py:60 ../src/pages/issues/index.vue:25
 #: ../src/pages/issues/index.vue:88
 msgid "False positives"
 msgstr "Falschmeldungen"
@@ -58,11 +58,11 @@ msgstr "Informationen"
 msgid "Statistics"
 msgstr "Statistik"
 
-#: ../src/pages/contact.vue:5 ../src/pages/map/top.vue:78
+#: ../src/pages/contact.vue:5 ../src/pages/map/top.vue:76
 msgid "Contact"
 msgstr "Kontakt"
 
-#: ../src/pages/map/top.vue:83
+#: ../src/pages/map/top.vue:81
 msgid "Help on wiki"
 msgstr "Hilfe im Wiki"
 
@@ -70,15 +70,15 @@ msgstr "Hilfe im Wiki"
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/DE:Osmose"
 
-#: ../src/pages/map/top.vue:88
+#: ../src/pages/map/top.vue:86
 msgid "Copyright"
 msgstr "Copyright"
 
-#: ../src/pages/map/top.vue:93
+#: ../src/pages/map/top.vue:91
 msgid "Sources"
 msgstr "Quellen"
 
-#: ../src/pages/map/top.vue:98
+#: ../src/pages/map/top.vue:96
 msgid "Translation"
 msgstr "Übersetzung"
 
@@ -128,7 +128,7 @@ msgid "Last updates"
 msgstr "Letzte Aktualisierungen"
 
 #: ../../tools/database/items_menu.txt:34 ../src/components/issues-list.vue:7
-#: ../src/pages/control/update.vue:7 ../src/pages/issues/index.vue:209
+#: ../src/pages/control/update.vue:7 ../src/pages/issues/index.vue:211
 msgid "source"
 msgstr "Quelle"
 
@@ -184,15 +184,15 @@ msgstr "Elemente"
 msgid "Fixes"
 msgstr "Korrekturen"
 
-#: ../src/pages/issues/index.vue:18
+#: ../src/pages/issues/index.vue:20
 msgid "Fixed"
 msgstr "Behoben"
 
-#: ../src/pages/issues/index.vue:28
+#: ../src/pages/issues/index.vue:30
 msgid "Graph"
 msgstr "Graph"
 
-#: ../src/pages/byuser/byuser.vue:16 ../src/pages/issues/index.vue:33
+#: ../src/pages/byuser/byuser.vue:16 ../src/pages/issues/index.vue:35
 msgid "Map"
 msgstr "Karte"
 
@@ -206,19 +206,19 @@ msgstr "Auswählen"
 msgid "class (abbreviation)"
 msgstr "Kl."
 
-#: ../src/components/issues-list.vue:18 ../src/pages/issues/index.vue:216
+#: ../src/components/issues-list.vue:18 ../src/pages/issues/index.vue:218
 msgid "item"
 msgstr "Meldung"
 
-#: ../src/pages/issues/index.vue:226
+#: ../src/pages/issues/index.vue:228
 msgid "title"
 msgstr "Titel"
 
-#: ../src/pages/byuser/byuser.vue:25 ../src/pages/issues/index.vue:229
+#: ../src/pages/byuser/byuser.vue:25 ../src/pages/issues/index.vue:231
 msgid "count"
 msgstr "Anzahl"
 
-#: ../src/pages/issues/index.vue:273
+#: ../src/pages/issues/index.vue:275
 msgid "Total"
 msgstr "Summe"
 
@@ -254,50 +254,49 @@ msgstr "Letzte Analyse"
 
 #: ../src/pages/map/editor.vue:15
 msgid "Tags Editor"
-msgstr "Tag-Editor"
+msgstr "Eigenschaften-Editor"
 
 #: ../src/pages/map/editor-modal.vue:38 ../src/pages/map/editor-modal.vue:56
 #: ../src/pages/map/editor.vue:116
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: ../src/pages/map/items.vue:6
 msgid "no bubbles at this zoom factor"
 msgstr "keine Markierungen bei diesem Zoom-Faktor"
 
-#: ../src/pages/issues/index.vue:90 ../src/pages/map/items.vue:11
+#: ../src/pages/issues/index.vue:92 ../src/pages/map/items-filters.vue:4
 msgid "Severity"
 msgstr "Priorität"
 
-#: ../src/pages/issues/index.vue:190 ../src/pages/map/items.vue:36
+#: ../src/pages/issues/index.vue:192 ../src/pages/map/items-filters.vue:30
 msgid "Fixable"
 msgstr "Behebbar"
 
-#: ../src/pages/map/items.vue:180
+#: ../src/pages/map/items-filters.vue:182
 msgid "Show only markers with correction suggestions"
 msgstr "Nur Markierungen mit Korrekturvorschlägen anzeigen"
 
-#: ../src/pages/issues/index.vue:194 ../src/pages/map/items.vue:41
+#: ../src/pages/issues/index.vue:196 ../src/pages/map/items-filters.vue:35
 msgid "Online"
 msgstr "Online"
 
-#: ../src/pages/map/items.vue:48
+#: ../src/pages/map/items-filters.vue:43
 msgid "Topic"
 msgstr "Thema"
 
-#: ../src/pages/map/items.vue:59
+#: ../src/pages/map/items-list.vue:3
 msgid "Select:"
 msgstr "Auswahl:"
 
-#: ../src/pages/map/items.vue:61 ../src/pages/map/items.vue:81
+#: ../src/pages/map/items-list.vue:5 ../src/pages/map/items-list.vue:25
 msgid "all"
 msgstr "alle"
 
-#: ../src/pages/map/items.vue:64 ../src/pages/map/items.vue:84
+#: ../src/pages/map/items-list.vue:8 ../src/pages/map/items-list.vue:28
 msgid "nothing"
 msgstr "keine"
 
-#: ../src/pages/map/items.vue:67
+#: ../src/pages/map/items-list.vue:11
 msgid "invert"
 msgstr "umkehren"
 
@@ -305,7 +304,7 @@ msgstr "umkehren"
 msgid "Change language"
 msgstr "Sprache wählen"
 
-#: ../src/pages/map/popup.vue:368 ../src/pages/map/top.vue:74
+#: ../src/pages/map/popup.vue:368 ../src/pages/map/top.vue:72
 msgid "Help"
 msgstr "Hilfe"
 
@@ -313,11 +312,11 @@ msgstr "Hilfe"
 msgid "Delay: %sd"
 msgstr "Verzögerung: %sd"
 
-#: ../src/pages/map/top.vue:152 ../src/pages/map/top.vue:39
+#: ../src/pages/map/top.vue:150 ../src/pages/map/top.vue:39
 msgid "Logout"
 msgstr "Logout"
 
-#: ../src/pages/map/editor.vue:6 ../src/pages/map/top.vue:158
+#: ../src/pages/map/editor.vue:6 ../src/pages/map/top.vue:156
 msgid "Login"
 msgstr "Login"
 
@@ -377,19 +376,19 @@ msgstr "Struktur"
 
 #: ../../tools/database/categories_menu.txt:2
 msgid "Missing tags"
-msgstr "Fehlende Tags"
+msgstr "Fehlende Eigenschaften"
 
 #: ../../tools/database/categories_menu.txt:3
 msgid "Bad tag"
-msgstr "Unpassende Tags"
+msgstr "Unpassende Eigenschaften"
 
 #: ../../tools/database/categories_menu.txt:4
 msgid "Tags to remove"
-msgstr "unnötige Tags"
+msgstr "unnötige Eigenschaften"
 
 #: ../../tools/database/categories_menu.txt:5
 msgid "Tags name"
-msgstr "Namen"
+msgstr "Eigenschaften-Namen"
 
 #: ../../tools/database/categories_menu.txt:6
 msgid "Administrative"
@@ -453,7 +452,7 @@ msgstr "unterbrochene Straßen"
 
 #: ../../tools/database/items_menu.txt:14
 msgid "missing tag or role"
-msgstr "fehlendes Schlagwort oder Rolle"
+msgstr "fehlende Eigenschaft oder Rolle"
 
 #: ../../tools/database/items_menu.txt:15
 msgid "surface intersection"
@@ -505,14 +504,14 @@ msgstr "oneway=..."
 
 #: ../../tools/database/items_menu.txt:35
 msgid "parent tag"
-msgstr "Übergeordnetes Tag"
+msgstr "Übergeordnete Eigenschaft"
 
 #: ../../tools/database/items_menu.txt:36
 msgid "street numbers"
 msgstr "Hausnummern"
 
 #: ../../tools/database/items_menu.txt:37
-#: ../../tools/database/items_menu.txt:227
+#: ../../tools/database/items_menu.txt:230
 msgid "highway"
 msgstr "highway=..."
 
@@ -521,7 +520,7 @@ msgid "highway crossing"
 msgstr "Straßenkreuzung"
 
 #: ../../tools/database/items_menu.txt:39
-#: ../../tools/database/items_menu.txt:175
+#: ../../tools/database/items_menu.txt:177
 msgid "pharmacy"
 msgstr "Apotheke"
 
@@ -531,14 +530,14 @@ msgstr "Kreisverkehr"
 
 #: ../../tools/database/items_menu.txt:47
 msgid "bad source tag"
-msgstr "ungeeigneter source-Tag"
+msgstr "ungeeignete source-Eigenschaft"
 
 #: ../../tools/database/items_menu.txt:48
 msgid "tagwatch cleaner"
 msgstr "Tagwatch-Bereinigung"
 
 #: ../../tools/database/items_menu.txt:49
-#: ../../tools/database/items_menu.txt:234
+#: ../../tools/database/items_menu.txt:237
 msgid "wikipedia"
 msgstr "Wikipedia"
 
@@ -552,11 +551,11 @@ msgstr "Bindestrich bei Saint"
 
 #: ../../tools/database/items_menu.txt:52
 msgid "incorrect tag"
-msgstr "falscher Tag"
+msgstr "falsche Eigenschaft"
 
 #: ../../tools/database/items_menu.txt:53
 msgid "bad tag key"
-msgstr "falscher Wert"
+msgstr "falscher Wert der Eigenschaft"
 
 #: ../../tools/database/items_menu.txt:54
 msgid "similar values"
@@ -588,7 +587,7 @@ msgstr "Name enthält Markennamen"
 
 #: ../../tools/database/items_menu.txt:65
 msgid "typo in tag"
-msgstr "Schreibfehler im Tag"
+msgstr "Schreibfehler in Eigenschaft"
 
 #: ../../tools/database/items_menu.txt:66
 msgid "incorrect "
@@ -620,11 +619,11 @@ msgstr "auf junction=roundabout"
 
 #: ../../tools/database/items_menu.txt:80
 msgid "incompatible tags"
-msgstr "unvereinbare Tags"
+msgstr "unvereinbare Eigenschaften"
 
 #: ../../tools/database/items_menu.txt:81
 msgid "ref in name"
-msgstr "ref im name"
+msgstr "ref im Namen"
 
 #: ../../tools/database/items_menu.txt:84
 msgid "construction"
@@ -636,7 +635,7 @@ msgstr "doppeltes Objekt"
 
 #: ../../tools/database/items_menu.txt:86
 msgid "unwanted tag on node"
-msgstr "Nicht benötigtes Merkmal auf Knoten"
+msgstr "unerwünschte Eigenschaft auf Knoten"
 
 #: ../../tools/database/items_menu.txt:87
 msgid "bad usage"
@@ -756,7 +755,7 @@ msgstr "Schule, Eintragung möglich"
 
 #: ../../tools/database/items_menu.txt:27
 #: ../../tools/database/items_menu.txt:141
-#: ../../tools/database/items_menu.txt:235
+#: ../../tools/database/items_menu.txt:238
 msgid "public transport"
 msgstr "Öffentliche Verkehrsmittel"
 
@@ -859,22 +858,22 @@ msgstr "Toiletten"
 msgid "transport sharing, not integrated"
 msgstr "Gemeinschaftstransport, nicht integriert"
 
-#: ../../tools/database/items_menu.txt:169
+#: ../../tools/database/items_menu.txt:171
 msgid "police"
 msgstr "Polizei"
 
-#: ../../tools/database/items_menu.txt:170
+#: ../../tools/database/items_menu.txt:172
 msgid "police, could be integrated"
 msgstr "Polizei, Eintragung möglich"
 
 msgid "pharmacy, not integrated "
 msgstr "Apotheke, nicht integriert"
 
-#: ../../tools/database/items_menu.txt:176
+#: ../../tools/database/items_menu.txt:178
 msgid "pharmacy, could be integrated"
 msgstr "Apotheke, Eintragung möglich"
 
-#: ../../tools/database/items_menu.txt:172
+#: ../../tools/database/items_menu.txt:174
 msgid "gas station"
 msgstr "Tankstelle"
 
@@ -883,7 +882,7 @@ msgstr "Position"
 
 #: ../src/pages/map/editor.vue:4
 msgid "You must be logged in order to use the tag editor"
-msgstr "Du musst eingeloggt sein um den Tag-Editor zu benutzen"
+msgstr "Du musst eingeloggt sein um den Eigenschaften-Editor zu benutzen"
 
 #: ../src/pages/map/editor-modal.vue:2
 msgid "Save changeset"
@@ -910,19 +909,19 @@ msgstr "falsche Ebene"
 msgid "Updates summary"
 msgstr "Aktualisierungszusammenfassung"
 
-#: ../../tools/database/items_menu.txt:178
+#: ../../tools/database/items_menu.txt:180
 msgid "postal code, could be integrated"
 msgstr "Postleitzahl, Eintragung möglich"
 
-#: ../../tools/database/items_menu.txt:179
+#: ../../tools/database/items_menu.txt:181
 msgid "library"
 msgstr "Bibliothek"
 
-#: ../../tools/database/items_menu.txt:180
+#: ../../tools/database/items_menu.txt:182
 msgid "restaurant"
 msgstr "Restaurant"
 
-#: ../../tools/database/items_menu.txt:181
+#: ../../tools/database/items_menu.txt:183
 msgid "winery"
 msgstr "Weingut"
 
@@ -941,7 +940,6 @@ msgstr "lokale Sprache"
 msgid "Fixed issues"
 msgstr "Behobene Probleme"
 
-#. #-#-#-#-#  vue.pot (PACKAGE VERSION)  #-#-#-#-#
 #. TRANSLATORS: link to help in appropriate language
 #: ../src/pages/map/top.vue:18
 msgid "Issues by user"
@@ -976,7 +974,7 @@ msgid ""
 "contributor of the relevant erroneous elements."
 msgstr "Nach Eingabe deines OSM-Usernamens in das Eingabefeld siehst du Probleme, die mit deinem Usernamen verbunden werden. Beachten, dass der verwendete Algorithmus nicht perfekt ist, da Osmose nur den letzten Bearbeiter der relevanten fehlerhaften Elemente abfragt."
 
-#: ../src/pages/issues/index.vue:283
+#: ../src/pages/issues/index.vue:285
 msgid "Show more issues"
 msgstr "Weitere Probleme anzeigen"
 
@@ -1000,7 +998,7 @@ msgstr "Informationen zur Problemdatenbank"
 msgid "version"
 msgstr "Version"
 
-#: ../../tools/database/items_menu.txt:182
+#: ../../tools/database/items_menu.txt:184
 msgid "geodesic"
 msgstr "geodätisch"
 
@@ -1097,7 +1095,7 @@ msgstr "Version"
 msgid "post office, need update"
 msgstr "Postfiliale,Update nötig"
 
-#: ../src/pages/issues/index.vue:213
+#: ../src/pages/issues/index.vue:215
 msgid "age"
 msgstr "Alter"
 
@@ -1105,23 +1103,23 @@ msgstr "Alter"
 msgid "invalid character"
 msgstr "ungültiges Zeichen"
 
-#: ../../tools/database/items_menu.txt:174
+#: ../../tools/database/items_menu.txt:176
 msgid "gas station, could be integrated"
 msgstr "Tankstelle, Eintragung möglich"
 
-#: ../../tools/database/items_menu.txt:184
+#: ../../tools/database/items_menu.txt:186
 msgid "power substation"
 msgstr "Umspannwerk"
 
-#: ../../tools/database/items_menu.txt:185
+#: ../../tools/database/items_menu.txt:187
 msgid "power substation, could be integrated"
 msgstr "Umspannwerk, Eintragung möglich"
 
-#: ../../tools/database/items_menu.txt:187
+#: ../../tools/database/items_menu.txt:189
 msgid "power support"
 msgstr "Strommast"
 
-#: ../../tools/database/items_menu.txt:188
+#: ../../tools/database/items_menu.txt:190
 msgid "power support, could be integrated"
 msgstr "Strommast, Eintragung möglich"
 
@@ -1149,7 +1147,7 @@ msgstr "Unpassender access in Route"
 msgid "similar name"
 msgstr "ähnlicher Name"
 
-#: ../../tools/database/items_menu.txt:173
+#: ../../tools/database/items_menu.txt:175
 msgid "gas station, need update"
 msgstr "Tankstelle, Update nötig"
 
@@ -1157,37 +1155,39 @@ msgstr "Tankstelle, Update nötig"
 msgid "phone number"
 msgstr "Telefonnummer"
 
-#: ../../tools/database/items_menu.txt:189
+#: ../../tools/database/items_menu.txt:191
 msgid "traffic signs"
 msgstr "Verkehrszeichen"
 
-#: ../../tools/database/items_menu.txt:191
+#: ../../tools/database/items_menu.txt:193
 msgid "traffic sign limitation"
 msgstr "Einschränkende Verkehrszeichen"
 
-#: ../src/pages/issues/index.vue:94 ../src/pages/map/items.vue:16
+#: ../src/pages/issues/index.vue:96 ../src/pages/map/items-filters.vue:9
 msgid "High"
 msgstr "Hoch"
 
-#: ../src/pages/issues/index.vue:97 ../src/pages/map/items.vue:19
+#: ../src/pages/issues/index.vue:99 ../src/pages/map/items-filters.vue:12
 msgid "Normal or higher"
 msgstr "Normal oder höher"
 
-#: ../src/pages/issues/index.vue:100 ../src/pages/issues/index.vue:163
-#: ../src/pages/map/items.vue:22
+#: ../src/pages/issues/index.vue:102 ../src/pages/issues/index.vue:165
+#: ../src/pages/map/items-filters.vue:15
+#: ../src/pages/map/items-filters.vue:103
+#: ../src/pages/map/items-filters.vue:48
 msgid "All"
 msgstr "Alle"
 
-#: ../src/pages/issues/index.vue:104 ../src/pages/map/items.vue:26
+#: ../src/pages/issues/index.vue:106 ../src/pages/map/items-filters.vue:19
 msgid "Normal only"
 msgstr "Nur normal"
 
-#: ../src/pages/issues/index.vue:107 ../src/pages/map/items.vue:29
+#: ../src/pages/issues/index.vue:109 ../src/pages/map/items-filters.vue:22
 msgid "Low only"
 msgstr "Nur niedrig"
 
-#: ../src/pages/map/top.vue:298 ../src/pages/map/top.vue:311
-#: ../src/pages/map/top.vue:324
+#: ../src/pages/map/top.vue:287 ../src/pages/map/top.vue:300
+#: ../src/pages/map/top.vue:313
 #, python-brace-format
 msgid "Level {level} issues ({count})"
 msgstr "Level {level} Probleme ({count})"
@@ -1196,55 +1196,56 @@ msgstr "Level {level} Probleme ({count})"
 msgid "JOSM validator"
 msgstr "JOSM-Validator"
 
-#: ../../tools/database/items_menu.txt:222
+#: ../../tools/database/items_menu.txt:225
 msgid "seamark"
 msgstr "Seezeichen"
 
-#: ../../tools/database/items_menu.txt:223
+#: ../../tools/database/items_menu.txt:226
 msgid "addresses"
 msgstr "Adressen"
 
-#: ../../tools/database/items_menu.txt:224
+#: ../../tools/database/items_menu.txt:227
 msgid "combinations"
 msgstr "Kombinationen"
 
-#: ../../tools/database/items_menu.txt:225
+#: ../../tools/database/items_menu.txt:228
 msgid "deprecated"
 msgstr "Veraltet"
 
-#: ../../tools/database/items_menu.txt:226
+#: ../../tools/database/items_menu.txt:229
 msgid "geometry"
 msgstr "Geometrie"
 
-#: ../../tools/database/items_menu.txt:228
+#: ../../tools/database/items_menu.txt:231
 msgid "multiple"
 msgstr "Mehrere"
 
-#: ../../tools/database/items_menu.txt:229
+#: ../../tools/database/items_menu.txt:232
 msgid "numeric"
 msgstr "Numerisch"
 
-#: ../../tools/database/items_menu.txt:230
+#: ../../tools/database/items_menu.txt:233
 msgid "relation"
 msgstr "Relation"
 
-#: ../../tools/database/items_menu.txt:231
+#: ../../tools/database/items_menu.txt:234
 msgid "religion"
 msgstr "Religion"
 
-#: ../../tools/database/items_menu.txt:232
+#: ../../tools/database/items_menu.txt:235
 msgid "territories"
 msgstr "Territorien"
 
-#: ../../tools/database/items_menu.txt:233
+#: ../../tools/database/items_menu.txt:236
 msgid "unnecessary"
 msgstr "nicht benötigt"
 
-#: ../src/pages/issues/index.vue:66
+#: ../src/pages/issues/index.vue:68 ../src/pages/map/items-filters.vue:62
+#: ../src/pages/map/items-filters.vue:7
 msgid "Country"
 msgstr "Land"
 
-#: ../src/pages/issues/index.vue:78
+#: ../src/pages/issues/index.vue:80
 msgid "Item"
 msgstr "Artikel"
 
@@ -1300,8 +1301,7 @@ msgstr "Bereich in {where} bearbeiten"
 msgid "details"
 msgstr "details"
 
-#: ../../web_api/issues.py:256 tmp.tpl:4 tmp.tpl:6
-#: ../src/pages/map/popup.vue:147
+#: ../../web_api/issues.py:256 ../src/pages/map/popup.vue:147
 msgid "Issue reported on:"
 msgstr "Problem gemeldet am:"
 
@@ -1321,7 +1321,7 @@ msgstr "Nachdem das Problem in den OSM-Daten behoben wurden, markiere es als beh
 msgid "zone:maxspeed"
 msgstr "zone:maxspeed"
 
-#: ../../tools/database/items_menu.txt:241
+#: ../../tools/database/items_menu.txt:244
 msgid "power transformer"
 msgstr "Umspannwerke"
 
@@ -1333,31 +1333,31 @@ msgstr "Objekt #%s"
 msgid "opening hours"
 msgstr "Öffnungszeiten"
 
-#: ../../tools/database/items_menu.txt:192
+#: ../../tools/database/items_menu.txt:194
 msgid "hospital"
 msgstr "Krankenhaus"
 
-#: ../../tools/database/items_menu.txt:194
+#: ../../tools/database/items_menu.txt:196
 msgid "social facility"
 msgstr "Sozialeinrichtung"
 
-#: ../../tools/database/items_menu.txt:196
+#: ../../tools/database/items_menu.txt:198
 msgid "medical lab"
 msgstr "Medizinisches Labor"
 
-#: ../../tools/database/items_menu.txt:193
+#: ../../tools/database/items_menu.txt:195
 msgid "hospital, could be integrated"
 msgstr "Spital, Eintragung möglich"
 
-#: ../../tools/database/items_menu.txt:195
+#: ../../tools/database/items_menu.txt:197
 msgid "social facility, could be integrated"
 msgstr "soziale Einrichtung, Eintragung möglich"
 
-#: ../../tools/database/items_menu.txt:197
+#: ../../tools/database/items_menu.txt:199
 msgid "medical lab, could be integrated"
 msgstr "medizinisches Labor, Eintragung möglich"
 
-#: ../../tools/database/items_menu.txt:171
+#: ../../tools/database/items_menu.txt:173
 msgid "police, need update"
 msgstr "Polizei, Update nötig"
 
@@ -1377,15 +1377,15 @@ msgstr "Durchsetzung"
 msgid "URL"
 msgstr "URL"
 
-#: ../../tools/database/items_menu.txt:198
+#: ../../tools/database/items_menu.txt:200
 msgid "street objects"
 msgstr "Straßenobjekte"
 
-#: ../../tools/database/items_menu.txt:236
+#: ../../tools/database/items_menu.txt:239
 msgid "openrailwaymap"
 msgstr "OpenRailwayMap"
 
-#: ../../tools/database/items_menu.txt:237
+#: ../../tools/database/items_menu.txt:240
 msgid "openrailwaymap in germany"
 msgstr "OpenRailwayMap in Deutschland"
 
@@ -1393,7 +1393,7 @@ msgstr "OpenRailwayMap in Deutschland"
 msgid "railways"
 msgstr "Eisenbahn"
 
-#: ../../tools/database/items_menu.txt:183
+#: ../../tools/database/items_menu.txt:185
 msgid "power plant"
 msgstr "Kraftwerk"
 
@@ -1403,19 +1403,19 @@ msgid ""
 "languages."
 msgstr "Osmose wird hauptsächlich durch französische Leute entwickelt, unser Ziel ist es, mehr Sprachen hinzuzufügen."
 
-#: ../../tools/database/items_menu.txt:199
+#: ../../tools/database/items_menu.txt:201
 msgid "defibrillator"
 msgstr "Defibrillator"
 
-#: ../../tools/database/items_menu.txt:203
+#: ../../tools/database/items_menu.txt:205
 msgid "radio support"
 msgstr "Elektronikhändler"
 
-#: ../../tools/database/items_menu.txt:204
+#: ../../tools/database/items_menu.txt:206
 msgid "radio support, could be integrated"
 msgstr "Elektronikhändler, Eintragung möglich"
 
-#: ../../tools/database/items_menu.txt:205
+#: ../../tools/database/items_menu.txt:207
 msgid "radio support, need update"
 msgstr "Elektronikhändler, Update nötig"
 
@@ -1431,15 +1431,15 @@ msgstr "Vermeidbare Fehler"
 msgid "Example"
 msgstr "Beispiel"
 
-#: ../src/pages/map/doc.vue:71 ../src/pages/map/doc.vue:1
+#: ../src/pages/map/doc.vue:75 ../src/pages/map/doc.vue:1
 msgid "Source Code"
 msgstr "Quellcode"
 
-#: ../src/pages/map/doc.vue:78 ../src/pages/map/doc.vue:1
+#: ../src/pages/map/doc.vue:82 ../src/pages/map/doc.vue:1
 msgid "Resource used"
 msgstr "verwendete Ressourcen"
 
-#: ../src/pages/map/doc.vue:86
+#: ../src/pages/map/doc.vue:90
 msgid "Want to improve this control or this doc?"
 msgstr "Willst du diese Qualitätssicherung oder diese Dokumentation verbessern?"
 
@@ -1457,15 +1457,15 @@ msgstr "In keinen Fall kann dir die Osmose-Qualitätssicherung den absolut richt
 msgid "You can find help on the wiki:"
 msgstr "Du kannst Hilfe im Wiki finden:"
 
-#: ../../tools/database/items_menu.txt:208
+#: ../../tools/database/items_menu.txt:210
 msgid "charging station"
 msgstr "Ladestation"
 
-#: ../../tools/database/items_menu.txt:209
+#: ../../tools/database/items_menu.txt:211
 msgid "charging station, could be integrated"
 msgstr "Ladestation, Eintragung möglich"
 
-#: ../../tools/database/items_menu.txt:210
+#: ../../tools/database/items_menu.txt:212
 msgid "charging station, need update"
 msgstr "Ladestation, Update nötig"
 
@@ -1473,15 +1473,15 @@ msgstr "Ladestation, Update nötig"
 msgid "related objects"
 msgstr "verbundene Objekte"
 
-#: ../../tools/database/items_menu.txt:200
+#: ../../tools/database/items_menu.txt:202
 msgid "wastewater"
 msgstr "Abwasser"
 
-#: ../../tools/database/items_menu.txt:201
+#: ../../tools/database/items_menu.txt:203
 msgid "wastewater, could be integrated"
 msgstr "Abwasser, Eintragung möglich"
 
-#: ../../tools/database/items_menu.txt:202
+#: ../../tools/database/items_menu.txt:204
 msgid "wastewater, need update"
 msgstr "Abwasser, Update nötig"
 
@@ -1500,27 +1500,27 @@ msgstr "Problemdetails"
 msgid "Report based on data from date"
 msgstr "Report beruhend auf Daten vom Datum"
 
-#: ../../tools/database/items_menu.txt:177
+#: ../../tools/database/items_menu.txt:179
 msgid "pharmacy, need update"
 msgstr "Apotheke, Update nötig"
 
-#: ../../tools/database/items_menu.txt:186
+#: ../../tools/database/items_menu.txt:188
 msgid "power substation, need update"
 msgstr "Transformatorenstation, Update nötig"
 
-#: ../../tools/database/items_menu.txt:190
+#: ../../tools/database/items_menu.txt:192
 msgid "shop"
 msgstr "Geschäft"
 
-#: ../../tools/database/items_menu.txt:238
+#: ../../tools/database/items_menu.txt:241
 msgid "specific russia"
 msgstr "spezifisch russisch"
 
-#: ../../tools/database/items_menu.txt:239
+#: ../../tools/database/items_menu.txt:242
 msgid "specific brazil"
 msgstr "spezifisch brasilianisch"
 
-#: ../../tools/database/items_menu.txt:240
+#: ../../tools/database/items_menu.txt:243
 msgid "specific france"
 msgstr "spezifisch französisch"
 
@@ -1548,15 +1548,15 @@ msgstr "Es erkennt ein sehr weites Feld von Problemtypen. Es ist auch nützlich 
 msgid "VAT"
 msgstr "UST"
 
-#: ../../tools/database/items_menu.txt:206
+#: ../../tools/database/items_menu.txt:208
 msgid "health centre"
 msgstr "Gesundheitszentrum"
 
-#: ../../tools/database/items_menu.txt:207
+#: ../../tools/database/items_menu.txt:209
 msgid "health centre, could be integrated"
 msgstr "Gesundheitszentrum, Eintragung möglich"
 
-#: ../../tools/database/items_menu.txt:211
+#: ../../tools/database/items_menu.txt:213
 msgid "tourism"
 msgstr "Tourismus"
 
@@ -1574,23 +1574,23 @@ msgstr "Hydrant"
 msgid "fire hydrant, could be integrated"
 msgstr "Hydrant, Eintragung möglich"
 
-#: ../../tools/database/items_menu.txt:212
+#: ../../tools/database/items_menu.txt:214
 msgid "milestone"
 msgstr "Kilometerstein"
 
-#: ../../tools/database/items_menu.txt:213
+#: ../../tools/database/items_menu.txt:215
 msgid "milestone, could be integrated"
 msgstr "Kilometerstein, Eintragung möglich"
 
-#: ../../tools/database/items_menu.txt:214
+#: ../../tools/database/items_menu.txt:216
 msgid "viewpoint"
 msgstr "Aussichtspunkt"
 
-#: ../../tools/database/items_menu.txt:215
+#: ../../tools/database/items_menu.txt:217
 msgid "picnic"
 msgstr "Picknick"
 
-#: ../../tools/database/items_menu.txt:216
+#: ../../tools/database/items_menu.txt:218
 msgid "bicycle infrastructure"
 msgstr "Fahrradinfrastruktur"
 
@@ -1614,23 +1614,23 @@ msgstr "Denkmal, Megalith, Museum, Update nötig"
 msgid "place of worship"
 msgstr "Gebetsstätte"
 
-#: ../../tools/database/items_menu.txt:217
+#: ../../tools/database/items_menu.txt:219
 msgid "cemetery"
 msgstr "Friedhof"
 
-#: ../../tools/database/items_menu.txt:218
+#: ../../tools/database/items_menu.txt:220
 msgid "man made"
 msgstr "menschengemacht"
 
-#: ../../tools/database/items_menu.txt:219
+#: ../../tools/database/items_menu.txt:221
 msgid "water infrastructure"
 msgstr "Wasser-Infrastruktur"
 
-#: ../../tools/database/items_menu.txt:220
+#: ../../tools/database/items_menu.txt:222
 msgid "water"
 msgstr "Wasser"
 
-#: ../../tools/database/items_menu.txt:221
+#: ../../tools/database/items_menu.txt:223
 msgid "fire station"
 msgstr "Feuerwache"
 
@@ -1738,168 +1738,190 @@ msgstr "Freiwillige"
 #: ../../web_api/byuser.py:75
 #, python-brace-format
 msgid "Statistics for user {0}"
-msgstr ""
+msgstr "Statistik für Benutzer {0}"
 
 #: ../../web_api/issues.py:66
 msgid "Open issues"
-msgstr ""
+msgstr "Ungelöste Probleme"
 
 #: ../../web_api/issues.py:190
 msgid "Statistics for user {}"
-msgstr ""
+msgstr "Statistik für Benutzer {0}"
 
-#: ../../web_api/issues.py:233 tmp.tpl:2
+#: ../../web_api/issues.py:233
 msgid "Mark issue as fixed"
-msgstr ""
+msgstr "Problem als gelöst markieren"
 
-#: ../../web_api/issues.py:235 tmp.tpl:3
+#: ../../web_api/issues.py:235
 msgid "Mark issue as false positive"
-msgstr ""
+msgstr "Problem als falsch positiv markieren"
 
 #: ../../web_api/issues.py:240
 msgid "Tags:"
-msgstr ""
+msgstr "Eigenschaften:"
 
-#: tmp.tpl:1 tmp.tpl:5
 msgid "Tags"
-msgstr ""
+msgstr "Eigenschaften"
 
 #: ../../tools/database/items_menu.txt:111
 msgid "post office, ref not integrated"
-msgstr ""
+msgstr "Nicht-eingetragenes Postamt"
 
 #: ../../tools/database/items_menu.txt:112
 msgid "post box, ref not integrated"
-msgstr ""
+msgstr "Nicht-eingetragene Postbox"
 
 #: ../../tools/database/items_menu.txt:114
 msgid "school, ref not integrated"
-msgstr ""
+msgstr "Nicht-eingetragene Schule"
 
 #: ../../tools/database/items_menu.txt:121
 msgid "transport sharing, ref not integrated"
-msgstr ""
+msgstr "Nicht-eingetragenes Transport-Sharing"
 
 #: ../../tools/database/items_menu.txt:122
 msgid "pharmacy, ref not integrated"
-msgstr ""
+msgstr "Nicht-eingetragene Apotheke"
 
 #: ../../tools/database/items_menu.txt:123
 msgid "postal code, ref not integrated"
-msgstr ""
+msgstr "Nicht-eingetragene Postleitzahl"
 
 #: ../../tools/database/items_menu.txt:125
 msgid "power substation, ref not integrated"
-msgstr ""
+msgstr "Nicht-eingetragenes Umspannwerk"
 
 #: ../../tools/database/items_menu.txt:126
 msgid "hospital, ref not integrated"
-msgstr ""
+msgstr "Nicht-eingetragenes Spital"
 
 #: ../../tools/database/items_menu.txt:127
 msgid "social facility, ref not integrated"
-msgstr ""
+msgstr "Nicht-eingetragene Sozialeinrichtung"
 
 #: ../../tools/database/items_menu.txt:128
 msgid "medical lab, ref not integrated"
-msgstr ""
+msgstr "Nicht-eingetragenes Medizinisches Labor"
 
 #: ../../tools/database/items_menu.txt:129
 msgid "gas station, ref not integrated"
-msgstr ""
+msgstr "Nicht-eingetragene Tankstelle"
 
-#: ../src/pages/issues/index.vue:183
+#: ../src/pages/issues/index.vue:185
 msgid "BBox"
-msgstr ""
+msgstr "BBox"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for 'class'
-#: ../src/components/issues-list.vue:22 ../src/pages/issues/index.vue:220
+#: ../src/components/issues-list.vue:22 ../src/pages/issues/index.vue:222
 msgid "cl"
-msgstr ""
+msgstr "Kl."
 
-#: ../src/pages/issues/index.vue:137
+#: ../src/pages/issues/index.vue:139 ../src/pages/map/items-filters.vue:86
+#: ../src/pages/map/items-filters.vue:31
 msgid "Class id"
-msgstr ""
+msgstr "Klassen ID"
 
-#: ../src/pages/map/index.vue:74
+#: ../src/pages/map/index.vue:185
 msgid "Control, verification and correction of {project} issues"
-msgstr ""
+msgstr "Kontrolle, Überprüfung und Korrektur von {Projekt}-Problemen"
 
-#: ../src/pages/map/top.vue:269
+#: ../src/pages/map/top.vue:258
 msgid "Delay:"
-msgstr ""
+msgstr "Verzögerung:"
 
-#: ../src/pages/map/doc.vue:63
+#: ../src/pages/map/doc.vue:64
 msgid "Do not want to see {title} markers?"
-msgstr ""
+msgstr "Du möchtest keine {title} Markierungen?"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for 'elements'
 #: ../src/components/issues-list.vue:34
 msgid "elms"
-msgstr ""
+msgstr "Elem."
 
-#: ../src/pages/map/doc.vue:68
+#: ../src/pages/map/doc.vue:71
 msgid "Hide from map"
-msgstr ""
+msgstr "Verstecke von der Karte"
 
 #: ../src/pages/map/doc.vue:61
 msgid "Hide markers"
-msgstr ""
+msgstr "Marker ausblenden"
 
-#: ../src/pages/map/items.vue:36
+#: ../src/pages/map/items-list.vue:40
 msgid "Item #{item}"
-msgstr ""
+msgstr "Artikel #{item}"
 
-#: ../src/pages/issues/index.vue:121
+#: ../src/pages/issues/index.vue:123 ../src/pages/map/items-filters.vue:57
+#: ../src/pages/map/items-filters.vue:2
 msgid "Less filters"
-msgstr ""
+msgstr "Weniger Filter"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for 'location'
 #: ../src/components/issues-list.vue:29
 msgid "loc"
-msgstr ""
+msgstr "StO"
 
 #: ../src/components/issues-list.vue:262
 msgid "location"
-msgstr ""
+msgstr "Standort"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for 'level'
 #: ../src/components/issues-list.vue:12
 msgid "lvl"
-msgstr ""
+msgstr "Eb."
 
-#: ../src/pages/issues/index.vue:117
+#: ../src/pages/issues/index.vue:119 ../src/pages/map/items-filters.vue:122
 msgid "More filters"
-msgstr ""
+msgstr "Mehr Filter"
 
-#: ../src/pages/issues/index.vue:160
+#: ../src/pages/issues/index.vue:162 ../src/pages/map/items-filters.vue:100
+#: ../src/pages/map/items-filters.vue:45
 msgid "No (Default)"
-msgstr ""
+msgstr "Nein (Standard)"
 
-#: ../src/pages/issues/index.vue:166
+#: ../src/pages/issues/index.vue:168 ../src/pages/map/items-filters.vue:106
+#: ../src/pages/map/items-filters.vue:51
 msgid "Only"
-msgstr ""
+msgstr "Nur"
 
-#: ../src/pages/issues/index.vue:13
+#: ../src/pages/issues/index.vue:15
 msgid "Open"
-msgstr ""
+msgstr "Ungelöst"
 
-#: ../src/pages/issues/index.vue:176
+#: ../src/pages/issues/index.vue:178 ../src/pages/map/items-filters.vue:113
+#: ../src/pages/map/items-filters.vue:58
 msgid "OSM Username"
-msgstr ""
+msgstr "OSM Benutzername"
 
-#: ../src/pages/issues/index.vue:156
+#: ../src/pages/issues/index.vue:158 ../src/pages/map/items-filters.vue:95
+#: ../src/pages/map/items-filters.vue:40
 msgid "Show hidden items"
-msgstr ""
+msgstr "Zeige versteckte Objekte"
 
-#: ../src/pages/issues/index.vue:130
+#: ../src/pages/issues/index.vue:132 ../src/pages/map/items-filters.vue:77
+#: ../src/pages/map/items-filters.vue:22
 msgid "Source id"
-msgstr ""
+msgstr "Quell ID"
 
-#: ../src/pages/issues/index.vue:507 ../src/pages/map/items.vue:217
+#: ../src/pages/issues/index.vue:507 ../src/pages/map/items-filters.vue:219
 msgid "tag"
+msgstr "Eigenschaft"
+
+#: ../src/pages/issues/index.vue:146
+msgid "Tag"
+msgstr "Eigenschaft"
+
+#: ../../tools/database/items_menu.txt:169
+msgid "toilets, could be integrated"
 msgstr ""
 
-#: ../src/pages/issues/index.vue:144
-msgid "Tag"
+#: ../../tools/database/items_menu.txt:170
+msgid "toilets, need update"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:224
+msgid "natural"
+msgstr ""
+
+#: ../src/pages/map/items.vue:6
+msgid "Zoom in to see issues."
 msgstr ""

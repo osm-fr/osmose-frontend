@@ -4,20 +4,20 @@
 # 
 # Translators:
 # Kit Tak <misc.takashi@gmail.com>, 2020
-# 藤本理弘 <mfujimot@gmail.com>, 2014
+# Masahiro FUJIMOTO <mfujimot@gmail.com>, 2014
 # Satoshi IIDA <nyampire@gmail.com>, 2016
 # OKADA Tsuneo, 2020
 # Satoshi IIDA <nyampire@gmail.com>, 2016
 # Shu Higashi <higa432@gmail.com>, 2020-2021
 # Tom Konda <tom.konda.dev@gmail.com>, 2020
 # tomoya muramoto <muramototomoya@gmail.com>, 2016
-# 藤本理弘 <mfujimot@gmail.com>, 2014
+# Masahiro FUJIMOTO <mfujimot@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2021-05-23 18:59+0000\n"
+"PO-Revision-Date: 2021-12-24 13:16+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../../web_api/issues.py:60 ../src/pages/issues/index.vue:23
+#: ../../web_api/issues.py:60 ../src/pages/issues/index.vue:25
 #: ../src/pages/issues/index.vue:88
 msgid "False positives"
 msgstr "誤検出"
@@ -39,11 +39,11 @@ msgstr "情報"
 msgid "Statistics"
 msgstr "統計"
 
-#: ../src/pages/contact.vue:5 ../src/pages/map/top.vue:78
+#: ../src/pages/contact.vue:5 ../src/pages/map/top.vue:76
 msgid "Contact"
 msgstr "コンタクト"
 
-#: ../src/pages/map/top.vue:83
+#: ../src/pages/map/top.vue:81
 msgid "Help on wiki"
 msgstr "Wikiのヘルプ"
 
@@ -51,15 +51,15 @@ msgstr "Wikiのヘルプ"
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
-#: ../src/pages/map/top.vue:88
+#: ../src/pages/map/top.vue:86
 msgid "Copyright"
 msgstr "著作権"
 
-#: ../src/pages/map/top.vue:93
+#: ../src/pages/map/top.vue:91
 msgid "Sources"
 msgstr "ソースファイル"
 
-#: ../src/pages/map/top.vue:98
+#: ../src/pages/map/top.vue:96
 msgid "Translation"
 msgstr "翻訳"
 
@@ -109,7 +109,7 @@ msgid "Last updates"
 msgstr "最新状況"
 
 #: ../../tools/database/items_menu.txt:34 ../src/components/issues-list.vue:7
-#: ../src/pages/control/update.vue:7 ../src/pages/issues/index.vue:209
+#: ../src/pages/control/update.vue:7 ../src/pages/issues/index.vue:211
 msgid "source"
 msgstr "ソース"
 
@@ -165,15 +165,15 @@ msgstr "要素"
 msgid "Fixes"
 msgstr "修正"
 
-#: ../src/pages/issues/index.vue:18
+#: ../src/pages/issues/index.vue:20
 msgid "Fixed"
 msgstr "修正済み"
 
-#: ../src/pages/issues/index.vue:28
+#: ../src/pages/issues/index.vue:30
 msgid "Graph"
 msgstr "グラフ"
 
-#: ../src/pages/byuser/byuser.vue:16 ../src/pages/issues/index.vue:33
+#: ../src/pages/byuser/byuser.vue:16 ../src/pages/issues/index.vue:35
 msgid "Map"
 msgstr "地図"
 
@@ -187,19 +187,19 @@ msgstr "セット"
 msgid "class (abbreviation)"
 msgstr "クラス"
 
-#: ../src/components/issues-list.vue:18 ../src/pages/issues/index.vue:216
+#: ../src/components/issues-list.vue:18 ../src/pages/issues/index.vue:218
 msgid "item"
 msgstr "項目"
 
-#: ../src/pages/issues/index.vue:226
+#: ../src/pages/issues/index.vue:228
 msgid "title"
 msgstr "件名"
 
-#: ../src/pages/byuser/byuser.vue:25 ../src/pages/issues/index.vue:229
+#: ../src/pages/byuser/byuser.vue:25 ../src/pages/issues/index.vue:231
 msgid "count"
 msgstr "回数"
 
-#: ../src/pages/issues/index.vue:273
+#: ../src/pages/issues/index.vue:275
 msgid "Total"
 msgstr "合計"
 
@@ -242,43 +242,42 @@ msgstr "タグエディター"
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: ../src/pages/map/items.vue:6
 msgid "no bubbles at this zoom factor"
 msgstr "この表示倍率では表示するものはありません"
 
-#: ../src/pages/issues/index.vue:90 ../src/pages/map/items.vue:11
+#: ../src/pages/issues/index.vue:92 ../src/pages/map/items-filters.vue:4
 msgid "Severity"
 msgstr "深刻度"
 
-#: ../src/pages/issues/index.vue:190 ../src/pages/map/items.vue:36
+#: ../src/pages/issues/index.vue:192 ../src/pages/map/items-filters.vue:30
 msgid "Fixable"
 msgstr "修正手段"
 
-#: ../src/pages/map/items.vue:180
+#: ../src/pages/map/items-filters.vue:182
 msgid "Show only markers with correction suggestions"
 msgstr "修正の提案があるマーカーのみ表示"
 
-#: ../src/pages/issues/index.vue:194 ../src/pages/map/items.vue:41
+#: ../src/pages/issues/index.vue:196 ../src/pages/map/items-filters.vue:35
 msgid "Online"
 msgstr "オンライン"
 
-#: ../src/pages/map/items.vue:48
+#: ../src/pages/map/items-filters.vue:43
 msgid "Topic"
 msgstr "トピック"
 
-#: ../src/pages/map/items.vue:59
+#: ../src/pages/map/items-list.vue:3
 msgid "Select:"
 msgstr "選択:"
 
-#: ../src/pages/map/items.vue:61 ../src/pages/map/items.vue:81
+#: ../src/pages/map/items-list.vue:5 ../src/pages/map/items-list.vue:25
 msgid "all"
 msgstr "全て"
 
-#: ../src/pages/map/items.vue:64 ../src/pages/map/items.vue:84
+#: ../src/pages/map/items-list.vue:8 ../src/pages/map/items-list.vue:28
 msgid "nothing"
 msgstr "なし"
 
-#: ../src/pages/map/items.vue:67
+#: ../src/pages/map/items-list.vue:11
 msgid "invert"
 msgstr "反転"
 
@@ -286,7 +285,7 @@ msgstr "反転"
 msgid "Change language"
 msgstr "言語を変更"
 
-#: ../src/pages/map/popup.vue:368 ../src/pages/map/top.vue:74
+#: ../src/pages/map/popup.vue:368 ../src/pages/map/top.vue:72
 msgid "Help"
 msgstr "ヘルプ"
 
@@ -294,11 +293,11 @@ msgstr "ヘルプ"
 msgid "Delay: %sd"
 msgstr "集計: %s日前"
 
-#: ../src/pages/map/top.vue:152 ../src/pages/map/top.vue:39
+#: ../src/pages/map/top.vue:150 ../src/pages/map/top.vue:39
 msgid "Logout"
 msgstr "ログアウト"
 
-#: ../src/pages/map/editor.vue:6 ../src/pages/map/top.vue:158
+#: ../src/pages/map/editor.vue:6 ../src/pages/map/top.vue:156
 msgid "Login"
 msgstr "ログイン"
 
@@ -493,7 +492,7 @@ msgid "street numbers"
 msgstr "道路番号"
 
 #: ../../tools/database/items_menu.txt:37
-#: ../../tools/database/items_menu.txt:227
+#: ../../tools/database/items_menu.txt:230
 msgid "highway"
 msgstr "highway"
 
@@ -502,7 +501,7 @@ msgid "highway crossing"
 msgstr "横断歩道"
 
 #: ../../tools/database/items_menu.txt:39
-#: ../../tools/database/items_menu.txt:175
+#: ../../tools/database/items_menu.txt:177
 msgid "pharmacy"
 msgstr "薬局"
 
@@ -519,7 +518,7 @@ msgid "tagwatch cleaner"
 msgstr "タグ監視クリーナー"
 
 #: ../../tools/database/items_menu.txt:49
-#: ../../tools/database/items_menu.txt:234
+#: ../../tools/database/items_menu.txt:237
 msgid "wikipedia"
 msgstr "wikipedia"
 
@@ -737,7 +736,7 @@ msgstr "含められる学校"
 
 #: ../../tools/database/items_menu.txt:27
 #: ../../tools/database/items_menu.txt:141
-#: ../../tools/database/items_menu.txt:235
+#: ../../tools/database/items_menu.txt:238
 msgid "public transport"
 msgstr "公共交通"
 
@@ -840,22 +839,22 @@ msgstr "トイレ"
 msgid "transport sharing, not integrated"
 msgstr "未統合の公共機関シェア"
 
-#: ../../tools/database/items_menu.txt:169
+#: ../../tools/database/items_menu.txt:171
 msgid "police"
 msgstr "警察"
 
-#: ../../tools/database/items_menu.txt:170
+#: ../../tools/database/items_menu.txt:172
 msgid "police, could be integrated"
 msgstr "統合可能な警察署"
 
 msgid "pharmacy, not integrated "
 msgstr "未統合の薬局"
 
-#: ../../tools/database/items_menu.txt:176
+#: ../../tools/database/items_menu.txt:178
 msgid "pharmacy, could be integrated"
 msgstr "統合可能な薬局"
 
-#: ../../tools/database/items_menu.txt:172
+#: ../../tools/database/items_menu.txt:174
 msgid "gas station"
 msgstr "ガソリンスタンド"
 
@@ -891,19 +890,19 @@ msgstr "レイヤ指定ミス"
 msgid "Updates summary"
 msgstr "更新サマリ"
 
-#: ../../tools/database/items_menu.txt:178
+#: ../../tools/database/items_menu.txt:180
 msgid "postal code, could be integrated"
 msgstr "統合可能な郵便番号"
 
-#: ../../tools/database/items_menu.txt:179
+#: ../../tools/database/items_menu.txt:181
 msgid "library"
 msgstr "図書館"
 
-#: ../../tools/database/items_menu.txt:180
+#: ../../tools/database/items_menu.txt:182
 msgid "restaurant"
 msgstr "レストラン"
 
-#: ../../tools/database/items_menu.txt:181
+#: ../../tools/database/items_menu.txt:183
 msgid "winery"
 msgstr "ワイナリ"
 
@@ -922,7 +921,6 @@ msgstr "現地表記"
 msgid "Fixed issues"
 msgstr "修正済みの課題"
 
-#. #-#-#-#-#  vue.pot (PACKAGE VERSION)  #-#-#-#-#
 #. TRANSLATORS: link to help in appropriate language
 #: ../src/pages/map/top.vue:18
 msgid "Issues by user"
@@ -957,7 +955,7 @@ msgid ""
 "contributor of the relevant erroneous elements."
 msgstr "以下のフォームにあなたのOSMユーザー名を入力することで、あなたのユーザー名に結びつけられた問題を見ることができます。なお、アルゴリズムは完全ではなく、Osmoseはエラーのある要素における最終編集者のみをチェックします。"
 
-#: ../src/pages/issues/index.vue:283
+#: ../src/pages/issues/index.vue:285
 msgid "Show more issues"
 msgstr "さらに表示"
 
@@ -981,7 +979,7 @@ msgstr "課題データベース情報"
 msgid "version"
 msgstr "バージョン"
 
-#: ../../tools/database/items_menu.txt:182
+#: ../../tools/database/items_menu.txt:184
 msgid "geodesic"
 msgstr "測地"
 
@@ -1078,7 +1076,7 @@ msgstr "バージョン"
 msgid "post office, need update"
 msgstr "要更新・郵便局"
 
-#: ../src/pages/issues/index.vue:213
+#: ../src/pages/issues/index.vue:215
 msgid "age"
 msgstr "年齢"
 
@@ -1086,23 +1084,23 @@ msgstr "年齢"
 msgid "invalid character"
 msgstr "無効な文字"
 
-#: ../../tools/database/items_menu.txt:174
+#: ../../tools/database/items_menu.txt:176
 msgid "gas station, could be integrated"
 msgstr "統合可能なガソリンスタンド"
 
-#: ../../tools/database/items_menu.txt:184
+#: ../../tools/database/items_menu.txt:186
 msgid "power substation"
 msgstr "変電所"
 
-#: ../../tools/database/items_menu.txt:185
+#: ../../tools/database/items_menu.txt:187
 msgid "power substation, could be integrated"
 msgstr "統合可能な変電所"
 
-#: ../../tools/database/items_menu.txt:187
+#: ../../tools/database/items_menu.txt:189
 msgid "power support"
 msgstr "電柱"
 
-#: ../../tools/database/items_menu.txt:188
+#: ../../tools/database/items_menu.txt:190
 msgid "power support, could be integrated"
 msgstr "統合可能な電柱"
 
@@ -1130,7 +1128,7 @@ msgstr "routeとaccessの不一致"
 msgid "similar name"
 msgstr "類似した名前"
 
-#: ../../tools/database/items_menu.txt:173
+#: ../../tools/database/items_menu.txt:175
 msgid "gas station, need update"
 msgstr "要更新・ガソリンスタンド"
 
@@ -1138,37 +1136,39 @@ msgstr "要更新・ガソリンスタンド"
 msgid "phone number"
 msgstr "電話番号"
 
-#: ../../tools/database/items_menu.txt:189
+#: ../../tools/database/items_menu.txt:191
 msgid "traffic signs"
 msgstr "交通標識"
 
-#: ../../tools/database/items_menu.txt:191
+#: ../../tools/database/items_menu.txt:193
 msgid "traffic sign limitation"
 msgstr "交通標識の制限"
 
-#: ../src/pages/issues/index.vue:94 ../src/pages/map/items.vue:16
+#: ../src/pages/issues/index.vue:96 ../src/pages/map/items-filters.vue:9
 msgid "High"
 msgstr "高"
 
-#: ../src/pages/issues/index.vue:97 ../src/pages/map/items.vue:19
+#: ../src/pages/issues/index.vue:99 ../src/pages/map/items-filters.vue:12
 msgid "Normal or higher"
 msgstr "中以上"
 
-#: ../src/pages/issues/index.vue:100 ../src/pages/issues/index.vue:163
-#: ../src/pages/map/items.vue:22
+#: ../src/pages/issues/index.vue:102 ../src/pages/issues/index.vue:165
+#: ../src/pages/map/items-filters.vue:15
+#: ../src/pages/map/items-filters.vue:103
+#: ../src/pages/map/items-filters.vue:48
 msgid "All"
 msgstr "すべて"
 
-#: ../src/pages/issues/index.vue:104 ../src/pages/map/items.vue:26
+#: ../src/pages/issues/index.vue:106 ../src/pages/map/items-filters.vue:19
 msgid "Normal only"
 msgstr "中"
 
-#: ../src/pages/issues/index.vue:107 ../src/pages/map/items.vue:29
+#: ../src/pages/issues/index.vue:109 ../src/pages/map/items-filters.vue:22
 msgid "Low only"
 msgstr "低"
 
-#: ../src/pages/map/top.vue:298 ../src/pages/map/top.vue:311
-#: ../src/pages/map/top.vue:324
+#: ../src/pages/map/top.vue:287 ../src/pages/map/top.vue:300
+#: ../src/pages/map/top.vue:313
 #, python-brace-format
 msgid "Level {level} issues ({count})"
 msgstr "レベル{level}の課題({count}件)"
@@ -1177,55 +1177,56 @@ msgstr "レベル{level}の課題({count}件)"
 msgid "JOSM validator"
 msgstr "JOSMバリデーター"
 
-#: ../../tools/database/items_menu.txt:222
+#: ../../tools/database/items_menu.txt:225
 msgid "seamark"
 msgstr "航路標識"
 
-#: ../../tools/database/items_menu.txt:223
+#: ../../tools/database/items_menu.txt:226
 msgid "addresses"
 msgstr "住所"
 
-#: ../../tools/database/items_menu.txt:224
+#: ../../tools/database/items_menu.txt:227
 msgid "combinations"
 msgstr "組み合わせ"
 
-#: ../../tools/database/items_menu.txt:225
+#: ../../tools/database/items_menu.txt:228
 msgid "deprecated"
 msgstr "非推奨"
 
-#: ../../tools/database/items_menu.txt:226
+#: ../../tools/database/items_menu.txt:229
 msgid "geometry"
 msgstr "ジオメトリ"
 
-#: ../../tools/database/items_menu.txt:228
+#: ../../tools/database/items_menu.txt:231
 msgid "multiple"
 msgstr "複数"
 
-#: ../../tools/database/items_menu.txt:229
+#: ../../tools/database/items_menu.txt:232
 msgid "numeric"
 msgstr "数値"
 
-#: ../../tools/database/items_menu.txt:230
+#: ../../tools/database/items_menu.txt:233
 msgid "relation"
 msgstr "リレーション"
 
-#: ../../tools/database/items_menu.txt:231
+#: ../../tools/database/items_menu.txt:234
 msgid "religion"
 msgstr "宗教"
 
-#: ../../tools/database/items_menu.txt:232
+#: ../../tools/database/items_menu.txt:235
 msgid "territories"
 msgstr "領土"
 
-#: ../../tools/database/items_menu.txt:233
+#: ../../tools/database/items_menu.txt:236
 msgid "unnecessary"
 msgstr "不要"
 
-#: ../src/pages/issues/index.vue:66
+#: ../src/pages/issues/index.vue:68 ../src/pages/map/items-filters.vue:62
+#: ../src/pages/map/items-filters.vue:7
 msgid "Country"
 msgstr "国"
 
-#: ../src/pages/issues/index.vue:78
+#: ../src/pages/issues/index.vue:80
 msgid "Item"
 msgstr "項目"
 
@@ -1281,8 +1282,7 @@ msgstr "{where}を使ってエリアの編集"
 msgid "details"
 msgstr "詳細"
 
-#: ../../web_api/issues.py:256 tmp.tpl:4 tmp.tpl:6
-#: ../src/pages/map/popup.vue:147
+#: ../../web_api/issues.py:256 ../src/pages/map/popup.vue:147
 msgid "Issue reported on:"
 msgstr "報告日:"
 
@@ -1302,7 +1302,7 @@ msgstr "OSMデータの問題を解決したら、完了とマークして下さ
 msgid "zone:maxspeed"
 msgstr "zone:maxspeed"
 
-#: ../../tools/database/items_menu.txt:241
+#: ../../tools/database/items_menu.txt:244
 msgid "power transformer"
 msgstr "変圧器"
 
@@ -1314,31 +1314,31 @@ msgstr "項目#%s"
 msgid "opening hours"
 msgstr "営業時間"
 
-#: ../../tools/database/items_menu.txt:192
+#: ../../tools/database/items_menu.txt:194
 msgid "hospital"
 msgstr "病院"
 
-#: ../../tools/database/items_menu.txt:194
+#: ../../tools/database/items_menu.txt:196
 msgid "social facility"
 msgstr "社会福祉施設"
 
-#: ../../tools/database/items_menu.txt:196
+#: ../../tools/database/items_menu.txt:198
 msgid "medical lab"
 msgstr "医学研究室"
 
-#: ../../tools/database/items_menu.txt:193
+#: ../../tools/database/items_menu.txt:195
 msgid "hospital, could be integrated"
 msgstr "統合可能な病院"
 
-#: ../../tools/database/items_menu.txt:195
+#: ../../tools/database/items_menu.txt:197
 msgid "social facility, could be integrated"
 msgstr "統合可能な社会福祉施設"
 
-#: ../../tools/database/items_menu.txt:197
+#: ../../tools/database/items_menu.txt:199
 msgid "medical lab, could be integrated"
 msgstr "統合可能な医学研究室"
 
-#: ../../tools/database/items_menu.txt:171
+#: ../../tools/database/items_menu.txt:173
 msgid "police, need update"
 msgstr "要更新・警察署"
 
@@ -1358,15 +1358,15 @@ msgstr "取り締まり"
 msgid "URL"
 msgstr "URL"
 
-#: ../../tools/database/items_menu.txt:198
+#: ../../tools/database/items_menu.txt:200
 msgid "street objects"
 msgstr "路上のオブジェクト"
 
-#: ../../tools/database/items_menu.txt:236
+#: ../../tools/database/items_menu.txt:239
 msgid "openrailwaymap"
 msgstr "OpenRailwayMap"
 
-#: ../../tools/database/items_menu.txt:237
+#: ../../tools/database/items_menu.txt:240
 msgid "openrailwaymap in germany"
 msgstr "ドイツのopenrailwaymap"
 
@@ -1374,7 +1374,7 @@ msgstr "ドイツのopenrailwaymap"
 msgid "railways"
 msgstr "鉄道"
 
-#: ../../tools/database/items_menu.txt:183
+#: ../../tools/database/items_menu.txt:185
 msgid "power plant"
 msgstr "発電所"
 
@@ -1384,19 +1384,19 @@ msgid ""
 "languages."
 msgstr "Osmoseツールはフランスの人々が中心となって開発されており、もっと言語を追加したいと思っています。"
 
-#: ../../tools/database/items_menu.txt:199
+#: ../../tools/database/items_menu.txt:201
 msgid "defibrillator"
 msgstr "除細動器"
 
-#: ../../tools/database/items_menu.txt:203
+#: ../../tools/database/items_menu.txt:205
 msgid "radio support"
 msgstr "ラジオ塔"
 
-#: ../../tools/database/items_menu.txt:204
+#: ../../tools/database/items_menu.txt:206
 msgid "radio support, could be integrated"
 msgstr "統合可能なラジオ塔"
 
-#: ../../tools/database/items_menu.txt:205
+#: ../../tools/database/items_menu.txt:207
 msgid "radio support, need update"
 msgstr "要更新・ラジオ塔"
 
@@ -1412,15 +1412,15 @@ msgstr "誤った修正の回避"
 msgid "Example"
 msgstr "例"
 
-#: ../src/pages/map/doc.vue:71 ../src/pages/map/doc.vue:1
+#: ../src/pages/map/doc.vue:75 ../src/pages/map/doc.vue:1
 msgid "Source Code"
 msgstr "ソースコード"
 
-#: ../src/pages/map/doc.vue:78 ../src/pages/map/doc.vue:1
+#: ../src/pages/map/doc.vue:82 ../src/pages/map/doc.vue:1
 msgid "Resource used"
 msgstr "使用したリソース"
 
-#: ../src/pages/map/doc.vue:86
+#: ../src/pages/map/doc.vue:90
 msgid "Want to improve this control or this doc?"
 msgstr "このコントロールかこの文書を改善したいですか？"
 
@@ -1438,15 +1438,15 @@ msgstr "Osmose-QAがいつでも絶対正しいマッピング方法を提供す
 msgid "You can find help on the wiki:"
 msgstr "wikiにヘルプがあります。"
 
-#: ../../tools/database/items_menu.txt:208
+#: ../../tools/database/items_menu.txt:210
 msgid "charging station"
 msgstr "車の充電スタンド"
 
-#: ../../tools/database/items_menu.txt:209
+#: ../../tools/database/items_menu.txt:211
 msgid "charging station, could be integrated"
 msgstr "統合可能な車の充電スタンド"
 
-#: ../../tools/database/items_menu.txt:210
+#: ../../tools/database/items_menu.txt:212
 msgid "charging station, need update"
 msgstr "要更新・車の充電スタンド"
 
@@ -1454,15 +1454,15 @@ msgstr "要更新・車の充電スタンド"
 msgid "related objects"
 msgstr "関連するオブジェクト"
 
-#: ../../tools/database/items_menu.txt:200
+#: ../../tools/database/items_menu.txt:202
 msgid "wastewater"
 msgstr "下水処理場"
 
-#: ../../tools/database/items_menu.txt:201
+#: ../../tools/database/items_menu.txt:203
 msgid "wastewater, could be integrated"
 msgstr "統合可能な下水処理場"
 
-#: ../../tools/database/items_menu.txt:202
+#: ../../tools/database/items_menu.txt:204
 msgid "wastewater, need update"
 msgstr "要更新・下水処理場"
 
@@ -1481,27 +1481,27 @@ msgstr "問題の詳細"
 msgid "Report based on data from date"
 msgstr "日付によるデータに基づいて報告"
 
-#: ../../tools/database/items_menu.txt:177
+#: ../../tools/database/items_menu.txt:179
 msgid "pharmacy, need update"
 msgstr "統合可能な薬局"
 
-#: ../../tools/database/items_menu.txt:186
+#: ../../tools/database/items_menu.txt:188
 msgid "power substation, need update"
 msgstr "要更新・変電所"
 
-#: ../../tools/database/items_menu.txt:190
+#: ../../tools/database/items_menu.txt:192
 msgid "shop"
 msgstr "店舗"
 
-#: ../../tools/database/items_menu.txt:238
+#: ../../tools/database/items_menu.txt:241
 msgid "specific russia"
 msgstr "ロシア固有"
 
-#: ../../tools/database/items_menu.txt:239
+#: ../../tools/database/items_menu.txt:242
 msgid "specific brazil"
 msgstr "ブラジル固有"
 
-#: ../../tools/database/items_menu.txt:240
+#: ../../tools/database/items_menu.txt:243
 msgid "specific france"
 msgstr "フランス固有"
 
@@ -1529,15 +1529,15 @@ msgstr "幅広い種類の問題を検出します。合成によるサードパ
 msgid "VAT"
 msgstr "VAT（付加価値税）"
 
-#: ../../tools/database/items_menu.txt:206
+#: ../../tools/database/items_menu.txt:208
 msgid "health centre"
 msgstr "ヘルスセンター"
 
-#: ../../tools/database/items_menu.txt:207
+#: ../../tools/database/items_menu.txt:209
 msgid "health centre, could be integrated"
 msgstr "統合可能なヘルスセンター"
 
-#: ../../tools/database/items_menu.txt:211
+#: ../../tools/database/items_menu.txt:213
 msgid "tourism"
 msgstr "観光"
 
@@ -1555,23 +1555,23 @@ msgstr "消火栓"
 msgid "fire hydrant, could be integrated"
 msgstr "含められる消火栓"
 
-#: ../../tools/database/items_menu.txt:212
+#: ../../tools/database/items_menu.txt:214
 msgid "milestone"
 msgstr "マイルストン"
 
-#: ../../tools/database/items_menu.txt:213
+#: ../../tools/database/items_menu.txt:215
 msgid "milestone, could be integrated"
 msgstr "含められるマイルストン"
 
-#: ../../tools/database/items_menu.txt:214
+#: ../../tools/database/items_menu.txt:216
 msgid "viewpoint"
 msgstr "展望所"
 
-#: ../../tools/database/items_menu.txt:215
+#: ../../tools/database/items_menu.txt:217
 msgid "picnic"
 msgstr "ピクニック"
 
-#: ../../tools/database/items_menu.txt:216
+#: ../../tools/database/items_menu.txt:218
 msgid "bicycle infrastructure"
 msgstr "自転車のインフラ"
 
@@ -1595,23 +1595,23 @@ msgstr "要更新・記念堂、メガリス、博物館"
 msgid "place of worship"
 msgstr "宗教施設"
 
-#: ../../tools/database/items_menu.txt:217
+#: ../../tools/database/items_menu.txt:219
 msgid "cemetery"
 msgstr "墓地"
 
-#: ../../tools/database/items_menu.txt:218
+#: ../../tools/database/items_menu.txt:220
 msgid "man made"
 msgstr "人工物"
 
-#: ../../tools/database/items_menu.txt:219
+#: ../../tools/database/items_menu.txt:221
 msgid "water infrastructure"
 msgstr "水域のインフラ"
 
-#: ../../tools/database/items_menu.txt:220
+#: ../../tools/database/items_menu.txt:222
 msgid "water"
 msgstr "水域"
 
-#: ../../tools/database/items_menu.txt:221
+#: ../../tools/database/items_menu.txt:223
 msgid "fire station"
 msgstr "消防署"
 
@@ -1719,168 +1719,190 @@ msgstr "ボランティア"
 #: ../../web_api/byuser.py:75
 #, python-brace-format
 msgid "Statistics for user {0}"
-msgstr ""
+msgstr "ユーザーの統計 {0}"
 
 #: ../../web_api/issues.py:66
 msgid "Open issues"
-msgstr ""
+msgstr "未解決の課題"
 
 #: ../../web_api/issues.py:190
 msgid "Statistics for user {}"
-msgstr ""
+msgstr "ユーザーの統計 {}"
 
-#: ../../web_api/issues.py:233 tmp.tpl:2
+#: ../../web_api/issues.py:233
 msgid "Mark issue as fixed"
-msgstr ""
+msgstr "課題を修正済みとする"
 
-#: ../../web_api/issues.py:235 tmp.tpl:3
+#: ../../web_api/issues.py:235
 msgid "Mark issue as false positive"
-msgstr ""
+msgstr "課題を誤検出とする"
 
 #: ../../web_api/issues.py:240
 msgid "Tags:"
-msgstr ""
+msgstr "タグ:"
 
-#: tmp.tpl:1 tmp.tpl:5
 msgid "Tags"
-msgstr ""
+msgstr "タグ"
 
 #: ../../tools/database/items_menu.txt:111
 msgid "post office, ref not integrated"
-msgstr ""
+msgstr "未統合の郵便局参照番号"
 
 #: ../../tools/database/items_menu.txt:112
 msgid "post box, ref not integrated"
-msgstr ""
+msgstr "未統合の郵便ポスト参照番号"
 
 #: ../../tools/database/items_menu.txt:114
 msgid "school, ref not integrated"
-msgstr ""
+msgstr "未統合の学校参照番号"
 
 #: ../../tools/database/items_menu.txt:121
 msgid "transport sharing, ref not integrated"
-msgstr ""
+msgstr "未統合の公共機関シェア参照番号"
 
 #: ../../tools/database/items_menu.txt:122
 msgid "pharmacy, ref not integrated"
-msgstr ""
+msgstr "未統合の薬局参照番号"
 
 #: ../../tools/database/items_menu.txt:123
 msgid "postal code, ref not integrated"
-msgstr ""
+msgstr "未統合の郵便番号参照番号"
 
 #: ../../tools/database/items_menu.txt:125
 msgid "power substation, ref not integrated"
-msgstr ""
+msgstr "未統合の変電所参照番号"
 
 #: ../../tools/database/items_menu.txt:126
 msgid "hospital, ref not integrated"
-msgstr ""
+msgstr "未統合の病院参照番号"
 
 #: ../../tools/database/items_menu.txt:127
 msgid "social facility, ref not integrated"
-msgstr ""
+msgstr "未統合の社会福祉施設参照番号"
 
 #: ../../tools/database/items_menu.txt:128
 msgid "medical lab, ref not integrated"
-msgstr ""
+msgstr "未統合の医学研究室参照番号"
 
 #: ../../tools/database/items_menu.txt:129
 msgid "gas station, ref not integrated"
-msgstr ""
+msgstr "未統合のガソリンスタンド参照番号"
 
-#: ../src/pages/issues/index.vue:183
+#: ../src/pages/issues/index.vue:185
 msgid "BBox"
-msgstr ""
+msgstr "境界ボックス"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for 'class'
-#: ../src/components/issues-list.vue:22 ../src/pages/issues/index.vue:220
+#: ../src/components/issues-list.vue:22 ../src/pages/issues/index.vue:222
 msgid "cl"
-msgstr ""
+msgstr "cl"
 
-#: ../src/pages/issues/index.vue:137
+#: ../src/pages/issues/index.vue:139 ../src/pages/map/items-filters.vue:86
+#: ../src/pages/map/items-filters.vue:31
 msgid "Class id"
-msgstr ""
+msgstr "クラス id"
 
-#: ../src/pages/map/index.vue:74
+#: ../src/pages/map/index.vue:185
 msgid "Control, verification and correction of {project} issues"
-msgstr ""
+msgstr "{project} の課題のコントロール、検証、修正"
 
-#: ../src/pages/map/top.vue:269
+#: ../src/pages/map/top.vue:258
 msgid "Delay:"
-msgstr ""
+msgstr "遅延:"
 
-#: ../src/pages/map/doc.vue:63
+#: ../src/pages/map/doc.vue:64
 msgid "Do not want to see {title} markers?"
-msgstr ""
+msgstr "{title} マーカーを非表示にしたいですか？"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for 'elements'
 #: ../src/components/issues-list.vue:34
 msgid "elms"
-msgstr ""
+msgstr "elms"
 
-#: ../src/pages/map/doc.vue:68
+#: ../src/pages/map/doc.vue:71
 msgid "Hide from map"
-msgstr ""
+msgstr "地図から隠す"
 
 #: ../src/pages/map/doc.vue:61
 msgid "Hide markers"
-msgstr ""
+msgstr "マーカーを隠す"
 
-#: ../src/pages/map/items.vue:36
+#: ../src/pages/map/items-list.vue:40
 msgid "Item #{item}"
-msgstr ""
+msgstr "項目 #{item}"
 
-#: ../src/pages/issues/index.vue:121
+#: ../src/pages/issues/index.vue:123 ../src/pages/map/items-filters.vue:57
+#: ../src/pages/map/items-filters.vue:2
 msgid "Less filters"
-msgstr ""
+msgstr "フィルターを減らす"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for 'location'
 #: ../src/components/issues-list.vue:29
 msgid "loc"
-msgstr ""
+msgstr "loc"
 
 #: ../src/components/issues-list.vue:262
 msgid "location"
-msgstr ""
+msgstr "場所"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for 'level'
 #: ../src/components/issues-list.vue:12
 msgid "lvl"
-msgstr ""
+msgstr "lvl"
 
-#: ../src/pages/issues/index.vue:117
+#: ../src/pages/issues/index.vue:119 ../src/pages/map/items-filters.vue:122
 msgid "More filters"
-msgstr ""
+msgstr "フィルターを増やす"
 
-#: ../src/pages/issues/index.vue:160
+#: ../src/pages/issues/index.vue:162 ../src/pages/map/items-filters.vue:100
+#: ../src/pages/map/items-filters.vue:45
 msgid "No (Default)"
-msgstr ""
+msgstr "No (既定値)"
 
-#: ../src/pages/issues/index.vue:166
+#: ../src/pages/issues/index.vue:168 ../src/pages/map/items-filters.vue:106
+#: ../src/pages/map/items-filters.vue:51
 msgid "Only"
-msgstr ""
+msgstr "Only"
 
-#: ../src/pages/issues/index.vue:13
+#: ../src/pages/issues/index.vue:15
 msgid "Open"
-msgstr ""
+msgstr "開く"
 
-#: ../src/pages/issues/index.vue:176
+#: ../src/pages/issues/index.vue:178 ../src/pages/map/items-filters.vue:113
+#: ../src/pages/map/items-filters.vue:58
 msgid "OSM Username"
-msgstr ""
+msgstr "OSM ユーザー名"
 
-#: ../src/pages/issues/index.vue:156
+#: ../src/pages/issues/index.vue:158 ../src/pages/map/items-filters.vue:95
+#: ../src/pages/map/items-filters.vue:40
 msgid "Show hidden items"
-msgstr ""
+msgstr "非表示の項目を表示"
 
-#: ../src/pages/issues/index.vue:130
+#: ../src/pages/issues/index.vue:132 ../src/pages/map/items-filters.vue:77
+#: ../src/pages/map/items-filters.vue:22
 msgid "Source id"
-msgstr ""
+msgstr "ソース id"
 
-#: ../src/pages/issues/index.vue:507 ../src/pages/map/items.vue:217
+#: ../src/pages/issues/index.vue:507 ../src/pages/map/items-filters.vue:219
 msgid "tag"
+msgstr "タグ"
+
+#: ../src/pages/issues/index.vue:146
+msgid "Tag"
+msgstr "タグ"
+
+#: ../../tools/database/items_menu.txt:169
+msgid "toilets, could be integrated"
 msgstr ""
 
-#: ../src/pages/issues/index.vue:144
-msgid "Tag"
+#: ../../tools/database/items_menu.txt:170
+msgid "toilets, need update"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:224
+msgid "natural"
+msgstr ""
+
+#: ../src/pages/map/items.vue:6
+msgid "Zoom in to see issues."
 msgstr ""
