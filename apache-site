@@ -5,15 +5,22 @@
 	ServerName osmose.openstreetmap.fr
 	ServerAlias osmose.openstreetmap.lu
 
-	WSGIScriptAlias / /data/project/osmose/frontend/osmose.wsgi
-	WSGIDaemonProcess osmose processes=5 threads=6 user=osmose group=osmose maximum-requests=1000 graceful-timeout=600 python-path=/data/project/osmose/frontend/osmose-frontend-venv/lib/python2.7/site-packages
+	Timeout 1200
+
+	WSGIDaemonProcess osmose processes=5 threads=6 user=osmose group=osmose maximum-requests=1000 graceful-timeout=600 python-path=/data/project/osmose/frontend/osmose-frontend-venv/lib/python3.9/site-packages
+	WSGIScriptAlias / /data/project/osmose/frontend/osmose.wsgi process-group=osmose application-group=%{GLOBAL}
 	WSGIProcessGroup osmose
+
+	WSGIDaemonProcess osmose-update processes=3 threads=5 user=osmose group=osmose maximum-requests=200 graceful-timeout=600 python-path=/data/project/osmose/frontend/osmose-frontend-venv/lib/python3.9/site-packages
+	WSGIScriptAlias /control/send-update /data/project/osmose/frontend/osmose.wsgi process-group=osmose-update application-group=%{GLOBAL}
 
 	DocumentRoot /data/project/osmose/frontend/web/static/
 
 	Alias /robots.txt /data/project/osmose/frontend/web/static/robots.txt
 	Alias /favicon.ico /data/project/osmose/frontend/web/static/favicon.ico
 	Alias /export /data/work/osmose/export
+
+	CacheIgnoreHeaders Cookie Set-Cookie
 
 	<Location />
 		Require all granted
@@ -37,7 +44,6 @@
 
 	ExpiresActive On
 	ExpiresDefault "access plus 1 week"
-	CacheIgnoreHeaders Cookie Set-Cookie
 
 	<LocationMatch /[a-z_]+/api>
 		ExpiresActive Off
@@ -60,6 +66,12 @@
 		ExpiresActive Off
 		CacheDisable on
 	</LocationMatch>
+	<LocationMatch /[a-z_]+/map/.*.js>
+		ExpiresActive On
+		ExpiresDefault "access plus 3 months"
+		CacheEnable disk
+		CacheHeader on
+	</LocationMatch>
 	<LocationMatch /0\.3/issues/[0-9]+/[0-9]+/[0-9]+\.heat\.mvt>
 		ExpiresDefault "access plus 1 day"
 		CacheEnable disk
@@ -70,8 +82,20 @@
 		CacheEnable disk
 		CacheHeader on
 	</LocationMatch>
+	<LocationMatch /[a-z_]+/map/issues/>
+		ExpiresActive On
+		ExpiresDefault "access plus 2 minutes"
+		CacheEnable disk
+		CacheHeader on
+	</LocationMatch>
 	<LocationMatch /[a-z_]+/map/issues/[0-9]/*>
 		ExpiresDefault "access plus 1 day"
+		CacheEnable disk
+		CacheHeader on
+	</LocationMatch>
+	<LocationMatch /[a-z_]+/map/issues/1[0-9]/*>
+		ExpiresActive On
+		ExpiresDefault "access plus 20 seconds"
 		CacheEnable disk
 		CacheHeader on
 	</LocationMatch>
@@ -83,18 +107,36 @@
 		ExpiresActive Off
 		CacheDisable on
 	</LocationMatch>
+	<LocationMatch ".*.rss$" >
+		ExpiresActive On
+		ExpiresDefault "access plus 12 hours"
+		CacheEnable disk
+		CacheHeader on
+	</LocationMatch>
 	<LocationMatch /api/0\.3/items/[0-9]*/class/[0-9]*>
 		ExpiresDefault "access plus 60 minutes"
+	</LocationMatch>
+	<LocationMatch /assets/.*>
+		ExpiresDefault "access plus 30 days"
+		ExpiresActive On
+		CacheEnable disk
+		CacheHeader on
+		Header merge Cache-Control "public, immutable"
 	</LocationMatch>
 
 	RewriteEngine On
 #	RewriteCond %{REQUEST_URI} !/maintenance.html$
 #	RewriteRule !^maintenance.html$ maintenance.html [R=302,L]
 
-	RewriteRule ^/oauth$ /en/oauth [PT]
 	RewriteRule "^(/api/0.2/.*)" "/en$1" [PT]
 	RewriteRule "^/([a-z_]+)(/api/0\.3/.*)" "$2?%{QUERY_STRING}&langs=$1" [PT]
+	RewriteRule "^/([a-z_]+)/error/(.*)" "/$1/issue/$2?%{QUERY_STRING}" [R,L]
+	RewriteRule "^/([a-z_]+)/errors/done(.*)" "/$1/issues/done$2" [R,L]
+	RewriteRule "^/([a-z_]+)/errors/false-positive(.*)" "/$1/issues/false-positive$2" [R,L]
+	RewriteRule "^/([a-z_]+)/errors(.*)" "/$1/issues/open$2" [R,L]
+#	RewriteRule "^/([a-z_]+)(/images/.*)" "$2" [R,L]
 
+	RewriteRule ^/oauth$ /en/oauth [PT]
 	RewriteRule ^/$ /map/ [R,L]
 	RewriteRule ^/map/cgi-bin/index.py$ /map [R,L]
 
@@ -102,5 +144,4 @@
 	LogLevel warn
 	CustomLog /var/log/apache2/osmose-access.log combined
 	ServerSignature On
-
 </VirtualHost>
