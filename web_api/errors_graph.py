@@ -152,14 +152,6 @@ def make_plt(db, params, format):
     return plot(data, text+' '+src, format)
 
 
-class AutoDateLocatorDay(matplotlib.dates.AutoDateLocator):
-    def get_locator(self, dmin, dmax):
-        if dmax-dmin <= timedelta(days=5):
-            return matplotlib.dates.AutoDateLocator.get_locator(self, dmax-timedelta(days=5), dmax)
-        else:
-            return matplotlib.dates.AutoDateLocator.get_locator(self, dmin, dmax)
-
-
 def plot(data, title, format):
     if format == 'json':
         jsonData = {}
@@ -197,12 +189,11 @@ def plot(data, title, format):
         ax.fmt_ydata = lambda x: '$%1.2f'%x
         ax.grid(True)
 
-        locator = AutoDateLocatorDay()
-        locator.set_axis(ax.xaxis)
-        locator.refresh()
+        locator = matplotlib.dates.AutoDateLocator()
         formatter = matplotlib.dates.AutoDateFormatter(locator)
         formatter.scaled[30.] = '%Y-%m'
         formatter.scaled[1.0] = '%Y-%m-%d'
+        ax.xaxis.set_major_locator(locator)
         ax.xaxis.set_major_formatter(formatter)
 
         fig.autofmt_xdate()
