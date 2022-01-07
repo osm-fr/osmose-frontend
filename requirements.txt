@@ -9,5 +9,5 @@ pyclipper
 #  - https://github.com/litl/rauth/issues/185 (data dict/bytes issue)
 #  - https://github.com/litl/rauth/pull/208  (python 3.8 compatibility)
 git+git://github.com/osm-fr/rauth.git
-bottle == 0.12.13
+bottle == 0.12.19
 lxml
