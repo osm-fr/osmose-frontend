@@ -5,7 +5,9 @@ beaker >= 1.6
 polib
 mapbox-vector-tile
 pyclipper
-# Use a patch fork, for unmaintened rauth, https://github.com/litl/rauth/issues/185
-git+git://github.com/hendi/rauth.git@37615b738a944684bb02ea1c9ea5f3bbde84f0e7
+# Use a patch fork, for unmaintened rauth:
+#  - https://github.com/litl/rauth/issues/185 (data dict/bytes issue)
+#  - https://github.com/litl/rauth/pull/208  (python 3.8 compatibility)
+git+git://github.com/osm-fr/rauth.git
 bottle == 0.12.13
 lxml
