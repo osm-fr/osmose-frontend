@@ -107,10 +107,7 @@
                 >&nbsp;<a
                   v-if="e.type === 'R'"
                   title="josm"
-                  :href="
-                    api_url +
-                    `/en/josm_proxy?import?url=${remote_url_read}api/0.6/relation/${e.id}/full`
-                  "
+                  :href="`http://localhost:8111/import?url=${remote_url_read}api/0.6/relation/${e.id}/full`"
                   target="hiddenIframe"
                   v-on:click="onJosmRelation(res)"
                 >
@@ -119,12 +116,9 @@
                 <a
                   v-else
                   title="josm"
-                  :href="
-                    api_url +
-                    `/en/josm_proxy?load_object?objects=${e.type.toLocaleLowerCase()}${
-                      e.id
-                    }`
-                  "
+                  :href="`http://localhost:8111/load_object?objects=${e.type.toLocaleLowerCase()}${
+                    e.id
+                  }`"
                   target="hiddenIframe"
                 >
                   (j)

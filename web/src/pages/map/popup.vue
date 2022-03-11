@@ -39,7 +39,7 @@
           </a>
           <a
             v-if="elem.type == 'node'"
-            :href="api_url + `/en/josm_proxy?load_object?objects=n${elem.id}`"
+            :href="`http://localhost:8111/load_object?objects=n${elem.id}`"
             target="hiddenIframe"
             class="josm"
             :title="$t('Edit Object with {where}', { where: 'JOSM' })"
@@ -57,7 +57,7 @@
           >
           <a
             v-if="elem.type == 'way'"
-            :href="api_url + `/en/josm_proxy?load_object?objects=w${elem.id}`"
+            :href="`http://localhost:8111/load_object?objects=w${elem.id}`"
             target="hiddenIframe"
             class="josm"
             :title="$t('Edit Object with {where}', { where: 'JOSM' })"
@@ -75,10 +75,7 @@
           >
           <a
             v-if="elem.type == 'relation'"
-            :href="
-              api_url +
-              `/en/josm_proxy?import?url=${remote_url_read}api/0.6/${elem.type}/${elem.id}/full`
-            "
+            :href="`http://localhost:8111/import?url=${remote_url_read}api/0.6/${elem.type}/${elem.id}/full`"
             target="hiddenIframe"
             class="josm"
             :title="$t('Edit Object with {where}', { where: 'JOSM' })"
@@ -111,8 +108,7 @@
             <div class="fix_links">
               <a
                 :href="
-                  api_url +
-                  '/en/josm_proxy?import?url=' +
+                  'http://localhost:8111/import?url=' +
                   api_url +
                   `/api/0.3/issue/${uuid}/fix/${fix.num}`
                 "
@@ -172,8 +168,7 @@
             <div class="fix_links">
               <a
                 :href="
-                  api_url +
-                  '/en/josm_proxy?import?url=' +
+                  'http://localhost:8111/import?url=' +
                   api_url +
                   `/api/0.3/issue/${uuid}/fix/${fix.num}`
                 "
@@ -224,10 +219,7 @@
           iD-zone</a
         >
         <a
-          :href="
-            api_url +
-            `/en/josm_proxy?load_and_zoom?left=${minlon}&bottom=${minlat}&right=${maxlon}&top=${maxlat}`
-          "
+          :href="`http://localhost:8111/load_and_zoom?left=${minlon}&bottom=${minlat}&right=${maxlon}&top=${maxlat}`"
           target="hiddenIframe"
           class="josm"
           :title="$t('Edit the area on {where}', { where: 'JOSM' })"

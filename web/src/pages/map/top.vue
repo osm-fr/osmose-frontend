@@ -48,7 +48,7 @@
           </li>
           <li>
             <a
-              :href="`${api_url}/${lang}/josm_proxy?issues/open.josm?${params}`"
+              :href="`${api_url}/en/issues/open.josm?${params}`"
               target="hiddenIframe"
             >
               JOSM
