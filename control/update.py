@@ -232,7 +232,7 @@ DELETE FROM
     markers
 WHERE
     source_id = %s AND
-    ARRAY [%s] <@ marker_elem_ids(elems) AND
+    ARRAY [%s::bigint] <@ marker_elem_ids(elems) AND
     (SELECT bool_or(elem->>\'type\' = %s AND elem->>\'id\' = %s) FROM (SELECT unnest(elems)) AS t(elem))
 """, (self._source_id, str(attrs["id"], attrs["type"][0].upper(), str(attrs["id"])))
 
