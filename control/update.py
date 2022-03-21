@@ -234,7 +234,7 @@ WHERE
     source_id = %s AND
     ARRAY [%s::bigint] <@ marker_elem_ids(elems) AND
     (SELECT bool_or(elem->>\'type\' = %s AND elem->>\'id\' = %s) FROM (SELECT unnest(elems)) AS t(elem))
-""", (self._source_id, str(attrs["id"], attrs["type"][0].upper(), str(attrs["id"])))
+""", (self._source_id, str(attrs["id"]), attrs["type"][0].upper(), str(attrs["id"])))
 
         elif name == u"fixes":
             self.elem_mode = "fix"
