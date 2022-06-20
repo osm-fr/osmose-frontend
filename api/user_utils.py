@@ -2,8 +2,7 @@ from modules import query
 from modules.params import Params
 
 
-def _user(db, lang, username):
-    params = Params()
+def _user(params: Params, db, lang, username):
     if username:
         params.users = username.split(",")
     params.limit = 500
@@ -14,8 +13,7 @@ def _user(db, lang, username):
     return [params, username, errors]
 
 
-def _user_count(db, username=None):
-    params = Params()
+def _user_count(params: Params, db, username=None):
     if username:
         params.users = username.split(",")
 
