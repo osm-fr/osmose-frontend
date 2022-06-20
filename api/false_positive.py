@@ -13,7 +13,7 @@ def fp_err_id(db, lang, err_id):
     if not marker:
         abort(410, "Id is not present in database.")
 
-    return _fp(2, db, lang, None, marker, columns)
+    return _fp(2, lang, None, marker, columns)
 
 
 @route("/false-positive/<uuid:uuid>")
@@ -22,10 +22,10 @@ def fp_uuid(db, langs, uuid):
     if not marker:
         abort(410, "Id is not present in database.")
 
-    return _fp(3, db, langs, uuid, marker, columns)
+    return _fp(3, langs, uuid, marker, columns)
 
 
-def _fp(version, db, langs, uuid, marker, columns):
+def _fp(version, langs, uuid, marker, columns):
     lat = str(marker["lat"])
     lon = str(marker["lon"])
     title = utils.i10n_select(marker["title"], langs)
