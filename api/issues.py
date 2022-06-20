@@ -94,7 +94,7 @@ def errors(db, lang):
 
 @route("/issues")
 @route("/issues.<format:ext>")
-def errors(db, langs, format=None):
+def issues(db, langs, format=None):
     params = Params(max_limit=10000)
     results = query._gets(db, params)
 

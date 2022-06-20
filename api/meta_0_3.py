@@ -21,19 +21,19 @@ def items(db, langs):
 
 
 @route("/items/<item:int>/class/<classs:int>")
-def items(db, langs, item, classs):
+def items_class(db, langs, item, classs):
     return {
         "categories": (query_meta._items(db, item=item, classs=classs, langs=langs))
     }
 
 
 @route("/countries")
-def items(db):
+def countries(db):
     return {"countries": query_meta._countries(db)}
 
 
 @route("/tags")
-def items(db):
+def tags(db):
     return {"tags": query_meta._tags(db)}
 
 
