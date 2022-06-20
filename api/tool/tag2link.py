@@ -120,7 +120,7 @@ if __name__ == "__main__":
     print(t2l.checkTags({"ref:UAI": "123"}))
     print(
         t2l.checkTags(
-            {"man_made": "survey_point", "source": u"©IGN 2012", "ref": "1234567 - A"}
+            {"man_made": "survey_point", "source": "©IGN 2012", "ref": "1234567 - A"}
         )
     )
     print(
@@ -128,7 +128,7 @@ if __name__ == "__main__":
             {
                 "url": "span://bad",
                 "man_made": "survey_point",
-                "source": u"©IGN 2012",
+                "source": "©IGN 2012",
                 "ref": "1234567 - A",
             }
         )

@@ -113,7 +113,7 @@ def fresh_elems_uuid(db, uuid, fix_num=None):
                     "type": data_type[elem["type"]],
                     "id": elem["id"],
                     "version": fresh_elem["version"],
-                    "tags": fresh_elem[u"tag"],
+                    "tags": fresh_elem["tag"],
                 }
                 elems[data_type[elem["type"]] + str(elem["id"])] = tmp_elem
 

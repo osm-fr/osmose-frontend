@@ -33,14 +33,14 @@ languages_name["nb"] = {"name": "Norsk bokmål"}
 languages_name["nl"] = {"name": "Nederlands"}
 languages_name["pl"] = {"name": "Polski"}
 languages_name["pt"] = {"name": "Português"}
-languages_name["pt_BR"] = {"name": u"Português (Brasil)"}
+languages_name["pt_BR"] = {"name": "Português (Brasil)"}
 languages_name["ro"] = {"name": "Română"}
 languages_name["ru"] = {"name": "Русский"}
 languages_name["sv"] = {"name": "Svenska"}
 languages_name["uk"] = {"name": "Українська"}
 languages_name["vi"] = {"name": "Tiếng Việt"}
-languages_name["zh_CN"] = {"name": u"中文 (简体)"}
-languages_name["zh_TW"] = {"name": u"中文 (繁體)"}
+languages_name["zh_CN"] = {"name": "中文 (简体)"}
+languages_name["zh_TW"] = {"name": "中文 (繁體)"}
 
 
 allowed_languages = list(languages_name.keys())
@@ -94,7 +94,7 @@ def pg_escape(text):
         return None
     if type(text) == int:
         return str(text)
-    return text.replace(u"'", u"''").replace(u"\\", u"\\\\")
+    return text.replace("'", "''").replace("\\", "\\\\")
 
 
 def get_sources():
