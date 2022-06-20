@@ -1,11 +1,13 @@
 #! /usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
+import datetime
 import os
-import datetime, urllib.request
-from collections import OrderedDict
 import pwd
+import urllib.request
+from collections import OrderedDict
 from io import StringIO
+
 from . import OsmSax
 
 ################################################################################
@@ -34,46 +36,54 @@ languages_name["nb"] = {"name": "Norsk bokmål"}
 languages_name["nl"] = {"name": "Nederlands"}
 languages_name["pl"] = {"name": "Polski"}
 languages_name["pt"] = {"name": "Português"}
-languages_name["pt_BR"] ={"name": u"Português (Brasil)"}
+languages_name["pt_BR"] = {"name": u"Português (Brasil)"}
 languages_name["ro"] = {"name": "Română"}
 languages_name["ru"] = {"name": "Русский"}
 languages_name["sv"] = {"name": "Svenska"}
 languages_name["uk"] = {"name": "Українська"}
 languages_name["vi"] = {"name": "Tiếng Việt"}
-languages_name["zh_CN"] ={"name": u"中文 (简体)"}
-languages_name["zh_TW"] ={"name": u"中文 (繁體)"}
+languages_name["zh_CN"] = {"name": u"中文 (简体)"}
+languages_name["zh_TW"] = {"name": u"中文 (繁體)"}
 
 
 allowed_languages = list(languages_name.keys())
-pg_host           = os.environ.get("DB_HOST", "") # Use socket by default
-pg_port           = os.environ.get("DB_PORT", "5432")
-pg_user           = os.environ.get("DB_USER", "osmose")
-pg_pass           = os.environ.get("DB_PASS", "clostAdtoi")
-pg_base           = os.environ.get("DB_NAME", "osmose_frontend")
-db_string         = "host='%s' port='%s' dbname='%s' user='%s' password='%s'" % (pg_host, pg_port, pg_base, pg_user, pg_pass)
-website           = os.environ.get('URL_FRONTEND') or "osmose.openstreetmap.fr"
+pg_host = os.environ.get("DB_HOST", "")  # Use socket by default
+pg_port = os.environ.get("DB_PORT", "5432")
+pg_user = os.environ.get("DB_USER", "osmose")
+pg_pass = os.environ.get("DB_PASS", "clostAdtoi")
+pg_base = os.environ.get("DB_NAME", "osmose_frontend")
+db_string = "host='%s' port='%s' dbname='%s' user='%s' password='%s'" % (
+    pg_host,
+    pg_port,
+    pg_base,
+    pg_user,
+    pg_pass,
+)
+website = os.environ.get("URL_FRONTEND") or "osmose.openstreetmap.fr"
 
-main_project      = "OpenStreetMap"
-main_website      = "https://www.openstreetmap.org/"
-remote_url        = "https://www.openstreetmap.org/"
-remote_url_read   = "https://www.openstreetmap.org/"
-remote_url_write  = "https://www.openstreetmap.org/"
+main_project = "OpenStreetMap"
+main_website = "https://www.openstreetmap.org/"
+remote_url = "https://www.openstreetmap.org/"
+remote_url_read = "https://www.openstreetmap.org/"
+remote_url_write = "https://www.openstreetmap.org/"
 
-#main_project      = "OpenGeoFiction"
-#main_website      = "http://opengeofiction.net/"
-#remote_url        = "http://opengeofiction.net/"
-#remote_url_read   = "http://opengeofiction.net/"
-#remote_url_write  = "http://opengeofiction.net/"
-#main_website      = "http://opengeofiction.net/"
+# main_project      = "OpenGeoFiction"
+# main_website      = "http://opengeofiction.net/"
+# remote_url        = "http://opengeofiction.net/"
+# remote_url_read   = "http://opengeofiction.net/"
+# remote_url_write  = "http://opengeofiction.net/"
+# main_website      = "http://opengeofiction.net/"
 
-username          = pwd.getpwuid(os.getuid())[0]
-dir_results       = "/data/work/%s/results" % (username)
+username = pwd.getpwuid(os.getuid())[0]
+dir_results = "/data/work/%s/results" % (username)
 
 ################################################################################
 
+
 def get_dbconn():
     import psycopg2.extras
-#    return psycopg2.connect(host="localhost", database = pg_base, user = pg_user, password = pg_pass)
+
+    #    return psycopg2.connect(host="localhost", database = pg_base, user = pg_user, password = pg_pass)
     psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
     psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
     psycopg2.extensions.register_adapter(dict, psycopg2.extras.Json)
@@ -81,42 +91,46 @@ def get_dbconn():
     psycopg2.extras.register_default_jsonb(conn)
     return conn
 
+
 def pg_escape(text):
     if text is None:
         return None
     if type(text) == int:
         return str(text)
-    return text.replace(u"'", u"''").replace(u'\\',u'\\\\')
+    return text.replace(u"'", u"''").replace(u"\\", u"\\\\")
+
 
 def get_sources():
     conn = get_dbconn()
     curs = conn.cursor()
-    curs.execute("SELECT id, password, country, analyser FROM sources JOIN sources_password ON sources.id = source_id;")
+    curs.execute(
+        "SELECT id, password, country, analyser FROM sources JOIN sources_password ON sources.id = source_id;"
+    )
     config = {}
     for res in curs.fetchall():
         src = {}
-        src["id"]         = str(res["id"])
-        src["password"]   = set([res["password"]])
-        src["country"]    = res["country"]
-        src["analyser"]   = res["analyser"]
-        src["comment"]    = res["analyser"] + "-" + res["country"]
-        if (src["id"] in config and
-            config[src["id"]]["country"] == src["country"] and
-            config[src["id"]]["analyser"] == src["analyser"]):
+        src["id"] = str(res["id"])
+        src["password"] = set([res["password"]])
+        src["country"] = res["country"]
+        src["analyser"] = res["analyser"]
+        src["comment"] = res["analyser"] + "-" + res["country"]
+        if (
+            src["id"] in config
+            and config[src["id"]]["country"] == src["country"]
+            and config[src["id"]]["analyser"] == src["analyser"]
+        ):
             config[src["id"]]["password"].update(src["password"])
         else:
             config[src["id"]] = src
     return config
 
+
 def show(s):
     print(s.encode("utf8"))
 
+
 def str_to_datetime(s):
-    patterns = [
-                "%Y-%m-%d",
-                "%Y-%m",
-                "%Y"
-               ]
+    patterns = ["%Y-%m-%d", "%Y-%m", "%Y"]
     for p in patterns:
         try:
             return datetime.datetime.strptime(s, p)
@@ -125,8 +139,10 @@ def str_to_datetime(s):
 
     raise ValueError
 
+
 ###########################################################################
 ## translation
+
 
 def i10n_select(translations, langs):
     if not translations:
@@ -136,29 +152,33 @@ def i10n_select(translations, langs):
     else:
         for lang in langs:
             if lang in translations:
-                return {'auto': translations[lang]}
-        if 'en' in translations:
-            return {'auto': translations['en']}
+                return {"auto": translations[lang]}
+        if "en" in translations:
+            return {"auto": translations["en"]}
         else:
-            return {'auto': list(translations.values())[0]}
+            return {"auto": list(translations.values())[0]}
+
 
 def i10n_select_auto(translations, langs):
     if translations:
-        return i10n_select(translations, langs)['auto']
+        return i10n_select(translations, langs)["auto"]
+
 
 ###########################################################################
 ## API
 
+
 def fetch_osm_data(type, id, full=True):
-    elem_url = os.path.join(remote_url_read + 'api/0.6/', type, str(id))
+    elem_url = os.path.join(remote_url_read + "api/0.6/", type, str(id))
     if type == "way" and full:
         elem_url = os.path.join(elem_url, "full")
     try:
-        elem_io = StringIO(urllib.request.urlopen(elem_url).read().decode('utf-8'))
+        elem_io = StringIO(urllib.request.urlopen(elem_url).read().decode("utf-8"))
         osm_read = OsmSax.OsmSaxReader(elem_io)
         return osm_read
     except:
         pass
+
 
 def fetch_osm_elem(type, id):
     osmdw = OsmSax.OsmDictWriter()

@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 ###########################################################################
 ##                                                                       ##
@@ -20,39 +20,41 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import default_app, route, response, request
-from modules import query_meta
+from bottle import default_app, request, response, route
 
+from modules import query_meta
 
 app_0_2 = default_app.pop()
 
 
 def _map_items(categories):
     for categorie in categories:
-        categorie['categ'] = categorie['id']
-        del categorie['id']
-        for item in categorie['items']:
-            item['categ'] = item['categorie_id']
-            del item['categorie_id']
+        categorie["categ"] = categorie["id"]
+        del categorie["id"]
+        for item in categorie["items"]:
+            item["categ"] = item["categorie_id"]
+            del item["categorie_id"]
     return categories
 
 
-@route('/items')
+@route("/items")
 def items(db, langs):
-    return {"categories": _map_items(query_meta._items(db, langs = langs))}
+    return {"categories": _map_items(query_meta._items(db, langs=langs))}
 
 
-@route('/items/<item:int>/class/<classs:int>')
+@route("/items/<item:int>/class/<classs:int>")
 def items(db, langs, item, classs):
-    return {"categories": (query_meta._items(db, item = item, classs = classs, langs = langs))}
+    return {
+        "categories": (query_meta._items(db, item=item, classs=classs, langs=langs))
+    }
 
 
-@route('/countries')
+@route("/countries")
 def items(db):
     return {"countries": query_meta._countries(db)}
 
 
-@route('/tags')
+@route("/tags")
 def items(db):
     return {"tags": query_meta._tags(db)}
 

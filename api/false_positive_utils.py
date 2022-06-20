@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ###########################################################################
 ##                                                                       ##
 ## Copyrights Jocelyn Jaubert 2013                                       ##
@@ -19,16 +19,24 @@
 ##                                                                       ##
 ###########################################################################
 
+
 def _get(db, status, err_id=None, uuid=None):
     columns = [
-        "markers_status.item", "source_id", "markers_status.class",
-        "lat::float", "lon::float",
-        "title", "subtitle",
+        "markers_status.item",
+        "source_id",
+        "markers_status.class",
+        "lat::float",
+        "lon::float",
+        "title",
+        "subtitle",
         "date AS timestamp",
     ]
 
     if err_id:
-        sql = "SELECT " + ",".join(columns) + """
+        sql = (
+            "SELECT "
+            + ",".join(columns)
+            + """
         FROM
             markers_status
             JOIN class ON
@@ -38,9 +46,13 @@ def _get(db, status, err_id=None, uuid=None):
             status = %s AND
             uuid_to_bigint(uuid) = %s
         """
+        )
         db.execute(sql, (status, err_id))
     else:
-        sql = "SELECT " + ",".join(columns) + """
+        sql = (
+            "SELECT "
+            + ",".join(columns)
+            + """
         FROM
             markers_status
         JOIN class ON
@@ -50,6 +62,7 @@ def _get(db, status, err_id=None, uuid=None):
             status = %s AND
             uuid = %s
         """
+        )
         db.execute(sql, (status, uuid))
 
     marker = db.fetchone()

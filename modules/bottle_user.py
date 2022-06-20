@@ -1,29 +1,29 @@
-'''
-'''
+"""
+"""
 
 __author__ = "Frederic Rodrigo"
-__version__ = '0.1'
-__license__ = 'MIT'
+__version__ = "0.1"
+__license__ = "MIT"
 
 ### CUT HERE (see setup.py)
 
-from bottle import request, response
 import inspect
+
+from bottle import request, response
 
 
 class UserPlugin(object):
-    '''
-    '''
+    """"""
 
-    name = 'user'
-    api  = 2
+    name = "user"
+    api = 2
 
-    def __init__(self, keyword='user'):
+    def __init__(self, keyword="user"):
         self.keyword = keyword
 
     def apply(self, callback, route):
-        conf = route.config.get('user') or {}
-        keyword = conf.get('keyword', self.keyword)
+        conf = route.config.get("user") or {}
+        keyword = conf.get("keyword", self.keyword)
 
         # Test if the original callback accepts a 'user' keyword.
         # Ignore it if it does not need a database handle.
@@ -32,9 +32,9 @@ class UserPlugin(object):
             return callback
 
         def wrapper(*args, **kwargs):
-            if 'user' in request.session:
-                if request.session['user']:
-                    user = request.session['user']['osm']['user']['@display_name']
+            if "user" in request.session:
+                if request.session["user"]:
+                    user = request.session["user"]["osm"]["user"]["@display_name"]
                 else:
                     user = False
             else:
@@ -46,5 +46,6 @@ class UserPlugin(object):
             return callback(*args, **kwargs)
 
         return wrapper
+
 
 Plugin = UserPlugin

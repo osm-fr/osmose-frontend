@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 ###########################################################################
 ##                                                                       ##
@@ -20,8 +20,8 @@
 ##                                                                       ##
 ###########################################################################
 
-from modules.params import Params
 from modules import query
+from modules.params import Params
 
 
 def _user(db, lang, username):
@@ -44,8 +44,8 @@ def _user_count(db, username=None):
     if not params.users:
         return
 
-    res = query._count(db, params, ['class.level'], ['class.level'])
-    ret = {1:0, 2:0, 3:0}
+    res = query._count(db, params, ["class.level"], ["class.level"])
+    ret = {1: 0, 2: 0, 3: 0}
     for (l, c) in res:
         ret[l] = c
 

@@ -1,4 +1,4 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 ###########################################################################
 ##                                                                       ##
@@ -19,53 +19,64 @@
 ##                                                                       ##
 ###########################################################################
 
-import re, bz2, gzip, io
-from xml.sax import make_parser, handler
+import bz2
+import gzip
+import io
+import re
+from xml.sax import handler, make_parser
 from xml.sax.saxutils import XMLGenerator, quoteattr
 
 ###########################################################################
 
+
 class dummylog:
     def log(self, text):
         return
+
 
 class dummyout:
     def __init__(self):
         self._n = 0
         self._w = 0
         self._r = 0
+
     def NodeCreate(self, data):
         self._n += 1
         return
+
     def WayCreate(self, data):
         self._w += 1
         return
+
     def RelationCreate(self, data):
         self._r += 1
         return
+
     def __del__(self):
         print(self._n, self._w, self._r)
 
+
 ###########################################################################
+
 
 class OsmSaxNotXMLFile(Exception):
     pass
 
-class OsmSaxReader(handler.ContentHandler):
 
+class OsmSaxReader(handler.ContentHandler):
     def log(self, txt):
         self._logger.log(txt)
-    
-    def __init__(self, filename, logger = dummylog()):
+
+    def __init__(self, filename, logger=dummylog()):
         self._filename = filename
-        self._logger   = logger
+        self._logger = logger
 
         # check if file begins with an xml tag
         f = self._GetFile()
         line = f.readline()
         if not line.startswith("<?xml"):
             raise OsmSaxNotXMLFile("File %s is not XML" % filename)
-        
+
     def _GetFile(self):
         if isinstance(self._filename, str):
             if self._filename.endswith(".bz2"):
@@ -76,9 +87,9 @@ class OsmSaxReader(handler.ContentHandler):
                 return open(self._filename)
         else:
             return self._filename
-        
+
     def CopyTo(self, output):
-        self._debug_in_way      = False
+        self._debug_in_way = False
         self._debug_in_relation = False
         self.log("starting nodes")
         self._output = output
@@ -146,14 +157,14 @@ class OsmSaxReader(handler.ContentHandler):
                 raise
         elif name == u"way":
             self._data[u"tag"] = self._tags
-            self._data[u"nd"]  = self._nodes
+            self._data[u"nd"] = self._nodes
             try:
                 self._output.WayCreate(self._data)
             except:
                 print(self._data)
                 raise
         elif name == u"relation":
-            self._data[u"tag"]    = self._tags
+            self._data[u"tag"] = self._tags
             self._data[u"member"] = self._members
             try:
                 self._output.RelationCreate(self._data)
@@ -163,17 +174,18 @@ class OsmSaxReader(handler.ContentHandler):
         elif name == u"osm":
             self._output.end()
 
+
 ###########################################################################
 
-class OsmTextReader:
 
+class OsmTextReader:
     def log(self, txt):
         self._logger.log(txt)
-    
-    def __init__(self, filename, logger = dummylog()):
+
+    def __init__(self, filename, logger=dummylog()):
         self._filename = filename
-        self._logger   = logger
-        
+        self._logger = logger
+
     def _GetFile(self):
         if type(self._filename) == file:
             return self._filename
@@ -183,55 +195,55 @@ class OsmTextReader:
             return gzip.open(self._filename)
         else:
             return open(self._filename)
-        
+
     def CopyTo(self, output):
-        
-        _re_eid = re.compile( " id=['\"](.+?)['\"]")
+
+        _re_eid = re.compile(" id=['\"](.+?)['\"]")
         _re_lat = re.compile(" lat=['\"](.+?)['\"]")
         _re_lon = re.compile(" lon=['\"](.+?)['\"]")
         _re_usr = re.compile(" user=['\"](.+?)['\"]")
         _re_tag = re.compile(" k=['\"](.+?)['\"] v=['\"](.+?)['\"]")
-        
+
         f = self._GetFile()
         l = f.readline()
         while l:
-            
+
             if "<node" in l:
-                
+
                 _dat = {}
-                _dat["id"]  = int(_re_eid.findall(l)[0])
+                _dat["id"] = int(_re_eid.findall(l)[0])
                 _dat["lat"] = float(_re_lat.findall(l)[0])
                 _dat["lon"] = float(_re_lon.findall(l)[0])
                 _usr = _re_lon.findall(l)
                 if _usr:
                     _dat["lon"] = _usr[0].decode("utf8")
                 _dat["tag"] = {}
-                
+
                 if "/>" in l:
                     output.NodeCreate(_dat)
                     l = f.readline()
                     continue
-                
+
                 l = f.readline()
                 while "</node>" not in l:
                     _tag = _re_tag.findall(l)[0]
                     _dat["tag"][_tag[0].decode("utf8")] = _tag[1].decode("utf8")
                     l = f.readline()
-                
+
                 output.NodeCreate(_dat)
                 l = f.readline()
                 continue
-            
+
             if "<way" in l:
-                
+
                 _dat = {}
-                _dat["id"]  = int(_re_eid.findall(l)[0])
+                _dat["id"] = int(_re_eid.findall(l)[0])
                 _usr = _re_lon.findall(l)
                 if _usr:
                     _dat["lon"] = _usr[0].decode("utf8")
                 _dat["tag"] = {}
-                _dat["nd"]  = []
-                
+                _dat["nd"] = []
+
                 l = f.readline()
                 while "</way>" not in l:
                     if "<nd" in l:
@@ -240,28 +252,29 @@ class OsmTextReader:
                     _tag = _re_tag.findall(l)[0]
                     _dat["tag"][_tag[0].decode("utf8")] = _tag[1].decode("utf8")
                     l = f.readline()
-                
+
                 output.WayCreate(_dat)
                 l = f.readline()
                 continue
-            
+
             if "<relation" in l:
                 l = f.readline()
-                continue        
-            
+                continue
+
             l = f.readline()
+
 
 ###########################################################################
 
-class OscSaxReader(handler.ContentHandler):
 
+class OscSaxReader(handler.ContentHandler):
     def log(self, txt):
         self._logger.log(txt)
 
-    def __init__(self, filename, logger = dummylog()):
+    def __init__(self, filename, logger=dummylog()):
         self._filename = filename
-        self._logger   = logger
- 
+        self._logger = logger
+
     def _GetFile(self):
         if type(self._filename) == file:
             return self._filename
@@ -271,13 +284,13 @@ class OscSaxReader(handler.ContentHandler):
             return gzip.open(self._filename)
         else:
             return open(self._filename)
-        
+
     def CopyTo(self, output):
         self._output = output
         parser = make_parser()
         parser.setContentHandler(self)
         parser.parse(self._GetFile())
-        
+
     def startElement(self, name, attrs):
         attrs = attrs._attrs
         if name == u"create":
@@ -321,28 +334,30 @@ class OscSaxReader(handler.ContentHandler):
             elif self._action == u"modify":
                 self._output.NodeUpdate(self._data)
             elif self._action == u"delete":
-                self._output.NodeDelete(self._data)             
+                self._output.NodeDelete(self._data)
         elif name == u"way":
             self._data[u"tag"] = self._tags
-            self._data[u"nd"]  = self._nodes
+            self._data[u"nd"] = self._nodes
             if self._action == u"create":
                 self._output.WayCreate(self._data)
             elif self._action == u"modify":
                 self._output.WayUpdate(self._data)
             elif self._action == u"delete":
-                self._output.WayDelete(self._data)  
+                self._output.WayDelete(self._data)
         elif name == u"relation":
-            self._data[u"tag"]    = self._tags
+            self._data[u"tag"] = self._tags
             self._data[u"member"] = self._members
             if self._action == u"create":
                 self._output.RelationCreate(self._data)
             elif self._action == u"modify":
                 self._output.RelationUpdate(self._data)
             elif self._action == u"delete":
-                self._output.RelationDelete(self._data)  
+                self._output.RelationDelete(self._data)
             return
 
+
 ###########################################################################
+
 
 def _formatData(data):
     data = dict(data)
@@ -368,32 +383,31 @@ def _formatData(data):
         data[u"uid"] = str(data[u"uid"])
     return data
 
-class OsmSaxWriter(XMLGenerator):
 
+class OsmSaxWriter(XMLGenerator):
     def __init__(self, out, enc):
         if type(out) == str:
             XMLGenerator.__init__(self, open(out, "w"), enc)
         else:
             XMLGenerator.__init__(self, out, enc)
-    
+
     def startElement(self, name, attrs):
-        self._write(u'<' + name)
+        self._write(u"<" + name)
         for (name, value) in attrs.items():
-            self._write(u' %s=%s' % (name, quoteattr(value)))
-        self._write(u'>\n')
-        
+            self._write(u" %s=%s" % (name, quoteattr(value)))
+        self._write(u">\n")
+
     def endElement(self, name):
-        self._write(u'</%s>\n' % name)
-    
+        self._write(u"</%s>\n" % name)
+
     def Element(self, name, attrs):
-        self._write(u'<' + name)
+        self._write(u"<" + name)
         for (name, value) in attrs.items():
-            self._write(u' %s=%s' % (name, quoteattr(value)))
-        self._write(u' />\n')
+            self._write(u" %s=%s" % (name, quoteattr(value)))
+        self._write(u" />\n")
 
     def begin(self):
-        self.startElement("osm", { "version": "0.6",
-                                   "generator": "OsmSax" })
+        self.startElement("osm", {"version": "0.6", "generator": "OsmSax"})
 
     def end(self):
         self.endElement("osm")
@@ -404,40 +418,36 @@ class OsmSaxWriter(XMLGenerator):
         if data[u"tag"]:
             self.startElement("node", _formatData(data))
             for (k, v) in data[u"tag"].items():
-                self.Element("tag", {"k":k, "v":v})
+                self.Element("tag", {"k": k, "v": v})
             self.endElement("node")
         else:
             self.Element("node", _formatData(data))
-    
+
     def WayCreate(self, data):
         if not data:
             return
         self.startElement("way", _formatData(data))
         for (k, v) in data[u"tag"].items():
-            self.Element("tag", {"k":k, "v":v})
+            self.Element("tag", {"k": k, "v": v})
         for n in data[u"nd"]:
-            self.Element("nd", {"ref":str(n)})
+            self.Element("nd", {"ref": str(n)})
         self.endElement("way")
-    
+
     def RelationCreate(self, data):
         if not data:
             return
         self.startElement("relation", _formatData(data))
         for (k, v) in data[u"tag"].items():
-            self.Element("tag", {"k":k, "v":v})
+            self.Element("tag", {"k": k, "v": v})
         for m in data[u"member"]:
             m[u"ref"] = str(m[u"ref"])
             self.Element("member", m)
         self.endElement("relation")
 
-class OsmDictWriter:
 
+class OsmDictWriter:
     def __init__(self):
-        self.data = {
-            'node': [],
-            'way': [],
-            'relation': []
-        }
+        self.data = {"node": [], "way": [], "relation": []}
 
     def begin(self):
         pass
@@ -447,17 +457,18 @@ class OsmDictWriter:
 
     def NodeCreate(self, data):
         if data:
-            self.data[u'node'].append(data)
+            self.data[u"node"].append(data)
 
     def WayCreate(self, data):
         if data:
-            self.data[u'way'].append(data)
+            self.data[u"way"].append(data)
 
     def RelationCreate(self, data):
         if data:
-            self.data[u'relation'].append(data)
+            self.data[u"relation"].append(data)
 
-def NodeToXml(data, full = False):
+
+def NodeToXml(data, full=False):
     o = io.StringIO()
     w = OsmSaxWriter(o, "UTF-8")
     if full:
@@ -469,7 +480,8 @@ def NodeToXml(data, full = False):
         w.endElement("osm")
     return o.getvalue()
 
-def WayToXml(data, full = False):
+
+def WayToXml(data, full=False):
     o = io.StringIO()
     w = OsmSaxWriter(o, "UTF-8")
     if full:
@@ -481,7 +493,8 @@ def WayToXml(data, full = False):
         w.endElement("osm")
     return o.getvalue()
 
-def RelationToXml(data, full = False):
+
+def RelationToXml(data, full=False):
     o = io.StringIO()
     w = OsmSaxWriter(o, "UTF-8")
     if full:
@@ -496,6 +509,7 @@ def RelationToXml(data, full = False):
 
 ###########################################################################
 import unittest
+
 
 class TestCountObjects:
     def __init__(self):
@@ -517,6 +531,7 @@ class TestCountObjects:
 
     def RelationCreate(self, data):
         self.num_rels += 1
+
 
 class Test(unittest.TestCase):
     def test1(self):

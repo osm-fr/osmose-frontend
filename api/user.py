@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 ###########################################################################
 ##                                                                       ##
@@ -20,16 +20,17 @@
 ##                                                                       ##
 ###########################################################################
 
-from bottle import default_app, route
 from collections import OrderedDict
-from .user_utils import _user, _user_count
 
+from bottle import default_app, route
+
+from .user_utils import _user, _user_count
 
 app_0_2 = default_app.pop()
 
 
-@app_0_2.route('/user/<username>')
-@route('/user/<username>')
+@app_0_2.route("/user/<username>")
+@route("/user/<username>")
 def user(db, lang, username):
     params, username, errors = _user(db, lang, username)
 
@@ -42,8 +43,8 @@ def user(db, lang, username):
     return out
 
 
-@app_0_2.route('/user_count/<username>')
-@route('/user_count/<username>')
+@app_0_2.route("/user_count/<username>")
+@route("/user_count/<username>")
 def user_count(db, lang, username=None, format=None):
     count = _user_count(db, username)
     return count

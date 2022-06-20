@@ -1,4 +1,4 @@
-'''
+"""
 Bottle-PgSQL is based on Bottle-MySQL and Bottle-sqlite.
 Bottle-PgSQL is a plugin that integrates PostgreSQL with your Bottle
 application. It automatically connects to a database at the beginning of a
@@ -28,32 +28,31 @@ Usage Example::
         if row:
             return template('showitem', page=row)
         return HTTPError(404, "Page not found")
-'''
+"""
 
 __author__ = "Arif Kurniawan"
-__version__ = '0.2-by frodrigo'
-__license__ = 'MIT'
+__version__ = "0.2-by frodrigo"
+__license__ = "MIT"
 
 ### CUT HERE (see setup.py)
 
+import inspect
+
 import psycopg2
 import psycopg2.extras
-import inspect
-from bottle import HTTPError, PluginError
-from bottle import HTTPResponse
+from bottle import HTTPError, HTTPResponse, PluginError
 
 
 class PgSQLPlugin(object):
-    ''' This plugin passes a pgsql database handle to route callbacks
+    """This plugin passes a pgsql database handle to route callbacks
     that accept a `db` keyword argument. If a callback does not expect
     such a parameter, no connection is made. You can override the database
-    settings on a per-route basis. '''
+    settings on a per-route basis."""
 
-    name = 'pgsql'
-    api  = 2
+    name = "pgsql"
+    api = 2
 
-    def __init__(self, dsn=None, autocommit=False, autorollback=True,
-                 keyword='db'):
+    def __init__(self, dsn=None, autocommit=False, autorollback=True, keyword="db"):
         self.dsn = dsn
         self.autocommit = autocommit
         self.autorollback = autorollback
@@ -61,27 +60,30 @@ class PgSQLPlugin(object):
         self.con = None
 
     def init_connection(self):
-        #con = psycopg2.connect(dsn)
+        # con = psycopg2.connect(dsn)
         psycopg2.extensions.register_adapter(dict, psycopg2.extras.Json)
         self.con = psycopg2.extras.DictConnection(self.dsn)
         psycopg2.extras.register_default_jsonb(self.con)
         # Using DictCursor lets us return result as a dictionary instead of the default list
 
     def setup(self, app):
-        ''' Make sure that other installed plugins don't affect the same
-            keyword argument.'''
+        """Make sure that other installed plugins don't affect the same
+        keyword argument."""
         for other in app.plugins:
-            if not isinstance(other, PgSQLPlugin): continue
+            if not isinstance(other, PgSQLPlugin):
+                continue
             if other.keyword == self.keyword:
-                raise PluginError("Found another pgsql plugin with "\
-                "conflicting settings (non-unique keyword).")
+                raise PluginError(
+                    "Found another pgsql plugin with "
+                    "conflicting settings (non-unique keyword)."
+                )
 
     def apply(self, callback, route):
         # Override global configuration with route-specific values.
-        conf = route.config.get('pgsql') or {}
-        autocommit = conf.get('autocommit', self.autocommit)
-        autorollback = conf.get('autorollback', self.autorollback)
-        keyword = conf.get('keyword', self.keyword)
+        conf = route.config.get("pgsql") or {}
+        autocommit = conf.get("autocommit", self.autocommit)
+        autorollback = conf.get("autorollback", self.autorollback)
+        keyword = conf.get("keyword", self.keyword)
 
         # Test if the original callback accepts a 'db' keyword.
         # Ignore it if it does not need a database handle.
@@ -112,11 +114,13 @@ class PgSQLPlugin(object):
                     self.con.rollback()
             except psycopg2.ProgrammingError as e:
                 import traceback
+
                 print(traceback.print_exc())
                 self.con.rollback()
                 raise HTTPError(500, "Database Error", e)
             except psycopg2.OperationalError as e:
                 import traceback
+
                 print(traceback.print_exc())
                 try:
                     self.con.close()
@@ -134,5 +138,6 @@ class PgSQLPlugin(object):
 
         # Replace the route callback with the wrapped one.
         return wrapper
+
 
 Plugin = PgSQLPlugin
