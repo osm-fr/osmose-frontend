@@ -204,7 +204,7 @@ def _build_param(
             )
         elif end_date:
             where.append(
-                "markers.timestamp_range && tsrange(NULL, '{1}', '(]')".format(
+                "markers.timestamp_range && tsrange(NULL, '{0}', '(]')".format(
                     end_date.isoformat()
                 )
             )
