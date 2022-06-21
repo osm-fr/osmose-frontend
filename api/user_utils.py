@@ -2,12 +2,10 @@ from modules import query
 from modules.params import Params
 
 
-def _user(params: Params, db, lang, username):
-    if username:
-        params.users = username.split(",")
+def _user(params: Params, db, lang, username: str):
+    params.users = username.split(",")
     params.limit = 500
     params.full = True
-    username = ",".join(params.users)
 
     errors = query._gets(db, params)
     return [params, username, errors]
