@@ -74,7 +74,9 @@ remote_url_write = "https://www.openstreetmap.org/"
 username = pwd.getpwuid(os.getuid())[0]
 dir_results = "/data/work/%s/results" % (username)
 
-################################################################################
+#
+# Database
+#
 
 
 def get_dbconn():
@@ -137,8 +139,9 @@ def str_to_datetime(s):
     raise ValueError
 
 
-###########################################################################
-## translation
+#
+# Translation
+#
 
 
 def i10n_select(translations, langs):
@@ -161,8 +164,9 @@ def i10n_select_auto(translations, langs):
         return i10n_select(translations, langs)["auto"]
 
 
-###########################################################################
-## API
+#
+# API
+#
 
 
 def fetch_osm_data(type, id, full=True):
@@ -173,7 +177,7 @@ def fetch_osm_data(type, id, full=True):
         elem_io = StringIO(urllib.request.urlopen(elem_url).read().decode("utf-8"))
         osm_read = OsmSax.OsmSaxReader(elem_io)
         return osm_read
-    except:
+    except Exception:
         pass
 
 

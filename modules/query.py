@@ -4,11 +4,11 @@ from . import tiles, utils
 def _build_where_item(table, item):
     if item == "":
         where = "1=2"
-    elif item == None or item == "xxxx":
+    elif item is None or item == "xxxx":
         where = "1=1"
     else:
         where = []
-        l = []
+        items = []
         for i in item.split(","):
             try:
                 if "xxx" in i:
@@ -18,11 +18,11 @@ def _build_where_item(table, item):
                         % (table, n, table, n + 1)
                     )
                 else:
-                    l.append(str(int(i)))
-            except:
+                    items.append(str(int(i)))
+            except Exception:
                 pass
-        if l != []:
-            where.append("%s.item IN (%s)" % (table, ",".join(l)))
+        if items != []:
+            where.append("%s.item IN (%s)" % (table, ",".join(items)))
         if where != []:
             where = "(%s)" % " OR ".join(where)
         else:
@@ -71,7 +71,13 @@ def _build_param(
     elif stats:
         base_table = "stats"
         if item:
-            join += "(SELECT stats.*, item FROM stats JOIN markers_counts ON markers_counts.source_id = stats.source_id AND markers_counts.class = stats.class) AS markers"
+            join += """(
+                SELECT stats.*, item
+                FROM stats
+                    JOIN markers_counts ON
+                        markers_counts.source_id = stats.source_id AND
+                        markers_counts.class = stats.class
+            ) AS markers"""
         else:
             join += "stats AS markers"
     elif status in ("done", "false"):
@@ -140,7 +146,7 @@ def _build_param(
         JOIN updates_last ON
             updates_last.source_id = markers.source_id"""
 
-    if item != None:
+    if item is not None:
         where.append(_build_where_item("markers", item))
 
     if level and level != "1,2,3":
@@ -165,7 +171,8 @@ def _build_param(
 
     if tilex and tiley and zoom:
         where.append(
-            "lonlat2z_order_curve(lon, lat) BETWEEN zoc18min(z_order_curve({x}, {y}), {z}) AND zoc18max(z_order_curve({x}, {y}), {z}) AND lat > -90".format(
+            """lonlat2z_order_curve(lon, lat) BETWEEN zoc18min(z_order_curve({x}, {y}), {z}) AND
+            zoc18max(z_order_curve({x}, {y}), {z}) AND lat > -90""".format(
                 z=zoom, x=tilex, y=tiley
             )
         )
@@ -175,10 +182,10 @@ def _build_param(
             country = country[:-1] + "%"
         where.append("sources.country LIKE '%s'" % country)
 
-    if not status in ("done", "false") and useDevItem == True:
+    if status not in ("done", "false") and useDevItem:
         where.append("items.item IS NULL")
 
-    if not status in ("done", "false") and users:
+    if status not in ("done", "false") and users:
         where.append(
             "ARRAY['%s'] && marker_usernames(markers.elems)"
             % "','".join(
@@ -281,7 +288,7 @@ def _gets(db, params):
         class.level,
         updates_last.timestamp,
         items.menu"""
-        if not params.status in ("done", "false"):
+        if params.status not in ("done", "false"):
             sqlbase += """,
         -1 AS date"""
         else:

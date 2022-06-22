@@ -54,12 +54,12 @@ class Params:
             levels = self.level.split(",")
             try:
                 self.level = ",".join([str(int(x)) for x in levels if x])
-            except:
+            except Exception:
                 self.level = "1,2,3"
         if bbox:
             try:
                 self.bbox = list(map(lambda x: float(x), bbox.split(",")))
-            except:
+            except Exception:
                 self.bbox = None
         if users:
             self.users = users.split(",")

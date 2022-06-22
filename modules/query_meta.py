@@ -48,7 +48,7 @@ def _items(db, item=None, classs=None, langs=None):
             WHEN %(item)s < 1000 THEN 10
             ELSE (%(item)s / 1000)::int * 10
          END"""
-            if item != None
+            if item is not None
             else ""
         )
         + """
@@ -76,7 +76,7 @@ def _items(db, item=None, classs=None, langs=None):
         items
     WHERE
         1 = 1"""
-        + ("AND item = %(item)s" if item != None else "")
+        + ("AND item = %(item)s" if item is not None else "")
         + """
     ORDER BY
         item
@@ -123,8 +123,8 @@ def _items(db, item=None, classs=None, langs=None):
         class
     WHERE
         1 = 1"""
-        + ("AND item = %(item)s" if item != None else "")
-        + ("AND class = %(classs)s" if classs != None else "")
+        + ("AND item = %(item)s" if item is not None else "")
+        + ("AND class = %(classs)s" if classs is not None else "")
         + """
     ORDER BY
         item,

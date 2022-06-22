@@ -122,7 +122,7 @@ def fresh_elems_uuid(db, uuid, fix_num=None):
         "elems": list(elems.values()),
     }
 
-    if fix_num != None:
+    if fix_num is not None:
         ret["fix"] = {}
         for res in marker["fixes"][fix_num]:
             tid = data_type[res["type"]] + str(res["id"])
