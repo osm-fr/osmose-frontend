@@ -10,7 +10,7 @@ from modules.params import Params
 app_0_2 = default_app.pop()
 
 
-def _errors_mvt(db, results, z, min_lon, min_lat, max_lon, max_lat, limit):
+def _errors_mvt(results, z, min_lon, min_lat, max_lon, max_lat, limit):
     if not results or len(results) == 0:
         return None
     else:
@@ -48,7 +48,7 @@ def _errors_mvt(db, results, z, min_lon, min_lat, max_lon, max_lat, limit):
         )
 
 
-def _errors_geojson(db, results, z, min_lon, min_lat, max_lon, max_lat, limit):
+def _errors_geojson(results, z, min_lon, min_lat, max_lon, max_lat, limit):
     if not results or len(results) == 0:
         return None
     else:
@@ -203,7 +203,7 @@ def issues_mvt(db, z, x, y, format):
     results = query._gets(db, params) if z >= 7 else None
 
     if format == "mvt":
-        tile = _errors_mvt(db, results, z, lon1, lat1, lon2, lat2, params.limit)
+        tile = _errors_mvt(results, z, lon1, lat1, lon2, lat2, params.limit)
         if tile:
             response.content_type = "application/vnd.mapbox-vector-tile"
             return tile
@@ -212,7 +212,7 @@ def issues_mvt(db, z, x, y, format):
                 status=204, headers={"Access-Control-Allow-Origin": "*"}
             )
     elif format in ("geojson", "json"):  # Fall back to GeoJSON
-        tile = _errors_geojson(db, results, z, lon1, lat1, lon2, lat2, params.limit)
+        tile = _errors_geojson(results, z, lon1, lat1, lon2, lat2, params.limit)
         if tile:
             response.content_type = "application/vnd.geo+json"
             return tile
