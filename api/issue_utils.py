@@ -1,4 +1,6 @@
 import os
+from typing import Dict, List, Union
+from uuid import UUID
 
 from modules.query import fixes_default
 
@@ -9,7 +11,7 @@ t2l = tag2link.tag2link(
 )
 
 
-def _get(db, err_id=None, uuid=None):
+def _get(db, err_id: Union[int, None] = None, uuid: Union[UUID, None] = None):
     columns_marker = [
         "markers.item",
         "markers.source_id",
@@ -83,7 +85,9 @@ def _get(db, err_id=None, uuid=None):
     return marker
 
 
-def _expand_tags(tags, links, short=False):
+def _expand_tags(
+    tags: Dict[str, str], links: Dict[str, str], short: bool = False
+) -> List[Dict[str, str]]:
     t = []
     if short:
         for k in tags:

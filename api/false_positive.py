@@ -1,3 +1,6 @@
+from typing import Union
+from uuid import UUID
+
 from bottle import abort, default_app, delete, route
 
 from modules import utils
@@ -8,7 +11,7 @@ app_0_2 = default_app.pop()
 
 
 @app_0_2.route("/false-positive/<err_id:int>")
-def fp_err_id(db, lang, err_id):
+def fp_err_id(db, lang, err_id: int):
     marker, columns = _get(db, "false", err_id=err_id)
     if not marker:
         abort(410, "Id is not present in database.")
@@ -17,7 +20,7 @@ def fp_err_id(db, lang, err_id):
 
 
 @route("/false-positive/<uuid:uuid>")
-def fp_uuid(db, langs, uuid):
+def fp_uuid(db, langs, uuid: UUID):
     marker, columns = _get(db, "false", uuid=uuid)
     if not marker:
         abort(410, "Id is not present in database.")
@@ -25,7 +28,7 @@ def fp_uuid(db, langs, uuid):
     return _fp(3, langs, uuid, marker, columns)
 
 
-def _fp(version, langs, uuid, marker, columns):
+def _fp(version: int, langs, uuid: Union[UUID, None], marker, columns):
     lat = str(marker["lat"])
     lon = str(marker["lon"])
     title = utils.i10n_select(marker["title"], langs)
@@ -67,7 +70,7 @@ def _fp(version, langs, uuid, marker, columns):
 
 
 @app_0_2.delete("/false-positive/<err_id:int>")
-def fp_delete_err_id(db, err_id):
+def fp_delete_err_id(db, err_id: int):
     db.execute(
         "SELECT uuid FROM markers_status WHERE status = %s AND uuid_to_bigint(markers_status.uuid) = %s",
         ("false", err_id),
@@ -86,7 +89,7 @@ def fp_delete_err_id(db, err_id):
 
 
 @delete("/false-positive/<uuid:uuid>")
-def fp_delete_uuid(db, uuid):
+def fp_delete_uuid(db, uuid: UUID):
     db.execute(
         "SELECT uuid FROM markers_status WHERE status = %s AND uuid = %s",
         ("false", uuid),

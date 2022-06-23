@@ -1,4 +1,8 @@
-def _get(db, status, err_id=None, uuid=None):
+from typing import Union
+from uuid import UUID
+
+
+def _get(db, status, err_id: Union[int, None] = None, uuid: Union[UUID, None] = None):
     columns = [
         "markers_status.item",
         "source_id",
