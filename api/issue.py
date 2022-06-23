@@ -1,5 +1,7 @@
 import copy
 import io
+from typing import Literal, Union
+from uuid import UUID
 
 from bottle import abort, default_app, response, route
 
@@ -11,7 +13,10 @@ from .issue_utils import _expand_tags, _get, t2l
 app_0_2 = default_app.pop()
 
 
-def _remove_bug_err_id(db, error_id, status):
+Status = Literal["done", "false"]
+
+
+def _remove_bug_err_id(db, error_id: int, status: Status):
     # find source
     db.execute(
         "SELECT uuid,source_id,class FROM markers WHERE uuid_to_bigint(uuid) = %s",
@@ -49,7 +54,7 @@ def _remove_bug_err_id(db, error_id, status):
     return 0
 
 
-def _remove_bug_uuid(db, uuid, status):
+def _remove_bug_uuid(db, uuid: UUID, status: Status):
 
     PgConn = utils.get_dbconn()
     db = PgConn.cursor()
@@ -89,7 +94,7 @@ def _remove_bug_uuid(db, uuid, status):
 
 @route("/issue/<uuid:uuid>/fresh_elems")
 @route("/issue/<uuid:uuid>/fresh_elems/<fix_num:int>")
-def fresh_elems_uuid(db, uuid, fix_num=None):
+def fresh_elems_uuid(db, uuid: UUID, fix_num: Union[int, None] = None):
     data_type = {"N": "node", "W": "way", "R": "relation", "I": "infos"}
 
     marker = _get(db, uuid=uuid)
@@ -145,16 +150,16 @@ def fresh_elems_uuid(db, uuid, fix_num=None):
 
 
 @app_0_2.route("/error/<err_id:int>")
-def error_err_id(db, lang, err_id):
+def error_err_id(db, lang, err_id: int):
     return _error(2, db, lang, None, _get(db, err_id=err_id))
 
 
 @route("/issue/<uuid:uuid>")
-def error_uuid(db, langs, uuid):
+def error_uuid(db, langs, uuid: UUID):
     return _error(3, db, langs, uuid, _get(db, uuid=uuid))
 
 
-def _error(version, db, langs, uuid, marker):
+def _error(version: int, db, langs, uuid: Union[UUID, None], marker):
     if not marker:
         abort(410, "Id is not present in database.")
 
@@ -265,7 +270,7 @@ def _error(version, db, langs, uuid, marker):
 
 
 @app_0_2.route("/error/<err_id:int>/<status:re:(done|false)>")
-def status_err_id(db, err_id, status):
+def status_err_id(db, err_id: int, status: Status):
     if _remove_bug_err_id(db, err_id, status) == 0:
         return
     else:
@@ -273,14 +278,16 @@ def status_err_id(db, err_id, status):
 
 
 @route("/issue/<uuid:uuid>/<status:re:(done|false)>")
-def status_uuid(db, uuid, status):
+def status_uuid(db, uuid: UUID, status: Status):
     if _remove_bug_uuid(db, uuid, status) == 0:
         return
     else:
         abort(410, "FAIL")
 
 
-def _get_fix(db, fix_num, err_id=None, uuid=None):
+def _get_fix(
+    db, fix_num: int, err_id: Union[int, None] = None, uuid: Union[UUID, None] = None
+):
     if err_id:
         sql = "SELECT fixes FROM markers WHERE id = %s"
         db.execute(sql, (err_id,))
@@ -298,17 +305,17 @@ def _get_fix(db, fix_num, err_id=None, uuid=None):
 
 @app_0_2.route("/error/<err_id:int>/fix")
 @app_0_2.route("/error/<err_id:int>/fix/<fix_num:int>")
-def fix_err_id(db, err_id, fix_num=0):
+def fix_err_id(db, err_id: int, fix_num: int = 0):
     return _fix(2, db, None, fix_num, _get_fix(db, fix_num, err_id=err_id))
 
 
 @route("/issue/<uuid:uuid>/fix")
 @route("/issue/<uuid:uuid>/fix/<fix_num:int>")
-def fix_uuid(db, uuid, fix_num=0):
+def fix_uuid(db, uuid: UUID, fix_num: int = 0):
     return _fix(3, db, uuid, fix_num, _get_fix(db, fix_num, uuid=uuid))
 
 
-def _fix(version, db, uuid, fix_num, fix):
+def _fix(version: int, db, uuid: Union[UUID, None], fix_num: int, fix):
     if fix:
         response.content_type = "text/xml; charset=utf-8"
         for res in fix:

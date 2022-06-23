@@ -1,5 +1,6 @@
 from collections import OrderedDict
 from itertools import groupby
+from typing import Union
 
 from bottle import default_app, response, route
 
@@ -94,7 +95,7 @@ def errors(db, lang):
 
 @route("/issues")
 @route("/issues.<format:ext>")
-def issues(db, langs, format=None):
+def issues(db, langs, format: Union[str, None] = None):
     params = Params(max_limit=10000)
     results = query._gets(db, params)
 
