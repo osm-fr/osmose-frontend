@@ -1,4 +1,5 @@
 from collections import defaultdict
+from typing import Union
 
 from .utils import i10n_select
 
@@ -33,7 +34,9 @@ def _countries(db):
     return list(map(lambda x: x[0], db.fetchall()))
 
 
-def _items(db, item=None, classs=None, langs=None):
+def _items(
+    db, item: Union[int, None] = None, classs: Union[int, None] = None, langs=None
+):
     sql = (
         """
     SELECT

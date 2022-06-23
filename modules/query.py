@@ -1,7 +1,7 @@
 from . import tiles, utils
 
 
-def _build_where_item(table, item):
+def _build_where_item(table, item: str):
     if item == "":
         where = "1=2"
     elif item is None or item == "xxxx":
@@ -30,7 +30,7 @@ def _build_where_item(table, item):
     return where
 
 
-def _build_where_class(table, classs):
+def _build_where_class(table, classs: int):
     return "{0}.class IN ({1})".format(
         table, ",".join(map(lambda c: str(int(c)), classs.split(",")))
     )
