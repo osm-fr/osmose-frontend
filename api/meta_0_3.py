@@ -21,7 +21,7 @@ def items(db, langs):
 
 
 @route("/items/<item:int>/class/<classs:int>")
-def items_class(db, langs, item, classs):
+def items_class(db, langs, item: int, classs: int):
     return {
         "categories": (query_meta._items(db, item=item, classs=classs, langs=langs))
     }

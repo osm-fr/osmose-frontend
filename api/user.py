@@ -10,7 +10,7 @@ app_0_2 = default_app.pop()
 
 @app_0_2.route("/user/<username>")
 @route("/user/<username>")
-def user(db, lang, username):
+def user(db, lang, username: str):
     params = Params()
     params, username, errors = _user(params, db, lang, username)
 
@@ -25,7 +25,7 @@ def user(db, lang, username):
 
 @app_0_2.route("/user_count/<username>")
 @route("/user_count/<username>")
-def user_count(db, lang, username=None, format=None):
+def user_count(db, lang, username: str):
     params = Params()
     count = _user_count(db, username)
     return count
