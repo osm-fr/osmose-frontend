@@ -1,4 +1,5 @@
 import math
+from typing import Literal
 
 import mapbox_vector_tile
 from bottle import HTTPError, HTTPResponse, default_app, response, route
@@ -10,7 +11,15 @@ from modules.params import Params
 app_0_2 = default_app.pop()
 
 
-def _errors_mvt(results, z, min_lon, min_lat, max_lon, max_lat, limit):
+def _errors_mvt(
+    results,
+    z: int,
+    min_lon: float,
+    min_lat: float,
+    max_lon: float,
+    max_lat: float,
+    limit: int,
+):
     if not results or len(results) == 0:
         return None
     else:
@@ -48,7 +57,15 @@ def _errors_mvt(results, z, min_lon, min_lat, max_lon, max_lat, limit):
         )
 
 
-def _errors_geojson(results, z, min_lon, min_lat, max_lon, max_lat, limit):
+def _errors_geojson(
+    results,
+    z: int,
+    min_lon: float,
+    min_lat: float,
+    max_lon: float,
+    max_lat: float,
+    limit: int,
+):
     if not results or len(results) == 0:
         return None
     else:
@@ -81,7 +98,7 @@ def _errors_geojson(results, z, min_lon, min_lat, max_lon, max_lat, limit):
 
 
 @route("/issues/<z:int>/<x:int>/<y:int>.heat.mvt")
-def heat(db, z, x, y):
+def heat(db, z: int, x: int, y: int):
     COUNT = 32
 
     lon1, lat2 = tiles.tile2lonlat(x, y, z)
@@ -184,8 +201,11 @@ GROUP BY
     )
 
 
+TileFormat = Literal["mvt", "geojson"]
+
+
 @route("/issues/<z:int>/<x:int>/<y:int>.<format:ext>")
-def issues_mvt(db, z, x, y, format):
+def issues_mvt(db, z: int, x: int, y: int, format: TileFormat):
     lon1, lat2 = tiles.tile2lonlat(x, y, z)
     lon2, lat1 = tiles.tile2lonlat(x + 1, y + 1, z)
 
