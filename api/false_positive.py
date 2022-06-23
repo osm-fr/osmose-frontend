@@ -4,6 +4,7 @@ from uuid import UUID
 from bottle import abort, default_app, delete, route
 
 from modules import utils
+from modules.utils import LangsNegociation
 
 from .false_positive_utils import _get
 
@@ -20,7 +21,7 @@ def fp_err_id(db, lang, err_id: int):
 
 
 @route("/false-positive/<uuid:uuid>")
-def fp_uuid(db, langs, uuid: UUID):
+def fp_uuid(db, langs: LangsNegociation, uuid: UUID):
     marker, columns = _get(db, "false", uuid=uuid)
     if not marker:
         abort(410, "Id is not present in database.")
@@ -28,7 +29,9 @@ def fp_uuid(db, langs, uuid: UUID):
     return _fp(3, langs, uuid, marker, columns)
 
 
-def _fp(version: int, langs, uuid: Union[UUID, None], marker, columns):
+def _fp(
+    version: int, langs: LangsNegociation, uuid: Union[UUID, None], marker, columns
+):
     lat = str(marker["lat"])
     lon = str(marker["lon"])
     title = utils.i10n_select(marker["title"], langs)

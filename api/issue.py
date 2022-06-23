@@ -7,6 +7,7 @@ from bottle import abort, default_app, response, route
 
 from modules import OsmSax, utils
 from modules.query import fixes_default
+from modules.utils import LangsNegociation
 
 from .issue_utils import _expand_tags, _get, t2l
 
@@ -155,11 +156,11 @@ def error_err_id(db, lang, err_id: int):
 
 
 @route("/issue/<uuid:uuid>")
-def error_uuid(db, langs, uuid: UUID):
+def error_uuid(db, langs: LangsNegociation, uuid: UUID):
     return _error(3, db, langs, uuid, _get(db, uuid=uuid))
 
 
-def _error(version: int, db, langs, uuid: Union[UUID, None], marker):
+def _error(version: int, db, langs: LangsNegociation, uuid: Union[UUID, None], marker):
     if not marker:
         abort(410, "Id is not present in database.")
 

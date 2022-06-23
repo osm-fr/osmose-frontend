@@ -1,6 +1,7 @@
 from bottle import default_app, request, response, route
 
 from modules import query_meta
+from modules.utils import LangsNegociation
 
 app_0_2 = default_app.pop()
 
@@ -16,12 +17,12 @@ def _map_items(categories):
 
 
 @route("/items")
-def items(db, langs):
+def items(db, langs: LangsNegociation):
     return {"categories": _map_items(query_meta._items(db, langs=langs))}
 
 
 @route("/items/<item:int>/class/<classs:int>")
-def items_class(db, langs, item: int, classs: int):
+def items_class(db, langs: LangsNegociation, item: int, classs: int):
     return {
         "categories": (query_meta._items(db, item=item, classs=classs, langs=langs))
     }

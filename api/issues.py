@@ -6,6 +6,7 @@ from bottle import default_app, response, route
 
 from modules import query, utils
 from modules.params import Params
+from modules.utils import LangsNegociation
 
 app_0_2 = default_app.pop()
 
@@ -95,7 +96,7 @@ def errors(db, lang):
 
 @route("/issues")
 @route("/issues.<format:ext>")
-def issues(db, langs, format: Union[str, None] = None):
+def issues(db, langs: LangsNegociation, format: Union[str, None] = None):
     params = Params(max_limit=10000)
     results = query._gets(db, params)
 

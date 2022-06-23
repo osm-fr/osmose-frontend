@@ -1,10 +1,11 @@
 from collections import defaultdict
 from typing import Union
 
+from .modules.utils import LangsNegociation
 from .utils import i10n_select
 
 
-def _items_menu(db, langs):
+def _items_menu(db, langs: LangsNegociation):
     sql = """
     SELECT
         item,
@@ -35,7 +36,10 @@ def _countries(db):
 
 
 def _items(
-    db, item: Union[int, None] = None, classs: Union[int, None] = None, langs=None
+    db,
+    item: Union[int, None] = None,
+    classs: Union[int, None] = None,
+    langs: Union[LangsNegociation, None] = None,
 ):
     sql = (
         """
