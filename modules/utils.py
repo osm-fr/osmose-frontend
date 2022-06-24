@@ -4,7 +4,7 @@ import pwd
 import urllib.request
 from collections import OrderedDict
 from io import StringIO
-from typing import List, Union
+from typing import Dict, List, Union
 
 from . import OsmSax
 
@@ -147,7 +147,7 @@ def str_to_datetime(s):
 LangsNegociation = Union[None, List[str]]
 
 
-def i10n_select(translations, langs: LangsNegociation):
+def i10n_select(translations: Dict[str, str], langs: LangsNegociation):
     if not translations:
         return None
     elif langs is None:
@@ -162,7 +162,7 @@ def i10n_select(translations, langs: LangsNegociation):
             return {"auto": list(translations.values())[0]}
 
 
-def i10n_select_auto(translations, langs: LangsNegociation):
+def i10n_select_auto(translations: Dict[str, str], langs: LangsNegociation):
     if translations:
         return i10n_select(translations, langs)["auto"]
 
