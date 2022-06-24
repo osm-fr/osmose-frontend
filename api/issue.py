@@ -304,19 +304,10 @@ def _get_fix(
     return fixes_default(fix[0])[fix_num]
 
 
-@app_0_2.route("/error/<err_id:int>/fix")
-@app_0_2.route("/error/<err_id:int>/fix/<fix_num:int>")
-def fix_err_id(db, err_id: int, fix_num: int = 0):
-    return _fix(2, db, None, fix_num, _get_fix(db, fix_num, err_id=err_id))
-
-
 @route("/issue/<uuid:uuid>/fix")
 @route("/issue/<uuid:uuid>/fix/<fix_num:int>")
 def fix_uuid(db, uuid: UUID, fix_num: int = 0):
-    return _fix(3, db, uuid, fix_num, _get_fix(db, fix_num, uuid=uuid))
-
-
-def _fix(version: int, db, uuid: Union[UUID, None], fix_num: int, fix):
+    fix = _get_fix(db, fix_num, uuid=uuid)
     if fix:
         response.content_type = "text/xml; charset=utf-8"
         for res in fix:
@@ -346,12 +337,8 @@ def _fix(version: int, db, uuid: Union[UUID, None], fix_num: int, fix):
                 data["tag"] = {}
                 for (k, v) in res["create"].items():
                     data["tag"][k] = v
-                if version == 2:
-                    sql = "SELECT lat, lon FROM markers WHERE id = %s"
-                    db.execute(sql, (err_id,))
-                else:
-                    sql = "SELECT lat, lon FROM markers WHERE uuid = %s"
-                    db.execute(sql, (uuid,))
+                sql = "SELECT lat, lon FROM markers WHERE uuid = %s"
+                db.execute(sql, (uuid,))
                 res2 = db.fetchone()
                 data["lat"] = res2["lat"]
                 data["lon"] = res2["lon"]
