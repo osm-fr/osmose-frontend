@@ -7,16 +7,18 @@ from fastapi import APIRouter, Depends, Request, Response
 from fastapi.encoders import jsonable_encoder
 
 from modules import query, utils
-from modules.dependencies import database, langs
-from modules.params import Params
+from modules.dependencies import commons_params, database, langs
 from modules.utils import LangsNegociation
 
 router = APIRouter()
 
 
 @router.get("/0.2/errors", tags=["0.2"])
-async def errors(request: Request, db: Connection = Depends(database.db)):
-    params = Params(request)
+async def errors(
+    request: Request,
+    db: Connection = Depends(database.db),
+    params=Depends(commons_params.params),
+):
     results = await query._gets(db, params)
     out = OrderedDict()
 
@@ -140,8 +142,9 @@ async def issues(
     request: Request,
     db: Connection = Depends(database.db),
     langs: LangsNegociation = Depends(langs.langs),
+    params=Depends(commons_params.params),
 ):
-    params = Params(request, max_limit=10000)
+    params.limit = min(params.limit, 10000)
     results = await query._gets(db, params)
 
     out = []

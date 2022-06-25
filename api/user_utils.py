@@ -3,7 +3,7 @@ from typing import Union
 from asyncpg import Connection
 
 from modules import query
-from modules.params import Params
+from modules.dependencies.commons_params import Params
 
 
 async def _user(params: Params, db: Connection, username: str):

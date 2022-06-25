@@ -7,8 +7,7 @@ from fastapi import APIRouter, Depends, HTTPException, Request, Response
 from shapely.geometry import Point, Polygon
 
 from modules import query, tiles
-from modules.dependencies import database
-from modules.params import Params
+from modules.dependencies import commons_params, database
 
 router = APIRouter()
 
@@ -101,14 +100,18 @@ def _errors_geojson(
 
 @router.get("/0.3/issues/{z}/{x}/{y}.heat.mvt", tags=["tiles"])
 async def heat(
-    request: Request, z: int, x: int, y: int, db: Connection = Depends(database.db)
+    request: Request,
+    z: int,
+    x: int,
+    y: int,
+    db: Connection = Depends(database.db),
+    params=Depends(commons_params.params),
 ):
     COUNT = 32
 
     lon1, lat2 = tiles.tile2lonlat(x, y, z)
     lon2, lat1 = tiles.tile2lonlat(x + 1, y + 1, z)
 
-    params = Params(request)
     items = query._build_where_item(params.item, "items")
     params.tilex = x
     params.tiley = y
@@ -221,11 +224,12 @@ async def issues_mvt(
     y: int,
     format: TileFormat,
     db: Connection = Depends(database.db),
+    params=Depends(commons_params.params),
 ):
     lon1, lat2 = tiles.tile2lonlat(x, y, z)
     lon2, lat1 = tiles.tile2lonlat(x + 1, y + 1, z)
 
-    params = Params(request, max_limit=50 if z > 18 else 10000)
+    params.limit = min(params.limit, 50 if z > 18 else 10000)
     params.tilex = x
     params.tiley = y
     params.zoom = z

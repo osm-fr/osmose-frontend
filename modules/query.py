@@ -3,7 +3,7 @@ from typing import Any, List, Tuple
 from asyncpg import Connection
 
 from . import tiles
-from .params import Params
+from .dependencies.commons_params import Params
 
 
 def _build_where_item(table, item: str):
