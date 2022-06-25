@@ -3,6 +3,7 @@ matplotlib >= 1.1
 requests >= 2.0
 beaker >= 1.6
 polib
+protobuf < 4 # 4.x binary not yet compatible with system package, deps of mapbox-vector-tile
 mapbox-vector-tile
 pyclipper
 # Use a patch fork, for unmaintened rauth:
