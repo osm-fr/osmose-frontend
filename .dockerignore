@@ -1,2 +1,4 @@
 .git
+.venv
+.mypy_cache
 web/node_modules
