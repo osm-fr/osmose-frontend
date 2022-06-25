@@ -21,7 +21,7 @@
 ###########################################################################
 
 import bottle
-from modules import utils
+from modules_legacy import utils
 import os.path
 
 bottle.TEMPLATE_PATH.insert(0, './web_api/views/')
@@ -42,7 +42,7 @@ def pathinfo_adjust_wrapper(func):
 app._handle = pathinfo_adjust_wrapper(app._handle)
 #######
 
-from modules import bottle_gettext
+from modules_legacy import bottle_gettext
 import os
 app.install(bottle_gettext.Plugin('osmose-frontend', os.path.join("web", "po", "mo"), utils.allowed_languages))
 
@@ -80,4 +80,4 @@ def static(filename):
 
 app_middleware = web_app.app_middleware
 
-import modules.osmose_bottle
+import modules_legacy.osmose_bottle

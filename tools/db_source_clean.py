@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from modules import utils
+from modules_legacy import utils
 
 if __name__ == "__main__":
 

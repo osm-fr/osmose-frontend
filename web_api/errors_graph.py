@@ -28,8 +28,8 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot
 import matplotlib.dates
-from modules.params import Params
-from modules import query
+from modules_legacy.params import Params
+from modules_legacy import query
 
 
 def get_data(db, params):

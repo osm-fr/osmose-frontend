@@ -22,8 +22,8 @@
 
 import bottle
 import os
-from modules import utils
-from modules import bottle_pgsql
+from modules_legacy import utils
+from modules_legacy import bottle_pgsql
 
 
 class OsmoseControlBottle(bottle.Bottle):

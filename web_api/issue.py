@@ -20,7 +20,7 @@
 ###########################################################################
 
 from bottle import route, abort
-from modules import utils
+from modules_legacy import utils
 
 from api.issue_utils import _get, _expand_tags, t2l
 

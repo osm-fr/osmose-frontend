@@ -23,9 +23,9 @@
 import io
 
 from bottle import post, request, abort
-from modules import OsmSax
+from modules_legacy import OsmSax
 
-from modules import utils
+from modules_legacy import utils
 from .tool import oauth
 
 

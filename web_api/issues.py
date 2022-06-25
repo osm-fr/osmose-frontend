@@ -21,11 +21,11 @@
 ###########################################################################
 
 from bottle import route, request, response, redirect
-from modules import utils
-from modules.utils import i10n_select_auto
-from modules.params import Params
-from modules import query
-from modules import query_meta
+from modules_legacy import utils
+from modules_legacy.utils import i10n_select_auto
+from modules_legacy.params import Params
+from modules_legacy import query
+from modules_legacy import query_meta
 from collections import defaultdict
 from lxml import etree
 from lxml.builder import E, ElementMaker

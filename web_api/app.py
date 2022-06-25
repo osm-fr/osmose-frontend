@@ -22,15 +22,15 @@
 
 import bottle
 from bottle import route, view, error, redirect, request, hook, HTTPError
-from modules import utils
+from modules_legacy import utils
 from .tool import oauth, xmldict
 import beaker.middleware
 import os
-from modules.osmose_bottle import uuid_filter, ext_filter
-from modules import bottle_pgsql
-from modules import bottle_cors
-from modules import bottle_gettext
-from modules import bottle_user
+from modules_legacy.osmose_bottle import uuid_filter, ext_filter
+from modules_legacy import bottle_pgsql
+from modules_legacy import bottle_cors
+from modules_legacy import bottle_gettext
+from modules_legacy import bottle_user
 
 
 @hook('before_request')

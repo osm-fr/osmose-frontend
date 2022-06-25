@@ -10,7 +10,7 @@ import inspect
 import os
 import psycopg2
 import sys
-import modules.utils
+import modules_legacy.utils
 
 if __name__ == "__main__":
 
@@ -81,7 +81,7 @@ if __name__ == "__main__":
   builtins.T_ = translate
   builtins.T_f = translate
 
-  importlib.reload(modules)  # needed as was loaded by import modules.utils
+  importlib.reload(modules_legacy)  # needed as was loaded by import modules_legacy.utils
   import osmose_config
 
   for (country, country_config) in osmose_config.config.items():

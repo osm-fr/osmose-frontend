@@ -21,8 +21,8 @@
 ###########################################################################
 
 from bottle import route, request, redirect
-from modules.params import Params
-from modules import utils, query, query_meta
+from modules_legacy.params import Params
+from modules_legacy import utils, query, query_meta
 from api.user_utils import _user_count
 from collections import defaultdict
 

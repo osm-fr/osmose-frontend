@@ -21,9 +21,9 @@
 ###########################################################################
 
 from bottle import route, redirect, response, html_escape
-from modules import utils
-from modules.utils import i10n_select_auto
-from modules import query
+from modules_legacy import utils
+from modules_legacy.utils import i10n_select_auto
+from modules_legacy import query
 from lxml import etree
 from lxml.builder import E, ElementMaker
 
