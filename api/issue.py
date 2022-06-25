@@ -304,9 +304,8 @@ def _get_fix(
     return fixes_default(fix[0])[fix_num]
 
 
-@route("/issue/<uuid:uuid>/fix")
 @route("/issue/<uuid:uuid>/fix/<fix_num:int>")
-def fix_uuid(db, uuid: UUID, fix_num: int = 0):
+def fix_uuid(db, uuid: UUID, fix_num: int):
     fix = _get_fix(db, fix_num, uuid=uuid)
     if fix:
         response.content_type = "text/xml; charset=utf-8"
