@@ -2,6 +2,8 @@ import os
 from typing import Dict, List, Union
 from uuid import UUID
 
+from asyncpg import Connection
+
 from modules.query import fixes_default
 
 from .tool import tag2link
@@ -11,7 +13,9 @@ t2l = tag2link.tag2link(
 )
 
 
-def _get(db, err_id: Union[int, None] = None, uuid: Union[UUID, None] = None):
+async def _get(
+    db: Connection, err_id: Union[int, None] = None, uuid: Union[UUID, None] = None
+):
     columns_marker = [
         "markers.item",
         "markers.source_id",
@@ -44,10 +48,10 @@ def _get(db, err_id: Union[int, None] = None, uuid: Union[UUID, None] = None):
             JOIN updates_last ON
                 updates_last.source_id = markers.source_id
         WHERE
-            uuid_to_bigint(uuid) = %s
+            uuid_to_bigint(uuid) = $1
         """
         )
-        db.execute(sql, (err_id,))
+        marker = await db.fetchrow(sql, err_id)
     else:
         sql = (
             "SELECT "
@@ -61,28 +65,31 @@ def _get(db, err_id: Union[int, None] = None, uuid: Union[UUID, None] = None):
             JOIN updates_last ON
                 updates_last.source_id = markers.source_id
         WHERE
-            uuid = %s
+            uuid = $1
         """
         )
-        db.execute(sql, (uuid,))
-
-    marker = db.fetchone()
+        marker = await db.fetchrow(sql, uuid)
 
     if not marker:
         return None
 
-    marker["fixes"] = fixes_default(marker["fixes"])
-    marker["elems"] = list(
-        map(
-            lambda elem: dict(
-                elem,
-                type_long={"N": "node", "W": "way", "R": "relation"}[elem["type"]],
+    return {
+        **marker,
+        **{
+            "fixes": fixes_default(marker["fixes"]),
+            "elems": list(
+                map(
+                    lambda elem: dict(
+                        elem,
+                        type_long={"N": "node", "W": "way", "R": "relation"}[
+                            elem["type"]
+                        ],
+                    ),
+                    marker["elems"] or [],
+                )
             ),
-            marker["elems"] or [],
-        )
-    )
-
-    return marker
+        },
+    }
 
 
 def _expand_tags(

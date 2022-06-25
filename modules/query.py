@@ -1,4 +1,9 @@
-from . import tiles, utils
+from typing import Any, List, Tuple
+
+from asyncpg import Connection
+
+from . import tiles
+from .params import Params
 
 
 def _build_where_item(table, item: str):
@@ -37,7 +42,7 @@ def _build_where_class(table, classs: int):
 
 
 def _build_param(
-    db,
+    db: Connection,
     bbox,
     source,
     item,
@@ -60,10 +65,11 @@ def _build_param(
     zoom=None,
     osm_type=None,
     osm_id=None,
-):
+) -> Tuple[str, str, List[Any]]:
     base_table = None
     join = ""
     where = ["1=1"]
+    params = []
 
     if summary:
         base_table = "markers_counts"
@@ -83,7 +89,8 @@ def _build_param(
     elif status in ("done", "false"):
         base_table = "markers_status"
         join += "markers_status AS markers"
-        where.append("markers.status = '%s'" % status)
+        params.append(status)
+        where.append(f"markers.status = ${len(params)}")
     else:
         base_table = "markers"
         join += "markers"
@@ -94,14 +101,14 @@ def _build_param(
         for source in sources:
             source = source.split("-")
             if len(source) == 1:
-                source2.append("(markers.source_id=%d)" % int(source[0]))
+                params.append(int(source[0]))
+                source2.append(f"(markers.source_id=${len(params)})")
             else:
+                params += [int(source[0]), int(source[1])]
                 source2.append(
-                    "(markers.source_id=%d AND markers.class=%d)"
-                    % (int(source[0]), int(source[1]))
+                    f"(markers.source_id=${len(params) - 1} AND markers.class=${len(params)})"
                 )
-        sources2 = " OR ".join(source2)
-        where.append("(%s)" % sources2)
+        where.append("(" + " OR ".join(source2) + ")")
 
     tables = list(forceTable)
     tablesLeft = []
@@ -150,15 +157,17 @@ def _build_param(
         where.append(_build_where_item("markers", item))
 
     if level and level != "1,2,3":
-        where.append("class.level IN (%s)" % level)
+        params.append(level)
+        where.append(f"class.level IN ${len(params)}")
 
     if classs:
         where.append(_build_where_class("markers", classs))
 
     if bbox:
+        params += [bbox[1], bbox[3], bbox[0], bbox[2]]
         where.append(
-            "markers.lat BETWEEN %f AND %f AND markers.lon BETWEEN (%f + 180) %% 360 - 180 AND (%f + 180) %% 360 - 180"
-            % (bbox[1], bbox[3], bbox[0], bbox[2])
+            f"""markers.lat BETWEEN ${len(params)-3} AND ${len(params)-2} AND
+            markers.lon BETWEEN (${len(params)-1} + 180) % 360 - 180 AND (${len(params)-1} + 180) % 360 - 180"""
         )
         if item is None:
             # Compute a tile to use index
@@ -170,61 +179,54 @@ def _build_param(
                 )
 
     if tilex and tiley and zoom:
+        params += [tilex, tiley, zoom]
         where.append(
-            """lonlat2z_order_curve(lon, lat) BETWEEN zoc18min(z_order_curve({x}, {y}), {z}) AND
-            zoc18max(z_order_curve({x}, {y}), {z}) AND lat > -90""".format(
-                z=zoom, x=tilex, y=tiley
-            )
+            f"""lonlat2z_order_curve(lon, lat) BETWEEN
+                    zoc18min(z_order_curve(${len(params)-2}, ${len(params)-1}), ${len(params)}) AND
+                    zoc18max(z_order_curve(${len(params)-2}, ${len(params)-1}), ${len(params)}) AND
+                lat > -90"""
         )
 
     if country is not None:
         if len(country) >= 1 and country[-1] == "*":
             country = country[:-1] + "%"
-        where.append("sources.country LIKE '%s'" % country)
+        params.append(country)
+        where.append(f"sources.country LIKE ${len(params)}")
 
     if status not in ("done", "false") and useDevItem:
         where.append("items.item IS NULL")
 
     if status not in ("done", "false") and users:
-        where.append(
-            "ARRAY['%s'] && marker_usernames(markers.elems)"
-            % "','".join(
-                map(
-                    lambda user: utils.pg_escape(db.mogrify(user).decode("utf-8")),
-                    users,
-                )
-            )
-        )
+        params.append(users)
+        where.append(f"${len(params)} && marker_usernames(markers.elems)")
 
     if stats:
         if start_date and end_date:
+            params += [start_date.isoformat(), end_date.isoformat()]
             where.append(
-                "markers.timestamp_range && tsrange('{0}', '{1}', '[]')".format(
-                    start_date.isoformat(), end_date.isoformat()
-                )
+                f"markers.timestamp_range && tsrange(${len(params)-1}, ${len(params)}, '[]')"
             )
         elif start_date:
+            params.append(start_date.isoformat())
             where.append(
-                "markers.timestamp_range && tsrange('{0}', NULL, '[)')".format(
-                    start_date.isoformat()
-                )
+                f"markers.timestamp_range && tsrange(${len(params)}, NULL, '[)')"
             )
         elif end_date:
+            params.append(end_date.isoformat())
             where.append(
-                "markers.timestamp_range && tsrange(NULL, '{0}', '(]')".format(
-                    end_date.isoformat()
-                )
+                f"markers.timestamp_range && tsrange(NULL, ${len(params)}, '(]')"
             )
     elif status in ("done", "false"):
         if start_date:
-            where.append("markers.date > '%s'" % start_date.isoformat())
+            params.append(start_date.isoformat())
+            where.append(f"markers.date > ${len(params)}")
         if end_date:
-            where.append("markers.date < '%s'" % end_date.isoformat())
+            params.append(end_date.isoformat())
+            where.append(f"markers.date < ${len(params)}")
 
     if tags:
-        where.append(
-            "class.tags::text[] && ARRAY['%s']" % "','".join(map(utils.pg_escape, tags))
-        )
+        params.append(tags)
+        where.append("class.tags::text[] && ${len(params)}")
 
     if fixable == "online":
         where.append(
@@ -234,15 +236,19 @@ def _build_param(
         where.append("fixes IS NOT NULL")
 
     if osm_type and osm_id and base_table == "markers":
+        params.append(osm_id)
         where.append(
-            "ARRAY[%s::bigint] <@ marker_elem_ids(elems)" % (osm_id,)
+            f"ARRAY[${len(params)}::bigint] <@ marker_elem_ids(elems)"
         )  # Match the index
+        params += [osm_type[0].upper(), osm_id]
         where.append(
-            "(SELECT bool_or(elem->>'type' = '%s' AND elem->>'id' = '%s') FROM (SELECT unnest(elems)) AS t(elem))"
-            % (osm_type[0].upper(), osm_id)
+            f"""(SELECT
+                    bool_or(elem->>'type' = ${len(params)-1} AND
+                    elem->>'id' = ${len(params)})
+                FROM (SELECT unnest(elems)) AS t(elem))"""
         )  # Recheck with type
 
-    return (join, " AND\n        ".join(where))
+    return (join, " AND\n        ".join(where), params)
 
 
 def fixes_default(fixes):
@@ -268,7 +274,7 @@ def fixes_default(fixes):
         return fs
 
 
-def _gets(db, params):
+async def _gets(db: Connection, params: Params):
     sqlbase = """
     SELECT
         uuid_to_bigint(uuid) as id,
@@ -306,20 +312,13 @@ def _gets(db, params):
         updates_last.timestamp > (now() - interval '3 months')
     """
     )
-    if params.limit:
-        sqlbase += (
-            """
-    LIMIT
-        %s"""
-            % params.limit
-        )
 
     if params.full:
         forceTable = ["class", "sources"]
     else:
         forceTable = []
 
-    join, where = _build_param(
+    join, where, sql_params = _build_param(
         db,
         params.bbox,
         params.source,
@@ -341,28 +340,47 @@ def _gets(db, params):
         osm_type=params.osm_type,
         osm_id=params.osm_id,
     )
+
+    if params.limit:
+        sql_params.append(params.limit)
+        sqlbase += f"""
+    LIMIT
+        ${len(sql_params)}"""
+
     sql = sqlbase % (join, where)
-    db.execute(sql)  # FIXME pas de %
-    results = db.fetchall()
+    results = list(await db.fetch(sql, *sql_params))
+    return list(
+        map(
+            lambda res: {
+                **res,
+                **(
+                    {
+                        "elems": list(
+                            map(
+                                lambda elem: dict(
+                                    elem,
+                                    type_long={
+                                        "N": "node",
+                                        "W": "way",
+                                        "R": "relation",
+                                    }[elem["type"]],
+                                ),
+                                res["elems"],
+                            )
+                        )
+                    }
+                    if "elems" in res and res["elems"]
+                    else {}
+                ),
+            },
+            results,
+        )
+    )
 
-    for res in results:
-        if "elems" in res and res["elems"]:
-            res["elems"] = list(
-                map(
-                    lambda elem: dict(
-                        elem,
-                        type_long={"N": "node", "W": "way", "R": "relation"}[
-                            elem["type"]
-                        ],
-                    ),
-                    res["elems"],
-                )
-            )
 
-    return results
-
-
-def _count(db, params, by, extraFrom=[], extraFields=[], orderBy=False):
+async def _count(
+    db: Connection, params, by, extraFrom=[], extraFields=[], orderBy=False
+):
     params.full = False
 
     if params.bbox or params.users or (params.status in ("done", "false")):
@@ -392,13 +410,11 @@ def _count(db, params, by, extraFrom=[], extraFields=[], orderBy=False):
         order = groupBy
     else:
         order = "count DESC"
-    if params.limit:
-        sqlbase += " LIMIT %s" % params.limit
     last_update = False
     if "updates_last" in byTable:
         last_update = True
 
-    join, where = _build_param(
+    join, where, sql_params = _build_param(
         db,
         params.bbox,
         params.source,
@@ -422,8 +438,11 @@ def _count(db, params, by, extraFrom=[], extraFields=[], orderBy=False):
         osm_type=params.osm_type,
         osm_id=params.osm_id,
     )
-    sql = sqlbase % (select, join, where, groupBy, order)
-    db.execute(sql)  # FIXME pas de %
-    results = db.fetchall()
 
-    return results
+    if params.limit:
+        sql_params.append(params.limit)
+        sqlbase += f" LIMIT ${len(sql_params)}"
+
+    sql = sqlbase % (select, join, where, groupBy, order)
+
+    return await db.fetch(sql, *sql_params)

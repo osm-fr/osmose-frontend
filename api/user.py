@@ -1,34 +1,25 @@
-from collections import OrderedDict
+from asyncpg import Connection
+from fastapi import APIRouter, Depends, Request
 
-from bottle import default_app, route
+from modules.dependencies import database
 
 from .modules.params import Params
 from .user_utils import _user, _user_count
 
-app_0_2 = default_app.pop()
+router = APIRouter()
 
 
-@app_0_2.route("/user/<username>")
-@route("/user/<username>")
-def user(db, lang, username: str):
-    params = Params()
-    params, username, errors = _user(params, db, lang, username)
+@router.get("/0.3/user/{username}", tags=["users"])
+async def user(request: Request, username: str, db: Connection = Depends(database.db)):
+    params = Params(request)
+    params, username, errors = await _user(params, db, username)
 
-    out = OrderedDict()
-    for res in errors:
-        res["timestamp"] = str(res["timestamp"])
-        res["lat"] = float(res["lat"])
-        res["lon"] = float(res["lon"])
-    out["issues"] = list(map(dict, errors))
-    return out
+    return {"issues": list(map(dict, errors))}
 
 
-@app_0_2.route("/user_count/<username>")
-@route("/user_count/<username>")
-def user_count(db, lang, username: str):
-    params = Params()
-    count = _user_count(db, username)
-    return count
-
-
-default_app.push(app_0_2)
+@router.get("/0.3/user_count/{username}", tags=["users"])
+async def user_count(
+    request: Request, username: str, db: Connection = Depends(database.db)
+):
+    params = Params(request)
+    return await _user_count(params, db, username)

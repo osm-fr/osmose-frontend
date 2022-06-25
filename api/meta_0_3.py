@@ -1,9 +1,13 @@
-from bottle import default_app, request, response, route
+from typing import Dict, List
+
+from asyncpg import Connection
+from fastapi import APIRouter, Depends, Request
 
 from modules import query_meta
+from modules.dependencies import database, langs
 from modules.utils import LangsNegociation
 
-app_0_2 = default_app.pop()
+router = APIRouter()
 
 
 def _map_items(categories):
@@ -16,26 +20,43 @@ def _map_items(categories):
     return categories
 
 
-@route("/items")
-def items(db, langs: LangsNegociation):
-    return {"categories": _map_items(query_meta._items(db, langs=langs))}
+@router.get(
+    "/0.3/items",
+    response_model=Dict[str, List[Dict]],
+    tags=["metadata"],
+)
+async def items(
+    request: Request,
+    db: Connection = Depends(database.db),
+    langs: LangsNegociation = Depends(langs.langs),
+):
+    return {"categories": _map_items(await query_meta._items(db, langs=langs))}
 
 
-@route("/items/<item:int>/class/<classs:int>")
-def items_class(db, langs: LangsNegociation, item: int, classs: int):
+@router.get(
+    "/0.3/items/{item}/class/{classs}",
+    response_model=Dict[str, List[Dict]],
+    tags=["metadata"],
+)
+async def items_class(
+    request: Request,
+    item: int,
+    classs: int,
+    db: Connection = Depends(database.db),
+    langs: LangsNegociation = Depends(langs.langs),
+):
     return {
-        "categories": (query_meta._items(db, item=item, classs=classs, langs=langs))
+        "categories": (
+            await query_meta._items(db, item=item, classs=classs, langs=langs)
+        )
     }
 
 
-@route("/countries")
-def countries(db):
-    return {"countries": query_meta._countries(db)}
+@router.get("/0.3/countries", response_model=Dict[str, List[str]], tags=["metadata"])
+async def countries(db: Connection = Depends(database.db)):
+    return {"countries": await query_meta._countries(db)}
 
 
-@route("/tags")
-def tags(db):
-    return {"tags": query_meta._tags(db)}
-
-
-default_app.push(app_0_2)
+@router.get("/0.3/tags", response_model=Dict[str, List[str]], tags=["metadata"])
+async def tags(db: Connection = Depends(database.db)):
+    return {"tags": await query_meta._tags(db)}

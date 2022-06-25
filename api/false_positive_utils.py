@@ -1,8 +1,17 @@
-from typing import Union
+from typing import Literal, Union
 from uuid import UUID
 
+from asyncpg import Connection
 
-def _get(db, status, err_id: Union[int, None] = None, uuid: Union[UUID, None] = None):
+Status = Literal["false"]
+
+
+async def _get(
+    db: Connection,
+    status: Status,
+    err_id: Union[int, None] = None,
+    uuid: Union[UUID, None] = None,
+):
     columns = [
         "markers_status.item",
         "source_id",
@@ -25,11 +34,11 @@ def _get(db, status, err_id: Union[int, None] = None, uuid: Union[UUID, None] = 
                 class.item = markers_status.item AND
                 class.class = markers_status.class
         WHERE
-            status = %s AND
-            uuid_to_bigint(uuid) = %s
+            status = $1 AND
+            uuid_to_bigint(uuid) = $2
         """
         )
-        db.execute(sql, (status, err_id))
+        marker = await db.fetchrow(sql, status, err_id)
     else:
         sql = (
             "SELECT "
@@ -41,12 +50,10 @@ def _get(db, status, err_id: Union[int, None] = None, uuid: Union[UUID, None] = 
             class.item = markers_status.item AND
             class.class = markers_status.class
         WHERE
-            status = %s AND
-            uuid = %s
+            status = $1 AND
+            uuid = $2
         """
         )
-        db.execute(sql, (status, uuid))
-
-    marker = db.fetchone()
+        marker = await db.fetchrow(sql, status, uuid)
 
     return (marker, columns)

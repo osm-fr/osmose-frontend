@@ -2,13 +2,15 @@ import math
 from typing import Literal
 
 import mapbox_vector_tile
-from bottle import HTTPError, HTTPResponse, default_app, response, route
+from asyncpg import Connection
+from fastapi import APIRouter, Depends, HTTPException, Request, Response
 from shapely.geometry import Point, Polygon
 
 from modules import query, tiles
+from modules.dependencies import database
 from modules.params import Params
 
-app_0_2 = default_app.pop()
+router = APIRouter()
 
 
 def _errors_mvt(
@@ -97,14 +99,16 @@ def _errors_geojson(
         return features_collection
 
 
-@route("/issues/<z:int>/<x:int>/<y:int>.heat.mvt")
-def heat(db, z: int, x: int, y: int):
+@router.get("/0.3/issues/{z}/{x}/{y}.heat.mvt", tags=["tiles"])
+async def heat(
+    request: Request, z: int, x: int, y: int, db: Connection = Depends(database.db)
+):
     COUNT = 32
 
     lon1, lat2 = tiles.tile2lonlat(x, y, z)
     lon2, lat1 = tiles.tile2lonlat(x + 1, y + 1, z)
 
-    params = Params()
+    params = Params(request)
     items = query._build_where_item(params.item, "items")
     params.tilex = x
     params.tiley = y
@@ -113,7 +117,7 @@ def heat(db, z: int, x: int, y: int):
     if params.zoom > 18:
         return
 
-    db.execute(
+    limit = await db.fetchrow(
         """
 SELECT
     SUM((SELECT SUM(t) FROM UNNEST(number) t))
@@ -123,14 +127,13 @@ WHERE
 """
         + items
     )
-    limit = db.fetchone()
     if limit and limit[0]:
         limit = float(limit[0])
     else:
-        return HTTPError(404)
+        raise HTTPException(status_code=404)
 
-    join, where = query._build_param(
-        db,
+    join, where, sql_params = query._build_param(
+        await db,
         None,
         params.source,
         params.item,
@@ -146,15 +149,20 @@ WHERE
         tiley=params.tiley,
         zoom=params.zoom,
     )
-    join = join.replace("%", "%%")
-    where = where.replace("%", "%%")
 
+    sql_params += [lon1, lat1, lon2, lat2, COUNT]
     sql = (
-        """
+        f"""
 SELECT
     COUNT(*),
-    ((lon-%(lon1)s) * %(count)s / (%(lon2)s-%(lon1)s) + 0.5)::int AS latn,
-    ((lat-%(lat1)s) * %(count)s / (%(lat2)s-%(lat1)s) + 0.5)::int AS lonn,
+    (
+        (lon-${len(sql_params)-4}) * ${len(sql_params)} /
+            (${len(sql_params)-2}-${len(sql_params)-4}) + 0.5
+    )::int AS latn,
+    (
+        (lat-${len(sql_params)-3}) * ${len(sql_params)} /
+            (${len(sql_params)-1}-${len(sql_params)-3}) + 0.5
+    )::int AS lonn,
     mode() WITHIN GROUP (ORDER BY items.marker_color) AS color
 FROM
 """
@@ -169,12 +177,11 @@ GROUP BY
     lonn
 """
     )
-    db.execute(
-        sql, {"lon1": lon1, "lat1": lat1, "lon2": lon2, "lat2": lat2, "count": COUNT}
-    )
 
     features = []
-    for row in db.fetchall():
+    for row in await db.fetch(
+        sql,
+    ):
         count, x, y, color = row
         count = max(
             int(
@@ -195,21 +202,30 @@ GROUP BY
                 }
             )
 
-    response.content_type = "application/vnd.mapbox-vector-tile"
-    return mapbox_vector_tile.encode(
-        [{"name": "issues", "features": features}], extents=COUNT
+    return Response(
+        content=mapbox_vector_tile.encode(
+            [{"name": "issues", "features": features}], extents=COUNT
+        ),
+        media_type="application/vnd.mapbox-vector-tile",
     )
 
 
 TileFormat = Literal["mvt", "geojson"]
 
 
-@route("/issues/<z:int>/<x:int>/<y:int>.<format:ext>")
-def issues_mvt(db, z: int, x: int, y: int, format: TileFormat):
+@router.get("/0.3/issues/{z}/{x}/{y}.{format}", tags=["tiles"])
+async def issues_mvt(
+    request: Request,
+    z: int,
+    x: int,
+    y: int,
+    format: TileFormat,
+    db: Connection = Depends(database.db),
+):
     lon1, lat2 = tiles.tile2lonlat(x, y, z)
     lon2, lat1 = tiles.tile2lonlat(x + 1, y + 1, z)
 
-    params = Params(max_limit=50 if z > 18 else 10000)
+    params = Params(request, max_limit=50 if z > 18 else 10000)
     params.tilex = x
     params.tiley = y
     params.zoom = z
@@ -220,26 +236,23 @@ def issues_mvt(db, z: int, x: int, y: int, format: TileFormat):
     if (not params.users) and (not params.source) and (params.zoom < 7):
         return
 
-    results = query._gets(db, params) if z >= 7 else None
+    results = await query._gets(db, params) if z >= 7 else None
 
     if format == "mvt":
         tile = _errors_mvt(results, z, lon1, lat1, lon2, lat2, params.limit)
         if tile:
-            response.content_type = "application/vnd.mapbox-vector-tile"
-            return tile
+            return Response(
+                content=tile, media_type="application/vnd.mapbox-vector-tile"
+            )
         else:
-            return HTTPResponse(
-                status=204, headers={"Access-Control-Allow-Origin": "*"}
+            return Response(
+                status_code=204, media_type="application/vnd.mapbox-vector-tile"
             )
     elif format in ("geojson", "json"):  # Fall back to GeoJSON
         tile = _errors_geojson(results, z, lon1, lat1, lon2, lat2, params.limit)
         if tile:
-            response.content_type = "application/vnd.geo+json"
-            return tile
+            return Response(content=tile, media_type="application/vnd.geo+json")
         else:
-            return []
+            return Response(content=[], media_type="application/vnd.geo+json")
     else:
-        return HTTPError(404)
-
-
-default_app.push(app_0_2)
+        raise HTTPException(status_code=404)

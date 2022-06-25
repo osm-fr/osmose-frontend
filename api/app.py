@@ -1,53 +1,37 @@
-import os
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
-import bottle
-
-from modules import bottle_cors, bottle_gettext, bottle_langs, bottle_pgsql, utils
-from modules.osmose_bottle import ext_filter, uuid_filter
-
-
-class OsmoseAPIBottle(bottle.Bottle):
-    def default_error_handler(self, res):
-        bottle.response.content_type = "text/plain"
-        return res.body
-
-
-app_0_3 = OsmoseAPIBottle()
-bottle.default_app.push(app_0_3)
-
-app_0_2 = OsmoseAPIBottle()
-bottle.default_app.push(app_0_2)
-
-
-app_0_2.install(bottle_pgsql.Plugin(utils.db_string))
-app_0_2.install(
-    bottle_cors.Plugin(
-        allow_origin="*", preflight_methods=["GET", "POST", "PUT", "DELETE"]
-    )
-)
-app_0_2.install(
-    bottle_gettext.Plugin(
-        "osmose-frontend", os.path.join("web", "po", "mo"), utils.allowed_languages
-    )
-)
-
-app_0_3.install(bottle_pgsql.Plugin(utils.db_string))
-app_0_3.install(
-    bottle_cors.Plugin(
-        allow_origin="*", preflight_methods=["GET", "POST", "PUT", "DELETE"]
-    )
-)
-app_0_3.install(bottle_langs.Plugin())
-
-app_0_2.router.add_filter("ext", ext_filter)
-app_0_3.router.add_filter("ext", ext_filter)
-
-app_0_3.router.add_filter("uuid", uuid_filter)
+from modules.dependencies import database
 
 from . import false_positive, issue, issues, issues_tiles, meta_0_3, user
 
-bottle.default_app.pop()
-bottle.default_app.pop()
+app = FastAPI()
 
-if __name__ == "__main__":
-    bottle.run(app=app_0_3, host="0.0.0.0", port=20009, reloader=True, debug=True)
+
+# class OsmoseAPIBottle(bottle.Bottle):
+#     def default_error_handler(self, res):
+#         bottle.response.content_type = 'text/plain'
+#         return res.body
+
+# CORS middleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
+)
+
+
+@app.on_event("startup")
+async def startup():
+    await database.startup()
+
+
+# Add routes
+
+app.include_router(meta_0_3.router)
+app.include_router(user.router)
+app.include_router(issue.router)
+app.include_router(issues.router)
+app.include_router(issues_tiles.router)
+app.include_router(false_positive.router)

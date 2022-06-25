@@ -1,9 +1,16 @@
 import re
 from typing import List, Union
 
-from bottle import request
+from fastapi import Request
 
 from . import utils
+
+
+def safe_cast(val, to_type, default=None):
+    try:
+        return to_type(val)
+    except (ValueError, TypeError):
+        return default
 
 
 class Params:
@@ -28,27 +35,27 @@ class Params:
     tilex: Union[int, None]
     tiley: Union[int, None]
 
-    def __init__(self, default_limit=100, max_limit=500):
-        bbox = request.query.getunicode("bbox", default=None)
-        self.item = request.query.getunicode("item")
-        self.source = request.query.getunicode("source", default="")
-        self.classs = request.query.getunicode("class", default="")
-        users = request.query.getunicode("username", default="")
-        self.level = request.query.getunicode("level", default="1,2,3")
-        self.full = request.query.getunicode("full", default=False)
-        self.zoom = request.query.get("zoom", type=int, default=10)
-        self.limit = request.query.get("limit", type=int, default=default_limit)
-        self.country = request.query.getunicode("country", default=None)
-        self.useDevItem = request.query.getunicode("useDevItem", default=False)
-        self.status = request.query.getunicode("status", default="open")
-        self.start_date = request.query.getunicode("start_date", default=None)
-        self.end_date = request.query.getunicode("end_date", default=None)
-        tags = request.query.getunicode("tags", default=None)
-        self.fixable = request.query.getunicode("fixable", default=None)
-        self.osm_type = request.query.getunicode("osm_type", default=None)
-        self.osm_id = request.query.get("osm_id", type=int, default=None)
-        self.tilex = request.query.getunicode("tilex", default=None)
-        self.tiley = request.query.getunicode("tiley", default=None)
+    def __init__(self, request: Request, default_limit=100, max_limit=500):
+        bbox = request.query_params.get("bbox", None)
+        self.item = request.query_params.get("item")
+        self.source = request.query_params.get("source", "")
+        self.classs = request.query_params.get("class", "")
+        users = request.query_params.get("username", "")
+        self.level = request.query_params.get("level", "1,2,3")
+        self.full = request.query_params.get("full", False)
+        self.zoom = safe_cast(request.query_params.get("zoom"), int, 10)
+        self.limit = safe_cast(request.query_params.get("limit"), int, default_limit)
+        self.country = request.query_params.get("country", None)
+        self.useDevItem = request.query_params.get("useDevItem", False)
+        self.status = request.query_params.get("status", "open")
+        self.start_date = request.query_params.get("start_date", None)
+        self.end_date = request.query_params.get("end_date", None)
+        tags = request.query_params.get("tags", None)
+        self.fixable = request.query_params.get("fixable", None)
+        self.osm_type = request.query_params.get("osm_type", None)
+        self.osm_id = safe_cast(request.query_params.get("osm_id"), int, None)
+        self.tilex = request.query_params.get("tilex", None)
+        self.tiley = request.query_params.get("tiley", None)
 
         if self.level:
             levels = self.level.split(",")
@@ -56,13 +63,13 @@ class Params:
                 self.level = ",".join([str(int(x)) for x in levels if x])
             except Exception:
                 self.level = "1,2,3"
+        self.bbox = None
         if bbox:
             try:
                 self.bbox = list(map(lambda x: float(x), bbox.split(",")))
             except Exception:
-                self.bbox = None
-        if users:
-            self.users = users.split(",")
+                pass
+        self.users = users.split(",") if users else None
         if self.limit is not None and self.limit > max_limit:
             self.limit = max_limit
         if self.country and not re.match(r"^([a-z_]+)(\*|)$", self.country):
@@ -77,8 +84,7 @@ class Params:
             self.start_date = utils.str_to_datetime(self.start_date)
         if self.end_date:
             self.end_date = utils.str_to_datetime(self.end_date)
-        if tags:
-            self.tags = tags.split(",")
+        self.tags = tags.split(",") if tags else None
 
         if self.osm_type and self.osm_type not in ["node", "way", "relation"]:
             self.osm_type = None

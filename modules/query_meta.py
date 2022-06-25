@@ -1,11 +1,12 @@
 from collections import defaultdict
 from typing import Union
 
-from .modules.utils import LangsNegociation
-from .utils import i10n_select
+from asyncpg import Connection
+
+from .utils import LangsNegociation, i10n_select
 
 
-def _items_menu(db, langs: LangsNegociation):
+async def _items_menu(db: Connection, langs: LangsNegociation):
     sql = """
     SELECT
         item,
@@ -15,14 +16,15 @@ def _items_menu(db, langs: LangsNegociation):
     ORDER BY
         item
     """
-    db.execute(sql)
-    items = db.fetchall()
-    for item in items:
-        item["menu"] = i10n_select(item["menu"], langs)
-    return items
+    return list(
+        map(
+            lambda x: {"item": x["item"], "menu": i10n_select(x["menu"], langs)},
+            await db.fetch(sql),
+        )
+    )
 
 
-def _countries(db):
+async def _countries(db: Connection):
     sql = """
     SELECT DISTINCT
         country
@@ -31,16 +33,17 @@ def _countries(db):
     ORDER BY
         country
     """
-    db.execute(sql)
-    return list(map(lambda x: x[0], db.fetchall()))
+    return list(map(lambda x: x[0], await db.fetch(sql)))
 
 
-def _items(
-    db,
+async def _items(
+    db: Connection,
     item: Union[int, None] = None,
     classs: Union[int, None] = None,
     langs: Union[LangsNegociation, None] = None,
 ):
+    sql_params = [item] if item is not None else []
+
     sql = (
         """
     SELECT
@@ -52,8 +55,8 @@ def _items(
         1 = 1 """
         + (
             """AND id = CASE
-            WHEN %(item)s < 1000 THEN 10
-            ELSE (%(item)s / 1000)::int * 10
+            WHEN $1 < 1000 THEN 10
+            ELSE ($1 / 1000)::int * 10
          END"""
             if item is not None
             else ""
@@ -63,10 +66,7 @@ def _items(
         id
     """
     )
-    db.execute(sql, {"item": item})
-    categs = db.fetchall()
-    for categ in categs:
-        categ["title"] = i10n_select(categ["title"], langs)
+    categs = await db.fetch(sql, *sql_params)
 
     sql = (
         """
@@ -83,14 +83,13 @@ def _items(
         items
     WHERE
         1 = 1"""
-        + ("AND item = %(item)s" if item is not None else "")
+        + ("AND item = $1" if item is not None else "")
         + """
     ORDER BY
         item
     """
     )
-    db.execute(sql, {"item": item})
-    items = db.fetchall()
+    items = await db.fetch(sql, *sql_params)
     items = list(
         map(
             lambda r: dict(
@@ -112,8 +111,7 @@ def _items(
     for i in items:
         items_categ[i["categorie_id"]].append(i)
 
-    sql = (
-        """
+    sql = """
     SELECT
         item,
         class,
@@ -130,16 +128,20 @@ def _items(
         class
     WHERE
         1 = 1"""
-        + ("AND item = %(item)s" if item is not None else "")
-        + ("AND class = %(classs)s" if classs is not None else "")
-        + """
+    params = 0
+    if item is not None:
+        params += 1
+        sql += f"AND item = ${params}"
+    if classs is not None:
+        params += 1
+        sql += f"AND class = ${params}"
+        sql_params.append(classs)
+    sql += """
     ORDER BY
         item,
         class
     """
-    )
-    db.execute(sql, {"item": item, "classs": classs})
-    classs = db.fetchall()
+    classs = await db.fetch(sql, *sql_params)
     classs = list(
         map(
             lambda c: dict(
@@ -168,12 +170,18 @@ def _items(
                     )
                 ),
             ),
-            categs,
+            map(
+                lambda categ: {
+                    "id": categ["id"],
+                    "title": i10n_select(categ["title"], langs),
+                },
+                categs,
+            ),
         )
     )
 
 
-def _tags(db):
+async def _tags(db: Connection):
     sql = """
     SELECT DISTINCT
         tag
@@ -189,5 +197,4 @@ def _tags(db):
     ORDER BY
         tag
     """
-    db.execute(sql)
-    return list(map(lambda x: x[0], db.fetchall()))
+    return list(map(lambda x: x[0], await db.fetch(sql)))

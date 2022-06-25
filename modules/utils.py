@@ -6,6 +6,8 @@ from collections import OrderedDict
 from io import StringIO
 from typing import Dict, List, Union
 
+import asyncpg
+
 from . import OsmSax
 
 ################################################################################
@@ -57,6 +59,7 @@ db_string = "host='%s' port='%s' dbname='%s' user='%s' password='%s'" % (
     pg_user,
     pg_pass,
 )
+db_dsn = f"postgres://{pg_user}:{pg_pass}@{pg_host}:{pg_port}/{pg_base}"
 website = os.environ.get("URL_FRONTEND") or "osmose.openstreetmap.fr"
 
 main_project = "OpenStreetMap"
@@ -80,34 +83,15 @@ dir_results = "/data/work/%s/results" % (username)
 #
 
 
-def get_dbconn():
-    import psycopg2.extras
-
-    #    return psycopg2.connect(host="localhost", database = pg_base, user = pg_user, password = pg_pass)
-    psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
-    psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
-    psycopg2.extensions.register_adapter(dict, psycopg2.extras.Json)
-    conn = psycopg2.extras.DictConnection(db_string)
-    psycopg2.extras.register_default_jsonb(conn)
-    return conn
-
-
-def pg_escape(text):
-    if text is None:
-        return None
-    if type(text) == int:
-        return str(text)
-    return text.replace("'", "''").replace("\\", "\\\\")
+async def get_dbconn():
+    return await asyncpg.connect(dsn=db_dsn)
 
 
 def get_sources():
     conn = get_dbconn()
-    curs = conn.cursor()
-    curs.execute(
-        "SELECT id, password, country, analyser FROM sources JOIN sources_password ON sources.id = source_id;"
-    )
+    sql = "SELECT id, password, country, analyser FROM sources JOIN sources_password ON sources.id = source_id"
     config = {}
-    for res in curs.fetchall():
+    for res in conn.fetch(sql):
         src = {}
         src["id"] = str(res["id"])
         src["password"] = set([res["password"]])

@@ -1,20 +1,23 @@
+import json
 from collections import OrderedDict
 from itertools import groupby
-from typing import Union
 
-from bottle import default_app, response, route
+from asyncpg import Connection
+from fastapi import APIRouter, Depends, Request, Response
+from fastapi.encoders import jsonable_encoder
 
 from modules import query, utils
+from modules.dependencies import database, langs
 from modules.params import Params
 from modules.utils import LangsNegociation
 
-app_0_2 = default_app.pop()
+router = APIRouter()
 
 
-@app_0_2.route("/errors")
-def errors(db, lang):
-    params = Params()
-    results = query._gets(db, params)
+@router.get("/0.2/errors", tags=["0.2"])
+async def errors(request: Request, db: Connection = Depends(database.db)):
+    params = Params(request)
+    results = await query._gets(db, params)
     out = OrderedDict()
 
     if not params.full:
@@ -59,10 +62,10 @@ def errors(db, lang):
             )
             subclass = 0
 
-            subtitle = utils.i10n_select(res["subtitle"], lang)
+            subtitle = utils.i10n_select(res["subtitle"], ["en"])
             subtitle = subtitle and subtitle["auto"] or ""
 
-            title = utils.i10n_select(res["title"], lang)
+            title = utils.i10n_select(res["title"], ["en"])
             title = title and title["auto"] or ""
 
             level = res["level"]
@@ -94,11 +97,52 @@ def errors(db, lang):
     return out
 
 
-@route("/issues")
-@route("/issues.<format:ext>")
-def issues(db, langs: LangsNegociation, format: Union[str, None] = None):
-    params = Params(max_limit=10000)
-    results = query._gets(db, params)
+@router.get("/0.3/issues.geojson", tags=["issues"])
+async def issues_geojson(
+    request: Request,
+    db: Connection = Depends(database.db),
+    langs: LangsNegociation = Depends(langs.langs),
+):
+
+    out = await issues(request, db, langs)
+    return Response(
+        media_type="application/vnd.geo+json",
+        content=json.dumps(
+            jsonable_encoder(
+                {
+                    "type": "FeatureCollection",
+                    "features": [
+                        {
+                            "type": "Feature",
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    properties["lon"],
+                                    properties["lat"],
+                                ],
+                            },
+                            "properties": {
+                                k: v
+                                for k, v in properties.items()
+                                if k not in ("lon", "lat")
+                            },
+                        }
+                        for properties in out["issues"]
+                    ],
+                }
+            )
+        ),
+    )
+
+
+@router.get("/0.3/issues", tags=["issues"])
+async def issues(
+    request: Request,
+    db: Connection = Depends(database.db),
+    langs: LangsNegociation = Depends(langs.langs),
+):
+    params = Params(request, max_limit=10000)
+    results = await query._gets(db, params)
 
     out = []
     for res in results:
@@ -143,26 +187,4 @@ def issues(db, langs: LangsNegociation, format: Union[str, None] = None):
             )
         out.append(i)
 
-    if format != "geojson":
-        return {"issues": out}
-    else:
-        response.content_type = "application/vnd.geo+json"
-        return {
-            "type": "FeatureCollection",
-            "features": [
-                {
-                    "type": "Feature",
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [properties["lon"], properties["lat"]],
-                    },
-                    "properties": {
-                        k: v for k, v in properties.items() if k not in ("lon", "lat")
-                    },
-                }
-                for properties in out
-            ],
-        }
-
-
-default_app.push(app_0_2)
+    return {"issues": out}

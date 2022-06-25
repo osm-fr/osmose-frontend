@@ -3,28 +3,26 @@ import io
 from typing import Literal, Union
 from uuid import UUID
 
-from bottle import abort, default_app, response, route
+from asyncpg import Connection
+from fastapi import APIRouter, Depends, HTTPException, Request, Response
 
 from modules import OsmSax, utils
+from modules.dependencies import database, langs
 from modules.query import fixes_default
 from modules.utils import LangsNegociation
 
 from .issue_utils import _expand_tags, _get, t2l
 
-app_0_2 = default_app.pop()
-
+router = APIRouter()
 
 Status = Literal["done", "false"]
 
 
-def _remove_bug_err_id(db, error_id: int, status: Status):
+async def _remove_bug_err_id(db: Connection, error_id: int, status: Status):
     # find source
-    db.execute(
-        "SELECT uuid,source_id,class FROM markers WHERE uuid_to_bigint(uuid) = %s",
-        (error_id,),
-    )
     source_id = None
-    for res in db.fetchall():
+    sql = "SELECT uuid,source_id,class FROM markers WHERE uuid_to_bigint(uuid) = $1"
+    for res in await db.fetch(sql, error_id):
         uuid = res["uuid"]
         source_id = res["source_id"]
         class_id = res["class"]
@@ -32,75 +30,90 @@ def _remove_bug_err_id(db, error_id: int, status: Status):
     if not source_id:
         return -1
 
-    db.execute("DELETE FROM markers_status WHERE uuid=%s", (uuid,))
+    async with db.transaction():
+        await db.execute("DELETE FROM markers_status WHERE uuid=$1", uuid)
 
-    db.execute(
-        """INSERT INTO markers_status
-                        (source_id,item,class,elems,date,status,lat,lon,subtitle,uuid)
-                      SELECT source_id,item,class,elems,NOW(),%s,
-                             lat,lon,subtitle,uuid
-                      FROM markers
-                      WHERE uuid = %s
-                      ON CONFLICT DO NOTHING""",
-        (status, uuid),
-    )
+        await db.execute(
+            """INSERT INTO markers_status
+                            (source_id,item,class,elems,date,status,lat,lon,subtitle,uuid)
+                        SELECT source_id,item,class,elems,NOW(),$1,
+                                lat,lon,subtitle,uuid
+                        FROM markers
+                        WHERE uuid = $2
+                        ON CONFLICT DO NOTHING""",
+            status,
+            uuid,
+        )
 
-    db.execute("DELETE FROM markers WHERE uuid = %s", (uuid,))
-    db.execute(
-        "UPDATE markers_counts SET count = count - 1 WHERE source_id = %s AND class = %s;",
-        (source_id, class_id),
-    )
-    db.connection.commit()
+        await db.execute("DELETE FROM markers WHERE uuid = $1", uuid)
+        await db.execute(
+            "UPDATE markers_counts SET count = count - 1 WHERE source_id = $1 AND class = $2",
+            source_id,
+            class_id,
+        )
 
     return 0
 
 
-def _remove_bug_uuid(db, uuid: UUID, status: Status):
-
-    PgConn = utils.get_dbconn()
-    db = PgConn.cursor()
+async def _remove_bug_uuid(db, uuid: UUID, status: Status):
+    db = await utils.get_dbconn()
 
     # find source
-    db.execute("SELECT source_id,class FROM markers WHERE uuid = %s", (uuid,))
     source_id = None
-    for res in db.fetchall():
+    sql = "SELECT source_id,class FROM markers WHERE uuid = $1"
+    for res in await db.fetch(sql, uuid):
         source_id = res["source_id"]
         class_id = res["class"]
 
     if not source_id:
         return -1
 
-    db.execute("DELETE FROM markers_status WHERE uuid=%s", (uuid,))
+    async with db.transaction():
+        await db.execute("DELETE FROM markers_status WHERE uuid=$1", uuid)
 
-    db.execute(
-        """INSERT INTO markers_status
-                        (source_id,item,class,elems,date,status,lat,lon,subtitle,uuid)
-                      SELECT source_id,item,class,elems,NOW(),%s,
-                             lat,lon,subtitle,uuid
-                      FROM markers
-                      WHERE uuid = %s
-                      ON CONFLICT DO NOTHING""",
-        (status, uuid),
-    )
+        await db.execute(
+            """INSERT INTO markers_status
+                            (source_id,item,class,elems,date,status,lat,lon,subtitle,uuid)
+                        SELECT source_id,item,class,elems,NOW(),$1,
+                                lat,lon,subtitle,uuid
+                        FROM markers
+                        WHERE uuid = $2
+                        ON CONFLICT DO NOTHING""",
+            status,
+            uuid,
+        )
 
-    db.execute("DELETE FROM markers WHERE uuid = %s", (uuid,))
-    db.execute(
-        "UPDATE markers_counts SET count = count - 1 WHERE source_id = %s AND class = %s;",
-        (source_id, class_id),
-    )
-    db.connection.commit()
+        await db.execute("DELETE FROM markers WHERE uuid = $1", uuid)
+        await db.execute(
+            "UPDATE markers_counts SET count = count - 1 WHERE source_id = $1 AND class = $2",
+            source_id,
+            class_id,
+        )
 
     return 0
 
 
-@route("/issue/<uuid:uuid>/fresh_elems")
-@route("/issue/<uuid:uuid>/fresh_elems/<fix_num:int>")
-def fresh_elems_uuid(db, uuid: UUID, fix_num: Union[int, None] = None):
+@router.get("/0.3/issue/{uuid}/fresh_elems", tags=["issues"])
+async def fresh_elems_uuid(
+    request: Request,
+    uuid: UUID,
+    db: Connection = Depends(database.db),
+):
+    return await fresh_elems_uuid_num(request, uuid=uuid, db=db)
+
+
+@router.get("/0.3/issue/{uuid}/fresh_elems/{fix_num}", tags=["issues"])
+async def fresh_elems_uuid_num(
+    request: Request,
+    uuid: UUID,
+    fix_num: Union[int, None] = None,
+    db: Connection = Depends(database.db),
+):
     data_type = {"N": "node", "W": "way", "R": "relation", "I": "infos"}
 
-    marker = _get(db, uuid=uuid)
+    marker = await _get(db, uuid=uuid)
     if not marker:
-        abort(410, "Id is not present in database.")
+        raise HTTPException(status_code=410, detail="Id is not present in database.")
 
     def expand_tags(tags):
         t = []
@@ -150,19 +163,37 @@ def fresh_elems_uuid(db, uuid: UUID, fix_num: Union[int, None] = None):
     return ret
 
 
-@app_0_2.route("/error/<err_id:int>")
-def error_err_id(db, lang, err_id: int):
-    return _error(2, db, lang, None, _get(db, err_id=err_id))
+@router.get("/0.2/error/{err_id}", tags=["0.2"])
+async def error_err_id(err_id: int, db: Connection = Depends(database.db)):
+    return _error(
+        2,
+        db,
+        ["en"],
+        None,
+        await _get(db, err_id=err_id),
+    )
 
 
-@route("/issue/<uuid:uuid>")
-def error_uuid(db, langs: LangsNegociation, uuid: UUID):
-    return _error(3, db, langs, uuid, _get(db, uuid=uuid))
+@router.get("/0.3/issue/{uuid}", tags=["issues"])
+async def error_uuid(
+    uuid: UUID,
+    db: Connection = Depends(database.db),
+    langs: LangsNegociation = Depends(langs.langs),
+):
+    return _error(
+        3,
+        db,
+        langs,
+        uuid,
+        await _get(db, uuid=uuid),
+    )
 
 
-def _error(version: int, db, langs: LangsNegociation, uuid: Union[UUID, None], marker):
+def _error(
+    version, db: Connection, langs: LangsNegociation, uuid: Union[UUID, None], marker
+):
     if not marker:
-        abort(410, "Id is not present in database.")
+        raise HTTPException(status_code=410, detail="Id is not present in database.")
 
     data_type = {"N": "node", "W": "way", "R": "relation", "I": "infos"}
 
@@ -270,45 +301,52 @@ def _error(version: int, db, langs: LangsNegociation, uuid: Union[UUID, None], m
         }
 
 
-@app_0_2.route("/error/<err_id:int>/<status:re:(done|false)>")
-def status_err_id(db, err_id: int, status: Status):
-    if _remove_bug_err_id(db, err_id, status) == 0:
+@router.get("/0.2/error/{err_id}/{status}", tags=["0.2"])
+async def status_err_id(
+    request: Request, err_id: int, status: Status, db: Connection = Depends(database.db)
+):
+    if await _remove_bug_err_id(db, err_id, status) == 0:
         return
     else:
-        abort(410, "FAIL")
+        raise HTTPException(status_code=410, detail="FAIL")
 
 
-@route("/issue/<uuid:uuid>/<status:re:(done|false)>")
-def status_uuid(db, uuid: UUID, status: Status):
-    if _remove_bug_uuid(db, uuid, status) == 0:
+@router.get("/0.3/issue/{uuid}/{status}", tags=["issues"])
+async def status_uuid(
+    request: Request, uuid: UUID, status: Status, db: Connection = Depends(database.db)
+):
+    if await _remove_bug_uuid(db, uuid, status) == 0:
         return
     else:
-        abort(410, "FAIL")
+        raise HTTPException(status_code=410, detail="FAIL")
 
 
-def _get_fix(
-    db, fix_num: int, err_id: Union[int, None] = None, uuid: Union[UUID, None] = None
+async def _get_fix(
+    db: Connection,
+    fix_num: int,
+    err_id: Union[int, None] = None,
+    uuid: Union[UUID, None] = None,
 ):
     if err_id:
-        sql = "SELECT fixes FROM markers WHERE id = %s"
-        db.execute(sql, (err_id,))
+        sql = "SELECT fixes FROM markers WHERE id = $1"
+        fix = await db.fetchrow(sql, err_id)
     else:
-        sql = "SELECT fixes FROM markers WHERE uuid = %s"
-        db.execute(sql, (uuid,))
-
-    fix = db.fetchone()
+        sql = "SELECT fixes FROM markers WHERE uuid = $1"
+        fix = await db.fetchrow(sql, uuid)
 
     if not fix:
-        abort(410, "Fix is not present in database.")
+        raise HTTPException(status_code=410, detail="Fix is not present in database.")
 
     return fixes_default(fix[0])[fix_num]
 
 
-@route("/issue/<uuid:uuid>/fix/<fix_num:int>")
-def fix_uuid(db, uuid: UUID, fix_num: int):
-    fix = _get_fix(db, fix_num, uuid=uuid)
+@router.get("/0.3/issue/{uuid}/fix/{fix_num}", tags=["issues"])
+async def fix_uuid_num(
+    uuid: UUID, fix_num: int = 0, db: Connection = Depends(database.db)
+):
+    fix = await _get_fix(db, fix_num, uuid=uuid)
     if fix:
-        response.content_type = "text/xml; charset=utf-8"
+        content_type = "text/xml; charset=utf-8"
         for res in fix:
             if "id" in res and res["id"]:
                 out = io.StringIO()
@@ -327,7 +365,7 @@ def fix_uuid(db, uuid: UUID, fix_num: int):
                 osm_read = utils.fetch_osm_data(data_type[res["type"]], res["id"])
                 osm_read.CopyTo(o)
 
-                return out.getvalue()
+                return Response(content=out.getvalue(), media_type=content_type)
 
             else:
                 # create new object
@@ -336,22 +374,29 @@ def fix_uuid(db, uuid: UUID, fix_num: int):
                 data["tag"] = {}
                 for (k, v) in res["create"].items():
                     data["tag"][k] = v
-                sql = "SELECT lat, lon FROM markers WHERE uuid = %s"
-                db.execute(sql, (uuid,))
-                res2 = db.fetchone()
+                res2 = db.fetchrow("SELECT lat, lon FROM markers WHERE uuid = $1", uuid)
                 data["lat"] = res2["lat"]
                 data["lon"] = res2["lon"]
                 data["action"] = "modify"  # Even for creation action is 'modify'
 
                 if "type" not in res or res["type"] == "N":
-                    return OsmSax.NodeToXml(data, full=True)
+                    return Response(
+                        content=OsmSax.NodeToXml(data, full=True),
+                        media_type=content_type,
+                    )
                 elif res["type"] == "W":
-                    return OsmSax.WayToXml(data, full=True)
+                    return Response(
+                        content=OsmSax.WayToXml(data, full=True),
+                        media_type=content_type,
+                    )
                 elif res["type"] == "R":
-                    return OsmSax.RelationToXml(data, full=True)
+                    return Response(
+                        content=OsmSax.RelationToXml(data, full=True),
+                        media_type=content_type,
+                    )
 
     else:
-        abort(412, "Precondition Failed")
+        raise HTTPException(status_code=412, detail="Precondition Failed")
         # print "No issue found"
 
 
@@ -392,6 +437,3 @@ class OsmSaxFixWriter(OsmSax.OsmSaxWriter):
         if self.elem_type == "R" and self.elem_id == data["id"]:
             data = self.fix_tags(data)
         OsmSax.OsmSaxWriter.RelationCreate(self, data)
-
-
-default_app.push(app_0_2)

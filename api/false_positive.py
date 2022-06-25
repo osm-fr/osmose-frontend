@@ -1,20 +1,26 @@
 from uuid import UUID
 
-from bottle import abort, default_app, delete, route
+from asyncpg import Connection
+from fastapi import APIRouter, Depends, HTTPException
 
 from modules import utils
+from modules.dependencies import database, langs
 from modules.utils import LangsNegociation
 
 from .false_positive_utils import _get
 
-app_0_2 = default_app.pop()
+router = APIRouter()
 
 
-@route("/false-positive/<uuid:uuid>")
-def fp_uuid(db, langs: LangsNegociation, uuid: UUID):
-    marker, columns = _get(db, "false", uuid=uuid)
+@router.get("/0.3/false-positive/{uuid}", tags=["issues"])
+async def fp_uuid(
+    uuid: UUID,
+    db: Connection = Depends(database.db),
+    langs: LangsNegociation = Depends(langs.langs),
+):
+    marker, columns = await _get(db, "false", uuid=uuid)
     if not marker:
-        abort(410, "Id is not present in database.")
+        raise HTTPException(status_code=410, detail="Id is not present in database.")
 
     lat = str(marker["lat"])
     lon = str(marker["lon"])
@@ -39,22 +45,17 @@ def fp_uuid(db, langs: LangsNegociation, uuid: UUID):
     }
 
 
-@delete("/false-positive/<uuid:uuid>")
-def fp_delete_uuid(db, uuid: UUID):
-    db.execute(
-        "SELECT uuid FROM markers_status WHERE status = %s AND uuid = %s",
-        ("false", uuid),
+@router.delete("/0.3/false-positive/{uuid}", tags=["issues"])
+async def fp_delete_uuid(uuid: UUID, db: Connection = Depends(database.db)):
+    m = await db.fetchrow(
+        "SELECT uuid FROM markers_status WHERE status = $1 AND uuid = $2", "false", uuid
     )
-    m = db.fetchone()
     if not m:
-        abort(410, "FAIL")
+        raise HTTPException(status_code=410)
 
-    db.execute(
-        "DELETE FROM markers_status WHERE status = %s AND uuid = %s", ("false", uuid)
-    )
-    db.connection.commit()
+    async with db.transaction():
+        await db.execute(
+            "DELETE FROM markers_status WHERE status = $1 AND uuid = $2", "false", uuid
+        )
 
     return
-
-
-default_app.push(app_0_2)
