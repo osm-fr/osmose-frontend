@@ -32,6 +32,12 @@ from modules_legacy import bottle_cors
 from modules_legacy import bottle_gettext
 from modules_legacy import bottle_user
 
+# Need for reset plugin in wsgi
+import bottle
+bottle.BaseRequest.MEMFILE_MAX = 100 * 1024 * 1024
+bottle_app = bottle.default_app()
+bottle_app.plugins = list(filter(lambda x: isinstance(x,bottle.JSONPlugin) or isinstance(x,bottle.TemplatePlugin), bottle_app.plugins))
+
 
 @hook('before_request')
 def setup_request():
@@ -51,9 +57,6 @@ app = bottle.default_app()
 from bottle import SimpleTemplate
 SimpleTemplate.defaults["get_url"] = app.get_url
 
-
-app = bottle.Bottle()
-bottle.default_app.push(app)
 
 app.install(bottle_pgsql.Plugin(utils.db_string))
 app.install(bottle_cors.Plugin(allow_origin = '*', preflight_methods = ['GET', 'POST', 'PUT', 'DELETE']))
@@ -135,10 +138,6 @@ def vue(db, uuid=None, username=None, source=None):
 @bottle.route('/<filename:path>')
 def static(filename):
     return HTTPError(404)
-
-
-bottle.default_app.pop()
-
 
 
 if __name__ == '__main__':

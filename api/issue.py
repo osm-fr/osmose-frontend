@@ -374,7 +374,9 @@ async def fix_uuid_num(
                 data["tag"] = {}
                 for (k, v) in res["create"].items():
                     data["tag"][k] = v
-                res2 = db.fetchrow("SELECT lat, lon FROM markers WHERE uuid = $1", uuid)
+                res2 = await db.fetchrow(
+                    "SELECT lat, lon FROM markers WHERE uuid = $1", uuid
+                )
                 data["lat"] = res2["lat"]
                 data["lon"] = res2["lon"]
                 data["action"] = "modify"  # Even for creation action is 'modify'

@@ -99,14 +99,16 @@ async def errors(
     return out
 
 
+@router.get("/0.3/issues.json", tags=["issues"])
 @router.get("/0.3/issues.geojson", tags=["issues"])
 async def issues_geojson(
     request: Request,
     db: Connection = Depends(database.db),
     langs: LangsNegociation = Depends(langs.langs),
+    params=Depends(commons_params.params),
 ):
 
-    out = await issues(request, db, langs)
+    out = await issues(request, db, langs, params)
     return Response(
         media_type="application/vnd.geo+json",
         content=json.dumps(

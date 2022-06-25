@@ -6,8 +6,6 @@ from collections import OrderedDict
 from io import StringIO
 from typing import Dict, List, Union
 
-import asyncpg
-
 from . import OsmSax
 
 ################################################################################
@@ -59,7 +57,10 @@ db_string = "host='%s' port='%s' dbname='%s' user='%s' password='%s'" % (
     pg_user,
     pg_pass,
 )
-db_dsn = f"postgres://{pg_user}:{pg_pass}@{pg_host}:{pg_port}/{pg_base}"
+if pg_host:
+    db_dsn = f"postgres://{pg_user}:{pg_pass}@{pg_host}:{pg_port}/{pg_base}"
+else:
+    db_dsn = f"postgres://{pg_user}:{pg_pass}@/{pg_base}"
 website = os.environ.get("URL_FRONTEND") or "osmose.openstreetmap.fr"
 
 main_project = "OpenStreetMap"
@@ -77,36 +78,6 @@ remote_url_write = "https://www.openstreetmap.org/"
 
 username = pwd.getpwuid(os.getuid())[0]
 dir_results = "/data/work/%s/results" % (username)
-
-#
-# Database
-#
-
-
-async def get_dbconn():
-    return await asyncpg.connect(dsn=db_dsn)
-
-
-def get_sources():
-    conn = get_dbconn()
-    sql = "SELECT id, password, country, analyser FROM sources JOIN sources_password ON sources.id = source_id"
-    config = {}
-    for res in conn.fetch(sql):
-        src = {}
-        src["id"] = str(res["id"])
-        src["password"] = set([res["password"]])
-        src["country"] = res["country"]
-        src["analyser"] = res["analyser"]
-        src["comment"] = res["analyser"] + "-" + res["country"]
-        if (
-            src["id"] in config
-            and config[src["id"]]["country"] == src["country"]
-            and config[src["id"]]["analyser"] == src["analyser"]
-        ):
-            config[src["id"]]["password"].update(src["password"])
-        else:
-            config[src["id"]] = src
-    return config
 
 
 def show(s):

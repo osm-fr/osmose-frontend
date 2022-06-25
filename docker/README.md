@@ -29,7 +29,7 @@ docker-compose -f docker-compose.yml -f docker-compose-dev.yml -f docker-compose
 
 Once on container, run the standalone API server
 ```
-./osmose-standalone-bottle.py
+uvicorn osmose:app --host 0.0.0.0 --port 20009 --reload --reload-delay 2
 ```
 
 Acces to the database from the API container with

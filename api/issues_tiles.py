@@ -1,9 +1,11 @@
+import json
 import math
-from typing import Literal
+from typing import Dict, Literal
 
 import mapbox_vector_tile
 from asyncpg import Connection
 from fastapi import APIRouter, Depends, HTTPException, Request, Response
+from fastapi.encoders import jsonable_encoder
 from shapely.geometry import Point, Polygon
 
 from modules import query, tiles
@@ -45,7 +47,7 @@ def _errors_mvt(
                 {
                     "geometry": Point(res["lon"], res["lat"]),
                     "properties": {
-                        "uuid": res["uuid"],
+                        "uuid": str(res["uuid"]),
                         "item": res["item"] or 0,
                         "class": res["class"] or 0,
                     },
@@ -66,9 +68,12 @@ def _errors_geojson(
     max_lon: float,
     max_lat: float,
     limit: int,
-):
+) -> Dict:
     if not results or len(results) == 0:
-        return None
+        return {
+            "type": "FeatureCollection",
+            "features": [],
+        }
     else:
         issues_features = []
         for res in sorted(results, key=lambda res: -res["lat"]):
@@ -136,7 +141,6 @@ WHERE
         raise HTTPException(status_code=404)
 
     join, where, sql_params = query._build_param(
-        await db,
         None,
         params.source,
         params.item,
@@ -182,9 +186,7 @@ GROUP BY
     )
 
     features = []
-    for row in await db.fetch(
-        sql,
-    ):
+    for row in await db.fetch(sql, *sql_params):
         count, x, y, color = row
         count = max(
             int(
@@ -254,9 +256,9 @@ async def issues_mvt(
             )
     elif format in ("geojson", "json"):  # Fall back to GeoJSON
         tile = _errors_geojson(results, z, lon1, lat1, lon2, lat2, params.limit)
-        if tile:
-            return Response(content=tile, media_type="application/vnd.geo+json")
-        else:
-            return Response(content=[], media_type="application/vnd.geo+json")
+        return Response(
+            content=json.dumps(jsonable_encoder(tile)),
+            media_type="application/vnd.geo+json",
+        )
     else:
         raise HTTPException(status_code=404)

@@ -42,7 +42,6 @@ def _build_where_class(table, classs: int):
 
 
 def _build_param(
-    db: Connection,
     bbox: Union[List[float], None],
     source: Union[int, None],
     item: Union[str, None],
@@ -167,7 +166,7 @@ def _build_param(
         params += [bbox[1], bbox[3], bbox[0], bbox[2]]
         where.append(
             f"""markers.lat BETWEEN ${len(params)-3} AND ${len(params)-2} AND
-            markers.lon BETWEEN (${len(params)-1} + 180) % 360 - 180 AND (${len(params)-1} + 180) % 360 - 180"""
+            markers.lon BETWEEN (${len(params)-1} + 180) % 360 - 180 AND (${len(params)} + 180) % 360 - 180"""
         )
         if item is None:
             # Compute a tile to use index
@@ -319,7 +318,6 @@ async def _gets(db: Connection, params: Params):
         forceTable = []
 
     join, where, sql_params = _build_param(
-        db,
         params.bbox,
         params.source,
         params.item,
@@ -415,7 +413,6 @@ async def _count(
         last_update = True
 
     join, where, sql_params = _build_param(
-        db,
         params.bbox,
         params.source,
         params.item,
