@@ -1,0 +1,7 @@
+pytest
+pylama
+mypy
+types-requests
+isort
+flake8
+uvicorn
