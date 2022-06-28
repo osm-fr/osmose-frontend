@@ -113,7 +113,7 @@ def _build_param(
     tables = list(forceTable)
     tablesLeft = []
 
-    if (level and level != "1,2,3") or tags:
+    if (level and level != [1, 2, 3]) or tags:
         tables.append("class")
     if country is not None:
         tables.append("sources")
@@ -156,9 +156,9 @@ def _build_param(
     if item is not None:
         where.append(_build_where_item("markers", item))
 
-    if level and level != "1,2,3":
+    if level and level != [1, 2, 3]:
         params.append(level)
-        where.append(f"class.level IN ${len(params)}")
+        where.append(f"class.level = ANY (${len(params)})")
 
     if classs:
         where.append(_build_where_class("markers", classs))
@@ -379,7 +379,7 @@ async def _gets(db: Connection, params: Params):
 
 
 async def _count(
-    db: Connection, params, by, extraFrom=[], extraFields=[], orderBy=False
+    db: Connection, params: Params, by, extraFrom=[], extraFields=[], orderBy=False
 ):
     params.full = False
 

@@ -21,7 +21,7 @@ class Params:
     source: Union[int, None]
     classs: Union[str, None]
     users: Union[List[str], None]
-    level: Union[str, None]
+    level: Union[List[int], None]
     full: bool
     zoom: Union[int, None]
     limit: int
@@ -65,7 +65,7 @@ class Params:
         self.source = source
         self.classs = classs
         users = username
-        self.level = level
+        level = level
         self.full = full
         self.zoom = zoom
         self.limit = limit
@@ -81,12 +81,12 @@ class Params:
         self.tilex = tilex
         self.tiley = tiley
 
-        if self.level:
-            levels = self.level.split(",")
+        if level:
+            levels = level.split(",")
             try:
-                self.level = ",".join([str(int(x)) for x in levels if x])
+                self.level = [int(x) for x in levels if x]
             except Exception:
-                self.level = "1,2,3"
+                self.level = [1, 2, 3]
         self.bbox = None
         if bbox:
             try:
