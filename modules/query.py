@@ -1,4 +1,4 @@
-from typing import Any, List, Tuple
+from typing import Any, List, Tuple, Union
 
 from asyncpg import Connection
 
@@ -43,28 +43,28 @@ def _build_where_class(table, classs: int):
 
 def _build_param(
     db: Connection,
-    bbox,
-    source,
-    item,
-    level,
-    users,
-    classs,
-    country,
-    useDevItem,
-    status,
-    tags,
-    fixable,
+    bbox: Union[List[float], None],
+    source: Union[int, None],
+    item: Union[str, None],
+    level: Union[List[int], None],
+    users: Union[List[str], None],
+    classs: Union[str, None],
+    country: Union[str, None],
+    useDevItem: bool,
+    status,  #: Union[Status, None],
+    tags: Union[List[str], None],
+    fixable: Union[bool, None],
     forceTable=[],
-    summary=False,
-    stats=False,
-    start_date=None,
-    end_date=None,
+    summary: bool = False,
+    stats: bool = False,
+    start_date: Union[str, None] = None,
+    end_date: Union[str, None] = None,
     last_update=None,
-    tilex=None,
-    tiley=None,
-    zoom=None,
-    osm_type=None,
-    osm_id=None,
+    tilex: Union[int, None] = None,
+    tiley: Union[int, None] = None,
+    zoom: Union[int, None] = None,
+    osm_type: Union[str, None] = None,
+    osm_id: Union[int, None] = None,
 ) -> Tuple[str, str, List[Any]]:
     base_table = None
     join = ""
