@@ -13,7 +13,7 @@
     "leaflet-active-area": "=1.1.0",
     "leaflet-control-geocoder": "^1.13.0",
     "leaflet-loading": "^0.1.24",
-    "leaflet-osm": "git://github.com/openstreetmap/leaflet-osm.git#master",
+    "leaflet-osm": "git+https://github.com/openstreetmap/leaflet-osm.git#master",
     "leaflet-plugins": "^3.4.0",
     "leaflet-responsive-popup": "^0.5.0",
     "leaflet-sidebar": "^0.2.4",
