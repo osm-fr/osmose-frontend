@@ -333,7 +333,7 @@ def rss_issue(res, website, lang, query, main_website, remote_url_read):
         E.description(html_desc),
         E.category(str(res['item'])),
         E.link(map_url),
-        E.guid(res['uuid'], isPermaLink="false"),
+        E.guid(str(res['uuid']), isPermaLink="false"),
     )
 
 def rss(website, lang, params, query, main_website, remote_url_read, issues, title = None):

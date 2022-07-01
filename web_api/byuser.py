@@ -20,7 +20,10 @@
 ##                                                                       ##
 ###########################################################################
 
+import asyncio
 from bottle import route, redirect, response, html_escape
+from modules.dependencies.database import get_dbconn
+from modules.dependencies.commons_params import params as async_params
 from modules_legacy import utils
 from modules_legacy.utils import i10n_select_auto
 from modules_legacy import query
@@ -38,7 +41,9 @@ def byUser():
 
 @route('/byuser/<username>.<format:ext>')
 def user(db, lang, username=None, format=None):
-    params, username, errors = _user(db, lang, username)
+    async def t(username):
+        return await _user(await async_params(), await get_dbconn(), username)
+    params, username, errors = asyncio.run(t(username))
 
     for error in errors:
         error["subtitle"] = i10n_select_auto(error["subtitle"], lang)
@@ -61,12 +66,15 @@ def user(db, lang, username=None, format=None):
         count = len(errors)
         for error in errors:
             error['timestamp'] = str(error['timestamp'])
+            error['uuid'] = str(error['uuid'])
         return dict(username=username, users=params.users, count=count, errors=list(map(dict, errors)), website=utils.website + '/' + lang[0], main_website=utils.main_website, remote_url_read=utils.remote_url_read)
 
 
 @route('/byuser_count/<username>.rss')
 def user_count(db, lang, username=None):
-    count = _user_count(db, username)
+    async def t(username):
+        return await _user_count(await async_params(), await get_dbconn(), username)
+    count = asyncio.run(t(username))
     print(count)
     response.content_type = "application/rss+xml"
     xml = E.rss(
@@ -91,4 +99,6 @@ def user_count(db, lang, username=None):
 
 @route('/byuser_count/<username>')
 def user_count(db, lang, username=None):
-    return _user_count(db, username)
+    async def t(username):
+        return await _user_count(await async_params(), await get_dbconn(), username)
+    return asyncio.run(t(username))

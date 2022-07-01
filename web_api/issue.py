@@ -19,7 +19,9 @@
 ##                                                                       ##
 ###########################################################################
 
+import asyncio
 from bottle import route, abort
+from modules.dependencies.database import get_dbconn
 from modules_legacy import utils
 
 from api.issue_utils import _get, _expand_tags, t2l
@@ -27,7 +29,9 @@ from api.issue_utils import _get, _expand_tags, t2l
 
 @route('/issue/<uuid:uuid>.json')
 def display(db, lang, uuid):
-    marker = _get(db, uuid=uuid)
+    async def t(uuid):
+        return await _get(await get_dbconn(), uuid=uuid)
+    marker = asyncio.run(t(uuid))
     if not marker:
         abort(410, "Id is not present in database.")
 

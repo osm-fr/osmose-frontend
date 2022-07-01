@@ -20,7 +20,10 @@
 ##                                                                       ##
 ###########################################################################
 
+import asyncio
 from bottle import route, request, redirect
+from modules.dependencies.database import get_dbconn
+from modules.dependencies.commons_params import params as async_params
 from modules_legacy.params import Params
 from modules_legacy import utils, query, query_meta
 from api.user_utils import _user_count
@@ -76,7 +79,9 @@ OFFSET
 
     if user != None:
         if user:
-            user_error_count = _user_count(db, user)
+            async def t(user):
+                return await _user_count(await async_params(), await get_dbconn(), user)
+            user_error_count = asyncio.run(t(user))
         else: # user == False
             user = '[user name]'
             user_error_count = {1: 0, 2: 0, 3: 0}
