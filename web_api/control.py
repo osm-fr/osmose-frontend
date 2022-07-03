@@ -144,14 +144,16 @@ ORDER BY
         max_count = max(max_count, count)
         summary[remote].append({'hostname': hostname, 'country': country, 'max_age': max_age/60/60/24, 'min_age': min_age/60/60/24, 'count': count})
         hostnames[remote].append(hostname)
-        max_versions[remote].append(max_version)
-        min_versions[remote].append(min_version)
+        if max_version:
+            max_versions[remote].append(max_version)
+        if min_version:
+            min_versions[remote].append(min_version)
     for remote in max_versions.keys():
         hostnames[remote] = hostnames[remote][0]
-        max_versions[remote] = max(max_versions[remote])
+        max_versions[remote] = max(max_versions[remote]) if max_versions[remote] else None
         if max_versions[remote] and '-' in max_versions[remote]:
           max_versions[remote] = '-'.join(max_versions[remote].split('-')[1:5])
-        min_versions[remote] = min(min_versions[remote])
+        min_versions[remote] = min(min_versions[remote]) if min_versions[remote] else None
         if min_versions[remote] and '-' in min_versions[remote]:
           min_versions[remote] = '-'.join(min_versions[remote].split('-')[1:5])
 
