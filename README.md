@@ -28,3 +28,5 @@ npm run lint
 ### API Server
 
 To run Osmose Frontend API Server, preferably use Docker. Follow the documentation in the [docker](docker/README.md) directory. You can also install the Frontend manually by following the [install guide](INSTALL.md).
+
+The API documentation is available on [/api/docs](https://osmose.openstreetmap.fr/api/docs).
