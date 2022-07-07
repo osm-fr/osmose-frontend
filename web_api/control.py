@@ -148,7 +148,7 @@ ORDER BY
             max_versions[remote].append(max_version)
         if min_version:
             min_versions[remote].append(min_version)
-    for remote in max_versions.keys():
+    for remote in summary.keys():
         hostnames[remote] = hostnames[remote][0]
         max_versions[remote] = max(max_versions[remote]) if max_versions[remote] else None
         if max_versions[remote] and '-' in max_versions[remote]:
