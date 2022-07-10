@@ -1,11 +1,11 @@
 import re
 from dataclasses import dataclass
-from typing import List, Literal, Union
+from typing import List, Literal, Optional
 
 from .. import utils
 
 Status = Literal["open", "false"]
-Fixable = Union[None, Literal["online", "josm"]]
+Fixable = Optional[Literal["online", "josm"]]
 
 
 def safe_cast(val, to_type, default=None):
@@ -17,49 +17,49 @@ def safe_cast(val, to_type, default=None):
 
 @dataclass
 class Params:
-    bbox: Union[List[float], None]
-    item: Union[str, None]
-    source: Union[int, None]
-    classs: Union[str, None]
-    users: Union[List[str], None]
-    level: Union[List[int], None]
+    bbox: Optional[List[float]]
+    item: Optional[str]
+    source: Optional[int]
+    classs: Optional[str]
+    users: Optional[List[str]]
+    level: Optional[List[int]]
     full: bool
-    zoom: Union[int, None]
+    zoom: Optional[int]
     limit: int
-    country: Union[str, None]
+    country: Optional[str]
     useDevItem: bool
-    status: Union[Status, None]
-    start_date: Union[str, None]
-    end_date: Union[str, None]
-    tags: Union[List[str], None]
+    status: Optional[Status]
+    start_date: Optional[str]
+    end_date: Optional[str]
+    tags: Optional[List[str]]
     fixable: Fixable
-    osm_type: Union[str, None]
-    osm_id: Union[int, None]
-    tilex: Union[int, None]
-    tiley: Union[int, None]
+    osm_type: Optional[str]
+    osm_id: Optional[int]
+    tilex: Optional[int]
+    tiley: Optional[int]
 
     def __init__(
         self,
-        bbox: Union[str, None],
-        item: Union[str, None],
-        source: Union[int, None],
-        classs: Union[str, None],
-        username: Union[str, None],
-        level: Union[str, None],
+        bbox: Optional[str],
+        item: Optional[str],
+        source: Optional[int],
+        classs: Optional[str],
+        username: Optional[str],
+        level: Optional[str],
         full: bool,
-        zoom: Union[int, None],
+        zoom: Optional[int],
         limit: int,
-        country: Union[str, None],
+        country: Optional[str],
         useDev: bool,
-        status: Union[Status, None],
-        start_date: Union[str, None],
-        end_date: Union[str, None],
-        tags: Union[str, None],
+        status: Optional[Status],
+        start_date: Optional[str],
+        end_date: Optional[str],
+        tags: Optional[str],
         fixable: Fixable,
-        osm_type: Union[str, None],
-        osm_id: Union[int, None],
-        tilex: Union[int, None],
-        tiley: Union[int, None],
+        osm_type: Optional[str],
+        osm_id: Optional[int],
+        tilex: Optional[int],
+        tiley: Optional[int],
     ):
         bbox = bbox
         self.item = item
@@ -116,26 +116,26 @@ class Params:
 
 
 async def params(
-    bbox: Union[str, None] = None,
-    item: Union[str, None] = None,
-    source: Union[int, None] = None,
-    classs: Union[str, None] = None,
-    users: Union[str, None] = None,
+    bbox: Optional[str] = None,
+    item: Optional[str] = None,
+    source: Optional[int] = None,
+    classs: Optional[str] = None,
+    users: Optional[str] = None,
     level: str = "1,2,3",
     full: bool = False,
     zoom: int = 10,
-    limit: Union[int, None] = 100,
-    country: Union[str, None] = None,
+    limit: Optional[int] = 100,
+    country: Optional[str] = None,
     useDevItem: bool = False,
-    status: Union[Status, None] = "open",
-    start_date: Union[str, None] = None,
-    end_date: Union[str, None] = None,
-    tags: Union[str, None] = None,
+    status: Optional[Status] = "open",
+    start_date: Optional[str] = None,
+    end_date: Optional[str] = None,
+    tags: Optional[str] = None,
     fixable: Fixable = None,
-    osm_type: Union[str, None] = None,
-    osm_id: Union[int, None] = None,
-    tilex: Union[int, None] = None,
-    tiley: Union[int, None] = None,
+    osm_type: Optional[str] = None,
+    osm_id: Optional[int] = None,
+    tilex: Optional[int] = None,
+    tiley: Optional[int] = None,
 ):
     return Params(
         bbox,

@@ -1,5 +1,5 @@
 import os
-from typing import Dict, List, Union
+from typing import Dict, List, Optional
 from uuid import UUID
 
 from asyncpg import Connection
@@ -14,7 +14,7 @@ t2l = tag2link.tag2link(
 
 
 async def _get(
-    db: Connection, err_id: Union[int, None] = None, uuid: Union[UUID, None] = None
+    db: Connection, err_id: Optional[int] = None, uuid: Optional[UUID] = None
 ):
     columns_marker = [
         "markers.item",

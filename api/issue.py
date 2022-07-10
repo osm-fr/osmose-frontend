@@ -1,6 +1,6 @@
 import copy
 import io
-from typing import Literal, Union
+from typing import Literal, Optional
 from uuid import UUID
 
 from asyncpg import Connection
@@ -106,7 +106,7 @@ async def fresh_elems_uuid(
 async def fresh_elems_uuid_num(
     request: Request,
     uuid: UUID,
-    fix_num: Union[int, None] = None,
+    fix_num: Optional[int] = None,
     db: Connection = Depends(database.db),
 ):
     data_type = {"N": "node", "W": "way", "R": "relation", "I": "infos"}
@@ -190,7 +190,7 @@ async def error_uuid(
 
 
 def _error(
-    version, db: Connection, langs: LangsNegociation, uuid: Union[UUID, None], marker
+    version, db: Connection, langs: LangsNegociation, uuid: Optional[UUID], marker
 ):
     if not marker:
         raise HTTPException(status_code=410, detail="Id is not present in database.")
@@ -324,8 +324,8 @@ async def status_uuid(
 async def _get_fix(
     db: Connection,
     fix_num: int,
-    err_id: Union[int, None] = None,
-    uuid: Union[UUID, None] = None,
+    err_id: Optional[int] = None,
+    uuid: Optional[UUID] = None,
 ):
     if err_id:
         sql = "SELECT fixes FROM markers WHERE id = $1"

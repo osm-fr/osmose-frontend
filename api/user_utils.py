@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Optional
 
 from asyncpg import Connection
 
@@ -15,9 +15,7 @@ async def _user(params: Params, db: Connection, username: str):
     return [params, username, errors]
 
 
-async def _user_count(
-    params: Params, db: Connection, username: Union[str, None] = None
-):
+async def _user_count(params: Params, db: Connection, username: Optional[str] = None):
     if username:
         params.users = username.split(",")
 

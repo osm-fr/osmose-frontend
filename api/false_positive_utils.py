@@ -1,4 +1,4 @@
-from typing import Literal, Union
+from typing import Literal, Optional
 from uuid import UUID
 
 from asyncpg import Connection
@@ -9,8 +9,8 @@ Status = Literal["false"]
 async def _get(
     db: Connection,
     status: Status,
-    err_id: Union[int, None] = None,
-    uuid: Union[UUID, None] = None,
+    err_id: Optional[int] = None,
+    uuid: Optional[UUID] = None,
 ):
     columns = [
         "markers_status.item",

@@ -4,7 +4,7 @@ import pwd
 import urllib.request
 from collections import OrderedDict
 from io import StringIO
-from typing import Dict, List, Union
+from typing import Dict, List, Optional
 
 from . import OsmSax
 
@@ -99,7 +99,7 @@ def str_to_datetime(s):
 # Translation
 #
 
-LangsNegociation = Union[None, List[str]]
+LangsNegociation = Optional[List[str]]
 
 
 def i10n_select(translations: Dict[str, str], langs: LangsNegociation):

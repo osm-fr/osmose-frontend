@@ -1,4 +1,4 @@
-from typing import Any, List, Tuple, Union
+from typing import Any, List, Optional, Tuple
 
 from asyncpg import Connection
 
@@ -42,28 +42,28 @@ def _build_where_class(table, classs: int):
 
 
 def _build_param(
-    bbox: Union[List[float], None],
-    source: Union[int, None],
-    item: Union[str, None],
-    level: Union[List[int], None],
-    users: Union[List[str], None],
-    classs: Union[str, None],
-    country: Union[str, None],
+    bbox: Optional[List[float]],
+    source: Optional[int],
+    item: Optional[str],
+    level: Optional[List[int]],
+    users: Optional[List[str]],
+    classs: Optional[str],
+    country: Optional[str],
     useDevItem: bool,
-    status,  #: Union[Status, None],
-    tags: Union[List[str], None],
-    fixable,  #: Union[Fixable, None],
+    status,  #: Optional[Status],
+    tags: Optional[List[str]],
+    fixable,  #: Optional[Fixable],
     forceTable=[],
     summary: bool = False,
     stats: bool = False,
-    start_date: Union[str, None] = None,
-    end_date: Union[str, None] = None,
+    start_date: Optional[str] = None,
+    end_date: Optional[str] = None,
     last_update=None,
-    tilex: Union[int, None] = None,
-    tiley: Union[int, None] = None,
-    zoom: Union[int, None] = None,
-    osm_type: Union[str, None] = None,
-    osm_id: Union[int, None] = None,
+    tilex: Optional[int] = None,
+    tiley: Optional[int] = None,
+    zoom: Optional[int] = None,
+    osm_type: Optional[str] = None,
+    osm_id: Optional[int] = None,
 ) -> Tuple[str, str, List[Any]]:
     base_table = None
     join = ""

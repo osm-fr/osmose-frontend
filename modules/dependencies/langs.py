@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import List, Optional
 
 from fastapi import Request
 
@@ -15,7 +15,7 @@ def parse_accept_language(request: Request, langs: List[str]) -> List[str]:
     return langs
 
 
-async def langs(request: Request) -> Union[List[str], None]:
+async def langs(request: Request) -> Optional[List[str]]:
     langs = request.query_params.get("langs") or ["auto"]
     if langs:
         langs = parse_accept_language(request, langs)

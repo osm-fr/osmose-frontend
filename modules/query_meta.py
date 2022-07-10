@@ -1,5 +1,5 @@
 from collections import defaultdict
-from typing import Union
+from typing import Optional
 
 from asyncpg import Connection
 
@@ -38,9 +38,9 @@ async def _countries(db: Connection):
 
 async def _items(
     db: Connection,
-    item: Union[int, None] = None,
-    classs: Union[int, None] = None,
-    langs: Union[LangsNegociation, None] = None,
+    item: Optional[int] = None,
+    classs: Optional[int] = None,
+    langs: Optional[LangsNegociation] = None,
 ):
     sql_params = [item] if item is not None else []
 
