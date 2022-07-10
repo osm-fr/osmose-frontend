@@ -1,6 +1,6 @@
 import re
 from dataclasses import dataclass
-from typing import List, Literal, Optional
+from typing import List, Literal, Optional, Union
 
 from .. import utils
 
@@ -131,7 +131,7 @@ async def params(
     start_date: Optional[str] = None,
     end_date: Optional[str] = None,
     tags: Optional[str] = None,
-    fixable: Fixable = None,
+    fixable: Union[Fixable, str] = None,
     osm_type: Optional[str] = None,
     osm_id: Optional[int] = None,
     tilex: Optional[int] = None,
@@ -153,7 +153,7 @@ async def params(
         start_date,
         end_date,
         tags,
-        fixable,
+        fixable if fixable != "" else None,
         osm_type,
         osm_id,
         tilex,
