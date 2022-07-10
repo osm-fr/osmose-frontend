@@ -56,7 +56,7 @@ async def _remove_bug_err_id(db: Connection, error_id: int, status: Status):
 
 
 async def _remove_bug_uuid(db, uuid: UUID, status: Status):
-    db = await utils.get_dbconn()
+    db = await database.get_dbconn()
 
     # find source
     source_id = None
