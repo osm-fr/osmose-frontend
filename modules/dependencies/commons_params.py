@@ -5,6 +5,7 @@ from typing import List, Literal, Union
 from .. import utils
 
 Status = Literal["open", "false"]
+Fixable = Union[None, Literal["online", "josm"]]
 
 
 def safe_cast(val, to_type, default=None):
@@ -31,7 +32,7 @@ class Params:
     start_date: Union[str, None]
     end_date: Union[str, None]
     tags: Union[List[str], None]
-    fixable: Union[bool, None]
+    fixable: Fixable
     osm_type: Union[str, None]
     osm_id: Union[int, None]
     tilex: Union[int, None]
@@ -54,7 +55,7 @@ class Params:
         start_date: Union[str, None],
         end_date: Union[str, None],
         tags: Union[str, None],
-        fixable: Union[bool, None],
+        fixable: Fixable,
         osm_type: Union[str, None],
         osm_id: Union[int, None],
         tilex: Union[int, None],
@@ -130,7 +131,7 @@ async def params(
     start_date: Union[str, None] = None,
     end_date: Union[str, None] = None,
     tags: Union[str, None] = None,
-    fixable: Union[bool, None] = None,
+    fixable: Fixable = None,
     osm_type: Union[str, None] = None,
     osm_id: Union[int, None] = None,
     tilex: Union[int, None] = None,

@@ -52,7 +52,7 @@ def _build_param(
     useDevItem: bool,
     status,  #: Union[Status, None],
     tags: Union[List[str], None],
-    fixable: Union[bool, None],
+    fixable,  #: Union[Fixable, None],
     forceTable=[],
     summary: bool = False,
     stats: bool = False,
