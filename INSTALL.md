@@ -43,9 +43,38 @@ Create a python virtualenv, active it and install python dependencies
 ```
 virtualenv --python=python3 osmose-frontend-venv
 source osmose-frontend-venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements.txt -r requirements-prod.txt
 ```
 
+Tu run osmose as systemd service runned by the gunicor webserver, use this as `/etc/systemd/system/gunicorn.service`.
+
+```
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+PIDFile = /run/gunicorn-osmose/osmose.pid
+User=osmose
+Group=osmose
+RuntimeDirectory=gunicorn-osmose
+WorkingDirectory=/data/project/osmose/frontend/
+Environment=PYTHONPATH=/data/project/osmose/frontend/osmose-frontend-venv/lib/python3.9/site-packages/
+ExecStart=/data/project/osmose/frontend/osmose-frontend-venv/bin/gunicorn osmose:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 127.0.0.1:8000 --pid /run/gunicorn-osmose/osmose.pid
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Run and get logs using:
+```
+systemctl reload gunicorn
+journalctl -u gunicorn
+```
 
 ### Database
 
