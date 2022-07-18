@@ -225,7 +225,7 @@ def _build_param(
 
     if tags:
         params.append(tags)
-        where.append("class.tags::text[] && ${len(params)}")
+        where.append(f"class.tags::text[] && ${len(params)}")
 
     if fixable == "online":
         where.append(
