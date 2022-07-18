@@ -46,7 +46,7 @@ source osmose-frontend-venv/bin/activate
 pip install -r requirements.txt -r requirements-prod.txt
 ```
 
-Tu run osmose as systemd service runned by the gunicor webserver, use this as `/etc/systemd/system/gunicorn.service`.
+To run osmose as systemd service runned by the gunicorn webserver, use this as `/etc/systemd/system/gunicorn.service`.
 
 ```
 [Unit]
@@ -72,7 +72,9 @@ WantedBy=multi-user.target
 
 Run and get logs using:
 ```
-systemctl reload gunicorn
+systemctl daemon-reload
+systemctl enable gunicorn
+systemctl start gunicorn
 journalctl -u gunicorn
 ```
 
