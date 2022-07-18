@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
-"PO-Revision-Date: 2021-12-24 13:16+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2014-04-28 19:22+0000\n"
+"Last-Translator: anodern, 2021\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -280,7 +280,7 @@ msgstr "颠倒"
 msgid "Change language"
 msgstr "切换语言"
 
-#: ../src/pages/map/popup.vue:368 ../src/pages/map/top.vue:72
+#: ../src/pages/map/popup.vue:360 ../src/pages/map/top.vue:72
 msgid "Help"
 msgstr "帮助"
 
@@ -312,11 +312,11 @@ msgstr "种类"
 msgid "Reuse changeset"
 msgstr "重用变更集"
 
-#: ../src/pages/map/popup.vue:391
+#: ../src/pages/map/popup.vue:383
 msgid "corrected"
 msgstr "已修正"
 
-#: ../src/pages/map/popup.vue:377
+#: ../src/pages/map/popup.vue:369
 msgid "false positive"
 msgstr "报告错误"
 
@@ -487,7 +487,7 @@ msgid "street numbers"
 msgstr "门牌号码"
 
 #: ../../tools/database/items_menu.txt:37
-#: ../../tools/database/items_menu.txt:230
+#: ../../tools/database/items_menu.txt:232
 msgid "highway"
 msgstr "highway"
 
@@ -496,7 +496,7 @@ msgid "highway crossing"
 msgstr "highway 路口"
 
 #: ../../tools/database/items_menu.txt:39
-#: ../../tools/database/items_menu.txt:177
+#: ../../tools/database/items_menu.txt:179
 msgid "pharmacy"
 msgstr "药店"
 
@@ -513,7 +513,7 @@ msgid "tagwatch cleaner"
 msgstr "标签查看清理器"
 
 #: ../../tools/database/items_menu.txt:49
-#: ../../tools/database/items_menu.txt:237
+#: ../../tools/database/items_menu.txt:239
 msgid "wikipedia"
 msgstr "维基百科"
 
@@ -585,225 +585,225 @@ msgstr "关系 type=restriction"
 msgid "postcode"
 msgstr "邮政编码"
 
-#: ../../tools/database/items_menu.txt:78
+#: ../../tools/database/items_menu.txt:80
 msgid "disused"
 msgstr "废弃"
 
-#: ../../tools/database/items_menu.txt:79
+#: ../../tools/database/items_menu.txt:81
 msgid "on junction=roundabout"
 msgstr "junction=roundabout"
 
-#: ../../tools/database/items_menu.txt:80
+#: ../../tools/database/items_menu.txt:82
 msgid "incompatible tags"
 msgstr "不兼容的 tag"
 
-#: ../../tools/database/items_menu.txt:81
+#: ../../tools/database/items_menu.txt:83
 msgid "ref in name"
 msgstr "ref的值填在name里"
 
-#: ../../tools/database/items_menu.txt:84
+#: ../../tools/database/items_menu.txt:86
 msgid "construction"
 msgstr "施工中"
 
-#: ../../tools/database/items_menu.txt:85
+#: ../../tools/database/items_menu.txt:87
 msgid "duplicate object"
 msgstr "重复对象"
 
-#: ../../tools/database/items_menu.txt:86
+#: ../../tools/database/items_menu.txt:88
 msgid "unwanted tag on node"
 msgstr "需要填tag的node"
 
-#: ../../tools/database/items_menu.txt:87
+#: ../../tools/database/items_menu.txt:89
 msgid "bad usage"
 msgstr "不良的用法"
 
-#: ../../tools/database/items_menu.txt:91
+#: ../../tools/database/items_menu.txt:93
 msgid "orthograph"
 msgstr "拼写问题"
 
-#: ../../tools/database/items_menu.txt:92
+#: ../../tools/database/items_menu.txt:94
 msgid "way type"
 msgstr "路径的类型"
 
-#: ../../tools/database/items_menu.txt:93
+#: ../../tools/database/items_menu.txt:95
 msgid "two names"
 msgstr "有两个name"
 
-#: ../../tools/database/items_menu.txt:94
+#: ../../tools/database/items_menu.txt:96
 msgid "toponymy"
 msgstr "地名"
 
-#: ../../tools/database/items_menu.txt:99
+#: ../../tools/database/items_menu.txt:101
 msgid "open polygon"
 msgstr "没封闭的多边形"
 
-#: ../../tools/database/items_menu.txt:100
+#: ../../tools/database/items_menu.txt:102
 msgid "duplicated way"
 msgstr "重复的线"
 
-#: ../../tools/database/items_menu.txt:101
+#: ../../tools/database/items_menu.txt:103
 msgid "place without name"
 msgstr "没name的地名"
 
-#: ../../tools/database/items_menu.txt:102
+#: ../../tools/database/items_menu.txt:104
 msgid "INSEE code"
 msgstr "INSEE 代码"
 
-#: ../../tools/database/items_menu.txt:103
+#: ../../tools/database/items_menu.txt:105
 msgid "admin_level"
 msgstr "行政等级"
 
-#: ../../tools/database/items_menu.txt:104
+#: ../../tools/database/items_menu.txt:106
 msgid "erroneous boundary"
 msgstr "错误边界"
 
-#: ../../tools/database/items_menu.txt:105
+#: ../../tools/database/items_menu.txt:107
 msgid "out of boundary"
 msgstr "超出边界"
 
-#: ../../tools/database/items_menu.txt:106
+#: ../../tools/database/items_menu.txt:108
 msgid "geodesic building"
 msgstr "测量建筑"
 
-#: ../../tools/database/items_menu.txt:107
+#: ../../tools/database/items_menu.txt:109
 msgid "building shape"
 msgstr "建筑形状"
 
-#: ../../tools/database/items_menu.txt:108
+#: ../../tools/database/items_menu.txt:110
 msgid "bridge to tag"
 msgstr "桥梁的tag"
 
-#: ../../tools/database/items_menu.txt:109
+#: ../../tools/database/items_menu.txt:111
 msgid "admin boundary"
 msgstr "行政边界"
 
-#: ../../tools/database/items_menu.txt:110
+#: ../../tools/database/items_menu.txt:112
 msgid "power lines"
 msgstr "电线"
 
-#: ../../tools/database/items_menu.txt:133
+#: ../../tools/database/items_menu.txt:135
 msgid "post office"
 msgstr "邮局"
 
-#: ../../tools/database/items_menu.txt:113
+#: ../../tools/database/items_menu.txt:115
 msgid "ODbL migration change"
 msgstr "ODbL授权转换修改"
 
 msgid "school, not integrated"
 msgstr "没有整合的学校"
 
-#: ../../tools/database/items_menu.txt:115
+#: ../../tools/database/items_menu.txt:117
 msgid "monument"
 msgstr "纪念建筑"
 
-#: ../../tools/database/items_menu.txt:116
+#: ../../tools/database/items_menu.txt:118
 msgid "node on ways"
 msgstr "在路径上的node"
 
-#: ../../tools/database/items_menu.txt:117
-#: ../../tools/database/items_menu.txt:144
+#: ../../tools/database/items_menu.txt:119
+#: ../../tools/database/items_menu.txt:146
 msgid "train station"
 msgstr "车站"
 
-#: ../../tools/database/items_menu.txt:118
+#: ../../tools/database/items_menu.txt:120
 msgid "TMC"
 msgstr "TMC"
 
-#: ../../tools/database/items_menu.txt:119
+#: ../../tools/database/items_menu.txt:121
 msgid "relation type=boundary"
 msgstr "关系键值为type=boundary"
 
-#: ../../tools/database/items_menu.txt:120
+#: ../../tools/database/items_menu.txt:122
 msgid "tunnel/bridge"
 msgstr "隧道/桥梁"
 
-#: ../../tools/database/items_menu.txt:134
+#: ../../tools/database/items_menu.txt:136
 msgid "post office, could be integrated"
 msgstr "可以整合的邮局"
 
-#: ../../tools/database/items_menu.txt:138
+#: ../../tools/database/items_menu.txt:140
 msgid "school"
 msgstr "学校"
 
-#: ../../tools/database/items_menu.txt:139
+#: ../../tools/database/items_menu.txt:141
 msgid "school, could be integrated"
 msgstr "可以整合的学校"
 
 #: ../../tools/database/items_menu.txt:27
-#: ../../tools/database/items_menu.txt:141
-#: ../../tools/database/items_menu.txt:238
+#: ../../tools/database/items_menu.txt:143
+#: ../../tools/database/items_menu.txt:240
 msgid "public transport"
 msgstr "公共交通"
 
-#: ../../tools/database/items_menu.txt:142
+#: ../../tools/database/items_menu.txt:144
 msgid "public transport, could be integrated"
 msgstr "可以整合的公共交通"
 
-#: ../../tools/database/items_menu.txt:145
+#: ../../tools/database/items_menu.txt:147
 msgid "train station, could be integrated"
 msgstr "可以整合的车站"
 
-#: ../../tools/database/items_menu.txt:146
+#: ../../tools/database/items_menu.txt:148
 msgid "level crossing"
 msgstr "水平交叉"
 
-#: ../../tools/database/items_menu.txt:147
+#: ../../tools/database/items_menu.txt:149
 msgid "geodesic point"
 msgstr "测量点"
 
-#: ../../tools/database/items_menu.txt:148
+#: ../../tools/database/items_menu.txt:150
 msgid "postal address"
 msgstr "邮寄地址"
 
-#: ../../tools/database/items_menu.txt:152
+#: ../../tools/database/items_menu.txt:154
 msgid "public service"
 msgstr "公共服务"
 
-#: ../../tools/database/items_menu.txt:153
+#: ../../tools/database/items_menu.txt:155
 msgid "recycling"
 msgstr "垃圾循环"
 
-#: ../../tools/database/items_menu.txt:154
+#: ../../tools/database/items_menu.txt:156
 msgid "recycling, could be integrated"
 msgstr "可以整合的垃圾循环"
 
-#: ../../tools/database/items_menu.txt:156
+#: ../../tools/database/items_menu.txt:158
 msgid "parking"
 msgstr "停车场"
 
-#: ../../tools/database/items_menu.txt:157
+#: ../../tools/database/items_menu.txt:159
 msgid "parking, could be integrated"
 msgstr "可以整合的停车场"
 
-#: ../../tools/database/items_menu.txt:159
+#: ../../tools/database/items_menu.txt:161
 msgid "accommodation"
 msgstr "住所"
 
-#: ../../tools/database/items_menu.txt:160
+#: ../../tools/database/items_menu.txt:162
 msgid "accommodation, could be integrated"
 msgstr "可以整合的住所"
 
-#: ../../tools/database/items_menu.txt:161
+#: ../../tools/database/items_menu.txt:163
 msgid "cycle parking"
 msgstr "非机动车停车场"
 
-#: ../../tools/database/items_menu.txt:162
+#: ../../tools/database/items_menu.txt:164
 msgid "cycle parking, could be integrated"
 msgstr "可以整合的非机动车停车场"
 
-#: ../../tools/database/items_menu.txt:163
+#: ../../tools/database/items_menu.txt:165
 msgid "transport sharing"
 msgstr "共享/租借交通"
 
-#: ../../tools/database/items_menu.txt:164
+#: ../../tools/database/items_menu.txt:166
 msgid "transport sharing, could be integrated"
 msgstr "可以整合的共享/租借交通"
 
-#: ../../tools/database/items_menu.txt:166
+#: ../../tools/database/items_menu.txt:168
 msgid "sport"
 msgstr "运动"
 
-#: ../../tools/database/items_menu.txt:167
+#: ../../tools/database/items_menu.txt:169
 msgid "sport, could be integrated"
 msgstr "可以整合的运动类"
 
@@ -827,29 +827,29 @@ msgstr "HTML 列表"
 msgid "one-node way"
 msgstr "一个node的路径"
 
-#: ../../tools/database/items_menu.txt:168
+#: ../../tools/database/items_menu.txt:170
 msgid "toilets"
 msgstr "厕所"
 
 msgid "transport sharing, not integrated"
 msgstr "不能整合的共享/租借交通"
 
-#: ../../tools/database/items_menu.txt:171
+#: ../../tools/database/items_menu.txt:173
 msgid "police"
 msgstr "警察类"
 
-#: ../../tools/database/items_menu.txt:172
+#: ../../tools/database/items_menu.txt:174
 msgid "police, could be integrated"
 msgstr "可以整合的警察类"
 
 msgid "pharmacy, not integrated "
 msgstr "不能整合的药店"
 
-#: ../../tools/database/items_menu.txt:178
+#: ../../tools/database/items_menu.txt:180
 msgid "pharmacy, could be integrated"
 msgstr "可以整合的药店"
 
-#: ../../tools/database/items_menu.txt:174
+#: ../../tools/database/items_menu.txt:176
 msgid "gas station"
 msgstr "加油站"
 
@@ -876,7 +876,7 @@ msgstr "区域"
 msgid "noexit"
 msgstr "没有出口"
 
-#: ../../tools/database/items_menu.txt:88
+#: ../../tools/database/items_menu.txt:90
 msgid "incorrect layer"
 msgstr "layer不正确"
 
@@ -885,19 +885,19 @@ msgstr "layer不正确"
 msgid "Updates summary"
 msgstr "更新摘要"
 
-#: ../../tools/database/items_menu.txt:180
+#: ../../tools/database/items_menu.txt:182
 msgid "postal code, could be integrated"
 msgstr "可以整合的邮政编码"
 
-#: ../../tools/database/items_menu.txt:181
+#: ../../tools/database/items_menu.txt:183
 msgid "library"
 msgstr "图书馆"
 
-#: ../../tools/database/items_menu.txt:182
+#: ../../tools/database/items_menu.txt:184
 msgid "restaurant"
 msgstr "餐厅"
 
-#: ../../tools/database/items_menu.txt:183
+#: ../../tools/database/items_menu.txt:185
 msgid "winery"
 msgstr "酒厂"
 
@@ -908,7 +908,7 @@ msgstr "丢失对象的种类"
 msgid "postal code, not integrated "
 msgstr "不能整合的邮政编码"
 
-#: ../../tools/database/items_menu.txt:96
+#: ../../tools/database/items_menu.txt:98
 msgid "local language"
 msgstr "本地语言"
 
@@ -921,8 +921,8 @@ msgstr "修正问题"
 msgid "Issues by user"
 msgstr "用户问题"
 
-#: ../../web_api/byuser.py:78 ../../web_api/byuser.py:81
-#: ../../web_api/byuser.py:84
+#: ../../web_api/byuser.py:86 ../../web_api/byuser.py:89
+#: ../../web_api/byuser.py:92
 #, python-brace-format
 msgid "Number of level {level} issues: {count}"
 msgstr "等级{level}的问题数量：{count}"
@@ -954,7 +954,7 @@ msgstr "只要在下方的表单填入你的OSM用户名，就能看到列于你
 msgid "Show more issues"
 msgstr "显示更多问题"
 
-#: ../src/components/issues-list.vue:258
+#: ../src/components/issues-list.vue:252
 msgid "information on issue"
 msgstr "问题的信息"
 
@@ -974,15 +974,15 @@ msgstr "关于问题数据库信息"
 msgid "version"
 msgstr "版本"
 
-#: ../../tools/database/items_menu.txt:184
+#: ../../tools/database/items_menu.txt:186
 msgid "geodesic"
 msgstr "测量"
 
-#: ../../tools/database/items_menu.txt:136
+#: ../../tools/database/items_menu.txt:138
 msgid "post box"
 msgstr "邮箱"
 
-#: ../../tools/database/items_menu.txt:137
+#: ../../tools/database/items_menu.txt:139
 msgid "post box, could be integrated"
 msgstr "可以整合的邮箱"
 
@@ -990,11 +990,11 @@ msgstr "可以整合的邮箱"
 msgid "indoor"
 msgstr "室内"
 
-#: ../../tools/database/items_menu.txt:89
+#: ../../tools/database/items_menu.txt:91
 msgid "roundabout as area"
 msgstr "作为区域的环岛"
 
-#: ../../tools/database/items_menu.txt:124
+#: ../../tools/database/items_menu.txt:126
 msgid "road"
 msgstr "路"
 
@@ -1014,7 +1014,7 @@ msgstr "Osmose 问答主页"
 msgid "far from water"
 msgstr "远离水域"
 
-#: ../../tools/database/items_menu.txt:82
+#: ../../tools/database/items_menu.txt:84
 msgid "fixme import"
 msgstr "输入含fixme标签"
 
@@ -1027,27 +1027,27 @@ msgstr "对象交叉点"
 msgid "access"
 msgstr "访问"
 
-#: ../../tools/database/items_menu.txt:83
+#: ../../tools/database/items_menu.txt:85
 msgid "fixme review"
 msgstr "fixme 的评论"
 
-#: ../../tools/database/items_menu.txt:140
+#: ../../tools/database/items_menu.txt:142
 msgid "school, need update"
 msgstr "需要更新的学校"
 
-#: ../../tools/database/items_menu.txt:143
+#: ../../tools/database/items_menu.txt:145
 msgid "public transport, need update"
 msgstr "需要更新的公共交通"
 
-#: ../../tools/database/items_menu.txt:155
+#: ../../tools/database/items_menu.txt:157
 msgid "recycling, need update"
 msgstr "需要更新的垃圾循环"
 
-#: ../../tools/database/items_menu.txt:158
+#: ../../tools/database/items_menu.txt:160
 msgid "parking, need update"
 msgstr "需要更新的停车场"
 
-#: ../../tools/database/items_menu.txt:165
+#: ../../tools/database/items_menu.txt:167
 msgid "transport sharing, need update"
 msgstr "需要更新的"
 
@@ -1067,7 +1067,7 @@ msgstr "发布时间"
 msgid "Version"
 msgstr "版本"
 
-#: ../../tools/database/items_menu.txt:135
+#: ../../tools/database/items_menu.txt:137
 msgid "post office, need update"
 msgstr "需要更新的"
 
@@ -1075,27 +1075,27 @@ msgstr "需要更新的"
 msgid "age"
 msgstr "发布时间"
 
-#: ../../tools/database/items_menu.txt:97
+#: ../../tools/database/items_menu.txt:99
 msgid "invalid character"
 msgstr "无效字符"
 
-#: ../../tools/database/items_menu.txt:176
+#: ../../tools/database/items_menu.txt:178
 msgid "gas station, could be integrated"
 msgstr "可以整合的加油站"
 
-#: ../../tools/database/items_menu.txt:186
+#: ../../tools/database/items_menu.txt:188
 msgid "power substation"
 msgstr "变电所"
 
-#: ../../tools/database/items_menu.txt:187
+#: ../../tools/database/items_menu.txt:189
 msgid "power substation, could be integrated"
 msgstr "可以整合的变电所"
 
-#: ../../tools/database/items_menu.txt:189
+#: ../../tools/database/items_menu.txt:191
 msgid "power support"
 msgstr "电线塔"
 
-#: ../../tools/database/items_menu.txt:190
+#: ../../tools/database/items_menu.txt:192
 msgid "power support, could be integrated"
 msgstr "可以整合的电线塔"
 
@@ -1111,7 +1111,7 @@ msgstr "公共交通线路"
 msgid "recycling container"
 msgstr "垃圾循环箱"
 
-#: ../../tools/database/items_menu.txt:90
+#: ../../tools/database/items_menu.txt:92
 msgid "duplicate wikipedia"
 msgstr "重复维基百科"
 
@@ -1119,11 +1119,11 @@ msgstr "重复维基百科"
 msgid "route access mismatch"
 msgstr "路线接入不匹配"
 
-#: ../../tools/database/items_menu.txt:98
+#: ../../tools/database/items_menu.txt:100
 msgid "similar name"
 msgstr "相似名称"
 
-#: ../../tools/database/items_menu.txt:175
+#: ../../tools/database/items_menu.txt:177
 msgid "gas station, need update"
 msgstr "需要更新的加油站"
 
@@ -1131,11 +1131,11 @@ msgstr "需要更新的加油站"
 msgid "phone number"
 msgstr "电话号码"
 
-#: ../../tools/database/items_menu.txt:191
+#: ../../tools/database/items_menu.txt:193
 msgid "traffic signs"
 msgstr "交通标志"
 
-#: ../../tools/database/items_menu.txt:193
+#: ../../tools/database/items_menu.txt:195
 msgid "traffic sign limitation"
 msgstr "交通标志限制"
 
@@ -1172,47 +1172,47 @@ msgstr "级别{level}问题({count})"
 msgid "JOSM validator"
 msgstr "JOSM验证器"
 
-#: ../../tools/database/items_menu.txt:225
+#: ../../tools/database/items_menu.txt:227
 msgid "seamark"
 msgstr "海标"
 
-#: ../../tools/database/items_menu.txt:226
+#: ../../tools/database/items_menu.txt:228
 msgid "addresses"
 msgstr "地址"
 
-#: ../../tools/database/items_menu.txt:227
+#: ../../tools/database/items_menu.txt:229
 msgid "combinations"
 msgstr "组合"
 
-#: ../../tools/database/items_menu.txt:228
+#: ../../tools/database/items_menu.txt:230
 msgid "deprecated"
 msgstr "弃用"
 
-#: ../../tools/database/items_menu.txt:229
+#: ../../tools/database/items_menu.txt:231
 msgid "geometry"
 msgstr "几何"
 
-#: ../../tools/database/items_menu.txt:231
+#: ../../tools/database/items_menu.txt:233
 msgid "multiple"
 msgstr "多种"
 
-#: ../../tools/database/items_menu.txt:232
+#: ../../tools/database/items_menu.txt:234
 msgid "numeric"
 msgstr "数字"
 
-#: ../../tools/database/items_menu.txt:233
+#: ../../tools/database/items_menu.txt:235
 msgid "relation"
 msgstr "关系"
 
-#: ../../tools/database/items_menu.txt:234
+#: ../../tools/database/items_menu.txt:236
 msgid "religion"
 msgstr "宗教"
 
-#: ../../tools/database/items_menu.txt:235
+#: ../../tools/database/items_menu.txt:237
 msgid "territories"
 msgstr "领土"
 
-#: ../../tools/database/items_menu.txt:236
+#: ../../tools/database/items_menu.txt:238
 msgid "unnecessary"
 msgstr "多余"
 
@@ -1225,7 +1225,7 @@ msgstr "国家及地区"
 msgid "Item"
 msgstr "项目"
 
-#: ../src/components/issues-list.vue:310
+#: ../src/components/issues-list.vue:304
 msgid "False positive / Done"
 msgstr "误报/完成"
 
@@ -1243,51 +1243,51 @@ msgstr "在{where}上显示对象"
 
 #: ../src/pages/map/popup.vue:102 ../src/pages/map/popup.vue:111
 #: ../src/pages/map/popup.vue:120 ../src/pages/map/popup.vue:129
-#: ../src/pages/map/popup.vue:141 ../src/pages/map/popup.vue:150
-#: ../src/pages/map/popup.vue:158
+#: ../src/pages/map/popup.vue:138 ../src/pages/map/popup.vue:147
+#: ../src/pages/map/popup.vue:155
 #, python-brace-format
 msgid "Edit Object with {where}"
 msgstr "使用{where}编辑对象"
 
-#: ../src/pages/map/popup.vue:159 ../src/pages/map/popup.vue:187
+#: ../src/pages/map/popup.vue:156 ../src/pages/map/popup.vue:183
 msgid "online Osmose Editor"
 msgstr "在线Osmose编辑"
 
-#: ../src/pages/map/popup.vue:179 ../src/pages/map/popup.vue:186
+#: ../src/pages/map/popup.vue:175 ../src/pages/map/popup.vue:182
 #, python-brace-format
 msgid "Load the fix in {where}"
 msgstr "在{where}中加载修复程序"
 
-#: ../src/pages/map/popup.vue:267
+#: ../src/pages/map/popup.vue:262
 #, python-brace-format
 msgid "Add the new object in {where}"
 msgstr "在{where}中添加新对象"
 
-#: ../src/pages/map/popup.vue:318
+#: ../src/pages/map/popup.vue:313
 #, python-brace-format
 msgid "Show the area on {where}"
 msgstr "在{where}上显示该区域"
 
-#: ../src/pages/map/popup.vue:323 ../src/pages/map/popup.vue:332
+#: ../src/pages/map/popup.vue:318 ../src/pages/map/popup.vue:324
 #, python-brace-format
 msgid "Edit the area on {where}"
 msgstr "在{where}上编辑区域"
 
-#: ../src/pages/map/popup.vue:142
+#: ../src/pages/map/popup.vue:134
 msgid "details"
 msgstr "细节"
 
-#: ../../web_api/issues.py:256 ../src/pages/map/popup.vue:147
+#: ../../web_api/issues.py:256 ../src/pages/map/popup.vue:139
 msgid "Issue reported on:"
 msgstr "报告问题："
 
-#: ../src/pages/map/popup.vue:66 ../src/pages/map/popup.vue:379
+#: ../src/pages/map/popup.vue:66 ../src/pages/map/popup.vue:371
 msgid ""
 "Report the issue as improper, if according to you is not an issue. The issue"
 " will not be displayed to anyone more."
 msgstr "反馈问题不合理，如果根据你反馈这不是问题那此问题不会再显示给其他人。"
 
-#: ../src/pages/map/popup.vue:393
+#: ../src/pages/map/popup.vue:385
 msgid ""
 "After issue fixed on the OSM data, mark it as done. May also disappear "
 "automatically on next check if no more issue."
@@ -1297,7 +1297,7 @@ msgstr "在OSM数据上修复问题后，将其标记为已完成。如果没有
 msgid "zone:maxspeed"
 msgstr "zone:最大速度"
 
-#: ../../tools/database/items_menu.txt:244
+#: ../../tools/database/items_menu.txt:246
 msgid "power transformer"
 msgstr "变压器"
 
@@ -1309,31 +1309,31 @@ msgstr "#%s项"
 msgid "opening hours"
 msgstr "营业时间"
 
-#: ../../tools/database/items_menu.txt:194
+#: ../../tools/database/items_menu.txt:196
 msgid "hospital"
 msgstr "医院"
 
-#: ../../tools/database/items_menu.txt:196
+#: ../../tools/database/items_menu.txt:198
 msgid "social facility"
 msgstr "社会设施"
 
-#: ../../tools/database/items_menu.txt:198
+#: ../../tools/database/items_menu.txt:200
 msgid "medical lab"
 msgstr "医学实验室"
 
-#: ../../tools/database/items_menu.txt:195
+#: ../../tools/database/items_menu.txt:197
 msgid "hospital, could be integrated"
 msgstr "可以整合的医院"
 
-#: ../../tools/database/items_menu.txt:197
+#: ../../tools/database/items_menu.txt:199
 msgid "social facility, could be integrated"
 msgstr "可以整合的社会设施"
 
-#: ../../tools/database/items_menu.txt:199
+#: ../../tools/database/items_menu.txt:201
 msgid "medical lab, could be integrated"
 msgstr "可以整合的医学实验室"
 
-#: ../../tools/database/items_menu.txt:173
+#: ../../tools/database/items_menu.txt:175
 msgid "police, need update"
 msgstr "需要更新的公安类"
 
@@ -1341,7 +1341,7 @@ msgstr "需要更新的公安类"
 msgid "swimming pool"
 msgstr "游泳池"
 
-#: ../../tools/database/items_menu.txt:95
+#: ../../tools/database/items_menu.txt:97
 msgid "potential misspelling"
 msgstr "潜在的拼写错误"
 
@@ -1353,15 +1353,15 @@ msgstr "强制执行"
 msgid "URL"
 msgstr "URL"
 
-#: ../../tools/database/items_menu.txt:200
+#: ../../tools/database/items_menu.txt:202
 msgid "street objects"
 msgstr "街头物体"
 
-#: ../../tools/database/items_menu.txt:239
+#: ../../tools/database/items_menu.txt:241
 msgid "openrailwaymap"
 msgstr "openrailwaymap"
 
-#: ../../tools/database/items_menu.txt:240
+#: ../../tools/database/items_menu.txt:242
 msgid "openrailwaymap in germany"
 msgstr "openrailwaymap在德国"
 
@@ -1369,7 +1369,7 @@ msgstr "openrailwaymap在德国"
 msgid "railways"
 msgstr "铁路"
 
-#: ../../tools/database/items_menu.txt:185
+#: ../../tools/database/items_menu.txt:187
 msgid "power plant"
 msgstr "发电站"
 
@@ -1379,19 +1379,19 @@ msgid ""
 "languages."
 msgstr "Osmose工具主要由法国人开发，我们的目标是添加更多语言。"
 
-#: ../../tools/database/items_menu.txt:201
+#: ../../tools/database/items_menu.txt:203
 msgid "defibrillator"
 msgstr "除颤器"
 
-#: ../../tools/database/items_menu.txt:205
+#: ../../tools/database/items_menu.txt:207
 msgid "radio support"
 msgstr "无线电支持"
 
-#: ../../tools/database/items_menu.txt:206
+#: ../../tools/database/items_menu.txt:208
 msgid "radio support, could be integrated"
 msgstr "可以整合的无线电支持"
 
-#: ../../tools/database/items_menu.txt:207
+#: ../../tools/database/items_menu.txt:209
 msgid "radio support, need update"
 msgstr "需要更新的无线电支持"
 
@@ -1433,15 +1433,15 @@ msgstr "Osmose-QA 不能提供绝对正确的绘图方式，请保持清晰的�
 msgid "You can find help on the wiki:"
 msgstr "您可以在Wiki上找到帮助："
 
-#: ../../tools/database/items_menu.txt:210
+#: ../../tools/database/items_menu.txt:212
 msgid "charging station"
 msgstr "充电站"
 
-#: ../../tools/database/items_menu.txt:211
+#: ../../tools/database/items_menu.txt:213
 msgid "charging station, could be integrated"
 msgstr "可以整合的充电站"
 
-#: ../../tools/database/items_menu.txt:212
+#: ../../tools/database/items_menu.txt:214
 msgid "charging station, need update"
 msgstr "需要更新的充电站"
 
@@ -1449,54 +1449,54 @@ msgstr "需要更新的充电站"
 msgid "related objects"
 msgstr "相关对象"
 
-#: ../../tools/database/items_menu.txt:202
+#: ../../tools/database/items_menu.txt:204
 msgid "wastewater"
 msgstr "废水"
 
-#: ../../tools/database/items_menu.txt:203
+#: ../../tools/database/items_menu.txt:205
 msgid "wastewater, could be integrated"
 msgstr "可以整合的污水处理厂"
 
-#: ../../tools/database/items_menu.txt:204
+#: ../../tools/database/items_menu.txt:206
 msgid "wastewater, need update"
 msgstr "需要更新的污水处理厂"
 
 msgid "gas station, not integrated"
 msgstr "未整合的加油站"
 
-#: ../src/components/issues-list.vue:316
+#: ../src/components/issues-list.vue:310
 msgid "delete issue"
 msgstr "删除问题"
 
-#: ../src/pages/map/popup.vue:337
+#: ../src/pages/map/popup.vue:329
 msgid "Issue details"
 msgstr "问题详情"
 
-#: ../src/pages/map/popup.vue:350
+#: ../src/pages/map/popup.vue:342
 msgid "Report based on data from date"
 msgstr "基于日期的数据的报告"
 
-#: ../../tools/database/items_menu.txt:179
+#: ../../tools/database/items_menu.txt:181
 msgid "pharmacy, need update"
 msgstr "需要更新的药房"
 
-#: ../../tools/database/items_menu.txt:188
+#: ../../tools/database/items_menu.txt:190
 msgid "power substation, need update"
 msgstr "需要更新的变电站"
 
-#: ../../tools/database/items_menu.txt:192
+#: ../../tools/database/items_menu.txt:194
 msgid "shop"
 msgstr "商店"
 
-#: ../../tools/database/items_menu.txt:241
+#: ../../tools/database/items_menu.txt:243
 msgid "specific russia"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:242
+#: ../../tools/database/items_menu.txt:244
 msgid "specific brazil"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:243
+#: ../../tools/database/items_menu.txt:245
 msgid "specific france"
 msgstr ""
 
@@ -1524,15 +1524,15 @@ msgstr "它可以检测各种不同类型的问题，也可以方便地整合第
 msgid "VAT"
 msgstr "增值税"
 
-#: ../../tools/database/items_menu.txt:208
+#: ../../tools/database/items_menu.txt:210
 msgid "health centre"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:209
+#: ../../tools/database/items_menu.txt:211
 msgid "health centre, could be integrated"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:213
+#: ../../tools/database/items_menu.txt:215
 msgid "tourism"
 msgstr "旅游"
 
@@ -1542,31 +1542,31 @@ msgid ""
 "Osmose on our Github:"
 msgstr "如果有任何问题、建议或向Osmose添加开源数据，欢迎提交到我们的Github上："
 
-#: ../../tools/database/items_menu.txt:149
+#: ../../tools/database/items_menu.txt:151
 msgid "fire hydrant"
 msgstr "消防栓"
 
-#: ../../tools/database/items_menu.txt:150
+#: ../../tools/database/items_menu.txt:152
 msgid "fire hydrant, could be integrated"
 msgstr "可以整合的消防栓"
 
-#: ../../tools/database/items_menu.txt:214
+#: ../../tools/database/items_menu.txt:216
 msgid "milestone"
 msgstr "里程碑"
 
-#: ../../tools/database/items_menu.txt:215
+#: ../../tools/database/items_menu.txt:217
 msgid "milestone, could be integrated"
 msgstr "可以整合的里程碑"
 
-#: ../../tools/database/items_menu.txt:216
+#: ../../tools/database/items_menu.txt:218
 msgid "viewpoint"
 msgstr "观景点"
 
-#: ../../tools/database/items_menu.txt:217
+#: ../../tools/database/items_menu.txt:219
 msgid "picnic"
 msgstr "野餐"
 
-#: ../../tools/database/items_menu.txt:218
+#: ../../tools/database/items_menu.txt:220
 msgid "bicycle infrastructure"
 msgstr "自行车基础设施"
 
@@ -1574,39 +1574,39 @@ msgstr "自行车基础设施"
 msgid "Information"
 msgstr "信息"
 
-#: ../../tools/database/items_menu.txt:130
+#: ../../tools/database/items_menu.txt:132
 msgid "monument, megalith, museum"
 msgstr "纪念碑，巨石，博物馆"
 
-#: ../../tools/database/items_menu.txt:131
+#: ../../tools/database/items_menu.txt:133
 msgid "monument, megalith, museum, could be integrated"
 msgstr "可以整合的纪念碑，巨石，博物馆"
 
-#: ../../tools/database/items_menu.txt:132
+#: ../../tools/database/items_menu.txt:134
 msgid "monument, megalith, museum, need update"
 msgstr "需要更新的纪念碑，巨石，博物馆"
 
-#: ../../tools/database/items_menu.txt:151
+#: ../../tools/database/items_menu.txt:153
 msgid "place of worship"
 msgstr "礼拜场所"
 
-#: ../../tools/database/items_menu.txt:219
+#: ../../tools/database/items_menu.txt:221
 msgid "cemetery"
 msgstr "墓地"
 
-#: ../../tools/database/items_menu.txt:220
+#: ../../tools/database/items_menu.txt:222
 msgid "man made"
 msgstr "人造物"
 
-#: ../../tools/database/items_menu.txt:221
+#: ../../tools/database/items_menu.txt:223
 msgid "water infrastructure"
 msgstr "水务基础设施"
 
-#: ../../tools/database/items_menu.txt:222
+#: ../../tools/database/items_menu.txt:224
 msgid "water"
 msgstr "水"
 
-#: ../../tools/database/items_menu.txt:223
+#: ../../tools/database/items_menu.txt:225
 msgid "fire station"
 msgstr "消防站"
 
@@ -1618,7 +1618,7 @@ msgid ""
 "Débrouillards d'Aquitaine\"."
 msgstr ""
 
-#: ../src/components/issues-list.vue:188
+#: ../src/components/issues-list.vue:182
 msgid "delete issue #{uuid}"
 msgstr "删除问题 #{uuid}"
 
@@ -1630,11 +1630,11 @@ msgstr "问题信息 {uuid}"
 msgid "Issue counts matrix"
 msgstr "问题计数矩阵"
 
-#: ../src/components/issues-list.vue:173
+#: ../src/components/issues-list.vue:167
 msgid "Mark issue #{uuid} as false positive"
 msgstr "将问题 #{uuid} 标记为误报"
 
-#: ../src/components/issues-list.vue:181
+#: ../src/components/issues-list.vue:175
 msgid "Mark issue #{uuid} as fixed"
 msgstr "将问题标记为 #{uuid} 已修复"
 
@@ -1711,7 +1711,7 @@ msgstr "分析数据的服务器由OpenStreetMap-France和世界各地的贡献�
 msgid "volunteers"
 msgstr "志愿者"
 
-#: ../../web_api/byuser.py:75
+#: ../../web_api/byuser.py:83
 #, python-brace-format
 msgid "Statistics for user {0}"
 msgstr "用户 {0} 的统计"
@@ -1739,47 +1739,47 @@ msgstr ""
 msgid "Tags"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:111
+#: ../../tools/database/items_menu.txt:113
 msgid "post office, ref not integrated"
 msgstr "编号未整合的邮局"
 
-#: ../../tools/database/items_menu.txt:112
+#: ../../tools/database/items_menu.txt:114
 msgid "post box, ref not integrated"
 msgstr "编号未整合的邮箱"
 
-#: ../../tools/database/items_menu.txt:114
+#: ../../tools/database/items_menu.txt:116
 msgid "school, ref not integrated"
 msgstr "编号未整合的学校"
 
-#: ../../tools/database/items_menu.txt:121
+#: ../../tools/database/items_menu.txt:123
 msgid "transport sharing, ref not integrated"
 msgstr "编号未整合的共享/租借交通"
 
-#: ../../tools/database/items_menu.txt:122
+#: ../../tools/database/items_menu.txt:124
 msgid "pharmacy, ref not integrated"
 msgstr "编号未整合的药房"
 
-#: ../../tools/database/items_menu.txt:123
+#: ../../tools/database/items_menu.txt:125
 msgid "postal code, ref not integrated"
 msgstr "编号未整合的邮政编码"
 
-#: ../../tools/database/items_menu.txt:125
+#: ../../tools/database/items_menu.txt:127
 msgid "power substation, ref not integrated"
 msgstr "编号未整合的变电站"
 
-#: ../../tools/database/items_menu.txt:126
+#: ../../tools/database/items_menu.txt:128
 msgid "hospital, ref not integrated"
 msgstr "编号未整合的医院"
 
-#: ../../tools/database/items_menu.txt:127
+#: ../../tools/database/items_menu.txt:129
 msgid "social facility, ref not integrated"
 msgstr "编号未整合的社会设施"
 
-#: ../../tools/database/items_menu.txt:128
+#: ../../tools/database/items_menu.txt:130
 msgid "medical lab, ref not integrated"
 msgstr "编号未整合的医学实验室"
 
-#: ../../tools/database/items_menu.txt:129
+#: ../../tools/database/items_menu.txt:131
 msgid "gas station, ref not integrated"
 msgstr "编号未整合的加油站"
 
@@ -1836,7 +1836,7 @@ msgstr "更少过滤器"
 msgid "loc"
 msgstr "loc"
 
-#: ../src/components/issues-list.vue:262
+#: ../src/components/issues-list.vue:256
 msgid "location"
 msgstr "位置"
 
@@ -1886,18 +1886,26 @@ msgstr ""
 msgid "Tag"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:169
+#: ../../tools/database/items_menu.txt:171
 msgid "toilets, could be integrated"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:170
+#: ../../tools/database/items_menu.txt:172
 msgid "toilets, need update"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:224
+#: ../../tools/database/items_menu.txt:226
 msgid "natural"
 msgstr ""
 
 #: ../src/pages/map/items.vue:6
 msgid "Zoom in to see issues."
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:78
+msgid "conditional restriction"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:79
+msgid "sideway"
 msgstr ""
