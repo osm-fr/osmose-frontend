@@ -22,7 +22,7 @@ vue.pot: $(VUEFILES) ../node_modules/easygettext/src/extract-cli.js
 	rm $@.tmp
 
 python.pot: $(PYFILES) $(DBFILES)
-	sed -i "s/^#: .*//" osmose-frontend.pot
+	sed -i.bak "s/^#: .*//" osmose-frontend.pot
 	LANG=C xgettext -cTRANSLATORS --language=Python \
           --keyword=_ --omit-header --from-code UTF-8 \
           --output=$@ $(PYFILES) $(DBFILES)
