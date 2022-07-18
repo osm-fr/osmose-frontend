@@ -43,7 +43,7 @@ def _build_where_class(table, classs: int):
 
 def _build_param(
     bbox: Optional[List[float]],
-    source: Optional[int],
+    source: Optional[List[List[int]]],
     item: Optional[str],
     level: Optional[List[int]],
     users: Optional[List[str]],
@@ -95,15 +95,13 @@ def _build_param(
         join += "markers"
 
     if source:
-        sources = source.split(",")
         source2 = []
         for source in sources:
-            source = source.split("-")
             if len(source) == 1:
-                params.append(int(source[0]))
+                params.append(source[0])
                 source2.append(f"(markers.source_id=${len(params)})")
             else:
-                params += [int(source[0]), int(source[1])]
+                params += [source[0], source[1]]
                 source2.append(
                     f"(markers.source_id=${len(params) - 1} AND markers.class=${len(params)})"
                 )

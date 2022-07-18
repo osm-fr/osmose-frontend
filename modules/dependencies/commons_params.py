@@ -19,7 +19,7 @@ def safe_cast(val, to_type, default=None):
 class Params:
     bbox: Optional[List[float]]
     item: Optional[str]
-    source: Optional[int]
+    source: Optional[List[List[int]]]
     classs: Optional[str]
     users: Optional[List[str]]
     level: Optional[List[int]]
@@ -42,7 +42,7 @@ class Params:
         self,
         bbox: Optional[str],
         item: Optional[str],
-        source: Optional[int],
+        source: Optional[str],
         classs: Optional[str],
         username: Optional[str],
         level: Optional[str],
@@ -63,7 +63,7 @@ class Params:
     ):
         bbox = bbox
         self.item = item
-        self.source = source
+        source = source
         self.classs = classs
         users = username
         level = level
@@ -94,6 +94,13 @@ class Params:
                 self.bbox = list(map(lambda x: float(x), bbox.split(",")))
             except Exception:
                 pass
+        self.source = []
+        if source:
+            sources = source.split(",")
+            try:
+                self.source = list(map(lambda source: list(map(int, source.split("-"))), sources))
+            except Exception:
+                pass
         self.users = users.split(",") if users else None
         if self.country and not re.match(r"^([a-z_]+)(\*|)$", self.country):
             self.country = ""
@@ -118,7 +125,7 @@ class Params:
 async def params(
     bbox: Optional[str] = None,
     item: Optional[str] = None,
-    source: Optional[int] = None,
+    source: Optional[str] = None,
     classs: Optional[str] = None,
     users: Optional[str] = None,
     level: str = "1,2,3",
