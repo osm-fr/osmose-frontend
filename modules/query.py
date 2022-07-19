@@ -241,7 +241,7 @@ def _build_param(
         where.append(
             f"""(SELECT
                     bool_or(elem->>'type' = ${len(params)-1} AND
-                    elem->>'id' = ${len(params)})
+                    (elem->>'id')::bigint = ${len(params)})
                 FROM (SELECT unnest(elems)) AS t(elem))"""
         )  # Recheck with type
 
