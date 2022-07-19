@@ -44,7 +44,7 @@ class Params:
         item: Optional[str],
         source: Optional[str],
         classs: Optional[str],
-        username: Optional[str],
+        users: Optional[str],
         level: Optional[str],
         full: bool,
         zoom: Optional[int],
@@ -65,7 +65,7 @@ class Params:
         self.item = item
         source = source
         self.classs = classs
-        users = username
+        users = users
         level = level
         self.full = full
         self.zoom = zoom
@@ -127,7 +127,7 @@ async def params(
     item: Optional[str] = None,
     source: Optional[str] = None,
     classs: Optional[str] = None,
-    users: Optional[str] = None,
+    username: Optional[str] = None,
     level: str = "1,2,3",
     full: bool = False,
     zoom: int = 10,
@@ -149,7 +149,7 @@ async def params(
         item,
         source,
         classs,
-        users,
+        username,
         level,
         full,
         zoom,
