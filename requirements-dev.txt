@@ -3,5 +3,6 @@ pylama
 mypy
 types-requests
 isort
+black
 flake8
 uvicorn
