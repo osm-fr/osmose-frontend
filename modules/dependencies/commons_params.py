@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from typing import List, Literal, Optional, Union
 
 from fastapi import Query
+from fastapi.params import Query as QueryObject
 
 from .. import utils
 
@@ -107,7 +108,6 @@ class Params:
                 pass
         self.classs = []
         if classs:
-            print(classs)
             sources = classs.split(",")
             try:
                 self.classs = list(map(lambda x: int(x), classs.split(",")))
@@ -139,7 +139,7 @@ async def params(
     bbox: Optional[str] = None,
     item: Optional[str] = None,
     source: Optional[str] = None,
-    classs: Optional[str] = Query(None, alias="class"),
+    classs: Optional[str] = Query(default=None, alias="class"),
     username: Optional[str] = None,
     level: str = "1,2,3",
     full: bool = False,
@@ -157,6 +157,10 @@ async def params(
     tilex: Optional[int] = None,
     tiley: Optional[int] = None,
 ):
+    # Workaround on Query default value, we should not get a Query object here
+    if isinstance(classs, QueryObject):
+        classs = classs.default
+
     return Params(
         bbox,
         item,
