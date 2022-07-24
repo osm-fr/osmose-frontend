@@ -2,6 +2,8 @@ import re
 from dataclasses import dataclass
 from typing import List, Literal, Optional, Union
 
+from fastapi import Query
+
 from .. import utils
 
 Status = Literal["open", "false"]
@@ -20,7 +22,7 @@ class Params:
     bbox: Optional[List[float]]
     item: Optional[str]
     source: Optional[List[List[int]]]
-    classs: Optional[str]
+    classs: Optional[List[int]]
     users: Optional[List[str]]
     level: Optional[List[int]]
     full: bool
@@ -64,7 +66,7 @@ class Params:
         bbox = bbox
         self.item = item
         source = source
-        self.classs = classs
+        classs = classs
         users = users
         level = level
         self.full = full
@@ -98,7 +100,18 @@ class Params:
         if source:
             sources = source.split(",")
             try:
-                self.source = list(map(lambda source: list(map(int, source.split("-"))), sources))
+                self.source = list(
+                    map(lambda source: list(map(int, source.split("-"))), sources)
+                )
+            except Exception:
+                pass
+        self.classs = []
+        if classs:
+            print(classs)
+            sources = classs.split(",")
+            try:
+                self.classs = list(map(lambda x: int(x), classs.split(",")))
+                print(self.classs)
             except Exception:
                 pass
         self.users = users.split(",") if users else None
@@ -126,7 +139,7 @@ async def params(
     bbox: Optional[str] = None,
     item: Optional[str] = None,
     source: Optional[str] = None,
-    classs: Optional[str] = None,
+    classs: Optional[str] = Query(None, alias="class"),
     username: Optional[str] = None,
     level: str = "1,2,3",
     full: bool = False,
