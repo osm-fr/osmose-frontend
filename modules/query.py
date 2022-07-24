@@ -35,19 +35,13 @@ def _build_where_item(table, item: str):
     return where
 
 
-def _build_where_class(table, classs: int):
-    return "{0}.class IN ({1})".format(
-        table, ",".join(map(lambda c: str(int(c)), classs.split(",")))
-    )
-
-
 def _build_param(
     bbox: Optional[List[float]],
     sources: Optional[List[List[int]]],
     item: Optional[str],
     level: Optional[List[int]],
     users: Optional[List[str]],
-    classs: Optional[str],
+    classs: Optional[List[int]],
     country: Optional[str],
     useDevItem: bool,
     status,  #: Optional[Status],
@@ -158,7 +152,8 @@ def _build_param(
         where.append(f"class.level = ANY (${len(params)})")
 
     if classs:
-        where.append(_build_where_class("markers", classs))
+        params.append(classs)
+        where.append(f"markers.class = ANY (${len(params)})")
 
     if bbox:
         params += [bbox[1], bbox[3], bbox[0], bbox[2]]
