@@ -45,19 +45,19 @@
           </ul>
           <div class="form-inline my-2 my-lg-0">
             <a
-              :href="`${api_url_path}.rss?${query}`"
+              :href="`${api_url}/api/0.3/issues.rss?${query}`"
               class="badge badge-secondary"
             >
               .rss </a
             >&nbsp;
             <a
-              :href="`${api_url_path}.gpx?${query}`"
+              :href="`${api_url}/api/0.3/issues.gpx?${query}`"
               class="badge badge-secondary"
             >
               .gpx </a
             >&nbsp;
             <a
-              :href="`${api_url_path}.kml?${query}`"
+              :href="`${api_url}/api/0.3/issues.kml?${query}`"
               class="badge badge-secondary"
             >
               .kml </a
@@ -529,7 +529,7 @@ export default VueParent.extend({
           rss = document.createElement("link");
           Object.assign(rss, {
             id: "rss",
-            href: `http://${this.website}/${this.$route.params.lang}/issues/open.rss?${this.query}`,
+            href: `http://${this.website}/api/0.3/issues.rss?${this.query}`,
             rel: "alternate",
             type: "application/rss+xml",
             title: document.title,

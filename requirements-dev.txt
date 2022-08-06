@@ -6,3 +6,4 @@ isort
 black
 flake8
 uvicorn
+lxml-stubs

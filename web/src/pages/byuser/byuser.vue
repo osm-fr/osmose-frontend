@@ -31,22 +31,13 @@
             >
               .rss <translate>count</translate></a
             >&nbsp;
-            <a
-              :href="`${api_url_path}.rss?${query}`"
-              class="badge badge-secondary"
-            >
+            <a :href="api_url_path('rss')" class="badge badge-secondary">
               .rss </a
             >&nbsp;
-            <a
-              :href="`${api_url_path}.gpx?${query}`"
-              class="badge badge-secondary"
-            >
+            <a :href="api_url_path('gpx')" class="badge badge-secondary">
               .gpx </a
             >&nbsp;
-            <a
-              :href="`${api_url_path}.kml?${query}`"
-              class="badge badge-secondary"
-            >
+            <a :href="api_url_path('kml')" class="badge badge-secondary">
               .kml
             </a>
           </div>
@@ -120,6 +111,9 @@ export default VueParent.extend({
     this.render();
   },
   methods: {
+    api_url_path(format) {
+      return `http://${this.website}/api/0.3/issues.${format}?${this.query}&usename=${this.$route.params.user}`
+    },
     render() {
       this.query = window.location.search.substring(1);
 
@@ -139,7 +133,7 @@ export default VueParent.extend({
           rss = document.createElement("link");
           Object.assign(rss, {
             id: "rss",
-            href: `http://${this.website}/${this.$route.params.lang}/byuser/${this.$route.params.user}.rss?${this.query}`,
+            href: this.api_url_path("rss"),
             rel: "alternate",
             type: "application/rss+xml",
             title: document.title,

@@ -21,7 +21,7 @@
 ###########################################################################
 
 import asyncio
-from bottle import route, redirect, response, html_escape
+from bottle import route, redirect, response, html_escape, request
 from modules.dependencies.database import get_dbconn
 from modules.dependencies.commons_params import params as async_params
 from modules_legacy import utils
@@ -31,7 +31,6 @@ from lxml import etree
 from lxml.builder import E, ElementMaker
 
 from api.user_utils import _user, _user_count
-from .issues import rss, gpx, kml
 
 
 @route('/byuser')
@@ -41,6 +40,11 @@ def byUser():
 
 @route('/byuser/<username>.<format:ext>')
 def user(db, lang, username=None, format=None):
+    if format == 'rss' or format == 'gpx' or format == 'kml':
+        response.status = 301
+        response.set_header('Location', f"https://{utils.website}/api/0.3/issues.{format}?{request.query_string}&username={username}")
+        return
+
     async def t(username):
         return await _user(await async_params(), await get_dbconn(), username)
     params, username, errors = asyncio.run(t(username))
@@ -50,24 +54,11 @@ def user(db, lang, username=None, format=None):
         error["title"] = i10n_select_auto(error["title"], lang)
         error["menu"] = i10n_select_auto(error["menu"], lang)
 
-    if format == 'rss':
-        response.content_type = 'application/rss+xml'
-        xml = rss(website=utils.website, lang=lang[0], params=params, query='users={0}'.format(username), main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
-        return etree.tostring(xml, pretty_print=True)
-    elif format == 'gpx':
-        response.content_type = 'application/gpx+xml'
-        xml = gpx(website=utils.website, lang=lang[0], params=params, query='users={0}'.format(username), main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
-        return etree.tostring(xml, pretty_print=True)
-    elif format == 'kml':
-        response.content_type = 'application/vnd.google-earth.kml+xml'
-        xml = kml(website=utils.website, lang=lang[0], params=params, query='users={0}'.format(username), main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
-        return etree.tostring(xml, pretty_print=True)
-    else:
-        count = len(errors)
-        for error in errors:
-            error['timestamp'] = str(error['timestamp'])
-            error['uuid'] = str(error['uuid'])
-        return dict(username=username, users=params.users, count=count, errors=list(map(dict, errors)), website=utils.website + '/' + lang[0], main_website=utils.main_website, remote_url_read=utils.remote_url_read)
+    count = len(errors)
+    for error in errors:
+        error['timestamp'] = str(error['timestamp'])
+        error['uuid'] = str(error['uuid'])
+    return dict(username=username, users=params.users, count=count, errors=list(map(dict, errors)), website=utils.website + '/' + lang[0], main_website=utils.main_website, remote_url_read=utils.remote_url_read)
 
 
 @route('/byuser_count/<username>.rss')
@@ -75,7 +66,6 @@ def user_count(db, lang, username=None):
     async def t(username):
         return await _user_count(await async_params(), await get_dbconn(), username)
     count = asyncio.run(t(username))
-    print(count)
     response.content_type = "application/rss+xml"
     xml = E.rss(
         E.channel(

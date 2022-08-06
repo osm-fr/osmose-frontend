@@ -27,16 +27,10 @@ from modules_legacy.params import Params
 from modules_legacy import query
 from modules_legacy import query_meta
 from collections import defaultdict
-from lxml import etree
-from lxml.builder import E, ElementMaker
-from lxml.html import builder as H
 import io, re, csv
 
 from . import errors_graph
 
-
-def int_list(s):
-    return list(map(lambda x: int(x), filter(lambda x: x and x!='',s)).split(','))
 
 @route('/issues/graph.<format:ext>')
 def graph(db, format='png'):
@@ -57,13 +51,10 @@ def graph(db, format='png'):
 @route('/issues/false-positive.<format:ext>')
 def index(db, lang, format):
     if "false-positive" in request.path:
-        title = _("False positives")
         gen = "false-positive"
     elif "done" in request.path:
-        title = _("Fixed issues")
         gen = "done"
     else:
-        title = _("Open issues")
         gen = "issue"
 
     params = Params()
@@ -86,19 +77,7 @@ def index(db, lang, format):
         error["title"] = i10n_select_auto(error["title"], lang)
         error["menu"] = i10n_select_auto(error["menu"], lang)
 
-    if format == 'rss':
-        response.content_type = 'application/rss+xml'
-        xml = rss(title=title, website=utils.website, lang=lang[0], params=params, query=request.query_string, main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
-        return etree.tostring(xml, pretty_print=True)
-    elif format == 'gpx':
-        response.content_type = 'application/gpx+xml'
-        xml = gpx(title=title, website=utils.website, lang=lang[0], params=params, query=request.query_string, main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
-        return etree.tostring(xml, pretty_print=True)
-    elif format == 'kml':
-        response.content_type = 'application/vnd.google-earth.kml+xml'
-        xml = kml(title=title, website=utils.website, lang=lang[0], params=params, query=request.query_string, main_website=utils.main_website, remote_url_read=utils.remote_url_read, issues=errors)
-        return etree.tostring(xml, pretty_print=True)
-    elif format == 'josm':
+    if format == 'josm':
         objects = set(sum(map(lambda error: list(map(lambda elem: elem['type'].lower() + str(elem['id']), error['elems'] or [])), errors), []))
         response.status = 302
         response.set_header('Location', 'http://localhost:8111/load_object?objects=%s' % ','.join(objects))
@@ -182,184 +161,3 @@ def matrix(db, lang):
         total += count
 
     return dict(total=total, countries_sum=countries_sum, analysers_sum=analysers_sum, analysers=analysers)
-
-
-def xml_header(params, title, website, lang, query):
-    if params.users:
-        title = 'Osmose - ' + ', '.join(params.users)
-        description = _("Statistics for user {}").format(', '.join(params.users))
-        url = 'http://{}/byuser/{}'.format(website, ', '.join(params.users))
-    else:
-        title = 'Osmose - ' + title
-        description = None
-        url = 'http://{}/{}/issues/open?{}'.format(website, lang, query)
-    return title, description, url
-
-
-def xml_issue(res, website, lang, query, main_website, remote_url_read):
-    name = (res['menu'] or '') + ' - ' + (res['subtitle'] or res['title'] or '')
-
-    lat = res['lat']
-    lon = res['lon']
-
-    if res['elems']:
-        for e in res['elems']:
-            if e["type"] == "R":
-                e['object_josm_url'] = "http://localhost:8111/import?url={}api/0.6/relation/{}/full".format(remote_url_read, e["id"])
-            else:
-                e['object_josm_url'] = "http://localhost:8111/load_object?objects={}{}".format(e["type"].lower(), e["id"])
-
-    map_url = 'http://{}/{}/map/#{}&zoom=16&lat={}&lon={}&level={}&tags=&fixable=&issue_uuid={}'.format(website, lang, query, lat, lon, res["level"], res["uuid"])
-
-    issue_summary_string = "{}({})/{} {}".format(res["item"], res["level"], res["class"], res["uuid"])
-
-    html_desc = H.DIV(
-        H.P(issue_summary_string)
-    )
-    plain_desc = issue_summary_string
-
-    if res["elems"]:
-        for e in res["elems"]:
-            html_desc.append(
-                H.P(
-                    H.A("{} {}".format(e["type_long"], e["id"]), href="{}{}/{}".format(main_website, e["type_long"], e["id"])),
-                    " ",
-                    H.A("Osmose", href=map_url),
-                    " ",
-                    H.A("JOSM", href=e["object_josm_url"]),
-                    " ",
-                    H.A("iD", href="{}edit?editor=id&{}={}".format(main_website, e["type_long"], e["id"])),
-                    H.BR(),
-                    H.A(_("Mark issue as fixed"), href="http://{}/api/0.3/issue/{}/done".format(website, res["uuid"])),
-                    " ",
-                    H.A(_("Mark issue as false positive"), href="http://{}/api/0.3/issue/{}/false".format(website, res["uuid"])),
-                )
-            )
-            plain_desc += "\nOsmose: {}".format(map_url)
-            if "tags" in e:
-                html_desc.append(H.P(_("Tags:")))
-                tags_ul = H.UL()
-                plain_desc += "\nTags:"
-                for k, v in e["tags"].items():
-                    tags_ul.append(H.LI("{}={}".format(k, v)))
-                    plain_desc += "\n- {}={}".format(k, v)
-                html_desc.append(tags_ul)
-    else:
-        fallback_url = "http://localhost:8111/load_and_zoom?left={}&bottom={}&right={}&top={}".format(
-            float(lon) - 0.002,
-            float(lat) - 0.002,
-            float(lon) + 0.002,
-            float(lat) + 0.002,
-        )
-        html_desc.append(H.A("Osmose", href=fallback_url))
-        plain_desc += "\n{}".format(fallback_url)
-    issue_reported_at = "{} {}".format(_("Issue reported on:"), res["timestamp"].strftime("%Y-%m-%d"))
-    html_desc.append(H.P(issue_reported_at))
-    plain_desc += "\n{}".format(issue_reported_at)
-
-
-    return lat, lon, name, plain_desc, map_url, etree.tostring(html_desc, encoding='unicode', xml_declaration=False)
-
-
-def gpx_issue(res, website, lang, query, main_website, remote_url_read):
-    lat, lon, name, _, map_url, html_desc = xml_issue(res, website, lang, query, main_website, remote_url_read)
-    return E.wpt(
-        E.name(name),
-        E.desc(html_desc),
-        E.url(map_url),
-        lat=str(lat),
-        lon=str(lon),
-    )
-
-def gpx(website, lang, params, query, main_website, remote_url_read, issues, title = None):
-    content = []
-    if len(issues) > 0:
-        content.append(E.time(issues[0]['timestamp'].strftime('%Y-%m-%dT%H:%M:%SZ')))
-    content += list(map(lambda issue: gpx_issue(issue, website, lang, query, main_website, remote_url_read), issues))
-
-    title, _, url = xml_header(params, title, website, lang, query)
-    return E.gpx(
-        E.name(title),
-        E.url(url),
-        *content,
-        version = '1.0',
-        creator = 'http://osmose.openstreetmap.fr',
-        xmlns = 'http://www.topografix.com/GPX/1/0',
-        # xmlns:xsi = 'http://www.w3.org/2001/XMLSchema-instance',
-        # xsi:schemaLocation = 'http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd',
-    )
-
-
-def kml_issue(res, website, lang, query, main_website, remote_url_read):
-    lat, lon, name, desc, map_url, _ = xml_issue(res, website, lang, query, main_website, remote_url_read)
-    return E.Placemark(
-        E.name(name),
-        E.url(map_url),
-        E.description(desc),
-        E.styleUrl('#placemark-purple'),
-        E.Point(
-            E.coordinates('{},{}'.format(lon, lat)),
-        ),
-    )
-
-def kml(website, lang, params, query, main_website, remote_url_read, issues, title = None):
-    content = map(lambda issue: kml_issue(issue, website, lang, query, main_website, remote_url_read), issues)
-
-    title, _, url = xml_header(params, title, website, lang, query)
-    if len(issues) > 0:
-        title += ' (' + issues[0]['timestamp'].strftime('%Y-%m-%dT%H:%M:%SZ') + ')'
-    return E.kml(
-        E.Document(
-            E.Style(
-                E.IconStyle(
-                    E.Icon(
-                        E.href('http://maps.me/placemarks/placemark-purple.png')
-                    ),
-                ),
-                id = 'placemark-purple'
-            ),
-            E.name(title),
-            E.url(url),
-        ),
-        *content,
-        xmlns = 'http://www.opengis.net/kml/2.2',
-    )
-
-
-def rss_issue(res, website, lang, query, main_website, remote_url_read):
-    _, _, name, _, map_url, html_desc = xml_issue(res, website, lang, query, main_website, remote_url_read)
-    return E.item(
-        E.title(name),
-        E.description(html_desc),
-        E.category(str(res['item'])),
-        E.link(map_url),
-        E.guid(str(res['uuid']), isPermaLink="false"),
-    )
-
-def rss(website, lang, params, query, main_website, remote_url_read, issues, title = None):
-    content = map(lambda issue: rss_issue(issue, website, lang, query, main_website, remote_url_read), issues)
-
-    lastBuildDate = []
-    if len(issues) > 0:
-        time = issues[0]['timestamp']
-        ctime = time.ctime()
-        rfc822 = '{0}, {1:02d} {2}'.format(ctime[0:3], time.day, ctime[4:7]) + time.strftime(' %Y %H:%M:%S %z')
-        lastBuildDate = [E.lastBuildDate(rfc822)]
-
-    title, description, url = xml_header(params, title, website, lang, query)
-    E_atom = ElementMaker(namespace='http://www.w3.org/2005/Atom', nsmap={'atom':'http://www.w3.org/2005/Atom'})
-    return E.rss(
-        E.channel(
-            E_atom.link(
-                href='http://{}/{}/issues/open.rss?{}'.format(website, lang, query),
-                rel='self',
-                type='application/rss+xml',
-            ),
-            E.title(title),
-            E.description(description or query),
-            *lastBuildDate,
-            E.link(url),
-            *content,
-        ),
-        version = '2.0',
-    )

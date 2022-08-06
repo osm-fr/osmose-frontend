@@ -56,20 +56,20 @@
           </li>
           <li>
             <a
-              :href="`${api_url}/${lang}/issues/open.rss?${params}`"
+              :href="`${api_url}/api/0.3/issues.rss?${params}`"
               target="_blank"
             >
               RSS
             </a>
           </li>
           <li>
-            <a :href="`${api_url}/${lang}/issues/open.gpx?${params}`">GPX</a>
+            <a :href="`${api_url}/api/0.3/issues.gpx?${params}`">GPX</a>
           </li>
           <li>
-            <a :href="`${api_url}/${lang}/issues/open.kml?${params}`">KML</a>
+            <a :href="`${api_url}/api/0.3/issues.kml?${params}`">KML</a>
           </li>
           <li>
-            <a :href="`/api/0.3/issues?${params}`" target="_blank"> Json </a>
+            <a :href="`${api_url}/api/0.3/issues?${params}`" target="_blank"> Json </a>
           </li>
           <li>
             <a
