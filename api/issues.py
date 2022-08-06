@@ -7,7 +7,7 @@ from fastapi import APIRouter, Depends, Request, Response
 from fastapi.encoders import jsonable_encoder
 
 from modules import query, utils
-from modules.dependencies import commons_params, database, langs
+from modules.dependencies import commons_params, database, formats, langs
 from modules.utils import LangsNegociation
 
 router = APIRouter()
@@ -99,12 +99,12 @@ async def errors(
     return out
 
 
-@router.get("/0.3/issues.json", tags=["issues"])
-@router.get("/0.3/issues.geojson", tags=["issues"])
+@router.get("/0.3/issues.{format}", tags=["issues"])
 async def issues_geojson(
     request: Request,
     db: Connection = Depends(database.db),
     langs: LangsNegociation = Depends(langs.langs),
+    format: str = Depends(formats.formats("geojson")),
     params=Depends(commons_params.params),
 ):
 
