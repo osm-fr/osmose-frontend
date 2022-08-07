@@ -11,7 +11,7 @@ from modules import query, query_meta, utils
 from modules.dependencies import commons_params, database, formats, langs
 from modules.utils import LangsNegociation, i10n_select_auto
 
-from .issues_utils import gpx, kml, rss
+from .issues_utils import csv, gpx, kml, rss
 
 router = APIRouter()
 
@@ -197,7 +197,7 @@ async def issues_format(
     request: Request,
     db: Connection = Depends(database.db),
     langs: LangsNegociation = Depends(langs.langs),
-    format: str = Depends(formats.formats("geojson", "rss", "gpx", "kml")),
+    format: str = Depends(formats.formats("geojson", "rss", "gpx", "kml", "csv")),
     params=Depends(commons_params.params),
 ):
     if params.status == "false":
@@ -253,6 +253,20 @@ async def issues_format(
         return Response(
             media_type="application/vnd.google-earth.kml+xml",
             content=kml(
+                title=title,
+                website=utils.website,
+                langs=langs,
+                params=params,
+                query=str(request.query_params),
+                main_website=utils.main_website,
+                remote_url_read=utils.remote_url_read,
+                issues=issues,
+            ),
+        )
+    elif format == "csv":
+        return Response(
+            media_type="text/csv",
+            content=csv(
                 title=title,
                 website=utils.website,
                 langs=langs,

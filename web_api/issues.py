@@ -27,7 +27,7 @@ from modules_legacy.params import Params
 from modules_legacy import query
 from modules_legacy import query_meta
 from collections import defaultdict
-import io, re, csv
+import io, re
 
 from . import errors_graph
 
@@ -77,61 +77,48 @@ def index(db, lang, format):
         error["title"] = i10n_select_auto(error["title"], lang)
         error["menu"] = i10n_select_auto(error["menu"], lang)
 
-    if format == 'csv':
-        output = io.StringIO()
-        writer = csv.writer(output)
-        h = ['uuid', 'source', 'item', 'class', 'level', 'title', 'subtitle', 'country', 'analyser', 'timestamp', 'username', 'lat', 'lon', 'elems']
-        hh = {'source': 'source_id'}
-        writer.writerow(h)
-        for res in errors:
-            usernames = list(map(lambda elem: elem.get("username", ""), res['elems'] or []))
-            elems = '_'.join(map(lambda elem: {'N':'node', 'W':'way', 'R':'relation'}[elem['type']] + str(elem['id']), res['elems'] or []))
-            writer.writerow(list(map(lambda a: usernames if a == 'username' else elems if a == 'elems' else res[a], map(lambda y: hh.get(y, y), h))))
-        response.content_type = 'text/csv'
-        return output.getvalue()
-    else:
-        countries = query_meta._countries(db)
-        items = list(map(dict, items))
+    countries = query_meta._countries(db)
+    items = list(map(dict, items))
 
-        if params.item:
-            params.limit = None
-            errors_groups = query._count(db, params, [
-                "markers_counts.item",
-                "markers.source_id",
-                "markers.class",
-                "sources.country",
-                "sources.analyser",
-                "updates_last.timestamp"], [
-                "items",
-                "class"], [
-                "min(items.menu::text)::jsonb AS menu",
-                "min(class.title::text)::jsonb AS title"],
-            )
+    if params.item:
+        params.limit = None
+        errors_groups = query._count(db, params, [
+            "markers_counts.item",
+            "markers.source_id",
+            "markers.class",
+            "sources.country",
+            "sources.analyser",
+            "updates_last.timestamp"], [
+            "items",
+            "class"], [
+            "min(items.menu::text)::jsonb AS menu",
+            "min(class.title::text)::jsonb AS title"],
+        )
 
-            total = 0
-            for res in errors_groups:
-                res["title"] = i10n_select_auto(res["title"], lang)
-                res["menu"] = i10n_select_auto(res["menu"], lang)
-                if res["count"] != -1:
-                    total += res["count"]
-        else:
-            errors_groups = []
-            total = 0
-
-        if gen in ("false-positive", "done"):
-            opt_date = "date"
-        else:
-            opt_date = None
-
-        errors_groups = list(map(dict, errors_groups))
+        total = 0
         for res in errors_groups:
-            res['timestamp'] = str(res['timestamp'])
-        errors = list(map(dict, errors))
-        for res in errors:
-            res['timestamp'] = str(res['timestamp'])
-            if 'date' in res:
-                res['date'] = str(res['date'])
-        return dict(countries=countries, items=items, errors_groups=errors_groups, total=total, errors=errors, gen=gen, opt_date=opt_date, website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read)
+            res["title"] = i10n_select_auto(res["title"], lang)
+            res["menu"] = i10n_select_auto(res["menu"], lang)
+            if res["count"] != -1:
+                total += res["count"]
+    else:
+        errors_groups = []
+        total = 0
+
+    if gen in ("false-positive", "done"):
+        opt_date = "date"
+    else:
+        opt_date = None
+
+    errors_groups = list(map(dict, errors_groups))
+    for res in errors_groups:
+        res['timestamp'] = str(res['timestamp'])
+    errors = list(map(dict, errors))
+    for res in errors:
+        res['timestamp'] = str(res['timestamp'])
+        if 'date' in res:
+            res['date'] = str(res['date'])
+    return dict(countries=countries, items=items, errors_groups=errors_groups, total=total, errors=errors, gen=gen, opt_date=opt_date, website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read)
 
 
 @route('/issues/matrix.json')

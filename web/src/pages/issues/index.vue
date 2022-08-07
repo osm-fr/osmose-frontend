@@ -63,7 +63,7 @@
               .kml </a
             >&nbsp;
             <a
-              :href="`${api_url_path}.csv?${query}`"
+              :href="`${api_url}/api/0.3/issues.csv?${query}`"
               class="badge badge-secondary"
             >
               .csv </a

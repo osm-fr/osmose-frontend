@@ -73,7 +73,7 @@
           </li>
           <li>
             <a
-              :href="`${api_url}/${lang}/issues/open.csv?${params}`"
+              :href="`${api_url}/api/0.3/issues.csv?${params}`"
               target="_blank"
             >
               CSV
