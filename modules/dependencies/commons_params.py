@@ -7,7 +7,7 @@ from fastapi.params import Query as QueryObject
 
 from .. import utils
 
-Status = Literal["open", "false"]
+Status = Literal["open", "false", "done"]
 Fixable = Optional[Literal["online", "josm"]]
 
 

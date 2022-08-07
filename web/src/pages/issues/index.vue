@@ -397,13 +397,15 @@
       </sorted-table>
       <br />
 
-      <div v-if="errors">
+      <div>
         <issues-list
-          :errors="errors"
+          v-if="gen"
+          :query="query"
           :gen="gen"
           :opt_date="opt_date"
           :main_website="main_website"
           :remote_url_read="remote_url_read"
+          :page_args="`status=${gen}&`"
         />
         <a href="#" v-on:click.stop.prevent="show_more()">
           <translate>Show more issues</translate>
@@ -429,7 +431,6 @@ export default VueParent.extend({
       items: [],
       errors_groups: [],
       total: 0,
-      errors: [],
       opt_date: false,
       main_website: "",
       remote_url_read: "",
@@ -448,10 +449,7 @@ export default VueParent.extend({
       fixable: null,
       full_filter: false,
       extra_filter_number: 0,
-      gen:
-        API_URL + window.location.pathname.includes("false-positive")
-          ? "false-positive"
-          : "gen",
+      gen: undefined,
     };
   },
   computed: {
@@ -508,7 +506,7 @@ export default VueParent.extend({
         this.tags_list = response.tags;
       });
 
-      this.fetchJsonProgressAssign(
+      this.fetchJsonAssign(
         API_URL + window.location.pathname + ".json" + window.location.search,
         () => {
           var res = this.items.find((e) => e.item == this.item);

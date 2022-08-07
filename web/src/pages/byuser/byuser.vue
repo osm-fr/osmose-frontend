@@ -22,13 +22,7 @@
             </li>
           </ul>
           <div class="form-inline my-2 my-lg-0">
-            <a
-              :href="`${api_url_path.replace(
-                '/byuser/',
-                '/byuser_count/'
-              )}.rss?${query}`"
-              class="badge badge-secondary"
-            >
+            <a :href="byuser_count" class="badge badge-secondary">
               .rss <translate>count</translate></a
             >&nbsp;
             <a :href="api_url_path('rss')" class="badge badge-secondary">
@@ -52,7 +46,7 @@
           these issues.
         </translate>
       </p>
-      <p>
+      <p v-if="count !== undefined">
         <span v-if="count < 500">
           <translate :params="{ count: count }">
             Number of found issues: {count}
@@ -66,10 +60,11 @@
       </p>
 
       <issues-list
-        :errors="errors"
-        gen="info"
+        v-if="username"
+        :query="query"
         :main_website="main_website"
         :page_args="`username=${username}&`"
+        @errors="setCount"
       />
     </div>
   </div>
@@ -82,21 +77,26 @@ import IssuesList from "../../components/issues-list.vue";
 export default VueParent.extend({
   data() {
     return {
-      error: false,
       users: [],
       username: "",
-      count: 0,
-      errors: [],
+      count: undefined,
       main_website: "",
       query: "",
     };
   },
   computed: {
-    api_url_path: () => API_URL + window.location.pathname,
     nav_link() {
       const params = new URLSearchParams(this.query);
       params.set("username", this.username);
       return `../map/#${params.toString()}`;
+    },
+    byuser_count() {
+      return (
+        `${API_URL}${window.location.pathname}`.replace(
+          "/byuser/",
+          "/byuser_count/"
+        ) + `.rss?${this.query}`
+      );
     },
   },
   components: {
@@ -108,39 +108,39 @@ export default VueParent.extend({
     },
   },
   mounted() {
+    this.username = this.$route.params.user;
+    this.users = this.username.split(",");
     this.render();
   },
   methods: {
     api_url_path(format) {
-      return `http://${this.website}/api/0.3/issues.${format}?${this.query}&usename=${this.$route.params.user}`
+      return `http://${this.website}/api/0.3/issues.${format}?${this.query}&usename=${this.username}`;
     },
     render() {
       this.query = window.location.search.substring(1);
 
-      this.fetchJsonProgressAssign(
-        API_URL + window.location.pathname + ".json" + window.location.search,
-        () => {
-          document.title =
-            "Osmose - " +
-            this.$t("Statistics for user {user}", {
-              user: this.users.join(", "),
-            });
+      document.title =
+        "Osmose - " +
+        this.$t("Statistics for user {user}", {
+          user: this.users.join(", "),
+        });
 
-          var rss = document.getElementById("rss");
-          if (rss) {
-            rss.remove();
-          }
-          rss = document.createElement("link");
-          Object.assign(rss, {
-            id: "rss",
-            href: this.api_url_path("rss"),
-            rel: "alternate",
-            type: "application/rss+xml",
-            title: document.title,
-          });
-          document.head.appendChild(rss);
-        }
-      );
+      var rss = document.getElementById("rss");
+      if (rss) {
+        rss.remove();
+      }
+      rss = document.createElement("link");
+      Object.assign(rss, {
+        id: "rss",
+        href: this.api_url_path("rss"),
+        rel: "alternate",
+        type: "application/rss+xml",
+        title: document.title,
+      });
+      document.head.appendChild(rss);
+    },
+    setCount(errors) {
+      this.count = errors.length;
     },
   },
 });

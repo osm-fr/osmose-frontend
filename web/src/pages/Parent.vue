@@ -26,19 +26,30 @@ export default Vue.extend({
           errorCallback(error);
         });
     },
-    fetchJsonProgressAssign(url, callback = () => {}) {
+    fetchJsonProgress(url, callback = () => {}) {
       this.$refs.topProgress.start();
       this.fetchJson(
         url,
         (response) => {
           this.$refs.topProgress.done();
-          Object.assign(this, response);
           callback(response);
         },
         () => {
           this.$refs.topProgress.done();
         }
       );
+    },
+    fetchJsonProgressAssign(url, callback = () => {}) {
+      this.fetchJsonProgress(url, (response) => {
+        Object.assign(this, response);
+        callback(response);
+      });
+    },
+    fetchJsonAssign(url, callback = () => {}) {
+      this.fetchJson(url, (response) => {
+        Object.assign(this, response);
+        callback(response);
+      });
     },
   },
 });

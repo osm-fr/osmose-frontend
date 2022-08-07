@@ -46,37 +46,20 @@ def graph(db, format='png'):
         return out.getvalue() + "\n"
 
 
-@route('/issues/open.<format:ext>')
-@route('/issues/done.<format:ext>')
-@route('/issues/false-positive.<format:ext>')
-def index(db, lang, format):
+@route('/issues/open.json')
+@route('/issues/done.json')
+@route('/issues/false-positive.json')
+def index(db, lang):
     if "false-positive" in request.path:
-        gen = "false-positive"
+        gen = "false"
     elif "done" in request.path:
         gen = "done"
     else:
-        gen = "issue"
+        gen = "open"
 
     params = Params()
-    params.status = {"issue":"open", "false-positive": "false", "done":"done"}[gen]
-    params.fixable = None
 
     items = query_meta._items_menu(db, lang)
-    for res in items:
-        if params.item == str(res["item"]):
-            title += ' - ' + res['menu']['auto']
-
-    params.limit = request.params.get('limit', type=int, default=100)
-    if params.limit > 10000:
-        params.limit = 10000
-
-    params.full = True
-    errors = query._gets(db, params)
-    for error in errors:
-        error["subtitle"] = i10n_select_auto(error["subtitle"], lang)
-        error["title"] = i10n_select_auto(error["title"], lang)
-        error["menu"] = i10n_select_auto(error["menu"], lang)
-
     countries = query_meta._countries(db)
     items = list(map(dict, items))
 
@@ -105,7 +88,7 @@ def index(db, lang, format):
         errors_groups = []
         total = 0
 
-    if gen in ("false-positive", "done"):
+    if gen in ("false", "done"):
         opt_date = "date"
     else:
         opt_date = None
@@ -113,12 +96,7 @@ def index(db, lang, format):
     errors_groups = list(map(dict, errors_groups))
     for res in errors_groups:
         res['timestamp'] = str(res['timestamp'])
-    errors = list(map(dict, errors))
-    for res in errors:
-        res['timestamp'] = str(res['timestamp'])
-        if 'date' in res:
-            res['date'] = str(res['date'])
-    return dict(countries=countries, items=items, errors_groups=errors_groups, total=total, errors=errors, gen=gen, opt_date=opt_date, website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read)
+    return dict(countries=countries, items=items, errors_groups=errors_groups, total=total, gen=gen, opt_date=opt_date, website=utils.website, main_website=utils.main_website, remote_url_read=utils.remote_url_read)
 
 
 @route('/issues/matrix.json')
