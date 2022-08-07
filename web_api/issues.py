@@ -77,12 +77,7 @@ def index(db, lang, format):
         error["title"] = i10n_select_auto(error["title"], lang)
         error["menu"] = i10n_select_auto(error["menu"], lang)
 
-    if format == 'josm':
-        objects = set(sum(map(lambda error: list(map(lambda elem: elem['type'].lower() + str(elem['id']), error['elems'] or [])), errors), []))
-        response.status = 302
-        response.set_header('Location', 'http://localhost:8111/load_object?objects=%s' % ','.join(objects))
-        return
-    elif format == 'csv':
+    if format == 'csv':
         output = io.StringIO()
         writer = csv.writer(output)
         h = ['uuid', 'source', 'item', 'class', 'level', 'title', 'subtitle', 'country', 'analyser', 'timestamp', 'username', 'lat', 'lon', 'elems']

@@ -5,6 +5,7 @@ from itertools import groupby
 from asyncpg import Connection
 from fastapi import APIRouter, Depends, Request, Response
 from fastapi.encoders import jsonable_encoder
+from fastapi.responses import RedirectResponse
 
 from modules import query, query_meta, utils
 from modules.dependencies import commons_params, database, formats, langs
@@ -161,6 +162,34 @@ async def issues(
         out.append(i)
 
     return {"issues": out}
+
+
+@router.get("/0.3/issues.josm", tags=["issues"])
+async def issues_josm(
+    db: Connection = Depends(database.db),
+    params=Depends(commons_params.params),
+):
+    params.full = True
+    params.limit = min(params.limit, 10000)
+    results = await query._gets(db, params)
+
+    objects = set(
+        sum(
+            map(
+                lambda error: list(
+                    map(
+                        lambda elem: elem["type"].lower() + str(elem["id"]),
+                        error["elems"] or [],
+                    )
+                ),
+                results,
+            ),
+            [],
+        )
+    )
+    return RedirectResponse(
+        url=f"http://localhost:8111/load_object?objects={','.join(objects)}"
+    )
 
 
 @router.get("/0.3/issues.{format}", tags=["issues"])
