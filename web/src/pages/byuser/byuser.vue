@@ -63,6 +63,7 @@
         v-if="username"
         :query="query"
         :main_website="main_website"
+        :remote_url_read="remote_url_read"
         :page_args="`username=${username}&`"
         @errors="setCount"
       />
@@ -119,25 +120,30 @@ export default VueParent.extend({
     render() {
       this.query = window.location.search.substring(1);
 
-      document.title =
-        "Osmose - " +
-        this.$t("Statistics for user {user}", {
-          user: this.users.join(", "),
-        });
+      this.fetchJsonProgressAssign(
+        API_URL + window.location.pathname + ".json" + window.location.search,
+        () => {
+          document.title =
+            "Osmose - " +
+            this.$t("Statistics for user {user}", {
+              user: this.users.join(", "),
+            });
 
-      var rss = document.getElementById("rss");
-      if (rss) {
-        rss.remove();
-      }
-      rss = document.createElement("link");
-      Object.assign(rss, {
-        id: "rss",
-        href: this.api_url_path("rss"),
-        rel: "alternate",
-        type: "application/rss+xml",
-        title: document.title,
-      });
-      document.head.appendChild(rss);
+          var rss = document.getElementById("rss");
+          if (rss) {
+            rss.remove();
+          }
+          rss = document.createElement("link");
+          Object.assign(rss, {
+            id: "rss",
+            href: this.api_url_path("rss"),
+            rel: "alternate",
+            type: "application/rss+xml",
+            title: document.title,
+          });
+          document.head.appendChild(rss);
+        }
+      );
     },
     setCount(errors) {
       this.count = errors.length;

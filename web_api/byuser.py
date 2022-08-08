@@ -40,10 +40,16 @@ def byUser():
 
 @route('/byuser/<username>.<format:ext>')
 def user(db, lang, username, format):
-    response.status = 301
-    response.set_header('Location', f"https://{utils.website}/api/0.3/issues.{format}?{request.query_string}&username={username}")
-    return
+    if format in ['rss', 'gpx', 'kml', 'josm', 'csv']:
+        response.status = 301
+        response.set_header('Location', f"https://{utils.website}/api/0.3/issues.{format}?{request.query_string}&username={username}")
+        return
 
+    async def t(username):
+        return await _user(await async_params(), await get_dbconn(), username)
+    params, username, errors = asyncio.run(t(username))
+
+    return dict(username=username, users=params.users, website=utils.website + '/' + lang[0], main_website=utils.main_website, remote_url_read=utils.remote_url_read)
 
 @route('/byuser_count/<username>.rss')
 def user_count(db, lang, username=None):
