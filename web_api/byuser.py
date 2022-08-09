@@ -29,6 +29,7 @@ from modules_legacy.utils import i10n_select_auto
 from modules_legacy import query
 from lxml import etree
 from lxml.builder import E, ElementMaker
+import urllib.parse
 
 from api.user_utils import _user, _user_count
 
@@ -42,7 +43,7 @@ def byUser():
 def user(db, lang, username, format):
     if format in ['rss', 'gpx', 'kml', 'josm', 'csv']:
         response.status = 301
-        response.set_header('Location', f"https://{utils.website}/api/0.3/issues.{format}?{request.query_string}&username={username}")
+        response.set_header('Location', f"https://{utils.website}/api/0.3/issues.{format}?{request.query_string}&username={urllib.parse.quote(username)}")
         return
 
     async def t(username):
