@@ -1,6 +1,6 @@
 import os
 
-from fastapi import Depends, FastAPI, Request, Response, responses
+from fastapi import Depends, FastAPI, HTTPException, Request, Response, responses
 from fastapi.middleware.wsgi import WSGIMiddleware
 
 from api import app as api
@@ -68,3 +68,5 @@ async def catch_all(path_name: str):
     file_path = f"web/public/{path_name}"
     if os.path.isfile(file_path):
         return Response(open(file_path, "rb").read())
+    else:
+        raise HTTPException(status_code=404)
