@@ -16,8 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../../web_api/issues.py:60 ../src/pages/issues/index.vue:25
-#: ../src/pages/issues/index.vue:88
+#: ../src/pages/issues/index.vue:25 ../src/pages/issues/index.vue:84
 msgid "False positives"
 msgstr ""
 
@@ -98,7 +97,7 @@ msgstr ""
 msgid "Last updates"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:34 ../src/components/issues-list.vue:7
+#: ../../tools/database/items_menu.txt:34 ../src/components/issues-list.vue:10
 #: ../src/pages/control/update.vue:7 ../src/pages/issues/index.vue:211
 msgid "source"
 msgstr ""
@@ -169,7 +168,7 @@ msgstr ""
 
 #. #-#-#-#-#  osmose-frontend.pot.nofiles (PACKAGE VERSION)  #-#-#-#-#
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
-#: ../src/pages/issues/index.vue:414
+#: ../src/pages/issues/index.vue:413
 msgid "Set"
 msgstr ""
 
@@ -177,7 +176,7 @@ msgstr ""
 msgid "class (abbreviation)"
 msgstr ""
 
-#: ../src/components/issues-list.vue:18 ../src/pages/issues/index.vue:218
+#: ../src/components/issues-list.vue:21 ../src/pages/issues/index.vue:218
 msgid "item"
 msgstr ""
 
@@ -185,7 +184,7 @@ msgstr ""
 msgid "title"
 msgstr ""
 
-#: ../src/pages/byuser/byuser.vue:25 ../src/pages/issues/index.vue:231
+#: ../src/pages/byuser/byuser.vue:22 ../src/pages/issues/index.vue:231
 msgid "count"
 msgstr ""
 
@@ -203,11 +202,11 @@ msgstr ""
 msgid "elements (abbreviation)"
 msgstr ""
 
-#: ../src/components/issues-list.vue:40
+#: ../src/components/issues-list.vue:43
 msgid "subtitle"
 msgstr ""
 
-#: ../../tools/database/items_menu.txt:57 ../src/components/issues-list.vue:44
+#: ../../tools/database/items_menu.txt:57 ../src/components/issues-list.vue:47
 msgid "date"
 msgstr ""
 
@@ -907,7 +906,7 @@ msgstr ""
 msgid "local language"
 msgstr ""
 
-#: ../../web_api/issues.py:63 ../src/pages/issues/index.vue:87
+#: ../src/pages/issues/index.vue:83
 msgid "Fixed issues"
 msgstr ""
 
@@ -916,8 +915,8 @@ msgstr ""
 msgid "Issues by user"
 msgstr ""
 
-#: ../../web_api/byuser.py:86 ../../web_api/byuser.py:89
-#: ../../web_api/byuser.py:92
+#: ../../web_api/byuser.py:67 ../../web_api/byuser.py:70
+#: ../../web_api/byuser.py:73
 #, python-brace-format
 msgid "Number of level {level} issues: {count}"
 msgstr ""
@@ -949,11 +948,11 @@ msgstr ""
 msgid "Show more issues"
 msgstr ""
 
-#: ../src/components/issues-list.vue:252
+#: ../src/components/issues-list.vue:262
 msgid "information on issue"
 msgstr ""
 
-#: ../src/components/issues-list.vue:91
+#: ../src/components/issues-list.vue:99
 msgid "issue n°"
 msgstr ""
 
@@ -1219,7 +1218,7 @@ msgstr ""
 msgid "Item"
 msgstr ""
 
-#: ../src/components/issues-list.vue:304
+#: ../src/components/issues-list.vue:314
 msgid "False positive / Done"
 msgstr ""
 
@@ -1271,7 +1270,7 @@ msgstr ""
 msgid "details"
 msgstr ""
 
-#: ../../web_api/issues.py:256 ../src/pages/map/popup.vue:139
+#: ../src/pages/map/popup.vue:139
 msgid "Issue reported on:"
 msgstr ""
 
@@ -1458,7 +1457,7 @@ msgstr ""
 msgid "gas station, not integrated"
 msgstr ""
 
-#: ../src/components/issues-list.vue:310
+#: ../src/components/issues-list.vue:320
 msgid "delete issue"
 msgstr ""
 
@@ -1564,7 +1563,7 @@ msgstr ""
 msgid "bicycle infrastructure"
 msgstr ""
 
-#: ../src/pages/issues/index.vue:86
+#: ../src/pages/issues/index.vue:82
 msgid "Information"
 msgstr ""
 
@@ -1612,7 +1611,7 @@ msgid ""
 "Débrouillards d'Aquitaine\"."
 msgstr ""
 
-#: ../src/components/issues-list.vue:182
+#: ../src/components/issues-list.vue:192
 msgid "delete issue #{uuid}"
 msgstr ""
 
@@ -1624,23 +1623,23 @@ msgstr ""
 msgid "Issue counts matrix"
 msgstr ""
 
-#: ../src/components/issues-list.vue:167
+#: ../src/components/issues-list.vue:175
 msgid "Mark issue #{uuid} as false positive"
 msgstr ""
 
-#: ../src/components/issues-list.vue:175
+#: ../src/components/issues-list.vue:185
 msgid "Mark issue #{uuid} as fixed"
 msgstr ""
 
-#: ../src/pages/byuser/byuser.vue:47
+#: ../src/pages/byuser/byuser.vue:44
 msgid "Number of found issues: {count}"
 msgstr ""
 
-#: ../src/pages/byuser/byuser.vue:52
+#: ../src/pages/byuser/byuser.vue:49
 msgid "Number of found issues: more than {count}"
 msgstr ""
 
-#: ../src/pages/byuser/byuser.vue:44
+#: ../src/pages/byuser/byuser.vue:54
 msgid "Statistics for user {user}"
 msgstr ""
 
@@ -1648,7 +1647,7 @@ msgstr ""
 msgid "text"
 msgstr ""
 
-#: ../src/pages/byuser/byuser.vue:39
+#: ../src/pages/byuser/byuser.vue:36
 msgid ""
 "This page shows issues on elements that were last modified by '{users}'. "
 "This doesn't means that this user is responsible for all these issues."
@@ -1705,32 +1704,9 @@ msgstr ""
 msgid "volunteers"
 msgstr ""
 
-#: ../../web_api/byuser.py:83
+#: ../../web_api/byuser.py:64
 #, python-brace-format
 msgid "Statistics for user {0}"
-msgstr ""
-
-#: ../../web_api/issues.py:66
-msgid "Open issues"
-msgstr ""
-
-#: ../../web_api/issues.py:190
-msgid "Statistics for user {}"
-msgstr ""
-
-#: ../../web_api/issues.py:233
-msgid "Mark issue as fixed"
-msgstr ""
-
-#: ../../web_api/issues.py:235
-msgid "Mark issue as false positive"
-msgstr ""
-
-#: ../../web_api/issues.py:240
-msgid "Tags:"
-msgstr ""
-
-msgid "Tags"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:113
@@ -1782,7 +1758,7 @@ msgid "BBox"
 msgstr ""
 
 #. TRANSLATORS: this should be replaced by a abbreviation for 'class'
-#: ../src/components/issues-list.vue:22 ../src/pages/issues/index.vue:222
+#: ../src/components/issues-list.vue:25 ../src/pages/issues/index.vue:222
 msgid "cl"
 msgstr ""
 
@@ -1804,7 +1780,7 @@ msgid "Do not want to see {title} markers?"
 msgstr ""
 
 #. TRANSLATORS: this should be replaced by a abbreviation for 'elements'
-#: ../src/components/issues-list.vue:34
+#: ../src/components/issues-list.vue:37
 msgid "elms"
 msgstr ""
 
@@ -1826,16 +1802,16 @@ msgid "Less filters"
 msgstr ""
 
 #. TRANSLATORS: this should be replaced by a abbreviation for 'location'
-#: ../src/components/issues-list.vue:29
+#: ../src/components/issues-list.vue:32
 msgid "loc"
 msgstr ""
 
-#: ../src/components/issues-list.vue:256
+#: ../src/components/issues-list.vue:266
 msgid "location"
 msgstr ""
 
 #. TRANSLATORS: this should be replaced by a abbreviation for 'level'
-#: ../src/components/issues-list.vue:12
+#: ../src/components/issues-list.vue:15
 msgid "lvl"
 msgstr ""
 
@@ -1872,7 +1848,7 @@ msgstr ""
 msgid "Source id"
 msgstr ""
 
-#: ../src/pages/issues/index.vue:507 ../src/pages/map/items-filters.vue:219
+#: ../src/pages/issues/index.vue:506 ../src/pages/map/items-filters.vue:219
 msgid "tag"
 msgstr ""
 
