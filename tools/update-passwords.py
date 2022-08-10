@@ -14,7 +14,7 @@ import modules_legacy.utils
 
 if __name__ == "__main__":
 
-  dbconn = modules.utils.get_dbconn()
+  dbconn = modules_legacy.utils.get_dbconn()
   dbcurs = dbconn.cursor()
 
   dbcurs.execute("SELECT COALESCE(max(id)+1, 1) FROM sources;")
