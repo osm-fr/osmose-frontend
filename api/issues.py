@@ -9,7 +9,7 @@ from fastapi.responses import RedirectResponse
 
 from modules import query, query_meta, utils
 from modules.dependencies import commons_params, database, formats, langs
-from modules.utils import LangsNegociation, i10n_select_auto
+from modules.utils import LangsNegociation, i10n_select_auto, i10n_select_lang
 
 from .issues_utils import csv, gpx, kml, rss
 
@@ -227,7 +227,7 @@ async def issues_format(
             content=rss(
                 title=title,
                 website=utils.website,
-                langs=langs,
+                langs=i10n_select_lang(langs),
                 params=params,
                 query=str(request.query_params),
                 main_website=utils.main_website,
@@ -241,7 +241,7 @@ async def issues_format(
             content=gpx(
                 title=title,
                 website=utils.website,
-                langs=langs,
+                langs=i10n_select_lang(langs),
                 params=params,
                 query=str(request.query_params),
                 main_website=utils.main_website,
@@ -255,7 +255,7 @@ async def issues_format(
             content=kml(
                 title=title,
                 website=utils.website,
-                langs=langs,
+                langs=i10n_select_lang(langs),
                 params=params,
                 query=str(request.query_params),
                 main_website=utils.main_website,
@@ -269,7 +269,7 @@ async def issues_format(
             content=csv(
                 title=title,
                 website=utils.website,
-                langs=langs,
+                langs=i10n_select_lang(langs),
                 params=params,
                 query=str(request.query_params),
                 main_website=utils.main_website,
