@@ -6,7 +6,6 @@ from lxml.builder import E, ElementMaker
 from lxml.html import builder as H
 
 from modules.dependencies.commons_params import Params
-from modules.utils import LangsNegociation
 
 
 #  TODO use i18n
@@ -14,9 +13,7 @@ def _(s):
     return s
 
 
-def xml_header(
-    params: Params, title: str, website: str, langs: LangsNegociation, query
-):
+def xml_header(params: Params, title: str, website: str, lang: str, query):
     if params.users:
         users = ", ".join(params.users)
         title = f"Osmose - {users}"
@@ -25,14 +22,14 @@ def xml_header(
     else:
         title = "Osmose - " + title
         description = None
-        url = f"http://{website}/{langs and langs[0] or 'en'}/issues/open?{query}"
+        url = f"http://{website}/{lang}/issues/open?{query}"
     return title, description, url
 
 
 def xml_issue(
     res,
     website: str,
-    langs: LangsNegociation,
+    lang: str,
     query: str,
     main_website: str,
     remote_url_read: str,
@@ -54,7 +51,7 @@ def xml_issue(
                 ] = f"http://localhost:8111/load_object?objects={e['type'].lower()}{e['id']}"
 
     map_url = (
-        f"http://{website}/{langs and langs[0] or 'en'}/map/"
+        f"http://{website}/{lang}/map/"
         + f"#{query}&zoom=16&lat={lat}&lon={lon}&level={res['level']}&tags=&fixable=&issue_uuid={res['uuid']}"
     )
 
@@ -129,13 +126,13 @@ def xml_issue(
 def gpx_issue(
     res,
     website: str,
-    langs: LangsNegociation,
+    lang: str,
     query,
     main_website: str,
     remote_url_read: str,
 ):
     lat, lon, name, _, map_url, html_desc = xml_issue(
-        res, website, langs, query, main_website, remote_url_read
+        res, website, lang, query, main_website, remote_url_read
     )
     return E.wpt(
         E.name(name),
@@ -148,7 +145,7 @@ def gpx_issue(
 
 def gpx(
     website: str,
-    langs: LangsNegociation,
+    lang: str,
     params: Params,
     query: str,
     main_website: str,
@@ -162,13 +159,13 @@ def gpx(
     content += list(
         map(
             lambda issue: gpx_issue(
-                issue, website, langs, query, main_website, remote_url_read
+                issue, website, lang, query, main_website, remote_url_read
             ),
             issues,
         )
     )
 
-    title, _, url = xml_header(params, title, website, langs, query)
+    title, _, url = xml_header(params, title, website, lang, query)
     xml = E.gpx(
         E.name(title),
         E.url(url),
@@ -185,13 +182,13 @@ def gpx(
 def kml_issue(
     res,
     website: str,
-    langs,
+    lang,
     query,
     main_website: str,
     remote_url_read: str,
 ):
     lat, lon, name, desc, map_url, _ = xml_issue(
-        res, website, langs, query, main_website, remote_url_read
+        res, website, lang, query, main_website, remote_url_read
     )
     return E.Placemark(
         E.name(name),
@@ -206,7 +203,7 @@ def kml_issue(
 
 def kml(
     website: str,
-    langs: LangsNegociation,
+    lang: str,
     params: Params,
     query: str,
     main_website: str,
@@ -216,12 +213,12 @@ def kml(
 ) -> bytes:
     content = map(
         lambda issue: kml_issue(
-            issue, website, langs, query, main_website, remote_url_read
+            issue, website, lang, query, main_website, remote_url_read
         ),
         issues,
     )
 
-    title, _, url = xml_header(params, title, website, langs, query)
+    title, _, url = xml_header(params, title, website, lang, query)
     if len(issues) > 0:
         title += " (" + issues[0]["timestamp"].strftime("%Y-%m-%dT%H:%M:%SZ") + ")"
     xml = E.kml(
@@ -244,13 +241,13 @@ def kml(
 def rss_issue(
     res,
     website: str,
-    langs: LangsNegociation,
+    lang: str,
     query: str,
     main_website: str,
     remote_url_read: str,
 ):
     _, _, name, _, map_url, html_desc = xml_issue(
-        res, website, langs, query, main_website, remote_url_read
+        res, website, lang, query, main_website, remote_url_read
     )
     return E.item(
         E.title(name),
@@ -263,7 +260,7 @@ def rss_issue(
 
 def rss(
     website: str,
-    langs: LangsNegociation,
+    lang: str,
     params: Params,
     query: str,
     main_website: str,
@@ -273,7 +270,7 @@ def rss(
 ) -> bytes:
     content = map(
         lambda issue: rss_issue(
-            issue, website, langs, query, main_website, remote_url_read
+            issue, website, lang, query, main_website, remote_url_read
         ),
         issues,
     )
@@ -287,7 +284,7 @@ def rss(
         ) + time.strftime(" %Y %H:%M:%S %z")
         lastBuildDate = [E.lastBuildDate(rfc822)]
 
-    title, description, url = xml_header(params, title, website, langs, query)
+    title, description, url = xml_header(params, title, website, lang, query)
     E_atom = ElementMaker(
         namespace="http://www.w3.org/2005/Atom",
         nsmap={"atom": "http://www.w3.org/2005/Atom"},
@@ -312,7 +309,7 @@ def rss(
 
 def csv(
     website: str,
-    langs: LangsNegociation,
+    lang: str,
     params: Params,
     query: str,
     main_website: str,
