@@ -1,17 +1,34 @@
-import json
 import math
-from typing import Dict, Literal
+from typing import Any, Dict
 
 import mapbox_vector_tile
 from asyncpg import Connection
 from fastapi import APIRouter, Depends, HTTPException, Request, Response
-from fastapi.encoders import jsonable_encoder
 from shapely.geometry import Point, Polygon
 
 from modules import query, tiles
 from modules.dependencies import commons_params, database
+from modules.fastapi_utils import GeoJSONResponse
 
 router = APIRouter()
+
+
+class MVTResponse(Response):
+    media_type = "application/vnd.mapbox-vector-tile"
+
+    def render(self, content: Any) -> bytes:
+        return mapbox_vector_tile.encode(
+            content["content"],
+            extents=content.get("extents", 2048),
+            quantize_bounds=content.get("quantize_bounds"),
+        )
+
+
+def mvtResponse(content) -> Response:
+    if not content or not content["content"]:
+        return Response(status_code=204)
+    else:
+        return MVTResponse(content, media_type="application/vnd.mapbox-vector-tile")
 
 
 def _errors_mvt(
@@ -54,19 +71,16 @@ def _errors_mvt(
                 }
             )
 
-        return mapbox_vector_tile.encode(
-            [{"name": "issues", "features": issues_features}] + limit_feature,
-            quantize_bounds=(min_lon, min_lat, max_lon, max_lat),
-        )
+        return {
+            "content": [{"name": "issues", "features": issues_features}]
+            + limit_feature,
+            "quantize_bounds": (min_lon, min_lat, max_lon, max_lat),
+        }
 
 
 def _errors_geojson(
     results,
     z: int,
-    min_lon: float,
-    min_lat: float,
-    max_lon: float,
-    max_lat: float,
     limit: int,
 ) -> Dict:
     if not results or len(results) == 0:
@@ -103,7 +117,9 @@ def _errors_geojson(
         return features_collection
 
 
-@router.get("/0.3/issues/{z}/{x}/{y}.heat.mvt", tags=["tiles"])
+@router.get(
+    "/0.3/issues/{z}/{x}/{y}.heat.mvt", response_class=MVTResponse, tags=["tiles"]
+)
 async def heat(
     request: Request,
     z: int,
@@ -207,58 +223,57 @@ GROUP BY
                 }
             )
 
-    return Response(
-        content=mapbox_vector_tile.encode(
-            [{"name": "issues", "features": features}], extents=COUNT
-        ),
-        media_type="application/vnd.mapbox-vector-tile",
+    return mvtResponse(
+        {
+            "content": [{"name": "issues", "features": features}],
+            "extents": COUNT,
+        }
     )
 
 
-TileFormat = Literal["mvt", "geojson"]
-
-
-@router.get("/0.3/issues/{z}/{x}/{y}.{format}", tags=["tiles"])
-async def issues_mvt(
-    request: Request,
+async def _issues(
     z: int,
     x: int,
     y: int,
-    format: TileFormat,
-    db: Connection = Depends(database.db),
-    params=Depends(commons_params.params),
+    db: Connection,
+    params: commons_params.Params,
 ):
-    lon1, lat2 = tiles.tile2lonlat(x, y, z)
-    lon2, lat1 = tiles.tile2lonlat(x + 1, y + 1, z)
-
     params.limit = min(params.limit, 50 if z > 18 else 10000)
     params.tilex = x
     params.tiley = y
     params.zoom = z
     params.full = False
 
-    if params.zoom > 18:
-        return
-    if (not params.users) and (not params.source) and (params.zoom < 7):
-        return
+    if params.zoom > 18 or params.zoom < 7:
+        return None
 
-    results = await query._gets(db, params) if z >= 7 else None
+    return await query._gets(db, params)
 
-    if format == "mvt":
-        tile = _errors_mvt(results, z, lon1, lat1, lon2, lat2, params.limit)
-        if tile:
-            return Response(
-                content=tile, media_type="application/vnd.mapbox-vector-tile"
-            )
-        else:
-            return Response(
-                status_code=204, media_type="application/vnd.mapbox-vector-tile"
-            )
-    elif format in ("geojson", "json"):  # Fall back to GeoJSON
-        tile = _errors_geojson(results, z, lon1, lat1, lon2, lat2, params.limit)
-        return Response(
-            content=json.dumps(jsonable_encoder(tile)),
-            media_type="application/vnd.geo+json",
-        )
-    else:
-        raise HTTPException(status_code=404)
+
+@router.get("/0.3/issues/{z}/{x}/{y}.mvt", response_class=MVTResponse, tags=["tiles"])
+async def issues_mvt(
+    z: int,
+    x: int,
+    y: int,
+    db: Connection = Depends(database.db),
+    params: commons_params.Params = Depends(commons_params.params),
+):
+    lon1, lat2 = tiles.tile2lonlat(x, y, z)
+    lon2, lat1 = tiles.tile2lonlat(x + 1, y + 1, z)
+
+    results = await _issues(z, x, y, db, params)
+    return mvtResponse(_errors_mvt(results, z, lon1, lat1, lon2, lat2, params.limit))
+
+
+@router.get(
+    "/0.3/issues/{z}/{x}/{y}.geojson", response_class=GeoJSONResponse, tags=["tiles"]
+)
+async def issues_geojson(
+    z: int,
+    x: int,
+    y: int,
+    db: Connection = Depends(database.db),
+    params: commons_params.Params = Depends(commons_params.params),
+):
+    results = await _issues(z, x, y, db, params)
+    return _errors_geojson(results, z, params.limit)

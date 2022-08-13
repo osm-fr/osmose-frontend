@@ -4,10 +4,11 @@ from typing import Literal, Optional
 from uuid import UUID
 
 from asyncpg import Connection
-from fastapi import APIRouter, Depends, HTTPException, Request, Response
+from fastapi import APIRouter, Depends, HTTPException, Request
 
 from modules import OsmSax, utils
 from modules.dependencies import database, langs
+from modules.fastapi_utils import XMLResponse
 from modules.query import fixes_default
 from modules.utils import LangsNegociation
 
@@ -340,13 +341,14 @@ async def _get_fix(
     return fixes_default(fix[0])[fix_num]
 
 
-@router.get("/0.3/issue/{uuid}/fix/{fix_num}", tags=["issues"])
+@router.get(
+    "/0.3/issue/{uuid}/fix/{fix_num}", response_class=XMLResponse, tags=["issues"]
+)
 async def fix_uuid_num(
     uuid: UUID, fix_num: int = 0, db: Connection = Depends(database.db)
 ):
     fix = await _get_fix(db, fix_num, uuid=uuid)
     if fix:
-        content_type = "text/xml; charset=utf-8"
         for res in fix:
             if "id" in res and res["id"]:
                 out = io.StringIO()
@@ -365,7 +367,7 @@ async def fix_uuid_num(
                 osm_read = utils.fetch_osm_data(data_type[res["type"]], res["id"])
                 osm_read.CopyTo(o)
 
-                return Response(content=out.getvalue(), media_type=content_type)
+                return out.getvalue()
 
             else:
                 # create new object
@@ -382,20 +384,11 @@ async def fix_uuid_num(
                 data["action"] = "modify"  # Even for creation action is 'modify'
 
                 if "type" not in res or res["type"] == "N":
-                    return Response(
-                        content=OsmSax.NodeToXml(data, full=True),
-                        media_type=content_type,
-                    )
+                    return OsmSax.NodeToXml(data, full=True)
                 elif res["type"] == "W":
-                    return Response(
-                        content=OsmSax.WayToXml(data, full=True),
-                        media_type=content_type,
-                    )
+                    return OsmSax.WayToXml(data, full=True)
                 elif res["type"] == "R":
-                    return Response(
-                        content=OsmSax.RelationToXml(data, full=True),
-                        media_type=content_type,
-                    )
+                    return OsmSax.RelationToXml(data, full=True)
 
     else:
         raise HTTPException(status_code=412, detail="Precondition Failed")

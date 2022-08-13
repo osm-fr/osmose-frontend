@@ -80,7 +80,7 @@
             </a>
           </li>
           <li>
-            <a :href="`/api/0.3/issues.geosjon?${params}`" target="_blank">
+            <a :href="`/api/0.3/issues.geojson?${params}`" target="_blank">
               GeoJson
             </a>
           </li>

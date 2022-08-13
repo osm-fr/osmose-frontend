@@ -1,14 +1,15 @@
-import json
 from collections import OrderedDict
 from itertools import groupby
+from typing import Any, List, Tuple
 
 from asyncpg import Connection
 from fastapi import APIRouter, Depends, Request, Response
-from fastapi.encoders import jsonable_encoder
 from fastapi.responses import RedirectResponse
+from lxml import etree
 
 from modules import query, query_meta, utils
-from modules.dependencies import commons_params, database, formats, langs
+from modules.dependencies import commons_params, database, langs
+from modules.fastapi_utils import GeoJSONResponse
 from modules.utils import LangsNegociation, i10n_select_auto, i10n_select_lang
 
 from .issues_utils import csv, gpx, kml, rss
@@ -19,6 +20,29 @@ router = APIRouter()
 #  TODO use i18n
 def _(s):
     return s
+
+
+class XMLResponse(Response):
+    media_type = "text/xml; charset=utf-8"
+
+    def render(self, content: Any) -> bytes:
+        return etree.tostring(content, pretty_print=True)
+
+
+class KMLResponse(XMLResponse):
+    media_type = "application/vnd.google-earth.kml+xml"
+
+
+class GPXResponse(XMLResponse):
+    media_type = "application/gpx+xml"
+
+
+class RSSResponse(XMLResponse):
+    media_type = "application/rss+xml"
+
+
+class CSVResponse(Response):
+    media_type = "text/csv; charset=utf-8"
 
 
 @router.get("/0.2/errors", tags=["0.2"])
@@ -192,14 +216,11 @@ async def issues_josm(
     )
 
 
-@router.get("/0.3/issues.{format}", tags=["issues"])
-async def issues_format(
-    request: Request,
-    db: Connection = Depends(database.db),
-    langs: LangsNegociation = Depends(langs.langs),
-    format: str = Depends(formats.formats("geojson", "rss", "gpx", "kml", "csv")),
-    params=Depends(commons_params.params),
-):
+async def _issues(
+    db: Connection,
+    langs: LangsNegociation,
+    params: commons_params.Params,
+) -> Tuple[str, List[Any]]:
     if params.status == "false":
         title = _("False positives")
     elif params.status == "done":
@@ -221,88 +242,119 @@ async def issues_format(
         issue["title"] = i10n_select_auto(issue["title"], langs)
         issue["menu"] = i10n_select_auto(issue["menu"], langs)
 
-    if format == "rss":
-        return Response(
-            media_type="application/rss+xml",
-            content=rss(
-                title=title,
-                website=utils.website,
-                lang=i10n_select_lang(langs),
-                params=params,
-                query=str(request.query_params),
-                main_website=utils.main_website,
-                remote_url_read=utils.remote_url_read,
-                issues=issues,
-            ),
+    return (title, issues)
+
+
+@router.get("/0.3/issues.rss", response_class=RSSResponse, tags=["issues"])
+async def issues_rss(
+    request: Request,
+    db: Connection = Depends(database.db),
+    langs: LangsNegociation = Depends(langs.langs),
+    params=Depends(commons_params.params),
+):
+    title, issues = await _issues(db, langs, params)
+    return RSSResponse(
+        rss(
+            title=title,
+            website=utils.website,
+            lang=i10n_select_lang(langs),
+            params=params,
+            query=str(request.query_params),
+            main_website=utils.main_website,
+            remote_url_read=utils.remote_url_read,
+            issues=issues,
         )
-    elif format == "gpx":
-        return Response(
-            media_type="application/gpx+xml",
-            content=gpx(
-                title=title,
-                website=utils.website,
-                lang=i10n_select_lang(langs),
-                params=params,
-                query=str(request.query_params),
-                main_website=utils.main_website,
-                remote_url_read=utils.remote_url_read,
-                issues=issues,
-            ),
+    )
+
+
+@router.get("/0.3/issues.gpx", response_class=GPXResponse, tags=["issues"])
+async def issues_gpx(
+    request: Request,
+    db: Connection = Depends(database.db),
+    langs: LangsNegociation = Depends(langs.langs),
+    params=Depends(commons_params.params),
+):
+    title, issues = await _issues(db, langs, params)
+    return GPXResponse(
+        gpx(
+            title=title,
+            website=utils.website,
+            lang=i10n_select_lang(langs),
+            params=params,
+            query=str(request.query_params),
+            main_website=utils.main_website,
+            remote_url_read=utils.remote_url_read,
+            issues=issues,
         )
-    elif format == "kml":
-        return Response(
-            media_type="application/vnd.google-earth.kml+xml",
-            content=kml(
-                title=title,
-                website=utils.website,
-                lang=i10n_select_lang(langs),
-                params=params,
-                query=str(request.query_params),
-                main_website=utils.main_website,
-                remote_url_read=utils.remote_url_read,
-                issues=issues,
-            ),
+    )
+
+
+@router.get("/0.3/issues.kml", response_class=KMLResponse, tags=["issues"])
+async def issues_kml(
+    request: Request,
+    db: Connection = Depends(database.db),
+    langs: LangsNegociation = Depends(langs.langs),
+    params=Depends(commons_params.params),
+):
+    title, issues = await _issues(db, langs, params)
+    return KMLResponse(
+        kml(
+            title=title,
+            website=utils.website,
+            lang=i10n_select_lang(langs),
+            params=params,
+            query=str(request.query_params),
+            main_website=utils.main_website,
+            remote_url_read=utils.remote_url_read,
+            issues=issues,
         )
-    elif format == "csv":
-        return Response(
-            media_type="text/csv",
-            content=csv(
-                title=title,
-                website=utils.website,
-                lang=i10n_select_lang(langs),
-                params=params,
-                query=str(request.query_params),
-                main_website=utils.main_website,
-                remote_url_read=utils.remote_url_read,
-                issues=issues,
-            ),
-        )
-    else:
-        return Response(
-            media_type="application/vnd.geo+json",
-            content=json.dumps(
-                jsonable_encoder(
-                    {
-                        "type": "FeatureCollection",
-                        "features": [
-                            {
-                                "type": "Feature",
-                                "geometry": {
-                                    "type": "Point",
-                                    "coordinates": [
-                                        properties["lon"],
-                                        properties["lat"],
-                                    ],
-                                },
-                                "properties": {
-                                    k: v
-                                    for k, v in properties.items()
-                                    if k not in ("id", "lon", "lat")
-                                },
-                            }
-                            for properties in issues
-                        ],
-                    }
-                )
-            ),
-        )
+    )
+
+
+@router.get("/0.3/issues.csv", response_class=CSVResponse, tags=["issues"])
+async def issues_csv(
+    request: Request,
+    db: Connection = Depends(database.db),
+    langs: LangsNegociation = Depends(langs.langs),
+    params=Depends(commons_params.params),
+):
+    title, issues = await _issues(db, langs, params)
+    return csv(
+        title=title,
+        website=utils.website,
+        lang=i10n_select_lang(langs),
+        params=params,
+        query=str(request.query_params),
+        main_website=utils.main_website,
+        remote_url_read=utils.remote_url_read,
+        issues=issues,
+    )
+
+
+@router.get("/0.3/issues.geojson", response_class=GeoJSONResponse, tags=["issues"])
+async def issues_geojson(
+    request: Request,
+    db: Connection = Depends(database.db),
+    langs: LangsNegociation = Depends(langs.langs),
+    params=Depends(commons_params.params),
+):
+    title, issues = await _issues(db, langs, params)
+    return {
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        properties["lon"],
+                        properties["lat"],
+                    ],
+                },
+                "properties": {
+                    k: v for k, v in properties.items() if k not in ("id", "lon", "lat")
+                },
+            }
+            for properties in issues
+        ],
+    }

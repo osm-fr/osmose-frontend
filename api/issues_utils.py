@@ -152,7 +152,7 @@ def gpx(
     remote_url_read: str,
     issues,
     title: str,
-) -> bytes:
+):
     content = []
     if len(issues) > 0:
         content.append(E.time(issues[0]["timestamp"].strftime("%Y-%m-%dT%H:%M:%SZ")))
@@ -166,7 +166,7 @@ def gpx(
     )
 
     title, _, url = xml_header(params, title, website, lang, query)
-    xml = E.gpx(
+    return E.gpx(
         E.name(title),
         E.url(url),
         *content,
@@ -176,7 +176,6 @@ def gpx(
         # xmlns:xsi = 'http://www.w3.org/2001/XMLSchema-instance',
         # xsi:schemaLocation = 'http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd',
     )
-    return etree.tostring(xml, pretty_print=True)
 
 
 def kml_issue(
@@ -210,7 +209,7 @@ def kml(
     remote_url_read: str,
     issues,
     title: str,
-) -> bytes:
+):
     content = map(
         lambda issue: kml_issue(
             issue, website, lang, query, main_website, remote_url_read
@@ -221,7 +220,7 @@ def kml(
     title, _, url = xml_header(params, title, website, lang, query)
     if len(issues) > 0:
         title += " (" + issues[0]["timestamp"].strftime("%Y-%m-%dT%H:%M:%SZ") + ")"
-    xml = E.kml(
+    return E.kml(
         E.Document(
             E.Style(
                 E.IconStyle(
@@ -235,7 +234,6 @@ def kml(
         *content,
         xmlns="http://www.opengis.net/kml/2.2",
     )
-    return etree.tostring(xml, pretty_print=True)
 
 
 def rss_issue(
@@ -267,7 +265,7 @@ def rss(
     remote_url_read: str,
     issues,
     title: str,
-) -> bytes:
+):
     content = map(
         lambda issue: rss_issue(
             issue, website, lang, query, main_website, remote_url_read
@@ -289,7 +287,7 @@ def rss(
         namespace="http://www.w3.org/2005/Atom",
         nsmap={"atom": "http://www.w3.org/2005/Atom"},
     )
-    xml = E.rss(
+    return E.rss(
         E.channel(
             E_atom.link(
                 href=f"http://{website}/api/0.3/issues.rss?{query}",
@@ -304,7 +302,6 @@ def rss(
         ),
         version="2.0",
     )
-    return etree.tostring(xml, pretty_print=True)
 
 
 def csv(
