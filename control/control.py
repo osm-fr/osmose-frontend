@@ -1,6 +1,5 @@
 import os
 import sys
-import traceback
 
 from bottle import HTTPError, abort, post, request, response, route
 
@@ -50,7 +49,7 @@ LIMIT 1
     if not res and not os.environ.get("OSMOSE_UNLOCKED_UPDATE"):
         abort(403, "AUTH FAIL")
     if not res and os.environ.get("OSMOSE_UNLOCKED_UPDATE"):
-        r = db.execute("SELECT COALESCE(MAX(id), 0) + 1 AS id FROM sources")
+        db.execute("SELECT COALESCE(MAX(id), 0) + 1 AS id FROM sources")
         source_id = db.fetchone()["id"]
         db.execute(
             "INSERT INTO sources(id, country, analyser) VALUES (%s, %s, %s)",
@@ -79,8 +78,7 @@ LIMIT 1
     except update.OsmoseUpdateAlreadyDone:
         abort(409, "FAIL: Already up to date")
 
-    except:
-        import smtplib
+    except Exception:
         import traceback
         from io import StringIO
 
@@ -88,8 +86,8 @@ LIMIT 1
         sys.stderr = s
         traceback.print_exc()
         sys.stderr = sys.__stderr__
-        traceback = s.getvalue()
-        abort(500, traceback.rstrip())
+        trace = s.getvalue()
+        abort(500, trace.rstrip())
 
     return "OK"
 
@@ -122,13 +120,13 @@ def status(db, country=None, analyser=None):
             "timestamp": str(r["timestamp"].replace(tzinfo=None)),
             "analyser_version": str(r["analyser_version"] or ""),
             "nodes": _status_object(db, "N", r["source_id"])
-            if objects != False
+            if objects is not False
             else None,
             "ways": _status_object(db, "W", r["source_id"])
-            if objects != False
+            if objects is not False
             else None,
             "relations": _status_object(db, "R", r["source_id"])
-            if objects != False
+            if objects is not False
             else None,
         }
     else:

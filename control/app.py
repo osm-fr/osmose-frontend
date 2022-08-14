@@ -1,5 +1,3 @@
-import os
-
 import bottle
 
 from modules_legacy import bottle_pgsql, utils
@@ -15,8 +13,6 @@ app = OsmoseControlBottle()
 bottle.default_app.push(app)
 
 app.install(bottle_pgsql.Plugin(utils.db_string))
-
-from . import control
 
 bottle.default_app.pop()
 

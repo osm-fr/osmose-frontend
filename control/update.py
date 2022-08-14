@@ -9,17 +9,10 @@ from modules_legacy import utils
 
 show = utils.show
 
-###########################################################################
-## logger
-
 
 class printlogger:
     def log(self, text):
         print(text)
-
-
-###########################################################################
-## updater
 
 
 class OsmoseUpdateAlreadyDone(Exception):
@@ -32,11 +25,11 @@ num_sql_run = 0
 def execute_sql(dbcurs, sql, args=None):
     global num_sql_run
     try:
-        if args == None:
+        if args is None:
             dbcurs.execute(sql)
         else:
             dbcurs.execute(sql, args)
-    except:
+    except Exception:
         print(sql, args)
         raise
     num_sql_run += 1
@@ -47,15 +40,15 @@ def execute_sql(dbcurs, sql, args=None):
 
 def update(source_id, fname, logger=printlogger(), remote_ip=""):
 
-    ## open connections
+    #  open connections
     dbconn = utils.get_dbconn()
     dbcurs = dbconn.cursor()
 
-    ## xml parser
+    #  xml parser
     parser = make_parser()
     parser.setContentHandler(update_parser(source_id, fname, remote_ip, dbconn, dbcurs))
 
-    ## open the file
+    #  open the file
     if fname.endswith(".bz2"):
         import bz2
 
@@ -67,10 +60,10 @@ def update(source_id, fname, logger=printlogger(), remote_ip=""):
     else:
         f = open(fname)
 
-    ## parse the file
+    #  parse the file
     parser.parse(f)
 
-    ## update subtitle from new errors
+    #  update subtitle from new errors
     execute_sql(
         dbcurs,
         """
@@ -88,7 +81,7 @@ WHERE
         (source_id,),
     )
 
-    ## remove false positive no longer present
+    #  #  remove false positive no longer present
     #    execute_sql(dbcurs, """DELETE FROM markers_status
     #                      WHERE (source_id,class,elems) NOT IN (SELECT source_id,class,elems FROM markers WHERE source_id = %s) AND
     #                            source_id = %s AND
@@ -119,11 +112,11 @@ WHERE
         (source_id,),
     )
 
-    ## commit and close
+    #  commit and close
     dbconn.commit()
     dbconn.close()
 
-    ## close and delete
+    #  close and delete
     f.close()
     del f
 
@@ -266,7 +259,7 @@ WHERE
                 )
 
         elif name == "error":
-            ## add data at all location
+            #  add data at all location
             if len(self._error_locations) == 0:
                 print(
                     "No location on error found on line %d"
@@ -335,7 +328,7 @@ WHERE
 
             sql_uuid = "SELECT ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid AS uuid"
 
-            ## sql template
+            #  sql template
             sql_marker = "INSERT INTO markers (uuid, source_id, class, item, lat, lon, elems, fixes, subtitle) "
             sql_marker += "VALUES (('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid, "
             sql_marker += "%(source)s, %(class)s, %(item)s, %(lat)s, %(lon)s, %(elems)s::jsonb[], %(fixes)s::jsonb[], %(subtitle)s) "
@@ -508,9 +501,6 @@ WHERE
             self._tstamp_updated = True
 
 
-###########################################################################
-
-
 def print_source(source):
     show("source #%s" % source["id"])
     for k in source:
@@ -523,7 +513,6 @@ def print_source(source):
             show("   %-10s = %s" % (k, source[k]))
 
 
-###########################################################################
 import unittest
 
 
@@ -544,7 +533,7 @@ class Test(unittest.TestCase):
         self.dbcurs = self.dbconn.cursor()
         self.dbcurs.execute(open("tools/database/drop.sql", "r").read())
         self.dbcurs.execute(open("tools/database/schema.sql", "r").read())
-        # Re-initialise search_path as cleared by schema.sql
+        #  Re-initialise search_path as cleared by schema.sql
         self.dbcurs.execute('SET search_path TO "$user", public;')
         self.dbcurs.execute(
             "INSERT INTO sources (id, country, analyser) VALUES (%s, %s, %s);",
@@ -590,7 +579,7 @@ class Test(unittest.TestCase):
         update(1, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
         self.check_num_marker(50)
 
-        with self.assertRaises(OsmoseUpdateAlreadyDone) as cm:
+        with self.assertRaises(OsmoseUpdateAlreadyDone):
             update(1, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
         self.check_num_marker(50)
 
@@ -605,8 +594,6 @@ class Test(unittest.TestCase):
         )
         self.check_num_marker(50 + 99)
 
-
-###########################################################################
 
 if __name__ == "__main__":
     sources = utils.get_sources()
