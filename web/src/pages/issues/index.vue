@@ -502,12 +502,22 @@ export default VueParent.extend({
         "issues/false-positive": this.$t("False positives"),
       }[this.$route.name];
 
+      let status = {
+        "issues/open": null,
+        "issues/done": "done",
+        "issues/false-positive": "false",
+      }[this.$route.name];
+
       this.fetchJson(API_URL + "/api/0.3/tags", (response) => {
         this.tags_list = response.tags;
       });
 
       this.fetchJsonAssign(
-        API_URL + window.location.pathname + ".json" + window.location.search,
+        API_URL +
+          window.location.pathname +
+          ".json" +
+          window.location.search +
+          (status ? `&status=${status}` : ""),
         () => {
           var res = this.items.find((e) => e.item == this.item);
           if (res) {
