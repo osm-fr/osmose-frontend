@@ -144,37 +144,37 @@ class update_parser(handler.ContentHandler):
         self.locator = locator
 
     def startElement(self, name, attrs):
-        if name == u"analyser":
+        if name == "analyser":
             self.all_uuid = {}
             self.mode = "analyser"
             self.update_timestamp(attrs)
 
-        elif name == u"analyserChange":
+        elif name == "analyserChange":
             self.all_uuid = None
             self.mode = "analyserChange"
             self.update_timestamp(attrs)
 
-        elif name == u"error":
+        elif name == "error":
             self._class_id = int(attrs["class"])
-            self._class_sub = int(attrs.get("subclass", u"0"))
+            self._class_sub = int(attrs.get("subclass", "0"))
             self._error_elements = []
             self._error_locations = []
             self._error_texts = {}
             self._users = []
             self._fixes = []
             self.elem_mode = "info"
-        elif name == u"location":
+        elif name == "location":
             self._error_locations.append(dict(attrs))
-        elif name == u"text":
+        elif name == "text":
             self._error_texts[attrs["lang"]] = attrs["value"].replace("\n", "%%")
 
-        elif name in [u"node", u"way", u"relation", u"infos"]:
+        elif name in ["node", "way", "relation", "infos"]:
             self._elem = dict(attrs)
             if "user" in self._elem:
                 self._users.append(self._elem["user"])
             else:
                 self._elem["user"] = None
-            self._elem[u"type"] = name
+            self._elem["type"] = name
             self._elem_tags = {}
 
             if self.elem_mode == "fix":
@@ -182,7 +182,7 @@ class update_parser(handler.ContentHandler):
                 self._fix_modify = {}
                 self._fix_delete = []
 
-        elif name == u"tag":
+        elif name == "tag":
             if self.elem_mode == "info":
                 self._elem_tags[attrs["k"]] = attrs["v"]
             elif self.elem_mode == "fix":
@@ -193,7 +193,7 @@ class update_parser(handler.ContentHandler):
                 elif attrs["action"] == "delete":
                     self._fix_delete.append(attrs["k"])
 
-        elif name == u"class":
+        elif name == "class":
             self._class_id = int(attrs["id"])
             self._class_item[self._class_id] = int(attrs["item"])
             if "level" in attrs:
@@ -214,17 +214,17 @@ class update_parser(handler.ContentHandler):
             self._class_trap = {}
             self._class_example = {}
 
-        elif name == u"classtext":
+        elif name == "classtext":
             self._class_title[attrs["lang"]] = attrs["title"]
-        elif name == u"detail":
+        elif name == "detail":
             self._class_detail[attrs["lang"]] = attrs["title"]
-        elif name == u"fix" and self.element_stack[-1] == u"class":
+        elif name == "fix" and self.element_stack[-1] == "class":
             self._class_fix[attrs["lang"]] = attrs["title"]
-        elif name == u"trap":
+        elif name == "trap":
             self._class_trap[attrs["lang"]] = attrs["title"]
-        elif name == u"example":
+        elif name == "example":
             self._class_example[attrs["lang"]] = attrs["title"]
-        elif name == u"delete":
+        elif name == "delete":
             # used by files generated with an .osc file
             execute_sql(
                 self._dbcurs,
@@ -244,9 +244,9 @@ WHERE
                 ),
             )
 
-        elif name == u"fixes":
+        elif name == "fixes":
             self.elem_mode = "fix"
-        elif name == u"fix" and self.element_stack[-1] == u"fixes":
+        elif name == "fix" and self.element_stack[-1] == "fixes":
             self._fix = []
             self._fix_create = {}
             self._fix_modify = {}
@@ -265,7 +265,7 @@ WHERE
                     (self._source_id, class_id, uuid),
                 )
 
-        elif name == u"error":
+        elif name == "error":
             ## add data at all location
             if len(self._error_locations) == 0:
                 print(
@@ -333,18 +333,18 @@ WHERE
                 )
             )
 
-            sql_uuid = u"SELECT ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid AS uuid"
+            sql_uuid = "SELECT ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid AS uuid"
 
             ## sql template
-            sql_marker = u"INSERT INTO markers (uuid, source_id, class, item, lat, lon, elems, fixes, subtitle) "
-            sql_marker += u"VALUES (('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid, "
-            sql_marker += u"%(source)s, %(class)s, %(item)s, %(lat)s, %(lon)s, %(elems)s::jsonb[], %(fixes)s::jsonb[], %(subtitle)s) "
-            sql_marker += u"ON CONFLICT (uuid) DO "
-            sql_marker += u"UPDATE SET item = %(item)s, lat = %(lat)s, lon = %(lon)s, elems = %(elems)s::jsonb[], fixes = %(fixes)s::jsonb[], subtitle = %(subtitle)s "
-            sql_marker += u"WHERE markers.uuid = ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid AND "
-            sql_marker += u"      markers.source_id = %(source)s AND markers.class = %(class)s AND "
-            sql_marker += u"      (markers.item IS DISTINCT FROM %(item)s OR markers.lat IS DISTINCT FROM %(lat)s OR markers.lon IS DISTINCT FROM %(lon)s OR markers.elems IS DISTINCT FROM %(elems)s::jsonb[] OR markers.fixes IS DISTINCT FROM %(fixes)s::jsonb[] OR markers.subtitle IS DISTINCT FROM %(subtitle)s) "
-            sql_marker += u"RETURNING uuid"
+            sql_marker = "INSERT INTO markers (uuid, source_id, class, item, lat, lon, elems, fixes, subtitle) "
+            sql_marker += "VALUES (('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid, "
+            sql_marker += "%(source)s, %(class)s, %(item)s, %(lat)s, %(lon)s, %(elems)s::jsonb[], %(fixes)s::jsonb[], %(subtitle)s) "
+            sql_marker += "ON CONFLICT (uuid) DO "
+            sql_marker += "UPDATE SET item = %(item)s, lat = %(lat)s, lon = %(lon)s, elems = %(elems)s::jsonb[], fixes = %(fixes)s::jsonb[], subtitle = %(subtitle)s "
+            sql_marker += "WHERE markers.uuid = ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid AND "
+            sql_marker += "      markers.source_id = %(source)s AND markers.class = %(class)s AND "
+            sql_marker += "      (markers.item IS DISTINCT FROM %(item)s OR markers.lat IS DISTINCT FROM %(lat)s OR markers.lon IS DISTINCT FROM %(lon)s OR markers.elems IS DISTINCT FROM %(elems)s::jsonb[] OR markers.fixes IS DISTINCT FROM %(fixes)s::jsonb[] OR markers.subtitle IS DISTINCT FROM %(subtitle)s) "
+            sql_marker += "RETURNING uuid"
 
             for location in self._error_locations:
                 lat = float(location["lat"])
@@ -380,29 +380,29 @@ WHERE
                 execute_sql(self._dbcurs, sql_marker, params)
                 self._dbcurs.fetchone()
 
-        elif name in [u"node", u"way", u"relation", u"infos"]:
+        elif name in ["node", "way", "relation", "infos"]:
             if self.elem_mode == "info":
-                self._elem[u"tag"] = self._elem_tags
+                self._elem["tag"] = self._elem_tags
                 self._error_elements.append(self._elem)
             else:
-                self._elem[u"create"] = self._fix_create
-                self._elem[u"modify"] = self._fix_modify
-                self._elem[u"delete"] = self._fix_delete
+                self._elem["create"] = self._fix_create
+                self._elem["modify"] = self._fix_modify
+                self._elem["delete"] = self._fix_delete
                 self._fix.append(self._elem)
 
-        elif name == u"class":
+        elif name == "class":
             if self.all_uuid is not None:
                 self.all_uuid[self._class_id] = []
 
             # Commit class update on its own transaction. Avoid lock the class table and block other updates.
             dbconn = utils.get_dbconn()
             dbcurs = dbconn.cursor()
-            sql = u"INSERT INTO class (class, item, title, level, tags, detail, fix, trap, example, source, resource, timestamp) "
-            sql += u"VALUES (%(class)s, %(item)s, %(title)s, %(level)s, %(tags)s, %(detail)s, %(fix)s, %(trap)s, %(example)s, %(source)s, %(resource)s, %(timestamp)s) "
-            sql += u"ON CONFLICT (item, class) DO "
-            sql += u"UPDATE SET title = %(title)s, level = %(level)s, tags = %(tags)s, detail = %(detail)s, fix = %(fix)s, trap = %(trap)s, example = %(example)s, source = %(source)s, resource = %(resource)s, timestamp = %(timestamp)s "
-            sql += u"WHERE class.class = %(class)s AND class.item = %(item)s AND class.timestamp < %(timestamp)s AND "
-            sql += u"      (class.title IS DISTINCT FROM %(title)s OR class.level IS DISTINCT FROM %(level)s OR class.tags IS DISTINCT FROM %(tags)s::varchar[] OR class.detail IS DISTINCT FROM %(detail)s OR class.fix IS DISTINCT FROM %(fix)s OR class.trap IS DISTINCT FROM %(trap)s OR class.example IS DISTINCT FROM %(example)s OR class.source IS DISTINCT FROM %(source)s OR class.resource IS DISTINCT FROM %(resource)s)"
+            sql = "INSERT INTO class (class, item, title, level, tags, detail, fix, trap, example, source, resource, timestamp) "
+            sql += "VALUES (%(class)s, %(item)s, %(title)s, %(level)s, %(tags)s, %(detail)s, %(fix)s, %(trap)s, %(example)s, %(source)s, %(resource)s, %(timestamp)s) "
+            sql += "ON CONFLICT (item, class) DO "
+            sql += "UPDATE SET title = %(title)s, level = %(level)s, tags = %(tags)s, detail = %(detail)s, fix = %(fix)s, trap = %(trap)s, example = %(example)s, source = %(source)s, resource = %(resource)s, timestamp = %(timestamp)s "
+            sql += "WHERE class.class = %(class)s AND class.item = %(item)s AND class.timestamp < %(timestamp)s AND "
+            sql += "      (class.title IS DISTINCT FROM %(title)s OR class.level IS DISTINCT FROM %(level)s OR class.tags IS DISTINCT FROM %(tags)s::varchar[] OR class.detail IS DISTINCT FROM %(detail)s OR class.fix IS DISTINCT FROM %(fix)s OR class.trap IS DISTINCT FROM %(trap)s OR class.example IS DISTINCT FROM %(example)s OR class.source IS DISTINCT FROM %(source)s OR class.resource IS DISTINCT FROM %(resource)s)"
             execute_sql(
                 dbcurs,
                 sql,
@@ -424,11 +424,11 @@ WHERE
             dbconn.commit()
             dbconn.close()
 
-            sql = u"INSERT INTO markers_counts (source_id, class, item) "
-            sql += u"VALUES (%(source)s, %(class)s, %(item)s) "
-            sql += u"ON CONFLICT (source_id, class) DO "
-            sql += u"UPDATE SET item = %(item)s "
-            sql += u"WHERE markers_counts.source_id = %(source)s AND markers_counts.class = %(class)s"
+            sql = "INSERT INTO markers_counts (source_id, class, item) "
+            sql += "VALUES (%(source)s, %(class)s, %(item)s) "
+            sql += "ON CONFLICT (source_id, class) DO "
+            sql += "UPDATE SET item = %(item)s "
+            sql += "WHERE markers_counts.source_id = %(source)s AND markers_counts.class = %(class)s"
             execute_sql(
                 self._dbcurs,
                 sql,
@@ -439,9 +439,9 @@ WHERE
                 },
             )
 
-        elif name == u"fixes":
+        elif name == "fixes":
             self.elem_mode = "info"
-        elif name == u"fix" and self.element_stack[-1] == u"fixes":
+        elif name == "fix" and self.element_stack[-1] == "fixes":
             self._fixes.append(self._fix)
 
     def update_timestamp(self, attrs):
@@ -512,15 +512,15 @@ WHERE
 
 
 def print_source(source):
-    show(u"source #%s" % source["id"])
+    show("source #%s" % source["id"])
     for k in source:
         if k == "id":
             continue
         if type(source[k]) == list:
             for e in source[k]:
-                show(u"   %-10s = %s" % (k, e))
+                show("   %-10s = %s" % (k, e))
         else:
-            show(u"   %-10s = %s" % (k, source[k]))
+            show("   %-10s = %s" % (k, source[k]))
 
 
 ###########################################################################
@@ -615,6 +615,6 @@ if __name__ == "__main__":
             source = sources[str(k)]
             print_source(source)
     elif sys.argv[1] == "--help":
-        show(u"usage: update.py <source number> <url>")
+        show("usage: update.py <source number> <url>")
     else:
         update(utils.get_sources()[sys.argv[1]], sys.argv[2])
