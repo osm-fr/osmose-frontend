@@ -15,6 +15,7 @@
       <items ref="items" :mapState="mapState" :map="map" :error="error">
         <items-filters
           :original_tags="tags"
+          :countries="countries"
           :itemState="itemState"
           v-on:state-update="itemState = $event"
         />
@@ -74,6 +75,7 @@ export default VueParent.extend({
       user_error_count: null,
       timestamp: null,
       tags: [],
+      countries: [],
       categories: [],
       main_website: "",
       remote_url_read: "",

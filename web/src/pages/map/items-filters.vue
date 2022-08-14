@@ -82,7 +82,7 @@
               name="country"
             >
               <option value=""></option>
-              <option v-for="res in {}" :key="res" :value="res">
+              <option v-for="res in countries" :key="res" :value="res">
                 {{ res }}
               </option>
             </select>
@@ -171,7 +171,7 @@ import Vue from "vue";
 import _ from "lodash";
 
 export default Vue.extend({
-  props: ["original_tags", "itemState"],
+  props: ["original_tags", "countries", "itemState"],
   data() {
     return {
       tags: [],

@@ -41,6 +41,7 @@ def index(db, user, lang):
         redirect("./#" + request.query_string)
 
     tags = query_meta._tags(db)
+    countries = query_meta._countries(db)
 
     categories = query_meta._items(db, langs = lang)
 
@@ -88,7 +89,7 @@ OFFSET
     else:
         user_error_count = None
 
-    return dict(categories=categories, tags=tags, item_levels=item_levels,
+    return dict(categories=categories, tags=tags, countries=countries, item_levels=item_levels,
         main_project=utils.main_project, timestamp=timestamp, languages_name=utils.languages_name,
         website=utils.website, remote_url_read=utils.remote_url_read,
         user=user, user_error_count=user_error_count, main_website=utils.main_website)
