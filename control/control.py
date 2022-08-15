@@ -10,9 +10,6 @@ from . import update
 
 @post("/send-update")
 def send_update(db):
-    src = request.params.get(
-        "source", default=None
-    )  # Deprecated, replaced by analyser & country
     analyser = request.params.get("analyser", default=None)
     country = request.params.get("country", default=None)
     code = request.params.get("code")
@@ -22,10 +19,6 @@ def send_update(db):
 
     if not code or not upload:
         abort(401, "FAIL")
-
-    if src:
-        # Deprecated, replaced by analyser & country
-        analyser, country = src.rsplit("-", 1)
 
     db.execute(
         """
