@@ -304,7 +304,7 @@ def _error(
 
 @router.get("/0.2/error/{err_id}/{status}", tags=["0.2"])
 async def status_err_id(
-    request: Request, err_id: int, status: Status, db: Connection = Depends(database.db)
+    request: Request, err_id: int, status: Status, db: Connection = Depends(database.db_rw)
 ):
     if await _remove_bug_err_id(db, err_id, status) == 0:
         return
@@ -314,7 +314,7 @@ async def status_err_id(
 
 @router.get("/0.3/issue/{uuid}/{status}", tags=["issues"])
 async def status_uuid(
-    request: Request, uuid: UUID, status: Status, db: Connection = Depends(database.db)
+    request: Request, uuid: UUID, status: Status, db: Connection = Depends(database.db_rw)
 ):
     if await _remove_bug_uuid(db, uuid, status) == 0:
         return

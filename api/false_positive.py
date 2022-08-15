@@ -46,7 +46,7 @@ async def fp_uuid(
 
 
 @router.delete("/0.3/false-positive/{uuid}", tags=["issues"])
-async def fp_delete_uuid(uuid: UUID, db: Connection = Depends(database.db)):
+async def fp_delete_uuid(uuid: UUID, db: Connection = Depends(database.db_rw)):
     m = await db.fetchrow(
         "SELECT uuid FROM markers_status WHERE status = $1 AND uuid = $2", "false", uuid
     )

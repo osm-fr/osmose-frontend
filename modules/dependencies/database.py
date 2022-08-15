@@ -48,4 +48,26 @@ async def get_dbconn():
 async def db():
     async with database.pool.acquire() as connection:
         await add_json_support(connection)
-        yield connection
+        tr = connection.transaction()
+        await tr.start()
+        try:
+            yield connection
+        finally:
+            if connection.is_in_transaction():
+                await tr.rollback()
+
+
+async def db_rw():
+    async with database.pool.acquire() as connection:
+        await add_json_support(connection)
+        tr = connection.transaction()
+        await tr.start()
+        try:
+            yield connection
+        except Exception:
+            if connection.is_in_transaction():
+                await tr.rollback()
+            raise
+        else:
+            if connection.is_in_transaction():
+                await tr.commit()
