@@ -1,26 +1,28 @@
 import os
 import sys
 
-from bottle import HTTPError, abort, post, request, response, route
+from asyncpg import Connection
+from fastapi import APIRouter, Depends, Form, HTTPException, Request, UploadFile
+from fastapi.responses import PlainTextResponse
 
-from modules_legacy import utils
+from modules import utils
+from modules.dependencies import database
 
 from . import update
 
+router = APIRouter()
 
-@post("/send-update")
-def send_update(db):
-    analyser = request.params.get("analyser", default=None)
-    country = request.params.get("country", default=None)
-    code = request.params.get("code")
-    upload = request.files.get("content", default=None)
 
-    response.content_type = "text/plain; charset=utf-8"
-
-    if not code or not upload:
-        abort(401, "FAIL")
-
-    db.execute(
+@router.post("/send-update", response_class=PlainTextResponse)
+async def user(
+    content: UploadFile,
+    request: Request,
+    analyser: str = Form(),
+    country: str = Form(),
+    code: str = Form(),
+    db: Connection = Depends(database.db_rw),
+):
+    source_id = await db.fetchval(
         """
 SELECT
     id
@@ -29,47 +31,52 @@ FROM
     JOIN sources_password ON
         sources.id = source_id
 WHERE
-    analyser = %(analyser)s AND
-    country = %(country)s AND
-    password = %(password)s
+    analyser = $1 AND
+    country = $2 AND
+    password = $3
 LIMIT 1
 """,
-        {"analyser": analyser, "country": country, "password": code},
+        analyser,
+        country,
+        code,
     )
 
-    res = db.fetchone()
-
-    if not res and not os.environ.get("OSMOSE_UNLOCKED_UPDATE"):
-        abort(403, "AUTH FAIL")
-    if not res and os.environ.get("OSMOSE_UNLOCKED_UPDATE"):
-        db.execute("SELECT COALESCE(MAX(id), 0) + 1 AS id FROM sources")
-        source_id = db.fetchone()["id"]
-        db.execute(
-            "INSERT INTO sources(id, country, analyser) VALUES (%s, %s, %s)",
-            (source_id, country, analyser),
+    if not source_id and not os.environ.get("OSMOSE_UNLOCKED_UPDATE"):
+        raise HTTPException(status_code=403, detail="AUTH FAIL")
+    elif not source_id and os.environ.get("OSMOSE_UNLOCKED_UPDATE"):
+        source_id = await db.fetchval(
+            "SELECT COALESCE(MAX(id), 0) + 1 AS id FROM sources"
         )
-        db.execute(
-            "INSERT INTO sources_password(source_id, password) VALUES(%s, %s)",
-            (source_id, code),
+        await db.execute(
+            "INSERT INTO sources(id, country, analyser) VALUES ($1, $2, $3)",
+            source_id,
+            country,
+            analyser,
         )
-        db.connection.commit()
-    else:
-        source_id = res["id"]
+        await db.execute(
+            "INSERT INTO sources_password(source_id, password) VALUES($1, $2)",
+            source_id,
+            code,
+        )
 
-    remote_ip = request.remote_addr
+    remote_ip = request.client.host if request.client else None
 
     try:
-        (name, ext) = os.path.splitext(upload.filename)
+        (name, ext) = os.path.splitext(content.filename)
         if ext not in (".bz2", ".gz", ".xml"):
-            abort(406, "FAIL: File extension not allowed.")
+            raise HTTPException(
+                status_code=406, detail="FAIL: File extension not allowed."
+            )
 
-        save_filename = os.path.join(utils.dir_results, upload.filename)
-        upload.save(save_filename, overwrite=True)
+        save_filename = os.path.join(utils.dir_results, content.filename)
+        with open(save_filename, "wb") as f:
+            f.write(await content.read())
+
         update.update(source_id, save_filename, remote_ip=remote_ip)
         os.unlink(save_filename)
 
     except update.OsmoseUpdateAlreadyDone:
-        abort(409, "FAIL: Already up to date")
+        raise HTTPException(status_code=400, detail="FAIL: Already up to date")
 
     except Exception:
         import traceback
@@ -80,33 +87,48 @@ LIMIT 1
         traceback.print_exc()
         sys.stderr = sys.__stderr__
         trace = s.getvalue()
-        abort(500, trace.rstrip())
+        print(trace)
+        raise HTTPException(status_code=500, detail=trace.rstrip())
 
     return "OK"
 
 
-def _status_object(db, t, source):
-    db.execute(
-        "SELECT string_agg(elem->>'id', ',') FROM (SELECT unnest(elems) AS elem FROM markers WHERE source_id=%s) AS t WHERE elem->>'type' = %s",
-        (source, t),
+async def _status_object(db: Connection, type: str, source: int):
+    s = await db.fetchval(
+        """
+SELECT
+    string_agg(elem->>'id', ',')
+FROM
+    (SELECT unnest(elems) AS elem FROM markers WHERE source_id=$1) AS t
+WHERE
+    elem->>'type' = $2
+""",
+        source,
+        type,
     )
-    s = db.fetchone()
-    if s and s[0]:
-        return list(map(int, s[0].split(",")))
+    if s:
+        return list(map(int, s.split(",")))
 
 
-@route("/status/<country>/<analyser>")
-def status(db, country=None, analyser=None):
-    if not country or not analyser:
-        return HTTPError(400)
-
-    objects = request.params.get("objects", default=False)
-
-    db.execute(
-        "SELECT timestamp, source_id, analyser_version FROM updates_last WHERE source_id = (SELECT id FROM sources WHERE analyser = %s AND country = %s)",
-        (analyser, country),
+@router.get("/status/{country}/{analyser}")
+async def status(
+    country: str,
+    analyser: str,
+    objects: bool = False,
+    db: Connection = Depends(database.db),
+):
+    r = await db.fetchrow(
+        """
+SELECT
+    timestamp, source_id, analyser_version
+FROM
+    updates_last
+WHERE
+    source_id = (SELECT id FROM sources WHERE analyser = $1 AND country = $2)
+""",
+        analyser,
+        country,
     )
-    r = db.fetchone()
     if r and r["timestamp"]:
         return {
             "version": 1,
@@ -123,4 +145,4 @@ def status(db, country=None, analyser=None):
             else None,
         }
     else:
-        return HTTPError(404)
+        raise HTTPException(status_code=404)

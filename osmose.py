@@ -23,7 +23,7 @@ async def startup():
 # API
 #
 app.mount("/api", api.app)
-app.mount("/control/", WSGIMiddleware(control.app))
+app.mount("/control/", control.app)
 
 #
 # Web

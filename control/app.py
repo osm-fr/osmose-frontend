@@ -1,20 +1,17 @@
-import bottle
+from fastapi import FastAPI
 
-from modules_legacy import bottle_pgsql, utils
+from modules.dependencies import database
 
+from . import control
 
-class OsmoseControlBottle(bottle.Bottle):
-    def default_error_handler(self, res):
-        bottle.response.content_type = "text/plain"
-        return res.body
+app = FastAPI()
 
 
-app = OsmoseControlBottle()
-bottle.default_app.push(app)
+@app.on_event("startup")
+async def startup():
+    await database.startup()
 
-app.install(bottle_pgsql.Plugin(utils.db_string))
 
-bottle.default_app.pop()
+# Add routes
 
-if __name__ == "__main__":
-    bottle.run(app=app, host="0.0.0.0", port=20009, reloader=True, debug=True)
+app.include_router(control.router)
