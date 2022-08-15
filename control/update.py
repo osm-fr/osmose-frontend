@@ -1,6 +1,7 @@
 import json
 import sys
 import time
+from typing import Dict, Optional
 from xml.sax import handler, make_parser
 
 import psycopg2
@@ -22,7 +23,7 @@ class OsmoseUpdateAlreadyDone(Exception):
 num_sql_run = 0
 
 
-def execute_sql(dbcurs, sql, args=None):
+def execute_sql(dbcurs, sql: str, args=None):
     global num_sql_run
     try:
         if args is None:
@@ -38,7 +39,12 @@ def execute_sql(dbcurs, sql, args=None):
         sys.stdout.flush()
 
 
-def update(source_id, fname, logger=printlogger(), remote_ip=""):
+def update(
+    source_id: int,
+    fname: str,
+    logger: printlogger = printlogger(),
+    remote_ip: Optional[str] = None,
+):
 
     #  open connections
     dbconn = utils.get_dbconn()
@@ -122,7 +128,9 @@ WHERE
 
 
 class update_parser(handler.ContentHandler):
-    def __init__(self, source_id, source_url, remote_ip, dbconn, dbcurs):
+    def __init__(
+        self, source_id: int, source_url: str, remote_ip: Optional[str], dbconn, dbcurs
+    ):
         self._source_id = source_id
         self._source_url = source_url
         self._remote_ip = remote_ip
@@ -136,7 +144,7 @@ class update_parser(handler.ContentHandler):
     def setDocumentLocator(self, locator):
         self.locator = locator
 
-    def startElement(self, name, attrs):
+    def startElement(self, name: str, attrs: Dict[str, str]):
         if name == "analyser":
             self.all_uuid = {}
             self.mode = "analyser"
@@ -247,7 +255,7 @@ WHERE
 
         self.element_stack.append(name)
 
-    def endElement(self, name):
+    def endElement(self, name: str):
         self.element_stack.pop()
 
         if name == "analyser" and self.all_uuid:
@@ -437,7 +445,7 @@ WHERE
         elif name == "fix" and self.element_stack[-1] == "fixes":
             self._fixes.append(self._fix)
 
-    def update_timestamp(self, attrs):
+    def update_timestamp(self, attrs: Dict[str, str]):
         self.ts = attrs.get(
             "timestamp", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
         )
@@ -501,7 +509,7 @@ WHERE
             self._tstamp_updated = True
 
 
-def print_source(source):
+def print_source(source: Dict[str, str]):
     show("source #%s" % source["id"])
     for k in source:
         if k == "id":
