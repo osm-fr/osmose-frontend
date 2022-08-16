@@ -271,8 +271,7 @@ WHERE
             #  add data at all location
             if len(self._error_locations) == 0:
                 print(
-                    "No location on error found on line %d"
-                    % self.locator.getLineNumber()
+                    f"No location on error found on line {self.locator.getLineNumber()}"
                 )
                 return
 
@@ -530,8 +529,7 @@ WHERE
                 r = self._dbcurs.fetchone()
                 if r["count"] == 1:
                     raise OsmoseUpdateAlreadyDone(
-                        "source=%s and timestamp=%s are already present"
-                        % (self._source_id, utils.pg_escape(self.ts))
+                        f"source={self._source_id} and timestamp={self.ts} are already present"
                     )
                 else:
                     raise
@@ -564,7 +562,7 @@ WHERE
 
 
 def print_source(source: Dict[str, str]):
-    show("source #%s" % source["id"])
+    show(f"source #{source['id']}")
     for k in source:
         if k == "id":
             continue
