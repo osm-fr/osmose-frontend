@@ -337,15 +337,41 @@ WHERE
             sql_uuid = "SELECT ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid AS uuid"
 
             #  sql template
-            sql_marker = "INSERT INTO markers (uuid, source_id, class, item, lat, lon, elems, fixes, subtitle) "
-            sql_marker += "VALUES (('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid, "
-            sql_marker += "%(source)s, %(class)s, %(item)s, %(lat)s, %(lon)s, %(elems)s::jsonb[], %(fixes)s::jsonb[], %(subtitle)s) "
-            sql_marker += "ON CONFLICT (uuid) DO "
-            sql_marker += "UPDATE SET item = %(item)s, lat = %(lat)s, lon = %(lon)s, elems = %(elems)s::jsonb[], fixes = %(fixes)s::jsonb[], subtitle = %(subtitle)s "
-            sql_marker += "WHERE markers.uuid = ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid AND "
-            sql_marker += "      markers.source_id = %(source)s AND markers.class = %(class)s AND "
-            sql_marker += "      (markers.item IS DISTINCT FROM %(item)s OR markers.lat IS DISTINCT FROM %(lat)s OR markers.lon IS DISTINCT FROM %(lon)s OR markers.elems IS DISTINCT FROM %(elems)s::jsonb[] OR markers.fixes IS DISTINCT FROM %(fixes)s::jsonb[] OR markers.subtitle IS DISTINCT FROM %(subtitle)s) "
-            sql_marker += "RETURNING uuid"
+            sql_marker = """
+INSERT INTO markers (uuid, source_id, class, item, lat, lon, elems, fixes, subtitle)
+VALUES (
+    ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid,
+    %(source)s,
+    %(class)s,
+    %(item)s,
+    %(lat)s,
+    %(lon)s,
+    %(elems)s::jsonb[],
+    %(fixes)s::jsonb[],
+    %(subtitle)s
+)
+ON CONFLICT (uuid) DO
+UPDATE SET
+    item = %(item)s,
+    lat = %(lat)s,
+    lon = %(lon)s,
+    elems = %(elems)s::jsonb[],
+    fixes = %(fixes)s::jsonb[],
+    subtitle = %(subtitle)s
+WHERE
+    markers.uuid = ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid AND
+    markers.source_id = %(source)s AND
+    markers.class = %(class)s AND
+    (
+        markers.item IS DISTINCT FROM %(item)s OR
+        markers.lat IS DISTINCT FROM %(lat)s OR
+        markers.lon IS DISTINCT FROM %(lon)s OR
+        markers.elems IS DISTINCT FROM %(elems)s::jsonb[] OR
+        markers.fixes IS DISTINCT FROM %(fixes)s::jsonb[] OR
+        markers.subtitle IS DISTINCT FROM %(subtitle)s
+    )
+RETURNING uuid
+"""
 
             for location in self._error_locations:
                 lat = float(location["lat"])
@@ -398,12 +424,38 @@ WHERE
             # Commit class update on its own transaction. Avoid lock the class table and block other updates.
             dbconn = utils.get_dbconn()
             dbcurs = dbconn.cursor()
-            sql = "INSERT INTO class (class, item, title, level, tags, detail, fix, trap, example, source, resource, timestamp) "
-            sql += "VALUES (%(class)s, %(item)s, %(title)s, %(level)s, %(tags)s, %(detail)s, %(fix)s, %(trap)s, %(example)s, %(source)s, %(resource)s, %(timestamp)s) "
-            sql += "ON CONFLICT (item, class) DO "
-            sql += "UPDATE SET title = %(title)s, level = %(level)s, tags = %(tags)s, detail = %(detail)s, fix = %(fix)s, trap = %(trap)s, example = %(example)s, source = %(source)s, resource = %(resource)s, timestamp = %(timestamp)s "
-            sql += "WHERE class.class = %(class)s AND class.item = %(item)s AND class.timestamp < %(timestamp)s AND "
-            sql += "      (class.title IS DISTINCT FROM %(title)s OR class.level IS DISTINCT FROM %(level)s OR class.tags IS DISTINCT FROM %(tags)s::varchar[] OR class.detail IS DISTINCT FROM %(detail)s OR class.fix IS DISTINCT FROM %(fix)s OR class.trap IS DISTINCT FROM %(trap)s OR class.example IS DISTINCT FROM %(example)s OR class.source IS DISTINCT FROM %(source)s OR class.resource IS DISTINCT FROM %(resource)s)"
+            sql = """
+INSERT INTO class (class, item, title, level, tags, detail, fix, trap, example, source, resource, timestamp)
+VALUES
+    (%(class)s, %(item)s, %(title)s, %(level)s, %(tags)s, %(detail)s, %(fix)s, %(trap)s, %(example)s, %(source)s, %(resource)s, %(timestamp)s)
+ON CONFLICT (item, class) DO
+UPDATE SET
+        title = %(title)s,
+        level = %(level)s,
+        tags = %(tags)s,
+        detail = %(detail)s,
+        fix = %(fix)s,
+        trap = %(trap)s,
+        example = %(example)s,
+        source = %(source)s,
+        resource = %(resource)s,
+        timestamp = %(timestamp)s
+WHERE
+    class.class = %(class)s AND
+    class.item = %(item)s AND
+    class.timestamp < %(timestamp)s AND
+    (
+        class.title IS DISTINCT FROM %(title)s OR
+        class.level IS DISTINCT FROM %(level)s OR
+        class.tags IS DISTINCT FROM %(tags)s::varchar[] OR
+        class.detail IS DISTINCT FROM %(detail)s OR
+        class.fix IS DISTINCT FROM %(fix)s OR
+        class.trap IS DISTINCT FROM %(trap)s OR
+        class.example IS DISTINCT FROM %(example)s OR
+        class.source IS DISTINCT FROM %(source)s OR
+        class.resource IS DISTINCT FROM %(resource)s
+    )
+"""
             execute_sql(
                 dbcurs,
                 sql,
@@ -425,11 +477,16 @@ WHERE
             dbconn.commit()
             dbconn.close()
 
-            sql = "INSERT INTO markers_counts (source_id, class, item) "
-            sql += "VALUES (%(source)s, %(class)s, %(item)s) "
-            sql += "ON CONFLICT (source_id, class) DO "
-            sql += "UPDATE SET item = %(item)s "
-            sql += "WHERE markers_counts.source_id = %(source)s AND markers_counts.class = %(class)s"
+            sql = """
+INSERT INTO markers_counts (source_id, class, item)
+VALUES (%(source)s, %(class)s, %(item)s)
+ON CONFLICT (source_id, class) DO
+UPDATE SET
+    item = %(item)s
+WHERE
+    markers_counts.source_id = %(source)s AND
+    markers_counts.class = %(class)s
+"""
             execute_sql(
                 self._dbcurs,
                 sql,
