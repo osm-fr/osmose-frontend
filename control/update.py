@@ -583,44 +583,41 @@ class Test(unittest.TestCase):
         utils.pg_host = "localhost"
         utils.pg_base = "osmose_test"
         utils.pg_pass = "-osmose-"
-        utils.db_string = "host='%s' port='%s' dbname='%s' user='%s' password='%s'" % (
-            utils.pg_host,
-            utils.pg_port,
-            utils.pg_base,
-            utils.pg_user,
-            utils.pg_pass,
-        )
 
-        self.dbconn = utils.get_dbconn()
-        self.dbcurs = self.dbconn.cursor()
-        self.dbcurs.execute(open("tools/database/drop.sql", "r").read())
-        self.dbcurs.execute(open("tools/database/schema.sql", "r").read())
+        self.db = database.get_dbconn()
+
+        self.db.execute(open("tools/database/drop.sql", "r").read())
+        self.db.execute(open("tools/database/schema.sql", "r").read())
         #  Re-initialise search_path as cleared by schema.sql
-        self.dbcurs.execute('SET search_path TO "$user", public;')
-        self.dbcurs.execute(
-            "INSERT INTO sources (id, country, analyser) VALUES (%s, %s, %s);",
-            (1, "xx1", "yy1"),
+        self.db.execute('SET search_path TO "$user", public;')
+        self.db.execute(
+            "INSERT INTO sources (id, country, analyser) VALUES ($1, $2, $3);",
+            1,
+            "xx1",
+            "yy1",
         )
-        self.dbcurs.execute(
-            "INSERT INTO sources (id, country, analyser) VALUES (%s, %s, %s);",
-            (2, "xx2", "yy2"),
+        self.db.execute(
+            "INSERT INTO sources (id, country, analyser) VALUES ($1, $2, $3);",
+            2,
+            "xx2",
+            "yy2",
         )
-        self.dbcurs.execute(
-            "INSERT INTO sources_password (source_id, password) VALUES (%s, %s);",
-            (1, "xx1"),
+        self.db.execute(
+            "INSERT INTO sources_password (source_id, password) VALUES ($1, $2);",
+            1,
+            "xx1",
         )
-        self.dbcurs.execute(
-            "INSERT INTO sources_password (source_id, password) VALUES (%s, %s);",
-            (2, "xx2"),
+        self.db.execute(
+            "INSERT INTO sources_password (source_id, password) VALUES ($1, $2);",
+            2,
+            "xx2",
         )
-        self.dbconn.commit()
 
     def tearDown(self):
-        self.dbconn.close()
+        self.db.close()
 
     def check_num_marker(self, num):
-        self.dbcurs.execute("SELECT count(*) FROM markers")
-        cur_num = self.dbcurs.fetchone()[0]
+        cur_num = self.db.fetchval("SELECT count(*) FROM markers")
         self.assertEquals(num, cur_num)
 
     def test(self):
