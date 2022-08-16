@@ -6,6 +6,7 @@ from xml.sax import handler, make_parser
 
 import psycopg2
 
+from modules.dependencies import database
 from modules_legacy import utils
 
 show = utils.show
@@ -422,60 +423,56 @@ RETURNING uuid
                 self.all_uuid[self._class_id] = []
 
             # Commit class update on its own transaction. Avoid lock the class table and block other updates.
-            dbconn = utils.get_dbconn()
-            dbcurs = dbconn.cursor()
-            sql = """
+            try:
+                db_local = database.get_dbconn()
+                db_local.execute(
+                    """
 INSERT INTO class (class, item, title, level, tags, detail, fix, trap, example, source, resource, timestamp)
 VALUES
-    (%(class)s, %(item)s, %(title)s, %(level)s, %(tags)s, %(detail)s, %(fix)s, %(trap)s, %(example)s, %(source)s, %(resource)s, %(timestamp)s)
+    ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
 ON CONFLICT (item, class) DO
 UPDATE SET
-        title = %(title)s,
-        level = %(level)s,
-        tags = %(tags)s,
-        detail = %(detail)s,
-        fix = %(fix)s,
-        trap = %(trap)s,
-        example = %(example)s,
-        source = %(source)s,
-        resource = %(resource)s,
-        timestamp = %(timestamp)s
+        title = $3,
+        level = $4,
+        tags = $5,
+        detail = $6,
+        fix = $7,
+        trap = $8,
+        example = $9,
+        source = $10,
+        resource = $11,
+        timestamp = $12
 WHERE
-    class.class = %(class)s AND
-    class.item = %(item)s AND
-    class.timestamp < %(timestamp)s AND
+    class.class = $1 AND
+    class.item = $2 AND
+    class.timestamp < $12 AND
     (
-        class.title IS DISTINCT FROM %(title)s OR
-        class.level IS DISTINCT FROM %(level)s OR
-        class.tags IS DISTINCT FROM %(tags)s::varchar[] OR
-        class.detail IS DISTINCT FROM %(detail)s OR
-        class.fix IS DISTINCT FROM %(fix)s OR
-        class.trap IS DISTINCT FROM %(trap)s OR
-        class.example IS DISTINCT FROM %(example)s OR
-        class.source IS DISTINCT FROM %(source)s OR
-        class.resource IS DISTINCT FROM %(resource)s
+        class.title IS DISTINCT FROM $3 OR
+        class.level IS DISTINCT FROM $4 OR
+        class.tags IS DISTINCT FROM $5::varchar[] OR
+        class.detail IS DISTINCT FROM $6 OR
+        class.fix IS DISTINCT FROM $7 OR
+        class.trap IS DISTINCT FROM $8 OR
+        class.example IS DISTINCT FROM $9 OR
+        class.source IS DISTINCT FROM $10 OR
+        class.resource IS DISTINCT FROM $11
     )
-"""
-            execute_sql(
-                dbcurs,
-                sql,
-                {
-                    "class": self._class_id,
-                    "item": self._class_item[self._class_id],
-                    "title": self._class_title,
-                    "level": self._class_level,
-                    "tags": self._class_tags,
-                    "detail": self._class_detail or None,
-                    "fix": self._class_fix or None,
-                    "trap": self._class_trap or None,
-                    "example": self._class_example or None,
-                    "source": self._class_source or None,
-                    "resource": self._class_resource or None,
-                    "timestamp": utils.pg_escape(self.ts),
-                },
-            )
-            dbconn.commit()
-            dbconn.close()
+""",
+                    self._class_id,  # $1 class
+                    self._class_item[self._class_id],  # $2 item
+                    self._class_title,  # $3 title
+                    self._class_level,  # $4 level
+                    self._class_tags,  # $5 tags
+                    self._class_detail or None,  # $6 detail
+                    self._class_fix or None,  # $7 fix
+                    self._class_trap or None,  # $8 trap
+                    self._class_example or None,  # $9 example
+                    self._class_source or None,  # $10 source
+                    self._class_resource or None,  # $11 resource
+                    self.ts,  # $12 timestamp
+                )
+            finally:
+                db_local.close()
 
             sql = """
 INSERT INTO markers_counts (source_id, class, item)
