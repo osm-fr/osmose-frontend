@@ -18,11 +18,11 @@ def xml_header(params: Params, title: str, website: str, lang: str, query):
         users = ", ".join(params.users)
         title = f"Osmose - {users}"
         description = _("Statistics for user {}").format(users)
-        url = f"http://{website}/byuser/{users}"
+        url = f"{website}/byuser/{users}"
     else:
         title = "Osmose - " + title
         description = None
-        url = f"http://{website}/{lang}/issues/open?{query}"
+        url = f"{website}/{lang}/issues/open?{query}"
     return title, description, url
 
 
@@ -51,7 +51,7 @@ def xml_issue(
                 ] = f"http://localhost:8111/load_object?objects={e['type'].lower()}{e['id']}"
 
     map_url = (
-        f"http://{website}/{lang}/map/"
+        f"{website}/{lang}/map/"
         + f"#{query}&zoom=16&lat={lat}&lon={lon}&level={res['level']}&tags=&fixable=&issue_uuid={res['uuid']}"
     )
 
@@ -80,12 +80,12 @@ def xml_issue(
                     H.BR(),
                     H.A(
                         _("Mark issue as fixed"),
-                        href=f"http://{website}/api/0.3/issue/{res['uuid']}/done",
+                        href=f"{website}/api/0.3/issue/{res['uuid']}/done",
                     ),
                     " ",
                     H.A(
                         _("Mark issue as false positive"),
-                        href=f"http://{website}/api/0.3/issue/{res['uuid']}/false",
+                        href=f"{website}/api/0.3/issue/{res['uuid']}/false",
                     ),
                 )
             )
@@ -290,7 +290,7 @@ def rss(
     return E.rss(
         E.channel(
             E_atom.link(
-                href=f"http://{website}/api/0.3/issues.rss?{query}",
+                href=f"{website}/api/0.3/issues.rss?{query}",
                 rel="self",
                 type="application/rss+xml",
             ),

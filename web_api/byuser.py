@@ -43,7 +43,7 @@ def byUser():
 def user(db, lang, username, format):
     if format in ['rss', 'gpx', 'kml', 'josm', 'csv']:
         response.status = 301
-        response.set_header('Location', f"https://{utils.website}/api/0.3/issues.{format}?{request.query_string}&username={urllib.parse.quote(username)}")
+        response.set_header('Location', f"{utils.website}/api/0.3/issues.{format}?{request.query_string}&username={urllib.parse.quote(username)}")
         return
 
     async def t(username):
@@ -62,7 +62,7 @@ def user_count(db, lang, username=None):
         E.channel(
             E.title('Osmose - ' + username),
             E.description(_("Statistics for user {0}").format(username)),
-            E.link('http://{}/byuser/{}'.format(utils.website, username)),
+            E.link('{}/byuser/{}'.format(utils.website, username)),
             E.item(
                 E.title(_("Number of level {level} issues: {count}").format(level=1, count=count[1]))
             ),

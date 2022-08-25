@@ -537,7 +537,7 @@ export default VueParent.extend({
           rss = document.createElement("link");
           Object.assign(rss, {
             id: "rss",
-            href: `http://${this.website}/api/0.3/issues.rss?${this.query}`,
+            href: `${this.website}/api/0.3/issues.rss?${this.query}`,
             rel: "alternate",
             type: "application/rss+xml",
             title: document.title,

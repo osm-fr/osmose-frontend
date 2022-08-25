@@ -115,7 +115,7 @@ export default VueParent.extend({
   },
   methods: {
     api_url_path(format) {
-      return `http://${this.website}/api/0.3/issues.${format}?${this.query}&usename=${this.username}`;
+      return `${this.website}/api/0.3/issues.${format}?${this.query}&usename=${this.username}`;
     },
     render() {
       this.query = window.location.search.substring(1);

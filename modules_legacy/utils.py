@@ -51,7 +51,7 @@ pg_user           = os.environ.get("DB_USER", "osmose")
 pg_pass           = os.environ.get("DB_PASS", "clostAdtoi")
 pg_base           = os.environ.get("DB_NAME", "osmose_frontend")
 db_string         = "host='%s' port='%s' dbname='%s' user='%s' password='%s'" % (pg_host, pg_port, pg_base, pg_user, pg_pass)
-website           = os.environ.get('URL_FRONTEND') or "osmose.openstreetmap.fr"
+website           = os.environ.get('URL_FRONTEND') or "https://osmose.openstreetmap.fr"
 
 main_project      = "OpenStreetMap"
 main_website      = "https://www.openstreetmap.org/"

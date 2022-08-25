@@ -61,7 +61,7 @@ if pg_host:
     db_dsn = f"postgres://{pg_user}:{pg_pass}@{pg_host}:{pg_port}/{pg_base}"
 else:
     db_dsn = f"postgres://{pg_user}:{pg_pass}@/{pg_base}"
-website = os.environ.get("URL_FRONTEND") or "osmose.openstreetmap.fr"
+website = os.environ.get("URL_FRONTEND") or "https://osmose.openstreetmap.fr"
 
 main_project = "OpenStreetMap"
 main_website = "https://www.openstreetmap.org/"

@@ -4,4 +4,4 @@ services:
   api:
     environment:
       - OSMOSE_UNLOCKED_UPDATE=on
-      - URL_FRONTEND=localhost:20009
+      - URL_FRONTEND=http://localhost:20009
