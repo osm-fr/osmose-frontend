@@ -1,13 +1,16 @@
 import json
 import sys
 import time
-from typing import Dict, Optional
+from typing import Any, Dict, List, Optional
 from xml.sax import handler, make_parser
 
 import psycopg2
 
 from modules.dependencies import database
 from modules_legacy import utils
+
+Elem = Dict[str, Any]
+Fix = Any
 
 show = utils.show
 
@@ -129,6 +132,34 @@ WHERE
 
 
 class update_parser(handler.ContentHandler):
+    _source_id: int
+    _source_url: str
+    _remote_ip: Optional[str]
+    _class_item: Dict[int, int]
+    _tstamp_updated: bool
+    all_uuid: Optional[Dict[int, List[str]]]
+    mode: str
+
+    element_stack: List[str]
+
+    _class_id: int
+    _class_sub: int
+    _error_elements: List[Elem]
+    _error_locations: List[Dict[str, str]]
+    _error_texts: Dict[str, str]
+    _users: List[str]
+    _fixes: List[List[Fix]]
+    _fix: List[Fix]
+    elem_mode: str
+
+    _elem: Elem
+
+    _fix_create: Dict[str, str]
+    _fix_modify: Dict[str, str]
+    _fix_delete: List[str]
+
+    _class_title: Dict[str, str]
+
     def __init__(
         self, source_id: int, source_url: str, remote_ip: Optional[str], dbconn, dbcurs
     ):
