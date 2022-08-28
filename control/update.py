@@ -131,6 +131,178 @@ WHERE
     del f
 
 
+def update_class(
+    _dbcurs,
+    _source_id: int,
+    _class_id: int,
+    _class_item: int,
+    _class_title: Dict[str, str],
+    _class_level: int,
+    _class_tags: List[str],
+    _class_detail: Optional[Dict[str, str]],
+    _class_fix: Optional[Dict[str, str]],
+    _class_trap: Optional[Dict[str, str]],
+    _class_example: Optional[Dict[str, str]],
+    _class_source: Optional[str],
+    _class_resource: Optional[str],
+    ts: str,
+):
+    # Commit class update on its own transaction. Avoid lock the class table and block other updates.
+    try:
+        db_local = database.get_dbconn()
+        db_local.execute(
+            """
+INSERT INTO class (class, item, title, level, tags, detail, fix, trap, example, source, resource, timestamp)
+VALUES
+    ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+ON CONFLICT (item, class) DO
+UPDATE SET
+        title = $3,
+        level = $4,
+        tags = $5,
+        detail = $6,
+        fix = $7,
+        trap = $8,
+        example = $9,
+        source = $10,
+        resource = $11,
+        timestamp = $12
+WHERE
+    class.class = $1 AND
+    class.item = $2 AND
+    class.timestamp < $12 AND
+    (
+        class.title IS DISTINCT FROM $3 OR
+        class.level IS DISTINCT FROM $4 OR
+        class.tags IS DISTINCT FROM $5::varchar[] OR
+        class.detail IS DISTINCT FROM $6 OR
+        class.fix IS DISTINCT FROM $7 OR
+        class.trap IS DISTINCT FROM $8 OR
+        class.example IS DISTINCT FROM $9 OR
+        class.source IS DISTINCT FROM $10 OR
+        class.resource IS DISTINCT FROM $11
+    )
+""",
+            _class_id,  # $1 class
+            _class_item,  # $2 item
+            _class_title,  # $3 title
+            _class_level,  # $4 level
+            _class_tags,  # $5 tags
+            _class_detail or None,  # $6 detail
+            _class_fix or None,  # $7 fix
+            _class_trap or None,  # $8 trap
+            _class_example or None,  # $9 example
+            _class_source or None,  # $10 source
+            _class_resource or None,  # $11 resource
+            ts,  # $12 timestamp
+        )
+    finally:
+        db_local.close()
+
+    sql = """
+INSERT INTO markers_counts (source_id, class, item)
+VALUES (%(source)s, %(class)s, %(item)s)
+ON CONFLICT (source_id, class) DO
+UPDATE SET
+    item = %(item)s
+WHERE
+    markers_counts.source_id = %(source)s AND
+    markers_counts.class = %(class)s
+"""
+    execute_sql(
+        _dbcurs,
+        sql,
+        {
+            "source": _source_id,
+            "class": _class_id,
+            "item": _class_item,
+        },
+    )
+
+
+def update_issue(
+    _dbcurs,
+    all_uuid: Optional[Dict[int, List[str]]],
+    _error_locations,
+    _source_id: int,
+    _class_id: int,
+    _class_sub: int,
+    _class_item: int,
+    _error_elements: List[Elem],
+    elems: List[Optional[Elem]],
+    fixes: List[Fix],
+    _error_texts: Optional[Dict[str, str]],
+):
+    sql_uuid = "SELECT ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid AS uuid"
+
+    #  sql template
+    sql_marker = """
+INSERT INTO markers (uuid, source_id, class, item, lat, lon, elems, fixes, subtitle)
+VALUES (
+    ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid,
+    %(source)s,
+    %(class)s,
+    %(item)s,
+    %(lat)s,
+    %(lon)s,
+    %(elems)s::jsonb[],
+    %(fixes)s::jsonb[],
+    %(subtitle)s
+)
+ON CONFLICT (uuid) DO
+UPDATE SET
+    item = %(item)s,
+    lat = %(lat)s,
+    lon = %(lon)s,
+    elems = %(elems)s::jsonb[],
+    fixes = %(fixes)s::jsonb[],
+    subtitle = %(subtitle)s
+WHERE
+    markers.uuid = ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid AND
+    markers.source_id = %(source)s AND
+    markers.class = %(class)s AND
+    (
+        markers.item IS DISTINCT FROM %(item)s OR
+        markers.lat IS DISTINCT FROM %(lat)s OR
+        markers.lon IS DISTINCT FROM %(lon)s OR
+        markers.elems IS DISTINCT FROM %(elems)s::jsonb[] OR
+        markers.fixes IS DISTINCT FROM %(fixes)s::jsonb[] OR
+        markers.subtitle IS DISTINCT FROM %(subtitle)s
+    )
+RETURNING uuid
+"""
+
+    for location in _error_locations:
+        lat = float(location["lat"])
+        lon = float(location["lon"])
+
+        params = {
+            "source": _source_id,
+            "class": _class_id,
+            "subclass": _class_sub,
+            "item": _class_item,
+            "lat": lat,
+            "lon": lon,
+            "elems_sig": "_".join(
+                map(
+                    lambda elem: elem["type"] + str(elem["id"]),
+                    _error_elements,
+                )
+            ),
+            "elems": list(map(lambda elem: json.dumps(elem), elems)) if elems else None,
+            "fixes": list(map(lambda fix: json.dumps(fix), fixes)) if fixes else None,
+            "subtitle": _error_texts,
+        }
+
+        execute_sql(_dbcurs, sql_uuid, params)
+        r = _dbcurs.fetchone()
+        if r and r[0] and all_uuid is not None:
+            all_uuid[_class_id].append(r[0])
+
+        execute_sql(_dbcurs, sql_marker, params)
+        _dbcurs.fetchone()
+
+
 class update_parser(handler.ContentHandler):
     _source_id: int
     _source_url: str
@@ -365,78 +537,19 @@ WHERE
                 )
             )
 
-            sql_uuid = "SELECT ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid AS uuid"
-
-            #  sql template
-            sql_marker = """
-INSERT INTO markers (uuid, source_id, class, item, lat, lon, elems, fixes, subtitle)
-VALUES (
-    ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid,
-    %(source)s,
-    %(class)s,
-    %(item)s,
-    %(lat)s,
-    %(lon)s,
-    %(elems)s::jsonb[],
-    %(fixes)s::jsonb[],
-    %(subtitle)s
-)
-ON CONFLICT (uuid) DO
-UPDATE SET
-    item = %(item)s,
-    lat = %(lat)s,
-    lon = %(lon)s,
-    elems = %(elems)s::jsonb[],
-    fixes = %(fixes)s::jsonb[],
-    subtitle = %(subtitle)s
-WHERE
-    markers.uuid = ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid AND
-    markers.source_id = %(source)s AND
-    markers.class = %(class)s AND
-    (
-        markers.item IS DISTINCT FROM %(item)s OR
-        markers.lat IS DISTINCT FROM %(lat)s OR
-        markers.lon IS DISTINCT FROM %(lon)s OR
-        markers.elems IS DISTINCT FROM %(elems)s::jsonb[] OR
-        markers.fixes IS DISTINCT FROM %(fixes)s::jsonb[] OR
-        markers.subtitle IS DISTINCT FROM %(subtitle)s
-    )
-RETURNING uuid
-"""
-
-            for location in self._error_locations:
-                lat = float(location["lat"])
-                lon = float(location["lon"])
-
-                params = {
-                    "source": self._source_id,
-                    "class": self._class_id,
-                    "subclass": self._class_sub,
-                    "item": self._class_item[self._class_id],
-                    "lat": lat,
-                    "lon": lon,
-                    "elems_sig": "_".join(
-                        map(
-                            lambda elem: elem["type"] + str(elem["id"]),
-                            self._error_elements,
-                        )
-                    ),
-                    "elems": list(map(lambda elem: json.dumps(elem), elems))
-                    if elems
-                    else None,
-                    "fixes": list(map(lambda fix: json.dumps(fix), fixes))
-                    if fixes
-                    else None,
-                    "subtitle": self._error_texts,
-                }
-
-                execute_sql(self._dbcurs, sql_uuid, params)
-                r = self._dbcurs.fetchone()
-                if r and r[0] and self.all_uuid is not None:
-                    self.all_uuid[self._class_id].append(r[0])
-
-                execute_sql(self._dbcurs, sql_marker, params)
-                self._dbcurs.fetchone()
+            update_issue(
+                self._dbcurs,
+                self.all_uuid,
+                self._error_locations,
+                self._source_id,
+                self._class_id,
+                self._class_sub,
+                self._class_item[self._class_id],
+                self._error_elements,
+                elems,
+                fixes,
+                self._error_texts,
+            )
 
         elif name in ["node", "way", "relation", "infos"]:
             if self.elem_mode == "info":
@@ -452,76 +565,21 @@ RETURNING uuid
             if self.all_uuid is not None:
                 self.all_uuid[self._class_id] = []
 
-            # Commit class update on its own transaction. Avoid lock the class table and block other updates.
-            try:
-                db_local = database.get_dbconn()
-                db_local.execute(
-                    """
-INSERT INTO class (class, item, title, level, tags, detail, fix, trap, example, source, resource, timestamp)
-VALUES
-    ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
-ON CONFLICT (item, class) DO
-UPDATE SET
-        title = $3,
-        level = $4,
-        tags = $5,
-        detail = $6,
-        fix = $7,
-        trap = $8,
-        example = $9,
-        source = $10,
-        resource = $11,
-        timestamp = $12
-WHERE
-    class.class = $1 AND
-    class.item = $2 AND
-    class.timestamp < $12 AND
-    (
-        class.title IS DISTINCT FROM $3 OR
-        class.level IS DISTINCT FROM $4 OR
-        class.tags IS DISTINCT FROM $5::varchar[] OR
-        class.detail IS DISTINCT FROM $6 OR
-        class.fix IS DISTINCT FROM $7 OR
-        class.trap IS DISTINCT FROM $8 OR
-        class.example IS DISTINCT FROM $9 OR
-        class.source IS DISTINCT FROM $10 OR
-        class.resource IS DISTINCT FROM $11
-    )
-""",
-                    self._class_id,  # $1 class
-                    self._class_item[self._class_id],  # $2 item
-                    self._class_title,  # $3 title
-                    self._class_level,  # $4 level
-                    self._class_tags,  # $5 tags
-                    self._class_detail or None,  # $6 detail
-                    self._class_fix or None,  # $7 fix
-                    self._class_trap or None,  # $8 trap
-                    self._class_example or None,  # $9 example
-                    self._class_source or None,  # $10 source
-                    self._class_resource or None,  # $11 resource
-                    self.ts,  # $12 timestamp
-                )
-            finally:
-                db_local.close()
-
-            sql = """
-INSERT INTO markers_counts (source_id, class, item)
-VALUES (%(source)s, %(class)s, %(item)s)
-ON CONFLICT (source_id, class) DO
-UPDATE SET
-    item = %(item)s
-WHERE
-    markers_counts.source_id = %(source)s AND
-    markers_counts.class = %(class)s
-"""
-            execute_sql(
+            update_class(
                 self._dbcurs,
-                sql,
-                {
-                    "source": self._source_id,
-                    "class": self._class_id,
-                    "item": self._class_item[self._class_id],
-                },
+                self._source_id,
+                self._class_id,
+                self._class_item[self._class_id],
+                self._class_title,
+                self._class_level,
+                self._class_tags,
+                self._class_detail or None,
+                self._class_fix or None,
+                self._class_trap or None,
+                self._class_example or None,
+                self._class_source or None,
+                self._class_resource or None,
+                self.ts,
             )
 
         elif name == "fixes":
