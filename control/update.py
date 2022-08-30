@@ -795,7 +795,7 @@ class Test(unittest.IsolatedAsyncioTestCase):
 
     async def check_num_marker(self, num):
         cur_num = await self.db.fetchval("SELECT count(*) FROM markers")
-        self.assertEquals(num, cur_num)
+        self.assertEqual(num, cur_num)
 
     async def test(self):
         await self.check_num_marker(0)
