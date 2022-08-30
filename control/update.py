@@ -853,7 +853,8 @@ class Test(unittest.IsolatedAsyncioTestCase):
             2,
             "tests/Analyser_Osmosis_Broken_Highway_Level_Continuity-france_reunion-2014-06-11.xml.bz2",
         )
-        await self.check_num_marker(50 + 99)
+        # Including 12 duplicates
+        await self.check_num_marker(50 + 99 - 12)
 
 
 async def main():
