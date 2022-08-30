@@ -2,6 +2,7 @@ import asyncio
 import json
 import sys
 import time
+import unittest
 from typing import Any, Dict, List, Optional
 from xml.sax import handler, make_parser
 
@@ -91,12 +92,28 @@ WHERE
         source_id,
     )
 
-    #  #  remove false positive no longer present
-    #    await db.execute("""DELETE FROM markers_status
-    #                      WHERE (source_id,class,elems) NOT IN (SELECT source_id,class,elems FROM markers WHERE source_id = $1) AND
-    #                            source_id = $2 AND
-    #                            date < now()-interval '7 day'""",
-    #                   source_id, source_id)
+    #     #  remove false positive no longer present
+    #     await db.execute(
+    #         """
+    # DELETE FROM
+    #     markers_status
+    # WHERE
+    #     (source_id, class, elems) NOT IN (
+    #         SELECT
+    #             source_id,
+    #             class,
+    #             elems
+    #         FROM
+    #             markers
+    #         WHERE
+    #             source_id = $1
+    #     ) AND
+    #     source_id = $2 AND
+    #     date < now()-interval '7 day'
+    # """,
+    #         source_id,
+    #         source_id,
+    #     )
 
     await db.execute(
         """
@@ -112,11 +129,22 @@ WHERE
     )
 
     await db.execute(
-        """UPDATE markers_counts
-                      SET count = (SELECT count(*) FROM markers
-                                   WHERE markers.source_id = markers_counts.source_id AND
-                                         markers.class = markers_counts.class)
-                      WHERE markers_counts.source_id = $1""",
+        """
+UPDATE
+    markers_counts
+SET
+    count = (
+        SELECT
+            count(*)
+        FROM
+            markers
+        WHERE
+            markers.source_id = markers_counts.source_id AND
+            markers.class = markers_counts.class
+    )
+WHERE
+    markers_counts.source_id = $1
+""",
         source_id,
     )
 
@@ -221,7 +249,17 @@ async def update_issue(
     fixes: List[Fix],
     _error_texts: Optional[Dict[str, str]],
 ):
-    uuid = "('{' || encode(substring(digest($1::int || '/' || $2::int || '/' || $3::int || '/' || $4, 'sha256') from 1 for 16), 'hex') || '}')::uuid"
+    uuid = """('{' ||
+        encode(substring(digest(
+            $1::int ||
+            '/' ||
+            $2::int ||
+            '/' ||
+            $3::int ||
+            '/' ||
+            $4, 'sha256'
+        ) from 1 for 16), 'hex') ||
+    '}')::uuid"""
     sql_uuid = "SELECT " + uuid + " AS uuid"
 
     #  sql template
@@ -633,7 +671,12 @@ WHERE
         if not self._tstamp_updated:
             try:
                 await self._db.execute(
-                    "INSERT INTO updates (source_id, timestamp, remote_url, remote_ip, version, analyser_version) VALUES($1, to_timestamp($2), $3, $4, $5, $6)",
+                    """
+INSERT INTO updates
+    (source_id, timestamp, remote_url, remote_ip, version, analyser_version)
+VALUES
+    ($1, to_timestamp($2), $3, $4, $5, $6)
+""",
                     self._source_id,
                     self.ts,
                     self._source_url,
@@ -661,7 +704,17 @@ WHERE
                         await db_local.close()
 
             status = await self._db.execute(
-                "UPDATE updates_last SET timestamp=to_timestamp($1), version=$2, analyser_version=$3, remote_ip=$4 WHERE source_id=$5",
+                """
+UPDATE
+    updates_last
+SET
+    timestamp=to_timestamp($1),
+    version=$2,
+    analyser_version=$3,
+    remote_ip=$4
+WHERE
+    source_id=$5
+""",
                 self.ts,
                 self.version,
                 self.analyser_version,
@@ -672,7 +725,12 @@ WHERE
                 rowcount = int(status[5:].split(" ")[1])
                 if rowcount == 0:
                     await self._db.execute(
-                        "INSERT INTO updates_last(source_id, timestamp, version, analyser_version, remote_ip) VALUES($1, to_timestamp($2), $3, $4, $5)",
+                        """
+INSERT INTO updates_last
+    (source_id, timestamp, version, analyser_version, remote_ip)
+VALUES
+    ($1, to_timestamp($2), $3, $4, $5)
+""",
                         self._source_id,
                         self.ts,
                         self.version,
@@ -693,9 +751,6 @@ def print_source(source: Dict[str, str]):
                 show("   %-10s = %s" % (k, e))
         else:
             show("   %-10s = %s" % (k, source[k]))
-
-
-import unittest
 
 
 class Test(unittest.IsolatedAsyncioTestCase):
