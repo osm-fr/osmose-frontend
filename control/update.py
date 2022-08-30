@@ -1,3 +1,4 @@
+import asyncio
 import json
 import sys
 import time
@@ -5,6 +6,7 @@ from typing import Any, Dict, List, Optional
 from xml.sax import handler, make_parser
 
 import psycopg2
+from asyncpg import Connection
 
 from modules.dependencies import database
 from modules_legacy import utils
@@ -43,7 +45,8 @@ def execute_sql(dbcurs, sql: str, args=None):
         sys.stdout.flush()
 
 
-def update(
+async def update(
+    db: Connection,
     source_id: int,
     fname: str,
     logger: printlogger = printlogger(),
@@ -665,83 +668,110 @@ def print_source(source: Dict[str, str]):
 import unittest
 
 
-class Test(unittest.TestCase):
-    def setUp(self):
+class Test(unittest.IsolatedAsyncioTestCase):
+    async def asyncSetUp(self):
         utils.pg_host = "localhost"
         utils.pg_base = "osmose_test"
         utils.pg_pass = "-osmose-"
 
-        self.db = database.get_dbconn()
+        self.db = await database.get_dbconn()
 
-        self.db.execute(open("tools/database/drop.sql", "r").read())
-        self.db.execute(open("tools/database/schema.sql", "r").read())
+        with open("tools/database/drop.sql", "r") as f:
+            await self.db.execute(f.read())
+        with open("tools/database/schema.sql", "r") as f:
+            await self.db.execute(f.read())
         #  Re-initialise search_path as cleared by schema.sql
-        self.db.execute('SET search_path TO "$user", public;')
-        self.db.execute(
+        await self.db.execute('SET search_path TO "$user", public;')
+        await self.db.execute(
             "INSERT INTO sources (id, country, analyser) VALUES ($1, $2, $3);",
             1,
             "xx1",
             "yy1",
         )
-        self.db.execute(
+        await self.db.execute(
             "INSERT INTO sources (id, country, analyser) VALUES ($1, $2, $3);",
             2,
             "xx2",
             "yy2",
         )
-        self.db.execute(
+        await self.db.execute(
             "INSERT INTO sources_password (source_id, password) VALUES ($1, $2);",
             1,
             "xx1",
         )
-        self.db.execute(
+        await self.db.execute(
             "INSERT INTO sources_password (source_id, password) VALUES ($1, $2);",
             2,
             "xx2",
         )
 
-    def tearDown(self):
-        self.db.close()
+    async def asyncTearDown(self):
+        await self.db.close()
 
-    def check_num_marker(self, num):
-        cur_num = self.db.fetchval("SELECT count(*) FROM markers")
+    async def check_num_marker(self, num):
+        cur_num = await self.db.fetchval("SELECT count(*) FROM markers")
         self.assertEquals(num, cur_num)
 
-    def test(self):
-        self.check_num_marker(0)
-        update(1, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
-        self.check_num_marker(50)
+    async def test(self):
+        await self.check_num_marker(0)
+        await update(
+            self.db,
+            1,
+            "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2",
+        )
+        await self.check_num_marker(50)
 
-    def test_update(self):
-        self.check_num_marker(0)
-        update(1, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-05-20.xml.bz2")
-        self.check_num_marker(48)
+    async def test_update(self):
+        await self.check_num_marker(0)
+        await update(
+            self.db,
+            1,
+            "tests/Analyser_Osmosis_Soundex-france_alsace-2014-05-20.xml.bz2",
+        )
+        await self.check_num_marker(48)
 
-        update(1, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
-        self.check_num_marker(50)
+        await update(
+            self.db,
+            1,
+            "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2",
+        )
+        await self.check_num_marker(50)
 
-    def test_duplicate_update(self):
-        self.check_num_marker(0)
-        update(1, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
-        self.check_num_marker(50)
+    async def test_duplicate_update(self):
+        await self.check_num_marker(0)
+        await update(
+            self.db,
+            1,
+            "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2",
+        )
+        await self.check_num_marker(50)
 
         with self.assertRaises(OsmoseUpdateAlreadyDone):
-            update(1, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
-        self.check_num_marker(50)
+            await update(
+                self.db,
+                1,
+                "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2",
+            )
+        await self.check_num_marker(50)
 
-    def test_two_sources(self):
-        self.check_num_marker(0)
-        update(1, "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2")
-        self.check_num_marker(50)
+    async def test_two_sources(self):
+        await self.check_num_marker(0)
+        await update(
+            self.db,
+            1,
+            "tests/Analyser_Osmosis_Soundex-france_alsace-2014-06-17.xml.bz2",
+        )
+        await self.check_num_marker(50)
 
-        update(
+        await update(
+            self.db,
             2,
             "tests/Analyser_Osmosis_Broken_Highway_Level_Continuity-france_reunion-2014-06-11.xml.bz2",
         )
-        self.check_num_marker(50 + 99)
+        await self.check_num_marker(50 + 99)
 
 
-if __name__ == "__main__":
+async def main():
     sources = utils.get_sources()
     if len(sys.argv) == 1:
         for k in sorted([int(x) for x in sources.keys()]):
@@ -750,4 +780,9 @@ if __name__ == "__main__":
     elif sys.argv[1] == "--help":
         show("usage: update.py <source number> <url>")
     else:
-        update(utils.get_sources()[sys.argv[1]], sys.argv[2])
+        db = database.get_dbconn()
+        await update(db, utils.get_sources()[sys.argv[1]], sys.argv[2])
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

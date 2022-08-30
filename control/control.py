@@ -72,7 +72,7 @@ LIMIT 1
         with open(save_filename, "wb") as f:
             f.write(await content.read())
 
-        update.update(source_id, save_filename, remote_ip=remote_ip)
+        await update.update(db, source_id, save_filename, remote_ip=remote_ip)
         os.unlink(save_filename)
 
     except update.OsmoseUpdateAlreadyDone:
