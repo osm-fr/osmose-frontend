@@ -5,8 +5,9 @@ import time
 from typing import Any, Dict, List, Optional
 from xml.sax import handler, make_parser
 
-import psycopg2
+import dateutil.parser
 from asyncpg import Connection
+from asyncpg.exceptions import PostgresError
 
 from modules.dependencies import database
 from modules_legacy import utils
@@ -26,25 +27,6 @@ class OsmoseUpdateAlreadyDone(Exception):
     pass
 
 
-num_sql_run = 0
-
-
-def execute_sql(dbcurs, sql: str, args=None):
-    global num_sql_run
-    try:
-        if args is None:
-            dbcurs.execute(sql)
-        else:
-            dbcurs.execute(sql, args)
-    except Exception:
-        print(sql, args)
-        raise
-    num_sql_run += 1
-    if num_sql_run % 10000 == 0:
-        print(".", end=" ")
-        sys.stdout.flush()
-
-
 async def update(
     db: Connection,
     source_id: int,
@@ -52,33 +34,48 @@ async def update(
     logger: printlogger = printlogger(),
     remote_ip: Optional[str] = None,
 ):
+    q: asyncio.Queue = asyncio.Queue()
 
-    #  open connections
-    dbconn = utils.get_dbconn()
-    dbcurs = dbconn.cursor()
+    async def sync_parser():
+        #  xml parser
+        parser = make_parser()
+        parser.setContentHandler(update_parser(q))
 
-    #  xml parser
-    parser = make_parser()
-    parser.setContentHandler(update_parser(source_id, fname, remote_ip, dbconn, dbcurs))
+        #  open the file
+        if fname.endswith(".bz2"):
+            import bz2
 
-    #  open the file
-    if fname.endswith(".bz2"):
-        import bz2
+            f = bz2.BZ2File(fname)
+        elif fname.endswith(".gz"):
+            import gzip
 
-        f = bz2.BZ2File(fname)
-    elif fname.endswith(".gz"):
-        import gzip
+            f = gzip.open(fname)
+        else:
+            f = open(fname)
 
-        f = gzip.open(fname)
-    else:
-        f = open(fname)
+        #  parse the file
+        parser.parse(f)
 
-    #  parse the file
-    parser.parse(f)
+        #  close and delete
+        f.close()
+        del f
+
+    async def async_parser():
+        await async_update_parser(source_id, fname, remote_ip, db).parse(q)
+
+    tasks = [
+        asyncio.create_task(sync_parser()),
+        asyncio.create_task(async_parser()),
+    ]
+    await asyncio.wait(tasks, return_when=asyncio.FIRST_EXCEPTION)
+
+    if not tasks[0].cancelled() and tasks[0].exception():
+        raise tasks[0].exception()
+    if not tasks[1].cancelled() and tasks[1].exception():
+        raise tasks[1].exception()
 
     #  update subtitle from new errors
-    execute_sql(
-        dbcurs,
+    await db.execute(
         """
 UPDATE
   markers_status
@@ -87,55 +84,45 @@ SET
 FROM
   markers
 WHERE
-  markers.source_id = %s AND
+  markers.source_id = $1 AND
   markers_status.item = markers.item AND
   markers_status.uuid = markers.uuid
 """,
-        (source_id,),
+        source_id,
     )
 
     #  #  remove false positive no longer present
-    #    execute_sql(dbcurs, """DELETE FROM markers_status
-    #                      WHERE (source_id,class,elems) NOT IN (SELECT source_id,class,elems FROM markers WHERE source_id = %s) AND
-    #                            source_id = %s AND
+    #    await db.execute("""DELETE FROM markers_status
+    #                      WHERE (source_id,class,elems) NOT IN (SELECT source_id,class,elems FROM markers WHERE source_id = $1) AND
+    #                            source_id = $2 AND
     #                            date < now()-interval '7 day'""",
-    #                   (source_id, source_id, ))
+    #                   source_id, source_id)
 
-    execute_sql(
-        dbcurs,
+    await db.execute(
         """
 DELETE FROM
   markers
 USING
   markers_status
 WHERE
-  markers.source_id = %s AND
+  markers.source_id = $1 AND
   markers_status.uuid = markers.uuid
 """,
-        (source_id,),
+        source_id,
     )
 
-    execute_sql(
-        dbcurs,
+    await db.execute(
         """UPDATE markers_counts
                       SET count = (SELECT count(*) FROM markers
                                    WHERE markers.source_id = markers_counts.source_id AND
                                          markers.class = markers_counts.class)
-                      WHERE markers_counts.source_id = %s""",
-        (source_id,),
+                      WHERE markers_counts.source_id = $1""",
+        source_id,
     )
 
-    #  commit and close
-    dbconn.commit()
-    dbconn.close()
 
-    #  close and delete
-    f.close()
-    del f
-
-
-def update_class(
-    _dbcurs,
+async def update_class(
+    _db: Connection,
     _source_id: int,
     _class_id: int,
     _class_item: int,
@@ -152,12 +139,12 @@ def update_class(
 ):
     # Commit class update on its own transaction. Avoid lock the class table and block other updates.
     try:
-        db_local = database.get_dbconn()
-        db_local.execute(
+        db_local = await database.get_dbconn()
+        await db_local.execute(
             """
 INSERT INTO class (class, item, title, level, tags, detail, fix, trap, example, source, resource, timestamp)
 VALUES
-    ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+    ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, to_timestamp($12))
 ON CONFLICT (item, class) DO
 UPDATE SET
         title = $3,
@@ -169,11 +156,11 @@ UPDATE SET
         example = $9,
         source = $10,
         resource = $11,
-        timestamp = $12
+        timestamp = to_timestamp($12)
 WHERE
     class.class = $1 AND
     class.item = $2 AND
-    class.timestamp < $12 AND
+    class.timestamp < to_timestamp($12) AND
     (
         class.title IS DISTINCT FROM $3 OR
         class.level IS DISTINCT FROM $4 OR
@@ -200,31 +187,29 @@ WHERE
             ts,  # $12 timestamp
         )
     finally:
-        db_local.close()
+        if db_local:
+            await db_local.close()
 
     sql = """
 INSERT INTO markers_counts (source_id, class, item)
-VALUES (%(source)s, %(class)s, %(item)s)
+VALUES ($1, $2, $3)
 ON CONFLICT (source_id, class) DO
 UPDATE SET
-    item = %(item)s
+    item = $3
 WHERE
-    markers_counts.source_id = %(source)s AND
-    markers_counts.class = %(class)s
+    markers_counts.source_id = $1 AND
+    markers_counts.class = $2
 """
-    execute_sql(
-        _dbcurs,
+    await _db.execute(
         sql,
-        {
-            "source": _source_id,
-            "class": _class_id,
-            "item": _class_item,
-        },
+        _source_id,  # $1 source
+        _class_id,  # $2 class
+        _class_item,  # $3 item
     )
 
 
-def update_issue(
-    _dbcurs,
+async def update_issue(
+    _db: Connection,
     all_uuid: Optional[Dict[int, List[str]]],
     _error_locations,
     _source_id: int,
@@ -236,77 +221,106 @@ def update_issue(
     fixes: List[Fix],
     _error_texts: Optional[Dict[str, str]],
 ):
-    sql_uuid = "SELECT ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid AS uuid"
+    uuid = "('{' || encode(substring(digest($1::int || '/' || $2::int || '/' || $3::int || '/' || $4, 'sha256') from 1 for 16), 'hex') || '}')::uuid"
+    sql_uuid = "SELECT " + uuid + " AS uuid"
 
     #  sql template
-    sql_marker = """
+    sql_marker = (
+        """
 INSERT INTO markers (uuid, source_id, class, item, lat, lon, elems, fixes, subtitle)
 VALUES (
-    ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid,
-    %(source)s,
-    %(class)s,
-    %(item)s,
-    %(lat)s,
-    %(lon)s,
-    %(elems)s::jsonb[],
-    %(fixes)s::jsonb[],
-    %(subtitle)s
+    """
+        + uuid
+        + """, $1, $2, $5, $6, $7, $8, $9, $10
 )
 ON CONFLICT (uuid) DO
 UPDATE SET
-    item = %(item)s,
-    lat = %(lat)s,
-    lon = %(lon)s,
-    elems = %(elems)s::jsonb[],
-    fixes = %(fixes)s::jsonb[],
-    subtitle = %(subtitle)s
+    item = $5,
+    lat = $6,
+    lon = $7,
+    elems = $8,
+    fixes = $9,
+    subtitle = $10
 WHERE
-    markers.uuid = ('{' || encode(substring(digest(%(source)s || '/' || %(class)s || '/' || %(subclass)s || '/' || %(elems_sig)s, 'sha256') from 1 for 16), 'hex') || '}')::uuid AND
-    markers.source_id = %(source)s AND
-    markers.class = %(class)s AND
+    markers.uuid = """
+        + uuid
+        + """ AND
+    markers.source_id = $1 AND
+    markers.class = $2 AND
     (
-        markers.item IS DISTINCT FROM %(item)s OR
-        markers.lat IS DISTINCT FROM %(lat)s OR
-        markers.lon IS DISTINCT FROM %(lon)s OR
-        markers.elems IS DISTINCT FROM %(elems)s::jsonb[] OR
-        markers.fixes IS DISTINCT FROM %(fixes)s::jsonb[] OR
-        markers.subtitle IS DISTINCT FROM %(subtitle)s
+        markers.item IS DISTINCT FROM $5 OR
+        markers.lat IS DISTINCT FROM $6 OR
+        markers.lon IS DISTINCT FROM $7 OR
+        markers.elems IS DISTINCT FROM $8 OR
+        markers.fixes IS DISTINCT FROM $9 OR
+        markers.subtitle IS DISTINCT FROM $10
     )
 RETURNING uuid
 """
+    )
 
     for location in _error_locations:
         lat = float(location["lat"])
         lon = float(location["lon"])
 
-        params = {
-            "source": _source_id,
-            "class": _class_id,
-            "subclass": _class_sub,
-            "item": _class_item,
-            "lat": lat,
-            "lon": lon,
-            "elems_sig": "_".join(
+        params = [
+            _source_id,  # $1 source
+            _class_id,  # $2 class
+            _class_sub,  # $3 subclass
+            "_".join(
                 map(
                     lambda elem: elem["type"] + str(elem["id"]),
                     _error_elements,
                 )
-            ),
-            "elems": list(map(lambda elem: json.dumps(elem), elems)) if elems else None,
-            "fixes": list(map(lambda fix: json.dumps(fix), fixes)) if fixes else None,
-            "subtitle": _error_texts,
-        }
+            ),  # $4 elems_sig
+        ]
+        r = await _db.fetchval(sql_uuid, *params)
+        if r and all_uuid is not None:
+            all_uuid[_class_id].append(r)
 
-        execute_sql(_dbcurs, sql_uuid, params)
-        r = _dbcurs.fetchone()
-        if r and r[0] and all_uuid is not None:
-            all_uuid[_class_id].append(r[0])
-
-        execute_sql(_dbcurs, sql_marker, params)
-        _dbcurs.fetchone()
+        params += [
+            _class_item,  # $5 item
+            lat,  # $6 lat
+            lon,  # $7 lon
+            list(map(lambda elem: json.dumps(elem), elems))
+            if elems
+            else None,  # $8 elems
+            list(map(lambda fix: json.dumps(fix), fixes))
+            if fixes
+            else None,  # $9 fixes
+            _error_texts,  # $10 subtitle
+        ]
+        await _db.fetchval(sql_marker, *params)
 
 
 class update_parser(handler.ContentHandler):
+    def __init__(self, q: asyncio.Queue):
+        self.q = q
+
+    def put(self, args):
+        done = False
+        while not done:
+            try:
+                self.q.put_nowait(args)
+                done = True
+            except asyncio.QueueFull:
+                time.sleep(0.05)
+                continue
+
+    def setDocumentLocator(self, *args):
+        self.put(["setDocumentLocator", *args])
+
+    def startElement(self, *args):
+        self.put(["startElement", *args])
+
+    def endElement(self, *args):
+        self.put(["endElement", *args])
+
+    def endDocument(self):
+        self.put(["endDocument"])
+
+
+class async_update_parser(handler.ContentHandler):
     _source_id: int
     _source_url: str
     _remote_ip: Optional[str]
@@ -336,31 +350,50 @@ class update_parser(handler.ContentHandler):
     _class_title: Dict[str, str]
 
     def __init__(
-        self, source_id: int, source_url: str, remote_ip: Optional[str], dbconn, dbcurs
+        self,
+        source_id: int,
+        source_url: str,
+        remote_ip: Optional[str],
+        db: Connection,
     ):
         self._source_id = source_id
         self._source_url = source_url
         self._remote_ip = remote_ip
-        self._dbconn = dbconn
-        self._dbcurs = dbcurs
+        self._db = db
         self._class_item = {}
         self._tstamp_updated = False
 
         self.element_stack = []
 
-    def setDocumentLocator(self, locator):
+    async def parse(self, q: asyncio.Queue):
+        while True:
+            a = await q.get()
+            f = a[0]
+            args = a[1:]
+            if f == "setDocumentLocator":
+                await self.setDocumentLocator(*args)
+            elif f == "startElement":
+                await self.startElement(*args)
+            elif f == "endElement":
+                await self.endElement(*args)
+            q.task_done()
+
+            if f == "endDocument":
+                break
+
+    async def setDocumentLocator(self, locator):
         self.locator = locator
 
-    def startElement(self, name: str, attrs: Dict[str, str]):
+    async def startElement(self, name: str, attrs: Dict[str, str]):
         if name == "analyser":
             self.all_uuid = {}
             self.mode = "analyser"
-            self.update_timestamp(attrs)
+            await self.update_timestamp(attrs)
 
         elif name == "analyserChange":
             self.all_uuid = None
             self.mode = "analyserChange"
-            self.update_timestamp(attrs)
+            await self.update_timestamp(attrs)
 
         elif name == "error":
             self._class_id = int(attrs["class"])
@@ -434,22 +467,19 @@ class update_parser(handler.ContentHandler):
             self._class_example[attrs["lang"]] = attrs["title"]
         elif name == "delete":
             # used by files generated with an .osc file
-            execute_sql(
-                self._dbcurs,
+            await self._db.execute(
                 """
 DELETE FROM
     markers
 WHERE
-    source_id = %s AND
-    ARRAY [%s::bigint] <@ marker_elem_ids(elems) AND
-    (SELECT bool_or(elem->>\'type\' = %s AND elem->>\'id\' = %s) FROM (SELECT unnest(elems)) AS t(elem))
+    source_id = $1 AND
+    ARRAY [$2::bigint] <@ marker_elem_ids(elems) AND
+    (SELECT bool_or(elem->>\'type\' = $3 AND elem->>\'id\' = $4) FROM (SELECT unnest(elems)) AS t(elem))
 """,
-                (
-                    self._source_id,
-                    str(attrs["id"]),
-                    attrs["type"][0].upper(),
-                    str(attrs["id"]),
-                ),
+                self._source_id,
+                str(attrs["id"]),
+                attrs["type"][0].upper(),
+                str(attrs["id"]),
             )
 
         elif name == "fixes":
@@ -462,15 +492,16 @@ WHERE
 
         self.element_stack.append(name)
 
-    def endElement(self, name: str):
+    async def endElement(self, name: str):
         self.element_stack.pop()
 
         if name == "analyser" and self.all_uuid:
             for class_id, uuid in self.all_uuid.items():
-                execute_sql(
-                    self._dbcurs,
-                    "DELETE FROM markers WHERE source_id = %s AND class = %s AND uuid != ALL (%s::uuid[])",
-                    (self._source_id, class_id, uuid),
+                await self._db.execute(
+                    "DELETE FROM markers WHERE source_id = $1 AND class = $2 AND uuid != ALL ($3::uuid[])",
+                    self._source_id,
+                    class_id,
+                    uuid,
                 )
 
         elif name == "error":
@@ -540,8 +571,8 @@ WHERE
                 )
             )
 
-            update_issue(
-                self._dbcurs,
+            await update_issue(
+                self._db,
                 self.all_uuid,
                 self._error_locations,
                 self._source_id,
@@ -568,8 +599,8 @@ WHERE
             if self.all_uuid is not None:
                 self.all_uuid[self._class_id] = []
 
-            update_class(
-                self._dbcurs,
+            await update_class(
+                self._db,
                 self._source_id,
                 self._class_id,
                 self._class_item[self._class_id],
@@ -590,65 +621,64 @@ WHERE
         elif name == "fix" and self.element_stack[-1] == "fixes":
             self._fixes.append(self._fix)
 
-    def update_timestamp(self, attrs: Dict[str, str]):
-        self.ts = attrs.get(
-            "timestamp", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
-        )
+    async def update_timestamp(self, attrs: Dict[str, str]):
+        if attrs.get("timestamp"):
+            self.ts = dateutil.parser.isoparse(attrs.get("timestamp")).timestamp()
+        else:
+            self.ts = time.time()
+
         self.version = attrs.get("version", None)
         self.analyser_version = attrs.get("analyser_version", None)
 
         if not self._tstamp_updated:
             try:
-                execute_sql(
-                    self._dbcurs,
-                    "INSERT INTO updates (source_id, timestamp, remote_url, remote_ip, version, analyser_version) VALUES(%s, %s, %s, %s, %s, %s);",
-                    (
-                        self._source_id,
-                        utils.pg_escape(self.ts),
-                        utils.pg_escape(self._source_url),
-                        utils.pg_escape(self._remote_ip),
-                        utils.pg_escape(self.version),
-                        utils.pg_escape(self.analyser_version),
-                    ),
-                )
-            except psycopg2.IntegrityError:
-                self._dbconn.rollback()
-                execute_sql(
-                    self._dbcurs,
-                    'SELECT count(*) FROM updates WHERE source_id = %s AND "timestamp" = %s',
-                    (self._source_id, utils.pg_escape(self.ts)),
-                )
-                r = self._dbcurs.fetchone()
-                if r["count"] == 1:
-                    raise OsmoseUpdateAlreadyDone(
-                        f"source={self._source_id} and timestamp={self.ts} are already present"
-                    )
-                else:
-                    raise
-
-            execute_sql(
-                self._dbcurs,
-                "UPDATE updates_last SET timestamp=%s, version=%s, analyser_version=%s, remote_ip=%s WHERE source_id=%s;",
-                (
-                    utils.pg_escape(self.ts),
-                    utils.pg_escape(self.version),
-                    utils.pg_escape(self.analyser_version),
-                    utils.pg_escape(self._remote_ip),
+                await self._db.execute(
+                    "INSERT INTO updates (source_id, timestamp, remote_url, remote_ip, version, analyser_version) VALUES($1, to_timestamp($2), $3, $4, $5, $6)",
                     self._source_id,
-                ),
-            )
-            if self._dbcurs.rowcount == 0:
-                execute_sql(
-                    self._dbcurs,
-                    "INSERT INTO updates_last(source_id, timestamp, version, analyser_version, remote_ip) VALUES(%s, %s, %s, %s, %s);",
-                    (
-                        self._source_id,
-                        utils.pg_escape(self.ts),
-                        utils.pg_escape(self.version),
-                        utils.pg_escape(self.analyser_version),
-                        utils.pg_escape(self._remote_ip),
-                    ),
+                    self.ts,
+                    self._source_url,
+                    self._remote_ip,
+                    self.version,
+                    self.analyser_version,
                 )
+
+            except PostgresError:
+                try:
+                    db_local = await database.get_dbconn()
+                    r = await db_local.fetchval(
+                        "SELECT count(*) FROM updates WHERE source_id = $1 AND timestamp = to_timestamp($2)",
+                        self._source_id,
+                        self.ts,
+                    )
+                    if r == 1:
+                        raise OsmoseUpdateAlreadyDone(
+                            f"source={self._source_id} and timestamp={self.ts} are already present"
+                        )
+                    else:
+                        raise
+                finally:
+                    if db_local:
+                        await db_local.close()
+
+            status = await self._db.execute(
+                "UPDATE updates_last SET timestamp=to_timestamp($1), version=$2, analyser_version=$3, remote_ip=$4 WHERE source_id=$5",
+                self.ts,
+                self.version,
+                self.analyser_version,
+                self._remote_ip,
+                self._source_id,
+            )
+            if status and status[0] == "C":
+                rowcount = int(status[5:].split(" ")[1])
+                if rowcount == 0:
+                    await self._db.execute(
+                        "INSERT INTO updates_last(source_id, timestamp, version, analyser_version, remote_ip) VALUES($1, to_timestamp($2), $3, $4, $5)",
+                        self._source_id,
+                        self.ts,
+                        self.version,
+                        self.analyser_version,
+                        self._remote_ip,
+                    )
 
             self._tstamp_updated = True
 
