@@ -1,5 +1,6 @@
 import os
 import sys
+import tempfile
 
 from asyncpg import Connection
 from fastapi import APIRouter, Depends, Form, HTTPException, Request, UploadFile
@@ -68,12 +69,9 @@ LIMIT 1
                 status_code=406, detail="FAIL: File extension not allowed."
             )
 
-        save_filename = os.path.join(utils.dir_results, content.filename)
-        with open(save_filename, "wb") as f:
+        with tempfile.NamedTemporaryFile(mode="wb", suffix=ext) as f:
             f.write(await content.read())
-
-        await update.update(db, source_id, save_filename, remote_ip=remote_ip)
-        os.unlink(save_filename)
+            await update.update(db, source_id, f.name, remote_ip=remote_ip)
 
     except update.OsmoseUpdateAlreadyDone:
         raise HTTPException(status_code=400, detail="FAIL: Already up to date")
