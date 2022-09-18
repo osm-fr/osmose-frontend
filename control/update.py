@@ -255,7 +255,7 @@ async def update_issue(
             '/' ||
             $2::int ||
             '/' ||
-            $3::int ||
+            $3::bigint ||
             '/' ||
             $4, 'sha256'
         ) from 1 for 16), 'hex') ||
