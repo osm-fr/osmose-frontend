@@ -68,7 +68,10 @@ async def update(
         asyncio.create_task(sync_parser()),
         asyncio.create_task(async_parser()),
     ]
-    await asyncio.wait(tasks, return_when=asyncio.FIRST_EXCEPTION)
+    done, pending = await asyncio.wait(tasks, return_when=asyncio.FIRST_EXCEPTION)
+
+    for task in pending:
+        task.cancel()
 
     if not tasks[0].cancelled() and tasks[0].exception():
         raise tasks[0].exception()
@@ -167,6 +170,7 @@ async def update_class(
 ):
     # Commit class update on its own transaction. Avoid lock the class table and block other updates.
     try:
+        db_local = None
         db_local = await database.get_dbconn()
         await db_local.execute(
             """
@@ -515,7 +519,7 @@ WHERE
     (SELECT bool_or(elem->>\'type\' = $3 AND elem->>\'id\' = $4) FROM (SELECT unnest(elems)) AS t(elem))
 """,
                 self._source_id,
-                str(attrs["id"]),
+                int(attrs["id"]),
                 attrs["type"][0].upper(),
                 str(attrs["id"]),
             )

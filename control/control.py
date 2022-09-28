@@ -71,6 +71,7 @@ LIMIT 1
 
         with tempfile.NamedTemporaryFile(mode="wb", suffix=ext) as f:
             f.write(await content.read())
+            f.flush()
             await update.update(db, source_id, f.name, remote_ip=remote_ip)
 
     except update.OsmoseUpdateAlreadyDone:
@@ -132,13 +133,13 @@ WHERE
             "version": 1,
             "timestamp": str(r["timestamp"].replace(tzinfo=None)),
             "analyser_version": str(r["analyser_version"] or ""),
-            "nodes": _status_object(db, "N", r["source_id"])
+            "nodes": await _status_object(db, "N", r["source_id"])
             if objects is not False
             else None,
-            "ways": _status_object(db, "W", r["source_id"])
+            "ways": await _status_object(db, "W", r["source_id"])
             if objects is not False
             else None,
-            "relations": _status_object(db, "R", r["source_id"])
+            "relations": await _status_object(db, "R", r["source_id"])
             if objects is not False
             else None,
         }
