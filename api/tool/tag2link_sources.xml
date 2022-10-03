@@ -60,6 +60,7 @@
             <link name="View %name% article" href="https://%k.1:v.1:en%.wikipedia.org/wiki/%v.2:v.1%" />
         </rule>
         <rule>
+            <condition k="(operator:|network:|brand:|architect:|artist:|subject:|name:etymology:|species:|genus:|flag:|buried:)?wikidata" />
             <link name="View Wikidata page" href="https://www.wikidata.org/wiki/%v%" />
         </rule>
         <rule>
