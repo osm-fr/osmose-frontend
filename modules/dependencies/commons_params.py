@@ -30,7 +30,7 @@ class Params:
     zoom: Optional[int]
     limit: int
     country: Optional[str]
-    useDevItem: bool
+    useDevItem: Optional[str]
     status: Optional[Status]
     start_date: Optional[str]
     end_date: Optional[str]
@@ -53,7 +53,7 @@ class Params:
         zoom: Optional[int],
         limit: int,
         country: Optional[str],
-        useDev: bool,
+        useDev: Optional[str],
         status: Optional[Status],
         start_date: Optional[str],
         end_date: Optional[str],
@@ -146,7 +146,7 @@ async def params(
     zoom: int = 10,
     limit: Optional[int] = 100,
     country: Optional[str] = None,
-    useDevItem: bool = False,
+    useDevItem: Optional[str] = None,
     status: Optional[Status] = "open",
     start_date: Optional[str] = None,
     end_date: Optional[str] = None,

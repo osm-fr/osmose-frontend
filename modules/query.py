@@ -43,7 +43,7 @@ def _build_param(
     users: Optional[List[str]],
     classs: Optional[List[int]],
     country: Optional[str],
-    useDevItem: bool,
+    useDevItem: Optional[str],
     status,  #: Optional[Status],
     tags: Optional[List[str]],
     fixable,  #: Optional[Fixable],
