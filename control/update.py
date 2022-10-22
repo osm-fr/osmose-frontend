@@ -324,12 +324,8 @@ RETURNING uuid
             _class_item,  # $5 item
             lat,  # $6 lat
             lon,  # $7 lon
-            list(map(lambda elem: json.dumps(elem), elems))
-            if elems
-            else None,  # $8 elems
-            list(map(lambda fix: json.dumps(fix), fixes))
-            if fixes
-            else None,  # $9 fixes
+            elems if elems else None,  # $8 elems
+            fixes if fixes else None,  # $9 fixes
             _error_texts,  # $10 subtitle
         ]
         await _db.fetchval(sql_marker, *params)
