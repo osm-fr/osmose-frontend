@@ -3,7 +3,7 @@
 
 import sys
 
-import utils
+from modules_legacy import utils
 
 conn = utils.get_dbconn()
 # psycopg2.extras.register_hstore(conn, globally=True, oid=1408668)
@@ -54,7 +54,7 @@ INSERT INTO marker_elem (marker_id, elem_index, data_type, id, tags, username)
 
         elems = []
         if res["data"]:
-            for i in range(len(res["data"]) / 2):
+            for i in range(len(res["data"]) // 2):
                 if res["data"][2 * i].startswith("##"):
                     elems.append([res["data"][2 * i][2:], res["data"][2 * i + 1], {}])
                 else:

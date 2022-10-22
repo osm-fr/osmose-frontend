@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from typing import Dict, Set
+
 from modules_legacy import utils
 
 all_flags = [
@@ -57,8 +59,8 @@ where items.item IS NULL
 order by m.item;"""
     dbcurs.execute(sql)
 
-    prev_cat = ""
-    colors = {}
+    prev_cat = -1
+    colors: Dict[int, Set[str]] = {}
     items = {}
 
     for res in dbcurs.fetchall():

@@ -54,10 +54,10 @@ if __name__ == "__main__":
 
         for line in codecs.open("database/" + typ + "_menu.txt", "r", "utf-8"):
             (item, s) = line.split("|")
-            item = int(item)
+            item_i = int(item)
             s = s.strip()[3:-2]
             translations = t.translate(s)
             for (l, s) in translations.items():
-                dbcurs.execute(sql, (l, l, s, item))
+                dbcurs.execute(sql, (l, l, s, item_i))
 
     dbconn.commit()

@@ -1,10 +1,6 @@
 #! /usr/bin/env python3
 
-try:
-    import builtins
-except ImportError:
-    import __builtin__ as builtins
-
+import builtins
 import importlib
 import inspect
 import sys
