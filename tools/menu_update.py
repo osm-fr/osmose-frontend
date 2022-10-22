@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 import codecs
 import os
+
 import polib
+
 from modules_legacy import utils
 
-class OsmoseTranslation:
 
+class OsmoseTranslation:
     def __init__(self):
         self.languages = []
         self.trans = {}
@@ -25,33 +27,37 @@ class OsmoseTranslation:
 
     def translate(self, str, args=()):
         out = {}
-        out["en"] = str % args   # english version
+        out["en"] = str % args  # english version
         for l in self.languages:
             if str in self.trans[l] and self.trans[l][str] != "":
                 out[l] = self.trans[l][str] % args
         return out
 
+
 if __name__ == "__main__":
 
-  t = OsmoseTranslation()
+    t = OsmoseTranslation()
 
-  dbconn = utils.get_dbconn()
-  dbcurs = dbconn.cursor()
+    dbconn = utils.get_dbconn()
+    dbcurs = dbconn.cursor()
 
-  types = {
-    "categories": "id",
-    "items": "item"
-  }
+    types = {"categories": "id", "items": "item"}
 
-  for typ, id in types.items():
-    sql = "update " + typ + " set menu = coalesce(menu, json_build_object(%s,'')::jsonb) || json_build_object(%s, %s)::jsonb where " + id + " = %s;"
+    for typ, id in types.items():
+        sql = (
+            "update "
+            + typ
+            + " set menu = coalesce(menu, json_build_object(%s,'')::jsonb) || json_build_object(%s, %s)::jsonb where "
+            + id
+            + " = %s;"
+        )
 
-    for line in codecs.open("database/" + typ + "_menu.txt", "r", "utf-8"):
-      (item, s) = line.split("|")
-      item = int(item)
-      s = s.strip()[3:-2]
-      translations = t.translate(s)
-      for (l, s) in translations.items():
-        dbcurs.execute(sql, (l, l, s, item))
+        for line in codecs.open("database/" + typ + "_menu.txt", "r", "utf-8"):
+            (item, s) = line.split("|")
+            item = int(item)
+            s = s.strip()[3:-2]
+            translations = t.translate(s)
+            for (l, s) in translations.items():
+                dbcurs.execute(sql, (l, l, s, item))
 
-  dbconn.commit()
+    dbconn.commit()

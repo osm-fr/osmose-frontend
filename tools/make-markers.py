@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import subprocess, sys, os
-from modules_legacy import utils, query_meta
+import os
+import subprocess
+import sys
+
+from modules_legacy import query_meta, utils
 
 ################################################################################
 ## symboles
@@ -33,6 +36,7 @@ from modules_legacy import utils, query_meta
 ## h H at 90°
 ## Dd tow half-circle
 
+
 def get_symb(symbole):
     if symbole == "O":
         return "<circle cx='8' cy='8' r='3' />"
@@ -43,35 +47,41 @@ def get_symb(symbole):
     if symbole == "P":
         l1 = "<path d='M 9,11 L 7,11 L 7,5 L 9,5 L 9,11 z' />"
         l2 = "<path d='M 11,9 L 5,9 L 5,7 L 11,7 L 11,9 z' />"
-        return l1+l2
+        return l1 + l2
     if symbole == "F":
-        l1 = "<path transform='rotate(45 8 8)' d='M 9,12 L 7,12 L 7,4 L 9,4 L 9,12 z' />"
-        l2 = "<path transform='rotate(45 8 8)' d='M 12,9 L 4,9 L 4,7 L 12,7 L 12,9 z' />"
-        return l1+l2
+        l1 = (
+            "<path transform='rotate(45 8 8)' d='M 9,12 L 7,12 L 7,4 L 9,4 L 9,12 z' />"
+        )
+        l2 = (
+            "<path transform='rotate(45 8 8)' d='M 12,9 L 4,9 L 4,7 L 12,7 L 12,9 z' />"
+        )
+        return l1 + l2
     if symbole == "M":
         return "<path d='M 11,9 L 5,9 L 5,7 L 11,7 L 11,9 z' />"
     if symbole == "=":
         l1 = "<path d='M 11,9 L 5,9 L 5,11 L 11,11 L 11,9 z' />"
         l2 = "<path d='M 11,7 L 5,7 L 5,5 L 11,5 L 11,7 z' />"
-        return l1+l2
+        return l1 + l2
     if symbole == "|":
         return "<path d='M 9,11 L 7,11 L 7,5 L 9,5 L 9,11 z' />"
     if symbole == "||":
         l1 = "<path transform='rotate(90 8 8)' d='M 11,9 L 5,9 L 5,11 L 11,11 L 11,9 z' />"
-        l2 = "<path transform='rotate(90 8 8)' d='M 11,7 L 5,7 L 5,5 L 11,5 L 11,7 z' />"
-        return l1+l2
+        l2 = (
+            "<path transform='rotate(90 8 8)' d='M 11,7 L 5,7 L 5,5 L 11,5 L 11,7 z' />"
+        )
+        return l1 + l2
     if symbole == "::":
         l1 = "<path d='M 11,9 L 9,9 L 9,11 L 11,11 L 11,9 z' />"
         l2 = "<path d='M 11,7 L 9,7 L 9,5 L 11,5 L 11,7 z' />"
         l3 = "<path d='M 7,9 L 5,9 L 5,11 L 7,11 L 7,9 z' />"
         l4 = "<path d='M 7,7 L 5,7 L 5,5 L 7,5 L 7,7 z' />"
-        return l1+l2+l3+l4
+        return l1 + l2 + l3 + l4
     if symbole == ".:.":
         l1 = "<path d='M 11,9 L 9,9 L 9,11 L 11,11 L 11,9 z' />"
         l2 = "<path d='M 11,7 L 9,7 L 9,5 L 11,5 L 11,7 z' />"
         l3 = "<path d='M 7,9 L 5,9 L 5,11 L 7,11 L 7,9 z' />"
         l4 = "<path d='M 7,7 L 5,7 L 5,5 L 7,5 L 7,7 z' />"
-        return "<g transform='rotate(45 8 8)'>"+l1+l2+l3+l4+"</g>"
+        return "<g transform='rotate(45 8 8)'>" + l1 + l2 + l3 + l4 + "</g>"
     if symbole == "T":
         return "<path d='M 5,11 L 5,5 L 11,5 L 5,11 z' />"
     if symbole == "t":
@@ -83,11 +93,11 @@ def get_symb(symbole):
     if symbole == "L'":
         l1 = "<path d='M 5,5 L 11,5 L 11,7 L 7,7 L 7,11 L 5,11 z' />"
         l2 = "<path d='M 11,11 L 9,11 L 9,9 L 11,9 z' />"
-        return l1+l2
+        return l1 + l2
     if symbole == ".l":
         l1 = "<path d='M 11,11 L 11,5 L 9,5 L 9,9 L 5,9 L 5,11 z' />"
         l2 = "<path d='M 5,5 L 7,5 L 7,7 L 5,7 z' />"
-        return l1+l2
+        return l1 + l2
     if symbole == "[]":
         return "<path d='M 5,5 L 11,5 L 11,11 L 5,11 z M 7,7 L 7,9 L 9,9 L 9,7 z' />"
     if symbole == ".":
@@ -95,18 +105,21 @@ def get_symb(symbole):
     if symbole == "'.":
         l1 = "<path d='M 11,8 L 8,8 L 8,11 L 11,11 L 11,8 z' />"
         l2 = "<path d='M 8,8 L 5,8 L 5,5 L 8,5 L 8,8 z' />"
-        return l1+l2
+        return l1 + l2
     if symbole == "/":
-        return "<path transform='rotate(45 8 8)' d='M 9,12 L 7,12 L 7,4 L 9,4 L 9,12 z' />"
+        return (
+            "<path transform='rotate(45 8 8)' d='M 9,12 L 7,12 L 7,4 L 9,4 L 9,12 z' />"
+        )
     if symbole == "=-":
         l1 = "<path d='M 11,9 L 8,9 L 8,7 L 11,7 L 11,9 z' />"
         l2 = "<path d='M 8,7 L 5,7 L 5,5 L 8,5 L 8,7 z' />"
         l3 = "<path d='M 8,11 L 5,11 L 5,9 L 8,9 L 8,11 z' />"
-        return l1+l2+l3
+        return l1 + l2 + l3
     if symbole == "H":
         return "<path d='M 5,5 L 7,5 L 7,7 L 9,7 L 9,5 L 11,5 L 11,11 L 9,11 L 9,9 L 7,9 L 7,11 L 5,11 z' />"
     if symbole == "h":
         return "<path transform='rotate(90 8 8)' d='M 5,5 L 7,5 L 7,7 L 9,7 L 9,5 L 11,5 L 11,11 L 9,11 L 9,9 L 7,9 L 7,11 L 5,11 z' />"
+
 
 ################################################################################
 ## marqueurs
@@ -114,10 +127,19 @@ def get_symb(symbole):
 ## M marqueur
 ## L légende
 
+
 def get_marker(contour, symbole, couleur):
-    dark_color = "#%0.2X%0.2X%0.2X" % (int(int(couleur[1:3], 16)*0.5), int(int(couleur[3:5], 16)*0.5), int(int(couleur[5:7], 16)*0.5))
-    mid_color = "#%0.2X%0.2X%0.2X" % (int(int(couleur[1:3], 16)*0.75), int(int(couleur[3:5], 16)*0.75), int(int(couleur[5:7], 16)*0.75))
-    if contour == "L": # légende
+    dark_color = "#%0.2X%0.2X%0.2X" % (
+        int(int(couleur[1:3], 16) * 0.5),
+        int(int(couleur[3:5], 16) * 0.5),
+        int(int(couleur[5:7], 16) * 0.5),
+    )
+    mid_color = "#%0.2X%0.2X%0.2X" % (
+        int(int(couleur[1:3], 16) * 0.75),
+        int(int(couleur[3:5], 16) * 0.75),
+        int(int(couleur[5:7], 16) * 0.75),
+    )
+    if contour == "L":  # légende
         h = 12
         l = h
         g = "translate(-2,-2) scale(1,1)"
@@ -126,10 +148,14 @@ def get_marker(contour, symbole, couleur):
         c += "<stop style='stop-color:" + couleur + "' offset='1' />"
         c += "</linearGradient></defs>"
         c += "<path style='fill:url(#gradient);' d='M 0.5,0.5 L 0.5,11.5 L 11.5,11.5 L 11.5,0.5 L 0.5,0.5 z' />"
-        c += "<path style='fill:none;stroke:" + mid_color + ";stroke-width:1px' d='M 1.5,1.5 L 1.5,10.5 L 10.5,10.5 L 10.5,1.5 L 1.5,1.5 z' />"
+        c += (
+            "<path style='fill:none;stroke:"
+            + mid_color
+            + ";stroke-width:1px' d='M 1.5,1.5 L 1.5,10.5 L 10.5,10.5 L 10.5,1.5 L 1.5,1.5 z' />"
+        )
         c += "<path style='fill:none;stroke:#000000;stroke-width:1px' d='M 0.5,0.5 L 0.5,11.5 L 11.5,11.5 L 11.5,0.5 L 0.5,0.5 z' />"
         m = get_symb(symbole)
-    if contour == "B": # bubble
+    if contour == "B":  # bubble
         h = 32
         l = 16
         g = "translate(0,1) scale(1,1)"
@@ -138,13 +164,33 @@ def get_marker(contour, symbole, couleur):
         c += "<stop style='stop-color:" + couleur + "' offset='1' />"
         c += "</linearGradient></defs>"
         c += "<path style='fill:url(#gradient)' d='m 8,31.75 c 2,-12 7.75,-18 7.75,-23.5 0,-4 -3.5,-8 -7.75,-8 -4.25,0 -7.75,4 -7.75,8 0,5.5 5.75,11.5 7.75,23.5 z' />"
-        c += "<path style='fill:none;stroke:" + mid_color + ";stroke-width:.75px' d='m 8,0.5 c -4.0986579,0 -7.5,3.8907009 -7.5,7.75 0,2.665945 1.4044222,5.527256 3.09375,9.21875 1.5774956,3.44712 3.3559017,7.676923 4.40625,13.125 1.0503483,-5.448077 2.828754,-9.67788 4.40625,-13.125 C 14.095578,13.777256 15.5,10.915945 15.5,8.25 15.5,4.3907009 12.098658,0.5 8,0.5 z' />"
+        c += (
+            "<path style='fill:none;stroke:"
+            + mid_color
+            + ";stroke-width:.75px' d='m 8,0.5 c -4.0986579,0 -7.5,3.8907009 -7.5,7.75 0,2.665945 1.4044222,5.527256 3.09375,9.21875 1.5774956,3.44712 3.3559017,7.676923 4.40625,13.125 1.0503483,-5.448077 2.828754,-9.67788 4.40625,-13.125 C 14.095578,13.777256 15.5,10.915945 15.5,8.25 15.5,4.3907009 12.098658,0.5 8,0.5 z' />"
+        )
         c += "<path style='fill:none;stroke:#000000;stroke-width:.5px' d='m 8,31.75 c 2,-12 7.75,-18 7.75,-23.5 0,-4 -3.5,-8 -7.75,-8 -4.25,0 -7.75,4 -7.75,8 0,5.5 5.75,11.5 7.75,23.5 z' />"
         m = get_symb(symbole)
-    head  = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n"
-    head += "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\""+str(l)+"\" height=\""+str(h)+"\">\n"
+    head = '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n'
+    head += (
+        '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="'
+        + str(l)
+        + '" height="'
+        + str(h)
+        + '">\n'
+    )
     tail = "</svg>"
-    return head + c + "\n<g transform='" + g + "' style='fill:#000000;'>\n" + m + "</g>\n" + tail
+    return (
+        head
+        + c
+        + "\n<g transform='"
+        + g
+        + "' style='fill:#000000;'>\n"
+        + m
+        + "</g>\n"
+        + tail
+    )
+
 
 ################################################################################
 
@@ -155,20 +201,25 @@ if __name__ == "__main__":
     all_items = []
     for g in query_meta._items(db):
         all_items += g["items"]
-    #all_items = [{"item":9999, "marker_flag":"=-", "marker_color":"#ff0000"}] # Test
-
+    # all_items = [{"item":9999, "marker_flag":"=-", "marker_color":"#ff0000"}] # Test
 
     marker_folder = os.path.join("..", "web_api", "static", "images", "markers")
-    subprocess.getstatusoutput("rm %s"%os.path.join(marker_folder,"*.png"))
+    subprocess.getstatusoutput("rm %s" % os.path.join(marker_folder, "*.png"))
     css = "/* sprite-loader-enable */\n"
     for i in all_items:
         print(i)
         for m in "LB":
-            file_svg = os.path.join(marker_folder, "marker-%s-%d.svg"%(m.lower(), i["item"]))
-            file_png = os.path.join(marker_folder, "marker-%s-%d.png"%(m.lower(), i["item"]))
-            open(file_svg,"w").write(get_marker(m, i["flag"], i["color"]))
-            #subprocess.getstatusoutput("rsvg %s %s"%(file_svg, file_png))
-            subprocess.getstatusoutput("rsvg-convert %s > %s"%(file_svg, file_png))
-        css += ".marker-l-{0} {{ background-image: url(marker-l-{0}.png); }}\n".format(i["item"])
+            file_svg = os.path.join(
+                marker_folder, "marker-%s-%d.svg" % (m.lower(), i["item"])
+            )
+            file_png = os.path.join(
+                marker_folder, "marker-%s-%d.png" % (m.lower(), i["item"])
+            )
+            open(file_svg, "w").write(get_marker(m, i["flag"], i["color"]))
+            # subprocess.getstatusoutput("rsvg %s %s"%(file_svg, file_png))
+            subprocess.getstatusoutput("rsvg-convert %s > %s" % (file_svg, file_png))
+        css += ".marker-l-{0} {{ background-image: url(marker-l-{0}.png); }}\n".format(
+            i["item"]
+        )
     open(os.path.join(marker_folder, "markers-l.css"), "w").write(css)
-    subprocess.getstatusoutput("rm %s"%os.path.join(marker_folder,"*.svg"))
+    subprocess.getstatusoutput("rm %s" % os.path.join(marker_folder, "*.svg"))

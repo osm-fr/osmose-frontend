@@ -1,17 +1,43 @@
 #!/usr/bin/env python3
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
-all_flags = ["O", "L", "K", "P", "M", "F", "=", "|", "||", "::", ".:.", "T", "t", "X", "><", "L'", "[]", ".", ".l", "'.", "/", "=-", "H", "h"]
+all_flags = [
+    "O",
+    "L",
+    "K",
+    "P",
+    "M",
+    "F",
+    "=",
+    "|",
+    "||",
+    "::",
+    ".:.",
+    "T",
+    "t",
+    "X",
+    "><",
+    "L'",
+    "[]",
+    ".",
+    ".l",
+    "'.",
+    "/",
+    "=-",
+    "H",
+    "h",
+]
 
 import pprint
+
 from modules_legacy import utils
 
 if __name__ == "__main__":
 
-  dbconn = utils.get_dbconn()
-  dbcurs = dbconn.cursor()
+    dbconn = utils.get_dbconn()
+    dbcurs = dbconn.cursor()
 
-  sql = """
+    sql = """
 CREATE TEMP TABLE marker_list_item AS
 WITH RECURSIVE t AS (
    (SELECT item FROM markers ORDER BY item LIMIT 1)  -- parentheses required
@@ -22,79 +48,81 @@ WITH RECURSIVE t AS (
    )
 SELECT item FROM t WHERE item IS NOT NULL;
 """
-  dbcurs.execute(sql)
+    dbcurs.execute(sql)
 
-  sql = """
+    sql = """
 select m.item 
 from marker_list_item m
 left join items on items.item = m.item
 where items.item IS NULL
 order by m.item;"""
-  dbcurs.execute(sql)
+    dbcurs.execute(sql)
 
-  prev_cat = ""
-  colors = {}
-  items = {}
+    prev_cat = ""
+    colors = {}
+    items = {}
 
-  for res in dbcurs.fetchall():
-  #  print res
-    item = int(res[0])
-    categ = int(item / 1000) * 10
-    if categ == 80:
-      fullcateg = categ + (item % 10)
-    else:
-      fullcateg = categ
-
-    if prev_cat != categ:
-      prev_cat = categ
-      avail_flags = {}
-      sql = "select item, marker_color, marker_flag from items where categorie_id = %s order by item"
-      dbcurs.execute(sql, (categ,))
-      for m in dbcurs.fetchall():
-        items[m["item"]] = (m["marker_color"], m["marker_flag"])
+    for res in dbcurs.fetchall():
+        #  print res
+        item = int(res[0])
+        categ = int(item / 1000) * 10
         if categ == 80:
-          fullcateg_i = categ + (m["item"] % 10)
+            fullcateg = categ + (item % 10)
         else:
-          fullcateg_i = categ
-        color = m["marker_color"]
-        if not fullcateg_i in colors:
-          colors[fullcateg_i] = set()
-        colors[fullcateg_i].add(color)
-        if color not in avail_flags:
-          avail_flags[color] = all_flags[:]
-        if m["marker_flag"] in avail_flags[color]:
-          avail_flags[color].remove(m["marker_flag"])
+            fullcateg = categ
 
-    chosen_color = None
-    chosen_flag = None
+        if prev_cat != categ:
+            prev_cat = categ
+            avail_flags = {}
+            sql = "select item, marker_color, marker_flag from items where categorie_id = %s order by item"
+            dbcurs.execute(sql, (categ,))
+            for m in dbcurs.fetchall():
+                items[m["item"]] = (m["marker_color"], m["marker_flag"])
+                if categ == 80:
+                    fullcateg_i = categ + (m["item"] % 10)
+                else:
+                    fullcateg_i = categ
+                color = m["marker_color"]
+                if not fullcateg_i in colors:
+                    colors[fullcateg_i] = set()
+                colors[fullcateg_i].add(color)
+                if color not in avail_flags:
+                    avail_flags[color] = all_flags[:]
+                if m["marker_flag"] in avail_flags[color]:
+                    avail_flags[color].remove(m["marker_flag"])
 
-    if categ == 80:
-      item_group = (item // 10) * 10
-      if (item_group + 0) in items:
-        chosen_flag = items[item_group+0][1]
-      elif (item_group + 1) in items:
-        chosen_flag = items[item_group+1][1]
-      elif (item_group + 2) in items:
-        chosen_flag = items[item_group+2][1]
+        chosen_color = None
+        chosen_flag = None
 
-    if chosen_flag:
-      for c in colors[fullcateg]:
-        if chosen_flag in avail_flags[c]:
-          chosen_color = c
-          continue
+        if categ == 80:
+            item_group = (item // 10) * 10
+            if (item_group + 0) in items:
+                chosen_flag = items[item_group + 0][1]
+            elif (item_group + 1) in items:
+                chosen_flag = items[item_group + 1][1]
+            elif (item_group + 2) in items:
+                chosen_flag = items[item_group + 2][1]
 
-    else:
-      for c in colors[fullcateg]:
-        if len(avail_flags[c]) > 0:
-          chosen_color = c
-          chosen_flag = avail_flags[c][0]
-          continue
+        if chosen_flag:
+            for c in colors[fullcateg]:
+                if chosen_flag in avail_flags[c]:
+                    chosen_color = c
+                    continue
 
-    if not chosen_color:
-      print("not enough available flags for item=%d" % item)
-      continue
+        else:
+            for c in colors[fullcateg]:
+                if len(avail_flags[c]) > 0:
+                    chosen_color = c
+                    chosen_flag = avail_flags[c][0]
+                    continue
 
-    print("insert into items values (%d, %d, '%s', '%s', NULL, ARRAY[1, 2, 3]);" % (item, categ, chosen_color, chosen_flag.replace("'", "''")))
-    avail_flags[chosen_color].remove(chosen_flag)
-    items[item] = (chosen_color, chosen_flag)
+        if not chosen_color:
+            print("not enough available flags for item=%d" % item)
+            continue
 
+        print(
+            "insert into items values (%d, %d, '%s', '%s', NULL, ARRAY[1, 2, 3]);"
+            % (item, categ, chosen_color, chosen_flag.replace("'", "''"))
+        )
+        avail_flags[chosen_color].remove(chosen_flag)
+        items[item] = (chosen_color, chosen_flag)
