@@ -212,22 +212,22 @@ if __name__ == "__main__":
     # all_items = [{"item":9999, "marker_flag":"=-", "marker_color":"#ff0000"}] # Test
 
     marker_folder = os.path.join("..", "web_api", "static", "images", "markers")
-    subprocess.getstatusoutput("rm %s" % os.path.join(marker_folder, "*.png"))
+    subprocess.getstatusoutput("rm " + os.path.join(marker_folder, "*.png"))
     css = "/* sprite-loader-enable */\n"
     for i in all_items:
         print(i)
         for m in "LB":
             file_svg = os.path.join(
-                marker_folder, "marker-%s-%d.svg" % (m.lower(), i["item"])
+                marker_folder, f"marker-{m.lower()}-{i['item']}.svg"
             )
             file_png = os.path.join(
-                marker_folder, "marker-%s-%d.png" % (m.lower(), i["item"])
+                marker_folder, f"marker-{m.lower()}-{i['item']}.png"
             )
             open(file_svg, "w").write(get_marker(m, i["flag"], i["color"]))
-            # subprocess.getstatusoutput("rsvg %s %s"%(file_svg, file_png))
-            subprocess.getstatusoutput("rsvg-convert %s > %s" % (file_svg, file_png))
+            # subprocess.getstatusoutput(f"rsvg {file_svg} {file_png}")
+            subprocess.getstatusoutput(f"rsvg-convert {file_svg} > {file_png}")
         css += ".marker-l-{0} {{ background-image: url(marker-l-{0}.png); }}\n".format(
             i["item"]
         )
     open(os.path.join(marker_folder, "markers-l.css"), "w").write(css)
-    subprocess.getstatusoutput("rm %s" % os.path.join(marker_folder, "*.svg"))
+    subprocess.getstatusoutput("rm " + os.path.join(marker_folder, "*.svg"))

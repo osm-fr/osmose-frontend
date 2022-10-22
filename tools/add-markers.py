@@ -116,12 +116,12 @@ order by m.item;"""
                     continue
 
         if not chosen_color:
-            print("not enough available flags for item=%d" % item)
+            print(f"Not enough available flags for item={item}")
             continue
 
+        flag = chosen_flag.replace("'", "''")
         print(
-            "insert into items values (%d, %d, '%s', '%s', NULL, ARRAY[1, 2, 3]);"
-            % (item, categ, chosen_color, chosen_flag.replace("'", "''"))
+            f"INSERT INTO items VALUES ({item}, {categ}, '{chosen_color}', '{flag}', NULL, ARRAY[1, 2, 3]);"
         )
         avail_flags[chosen_color].remove(chosen_flag)
         items[item] = (chosen_color, chosen_flag)

@@ -11,7 +11,7 @@ if __name__ == "__main__":
 
     tables = ["markers_counts", "markers", "markers_status", "updates"]
     for t in tables:
-        dbcurs.execute("SELECT source_id FROM %s GROUP BY source_id;" % t)
+        dbcurs.execute(f"SELECT source_id FROM {t} GROUP BY source_id")
         for res in dbcurs.fetchall():
             if res[0] not in sources:
-                print("DELETE FROM %s WHERE source_id = %d;" % (t, res[0]))
+                print(f"DELETE FROM {t} WHERE source_id = {res[0]};")

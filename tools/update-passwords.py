@@ -58,8 +58,7 @@ VALUES
             )
             if dbcurs.rowcount == 1:
                 print(
-                    "created password=%s where country=%s analyser=%s"
-                    % (password, country, analyser)
+                    f"Created password={password} where country={country} analyser={analyser}"
                 )
                 return
 
@@ -75,8 +74,7 @@ VALUES
                     (cur_source, password),
                 )
                 print(
-                    "inserted password=%s where country=%s analyser=%s"
-                    % (password, country, analyser)
+                    f"Inserted password={password} where country={country} analyser={analyser}"
                 )
                 return
 
@@ -86,8 +84,7 @@ VALUES
         if dbcurs.rowcount == 0:
             # otherwise, create a new entry in database
             print(
-                "inserting country=%s analyser=%s source=%s password=%s"
-                % (country, analyser, source, password)
+                f"Inserting country={country} analyser={analyser} source={source} password={password}"
             )
             try:
                 dbcurs.execute(
@@ -102,15 +99,13 @@ VALUES
 
             except psycopg2.IntegrityError:
                 print(
-                    "failure on country=%s analyser=%s password=%s"
-                    % (country, analyser, password)
+                    f"Failure on country={country} analyser={analyser} password={password}"
                 )
                 raise
 
         else:
             print(
-                "updated country=%s analyser=%s where password=%s"
-                % (country, analyser, password)
+                f"Updated country={country} analyser={analyser} where password={password}"
             )
             return
 
