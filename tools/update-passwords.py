@@ -7,7 +7,6 @@ except ImportError:
 
 import importlib
 import inspect
-import os
 import sys
 
 import psycopg2
@@ -29,7 +28,17 @@ if __name__ == "__main__":
         global source
 
         dbcurs.execute(
-            "SELECT id, password FROM sources JOIN sources_password ON sources.id = source_id WHERE country=%s AND analyser=%s;",
+            """
+SELECT
+    id,
+    password
+FROM sources
+    JOIN sources_password ON
+        sources.id = source_id
+WHERE
+    country=%s AND
+    analyser=%s
+""",
             (country, analyser),
         )
         if dbcurs.rowcount >= 1:
@@ -39,7 +48,12 @@ if __name__ == "__main__":
                     return
             # try to update password for an analyse
             dbcurs.execute(
-                "INSERT INTO sources_password (source_id, password) VALUES ((SELECT id FROM sources WHERE country=%s AND analyser=%s), %s);",
+                """
+INSERT INTO
+    sources_password (source_id, password)
+VALUES
+    ((SELECT id FROM sources WHERE country=%s AND analyser=%s), %s)
+""",
                 (country, analyser, password),
             )
             if dbcurs.rowcount == 1:

@@ -17,20 +17,20 @@ class OsmoseTranslation:
             if not fn.endswith(".po"):
                 continue
 
-            l = fn[:-3]
-            self.languages.append(l)
-            po = polib.pofile("../web/po/" + l + ".po")
-            self.trans[l] = {}
+            lang = fn[:-3]
+            self.languages.append(lang)
+            po = polib.pofile("../web/po/" + lang + ".po")
+            self.trans[lang] = {}
             for entry in po:
                 if entry.msgstr != "":
-                    self.trans[l][entry.msgid] = entry.msgstr
+                    self.trans[lang][entry.msgid] = entry.msgstr
 
     def translate(self, str, args=()):
         out = {}
         out["en"] = str % args  # english version
-        for l in self.languages:
-            if str in self.trans[l] and self.trans[l][str] != "":
-                out[l] = self.trans[l][str] % args
+        for lang in self.languages:
+            if str in self.trans[lang] and self.trans[lang][str] != "":
+                out[lang] = self.trans[lang][str] % args
         return out
 
 

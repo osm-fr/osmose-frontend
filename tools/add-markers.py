@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from modules_legacy import utils
+
 all_flags = [
     "O",
     "L",
@@ -28,9 +30,6 @@ all_flags = [
     "h",
 ]
 
-import pprint
-
-from modules_legacy import utils
 
 if __name__ == "__main__":
 
@@ -51,7 +50,7 @@ SELECT item FROM t WHERE item IS NOT NULL;
     dbcurs.execute(sql)
 
     sql = """
-select m.item 
+select m.item
 from marker_list_item m
 left join items on items.item = m.item
 where items.item IS NULL
@@ -83,7 +82,7 @@ order by m.item;"""
                 else:
                     fullcateg_i = categ
                 color = m["marker_color"]
-                if not fullcateg_i in colors:
+                if fullcateg_i not in colors:
                     colors[fullcateg_i] = set()
                 colors[fullcateg_i].add(color)
                 if color not in avail_flags:

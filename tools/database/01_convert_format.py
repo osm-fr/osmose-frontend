@@ -1,12 +1,8 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import cgi
-import os
-import re
 import sys
 
-import psycopg2.extras
 import utils
 
 conn = utils.get_dbconn()
