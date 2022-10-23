@@ -1,10 +1,12 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import asyncio
+
 from modules_legacy import utils
 
-if __name__ == "__main__":
 
+async def main():
     sources = [int(x) for x in utils.get_sources().keys()]
     dbconn = utils.get_dbconn()
     dbcurs = dbconn.cursor()
@@ -15,3 +17,7 @@ if __name__ == "__main__":
         for res in dbcurs.fetchall():
             if res[0] not in sources:
                 print(f"DELETE FROM {t} WHERE source_id = {res[0]};")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

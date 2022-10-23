@@ -1,5 +1,6 @@
 #! /usr/bin/env python3
 
+import asyncio
 import builtins
 import importlib
 import inspect
@@ -9,8 +10,8 @@ import psycopg2
 
 import modules_legacy.utils
 
-if __name__ == "__main__":
 
+async def main():
     dbconn = modules_legacy.utils.get_dbconn()
     dbcurs = dbconn.cursor()
 
@@ -143,3 +144,7 @@ VALUES
 
     dbconn.commit()
     dbconn.close()
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

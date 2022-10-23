@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import asyncio
 from typing import Dict, Set
 
 from modules_legacy import utils
@@ -33,8 +34,7 @@ all_flags = [
 ]
 
 
-if __name__ == "__main__":
-
+async def main():
     dbconn = utils.get_dbconn()
     dbcurs = dbconn.cursor()
 
@@ -127,3 +127,7 @@ order by m.item;"""
         )
         avail_flags[chosen_color].remove(chosen_flag)
         items[item] = (chosen_color, chosen_flag)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

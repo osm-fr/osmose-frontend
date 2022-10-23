@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import asyncio
 import codecs
 import os
 
@@ -34,8 +35,7 @@ class OsmoseTranslation:
         return out
 
 
-if __name__ == "__main__":
-
+async def main():
     t = OsmoseTranslation()
 
     dbconn = utils.get_dbconn()
@@ -61,3 +61,7 @@ if __name__ == "__main__":
                 dbcurs.execute(sql, (l, l, s, item_i))
 
     dbconn.commit()
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import asyncio
 import os
 import subprocess
 
@@ -202,8 +203,7 @@ def get_marker(contour, symbole, couleur):
     )
 
 
-if __name__ == "__main__":
-
+async def main():
     conn = utils.get_dbconn()
     db = conn.cursor()
     all_items = []
@@ -231,3 +231,7 @@ if __name__ == "__main__":
         )
     open(os.path.join(marker_folder, "markers-l.css"), "w").write(css)
     subprocess.getstatusoutput("rm " + os.path.join(marker_folder, "*.svg"))
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
