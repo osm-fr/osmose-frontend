@@ -88,26 +88,6 @@ def pg_escape(text):
         return str(text)
     return text.replace(u"'", u"''").replace(u'\\',u'\\\\')
 
-def get_sources():
-    conn = get_dbconn()
-    curs = conn.cursor()
-    curs.execute("SELECT id, password, country, analyser FROM sources JOIN sources_password ON sources.id = source_id;")
-    config = {}
-    for res in curs.fetchall():
-        src = {}
-        src["id"]         = str(res["id"])
-        src["password"]   = set([res["password"]])
-        src["country"]    = res["country"]
-        src["analyser"]   = res["analyser"]
-        src["comment"]    = res["analyser"] + "-" + res["country"]
-        if (src["id"] in config and
-            config[src["id"]]["country"] == src["country"] and
-            config[src["id"]]["analyser"] == src["analyser"]):
-            config[src["id"]]["password"].update(src["password"])
-        else:
-            config[src["id"]] = src
-    return config
-
 def show(s):
     print(s.encode("utf8"))
 

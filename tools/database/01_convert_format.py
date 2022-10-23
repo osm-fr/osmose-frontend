@@ -6,8 +6,6 @@ import sys
 from modules_legacy import utils
 
 conn = utils.get_dbconn()
-# psycopg2.extras.register_hstore(conn, globally=True, oid=1408668)
-# psycopg2.extras.register_hstore(conn)
 cur = conn.cursor("1")
 cur_mod = conn.cursor()
 

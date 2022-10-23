@@ -5,7 +5,8 @@ import asyncio
 import os
 import subprocess
 
-from modules_legacy import query_meta, utils
+from modules import query_meta
+from modules.dependencies import database
 
 # # Symboles
 
@@ -204,10 +205,9 @@ def get_marker(contour, symbole, couleur):
 
 
 async def main():
-    conn = utils.get_dbconn()
-    db = conn.cursor()
+    db = await database.get_dbconn()
     all_items = []
-    for g in query_meta._items(db):
+    for g in await query_meta._items(db):
         all_items += g["items"]
     # all_items = [{"item":9999, "marker_flag":"=-", "marker_color":"#ff0000"}] # Test
 

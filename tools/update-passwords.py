@@ -6,25 +6,21 @@ import importlib
 import inspect
 import sys
 
-import psycopg2
-
-import modules_legacy.utils
+from modules.dependencies import database
 
 
 async def main():
-    dbconn = modules_legacy.utils.get_dbconn()
-    dbcurs = dbconn.cursor()
+    db = await database.get_dbconn()
 
-    dbcurs.execute("SELECT COALESCE(max(id)+1, 1) FROM sources;")
-    for res in dbcurs.fetchall():
+    for res in await db.fetch("SELECT COALESCE(max(id)+1, 1) FROM sources"):
         source = res[0]
 
-    def update_pass(
+    async def update_pass(
         country, analyser, password, contact="Jocelyn Jaubert <jocelyn@osm1.crans.org>"
     ):
         global source
 
-        dbcurs.execute(
+        row = await db.fetch(
             """
 SELECT
     id,
@@ -33,68 +29,75 @@ FROM sources
     JOIN sources_password ON
         sources.id = source_id
 WHERE
-    country=%s AND
-    analyser=%s
+    country=$1 AND
+    analyser=$2
 """,
-            (country, analyser),
+            country,
+            analyser,
         )
-        if dbcurs.rowcount >= 1:
-            for r in dbcurs:
+        if len(row) >= 1:
+            for r in row:
                 prev_password = r["password"]
                 if prev_password == password:
                     return
             # try to update password for an analyse
-            dbcurs.execute(
+            await db.execute(
                 """
 INSERT INTO
     sources_password (source_id, password)
 VALUES
-    ((SELECT id FROM sources WHERE country=%s AND analyser=%s), %s)
+    ((SELECT id FROM sources WHERE country=$1 AND analyser=$2), $3)
 """,
-                (country, analyser, password),
+                country,
+                analyser,
+                password,
             )
-            if dbcurs.rowcount == 1:
-                print(
-                    f"Created password={password} where country={country} analyser={analyser}"
-                )
-                return
+            print(
+                f"Created password={password} where country={country} analyser={analyser}"
+            )
+            return
 
-        elif dbcurs.rowcount == 0:
-            dbcurs.execute(
-                "SELECT id FROM sources WHERE country=%s AND analyser=%s;",
-                (country, analyser),
+        else:
+            row = await db.fetch(
+                "SELECT id FROM sources WHERE country=$1 AND analyser=$2",
+                country,
+                analyser,
             )
-            if dbcurs.rowcount == 1:
-                cur_source = dbcurs.fetchone()["id"]
-                dbcurs.execute(
-                    "INSERT INTO sources_password (source_id, password) VALUES (%s, %s);",
-                    (cur_source, password),
+            if len(row) == 1:
+                cur_source = row[0]["id"]
+                await db.execute(
+                    "INSERT INTO sources_password (source_id, password) VALUES ($1, $2)",
+                    cur_source,
+                    password,
                 )
                 print(
                     f"Inserted password={password} where country={country} analyser={analyser}"
                 )
                 return
 
-        if dbcurs.rowcount > 0:
+        if len(row) > 0:
             return
 
-        if dbcurs.rowcount == 0:
+        if len(row) == 0:
             # otherwise, create a new entry in database
             print(
                 f"Inserting country={country} analyser={analyser} source={source} password={password}"
             )
             try:
-                dbcurs.execute(
-                    "INSERT INTO sources (id, country, analyser) VALUES (%s, %s, %s);",
-                    (source, country, analyser),
+                await db.execute(
+                    "INSERT INTO sources (id, country, analyser) VALUES ($1, $2, $3)",
+                    source,
+                    country,
+                    analyser,
                 )
-                dbcurs.execute(
-                    "INSERT INTO sources_password (source_id, password) VALUES (%s, %s);",
-                    (source, password),
+                await db.execute(
+                    "INSERT INTO sources_password (source_id, password) VALUES ($1, $2)",
+                    source,
+                    password,
                 )
                 source += 1
 
-            except psycopg2.IntegrityError:
+            except Exception:
                 print(
                     f"Failure on country={country} analyser={analyser} password={password}"
                 )
@@ -118,9 +121,6 @@ VALUES
     builtins.T_ = translate
     builtins.T_f = translate
 
-    importlib.reload(
-        modules_legacy
-    )  # needed as was loaded by import modules_legacy.utils
     import osmose_config
 
     for (country, country_config) in osmose_config.config.items():
@@ -140,10 +140,7 @@ VALUES
                     ):
                         analyser_name = name[len("Analyser_") :]
 
-                        update_pass(country, analyser_name, password)
-
-    dbconn.commit()
-    dbconn.close()
+                        await update_pass(country, analyser_name, password)
 
 
 if __name__ == "__main__":

@@ -11,7 +11,8 @@ from asyncpg import Connection
 from asyncpg.exceptions import PostgresError
 
 from modules.dependencies import database
-from modules_legacy import utils
+from modules import utils
+from modules import query_meta
 
 Elem = Dict[str, Any]
 Fix = Any
@@ -858,16 +859,17 @@ class Test(unittest.IsolatedAsyncioTestCase):
 
 
 async def main():
-    sources = utils.get_sources()
-    if len(sys.argv) == 1:
-        for k in sorted([int(x) for x in sources.keys()]):
-            source = sources[str(k)]
-            print_source(source)
-    elif sys.argv[1] == "--help":
+    if sys.argv[1] == "--help":
         show("usage: update.py <source number> <url>")
     else:
         db = database.get_dbconn()
-        await update(db, utils.get_sources()[sys.argv[1]], sys.argv[2])
+        sources = await query_meta._sources(db)
+        if len(sys.argv) == 1:
+            for k in sorted([int(x) for x in sources.keys()]):
+                source = sources[str(k)]
+                print_source(source)
+        else:
+            await update(db, sources[sys.argv[1]], sys.argv[2])
 
 
 if __name__ == "__main__":

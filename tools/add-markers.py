@@ -4,7 +4,7 @@
 import asyncio
 from typing import Dict, Set
 
-from modules_legacy import utils
+from modules.dependencies import database
 
 all_flags = [
     "O",
@@ -35,8 +35,7 @@ all_flags = [
 
 
 async def main():
-    dbconn = utils.get_dbconn()
-    dbcurs = dbconn.cursor()
+    db = await database.get_dbconn()
 
     sql = """
 CREATE TEMP TABLE marker_list_item AS
@@ -47,23 +46,28 @@ WITH RECURSIVE t AS (
    FROM t
    WHERE t.item IS NOT NULL
    )
-SELECT item FROM t WHERE item IS NOT NULL;
+SELECT item FROM t WHERE item IS NOT NULL
 """
-    dbcurs.execute(sql)
+    await db.execute(sql)
 
     sql = """
-select m.item
-from marker_list_item m
-left join items on items.item = m.item
-where items.item IS NULL
-order by m.item;"""
-    dbcurs.execute(sql)
+SELECT
+    m.item
+FROM
+    marker_list_item AS m
+    LEFT JOIN items ON
+        items.item = m.item
+WHERE
+    items.item IS NULL
+ORDER BY
+    m.item
+"""
 
     prev_cat = -1
     colors: Dict[int, Set[str]] = {}
     items = {}
 
-    for res in dbcurs.fetchall():
+    for res in await db.fetch(sql):
         #  print res
         item = int(res[0])
         categ = int(item / 1000) * 10
@@ -75,9 +79,8 @@ order by m.item;"""
         if prev_cat != categ:
             prev_cat = categ
             avail_flags = {}
-            sql = "select item, marker_color, marker_flag from items where categorie_id = %s order by item"
-            dbcurs.execute(sql, (categ,))
-            for m in dbcurs.fetchall():
+            sql = "SELECT item, marker_color, marker_flag FROM items WHERE categorie_id = $1 ORDER BY item"
+            for m in await db.fetch(sql, categ):
                 items[m["item"]] = (m["marker_color"], m["marker_flag"])
                 if categ == 80:
                     fullcateg_i = categ + (m["item"] % 10)

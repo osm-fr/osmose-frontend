@@ -7,7 +7,7 @@ import os
 
 import polib
 
-from modules_legacy import utils
+from modules.dependencies import database
 
 
 class OsmoseTranslation:
@@ -38,19 +38,19 @@ class OsmoseTranslation:
 async def main():
     t = OsmoseTranslation()
 
-    dbconn = utils.get_dbconn()
-    dbcurs = dbconn.cursor()
+    db = await database.get_dbconn()
 
     types = {"categories": "id", "items": "item"}
 
     for typ, id in types.items():
-        sql = (
-            "update "
-            + typ
-            + " set menu = coalesce(menu, json_build_object(%s,'')::jsonb) || json_build_object(%s, %s)::jsonb where "
-            + id
-            + " = %s;"
-        )
+        sql = f"""
+UPDATE
+    {typ}
+SET
+    menu = coalesce(menu, json_build_object($1::text,'')::jsonb) || json_build_object($2::text, $3::text)::jsonb
+WHERE
+    id = $4
+"""
 
         for line in codecs.open("database/" + typ + "_menu.txt", "r", "utf-8"):
             (item, s) = line.split("|")
@@ -58,9 +58,9 @@ async def main():
             s = s.strip()[3:-2]
             translations = t.translate(s)
             for (l, s) in translations.items():
-                dbcurs.execute(sql, (l, l, s, item_i))
+                await db.execute(sql, l, l, s, item_i)
 
-    dbconn.commit()
+    await db.commit()
 
 
 if __name__ == "__main__":
