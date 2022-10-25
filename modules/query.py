@@ -158,8 +158,13 @@ def _build_param(
     if bbox:
         params += [bbox[1], bbox[3], bbox[0], bbox[2]]
         where.append(
-            f"""markers.lat BETWEEN ${len(params)-3} AND ${len(params)-2} AND
-            markers.lon BETWEEN ((${len(params)-1})::numeric + 180) % 360 - 180 AND ((${len(params)})::numeric + 180) % 360 - 180"""
+            f"""
+            markers.lat BETWEEN
+                ${len(params)-3} AND
+                ${len(params)-2} AND
+            markers.lon BETWEEN
+                ((${len(params)-1})::numeric + 180) % 360 - 180 AND
+                ((${len(params)})::numeric + 180) % 360 - 180"""
         )
         if item is None:
             # Compute a tile to use index

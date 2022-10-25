@@ -1,5 +1,5 @@
 from collections import defaultdict
-from typing import Optional, Dict
+from typing import Dict, Optional
 
 from asyncpg import Connection
 
@@ -202,7 +202,9 @@ async def _tags(db: Connection):
 
 async def _sources(db: Connection) -> Dict[int, Dict[str, str]]:
     config: Dict[int, Dict[str, str]] = {}
-    for res in await db.fetch("SELECT id, password, country, analyser FROM sources JOIN sources_password ON sources.id = source_id"):
+    for res in await db.fetch(
+        "SELECT id, password, country, analyser FROM sources JOIN sources_password ON sources.id = source_id"
+    ):
         src = {}
         src["id"] = str(res["id"])
         src["password"] = set([res["password"]])
