@@ -88,9 +88,6 @@ def pg_escape(text):
         return str(text)
     return text.replace(u"'", u"''").replace(u'\\',u'\\\\')
 
-def show(s):
-    print(s.encode("utf8"))
-
 def str_to_datetime(s):
     patterns = [
                 "%Y-%m-%d",
