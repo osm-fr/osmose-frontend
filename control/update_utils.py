@@ -10,9 +10,8 @@ import dateutil.parser
 from asyncpg import Connection
 from asyncpg.exceptions import PostgresError
 
+from modules import query_meta, utils
 from modules.dependencies import database
-from modules import utils
-from modules import query_meta
 
 Elem = Dict[str, Any]
 Fix = Any

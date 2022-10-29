@@ -105,7 +105,7 @@ def enable_cors_generic_route():
     pass
 
 
-from . import byuser, control, editor, false_positive, issue, issues, map
+from . import byuser, editor, false_positive, issue, issues, map
 
 
 @route("/")

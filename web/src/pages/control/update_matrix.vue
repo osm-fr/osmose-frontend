@@ -69,7 +69,7 @@ export default VueParent.extend({
   },
   mounted() {
     this.fetchJsonProgressAssign(
-      API_URL + window.location.pathname + ".json" + window.location.search
+      API_URL + "/control/update_matrix.json" + window.location.search
     );
     document.title = "Osmose - " + this.$t("Last updates");
   },

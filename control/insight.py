@@ -1,12 +1,19 @@
 from collections import defaultdict
+from typing import Any, Dict, List, Optional, Tuple
 
-from bottle import request, route
+from asyncpg import Connection
+from fastapi import APIRouter, Depends
+
+from modules.dependencies import database
+
+router = APIRouter()
 
 
-@route("/control/update.json")
-def updates(db):
-    db.execute(
-        """
+@router.get("/update.json", tags=["insight"])
+async def updates(
+    db: Connection = Depends(database.db),
+):
+    sql = """
 SELECT
     sources.id,
     updates_last.timestamp,
@@ -19,20 +26,16 @@ FROM
 ORDER BY
     updates_last.timestamp DESC
 """
-    )
-    list_ = list(map(dict, db.fetchall()))
-    for res in list_:
-        if res["timestamp"]:
-            res["timestamp"] = str(res["timestamp"])
-    return dict(list=list_)
+    return dict(list=await db.fetch(sql))
 
 
-@route("/control/update_matrix.json")
-def update_matrix(db):
-    remote = request.params.get("remote")
-    country = request.params.get("country")
-    db.execute(
-        """
+@router.get("/update_matrix.json", tags=["insight"])
+async def update_matrix(
+    db: Connection = Depends(database.db),
+    remote_param: Optional[str] = None,
+    country_param: Optional[str] = None,
+):
+    sql = """
 SELECT DISTINCT ON (sources.id)
     sources.id,
     EXTRACT(EPOCH FROM ((now())-updates_last.timestamp)) AS age,
@@ -44,38 +47,35 @@ FROM
         sources.id = updates_last.source_id
 WHERE
 """
-        + (
-            """
-    remote_ip = %(remote)s AND """
-            if remote
-            else ""
-        )
-        + (
-            """
-    sources.country LIKE %(country)s AND """
-            if country
-            else ""
-        )
-        + """
+
+    params: List[str] = []
+    if remote_param:
+        params.append(remote_param)
+        sql += f"remote_ip = ${len(params)} AND"
+
+    if country_param:
+        params.append(country_param.replace("*", "%"))
+        sql += "sources.country LIKE ${len(params)} AND"
+
+    sql += """
     true
 ORDER BY
     sources.id ASC,
     updates_last.timestamp DESC
-""",
-        {"remote": remote, "country": country and country.replace("*", "%")},
-    )
+"""
 
-    keys = defaultdict(int)
-    matrix = defaultdict(dict)
-    stats_analyser = {}
-    stats_country = {}
-    for res in db.fetchall():
+    keys: Dict[str, int] = defaultdict(int)
+    matrix: Dict[str, Dict[str, Tuple[float, str]]] = defaultdict(dict)
+    stats_analyser: Dict[str, Tuple[float, float, float]] = {}
+    stats_country: Dict[str, Tuple[float, float, float, int]] = {}
+    for res in await db.fetch(sql, *params):
         (source, age, country, analyser) = (res[0], res[1], res[2], res[3])
         keys[country] += 1
         matrix[analyser][country] = (age / 60 / 60 / 24, source)
     for analyser in matrix:
-        min = max = None
-        sum = 0
+        min: Optional[float] = None
+        max: Optional[float] = None
+        sum = 0.0
         for country in matrix[analyser]:
             v = matrix[analyser][country][0]
             min = v if not min or v < min else min
@@ -93,7 +93,8 @@ ORDER BY
                 sum_c += v
                 n_c += 1
             stats_country[country] = [min_c, sum_c, max_c, n_c]
-        stats_analyser[analyser] = [min, sum / len(matrix[analyser]), max]
+        if min is not None and max is not None:
+            stats_analyser[analyser] = (min, sum / len(matrix[analyser]), max)
     for country in stats_country:
         stats_country[country][1] = (
             stats_country[country][1] / stats_country[country][3]
@@ -111,10 +112,11 @@ ORDER BY
     )
 
 
-@route("/control/update_summary.json")
-def update_summary(db):
-    db.execute(
-        """
+@router.get("/update_summary.json", tags=["insight"])
+async def update_summary(
+    db: Connection = Depends(database.db),
+):
+    sql = """
 SELECT
     backends.hostname AS hostname,
     updates_last.remote_ip AS remote,
@@ -137,14 +139,13 @@ GROUP BY
 ORDER BY
     min_age ASC
 """
-    )
 
-    summary = defaultdict(list)
-    hostnames = defaultdict(list)
-    max_versions = defaultdict(list)
-    min_versions = defaultdict(list)
+    summary: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
+    hostnames: Dict[str, List[str]] = defaultdict(list)
+    max_versions: Dict[str, List[str]] = defaultdict(list)
+    min_versions: Dict[str, List[str]] = defaultdict(list)
     max_count = 0
-    for res in db.fetchall():
+    for res in await db.fetch(sql):
         (
             hostname,
             remote,
@@ -194,10 +195,11 @@ ORDER BY
     )
 
 
-@route("/control/update_summary_by_analyser.json")
-def update_summary_by_analyser(db):
-    db.execute(
-        """
+@router.get("/update_summary_by_analyser.json", tags=["insight"])
+async def update_summary_by_analyser(
+    db: Connection = Depends(database.db),
+):
+    sql = """
 SELECT
     analyser,
     COUNT(*),
@@ -217,11 +219,10 @@ GROUP BY
 ORDER BY
     analyser
 """
-    )
 
-    summary = defaultdict(list)
+    summary: Dict[str, Dict[str, Any]] = {}
     max_versions = None
-    for res in db.fetchall():
+    for res in await db.fetch(sql):
         (analyser, count, min_age, max_age, min_version, max_version) = res
         max_versions = (
             max_version
@@ -241,10 +242,12 @@ ORDER BY
     return dict(summary=summary, max_versions=max_versions)
 
 
-@route("/control/update/<source:int>.json")
-def update(db, source):
-    db.execute(
-        """
+@router.get("/update/{source}.json", tags=["insight"])
+async def update(
+    source: int,
+    db: Connection = Depends(database.db),
+):
+    sql = """
 SELECT
     source_id,
     timestamp,
@@ -254,13 +257,8 @@ SELECT
 FROM
     updates
 WHERE
-    source_id=%s
+    source_id = $1
 ORDER BY
     timestamp DESC
-""",
-        (source,),
-    )
-    list_ = list(map(dict, db.fetchall()))
-    for res in list_:
-        res["timestamp"] = str(res["timestamp"])
-    return dict(list=list_)
+"""
+    return dict(list=await db.fetch(sql, source))
