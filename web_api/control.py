@@ -1,10 +1,12 @@
-from bottle import route, request
 from collections import defaultdict
 
+from bottle import request, route
 
-@route('/control/update.json')
+
+@route("/control/update.json")
 def updates(db):
-    db.execute("""
+    db.execute(
+        """
 SELECT
     sources.id,
     updates_last.timestamp,
@@ -16,19 +18,21 @@ FROM
         sources.id = updates_last.source_id
 ORDER BY
     updates_last.timestamp DESC
-""")
+"""
+    )
     list_ = list(map(dict, db.fetchall()))
     for res in list_:
-        if res['timestamp']:
-            res['timestamp'] = str(res['timestamp'])
+        if res["timestamp"]:
+            res["timestamp"] = str(res["timestamp"])
     return dict(list=list_)
 
 
-@route('/control/update_matrix.json')
+@route("/control/update_matrix.json")
 def updates(db):
-    remote = request.params.get('remote')
-    country = request.params.get('country')
-    db.execute("""
+    remote = request.params.get("remote")
+    country = request.params.get("country")
+    db.execute(
+        """
 SELECT DISTINCT ON (sources.id)
     sources.id,
     EXTRACT(EPOCH FROM ((now())-updates_last.timestamp)) AS age,
@@ -39,14 +43,27 @@ FROM
     JOIN updates_last ON
         sources.id = updates_last.source_id
 WHERE
-""" + ("""
-    remote_ip = %(remote)s AND """ if remote else "") + ("""
-    sources.country LIKE %(country)s AND """ if country else "") + """
+"""
+        + (
+            """
+    remote_ip = %(remote)s AND """
+            if remote
+            else ""
+        )
+        + (
+            """
+    sources.country LIKE %(country)s AND """
+            if country
+            else ""
+        )
+        + """
     true
 ORDER BY
     sources.id ASC,
     updates_last.timestamp DESC
-""", {"remote": remote, "country": country and country.replace("*", "%")})
+""",
+        {"remote": remote, "country": country and country.replace("*", "%")},
+    )
 
     keys = defaultdict(int)
     matrix = defaultdict(dict)
@@ -55,7 +72,7 @@ ORDER BY
     for res in db.fetchall():
         (source, age, country, analyser) = (res[0], res[1], res[2], res[3])
         keys[country] += 1
-        matrix[analyser][country] = (age/60/60/24, source)
+        matrix[analyser][country] = (age / 60 / 60 / 24, source)
     for analyser in matrix:
         min = max = None
         sum = 0
@@ -76,19 +93,28 @@ ORDER BY
                 sum_c += v
                 n_c += 1
             stats_country[country] = [min_c, sum_c, max_c, n_c]
-        stats_analyser[analyser] = [min, sum/len(matrix[analyser]), max]
+        stats_analyser[analyser] = [min, sum / len(matrix[analyser]), max]
     for country in stats_country:
-        stats_country[country][1] = stats_country[country][1]/stats_country[country][3]
+        stats_country[country][1] = (
+            stats_country[country][1] / stats_country[country][3]
+        )
 
     keys = sorted(keys, key=lambda k: -stats_country[k][2])
     matrix_keys = sorted(matrix.keys(), key=lambda k: -stats_analyser[k][2])
 
-    return dict(keys=keys, matrix=matrix, matrix_keys=matrix_keys, stats_analyser=stats_analyser, stats_country=stats_country)
+    return dict(
+        keys=keys,
+        matrix=matrix,
+        matrix_keys=matrix_keys,
+        stats_analyser=stats_analyser,
+        stats_country=stats_country,
+    )
 
 
-@route('/control/update_summary.json')
+@route("/control/update_summary.json")
 def updates(db):
-    db.execute("""
+    db.execute(
+        """
 SELECT
     backends.hostname AS hostname,
     updates_last.remote_ip AS remote,
@@ -110,7 +136,8 @@ GROUP BY
     country
 ORDER BY
     min_age ASC
-""")
+"""
+    )
 
     summary = defaultdict(list)
     hostnames = defaultdict(list)
@@ -118,9 +145,26 @@ ORDER BY
     min_versions = defaultdict(list)
     max_count = 0
     for res in db.fetchall():
-        (hostname, remote, country, max_age, min_age, max_version, min_version, count) = res
+        (
+            hostname,
+            remote,
+            country,
+            max_age,
+            min_age,
+            max_version,
+            min_version,
+            count,
+        ) = res
         max_count = max(max_count, count)
-        summary[remote].append({'hostname': hostname, 'country': country, 'max_age': max_age/60/60/24, 'min_age': min_age/60/60/24, 'count': count})
+        summary[remote].append(
+            {
+                "hostname": hostname,
+                "country": country,
+                "max_age": max_age / 60 / 60 / 24,
+                "min_age": min_age / 60 / 60 / 24,
+                "count": count,
+            }
+        )
         hostnames[remote].append(hostname)
         if max_version:
             max_versions[remote].append(max_version)
@@ -128,20 +172,32 @@ ORDER BY
             min_versions[remote].append(min_version)
     for remote in summary.keys():
         hostnames[remote] = hostnames[remote][0]
-        max_versions[remote] = max(max_versions[remote]) if max_versions[remote] else None
-        if max_versions[remote] and '-' in max_versions[remote]:
-          max_versions[remote] = '-'.join(max_versions[remote].split('-')[1:5])
-        min_versions[remote] = min(min_versions[remote]) if min_versions[remote] else None
-        if min_versions[remote] and '-' in min_versions[remote]:
-          min_versions[remote] = '-'.join(min_versions[remote].split('-')[1:5])
+        max_versions[remote] = (
+            max(max_versions[remote]) if max_versions[remote] else None
+        )
+        if max_versions[remote] and "-" in max_versions[remote]:
+            max_versions[remote] = "-".join(max_versions[remote].split("-")[1:5])
+        min_versions[remote] = (
+            min(min_versions[remote]) if min_versions[remote] else None
+        )
+        if min_versions[remote] and "-" in min_versions[remote]:
+            min_versions[remote] = "-".join(min_versions[remote].split("-")[1:5])
 
-    remote_keys = sorted(summary.keys(), key=lambda remote: hostnames[remote] or '')
-    return dict(summary=summary, hostnames=hostnames, max_versions=max_versions, min_versions=min_versions, remote_keys=remote_keys, max_count=max_count)
+    remote_keys = sorted(summary.keys(), key=lambda remote: hostnames[remote] or "")
+    return dict(
+        summary=summary,
+        hostnames=hostnames,
+        max_versions=max_versions,
+        min_versions=min_versions,
+        remote_keys=remote_keys,
+        max_count=max_count,
+    )
 
 
-@route('/control/update_summary_by_analyser.json')
+@route("/control/update_summary_by_analyser.json")
 def updates(db):
-    db.execute("""
+    db.execute(
+        """
 SELECT
     analyser,
     COUNT(*),
@@ -160,23 +216,35 @@ GROUP BY
     analyser
 ORDER BY
     analyser
-""")
+"""
+    )
 
     summary = defaultdict(list)
     max_versions = None
     for res in db.fetchall():
         (analyser, count, min_age, max_age, min_version, max_version) = res
-        max_versions = max_version if max_versions is None or max_version > max_versions else max_versions
-        summary[analyser] = {'count': count, 'min_age': min_age, 'max_age': max_age, 'max_version': '-'.join((max_version or '').split('-')[1:5]), 'min_version': '-'.join((min_version or '').split('-')[1:5])}
+        max_versions = (
+            max_version
+            if max_versions is None or max_version > max_versions
+            else max_versions
+        )
+        summary[analyser] = {
+            "count": count,
+            "min_age": min_age,
+            "max_age": max_age,
+            "max_version": "-".join((max_version or "").split("-")[1:5]),
+            "min_version": "-".join((min_version or "").split("-")[1:5]),
+        }
 
-    max_versions = '-'.join((max_versions or '').split('-')[1:5])
+    max_versions = "-".join((max_versions or "").split("-")[1:5])
 
     return dict(summary=summary, max_versions=max_versions)
 
 
-@route('/control/update/<source:int>.json')
+@route("/control/update/<source:int>.json")
 def update(db, source):
-    db.execute("""
+    db.execute(
+        """
 SELECT
     source_id,
     timestamp,
@@ -189,8 +257,10 @@ WHERE
     source_id=%s
 ORDER BY
     timestamp DESC
-""", (source,) )
+""",
+        (source,),
+    )
     list_ = list(map(dict, db.fetchall()))
     for res in list_:
-        res['timestamp'] = str(res['timestamp'])
+        res["timestamp"] = str(res["timestamp"])
     return dict(list=list_)
