@@ -2,7 +2,7 @@ from fastapi import FastAPI
 
 from modules.dependencies import database
 
-from . import control
+from . import update
 
 app = FastAPI()
 
@@ -14,4 +14,4 @@ async def startup():
 
 # Add routes
 
-app.include_router(control.router)
+app.include_router(update.router)
