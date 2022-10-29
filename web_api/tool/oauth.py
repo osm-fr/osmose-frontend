@@ -1,6 +1,3 @@
-#! /usr/bin/env python
-#-*- coding: utf-8 -*-
-
 from rauth import OAuth1Service, OAuth1Session
 import requests
 
