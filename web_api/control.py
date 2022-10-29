@@ -28,7 +28,7 @@ ORDER BY
 
 
 @route("/control/update_matrix.json")
-def updates(db):
+def update_matrix(db):
     remote = request.params.get("remote")
     country = request.params.get("country")
     db.execute(
@@ -112,7 +112,7 @@ ORDER BY
 
 
 @route("/control/update_summary.json")
-def updates(db):
+def update_summary(db):
     db.execute(
         """
 SELECT
@@ -195,7 +195,7 @@ ORDER BY
 
 
 @route("/control/update_summary_by_analyser.json")
-def updates(db):
+def update_summary_by_analyser(db):
     db.execute(
         """
 SELECT

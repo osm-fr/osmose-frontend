@@ -2,7 +2,7 @@ import os
 
 import beaker.middleware
 import bottle
-from bottle import HTTPError, error, hook, redirect, request, route, view
+from bottle import HTTPError, SimpleTemplate, hook, redirect, request, route
 
 from modules_legacy import bottle_cors, bottle_gettext, bottle_pgsql, bottle_user, utils
 from modules_legacy.osmose_bottle import ext_filter, uuid_filter
@@ -36,7 +36,6 @@ app_middleware = beaker.middleware.SessionMiddleware(bottle.default_app(), sessi
 
 app = bottle.default_app()
 
-from bottle import SimpleTemplate
 
 SimpleTemplate.defaults["get_url"] = app.get_url
 
@@ -69,7 +68,7 @@ def login(lang):
 
 
 @route("/logout")
-def login(lang):
+def logout(lang):
     if "user" in request.session:
         del request.session["user"]
         request.session.save()
@@ -90,11 +89,11 @@ def oauth_(lang):
             )
             if user_request:
                 request.session["user"] = xmldict.xml_to_dict(user_request)
-        except Exception as e:
+        except Exception:
             pass
         if "user" not in request.session:
             request.session["user"] = None
-    except:
+    except Exception:
         pass
     finally:
         request.session.save()

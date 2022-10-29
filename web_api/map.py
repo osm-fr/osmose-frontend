@@ -1,13 +1,11 @@
 import asyncio
-from collections import defaultdict
 
 from bottle import redirect, request, route
 
 from api.user_utils import _user_count
 from modules.dependencies.commons_params import params as async_params
 from modules.dependencies.database import get_dbconn
-from modules_legacy import query, query_meta, utils
-from modules_legacy.params import Params
+from modules_legacy import query_meta, utils
 
 
 @route("/map")
@@ -58,7 +56,7 @@ OFFSET
     timestamp = db.fetchone()
     timestamp = str(timestamp[0]) if timestamp and timestamp[0] else None
 
-    if user != None:
+    if user is not None:
         if user:
 
             async def t(user):

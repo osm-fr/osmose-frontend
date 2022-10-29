@@ -1,15 +1,12 @@
 import csv
-import datetime
 import io
 import json
 import os
 import sys
 import tempfile
 import time
-from datetime import timedelta
 
 from modules_legacy import query
-from modules_legacy.params import Params
 
 os.environ["MPLCONFIGDIR"] = tempfile.mkdtemp()
 import matplotlib
@@ -95,17 +92,46 @@ ORDER BY
 def get_text(db, params):
     if len(params.source) == 1 and len(params.classs) == 1:
         db.execute(
-            "SELECT title->'en' FROM markers_counts JOIN class ON class.item = markers_counts.item AND class.class = markers_counts.class WHERE markers_counts.source_id=%s AND class.class=%s;",
+            """
+SELECT
+    title->'en'
+FROM
+    markers_counts
+    JOIN class ON
+        class.item = markers_counts.item AND
+        class.class = markers_counts.class
+WHERE
+    markers_counts.source_id=%s AND
+    class.class=%s
+""",
             (params.source[0], params.classs[0]),
         )
     elif len(params.item) == 1 and len(params.classs) == 1:
         db.execute(
-            "SELECT title->'en' FROM class WHERE class=%s AND item=%s LIMIT 1;",
+            """
+SELECT
+    title->'en'
+FROM
+    class
+WHERE
+    class=%s AND
+    item=%s
+LIMIT 1
+""",
             (params.classs[0], params.item[0]),
         )
     elif len(params.item) == 1:
         db.execute(
-            "SELECT menu->'en' FROM items WHERE item=%s LIMIT 1;", (params.item[0],)
+            """
+SELECT
+    menu->'en'
+FROM
+    items
+WHERE
+    item=%s
+LIMIT 1
+""",
+            (params.item[0],),
         )
     else:
         return ""
@@ -219,7 +245,7 @@ def plot(data, title, format):
 
 
 if __name__ == "__main__":
-    from optparse import SUPPRESS_HELP, OptionParser
+    from optparse import OptionParser
 
     start = time.clock()
 

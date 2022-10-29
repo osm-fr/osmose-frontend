@@ -23,14 +23,14 @@ def save(db, lang):
         tags["type"] = "fix"
     tags["created_by"] = "Osmose Editor"
 
-    reuse_changeset = json.get("reuse_changeset", True) != False
+    reuse_changeset = json.get("reuse_changeset", True) is not False
 
     # Get an open changeset
     changeset = request.session.get("changeset")
     if changeset and not reuse_changeset:
         try:
             _changeset_close(changeset)
-        except:
+        except Exception:
             pass
         changeset = None
         del request.session["changeset"]
@@ -38,7 +38,7 @@ def save(db, lang):
     elif changeset:
         try:
             _changeset_update(changeset, tags)
-        except:
+        except Exception:
             changeset = None
             request.session["changeset"] = changeset
             request.session.save()
@@ -61,7 +61,7 @@ def save(db, lang):
             for e in json[action]:
                 try:
                     ee = utils.fetch_osm_elem(e["type"], e["id"])
-                except:
+                except Exception:
                     ee = None
                 if ee and ee["version"] == int(e["version"]):
                     ee["changeset"] = changeset
@@ -103,7 +103,7 @@ def _changeset_create(tags):
 
 
 def _changeset_update(id, tags):
-    changeset = oauth.put(
+    oauth.put(
         request.session["oauth_tokens"],
         utils.remote_url_write + "api/0.6/changeset/" + id,
         _osm_changeset(tags, id=id),
@@ -111,14 +111,14 @@ def _changeset_update(id, tags):
 
 
 def _changeset_close(id):
-    changeset = oauth.put(
+    oauth.put(
         request.session["oauth_tokens"],
         utils.remote_url_write + "api/0.6/changeset/" + id + "/close",
     )
 
 
 def _changeset_upload(id, osmchange):
-    changeset = oauth.post(
+    oauth.post(
         request.session["oauth_tokens"],
         utils.remote_url_write + "api/0.6/changeset/" + id + "/upload",
         osmchange,

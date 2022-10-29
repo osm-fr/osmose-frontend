@@ -1,15 +1,14 @@
 import asyncio
 import urllib.parse
 
-from bottle import html_escape, redirect, request, response, route
+from bottle import redirect, request, response, route
 from lxml import etree
-from lxml.builder import E, ElementMaker
+from lxml.builder import E
 
 from api.user_utils import _user, _user_count
 from modules.dependencies.commons_params import params as async_params
 from modules.dependencies.database import get_dbconn
-from modules_legacy import query, utils
-from modules_legacy.utils import i10n_select_auto
+from modules_legacy import utils
 
 
 @route("/byuser")
@@ -81,7 +80,7 @@ def user_count(db, lang, username=None):
 
 
 @route("/byuser_count/<username>")
-def user_count(db, lang, username=None):
+def byuser_count(db, lang, username=None):
     async def t(username):
         return await _user_count(await async_params(), await get_dbconn(), username)
 

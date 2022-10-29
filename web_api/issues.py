@@ -1,8 +1,7 @@
 import io
-import re
 from collections import defaultdict
 
-from bottle import redirect, request, response, route
+from bottle import request, response, route
 
 from modules_legacy import query, query_meta, utils
 from modules_legacy.params import Params
@@ -23,7 +22,7 @@ def graph(db, format="png"):
             "json": "application/json",
         }[format]
         return data
-    except Exception as e:
+    except Exception:
         response.content_type = "text/plain"
         import traceback
 
