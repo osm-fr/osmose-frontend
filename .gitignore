@@ -19,3 +19,5 @@ web/node_modules
 osmose-frontend-venv
 
 web/public/assets
+
+.mypy_cache
