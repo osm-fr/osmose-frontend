@@ -273,7 +273,7 @@ INSERT INTO markers (uuid, source_id, class, item, lat, lon, elems, fixes, subti
 VALUES (
     """
         + uuid
-        + """, $1, $2, $5, $6, $7, $8, $9, $10
+        + """, $1, $2, $5, $6, $7, $8::jsonb[], $9::jsonb[], $10
 )
 ON CONFLICT (uuid) DO
 UPDATE SET
