@@ -1,56 +1,69 @@
 import io
+import traceback
 from collections import defaultdict
+from typing import Dict
 
-from bottle import request, response, route
+from asyncpg import Connection
+from fastapi import APIRouter, Depends, Request, Response
 
-from modules_legacy import query, query_meta, utils
-from modules_legacy.params import Params
-from modules_legacy.utils import i10n_select_auto
+from modules import query, query_meta, utils
+from modules.dependencies import commons_params, database, langs
+from modules.utils import LangsNegociation, i10n_select_auto
 
 from . import errors_graph
 
+router = APIRouter()
 
-@route("/issues/graph.<format:ext>")
-def graph(db, format="png"):
+
+@router.get("/issues/graph.png")
+@router.get("/issues/graph.svg")
+@router.get("/issues/graph.pdf")
+@router.get("/issues/graph.csv")
+@router.get("/issues/graph.json")
+async def graph(
+    request: Request,
+    db: Connection = Depends(database.db),
+    params=Depends(commons_params.params),
+):
     try:
-        data = errors_graph.make_plt(db, Params(), format)
-        response.content_type = {
+        format = request.url.query.split(".", -1)[1]
+        data = errors_graph.make_plt(db, params, format)
+        media_type = {
             "png": "image/png",
             "svg": "image/svg+xml",
             "pdf": "application/pdf",
             "csv": "text/csv",
             "json": "application/json",
         }[format]
-        return data
+        return Response(content=data, media_type=media_type)
     except Exception:
-        response.content_type = "text/plain"
-        import traceback
-
         out = io.StringIO()
         traceback.print_exc(file=out)
-        return out.getvalue() + "\n"
+        return Response(content=out.getvalue() + "\n", media_type="text/plain")
 
 
-@route("/issues/open.json")
-@route("/issues/done.json")
-@route("/issues/false-positive.json")
-def index(db, lang):
-    if "false-positive" in request.path:
+@router.get("/issues/open.json")
+@router.get("/issues/done.json")
+@router.get("/issues/false-positive.json")
+async def index(
+    request: Request,
+    db: Connection = Depends(database.db),
+    params=Depends(commons_params.params),
+    langs: LangsNegociation = Depends(langs.langs),
+):
+    if "false-positive" in request.url.path:
         gen = "false"
-    elif "done" in request.path:
+    elif "done" in request.url.path:
         gen = "done"
     else:
         gen = "open"
 
-    params = Params()
-
-    items = query_meta._items_menu(db, lang)
-    countries = query_meta._countries(db)
-    items = list(map(dict, items))
+    items = await query_meta._items_menu(db, langs)
+    countries = await query_meta._countries(db)
 
     if params.item:
         params.limit = None
-        errors_groups = query._count(
+        errors_groups = await query._count(
             db,
             params,
             [
@@ -70,8 +83,8 @@ def index(db, lang):
 
         total = 0
         for res in errors_groups:
-            res["title"] = i10n_select_auto(res["title"], lang)
-            res["menu"] = i10n_select_auto(res["menu"], lang)
+            res["title"] = i10n_select_auto(res["title"], langs)
+            res["menu"] = i10n_select_auto(res["menu"], langs)
             if res["count"] != -1:
                 total += res["count"]
     else:
@@ -99,17 +112,19 @@ def index(db, lang):
     )
 
 
-@route("/issues/matrix.json")
-def matrix(db, lang):
-    params = Params(default_limit=None)
-    errors_groups = query._count(
+@router.get("/issues/matrix.json")
+async def matrix(
+    db: Connection = Depends(database.db),
+    params=Depends(commons_params.params),
+):
+    errors_groups = await query._count(
         db,
         params,
         ["markers.item", "markers.class", "sources.country", "items.menu->'en'"],
     )
-    analysers = defaultdict(lambda: defaultdict(int))
-    analysers_sum = defaultdict(int)
-    countries_sum = defaultdict(int)
+    analysers: Dict[str, Dict[str, int]] = defaultdict(lambda: defaultdict(int))
+    analysers_sum: Dict[str, int] = defaultdict(int)
+    countries_sum: Dict[str, int] = defaultdict(int)
     total = 0
     for row in errors_groups:
         item, class_, country, menu, count = row

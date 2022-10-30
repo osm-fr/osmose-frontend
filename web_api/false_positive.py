@@ -1,15 +1,22 @@
-import asyncio
+from uuid import UUID
 
-from bottle import abort, route
+from asyncpg import Connection
+from fastapi import APIRouter, Depends, HTTPException
 
 from api.false_positive_utils import _get
+from modules.dependencies import database
+
+router = APIRouter()
 
 
-@route("/false-positive/<uuid:uuid>.json")
-def fp_(db, lang, uuid):
-    marker, columns = asyncio.run(_get(db, "false", uuid=uuid))
+@router.get("/false-positive/{uuid}.json")
+async def fp_(
+    uuid: UUID,
+    db: Connection = Depends(database.db),
+):
+    marker, columns = await _get(db, "false", uuid=uuid)
     if not marker:
-        abort(410, "Id is not present in database.")
+        raise HTTPException(status_code=410, detail="Id is not present in database.")
 
     marker = dict(marker)
     marker["timestamp"] = str(marker["timestamp"])

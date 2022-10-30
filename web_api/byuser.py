@@ -1,52 +1,73 @@
-import asyncio
 import urllib.parse
+from typing import Any
 
-from bottle import redirect, request, response, route
+from asyncpg import Connection
+from fastapi import APIRouter, Depends, Request, Response
+from fastapi.responses import RedirectResponse
 from lxml import etree
 from lxml.builder import E
 
 from api.user_utils import _user, _user_count
-from modules.dependencies.commons_params import params as async_params
-from modules.dependencies.database import get_dbconn
-from modules_legacy import utils
+from modules import utils
+from modules.dependencies import commons_params, database, langs
+from modules.utils import LangsNegociation, i10n_select_lang
+
+router = APIRouter()
 
 
-@route("/byuser")
+#  TODO use i18n
+def _(s):
+    return s
+
+
+class XMLResponse(Response):
+    media_type = "text/xml; charset=utf-8"
+
+    def render(self, content: Any) -> bytes:
+        return etree.tostring(content, pretty_print=True)
+
+
+class RSSResponse(XMLResponse):
+    media_type = "application/rss+xml"
+
+
+@router.get("/byuser")
 def byUser():
-    redirect("byuser/")
+    return RedirectResponse("byuser/")
 
 
-@route("/byuser/<username>.<format:ext>")
-def user(db, lang, username, format):
+@router.get("/byuser/{username}.{format}")
+async def user(
+    username: str,
+    format: str,
+    request: Request,
+    db: Connection = Depends(database.db),
+    params=Depends(commons_params.params),
+    langs: LangsNegociation = Depends(langs.langs),
+):
     if format in ["rss", "gpx", "kml", "josm", "csv"]:
-        response.status = 301
-        response.set_header(
-            "Location",
-            f"{utils.website}/api/0.3/issues.{format}?{request.query_string}&username={urllib.parse.quote(username)}",
+        return RedirectResponse(
+            f"{utils.website}/api/0.3/issues.{format}?{request.url.query}&username={urllib.parse.quote(username)}"
         )
-        return
 
-    async def t(username):
-        return await _user(await async_params(), await get_dbconn(), username)
-
-    params, username, errors = asyncio.run(t(username))
+    params, username, errors = await _user(params, db, username)
 
     return dict(
         username=username,
         users=params.users,
-        website=utils.website + "/" + lang[0],
+        website=utils.website + "/" + i10n_select_lang(langs),
         main_website=utils.main_website,
         remote_url_read=utils.remote_url_read,
     )
 
 
-@route("/byuser_count/<username>.rss")
-def user_count(db, lang, username=None):
-    async def t(username):
-        return await _user_count(await async_params(), await get_dbconn(), username)
-
-    count = asyncio.run(t(username))
-    response.content_type = "application/rss+xml"
+@router.get("/byuser_count/{username}.rss", response_class=RSSResponse)
+async def user_count(
+    username: str,
+    db: Connection = Depends(database.db),
+    params=Depends(commons_params.params),
+):
+    count = await _user_count(params, db, username)
     xml = E.rss(
         E.channel(
             E.title("Osmose - " + username),
@@ -76,12 +97,13 @@ def user_count(db, lang, username=None):
         ),
         version="2.0",
     )
-    return etree.tostring(xml, pretty_print=True)
+    return RSSResponse(xml)
 
 
-@route("/byuser_count/<username>")
-def byuser_count(db, lang, username=None):
-    async def t(username):
-        return await _user_count(await async_params(), await get_dbconn(), username)
-
-    return asyncio.run(t(username))
+@router.get("/byuser_count/{username}")
+async def byuser_count(
+    username: str,
+    db: Connection = Depends(database.db),
+    params=Depends(commons_params.params),
+):
+    return await _user_count(params, db, username)

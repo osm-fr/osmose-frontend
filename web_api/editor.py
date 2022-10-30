@@ -1,17 +1,24 @@
 import io
 
-from bottle import abort, post, request
+from asyncpg import Connection
+from fastapi import APIRouter, Depends, HTTPException, Request
 
-from modules_legacy import OsmSax, utils
+from modules import OsmSax, utils
+from modules.dependencies import database
 
 from .tool import oauth
 
+router = APIRouter()
 
-@post("/editor/save")
-def save(db, lang):
-    json = request.json
+
+@router.post("/editor/save")
+async def save(
+    request: Request,
+    db: Connection = Depends(database.db),
+):
+    json = await request.json()
     if "tag" not in json:
-        abort(422)
+        raise HTTPException(status_code=422)
 
     # Changeset tags
     tags = json["tag"]
@@ -29,7 +36,7 @@ def save(db, lang):
     changeset = request.session.get("changeset")
     if changeset and not reuse_changeset:
         try:
-            _changeset_close(changeset)
+            _changeset_close(request.session["oauth_tokens"], changeset)
         except Exception:
             pass
         changeset = None
@@ -37,14 +44,14 @@ def save(db, lang):
         request.session.save()
     elif changeset:
         try:
-            _changeset_update(changeset, tags)
+            _changeset_update(request.session["oauth_tokens"], changeset, tags)
         except Exception:
             changeset = None
             request.session["changeset"] = changeset
             request.session.save()
 
     if not changeset:
-        changeset = _changeset_create(tags)
+        changeset = _changeset_create(request.session["oauth_tokens"], tags)
         request.session["changeset"] = changeset
         request.session.save()
 
@@ -76,7 +83,7 @@ def save(db, lang):
     osmchange = out.getvalue()
 
     # Fire the changeset
-    _changeset_upload(changeset, osmchange)
+    _changeset_upload(request.session["oauth_tokens"], changeset, osmchange)
 
 
 def _osm_changeset(tags, id="0"):
@@ -93,33 +100,33 @@ def _osm_changeset(tags, id="0"):
     return out.getvalue()
 
 
-def _changeset_create(tags):
+def _changeset_create(oauth_tokens, tags):
     changeset = oauth.put(
-        request.session["oauth_tokens"],
+        oauth_tokens,
         utils.remote_url_write + "api/0.6/changeset/create",
         _osm_changeset(tags),
     )
     return changeset
 
 
-def _changeset_update(id, tags):
+def _changeset_update(oauth_tokens, id, tags):
     oauth.put(
-        request.session["oauth_tokens"],
+        oauth_tokens,
         utils.remote_url_write + "api/0.6/changeset/" + id,
         _osm_changeset(tags, id=id),
     )
 
 
-def _changeset_close(id):
+def _changeset_close(oauth_tokens, id):
     oauth.put(
-        request.session["oauth_tokens"],
+        oauth_tokens,
         utils.remote_url_write + "api/0.6/changeset/" + id + "/close",
     )
 
 
-def _changeset_upload(id, osmchange):
+def _changeset_upload(oauth_tokens, id, osmchange):
     oauth.post(
-        request.session["oauth_tokens"],
+        oauth_tokens,
         utils.remote_url_write + "api/0.6/changeset/" + id + "/upload",
         osmchange,
     )

@@ -40,7 +40,7 @@ async def _items(
     db: Connection,
     item: Optional[int] = None,
     classs: Optional[int] = None,
-    langs: Optional[LangsNegociation] = None,
+    langs: LangsNegociation = None,
 ):
     sql_params = [item] if item is not None else []
 

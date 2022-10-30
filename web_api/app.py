@@ -1,63 +1,67 @@
-import os
+from typing import Optional
+from uuid import UUID
 
-import beaker.middleware
-import bottle
-from bottle import HTTPError, SimpleTemplate, hook, redirect, request, route
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.openapi.utils import get_openapi
+from fastapi.responses import HTMLResponse
 
-from modules_legacy import bottle_cors, bottle_gettext, bottle_pgsql, bottle_user, utils
-from modules_legacy.osmose_bottle import ext_filter, uuid_filter
+from modules.dependencies import database
 
-from .tool import oauth, xmldict
+from . import byuser, editor, false_positive, issue, issues, map
 
-bottle.BaseRequest.MEMFILE_MAX = 100 * 1024 * 1024
-bottle_app = bottle.default_app()
-bottle_app.plugins = list(
-    filter(
-        lambda x: isinstance(x, bottle.JSONPlugin)
-        or isinstance(x, bottle.TemplatePlugin),
-        bottle_app.plugins,
+# from modules import utils
+# from .tool import oauth, xmldict
+
+openapi_tags = [
+    {
+        "name": "Private API",
+        "description": "Private API. For external use refer to public API.",
+    },
+]
+
+app = FastAPI(openapi_tags=openapi_tags)
+
+
+def custom_openapi():
+    if app.openapi_schema:
+        return app.openapi_schema
+    openapi_schema = get_openapi(
+        title="Osmose-QA API",
+        version="0.3",
+        routes=app.routes,
     )
-)
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
 
 
-@hook("before_request")
-def setup_request():
-    if request:
-        request.session = request.environ["beaker.session"]
+app.openapi = custom_openapi
 
 
-session_opts = {
-    "session.type": "file",
-    "session.data_dir": "./web_api/session/",
-    "session.cookie_expires": False,
-}
-app_middleware = beaker.middleware.SessionMiddleware(bottle.default_app(), session_opts)
+################
+# @hook("before_request")
+# def setup_request():
+#     if request:
+#         request.session = request.environ["beaker.session"]
 
 
-app = bottle.default_app()
+# session_opts = {
+#     "session.type": "file",
+#     "session.data_dir": "./web_api/session/",
+#     "session.cookie_expires": False,
+# }
+# app_middleware = beaker.middleware.SessionMiddleware(bottle.default_app(), session_opts)
+
+# app.install(
+#     bottle_gettext.Plugin(
+#         "osmose-frontend", os.path.join("web", "po", "mo"), utils.allowed_languages
+#     )
+# )
+# app.install(bottle_user.Plugin())
+#####################
 
 
-SimpleTemplate.defaults["get_url"] = app.get_url
-
-
-app.install(bottle_pgsql.Plugin(utils.db_string))
-app.install(
-    bottle_cors.Plugin(
-        allow_origin="*", preflight_methods=["GET", "POST", "PUT", "DELETE"]
-    )
-)
-app.install(
-    bottle_gettext.Plugin(
-        "osmose-frontend", os.path.join("web", "po", "mo"), utils.allowed_languages
-    )
-)
-app.install(bottle_user.Plugin())
-
-app.router.add_filter("uuid", uuid_filter)
-app.router.add_filter("ext", ext_filter)
-
-
-@route("/login")
+@app.get("/login")
 def login(lang):
     if "user" in request.session:
         del request.session["user"]  # logout
@@ -67,7 +71,7 @@ def login(lang):
     redirect(url)
 
 
-@route("/logout")
+@app.get("/logout")
 def logout(lang):
     if "user" in request.session:
         del request.session["user"]
@@ -75,7 +79,7 @@ def logout(lang):
     redirect("map/")
 
 
-@route("/oauth")
+@app.get("/oauth")
 def oauth_(lang):
     try:
         oauth_tokens = request.session["oauth_tokens"]
@@ -100,41 +104,50 @@ def oauth_(lang):
     redirect("map/")
 
 
-@bottle.route("/<:re:.*>", method="OPTIONS")
-def enable_cors_generic_route():
-    pass
+# CORS middleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
+)
 
 
-from . import byuser, editor, false_positive, issue, issues, map
+@app.on_event("startup")
+async def startup():
+    await database.startup()
 
 
-@route("/")
-@route("/contact")
-@route("/copyright")
-@route("/translation")
-@route("/map/")
-@route("/issue/<uuid:uuid>")
-@route("/false-positive/<uuid:uuid>")
-@route("/issues/open")
-@route("/issues/done")
-@route("/issues/false-positive")
-@route("/issues/matrix")
-@route("/byuser/")
-@route("/byuser/<username>")
-@route("/control/update/<source:int>")
-@route("/control/update_matrix")
-@route("/control/update_summary")
-@route("/control/update_summary_by_analyser")
-def vue(db, uuid=None, username=None, source=None):
-    return bottle.static_file("assets/index.html", root="web/public")
+# Add routes
+
+app.include_router(byuser.router)
+app.include_router(editor.router)
+app.include_router(false_positive.router)
+app.include_router(issue.router)
+app.include_router(issues.router)
+app.include_router(map.router)
 
 
-@bottle.route("/<filename:path>")
-def static(filename):
-    return HTTPError(404)
-
-
-if __name__ == "__main__":
-    bottle.run(
-        app=app_middleware, host="0.0.0.0", port=20009, reloader=True, debug=True
-    )
+@app.get("/", tags=["vue"])
+@app.get("/contact", tags=["vue"])
+@app.get("/copyright", tags=["vue"])
+@app.get("/translation", tags=["vue"])
+@app.get("/map/", tags=["vue"])
+@app.get("/issue/{uuid}", tags=["vue"])
+@app.get("/false-positive/{uuid}", tags=["vue"])
+@app.get("/issues/open", tags=["vue"])
+@app.get("/issues/done", tags=["vue"])
+@app.get("/issues/false-positive", tags=["vue"])
+@app.get("/issues/matrix", tags=["vue"])
+@app.get("/byuser/", tags=["vue"])
+@app.get("/byuser/{username}", tags=["vue"])
+@app.get("/control/update/{source}", tags=["vue"])
+@app.get("/control/update_matrix", tags=["vue"])
+@app.get("/control/update_summary", tags=["vue"])
+@app.get("/control/update_summary_by_analyser", tags=["vue"])
+def vue(
+    uuid: Optional[UUID] = None,
+    username: Optional[str] = None,
+    source: Optional[int] = None,
+):
+    return HTMLResponse(content=open("web/public/assets/index.html").read())

@@ -1,17 +1,15 @@
 asyncpg
-psycopg2-binary >= 2.7
 matplotlib >= 1.1
 requests >= 2.0
-beaker >= 1.6
 polib
 protobuf < 4 # 4.x binary not yet compatible with system package, deps of mapbox-vector-tile
 mapbox-vector-tile
 pyclipper
 fastapi
+fastapi-sessions
 python-multipart
 # Use a patch fork, for unmaintened rauth:
 #  - https://github.com/litl/rauth/issues/185 (data dict/bytes issue)
 #  - https://github.com/litl/rauth/pull/208  (python 3.8 compatibility)
 git+https://github.com/osm-fr/rauth.git
-bottle == 0.12.13
 lxml

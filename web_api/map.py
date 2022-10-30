@@ -1,29 +1,41 @@
-import asyncio
+from typing import Dict, Set
 
-from bottle import redirect, request, route
+from asyncpg import Connection
+from fastapi import APIRouter, Depends, Request
+from fastapi.responses import RedirectResponse
 
 from api.user_utils import _user_count
-from modules.dependencies.commons_params import params as async_params
-from modules.dependencies.database import get_dbconn
-from modules_legacy import query_meta, utils
+from modules import query_meta, utils
+from modules.dependencies import commons_params, database, langs
+from modules.utils import LangsNegociation
+
+router = APIRouter()
 
 
-@route("/map")
-def errors():
-    redirect("map/?" + request.query_string)
+@router.get("/map")
+def errors(
+    request: Request,
+):
+    return RedirectResponse("map/?" + request.url.query)
 
 
-@route("/map/.json")
-def index(db, user, lang):
-    if request.query_string:
-        redirect("./#" + request.query_string)
+@router.get("/map/.json")
+async def index(
+    user,
+    request: Request,
+    db: Connection = Depends(database.db),
+    params=Depends(commons_params.params),
+    langs: LangsNegociation = Depends(langs.langs),
+):
+    if request.url.query:
+        return RedirectResponse("./#" + request.url.query)
 
-    tags = query_meta._tags(db)
-    countries = query_meta._countries(db)
+    tags = await query_meta._tags(db)
+    countries = await query_meta._countries(db)
 
-    categories = query_meta._items(db, langs=lang)
+    categories = await query_meta._items(db, langs=langs)
 
-    item_levels = {"1": set(), "2": set(), "3": set()}
+    item_levels: Dict[str, Set[str]] = {"1": set(), "2": set(), "3": set()}
     for categ in categories:
         for item in categ["items"]:
             del item["number"]
@@ -37,7 +49,6 @@ def index(db, user, lang):
 
     item_levels["1,2"] = item_levels["1"] | item_levels["2"]
     item_levels["1,2,3"] = item_levels["1,2"] | item_levels["3"]
-    item_levels = {k: list(v) for k, v in item_levels.items()}
 
     sql = """
 SELECT
@@ -50,19 +61,12 @@ LIMIT
     1
 OFFSET
     (SELECT COUNT(*)/2 FROM updates_last)
-;
 """
-    db.execute(sql)
-    timestamp = db.fetchone()
-    timestamp = str(timestamp[0]) if timestamp and timestamp[0] else None
+    timestamp = await db.fetchval(sql)
 
     if user is not None:
         if user:
-
-            async def t(user):
-                return await _user_count(await async_params(), await get_dbconn(), user)
-
-            user_error_count = asyncio.run(t(user))
+            user_error_count = await _user_count(params, db, user)
         else:  # user == False
             user = "[user name]"
             user_error_count = {1: 0, 2: 0, 3: 0}

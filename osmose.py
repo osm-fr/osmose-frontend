@@ -1,14 +1,13 @@
 import os
 
 from fastapi import Depends, FastAPI, HTTPException, Request, Response, responses
-from fastapi.middleware.wsgi import WSGIMiddleware
 
 from api import app as api
 from control import app as control
 from modules.dependencies import langs
 from modules.utils import LangsNegociation
 from modules_legacy import utils
-from web_api import app as web_app
+from web_api import app as web_api
 
 app = FastAPI()
 
@@ -29,7 +28,7 @@ app.mount("/control/", control.app)
 # Web
 #
 for lang in utils.allowed_languages:
-    app.mount("/" + lang, WSGIMiddleware(web_app.app_middleware))
+    app.mount("/" + lang, web_api.app)
 
 
 @app.get("/")
@@ -47,7 +46,11 @@ def index(request: Request, langs: LangsNegociation = Depends(langs.langs)):
 
 @app.get("/assets/sprites.css")
 def sprites_css():
-    return Response(open("web_api/public/assets/sprites.css", "rb").read())
+    file_path = "web_api/public/assets/sprites.css"
+    if os.path.isfile(file_path):
+        return Response(open(file_path, "rb").read())
+    else:
+        raise HTTPException(status_code=404)
 
 
 @app.get("/assets/sprite.png")

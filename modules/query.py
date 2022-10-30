@@ -35,6 +35,10 @@ def _build_where_item(table, item: str):
     return where
 
 
+def _build_where_class(table, classs: List[int]):
+    return "{0}.class IN ({1})".format(table, ",".join(classs))
+
+
 def _build_param(
     bbox: Optional[List[float]],
     sources: Optional[List[List[int]]],

@@ -1,20 +1,23 @@
-import asyncio
+from uuid import UUID
 
-from bottle import abort, route
+from asyncpg import Connection
+from fastapi import APIRouter, Depends, HTTPException
 
 from api.issue_utils import _expand_tags, _get, t2l
-from modules.dependencies.database import get_dbconn
-from modules_legacy import utils
+from modules import utils
+from modules.dependencies import database
+
+router = APIRouter()
 
 
-@route("/issue/<uuid:uuid>.json")
-def display(db, lang, uuid):
-    async def t(uuid):
-        return await _get(await get_dbconn(), uuid=uuid)
-
-    marker = asyncio.run(t(uuid))
+@router.get("/issue/{uuid}.json")
+async def display(
+    uuid: UUID,
+    db: Connection = Depends(database.db),
+):
+    marker = await _get(db, uuid=uuid)
     if not marker:
-        abort(410, "Id is not present in database.")
+        raise HTTPException(status_code=410, detail="Id is not present in database.")
 
     for e in marker["elems"] or []:
         e["tags"] = _expand_tags(e.get("tags", {}), t2l.checkTags(e.get("tags", {})))

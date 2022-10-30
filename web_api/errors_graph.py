@@ -4,9 +4,11 @@ import json
 import os
 import sys
 import tempfile
-import time
 
-from modules_legacy import query
+from asyncpg import Connection
+
+from modules import query
+from modules.dependencies.commons_params import Params
 
 os.environ["MPLCONFIGDIR"] = tempfile.mkdtemp()
 import matplotlib
@@ -17,7 +19,10 @@ import matplotlib.dates
 import matplotlib.pyplot
 
 
-def get_data(db, params):
+async def get_data(
+    db: Connection,
+    params=Params,
+):
     sqlbase = """
 SELECT
     date,
@@ -54,7 +59,7 @@ ORDER BY
     date
 """
 
-    join, where = query._build_param(
+    join, where, sql_params = query._build_param(
         db,
         None,
         params.source,
@@ -73,25 +78,33 @@ ORDER BY
     )
     where2 = ["1 = 1"]
     if params.start_date:
-        where2.append("timestamp >= '%s'" % params.start_date.isoformat())
+        sql_params.append(params.start_date.isoformat())
+        where2.append("timestamp >= ${len(sql_params)}")
     if params.end_date:
-        where2.append("timestamp < '%s'" % params.end_date.isoformat())
-    where2 = " AND ".join(where2)
-    sql = sqlbase % (join, where, where2)
+        sql_params.append(params.end_date.isoformat())
+        where2.append("timestamp < ${len(sql_params)}")
+    sql = sqlbase % (join, where, " AND ".join(where2))
 
     if len(sys.argv) > 1:
         print(sql)
 
     result = []
-    db.execute(sql)
-    for r in db.fetchall():
+    for r in await db.fetch(sql, *sql_params):
         result.append((r[0], r[1]))
     return result
 
 
-def get_text(db, params):
-    if len(params.source) == 1 and len(params.classs) == 1:
-        db.execute(
+async def get_text(
+    db: Connection,
+    params: Params,
+):
+    if (
+        params.source
+        and len(params.source) == 1
+        and params.classs
+        and len(params.classs) == 1
+    ):
+        res = await db.fetchval(
             """
 SELECT
     title->'en'
@@ -104,10 +117,16 @@ WHERE
     markers_counts.source_id=%s AND
     class.class=%s
 """,
-            (params.source[0], params.classs[0]),
+            params.source[0],
+            params.classs[0],
         )
-    elif len(params.item) == 1 and len(params.classs) == 1:
-        db.execute(
+    elif (
+        params.item
+        and len(params.item) == 1
+        and params.classs
+        and len(params.classs) == 1
+    ):
+        res = await db.fetchval(
             """
 SELECT
     title->'en'
@@ -118,10 +137,11 @@ WHERE
     item=%s
 LIMIT 1
 """,
-            (params.classs[0], params.item[0]),
+            params.classs[0],
+            params.item[0],
         )
-    elif len(params.item) == 1:
-        db.execute(
+    elif params.item and len(params.item) == 1:
+        res = await db.fetchval(
             """
 SELECT
     menu->'en'
@@ -131,46 +151,37 @@ WHERE
     item=%s
 LIMIT 1
 """,
-            (params.item[0],),
+            params.item[0],
         )
-    else:
-        return ""
 
-    res = db.fetchone()
-    if res and res[0]:
-        return res[0]
-    else:
-        return ""
+    return res if res else ""
 
 
-def get_src(db, params):
+async def get_src(db: Connection, params: Params):
     ret = []
     if params.item:
-        db.execute(
+        r = db.fetchval(
             "SELECT menu->'en' FROM items WHERE {0}".format(
                 query._build_where_item("items", params.item)
             )
         )
-        r = db.fetchone()
-        if r and r[0]:
-            ret.append(r[0])
+        if r:
+            ret.append(r)
 
     if params.item and params.classs:
-        db.execute(
+        r = db.fetchval(
             "SELECT title->'en' FROM class WHERE {0} AND {1};".format(
                 query._build_where_item("class", params.item),
                 query._build_where_class("class", params.classs),
             )
         )
-        r = db.fetchone()
-        if r and r[0]:
-            ret.append(r[0])
+        if r:
+            ret.append(r)
 
-    if len(params.source) == 1:
-        db.execute(
-            "SELECT country, analyser FROM sources WHERE id=%s;", (params.source[0],)
+    if params.source and len(params.source) == 1:
+        r = db.fetchrow(
+            "SELECT country, analyser FROM sources WHERE id = $1;", params.source[0]
         )
-        r = db.fetchone()
         if r:
             ret.append(r[0])
             ret.append(r[1])
@@ -188,14 +199,14 @@ def convIntsToStr(values):
     return ", ".join([str(elt) for elt in values])
 
 
-def make_plt(db, params, format):
-    data = get_data(db, params)
-    text = get_text(db, params)
-    src = get_src(db, params)
+async def make_plt(db: Connection, params: Params, format: str):
+    data = await get_data(db, params)
+    text = await get_text(db, params)
+    src = await get_src(db, params)
     return plot(data, text + " " + src, format)
 
 
-def plot(data, title, format):
+def plot(data, title: str, format: str):
     if format == "json":
         jsonData = {}
         for d in data:
@@ -242,27 +253,3 @@ def plot(data, title, format):
         fig.savefig(buf, format=format)
         matplotlib.pyplot.close(fig)
         return buf.getvalue()
-
-
-if __name__ == "__main__":
-    from optparse import OptionParser
-
-    start = time.clock()
-
-    parser = OptionParser()
-    parser.add_option(
-        "--source", dest="source", type="int", action="append", default=[]
-    )
-    parser.add_option("--class", dest="classs", type="int", action="append", default=[])
-    parser.add_option("--item", dest="item", type="int", action="append", default=[])
-    parser.add_option("--level", dest="level", type="int", action="append", default=[])
-    parser.add_option("--country", dest="country", type="string", default=None)
-    (options, args) = parser.parse_args()
-
-    data = make_plt(None, options, "png")
-    f = open("graph.png", "w")
-    f.write(data)
-    f.close()
-    end = time.clock()
-    print("graph.png generated in %ims" % ((end - start) * 1000))
-    sys.exit(0)
