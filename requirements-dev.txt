@@ -8,3 +8,4 @@ flake8
 uvicorn
 lxml-stubs
 types-polib
+asyncpg-stubs

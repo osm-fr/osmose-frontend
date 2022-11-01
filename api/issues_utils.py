@@ -5,9 +5,8 @@ from lxml import etree
 from lxml.builder import E, ElementMaker
 from lxml.html import builder as H
 
-from modules.dependencies.commons_params import Params
 from modules.dependencies import i18n
-
+from modules.dependencies.commons_params import Params
 
 
 def xml_header(params: Params, title: str, website: str, lang: str, query, _):

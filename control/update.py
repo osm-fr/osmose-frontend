@@ -6,7 +6,6 @@ from asyncpg import Connection
 from fastapi import APIRouter, Depends, Form, HTTPException, Request, UploadFile
 from fastapi.responses import PlainTextResponse
 
-from modules import utils
 from modules.dependencies import database
 
 from . import update

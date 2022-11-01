@@ -1,12 +1,12 @@
 import os
 
 from fastapi import Depends, FastAPI, HTTPException, Request, Response, responses
+from modules_legacy import utils
 
 from api import app as api
 from control import app as control
 from modules.dependencies import langs
 from modules.utils import LangsNegociation
-from modules_legacy import utils
 from web_api import app as web_api
 
 app = FastAPI()
