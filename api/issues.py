@@ -8,18 +8,13 @@ from fastapi.responses import RedirectResponse
 from lxml import etree
 
 from modules import query, query_meta, utils
-from modules.dependencies import commons_params, database, langs
+from modules.dependencies import commons_params, database, i18n, langs
 from modules.fastapi_utils import GeoJSONResponse
 from modules.utils import LangsNegociation, i10n_select_auto, i10n_select_lang
 
 from .issues_utils import csv, gpx, kml, rss
 
 router = APIRouter()
-
-
-#  TODO use i18n
-def _(s):
-    return s
 
 
 class XMLResponse(Response):
@@ -220,6 +215,7 @@ async def _issues(
     db: Connection,
     langs: LangsNegociation,
     params: commons_params.Params,
+    _: i18n.Translator,
 ) -> Tuple[str, List[Any]]:
     if params.status == "false":
         title = _("False positives")
@@ -251,8 +247,9 @@ async def issues_rss(
     db: Connection = Depends(database.db),
     langs: LangsNegociation = Depends(langs.langs),
     params=Depends(commons_params.params),
+    i18n: i18n.Translator = Depends(i18n.i18n),
 ):
-    title, issues = await _issues(db, langs, params)
+    title, issues = await _issues(db, langs, params, i18n)
     return RSSResponse(
         rss(
             title=title,
@@ -263,6 +260,7 @@ async def issues_rss(
             main_website=utils.main_website,
             remote_url_read=utils.remote_url_read,
             issues=issues,
+            i18n=i18n,
         )
     )
 
@@ -273,8 +271,9 @@ async def issues_gpx(
     db: Connection = Depends(database.db),
     langs: LangsNegociation = Depends(langs.langs),
     params=Depends(commons_params.params),
+    i18n: i18n.Translator = Depends(i18n.i18n),
 ):
-    title, issues = await _issues(db, langs, params)
+    title, issues = await _issues(db, langs, params, i18n)
     return GPXResponse(
         gpx(
             title=title,
@@ -285,6 +284,7 @@ async def issues_gpx(
             main_website=utils.main_website,
             remote_url_read=utils.remote_url_read,
             issues=issues,
+            i18n=i18n,
         )
     )
 
@@ -295,8 +295,9 @@ async def issues_kml(
     db: Connection = Depends(database.db),
     langs: LangsNegociation = Depends(langs.langs),
     params=Depends(commons_params.params),
+    i18n: i18n.Translator = Depends(i18n.i18n),
 ):
-    title, issues = await _issues(db, langs, params)
+    title, issues = await _issues(db, langs, params, i18n)
     return KMLResponse(
         kml(
             title=title,
@@ -307,6 +308,7 @@ async def issues_kml(
             main_website=utils.main_website,
             remote_url_read=utils.remote_url_read,
             issues=issues,
+            i18n=i18n,
         )
     )
 
@@ -317,8 +319,9 @@ async def issues_csv(
     db: Connection = Depends(database.db),
     langs: LangsNegociation = Depends(langs.langs),
     params=Depends(commons_params.params),
+    i18n: i18n.Translator = Depends(i18n.i18n),
 ):
-    title, issues = await _issues(db, langs, params)
+    title, issues = await _issues(db, langs, params, i18n)
     return csv(
         title=title,
         website=utils.website,
@@ -337,8 +340,9 @@ async def issues_geojson(
     db: Connection = Depends(database.db),
     langs: LangsNegociation = Depends(langs.langs),
     params=Depends(commons_params.params),
+    i18n: i18n.Translator = Depends(i18n.i18n),
 ):
-    title, issues = await _issues(db, langs, params)
+    title, issues = await _issues(db, langs, params, i18n)
     return {
         "type": "FeatureCollection",
         "features": [

@@ -6,14 +6,11 @@ from lxml.builder import E, ElementMaker
 from lxml.html import builder as H
 
 from modules.dependencies.commons_params import Params
+from modules.dependencies import i18n
 
 
-#  TODO use i18n
-def _(s):
-    return s
 
-
-def xml_header(params: Params, title: str, website: str, lang: str, query):
+def xml_header(params: Params, title: str, website: str, lang: str, query, _):
     if params.users:
         users = ", ".join(params.users)
         title = f"Osmose - {users}"
@@ -33,6 +30,7 @@ def xml_issue(
     query: str,
     main_website: str,
     remote_url_read: str,
+    _: i18n.Translator,
 ):
     name = (res["menu"] or "") + " - " + (res["subtitle"] or res["title"] or "")
 
@@ -130,9 +128,10 @@ def gpx_issue(
     query,
     main_website: str,
     remote_url_read: str,
+    i18n: i18n.Translator,
 ):
     lat, lon, name, _, map_url, html_desc = xml_issue(
-        res, website, lang, query, main_website, remote_url_read
+        res, website, lang, query, main_website, remote_url_read, i18n
     )
     return E.wpt(
         E.name(name),
@@ -152,6 +151,7 @@ def gpx(
     remote_url_read: str,
     issues,
     title: str,
+    i18n: i18n.Translator,
 ):
     content = []
     if len(issues) > 0:
@@ -159,13 +159,13 @@ def gpx(
     content += list(
         map(
             lambda issue: gpx_issue(
-                issue, website, lang, query, main_website, remote_url_read
+                issue, website, lang, query, main_website, remote_url_read, i18n
             ),
             issues,
         )
     )
 
-    title, _, url = xml_header(params, title, website, lang, query)
+    title, _, url = xml_header(params, title, website, lang, query, i18n)
     return E.gpx(
         E.name(title),
         E.url(url),
@@ -185,9 +185,10 @@ def kml_issue(
     query,
     main_website: str,
     remote_url_read: str,
+    i18n: i18n.Translator,
 ):
     lat, lon, name, desc, map_url, _ = xml_issue(
-        res, website, lang, query, main_website, remote_url_read
+        res, website, lang, query, main_website, remote_url_read, i18n
     )
     return E.Placemark(
         E.name(name),
@@ -209,15 +210,16 @@ def kml(
     remote_url_read: str,
     issues,
     title: str,
+    i18n: i18n.Translator,
 ):
     content = map(
         lambda issue: kml_issue(
-            issue, website, lang, query, main_website, remote_url_read
+            issue, website, lang, query, main_website, remote_url_read, i18n
         ),
         issues,
     )
 
-    title, _, url = xml_header(params, title, website, lang, query)
+    title, _, url = xml_header(params, title, website, lang, query, i18n)
     if len(issues) > 0:
         title += " (" + issues[0]["timestamp"].strftime("%Y-%m-%dT%H:%M:%SZ") + ")"
     return E.kml(
@@ -243,9 +245,10 @@ def rss_issue(
     query: str,
     main_website: str,
     remote_url_read: str,
+    i18n: i18n.Translator,
 ):
     _, _, name, _, map_url, html_desc = xml_issue(
-        res, website, lang, query, main_website, remote_url_read
+        res, website, lang, query, main_website, remote_url_read, i18n
     )
     return E.item(
         E.title(name),
@@ -265,10 +268,11 @@ def rss(
     remote_url_read: str,
     issues,
     title: str,
+    i18n: i18n.Translator,
 ):
     content = map(
         lambda issue: rss_issue(
-            issue, website, lang, query, main_website, remote_url_read
+            issue, website, lang, query, main_website, remote_url_read, i18n
         ),
         issues,
     )
@@ -282,7 +286,7 @@ def rss(
         ) + time.strftime(" %Y %H:%M:%S %z")
         lastBuildDate = [E.lastBuildDate(rfc822)]
 
-    title, description, url = xml_header(params, title, website, lang, query)
+    title, description, url = xml_header(params, title, website, lang, query, i18n)
     E_atom = ElementMaker(
         namespace="http://www.w3.org/2005/Atom",
         nsmap={"atom": "http://www.w3.org/2005/Atom"},

@@ -38,16 +38,6 @@ def custom_openapi():
 app.openapi = custom_openapi
 
 
-################
-# app.install(
-#     bottle_gettext.Plugin(
-#         "osmose-frontend", os.path.join("web", "po", "mo"), utils.allowed_languages
-#     )
-# )
-# app.install(bottle_user.Plugin())
-#####################
-
-
 @app.get("/login")
 async def login(session_id: Optional[UUID] = Depends(cookie)):
     if session_id:

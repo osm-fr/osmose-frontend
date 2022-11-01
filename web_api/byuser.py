@@ -9,15 +9,10 @@ from lxml.builder import E
 
 from api.user_utils import _user, _user_count
 from modules import utils
-from modules.dependencies import commons_params, database, langs
+from modules.dependencies import commons_params, database, i18n, langs
 from modules.utils import LangsNegociation, i10n_select_lang
 
 router = APIRouter()
-
-
-#  TODO use i18n
-def _(s):
-    return s
 
 
 class XMLResponse(Response):
@@ -66,12 +61,13 @@ async def user_count(
     username: str,
     db: Connection = Depends(database.db),
     params=Depends(commons_params.params),
+    _=Depends(i18n.i18n),
 ):
     count = await _user_count(params, db, username)
     xml = E.rss(
         E.channel(
             E.title("Osmose - " + username),
-            E.description(_("Statistics for user {0}").format(username)),
+            E.description(_("Statistics for user {}").format(username)),
             E.link("{}/byuser/{}".format(utils.website, username)),
             E.item(
                 E.title(
