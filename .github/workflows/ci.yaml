@@ -3,7 +3,39 @@ name: CI
 on: push
 
 jobs:
-  lint:
+  lint-python:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.9
+      env:
+        USER: root
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt -r requirements-dev.txt
+
+    - name: Lint - Black
+      run: |
+        black --check api modules control web_api osmose.py
+
+    - name: Lint - Flack8
+      run: |
+        flake8 api modules control web_api osmose.py
+
+    # - name: MyPy
+    #   run: |
+    #     mypy api modules control web_api osmose.py
+
+  lint-web:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,7 +59,7 @@ jobs:
       run: cd web && npm install
     - run: cd web && npm run lint
 
-  build:
+  build-web:
     runs-on: ubuntu-latest
 
     steps:
