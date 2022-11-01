@@ -1,17 +1,17 @@
 from typing import Optional
-from uuid import UUID
+from uuid import UUID, uuid4
 
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 
+from modules import utils
 from modules.dependencies import database
 
 from . import byuser, editor, false_positive, issue, issues, map
-
-# from modules import utils
-# from .tool import oauth, xmldict
+from .tool import oauth, xmldict
+from .tool.session import SessionData, backend, cookie, verifier
 
 openapi_tags = [
     {
@@ -39,19 +39,6 @@ app.openapi = custom_openapi
 
 
 ################
-# @hook("before_request")
-# def setup_request():
-#     if request:
-#         request.session = request.environ["beaker.session"]
-
-
-# session_opts = {
-#     "session.type": "file",
-#     "session.data_dir": "./web_api/session/",
-#     "session.cookie_expires": False,
-# }
-# app_middleware = beaker.middleware.SessionMiddleware(bottle.default_app(), session_opts)
-
 # app.install(
 #     bottle_gettext.Plugin(
 #         "osmose-frontend", os.path.join("web", "po", "mo"), utils.allowed_languages
@@ -62,46 +49,46 @@ app.openapi = custom_openapi
 
 
 @app.get("/login")
-def login(lang):
-    if "user" in request.session:
-        del request.session["user"]  # logout
+async def login(session_id: Optional[UUID] = Depends(cookie)):
+    if session_id:
+        await backend.delete(session_id)
+
     (url, oauth_tokens) = oauth.fetch_request_token()
-    request.session["oauth_tokens"] = oauth_tokens
-    request.session.save()
-    redirect(url)
+    session = uuid4()
+    await backend.create(session, SessionData(oauth_tokens=oauth_tokens))
+
+    response = RedirectResponse(url)
+    cookie.attach_to_response(response, session)
+    return response
 
 
 @app.get("/logout")
-def logout(lang):
-    if "user" in request.session:
-        del request.session["user"]
-        request.session.save()
-    redirect("map/")
+async def logout(response: Response, session_id: Optional[UUID] = Depends(cookie)):
+    if session_id:
+        await backend.delete(session_id)
+        cookie.delete_from_response(response)
+    return RedirectResponse("map/")
 
 
 @app.get("/oauth")
-def oauth_(lang):
-    try:
-        oauth_tokens = request.session["oauth_tokens"]
-        oauth_tokens = oauth.fetch_access_token(
-            request.session["oauth_tokens"], request
-        )
-        request.session["oauth_tokens"] = oauth_tokens
+async def oauth_(
+    session_id: UUID = Depends(cookie),
+    session_data: Optional[SessionData] = Depends(verifier),
+):
+    print(session_data)
+    if session_id and session_data:
         try:
+            oauth_tokens = oauth.fetch_access_token(session_data.oauth_tokens)
+            session_data.oauth_tokens = oauth_tokens
             user_request = oauth.get(
                 oauth_tokens, utils.remote_url + "api/0.6/user/details"
             )
             if user_request:
-                request.session["user"] = xmldict.xml_to_dict(user_request)
+                session_data.user = xmldict.xml_to_dict(user_request)
+            await backend.update(session_id, session_data)
         except Exception:
             pass
-        if "user" not in request.session:
-            request.session["user"] = None
-    except Exception:
-        pass
-    finally:
-        request.session.save()
-    redirect("map/")
+    return RedirectResponse("map/")
 
 
 # CORS middleware

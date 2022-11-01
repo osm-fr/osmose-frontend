@@ -29,7 +29,7 @@ def fetch_request_token():
     return (authorize_url, (request_token, request_token_secret))
 
 
-def fetch_access_token(oauth_tokens, request):
+def fetch_access_token(oauth_tokens):
     session = oauth.get_auth_session(oauth_tokens[0], oauth_tokens[1], method="POST")
     return (session.access_token, session.access_token_secret)
 

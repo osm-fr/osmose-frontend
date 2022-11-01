@@ -1,4 +1,4 @@
-from typing import Dict, Set
+from typing import Dict, Optional, Set
 
 from asyncpg import Connection
 from fastapi import APIRouter, Depends, Request
@@ -8,6 +8,8 @@ from api.user_utils import _user_count
 from modules import query_meta, utils
 from modules.dependencies import commons_params, database, langs
 from modules.utils import LangsNegociation
+
+from .tool.session import SessionData, cookie, verifier
 
 router = APIRouter()
 
@@ -19,13 +21,13 @@ def errors(
     return RedirectResponse("map/?" + request.url.query)
 
 
-@router.get("/map/.json")
+@router.get("/map/.json", dependencies=[Depends(cookie)])
 async def index(
-    user,
     request: Request,
     db: Connection = Depends(database.db),
     params=Depends(commons_params.params),
     langs: LangsNegociation = Depends(langs.langs),
+    session_data: Optional[SessionData] = Depends(verifier),
 ):
     if request.url.query:
         return RedirectResponse("./#" + request.url.query)
@@ -64,13 +66,11 @@ OFFSET
 """
     timestamp = await db.fetchval(sql)
 
-    if user is not None:
-        if user:
-            user_error_count = await _user_count(params, db, user)
-        else:  # user == False
-            user = "[user name]"
-            user_error_count = {1: 0, 2: 0, 3: 0}
+    if session_data and session_data.user:
+        user = session_data.user["osm"]["user"]["@display_name"]
+        user_error_count = await _user_count(params, db, user)
     else:
+        user = None
         user_error_count = None
 
     return dict(
