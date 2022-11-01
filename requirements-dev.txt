@@ -9,3 +9,4 @@ uvicorn
 lxml-stubs
 types-polib
 asyncpg-stubs
+types-python-dateutil

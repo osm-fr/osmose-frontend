@@ -1,5 +1,5 @@
 from collections import defaultdict
-from typing import Dict, Optional
+from typing import Any, Dict, Optional
 
 from asyncpg import Connection
 
@@ -141,8 +141,8 @@ async def _items(
         item,
         class
     """
-    classs = await db.fetch(sql, *sql_params)
-    classs = list(
+    classses = await db.fetch(sql, *sql_params)
+    classses = list(
         map(
             lambda c: dict(
                 dict(c),
@@ -152,11 +152,11 @@ async def _items(
                 trap=i10n_select(c["trap"], langs),
                 example=i10n_select(c["example"], langs),
             ),
-            classs,
+            classses,
         )
     )
     class_item = defaultdict(list)
-    for c in classs:
+    for c in classses:
         class_item[c["item"]].append(c)
 
     return list(
@@ -200,12 +200,12 @@ async def _tags(db: Connection):
     return list(map(lambda x: x[0], await db.fetch(sql)))
 
 
-async def _sources(db: Connection) -> Dict[int, Dict[str, str]]:
-    config: Dict[int, Dict[str, str]] = {}
+async def _sources(db: Connection) -> Dict[int, Dict[str, Any]]:
+    config: Dict[int, Dict[str, Any]] = {}
     for res in await db.fetch(
         "SELECT id, password, country, analyser FROM sources JOIN sources_password ON sources.id = source_id"
     ):
-        src = {}
+        src: Dict[str, Any] = {}
         src["id"] = str(res["id"])
         src["password"] = set([res["password"]])
         src["country"] = res["country"]

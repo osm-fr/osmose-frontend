@@ -123,12 +123,13 @@ def i10n_select_auto(translations: Dict[str, str], langs: LangsNegociation):
 
 
 def i10n_select_lang(langs: LangsNegociation):
-    for lang in langs:
-        if lang in languages_name:
-            return lang
-    for lang in langs:
-        if lang.split("-")[0] in languages_name:
-            return lang
+    if langs:
+        for lang in langs:
+            if lang in languages_name:
+                return lang
+        for lang in langs:
+            if lang.split("-")[0] in languages_name:
+                return lang
     return "en"
 
 

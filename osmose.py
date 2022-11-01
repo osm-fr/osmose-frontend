@@ -1,10 +1,10 @@
 import os
 
 from fastapi import Depends, FastAPI, HTTPException, Request, Response, responses
-from modules_legacy import utils
 
 from api import app as api
 from control import app as control
+from modules import utils
 from modules.dependencies import langs
 from modules.utils import LangsNegociation
 from web_api import app as web_api
@@ -35,7 +35,7 @@ for lang in utils.allowed_languages:
 @app.get("/map")
 @app.get("/map/")
 def index(request: Request, langs: LangsNegociation = Depends(langs.langs)):
-    lang = langs[0][0:2]
+    lang = langs[0][0:2] if langs else "en"
     path = f"/{lang}"
     if request.url.path != "/":
         path += request.url.path
