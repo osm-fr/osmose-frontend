@@ -2,6 +2,7 @@ import bz2
 import gzip
 import io
 import re
+import unittest
 from xml.sax import handler, make_parser
 from xml.sax.saxutils import XMLGenerator, quoteattr
 
@@ -131,7 +132,7 @@ class OsmSaxReader(handler.ContentHandler):
             self._data["tag"] = self._tags
             try:
                 self._output.NodeCreate(self._data)
-            except:
+            except Exception:
                 print(self._data)
                 raise
         elif name == "way":
@@ -139,7 +140,7 @@ class OsmSaxReader(handler.ContentHandler):
             self._data["nd"] = self._nodes
             try:
                 self._output.WayCreate(self._data)
-            except:
+            except Exception:
                 print(self._data)
                 raise
         elif name == "relation":
@@ -147,7 +148,7 @@ class OsmSaxReader(handler.ContentHandler):
             self._data["member"] = self._members
             try:
                 self._output.RelationCreate(self._data)
-            except:
+            except Exception:
                 print(self._data)
                 raise
         elif name == "osm":
@@ -166,7 +167,7 @@ class OsmTextReader:
         self._logger = logger
 
     def _GetFile(self):
-        if type(self._filename) == file:
+        if isinstance(self._filename, io.TextIOBase):
             return self._filename
         elif self._filename.endswith(".bz2"):
             return bz2.BZ2File(self._filename)
@@ -180,67 +181,67 @@ class OsmTextReader:
         _re_eid = re.compile(" id=['\"](.+?)['\"]")
         _re_lat = re.compile(" lat=['\"](.+?)['\"]")
         _re_lon = re.compile(" lon=['\"](.+?)['\"]")
-        _re_usr = re.compile(" user=['\"](.+?)['\"]")
+        _re_nod = re.compile(" ref=['\"](.+?)['\"]")
         _re_tag = re.compile(" k=['\"](.+?)['\"] v=['\"](.+?)['\"]")
 
         f = self._GetFile()
-        l = f.readline()
-        while l:
+        line = f.readline()
+        while line:
 
-            if "<node" in l:
+            if "<node" in line:
 
                 _dat = {}
-                _dat["id"] = int(_re_eid.findall(l)[0])
-                _dat["lat"] = float(_re_lat.findall(l)[0])
-                _dat["lon"] = float(_re_lon.findall(l)[0])
-                _usr = _re_lon.findall(l)
+                _dat["id"] = int(_re_eid.findall(line)[0])
+                _dat["lat"] = float(_re_lat.findall(line)[0])
+                _dat["lon"] = float(_re_lon.findall(line)[0])
+                _usr = _re_lon.findall(line)
                 if _usr:
                     _dat["lon"] = _usr[0].decode("utf8")
                 _dat["tag"] = {}
 
-                if "/>" in l:
+                if "/>" in line:
                     output.NodeCreate(_dat)
-                    l = f.readline()
+                    line = f.readline()
                     continue
 
-                l = f.readline()
-                while "</node>" not in l:
-                    _tag = _re_tag.findall(l)[0]
+                line = f.readline()
+                while "</node>" not in line:
+                    _tag = _re_tag.findall(line)[0]
                     _dat["tag"][_tag[0].decode("utf8")] = _tag[1].decode("utf8")
-                    l = f.readline()
+                    line = f.readline()
 
                 output.NodeCreate(_dat)
-                l = f.readline()
+                line = f.readline()
                 continue
 
-            if "<way" in l:
+            if "<way" in line:
 
                 _dat = {}
-                _dat["id"] = int(_re_eid.findall(l)[0])
-                _usr = _re_lon.findall(l)
+                _dat["id"] = int(_re_eid.findall(line)[0])
+                _usr = _re_lon.findall(line)
                 if _usr:
                     _dat["lon"] = _usr[0].decode("utf8")
                 _dat["tag"] = {}
                 _dat["nd"] = []
 
-                l = f.readline()
-                while "</way>" not in l:
-                    if "<nd" in l:
-                        _dat["nd"].append(int(_re_nod.findall(l)[0]))
+                line = f.readline()
+                while "</way>" not in line:
+                    if "<nd" in line:
+                        _dat["nd"].append(int(_re_nod.findall(line)[0]))
                         continue
-                    _tag = _re_tag.findall(l)[0]
+                    _tag = _re_tag.findall(line)[0]
                     _dat["tag"][_tag[0].decode("utf8")] = _tag[1].decode("utf8")
-                    l = f.readline()
+                    line = f.readline()
 
                 output.WayCreate(_dat)
-                l = f.readline()
+                line = f.readline()
                 continue
 
-            if "<relation" in l:
-                l = f.readline()
+            if "<relation" in line:
+                line = f.readline()
                 continue
 
-            l = f.readline()
+            line = f.readline()
 
 
 ###########################################################################
@@ -255,7 +256,7 @@ class OscSaxReader(handler.ContentHandler):
         self._logger = logger
 
     def _GetFile(self):
-        if type(self._filename) == file:
+        if isinstance(self._filename, io.TextIOBase):
             return self._filename
         elif self._filename.endswith(".bz2"):
             return bz2.BZ2File(self._filename)
@@ -487,7 +488,6 @@ def RelationToXml(data, full=False):
 
 
 ###########################################################################
-import unittest
 
 
 class TestCountObjects:

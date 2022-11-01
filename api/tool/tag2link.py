@@ -7,12 +7,12 @@ import xml.sax
 class Exact(xml.sax.handler.ContentHandler):
     def __init__(self):
         self.rules = []
-        self.val = re.compile("(%[^%]+%|\{[^}]+})")
+        self.val = re.compile("(%[^%]+%|\{[^}]+})")  # noqa
 
     def unposix(self, regex):
-        regex = regex.replace("\p{Lower}", "[a-z]")
-        regex = regex.replace("\p{Upper}", "[A-Z]")
-        regex = regex.replace("\p{Digit}", "[0-9]")
+        regex = regex.replace("\p{Lower}", "[a-z]")  # noqa
+        regex = regex.replace("\p{Upper}", "[A-Z]")  # noqa
+        regex = regex.replace("\p{Digit}", "[0-9]")  # noqa
         return regex
 
     def startElement(self, name, attrs):
@@ -38,11 +38,11 @@ class Exact(xml.sax.handler.ContentHandler):
                     v = valmatch.group(1)
                     link = link.replace(v, "%s", 1)
                     var = v[1:-1].split(":")
-                    for l in var:
-                        if "." not in l and l != "v" and l != "k":
-                            vv = l
+                    for ll in var:
+                        if "." not in ll and ll != "v" and ll != "k":
+                            vv = ll
                         else:
-                            vv = l.split(".")
+                            vv = ll.split(".")
                             if vv[0] in ("k", "v"):
                                 vv = [None] + vv
                             if len(vv) == 2:
@@ -74,10 +74,8 @@ class tag2link:
                     for key in tags.keys():
                         kmatch = condition["k"].match(key)
                         if kmatch:
-                            tag = key
-                            value = tags[key]
                             id[condition["id"]] = {"k": kmatch}
-                            if condition["v"] == None:
+                            if condition["v"] is None:
                                 vmatch = self.all.match(tags[key])
                                 id[condition["id"]]["v"] = vmatch
                                 match = True
@@ -104,11 +102,11 @@ class tag2link:
                                     replace.append(val)
                                     break
                     ret = rule["link"]["url"] % tuple(replace)
-                    if not "://" in ret:
+                    if "://" not in ret:
                         ret = "http://" + ret
                     urls[id[rule["link"]["subs"][0][0][0]]["k"].group(0)] = ret
             return urls
-        except:
+        except Exception:
             return {}
 
 

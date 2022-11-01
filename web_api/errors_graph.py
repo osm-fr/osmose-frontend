@@ -11,12 +11,12 @@ from modules import query
 from modules.dependencies.commons_params import Params
 
 os.environ["MPLCONFIGDIR"] = tempfile.mkdtemp()
-import matplotlib
+import matplotlib  # noqa
 
 # Force matplotlib to not use any Xwindows backend.
 matplotlib.use("Agg")
-import matplotlib.dates
-import matplotlib.pyplot
+import matplotlib.dates  # noqa
+import matplotlib.pyplot  # noqa
 
 
 async def get_data(
