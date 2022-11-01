@@ -8,7 +8,7 @@ from fastapi.responses import PlainTextResponse
 
 from modules.dependencies import database
 
-from . import update
+from . import update_utils
 
 router = APIRouter()
 
@@ -71,9 +71,9 @@ LIMIT 1
         with tempfile.NamedTemporaryFile(mode="wb", suffix=ext) as f:
             f.write(await content.read())
             f.flush()
-            await update.update(db, source_id, f.name, remote_ip=remote_ip)
+            await update_utils.update(db, source_id, f.name, remote_ip=remote_ip)
 
-    except update.OsmoseUpdateAlreadyDone:
+    except update_utils.OsmoseUpdateAlreadyDone:
         raise HTTPException(status_code=400, detail="FAIL: Already up to date")
 
     except Exception:
