@@ -111,7 +111,6 @@ class Params:
             sources = classs.split(",")
             try:
                 self.classs = list(map(lambda x: int(x), classs.split(",")))
-                print(self.classs)
             except Exception:
                 pass
         self.users = users.split(",") if users else None

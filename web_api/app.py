@@ -65,7 +65,6 @@ async def oauth_(
     session_id: UUID = Depends(cookie),
     session_data: Optional[SessionData] = Depends(verifier),
 ):
-    print(session_data)
     if session_id and session_data:
         try:
             oauth_tokens = oauth.fetch_access_token(session_data.oauth_tokens)

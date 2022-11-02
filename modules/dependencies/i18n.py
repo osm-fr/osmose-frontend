@@ -17,7 +17,6 @@ def get_languages(request: Request) -> List[str]:
     langs = [None]
 
     base_path = request.scope.get("root_path")
-    print(base_path)
     if base_path and len(base_path) >= 3:
         # Handle longer languages like zh_TW
         if len(base_path) == 6 and base_path[3] == "_":
@@ -27,7 +26,6 @@ def get_languages(request: Request) -> List[str]:
 
         if len(base_path) == 3:
             tmp_lang = base_path[1:3]
-            print("tmp_lang", tmp_lang)
             if tmp_lang in allowed_languages:
                 return ([tmp_lang, allowed_languages[0]], False)
 
@@ -57,7 +55,6 @@ async def i18n(
     langs: LangsNegociation = Depends(langs.langs),
 ) -> Translator:
     (languages, redirect) = get_languages(request)
-    print(languages)
 
     k = ",".join(languages)
     if k in cache:

@@ -444,4 +444,4 @@ async def _count(
 
     sql = sqlbase % (select, join, where, groupBy, order)
 
-    return await db.fetch(sql, *sql_params)
+    return list(map(dict, await db.fetch(sql, *sql_params)))
