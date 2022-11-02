@@ -1,4 +1,6 @@
 import asyncio
+import bz2
+import gzip
 import sys
 import time
 import unittest
@@ -43,12 +45,8 @@ async def update(
 
         #  open the file
         if fname.endswith(".bz2"):
-            import bz2
-
             f = bz2.BZ2File(fname)
         elif fname.endswith(".gz"):
-            import gzip
-
             f = gzip.open(fname)
         else:
             f = open(fname)
@@ -72,10 +70,14 @@ async def update(
     for task in pending:
         task.cancel()
 
-    if not tasks[0].cancelled() and tasks[0].exception():
-        raise tasks[0].exception()
-    if not tasks[1].cancelled() and tasks[1].exception():
-        raise tasks[1].exception()
+    if not tasks[0].cancelled():
+        e = tasks[0].exception()
+        if e:
+            raise e
+    if not tasks[1].cancelled():
+        e = tasks[1].exception()
+        if e:
+            raise e
 
     #  update subtitle from new errors
     await db.execute(
@@ -165,11 +167,10 @@ async def update_class(
     _class_example: Optional[Dict[str, str]],
     _class_source: Optional[str],
     _class_resource: Optional[str],
-    ts: str,
+    ts: float,
 ):
     # Commit class update on its own transaction. Avoid lock the class table and block other updates.
     try:
-        db_local = None
         db_local = await database.get_dbconn()
         await db_local.execute(
             """
@@ -242,7 +243,7 @@ WHERE
 async def update_issue(
     _db: Connection,
     all_uuid: Optional[Dict[int, List[str]]],
-    _error_locations,
+    _error_locations: List[Dict[str, str]],
     _source_id: int,
     _class_id: int,
     _class_sub: int,
@@ -296,7 +297,6 @@ WHERE
         markers.fixes IS DISTINCT FROM $9 OR
         markers.subtitle IS DISTINCT FROM $10
     )
-RETURNING uuid
 """
     )
 
@@ -327,7 +327,7 @@ RETURNING uuid
             fixes if fixes else None,  # $9 fixes
             _error_texts,  # $10 subtitle
         ]
-        await _db.fetchval(sql_marker, *params)
+        await _db.execute(sql_marker, *params)
 
 
 class update_parser(handler.ContentHandler):
@@ -659,8 +659,9 @@ WHERE
             self._fixes.append(self._fix)
 
     async def update_timestamp(self, attrs: Dict[str, str]):
-        if attrs.get("timestamp"):
-            self.ts = dateutil.parser.isoparse(attrs.get("timestamp")).timestamp()
+        timestamp = attrs.get("timestamp")
+        if timestamp:
+            self.ts = dateutil.parser.isoparse(timestamp).timestamp()
         else:
             self.ts = time.time()
 
