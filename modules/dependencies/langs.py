@@ -7,10 +7,12 @@ from fastapi import Request
 
 def parse_accept_language(request: Request, langs: List[str]) -> List[str]:
     if langs and "auto" in langs:
-        langs = request.headers.get("Accept-Language")
+        accept_language = request.headers.get("Accept-Language")
     if not langs:
-        langs = "en"
-    langs = list(map(lambda lang: lang.split(";")[0].strip(), langs.split(",")))
+        accept_language = "en"
+    langs = list(
+        map(lambda lang: lang.split(";")[0].strip(), accept_language.split(","))
+    )
     langs += list(map(lambda lang: lang.split("_")[0].lower(), langs))
     return langs
 
@@ -19,9 +21,4 @@ async def langs(request: Request) -> Optional[List[str]]:
     langs = request.query_params.get("langs") or ["auto"]
     if langs:
         langs = parse_accept_language(request, langs)
-
-    # script_name = requested URL path
-    #    if not langs and len(request.script_name) > 3:
-    #        langs = [request.script_name[-3:-1]]
-
     return langs

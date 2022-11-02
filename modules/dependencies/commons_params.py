@@ -176,7 +176,7 @@ async def params(
         start_date if start_date != "" else None,
         end_date if end_date != "" else None,
         tags if tags != "" else None,
-        fixable if fixable != "" else None,
+        fixable if fixable in ("online", "josm") else None,
         osm_type,
         osm_id,
         tilex,
