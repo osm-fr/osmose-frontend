@@ -4,4 +4,16 @@ When contributing to this repository, please first discuss the change you wish t
 
 # Code Style
 
-There is no written rules about this project or any specific code style. But please try to make the code similar to code already existing.
+Ensure common code style by using formater:
+```
+isort api modules control web_api osmose.py
+black api modules control web_api osmose.py
+```
+
+# Code lint
+
+Check the code with:
+```
+flake8 api modules control web_api osmose.py
+mypy api modules control web_api osmose.py
+```
