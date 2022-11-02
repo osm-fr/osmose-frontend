@@ -86,6 +86,7 @@ class InFileBackend(Generic[ID, SessionModel], SessionBackend[ID, SessionModel])
             with open(path, "r") as f:
                 data = json.loads(f.read())
                 return SessionData(**data)
+        return None
 
     async def update(self, session_id: ID, data: SessionModel) -> None:
         await self.create(session_id, data)

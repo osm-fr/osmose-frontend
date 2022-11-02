@@ -64,13 +64,13 @@ ORDER BY
     updates_last.timestamp DESC
 """
 
-    keys: Dict[str, int] = defaultdict(int)
+    keys_count: Dict[str, int] = defaultdict(int)
     matrix: Dict[str, Dict[str, Tuple[float, str]]] = defaultdict(dict)
     stats_analyser: Dict[str, Tuple[float, float, float]] = {}
     stats_country: Dict[str, Tuple[float, float, float, int]] = {}
     for res in await db.fetch(sql, *params):
         (source, age, country, analyser) = (res[0], res[1], res[2], res[3])
-        keys[country] += 1
+        keys_count[country] += 1
         matrix[analyser][country] = (age / 60 / 60 / 24, source)
     for analyser in matrix:
         min: Optional[float] = None
@@ -92,15 +92,18 @@ ORDER BY
                 max_c = v if v > max_c else max_c
                 sum_c += v
                 n_c += 1
-            stats_country[country] = [min_c, sum_c, max_c, n_c]
+            stats_country[country] = (min_c, sum_c, max_c, n_c)
         if min is not None and max is not None:
             stats_analyser[analyser] = (min, sum / len(matrix[analyser]), max)
     for country in stats_country:
-        stats_country[country][1] = (
-            stats_country[country][1] / stats_country[country][3]
+        stats_country[country] = (
+            stats_country[country][0],
+            stats_country[country][1] / stats_country[country][3],
+            stats_country[country][2],
+            stats_country[country][3],
         )
 
-    keys = sorted(keys, key=lambda k: -stats_country[k][2])
+    keys = sorted(keys_count, key=lambda k: -stats_country[k][2])
     matrix_keys = sorted(matrix.keys(), key=lambda k: -stats_analyser[k][2])
 
     return dict(
@@ -171,25 +174,28 @@ ORDER BY
             max_versions[remote].append(max_version)
         if min_version:
             min_versions[remote].append(min_version)
-    for remote in summary.keys():
-        hostnames[remote] = hostnames[remote][0]
-        max_versions[remote] = (
-            max(max_versions[remote]) if max_versions[remote] else None
-        )
-        if max_versions[remote] and "-" in max_versions[remote]:
-            max_versions[remote] = "-".join(max_versions[remote].split("-")[1:5])
-        min_versions[remote] = (
-            min(min_versions[remote]) if min_versions[remote] else None
-        )
-        if min_versions[remote] and "-" in min_versions[remote]:
-            min_versions[remote] = "-".join(min_versions[remote].split("-")[1:5])
 
-    remote_keys = sorted(summary.keys(), key=lambda remote: hostnames[remote] or "")
+    remotes: Dict[str, str] = {}
+    max_versions_max: Dict[str, Optional[str]] = {}
+    max_versions_min: Dict[str, Optional[str]] = {}
+    for remote in summary.keys():
+        remotes[remote] = hostnames[remote][0]
+        m = max(max_versions[remote]) if max_versions[remote] else None
+        if m is not None and "-" in m:
+            m = "-".join(m.split("-")[1:5])
+        max_versions_max[remote] = m
+
+        m = min(min_versions[remote]) if min_versions[remote] else None
+        if m is not None and "-" in m:
+            m = "-".join(m.split("-")[1:5])
+        max_versions_min[remote] = m
+
+    remote_keys = sorted(summary.keys(), key=lambda remote: remotes[remote] or "")
     return dict(
         summary=summary,
-        hostnames=hostnames,
-        max_versions=max_versions,
-        min_versions=min_versions,
+        hostnames=remotes,
+        max_versions=max_versions_max,
+        min_versions=max_versions_min,
         remote_keys=remote_keys,
         max_count=max_count,
     )
