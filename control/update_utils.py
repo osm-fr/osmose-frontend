@@ -273,15 +273,20 @@ INSERT INTO markers (uuid, source_id, class, item, lat, lon, elems, fixes, subti
 VALUES (
     """
         + uuid
-        + """, $1, $2, $5, $6, $7, $8::jsonb[], $9::jsonb[], $10
+        + """,
+    $1, $2, $5, $6, $7,
+    -- Hack to pass variable json struct on asyncio params
+    (SELECT array_agg(j) FROM jsonb_array_elements($8::jsonb) AS t(j)),
+    (SELECT array_agg(j) FROM jsonb_array_elements($9::jsonb) AS t(j)),
+    $10
 )
 ON CONFLICT (uuid) DO
 UPDATE SET
     item = $5,
     lat = $6,
     lon = $7,
-    elems = $8,
-    fixes = $9,
+    elems = (SELECT array_agg(j) FROM jsonb_array_elements($8::jsonb) AS t(j)),
+    fixes = (SELECT array_agg(j) FROM jsonb_array_elements($8::jsonb) AS t(j)),
     subtitle = $10
 WHERE
     markers.uuid = """
@@ -293,8 +298,8 @@ WHERE
         markers.item IS DISTINCT FROM $5 OR
         markers.lat IS DISTINCT FROM $6 OR
         markers.lon IS DISTINCT FROM $7 OR
-        markers.elems IS DISTINCT FROM $8 OR
-        markers.fixes IS DISTINCT FROM $9 OR
+        markers.elems IS DISTINCT FROM (SELECT array_agg(j) FROM jsonb_array_elements($8::jsonb) AS t(j)) OR
+        markers.fixes IS DISTINCT FROM (SELECT array_agg(j) FROM jsonb_array_elements($8::jsonb) AS t(j)) OR
         markers.subtitle IS DISTINCT FROM $10
     )
 """
