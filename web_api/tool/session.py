@@ -135,6 +135,9 @@ class BasicVerifier(SessionVerifier[UUID, SessionData]):
 
     # Overwrite method to make session optional
     async def __call__(self, request: Request):
+        if not hasattr(request.state, "session_ids"):
+            return
+
         try:
             session_id: Union[ID, FrontendError] = request.state.session_ids[
                 self.identifier
