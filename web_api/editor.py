@@ -1,4 +1,5 @@
 import io
+from uuid import UUID
 
 from asyncpg import Connection
 from fastapi import APIRouter, Depends, HTTPException, Request
@@ -7,6 +8,7 @@ from modules import OsmSax, utils
 from modules.dependencies import database
 
 from .tool import oauth
+from .tool.session import SessionData, backend, cookie, verifier
 
 router = APIRouter()
 
@@ -15,6 +17,8 @@ router = APIRouter()
 async def save(
     request: Request,
     db: Connection = Depends(database.db),
+    session_id: UUID = Depends(cookie),
+    session_data: SessionData = Depends(verifier),
 ):
     json = await request.json()
     if "tag" not in json:
@@ -33,27 +37,27 @@ async def save(
     reuse_changeset = json.get("reuse_changeset", True) is not False
 
     # Get an open changeset
-    changeset = request.session.get("changeset")
+    changeset = session_data.changeset
     if changeset and not reuse_changeset:
         try:
-            _changeset_close(request.session["oauth_tokens"], changeset)
+            _changeset_close(session_data.oauth_tokens, changeset)
         except Exception:
             pass
         changeset = None
-        del request.session["changeset"]
-        request.session.save()
+        session_data.changeset = None
+        await backend.update(session_id, session_data)
     elif changeset:
         try:
-            _changeset_update(request.session["oauth_tokens"], changeset, tags)
+            _changeset_update(session_data.oauth_tokens, changeset, tags)
         except Exception:
             changeset = None
-            request.session["changeset"] = changeset
-            request.session.save()
+            session_data.changeset = changeset
+            await backend.update(session_id, session_data)
 
     if not changeset:
-        changeset = _changeset_create(request.session["oauth_tokens"], tags)
-        request.session["changeset"] = changeset
-        request.session.save()
+        changeset = _changeset_create(session_data.oauth_tokens, tags)
+        session_data.changeset = changeset
+        await backend.update(session_id, session_data)
 
     # OsmChange
     out = io.StringIO()
@@ -83,7 +87,7 @@ async def save(
     osmchange = out.getvalue()
 
     # Fire the changeset
-    _changeset_upload(request.session["oauth_tokens"], changeset, osmchange)
+    _changeset_upload(session_data.oauth_tokens, changeset, osmchange)
 
 
 def _osm_changeset(tags, id="0"):
