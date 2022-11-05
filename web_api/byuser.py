@@ -94,12 +94,3 @@ async def user_count(
         version="2.0",
     )
     return RSSResponse(xml)
-
-
-@router.get("/byuser_count/{username}")
-async def byuser_count(
-    username: str,
-    db: Connection = Depends(database.db),
-    params=Depends(commons_params.params),
-):
-    return await _user_count(params, db, username)

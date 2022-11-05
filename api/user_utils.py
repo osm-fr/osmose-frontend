@@ -24,7 +24,7 @@ async def _user_count(params: Params, db: Connection, username: Optional[str] = 
 
     res = await query._count(db, params, ["class.level"], ["class.level"])
     ret = {1: 0, 2: 0, 3: 0}
-    for (l, c) in res:
-        ret[l] = c
+    for r in res:
+        ret[r["level"]] = r["count"]
 
     return ret
