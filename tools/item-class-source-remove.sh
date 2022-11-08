@@ -12,3 +12,4 @@ read ln
 
 psql -d osmose_frontend -c  "DELETE FROM markers where item = '$item' and class='$cl' and source_id='$source'"
 psql -d osmose_frontend -c  "DELETE FROM markers_counts where item = '$item' and class='$cl' and source_id='$source'"
+psql -d osmose_frontend -c  "DELETE FROM updates_last WHERE source_id = '$source';"

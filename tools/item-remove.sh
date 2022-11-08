@@ -7,6 +7,7 @@ for i in $*; do
   echo "confirm?"
   read ln
 
+  psql -d osmose_frontend -c  "DELETE FROM markers_counts where item = '$i'"
   psql -d osmose_frontend -c  "DELETE FROM markers where item = '$i'"
   psql -d osmose_frontend -c  "DELETE FROM class where item = '$i'"
   psql -d osmose_frontend -c  "DELETE FROM items where item = '$i'"
