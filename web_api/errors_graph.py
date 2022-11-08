@@ -60,18 +60,17 @@ ORDER BY
 """
 
     join, where, sql_params = query._build_param(
-        db,
-        None,
-        params.source,
-        params.item,
-        params.level,
-        None,
-        params.classs,
-        params.country,
-        params.useDevItem,
-        None,
-        params.tags,
-        None,
+        bbox=None,
+        users=None,
+        status=None,
+        fixable=None,
+        sources=params.source,
+        item=params.item,
+        level=params.level,
+        classs=params.classs,
+        country=params.country,
+        useDevItem=params.useDevItem,
+        tags=params.tags,
         stats=True,
         start_date=params.start_date,
         end_date=params.end_date,
@@ -104,7 +103,7 @@ async def get_text(
         and params.classs
         and len(params.classs) == 1
     ):
-        res = await db.fetchval(
+        return await db.fetchval(
             """
 SELECT
     title->'en'
@@ -114,8 +113,8 @@ FROM
         class.item = markers_counts.item AND
         class.class = markers_counts.class
 WHERE
-    markers_counts.source_id=%s AND
-    class.class=%s
+    markers_counts.source_id=$1 AND
+    class.class=$2
 """,
             params.source[0],
             params.classs[0],
@@ -126,41 +125,41 @@ WHERE
         and params.classs
         and len(params.classs) == 1
     ):
-        res = await db.fetchval(
+        return await db.fetchval(
             """
 SELECT
     title->'en'
 FROM
     class
 WHERE
-    class=%s AND
-    item=%s
+    class=$1 AND
+    item=$2
 LIMIT 1
 """,
             params.classs[0],
-            params.item[0],
+            int(params.item[0]),
         )
     elif params.item and len(params.item) == 1:
-        res = await db.fetchval(
+        return await db.fetchval(
             """
 SELECT
     menu->'en'
 FROM
     items
 WHERE
-    item=%s
+    item=$1
 LIMIT 1
 """,
-            params.item[0],
+            int(params.item[0]),
         )
-
-    return res if res else ""
+    else:
+        return ""
 
 
 async def get_src(db: Connection, params: Params):
     ret = []
     if params.item:
-        r = db.fetchval(
+        r = await db.fetchval(
             "SELECT menu->'en' FROM items WHERE {0}".format(
                 query._build_where_item("items", params.item)
             )
@@ -169,7 +168,7 @@ async def get_src(db: Connection, params: Params):
             ret.append(r)
 
     if params.item and params.classs:
-        r = db.fetchval(
+        r = await db.fetchval(
             "SELECT title->'en' FROM class WHERE {0} AND {1};".format(
                 query._build_where_item("class", params.item),
                 query._build_where_class("class", params.classs),
@@ -179,7 +178,7 @@ async def get_src(db: Connection, params: Params):
             ret.append(r)
 
     if params.source and len(params.source) == 1:
-        r = db.fetchrow(
+        r = await db.fetchrow(
             "SELECT country, analyser FROM sources WHERE id = $1;", params.source[0]
         )
         if r:

@@ -51,7 +51,7 @@ def _build_param(
     status,  #: Optional[Status],
     tags: Optional[List[str]],
     fixable,  #: Optional[Fixable],
-    forceTable=[],
+    forceTable: List[str] = [],
     summary: bool = False,
     stats: bool = False,
     start_date: Optional[str] = None,

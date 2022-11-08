@@ -26,8 +26,8 @@ async def graph(
     params=Depends(commons_params.params),
 ):
     try:
-        format = request.url.query.split(".", -1)[1]
-        data = errors_graph.make_plt(db, params, format)
+        format = request.url.path.split(".", -1)[1]
+        data = await errors_graph.make_plt(db, params, format)
         media_type = {
             "png": "image/png",
             "svg": "image/svg+xml",
