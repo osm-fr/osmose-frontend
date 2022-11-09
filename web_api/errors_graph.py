@@ -2,7 +2,6 @@ import csv
 import io
 import json
 import os
-import sys
 import tempfile
 
 from asyncpg import Connection
@@ -83,9 +82,6 @@ ORDER BY
         sql_params.append(params.end_date.isoformat())
         where2.append("timestamp < ${len(sql_params)}")
     sql = sqlbase % (join, where, " AND ".join(where2))
-
-    if len(sys.argv) > 1:
-        print(sql)
 
     result = []
     for r in await db.fetch(sql, *sql_params):
