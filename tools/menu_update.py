@@ -49,7 +49,7 @@ UPDATE
 SET
     menu = coalesce(menu, json_build_object($1::text,'')::jsonb) || json_build_object($2::text, $3::text)::jsonb
 WHERE
-    id = $4
+    {id} = $4
 """
 
         for line in codecs.open("database/" + typ + "_menu.txt", "r", "utf-8"):
@@ -59,8 +59,6 @@ WHERE
             translations = t.translate(s)
             for (l, s) in translations.items():
                 await db.execute(sql, l, l, s, item_i)
-
-    await db.commit()
 
 
 if __name__ == "__main__":
