@@ -42,14 +42,14 @@ export default VueParent.extend({
   },
   mounted() {
     this.fetchJsonProgressAssign(
-      API_URL + "/control/update.json" + window.location.search
+      API_URL + window.location.pathname + ".json" + window.location.search
     );
     document.title = "Osmose - " + this.$t("Update");
   },
   methods: {
     remote(res) {
       var url = res.remote_url;
-      if (url.startsWith("http://")) {
+      if (url.startsWith("http://") || url.startsWith("https://")) {
         url = url.split("/")[2];
       } else if (res.remote_ip) {
         url = res.remote_ip;
