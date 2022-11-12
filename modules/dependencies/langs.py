@@ -9,7 +9,7 @@ def parse_accept_language(request: Request, langs: List[str]) -> List[str]:
     if langs and "auto" in langs:
         accept_language = request.headers.get("Accept-Language")
     if not langs:
-        accept_language = "en"
+        langs = ["en"]
     langs = list(
         map(lambda lang: lang.split(";")[0].strip(), accept_language.split(","))
     )

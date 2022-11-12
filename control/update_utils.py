@@ -170,6 +170,7 @@ async def update_class(
     ts: float,
 ):
     # Commit class update on its own transaction. Avoid lock the class table and block other updates.
+    db_local = None
     try:
         db_local = await database.get_dbconn()
         await db_local.execute(
