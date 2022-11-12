@@ -124,6 +124,6 @@ app.include_router(map.router)
 def vue(
     uuid: Optional[UUID] = None,
     username: Optional[str] = None,
-    source: Optional[int] = None,
+    source: Optional[str] = None,
 ):
     return HTMLResponse(content=open("web/public/assets/index.html").read())
