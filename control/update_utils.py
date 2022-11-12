@@ -286,7 +286,7 @@ UPDATE SET
     lat = $6,
     lon = $7,
     elems = (SELECT array_agg(j) FROM jsonb_array_elements($8::jsonb) AS t(j)),
-    fixes = (SELECT array_agg(j) FROM jsonb_array_elements($8::jsonb) AS t(j)),
+    fixes = (SELECT array_agg(j) FROM jsonb_array_elements($9::jsonb) AS t(j)),
     subtitle = $10
 WHERE
     markers.uuid = """
@@ -299,7 +299,7 @@ WHERE
         markers.lat IS DISTINCT FROM $6 OR
         markers.lon IS DISTINCT FROM $7 OR
         markers.elems IS DISTINCT FROM (SELECT array_agg(j) FROM jsonb_array_elements($8::jsonb) AS t(j)) OR
-        markers.fixes IS DISTINCT FROM (SELECT array_agg(j) FROM jsonb_array_elements($8::jsonb) AS t(j)) OR
+        markers.fixes IS DISTINCT FROM (SELECT array_agg(j) FROM jsonb_array_elements($9::jsonb) AS t(j)) OR
         markers.subtitle IS DISTINCT FROM $10
     )
 """
