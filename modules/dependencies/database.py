@@ -1,31 +1,37 @@
 import json
+from typing import AsyncGenerator, Dict, List, Union
 
-import asyncpg
+from asyncpg import Connection, Pool, Record, connect, create_pool
+from asyncpg.pool import PoolConnectionProxy
 
 from .. import utils
 
 
 class Database:
-    async def create_pool(self):
-        self.pool = await asyncpg.create_pool(dsn=utils.db_dsn)
+    pool: Pool[Record]
+
+    async def create_pool(self) -> None:
+        self.pool = await create_pool(dsn=utils.db_dsn)
 
 
 database = Database()
 
 
-async def startup():
+async def startup() -> None:
     await database.create_pool()
 
 
-def _encoder(value):
+def _encoder(value: Union[str, List, Dict]) -> bytes:
     return b"\x01" + json.dumps(value).encode("utf-8")
 
 
-def _decoder(value):
+def _decoder(value) -> Union[str, List, Dict]:
     return json.loads(value[1:].decode("utf-8"))
 
 
-async def add_json_support(connection):
+async def add_json_support(
+    connection: Union[Connection, PoolConnectionProxy[Record]]
+) -> None:
     await connection.set_type_codec(
         "jsonb",
         encoder=_encoder,
@@ -39,13 +45,13 @@ async def add_json_support(connection):
     )
 
 
-async def get_dbconn():
-    connection = await asyncpg.connect(dsn=utils.db_dsn)
+async def get_dbconn() -> Connection:
+    connection = await connect(dsn=utils.db_dsn)
     await add_json_support(connection)
     return connection
 
 
-async def db():
+async def db() -> AsyncGenerator[PoolConnectionProxy[Record], None]:
     async with database.pool.acquire() as connection:
         await add_json_support(connection)
         tr = connection.transaction()
@@ -57,7 +63,7 @@ async def db():
                 await tr.rollback()
 
 
-async def db_rw():
+async def db_rw() -> AsyncGenerator[PoolConnectionProxy[Record], None]:
     async with database.pool.acquire() as connection:
         await add_json_support(connection)
         tr = connection.transaction()

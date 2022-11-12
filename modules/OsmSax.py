@@ -3,6 +3,7 @@ import gzip
 import io
 import re
 import unittest
+from typing import Dict
 from xml.sax import handler, make_parser
 from xml.sax.saxutils import XMLGenerator, quoteattr
 
@@ -339,7 +340,7 @@ class OscSaxReader(handler.ContentHandler):
 ###########################################################################
 
 
-def _formatData(data):
+def _formatData(data) -> Dict[str, str]:
     data = dict(data)
     if "tag" in data:
         data.pop("tag")

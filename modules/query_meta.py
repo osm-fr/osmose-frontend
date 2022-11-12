@@ -1,12 +1,17 @@
 from collections import defaultdict
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional, TypedDict
 
 from asyncpg import Connection
 
 from .utils import LangsNegociation, i10n_select
 
 
-async def _items_menu(db: Connection, langs: LangsNegociation):
+class ItemMenu(TypedDict):
+    item: int
+    menu: Optional[Dict[str, str]]
+
+
+async def _items_menu(db: Connection, langs: LangsNegociation) -> List[ItemMenu]:
     sql = """
     SELECT
         item,
@@ -24,7 +29,7 @@ async def _items_menu(db: Connection, langs: LangsNegociation):
     )
 
 
-async def _countries(db: Connection):
+async def _countries(db: Connection) -> List[str]:
     sql = """
     SELECT DISTINCT
         country
@@ -41,7 +46,7 @@ async def _items(
     item: Optional[int] = None,
     classs: Optional[int] = None,
     langs: LangsNegociation = None,
-):
+) -> List[Dict[str, Any]]:
     sql_params = [item] if item is not None else []
 
     sql = (
@@ -181,7 +186,7 @@ async def _items(
     )
 
 
-async def _tags(db: Connection):
+async def _tags(db: Connection) -> List[str]:
     sql = """
     SELECT DISTINCT
         tag

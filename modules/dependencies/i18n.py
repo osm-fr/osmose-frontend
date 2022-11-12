@@ -1,5 +1,5 @@
 import gettext
-from typing import Callable, Dict, List
+from typing import Callable, Dict, List, Tuple
 
 from fastapi import Depends, Request
 
@@ -13,7 +13,7 @@ localedir = "web/po/mo"
 Translator = Callable[..., str]
 
 
-def get_languages(request: Request) -> List[str]:
+def get_languages(request: Request) -> Tuple[List[str], bool]:
     langs = [None]
 
     base_path = request.scope.get("root_path")
@@ -30,8 +30,8 @@ def get_languages(request: Request) -> List[str]:
                 return ([tmp_lang, allowed_languages[0]], False)
 
     if request.headers.get("Accept-Language"):
-        langs = request.headers.get("Accept-Language")
-        langs = langs.split(",")
+        accept_language = request.headers.get("Accept-Language")
+        langs = accept_language.split(",")
         langs = [x.split(";")[0] for x in langs]
         langs = [x.split("-")[0] for x in langs]
         langs = [x for x in langs if x in allowed_languages]
@@ -47,7 +47,7 @@ def get_languages(request: Request) -> List[str]:
         return (allowed_languages, True)
 
 
-cache: Dict[List[str], Translator] = {}
+cache: Dict[str, Translator] = {}
 
 
 async def i18n(

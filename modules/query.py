@@ -1,4 +1,5 @@
-from typing import Any, Dict, List, Optional, Tuple
+from datetime import datetime
+from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 from asyncpg import Connection
 
@@ -6,7 +7,7 @@ from . import tiles
 from .dependencies.commons_params import Params
 
 
-def _build_where_item(table, item: str):
+def _build_where_item(table: str, item: str) -> str:
     if item == "":
         where = "1=2"
     elif item is None or item == "xxxx":
@@ -35,8 +36,8 @@ def _build_where_item(table, item: str):
     return where
 
 
-def _build_where_class(table, classs: List[int]):
-    return "{0}.class IN ({1})".format(table, ",".join(classs))
+def _build_where_class(table: str, classs: List[int]) -> str:
+    return "{0}.class IN ({1})".format(table, ",".join(map(str, classs)))
 
 
 def _build_param(
@@ -51,11 +52,11 @@ def _build_param(
     status,  #: Optional[Status],
     tags: Optional[List[str]],
     fixable,  #: Optional[Fixable],
-    forceTable: List[str] = [],
+    forceTable: Iterable[str] = [],
     summary: bool = False,
     stats: bool = False,
-    start_date: Optional[str] = None,
-    end_date: Optional[str] = None,
+    start_date: Optional[datetime] = None,
+    end_date: Optional[datetime] = None,
     last_update=None,
     tilex: Optional[int] = None,
     tiley: Optional[int] = None,
@@ -252,7 +253,9 @@ def _build_param(
     return (join, " AND\n        ".join(where), params)
 
 
-def fixes_default(fixes: List[List[Dict[str, Any]]]):
+def fixes_default(
+    fixes: Optional[List[List[Dict[str, Any]]]]
+) -> Optional[List[List[Dict[str, Any]]]]:
     if fixes:
         fs = list(
             map(
@@ -273,9 +276,10 @@ def fixes_default(fixes: List[List[Dict[str, Any]]]):
             )
         )
         return fs
+    return None
 
 
-async def _gets(db: Connection, params: Params):
+async def _gets(db: Connection, params: Params) -> List[Dict[str, Any]]:
     sqlbase = """
     SELECT
         uuid_to_bigint(uuid) as id,
@@ -379,8 +383,13 @@ async def _gets(db: Connection, params: Params):
 
 
 async def _count(
-    db: Connection, params: Params, by, extraFrom=[], extraFields=[], orderBy=False
-):
+    db: Connection,
+    params: Params,
+    by: List[str],
+    extraFrom: List[str] = [],
+    extraFields=[],
+    orderBy=False,
+) -> List[Dict[str, Any]]:
     params.full = False
 
     if params.bbox or params.users or (params.status in ("done", "false")):

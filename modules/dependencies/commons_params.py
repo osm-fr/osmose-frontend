@@ -1,5 +1,6 @@
 import re
 from dataclasses import dataclass
+from datetime import datetime
 from typing import List, Literal, Optional, Union
 
 from fastapi import Query
@@ -9,13 +10,6 @@ from .. import utils
 
 Status = Literal["open", "false", "done"]
 Fixable = Optional[Literal["online", "josm"]]
-
-
-def safe_cast(val, to_type, default=None):
-    try:
-        return to_type(val)
-    except (ValueError, TypeError):
-        return default
 
 
 @dataclass
@@ -32,8 +26,8 @@ class Params:
     country: Optional[str]
     useDevItem: Optional[str]
     status: Optional[Status]
-    start_date: Optional[str]
-    end_date: Optional[str]
+    start_date: Optional[datetime]
+    end_date: Optional[datetime]
     tags: Optional[List[str]]
     fixable: Fixable
     osm_type: Optional[str]
@@ -76,8 +70,8 @@ class Params:
         self.country = country
         self.useDevItem = useDev
         self.status = status
-        self.start_date = start_date
-        self.end_date = end_date
+        start_date = start_date
+        end_date = end_date
         tags = tags
         self.fixable = fixable
         self.osm_type = osm_type
@@ -122,10 +116,10 @@ class Params:
             pass
         else:
             self.useDevItem = False
-        if self.start_date:
-            self.start_date = utils.str_to_datetime(self.start_date)
-        if self.end_date:
-            self.end_date = utils.str_to_datetime(self.end_date)
+        if start_date:
+            self.start_date = utils.str_to_datetime(start_date)
+        if end_date:
+            self.end_date = utils.str_to_datetime(end_date)
         self.tags = tags.split(",") if tags else None
 
         if self.osm_type and self.osm_type not in ["node", "way", "relation"]:
@@ -155,7 +149,7 @@ async def params(
     osm_id: Optional[int] = None,
     tilex: Optional[int] = None,
     tiley: Optional[int] = None,
-):
+) -> Params:
     # Workaround on Query default value, we should not get a Query object here
     if isinstance(classs, QueryObject):
         classs = classs.default
