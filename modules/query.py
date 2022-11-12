@@ -1,4 +1,4 @@
-from typing import Any, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 from asyncpg import Connection
 
@@ -12,13 +12,13 @@ def _build_where_item(table, item: str):
     elif item is None or item == "xxxx":
         where = "1=1"
     else:
-        where = []
+        where_list = []
         items = []
         for i in item.split(","):
             try:
                 if "xxx" in i:
                     n = int(i[0])
-                    where.append(
+                    where_list.append(
                         "(%s.item >= %s000 AND %s.item < %s000)"
                         % (table, n, table, n + 1)
                     )
@@ -27,9 +27,9 @@ def _build_where_item(table, item: str):
             except Exception:
                 pass
         if items != []:
-            where.append("%s.item IN (%s)" % (table, ",".join(items)))
-        if where != []:
-            where = "(%s)" % " OR ".join(where)
+            where_list.append("%s.item IN (%s)" % (table, ",".join(items)))
+        if where_list != []:
+            where = "(%s)" % " OR ".join(where_list)
         else:
             where = "1=1"
     return where
@@ -252,7 +252,7 @@ def _build_param(
     return (join, " AND\n        ".join(where), params)
 
 
-def fixes_default(fixes):
+def fixes_default(fixes: List[List[Dict[str, Any]]]):
     if fixes:
         fs = list(
             map(

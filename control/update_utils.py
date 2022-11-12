@@ -15,7 +15,7 @@ from modules import query_meta, utils
 from modules.dependencies import database
 
 Elem = Dict[str, Any]
-Fix = Any
+Fix = Elem
 
 show = utils.show
 
@@ -250,7 +250,7 @@ async def update_issue(
     _class_item: int,
     _error_elements: List[Elem],
     elems: List[Optional[Elem]],
-    fixes: List[Fix],
+    fixes: List[List[Fix]],
     _error_texts: Optional[Dict[str, str]],
 ):
     uuid = """('{' ||
