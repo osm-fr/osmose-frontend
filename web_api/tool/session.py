@@ -34,7 +34,7 @@ class OptionalSessionCookie(SessionCookie):
         signed_session_id = request.cookies.get(self.model.name)
 
         if not signed_session_id:
-            return
+            return None
             # if self.auto_error:
             #     raise HTTPException(status_code=403, detail="No session provided")
 
