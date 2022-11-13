@@ -1,5 +1,6 @@
 import csv as csv_lib
 import io
+from typing import Tuple
 
 from lxml import etree
 from lxml.builder import E, ElementMaker  # type: ignore
@@ -9,7 +10,9 @@ from modules.dependencies import i18n
 from modules.dependencies.commons_params import Params
 
 
-def xml_header(params: Params, title: str, website: str, lang: str, query, _):
+def xml_header(
+    params: Params, title: str, website: str, lang: str, query, _
+) -> Tuple[str, str, str]:
     if params.users:
         users = ", ".join(params.users)
         title = f"Osmose - {users}"
@@ -30,7 +33,7 @@ def xml_issue(
     main_website: str,
     remote_url_read: str,
     _: i18n.Translator,
-):
+) -> Tuple[float, float, str, str, str, str]:
     name = (res["menu"] or "") + " - " + (res["subtitle"] or res["title"] or "")
 
     lat = res["lat"]

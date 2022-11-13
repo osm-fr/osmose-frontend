@@ -1,6 +1,6 @@
 from collections import OrderedDict
 from itertools import groupby
-from typing import Any, List, Tuple
+from typing import Any, Dict, List, Literal, Tuple
 
 from asyncpg import Connection
 from fastapi import APIRouter, Depends, Request, Response
@@ -10,6 +10,7 @@ from lxml import etree
 from modules import query, query_meta, utils
 from modules.dependencies import commons_params, database, i18n, langs
 from modules.fastapi_utils import GeoJSONResponse
+from modules.GeoJSONTypes import GeoJSONFeatureCollection
 from modules.utils import LangsNegociation, i10n_select_auto, i10n_select_lang
 
 from .issues_utils import csv, gpx, kml, rss
@@ -45,9 +46,9 @@ async def errors(
     request: Request,
     db: Connection = Depends(database.db),
     params=Depends(commons_params.params),
-):
+) -> Dict[str, Any]:
     results = await query._gets(db, params)
-    out = OrderedDict()
+    out: Dict[str, Any] = OrderedDict()
 
     if not params.full:
         out["description"] = ["lat", "lon", "error_id", "item"]
@@ -91,11 +92,11 @@ async def errors(
             )
             subclass = 0
 
-            subtitle = utils.i10n_select(res["subtitle"], ["en"])
-            subtitle = subtitle and subtitle["auto"] or ""
+            subtitle_auto = utils.i10n_select(res["subtitle"], ["en"])
+            subtitle = subtitle_auto and subtitle_auto["auto"] or ""
 
-            title = utils.i10n_select(res["title"], ["en"])
-            title = title and title["auto"] or ""
+            title_auto = utils.i10n_select(res["title"], ["en"])
+            title = title_auto and title_auto["auto"] or ""
 
             level = res["level"]
             update = res["timestamp"]
@@ -133,7 +134,7 @@ async def issues(
     db: Connection = Depends(database.db),
     langs: LangsNegociation = Depends(langs.langs),
     params=Depends(commons_params.params),
-):
+) -> Dict[Literal["issues"], List[Dict[str, Any]]]:
     params.limit = min(params.limit, 10000)
     results = await query._gets(db, params)
 
@@ -166,10 +167,10 @@ async def issues(
                     ),
                     "osm_ids": dict(
                         map(
-                            lambda k_g: [
+                            lambda k_g: (
                                 {"N": "nodes", "W": "ways", "R": "relations"}[k_g[0]],
                                 list(map(lambda g: g["id"], k_g[1])),
-                            ],
+                            ),
                             groupby(
                                 sorted(res["elems"] or [], key=lambda e: e["type"]),
                                 lambda e: e["type"],
@@ -187,7 +188,7 @@ async def issues(
 async def issues_josm(
     db: Connection = Depends(database.db),
     params=Depends(commons_params.params),
-):
+) -> RedirectResponse:
     params.full = True
     params.limit = min(params.limit, 10000)
     results = await query._gets(db, params)
@@ -227,7 +228,9 @@ async def _issues(
     items = await query_meta._items_menu(db, langs)
     for res in items:
         if params.item == str(res["item"]):
-            title += " - " + i10n_select_auto(res["menu"], langs)
+            menu_auto = i10n_select_auto(res["menu"], langs)
+            if menu_auto:
+                title += " - " + menu_auto
 
     params.full = True
     params.limit = min(params.limit, 10000)
@@ -248,7 +251,7 @@ async def issues_rss(
     langs: LangsNegociation = Depends(langs.langs),
     params=Depends(commons_params.params),
     i18n: i18n.Translator = Depends(i18n.i18n),
-):
+) -> RSSResponse:
     title, issues = await _issues(db, langs, params, i18n)
     return RSSResponse(
         rss(
@@ -272,7 +275,7 @@ async def issues_gpx(
     langs: LangsNegociation = Depends(langs.langs),
     params=Depends(commons_params.params),
     i18n: i18n.Translator = Depends(i18n.i18n),
-):
+) -> GPXResponse:
     title, issues = await _issues(db, langs, params, i18n)
     return GPXResponse(
         gpx(
@@ -296,7 +299,7 @@ async def issues_kml(
     langs: LangsNegociation = Depends(langs.langs),
     params=Depends(commons_params.params),
     i18n: i18n.Translator = Depends(i18n.i18n),
-):
+) -> KMLResponse:
     title, issues = await _issues(db, langs, params, i18n)
     return KMLResponse(
         kml(
@@ -320,7 +323,7 @@ async def issues_csv(
     langs: LangsNegociation = Depends(langs.langs),
     params=Depends(commons_params.params),
     i18n: i18n.Translator = Depends(i18n.i18n),
-):
+) -> str:
     title, issues = await _issues(db, langs, params, i18n)
     return csv(
         title=title,
@@ -341,7 +344,7 @@ async def issues_geojson(
     langs: LangsNegociation = Depends(langs.langs),
     params=Depends(commons_params.params),
     i18n: i18n.Translator = Depends(i18n.i18n),
-):
+) -> GeoJSONFeatureCollection:
     title, issues = await _issues(db, langs, params, i18n)
     return {
         "type": "FeatureCollection",

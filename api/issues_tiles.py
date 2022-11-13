@@ -1,5 +1,5 @@
 import math
-from typing import Any, Dict
+from typing import Any, Dict, List, Optional
 
 import mapbox_vector_tile  # type: ignore
 from asyncpg import Connection
@@ -9,6 +9,7 @@ from shapely.geometry import Point, Polygon  # type: ignore
 from modules import query, tiles
 from modules.dependencies import commons_params, database
 from modules.fastapi_utils import GeoJSONResponse
+from modules.GeoJSONTypes import GeoJSONFeature, GeoJSONFeatureCollection
 
 router = APIRouter()
 
@@ -32,14 +33,14 @@ def mvtResponse(content) -> Response:
 
 
 def _errors_mvt(
-    results,
+    results: List[Dict[str, Any]],
     z: int,
     min_lon: float,
     min_lat: float,
     max_lon: float,
     max_lat: float,
     limit: int,
-):
+) -> Optional[Dict[str, Any]]:
     if not results or len(results) == 0:
         return None
     else:
@@ -79,17 +80,17 @@ def _errors_mvt(
 
 
 def _errors_geojson(
-    results,
+    results: List[Dict[str, Any]],
     z: int,
     limit: int,
-) -> Dict:
+) -> GeoJSONFeatureCollection:
     if not results or len(results) == 0:
         return {
             "type": "FeatureCollection",
             "features": [],
         }
     else:
-        issues_features = []
+        issues_features: List[GeoJSONFeature] = []
         for res in sorted(results, key=lambda res: -res["lat"]):
             issues_features.append(
                 {
@@ -106,7 +107,7 @@ def _errors_geojson(
                 }
             )
 
-        features_collection = {
+        features_collection: GeoJSONFeatureCollection = {
             "type": "FeatureCollection",
             "features": issues_features,
         }
@@ -127,7 +128,7 @@ async def heat(
     y: int,
     db: Connection = Depends(database.db),
     params=Depends(commons_params.params),
-):
+) -> Optional[Response]:
     COUNT = 32
 
     lon1, lat2 = tiles.tile2lonlat(x, y, z)
@@ -139,7 +140,7 @@ async def heat(
     params.zoom = z
 
     if params.zoom > 18:
-        return
+        return None
 
     limit = await db.fetchrow(
         """
@@ -237,7 +238,7 @@ async def _issues(
     y: int,
     db: Connection,
     params: commons_params.Params,
-):
+) -> List[Dict[str, Any]]:
     params.limit = min(params.limit, 50 if z > 18 else 10000)
     params.tilex = x
     params.tiley = y
@@ -245,7 +246,7 @@ async def _issues(
     params.full = False
 
     if params.zoom > 18 or params.zoom < 7:
-        return None
+        return []
 
     return await query._gets(db, params)
 
@@ -257,7 +258,7 @@ async def issues_mvt(
     y: int,
     db: Connection = Depends(database.db),
     params: commons_params.Params = Depends(commons_params.params),
-):
+) -> Response:
     lon1, lat2 = tiles.tile2lonlat(x, y, z)
     lon2, lat1 = tiles.tile2lonlat(x + 1, y + 1, z)
 
@@ -274,6 +275,6 @@ async def issues_geojson(
     y: int,
     db: Connection = Depends(database.db),
     params: commons_params.Params = Depends(commons_params.params),
-):
+) -> GeoJSONFeatureCollection:
     results = await _issues(z, x, y, db, params)
     return _errors_geojson(results, z, params.limit)

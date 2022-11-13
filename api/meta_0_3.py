@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Any, Dict, List, Literal
 
 from asyncpg import Connection
 from fastapi import APIRouter, Depends, Request
@@ -10,7 +10,7 @@ from modules.utils import LangsNegociation
 router = APIRouter()
 
 
-def _map_items(categories):
+def _map_items(categories: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     for categorie in categories:
         categorie["categ"] = categorie["id"]
         del categorie["id"]
@@ -29,7 +29,7 @@ async def items(
     request: Request,
     db: Connection = Depends(database.db),
     langs: LangsNegociation = Depends(langs.langs),
-):
+) -> Dict[Literal["categories"], List[Dict[str, Any]]]:
     return {"categories": _map_items(await query_meta._items(db, langs=langs))}
 
 
@@ -44,7 +44,7 @@ async def items_class(
     classs: int,
     db: Connection = Depends(database.db),
     langs: LangsNegociation = Depends(langs.langs),
-):
+) -> Dict[Literal["categories"], List[Dict[str, Any]]]:
     return {
         "categories": (
             await query_meta._items(db, item=item, classs=classs, langs=langs)
@@ -53,10 +53,14 @@ async def items_class(
 
 
 @router.get("/0.3/countries", response_model=Dict[str, List[str]], tags=["metadata"])
-async def countries(db: Connection = Depends(database.db)):
+async def countries(
+    db: Connection = Depends(database.db),
+) -> Dict[Literal["countries"], List[str]]:
     return {"countries": await query_meta._countries(db)}
 
 
 @router.get("/0.3/tags", response_model=Dict[str, List[str]], tags=["metadata"])
-async def tags(db: Connection = Depends(database.db)):
+async def tags(
+    db: Connection = Depends(database.db),
+) -> Dict[Literal["tags"], List[str]]:
     return {"tags": await query_meta._tags(db)}
