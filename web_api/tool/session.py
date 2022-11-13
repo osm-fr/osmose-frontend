@@ -4,14 +4,18 @@ from typing import Any, Dict, Generic, Optional, Tuple, Union
 from uuid import UUID
 
 from fastapi import HTTPException, Request
-from fastapi_sessions.backends.session_backend import (
+from fastapi_sessions.backends.session_backend import (  # type: ignore
     BackendError,
     SessionBackend,
     SessionModel,
 )
-from fastapi_sessions.frontends.implementations import CookieParameters, SessionCookie
-from fastapi_sessions.frontends.session_frontend import ID, FrontendError
-from fastapi_sessions.session_verifier import SessionVerifier
+from fastapi_sessions.frontends.implementations import (  # type: ignore
+    CookieParameters,
+    SessionCookie,
+)
+from fastapi_sessions.frontends.session_frontend import ID  # type: ignore
+from fastapi_sessions.frontends.session_frontend import FrontendError  # type: ignore
+from fastapi_sessions.session_verifier import SessionVerifier  # type: ignore
 from itsdangerous import BadSignature, SignatureExpired
 from pydantic import BaseModel
 

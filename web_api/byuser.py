@@ -5,7 +5,7 @@ from asyncpg import Connection
 from fastapi import APIRouter, Depends, Request, Response
 from fastapi.responses import RedirectResponse
 from lxml import etree
-from lxml.builder import E
+from lxml.builder import E  # type: ignore
 
 from api.user_utils import _user, _user_count
 from modules import utils

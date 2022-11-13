@@ -1,10 +1,10 @@
 import math
 from typing import Any, Dict
 
-import mapbox_vector_tile
+import mapbox_vector_tile  # type: ignore
 from asyncpg import Connection
 from fastapi import APIRouter, Depends, HTTPException, Request, Response
-from shapely.geometry import Point, Polygon
+from shapely.geometry import Point, Polygon  # type: ignore
 
 from modules import query, tiles
 from modules.dependencies import commons_params, database

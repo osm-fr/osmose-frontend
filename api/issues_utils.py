@@ -2,7 +2,7 @@ import csv as csv_lib
 import io
 
 from lxml import etree
-from lxml.builder import E, ElementMaker
+from lxml.builder import E, ElementMaker  # type: ignore
 from lxml.html import builder as H
 
 from modules.dependencies import i18n

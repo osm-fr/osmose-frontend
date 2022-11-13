@@ -1,5 +1,5 @@
 import requests
-from rauth import OAuth1Service, OAuth1Session
+from rauth import OAuth1Service, OAuth1Session  # type: ignore
 
 ################################################################################
 
