@@ -1,5 +1,5 @@
 import os
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 from uuid import UUID
 
 from asyncpg import Connection
@@ -15,7 +15,7 @@ t2l = tag2link.tag2link(
 
 async def _get(
     db: Connection, err_id: Optional[int] = None, uuid: Optional[UUID] = None
-):
+) -> Dict[str, Any]:
     columns_marker = [
         "markers.item",
         "markers.source_id",
@@ -76,7 +76,7 @@ async def _get(
     return {
         **marker,
         **{
-            "fixes": fixes_default(marker["fixes"]),
+            "fixes": fixes_default(marker["fixes"]) if marker["fixes"] else None,
             "elems": list(
                 map(
                     lambda elem: dict(

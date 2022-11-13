@@ -1,3 +1,4 @@
+from typing import Any, Dict
 from uuid import UUID
 
 from asyncpg import Connection
@@ -17,7 +18,7 @@ async def fp_uuid(
     uuid: UUID,
     db: Connection = Depends(database.db),
     langs: LangsNegociation = Depends(langs.langs),
-):
+) -> Dict[str, Any]:
     marker, columns = await _get(db, "false", uuid=uuid)
     if not marker:
         raise HTTPException(status_code=410, detail="Id is not present in database.")
@@ -46,7 +47,7 @@ async def fp_uuid(
 
 
 @router.delete("/0.3/false-positive/{uuid}", tags=["issues"])
-async def fp_delete_uuid(uuid: UUID, db: Connection = Depends(database.db_rw)):
+async def fp_delete_uuid(uuid: UUID, db: Connection = Depends(database.db_rw)) -> None:
     m = await db.fetchrow(
         "SELECT uuid FROM markers_status WHERE status = $1 AND uuid = $2", "false", uuid
     )
@@ -57,5 +58,3 @@ async def fp_delete_uuid(uuid: UUID, db: Connection = Depends(database.db_rw)):
         await db.execute(
             "DELETE FROM markers_status WHERE status = $1 AND uuid = $2", "false", uuid
         )
-
-    return

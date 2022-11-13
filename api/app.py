@@ -94,7 +94,7 @@ app.add_middleware(
 
 
 @app.on_event("startup")
-async def startup():
+async def startup() -> None:
     await database.startup()
 
 

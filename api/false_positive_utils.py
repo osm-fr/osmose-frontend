@@ -1,4 +1,4 @@
-from typing import Literal, Optional
+from typing import Any, Dict, List, Literal, Optional, Tuple
 from uuid import UUID
 
 from asyncpg import Connection
@@ -11,7 +11,7 @@ async def _get(
     status: Status,
     err_id: Optional[int] = None,
     uuid: Optional[UUID] = None,
-):
+) -> Tuple[Dict[str, Any], List[str]]:
     columns = [
         "markers_status.item",
         "source_id",

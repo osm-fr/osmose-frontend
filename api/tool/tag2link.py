@@ -2,20 +2,21 @@
 
 import re
 import xml.sax
+from typing import Any, Dict, List
 
 
 class Exact(xml.sax.handler.ContentHandler):
     def __init__(self):
-        self.rules = []
-        self.val = re.compile("(%[^%]+%|\{[^}]+})")  # noqa
+        self.rules: List[Dict[str, Any]] = []
+        self.val: Regex = re.compile("(%[^%]+%|\{[^}]+})")  # noqa
 
-    def unposix(self, regex):
+    def unposix(self, regex: str) -> str:
         regex = regex.replace("\p{Lower}", "[a-z]")  # noqa
         regex = regex.replace("\p{Upper}", "[A-Z]")  # noqa
         regex = regex.replace("\p{Digit}", "[0-9]")  # noqa
         return regex
 
-    def startElement(self, name, attrs):
+    def startElement(self, name: str, attrs: Dict[str, str]) -> None:
         if name == "rule":
             self.rules.append({"conditions": [], "link": None})
         elif name == "condition":
@@ -55,7 +56,7 @@ class Exact(xml.sax.handler.ContentHandler):
 
 
 class tag2link:
-    def __init__(self, rulesFiles):
+    def __init__(self, rulesFiles: str):
         parser = xml.sax.make_parser()
         handler = Exact()
         parser.setContentHandler(handler)
@@ -63,9 +64,9 @@ class tag2link:
         self.rules = handler.rules
         self.all = re.compile(".*")
 
-    def checkTags(self, tags):
+    def checkTags(self, tags: Dict[str, str]) -> Dict[str, str]:
         try:
-            urls = {}
+            urls: Dict[str, str] = {}
             for rule in self.rules:
                 valid = True
                 id = {}

@@ -1,6 +1,6 @@
 import copy
 import io
-from typing import Literal, Optional
+from typing import Any, Dict, List, Literal, Optional
 from uuid import UUID
 
 from asyncpg import Connection
@@ -19,7 +19,7 @@ router = APIRouter()
 Status = Literal["done", "false"]
 
 
-async def _remove_bug_err_id(db: Connection, error_id: int, status: Status):
+async def _remove_bug_err_id(db: Connection, error_id: int, status: Status) -> int:
     # find source
     source_id = None
     sql = "SELECT uuid,source_id,class FROM markers WHERE uuid_to_bigint(uuid) = $1"
@@ -56,7 +56,7 @@ async def _remove_bug_err_id(db: Connection, error_id: int, status: Status):
     return 0
 
 
-async def _remove_bug_uuid(db, uuid: UUID, status: Status):
+async def _remove_bug_uuid(db, uuid: UUID, status: Status) -> int:
     db = await database.get_dbconn()
 
     # find source
@@ -99,7 +99,7 @@ async def fresh_elems_uuid(
     request: Request,
     uuid: UUID,
     db: Connection = Depends(database.db),
-):
+) -> Dict[str, Any]:
     return await fresh_elems_uuid_num(request, uuid=uuid, db=db)
 
 
@@ -109,7 +109,7 @@ async def fresh_elems_uuid_num(
     uuid: UUID,
     fix_num: Optional[int] = None,
     db: Connection = Depends(database.db),
-):
+) -> Dict[str, Any]:
     data_type = {"N": "node", "W": "way", "R": "relation", "I": "infos"}
 
     marker = await _get(db, uuid=uuid)
@@ -137,7 +137,7 @@ async def fresh_elems_uuid_num(
                 }
                 elems[data_type[elem["type"]] + str(elem["id"])] = tmp_elem
 
-    ret = {
+    ret: Dict[str, Any] = {
         "uuid": uuid,
         "elems": list(elems.values()),
     }
@@ -165,7 +165,9 @@ async def fresh_elems_uuid_num(
 
 
 @router.get("/0.2/error/{err_id}", tags=["0.2"])
-async def error_err_id(err_id: int, db: Connection = Depends(database.db)):
+async def error_err_id(
+    err_id: int, db: Connection = Depends(database.db)
+) -> Dict[str, Any]:
     return _error(
         2,
         db,
@@ -180,7 +182,7 @@ async def error_uuid(
     uuid: UUID,
     db: Connection = Depends(database.db),
     langs: LangsNegociation = Depends(langs.langs),
-):
+) -> Dict[str, Any]:
     return _error(
         3,
         db,
@@ -191,8 +193,12 @@ async def error_uuid(
 
 
 def _error(
-    version, db: Connection, langs: LangsNegociation, uuid: Optional[UUID], marker
-):
+    version,
+    db: Connection,
+    langs: LangsNegociation,
+    uuid: Optional[UUID],
+    marker: Dict[str, Any],
+) -> Dict[str, Any]:
     if not marker:
         raise HTTPException(status_code=410, detail="Id is not present in database.")
 
@@ -202,7 +208,7 @@ def _error(
     lon = str(marker["lon"])
     title = utils.i10n_select(marker["title"], langs)
     subtitle = utils.i10n_select(marker["subtitle"], langs)
-    b_date = marker["timestamp"] or ""
+    b_date = marker["timestamp"]
     item = marker["item"] or 0
     classs = marker["class"] or 0
 
@@ -308,9 +314,9 @@ async def status_err_id(
     err_id: int,
     status: Status,
     db: Connection = Depends(database.db_rw),
-):
+) -> None:
     if await _remove_bug_err_id(db, err_id, status) == 0:
-        return
+        return None
     else:
         raise HTTPException(status_code=410, detail="FAIL")
 
@@ -321,9 +327,9 @@ async def status_uuid(
     uuid: UUID,
     status: Status,
     db: Connection = Depends(database.db_rw),
-):
+) -> None:
     if await _remove_bug_uuid(db, uuid, status) == 0:
-        return
+        return None
     else:
         raise HTTPException(status_code=410, detail="FAIL")
 
@@ -333,7 +339,7 @@ async def _get_fix(
     fix_num: int,
     err_id: Optional[int] = None,
     uuid: Optional[UUID] = None,
-):
+) -> List[Dict[str, Any]]:
     if err_id:
         sql = "SELECT fixes FROM markers WHERE id = $1"
         fix = await db.fetchrow(sql, err_id)
@@ -352,7 +358,7 @@ async def _get_fix(
 )
 async def fix_uuid_num(
     uuid: UUID, fix_num: int = 0, db: Connection = Depends(database.db)
-):
+) -> str:
     fix = await _get_fix(db, fix_num, uuid=uuid)
     if fix:
         for res in fix:
@@ -371,13 +377,14 @@ async def fix_uuid_num(
 
                 data_type = {"N": "node", "W": "way", "R": "relation"}
                 osm_read = utils.fetch_osm_data(data_type[res["type"]], res["id"])
-                osm_read.CopyTo(o)
+                if osm_read:
+                    osm_read.CopyTo(o)
 
                 return out.getvalue()
 
             else:
                 # create new object
-                data = {}
+                data: Dict[str, Any] = {}
                 data["id"] = -1
                 data["tag"] = {}
                 for (k, v) in res["create"].items():

@@ -253,30 +253,25 @@ def _build_param(
     return (join, " AND\n        ".join(where), params)
 
 
-def fixes_default(
-    fixes: Optional[List[List[Dict[str, Any]]]]
-) -> Optional[List[List[Dict[str, Any]]]]:
-    if fixes:
-        fs = list(
-            map(
-                lambda fix_elems: list(
-                    map(
-                        lambda fix: dict(
-                            fix,
-                            type=fix.get("type", "N"),
-                            id=fix.get("id", 0),
-                            create=fix.get("create", {}),
-                            modify=fix.get("modify", {}),
-                            delete=fix.get("delete", []),
-                        ),
-                        fix_elems,
-                    )
-                ),
-                fixes,
-            )
+def fixes_default(fixes: List[List[Dict[str, Any]]]) -> List[List[Dict[str, Any]]]:
+    return list(
+        map(
+            lambda fix_elems: list(
+                map(
+                    lambda fix: dict(
+                        fix,
+                        type=fix.get("type", "N"),
+                        id=fix.get("id", 0),
+                        create=fix.get("create", {}),
+                        modify=fix.get("modify", {}),
+                        delete=fix.get("delete", []),
+                    ),
+                    fix_elems,
+                )
+            ),
+            fixes,
         )
-        return fs
-    return None
+    )
 
 
 async def _gets(db: Connection, params: Params) -> List[Dict[str, Any]]:
