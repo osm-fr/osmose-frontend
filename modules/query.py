@@ -414,7 +414,7 @@ async def _count(
     """
 
     select = ",\n        ".join(by + extraFields + countField)
-    groupBy = ",\n        ".join(by)
+    groupBy = ",\n        ".join(map(lambda b: b.split(" AS ")[0], by))
     if orderBy:
         order = groupBy
     else:

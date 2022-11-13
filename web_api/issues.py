@@ -120,18 +120,23 @@ async def matrix(
     errors_groups = await query._count(
         db,
         params,
-        ["markers.item", "markers.class", "sources.country", "items.menu->'en'"],
+        [
+            "markers.item",
+            "markers.class",
+            "sources.country",
+            "items.menu->'en' AS menu",
+        ],
     )
     analysers: Dict[str, Dict[str, int]] = defaultdict(lambda: defaultdict(int))
     analysers_sum: Dict[str, int] = defaultdict(int)
     countries_sum: Dict[str, int] = defaultdict(int)
     total = 0
     for row in errors_groups:
-        item, class_, country, menu, count = row
-        analyser = "{}/{} {}".format(item, class_, menu)
-        analysers[analyser][country] += count
+        analyser = "{}/{} {}".format(row["item"], row["class"], row["menu"])
+        count = row["count"]
+        analysers[analyser][row["country"]] += count
         analysers_sum[analyser] += count
-        countries_sum[country] += count
+        countries_sum[row["country"]] += count
         total += count
 
     return dict(
