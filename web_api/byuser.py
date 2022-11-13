@@ -7,7 +7,7 @@ from fastapi.responses import RedirectResponse
 from lxml import etree
 from lxml.builder import E  # type: ignore
 
-from api.user_utils import _user, _user_count
+from api.user_utils import _user_count
 from modules import utils
 from modules.dependencies import commons_params, database, i18n, langs
 from modules.utils import LangsNegociation, i10n_select_lang
@@ -45,11 +45,9 @@ async def user(
             f"{utils.website}/api/0.3/issues.{format}?{request.url.query}&username={urllib.parse.quote(username)}"
         )
 
-    params, username, errors = await _user(params, db, username)
-
     return dict(
         username=username,
-        users=params.users,
+        users=username.split(","),
         website=utils.website + "/" + i10n_select_lang(langs),
         main_website=utils.main_website,
         remote_url_read=utils.remote_url_read,

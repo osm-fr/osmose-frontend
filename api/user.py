@@ -1,3 +1,5 @@
+from typing import Any, Dict, List, Literal
+
 from asyncpg import Connection
 from fastapi import APIRouter, Depends, Request
 
@@ -14,10 +16,9 @@ async def user(
     username: str,
     db: Connection = Depends(database.db),
     params=Depends(commons_params.params),
-):
-    params, username, errors = await _user(params, db, username)
-
-    return {"issues": list(map(dict, errors))}
+) -> Dict[Literal["issues"], List[Dict[str, Any]]]:
+    errors = await _user(params, db, username)
+    return {"issues": errors}
 
 
 @router.get("/0.3/user_count/{username}", tags=["users"])
@@ -26,5 +27,5 @@ async def user_count(
     username: str,
     db: Connection = Depends(database.db),
     params=Depends(commons_params.params),
-):
+) -> Dict[int, int]:
     return await _user_count(params, db, username)

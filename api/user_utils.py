@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Any, Dict, List, Optional
 
 from asyncpg import Connection
 
@@ -6,16 +6,18 @@ from modules import query
 from modules.dependencies.commons_params import Params
 
 
-async def _user(params: Params, db: Connection, username: str):
+async def _user(params: Params, db: Connection, username: str) -> List[Dict[str, Any]]:
     params.users = username.split(",")
     params.limit = 500
     params.full = True
 
-    errors = list(await query._gets(db, params))
-    return [params, username, errors]
+    errors = await query._gets(db, params)
+    return list(map(dict, errors))
 
 
-async def _user_count(params: Params, db: Connection, username: Optional[str] = None):
+async def _user_count(
+    params: Params, db: Connection, username: Optional[str] = None
+) -> Dict[int, int]:
     if username:
         params.users = username.split(",")
 
