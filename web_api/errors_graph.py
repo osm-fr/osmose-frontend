@@ -3,6 +3,8 @@ import io
 import json
 import os
 import tempfile
+from datetime import datetime
+from typing import List, Tuple, Union
 
 from asyncpg import Connection
 
@@ -20,8 +22,8 @@ import matplotlib.pyplot  # noqa
 
 async def get_data(
     db: Connection,
-    params=Params,
-):
+    params: Params,
+) -> List[Tuple[datetime, int]]:
     sqlbase = """
 SELECT
     date,
@@ -92,7 +94,7 @@ ORDER BY
 async def get_text(
     db: Connection,
     params: Params,
-):
+) -> str:
     if (
         params.source
         and len(params.source) == 1
@@ -152,7 +154,7 @@ LIMIT 1
         return ""
 
 
-async def get_src(db: Connection, params: Params):
+async def get_src(db: Connection, params: Params) -> str:
     ret = []
     if params.item:
         r = await db.fetchval(
@@ -187,21 +189,21 @@ async def get_src(db: Connection, params: Params):
     return " - ".join(ret) if ret else "All"
 
 
-def convIntsToStr(values):
+def convIntsToStr(values: List[int]) -> str:
     """
-    Convertie une liste d'entier en chaine
+    Convert integer list to string
     """
     return ", ".join([str(elt) for elt in values])
 
 
-async def make_plt(db: Connection, params: Params, format: str):
+async def make_plt(db: Connection, params: Params, format: str) -> Union[str, bytes]:
     data = await get_data(db, params)
     text = await get_text(db, params)
     src = await get_src(db, params)
     return plot(data, text + " " + src, format)
 
 
-def plot(data, title: str, format: str):
+def plot(data, title: str, format: str) -> Union[str, bytes]:
     if format == "json":
         jsonData = {}
         for d in data:

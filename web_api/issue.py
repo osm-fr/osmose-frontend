@@ -1,3 +1,4 @@
+from typing import Any, Dict
 from uuid import UUID
 
 from asyncpg import Connection
@@ -14,7 +15,7 @@ router = APIRouter()
 async def display(
     uuid: UUID,
     db: Connection = Depends(database.db),
-):
+) -> Dict[str, Any]:
     marker = await _get(db, uuid=uuid)
     if not marker:
         raise HTTPException(status_code=410, detail="Id is not present in database.")

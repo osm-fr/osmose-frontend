@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Any, Dict, Optional
 from uuid import UUID, uuid4
 
 from fastapi import Depends, FastAPI, Response
@@ -23,7 +23,7 @@ openapi_tags = [
 app = FastAPI(openapi_tags=openapi_tags)
 
 
-def custom_openapi():
+def custom_openapi() -> Dict[str, Any]:
     if app.openapi_schema:
         return app.openapi_schema
     openapi_schema = get_openapi(
@@ -39,7 +39,7 @@ app.openapi = custom_openapi
 
 
 @app.get("/login")
-async def login(session_id: Optional[UUID] = Depends(cookie)):
+async def login(session_id: Optional[UUID] = Depends(cookie)) -> RedirectResponse:
     if session_id:
         await backend.delete(session_id)
 
@@ -53,7 +53,9 @@ async def login(session_id: Optional[UUID] = Depends(cookie)):
 
 
 @app.get("/logout")
-async def logout(response: Response, session_id: Optional[UUID] = Depends(cookie)):
+async def logout(
+    response: Response, session_id: Optional[UUID] = Depends(cookie)
+) -> RedirectResponse:
     if session_id:
         await backend.delete(session_id)
         cookie.delete_from_response(response)
@@ -64,7 +66,7 @@ async def logout(response: Response, session_id: Optional[UUID] = Depends(cookie
 async def oauth_(
     session_id: UUID = Depends(cookie),
     session_data: Optional[SessionData] = Depends(verifier),
-):
+) -> RedirectResponse:
     if session_id and session_data:
         try:
             oauth_tokens = oauth.fetch_access_token(session_data.oauth_tokens)
@@ -90,7 +92,7 @@ app.add_middleware(
 
 
 @app.on_event("startup")
-async def startup():
+async def startup() -> None:
     await database.startup()
 
 
@@ -125,5 +127,5 @@ def vue(
     uuid: Optional[UUID] = None,
     username: Optional[str] = None,
     source: Optional[str] = None,
-):
+) -> HTMLResponse:
     return HTMLResponse(content=open("web/public/assets/index.html").read())

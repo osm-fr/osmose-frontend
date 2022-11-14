@@ -1,5 +1,5 @@
 import urllib.parse
-from typing import Any
+from typing import Any, Dict, Union
 
 from asyncpg import Connection
 from fastapi import APIRouter, Depends, Request, Response
@@ -27,7 +27,7 @@ class RSSResponse(XMLResponse):
 
 
 @router.get("/byuser")
-def byUser():
+def byUser() -> RedirectResponse:
     return RedirectResponse("byuser/")
 
 
@@ -39,7 +39,7 @@ async def user(
     db: Connection = Depends(database.db),
     params=Depends(commons_params.params),
     langs: LangsNegociation = Depends(langs.langs),
-):
+) -> Union[RedirectResponse, Dict[str, Any]]:
     if format in ["rss", "gpx", "kml", "josm", "csv"]:
         return RedirectResponse(
             f"{utils.website}/api/0.3/issues.{format}?{request.url.query}&username={urllib.parse.quote(username)}"
@@ -60,7 +60,7 @@ async def user_count(
     db: Connection = Depends(database.db),
     params=Depends(commons_params.params),
     _=Depends(i18n.i18n),
-):
+) -> RSSResponse:
     count = await _user_count(params, db, username)
     xml = E.rss(
         E.channel(

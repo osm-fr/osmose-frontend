@@ -1,7 +1,7 @@
 import io
 import traceback
 from collections import defaultdict
-from typing import Dict
+from typing import Any, Dict, List
 
 from asyncpg import Connection
 from fastapi import APIRouter, Depends, Request, Response
@@ -24,7 +24,7 @@ async def graph(
     request: Request,
     db: Connection = Depends(database.db),
     params=Depends(commons_params.params),
-):
+) -> Response:
     try:
         format = request.url.path.split(".", -1)[1]
         data = await errors_graph.make_plt(db, params, format)
@@ -50,7 +50,7 @@ async def index(
     db: Connection = Depends(database.db),
     params=Depends(commons_params.params),
     langs: LangsNegociation = Depends(langs.langs),
-):
+) -> Dict[str, Any]:
     if "false-positive" in request.url.path:
         gen = "false"
     elif "done" in request.url.path:
@@ -61,6 +61,8 @@ async def index(
     items = await query_meta._items_menu(db, langs)
     countries = await query_meta._countries(db)
 
+    errors_groups: List[Dict[str, Any]] = []
+    total = 0
     if params.item:
         params.limit = None
         errors_groups = await query._count(
@@ -81,15 +83,11 @@ async def index(
             ],
         )
 
-        total = 0
         for res in errors_groups:
             res["title"] = i10n_select_auto(res["title"], langs)
             res["menu"] = i10n_select_auto(res["menu"], langs)
             if res["count"] != -1:
                 total += res["count"]
-    else:
-        errors_groups = []
-        total = 0
 
     if gen in ("false", "done"):
         opt_date = "date"
@@ -116,7 +114,7 @@ async def index(
 async def matrix(
     db: Connection = Depends(database.db),
     params=Depends(commons_params.params),
-):
+) -> Dict[str, Any]:
     errors_groups = await query._count(
         db,
         params,

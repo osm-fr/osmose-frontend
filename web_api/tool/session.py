@@ -118,19 +118,19 @@ class BasicVerifier(SessionVerifier[UUID, SessionData]):
         self._auth_http_exception = auth_http_exception
 
     @property
-    def identifier(self):
+    def identifier(self) -> str:
         return self._identifier
 
     @property
-    def backend(self):
+    def backend(self) -> InFileBackend[UUID, SessionData]:
         return self._backend
 
     @property
-    def auto_error(self):
+    def auto_error(self) -> bool:
         return self._auto_error
 
     @property
-    def auth_http_exception(self):
+    def auth_http_exception(self) -> HTTPException:
         return self._auth_http_exception
 
     def verify_session(self, model: SessionData) -> bool:
@@ -138,9 +138,9 @@ class BasicVerifier(SessionVerifier[UUID, SessionData]):
         return True
 
     # Overwrite method to make session optional
-    async def __call__(self, request: Request):
+    async def __call__(self, request: Request) -> Optional[str]:
         if not hasattr(request.state, "session_ids"):
-            return
+            return None
 
         try:
             session_id: Union[ID, FrontendError] = request.state.session_ids[
@@ -159,7 +159,7 @@ class BasicVerifier(SessionVerifier[UUID, SessionData]):
         if isinstance(session_id, FrontendError):
             if self.auto_error:
                 raise self.auth_http_exception
-            return
+            return None
 
         session_data = await self.backend.read(session_id)
         # if not session_data or not self.verify_session(session_data):

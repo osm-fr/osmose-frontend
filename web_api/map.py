@@ -1,4 +1,4 @@
-from typing import Dict, Optional, Set
+from typing import Any, Dict, Optional, Set, Union
 
 from asyncpg import Connection
 from fastapi import APIRouter, Depends, Request
@@ -17,7 +17,7 @@ router = APIRouter()
 @router.get("/map")
 def errors(
     request: Request,
-):
+) -> RedirectResponse:
     return RedirectResponse("map/?" + request.url.query)
 
 
@@ -28,7 +28,7 @@ async def index(
     params=Depends(commons_params.params),
     langs: LangsNegociation = Depends(langs.langs),
     session_data: Optional[SessionData] = Depends(verifier),
-):
+) -> Union[RedirectResponse, Dict[str, Any]]:
     if request.url.query:
         return RedirectResponse("./#" + request.url.query)
 

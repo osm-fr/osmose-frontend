@@ -1,4 +1,5 @@
 import io
+from typing import Dict, Tuple
 from uuid import UUID
 
 from asyncpg import Connection
@@ -19,7 +20,7 @@ async def save(
     db: Connection = Depends(database.db),
     session_id: UUID = Depends(cookie),
     session_data: SessionData = Depends(verifier),
-):
+) -> None:
     json = await request.json()
     if "tag" not in json:
         raise HTTPException(status_code=422)
@@ -90,7 +91,7 @@ async def save(
     _changeset_upload(session_data.oauth_tokens, changeset, osmchange)
 
 
-def _osm_changeset(tags, id="0"):
+def _osm_changeset(tags, id: str = "0") -> str:
     out = io.StringIO()
     o = OsmSax.OsmSaxWriter(out, "UTF-8")
     o.startDocument()
@@ -104,7 +105,7 @@ def _osm_changeset(tags, id="0"):
     return out.getvalue()
 
 
-def _changeset_create(oauth_tokens, tags):
+def _changeset_create(oauth_tokens: Tuple[str, str], tags: Dict[str, str]) -> str:
     changeset = oauth.put(
         oauth_tokens,
         utils.remote_url_write + "api/0.6/changeset/create",
@@ -113,7 +114,9 @@ def _changeset_create(oauth_tokens, tags):
     return changeset
 
 
-def _changeset_update(oauth_tokens, id, tags):
+def _changeset_update(
+    oauth_tokens: Tuple[str, str], id: str, tags: Dict[str, str]
+) -> None:
     oauth.put(
         oauth_tokens,
         utils.remote_url_write + "api/0.6/changeset/" + id,
@@ -121,14 +124,14 @@ def _changeset_update(oauth_tokens, id, tags):
     )
 
 
-def _changeset_close(oauth_tokens, id):
+def _changeset_close(oauth_tokens: Tuple[str, str], id: str) -> None:
     oauth.put(
         oauth_tokens,
         utils.remote_url_write + "api/0.6/changeset/" + id + "/close",
     )
 
 
-def _changeset_upload(oauth_tokens, id, osmchange):
+def _changeset_upload(oauth_tokens: Tuple[str, str], id: str, osmchange) -> None:
     oauth.post(
         oauth_tokens,
         utils.remote_url_write + "api/0.6/changeset/" + id + "/upload",

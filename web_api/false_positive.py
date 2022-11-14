@@ -1,3 +1,4 @@
+from typing import Any, Dict
 from uuid import UUID
 
 from asyncpg import Connection
@@ -13,7 +14,7 @@ router = APIRouter()
 async def fp_(
     uuid: UUID,
     db: Connection = Depends(database.db),
-):
+) -> Dict[str, Any]:
     marker, columns = await _get(db, "false", uuid=uuid)
     if not marker:
         raise HTTPException(status_code=410, detail="Id is not present in database.")
