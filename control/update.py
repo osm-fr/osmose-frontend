@@ -1,6 +1,7 @@
 import os
 import sys
 import tempfile
+from typing import Any, Dict, List, Literal, Optional
 
 from asyncpg import Connection
 from fastapi import APIRouter, Depends, Form, HTTPException, Request, UploadFile
@@ -21,7 +22,7 @@ async def user(
     country: str = Form(),
     code: str = Form(),
     db: Connection = Depends(database.db_rw),
-):
+) -> Literal["OK"]:
     source_id = await db.fetchval(
         """
 SELECT
@@ -91,7 +92,7 @@ LIMIT 1
     return "OK"
 
 
-async def _status_object(db: Connection, type: str, source: int):
+async def _status_object(db: Connection, type: str, source: int) -> Optional[List[int]]:
     s = await db.fetchval(
         """
 SELECT
@@ -106,6 +107,8 @@ WHERE
     )
     if s:
         return list(map(int, s.split(",")))
+    else:
+        return None
 
 
 @router.get("/status/{country}/{analyser}", tags=["upload"])
@@ -114,7 +117,7 @@ async def status(
     analyser: str,
     objects: bool = False,
     db: Connection = Depends(database.db),
-):
+) -> Dict[str, Any]:
     r = await db.fetchrow(
         """
 SELECT

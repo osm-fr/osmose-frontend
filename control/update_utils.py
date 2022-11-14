@@ -21,7 +21,7 @@ show = utils.show
 
 
 class printlogger:
-    def log(self, text):
+    def log(self, text: str) -> None:
         print(text)
 
 
@@ -35,7 +35,7 @@ async def update(
     fname: str,
     logger: printlogger = printlogger(),
     remote_ip: Optional[str] = None,
-):
+) -> None:
     q: asyncio.Queue = asyncio.Queue()
 
     async def sync_parser():
@@ -168,7 +168,7 @@ async def update_class(
     _class_source: Optional[str],
     _class_resource: Optional[str],
     ts: float,
-):
+) -> None:
     # Commit class update on its own transaction. Avoid lock the class table and block other updates.
     db_local = None
     try:
@@ -253,7 +253,7 @@ async def update_issue(
     elems: List[Optional[Elem]],
     fixes: List[List[Fix]],
     _error_texts: Optional[Dict[str, str]],
-):
+) -> None:
     uuid = """('{' ||
         encode(substring(digest(
             $1::int ||
@@ -340,7 +340,7 @@ class update_parser(handler.ContentHandler):
     def __init__(self, q: asyncio.Queue):
         self.q = q
 
-    def put(self, args):
+    def put(self, args: List[Any]):
         done = False
         while not done:
             try:
@@ -350,16 +350,16 @@ class update_parser(handler.ContentHandler):
                 time.sleep(0.05)
                 continue
 
-    def setDocumentLocator(self, *args):
+    def setDocumentLocator(self, *args) -> None:
         self.put(["setDocumentLocator", *args])
 
-    def startElement(self, *args):
+    def startElement(self, *args) -> None:
         self.put(["startElement", *args])
 
-    def endElement(self, *args):
+    def endElement(self, *args) -> None:
         self.put(["endElement", *args])
 
-    def endDocument(self):
+    def endDocument(self) -> None:
         self.put(["endDocument"])
 
 
@@ -408,7 +408,7 @@ class async_update_parser(handler.ContentHandler):
 
         self.element_stack = []
 
-    async def parse(self, q: asyncio.Queue):
+    async def parse(self, q: asyncio.Queue) -> None:
         while True:
             a = await q.get()
             f = a[0]
@@ -424,10 +424,10 @@ class async_update_parser(handler.ContentHandler):
             if f == "endDocument":
                 break
 
-    async def setDocumentLocator(self, locator):
+    async def setDocumentLocator(self, locator) -> None:
         self.locator = locator
 
-    async def startElement(self, name: str, attrs: Dict[str, str]):
+    async def startElement(self, name: str, attrs: Dict[str, str]) -> None:
         if name == "analyser":
             self.all_uuid = {}
             self.mode = "analyser"
@@ -535,7 +535,7 @@ WHERE
 
         self.element_stack.append(name)
 
-    async def endElement(self, name: str):
+    async def endElement(self, name: str) -> None:
         self.element_stack.pop()
 
         if name == "analyser" and self.all_uuid:
@@ -664,7 +664,7 @@ WHERE
         elif name == "fix" and self.element_stack[-1] == "fixes":
             self._fixes.append(self._fix)
 
-    async def update_timestamp(self, attrs: Dict[str, str]):
+    async def update_timestamp(self, attrs: Dict[str, str]) -> None:
         timestamp = attrs.get("timestamp")
         if timestamp:
             self.ts = dateutil.parser.isoparse(timestamp).timestamp()
@@ -747,7 +747,7 @@ VALUES
             self._tstamp_updated = True
 
 
-def print_source(source: Dict[str, str]):
+def print_source(source: Dict[str, str]) -> None:
     show(f"source #{source['id']}")
     for k in source:
         if k == "id":

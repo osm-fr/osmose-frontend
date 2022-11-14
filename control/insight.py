@@ -1,5 +1,5 @@
 from collections import defaultdict
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Literal, Optional, Tuple
 
 from asyncpg import Connection
 from fastapi import APIRouter, Depends
@@ -12,7 +12,7 @@ router = APIRouter()
 @router.get("/update.json", tags=["insight"])
 async def updates(
     db: Connection = Depends(database.db),
-):
+) -> Dict[Literal["list"], List[Dict[str, Any]]]:
     sql = """
 SELECT
     sources.id,
@@ -34,7 +34,7 @@ async def update_matrix(
     db: Connection = Depends(database.db),
     remote_param: Optional[str] = None,
     country_param: Optional[str] = None,
-):
+) -> Dict[str, Any]:
     sql = """
 SELECT DISTINCT ON (sources.id)
     sources.id,
@@ -118,7 +118,7 @@ ORDER BY
 @router.get("/update_summary.json", tags=["insight"])
 async def update_summary(
     db: Connection = Depends(database.db),
-):
+) -> Dict[str, Any]:
     sql = """
 SELECT
     backends.hostname AS hostname,
@@ -204,7 +204,7 @@ ORDER BY
 @router.get("/update_summary_by_analyser.json", tags=["insight"])
 async def update_summary_by_analyser(
     db: Connection = Depends(database.db),
-):
+) -> Dict[str, Any]:
     sql = """
 SELECT
     analyser,
@@ -252,7 +252,7 @@ ORDER BY
 async def update(
     source: int,
     db: Connection = Depends(database.db),
-):
+) -> Dict[Literal["list"], List[Dict[str, Any]]]:
     sql = """
 SELECT
     source_id,
