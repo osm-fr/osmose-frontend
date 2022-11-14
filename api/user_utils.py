@@ -17,12 +17,12 @@ async def _user(params: Params, db: Connection, username: str) -> List[Dict[str,
 
 async def _user_count(
     params: Params, db: Connection, username: Optional[str] = None
-) -> Dict[int, int]:
+) -> Optional[Dict[int, int]]:
     if username:
         params.users = username.split(",")
 
     if not params.users:
-        return
+        return None
 
     res = await query._count(db, params, ["class.level"], ["class.level"])
     ret = {1: 0, 2: 0, 3: 0}

@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Literal
+from typing import Any, Dict, List, Literal, Optional
 
 from asyncpg import Connection
 from fastapi import APIRouter, Depends, Request
@@ -27,5 +27,5 @@ async def user_count(
     username: str,
     db: Connection = Depends(database.db),
     params=Depends(commons_params.params),
-) -> Dict[int, int]:
+) -> Optional[Dict[int, int]]:
     return await _user_count(params, db, username)

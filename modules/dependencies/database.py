@@ -11,7 +11,11 @@ class Database:
     pool: Pool
 
     async def create_pool(self) -> None:
-        self.pool = await create_pool(dsn=utils.db_dsn)
+        pool = await create_pool(dsn=utils.db_dsn)
+        if pool:
+            self.pool = pool
+        else:
+            raise RuntimeError("Cannot create pool")
 
 
 database = Database()

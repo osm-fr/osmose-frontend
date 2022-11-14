@@ -81,7 +81,7 @@ The automatic translated content is on a `auto` field in the JSON object: `{"aut
     return app.openapi_schema
 
 
-app.openapi = custom_openapi
+app.openapi = custom_openapi  # type: ignore
 
 
 # CORS middleware
