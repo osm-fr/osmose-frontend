@@ -6,8 +6,7 @@ from fastapi import Request
 
 
 def parse_accept_language(request: Request, langs: List[str]) -> List[str]:
-    if langs and "auto" in langs:
-        accept_language = request.headers.get("Accept-Language", "")
+    accept_language = request.headers.get("Accept-Language", "")
     if not langs:
         langs = ["en"]
     langs = list(
