@@ -116,8 +116,10 @@ class Params:
             pass
         else:
             self.useDevItem = False
+        self.start_date = None
         if start_date:
             self.start_date = utils.str_to_datetime(start_date)
+        self.end_date = None
         if end_date:
             self.end_date = utils.str_to_datetime(end_date)
         self.tags = tags.split(",") if tags else None
