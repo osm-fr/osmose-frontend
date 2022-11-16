@@ -1,5 +1,5 @@
 import io
-from typing import Dict, Tuple
+from typing import Dict, Optional, Tuple
 from uuid import UUID
 
 from asyncpg import Connection
@@ -19,8 +19,11 @@ async def save(
     request: Request,
     db: Connection = Depends(database.db),
     session_id: UUID = Depends(cookie),
-    session_data: SessionData = Depends(verifier),
+    session_data: Optional[SessionData] = Depends(verifier),
 ) -> None:
+    if not session_data:
+        raise HTTPException(status_code=401)
+
     json = await request.json()
     if "tag" not in json:
         raise HTTPException(status_code=422)

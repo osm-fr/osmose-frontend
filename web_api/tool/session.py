@@ -138,7 +138,7 @@ class BasicVerifier(SessionVerifier[UUID, SessionData]):
         return True
 
     # Overwrite method to make session optional
-    async def __call__(self, request: Request) -> Optional[str]:
+    async def __call__(self, request: Request) -> Optional[SessionData]:
         if not hasattr(request.state, "session_ids"):
             return None
 
