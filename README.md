@@ -14,7 +14,7 @@ The HTML/JS part is in Vue.js. You can run de development instance locally using
 
 ```
 cd web
-npm install --dev
+npm install
 npm run dev-server-public
 ```
 

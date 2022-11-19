@@ -108,7 +108,6 @@
 
 <script>
 import Marked from "marked";
-import path from "path";
 
 import VueParent from "../Parent.vue";
 import SidebarToggle from "../../../static/map/SidebarToggle.js";
@@ -161,6 +160,9 @@ export default VueParent.extend({
       this.leafletSideBar.show();
       this.setDoc(item, classs);
     },
+    basename(path) {
+      return path.split(/[\\/]/).pop();
+    },
     setDoc(item, classs) {
       if (
         item == this._last_item &&
@@ -196,7 +198,7 @@ export default VueParent.extend({
           this.trap = data.trap && Marked(data.trap.auto);
           this.example = data.example && Marked(data.example.auto);
           this.source_link = data.source;
-          this.source_title = data.source && path.basename(data.source);
+          this.source_title = data.source && this.basename(data.source);
           this.resource_link = data.resource;
           this.resource_title = resource_url
             ? `${resource_url.protocol}//${resource_url.host}`

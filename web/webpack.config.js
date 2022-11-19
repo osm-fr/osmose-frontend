@@ -2,7 +2,6 @@ var webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlWebpackRootPlugin = require('html-webpack-root-plugin');
 const path = require('path');
 
 
@@ -13,7 +12,7 @@ module.exports = (env, argv) => {
         },
         output: {
             path: path.resolve(__dirname, 'public/assets'),
-            filename: "[name]/webpack.bundle-[hash].js",
+            filename: "[name]/webpack.bundle-[contenthash].js",
             publicPath: env && env.DEV_SERVER ? "/" : "/assets/",
         },
         devtool: argv.mode === 'development' ? 'source-map' : void 0,
@@ -61,8 +60,14 @@ module.exports = (env, argv) => {
                         { loader: "css-loader" },
                     ]
                 },
-                { test: /\.png$/, loaders: ["base64-image-loader"] },
-                { test: /\.gif$/, loaders: ["base64-image-loader"] },
+                {
+                    test: /\.png$/,
+                    loader: "base64-image-loader"
+                },
+                {
+                    test: /\.gif$/,
+                    loader: "base64-image-loader"
+                },
                 {
                     test: /\.po$/,
                     type: "json",
@@ -93,17 +98,14 @@ module.exports = (env, argv) => {
                 inject: "body", // Inject all scripts into the body
                 filename: "index.html"
             }),
-            new HtmlWebpackRootPlugin("app"),
             new webpack.DefinePlugin({
                 API_URL: JSON.stringify(env.API_URL)
             }),
             new VueLoaderPlugin(),
         ],
         devServer: {
-            contentBase: "./public/assets/",
             historyApiFallback: true,
-            open: true,
-            openPage: "en/",
+            open: "en/map/",
             compress: true,
             host: "0.0.0.0"
         },

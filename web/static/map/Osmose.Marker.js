@@ -3,7 +3,7 @@ import 'leaflet.vectorgrid/dist/Leaflet.VectorGrid.js';
 import 'leaflet-responsive-popup';
 import 'leaflet-responsive-popup/leaflet.responsive.popup.css';
 import 'leaflet-responsive-popup/leaflet.responsive.popup.rtl.css';
-import 'leaflet-osm';
+import './leaflet-osm';
 import 'leaflet-textpath';
 
 import ExternalVueAppEvent from '../../src/ExternalVueAppEvent.js'

@@ -10,7 +10,7 @@ MO:=$(patsubst %.po,mo/%/LC_MESSAGES/osmose-frontend.mo,$(PO))
 all: osmose-frontend.pot %.po mo
 
 ../node_modules/easygettext/src/extract-cli.js:
-	$(error 'easygettext missing. Please install node dependencies with `npm install --dev`')
+	$(error 'easygettext missing. Please install node dependencies with `npm install`')
 
 vue.pot: $(VUEFILES) ../node_modules/easygettext/src/extract-cli.js
 	../node_modules/easygettext/src/extract-cli.js --removeHTMLWhitespaces --attribute=path --output $@.tmp $(VUEFILES)
