@@ -23,16 +23,35 @@
           </ul>
           <div class="form-inline my-2 my-lg-0">
             <a :href="byuser_count" class="badge badge-secondary">
-              .rss <translate>count</translate></a
-            >&nbsp;
+              .rss <translate>count</translate>
+            </a>
             <a :href="api_url_path('rss')" class="badge badge-secondary">
-              .rss </a
-            >&nbsp;
+              .rss
+            </a>
             <a :href="api_url_path('gpx')" class="badge badge-secondary">
-              .gpx </a
-            >&nbsp;
+              .gpx
+            </a>
             <a :href="api_url_path('kml')" class="badge badge-secondary">
               .kml
+            </a>
+            <a :href="api_url_path('csv')" class="badge badge-secondary">
+              .csv
+            </a>
+            <a :href="api_url_path()" class="badge badge-secondary"> .json </a>
+            <a
+              :href="api_url_path(undefined, 'full=true')"
+              class="badge badge-secondary"
+            >
+              .json full
+            </a>
+            <a :href="api_url_path('geojson')" class="badge badge-secondary">
+              .geojson
+            </a>
+            <a
+              :href="api_url_path('geojson', 'full=true')"
+              class="badge badge-secondary"
+            >
+              .geojson full
             </a>
           </div>
         </div>
@@ -114,8 +133,10 @@ export default VueParent.extend({
     this.render();
   },
   methods: {
-    api_url_path(format) {
-      return `${this.website}/api/0.3/issues.${format}?${this.query}&usename=${this.username}`;
+    api_url_path(format, query) {
+      return `${this.website}/api/0.3/issues${format ? "." + format : ""}?${
+        this.query
+      }&usename=${this.username}${query ? "&" + query : ""}`;
     },
     render() {
       this.query = window.location.search.substring(1);
