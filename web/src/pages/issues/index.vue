@@ -508,6 +508,10 @@ export default VueParent.extend({
         "issues/false-positive": "false",
       }[this.$route.name];
 
+      if (status) {
+        this.query += `&status=${status}`
+      }
+
       this.fetchJson(API_URL + "/api/0.3/tags", (response) => {
         this.tags_list = response.tags;
       });
