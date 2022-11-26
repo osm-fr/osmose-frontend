@@ -79,10 +79,10 @@ ORDER BY
     where2 = ["1 = 1"]
     if params.start_date:
         sql_params.append(params.start_date.isoformat())
-        where2.append("timestamp >= ${len(sql_params)}")
+        where2.append(f"timestamp >= ${len(sql_params)}")
     if params.end_date:
         sql_params.append(params.end_date.isoformat())
-        where2.append("timestamp < ${len(sql_params)}")
+        where2.append(f"timestamp < ${len(sql_params)}")
     sql = sqlbase % (join, where, " AND ".join(where2))
 
     result = []
