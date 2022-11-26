@@ -204,26 +204,26 @@ def _build_param(
 
     if stats:
         if start_date and end_date:
-            params += [start_date.isoformat(), end_date.isoformat()]
+            params += [start_date, end_date]
             where.append(
                 f"markers.timestamp_range && tsrange(${len(params)-1}, ${len(params)}, '[]')"
             )
         elif start_date:
-            params.append(start_date.isoformat())
+            params.append(start_date)
             where.append(
                 f"markers.timestamp_range && tsrange(${len(params)}, NULL, '[)')"
             )
         elif end_date:
-            params.append(end_date.isoformat())
+            params.append(end_date)
             where.append(
                 f"markers.timestamp_range && tsrange(NULL, ${len(params)}, '(]')"
             )
     elif status in ("done", "false"):
         if start_date:
-            params.append(start_date.isoformat())
+            params.append(start_date)
             where.append(f"markers.date > ${len(params)}")
         if end_date:
-            params.append(end_date.isoformat())
+            params.append(end_date)
             where.append(f"markers.date < ${len(params)}")
 
     if tags:
