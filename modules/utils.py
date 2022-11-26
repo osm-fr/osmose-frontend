@@ -84,7 +84,7 @@ def show(s) -> None:
     print(s.encode("utf8"))
 
 
-def str_to_datetime(s) -> Optional[datetime]:
+def str_to_datetime(s) -> datetime:
     patterns = ["%Y-%m-%d", "%Y-%m", "%Y"]
     for p in patterns:
         try:
