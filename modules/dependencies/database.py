@@ -11,7 +11,10 @@ class Database:
     pool: Pool
 
     async def create_pool(self) -> None:
-        pool = await create_pool(dsn=utils.db_dsn)
+        pool = await create_pool(
+            dsn=utils.db_dsn,
+            init=add_json_support,
+        )
         if pool:
             self.pool = pool
         else:
@@ -55,27 +58,11 @@ async def get_dbconn() -> Connection:
 
 async def db() -> AsyncGenerator[PoolConnectionProxy, None]:
     async with database.pool.acquire() as connection:
-        await add_json_support(connection)
-        tr = connection.transaction()
-        await tr.start()
-        try:
+        async with connection.transaction(readonly=True):
             yield connection
-        finally:
-            if connection.is_in_transaction():
-                await tr.rollback()
 
 
 async def db_rw() -> AsyncGenerator[PoolConnectionProxy, None]:
     async with database.pool.acquire() as connection:
-        await add_json_support(connection)
-        tr = connection.transaction()
-        await tr.start()
-        try:
+        async with connection.transaction():
             yield connection
-        except Exception:
-            if connection.is_in_transaction():
-                await tr.rollback()
-            raise
-        else:
-            if connection.is_in_transaction():
-                await tr.commit()
