@@ -9,7 +9,6 @@ from xml.sax import handler, make_parser
 
 import dateutil.parser
 from asyncpg import Connection
-from asyncpg.exceptions import PostgresError
 
 from modules import query_meta, utils
 from modules.dependencies import database
@@ -170,11 +169,10 @@ async def update_class(
     ts: float,
 ) -> None:
     # Commit class update on its own transaction. Avoid lock the class table and block other updates.
-    db_local = None
-    try:
-        db_local = await database.get_dbconn()
-        await db_local.execute(
-            """
+    # db_local: Connection = await database.db().__anext__()
+    db_local = _db
+    await db_local.execute(
+        """
 INSERT INTO class (class, item, title, level, tags, detail, fix, trap, example, source, resource, timestamp)
 VALUES
     ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, to_timestamp($12))
@@ -206,22 +204,19 @@ WHERE
         class.resource IS DISTINCT FROM $11
     )
 """,
-            _class_id,  # $1 class
-            _class_item,  # $2 item
-            _class_title,  # $3 title
-            _class_level,  # $4 level
-            _class_tags,  # $5 tags
-            _class_detail or None,  # $6 detail
-            _class_fix or None,  # $7 fix
-            _class_trap or None,  # $8 trap
-            _class_example or None,  # $9 example
-            _class_source or None,  # $10 source
-            _class_resource or None,  # $11 resource
-            ts,  # $12 timestamp
-        )
-    finally:
-        if db_local:
-            await db_local.close()
+        _class_id,  # $1 class
+        _class_item,  # $2 item
+        _class_title,  # $3 title
+        _class_level,  # $4 level
+        _class_tags,  # $5 tags
+        _class_detail or None,  # $6 detail
+        _class_fix or None,  # $7 fix
+        _class_trap or None,  # $8 trap
+        _class_example or None,  # $9 example
+        _class_source or None,  # $10 source
+        _class_resource or None,  # $11 resource
+        ts,  # $12 timestamp
+    )
 
     sql = """
 INSERT INTO markers_counts (source_id, class, item)
@@ -675,39 +670,27 @@ WHERE
         self.analyser_version = attrs.get("analyser_version", None)
 
         if not self._tstamp_updated:
-            try:
-                await self._db.execute(
-                    """
+            r = await self._db.fetchval(
+                """
 INSERT INTO updates
     (source_id, timestamp, remote_url, remote_ip, version, analyser_version)
 VALUES
     ($1, to_timestamp($2), $3, $4, $5, $6)
+ON CONFLICT DO NOTHING
+RETURNING 1
 """,
-                    self._source_id,
-                    self.ts,
-                    self._source_url,
-                    self._remote_ip,
-                    self.version,
-                    self.analyser_version,
-                )
+                self._source_id,
+                self.ts,
+                self._source_url,
+                self._remote_ip,
+                self.version,
+                self.analyser_version,
+            )
 
-            except PostgresError:
-                try:
-                    db_local = await database.get_dbconn()
-                    r = await db_local.fetchval(
-                        "SELECT count(*) FROM updates WHERE source_id = $1 AND timestamp = to_timestamp($2)",
-                        self._source_id,
-                        self.ts,
-                    )
-                    if r == 1:
-                        raise OsmoseUpdateAlreadyDone(
-                            f"source={self._source_id} and timestamp={self.ts} are already present"
-                        )
-                    else:
-                        raise
-                finally:
-                    if db_local:
-                        await db_local.close()
+            if not r:
+                raise OsmoseUpdateAlreadyDone(
+                    f"source={self._source_id} and timestamp={self.ts} are already present"
+                )
 
             status = await self._db.execute(
                 """

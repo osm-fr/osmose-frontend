@@ -56,9 +56,7 @@ async def _remove_bug_err_id(db: Connection, error_id: int, status: Status) -> i
     return 0
 
 
-async def _remove_bug_uuid(db, uuid: UUID, status: Status) -> int:
-    db = await database.get_dbconn()
-
+async def _remove_bug_uuid(db: Connection, uuid: UUID, status: Status) -> int:
     # find source
     source_id = None
     sql = "SELECT source_id,class FROM markers WHERE uuid = $1"
