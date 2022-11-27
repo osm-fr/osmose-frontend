@@ -4,7 +4,7 @@ from typing import Any, Dict, Iterable, List, Optional, Tuple
 from asyncpg import Connection
 
 from . import tiles
-from .dependencies.commons_params import Params
+from .dependencies.commons_params import Params, UseDevItem
 
 
 def _build_where_item(table: str, item: str) -> str:
@@ -48,7 +48,7 @@ def _build_param(
     users: Optional[List[str]],
     classs: Optional[List[int]],
     country: Optional[str],
-    useDevItem: Optional[str],
+    useDevItem: UseDevItem,
     status,  #: Optional[Status],
     tags: Optional[List[str]],
     fixable,  #: Optional[Fixable],
@@ -113,9 +113,9 @@ def _build_param(
         tables.append("class")
     if country is not None:
         tables.append("sources")
-    if not stats:
+    if not stats or useDevItem in ("true", "false"):
         tables.append("items")
-        if useDevItem:
+        if useDevItem == "true":
             tablesLeft.append("items")
     if last_update:
         tables.append("updates_last")
@@ -195,7 +195,7 @@ def _build_param(
         params.append(country)
         where.append(f"sources.country LIKE ${len(params)}")
 
-    if status not in ("done", "false") and useDevItem:
+    if status not in ("done", "false") and useDevItem == "true":
         where.append("items.item IS NULL")
 
     if status not in ("done", "false") and users:

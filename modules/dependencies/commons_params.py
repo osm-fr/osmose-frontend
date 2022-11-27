@@ -10,6 +10,7 @@ from .. import utils
 
 Status = Literal["open", "false", "done"]
 Fixable = Optional[Literal["online", "josm"]]
+UseDevItem = Literal["false", "true", "all"]
 
 
 @dataclass
@@ -24,7 +25,7 @@ class Params:
     zoom: Optional[int]
     limit: int
     country: Optional[str]
-    useDevItem: Optional[str]
+    useDevItem: UseDevItem
     status: Optional[Status]
     start_date: Optional[datetime]
     end_date: Optional[datetime]
@@ -47,7 +48,7 @@ class Params:
         zoom: Optional[int],
         limit: int,
         country: Optional[str],
-        useDev: Optional[str],
+        useDevItem: Optional[str],
         status: Optional[Status],
         start_date: Optional[str],
         end_date: Optional[str],
@@ -68,7 +69,7 @@ class Params:
         self.zoom = zoom
         self.limit = limit
         self.country = country
-        self.useDevItem = useDev
+        useDevItem = useDevItem
         self.status = status
         start_date = start_date
         end_date = end_date
@@ -110,12 +111,12 @@ class Params:
         self.users = users.split(",") if users else None
         if self.country and not re.match(r"^([a-z_]+)(\*|)$", self.country):
             self.country = ""
-        if self.useDevItem == "true":
-            self.useDevItem = True
-        elif self.useDevItem == "all":
-            pass
+        if useDevItem == "true":
+            self.useDevItem = "true"
+        elif useDevItem == "all":
+            self.useDevItem = "all"
         else:
-            self.useDevItem = False
+            self.useDevItem = "false"
         self.start_date = None
         if start_date:
             self.start_date = utils.str_to_datetime(start_date)
