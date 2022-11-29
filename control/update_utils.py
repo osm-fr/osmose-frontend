@@ -705,7 +705,7 @@ UPDATE SET
     analyser_version=$4,
     remote_ip=$5
 WHERE
-    source_id=$1
+    updates_last.source_id=$1
 """,
                 self._source_id,
                 self.ts,
