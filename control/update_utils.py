@@ -698,7 +698,7 @@ INSERT INTO updates_last
     (source_id, timestamp, version, analyser_version, remote_ip)
 VALUES
     ($1, to_timestamp($2), $3, $4, $5)
-ON CONFLICT DO
+ON CONFLICT (source_id) DO
 UPDATE SET
     timestamp=to_timestamp($2),
     version=$3,
