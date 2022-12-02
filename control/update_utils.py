@@ -692,40 +692,27 @@ RETURNING 1
                     f"source={self._source_id} and timestamp={self.ts} are already present"
                 )
 
-            status = await self._db.execute(
+            await self._db.execute(
                 """
-UPDATE
-    updates_last
-SET
-    timestamp=to_timestamp($1),
-    version=$2,
-    analyser_version=$3,
-    remote_ip=$4
-WHERE
-    source_id=$5
-""",
-                self.ts,
-                self.version,
-                self.analyser_version,
-                self._remote_ip,
-                self._source_id,
-            )
-            if status and status[0] == "C":
-                rowcount = int(status[5:].split(" ")[1])
-                if rowcount == 0:
-                    await self._db.execute(
-                        """
 INSERT INTO updates_last
     (source_id, timestamp, version, analyser_version, remote_ip)
 VALUES
     ($1, to_timestamp($2), $3, $4, $5)
+ON CONFLICT (source_id) DO
+UPDATE SET
+    timestamp=to_timestamp($2),
+    version=$3,
+    analyser_version=$4,
+    remote_ip=$5
+WHERE
+    updates_last.source_id=$1
 """,
-                        self._source_id,
-                        self.ts,
-                        self.version,
-                        self.analyser_version,
-                        self._remote_ip,
-                    )
+                self._source_id,
+                self.ts,
+                self.version,
+                self.analyser_version,
+                self._remote_ip,
+            )
 
             self._tstamp_updated = True
 
