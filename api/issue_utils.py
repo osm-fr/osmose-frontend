@@ -15,7 +15,7 @@ t2l = tag2link.tag2link(
 
 async def _get(
     db: Connection, err_id: Optional[int] = None, uuid: Optional[UUID] = None
-) -> Dict[str, Any]:
+) -> Optional[Dict[str, Any]]:
     columns_marker = [
         "markers.item",
         "markers.source_id",

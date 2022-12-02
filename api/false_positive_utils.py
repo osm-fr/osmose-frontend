@@ -11,7 +11,7 @@ async def _get(
     status: Status,
     err_id: Optional[int] = None,
     uuid: Optional[UUID] = None,
-) -> Tuple[Dict[str, Any], List[str]]:
+) -> Tuple[Optional[Dict[str, Any]], List[str]]:
     columns = [
         "markers_status.item",
         "source_id",

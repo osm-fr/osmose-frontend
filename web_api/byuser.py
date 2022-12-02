@@ -62,11 +62,8 @@ async def user_count(
     _=Depends(i18n.i18n),
 ) -> RSSResponse:
     count = await _user_count(params, db, username)
-    xml = E.rss(
-        E.channel(
-            E.title("Osmose - " + username),
-            E.description(_("Statistics for user {}").format(username)),
-            E.link("{}/byuser/{}".format(utils.website, username)),
+    counts = (
+        [
             E.item(
                 E.title(
                     _("Number of level {level} issues: {count}").format(
@@ -88,6 +85,17 @@ async def user_count(
                     )
                 )
             ),
+        ]
+        if count
+        else []
+    )
+
+    xml = E.rss(
+        E.channel(
+            E.title("Osmose - " + username),
+            E.description(_("Statistics for user {}").format(username)),
+            E.link("{}/byuser/{}".format(utils.website, username)),
+            *counts,
         ),
         version="2.0",
     )

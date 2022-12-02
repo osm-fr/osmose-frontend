@@ -14,8 +14,6 @@ Translator = Callable[..., str]
 
 
 def get_languages(request: Request) -> Tuple[List[str], bool]:
-    langs = [None]
-
     base_path = request.scope.get("root_path")
     if base_path and len(base_path) >= 3:
         # Handle longer languages like zh_TW
@@ -29,6 +27,7 @@ def get_languages(request: Request) -> Tuple[List[str], bool]:
             if tmp_lang in allowed_languages:
                 return ([tmp_lang, allowed_languages[0]], False)
 
+    langs: List[str] = []
     if request.headers.get("Accept-Language"):
         accept_language = request.headers.get("Accept-Language")
         langs = accept_language.split(",")
@@ -36,7 +35,7 @@ def get_languages(request: Request) -> Tuple[List[str], bool]:
         langs = [x.split("-")[0] for x in langs]
         langs = [x for x in langs if x in allowed_languages]
 
-    if len(langs) > 0 and langs[0]:
+    if langs:
         langs.append(allowed_languages[0])
         res = []
         for lang in langs:

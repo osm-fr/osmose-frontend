@@ -195,7 +195,7 @@ def _error(
     db: Connection,
     langs: LangsNegociation,
     uuid: Optional[UUID],
-    marker: Dict[str, Any],
+    marker: Optional[Dict[str, Any]],
 ) -> Dict[str, Any]:
     if not marker:
         raise HTTPException(status_code=410, detail="Id is not present in database.")
@@ -382,28 +382,27 @@ async def fix_uuid_num(
 
             else:
                 # create new object
-                data: Dict[str, Any] = {}
-                data["id"] = -1
-                data["tag"] = {}
-                for (k, v) in res["create"].items():
-                    data["tag"][k] = v
                 res2 = await db.fetchrow(
                     "SELECT lat, lon FROM markers WHERE uuid = $1", uuid
                 )
-                data["lat"] = res2["lat"]
-                data["lon"] = res2["lon"]
-                data["action"] = "modify"  # Even for creation action is 'modify'
+                if res2:
+                    data: Dict[str, Any] = {}
+                    data["id"] = -1
+                    data["tag"] = {}
+                    for (k, v) in res["create"].items():
+                        data["tag"][k] = v
+                    data["lat"] = res2["lat"]
+                    data["lon"] = res2["lon"]
+                    data["action"] = "modify"  # Even for creation action is 'modify'
 
-                if "type" not in res or res["type"] == "N":
-                    return OsmSax.NodeToXml(data, full=True)
-                elif res["type"] == "W":
-                    return OsmSax.WayToXml(data, full=True)
-                elif res["type"] == "R":
-                    return OsmSax.RelationToXml(data, full=True)
+                    if "type" not in res or res["type"] == "N":
+                        return OsmSax.NodeToXml(data, full=True)
+                    elif res["type"] == "W":
+                        return OsmSax.WayToXml(data, full=True)
+                    elif res["type"] == "R":
+                        return OsmSax.RelationToXml(data, full=True)
 
-    else:
-        raise HTTPException(status_code=412, detail="Precondition Failed")
-        # print "No issue found"
+    raise HTTPException(status_code=412, detail="Precondition Failed")
 
 
 class OsmSaxFixWriter(OsmSax.OsmSaxWriter):
