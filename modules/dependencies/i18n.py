@@ -28,8 +28,8 @@ def get_languages(request: Request) -> Tuple[List[str], bool]:
                 return ([tmp_lang, allowed_languages[0]], False)
 
     langs: List[str] = []
-    if request.headers.get("Accept-Language"):
-        accept_language = request.headers.get("Accept-Language")
+    accept_language = request.headers.get("Accept-Language")
+    if accept_language:
         langs = accept_language.split(",")
         langs = [x.split(";")[0] for x in langs]
         langs = [x.split("-")[0] for x in langs]

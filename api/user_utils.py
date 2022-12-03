@@ -12,7 +12,7 @@ async def _user(params: Params, db: Connection, username: str) -> List[Dict[str,
     params.full = True
 
     errors = await query._gets(db, params)
-    return list(map(dict, errors))
+    return list(map(dict, errors))  # type: ignore
 
 
 async def _user_count(

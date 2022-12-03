@@ -152,7 +152,7 @@ def _val_and_maybe_convert(el):
         return text
 
 
-_val_and_maybe_convert.convertors = {
+_val_and_maybe_convert.convertors = {  # type: ignore
     "boolean": _str_to_boolean,
     "datetime": _str_to_datetime,
     "integer": int,

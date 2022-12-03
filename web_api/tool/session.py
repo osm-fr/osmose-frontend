@@ -1,19 +1,17 @@
 import json
 import pathlib
-from typing import Any, Dict, Generic, Optional, Tuple, Union
+from typing import Any, Dict, Generic, Optional, Tuple, TypeVar, Union
 from uuid import UUID
 
 from fastapi import HTTPException, Request
 from fastapi_sessions.backends.session_backend import (  # type: ignore
     BackendError,
     SessionBackend,
-    SessionModel,
 )
 from fastapi_sessions.frontends.implementations import (  # type: ignore
     CookieParameters,
     SessionCookie,
 )
-from fastapi_sessions.frontends.session_frontend import ID  # type: ignore
 from fastapi_sessions.frontends.session_frontend import FrontendError  # type: ignore
 from fastapi_sessions.session_verifier import SessionVerifier  # type: ignore
 from itsdangerous import BadSignature, SignatureExpired
@@ -75,6 +73,9 @@ cookie = OptionalSessionCookie(
     cookie_params=EternalCookieParameters(),
 )
 
+ID = TypeVar("ID")
+SessionModel = TypeVar("SessionModel", bound=BaseModel)
+
 
 class InFileBackend(Generic[ID, SessionModel], SessionBackend[ID, SessionModel]):
     def __init__(self, data_dir: str) -> None:
@@ -90,7 +91,7 @@ class InFileBackend(Generic[ID, SessionModel], SessionBackend[ID, SessionModel])
         if pathlib.Path(path).exists():
             with open(path, "r") as f:
                 data = json.loads(f.read())
-                return SessionData(**data)
+                return self.__orig_class__.__args__[0](**data)  # SessionModel(**data)
         return None
 
     async def update(self, session_id: ID, data: SessionModel) -> None:
@@ -143,7 +144,7 @@ class BasicVerifier(SessionVerifier[UUID, SessionData]):
             return None
 
         try:
-            session_id: Union[ID, FrontendError] = request.state.session_ids[
+            session_id: Union[UUID, FrontendError] = request.state.session_ids[
                 self.identifier
             ]
         except Exception:

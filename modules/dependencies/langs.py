@@ -17,7 +17,8 @@ def parse_accept_language(request: Request, langs: List[str]) -> List[str]:
 
 
 async def langs(request: Request) -> Optional[List[str]]:
-    langs = request.query_params.get("langs") or ["auto"]
+    param_lang = request.query_params.get("langs")
+    langs: List[str] = param_lang.split(",") if param_lang else ["auto"]
     if langs:
         langs = parse_accept_language(request, langs)
     return langs

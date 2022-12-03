@@ -94,7 +94,7 @@ async def index(
     else:
         opt_date = None
 
-    errors_groups = list(map(dict, errors_groups))
+    errors_groups = list(map(dict, errors_groups))  # type: ignore
     for res in errors_groups:
         res["timestamp"] = str(res["timestamp"])
     return dict(
