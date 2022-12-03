@@ -121,6 +121,10 @@ VALUES
     builtins.T_ = translate
     builtins.T_f = translate
 
+    import modules
+    importlib.reload(
+        modules
+    )  # needed as was loaded by import modules.utils
     import osmose_config
 
     for (country, country_config) in osmose_config.config.items():
