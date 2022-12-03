@@ -31,9 +31,9 @@ jobs:
       run: |
         flake8 api modules control web_api osmose.py
 
-    # - name: MyPy
-    #   run: |
-    #     mypy api modules control web_api osmose.py
+    - name: MyPy
+      run: |
+        mypy api modules control web_api osmose.py
 
   lint-web:
     runs-on: ubuntu-latest
