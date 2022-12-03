@@ -112,9 +112,6 @@ def _errors_geojson(
             "features": issues_features,
         }
 
-        if len(results) == limit and z < 18:
-            features_collection["properties"] = {"limit": limit}
-
         return features_collection
 
 
