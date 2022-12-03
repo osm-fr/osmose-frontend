@@ -1,23 +1,16 @@
 import csv
 import io
 import json
-import os
-import tempfile
 from datetime import datetime
 from typing import List, Tuple, Union
 
+import matplotlib  # type: ignore
+import matplotlib.dates  # type: ignore
+import matplotlib.pyplot  # type: ignore
 from asyncpg import Connection
 
 from modules import query
 from modules.dependencies.commons_params import Params
-
-os.environ["MPLCONFIGDIR"] = tempfile.mkdtemp()
-import matplotlib  # noqa
-
-# Force matplotlib to not use any Xwindows backend.
-matplotlib.use("Agg")
-import matplotlib.dates  # noqa
-import matplotlib.pyplot  # noqa
 
 
 async def get_data(
