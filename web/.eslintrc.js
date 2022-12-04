@@ -1,18 +1,50 @@
 module.exports = {
-  extends: [
-    // add more generic rulesets here, such as:
-    'eslint:recommended',
-    // 'plugin:vue/vue3-recommended',
-    // 'plugin:vue/recommended' // Use this if you are using Vue.js 2.x.
-    'plugin:vue/essential' // Use this if you are using Vue.js 2.x.
-  ],
-  rules: {
-    // override/add rules settings here, such as:
-    // 'vue/no-unused-vars': 'error'
-    'vue/multi-word-component-names': 0
+  root: true,
+  env: {
+    browser: true,
+    node: true,
   },
-  globals: {
-    "API_URL": false,
-    "L": false,
-  }
+  parser: 'vue-eslint-parser',
+  parserOptions: {
+    parser: '@typescript-eslint/parser',
+    sourceType: 'module',
+  },
+  extends: [
+    // '@nuxtjs/eslint-config-typescript',
+    'plugin:vue/vue3-recommended',
+    'plugin:prettier/recommended',
+    'plugin:nuxt/recommended',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
+    // Make sure "prettier" is the last element in this list.
+    'prettier',
+  ],
+  plugins: ['prettier', 'import', '@typescript-eslint', 'vue'],
+  // add your custom rules here
+  rules: {
+    'vue/multi-word-component-names': 'off',
+    'vue/require-explicit-emits': 'off',
+    'vue/no-deprecated-slot-scope-attribute': 'off',
+    'import/order': [
+      'error',
+      {
+        alphabetize: { order: 'asc', caseInsensitive: true },
+        groups: [
+          ['builtin', 'external'],
+          'internal',
+          ['parent', 'sibling', 'index'],
+          'unknown',
+        ],
+        'newlines-between': 'always',
+      },
+    ],
+    'vue/no-v-for-template-key-on-child': 'off',
+    'vue/no-deprecated-dollar-listeners-api': 'off', // Vue3 rule
+  },
+  settings: {
+    'import/internal-regex': '^@/',
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.js', '.vue'],
+    },
+  },
 }

@@ -17,13 +17,21 @@ module.exports = (env, argv) => {
         },
         devtool: argv.mode === 'development' ? 'source-map' : void 0,
         resolve: {
+            extensions: ['.ts', '...'],
             alias: {
                 vue: argv.mode === 'development' ? 'vue/dist/vue.js' : 'vue/dist/vue.min.js'
             },
         },
         module: {
             rules: [
-/*
+                {
+                    test: /\.ts$/,
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [['babel-preset-typescript-vue']],
+                    }
+                },
+                /*
                 {
                     enforce: "pre",
                     test: /\.js$/,
@@ -38,8 +46,9 @@ module.exports = (env, argv) => {
                         cache: true,
                     }
                 },
-*/
-                { test: /\.js$/,
+                */
+                {
+                    test: /\.js$/,
                     exclude: /node_modules/,
                     loader: 'babel-loader',
                     options: {
