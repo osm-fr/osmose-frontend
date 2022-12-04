@@ -49,27 +49,40 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import VueParent from '../Parent.vue'
 import Delay from '../../components/delay.vue'
 import Version from '../../components/version.vue'
 
+interface Summary {
+  count: number
+  min_age: number
+  max_age: number
+  min_version: string
+}
+
 export default VueParent.extend({
-  data() {
+  data(): {
+    error: boolean
+    summary: { [analyser: string]: Summary }
+  } {
     return {
       error: false,
-      summary: null,
+      summary: {},
     }
   },
+
   computed: {
-    summary_keys() {
-      return this.summary && Object.keys(this.summary).sort()
+    summary_keys(): string[] {
+      return Object.keys(this.summary).sort()
     },
   },
+
   components: {
     Delay,
     Version,
   },
+
   mounted() {
     this.fetchJsonProgressAssign(
       API_URL +

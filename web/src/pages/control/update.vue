@@ -30,24 +30,37 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import VueParent from '../Parent.vue'
 
+interface Update {
+  source_id: number
+  timestamp: string
+  version: string
+  remote_url: string
+  remote_ip: string
+}
+
 export default VueParent.extend({
-  data() {
+  data(): {
+    error: boolean
+    list: Update[]
+  } {
     return {
       error: false,
-      list: null,
+      list: [],
     }
   },
+
   mounted() {
     this.fetchJsonProgressAssign(
       API_URL + window.location.pathname + '.json' + window.location.search
     )
     document.title = 'Osmose - ' + this.$t('Update')
   },
+
   methods: {
-    remote(res) {
+    remote(res: Update): string {
       var url = res.remote_url
       if (url.startsWith('http://') || url.startsWith('https://')) {
         url = url.split('/')[2]

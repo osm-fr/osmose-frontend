@@ -50,12 +50,18 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import VueParent from '../Parent.vue'
 import Delay from '../../components/delay.vue'
 
 export default VueParent.extend({
-  data() {
+  data(): {
+    error: boolean
+    keys: string[]
+    matrix_keys: string[]
+    matrix: [string, number][]
+    stats_country: number[][]
+  } {
     return {
       error: false,
       keys: [],
@@ -64,9 +70,11 @@ export default VueParent.extend({
       stats_country: [],
     }
   },
+
   components: {
     Delay,
   },
+
   mounted() {
     this.fetchJsonProgressAssign(
       API_URL + '/control/update_matrix.json' + window.location.search

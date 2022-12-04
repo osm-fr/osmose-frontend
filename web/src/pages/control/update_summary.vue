@@ -46,28 +46,34 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import VueParent from '../Parent.vue'
 import Delay from '../../components/delay.vue'
 
 export default VueParent.extend({
-  data() {
+  data(): {
+    error: boolean
+    remote_keys: string[]
+  } {
     return {
       error: false,
-      remote_keys: null,
+      remote_keys: [],
     }
   },
+
   components: {
     Delay,
   },
+
   mounted() {
     this.fetchJsonProgressAssign(
       API_URL + '/control/update_summary.json' + window.location.search
     )
     document.title = 'Osmose - ' + this.$t('Updates summary')
   },
+
   methods: {
-    opacity(count, max) {
+    opacity(count: number, max: number): number {
       return (0.66 * count) / max + 0.33
     },
   },
