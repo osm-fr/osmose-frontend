@@ -107,7 +107,7 @@ WHERE
     markers_counts.source_id=$1 AND
     class.class=$2
 """,
-            params.source[0],
+            params.source[0][0],
             params.classs[0],
         )
     elif (
@@ -170,7 +170,7 @@ async def get_src(db: Connection, params: Params) -> str:
 
     if params.source and len(params.source) == 1:
         r = await db.fetchrow(
-            "SELECT country, analyser FROM sources WHERE id = $1;", params.source[0]
+            "SELECT country, analyser FROM sources WHERE id = $1;", params.source[0][0]
         )
         if r:
             ret.append(r[0])
