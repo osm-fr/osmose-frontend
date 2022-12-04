@@ -10,13 +10,25 @@
   </table>
 </template>
 
-<script>
-import Vue from 'vue'
+<script lang="ts">
+import Vue, { PropType } from 'vue'
+
+interface KVLink {
+  k: string
+  v: string
+  vlink: string
+}
 
 export default Vue.extend({
-  props: ['tags'],
+  props: {
+    tags: {
+      type: Array as PropType<KVLink[]>,
+      required: true,
+    },
+  },
+
   methods: {
-    sortObject(o) {
+    sortObject(o: KVLink[]): KVLink[] {
       // Clone the array as workaround infinite loop on sort
       return [...o].sort((a, b) => (a.k === b.k ? 0 : a.k < b.k ? -1 : 1))
     },

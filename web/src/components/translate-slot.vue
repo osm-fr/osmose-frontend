@@ -6,21 +6,26 @@
   </i18n>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 
 export default Vue.extend({
-  data() {
+  data(): {
+    text?: string
+  } {
     return {
-      text: null,
+      text: undefined,
     }
   },
+
   mounted() {
-    this.text = this.$slots.default[0].children[0].text
-    this.text = this.text
-      .replace(/(\r\n|\n|\r)/gm, ' ')
-      .replace(/ +/gm, ' ')
-      .trim()
+    const text = this.$slots?.default?.at(0)?.children?.at(0)?.text // @ts-ignore
+    if (text) {
+      this.text = text
+        .replace(/(\r\n|\n|\r)/gm, ' ')
+        .replace(/ +/gm, ' ')
+        .trim()
+    }
   },
 })
 </script>

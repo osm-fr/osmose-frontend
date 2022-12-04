@@ -1,16 +1,29 @@
-<script>
+<script lang="ts">
 import Vue from 'vue'
 
 export default Vue.extend({
   props: {
-    warning: { default: 1.05 },
-    error: { default: 2.05 },
-    v: null,
-    opacity: { default: 1 },
+    warning: {
+      type: Number,
+      default: 1.05,
+    },
+    error: {
+      type: Number,
+      default: 2.05,
+    },
+    v: {
+      type: Number,
+      default: undefined,
+    },
+    opacity: {
+      type: Number,
+      default: 1,
+    },
   },
+
   render: function (createElement) {
     return createElement(
-      this.$vnode.data.tag,
+      this.$vnode?.data?.tag,
       {
         class:
           this.v > this.error

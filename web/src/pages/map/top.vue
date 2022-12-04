@@ -122,8 +122,8 @@
 
       <li
         is="delay"
-        warning="0.9"
-        error="1.6"
+        :warning="0.9"
+        :error="1.6"
         :v="(Date.now() - Date.parse(timestamp)) / 1000 / 60 / 60 / 24"
         id="menu-delay"
       >

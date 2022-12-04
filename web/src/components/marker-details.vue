@@ -108,13 +108,40 @@
   </table>
 </template>
 
-<script>
-import Vue from 'vue'
+<script lang="ts">
+import Vue, { PropType } from 'vue'
 
 import ShowDict from './show-dict.vue'
 
+interface Marker {
+  source_id: string
+  item: string
+  class: string
+  lat: string
+  lon: string
+  title: string
+  subtitle: string
+  timestamp: string
+  detail: string
+  fix: string
+  trap: string
+  example: string
+  source_code: string
+  resource: string
+}
+
 export default Vue.extend({
-  props: ['marker', 'uuid'],
+  props: {
+    marker: {
+      type: Object as PropType<Marker>,
+      required: true,
+    },
+    uuid: {
+      type: String,
+      required: true,
+    },
+  },
+
   components: {
     ShowDict,
   },

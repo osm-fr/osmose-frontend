@@ -7,16 +7,27 @@
   </table>
 </template>
 
-<script>
-import Vue from 'vue'
+<script lang="ts">
+import Vue, { PropType } from 'vue'
+
+interface KV {
+  [key: string]: string
+}
 
 export default Vue.extend({
-  props: ['dict'],
+  props: {
+    dict: {
+      type: Object as PropType<KV>,
+      required: true,
+    },
+  },
+
   methods: {
-    sortObject(o) {
+    sortObject(o: KV): KV {
+      const ret: KV = {}
       return Object.keys(o)
         .sort()
-        .reduce((r, k) => ((r[k] = o[k]), r), {})
+        .reduce((r, k) => ((r[k] = o[k]), r), ret)
     },
   },
 })

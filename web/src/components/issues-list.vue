@@ -188,27 +188,70 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import VueParent from '../pages/Parent.vue'
+import { FeatureCollection, Feature, Point } from 'geojson'
+
+interface Issue {
+  uuid: string
+  country: string
+  analyser: string
+  source_id: number
+  item: number
+  class: number
+  level: number
+  menu: string
+  lat: number
+  lon: number
+  elems: { id: number; type: string; type_long: string }[]
+  date: string
+  subtitle?: string
+  title?: string
+  subtitle_or_title?: string
+}
 
 export default VueParent.extend({
-  data() {
+  data(): {
+    error: boolean
+    errors: boolean
+  } {
     return {
       error: false,
       errors: false,
     }
   },
+
   props: {
-    query: { default: '' },
-    gen: null,
-    opt_date: { default: false },
-    main_website: null,
-    remote_url_read: null,
-    page_args: { default: '' },
+    query: {
+      type: String,
+      required: true,
+    },
+    gen: {
+      type: String,
+      default: null,
+    },
+    opt_date: {
+      type: String,
+      default: false,
+    },
+    main_website: {
+      type: String,
+      required: true,
+    },
+    remote_url_read: {
+      type: String,
+      required: true,
+    },
+    page_args: {
+      type: String,
+      required: true,
+    },
   },
+
   computed: {
     api_url: () => API_URL,
   },
+
   watch: {
     query() {
       this.render()
@@ -217,59 +260,67 @@ export default VueParent.extend({
       this.render()
     },
   },
+
   mounted() {
     this.render()
   },
+
   methods: {
-    render: function () {
+    render() {
       this.fetchJsonProgress(
         `${API_URL}/api/0.3/issues.geojson?full=true&${this.page_args}${this.query}`,
-        (json) => {
-          this.errors = json.features.map((feature) => {
-            const ret = feature.properties
-            ret.lon = feature.geometry.coordinates[0]
-            ret.lat = feature.geometry.coordinates[1]
-            return ret
-          })
+        (json: FeatureCollection) => {
+          this.errors = json.features
+            .filter((feature) => feature.geometry.type === 'Point')
+            .map((feature: Feature<Point>) => {
+              const ret = feature.properties || {}
+              ret.lon = feature.geometry.coordinates[0]
+              ret.lat = feature.geometry.coordinates[1]
+              return ret
+            })
           this.$emit('errors', this.errors)
         }
       )
     },
-    sortable: (data) => {
-      return data.map((res) => {
-        res.subtitle_or_title = res.subtitle || res.title || ''
-        return res
+
+    sortable(issues: Issue[]): Issue[] {
+      return issues.map((issue) => {
+        issue.subtitle_or_title = issue.subtitle || issue.title || ''
+        return issue
       })
     },
-    onJosmRelation: (res) => {
+
+    onJosmRelation(issue: Issue) {
       fetch(
-        `http://localhost:8111/zoom?left=${res.lon - 0.002}&bottom=${
-          res.lat - 0.002
-        }&right=${res.lon + 0.002}&top=${res.lat + 0.002}`
+        `http://localhost:8111/zoom?left=${issue.lon - 0.002}&bottom=${
+          issue.lat - 0.002
+        }&right=${issue.lon + 0.002}&top=${issue.lat + 0.002}`
       ).then()
       return true
     },
-    getMakerImgSrc: (res) => {
-      return API_URL + `/images/markers/marker-l-${res.item}.png`
+
+    getMakerImgSrc(issue: Issue) {
+      return API_URL + `/images/markers/marker-l-${issue.item}.png`
     },
-    issue_action: (event) => {
-      const Container = event.currentTarget.parentElement
-      const id = event.currentTarget.id.split('=')
+
+    issue_action(event: MouseEvent) {
+      const container: HTMLElement = event.currentTarget?.parentElement
+      const id = event.currentTarget?.id.split('=')
       const verb = id[0]
       const path = id[1]
 
-      Container.parentElement.classList = ['delete-row']
+      container.parentElement.classList = ['delete-row']
       fetch(API_URL + `/api/0.3/${path}`, {
         method: verb,
         cache: 'no-store',
       })
         .then(() => {
           setTimeout(() => {
-            Container.parentElement.remove()
+            container.parentElement.remove()
           }, 1000)
         })
         .catch(() => {
-          Container.parent().css({ backgroundColor: '' })
+          container.parent().css({ backgroundColor: '' })
         })
     },
   },
