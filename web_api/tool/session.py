@@ -91,7 +91,7 @@ class InFileBackend(Generic[ID, SessionModel], SessionBackend[ID, SessionModel])
         if pathlib.Path(path).exists():
             with open(path, "r") as f:
                 data = json.loads(f.read())
-                return self.__orig_class__.__args__[0](**data)  # SessionModel(**data)
+                return self.__orig_class__.__args__[1](**data)  # SessionModel(**data)
         return None
 
     async def update(self, session_id: ID, data: SessionModel) -> None:
