@@ -51,18 +51,24 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import VueParent from '../Parent.vue'
 
 export default VueParent.extend({
-  data() {
+  data(): {
+    error: boolean
+    total: number
+    sorted_countries_sum: { [country: string]: number }
+    sorted_analysers_sum: { [country: string]: number }
+  } {
     return {
       error: false,
-      total: null,
-      sorted_countries_sum: [],
-      sorted_analysers_sum: [],
+      total: 0,
+      sorted_countries_sum: {},
+      sorted_analysers_sum: {},
     }
   },
+
   mounted() {
     this.fetchJsonProgressAssign(
       API_URL + window.location.pathname + '.json' + window.location.search,
@@ -74,11 +80,16 @@ export default VueParent.extend({
       }
     )
   },
+
   methods: {
-    sortObject: (o) =>
-      Object.entries(o)
+    sortObject(o: { [country: string]: number }): {
+      [country: string]: number
+    } {
+      const ret: { [country: string]: number } = {}
+      return Object.entries(o)
         .sort((a, b) => (a[1] === b[1] ? 0 : a[1] < b[1] ? 1 : -1))
-        .reduce((r, k) => ((r[k[0]] = o[k[0]]), r), {}),
+        .reduce((r, k) => ((r[k[0]] = o[k[0]]), r), ret)
+    },
   },
 })
 </script>

@@ -117,13 +117,36 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import VueParent from '../Parent.vue'
 import MarkerDetails from '../../components/marker-details.vue'
 import ShowTags from '../../components/show-tags.vue'
 
+type Type = 'N' | 'W' | 'R' | 'I'
+
+interface Elem {
+  type: Type
+  id: string
+  tags: { [key: string]: string }
+}
+
+interface Fix {
+  type: string
+  id: string
+  create: { [key: string]: string }
+  modify: { [key: string]: string }
+  delete: string[]
+}
+
 export default VueParent.extend({
-  data() {
+  data(): {
+    error: boolean
+    uuid: string
+    marker: {
+      elems: Elem[]
+      fixes: Fix[]
+    }
+  } {
     return {
       error: false,
       uuid: '',
@@ -133,10 +156,12 @@ export default VueParent.extend({
       },
     }
   },
+
   components: {
     MarkerDetails,
     ShowTags,
   },
+
   mounted() {
     this.fetchJsonProgressAssign(
       API_URL + window.location.pathname + '.json' + window.location.search,
@@ -145,15 +170,17 @@ export default VueParent.extend({
           'Osmose - ' +
           this.$t('Information on issue {uuid}', { uuid: this.uuid })
 
-        const favicon = document.getElementById('favicon')
+        const favicon = document.getElementById('favicon') as HTMLAnchorElement
         favicon.href =
           API_URL + `/images/markers/marker-l-${this.marker.item}.png`
       }
     )
   },
+
   methods: {
-    data_type: (type) =>
-      ({ N: 'node', W: 'way', R: 'relation', I: 'infos' }[type]),
+    data_type(type: Type): string {
+      return { N: 'node', W: 'way', R: 'relation', I: 'infos' }[type]
+    },
   },
 })
 </script>
