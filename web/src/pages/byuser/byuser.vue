@@ -86,18 +86,24 @@
         :main_website="main_website"
         :remote_url_read="remote_url_read"
         :page_args="`username=${username}&`"
-        @errors="setCount"
+        @count="setCount"
       />
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import VueParent from '../Parent.vue'
 import IssuesList from '../../components/issues-list.vue'
 
 export default VueParent.extend({
-  data() {
+  data(): {
+    users: string[]
+    username: string
+    count?: number
+    main_website: string
+    query: string
+  } {
     return {
       users: [],
       username: '',
@@ -106,13 +112,14 @@ export default VueParent.extend({
       query: '',
     }
   },
+
   computed: {
-    nav_link() {
+    nav_link(): string {
       const params = new URLSearchParams(this.query)
       params.set('username', this.username)
       return `../map/#${params.toString()}`
     },
-    byuser_count() {
+    byuser_count(): string {
       return (
         `${API_URL}${window.location.pathname}`.replace(
           '/byuser/',
@@ -121,26 +128,31 @@ export default VueParent.extend({
       )
     },
   },
+
   components: {
     IssuesList,
   },
+
   watch: {
     $route() {
       this.render()
     },
   },
+
   mounted() {
     this.username = this.$route.params.user
     this.users = this.username.split(',')
     this.render()
   },
+
   methods: {
-    api_url_path(format, query) {
+    api_url_path(format: string, query: string): string {
       return `${this.website}/api/0.3/issues${format ? '.' + format : ''}?${
         this.query
       }&usename=${this.username}${query ? '&' + query : ''}`
     },
-    render() {
+
+    render(): void {
       this.query = window.location.search.substring(1)
 
       this.fetchJsonProgressAssign(
@@ -168,8 +180,9 @@ export default VueParent.extend({
         }
       )
     },
-    setCount(errors) {
-      this.count = errors.length
+
+    setCount(count: number) {
+      this.count = count
     },
   },
 })

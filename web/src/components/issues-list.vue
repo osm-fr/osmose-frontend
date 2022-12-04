@@ -278,7 +278,7 @@ export default VueParent.extend({
               ret.lat = feature.geometry.coordinates[1]
               return ret
             })
-          this.$emit('errors', this.errors)
+          this.$emit('count', this.errors.length)
         }
       )
     },

@@ -10,7 +10,7 @@
       last contributor of the relevant erroneous elements.
     </translate>
     <br /><br />
-    <form method="GET" action="#" v-on:submit="submit">
+    <form method="GET" action="#" @submit.stop.prevent="submit">
       <label for="username"><translate>Username:</translate></label>
       <input type="text" v-model="username" name="username" />
       <input type="submit" />
@@ -18,21 +18,24 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 
 export default Vue.extend({
-  data() {
+  data(): {
+    username?: string
+  } {
     return {
-      username: null,
+      username: undefined,
     }
   },
+
   mounted() {
     document.title = 'Osmose - ' + this.$t('Statistics for user')
   },
+
   methods: {
-    submit(e) {
-      e.preventDefault()
+    submit() {
       window.location.href = `./${this.username}`
     },
   },
