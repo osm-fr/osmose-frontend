@@ -105,11 +105,11 @@
 </template>
 
 <script>
-import Vue from "vue";
+import Vue from 'vue'
 
 export default Vue.extend({
   mounted() {
-    document.title = "Osmose - " + this.$t("Contact");
+    document.title = 'Osmose - ' + this.$t('Contact')
   },
-});
+})
 </script>

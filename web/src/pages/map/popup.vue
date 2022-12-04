@@ -291,15 +291,15 @@
 </template>
 
 <script>
-import Vue from "vue";
+import Vue from 'vue'
 
-import ExternalVueAppEvent from "../../ExternalVueAppEvent.js";
+import ExternalVueAppEvent from '../../ExternalVueAppEvent.js'
 
 export default Vue.extend({
-  props: ["main_website", "remote_url_read", "markerLayer"],
+  props: ['main_website', 'remote_url_read', 'markerLayer'],
   data() {
     return {
-      status: "clean",
+      status: 'clean',
       error: null,
       uuid: null,
       item: null,
@@ -315,67 +315,67 @@ export default Vue.extend({
       maxlat: null,
       minlon: null,
       maxlon: null,
-    };
+    }
   },
   computed: {
     api_url: () =>
-      (API_URL.startsWith("http") ? "" : location.protocol) + API_URL,
+      (API_URL.startsWith('http') ? '' : location.protocol) + API_URL,
     classs: function () {
-      return this.class;
+      return this.class
     },
   },
   mounted() {
-    ExternalVueAppEvent.$on("popup-status", (status) => {
-      this.status = status;
-    });
-    ExternalVueAppEvent.$on("popup-load", this.load);
+    ExternalVueAppEvent.$on('popup-status', (status) => {
+      this.status = status
+    })
+    ExternalVueAppEvent.$on('popup-load', this.load)
   },
   methods: {
     load(uuid) {
       fetch(API_URL + `/api/0.3/issue/${uuid}?langs=auto`, {
         headers: new Headers({
-          "Accept-Language": this.$route.params.lang,
+          'Accept-Language': this.$route.params.lang,
         }),
       })
         .then((response) => response.json())
         .then((response) => {
-          Object.assign(this, response);
-          this.status = "fill";
+          Object.assign(this, response)
+          this.status = 'fill'
 
           this.$nextTick(() => {
-            this.markerLayer._setPopup(response);
-          });
+            this.markerLayer._setPopup(response)
+          })
         })
         .catch((error) => {
-          this.error = error.message;
-          this.status = "error";
-        });
+          this.error = error.message
+          this.status = 'error'
+        })
     },
     setDone(uuid) {
-      fetch(API_URL + `/api/0.3/issue/${uuid}/done`);
-      this.markerLayer._dismissMarker();
+      fetch(API_URL + `/api/0.3/issue/${uuid}/done`)
+      this.markerLayer._dismissMarker()
     },
     setFalsePositive(uuid) {
       const message = this.$t(
-        "Report the issue as improper, if according to you is not an issue. The issue will not be displayed to anyone more."
-      );
+        'Report the issue as improper, if according to you is not an issue. The issue will not be displayed to anyone more.'
+      )
       if (confirm(message)) {
-        fetch(API_URL + `/api/0.3/issue/${uuid}/false`);
-        this.markerLayer._dismissMarker();
+        fetch(API_URL + `/api/0.3/issue/${uuid}/false`)
+        this.markerLayer._dismissMarker()
       }
     },
     editor(uuid, fix) {
-      this.$emit("fix-edit", { uuid, fix });
+      this.$emit('fix-edit', { uuid, fix })
     },
     doc(item, classs) {
-      this.markerLayer._help(item, classs);
+      this.markerLayer._help(item, classs)
     },
   },
-});
+})
 </script>
 
 <style>
-#map svg.leaflet-tile g image[width="17px"][height="33px"] {
+#map svg.leaflet-tile g image[width='17px'][height='33px'] {
   cursor: pointer;
 }
 
@@ -487,7 +487,7 @@ a.bulle_err:hover {
   padding-top: 5px;
   padding-left: 5px;
 }
-html[dir="rtl"] #bulle_button {
+html[dir='rtl'] #bulle_button {
   float: left;
   padding-left: 0px;
   padding-right: 5px;
@@ -498,12 +498,12 @@ html[dir="rtl"] #bulle_button {
 }
 
 .bulle_elem .add b:before {
-  content: " + ";
+  content: ' + ';
 }
 .bulle_elem .del b:before {
-  content: " - ";
+  content: ' - ';
 }
 .bulle_elem .mod b:before {
-  content: " ~ ";
+  content: ' ~ ';
 }
 </style>

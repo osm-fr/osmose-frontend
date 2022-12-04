@@ -69,7 +69,9 @@
             <a :href="`${api_url}/api/0.3/issues.kml?${params}`">KML</a>
           </li>
           <li>
-            <a :href="`${api_url}/api/0.3/issues?${params}`" target="_blank"> Json </a>
+            <a :href="`${api_url}/api/0.3/issues?${params}`" target="_blank">
+              Json
+            </a>
           </li>
           <li>
             <a
@@ -126,7 +128,7 @@
         id="menu-delay"
       >
         <router-link to="../control/update_summary">
-          {{ $t("Delay:") }}
+          {{ $t('Delay:') }}
           <time-ago v-if="timestamp" :datetime="timestamp" tooltip />
           <span v-else>-</span>
         </router-link>
@@ -143,7 +145,7 @@
             <li>
               <router-link :to="`../byuser/${user}?level=1`">
                 {{
-                  $t("Level {level} issues ({count})", {
+                  $t('Level {level} issues ({count})', {
                     level: 1,
                     count: user_error_count[1],
                   })
@@ -153,7 +155,7 @@
             <li>
               <router-link :to="`../byuser/${user}?level=2`">
                 {{
-                  $t("Level {level} issues ({count})", {
+                  $t('Level {level} issues ({count})', {
                     level: 2,
                     count: user_error_count[2],
                   })
@@ -163,7 +165,7 @@
             <li>
               <router-link :to="`../byuser/${user}?level=3`">
                 {{
-                  $t("Level {level} issues ({count})", {
+                  $t('Level {level} issues ({count})', {
                     level: 3,
                     count: user_error_count[3],
                   })
@@ -187,37 +189,37 @@
 </template>
 
 <script>
-import Vue from "vue";
-import TimeAgo from "vue2-timeago";
+import Vue from 'vue'
+import TimeAgo from 'vue2-timeago'
 
-import Delay from "../../components/delay.vue";
-import EditorMenu from "./editor-menu.vue";
+import Delay from '../../components/delay.vue'
+import EditorMenu from './editor-menu.vue'
 
 export default Vue.extend({
   props: [
-    "map",
-    "mapState",
-    "itemState",
-    "languages_name",
-    "user",
-    "user_error_count",
-    "timestamp",
+    'map',
+    'mapState',
+    'itemState',
+    'languages_name',
+    'user',
+    'user_error_count',
+    'timestamp',
   ],
   data() {
     return {
-      params: "",
-    };
+      params: '',
+    }
   },
   computed: {
     api_url: () => API_URL,
     lang() {
-      return this.$route.params.lang;
+      return this.$route.params.lang
     },
     location() {
-      const i = window.location.pathname.indexOf("/", 1);
+      const i = window.location.pathname.indexOf('/', 1)
       return (
-        window.location.pathname.substring(i) + "?" + window.location.search
-      );
+        window.location.pathname.substring(i) + '?' + window.location.search
+      )
     },
   },
   components: {
@@ -229,34 +231,34 @@ export default Vue.extend({
     itemState: {
       deep: true,
       handler() {
-        this.setParams();
+        this.setParams()
       },
     },
     mapState: {
       deep: true,
       handler() {
-        this.setParams();
+        this.setParams()
       },
     },
   },
   methods: {
     changeLang: (lang) => {
-      window.document.dir = lang.direction;
+      window.document.dir = lang.direction
     },
     setParams() {
-      const params = { ...this.mapState, ...this.itemState };
-      delete params.lat;
-      delete params.lon;
-      delete params.issue_uuid;
-      params.limit = 500;
-      params.bbox = this.map.getBounds().toBBoxString();
+      const params = { ...this.mapState, ...this.itemState }
+      delete params.lat
+      delete params.lon
+      delete params.issue_uuid
+      params.limit = 500
+      params.bbox = this.map.getBounds().toBBoxString()
       this.params = Object.entries(params)
         .filter(([, v]) => v !== undefined && v != null)
-        .map(([k, v]) => encodeURIComponent(k) + "=" + encodeURIComponent(v))
-        .join("&");
+        .map(([k, v]) => encodeURIComponent(k) + '=' + encodeURIComponent(v))
+        .join('&')
     },
   },
-});
+})
 </script>
 
 

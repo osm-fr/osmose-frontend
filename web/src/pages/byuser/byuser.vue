@@ -4,7 +4,9 @@
     <div v-if="error">{{ error }}</div>
     <div v-else>
       <nav
-        class="navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-dark"
+        class="
+          navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-dark
+        "
         style="background-color: #212529"
       >
         <span class="navbar-brand">
@@ -91,32 +93,32 @@
 </template>
 
 <script>
-import VueParent from "../Parent.vue";
-import IssuesList from "../../components/issues-list.vue";
+import VueParent from '../Parent.vue'
+import IssuesList from '../../components/issues-list.vue'
 
 export default VueParent.extend({
   data() {
     return {
       users: [],
-      username: "",
+      username: '',
       count: undefined,
-      main_website: "",
-      query: "",
-    };
+      main_website: '',
+      query: '',
+    }
   },
   computed: {
     nav_link() {
-      const params = new URLSearchParams(this.query);
-      params.set("username", this.username);
-      return `../map/#${params.toString()}`;
+      const params = new URLSearchParams(this.query)
+      params.set('username', this.username)
+      return `../map/#${params.toString()}`
     },
     byuser_count() {
       return (
         `${API_URL}${window.location.pathname}`.replace(
-          "/byuser/",
-          "/byuser_count/"
+          '/byuser/',
+          '/byuser_count/'
         ) + `.rss?${this.query}`
-      );
+      )
     },
   },
   components: {
@@ -124,53 +126,53 @@ export default VueParent.extend({
   },
   watch: {
     $route() {
-      this.render();
+      this.render()
     },
   },
   mounted() {
-    this.username = this.$route.params.user;
-    this.users = this.username.split(",");
-    this.render();
+    this.username = this.$route.params.user
+    this.users = this.username.split(',')
+    this.render()
   },
   methods: {
     api_url_path(format, query) {
-      return `${this.website}/api/0.3/issues${format ? "." + format : ""}?${
+      return `${this.website}/api/0.3/issues${format ? '.' + format : ''}?${
         this.query
-      }&usename=${this.username}${query ? "&" + query : ""}`;
+      }&usename=${this.username}${query ? '&' + query : ''}`
     },
     render() {
-      this.query = window.location.search.substring(1);
+      this.query = window.location.search.substring(1)
 
       this.fetchJsonProgressAssign(
-        API_URL + window.location.pathname + ".json" + window.location.search,
+        API_URL + window.location.pathname + '.json' + window.location.search,
         () => {
           document.title =
-            "Osmose - " +
-            this.$t("Statistics for user {user}", {
-              user: this.users.join(", "),
-            });
+            'Osmose - ' +
+            this.$t('Statistics for user {user}', {
+              user: this.users.join(', '),
+            })
 
-          var rss = document.getElementById("rss");
+          var rss = document.getElementById('rss')
           if (rss) {
-            rss.remove();
+            rss.remove()
           }
-          rss = document.createElement("link");
+          rss = document.createElement('link')
           Object.assign(rss, {
-            id: "rss",
-            href: this.api_url_path("rss"),
-            rel: "alternate",
-            type: "application/rss+xml",
+            id: 'rss',
+            href: this.api_url_path('rss'),
+            rel: 'alternate',
+            type: 'application/rss+xml',
             title: document.title,
-          });
-          document.head.appendChild(rss);
+          })
+          document.head.appendChild(rss)
         }
-      );
+      )
     },
     setCount(errors) {
-      this.count = errors.length;
+      this.count = errors.length
     },
   },
-});
+})
 </script>
 
 <style scoped>

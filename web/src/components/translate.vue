@@ -1,5 +1,5 @@
 <script>
-import Vue from "vue";
+import Vue from 'vue'
 
 export default Vue.extend({
   props: {
@@ -8,12 +8,12 @@ export default Vue.extend({
     },
   },
   render(createElement) {
-    var text = this.$slots.default[0].text;
+    var text = this.$slots.default[0].text
     text = text
-      .replace(/(\r\n|\n|\r)/gm, " ")
-      .replace(/ +/gm, " ")
-      .trim();
-    return createElement("span", {}, [this.$t(text, this.params)]);
+      .replace(/(\r\n|\n|\r)/gm, ' ')
+      .replace(/ +/gm, ' ')
+      .trim()
+    return createElement('span', {}, [this.$t(text, this.params)])
   },
-});
+})
 </script>

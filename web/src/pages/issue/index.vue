@@ -118,20 +118,20 @@
 </template>
 
 <script>
-import VueParent from "../Parent.vue";
-import MarkerDetails from "../../components/marker-details.vue";
-import ShowTags from "../../components/show-tags.vue";
+import VueParent from '../Parent.vue'
+import MarkerDetails from '../../components/marker-details.vue'
+import ShowTags from '../../components/show-tags.vue'
 
 export default VueParent.extend({
   data() {
     return {
       error: false,
-      uuid: "",
+      uuid: '',
       marker: {
         elems: [],
         fixes: [],
       },
-    };
+    }
   },
   components: {
     MarkerDetails,
@@ -139,21 +139,21 @@ export default VueParent.extend({
   },
   mounted() {
     this.fetchJsonProgressAssign(
-      API_URL + window.location.pathname + ".json" + window.location.search,
+      API_URL + window.location.pathname + '.json' + window.location.search,
       () => {
         document.title =
-          "Osmose - " +
-          this.$t("Information on issue {uuid}", { uuid: this.uuid });
+          'Osmose - ' +
+          this.$t('Information on issue {uuid}', { uuid: this.uuid })
 
-        const favicon = document.getElementById("favicon");
+        const favicon = document.getElementById('favicon')
         favicon.href =
-          API_URL + `/images/markers/marker-l-${this.marker.item}.png`;
+          API_URL + `/images/markers/marker-l-${this.marker.item}.png`
       }
-    );
+    )
   },
   methods: {
     data_type: (type) =>
-      ({ N: "node", W: "way", R: "relation", I: "infos" }[type]),
+      ({ N: 'node', W: 'way', R: 'relation', I: 'infos' }[type]),
   },
-});
+})
 </script>

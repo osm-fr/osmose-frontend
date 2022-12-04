@@ -31,31 +31,31 @@
 </template>
 
 <script>
-import VueParent from "../Parent.vue";
+import VueParent from '../Parent.vue'
 
 export default VueParent.extend({
   data() {
     return {
       error: false,
       list: null,
-    };
+    }
   },
   mounted() {
     this.fetchJsonProgressAssign(
-      API_URL + window.location.pathname + ".json" + window.location.search
-    );
-    document.title = "Osmose - " + this.$t("Update");
+      API_URL + window.location.pathname + '.json' + window.location.search
+    )
+    document.title = 'Osmose - ' + this.$t('Update')
   },
   methods: {
     remote(res) {
-      var url = res.remote_url;
-      if (url.startsWith("http://") || url.startsWith("https://")) {
-        url = url.split("/")[2];
+      var url = res.remote_url
+      if (url.startsWith('http://') || url.startsWith('https://')) {
+        url = url.split('/')[2]
       } else if (res.remote_ip) {
-        url = res.remote_ip;
+        url = res.remote_ip
       }
-      return url;
+      return url
     },
   },
-});
+})
 </script>

@@ -16,32 +16,32 @@
 </template>
 
 <script>
-import Vue from "vue";
+import Vue from 'vue'
 
-import SidebarToggle from "../../../static/map/SidebarToggle.js";
+import SidebarToggle from '../../../static/map/SidebarToggle.js'
 
 export default Vue.extend({
-  props: ["error", "map", "mapState"],
+  props: ['error', 'map', 'mapState'],
   data() {
     return {
       leafletSideBar: null,
-    };
+    }
   },
   watch: {
     map: function () {
       if (this.map) {
-        this.leafletSideBar = new SidebarToggle(this.map, "menu", {
-          position: "left",
+        this.leafletSideBar = new SidebarToggle(this.map, 'menu', {
+          position: 'left',
           closeButton: false,
-          localStorageProperty: "menu.show",
+          localStorageProperty: 'menu.show',
           toggle: {
-            position: "topleft",
-            menuText: "☰",
-            menuTitle: "Menu",
+            position: 'topleft',
+            menuText: '☰',
+            menuTitle: 'Menu',
           },
-        });
-        this.map.addControl(this.leafletSideBar);
-        this.leafletSideBar.show();
+        })
+        this.map.addControl(this.leafletSideBar)
+        this.leafletSideBar.show()
       }
     },
   },
@@ -52,10 +52,10 @@ export default Vue.extend({
         (this.mapState.zoom >= 5 && this.mapState.lat > 60) ||
         (this.mapState.zoom >= 4 && this.mapState.lat > 70) ||
         (this.mapState.zoom >= 3 && this.mapState.lat > 75)
-      );
+      )
     },
   },
-});
+})
 </script>
 
 <style>

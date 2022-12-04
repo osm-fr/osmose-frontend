@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import VueParent from "../Parent.vue";
+import VueParent from '../Parent.vue'
 
 export default VueParent.extend({
   data() {
@@ -61,18 +61,18 @@ export default VueParent.extend({
       total: null,
       sorted_countries_sum: [],
       sorted_analysers_sum: [],
-    };
+    }
   },
   mounted() {
     this.fetchJsonProgressAssign(
-      API_URL + window.location.pathname + ".json" + window.location.search,
+      API_URL + window.location.pathname + '.json' + window.location.search,
       () => {
-        this.sorted_countries_sum = this.sortObject(this.countries_sum);
-        this.sorted_analysers_sum = this.sortObject(this.analysers_sum);
+        this.sorted_countries_sum = this.sortObject(this.countries_sum)
+        this.sorted_analysers_sum = this.sortObject(this.analysers_sum)
 
-        document.title = "Osmose - " + this.$t("Issue counts matrix");
+        document.title = 'Osmose - ' + this.$t('Issue counts matrix')
       }
-    );
+    )
   },
   methods: {
     sortObject: (o) =>
@@ -80,7 +80,7 @@ export default VueParent.extend({
         .sort((a, b) => (a[1] === b[1] ? 0 : a[1] < b[1] ? 1 : -1))
         .reduce((r, k) => ((r[k[0]] = o[k[0]]), r), {}),
   },
-});
+})
 </script>
 
 <style scoped>

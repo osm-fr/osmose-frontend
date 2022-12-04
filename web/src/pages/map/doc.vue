@@ -107,14 +107,14 @@
 </template>
 
 <script>
-import Marked from "marked";
+import Marked from 'marked'
 
-import VueParent from "../Parent.vue";
-import SidebarToggle from "../../../static/map/SidebarToggle.js";
-import ExternalVueAppEvent from "../../ExternalVueAppEvent.js";
+import VueParent from '../Parent.vue'
+import SidebarToggle from '../../../static/map/SidebarToggle.js'
+import ExternalVueAppEvent from '../../ExternalVueAppEvent.js'
 
 export default VueParent.extend({
-  props: ["map"],
+  props: ['map'],
   data() {
     return {
       error: false,
@@ -127,41 +127,41 @@ export default VueParent.extend({
       source_link: null,
       resource_link: null,
       item: null,
-    };
+    }
   },
   mounted() {
-    ExternalVueAppEvent.$on("show-doc", (e) => this.showDoc(e.item, e.classs));
-    ExternalVueAppEvent.$on("load-doc", (e) => this.setDoc(e.item, e.classs));
+    ExternalVueAppEvent.$on('show-doc', (e) => this.showDoc(e.item, e.classs))
+    ExternalVueAppEvent.$on('load-doc', (e) => this.setDoc(e.item, e.classs))
   },
   watch: {
     $route(to, from) {
       if (
-        typeof this._last_item !== "undefined" &&
+        typeof this._last_item !== 'undefined' &&
         to.params.lang != from.params.lang
       ) {
-        this.setDoc(this._last_item, this._last_classs);
+        this.setDoc(this._last_item, this._last_classs)
       }
     },
     map: function () {
-      this.leafletSideBar = new SidebarToggle(this.map, "doc", {
-        position: "right",
-        localStorageProperty: "doc.show",
+      this.leafletSideBar = new SidebarToggle(this.map, 'doc', {
+        position: 'right',
+        localStorageProperty: 'doc.show',
         toggle: {
-          position: "topright",
-          menuText: "ℹ",
-          menuTitle: "Doc",
+          position: 'topright',
+          menuText: 'ℹ',
+          menuTitle: 'Doc',
         },
-      });
-      this.map.addControl(this.leafletSideBar);
+      })
+      this.map.addControl(this.leafletSideBar)
     },
   },
   methods: {
     showDoc(item, classs) {
-      this.leafletSideBar.show();
-      this.setDoc(item, classs);
+      this.leafletSideBar.show()
+      this.setDoc(item, classs)
     },
     basename(path) {
-      return path.split(/[\\/]/).pop();
+      return path.split(/[\\/]/).pop()
     },
     setDoc(item, classs) {
       if (
@@ -169,46 +169,46 @@ export default VueParent.extend({
         classs == this._last_classs &&
         this.$route.params.lang == this._last_lang
       ) {
-        return;
+        return
       }
 
       this.fetchJson(
         API_URL + `/api/0.3/items/${item}/class/${classs}?langs=auto`,
         (response) => {
-          this._last_lang = this.$route.params.lang;
-          this._last_item = item;
-          this._last_classs = classs;
+          this._last_lang = this.$route.params.lang
+          this._last_item = item
+          this._last_classs = classs
 
-          this.welcome = false;
+          this.welcome = false
 
-          const data = response.categories[0].items[0].class[0];
+          const data = response.categories[0].items[0].class[0]
 
-          var resource_url;
+          var resource_url
           try {
             if (data.resource) {
-              resource_url = new URL(data.resource);
+              resource_url = new URL(data.resource)
             }
           } catch {
             // Ignore error
           }
 
-          this.title = data.title && data.title.auto;
-          this.detail = data.detail && Marked(data.detail.auto);
-          this.fix = data.fix && Marked(data.fix.auto);
-          this.trap = data.trap && Marked(data.trap.auto);
-          this.example = data.example && Marked(data.example.auto);
-          this.source_link = data.source;
-          this.source_title = data.source && this.basename(data.source);
-          this.resource_link = data.resource;
+          this.title = data.title && data.title.auto
+          this.detail = data.detail && Marked(data.detail.auto)
+          this.fix = data.fix && Marked(data.fix.auto)
+          this.trap = data.trap && Marked(data.trap.auto)
+          this.example = data.example && Marked(data.example.auto)
+          this.source_link = data.source
+          this.source_title = data.source && this.basename(data.source)
+          this.resource_link = data.resource
           this.resource_title = resource_url
             ? `${resource_url.protocol}//${resource_url.host}`
-            : data.resource;
-          this.item = data.item;
+            : data.resource
+          this.item = data.item
         }
-      );
+      )
     },
   },
-});
+})
 </script>
 
 <style scoped>

@@ -20,9 +20,9 @@
           <td>{{ summary[analyser].count }}</td>
           <td>
             <delay :v="summary[analyser].min_age">
-              {{ summary[analyser].min_age | numFormat("0.0") }}-
+              {{ summary[analyser].min_age | numFormat('0.0') }}-
               <delay :v="summary[analyser].max_age">
-                {{ summary[analyser].max_age | numFormat("0.0") }}
+                {{ summary[analyser].max_age | numFormat('0.0') }}
               </delay>
             </delay>
           </td>
@@ -50,20 +50,20 @@
 </template>
 
 <script>
-import VueParent from "../Parent.vue";
-import Delay from "../../components/delay.vue";
-import Version from "../../components/version.vue";
+import VueParent from '../Parent.vue'
+import Delay from '../../components/delay.vue'
+import Version from '../../components/version.vue'
 
 export default VueParent.extend({
   data() {
     return {
       error: false,
       summary: null,
-    };
+    }
   },
   computed: {
     summary_keys() {
-      return this.summary && Object.keys(this.summary).sort();
+      return this.summary && Object.keys(this.summary).sort()
     },
   },
   components: {
@@ -73,10 +73,10 @@ export default VueParent.extend({
   mounted() {
     this.fetchJsonProgressAssign(
       API_URL +
-        "/control/update_summary_by_analyser.json" +
+        '/control/update_summary_by_analyser.json' +
         window.location.search
-    );
-    document.title = "Osmose - " + this.$t("Updates summary");
+    )
+    document.title = 'Osmose - ' + this.$t('Updates summary')
   },
-});
+})
 </script>

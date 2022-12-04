@@ -382,7 +382,7 @@
                 <router-link
                   :to="`?source=${res.source_id}&amp;item=${res.item}&amp;class=${res.class}`"
                 >
-                  {{ res.count === -1 ? "N/A" : res.count }}
+                  {{ res.count === -1 ? 'N/A' : res.count }}
                 </router-link>
               </td>
             </tr>
@@ -416,11 +416,11 @@
 </template>
 
 <script>
-import TimeAgo from "vue2-timeago";
+import TimeAgo from 'vue2-timeago'
 
-import VueParent from "../Parent.vue";
-import IssuesList from "../../components/issues-list.vue";
-import Translate from "../../components/translate.vue";
+import VueParent from '../Parent.vue'
+import IssuesList from '../../components/issues-list.vue'
+import Translate from '../../components/translate.vue'
 
 export default VueParent.extend({
   data() {
@@ -432,9 +432,9 @@ export default VueParent.extend({
       errors_groups: [],
       total: 0,
       opt_date: false,
-      main_website: "",
-      remote_url_read: "",
-      query: "",
+      main_website: '',
+      remote_url_read: '',
+      query: '',
       country: this.$route.query.country,
       item: this.$route.query.item,
       level: this.$route.query.level,
@@ -450,7 +450,7 @@ export default VueParent.extend({
       full_filter: false,
       extra_filter_number: 0,
       gen: undefined,
-    };
+    }
   },
   computed: {
     api_url: () => API_URL,
@@ -463,117 +463,116 @@ export default VueParent.extend({
   },
   watch: {
     $route() {
-      this.render();
+      this.render()
     },
   },
   mounted() {
-    this.render();
+    this.render()
   },
   methods: {
     sortable: (data) => {
       return data.map((res) => {
-        res.analyser_country = res.analyser + "-" + res.country;
-        return res;
-      });
+        res.analyser_country = res.analyser + '-' + res.country
+        return res
+      })
     },
     render: function () {
-      this.country = this.$route.query.country;
-      this.item = this.$route.query.item;
-      this.level = this.$route.query.level;
-      this.limit = this.$route.query.limit;
-      this.source = this.$route.query.source;
-      this.class_ = this.$route.query.class;
-      this.tags = this.$route.query.tags;
-      this.useDevItem = this.$route.query.useDevItem;
-      this.username = this.$route.query.username;
-      this.bbox = this.$route.query.bbox;
-      this.fixable = this.$route.query.fixable;
-      this.count_extra_filter_number();
+      this.country = this.$route.query.country
+      this.item = this.$route.query.item
+      this.level = this.$route.query.level
+      this.limit = this.$route.query.limit
+      this.source = this.$route.query.source
+      this.class_ = this.$route.query.class
+      this.tags = this.$route.query.tags
+      this.useDevItem = this.$route.query.useDevItem
+      this.username = this.$route.query.username
+      this.bbox = this.$route.query.bbox
+      this.fixable = this.$route.query.fixable
+      this.count_extra_filter_number()
 
       if (this.extra_filter_number) {
-        this.full_filter = true;
+        this.full_filter = true
       }
 
-      this.query = window.location.search.substring(1);
+      this.query = window.location.search.substring(1)
 
       let title = {
-        "issues/open": this.$t("Information"),
-        "issues/done": this.$t("Fixed issues"),
-        "issues/false-positive": this.$t("False positives"),
-      }[this.$route.name];
+        'issues/open': this.$t('Information'),
+        'issues/done': this.$t('Fixed issues'),
+        'issues/false-positive': this.$t('False positives'),
+      }[this.$route.name]
 
       let status = {
-        "issues/open": null,
-        "issues/done": "done",
-        "issues/false-positive": "false",
-      }[this.$route.name];
+        'issues/open': null,
+        'issues/done': 'done',
+        'issues/false-positive': 'false',
+      }[this.$route.name]
 
       if (status) {
         this.query += `&status=${status}`
       }
 
-      this.fetchJson(API_URL + "/api/0.3/tags", (response) => {
-        this.tags_list = response.tags;
-      });
+      this.fetchJson(API_URL + '/api/0.3/tags', (response) => {
+        this.tags_list = response.tags
+      })
 
       this.fetchJsonAssign(
         API_URL +
           window.location.pathname +
-          ".json" +
+          '.json' +
           window.location.search +
-          (status ? `&status=${status}` : ""),
+          (status ? `&status=${status}` : ''),
         () => {
-          var res = this.items.find((e) => e.item == this.item);
+          var res = this.items.find((e) => e.item == this.item)
           if (res) {
-            title += " - " + res.menu.auto;
-            const favicon = document.getElementById("favicon");
-            this.favicon =
-              API_URL + `/images/markers/marker-l-${this.item}.png`;
-            favicon.href = this.favicon;
+            title += ' - ' + res.menu.auto
+            const favicon = document.getElementById('favicon')
+            this.favicon = API_URL + `/images/markers/marker-l-${this.item}.png`
+            favicon.href = this.favicon
           }
 
-          document.title = "Osmose - " + title;
+          document.title = 'Osmose - ' + title
 
-          var rss = document.getElementById("rss");
+          var rss = document.getElementById('rss')
           if (rss) {
-            rss.remove();
+            rss.remove()
           }
-          rss = document.createElement("link");
+          rss = document.createElement('link')
           Object.assign(rss, {
-            id: "rss",
+            id: 'rss',
             href: `${this.website}/api/0.3/issues.rss?${this.query}`,
-            rel: "alternate",
-            type: "application/rss+xml",
+            rel: 'alternate',
+            type: 'application/rss+xml',
             title: document.title,
-          });
-          document.head.appendChild(rss);
+          })
+          document.head.appendChild(rss)
         }
-      );
+      )
     },
     show_more: function () {
-      var query = Object.assign({}, this.$route.query);
-      query.limit = this.limit ? this.limit * 5 : 500;
-      this.$router.push({ name: this.$route.name, query });
+      var query = Object.assign({}, this.$route.query)
+      query.limit = this.limit ? this.limit * 5 : 500
+      this.$router.push({ name: this.$route.name, query })
     },
     count_extra_filter_number() {
       this.extra_filter_number =
         (this.source ? 1 : 0) +
-        (this.class_ || this.class_ === 0 || this.class_ === "0" ? 1 : 0) +
+        (this.class_ || this.class_ === 0 || this.class_ === '0' ? 1 : 0) +
         (this.tags ? 1 : 0) +
         (this.useDevItem ? 1 : 0) +
         (this.username ? 1 : 0) +
         (this.bbox ? 1 : 0) +
-        (this.fixable ? 1 : 0);
+        (this.fixable ? 1 : 0)
     },
   },
-});
+})
 </script>
 
 <style scoped>
 a.badge:visited {
   color: #fff; /* Unclicked color for bootstrap badge-secondary */
 }
-input[type="text"] {
+input[type='text'] {
   width: 100%;
 }
 .buttons {

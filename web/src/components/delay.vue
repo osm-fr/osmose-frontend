@@ -1,5 +1,5 @@
 <script>
-import Vue from "vue";
+import Vue from 'vue'
 
 export default Vue.extend({
   props: {
@@ -14,18 +14,18 @@ export default Vue.extend({
       {
         class:
           this.v > this.error
-            ? "delay-error"
+            ? 'delay-error'
             : this.v > this.warning
-            ? "delay-warning"
+            ? 'delay-warning'
             : null,
         attrs: {
           style: `background-opacity: ${this.opacity}`,
         },
       },
       this.$slots.default
-    );
+    )
   },
-});
+})
 </script>
 
 <style scoped>

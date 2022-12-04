@@ -8,16 +8,16 @@
 </template>
 
 <script>
-import Vue from "vue";
+import Vue from 'vue'
 
 export default Vue.extend({
-  props: ["dict"],
+  props: ['dict'],
   methods: {
     sortObject(o) {
       return Object.keys(o)
         .sort()
-        .reduce((r, k) => ((r[k] = o[k]), r), {});
+        .reduce((r, k) => ((r[k] = o[k]), r), {})
     },
   },
-});
+})
 </script>

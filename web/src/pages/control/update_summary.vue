@@ -31,11 +31,11 @@
                   :to="`../issues/open?country=${country.country}&item=xxxx`"
                   >{{ country.country }}</router-link
                 ><sup>{{ country.count }}</sup
-                >&nbsp;{{ country.min_age | numFormat("0.0") }}-<span
+                >&nbsp;{{ country.min_age | numFormat('0.0') }}-<span
                   is="delay"
                   :v="country.max_age"
                   :opacity="opacity(country.count, max_count)"
-                  >{{ country.max_age | numFormat("0.0") }}
+                  >{{ country.max_age | numFormat('0.0') }}
                 </span>
               </span>
             </td>
@@ -47,29 +47,29 @@
 </template>
 
 <script>
-import VueParent from "../Parent.vue";
-import Delay from "../../components/delay.vue";
+import VueParent from '../Parent.vue'
+import Delay from '../../components/delay.vue'
 
 export default VueParent.extend({
   data() {
     return {
       error: false,
       remote_keys: null,
-    };
+    }
   },
   components: {
     Delay,
   },
   mounted() {
     this.fetchJsonProgressAssign(
-      API_URL + "/control/update_summary.json" + window.location.search
-    );
-    document.title = "Osmose - " + this.$t("Updates summary");
+      API_URL + '/control/update_summary.json' + window.location.search
+    )
+    document.title = 'Osmose - ' + this.$t('Updates summary')
   },
   methods: {
     opacity(count, max) {
-      return (0.66 * count) / max + 0.33;
+      return (0.66 * count) / max + 0.33
     },
   },
-});
+})
 </script>

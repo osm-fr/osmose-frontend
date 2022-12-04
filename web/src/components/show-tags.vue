@@ -11,15 +11,15 @@
 </template>
 
 <script>
-import Vue from "vue";
+import Vue from 'vue'
 
 export default Vue.extend({
-  props: ["tags"],
+  props: ['tags'],
   methods: {
     sortObject(o) {
       // Clone the array as workaround infinite loop on sort
-      return [...o].sort((a, b) => (a.k === b.k ? 0 : a.k < b.k ? -1 : 1));
+      return [...o].sort((a, b) => (a.k === b.k ? 0 : a.k < b.k ? -1 : 1))
     },
   },
-});
+})
 </script>

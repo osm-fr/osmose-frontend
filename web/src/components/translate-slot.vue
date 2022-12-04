@@ -7,20 +7,20 @@
 </template>
 
 <script>
-import Vue from "vue";
+import Vue from 'vue'
 
 export default Vue.extend({
   data() {
     return {
       text: null,
-    };
+    }
   },
   mounted() {
-    this.text = this.$slots.default[0].children[0].text;
+    this.text = this.$slots.default[0].children[0].text
     this.text = this.text
-      .replace(/(\r\n|\n|\r)/gm, " ")
-      .replace(/ +/gm, " ")
-      .trim();
+      .replace(/(\r\n|\n|\r)/gm, ' ')
+      .replace(/ +/gm, ' ')
+      .trim()
   },
-});
+})
 </script>

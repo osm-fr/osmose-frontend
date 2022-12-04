@@ -32,9 +32,9 @@
         :itemState="itemState"
         :mapState="mapState"
         v-on:set-map="
-          map = $event.map;
-          markerLayer = $event.markerLayer;
-          heatmapLayer = $event.heatmapLayer;
+          map = $event.map
+          markerLayer = $event.markerLayer
+          heatmapLayer = $event.heatmapLayer
         "
       />
       <editor
@@ -56,15 +56,15 @@
 </template>
 
 <script>
-import VueParent from "../Parent.vue";
-import Top from "./top.vue";
-import LMap from "./map.vue";
-import Items from "./items.vue";
-import ItemsFilters from "./items-filters.vue";
-import ItemsList from "./items-list.vue";
-import Doc from "./doc.vue";
-import Editor from "./editor.vue";
-import Popup from "./popup.vue";
+import VueParent from '../Parent.vue'
+import Top from './top.vue'
+import LMap from './map.vue'
+import Items from './items.vue'
+import ItemsFilters from './items-filters.vue'
+import ItemsList from './items-list.vue'
+import Doc from './doc.vue'
+import Editor from './editor.vue'
+import Popup from './popup.vue'
 
 export default VueParent.extend({
   data() {
@@ -77,16 +77,16 @@ export default VueParent.extend({
       tags: [],
       countries: [],
       categories: [],
-      main_website: "",
-      remote_url_read: "",
+      main_website: '',
+      remote_url_read: '',
       map: null,
       markerLayer: null,
       heatmapLayer: null,
       menu: null,
       item_levels: {},
       itemState: {
-        item: "xxxx",
-        level: "1",
+        item: 'xxxx',
+        level: '1',
         // TODO filtrer on existing tagss
         tags: null,
         fixable: null,
@@ -102,7 +102,7 @@ export default VueParent.extend({
         lon: 2.75,
         zoom: 16,
       },
-    };
+    }
   },
   components: {
     Top,
@@ -116,149 +116,149 @@ export default VueParent.extend({
   },
   created() {
     document.querySelector(
-      "head"
-    ).innerHTML += `<link rel="stylesheet" href="${API_URL}/assets/sprites.css" type="text/css"/>`;
-    this.initializeItemState();
-    this.initializeMapState();
+      'head'
+    ).innerHTML += `<link rel="stylesheet" href="${API_URL}/assets/sprites.css" type="text/css"/>`
+    this.initializeItemState()
+    this.initializeMapState()
   },
   mounted() {
-    this.setData();
+    this.setData()
   },
   watch: {
     $route(to, from) {
       if (to.params.lang != from.params.lang) {
-        this.setData();
+        this.setData()
       }
     },
     map(newMap, oldMap) {
       if (!oldMap && newMap) {
-        this.map.on("zoomend moveend", () => {
-          this.mapState.lat = this.map.getCenter().lat;
-          this.mapState.lon = this.map.getCenter().lng;
-          this.mapState.zoom = this.map.getZoom();
-        });
+        this.map.on('zoomend moveend', () => {
+          this.mapState.lat = this.map.getCenter().lat
+          this.mapState.lon = this.map.getCenter().lng
+          this.mapState.zoom = this.map.getZoom()
+        })
 
         // Permalink
         this.permalink = new L.Control.Permalink({
           useLocation: true,
-          text: "",
-        });
-        this.map.addControl(this.permalink);
-        this.permalink.on("update", (e) => {
+          text: '',
+        })
+        this.map.addControl(this.permalink)
+        this.permalink.on('update', (e) => {
           Object.keys(this.itemState).forEach((k) => {
             if (this.itemState[k] != e.params[k]) {
-              this.itemState[k] = e.params[k];
+              this.itemState[k] = e.params[k]
             }
-          });
-        });
+          })
+        })
       }
     },
     itemState: {
       deep: true,
       handler() {
-        this.saveItemState();
+        this.saveItemState()
       },
     },
     mapState: {
       deep: true,
       handler() {
-        this.saveMapState();
+        this.saveMapState()
       },
     },
   },
   methods: {
     getUrlVars() {
-      const vars = {};
-      let hash;
-      if (window.location.href.indexOf("#") >= 0) {
+      const vars = {}
+      let hash
+      if (window.location.href.indexOf('#') >= 0) {
         const hashes = window.location.href
-          .slice(window.location.href.indexOf("#") + 1)
-          .split("&");
+          .slice(window.location.href.indexOf('#') + 1)
+          .split('&')
         for (let i = 0; i < hashes.length; i += 1) {
-          hash = hashes[i].split("=");
-          vars[decodeURIComponent(hash[0])] = decodeURIComponent(hash[1]);
+          hash = hashes[i].split('=')
+          vars[decodeURIComponent(hash[0])] = decodeURIComponent(hash[1])
         }
       }
-      return vars;
+      return vars
     },
     filter(keys, state) {
       return Object.fromEntries(
         Object.entries(state).filter(
           ([key, val]) => val !== undefined && val != null && keys.includes(key)
         )
-      );
+      )
     },
     initializeItemState() {
-      const keys = Object.keys(this.itemState);
+      const keys = Object.keys(this.itemState)
 
-      const urlState = this.filter(keys, this.getUrlVars());
+      const urlState = this.filter(keys, this.getUrlVars())
 
-      let localStorageState = {};
+      let localStorageState = {}
       if (
         Object.keys(urlState).length == 0 &&
-        localStorage.getItem("itemState")
+        localStorage.getItem('itemState')
       ) {
         localStorageState = this.filter(
           keys,
-          JSON.parse(localStorage.getItem("itemState"))
-        );
+          JSON.parse(localStorage.getItem('itemState'))
+        )
       }
 
-      Object.assign(this.itemState, localStorageState, urlState);
+      Object.assign(this.itemState, localStorageState, urlState)
     },
     initializeMapState() {
-      const keys = Object.keys(this.mapState);
+      const keys = Object.keys(this.mapState)
 
-      const urlState = this.filter(keys, this.getUrlVars());
+      const urlState = this.filter(keys, this.getUrlVars())
 
-      let localStorageState = {};
+      let localStorageState = {}
       if (
         Object.keys(urlState).length == 0 &&
-        localStorage.getItem("mapState")
+        localStorage.getItem('mapState')
       ) {
         localStorageState = this.filter(
           keys,
-          JSON.parse(localStorage.getItem("mapState"))
-        );
+          JSON.parse(localStorage.getItem('mapState'))
+        )
       }
 
-      Object.assign(this.mapState, localStorageState, urlState);
+      Object.assign(this.mapState, localStorageState, urlState)
     },
     saveItemState() {
-      localStorage.setItem("itemState", JSON.stringify(this.itemState));
-      this.permalink._update(this.itemState);
+      localStorage.setItem('itemState', JSON.stringify(this.itemState))
+      this.permalink._update(this.itemState)
     },
     saveMapState() {
-      localStorage.setItem("mapState", JSON.stringify(this.mapState));
+      localStorage.setItem('mapState', JSON.stringify(this.mapState))
     },
     setData() {
       this.fetchJsonProgressAssign(
-        API_URL + window.location.pathname + ".json" + window.location.search,
+        API_URL + window.location.pathname + '.json' + window.location.search,
         (response) => {
           // Legacy global variables
-          window.API_URL = API_URL;
+          window.API_URL = API_URL
 
-          document.title = "Osmose";
-          const description = document.getElementById("description");
+          document.title = 'Osmose'
+          const description = document.getElementById('description')
           if (description) {
             description.content = this.$t(
-              "Control, verification and correction of {project} issues",
+              'Control, verification and correction of {project} issues',
               { project: response.main_project }
-            );
+            )
           }
-          const viewport = document.getElementById("viewport");
+          const viewport = document.getElementById('viewport')
           if (viewport) {
             viewport.content =
-              "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
+              'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
           }
         }
-      );
+      )
     },
     onHideItemMarkers(disabled_item) {
-      this.$refs["items-list"].toggle_item(disabled_item, false);
+      this.$refs['items-list'].toggle_item(disabled_item, false)
     },
   },
-});
+})
 </script>
 
 <style>

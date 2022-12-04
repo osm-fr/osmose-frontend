@@ -19,22 +19,22 @@
 </template>
 
 <script>
-import Vue from "vue";
+import Vue from 'vue'
 
 export default Vue.extend({
   data() {
     return {
       username: null,
-    };
+    }
   },
   mounted() {
-    document.title = "Osmose - " + this.$t("Statistics for user");
+    document.title = 'Osmose - ' + this.$t('Statistics for user')
   },
   methods: {
     submit(e) {
-      e.preventDefault();
-      window.location.href = `./${this.username}`;
+      e.preventDefault()
+      window.location.href = `./${this.username}`
     },
   },
-});
+})
 </script>

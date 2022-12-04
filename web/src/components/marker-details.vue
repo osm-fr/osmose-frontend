@@ -109,14 +109,14 @@
 </template>
 
 <script>
-import Vue from "vue";
+import Vue from 'vue'
 
-import ShowDict from "./show-dict.vue";
+import ShowDict from './show-dict.vue'
 
 export default Vue.extend({
-  props: ["marker", "uuid"],
+  props: ['marker', 'uuid'],
   components: {
     ShowDict,
   },
-});
+})
 </script>

@@ -167,17 +167,17 @@
 </template>
 
 <script>
-import Vue from "vue";
-import _ from "lodash";
+import Vue from 'vue'
+import _ from 'lodash'
 
 export default Vue.extend({
-  props: ["original_tags", "countries", "itemState"],
+  props: ['original_tags', 'countries', 'itemState'],
   data() {
     return {
       tags: [],
       state: Object.assign({}, this.itemState),
       extra_filter: false,
-    };
+    }
   },
   mounted() {
     if (
@@ -187,31 +187,31 @@ export default Vue.extend({
       this.state.username ||
       this.state.country
     ) {
-      this.extra_filter = true;
+      this.extra_filter = true
     }
   },
   watch: {
     original_tags: function () {
       if (this.original_tags) {
-        this.tags = this.original_tags;
+        this.tags = this.original_tags
       }
     },
     state: {
       deep: true,
       handler() {
-        this.$emit("state-update", Object.assign({}, this.state));
+        this.$emit('state-update', Object.assign({}, this.state))
       },
     },
     itemState: {
       deep: true,
       handler() {
         if (!_.isEqual(this.itemState, this.state)) {
-          this.state = Object.assign({}, this.itemState);
+          this.state = Object.assign({}, this.itemState)
         }
       },
     },
   },
-});
+})
 </script>
 
 <style scoped>

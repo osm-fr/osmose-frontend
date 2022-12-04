@@ -58,7 +58,10 @@
             <th v-if="opt_date" scope="col">
               <sort-link name="date"><translate>date</translate></sort-link>
             </th>
-            <th v-if="!gen || gen === 'open'" :title="$t('False positive / Done')">
+            <th
+              v-if="!gen || gen === 'open'"
+              :title="$t('False positive / Done')"
+            >
               ✘/✔
             </th>
             <th v-if="gen == 'false'" :title="$t('delete issue')">✘</th>
@@ -78,7 +81,7 @@
                 <router-link :to="`?${page_args}item=${res.item}`">
                   {{ res.item }}
                 </router-link>
-                <span v_if="res.menu">{{ res["menu"] }}</span>
+                <span v_if="res.menu">{{ res['menu'] }}</span>
               </td>
               <td>{{ res.class }}</td>
               <td :title="$t('issue n°') + res.uuid">
@@ -186,36 +189,36 @@
 </template>
 
 <script>
-import VueParent from "../pages/Parent.vue";
+import VueParent from '../pages/Parent.vue'
 
 export default VueParent.extend({
   data() {
     return {
       error: false,
       errors: false,
-    };
+    }
   },
   props: {
-    query: { default: "" },
+    query: { default: '' },
     gen: null,
     opt_date: { default: false },
     main_website: null,
     remote_url_read: null,
-    page_args: { default: "" },
+    page_args: { default: '' },
   },
   computed: {
     api_url: () => API_URL,
   },
   watch: {
     query() {
-      this.render();
+      this.render()
     },
     page_args() {
-      this.render();
+      this.render()
     },
   },
   mounted() {
-    this.render();
+    this.render()
   },
   methods: {
     render: function () {
@@ -223,54 +226,54 @@ export default VueParent.extend({
         `${API_URL}/api/0.3/issues.geojson?full=true&${this.page_args}${this.query}`,
         (json) => {
           this.errors = json.features.map((feature) => {
-            const ret = feature.properties;
-            ret.lon = feature.geometry.coordinates[0];
-            ret.lat = feature.geometry.coordinates[1];
-            return ret;
-          });
-          this.$emit("errors", this.errors);
+            const ret = feature.properties
+            ret.lon = feature.geometry.coordinates[0]
+            ret.lat = feature.geometry.coordinates[1]
+            return ret
+          })
+          this.$emit('errors', this.errors)
         }
-      );
+      )
     },
     sortable: (data) => {
       return data.map((res) => {
-        res.subtitle_or_title = res.subtitle || res.title || "";
-        return res;
-      });
+        res.subtitle_or_title = res.subtitle || res.title || ''
+        return res
+      })
     },
     onJosmRelation: (res) => {
       fetch(
         `http://localhost:8111/zoom?left=${res.lon - 0.002}&bottom=${
           res.lat - 0.002
         }&right=${res.lon + 0.002}&top=${res.lat + 0.002}`
-      ).then();
-      return true;
+      ).then()
+      return true
     },
     getMakerImgSrc: (res) => {
-      return API_URL + `/images/markers/marker-l-${res.item}.png`;
+      return API_URL + `/images/markers/marker-l-${res.item}.png`
     },
     issue_action: (event) => {
-      const Container = event.currentTarget.parentElement;
-      const id = event.currentTarget.id.split("=");
-      const verb = id[0];
-      const path = id[1];
+      const Container = event.currentTarget.parentElement
+      const id = event.currentTarget.id.split('=')
+      const verb = id[0]
+      const path = id[1]
 
-      Container.parentElement.classList = ["delete-row"];
+      Container.parentElement.classList = ['delete-row']
       fetch(API_URL + `/api/0.3/${path}`, {
         method: verb,
-        cache: "no-store",
+        cache: 'no-store',
       })
         .then(() => {
           setTimeout(() => {
-            Container.parentElement.remove();
-          }, 1000);
+            Container.parentElement.remove()
+          }, 1000)
         })
         .catch(() => {
-          Container.parent().css({ backgroundColor: "" });
-        });
+          Container.parent().css({ backgroundColor: '' })
+        })
     },
   },
-});
+})
 </script>
 
 <style>

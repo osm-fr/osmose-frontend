@@ -13,7 +13,7 @@
       v-on:keydown.arrow-down="focusNext($event, 1)"
       v-on:keydown.arrow-up="focusNext($event, -1)"
       v-on:keydown.ctrl.backspace="
-        if (tag_key != '' || tag_value != '') $emit('delete');
+        if (tag_key != '' || tag_value != '') $emit('delete')
       "
     /><a
       href="#"
@@ -26,44 +26,44 @@
 </template>
 
 <script>
-import Vue from "vue";
+import Vue from 'vue'
 
 export default Vue.extend({
-  props: ["tag_key", "tag_value", "leading_equal", "action"],
+  props: ['tag_key', 'tag_value', 'leading_equal', 'action'],
   computed: {
     key_value: function () {
       return (
-        (this.tag_key || "") +
-        (this.leading_equal ? "=" : this.tag_value ? `=${this.tag_value}` : "")
-      );
+        (this.tag_key || '') +
+        (this.leading_equal ? '=' : this.tag_value ? `=${this.tag_value}` : '')
+      )
     },
   },
   methods: {
     split(key_value) {
-      const index = key_value.indexOf("=");
+      const index = key_value.indexOf('=')
       const key =
-        index >= 0 ? key_value.substring(0, index).trim() : key_value.trim();
-      const value = index >= 0 ? key_value.substring(index + 1).trim() : "";
+        index >= 0 ? key_value.substring(0, index).trim() : key_value.trim()
+      const value = index >= 0 ? key_value.substring(index + 1).trim() : ''
 
-      if (key == "" && value == "") {
-        this.$emit("delete");
+      if (key == '' && value == '') {
+        this.$emit('delete')
       } else {
-        this.$emit("update:tag_key", key);
-        this.$emit("update:tag_value", value);
-        this.$emit("update:leading_equal", index == key_value.length - 1);
+        this.$emit('update:tag_key', key)
+        this.$emit('update:tag_value', value)
+        this.$emit('update:leading_equal', index == key_value.length - 1)
       }
     },
     focusNext(event, shift) {
       const inputs = Array.from(
         event.target.form.querySelectorAll('input[type="text"]')
-      );
-      const index = inputs.indexOf(event.target);
+      )
+      const index = inputs.indexOf(event.target)
       if (index + shift >= 0 && index + shift < inputs.length) {
-        inputs[index + shift].focus();
+        inputs[index + shift].focus()
       }
     },
   },
-});
+})
 </script>
 
 <style scoped>
@@ -79,20 +79,20 @@ span {
   color: white;
 }
 .add,
-.add input[type="text"] {
+.add input[type='text'] {
   color: green;
 }
 .mod,
-.mod input[type="text"] {
+.mod input[type='text'] {
   color: darkorange;
 }
 .del,
-.del input[type="text"] {
+.del input[type='text'] {
   text-decoration: line-through;
   color: red;
 }
 
-input[type="text"] {
+input[type='text'] {
   font-family: monospace;
   background: #e7e7e7;
   border: none;
@@ -100,10 +100,10 @@ input[type="text"] {
   padding-left: 5px;
   margin: 0px;
 }
-input[type="text"]:focus {
+input[type='text']:focus {
   background: #f7f7f7;
 }
-input[type="text"]:focus-visible {
+input[type='text']:focus-visible {
   border: none;
 }
 

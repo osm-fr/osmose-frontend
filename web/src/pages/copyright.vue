@@ -29,11 +29,11 @@
 </template>
 
 <script>
-import Vue from "vue";
+import Vue from 'vue'
 
 export default Vue.extend({
   mounted() {
-    document.title = "Osmose - " + this.$t("Copyright information");
+    document.title = 'Osmose - ' + this.$t('Copyright information')
   },
-});
+})
 </script>

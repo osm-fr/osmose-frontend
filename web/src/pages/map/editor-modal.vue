@@ -91,27 +91,27 @@
 </template>
 
 <script>
-import Vue from "vue";
+import Vue from 'vue'
 
 export default Vue.extend({
-  props: ["edition_stack"],
+  props: ['edition_stack'],
   data() {
     return {
-      comment: this.$t("Fixed with Osmose"),
-      source: "",
-      type: "fix",
+      comment: this.$t('Fixed with Osmose'),
+      source: '',
+      type: 'fix',
       reuse_changeset: true,
-      status: "save",
+      status: 'save',
       error: null,
-    };
+    }
   },
   methods: {
     save() {
-      this.status = "upload";
-      fetch(API_URL + "/en/editor/save", {
-        method: "POST",
+      this.status = 'upload'
+      fetch(API_URL + '/en/editor/save', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           tag: {
@@ -124,15 +124,15 @@ export default Vue.extend({
         }),
       })
         .then(() => {
-          this.$emit("saved");
+          this.$emit('saved')
         })
         .catch((error) => {
-          this.status = "error";
-          this.error = error;
-        });
+          this.status = 'error'
+          this.error = error
+        })
     },
   },
-});
+})
 </script>
 
 <style scoped>

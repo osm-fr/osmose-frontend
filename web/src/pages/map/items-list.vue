@@ -68,35 +68,35 @@
 </template>
 
 <script>
-import Vue from "vue";
-import _ from "lodash";
+import Vue from 'vue'
+import _ from 'lodash'
 
 export default Vue.extend({
-  props: ["categories", "item_levels", "itemState"],
+  props: ['categories', 'item_levels', 'itemState'],
   data() {
     return {
-      active_levels: ["1", "2", "3"],
+      active_levels: ['1', '2', '3'],
       total_items: {},
       count_items: {},
       state: Object.assign({}, this.itemState),
-    };
+    }
   },
   watch: {
     categories: function () {
-      this.set_item(this.state);
+      this.set_item(this.state)
     },
     state: {
       deep: true,
       handler() {
-        this.$emit("state-update", Object.assign({}, this.state));
+        this.$emit('state-update', Object.assign({}, this.state))
       },
     },
     itemState: {
       deep: true,
       handler() {
         if (!_.isEqual(this.itemState, this.state)) {
-          this.state = Object.assign({}, this.itemState);
-          this.set_item(this.state);
+          this.state = Object.assign({}, this.itemState)
+          this.set_item(this.state)
         }
       },
     },
@@ -104,102 +104,102 @@ export default Vue.extend({
   computed: {
     categories_format() {
       return this.categories.map((categorie) => {
-        this.total_items[categorie.id] = categorie.items.length;
+        this.total_items[categorie.id] = categorie.items.length
         categorie.items = categorie.items.map((item) => {
           item.class_format =
-            this.$t("Item #{item}", { item: item.item }) +
-            "\n" +
-            item.class.map((c) => c.class + ". " + c.title.auto).join("\n");
-          item.item_format = ("000" + item.item).slice(-4);
-          item.levels_format = {};
+            this.$t('Item #{item}', { item: item.item }) +
+            '\n' +
+            item.class.map((c) => c.class + '. ' + c.title.auto).join('\n')
+          item.item_format = ('000' + item.item).slice(-4)
+          item.levels_format = {}
           item.levels.forEach((level) => {
-            item.levels_format[level.level] = level.count;
-          });
-          return item;
-        });
-        return categorie;
-      });
+            item.levels_format[level.level] = level.count
+          })
+          return item
+        })
+        return categorie
+      })
     },
   },
   methods: {
     _select_items_loop(callback, categ_id) {
       this.categories.forEach((categorie) => {
         if (!categ_id || categorie.id == categ_id) {
-          this.count_items[categorie.id] = 0;
+          this.count_items[categorie.id] = 0
           categorie.items.forEach((item) => {
             if (callback) {
-              item.selected = callback(item);
+              item.selected = callback(item)
             }
             if (item.selected) {
-              this.count_items[categorie.id]++;
+              this.count_items[categorie.id]++
             }
-          });
+          })
         }
-      });
+      })
     },
     set_item(newState) {
       const itemRegex = newState.item
-        .split(",")
-        .filter((item) => item != "")
-        .map((item) => new RegExp(item.replace(/x/g, ".")));
+        .split(',')
+        .filter((item) => item != '')
+        .map((item) => new RegExp(item.replace(/x/g, '.')))
       this._select_items_loop((item) =>
-        itemRegex.some((regex) => regex.test(("000" + item.item).slice(-4)))
-      );
-      this.$forceUpdate();
+        itemRegex.some((regex) => regex.test(('000' + item.item).slice(-4)))
+      )
+      this.$forceUpdate()
     },
     showItem(item) {
       return (
         this.item_levels[this.state.level].indexOf(item.item) >= 0 &&
         (!this.state.tags ||
           (item.tags && item.tags.indexOf(this.state.tags) >= 0))
-      );
+      )
     },
     toggle_all(how) {
-      this._select_items_loop((item) => (how === -1 ? !item.selected : how));
-      this.$forceUpdate();
-      this.itemsChanged();
+      this._select_items_loop((item) => (how === -1 ? !item.selected : how))
+      this.$forceUpdate()
+      this.itemsChanged()
     },
     toggle_categorie(categ_id, how) {
-      this._select_items_loop(() => how, categ_id);
-      this.$forceUpdate();
-      this.itemsChanged();
+      this._select_items_loop(() => how, categ_id)
+      this.$forceUpdate()
+      this.itemsChanged()
     },
     toggle_item(item_id, selected) {
       this._select_items_loop((item) =>
         item.item === item_id ? selected : item.selected
-      );
-      this.$forceUpdate();
-      this.itemsChanged();
+      )
+      this.$forceUpdate()
+      this.itemsChanged()
     },
     toggle_categorie_block(categ_id) {
-      const block = document.getElementById(`categorie_block_${categ_id}`);
-      block.style.height = block.style.height == "0px" ? "" : "0px";
+      const block = document.getElementById(`categorie_block_${categ_id}`)
+      block.style.height = block.style.height == '0px' ? '' : '0px'
     },
     itemsChanged() {
-      var full_categ = 0;
+      var full_categ = 0
       var item_mask = this.categories
         .filter((categorie) => this.count_items[categorie.id] > 0)
         .map((categorie) => {
           if (
             this.total_items[categorie.id] == this.count_items[categorie.id]
           ) {
-            full_categ++;
-            return `${categorie.id / 10}xxx`;
+            full_categ++
+            return `${categorie.id / 10}xxx`
           } else {
             return categorie.items
               .filter((item) => item.selected)
               .map((item) => item.item_format)
-              .join(",");
+              .join(',')
           }
         })
-        .join(",");
+        .join(',')
       if (full_categ == this.categories.length) {
-        item_mask = "xxxx";
+        item_mask = 'xxxx'
       }
-      this.state.item = item_mask;
+      this.state.item = item_mask
     },
   },
-});
+})
 </script>
 
 <style scoped>
@@ -228,13 +228,13 @@ div.test_group h1 {
 }
 div.test_group h1 i.toggleCategIco {
   display: inline-block;
-  background: url("~../../../static/images/folder_open.png");
+  background: url('~../../../static/images/folder_open.png');
   width: 16px;
   height: 16px;
   margin: 2px 2px 0 2px;
 }
 div.test_group h1.folded i.toggleCategIco {
-  background: url("~../../../static/images/folder.png");
+  background: url('~../../../static/images/folder.png');
 }
 
 div.test_group ul {
@@ -281,7 +281,7 @@ div.test_group div.level {
   height: 16px;
 }
 
-html[dir="rtl"] div.test_group div.level {
+html[dir='rtl'] div.test_group div.level {
   float: left;
 }
 
@@ -301,27 +301,27 @@ div.test_group div.level div:hover span {
 }
 
 div.level-1 {
-  background: url("~../../../static/images/levels.png") no-repeat;
+  background: url('~../../../static/images/levels.png') no-repeat;
   background-position: 0px 0px;
 }
 div.level-2 {
-  background: url("~../../../static/images/levels.png") no-repeat;
+  background: url('~../../../static/images/levels.png') no-repeat;
   background-position: -16px 0px;
 }
 div.level-3 {
-  background: url("~../../../static/images/levels.png") no-repeat;
+  background: url('~../../../static/images/levels.png') no-repeat;
   background-position: -32px 0px;
 }
 div.level-1.disabled {
-  background: url("~../../../static/images/levels.png") no-repeat;
+  background: url('~../../../static/images/levels.png') no-repeat;
   background-position: 0px -16px;
 }
 div.level-2.disabled {
-  background: url("~../../../static/images/levels.png") no-repeat;
+  background: url('~../../../static/images/levels.png') no-repeat;
   background-position: -16px -16px;
 }
 div.level-3.disabled {
-  background: url("~../../../static/images/levels.png") no-repeat;
+  background: url('~../../../static/images/levels.png') no-repeat;
   background-position: -32px -16px;
 }
 </style>
