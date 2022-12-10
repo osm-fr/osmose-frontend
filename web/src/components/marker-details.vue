@@ -1,7 +1,7 @@
 <template>
   <table
-    class="table table-striped table-bordered table-hover table-sm"
     id="table_marker"
+    class="table table-striped table-bordered table-hover table-sm"
   >
     <thead class="thead-dark">
       <tr>
@@ -131,6 +131,9 @@ interface Marker {
 }
 
 export default Vue.extend({
+  components: {
+    ShowDict,
+  },
   props: {
     marker: {
       type: Object as PropType<Marker>,
@@ -140,10 +143,6 @@ export default Vue.extend({
       type: String,
       required: true,
     },
-  },
-
-  components: {
-    ShowDict,
   },
 })
 </script>

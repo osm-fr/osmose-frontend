@@ -1,13 +1,12 @@
 <template>
   <component :is="$vnode.data.tag" v-if="object_count" class="save_button">
-    <a href="#" v-on:click.stop.prevent="save">
+    <a href="#" @click.stop.prevent="save">
       <translate>Save</translate>
       (<span>{{ object_count }}</span
       >)
     </a>
   </component>
 </template>
-
 
 <script lang="ts">
 import Vue from 'vue'

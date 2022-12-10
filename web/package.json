@@ -61,7 +61,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ./src --ext .js --ext .vue",
+    "lint": "eslint ./src --ext .js --ext .ts --ext .vue",
     "build": "webpack --mode=production --env API_URL=//osmose.openstreetmap.fr",
     "build-dev": "webpack --mode=development --env API_URL=http://localhost:20009",
     "clean": "rm -fr public/assets/*",

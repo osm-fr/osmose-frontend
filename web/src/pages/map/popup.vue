@@ -93,13 +93,13 @@
           >
           <a
             href="#"
-            v-on:click.stop.prevent="editor(uuid)"
             class="editor_edit"
             :title="
               $t('Edit Object with {where}', {
                 where: $t('online Osmose Editor'),
               })
             "
+            @click.stop.prevent="editor(uuid)"
           >
             edit</a
           >
@@ -120,13 +120,13 @@
               >
               <a
                 href="#"
-                v-on:click.stop.prevent="editor(uuid, fix.num)"
                 class="editor_fix"
                 :title="
                   $t('Load the fix in {where}', {
                     where: $t('online Osmose Editor'),
                   })
                 "
+                @click.stop.prevent="editor(uuid, fix.num)"
               >
                 fix-edit</a
               >
@@ -246,8 +246,8 @@
               class="popup_help btn btn-info btn-sm"
               role="button"
               href="#"
-              v-on:click.stop.prevent="doc(item, classs)"
               :title="$t('Help')"
+              @click.stop.prevent="doc(item, classs)"
             >
               ℹ
             </a>
@@ -256,7 +256,6 @@
               role="button"
               href="#"
               target="hiddenIframe"
-              v-on:click="setFalsePositive(uuid)"
               :title="
                 $t('false positive') +
                 ' - ' +
@@ -264,6 +263,7 @@
                   'Report the issue as improper, if according to you is not an issue. The issue will not be displayed to anyone more.'
                 )
               "
+              @click="setFalsePositive(uuid)"
             >
               ✘
             </a>
@@ -272,7 +272,6 @@
               role="button"
               href="#"
               target="hiddenIframe"
-              v-on:click="setDone(uuid)"
               :title="
                 $t('corrected') +
                 ' - ' +
@@ -280,6 +279,7 @@
                   'After issue fixed on the OSM data, mark it as done. May also disappear automatically on next check if no more issue.'
                 )
               "
+              @click="setDone(uuid)"
             >
               ✔
             </a>

@@ -65,8 +65,8 @@
     <template v-if="extra_filter">
       <a
         href="#"
-        v-on:click.stop.prevent="extra_filter = false"
         class="more_filters"
+        @click.stop.prevent="extra_filter = false"
       >
         <translate>Less filters</translate> <span>▲</span>
       </a>
@@ -158,8 +158,8 @@
     <a
       v-else
       href="#"
-      v-on:click.stop.prevent="extra_filter = true"
       class="more_filters"
+      @click.stop.prevent="extra_filter = true"
     >
       <translate>More filters</translate> <span>▼</span>
     </a>
@@ -167,8 +167,9 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue'
 import _ from 'lodash'
+import Vue, { PropType } from 'vue'
+
 import { ItemState } from '../../types'
 
 export default Vue.extend({
@@ -199,18 +200,6 @@ export default Vue.extend({
     }
   },
 
-  mounted(): void {
-    if (
-      this.state.class != null ||
-      this.state.useDevItem ||
-      this.state.source != null ||
-      this.state.username ||
-      this.state.country
-    ) {
-      this.extra_filter = true
-    }
-  },
-
   watch: {
     original_tags(): void {
       if (this.original_tags) {
@@ -233,6 +222,18 @@ export default Vue.extend({
         }
       },
     },
+  },
+
+  mounted(): void {
+    if (
+      this.state.class != null ||
+      this.state.useDevItem ||
+      this.state.source != null ||
+      this.state.username ||
+      this.state.country
+    ) {
+      this.extra_filter = true
+    }
   },
 })
 </script>

@@ -30,22 +30,22 @@
             <template v-for="tag in elems_deleted[type_id]">
               <div
                 is="editor-tag"
-                :tag_key.sync="tag.key"
-                :tag_value.sync="tag.value"
-                action="del"
                 :key="tag.id"
-                v-on:delete="delete_tag(type_id, tag.key)"
+                v-model:tag_key="tag.key"
+                v-model:tag_value="tag.value"
+                action="del"
+                @delete="delete_tag(type_id, tag.key)"
               />
             </template>
             <template v-for="tag in elem.tags">
               <div
                 is="editor-tag"
-                :tag_key.sync="tag.key"
-                :tag_value.sync="tag.value"
-                :leading_equal.sync="tag.leading_equal"
-                :action="elems_action[type_id][tag.key]"
                 :key="tag.id"
-                v-on:delete="delete_tag(type_id, tag.key)"
+                v-model:tag_key="tag.key"
+                v-model:tag_value="tag.value"
+                v-model:leading_equal="tag.leading_equal"
+                :action="elems_action[type_id][tag.key]"
+                @delete="delete_tag(type_id, tag.key)"
               />
             </template>
           </div>
@@ -54,15 +54,15 @@
         <div id="buttons">
           <input
             type="button"
-            v-on:click="cancel()"
             class="btn btn-secondary"
             :value="$t('Cancel')"
+            @click="cancel()"
           />
           <input
             type="button"
-            v-on:click="validate(uuid)"
             class="btn btn-primary"
             :value="$t('Done')"
+            @click="validate(uuid)"
           />
         </div>
       </form>
@@ -71,8 +71,8 @@
     <div v-if="status == 'saving'">
       <editor-modal
         :edition_stack="edition_stack"
-        v-on:cancel="status = null"
-        v-on:saved="
+        @cancel="status = null"
+        @saved="
           edition_stack = []
           status = null
         "
@@ -85,13 +85,17 @@
 import Vue from 'vue'
 
 import ExternalVueAppEvent from '../../ExternalVueAppEvent'
-import EditorTag from './editor-tag.vue'
-import EditorModal from './editor-modal.vue'
 import { Elem } from '../../types'
+import EditorModal from './editor-modal.vue'
+import EditorTag from './editor-tag.vue'
 
 type FixTagAction = 'add' | 'mod' | 'del'
 
 export default Vue.extend({
+  components: {
+    EditorTag,
+    EditorModal,
+  },
   props: {
     map: {
       type: Object,
@@ -157,16 +161,11 @@ export default Vue.extend({
     },
   },
 
-  components: {
-    EditorTag,
-    EditorModal,
-  },
-
   beforeMount(): void {
     window.addEventListener('beforeunload', this.beforeunload)
   },
 
-  beforeDestroy(): void {
+  beforeUnmount(): void {
     window.removeEventListener('beforeunload', this.beforeunload)
   },
 

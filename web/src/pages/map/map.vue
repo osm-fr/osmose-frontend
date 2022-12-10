@@ -20,8 +20,8 @@ import 'leaflet-loading/src/Control.Loading.css'
 import Vue from 'vue'
 
 import { mapBases, mapOverlay } from '../../../static/map/layers'
-import OsmoseMarker from '../../../static/map/Osmose.Marker'
 import OsmoseHeatmap from '../../../static/map/Osmose.Heatmap'
+import OsmoseMarker from '../../../static/map/Osmose.Marker'
 
 export default Vue.extend({
   props: {
@@ -43,6 +43,15 @@ export default Vue.extend({
       markerLayer: null,
       heatmapLayer: null,
     }
+  },
+
+  watch: {
+    itemState: {
+      deep: true,
+      handler(): void {
+        this.updateLayer()
+      },
+    },
   },
 
   mounted(): void {
@@ -102,15 +111,6 @@ export default Vue.extend({
     })
 
     this.updateLayer()
-  },
-
-  watch: {
-    itemState: {
-      deep: true,
-      handler(): void {
-        this.updateLayer()
-      },
-    },
   },
 
   methods: {

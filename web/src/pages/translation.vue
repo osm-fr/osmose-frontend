@@ -20,7 +20,7 @@
       <li>
         <translate-slot>
           <span translate>Translation is done on {Transifex}</span>
-          <template v-slot:Transifex>
+          <template #Transifex>
             <a href="http://www.transifex.com/projects/p/osmose/">Transifex</a>
           </template>
         </translate-slot>
@@ -67,7 +67,7 @@
           <span translate>
             You can create a new language directly on {Transifex}.
           </span>
-          <template v-slot:Transifex>
+          <template #Transifex>
             <a href="http://www.transifex.com/projects/p/osmose/">Transifex</a>
           </template>
         </translate-slot>
@@ -78,7 +78,7 @@
             For new countries, we can be contacted through a direct email to
             {email}.
           </span>
-          <template v-slot:email>
+          <template #email>
             <a href="mailto:osmose-contact@openstreetmap.fr">
               osmose-contact@openstreetmap.fr
             </a>
@@ -94,7 +94,7 @@
           <span translate>
             {osmose-frontend} can be used to report any issue with translations.
           </span>
-          <template v-slot:osmose-frontend>
+          <template #osmose-frontend>
             <a href="https://github.com/osm-fr/osmose-frontend/issues">
               osmose-frontend
             </a>

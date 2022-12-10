@@ -1,6 +1,6 @@
 <template>
-  <i18n tag="span" v-if="text" :path="text">
-    <template v-for="(index, name) in $slots" v-slot:[name]>
+  <i18n v-if="text" tag="span" :path="text">
+    <template v-for="(index, name) in $slots" #[name]>
       <slot :name="name" />
     </template>
   </i18n>

@@ -1,6 +1,6 @@
 <template>
   <div id="menu">
-    <a href="#" id="togglemenu" v-on:click.stop.prevent="leafletSideBar.hide()"
+    <a id="togglemenu" href="#" @click.stop.prevent="leafletSideBar.hide()"
       >☰</a
     >
     <div v-if="error">{{ error }}</div>
@@ -44,6 +44,17 @@ export default Vue.extend({
     }
   },
 
+  computed: {
+    need_zoom(): boolean {
+      return !(
+        this.mapState.zoom >= 7 ||
+        (this.mapState.zoom >= 5 && this.mapState.lat > 60) ||
+        (this.mapState.zoom >= 4 && this.mapState.lat > 70) ||
+        (this.mapState.zoom >= 3 && this.mapState.lat > 75)
+      )
+    },
+  },
+
   watch: {
     map(): void {
       if (this.map) {
@@ -60,17 +71,6 @@ export default Vue.extend({
         this.map.addControl(this.leafletSideBar)
         this.leafletSideBar.show()
       }
-    },
-  },
-
-  computed: {
-    need_zoom(): boolean {
-      return !(
-        this.mapState.zoom >= 7 ||
-        (this.mapState.zoom >= 5 && this.mapState.lat > 60) ||
-        (this.mapState.zoom >= 4 && this.mapState.lat > 70) ||
-        (this.mapState.zoom >= 3 && this.mapState.lat > 75)
-      )
     },
   },
 })

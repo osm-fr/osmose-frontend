@@ -4,9 +4,7 @@
     <div v-if="error">{{ error }}</div>
     <div v-else>
       <nav
-        class="
-          navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-dark
-        "
+        class="navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-dark"
         style="background-color: #212529"
       >
         <span v-if="favicon" class="navbar-brand">
@@ -32,7 +30,7 @@
             <li class="nav-item">
               <a
                 class="nav-link"
-                :href="`${api_url}/${this.$route.params.lang}/issues/graph.png?${query}`"
+                :href="`${api_url}/${$route.params.lang}/issues/graph.png?${query}`"
               >
                 <translate>Graph</translate>
               </a>
@@ -98,7 +96,7 @@
       <br />
 
       <div class="form-inline col-sm-12 col-md-12">
-        <form method="get" action="" id="errors-list">
+        <form id="errors-list" method="get" action="">
           <h1 v-if="full_filter">Class filters</h1>
           <div class="form-row">
             <div class="form-group col-sm-3 col-md-3">
@@ -173,7 +171,7 @@
                 v-if="!full_filter"
                 type="button"
                 class="btn btn-outline-secondary btn-sm"
-                v-on:click="full_filter = true"
+                @click="full_filter = true"
               >
                 <translate>More filters</translate>
                 <span
@@ -186,7 +184,7 @@
                 v-else
                 type="button"
                 class="btn btn-outline-secondary btn-sm"
-                v-on:click="full_filter = false"
+                @click="full_filter = false"
               >
                 <translate>Less filters</translate>
               </button>
@@ -303,9 +301,9 @@
       </div>
 
       <sorted-table
+        id="table_source"
         :values="sortable(errors_groups)"
         class="table table-striped table-bordered table-hover table-sm"
-        id="table_source"
       >
         <thead class="thead-dark">
           <tr>
@@ -407,7 +405,7 @@
           :remote_url_read="remote_url_read"
           :page_args="`status=${gen}&`"
         />
-        <a href="#" v-on:click.stop.prevent="show_more()">
+        <a href="#" @click.stop.prevent="show_more()">
           <translate>Show more issues</translate>
         </a>
       </div>
@@ -418,9 +416,9 @@
 <script lang="ts">
 import TimeAgo from 'vue2-timeago'
 
-import VueParent from '../Parent.vue'
 import IssuesList from '../../components/issues-list.vue'
 import Translate from '../../components/translate.vue'
+import VueParent from '../Parent.vue'
 
 interface ErrorsGroup {
   analyser: string

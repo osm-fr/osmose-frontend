@@ -65,14 +65,14 @@
       <p>
         <translate-slot>
           <span translate>Do not want to see {title} markers?</span>
-          <template v-slot:title>
+          <template #title>
             <i>{{ title }}</i>
           </template>
         </translate-slot>
       </p>
       <button
         class="mb-3 btn btn-info btn-sm"
-        v-on:click.stop.prevent="$emit('hide-item-markers', item)"
+        @click.stop.prevent="$emit('hide-item-markers', item)"
       >
         <translate>Hide from map</translate>
       </button>
@@ -109,9 +109,9 @@
 <script lang="ts">
 import Marked from 'marked'
 
-import VueParent from '../Parent.vue'
 import SidebarToggle from '../../../static/map/SidebarToggle.js'
 import ExternalVueAppEvent from '../../ExternalVueAppEvent'
+import VueParent from '../Parent.vue'
 
 export default VueParent.extend({
   props: {

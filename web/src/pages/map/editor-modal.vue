@@ -8,10 +8,10 @@
             <translate>Objects edited</translate>
           </label>
           <input
+            id="editor-modify-count"
             type="text"
             readonly
             class="form-control-plaintext"
-            id="editor-modify-count"
             :value="edition_stack.length"
           />
         </div>
@@ -20,10 +20,10 @@
             <translate>Comment</translate>
           </label>
           <input
-            class="form-control"
-            type="text"
             id="comment"
             v-model="comment"
+            class="form-control"
+            type="text"
           />
         </div>
         <div class="form-group">
@@ -31,24 +31,24 @@
             <translate>Source</translate>
           </label>
           <input
-            class="form-control"
-            type="text"
             id="source"
             v-model="source"
+            class="form-control"
+            type="text"
           />
         </div>
         <div class="form-group">
           <label for="type">
             <translate>Type</translate>
           </label>
-          <input class="form-control" type="text" id="type" v-model="type" />
+          <input id="type" v-model="type" class="form-control" type="text" />
         </div>
         <div class="form-check">
           <input
-            class="form-check-input"
-            type="checkbox"
             id="reuse_changeset"
             v-model="reuse_changeset"
+            class="form-check-input"
+            type="checkbox"
           />
           <label class="form-check-label" for="reuse_changeset">
             <translate>Reuse changeset</translate>
@@ -59,11 +59,11 @@
           <button
             type="button"
             class="btn btn-secondary"
-            v-on:click="$emit('cancel')"
+            @click="$emit('cancel')"
           >
             <translate>Cancel</translate>
           </button>
-          <button type="button" class="btn btn-primary" v-on:click="save()">
+          <button type="button" class="btn btn-primary" @click="save()">
             <translate>Save</translate>
           </button>
         </div>
@@ -81,7 +81,7 @@
         <button
           type="button"
           class="btn btn-secondary"
-          v-on:click="$emit('cancel')"
+          @click="$emit('cancel')"
         >
           <translate>Cancel</translate>
         </button>

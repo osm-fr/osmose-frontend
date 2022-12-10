@@ -1,7 +1,7 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
-import 'vue';
-import 'vue-router';
-import 'vue-i18n';
+import 'vue'
+import 'vue-router'
+import 'vue-i18n'
 
-import './index.ts';
+import './index.ts'

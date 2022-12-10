@@ -4,9 +4,7 @@
     <div v-if="error">{{ error }}</div>
     <div v-else>
       <nav
-        class="
-          navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-dark
-        "
+        class="navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-dark"
         style="background-color: #212529"
       >
         <span class="navbar-brand">
@@ -94,8 +92,8 @@
 </template>
 
 <script lang="ts">
-import VueParent from '../Parent.vue'
 import IssuesList from '../../components/issues-list.vue'
+import VueParent from '../Parent.vue'
 
 export default VueParent.extend({
   data(): {

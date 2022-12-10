@@ -11,8 +11,8 @@
         <h2><translate>Elements</translate></h2>
         <div v-for="(element, elem_index) in marker.elems" :key="element.id">
           <table
-            class="table table-striped table-bordered table-hover table-sm"
             id="table_marker"
+            class="table table-striped table-bordered table-hover table-sm"
           >
             <thead class="thead-dark">
               <tr>
@@ -65,8 +65,8 @@
           <h3>#{{ fix_index }}</h3>
           <div v-for="(fix, fix_index) in fix_group" :key="'fix|' + fix_index">
             <table
-              class="table table-striped table-bordered table-hover table-sm"
               id="table_marker"
+              class="table table-striped table-bordered table-hover table-sm"
             >
               <thead class="thead-dark">
                 <tr>
@@ -118,10 +118,10 @@
 </template>
 
 <script lang="ts">
-import VueParent from '../Parent.vue'
 import MarkerDetails from '../../components/marker-details.vue'
 import ShowTags from '../../components/show-tags.vue'
 import { Elem, Fix, Type } from '../../types'
+import VueParent from '../Parent.vue'
 
 export default VueParent.extend({
   data(): {

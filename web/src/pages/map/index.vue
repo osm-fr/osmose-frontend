@@ -5,33 +5,33 @@
     <div>
       <top
         :map="map"
-        :itemState="itemState"
-        :mapState="mapState"
+        :item-state="itemState"
+        :map-state="mapState"
         :languages_name="languages_name"
         :user="user"
         :user_error_count="user_error_count"
         :timestamp="timestamp"
       />
-      <items ref="items" :mapState="mapState" :map="map" :error="error">
+      <items ref="items" :map-state="mapState" :map="map" :error="error">
         <items-filters
           :original_tags="tags"
           :countries="countries"
-          :itemState="itemState"
-          v-on:state-update="itemState = $event"
+          :item-state="itemState"
+          @state-update="itemState = $event"
         />
         <items-list
           ref="items-list"
           :categories="categories"
           :item_levels="item_levels"
-          :itemState="itemState"
-          v-on:state-update="itemState = $event"
+          :item-state="itemState"
+          @state-update="itemState = $event"
         />
       </items>
-      <doc :map="map" v-on:hide-item-markers="onHideItemMarkers($event)" />
+      <doc :map="map" @hide-item-markers="onHideItemMarkers($event)" />
       <l-map
-        :itemState="itemState"
-        :mapState="mapState"
-        v-on:set-map="
+        :item-state="itemState"
+        :map-state="mapState"
+        @set-map="
           map = $event.map
           markerLayer = $event.markerLayer
           heatmapLayer = $event.heatmapLayer
@@ -42,30 +42,30 @@
         :map="map"
         :main_website="main_website"
         :user="user"
-        v-on:issue-done="markerLayer.corrected()"
+        @issue-done="markerLayer.corrected()"
       />
       <iframe id="hiddenIframe" name="hiddenIframe"></iframe>
       <popup
         :main_website="main_website"
         :remote_url_read="remote_url_read"
-        :markerLayer="markerLayer"
-        v-on:fix-edit="$refs.editor.load($event.uuid, $event.fix)"
+        :marker-layer="markerLayer"
+        @fix-edit="$refs.editor.load($event.uuid, $event.fix)"
       />
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { ItemState, LanguagesName, Category } from '../../types'
 import VueParent from '../Parent.vue'
-import Top from './top.vue'
-import LMap from './map.vue'
-import Items from './items.vue'
-import ItemsFilters from './items-filters.vue'
-import ItemsList from './items-list.vue'
 import Doc from './doc.vue'
 import Editor from './editor.vue'
+import ItemsFilters from './items-filters.vue'
+import ItemsList from './items-list.vue'
+import Items from './items.vue'
+import LMap from './map.vue'
 import Popup from './popup.vue'
-import { ItemState, LanguagesName, Category } from '../../types'
+import Top from './top.vue'
 
 interface MapState {
   lat: number

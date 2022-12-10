@@ -12,6 +12,7 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue'
+
 import { Tag } from '../types'
 
 type KVLink = Tag & {

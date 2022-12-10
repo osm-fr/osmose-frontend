@@ -8,12 +8,12 @@
           website, or on {osmose-backend} for issues on the reported issues on
           OSM data, or for suggestion about analyses.
         </span>
-        <template v-slot:osmose-frontend>
+        <template #osmose-frontend>
           <a href="https://github.com/osm-fr/osmose-frontend/issues">
             osmose-frontend
           </a>
         </template>
-        <template v-slot:osmose-backend>
+        <template #osmose-backend>
           <a href="https://github.com/osm-fr/osmose-backend/issues">
             osmose-backend
           </a>
@@ -43,7 +43,7 @@
         <span translate>
           Development of Osmose is made as free software by {volunteers}.
         </span>
-        <template v-slot:volunteers>
+        <template #volunteers>
           <router-link to="copyright">
             <translate>volunteers</translate>
           </router-link>
@@ -84,7 +84,7 @@
         <span translate>
           We can be contacted through a direct email to {email}.
         </span>
-        <template v-slot:email>
+        <template #email>
           <a href="mailto:osmose-contact@openstreetmap.fr">
             osmose-contact@openstreetmap.fr
           </a>
@@ -96,7 +96,7 @@
         <span translate>
           Keep in touch by watching at {osmose_qa} on Twitter.
         </span>
-        <template v-slot:osmose_qa>
+        <template #osmose_qa>
           <a href="https://twitter.com/osmose_qa">@osmose_qa</a>
         </template>
       </translate-slot>

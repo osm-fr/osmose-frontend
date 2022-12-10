@@ -50,9 +50,9 @@
 </template>
 
 <script lang="ts">
-import VueParent from '../Parent.vue'
 import Delay from '../../components/delay.vue'
 import Version from '../../components/version.vue'
+import VueParent from '../Parent.vue'
 
 interface Summary {
   count: number

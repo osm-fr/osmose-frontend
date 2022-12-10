@@ -12,7 +12,7 @@
     <br /><br />
     <form method="GET" action="#" @submit.stop.prevent="submit">
       <label for="username"><translate>Username:</translate></label>
-      <input type="text" v-model="username" name="username" />
+      <input v-model="username" type="text" name="username" />
       <input type="submit" />
     </form>
   </div>

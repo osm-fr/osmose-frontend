@@ -8,17 +8,17 @@
       type="text"
       :value="key_value"
       :readonly="action == 'del'"
-      v-on:input="split($event.target.value)"
-      v-on:keydown.enter="focusNext($event, 1)"
-      v-on:keydown.arrow-down="focusNext($event, 1)"
-      v-on:keydown.arrow-up="focusNext($event, -1)"
-      v-on:keydown.ctrl.backspace="
+      @input="split($event.target.value)"
+      @keydown.enter="focusNext($event, 1)"
+      @keydown.arrow-down="focusNext($event, 1)"
+      @keydown.arrow-up="focusNext($event, -1)"
+      @keydown.ctrl.backspace="
         if (tag_key != '' || tag_value != '') $emit('delete')
       "
     /><a
-      href="#"
       v-if="tag_key != '' || tag_value != ''"
-      v-on:click.stop.prevent="$emit('delete')"
+      href="#"
+      @click.stop.prevent="$emit('delete')"
       ><template v-if="action == 'del'">↶</template
       ><template v-else>×</template></a
     >

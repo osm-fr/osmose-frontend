@@ -13,8 +13,8 @@
           </th>
           <th
             v-for="(sum, country) in sorted_countries_sum"
-            class="country"
             :key="'1_' + country"
+            class="country"
           >
             <div class="rotate-90">
               <router-link :to="`../issues/open?country=${country}`">

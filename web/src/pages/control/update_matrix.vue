@@ -51,8 +51,8 @@
 </template>
 
 <script lang="ts">
-import VueParent from '../Parent.vue'
 import Delay from '../../components/delay.vue'
+import VueParent from '../Parent.vue'
 
 export default VueParent.extend({
   data(): {

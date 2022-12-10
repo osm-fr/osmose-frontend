@@ -1,31 +1,31 @@
 <template>
-  <div v-if="Object.keys(this.state).length > 0" id="tests">
+  <div v-if="Object.keys(state).length > 0" id="tests">
     <div id="action_links">
       <translate>Select:</translate>
-      <a href="#" v-on:click.stop.prevent="toggle_all(true)">
+      <a href="#" @click.stop.prevent="toggle_all(true)">
         <translate>all</translate>
       </a>
-      <a href="#" v-on:click.stop.prevent="toggle_all(false)">
+      <a href="#" @click.stop.prevent="toggle_all(false)">
         <translate>nothing</translate>
       </a>
-      <a href="#" v-on:click.stop.prevent="toggle_all(-1)">
+      <a href="#" @click.stop.prevent="toggle_all(-1)">
         <translate>invert</translate>
       </a>
     </div>
 
     <div v-for="categ in categories_format" :key="categ.id" class="test_group">
       <h1>
-        <a href="#" v-on:click.stop.prevent="toggle_categorie_block(categ.id)">
+        <a href="#" @click.stop.prevent="toggle_categorie_block(categ.id)">
           <i class="toggleCategIco"></i>
           {{ categ.title.auto }}
         </a>
         <span class="count">
           {{ count_items[categ.id] }}/{{ total_items[categ.id] }}
         </span>
-        <a href="#" v-on:click.stop.prevent="toggle_categorie(categ.id, true)">
+        <a href="#" @click.stop.prevent="toggle_categorie(categ.id, true)">
           <translate>all</translate>
         </a>
-        <a href="#" v-on:click.stop.prevent="toggle_categorie(categ.id, false)">
+        <a href="#" @click.stop.prevent="toggle_categorie(categ.id, false)">
           <translate>nothing</translate>
         </a>
       </h1>
@@ -54,8 +54,8 @@
             </template>
           </div>
           <input
-            type="checkbox"
             v-model="item.selected"
+            type="checkbox"
             @change="toggle_item(item.item, item.selected)"
           />
           <router-link target="_blank" :to="`../issues/open?item=${item.item}`">
@@ -68,8 +68,9 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue'
 import _ from 'lodash'
+import Vue, { PropType } from 'vue'
+
 import { ItemState, Category, Levels, Item } from '../../types'
 
 export default Vue.extend({
@@ -102,6 +103,27 @@ export default Vue.extend({
     }
   },
 
+  computed: {
+    categories_format(): { [category: number]: number } {
+      return this.categories.map((categorie: Category) => {
+        this.total_items[categorie.id] = categorie.items.length
+        categorie.items = categorie.items.map((item: Item) => {
+          item.class_format =
+            this.$t('Item #{item}', { item: item.item }) +
+            '\n' +
+            item.class.map((c) => c.class + '. ' + c.title.auto).join('\n')
+          item.item_format = ('000' + item.item).slice(-4)
+          item.levels_format = {}
+          item.levels.forEach((level) => {
+            item.levels_format[level.level] = level.count
+          })
+          return item
+        })
+        return categorie
+      })
+    },
+  },
+
   watch: {
     categories(): void {
       this.set_item(this.state)
@@ -122,27 +144,6 @@ export default Vue.extend({
           this.set_item(this.state)
         }
       },
-    },
-  },
-
-  computed: {
-    categories_format(): { [category: number]: number } {
-      return this.categories.map((categorie: Category) => {
-        this.total_items[categorie.id] = categorie.items.length
-        categorie.items = categorie.items.map((item: Item) => {
-          item.class_format =
-            this.$t('Item #{item}', { item: item.item }) +
-            '\n' +
-            item.class.map((c) => c.class + '. ' + c.title.auto).join('\n')
-          item.item_format = ('000' + item.item).slice(-4)
-          item.levels_format = {}
-          item.levels.forEach((level) => {
-            item.levels_format[level.level] = level.count
-          })
-          return item
-        })
-        return categorie
-      })
     },
   },
 

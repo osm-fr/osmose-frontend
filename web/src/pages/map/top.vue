@@ -11,10 +11,7 @@
             :key="k"
             :class="$route.params.lang == k ? 'bold' : ''"
           >
-            <router-link
-              :to="'/' + k + location"
-              v-on:click.native="changeLang(v)"
-            >
+            <router-link :to="'/' + k + location" @click.native="changeLang(v)">
               {{ v.name }} ({{ k }})
             </router-link>
           </li>
@@ -122,10 +119,10 @@
 
       <li
         is="delay"
+        id="menu-delay"
         :warning="0.9"
         :error="1.6"
         :v="(Date.now() - Date.parse(timestamp)) / 1000 / 60 / 60 / 24"
-        id="menu-delay"
       >
         <router-link to="../control/update_summary">
           {{ $t('Delay:') }}
@@ -193,11 +190,15 @@ import Vue, { PropType } from 'vue'
 import TimeAgo from 'vue2-timeago'
 
 import Delay from '../../components/delay.vue'
-
-import EditorMenu from './editor-menu.vue'
 import { ItemState, LanguagesName } from '../../types'
+import EditorMenu from './editor-menu.vue'
 
 export default Vue.extend({
+  components: {
+    Delay,
+    EditorMenu,
+    TimeAgo,
+  },
   props: {
     map: {
       type: Object,
@@ -254,12 +255,6 @@ export default Vue.extend({
     },
   },
 
-  components: {
-    Delay,
-    EditorMenu,
-    TimeAgo,
-  },
-
   watch: {
     itemState: {
       deep: true,
@@ -296,7 +291,6 @@ export default Vue.extend({
   },
 })
 </script>
-
 
 <style>
 div#top_links {

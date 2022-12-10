@@ -112,7 +112,7 @@
                     title="josm"
                     :href="`http://localhost:8111/import?url=${remote_url_read}api/0.6/relation/${e.id}/full`"
                     target="hiddenIframe"
-                    v-on:click="onJosmRelation(res)"
+                    @click="onJosmRelation(res)"
                   >
                     (j)
                   </a>
@@ -147,22 +147,22 @@
               </td>
               <td v-if="!gen || gen === 'open'">
                 <a
-                  href="#"
-                  v-on:click.stop.prevent="issue_action"
                   :id="`GET=issue/${res.uuid}/false`"
+                  href="#"
                   :title="
                     $t('Mark issue #{uuid} as false positive', {
                       uuid: res.uuid,
                     })
                   "
+                  @click.stop.prevent="issue_action"
                 >
                   ✘ </a
                 >/
                 <a
-                  href="#"
-                  v-on:click.stop.prevent="issue_action"
                   :id="`GET=issue/${res.uuid}/done`"
+                  href="#"
                   :title="$t('Mark issue #{uuid} as fixed', { uuid: res.uuid })"
+                  @click.stop.prevent="issue_action"
                 >
                   ✔
                 </a>
@@ -172,9 +172,9 @@
                 :title="$t('delete issue #{uuid}', { uuid: res.uuid })"
               >
                 <a
-                  href="#"
-                  v-on:click.stop.prevent="issue_action"
                   :id="`DELETE=false-positive/${res.uuid}`"
+                  href="#"
+                  @click.stop.prevent="issue_action"
                 >
                   ✘
                 </a>
@@ -189,8 +189,9 @@
 </template>
 
 <script lang="ts">
-import VueParent from '../pages/Parent.vue'
 import { FeatureCollection, Feature, Point } from 'geojson'
+
+import VueParent from '../pages/Parent.vue'
 
 interface Issue {
   uuid: string
