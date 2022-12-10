@@ -11,7 +11,7 @@
             :key="k"
             :class="$route.params.lang == k ? 'bold' : ''"
           >
-            <router-link :to="'/' + k + location" @click.native="changeLang(v)">
+            <router-link :to="'/' + k + location" @click="changeLang(v)">
               {{ v.name }} ({{ k }})
             </router-link>
           </li>
@@ -117,8 +117,8 @@
         </ul>
       </li>
 
-      <li
-        is="delay"
+      <delay
+        tag="li"
         id="menu-delay"
         :warning="0.9"
         :error="1.6"
@@ -129,7 +129,7 @@
           <time-ago v-if="timestamp" :datetime="timestamp" tooltip />
           <span v-else>-</span>
         </router-link>
-      </li>
+      </delay>
 
       <li id="menu-user">
         <template v-if="user">
@@ -180,7 +180,7 @@
           <translate>Login</translate>
         </a>
       </li>
-      <li is="editor-menu" />
+      <editor-menu />
     </ul>
   </div>
 </template>

@@ -1,9 +1,7 @@
 <template>
   <div :class="`line ${action}`">
-    <template
-      ><span v-if="action == 'same'">=</span
-      ><span v-if="action == 'del'">-</span><span v-if="action == 'add'">+</span
-      ><span v-if="action == 'mod'">~</span></template
+    <span v-if="action == 'same'">=</span><span v-if="action == 'del'">-</span
+    ><span v-if="action == 'add'">+</span><span v-if="action == 'mod'">~</span
     ><input
       type="text"
       :value="key_value"
@@ -26,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue, { PropType } from 'vue'
 
 export default Vue.extend({
   props: {
@@ -43,7 +41,7 @@ export default Vue.extend({
       required: true,
     },
     action: {
-      type: 'same' | 'del' | 'mod' | 'add',
+      type: String as PropType<'same' | 'del' | 'mod' | 'add'>,
       required: true,
     },
   },

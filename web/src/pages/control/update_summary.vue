@@ -20,8 +20,8 @@
         <tbody :key="'b' + remote">
           <tr>
             <td>
-              <span
-                is="delay"
+              <delay
+                tag="span"
                 v-for="country in summary[remote]"
                 :key="country.country"
                 :v="country.min_age"
@@ -31,13 +31,13 @@
                   :to="`../issues/open?country=${country.country}&item=xxxx`"
                   >{{ country.country }}</router-link
                 ><sup>{{ country.count }}</sup
-                >&nbsp;{{ country.min_age | numFormat('0.0') }}-<span
-                  is="delay"
+                >&nbsp;{{ country.min_age | numFormat('0.0') }}-<delay
+                  tag="span"
                   :v="country.max_age"
                   :opacity="opacity(country.count, max_count)"
                   >{{ country.max_age | numFormat('0.0') }}
-                </span>
-              </span>
+                </delay>
+              </delay>
             </td>
           </tr>
         </tbody>

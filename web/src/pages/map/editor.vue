@@ -28,8 +28,7 @@
           </a>
           <div class="tags">
             <template v-for="tag in elems_deleted[type_id]">
-              <div
-                is="editor-tag"
+              <editor-tag
                 :key="tag.id"
                 v-model:tag_key="tag.key"
                 v-model:tag_value="tag.value"
@@ -38,8 +37,7 @@
               />
             </template>
             <template v-for="tag in elem.tags">
-              <div
-                is="editor-tag"
+              <editor-tag
                 :key="tag.id"
                 v-model:tag_key="tag.key"
                 v-model:tag_value="tag.value"

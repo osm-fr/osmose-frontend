@@ -1,11 +1,11 @@
 <template>
-  <component :is="$vnode.data.tag" v-if="object_count" class="save_button">
+  <li v-if="object_count" class="save_button">
     <a href="#" @click.stop.prevent="save">
       <translate>Save</translate>
       (<span>{{ object_count }}</span
       >)
     </a>
-  </component>
+  </li>
 </template>
 
 <script lang="ts">

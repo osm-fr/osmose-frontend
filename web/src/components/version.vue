@@ -1,3 +1,9 @@
+<template>
+  <span :class="classs">
+    <slot />
+  </span>
+</template>
+
 <script lang="ts">
 import Vue from 'vue'
 
@@ -13,18 +19,10 @@ export default Vue.extend({
     },
   },
 
-  render: function (createElement) {
-    if (this.v) {
-      return createElement(
-        this.$vnode?.data?.tag,
-        {
-          class: this.v !== '' && this.v != this.max ? 'version-warning' : null,
-        },
-        this.$slots.default
-      )
-    } else {
-      return createElement(this.$vnode?.data?.tag)
-    }
+  computed: {
+    classs(): string {
+      return this.v !== '' && this.v != this.max ? 'version-warning' : null
+    },
   },
 })
 </script>

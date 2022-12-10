@@ -1,8 +1,18 @@
+<template>
+  <component :is="tag" :class="classs" :style="style">
+    <slot />
+  </component>
+</template>
+
 <script lang="ts">
 import Vue from 'vue'
 
 export default Vue.extend({
   props: {
+    tag: {
+      type: String,
+      default: 'span',
+    },
     warning: {
       type: Number,
       default: 1.05,
@@ -21,22 +31,18 @@ export default Vue.extend({
     },
   },
 
-  render: function (createElement) {
-    return createElement(
-      this.$vnode?.data?.tag,
-      {
-        class:
-          this.v > this.error
-            ? 'delay-error'
-            : this.v > this.warning
-            ? 'delay-warning'
-            : null,
-        attrs: {
-          style: `background-opacity: ${this.opacity}`,
-        },
-      },
-      this.$slots.default
-    )
+  computed: {
+    classs(): string {
+      return this.v > this.error
+        ? 'delay-error'
+        : this.v > this.warning
+        ? 'delay-warning'
+        : null
+    },
+
+    style(): string {
+      return `background-opacity: ${this.opacity}`
+    },
   },
 })
 </script>

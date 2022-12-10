@@ -19,7 +19,7 @@ export default Vue.extend({
   },
 
   mounted() {
-    const text = this.$slots?.default?.at(0)?.children?.at(0)?.text // @ts-ignore
+    const text = this.$slots?.default?.at(0)?.children?.at(0)?.text
     if (text) {
       this.text = text
         .replace(/(\r\n|\n|\r)/gm, ' ')
