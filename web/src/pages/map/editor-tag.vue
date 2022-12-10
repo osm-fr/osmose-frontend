@@ -25,21 +25,40 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 
 export default Vue.extend({
-  props: ['tag_key', 'tag_value', 'leading_equal', 'action'],
+  props: {
+    tag_key: {
+      type: String,
+      required: true,
+    },
+    tag_value: {
+      type: String,
+      required: true,
+    },
+    leading_equal: {
+      type: Boolean,
+      required: true,
+    },
+    action: {
+      type: 'same' | 'del' | 'mod' | 'add',
+      required: true,
+    },
+  },
+
   computed: {
-    key_value: function () {
+    key_value(): string {
       return (
         (this.tag_key || '') +
         (this.leading_equal ? '=' : this.tag_value ? `=${this.tag_value}` : '')
       )
     },
   },
+
   methods: {
-    split(key_value) {
+    split(key_value: string): void {
       const index = key_value.indexOf('=')
       const key =
         index >= 0 ? key_value.substring(0, index).trim() : key_value.trim()
@@ -53,7 +72,8 @@ export default Vue.extend({
         this.$emit('update:leading_equal', index == key_value.length - 1)
       }
     },
-    focusNext(event, shift) {
+
+    focusNext(event: KeyboardEvent, shift: number): void {
       const inputs = Array.from(
         event.target.form.querySelectorAll('input[type="text"]')
       )

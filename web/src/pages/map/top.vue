@@ -188,64 +188,100 @@
   </div>
 </template>
 
-<script>
-import Vue from 'vue'
+<script lang="ts">
+import Vue, { PropType } from 'vue'
 import TimeAgo from 'vue2-timeago'
 
 import Delay from '../../components/delay.vue'
+
 import EditorMenu from './editor-menu.vue'
+import { ItemState, LanguagesName } from '../../types'
 
 export default Vue.extend({
-  props: [
-    'map',
-    'mapState',
-    'itemState',
-    'languages_name',
-    'user',
-    'user_error_count',
-    'timestamp',
-  ],
-  data() {
+  props: {
+    map: {
+      type: Object,
+      required: true,
+    },
+    mapState: {
+      type: Object,
+      required: true,
+    },
+    itemState: {
+      type: Object as PropType<ItemState>,
+      required: true,
+    },
+    languages_name: {
+      type: Object as PropType<{ [lang: string]: LanguagesName }>,
+      required: true,
+    },
+    user: {
+      type: String,
+      required: true,
+    },
+    user_error_count: {
+      type: Object as PropType<{ [level: number]: number }>,
+      required: true,
+    },
+    timestamp: {
+      type: String,
+      required: true,
+    },
+  },
+
+  data(): {
+    params: string
+  } {
     return {
       params: '',
     }
   },
+
   computed: {
-    api_url: () => API_URL,
-    lang() {
+    api_url(): string {
+      return API_URL
+    },
+
+    lang(): string {
       return this.$route.params.lang
     },
-    location() {
+
+    location(): string {
       const i = window.location.pathname.indexOf('/', 1)
       return (
         window.location.pathname.substring(i) + '?' + window.location.search
       )
     },
   },
+
   components: {
     Delay,
     EditorMenu,
     TimeAgo,
   },
+
   watch: {
     itemState: {
       deep: true,
-      handler() {
+      handler(): void {
         this.setParams()
       },
     },
+
     mapState: {
       deep: true,
-      handler() {
+      handler(): void {
         this.setParams()
       },
     },
   },
+
   methods: {
-    changeLang: (lang) => {
+    changeLang(lang: LanguagesName): void {
       window.document.dir = lang.direction
     },
-    setParams() {
+
+    setParams(): void {
       const params = { ...this.mapState, ...this.itemState }
       delete params.lat
       delete params.lon

@@ -9,25 +9,30 @@
 </template>
 
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 
-import ExternalVueAppEvent from '../../ExternalVueAppEvent.js'
+import ExternalVueAppEvent from '../../ExternalVueAppEvent'
 
 export default Vue.extend({
-  data() {
+  data(): {
+    object_count: number
+  } {
     return {
       object_count: 0,
     }
   },
+
   mounted() {
     ExternalVueAppEvent.$on('editor-count', this.count)
   },
+
   methods: {
-    count(n) {
+    count(n: number): void {
       this.object_count = n
     },
-    save() {
+
+    save(): void {
       ExternalVueAppEvent.$emit('editor-save')
     },
   },

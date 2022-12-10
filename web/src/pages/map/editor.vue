@@ -81,16 +81,43 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 
-import ExternalVueAppEvent from '../../ExternalVueAppEvent.js'
+import ExternalVueAppEvent from '../../ExternalVueAppEvent'
 import EditorTag from './editor-tag.vue'
 import EditorModal from './editor-modal.vue'
+import { Elem } from '../../types'
+
+type FixTagAction = 'add' | 'mod' | 'del'
 
 export default Vue.extend({
-  props: ['map', 'user', 'main_website'],
-  data() {
+  props: {
+    map: {
+      type: Object,
+      required: true,
+    },
+    user: {
+      type: String,
+      required: true,
+    },
+    main_website: {
+      type: Object,
+      required: true,
+    },
+  },
+
+  data(): {
+    leafletSideBar: Object
+    status?: 'saving' | 'loading' | 'editor' | 'error'
+    uuid: string
+    elems: { [type_id: string]: Elem }
+    elems_action: { [type_id: string]: FixTagAction }
+    elems_deleted: { [type_id: string]: string }
+    edition_stack: string[]
+    elems_base: { [type_id: string]: Elem }
+    elems_action_base: { [type_id: string]: { [key: string]: FixTagAction } }
+  } {
     return {
       leafletSideBar: null,
       status: null,
@@ -99,22 +126,28 @@ export default Vue.extend({
       elems_action: {},
       elems_deleted: {},
       edition_stack: [],
+      elems_base: {},
+      elems_action_base: {},
     }
   },
+
   watch: {
-    status: function () {
+    status(): void {
       this.status ? this.leafletSideBar.show() : this.leafletSideBar.hide()
     },
+
     elems: {
       deep: true,
-      handler() {
+      handler(): void {
         this.set_action()
       },
     },
-    edition_stack: function () {
+
+    edition_stack(): void {
       ExternalVueAppEvent.$emit('editor-count', this.edition_stack.length)
     },
-    map: function () {
+
+    map(): void {
       this.leafletSideBar = L.control.sidebar('editor', {
         closeButton: false,
         autoPan: false,
@@ -123,23 +156,28 @@ export default Vue.extend({
       this.map.addControl(this.leafletSideBar)
     },
   },
+
   components: {
     EditorTag,
     EditorModal,
   },
-  beforeMount() {
+
+  beforeMount(): void {
     window.addEventListener('beforeunload', this.beforeunload)
   },
-  beforeDestroy() {
+
+  beforeDestroy(): void {
     window.removeEventListener('beforeunload', this.beforeunload)
   },
-  mounted() {
+
+  mounted(): void {
     ExternalVueAppEvent.$on('editor-save', () => {
       this.status = 'saving'
     })
   },
+
   methods: {
-    load(uuid, fix) {
+    load(uuid: string, fix): void {
       this.status = 'loading'
 
       fetch(
@@ -165,9 +203,10 @@ export default Vue.extend({
           this.status = 'error'
         })
     },
-    validate(uuid) {
+
+    validate(uuid: string): void {
       Object.entries(JSON.parse(JSON.stringify(this.elems))).forEach(
-        ([type_id, elem]) => {
+        ([type_id, elem]: [string, Elem]) => {
           const changed = elem.tags.some(
             (tag) =>
               ['mod', 'add'].indexOf(this.elems_action[type_id][tag.key]) >= 0
@@ -189,10 +228,12 @@ export default Vue.extend({
 
       this.status = null
     },
-    cancel() {
+
+    cancel(): void {
       this.status = null
     },
-    _setTags(elems, fix) {
+
+    _setTags(elems: Elem[], fix: { [key: string]: string }): void {
       this.elems_base = {}
       this.elems_action_base = {}
       this.elems = {}
@@ -234,7 +275,8 @@ export default Vue.extend({
       this.set_action()
       this.focus()
     },
-    focus() {
+
+    focus(): void {
       // Set focus on last input
       this.$nextTick(() => {
         const inputs = Array.from(
@@ -245,7 +287,8 @@ export default Vue.extend({
         inputs[inputs.length - 1].focus()
       })
     },
-    set_action() {
+
+    set_action(): void {
       this.elems_action = JSON.parse(JSON.stringify(this.elems_action_base))
       this.elems_deleted = {}
       Object.entries(this.elems).forEach(([type_id, elem]) => {
@@ -283,7 +326,8 @@ export default Vue.extend({
         })
       })
     },
-    delete_tag(type_id, key) {
+
+    delete_tag(type_id: string, key: string): void {
       if (this.elems_action[type_id][key] == 'del') {
         const tag = this.elems_base[type_id].tags.find((tag) => tag.key == key)
         this.elems[type_id].tags.unshift(tag)
@@ -295,7 +339,8 @@ export default Vue.extend({
       }
       this.focus()
     },
-    beforeunload(event) {
+
+    beforeunload(event: Event): void {
       if (this.edition_stack.length > 0) {
         event.preventDefault()
         event.returnValue = ''

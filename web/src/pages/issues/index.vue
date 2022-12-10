@@ -415,15 +415,47 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import TimeAgo from 'vue2-timeago'
 
 import VueParent from '../Parent.vue'
 import IssuesList from '../../components/issues-list.vue'
 import Translate from '../../components/translate.vue'
 
+interface ErrorsGroup {
+  analyser: string
+  country: string
+  analyser_country: string
+}
+
 export default VueParent.extend({
-  data() {
+  data(): {
+    error: boolean
+    favicon?: string
+    countries: string[]
+    items: number[]
+    errors_groups: ErrorsGroup[]
+    total: number
+    opt_date: boolean
+    main_website: string
+    remote_url_read: string
+    query: string
+    country: string
+    item: number
+    level: number[]
+    limit: number
+    source: number
+    class_: number[]
+    tags_list: string[]
+    tags: string[]
+    useDevItem: string
+    username: string[]
+    bbox: number[][]
+    fixable: string
+    full_filter: boolean
+    extra_filter_number: number
+    gen: string
+  } {
     return {
       error: false,
       favicon: null,
@@ -452,31 +484,37 @@ export default VueParent.extend({
       gen: undefined,
     }
   },
+
   computed: {
     api_url: () => API_URL,
     api_url_path: () => API_URL + window.location.pathname,
   },
+
   components: {
     IssuesList,
     TimeAgo,
     Translate,
   },
+
   watch: {
     $route() {
       this.render()
     },
   },
+
   mounted() {
     this.render()
   },
+
   methods: {
-    sortable: (data) => {
+    sortable(data: ErrorsGroup[]): ErrorsGroup[] {
       return data.map((res) => {
         res.analyser_country = res.analyser + '-' + res.country
         return res
       })
     },
-    render: function () {
+
+    render(): void {
       this.country = this.$route.query.country
       this.item = this.$route.query.item
       this.level = this.$route.query.level
@@ -549,12 +587,14 @@ export default VueParent.extend({
         }
       )
     },
-    show_more: function () {
+
+    show_more(): void {
       var query = Object.assign({}, this.$route.query)
       query.limit = this.limit ? this.limit * 5 : 500
       this.$router.push({ name: this.$route.name, query })
     },
-    count_extra_filter_number() {
+
+    count_extra_filter_number(): void {
       this.extra_filter_number =
         (this.source ? 1 : 0) +
         (this.class_ || this.class_ === 0 || this.class_ === '0' ? 1 : 0) +

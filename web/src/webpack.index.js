@@ -4,4 +4,4 @@ import 'vue';
 import 'vue-router';
 import 'vue-i18n';
 
-import './index.js';
+import './index.ts';

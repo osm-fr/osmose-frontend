@@ -2,7 +2,7 @@
   <div id="map"></div>
 </template>
 
-<script>
+<script lang="ts">
 import 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-plugins/control/Permalink.js'
@@ -24,14 +24,28 @@ import OsmoseMarker from '../../../static/map/Osmose.Marker'
 import OsmoseHeatmap from '../../../static/map/Osmose.Heatmap'
 
 export default Vue.extend({
-  props: ['itemState', 'mapState'],
-  data() {
+  props: {
+    itemState: {
+      type: String,
+      required: true,
+    },
+    mapState: {
+      type: String,
+      required: true,
+    },
+  },
+
+  data(): {
+    markerLayer: Object
+    heatmapLayer: Object
+  } {
     return {
       markerLayer: null,
       heatmapLayer: null,
     }
   },
-  mounted() {
+
+  mounted(): void {
     // Layers
     this.markerLayer = new OsmoseMarker(
       this.itemState,
@@ -89,16 +103,18 @@ export default Vue.extend({
 
     this.updateLayer()
   },
+
   watch: {
     itemState: {
       deep: true,
-      handler() {
+      handler(): void {
         this.updateLayer()
       },
     },
   },
+
   methods: {
-    updateLayer() {
+    updateLayer(): void {
       const state = Object.assign({}, this.itemState)
       delete state.issue_uuid
 

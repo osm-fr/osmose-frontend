@@ -290,14 +290,46 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 
-import ExternalVueAppEvent from '../../ExternalVueAppEvent.js'
+import ExternalVueAppEvent from '../../ExternalVueAppEvent'
+import { Elem, Fix } from '../../types'
 
 export default Vue.extend({
-  props: ['main_website', 'remote_url_read', 'markerLayer'],
-  data() {
+  props: {
+    main_website: {
+      type: String,
+      required: true,
+    },
+    remote_url_read: {
+      type: String,
+      required: true,
+    },
+    markerLayer: {
+      type: Object,
+      required: true,
+    },
+  },
+
+  data(): {
+    status: 'clean' | 'error' | 'loading' | 'fill'
+    error?: string
+    uuid?: string
+    item?: number
+    class?: number
+    title?: string
+    subtitle?: string
+    b_date?: string
+    elems?: Elem[]
+    new_elems?: Elem[]
+    lon?: number
+    lat?: number
+    minlat?: number
+    maxlat?: number
+    minlon?: number
+    maxlon?: number
+  } {
     return {
       status: 'clean',
       error: null,
@@ -317,21 +349,26 @@ export default Vue.extend({
       maxlon: null,
     }
   },
+
   computed: {
-    api_url: () =>
-      (API_URL.startsWith('http') ? '' : location.protocol) + API_URL,
-    classs: function () {
+    api_url(): string {
+      return (API_URL.startsWith('http') ? '' : location.protocol) + API_URL
+    },
+
+    classs(): string {
       return this.class
     },
   },
-  mounted() {
+
+  mounted(): void {
     ExternalVueAppEvent.$on('popup-status', (status) => {
       this.status = status
     })
     ExternalVueAppEvent.$on('popup-load', this.load)
   },
+
   methods: {
-    load(uuid) {
+    load(uuid: string): void {
       fetch(API_URL + `/api/0.3/issue/${uuid}?langs=auto`, {
         headers: new Headers({
           'Accept-Language': this.$route.params.lang,
@@ -351,11 +388,13 @@ export default Vue.extend({
           this.status = 'error'
         })
     },
-    setDone(uuid) {
+
+    setDone(uuid: string): void {
       fetch(API_URL + `/api/0.3/issue/${uuid}/done`)
       this.markerLayer._dismissMarker()
     },
-    setFalsePositive(uuid) {
+
+    setFalsePositive(uuid: string): void {
       const message = this.$t(
         'Report the issue as improper, if according to you is not an issue. The issue will not be displayed to anyone more.'
       )
@@ -364,10 +403,12 @@ export default Vue.extend({
         this.markerLayer._dismissMarker()
       }
     },
-    editor(uuid, fix) {
+
+    editor(uuid: string, fix: Fix): void {
       this.$emit('fix-edit', { uuid, fix })
     },
-    doc(item, classs) {
+
+    doc(item: number, classs: number): void {
       this.markerLayer._help(item, classs)
     },
   },

@@ -15,20 +15,37 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 
 import SidebarToggle from '../../../static/map/SidebarToggle.js'
 
 export default Vue.extend({
-  props: ['error', 'map', 'mapState'],
-  data() {
+  props: {
+    error: {
+      type: String,
+      required: true,
+    },
+    map: {
+      type: Object,
+      required: true,
+    },
+    mapState: {
+      type: Object,
+      required: true,
+    },
+  },
+
+  data(): {
+    leafletSideBar: Object
+  } {
     return {
       leafletSideBar: null,
     }
   },
+
   watch: {
-    map: function () {
+    map(): void {
       if (this.map) {
         this.leafletSideBar = new SidebarToggle(this.map, 'menu', {
           position: 'left',
@@ -45,8 +62,9 @@ export default Vue.extend({
       }
     },
   },
+
   computed: {
-    need_zoom() {
+    need_zoom(): boolean {
       return !(
         this.mapState.zoom >= 7 ||
         (this.mapState.zoom >= 5 && this.mapState.lat > 60) ||

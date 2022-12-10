@@ -55,7 +55,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import VueParent from '../Parent.vue'
 import Top from './top.vue'
 import LMap from './map.vue'
@@ -65,11 +65,35 @@ import ItemsList from './items-list.vue'
 import Doc from './doc.vue'
 import Editor from './editor.vue'
 import Popup from './popup.vue'
+import { ItemState, LanguagesName, Category } from '../../types'
+
+interface MapState {
+  lat: number
+  lon: number
+  zoom: number
+}
 
 export default VueParent.extend({
-  data() {
+  data(): {
+    error?: string
+    languages_name: LanguagesName[]
+    user: string
+    user_error_count: { [level: number]: number }
+    timestamp: string
+    tags: string[]
+    countries: string[]
+    categories: Category[]
+    main_website: string
+    remote_url_read: string
+    map: Object
+    markerLayer: Object
+    heatmapLayer: Object
+    item_levels: {}
+    itemState: ItemState
+    mapState: MapState
+  } {
     return {
-      error: false,
+      error: undefined,
       languages_name: [],
       user: null,
       user_error_count: null,
@@ -82,7 +106,6 @@ export default VueParent.extend({
       map: null,
       markerLayer: null,
       heatmapLayer: null,
-      menu: null,
       item_levels: {},
       itemState: {
         item: 'xxxx',
@@ -104,6 +127,7 @@ export default VueParent.extend({
       },
     }
   },
+
   components: {
     Top,
     LMap,
@@ -114,23 +138,27 @@ export default VueParent.extend({
     Editor,
     Popup,
   },
-  created() {
+
+  created(): void {
     document.querySelector(
       'head'
     ).innerHTML += `<link rel="stylesheet" href="${API_URL}/assets/sprites.css" type="text/css"/>`
     this.initializeItemState()
     this.initializeMapState()
   },
-  mounted() {
+
+  mounted(): void {
     this.setData()
   },
+
   watch: {
-    $route(to, from) {
+    $route(to, from): void {
       if (to.params.lang != from.params.lang) {
         this.setData()
       }
     },
-    map(newMap, oldMap) {
+
+    map(newMap: Object, oldMap: Object): void {
       if (!oldMap && newMap) {
         this.map.on('zoomend moveend', () => {
           this.mapState.lat = this.map.getCenter().lat
@@ -153,23 +181,26 @@ export default VueParent.extend({
         })
       }
     },
+
     itemState: {
       deep: true,
-      handler() {
+      handler(): void {
         this.saveItemState()
       },
     },
+
     mapState: {
       deep: true,
-      handler() {
+      handler(): void {
         this.saveMapState()
       },
     },
   },
+
   methods: {
-    getUrlVars() {
+    getUrlVars(): { [key: string]: string } {
       const vars = {}
-      let hash
+      let hash: string[]
       if (window.location.href.indexOf('#') >= 0) {
         const hashes = window.location.href
           .slice(window.location.href.indexOf('#') + 1)
@@ -181,14 +212,16 @@ export default VueParent.extend({
       }
       return vars
     },
-    filter(keys, state) {
+
+    filter(keys: string[], state): void {
       return Object.fromEntries(
         Object.entries(state).filter(
           ([key, val]) => val !== undefined && val != null && keys.includes(key)
         )
       )
     },
-    initializeItemState() {
+
+    initializeItemState(): void {
       const keys = Object.keys(this.itemState)
 
       const urlState = this.filter(keys, this.getUrlVars())
@@ -206,7 +239,8 @@ export default VueParent.extend({
 
       Object.assign(this.itemState, localStorageState, urlState)
     },
-    initializeMapState() {
+
+    initializeMapState(): void {
       const keys = Object.keys(this.mapState)
 
       const urlState = this.filter(keys, this.getUrlVars())
@@ -224,14 +258,17 @@ export default VueParent.extend({
 
       Object.assign(this.mapState, localStorageState, urlState)
     },
-    saveItemState() {
+
+    saveItemState(): void {
       localStorage.setItem('itemState', JSON.stringify(this.itemState))
       this.permalink._update(this.itemState)
     },
-    saveMapState() {
+
+    saveMapState(): void {
       localStorage.setItem('mapState', JSON.stringify(this.mapState))
     },
-    setData() {
+
+    setData(): void {
       this.fetchJsonProgressAssign(
         API_URL + window.location.pathname + '.json' + window.location.search,
         (response) => {
@@ -254,7 +291,8 @@ export default VueParent.extend({
         }
       )
     },
-    onHideItemMarkers(disabled_item) {
+
+    onHideItemMarkers(disabled_item): void {
       this.$refs['items-list'].toggle_item(disabled_item, false)
     },
   },

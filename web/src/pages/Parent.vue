@@ -1,14 +1,21 @@
-<script>
+<script lang="ts">
 import Vue from 'vue'
 
 export default Vue.extend({
-  data() {
+  data(): {
+    error?: string
+  } {
     return {
-      error: false,
+      error: undefined,
     }
   },
+
   methods: {
-    fetchJson(url, callback = () => {}, errorCallback = () => {}) {
+    fetchJson(
+      url: string,
+      callback = (json: Object) => {},
+      errorCallback = (error) => {}
+    ) {
       fetch(url, {
         headers: new Headers({
           'Accept-Language': this.$route.params.lang,
@@ -26,7 +33,8 @@ export default Vue.extend({
           errorCallback(error)
         })
     },
-    fetchJsonProgress(url, callback = () => {}) {
+
+    fetchJsonProgress(url, callback = (response: Object) => {}) {
       this.$refs.topProgress.start()
       this.fetchJson(
         url,
@@ -39,13 +47,15 @@ export default Vue.extend({
         }
       )
     },
-    fetchJsonProgressAssign(url, callback = () => {}) {
+
+    fetchJsonProgressAssign(url, callback = (response: Object) => {}) {
       this.fetchJsonProgress(url, (response) => {
         Object.assign(this, response)
         callback(response)
       })
     },
-    fetchJsonAssign(url, callback = () => {}) {
+
+    fetchJsonAssign(url, callback = (response: Object) => {}) {
       this.fetchJson(url, (response) => {
         Object.assign(this, response)
         callback(response)

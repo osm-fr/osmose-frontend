@@ -121,22 +121,7 @@
 import VueParent from '../Parent.vue'
 import MarkerDetails from '../../components/marker-details.vue'
 import ShowTags from '../../components/show-tags.vue'
-
-type Type = 'N' | 'W' | 'R' | 'I'
-
-interface Elem {
-  type: Type
-  id: string
-  tags: { [key: string]: string }
-}
-
-interface Fix {
-  type: string
-  id: string
-  create: { [key: string]: string }
-  modify: { [key: string]: string }
-  delete: string[]
-}
+import { Elem, Fix, Type } from '../../types'
 
 export default VueParent.extend({
   data(): {

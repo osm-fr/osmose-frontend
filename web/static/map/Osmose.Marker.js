@@ -6,7 +6,7 @@ import 'leaflet-responsive-popup/leaflet.responsive.popup.rtl.css';
 import './leaflet-osm';
 import 'leaflet-textpath';
 
-import ExternalVueAppEvent from '../../src/ExternalVueAppEvent.js'
+import ExternalVueAppEvent from '../../src/ExternalVueAppEvent'
 import IconLimit from '../images/limit.png';
 
 

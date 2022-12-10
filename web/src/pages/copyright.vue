@@ -28,11 +28,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 
 export default Vue.extend({
-  mounted() {
+  mounted(): void {
     document.title = 'Osmose - ' + this.$t('Copyright information')
   },
 })

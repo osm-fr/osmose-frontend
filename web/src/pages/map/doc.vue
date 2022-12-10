@@ -106,16 +106,33 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Marked from 'marked'
 
 import VueParent from '../Parent.vue'
 import SidebarToggle from '../../../static/map/SidebarToggle.js'
-import ExternalVueAppEvent from '../../ExternalVueAppEvent.js'
+import ExternalVueAppEvent from '../../ExternalVueAppEvent'
 
 export default VueParent.extend({
-  props: ['map'],
-  data() {
+  props: {
+    map: {
+      type: Object,
+      required: true,
+    },
+  },
+
+  data(): {
+    error: boolean
+    welcome: boolean
+    title?: string
+    detail?: string
+    fix?: string
+    trap?: string
+    example?: string
+    source_link?: string
+    resource_link?: string
+    item?: number
+  } {
     return {
       error: false,
       welcome: true,
@@ -129,12 +146,14 @@ export default VueParent.extend({
       item: null,
     }
   },
+
   mounted() {
     ExternalVueAppEvent.$on('show-doc', (e) => this.showDoc(e.item, e.classs))
     ExternalVueAppEvent.$on('load-doc', (e) => this.setDoc(e.item, e.classs))
   },
+
   watch: {
-    $route(to, from) {
+    $route(to, from): void {
       if (
         typeof this._last_item !== 'undefined' &&
         to.params.lang != from.params.lang
@@ -142,7 +161,8 @@ export default VueParent.extend({
         this.setDoc(this._last_item, this._last_classs)
       }
     },
-    map: function () {
+
+    map(): void {
       this.leafletSideBar = new SidebarToggle(this.map, 'doc', {
         position: 'right',
         localStorageProperty: 'doc.show',
@@ -155,15 +175,18 @@ export default VueParent.extend({
       this.map.addControl(this.leafletSideBar)
     },
   },
+
   methods: {
-    showDoc(item, classs) {
+    showDoc(item: number, classs: number): void {
       this.leafletSideBar.show()
       this.setDoc(item, classs)
     },
-    basename(path) {
+
+    basename(path: string): string {
       return path.split(/[\\/]/).pop()
     },
-    setDoc(item, classs) {
+
+    setDoc(item: number, classs: string): void {
       if (
         item == this._last_item &&
         classs == this._last_classs &&

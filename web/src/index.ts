@@ -1,14 +1,14 @@
 import Vue from 'vue'
-import { router } from './router.js'
-import { i18n, loadLanguageAsync } from './i18n.js'
+import { router } from './router'
+import { i18n, loadLanguageAsync } from './i18n'
 import SortedTablePlugin from "vue-sorted-table"
 import numeral from 'numeral'
 import numFormat from 'vue-filter-number-format'
 import vueTopprogress from 'vue-top-progress'
 
 import App from './app.vue'
-import Translate from "./components/translate.vue";
-import TranslateSlot from "./components/translate-slot.vue";
+import Translate from './components/translate.vue'
+import TranslateSlot from './components/translate-slot.vue'
 
 Vue.use(vueTopprogress)
 Vue.use(SortedTablePlugin);

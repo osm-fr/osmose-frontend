@@ -90,12 +90,25 @@
   </div>
 </template>
 
-<script>
-import Vue from 'vue'
+<script lang="ts">
+import Vue, { PropType } from 'vue'
 
 export default Vue.extend({
-  props: ['edition_stack'],
-  data() {
+  props: {
+    edition_stack: {
+      type: Array as PropType<string[]>,
+      required: true,
+    },
+  },
+
+  data(): {
+    comment: string
+    source: string
+    type: 'fix'
+    reuse_changeset: boolean
+    status: 'upload' | 'save' | 'error'
+    error?: string
+  } {
     return {
       comment: this.$t('Fixed with Osmose'),
       source: '',
@@ -105,6 +118,7 @@ export default Vue.extend({
       error: null,
     }
   },
+
   methods: {
     save() {
       this.status = 'upload'

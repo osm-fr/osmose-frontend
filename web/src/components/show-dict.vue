@@ -9,22 +9,19 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue'
-
-interface KV {
-  [key: string]: string
-}
+import { Tag } from '../types'
 
 export default Vue.extend({
   props: {
     dict: {
-      type: Object as PropType<KV>,
+      type: Object as PropType<Tag>,
       required: true,
     },
   },
 
   methods: {
-    sortObject(o: KV): KV {
-      const ret: KV = {}
+    sortObject(o: Tag): Tag {
+      const ret: Tag = {}
       return Object.keys(o)
         .sort()
         .reduce((r, k) => ((r[k] = o[k]), r), ret)

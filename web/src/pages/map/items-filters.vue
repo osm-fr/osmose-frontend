@@ -166,20 +166,40 @@
   </div>
 </template>
 
-<script>
-import Vue from 'vue'
+<script lang="ts">
+import Vue, { PropType } from 'vue'
 import _ from 'lodash'
+import { ItemState } from '../../types'
 
 export default Vue.extend({
-  props: ['original_tags', 'countries', 'itemState'],
-  data() {
+  props: {
+    original_tags: {
+      type: Array as PropType<string[]>,
+      required: true,
+    },
+    countries: {
+      type: Array as PropType<string[]>,
+      required: true,
+    },
+    itemState: {
+      type: Object as PropType<ItemState>,
+      required: true,
+    },
+  },
+
+  data(): {
+    tags: string[]
+    state: ItemState
+    extra_filter: boolean
+  } {
     return {
       tags: [],
       state: Object.assign({}, this.itemState),
       extra_filter: false,
     }
   },
-  mounted() {
+
+  mounted(): void {
     if (
       this.state.class != null ||
       this.state.useDevItem ||
@@ -190,21 +210,24 @@ export default Vue.extend({
       this.extra_filter = true
     }
   },
+
   watch: {
-    original_tags: function () {
+    original_tags(): void {
       if (this.original_tags) {
         this.tags = this.original_tags
       }
     },
+
     state: {
       deep: true,
-      handler() {
+      handler(): void {
         this.$emit('state-update', Object.assign({}, this.state))
       },
     },
+
     itemState: {
       deep: true,
-      handler() {
+      handler(): void {
         if (!_.isEqual(this.itemState, this.state)) {
           this.state = Object.assign({}, this.itemState)
         }

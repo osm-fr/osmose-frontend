@@ -67,13 +67,33 @@
   </div>
 </template>
 
-<script>
-import Vue from 'vue'
+<script lang="ts">
+import Vue, { PropType } from 'vue'
 import _ from 'lodash'
+import { ItemState, Category, Levels, Item } from '../../types'
 
 export default Vue.extend({
-  props: ['categories', 'item_levels', 'itemState'],
-  data() {
+  props: {
+    categories: {
+      type: Array as PropType<Category[]>,
+      required: true,
+    },
+    item_levels: {
+      type: Array as PropType<Levels>,
+      required: true,
+    },
+    itemState: {
+      type: Object as PropType<ItemState>,
+      required: true,
+    },
+  },
+
+  data(): {
+    active_levels: Levels
+    total_items: { [category: number]: number }
+    count_items: { [category: number]: number }
+    state: ItemState
+  } {
     return {
       active_levels: ['1', '2', '3'],
       total_items: {},
@@ -81,19 +101,22 @@ export default Vue.extend({
       state: Object.assign({}, this.itemState),
     }
   },
+
   watch: {
-    categories: function () {
+    categories(): void {
       this.set_item(this.state)
     },
+
     state: {
       deep: true,
-      handler() {
+      handler(): void {
         this.$emit('state-update', Object.assign({}, this.state))
       },
     },
+
     itemState: {
       deep: true,
-      handler() {
+      handler(): void {
         if (!_.isEqual(this.itemState, this.state)) {
           this.state = Object.assign({}, this.itemState)
           this.set_item(this.state)
@@ -101,11 +124,12 @@ export default Vue.extend({
       },
     },
   },
+
   computed: {
-    categories_format() {
-      return this.categories.map((categorie) => {
+    categories_format(): { [category: number]: number } {
+      return this.categories.map((categorie: Category) => {
         this.total_items[categorie.id] = categorie.items.length
-        categorie.items = categorie.items.map((item) => {
+        categorie.items = categorie.items.map((item: Item) => {
           item.class_format =
             this.$t('Item #{item}', { item: item.item }) +
             '\n' +
@@ -121,9 +145,13 @@ export default Vue.extend({
       })
     },
   },
+
   methods: {
-    _select_items_loop(callback, categ_id) {
-      this.categories.forEach((categorie) => {
+    _select_items_loop(
+      callback: (item: Item) => boolean,
+      categ_id: number
+    ): void {
+      this.categories.forEach((categorie: Category) => {
         if (!categ_id || categorie.id == categ_id) {
           this.count_items[categorie.id] = 0
           categorie.items.forEach((item) => {
@@ -137,49 +165,58 @@ export default Vue.extend({
         }
       })
     },
-    set_item(newState) {
+
+    set_item(newState: State): void {
       const itemRegex = newState.item
         .split(',')
         .filter((item) => item != '')
         .map((item) => new RegExp(item.replace(/x/g, '.')))
-      this._select_items_loop((item) =>
+      this._select_items_loop((item: Item) =>
         itemRegex.some((regex) => regex.test(('000' + item.item).slice(-4)))
       )
       this.$forceUpdate()
     },
-    showItem(item) {
+
+    showItem(item: Item): boolean | string {
       return (
         this.item_levels[this.state.level].indexOf(item.item) >= 0 &&
         (!this.state.tags ||
           (item.tags && item.tags.indexOf(this.state.tags) >= 0))
       )
     },
-    toggle_all(how) {
-      this._select_items_loop((item) => (how === -1 ? !item.selected : how))
+
+    toggle_all(how: boolean | -1): void {
+      this._select_items_loop((item: Item) =>
+        how === -1 ? !item.selected : how
+      )
       this.$forceUpdate()
       this.itemsChanged()
     },
-    toggle_categorie(categ_id, how) {
+
+    toggle_categorie(categ_id: number, how: (item: Item) => boolean): void {
       this._select_items_loop(() => how, categ_id)
       this.$forceUpdate()
       this.itemsChanged()
     },
-    toggle_item(item_id, selected) {
-      this._select_items_loop((item) =>
+
+    toggle_item(item_id: number, selected: boolean): void {
+      this._select_items_loop((item: Item) =>
         item.item === item_id ? selected : item.selected
       )
       this.$forceUpdate()
       this.itemsChanged()
     },
-    toggle_categorie_block(categ_id) {
+
+    toggle_categorie_block(categ_id: number): void {
       const block = document.getElementById(`categorie_block_${categ_id}`)
       block.style.height = block.style.height == '0px' ? '' : '0px'
     },
-    itemsChanged() {
+
+    itemsChanged(): void {
       var full_categ = 0
       var item_mask = this.categories
-        .filter((categorie) => this.count_items[categorie.id] > 0)
-        .map((categorie) => {
+        .filter((categorie: Category) => this.count_items[categorie.id] > 0)
+        .map((categorie: Category) => {
           if (
             this.total_items[categorie.id] == this.count_items[categorie.id]
           ) {
