@@ -13,7 +13,6 @@ module.exports = {
     // '@nuxtjs/eslint-config-typescript',
     'plugin:vue/vue3-recommended',
     'plugin:prettier/recommended',
-    'plugin:nuxt/recommended',
     'plugin:import/warnings',
     'plugin:import/typescript',
     // Make sure "prettier" is the last element in this list.
