@@ -39,7 +39,7 @@
     "@typescript-eslint/eslint-plugin": "^5.46.0",
     "babel-loader": "^8.2.2",
     "base64-image-loader": "^1.2.1",
-    "css-loader": "^0.28.7",
+    "css-loader": "^6.7.2",
     "easygettext": "^2.17.0",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
