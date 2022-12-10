@@ -1,5 +1,5 @@
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 from typing import List, Literal, Optional, Union
 
@@ -15,26 +15,26 @@ UseDevItem = Literal["false", "true", "all"]
 
 @dataclass
 class Params:
-    bbox: Optional[List[float]]
-    item: Optional[str]
-    source: Optional[List[List[int]]]
-    classs: Optional[List[int]]
-    users: Optional[List[str]]
-    level: Optional[List[int]]
-    full: bool
-    zoom: Optional[int]
-    limit: int
-    country: Optional[str]
-    useDevItem: UseDevItem
-    status: Optional[Status]
-    start_date: Optional[datetime]
-    end_date: Optional[datetime]
-    tags: Optional[List[str]]
-    fixable: Fixable
-    osm_type: Optional[str]
-    osm_id: Optional[int]
-    tilex: Optional[int]
-    tiley: Optional[int]
+    bbox: Optional[List[float]] = None
+    item: Optional[str] = None
+    source: List[List[int]] = field(default_factory=list)
+    classs: List[int] = field(default_factory=list)
+    users: Optional[List[str]] = None
+    level: Optional[List[int]] = None
+    full: bool = False
+    zoom: Optional[int] = None
+    limit: int = 100
+    country: Optional[str] = None
+    useDevItem: UseDevItem = "false"
+    status: Optional[Status] = None
+    start_date: Optional[datetime] = None
+    end_date: Optional[datetime] = None
+    tags: Optional[List[str]] = None
+    fixable: Fixable = None
+    osm_type: Optional[str] = None
+    osm_id: Optional[int] = None
+    tilex: Optional[int] = None
+    tiley: Optional[int] = None
 
     def __init__(
         self,
@@ -86,7 +86,6 @@ class Params:
                 self.level = [int(x) for x in levels if x]
             except Exception:
                 self.level = [1, 2, 3]
-        self.bbox = None
         if bbox:
             try:
                 self.bbox = list(map(lambda x: float(x), bbox.split(",")))
@@ -117,10 +116,8 @@ class Params:
             self.useDevItem = "all"
         else:
             self.useDevItem = "false"
-        self.start_date = None
         if start_date:
             self.start_date = utils.str_to_datetime(start_date)
-        self.end_date = None
         if end_date:
             self.end_date = utils.str_to_datetime(end_date)
         self.tags = tags.split(",") if tags else None
