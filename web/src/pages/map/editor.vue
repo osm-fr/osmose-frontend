@@ -30,20 +30,25 @@
             <template v-for="tag in elems_deleted[type_id]">
               <editor-tag
                 :key="tag.id"
-                v-model:tag_key="tag.key"
-                v-model:tag_value="tag.value"
+                :tag_key="tag.key"
+                :tag_value="tag.value"
                 action="del"
                 @delete="delete_tag(type_id, tag.key)"
+                @update_tag_key="tag.key = $event"
+                @update_tag_value="tag.value = $event"
               />
             </template>
             <template v-for="tag in elem.tags">
               <editor-tag
                 :key="tag.id"
-                v-model:tag_key="tag.key"
-                v-model:tag_value="tag.value"
-                v-model:leading_equal="tag.leading_equal"
+                :tag_key="tag.key"
+                :tag_value="tag.value"
+                :leading_equal="tag.leading_equal"
                 :action="elems_action[type_id][tag.key]"
                 @delete="delete_tag(type_id, tag.key)"
+                @update_tag_key="tag.key = $event"
+                @update_tag_value="tag.value = $event"
+                @update_leading_equal="tag.leading_equal = $event"
               />
             </template>
           </div>

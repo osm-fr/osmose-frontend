@@ -65,9 +65,9 @@ export default Vue.extend({
       if (key == '' && value == '') {
         this.$emit('delete')
       } else {
-        this.$emit('update:tag_key', key)
-        this.$emit('update:tag_value', value)
-        this.$emit('update:leading_equal', index == key_value.length - 1)
+        this.$emit('update_tag_key', key)
+        this.$emit('update_tag_value', value)
+        this.$emit('update_leading_equal', index == key_value.length - 1)
       }
     },
 
