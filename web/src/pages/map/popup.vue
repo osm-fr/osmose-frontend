@@ -291,7 +291,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue, { PropType } from 'vue'
 
 import ExternalVueAppEvent from '../../ExternalVueAppEvent'
 import { Elem, Fix } from '../../types'
@@ -307,8 +307,8 @@ export default Vue.extend({
       required: true,
     },
     markerLayer: {
-      type: Object,
-      required: true,
+      type: Object as PropType<Object | null>,
+      default: null,
     },
   },
 

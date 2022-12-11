@@ -16,19 +16,19 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue, { PropType } from 'vue'
 
 import SidebarToggle from '../../../static/map/SidebarToggle.js'
 
 export default Vue.extend({
   props: {
     error: {
-      type: String,
-      required: true,
+      type: Error as PropType<Error | undefined>,
+      default: undefined,
     },
     map: {
-      type: Object,
-      required: true,
+      type: Object as PropType<Object | null>,
+      default: null,
     },
     mapState: {
       type: Object,

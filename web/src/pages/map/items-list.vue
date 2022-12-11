@@ -80,7 +80,7 @@ export default Vue.extend({
       required: true,
     },
     item_levels: {
-      type: Array as PropType<Levels>,
+      type: Object as PropType<{ [level: number]: number[] }>,
       required: true,
     },
     itemState: {

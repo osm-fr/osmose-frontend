@@ -62,7 +62,7 @@ export default VueParent.extend({
     sorted_analysers_sum: { [country: string]: number }
   } {
     return {
-      error: false,
+      error: undefined,
       total: 0,
       sorted_countries_sum: {},
       sorted_analysers_sum: {},

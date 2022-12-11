@@ -217,7 +217,7 @@ export default VueParent.extend({
     errors: boolean
   } {
     return {
-      error: false,
+      error: undefined,
       errors: false,
     }
   },

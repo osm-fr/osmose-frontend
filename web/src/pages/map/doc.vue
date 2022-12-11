@@ -108,6 +108,7 @@
 
 <script lang="ts">
 import Marked from 'marked'
+import { PropType } from 'vue'
 
 import SidebarToggle from '../../../static/map/SidebarToggle.js'
 import ExternalVueAppEvent from '../../ExternalVueAppEvent'
@@ -116,8 +117,8 @@ import VueParent from '../Parent.vue'
 export default VueParent.extend({
   props: {
     map: {
-      type: Object,
-      required: true,
+      type: Object as PropType<Object | null>,
+      default: null,
     },
   },
 
@@ -134,7 +135,7 @@ export default VueParent.extend({
     item?: number
   } {
     return {
-      error: false,
+      error: undefined,
       welcome: true,
       title: null,
       detail: null,

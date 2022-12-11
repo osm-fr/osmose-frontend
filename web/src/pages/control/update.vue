@@ -47,7 +47,7 @@ export default VueParent.extend({
     list: Update[]
   } {
     return {
-      error: false,
+      error: undefined,
       list: [],
     }
   },

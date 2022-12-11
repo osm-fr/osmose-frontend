@@ -133,7 +133,7 @@ export default VueParent.extend({
     }
   } {
     return {
-      error: false,
+      error: undefined,
       uuid: '',
       marker: {
         elems: [],

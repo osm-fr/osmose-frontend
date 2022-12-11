@@ -56,7 +56,7 @@ export default VueParent.extend({
     remote_keys: string[]
   } {
     return {
-      error: false,
+      error: undefined,
       remote_keys: [],
     }
   },

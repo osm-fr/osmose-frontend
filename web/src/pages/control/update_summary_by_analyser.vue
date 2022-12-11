@@ -59,7 +59,7 @@ export default VueParent.extend({
     summary: { [analyser: string]: Summary }
   } {
     return {
-      error: false,
+      error: undefined,
       summary: {},
     }
   },

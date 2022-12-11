@@ -36,8 +36,10 @@ export interface ItemState {
 }
 
 export interface LanguagesName {
-  name: string
-  direction: string
+  [lang: string]: {
+    name: string
+    direction?: string
+  }
 }
 
 export type Levels = ('1' | '2' | '3')[]

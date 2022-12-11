@@ -201,8 +201,8 @@ export default Vue.extend({
   },
   props: {
     map: {
-      type: Object,
-      required: true,
+      type: Object as PropType<Object | null>,
+      default: null,
     },
     mapState: {
       type: Object,
@@ -217,16 +217,16 @@ export default Vue.extend({
       required: true,
     },
     user: {
-      type: String,
-      required: true,
+      type: String as PropType<string | undefined>,
+      default: undefined,
     },
     user_error_count: {
-      type: Object as PropType<{ [level: number]: number }>,
-      required: true,
+      type: Object as PropType<{ [level: number]: number } | null>,
+      default: null,
     },
     timestamp: {
-      type: String,
-      required: true,
+      type: String as PropType<string | undefined>,
+      default: undefined,
     },
   },
 

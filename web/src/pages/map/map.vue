@@ -26,11 +26,11 @@ import OsmoseMarker from '../../../static/map/Osmose.Marker'
 export default Vue.extend({
   props: {
     itemState: {
-      type: String,
+      type: Object,
       required: true,
     },
     mapState: {
-      type: String,
+      type: Object,
       required: true,
     },
   },

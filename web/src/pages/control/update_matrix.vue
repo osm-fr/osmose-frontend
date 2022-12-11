@@ -63,7 +63,7 @@ export default VueParent.extend({
     stats_country: number[][]
   } {
     return {
-      error: false,
+      error: undefined,
       keys: [],
       matrix_keys: [],
       matrix: [],

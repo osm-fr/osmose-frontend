@@ -38,7 +38,7 @@ export default Vue.extend({
     },
     leading_equal: {
       type: Boolean,
-      required: true,
+      required: undefined,
     },
     action: {
       type: String as PropType<'same' | 'del' | 'mod' | 'add'>,

@@ -455,7 +455,7 @@ export default VueParent.extend({
     gen: string
   } {
     return {
-      error: false,
+      error: undefined,
       favicon: null,
       countries: [],
       items: [],

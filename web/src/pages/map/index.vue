@@ -76,7 +76,7 @@ interface MapState {
 export default VueParent.extend({
   data(): {
     error?: string
-    languages_name: LanguagesName[]
+    languages_name: LanguagesName
     user: string
     user_error_count: { [level: number]: number }
     timestamp: string
@@ -94,7 +94,7 @@ export default VueParent.extend({
   } {
     return {
       error: undefined,
-      languages_name: [],
+      languages_name: {},
       user: null,
       user_error_count: null,
       timestamp: null,
