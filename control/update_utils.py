@@ -260,17 +260,12 @@ async def update_issue(
             $4, 'sha256'
         ) from 1 for 16), 'hex') ||
     '}')::uuid"""
-    sql_uuid = "SELECT " + uuid + " AS uuid"
 
     #  sql template
-    sql_marker = (
-        """
+    sql_marker = f"""
 INSERT INTO markers (uuid, source_id, class, item, lat, lon, elems, fixes, subtitle)
 VALUES (
-    """
-        + uuid
-        + """,
-    $1, $2, $5, $6, $7,
+    {uuid}, $1, $2, $5, $6, $7,
     -- Hack to pass variable json struct on asyncio params
     (SELECT array_agg(j) FROM jsonb_array_elements($8::jsonb) AS t(j)),
     (SELECT array_agg(j) FROM jsonb_array_elements($9::jsonb) AS t(j)),
@@ -285,9 +280,7 @@ UPDATE SET
     fixes = (SELECT array_agg(j) FROM jsonb_array_elements($9::jsonb) AS t(j)),
     subtitle = $10
 WHERE
-    markers.uuid = """
-        + uuid
-        + """ AND
+    markers.uuid = {uuid} AND
     markers.source_id = $1 AND
     markers.class = $2 AND
     (
@@ -298,13 +291,12 @@ WHERE
         markers.fixes IS DISTINCT FROM (SELECT array_agg(j) FROM jsonb_array_elements($9::jsonb) AS t(j)) OR
         markers.subtitle IS DISTINCT FROM $10
     )
+RETURNING uuid
 """
-    )
 
     for location in _error_locations:
         lat = float(location["lat"])
         lon = float(location["lon"])
-
         params = [
             _source_id,  # $1 source
             _class_id,  # $2 class
@@ -315,12 +307,6 @@ WHERE
                     _error_elements,
                 )
             ),  # $4 elems_sig
-        ]
-        r = await _db.fetchval(sql_uuid, *params)
-        if r and all_uuid is not None:
-            all_uuid[_class_id].append(r)
-
-        params += [
             _class_item,  # $5 item
             lat,  # $6 lat
             lon,  # $7 lon
@@ -328,7 +314,10 @@ WHERE
             fixes if fixes else None,  # $9 fixes
             _error_texts,  # $10 subtitle
         ]
-        await _db.execute(sql_marker, *params)
+        r = await _db.fetchval(sql_marker, *params)
+
+        if r and all_uuid is not None:
+            all_uuid[_class_id].append(r)
 
 
 class update_parser(handler.ContentHandler):
