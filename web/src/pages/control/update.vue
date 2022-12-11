@@ -53,8 +53,9 @@ export default VueParent.extend({
   },
 
   mounted() {
+    const source_id = this.$route.params.source_id
     this.fetchJsonProgressAssign(
-      API_URL + window.location.pathname + '.json' + window.location.search
+      API_URL + `/control/update/${source_id}.json` + window.location.search
     )
     document.title = 'Osmose - ' + this.$t('Update')
   },
