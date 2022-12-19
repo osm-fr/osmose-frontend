@@ -70,13 +70,15 @@ async def update(
         task.cancel()
 
     if not tasks[0].cancelled():
-        e = tasks[0].exception()
-        if e:
-            raise e
+        try:
+            tasks[0].result()
+        except asyncio.InvalidStateError:
+            pass
     if not tasks[1].cancelled():
-        e = tasks[1].exception()
-        if e:
-            raise e
+        try:
+            tasks[1].result()
+        except asyncio.InvalidStateError:
+            pass
 
     #  update subtitle from new errors
     await db.execute(
