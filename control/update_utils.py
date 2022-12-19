@@ -4,8 +4,8 @@ import gzip
 import sys
 import time
 import unittest
+import xml.parsers.expat
 from typing import Any, Dict, List, Optional
-from xml.sax import handler, make_parser
 
 import dateutil.parser
 from asyncpg import Connection
@@ -37,10 +37,9 @@ async def update(
 ) -> None:
     q: asyncio.Queue = asyncio.Queue()
 
-    async def sync_parser():
+    async def sync_parser_task():
         #  xml parser
-        parser = make_parser()
-        parser.setContentHandler(update_parser(q))
+        u = sync_update_parser(q)
 
         #  open the file
         if fname.endswith(".bz2"):
@@ -51,18 +50,31 @@ async def update(
             f = open(fname)
 
         #  parse the file
-        parser.parse(f)
+        while True:
+            if q.qsize() > 10000:
+                print("sleep")
+                await asyncio.sleep(1.0)  # Let async_parser_task get from the queue
+            else:
+                data = f.read(1024 * 1024)
+                if data:
+                    u.parse(data, False)
+                    await asyncio.sleep(
+                        0.0
+                    )  # Let async_parser_task a chance to get from the queue
+                else:
+                    u.parse("", True)
+                    break
 
         #  close and delete
         f.close()
         del f
 
-    async def async_parser():
+    async def async_parser_task():
         await async_update_parser(source_id, fname, remote_ip, db).parse(q)
 
     tasks = [
-        asyncio.create_task(sync_parser()),
-        asyncio.create_task(async_parser()),
+        asyncio.create_task(sync_parser_task()),
+        asyncio.create_task(async_parser_task()),
     ]
     done, pending = await asyncio.wait(tasks, return_when=asyncio.FIRST_EXCEPTION)
 
@@ -323,22 +335,17 @@ RETURNING uuid
             await _db.execute(sql, r)
 
 
-class update_parser(handler.ContentHandler):
+class sync_update_parser:
     def __init__(self, q: asyncio.Queue):
         self.q = q
 
-    def put(self, args: List[Any]):
-        done = False
-        while not done:
-            try:
-                self.q.put_nowait(args)
-                done = True
-            except asyncio.QueueFull:
-                time.sleep(0.05)
-                continue
+        self.parser = xml.parsers.expat.ParserCreate()
+        self.parser.StartElementHandler = self.startElement
+        self.parser.EndElementHandler = self.endElement
+        self.parser.CharacterDataHandler = self.charData
 
-    def setDocumentLocator(self, *args) -> None:
-        self.put(["setDocumentLocator", *args])
+    def put(self, args: List[Any]):
+        self.q.put_nowait(args)
 
     def startElement(self, *args) -> None:
         self.put(["startElement", *args])
@@ -346,11 +353,16 @@ class update_parser(handler.ContentHandler):
     def endElement(self, *args) -> None:
         self.put(["endElement", *args])
 
-    def endDocument(self) -> None:
-        self.put(["endDocument"])
+    def charData(self, data: str) -> None:
+        pass
+
+    def parse(self, content: bytes, terminal: bool) -> None:
+        self.parser.Parse(content, terminal)
+        if terminal:
+            self.put(["endDocument"])
 
 
-class async_update_parser(handler.ContentHandler):
+class async_update_parser:
     _source_id: int
     _source_url: str
     _remote_ip: Optional[str]
@@ -400,9 +412,7 @@ class async_update_parser(handler.ContentHandler):
             a = await q.get()
             f = a[0]
             args = a[1:]
-            if f == "setDocumentLocator":
-                await self.setDocumentLocator(*args)
-            elif f == "startElement":
+            if f == "startElement":
                 await self.startElement(*args)
             elif f == "endElement":
                 await self.endElement(*args)
@@ -410,9 +420,6 @@ class async_update_parser(handler.ContentHandler):
 
             if f == "endDocument":
                 break
-
-    async def setDocumentLocator(self, locator) -> None:
-        self.locator = locator
 
     async def startElement(self, name: str, attrs: Dict[str, str]) -> None:
         if name == "analyser":
@@ -541,9 +548,7 @@ WHERE
         elif name == "error":
             #  add data at all location
             if len(self._error_locations) == 0:
-                print(
-                    f"No location on error found on line {self.locator.getLineNumber()}"
-                )
+                print("No location on error found")
                 return
 
             elems = list(
