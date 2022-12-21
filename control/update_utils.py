@@ -52,7 +52,6 @@ async def update(
         #  parse the file
         while True:
             if q.qsize() > 10000:
-                print("sleep")
                 await asyncio.sleep(1.0)  # Let async_parser_task get from the queue
             else:
                 data = f.read(1024 * 1024)
