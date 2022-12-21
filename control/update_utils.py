@@ -543,6 +543,7 @@ WHERE
 """,
                 self._source_id,
             )
+            await self._db.execute("DROP TABLE all_uuid")
 
         elif name == "error":
             #  add data at all location
