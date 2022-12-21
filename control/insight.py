@@ -32,8 +32,8 @@ ORDER BY
 @router.get("/update_matrix.json", tags=["insight"])
 async def update_matrix(
     db: Connection = Depends(database.db),
-    remote_param: Optional[str] = None,
-    country_param: Optional[str] = None,
+    remote: Optional[str] = None,
+    country: Optional[str] = None,
 ) -> Dict[str, Any]:
     sql = """
 SELECT DISTINCT ON (sources.id)
@@ -49,12 +49,12 @@ WHERE
 """
 
     params: List[str] = []
-    if remote_param:
-        params.append(remote_param)
+    if remote:
+        params.append(remote)
         sql += f"remote_ip = ${len(params)} AND"
 
-    if country_param:
-        params.append(country_param.replace("*", "%"))
+    if country:
+        params.append(country.replace("*", "%"))
         sql += "sources.country LIKE ${len(params)} AND"
 
     sql += """
