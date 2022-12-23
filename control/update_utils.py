@@ -251,7 +251,7 @@ WHERE
 
 async def update_issue(
     _db: Connection,
-    _store_uuid: bool,
+    all_uuid: Optional[Dict[int, List[str]]],
     _error_locations: List[Dict[str, str]],
     _source_id: int,
     _class_id: int,
@@ -329,9 +329,8 @@ RETURNING uuid
         ]
         r = await _db.fetchval(sql_marker, *params)
 
-        if r and _store_uuid:
-            sql = "INSERT INTO all_uuid (uuid) VALUES ($1)"
-            await _db.execute(sql, r)
+        if r and all_uuid is not None:
+            all_uuid[_class_id].append(r)
 
 
 class sync_update_parser:
@@ -367,7 +366,7 @@ class async_update_parser:
     _remote_ip: Optional[str]
     _class_item: Dict[int, int]
     _tstamp_updated: bool
-    _store_uuid: bool
+    all_uuid: Optional[Dict[int, List[str]]]
     mode: str
 
     element_stack: List[str]
@@ -422,13 +421,12 @@ class async_update_parser:
 
     async def startElement(self, name: str, attrs: Dict[str, str]) -> None:
         if name == "analyser":
-            await self._db.execute("CREATE TEMP TABLE all_uuid (uuid uuid)")
-            self._store_uuid = True
+            self.all_uuid = {}
             self.mode = "analyser"
             await self.update_timestamp(attrs)
 
         elif name == "analyserChange":
-            self._store_uuid = False
+            self.all_uuid = None
             self.mode = "analyserChange"
             await self.update_timestamp(attrs)
 
@@ -532,18 +530,14 @@ WHERE
     async def endElement(self, name: str) -> None:
         self.element_stack.pop()
 
-        if name == "analyser" and self._store_uuid:
-            await self._db.execute(
-                """
-DELETE FROM
-    markers
-WHERE
-    markers.source_id = $1 AND
-    markers.uuid != ALL (SELECT array_agg(uuid) FROM all_uuid)
-""",
-                self._source_id,
-            )
-            await self._db.execute("DROP TABLE all_uuid")
+        if name == "analyser" and self.all_uuid:
+            for class_id, uuid in self.all_uuid.items():
+                await self._db.execute(
+                    "DELETE FROM markers WHERE source_id = $1 AND class = $2 AND uuid != ALL ($3::uuid[])",
+                    self._source_id,
+                    class_id,
+                    uuid,
+                )
 
         elif name == "error":
             #  add data at all location
@@ -612,7 +606,7 @@ WHERE
 
             await update_issue(
                 self._db,
-                self._store_uuid,
+                self.all_uuid,
                 self._error_locations,
                 self._source_id,
                 self._class_id,
@@ -635,6 +629,9 @@ WHERE
                 self._fix.append(self._elem)
 
         elif name == "class":
+            if self.all_uuid is not None:
+                self.all_uuid[self._class_id] = []
+
             await update_class(
                 self._db,
                 self._source_id,
