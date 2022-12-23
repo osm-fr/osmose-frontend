@@ -539,7 +539,7 @@ DELETE FROM
     markers
 WHERE
     markers.source_id = $1 AND
-    markers.uuid NOT IN (SELECT uuid FROM all_uuid)
+    markers.uuid != ALL (SELECT array_agg(uuid) FROM all_uuid)
 """,
                 self._source_id,
             )
