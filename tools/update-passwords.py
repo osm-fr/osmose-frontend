@@ -10,6 +10,8 @@ from modules.dependencies import database
 
 
 async def main():
+    global source
+
     db = await database.get_dbconn()
 
     for res in await db.fetch("SELECT COALESCE(max(id)+1, 1) FROM sources"):
