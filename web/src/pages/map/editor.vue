@@ -140,7 +140,12 @@ export default Vue.extend({
 
   watch: {
     status(): void {
-      this.status ? this.leafletSideBar.show() : this.leafletSideBar.hide()
+      if (this.status) {
+        ExternalVueAppEvent.$emit('hide-doc')
+        this.leafletSideBar.show()
+      } else {
+        this.leafletSideBar.hide()
+      }
     },
 
     elems: {

@@ -150,6 +150,7 @@ export default VueParent.extend({
 
   mounted() {
     ExternalVueAppEvent.$on('show-doc', (e) => this.showDoc(e.item, e.classs))
+    ExternalVueAppEvent.$on('hide-doc', (e) => this.hideDoc())
     ExternalVueAppEvent.$on('load-doc', (e) => this.setDoc(e.item, e.classs))
   },
 
@@ -181,6 +182,10 @@ export default VueParent.extend({
     showDoc(item: number, classs: number): void {
       this.leafletSideBar.show()
       this.setDoc(item, classs)
+    },
+
+    hideDoc(): void {
+      this.leafletSideBar.hide()
     },
 
     basename(path: string): string {
