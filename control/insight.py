@@ -70,8 +70,9 @@ ORDER BY
     stats_country: Dict[str, Tuple[float, float, float, int]] = {}
     for res in await db.fetch(sql, *params):
         (source, age, country, analyser) = (res[0], res[1], res[2], res[3])
-        keys_count[country] += 1
-        matrix[analyser][country] = (age / 60 / 60 / 24, source)
+        if analyser and country:
+            keys_count[country] += 1
+            matrix[analyser][country] = (age / 60 / 60 / 24, source)
     for analyser in matrix:
         min: Optional[float] = None
         max: Optional[float] = None

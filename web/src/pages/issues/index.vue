@@ -4,9 +4,7 @@
     <div v-if="error">{{ error }}</div>
     <div v-else>
       <nav
-        class="
-          navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-dark
-        "
+        class="navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-dark"
         style="background-color: #212529"
       >
         <span v-if="favicon" class="navbar-brand">
@@ -397,8 +395,8 @@
             <th colspan="7">
               <a href="#" @click.prevent="showMoreAnalyser">
                 <translate
-                  >{{showAnalyserCount}} / {{errors_groups.length}} rows. Show
-                  more.</translate
+                  >{{ showAnalyserCount }} / {{ errors_groups.length }} rows.
+                  Show more.</translate
                 >
               </a>
             </th>
@@ -621,7 +619,10 @@ export default VueParent.extend({
     },
 
     showMoreAnalyser(): void {
-      this.showAnalyserCount = Math.min(this.showAnalyserCount*2, this.errors_groups.length)
+      this.showAnalyserCount = Math.min(
+        this.showAnalyserCount * 2,
+        this.errors_groups.length
+      )
     },
 
     count_extra_filter_number(): void {
