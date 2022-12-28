@@ -1,47 +1,59 @@
-import 'leaflet'
+import { Map, ControlOptions } from 'leaflet'
 import 'leaflet-sidebar'
 import 'leaflet-sidebar/src/L.Control.Sidebar.css'
 
 import ToggleControl from './ToggleControl'
 
+export type SidebarToggleOptions = {
+  autoPan: boolean
+  localStorageProperty: string
+  position: string
+  toggle: any
+}
 
-const SidebarToggle = L.Control.Sidebar.extend({
-
-  options: {
+export default class SidebarToggle extends L.Control.Sidebar {
+  options: SidebarToggleOptions = {
     autoPan: false,
-    localStorageProperty: "sidebar-toggle",
-  },
+    localStorageProperty: 'sidebar-toggle',
+    position: 'left',
+    toggle: undefined,
+  }
 
-  initialize(map, placeholder, options) {
-    L.Control.Sidebar.prototype.initialize.call(this, placeholder, options)
+  constructor(placeholder, options?: SidebarToggleOptions & ControlOptions) {
+    super(placeholder, options)
+    L.setOptions(this, options)
+  }
 
-    map.addControl(new ToggleControl(this, options.toggle))
+  addTo(map: Map) {
+    super.addTo(map)
+
+    map.addControl(new ToggleControl(this, this.options.toggle))
 
     let show = localStorage.getItem(this.options.localStorageProperty)
-    if (show !== null && JSON.parse(show) === false) {
+    if (show !== null && JSON.parse(show) === 'false') {
       this.hide()
     } else {
       this.show()
     }
-  },
+  }
 
-  setStyleBorder(border) {
-    const active_area = document.getElementsByClassName("leaflet-active-area")[0]
+  setStyleBorder(border): void {
+    const active_area = document.getElementsByClassName(
+      'leaflet-active-area'
+    )[0] as HTMLElement
     const style = window.getComputedStyle(active_area)
     active_area.style[this.options.position] = border
-  },
+  }
 
-  show() {
-    localStorage.setItem(this.options.localStorageProperty, true)
+  show(): void {
+    localStorage.setItem(this.options.localStorageProperty, 'true')
     this.setStyleBorder('')
-    L.Control.Sidebar.prototype.show.call(this)
-  },
+    super.show()
+  }
 
-  hide() {
-    localStorage.setItem(this.options.localStorageProperty, false)
+  hide(): void {
+    localStorage.setItem(this.options.localStorageProperty, 'false')
     this.setStyleBorder('0px')
-    L.Control.Sidebar.prototype.hide.call(this)
-  },
-})
-
-export { SidebarToggle as default }
+    super.hide()
+  }
+}

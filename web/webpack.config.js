@@ -111,6 +111,9 @@ module.exports = (env, argv) => {
                 API_URL: JSON.stringify(env.API_URL)
             }),
             new VueLoaderPlugin(),
+            new webpack.ProvidePlugin({
+                L: 'leaflet',
+            }),
         ],
         devServer: {
             historyApiFallback: true,

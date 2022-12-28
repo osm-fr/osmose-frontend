@@ -1,27 +1,53 @@
-const ToggleControl = L.Control.extend({
+import { ControlOptions } from 'leaflet'
 
-  options: {
-    position: 'topleft',
-  },
+export type ToggleControlOptions = {
+  menuText: string
+  menuTitle: string
+}
 
-  initialize(menu, options) {
-    L.Control.prototype.initialize.call(this, options)
+export default class ToggleControl extends L.Control {
+  options: ToggleControlOptions = {
+    menuText: 'x',
+    menuTitle: 'toggle',
+  }
+
+  private _map: L.Map
+  private _menu: any
+  private _zoomInButton: HTMLElement
+
+  constructor(menu, options?: ToggleControlOptions & ControlOptions) {
+    super({ position: 'topleft', ...options })
+    L.setOptions(this, options)
     this._menu = menu
-  },
+  }
 
-  onAdd(map) {
+  onAdd(map): HTMLElement {
     const menuName = 'leaflet-control-menu-toggle'
     const container = L.DomUtil.create('div', `${menuName} leaflet-bar`)
     this._map = map
-    this._zoomInButton = this._createButton(this.options.menuText, this.options.menuTitle, `${menuName}-in`, container, this._menuToggle, this)
+    this._zoomInButton = this._createButton(
+      this.options.menuText,
+      this.options.menuTitle,
+      `${menuName}-in`,
+      container,
+      this._menuToggle,
+      this
+    )
     return container
-  },
+  }
 
-  _menuToggle() {
+  _menuToggle(): void {
     this._menu.toggle()
-  },
+  }
 
-  _createButton(html, title, className, container, fn, context) {
+  _createButton(
+    html: string,
+    title: string,
+    className: string,
+    container: HTMLElement,
+    fn,
+    context
+  ): HTMLElement {
     const link = L.DomUtil.create('a', className, container)
     link.innerHTML = html
     link.href = '#'
@@ -29,8 +55,7 @@ const ToggleControl = L.Control.extend({
 
     const stop = L.DomEvent.stopPropagation
 
-    L.DomEvent
-      .on(link, 'click', stop)
+    L.DomEvent.on(link, 'click', stop)
       .on(link, 'mousedown', stop)
       .on(link, 'dblclick', stop)
       .on(link, 'click', L.DomEvent.preventDefault)
@@ -38,7 +63,5 @@ const ToggleControl = L.Control.extend({
       .on(link, 'click', this._refocusOnMap, context)
 
     return link
-  },
-})
-
-export { ToggleControl as default }
+  }
+}

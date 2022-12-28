@@ -165,7 +165,7 @@ export default VueParent.extend({
     },
 
     map(): void {
-      this.leafletSideBar = new SidebarToggle(this.map, 'doc', {
+      this.leafletSideBar = new SidebarToggle('doc', {
         position: 'right',
         localStorageProperty: 'doc.show',
         toggle: {

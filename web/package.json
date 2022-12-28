@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@types/geojson": "^7946.0.10",
+    "@types/leaflet": "=1.2.0",
     "@typescript-eslint/parser": "^5.45.0",
     "babel-preset-typescript-vue": "^1.1.1",
     "bootstrap": "^4.6.0",

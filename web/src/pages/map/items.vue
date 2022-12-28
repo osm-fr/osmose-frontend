@@ -58,7 +58,7 @@ export default Vue.extend({
   watch: {
     map(): void {
       if (this.map) {
-        this.leafletSideBar = new SidebarToggle(this.map, 'menu', {
+        this.leafletSideBar = new SidebarToggle('menu', {
           position: 'left',
           closeButton: false,
           localStorageProperty: 'menu.show',
