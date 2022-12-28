@@ -4,7 +4,9 @@
     <div v-if="error">{{ error }}</div>
     <div v-else>
       <nav
-        class="navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-dark"
+        class="
+          navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-dark
+        "
         style="background-color: #212529"
       >
         <span v-if="favicon" class="navbar-brand">
@@ -302,7 +304,7 @@
 
       <sorted-table
         id="table_source"
-        :values="sortable(errors_groups)"
+        :values="sortable(errors_groups).slice(0, showAnalyserCount)"
         class="table table-striped table-bordered table-hover table-sm"
       >
         <thead class="thead-dark">
@@ -334,6 +336,10 @@
             <th scope="col">
               <sort-link name="count"><translate>count</translate></sort-link>
             </th>
+          </tr>
+          <tr>
+            <th colspan="6"><translate>Total</translate></th>
+            <th style="text-align: left">{{ total }}</th>
           </tr>
         </thead>
         <template #body="sort">
@@ -387,6 +393,16 @@
           </tbody>
         </template>
         <tfoot class="thead-dark">
+          <tr v-if="showAnalyserCount < errors_groups.length">
+            <th colspan="7">
+              <a href="#" @click.prevent="showMoreAnalyser">
+                <translate
+                  >{{showAnalyserCount}} / {{errors_groups.length}} rows. Show
+                  more.</translate
+                >
+              </a>
+            </th>
+          </tr>
           <tr>
             <th colspan="6"><translate>Total</translate></th>
             <th style="text-align: left">{{ total }}</th>
@@ -421,8 +437,16 @@ import Translate from '../../components/translate.vue'
 import VueParent from '../Parent.vue'
 
 interface ErrorsGroup {
-  analyser: string
+  item: number
+  source_id: number
+  class: number
   country: string
+  analyser: string
+  timestamp: string
+  menu: string
+  title: string
+  count: number
+  // computed
   analyser_country: string
 }
 
@@ -453,6 +477,7 @@ export default VueParent.extend({
     full_filter: boolean
     extra_filter_number: number
     gen: string
+    showAnalyserCount: number
   } {
     return {
       error: undefined,
@@ -480,6 +505,7 @@ export default VueParent.extend({
       full_filter: false,
       extra_filter_number: 0,
       gen: undefined,
+      showAnalyserCount: 100,
     }
   },
 
@@ -506,10 +532,12 @@ export default VueParent.extend({
 
   methods: {
     sortable(data: ErrorsGroup[]): ErrorsGroup[] {
-      return data.map((res) => {
-        res.analyser_country = res.analyser + '-' + res.country
-        return res
-      })
+      return data
+        .map((res) => {
+          res.analyser_country = res.analyser + '-' + res.country
+          return res
+        })
+        .sort((a, b) => b.count - a.count)
     },
 
     render(): void {
@@ -590,6 +618,10 @@ export default VueParent.extend({
       var query = Object.assign({}, this.$route.query)
       query.limit = this.limit ? this.limit * 5 : 500
       this.$router.push({ name: this.$route.name, query })
+    },
+
+    showMoreAnalyser(): void {
+      this.showAnalyserCount = Math.min(this.showAnalyserCount*2, this.errors_groups.length)
     },
 
     count_extra_filter_number(): void {
