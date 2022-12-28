@@ -5,6 +5,7 @@ import 'leaflet-responsive-popup/leaflet.responsive.popup.css'
 import 'leaflet-responsive-popup/leaflet.responsive.popup.rtl.css'
 import './leaflet-osm'
 import 'leaflet-textpath'
+import OsmDataLayer from './leaflet-osm'
 
 import ExternalVueAppEvent from '../../src/ExternalVueAppEvent'
 import IconLimit from '../images/limit.png'
@@ -169,7 +170,7 @@ const OsmoseMarker = L.VectorGrid.Protobuf.extend({
           .then(response => response.text())
           .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
           .then((xml) => {
-            const layer = new L.OSM.DataLayer(xml)
+            const layer = new OsmDataLayer(xml)
             layer.setStyle({
               color: colors[elem.type + elem.id],
               fillColor: colors[elem.type + elem.id],

@@ -1,108 +1,137 @@
-// Copy from https://github.com/openstreetmap/leaflet-osm
+// Based on https://github.com/openstreetmap/leaflet-osm
 // BSD
 
-L.OSM = {}
+import { LayerOptions } from 'leaflet'
 
-L.OSM.TileLayer = L.TileLayer.extend({
-  options: {
-    url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-    attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
-  },
+declare type OsmObjectBase = {
+  id: number
+  tags: Record<string, string>
+}
 
-  initialize: function (options) {
-    options = L.Util.setOptions(this, options)
-    L.TileLayer.prototype.initialize.call(this, options.url)
+declare type NodeObject = OsmObjectBase & {
+  type: "node"
+  latLng: any
+}
+
+declare type WayObject = OsmObjectBase & {
+  type: "way"
+  nodes: NodeObject[]
+}
+
+declare type RelationObject = OsmObjectBase & {
+  type: "relation"
+  members: (NodeObject | null)[]
+}
+
+declare type OsmObject = NodeObject | WayObject | RelationObject
+
+
+function getNodes(xml: Document): Record<number, NodeObject> {
+  var result: Record<number, NodeObject> = {}
+
+  var nodes = xml.getElementsByTagName("node")
+  for (var i = 0; i < nodes.length; i++) {
+    var node = nodes[i], id = node.getAttribute("id")
+    if (node && id) {
+      result[id] = {
+        id: id,
+        type: "node",
+        latLng: L.latLng(
+          node.getAttribute("lat") as unknown as number,
+          node.getAttribute("lon") as unknown as number
+        ),
+        tags: getTags(node)
+      }
+    }
   }
-})
 
-L.OSM.Mapnik = L.OSM.TileLayer.extend({
-  options: {
-    url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-    maxZoom: 19
+  return result
+}
+
+function getWays(xml: Document, nodes: Record<number, NodeObject>): WayObject[] {
+  var result: WayObject[] = []
+
+  var ways = xml.getElementsByTagName("way")
+  for (var i = 0; i < ways.length; i++) {
+    var way = ways[i], nds = [...way.getElementsByTagName("nd")]
+    var way_object: WayObject = {
+      id: way.getAttribute("id") as unknown as number,
+      type: "way",
+      nodes: nds.map((nd) => nodes[nd.getAttribute("ref") as unknown as number]),
+      tags: getTags(way)
+    }
+
+    result.push(way_object)
   }
-})
 
-L.OSM.CyclOSM = L.OSM.TileLayer.extend({
-  options: {
-    url: 'https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
-    maxZoom: 20,
-    subdomains: 'abc',
-    attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors. Tiles courtesy of <a href="https://www.openstreetmap.fr" target="_blank">OpenStreetMap France</a>'
+  return result
+}
+
+function getRelations(xml: Document, nodes: Record<number, NodeObject>, ways: WayObject[]): RelationObject[] {
+  var result: RelationObject[] = []
+
+  var rels = xml.getElementsByTagName("relation")
+  for (var i = 0; i < rels.length; i++) {
+    var rel = rels[i], members = [...rel.getElementsByTagName("member")]
+    var rel_object: RelationObject = {
+      id: rel.getAttribute("id") as unknown as number,
+      type: "relation",
+      members: members.map((member) => (
+        member.getAttribute("type") === "node" ?
+          nodes[member.getAttribute("ref") as unknown as number] :
+          null)
+      ),
+      tags: getTags(rel)
+    }
+
+    result.push(rel_object)
   }
-})
 
-L.OSM.CycleMap = L.OSM.TileLayer.extend({
-  options: {
-    url: 'https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}{r}.png?apikey={apikey}',
-    maxZoom: 21,
-    attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors. Tiles courtesy of <a href="http://www.thunderforest.com/" target="_blank">Andy Allan</a>'
+  return result
+}
+
+function getTags(xml: Element): Record<string, string> {
+  var result: Record<string, string> = {}
+
+  var tags = xml.getElementsByTagName("tag")
+  if (tags) {
+    for (var j = 0; j < tags.length; j++) {
+      const k = tags[j].getAttribute("k")
+      const v = tags[j].getAttribute("v")
+      if (k !== null && v !== null) {
+        result[k] = v
+      }
+    }
   }
-})
 
-L.OSM.TransportMap = L.OSM.TileLayer.extend({
-  options: {
-    url: 'https://{s}.tile.thunderforest.com/transport/{z}/{x}/{y}{r}.png?apikey={apikey}',
-    maxZoom: 21,
-    attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors. Tiles courtesy of <a href="http://www.thunderforest.com/" target="_blank">Andy Allan</a>'
-  }
-})
+  return result
+}
 
-L.OSM.OPNVKarte = L.OSM.TileLayer.extend({
-  options: {
-    url: 'https://tileserver.memomaps.de/tilegen/{z}/{x}/{y}.png',
-    maxZoom: 18,
-    attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors. Tiles courtesy of <a href="http://memomaps.de/" target="_blank">MeMoMaps</a>'
-  }
-})
 
-L.OSM.HOT = L.OSM.TileLayer.extend({
-  options: {
-    url: 'https://tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png',
-    maxZoom: 20,
-    subdomains: 'abc',
-    attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors. Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
-  }
-})
-
-L.OSM.GPS = L.OSM.TileLayer.extend({
-  options: {
-    url: 'https://gps.tile.openstreetmap.org/lines/{z}/{x}/{y}.png',
-    maxZoom: 21,
-    maxNativeZoom: 20,
-    subdomains: 'abc'
-  }
-})
-
-L.OSM.DataLayer = L.FeatureGroup.extend({
-  options: {
+export default class OsmDataLayer extends L.FeatureGroup {
+  options = {
     areaTags: ['area', 'building', 'leisure', 'tourism', 'ruins', 'historic', 'landuse', 'military', 'natural', 'sport'],
     uninterestingTags: ['source', 'source_ref', 'source:ref', 'history', 'attribution', 'created_by', 'tiger:county', 'tiger:tlid', 'tiger:upload_uuid'],
     styles: {}
-  },
+  } as {
+    areaTags: string[]
+    uninterestingTags: string[]
+    styles: Object
+  }
 
-  initialize: function (xml, options) {
+  constructor(xml: Document, options?: LayerOptions) {
+    super([], options)
     L.Util.setOptions(this, options)
+    this.addData(this.buildFeatures(xml))
+  }
 
-    L.FeatureGroup.prototype.initialize.call(this)
-
-    if (xml) {
-      this.addData(xml)
-    }
-  },
-
-  addData: function (features) {
-    if (!(features instanceof Array)) {
-      features = this.buildFeatures(features)
-    }
-
+  addData(features: OsmObject[]): void {
     for (var i = 0; i < features.length; i++) {
       var feature = features[i], layer
 
-      if (feature.type === "changeset") {
-        layer = L.rectangle(feature.latLngBounds, this.options.styles.changeset)
-      } else if (feature.type === "node") {
+      if (feature.type === "node") {
         layer = L.circleMarker(feature.latLng, this.options.styles.node)
-      } else {
+      } else if (feature.type === "way") {
         var latLngs = new Array(feature.nodes.length)
 
         for (var j = 0; j < feature.nodes.length; j++) {
@@ -120,13 +149,13 @@ L.OSM.DataLayer = L.FeatureGroup.extend({
       layer.addTo(this)
       layer.feature = feature
     }
-  },
+  }
 
-  buildFeatures: function (xml) {
-    var features = L.OSM.getChangesets(xml),
-      nodes = L.OSM.getNodes(xml),
-      ways = L.OSM.getWays(xml, nodes),
-      relations = L.OSM.getRelations(xml, nodes, ways)
+  buildFeatures(xml: Document): OsmObject[] {
+    var features: OsmObject[] = [],
+      nodes = getNodes(xml),
+      ways = getWays(xml, nodes),
+      relations = getRelations(xml, nodes, ways)
 
     for (var node_id in nodes) {
       var node = nodes[node_id]
@@ -141,9 +170,9 @@ L.OSM.DataLayer = L.FeatureGroup.extend({
     }
 
     return features
-  },
+  }
 
-  isWayArea: function (way) {
+  isWayArea(way: WayObject): boolean {
     if (way.nodes[0] != way.nodes[way.nodes.length - 1]) {
       return false
     }
@@ -155,9 +184,9 @@ L.OSM.DataLayer = L.FeatureGroup.extend({
     }
 
     return false
-  },
+  }
 
-  interestingNode: function (node, ways, relations) {
+  interestingNode(node: NodeObject, ways: WayObject[], relations: RelationObject[]): boolean {
     var used = false
 
     for (var i = 0; i < ways.length; i++) {
@@ -184,106 +213,4 @@ L.OSM.DataLayer = L.FeatureGroup.extend({
 
     return false
   }
-})
-
-L.Util.extend(L.OSM, {
-  getChangesets: function (xml) {
-    var result = []
-
-    var nodes = xml.getElementsByTagName("changeset")
-    for (var i = 0; i < nodes.length; i++) {
-      var node = nodes[i], id = node.getAttribute("id")
-      result.push({
-        id: id,
-        type: "changeset",
-        latLngBounds: L.latLngBounds(
-          [node.getAttribute("min_lat"), node.getAttribute("min_lon")],
-          [node.getAttribute("max_lat"), node.getAttribute("max_lon")]),
-        tags: this.getTags(node)
-      })
-    }
-
-    return result
-  },
-
-  getNodes: function (xml) {
-    var result = {}
-
-    var nodes = xml.getElementsByTagName("node")
-    for (var i = 0; i < nodes.length; i++) {
-      var node = nodes[i], id = node.getAttribute("id")
-      result[id] = {
-        id: id,
-        type: "node",
-        latLng: L.latLng(node.getAttribute("lat"),
-          node.getAttribute("lon"),
-          true),
-        tags: this.getTags(node)
-      }
-    }
-
-    return result
-  },
-
-  getWays: function (xml, nodes) {
-    var result = []
-
-    var ways = xml.getElementsByTagName("way")
-    for (var i = 0; i < ways.length; i++) {
-      var way = ways[i], nds = way.getElementsByTagName("nd")
-
-      var way_object = {
-        id: way.getAttribute("id"),
-        type: "way",
-        nodes: new Array(nds.length),
-        tags: this.getTags(way)
-      }
-
-      for (var j = 0; j < nds.length; j++) {
-        way_object.nodes[j] = nodes[nds[j].getAttribute("ref")]
-      }
-
-      result.push(way_object)
-    }
-
-    return result
-  },
-
-  getRelations: function (xml, nodes, ways) {
-    var result = []
-
-    var rels = xml.getElementsByTagName("relation")
-    for (var i = 0; i < rels.length; i++) {
-      var rel = rels[i], members = rel.getElementsByTagName("member")
-
-      var rel_object = {
-        id: rel.getAttribute("id"),
-        type: "relation",
-        members: new Array(members.length),
-        tags: this.getTags(rel)
-      }
-
-      for (var j = 0; j < members.length; j++) {
-        if (members[j].getAttribute("type") === "node")
-          rel_object.members[j] = nodes[members[j].getAttribute("ref")]
-        else // relation-way and relation-relation membership not implemented
-          rel_object.members[j] = null
-      }
-
-      result.push(rel_object)
-    }
-
-    return result
-  },
-
-  getTags: function (xml) {
-    var result = {}
-
-    var tags = xml.getElementsByTagName("tag")
-    for (var j = 0; j < tags.length; j++) {
-      result[tags[j].getAttribute("k")] = tags[j].getAttribute("v")
-    }
-
-    return result
-  }
-})
+}
