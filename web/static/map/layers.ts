@@ -1,9 +1,9 @@
-import L from 'leaflet';
-import Mapillary from './Mapillary';
+import L from 'leaflet'
+import Mapillary from './Mapillary'
 
-import 'leaflet-plugins/layer/tile/Bing.js';
+import 'leaflet-plugins/layer/tile/Bing'
 
-const osmAttribution = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors';
+const osmAttribution = '&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 export const mapBases = {
   // OpenStreetMap
   'carto': L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: osmAttribution }),
@@ -20,10 +20,10 @@ export const mapBases = {
   // 'TopoMap': L.tileLayer('http://opengeofiction.net/tiles-topo/{z}/{x}/{y}.png', {attribution: osmAttribution}),
   // 'histor': L.tileLayer('http://opengeofiction.net/tiles-histor/{z}/{x}/{y}.png', {attribution: osmAttribution}),
   // 'Roantra': L.tileLayer('http://opengeofiction.net/planet/Roantra/{z}/{x}/{y}.png', {attribution: osmAttribution}),
-};
+}
 
-const urlOsmFr = 'http://{s}.layers.openstreetmap.fr/{layer}/{z}/{x}/{y}.png';
-const attributionOsmFr = '';
+const urlOsmFr = 'http://{s}.layers.openstreetmap.fr/{layer}/{z}/{x}/{y}.png'
+const attributionOsmFr = ''
 export const mapOverlay = {
   'No name': L.tileLayer(urlOsmFr, { layer: 'noname', attribution: attributionOsmFr }),
   'No Oneway': L.tileLayer(urlOsmFr, { layer: 'nooneway', attribution: attributionOsmFr }),
@@ -39,4 +39,4 @@ export const mapOverlay = {
   'boundary=political': L.tileLayer(urlOsmFr, { layer: 'boundary_political', attribution: attributionOsmFr }),
   'boundary=election': L.tileLayer(urlOsmFr, { layer: 'boundary_election', attribution: attributionOsmFr }),
   Mapillary: new Mapillary('MEpmMTFQclBTUWlacjV6RTUxWWMtZzo5OTc2NjY2MmRiMDUwYmMw'),
-};
+}

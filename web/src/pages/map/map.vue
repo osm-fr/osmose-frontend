@@ -5,14 +5,14 @@
 <script lang="ts">
 import 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import 'leaflet-plugins/control/Permalink.js'
+import 'leaflet-plugins/control/Permalink'
 
 // Retro-compact hack for Leaflet.VectorGrid
 L.DomEvent.fakeStop = L.DomEvent._fakeStop
 
-import 'leaflet-active-area/src/leaflet.activearea.js'
-import '../../../static/map/Location.js'
-import 'leaflet-control-geocoder/src/index.js'
+import 'leaflet-active-area/src/leaflet.activearea'
+import '../../../static/map/Location'
+import 'leaflet-control-geocoder/src/index'
 import 'leaflet-control-geocoder/Control.Geocoder.css'
 import 'leaflet-loading'
 import 'leaflet-loading/src/Control.Loading.css'

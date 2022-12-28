@@ -110,7 +110,7 @@
 import Marked from 'marked'
 import { PropType } from 'vue'
 
-import SidebarToggle from '../../../static/map/SidebarToggle.js'
+import SidebarToggle from '../../../static/map/SidebarToggle'
 import ExternalVueAppEvent from '../../ExternalVueAppEvent'
 import VueParent from '../Parent.vue'
 

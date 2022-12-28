@@ -18,7 +18,7 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue'
 
-import SidebarToggle from '../../../static/map/SidebarToggle.js'
+import SidebarToggle from '../../../static/map/SidebarToggle'
 
 export default Vue.extend({
   props: {

@@ -25,7 +25,8 @@
       ]
     },
     "types": [
-      "@types/geojson"
+      "@types/geojson",
+      "types"
     ],
   },
   "files": [
