@@ -6,7 +6,7 @@ export type ToggleControlOptions = {
 }
 
 export default class ToggleControl extends L.Control {
-  options: ToggleControlOptions = {
+  toggleControloptions: ToggleControlOptions = {
     menuText: 'x',
     menuTitle: 'toggle',
   }
@@ -17,7 +17,7 @@ export default class ToggleControl extends L.Control {
 
   constructor(menu, options?: ToggleControlOptions & ControlOptions) {
     super({ position: 'topleft', ...options })
-    L.setOptions(this, options)
+    Object.assign(this.toggleControloptions, options)
     this._menu = menu
   }
 
@@ -26,8 +26,8 @@ export default class ToggleControl extends L.Control {
     const container = L.DomUtil.create('div', `${menuName} leaflet-bar`)
     this._map = map
     this._zoomInButton = this._createButton(
-      this.options.menuText,
-      this.options.menuTitle,
+      this.toggleControloptions.menuText,
+      this.toggleControloptions.menuTitle,
       `${menuName}-in`,
       container,
       this._menuToggle,

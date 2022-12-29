@@ -8,7 +8,7 @@ export type LocationOptions = {
 }
 
 export default class Location extends L.Control {
-  options: LocationOptions = {
+  locationOptions: LocationOptions = {
     menuText: '',
     menuTitle: 'Location',
   }
@@ -16,9 +16,8 @@ export default class Location extends L.Control {
   private _map: Map
 
   constructor(options: LocationOptions & ControlOptions) {
-    options = { position: 'topleft', ...options }
-    super(options)
-    L.setOptions(this, options)
+    super({ position: 'topleft', ...options })
+    Object.assign(this.locationOptions, options)
   }
 
   onAdd(map: Map): HTMLElement {
@@ -26,8 +25,8 @@ export default class Location extends L.Control {
     const container = L.DomUtil.create('div', `${menuName} leaflet-bar`)
     this._map = map
     this._zoomInButton = this._createButton(
-      this.options.menuText,
-      this.options.menuTitle,
+      this.locationOptions.menuText,
+      this.locationOptions.menuTitle,
       `${menuName}-in`,
       container,
       this._location,

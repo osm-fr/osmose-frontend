@@ -7,29 +7,29 @@ import ToggleControl from './ToggleControl'
 export type SidebarToggleOptions = {
   autoPan: boolean
   localStorageProperty: string
-  position: string
   toggle: any
 }
 
 export default class SidebarToggle extends L.Control.Sidebar {
-  options: SidebarToggleOptions = {
+  sidebarToggleOptions: SidebarToggleOptions = {
     autoPan: false,
     localStorageProperty: 'sidebar-toggle',
-    position: 'left',
     toggle: undefined,
   }
 
   constructor(placeholder, options?: SidebarToggleOptions & ControlOptions) {
-    super(placeholder, options)
-    L.setOptions(this, options)
+    super(placeholder, { position: 'left', ...options })
+    Object.assign(this.sidebarToggleOptions, options)
   }
 
   addTo(map: Map) {
     super.addTo(map)
 
-    map.addControl(new ToggleControl(this, this.options.toggle))
+    map.addControl(new ToggleControl(this, this.sidebarToggleOptions.toggle))
 
-    let show = localStorage.getItem(this.options.localStorageProperty)
+    let show = localStorage.getItem(
+      this.sidebarToggleOptions.localStorageProperty
+    )
     if (show !== null && JSON.parse(show) === 'false') {
       this.hide()
     } else {
@@ -46,13 +46,16 @@ export default class SidebarToggle extends L.Control.Sidebar {
   }
 
   show(): void {
-    localStorage.setItem(this.options.localStorageProperty, 'true')
+    localStorage.setItem(this.sidebarToggleOptions.localStorageProperty, 'true')
     this.setStyleBorder('')
     super.show()
   }
 
   hide(): void {
-    localStorage.setItem(this.options.localStorageProperty, 'false')
+    localStorage.setItem(
+      this.sidebarToggleOptions.localStorageProperty,
+      'false'
+    )
     this.setStyleBorder('0px')
     super.hide()
   }
