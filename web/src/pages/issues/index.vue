@@ -13,17 +13,17 @@
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <router-link class="nav-link" :to="`open?${query}`">
+              <router-link class="nav-link" :to="`open?${queryBase}`">
                 <translate>Open</translate>
               </router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="`done?${query}`">
+              <router-link class="nav-link" :to="`done?${queryBase}`">
                 <translate>Fixed</translate>
               </router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="`false-positive?${query}`">
+              <router-link class="nav-link" :to="`false-positive?${queryBase}`">
                 <translate>False positives</translate>
               </router-link>
             </li>
@@ -460,6 +460,7 @@ export default VueParent.extend({
     main_website: string
     remote_url_read: string
     query: string
+    queryBase: string
     country: string
     item: number
     level: number[]
@@ -488,6 +489,7 @@ export default VueParent.extend({
       main_website: '',
       remote_url_read: '',
       query: '',
+      queryBase: '',
       country: this.$route.query.country,
       item: this.$route.query.item,
       level: this.$route.query.level,
@@ -557,6 +559,7 @@ export default VueParent.extend({
       }
 
       this.query = window.location.search.substring(1)
+      this.queryBase = this.query
 
       let title = {
         'issues/open': this.$t('Information'),
