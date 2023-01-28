@@ -113,9 +113,9 @@ def _build_param(
         tables.append("class")
     if country is not None:
         tables.append("sources")
-    if not stats or useDevItem in ("true", "false"):
+    if not stats or useDevItem in ("true", "false", "all"):
         tables.append("items")
-        if useDevItem == "true":
+        if useDevItem in ("true", "all"):
             tablesLeft.append("items")
     if last_update:
         tables.append("updates_last")
