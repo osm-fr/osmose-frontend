@@ -116,7 +116,7 @@ async def fresh_elems_uuid_num(
 
     def expand_tags(tags):
         t = []
-        for (k, v) in tags.items():
+        for k, v in tags.items():
             t.append({"k": k, "v": v})
         return t
 
@@ -149,9 +149,9 @@ async def fresh_elems_uuid_num(
                 for k in res["delete"]:
                     if k in fix_elem_tags:
                         del fix_elem_tags[k]
-                for (k, v) in res["create"].items():
+                for k, v in res["create"].items():
                     fix_elem_tags[k] = v
-                for (k, v) in res["modify"].items():
+                for k, v in res["modify"].items():
                     fix_elem_tags[k] = v
 
                 ret["fix"][tid] = fix_elem_tags
@@ -249,7 +249,6 @@ def _error(
                 found = False
                 for e in elems:
                     if e["type"] == data_type[fix["type"]] and e["id"] == fix["id"]:
-
                         found = True
                         break
                 if not found:
@@ -389,7 +388,7 @@ async def fix_uuid_num(
                     data: Dict[str, Any] = {}
                     data["id"] = -1
                     data["tag"] = {}
-                    for (k, v) in res["create"].items():
+                    for k, v in res["create"].items():
                         data["tag"][k] = v
                     data["lat"] = res2["lat"]
                     data["lon"] = res2["lon"]
@@ -421,9 +420,9 @@ class OsmSaxFixWriter(OsmSax.OsmSaxWriter):
         for k in self.tags_delete:
             if k in data["tag"]:
                 del data["tag"][k]
-        for (k, v) in self.tags_create.items():
+        for k, v in self.tags_create.items():
             data["tag"][k] = v
-        for (k, v) in self.tags_modify.items():
+        for k, v in self.tags_modify.items():
             data["tag"][k] = v
         data["action"] = "modify"
         return data

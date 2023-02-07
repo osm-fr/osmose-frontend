@@ -100,7 +100,7 @@ def _expand_tags(
         for k in tags:
             t.append({"k": k})
     else:
-        for (k, v) in sorted(tags.items()):
+        for k, v in sorted(tags.items()):
             if links and k in links:
                 t.append({"k": k, "v": v, "vlink": links[k]})
             else:

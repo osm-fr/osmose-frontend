@@ -178,7 +178,6 @@ class OsmTextReader:
             return open(self._filename)
 
     def CopyTo(self, output):
-
         _re_eid = re.compile(" id=['\"](.+?)['\"]")
         _re_lat = re.compile(" lat=['\"](.+?)['\"]")
         _re_lon = re.compile(" lon=['\"](.+?)['\"]")
@@ -188,9 +187,7 @@ class OsmTextReader:
         f = self._GetFile()
         line = f.readline()
         while line:
-
             if "<node" in line:
-
                 _dat = {}
                 _dat["id"] = int(_re_eid.findall(line)[0])
                 _dat["lat"] = float(_re_lat.findall(line)[0])
@@ -216,7 +213,6 @@ class OsmTextReader:
                 continue
 
             if "<way" in line:
-
                 _dat = {}
                 _dat["id"] = int(_re_eid.findall(line)[0])
                 _usr = _re_lon.findall(line)
@@ -374,7 +370,7 @@ class OsmSaxWriter(XMLGenerator):
 
     def startElement(self, name, attrs):
         self._write("<" + name)
-        for (name, value) in attrs.items():
+        for name, value in attrs.items():
             self._write(" %s=%s" % (name, quoteattr(value)))
         self._write(">\n")
 
@@ -383,7 +379,7 @@ class OsmSaxWriter(XMLGenerator):
 
     def Element(self, name, attrs):
         self._write("<" + name)
-        for (name, value) in attrs.items():
+        for name, value in attrs.items():
             self._write(" %s=%s" % (name, quoteattr(value)))
         self._write(" />\n")
 
@@ -398,7 +394,7 @@ class OsmSaxWriter(XMLGenerator):
             return
         if data["tag"]:
             self.startElement("node", _formatData(data))
-            for (k, v) in data["tag"].items():
+            for k, v in data["tag"].items():
                 self.Element("tag", {"k": k, "v": v})
             self.endElement("node")
         else:
@@ -408,7 +404,7 @@ class OsmSaxWriter(XMLGenerator):
         if not data:
             return
         self.startElement("way", _formatData(data))
-        for (k, v) in data["tag"].items():
+        for k, v in data["tag"].items():
             self.Element("tag", {"k": k, "v": v})
         for n in data["nd"]:
             self.Element("nd", {"ref": str(n)})
@@ -418,7 +414,7 @@ class OsmSaxWriter(XMLGenerator):
         if not data:
             return
         self.startElement("relation", _formatData(data))
-        for (k, v) in data["tag"].items():
+        for k, v in data["tag"].items():
             self.Element("tag", {"k": k, "v": v})
         for m in data["member"]:
             m["ref"] = str(m["ref"])

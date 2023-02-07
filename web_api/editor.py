@@ -100,7 +100,7 @@ def _osm_changeset(tags, id: str = "0") -> str:
     o.startDocument()
     o.startElement("osm", {"version": "0.6", "generator": "Osmose"})
     o.startElement("changeset", {"id": id, "open": "false"})
-    for (k, v) in tags.items():
+    for k, v in tags.items():
         o.Element("tag", {"k": k, "v": v})
     o.endElement("changeset")
     o.endElement("osm")
