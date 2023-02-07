@@ -1,5 +1,5 @@
 PYFILES=$(shell find ../../web_api -name '*.py' -not -type l -not -path '*/externals/*' | sort)
-VUEFILES=$(shell find ../src -name '*.vue' | grep -v translate-slot.vue | sort)
+VUEFILES=$(shell find ../src -name '*.vue' | grep -v translate-slot.vue | grep -v translate.vue | sort)
 DBFILES=../../tools/database/categories_menu.txt ../../tools/database/items_menu.txt
 
 PO:=$(wildcard *.po)
@@ -13,7 +13,7 @@ all: osmose-frontend.pot %.po mo
 	$(error 'easygettext missing. Please install node dependencies with `npm install`')
 
 vue.pot: $(VUEFILES) ../node_modules/easygettext/src/extract-cli.js
-	../node_modules/easygettext/src/extract-cli.js --removeHTMLWhitespaces --attribute=path --output $@.tmp $(VUEFILES)
+	../node_modules/easygettext/src/extract-cli.js --parser babel --removeHTMLWhitespaces --attribute=path --output $@.tmp $(VUEFILES)
 	# extract header from original .pot, to get Content-Type=UTF-8
 	sed -e '/^$$/q' osmose-frontend.pot > $@.tmp2
 	# remove header from vue.pot
