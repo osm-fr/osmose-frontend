@@ -10,9 +10,7 @@
       @keydown.enter="focusNext($event, 1)"
       @keydown.arrow-down="focusNext($event, 1)"
       @keydown.arrow-up="focusNext($event, -1)"
-      @keydown.ctrl.backspace="
-        if (tag_key != '' || tag_value != '') $emit('delete')
-      "
+      @keydown.ctrl.backspace="backspace"
     /><a
       v-if="tag_key != '' || tag_value != ''"
       href="#"
@@ -78,6 +76,12 @@ export default Vue.extend({
       const index = inputs.indexOf(event.target)
       if (index + shift >= 0 && index + shift < inputs.length) {
         inputs[index + shift].focus()
+      }
+    },
+
+    backspace(): void {
+      if (this.tag_key != '' || this.tag_value != '') {
+        this.$emit('delete')
       }
     },
   },

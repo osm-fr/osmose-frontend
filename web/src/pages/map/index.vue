@@ -27,15 +27,11 @@
           @state-update="itemState = $event"
         />
       </items>
-      <doc :map="map" @hide-item-markers="onHideItemMarkers($event)" />
+      <doc :map="map" @hide-item-markers="onHideItemMarkers($event.map)" />
       <l-map
         :item-state="itemState"
         :map-state="mapState"
-        @set-map="
-          map = $event.map
-          markerLayer = $event.markerLayer
-          heatmapLayer = $event.heatmapLayer
-        "
+        @set-map="setMap($event)"
       />
       <editor
         ref="editor"
@@ -294,6 +290,12 @@ export default VueParent.extend({
 
     onHideItemMarkers(disabled_item): void {
       this.$refs['items-list'].toggle_item(disabled_item, false)
+    },
+
+    setMap(event: Object): void {
+      this.map = event.map
+      this.markerLayer = event.markerLayer
+      this.heatmapLayer = event.heatmapLayer
     },
   },
 })

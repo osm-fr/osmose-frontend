@@ -75,10 +75,7 @@
       <editor-modal
         :edition_stack="edition_stack"
         @cancel="status = null"
-        @saved="
-          edition_stack = []
-          status = null
-        "
+        @saved="saved"
       />
     </div>
   </div>
@@ -352,6 +349,11 @@ export default Vue.extend({
         event.preventDefault()
         event.returnValue = ''
       }
+    },
+
+    saved(): void {
+      this.edition_stack = []
+      this.status = null
     },
   },
 })
