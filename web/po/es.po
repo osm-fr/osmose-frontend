@@ -28,51 +28,40 @@ msgstr ""
 "Language: es\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-#: ../../web_api/issues.py:60 ../src/pages/issues/index.vue:25
-#: ../src/pages/issues/index.vue:88
+#: ../src/pages/issues/index.vue:23 ../src/pages/issues/index.vue
 msgid "False positives"
 msgstr "Falsos positivos"
-
-msgid "Informations"
-msgstr "Informaciones"
 
 #. TRANSLATORS: link to source code
 #: ../src/pages/map/top.vue:25
 msgid "Statistics"
 msgstr "Estadísticas"
 
-#: ../src/pages/contact.vue:5 ../src/pages/map/top.vue:76
+#: ../src/pages/contact.vue ../src/pages/map/top.vue:78
 msgid "Contact"
 msgstr "Contacto"
 
-#: ../src/pages/map/top.vue:81
+#: ../src/pages/map/top.vue:83
 msgid "Help on wiki"
 msgstr "Ayuda en la wiki"
 
-#: ../src/pages/index.vue:32 ../src/pages/translation.vue:132
+#: ../src/pages/index.vue:28 ../src/pages/translation.vue:123
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
-#: ../src/pages/map/top.vue:86
+#: ../src/pages/map/top.vue:88
 msgid "Copyright"
 msgstr "Derechos de autor"
 
-#: ../src/pages/map/top.vue:91
+#: ../src/pages/map/top.vue:93
 msgid "Sources"
 msgstr "Fuentes"
 
-#: ../src/pages/map/top.vue:96
+#: ../src/pages/map/top.vue:98
 msgid "Translation"
 msgstr "Traducción"
 
-#, python-format
-msgid "Statistics for user %s"
-msgstr "Estadísticas para usuarios %s"
-
-msgid "This list is also available via rss."
-msgstr "Esta lista también está disponible vía rss."
-
-#: ../src/pages/byuser/index.vue:10
+#: ../src/pages/byuser/index.vue
 msgid "Statistics for user"
 msgstr "Estadísticas por usuario"
 
@@ -106,16 +95,16 @@ msgstr "Desarrollo"
 msgid "Contacting maintainers"
 msgstr "Contacto con los mantenedores"
 
-#: ../src/pages/control/update_matrix.vue:21
+#: ../src/pages/control/update_matrix.vue
 msgid "Last updates"
 msgstr "Últimas actualizaciones"
 
-#: ../../tools/database/items_menu.txt:34 ../src/components/issues-list.vue:7
-#: ../src/pages/control/update.vue:7 ../src/pages/issues/index.vue:211
+#: ../../tools/database/items_menu.txt:34 ../src/components/issues-list.vue:10
+#: ../src/pages/control/update.vue:7 ../src/pages/issues/index.vue:209
 msgid "source"
 msgstr "fuente"
 
-#: ../src/pages/control/update.vue:14
+#: ../src/pages/control/update.vue
 msgid "Update"
 msgstr "Actualización"
 
@@ -127,7 +116,7 @@ msgstr "url remota"
 msgid "timestamp"
 msgstr "marca de tiempo"
 
-#: ../src/pages/copyright.vue:5
+#: ../src/pages/copyright.vue
 msgid "Copyright information"
 msgstr "Información sobre derechos de autor"
 
@@ -167,21 +156,21 @@ msgstr "Elementos"
 msgid "Fixes"
 msgstr "Correcciones"
 
-#: ../src/pages/issues/index.vue:20
+#: ../src/pages/issues/index.vue:18
 msgid "Fixed"
 msgstr "Corregido"
 
-#: ../src/pages/issues/index.vue:30
+#: ../src/pages/issues/index.vue:28
 msgid "Graph"
 msgstr "Gráfico"
 
-#: ../src/pages/byuser/byuser.vue:16 ../src/pages/issues/index.vue:35
+#: ../src/pages/byuser/byuser.vue:16 ../src/pages/issues/index.vue:33
 msgid "Map"
 msgstr "Mapa"
 
 #. #-#-#-#-#  osmose-frontend.pot.nofiles (PACKAGE VERSION)  #-#-#-#-#
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
-#: ../src/pages/issues/index.vue:414
+#: ../src/pages/issues/index.vue:389
 msgid "Set"
 msgstr "Conjunto"
 
@@ -189,37 +178,27 @@ msgstr "Conjunto"
 msgid "class (abbreviation)"
 msgstr "cla"
 
-#: ../src/components/issues-list.vue:18 ../src/pages/issues/index.vue:218
+#: ../src/components/issues-list.vue:21 ../src/pages/issues/index.vue:216
 msgid "item"
 msgstr "ítem"
 
-#: ../src/pages/issues/index.vue:228
+#: ../src/pages/issues/index.vue:226
 msgid "title"
 msgstr "título"
 
-#: ../src/pages/byuser/byuser.vue:25 ../src/pages/issues/index.vue:231
+#: ../src/pages/byuser/byuser.vue:22 ../src/pages/issues/index.vue:229
 msgid "count"
 msgstr "contador"
 
-#: ../src/pages/issues/index.vue:275
+#: ../src/pages/issues/index.vue:233 ../src/pages/issues/index.vue:285
 msgid "Total"
 msgstr "Total"
 
-#. TRANSLATORS: this should be replaced by a abbreviation for level
-msgid "level (abbreviation)"
-msgstr "niv"
-
-msgid "position (abbreviation)"
-msgstr "pos"
-
-msgid "elements (abbreviation)"
-msgstr "elem"
-
-#: ../src/components/issues-list.vue:40
+#: ../src/components/issues-list.vue:43
 msgid "subtitle"
 msgstr "subtítulo"
 
-#: ../../tools/database/items_menu.txt:57 ../src/components/issues-list.vue:44
+#: ../../tools/database/items_menu.txt:57 ../src/components/issues-list.vue:47
 msgid "date"
 msgstr "fecha"
 
@@ -240,26 +219,23 @@ msgid "Tags Editor"
 msgstr "Editor de etiquetas"
 
 #: ../src/pages/map/editor-modal.vue:38 ../src/pages/map/editor-modal.vue:56
-#: ../src/pages/map/editor.vue:116
+#: ../src/pages/map/editor.vue:120
 msgid "Cancel"
 msgstr "Cancelar"
 
-msgid "no bubbles at this zoom factor"
-msgstr "no hay burbujas en este factor de acercamiento"
-
-#: ../src/pages/issues/index.vue:92 ../src/pages/map/items-filters.vue:4
+#: ../src/pages/issues/index.vue:90 ../src/pages/map/items-filters.vue:4
 msgid "Severity"
 msgstr "Severidad"
 
-#: ../src/pages/issues/index.vue:192 ../src/pages/map/items-filters.vue:30
+#: ../src/pages/issues/index.vue:190 ../src/pages/map/items-filters.vue:30
 msgid "Fixable"
 msgstr "Corregible"
 
-#: ../src/pages/map/items-filters.vue:182
+#: ../src/pages/map/items-filters.vue:164
 msgid "Show only markers with correction suggestions"
 msgstr "Mostrar solo marcadores con sugerencias de corrección"
 
-#: ../src/pages/issues/index.vue:196 ../src/pages/map/items-filters.vue:35
+#: ../src/pages/issues/index.vue:194 ../src/pages/map/items-filters.vue:35
 msgid "Online"
 msgstr "En línea"
 
@@ -287,19 +263,15 @@ msgstr "invertir"
 msgid "Change language"
 msgstr "Cambiar el idioma"
 
-#: ../src/pages/map/popup.vue:360 ../src/pages/map/top.vue:72
+#: ../src/pages/map/popup.vue:377 ../src/pages/map/top.vue:74
 msgid "Help"
 msgstr "Ayuda"
 
-#, python-format
-msgid "Delay: %sd"
-msgstr "Retraso: %sd"
-
-#: ../src/pages/map/top.vue:150 ../src/pages/map/top.vue:39
+#: ../src/pages/map/top.vue:152 ../src/pages/map/top.vue:39
 msgid "Logout"
 msgstr "Salir"
 
-#: ../src/pages/map/editor.vue:6 ../src/pages/map/top.vue:156
+#: ../src/pages/map/editor.vue:6 ../src/pages/map/top.vue:158
 msgid "Login"
 msgstr "Ingresar"
 
@@ -319,15 +291,15 @@ msgstr "Tipo"
 msgid "Reuse changeset"
 msgstr "Reutilizar conjunto de cambios"
 
-#: ../src/pages/map/popup.vue:383
+#: ../src/pages/map/popup.vue:400
 msgid "corrected"
 msgstr "corregido"
 
-#: ../src/pages/map/popup.vue:369
+#: ../src/pages/map/popup.vue:386
 msgid "false positive"
 msgstr "falso positivo"
 
-#: ../src/pages/translation.vue:2 ../src/pages/translation.vue:5
+#: ../src/pages/translation.vue:2 ../src/pages/translation.vue
 msgid "How to help translation"
 msgstr "Cómo ayudar a la traducción"
 
@@ -696,9 +668,6 @@ msgstr "oficina de correos"
 msgid "ODbL migration change"
 msgstr "Cambio por la migración ODbL"
 
-msgid "school, not integrated"
-msgstr "escuela, no integrada"
-
 #: ../../tools/database/items_menu.txt:117
 msgid "monument"
 msgstr "monumento"
@@ -838,9 +807,6 @@ msgstr "vía de un nodo"
 msgid "toilets"
 msgstr "baños"
 
-msgid "transport sharing, not integrated"
-msgstr "transporte compartido, no inetgrado"
-
 #: ../../tools/database/items_menu.txt:173
 msgid "police"
 msgstr "policía"
@@ -849,9 +815,6 @@ msgstr "policía"
 msgid "police, could be integrated"
 msgstr "policía, podría integrarse"
 
-msgid "pharmacy, not integrated "
-msgstr "farmacia, no integrada"
-
 #: ../../tools/database/items_menu.txt:180
 msgid "pharmacy, could be integrated"
 msgstr "farmacia, podría integrarse"
@@ -859,9 +822,6 @@ msgstr "farmacia, podría integrarse"
 #: ../../tools/database/items_menu.txt:176
 msgid "gas station"
 msgstr "gasolinera"
-
-msgid "position"
-msgstr "ubicación"
 
 #: ../src/pages/map/editor.vue:4
 msgid "You must be logged in order to use the tag editor"
@@ -887,8 +847,8 @@ msgstr "sin salida"
 msgid "incorrect layer"
 msgstr "capa incorrecta"
 
-#: ../src/pages/control/update_summary.vue:18
-#: ../src/pages/control/update_summary_by_analyser.vue:25
+#: ../src/pages/control/update_summary.vue
+#: ../src/pages/control/update_summary_by_analyser.vue
 msgid "Updates summary"
 msgstr "Resumen de actualizaciones"
 
@@ -912,14 +872,11 @@ msgstr "bodega"
 msgid "missing object kind"
 msgstr "falta tipo de objeto"
 
-msgid "postal code, not integrated "
-msgstr "código postal, no integrado"
-
 #: ../../tools/database/items_menu.txt:98
 msgid "local language"
 msgstr "idioma local"
 
-#: ../../web_api/issues.py:63 ../src/pages/issues/index.vue:87
+#: ../src/pages/issues/index.vue
 msgid "Fixed issues"
 msgstr "Problemas corregidos"
 
@@ -928,22 +885,11 @@ msgstr "Problemas corregidos"
 msgid "Issues by user"
 msgstr "Problemas por usuario"
 
-#: ../../web_api/byuser.py:86 ../../web_api/byuser.py:89
-#: ../../web_api/byuser.py:92
+#: ../../web_api/byuser.py:69 ../../web_api/byuser.py:76
+#: ../../web_api/byuser.py:83
 #, python-brace-format
 msgid "Number of level {level} issues: {count}"
 msgstr "Número de problemas nivel {level}: {count}"
-
-#, python-format
-msgid "Number of found issues: %d"
-msgstr "Número de problemas encontrados: %d"
-
-#, python-format
-msgid "Number of found issues: more than %d"
-msgstr "Número de problemas encontrados: mayor a %d"
-
-msgid "Show issues on a map"
-msgstr "Mostrar problemas en el mapa"
 
 #: ../src/pages/byuser/index.vue:3
 msgid "Osmose allows you to control your own issues."
@@ -957,15 +903,15 @@ msgid ""
 "contributor of the relevant erroneous elements."
 msgstr "Al introducir su nombre de usuario OSM en el siguiente formulario, podrá ver los problemas asociados a su nombre de usuario. Tenga en cuenta que el algoritmo que asocia problemas a su nombre de usuario no es perfecto, ya que Osmose solo comprueba el último colaborador de los elementos erróneos pertinentes."
 
-#: ../src/pages/issues/index.vue:285
+#: ../src/pages/issues/index.vue:295
 msgid "Show more issues"
 msgstr "Mostrar más problemas"
 
-#: ../src/components/issues-list.vue:252
+#: ../src/components/issues-list.vue:266
 msgid "information on issue"
 msgstr "información del problema"
 
-#: ../src/components/issues-list.vue:91
+#: ../src/components/issues-list.vue:103
 msgid "issue n°"
 msgstr "problema nº"
 
@@ -1008,10 +954,6 @@ msgstr "camino"
 #: ../../tools/database/items_menu.txt:2
 msgid "split building"
 msgstr "dividir edificio"
-
-#, python-format
-msgid "Control, verification and correction of %s issues"
-msgstr "Control, verificación y corrección de %s problemas"
 
 #: ../src/pages/translation.vue:46
 msgid "Osmose QA main page"
@@ -1078,7 +1020,7 @@ msgstr "Versión"
 msgid "post office, need update"
 msgstr "oficina de correos, necesita actualización"
 
-#: ../src/pages/issues/index.vue:215
+#: ../src/pages/issues/index.vue:213
 msgid "age"
 msgstr "años"
 
@@ -1146,31 +1088,31 @@ msgstr "señales de tráfico"
 msgid "traffic sign limitation"
 msgstr "limitación de señales de tráfico"
 
-#: ../src/pages/issues/index.vue:96 ../src/pages/map/items-filters.vue:9
+#: ../src/pages/issues/index.vue:94 ../src/pages/map/items-filters.vue:9
 msgid "High"
 msgstr "Alta"
 
-#: ../src/pages/issues/index.vue:99 ../src/pages/map/items-filters.vue:12
+#: ../src/pages/issues/index.vue:97 ../src/pages/map/items-filters.vue:12
 msgid "Normal or higher"
 msgstr "Normal o superior"
 
-#: ../src/pages/issues/index.vue:102 ../src/pages/issues/index.vue:165
+#: ../src/pages/issues/index.vue:100 ../src/pages/issues/index.vue:163
 #: ../src/pages/map/items-filters.vue:15
 #: ../src/pages/map/items-filters.vue:103
 #: ../src/pages/map/items-filters.vue:48
 msgid "All"
 msgstr "Todas"
 
-#: ../src/pages/issues/index.vue:106 ../src/pages/map/items-filters.vue:19
+#: ../src/pages/issues/index.vue:104 ../src/pages/map/items-filters.vue:19
 msgid "Normal only"
 msgstr "Solo normal"
 
-#: ../src/pages/issues/index.vue:109 ../src/pages/map/items-filters.vue:22
+#: ../src/pages/issues/index.vue:107 ../src/pages/map/items-filters.vue:22
 msgid "Low only"
 msgstr "Solo bajo"
 
-#: ../src/pages/map/top.vue:287 ../src/pages/map/top.vue:300
-#: ../src/pages/map/top.vue:313
+#: ../src/pages/map/top.vue:285 ../src/pages/map/top.vue:298
+#: ../src/pages/map/top.vue:311
 #, python-brace-format
 msgid "Level {level} issues ({count})"
 msgstr "Nivel {level} problemas ({count})"
@@ -1223,16 +1165,16 @@ msgstr "territorios"
 msgid "unnecessary"
 msgstr "innecesarios"
 
-#: ../src/pages/issues/index.vue:68 ../src/pages/map/items-filters.vue:62
+#: ../src/pages/issues/index.vue:66 ../src/pages/map/items-filters.vue:62
 #: ../src/pages/map/items-filters.vue:7
 msgid "Country"
 msgstr "País"
 
-#: ../src/pages/issues/index.vue:80
+#: ../src/pages/issues/index.vue:78
 msgid "Item"
 msgstr "Elemento"
 
-#: ../src/components/issues-list.vue:304
+#: ../src/components/issues-list.vue:318
 msgid "False positive / Done"
 msgstr "Faso Positivo / Hecho"
 
@@ -1240,42 +1182,39 @@ msgstr "Faso Positivo / Hecho"
 msgid "Objects edited"
 msgstr "Objetos editados"
 
-msgid "Objects deleted"
-msgstr "Objetos borrados"
-
-#: ../src/pages/map/popup.vue:85
+#: ../src/pages/map/popup.vue:103
 #, python-brace-format
 msgid "Show Object on {where}"
 msgstr "Ver el objeto en {where}"
 
-#: ../src/pages/map/popup.vue:102 ../src/pages/map/popup.vue:111
 #: ../src/pages/map/popup.vue:120 ../src/pages/map/popup.vue:129
 #: ../src/pages/map/popup.vue:138 ../src/pages/map/popup.vue:147
-#: ../src/pages/map/popup.vue:155
+#: ../src/pages/map/popup.vue:156 ../src/pages/map/popup.vue:165
+#: ../src/pages/map/popup.vue:172
 #, python-brace-format
 msgid "Edit Object with {where}"
 msgstr "Editar Objeto con {where}"
 
-#: ../src/pages/map/popup.vue:156 ../src/pages/map/popup.vue:183
+#: ../src/pages/map/popup.vue:173 ../src/pages/map/popup.vue:200
 msgid "online Osmose Editor"
 msgstr "Editor online Osmose"
 
-#: ../src/pages/map/popup.vue:175 ../src/pages/map/popup.vue:182
+#: ../src/pages/map/popup.vue:193 ../src/pages/map/popup.vue:199
 #, python-brace-format
 msgid "Load the fix in {where}"
 msgstr "Cargue la corrección en {where}"
 
-#: ../src/pages/map/popup.vue:262
+#: ../src/pages/map/popup.vue:280
 #, python-brace-format
 msgid "Add the new object in {where}"
 msgstr "Añadir nuevo objeto en {where}"
 
-#: ../src/pages/map/popup.vue:313
+#: ../src/pages/map/popup.vue:331
 #, python-brace-format
 msgid "Show the area on {where}"
 msgstr "Ver el area en {where}"
 
-#: ../src/pages/map/popup.vue:318 ../src/pages/map/popup.vue:324
+#: ../src/pages/map/popup.vue:336 ../src/pages/map/popup.vue:342
 #, python-brace-format
 msgid "Edit the area on {where}"
 msgstr "Editar el area en {where}"
@@ -1284,17 +1223,17 @@ msgstr "Editar el area en {where}"
 msgid "details"
 msgstr "detalles"
 
-#: ../../web_api/issues.py:256 ../src/pages/map/popup.vue:139
+#: ../src/pages/map/popup.vue:139
 msgid "Issue reported on:"
 msgstr "Problema informado el:"
 
-#: ../src/pages/map/popup.vue:66 ../src/pages/map/popup.vue:371
+#: ../src/pages/map/popup.vue ../src/pages/map/popup.vue:388
 msgid ""
 "Report the issue as improper, if according to you is not an issue. The issue"
 " will not be displayed to anyone more."
 msgstr "Informe el problema como impropio, si según usted no es un problema. El problema no se mostrará a nadie más."
 
-#: ../src/pages/map/popup.vue:385
+#: ../src/pages/map/popup.vue:402
 msgid ""
 "After issue fixed on the OSM data, mark it as done. May also disappear "
 "automatically on next check if no more issue."
@@ -1307,10 +1246,6 @@ msgstr "zone:maxspeed"
 #: ../../tools/database/items_menu.txt:246
 msgid "power transformer"
 msgstr "transformador"
-
-#, python-format
-msgid "Item #%s"
-msgstr "Elemento #%s"
 
 #: ../../tools/database/items_menu.txt:76
 msgid "opening hours"
@@ -1468,18 +1403,15 @@ msgstr "aguas residuales, podría integrarse"
 msgid "wastewater, need update"
 msgstr "aguas residuales, necesita actualización"
 
-msgid "gas station, not integrated"
-msgstr "Gasolinera no integrada"
-
-#: ../src/components/issues-list.vue:310
+#: ../src/components/issues-list.vue:324
 msgid "delete issue"
 msgstr "borrar problema"
 
-#: ../src/pages/map/popup.vue:329
+#: ../src/pages/map/popup.vue:347
 msgid "Issue details"
 msgstr "detalles problema"
 
-#: ../src/pages/map/popup.vue:342
+#: ../src/pages/map/popup.vue:360
 msgid "Report based on data from date"
 msgstr "Informe basado en datos desde la fecha"
 
@@ -1507,11 +1439,11 @@ msgstr "específico para Brasil"
 msgid "specific france"
 msgstr "específico para Francia"
 
-#: ../src/pages/map/editor-modal.vue:7
+#: ../src/pages/map/editor-modal.vue
 msgid "Fixed with Osmose"
 msgstr "Corregir con osmose"
 
-#: ../src/pages/map/editor.vue:122
+#: ../src/pages/map/editor.vue:126
 msgid "Done"
 msgstr "Hecho"
 
@@ -1577,7 +1509,7 @@ msgstr "picnic"
 msgid "bicycle infrastructure"
 msgstr "infraestructura para bicicletas"
 
-#: ../src/pages/issues/index.vue:86
+#: ../src/pages/issues/index.vue
 msgid "Information"
 msgstr "Información"
 
@@ -1625,43 +1557,39 @@ msgid ""
 "Débrouillards d'Aquitaine\"."
 msgstr "Adicionando nueva funcionalidad del \"Editor Osmose\", soporte inicial a dispositivos móviles y la mejora de la documentación ha sido financiado por la región de Aquitania, Francia; parte del proyecto OpenAquiMap que es llevado por \"Les Petits Débrouillards d'Aquitaine\"."
 
-#: ../src/components/issues-list.vue:182
+#: ../src/components/issues-list.vue:196
 msgid "delete issue #{uuid}"
 msgstr "borrar problema #{uuid}"
 
-#: ../src/pages/issue/index.vue:26
+#: ../src/pages/issue/index.vue
 msgid "Information on issue {uuid}"
 msgstr "Información del problema {uuid}"
 
-#: ../src/pages/issues/matrix.vue:19
+#: ../src/pages/issues/matrix.vue
 msgid "Issue counts matrix"
 msgstr "Matriz de recuentos de problemas"
 
-#: ../src/components/issues-list.vue:167
+#: ../src/components/issues-list.vue:178
 msgid "Mark issue #{uuid} as false positive"
 msgstr "Marcar problema #{uuid} como falso positivo"
 
-#: ../src/components/issues-list.vue:175
+#: ../src/components/issues-list.vue:188
 msgid "Mark issue #{uuid} as fixed"
 msgstr "Marcar problema #{uuid} como corregido"
 
-#: ../src/pages/byuser/byuser.vue:47
+#: ../src/pages/byuser/byuser.vue:53
 msgid "Number of found issues: {count}"
 msgstr "Número de problemas encontrados: {count}"
 
-#: ../src/pages/byuser/byuser.vue:52
+#: ../src/pages/byuser/byuser.vue:58
 msgid "Number of found issues: more than {count}"
 msgstr "Número de problemas encontrados: mayor a {count}"
 
-#: ../src/pages/byuser/byuser.vue:44
+#: ../src/pages/byuser/byuser.vue
 msgid "Statistics for user {user}"
 msgstr "Estadísticas para el usuario {user}"
 
-#: ../src/components/translate.vue:15
-msgid "text"
-msgstr "texto"
-
-#: ../src/pages/byuser/byuser.vue:39
+#: ../src/pages/byuser/byuser.vue:45
 msgid ""
 "This page shows issues on elements that were last modified by '{users}'. "
 "This doesn't means that this user is responsible for all these issues."
@@ -1718,34 +1646,6 @@ msgstr "Los servidores que analizan los datos son proporcionados por OpenStreetM
 msgid "volunteers"
 msgstr "voluntarios"
 
-#: ../../web_api/byuser.py:83
-#, python-brace-format
-msgid "Statistics for user {0}"
-msgstr "Estadísticas del usuario {0}"
-
-#: ../../web_api/issues.py:66
-msgid "Open issues"
-msgstr "Problemas abiertos"
-
-#: ../../web_api/issues.py:190
-msgid "Statistics for user {}"
-msgstr "Estadísticas del usuario {}"
-
-#: ../../web_api/issues.py:233
-msgid "Mark issue as fixed"
-msgstr "Marcar problema como corregido"
-
-#: ../../web_api/issues.py:235
-msgid "Mark issue as false positive"
-msgstr "Marcar problema como falso positivo"
-
-#: ../../web_api/issues.py:240
-msgid "Tags:"
-msgstr "Etiquetas:"
-
-msgid "Tags"
-msgstr "Etiquetas"
-
 #: ../../tools/database/items_menu.txt:113
 msgid "post office, ref not integrated"
 msgstr "oficina postal, ref no incluída"
@@ -1790,25 +1690,25 @@ msgstr "laboratorio médico, ref no incluída"
 msgid "gas station, ref not integrated"
 msgstr "gasolinera, ref no incluída"
 
-#: ../src/pages/issues/index.vue:185
+#: ../src/pages/issues/index.vue:183
 msgid "BBox"
 msgstr "BBox"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for 'class'
-#: ../src/components/issues-list.vue:22 ../src/pages/issues/index.vue:222
+#: ../src/components/issues-list.vue:25 ../src/pages/issues/index.vue:220
 msgid "cl"
 msgstr "cl"
 
-#: ../src/pages/issues/index.vue:139 ../src/pages/map/items-filters.vue:86
+#: ../src/pages/issues/index.vue:137 ../src/pages/map/items-filters.vue:86
 #: ../src/pages/map/items-filters.vue:31
 msgid "Class id"
 msgstr "Id clase"
 
-#: ../src/pages/map/index.vue:185
+#: ../src/pages/map/index.vue
 msgid "Control, verification and correction of {project} issues"
 msgstr "Control, comprobación y corrección de las incidencias de {project}"
 
-#: ../src/pages/map/top.vue:258
+#: ../src/pages/map/top.vue:254
 msgid "Delay:"
 msgstr "Retraso:"
 
@@ -1817,7 +1717,7 @@ msgid "Do not want to see {title} markers?"
 msgstr "¿No quieres ver el {title} de los marcadores?"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for 'elements'
-#: ../src/components/issues-list.vue:34
+#: ../src/components/issues-list.vue:37
 msgid "elms"
 msgstr "olmos"
 
@@ -1829,67 +1729,67 @@ msgstr "Ocultar del mapa"
 msgid "Hide markers"
 msgstr "Ocultar marcadores"
 
-#: ../src/pages/map/items-list.vue:40
+#: ../src/pages/map/items-list.vue
 msgid "Item #{item}"
 msgstr "Ítem #{item}"
 
-#: ../src/pages/issues/index.vue:123 ../src/pages/map/items-filters.vue:57
+#: ../src/pages/issues/index.vue:121 ../src/pages/map/items-filters.vue:57
 #: ../src/pages/map/items-filters.vue:2
 msgid "Less filters"
 msgstr "Menos filtros"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for 'location'
-#: ../src/components/issues-list.vue:29
+#: ../src/components/issues-list.vue:32
 msgid "loc"
 msgstr "loc"
 
-#: ../src/components/issues-list.vue:256
+#: ../src/components/issues-list.vue:270
 msgid "location"
 msgstr "ubicación"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for 'level'
-#: ../src/components/issues-list.vue:12
+#: ../src/components/issues-list.vue:15
 msgid "lvl"
 msgstr "niv"
 
-#: ../src/pages/issues/index.vue:119 ../src/pages/map/items-filters.vue:122
+#: ../src/pages/issues/index.vue:117 ../src/pages/map/items-filters.vue:122
 msgid "More filters"
 msgstr "Más filtros"
 
-#: ../src/pages/issues/index.vue:162 ../src/pages/map/items-filters.vue:100
+#: ../src/pages/issues/index.vue:160 ../src/pages/map/items-filters.vue:100
 #: ../src/pages/map/items-filters.vue:45
 msgid "No (Default)"
 msgstr "No (Defecto)"
 
-#: ../src/pages/issues/index.vue:168 ../src/pages/map/items-filters.vue:106
+#: ../src/pages/issues/index.vue:166 ../src/pages/map/items-filters.vue:106
 #: ../src/pages/map/items-filters.vue:51
 msgid "Only"
 msgstr "Solo"
 
-#: ../src/pages/issues/index.vue:15
+#: ../src/pages/issues/index.vue:13
 msgid "Open"
 msgstr "Abierto"
 
-#: ../src/pages/issues/index.vue:178 ../src/pages/map/items-filters.vue:113
+#: ../src/pages/issues/index.vue:176 ../src/pages/map/items-filters.vue:113
 #: ../src/pages/map/items-filters.vue:58
 msgid "OSM Username"
 msgstr "Usuario OSM"
 
-#: ../src/pages/issues/index.vue:158 ../src/pages/map/items-filters.vue:95
+#: ../src/pages/issues/index.vue:156 ../src/pages/map/items-filters.vue:95
 #: ../src/pages/map/items-filters.vue:40
 msgid "Show hidden items"
 msgstr "Mostrar ítems ocultos"
 
-#: ../src/pages/issues/index.vue:132 ../src/pages/map/items-filters.vue:77
+#: ../src/pages/issues/index.vue:130 ../src/pages/map/items-filters.vue:77
 #: ../src/pages/map/items-filters.vue:22
 msgid "Source id"
 msgstr "Id fuente"
 
-#: ../src/pages/issues/index.vue:507 ../src/pages/map/items-filters.vue:219
+#: ../src/pages/issues/index.vue:482 ../src/pages/map/items-filters.vue:201
 msgid "tag"
 msgstr "etiqueta"
 
-#: ../src/pages/issues/index.vue:146
+#: ../src/pages/issues/index.vue:144
 msgid "Tag"
 msgstr "Etiqueta"
 
@@ -1915,4 +1815,12 @@ msgstr ""
 
 #: ../../tools/database/items_menu.txt:79
 msgid "sideway"
+msgstr ""
+
+#: ../../web_api/byuser.py:96
+msgid "Statistics for user {}"
+msgstr ""
+
+#: ../src/pages/issues/index.vue:279
+msgid "{{ showAnalyserCount }} / {{ errors_groups.length }} rows. Show more."
 msgstr ""
