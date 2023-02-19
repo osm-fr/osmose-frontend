@@ -62,7 +62,7 @@
       <p>
         <translate :params="{ users: users.join('\', \'') }">
           This page shows issues on elements that were last modified by
-          '{users}'. This doesn't means that this user is responsible for all
+          '{users}'. This doesn't mean that this user is responsible for all
           these issues.
         </translate>
       </p>
