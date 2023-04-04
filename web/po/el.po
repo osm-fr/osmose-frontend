@@ -12,8 +12,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
 "PO-Revision-Date: 2014-04-28 19:22+0000\n"
-"Last-Translator: Jim Kats <jim-kats@hotmail.com>, 2022\n"
-"Language-Team: Greek (http://www.transifex.com/openstreetmap-france/osmose/language/el/)\n"
+"Last-Translator: Yannis Gyftomitros, 2014\n"
+"Language-Team: Greek (http://app.transifex.com/openstreetmap-france/osmose/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -816,7 +816,7 @@ msgid "gas station"
 msgstr "βενζινάδικο"
 
 #: ../src/pages/map/editor.vue:4
-msgid "You must be logged in order to use the tag editor"
+msgid "You must be logged in to use the tag editor"
 msgstr "Πρέπει να είστε συνδεδεμένος για να μπορέσετε να χρησιμοποιήσετε τον επεξεργαστή ετικετών"
 
 #: ../src/pages/map/editor-modal.vue:2
@@ -1221,14 +1221,14 @@ msgstr ""
 
 #: ../src/pages/map/popup.vue ../src/pages/map/popup.vue:388
 msgid ""
-"Report the issue as improper, if according to you is not an issue. The issue"
-" will not be displayed to anyone more."
+"Report the issue as improper, if it is not an issue according to you. The "
+"issue will not be displayed to anyone anymore."
 msgstr ""
 
 #: ../src/pages/map/popup.vue:402
 msgid ""
-"After issue fixed on the OSM data, mark it as done. May also disappear "
-"automatically on next check if no more issue."
+"After fixing the issue in the OSM data, mark it as done. It will also "
+"disappear automatically on the next check."
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:44
@@ -1584,7 +1584,7 @@ msgstr ""
 #: ../src/pages/byuser/byuser.vue:45
 msgid ""
 "This page shows issues on elements that were last modified by '{users}'. "
-"This doesn't means that this user is responsible for all these issues."
+"This doesn't mean that this user is responsible for all these issues."
 msgstr ""
 
 #: ../src/pages/byuser/byuser.vue:7

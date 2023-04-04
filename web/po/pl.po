@@ -5,6 +5,7 @@
 # Translators:
 # Daniel Koć <daniel@xn--ko-wla.pl>, 2014
 # Dave Ska, 2022
+# Dave Ska, 2022
 # Debeat <krystian4842@gmail.com>, 2015
 # endro, 2014-2016
 # endro, 2014
@@ -15,7 +16,7 @@
 # maro21 OSM, 2019
 # maro21 OSM, 2019-2021
 # Teiron, 2016
-# Piotr Strębski <strebski@gmail.com>, 2022
+# Piotr Strębski <strebski@gmail.com>, 2022-2023
 # endro, 2014
 # Teiron, 2016
 msgid ""
@@ -24,8 +25,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
 "PO-Revision-Date: 2014-04-28 19:22+0000\n"
-"Last-Translator: Piotr Strębski <strebski@gmail.com>, 2022\n"
-"Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
+"Last-Translator: Teiron, 2016\n"
+"Language-Team: Polish (http://app.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -828,7 +829,7 @@ msgid "gas station"
 msgstr "stacja paliw"
 
 #: ../src/pages/map/editor.vue:4
-msgid "You must be logged in order to use the tag editor"
+msgid "You must be logged in to use the tag editor"
 msgstr "Musisz być zalogowany, aby używać edytora tagów"
 
 #: ../src/pages/map/editor-modal.vue:2
@@ -1233,14 +1234,14 @@ msgstr "Problem wykryto:"
 
 #: ../src/pages/map/popup.vue ../src/pages/map/popup.vue:388
 msgid ""
-"Report the issue as improper, if according to you is not an issue. The issue"
-" will not be displayed to anyone more."
+"Report the issue as improper, if it is not an issue according to you. The "
+"issue will not be displayed to anyone anymore."
 msgstr "Zgłoś ten problem jako niewłaściwy, jeśli według ciebie to nie błąd. Problem nie będzie się już wyświetlał."
 
 #: ../src/pages/map/popup.vue:402
 msgid ""
-"After issue fixed on the OSM data, mark it as done. May also disappear "
-"automatically on next check if no more issue."
+"After fixing the issue in the OSM data, mark it as done. It will also "
+"disappear automatically on the next check."
 msgstr "Po naprawieniu błędu na OSM, oznacz jako zrobione. Ten problem zniknie też automatycznie po następnym sprawdzeniu, jeśli nie będzie już błędu."
 
 #: ../../tools/database/items_menu.txt:44
@@ -1596,7 +1597,7 @@ msgstr "Statystyki użytkownika {users}"
 #: ../src/pages/byuser/byuser.vue:45
 msgid ""
 "This page shows issues on elements that were last modified by '{users}'. "
-"This doesn't means that this user is responsible for all these issues."
+"This doesn't mean that this user is responsible for all these issues."
 msgstr "Ta strona pokazuje problemy z elementami, które były ostatnio edytowane przez użytkownika {users}. To nie oznacza, że ten użytkownik odpowiada za te wszystkie błędy."
 
 #: ../src/pages/byuser/byuser.vue:7
@@ -1660,35 +1661,35 @@ msgstr "skrzynka pocztowa, nr ref. nie zintegrowany"
 
 #: ../../tools/database/items_menu.txt:116
 msgid "school, ref not integrated"
-msgstr ""
+msgstr "szkoła, ref nie jest zintegrowany"
 
 #: ../../tools/database/items_menu.txt:123
 msgid "transport sharing, ref not integrated"
-msgstr ""
+msgstr "wypożyczalnia pojazdów, ref nie jest zintegrowany"
 
 #: ../../tools/database/items_menu.txt:124
 msgid "pharmacy, ref not integrated"
-msgstr ""
+msgstr "apteka, ref nie jest zintegrowany"
 
 #: ../../tools/database/items_menu.txt:125
 msgid "postal code, ref not integrated"
-msgstr ""
+msgstr "kod pocztowy, ref nie jest zintegrowany"
 
 #: ../../tools/database/items_menu.txt:127
 msgid "power substation, ref not integrated"
-msgstr ""
+msgstr "podstacja elektryczna, ref nie jest zintegrowany"
 
 #: ../../tools/database/items_menu.txt:128
 msgid "hospital, ref not integrated"
-msgstr ""
+msgstr "szpital, ref nie jest zintegrowany"
 
 #: ../../tools/database/items_menu.txt:129
 msgid "social facility, ref not integrated"
-msgstr ""
+msgstr "ośrodek pomocy społecznej, ref nie jest zintegrowany"
 
 #: ../../tools/database/items_menu.txt:130
 msgid "medical lab, ref not integrated"
-msgstr ""
+msgstr "laboratorium medyczne, ref nie jest zintegrowany"
 
 #: ../../tools/database/items_menu.txt:131
 msgid "gas station, ref not integrated"
@@ -1819,12 +1820,12 @@ msgstr "warunkowe ograniczenia"
 
 #: ../../tools/database/items_menu.txt:79
 msgid "sideway"
-msgstr ""
+msgstr "boczna droga"
 
 #: ../../web_api/byuser.py:96
 msgid "Statistics for user {}"
-msgstr ""
+msgstr "Statystyki dla użytkownika {}"
 
 #: ../src/pages/issues/index.vue:279
 msgid "{{ showAnalyserCount }} / {{ errors_groups.length }} rows. Show more."
-msgstr ""
+msgstr "{{ showAnalyserCount }} / {{ errors_groups.length }} rzędów. Pokaż więcej."

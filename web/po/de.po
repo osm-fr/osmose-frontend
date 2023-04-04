@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Bamstam, 2020
+# Bamstam, 2020
 # Christian Ostermann, 2015
 # Christian Ostermann, 2015
 # Christian Ostermann, 2017-2019
@@ -17,6 +18,7 @@
 # kjon kjon <kjon@gmx.de>, 2020,2022-2023
 # Klumbumbus, 2015
 # Loo Nie <looniverse@gmail.com>, 2015
+# Lukas Sommer, 2014
 # Manfred Brandl <manfred@brandl.net>, 2020-2022
 # operon, 2012
 # operon, 2012
@@ -30,6 +32,7 @@
 # Lukas Sommer, 2014
 # Lukas Sommer, 2014
 # Tim D., 2022
+# Tim D., 2022
 # ToniE <osm-ToniE@web.de>, 2020
 # xuiqzy xuiqzy <pirminbraun16@gmail.com>, 2019
 msgid ""
@@ -38,8 +41,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
 "PO-Revision-Date: 2014-04-28 19:22+0000\n"
-"Last-Translator: kjon kjon <kjon@gmx.de>, 2020,2022-2023\n"
-"Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
+"Last-Translator: xuiqzy xuiqzy <pirminbraun16@gmail.com>, 2019\n"
+"Language-Team: German (http://app.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -842,7 +845,7 @@ msgid "gas station"
 msgstr "Tankstelle"
 
 #: ../src/pages/map/editor.vue:4
-msgid "You must be logged in order to use the tag editor"
+msgid "You must be logged in to use the tag editor"
 msgstr "Du musst eingeloggt sein um den Tag-Editor zu benutzen"
 
 #: ../src/pages/map/editor-modal.vue:2
@@ -1247,14 +1250,14 @@ msgstr "Problem gemeldet am:"
 
 #: ../src/pages/map/popup.vue ../src/pages/map/popup.vue:388
 msgid ""
-"Report the issue as improper, if according to you is not an issue. The issue"
-" will not be displayed to anyone more."
+"Report the issue as improper, if it is not an issue according to you. The "
+"issue will not be displayed to anyone anymore."
 msgstr "Melde das Problem als Falschmeldung, wenn es nach deiner Meinung keines ist. Das Problem wird niemandem mehr angezeigt."
 
 #: ../src/pages/map/popup.vue:402
 msgid ""
-"After issue fixed on the OSM data, mark it as done. May also disappear "
-"automatically on next check if no more issue."
+"After fixing the issue in the OSM data, mark it as done. It will also "
+"disappear automatically on the next check."
 msgstr "Nachdem das Problem in den OSM-Daten behoben wurden, markiere es als behoben. Er wird auch automatisch entfernt, wenn das Problem bei der nächsten Überprüfung nicht mehr vorhanden ist."
 
 #: ../../tools/database/items_menu.txt:44
@@ -1610,7 +1613,7 @@ msgstr "Statistik für Benutzer {user}"
 #: ../src/pages/byuser/byuser.vue:45
 msgid ""
 "This page shows issues on elements that were last modified by '{users}'. "
-"This doesn't means that this user is responsible for all these issues."
+"This doesn't mean that this user is responsible for all these issues."
 msgstr "Diese Seite zeigt Probleme mit Elementen, die zuletzt von '{users}' geändert wurden. Das bedeutet nicht, dass dieser Benutzer für alle diese Probleme verantwortlich ist."
 
 #: ../src/pages/byuser/byuser.vue:7
@@ -1837,8 +1840,8 @@ msgstr "Bürgersteig"
 
 #: ../../web_api/byuser.py:96
 msgid "Statistics for user {}"
-msgstr ""
+msgstr "Statistik für Nutzer {}"
 
 #: ../src/pages/issues/index.vue:279
 msgid "{{ showAnalyserCount }} / {{ errors_groups.length }} rows. Show more."
-msgstr ""
+msgstr "{{ showAnalyserCount }} / {{ errors_groups.length }} Reihen. Mehr anzeigen."
