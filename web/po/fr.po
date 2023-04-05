@@ -4,7 +4,9 @@
 # 
 # Translators:
 # A-d-r-i, 2021
+# A-d-r-i, 2021
 # Adrien Pavie <panieravide@riseup.net>, 2015,2020
+# bagage <gautier.pelloux@gmail.com>, 2018
 # Baptiste Mille-Mathias <baptiste.millemathias@gmail.com>, 2017
 # Binnette <binnette@gmail.com>, 2019
 # Christian Quest <christian.quest@gmail.com>, 2015
@@ -13,6 +15,8 @@
 # Donat ROBAUX <donat.r@gmail.com>, 2021
 # florian lainez <winnerflo@free.fr>, 2021
 # François Magimel, 2020
+# François Magimel, 2020
+# FredB <fredbourgeon@gmail.com>, 2022
 # FredB <fredbourgeon@gmail.com>, 2022
 # frodrigo <fred.rodrigo@gmail.com>, 2014-2021
 # frodrigo <fred.rodrigo@gmail.com>, 2014
@@ -41,6 +45,7 @@
 # Philippe Verdy, 2017-2019,2022
 # Pyrog <pyrog@laposte.net>, 2014
 # Roue Libre, 2020
+# Roue Libre, 2020
 # Sébastien Duthil <duthils@free.fr>, 2015-2016
 # Sidjy <gross.c@gmail.com>, 2015
 # StephaneP <stephane.peneau@wanadoo.fr>, 2016
@@ -54,8 +59,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
 "PO-Revision-Date: 2014-04-28 19:22+0000\n"
-"Last-Translator: Philippe Verdy, 2017-2019,2022\n"
-"Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
+"Last-Translator: Philippe Verdy, 2017\n"
+"Language-Team: French (http://app.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -858,7 +863,7 @@ msgid "gas station"
 msgstr "station-service"
 
 #: ../src/pages/map/editor.vue:4
-msgid "You must be logged in order to use the tag editor"
+msgid "You must be logged in to use the tag editor"
 msgstr "Vous devez être identifié pour utiliser l’éditeur d’attributs"
 
 #: ../src/pages/map/editor-modal.vue:2
@@ -1263,14 +1268,14 @@ msgstr "Signalement du :"
 
 #: ../src/pages/map/popup.vue ../src/pages/map/popup.vue:388
 msgid ""
-"Report the issue as improper, if according to you is not an issue. The issue"
-" will not be displayed to anyone more."
+"Report the issue as improper, if it is not an issue according to you. The "
+"issue will not be displayed to anyone anymore."
 msgstr "Rapporter le signalement comme invalide, si selon vous ce n'est pas un problème. Le signalement ne sera plus affiché à personne."
 
 #: ../src/pages/map/popup.vue:402
 msgid ""
-"After issue fixed on the OSM data, mark it as done. May also disappear "
-"automatically on next check if no more issue."
+"After fixing the issue in the OSM data, mark it as done. It will also "
+"disappear automatically on the next check."
 msgstr "Après avoir corrigé le signalement dans les données d'OSM, le marquer comme corrigé. Il pourra également disparaître automatiquement au prochain contrôle s'il n'y a plus de problème."
 
 #: ../../tools/database/items_menu.txt:44
@@ -1626,7 +1631,7 @@ msgstr "Statistiques pour l'utilisateur {user}"
 #: ../src/pages/byuser/byuser.vue:45
 msgid ""
 "This page shows issues on elements that were last modified by '{users}'. "
-"This doesn't means that this user is responsible for all these issues."
+"This doesn't mean that this user is responsible for all these issues."
 msgstr "Cette page présente les problèmes relatifs aux éléments qui ont été modifiés en dernier lieu par '{users}'. Cela ne signifie pas que cet utilisateur est responsable de tous ces problèmes."
 
 #: ../src/pages/byuser/byuser.vue:7

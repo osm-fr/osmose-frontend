@@ -5,13 +5,16 @@
 # Translators:
 # Kit Tak <misc.takashi@gmail.com>, 2020
 # Lratz sc, 2023
+# Lratz sc, 2023
 # 藤本 理弘 <mfujimot@gmail.com>, 2014
 # Satoshi IIDA <nyampire@gmail.com>, 2016
+# OKADA Tsuneo, 2020
 # OKADA Tsuneo, 2020
 # Satoshi IIDA <nyampire@gmail.com>, 2016
 # Shu Higashi, 2020-2021
 # Tom Konda <tom.konda.dev@gmail.com>, 2020
 # tomoya muramoto <muramototomoya@gmail.com>, 2016
+# 藤本 理弘 <mfujimot@gmail.com>, 2014
 # 藤本 理弘 <mfujimot@gmail.com>, 2014
 msgid ""
 msgstr ""
@@ -19,8 +22,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
 "PO-Revision-Date: 2014-04-28 19:22+0000\n"
-"Last-Translator: Lratz sc, 2023\n"
-"Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
+"Last-Translator: 藤本 理弘 <mfujimot@gmail.com>, 2014\n"
+"Language-Team: Japanese (http://app.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -823,7 +826,7 @@ msgid "gas station"
 msgstr "ガソリンスタンド"
 
 #: ../src/pages/map/editor.vue:4
-msgid "You must be logged in order to use the tag editor"
+msgid "You must be logged in to use the tag editor"
 msgstr "タグエディタを使うにはログインが必要です"
 
 #: ../src/pages/map/editor-modal.vue:2
@@ -1228,14 +1231,14 @@ msgstr "報告日:"
 
 #: ../src/pages/map/popup.vue ../src/pages/map/popup.vue:388
 msgid ""
-"Report the issue as improper, if according to you is not an issue. The issue"
-" will not be displayed to anyone more."
+"Report the issue as improper, if it is not an issue according to you. The "
+"issue will not be displayed to anyone anymore."
 msgstr "あなたから見て問題でない場合は誤検出であることを報告してください。問題はそれ以上表示されなくなります。"
 
 #: ../src/pages/map/popup.vue:402
 msgid ""
-"After issue fixed on the OSM data, mark it as done. May also disappear "
-"automatically on next check if no more issue."
+"After fixing the issue in the OSM data, mark it as done. It will also "
+"disappear automatically on the next check."
 msgstr "OSMデータの問題を解決したら、完了とマークして下さい。他に問題がなければ、次回のチェック時に自動的に消えるかも知れません。"
 
 #: ../../tools/database/items_menu.txt:44
@@ -1591,7 +1594,7 @@ msgstr "{user}さんの統計"
 #: ../src/pages/byuser/byuser.vue:45
 msgid ""
 "This page shows issues on elements that were last modified by '{users}'. "
-"This doesn't means that this user is responsible for all these issues."
+"This doesn't mean that this user is responsible for all these issues."
 msgstr "このページで表示されている課題は、最後に'{users}'さんが変更した要素を意味しています。このユーザにすべての責任があるわけではありません。"
 
 #: ../src/pages/byuser/byuser.vue:7

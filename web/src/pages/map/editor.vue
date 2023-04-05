@@ -2,7 +2,7 @@
   <div id="editor" :data-user="!!user">
     <div v-if="!user">
       <p>
-        <translate>You must be logged in order to use the tag editor</translate>
+        <translate>You must be logged in to use the tag editor</translate>
       </p>
       <a href="../login"><translate>Login</translate></a>
     </div>

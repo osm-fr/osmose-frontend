@@ -260,7 +260,7 @@
                 $t('false positive') +
                 ' - ' +
                 $t(
-                  'Report the issue as improper, if according to you is not an issue. The issue will not be displayed to anyone more.'
+                  'Report the issue as improper, if it is not an issue according to you. The issue will not be displayed to anyone anymore.'
                 )
               "
               @click="setFalsePositive(uuid)"
@@ -276,7 +276,7 @@
                 $t('corrected') +
                 ' - ' +
                 $t(
-                  'After issue fixed on the OSM data, mark it as done. May also disappear automatically on next check if no more issue.'
+                  'After fixing the issue in the OSM data, mark it as done. It will also disappear automatically on the next check.'
                 )
               "
               @click="setDone(uuid)"
@@ -396,7 +396,7 @@ export default Vue.extend({
 
     setFalsePositive(uuid: string): void {
       const message = this.$t(
-        'Report the issue as improper, if according to you is not an issue. The issue will not be displayed to anyone more.'
+        'Report the issue as improper, if it is not an issue according to you. The issue will not be displayed to anyone anymore.'
       )
       if (confirm(message)) {
         fetch(API_URL + `/api/0.3/issue/${uuid}/false`)
