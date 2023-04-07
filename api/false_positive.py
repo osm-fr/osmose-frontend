@@ -28,7 +28,7 @@ async def fp_uuid(
     title = utils.i10n_select(marker["title"], langs)
     subtitle = utils.i10n_select(marker["subtitle"], langs)
     item = marker["item"] or 0
-    date = marker["date"].isoformat() or 0
+    date = marker["timestamp"].isoformat() or 0
 
     return {
         "lat": lat,
