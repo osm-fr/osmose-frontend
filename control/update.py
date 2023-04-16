@@ -62,6 +62,8 @@ LIMIT 1
 
     remote_ip = request.client.host if request.client else None
 
+    if not content.filename:
+        raise HTTPException(status_code=406, detail="FAIL: Filename required.")
     try:
         (name, ext) = os.path.splitext(content.filename)
         if ext not in (".bz2", ".gz", ".xml"):

@@ -20,8 +20,8 @@ from pydantic import BaseModel
 
 class SessionData(BaseModel):
     oauth_tokens: Tuple[str, str]
-    user: Optional[Dict[str, Any]]
-    changeset: Optional[Any]
+    user: Optional[Dict[str, Any]] = None
+    changeset: Optional[Any] = None
 
 
 class EternalCookieParameters(CookieParameters):
