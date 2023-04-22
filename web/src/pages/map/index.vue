@@ -27,7 +27,7 @@
           @state-update="itemState = $event"
         />
       </items>
-      <doc :map="map" @hide-item-markers="onHideItemMarkers($event.map)" />
+      <doc :map="map" @hide-item-markers="onHideItemMarkers($event)" />
       <l-map
         :item-state="itemState"
         :map-state="mapState"
