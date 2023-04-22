@@ -94,10 +94,26 @@
     <p>
       <translate-slot>
         <span translate>
-          Keep in touch by watching at {osmose_qa} on Twitter.
+          Keep in touch by watching at {twitter} on Twitter or at {mastodon} on
+          Mastodon.
         </span>
-        <template #osmose_qa>
+        <template #twitter>
           <a href="https://twitter.com/osmose_qa">@osmose_qa</a>
+        </template>
+        <template #mastodon>
+          <a href="https://en.osm.town/@OsmoseQA">@OsmoseQA@en.osm.town</a>
+        </template>
+      </translate-slot>
+    </p>
+    <p>
+      <translate-slot>
+        <span translate>
+          Chat with Osmose-QA developers and community at {matrix} on Matrix.
+        </span>
+        <template #matrix>
+          <a href="https://matrix.to/#/#osm-osmose:matrix.org">
+            #osm-osmose:matrix.org
+          </a>
         </template>
       </translate-slot>
     </p>
