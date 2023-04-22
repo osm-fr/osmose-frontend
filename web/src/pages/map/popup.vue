@@ -293,10 +293,13 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue'
 
+import confirmFalsePositive from '../../components/confirmFalsePositive.vue'
 import ExternalVueAppEvent from '../../ExternalVueAppEvent'
 import { Elem, Fix } from '../../types'
 
 export default Vue.extend({
+  mixins: [confirmFalsePositive],
+
   props: {
     main_website: {
       type: String,
@@ -395,10 +398,7 @@ export default Vue.extend({
     },
 
     setFalsePositive(uuid: string): void {
-      const message = this.$t(
-        'Report the issue as improper, if it is not an issue according to you. The issue will not be displayed to anyone anymore.'
-      )
-      if (confirm(message)) {
+      if (this.confirmeFalsePositive(uuid)) {
         fetch(API_URL + `/api/0.3/issue/${uuid}/false`)
         this.markerLayer._dismissMarker()
       }

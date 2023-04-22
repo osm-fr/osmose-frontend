@@ -154,7 +154,7 @@
                       uuid: res.uuid,
                     })
                   "
-                  @click.stop.prevent="issue_action"
+                  @click.stop.prevent="setFalsePositive(res.uuid, $event)"
                 >
                   ✘ </a
                 >/
@@ -192,6 +192,7 @@
 import { FeatureCollection, Feature, Point } from 'geojson'
 
 import VueParent from '../pages/Parent.vue'
+import confirmFalsePositive from './confirmFalsePositive.vue'
 
 interface Issue {
   uuid: string
@@ -212,6 +213,8 @@ interface Issue {
 }
 
 export default VueParent.extend({
+  mixins: [confirmFalsePositive],
+
   data(): {
     error: boolean
     errors: boolean
@@ -323,6 +326,12 @@ export default VueParent.extend({
         .catch(() => {
           container.parent().css({ backgroundColor: '' })
         })
+    },
+
+    setFalsePositive(uuid: string, event: MouseEvent): void {
+      if (this.confirmeFalsePositive(uuid)) {
+        this.issue_action(event)
+      }
     },
   },
 })
