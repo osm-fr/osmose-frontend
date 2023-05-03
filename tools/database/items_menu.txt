@@ -58,7 +58,7 @@
  3091 | _("numeric value")
  3092 | _("phone number")
  3093 | _("URL")
- 3100 | _("small farm")
+ 3100 | _("small land use")
  3110 | _("note")
  3120 | _("tree")
  3130 | _("brand in name")
