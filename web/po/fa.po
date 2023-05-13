@@ -515,10 +515,6 @@ msgstr "چندین مقدار"
 msgid "numeric value"
 msgstr "مقدار عددی"
 
-#: ../../tools/database/items_menu.txt:61
-msgid "small farm"
-msgstr "مزرعهٔ کوچک"
-
 #: ../../tools/database/items_menu.txt:62
 msgid "note"
 msgstr "یادداشت"
@@ -1218,7 +1214,7 @@ msgstr "جزئیات"
 msgid "Issue reported on:"
 msgstr "تاریخ گزارش:"
 
-#: ../src/pages/map/popup.vue ../src/pages/map/popup.vue:388
+#: ../src/pages/map/popup.vue:388
 msgid ""
 "Report the issue as improper, if it is not an issue according to you. The "
 "issue will not be displayed to anyone anymore."
@@ -1622,10 +1618,6 @@ msgstr ""
 msgid "You can create a new language directly on {Transifex}."
 msgstr ""
 
-#: ../src/pages/contact.vue:85
-msgid "Keep in touch by watching at {osmose_qa} on Twitter."
-msgstr ""
-
 #: ../src/pages/contact.vue:61
 msgid ""
 "The servers analysing data are provided by OpenStreetMap-France and some "
@@ -1814,4 +1806,29 @@ msgstr ""
 
 #: ../src/pages/issues/index.vue:279
 msgid "{{ showAnalyserCount }} / {{ errors_groups.length }} rows. Show more."
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:61
+msgid "small land use"
+msgstr ""
+
+#: ../src/pages/contact.vue:99
+msgid "Chat with Osmose-QA developers and community at {matrix} on Matrix."
+msgstr ""
+
+#: ../src/pages/contact.vue:85
+msgid ""
+"Keep in touch by watching at {twitter} on Twitter or at {mastodon} on "
+"Mastodon."
+msgstr ""
+
+#: ../src/components/confirmFalsePositive.vue
+msgid ""
+"Report the issue as improper.\n"
+"\n"
+"Only use this if the issue reported by Osmose is in fact not an issue in the OSM data.\n"
+"\n"
+"Warning: the issue will also no longer be displayed to other contributors. If you are unsure, let this Osmose issue open.\n"
+"\n"
+"If Osmose reports lots of issues similar to this one and you disagree with this, please fill a Github issue and let us try to fix it."
 msgstr ""
