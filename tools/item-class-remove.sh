@@ -11,4 +11,5 @@ read ln
 
 psql -d osmose_frontend -c  "DELETE FROM markers where item = '$item' and class='$cl'"
 psql -d osmose_frontend -c  "DELETE FROM markers_counts where item = '$item' and class='$cl'"
+psql -d osmose_frontend -c  "DELETE FROM markers_status where item = '$item' and class='$cl'"
 psql -d osmose_frontend -c  "DELETE FROM class where item = '$item' and class='$cl'"
