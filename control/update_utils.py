@@ -249,9 +249,29 @@ WHERE
     )
 
 
+async def table_create_markers_tmp(
+    _db: Connection,
+) -> None:
+    await _db.execute(
+        """
+CREATE TEMP TABLE markers_tmp (
+    source_id integer NOT NULL,
+    class integer NOT NULL,
+    class_sub bigint NOT NULL,
+    elems_sig text NOT NULL,
+    item integer NOT NULL,
+    lat numeric(9,7) NOT NULL,
+    lon numeric(10,7) NOT NULL,
+    elems jsonb[],
+    fixes jsonb[],
+    subtitle jsonb
+)
+"""
+    )
+
+
 async def update_issue(
     _db: Connection,
-    all_uuid: Optional[Dict[int, List[str]]],
     _error_locations: List[Dict[str, str]],
     _source_id: int,
     _class_id: int,
@@ -262,50 +282,10 @@ async def update_issue(
     fixes: List[List[Fix]],
     _error_texts: Optional[Dict[str, str]],
 ) -> None:
-    uuid = """('{' ||
-        encode(substring(digest(
-            $1::int ||
-            '/' ||
-            $2::int ||
-            '/' ||
-            $3::bigint ||
-            '/' ||
-            $4, 'sha256'
-        ) from 1 for 16), 'hex') ||
-    '}')::uuid"""
-
     #  sql template
-    sql_marker = f"""
-INSERT INTO markers (uuid, source_id, class, item, lat, lon, elems, fixes, subtitle)
-VALUES (
-    {uuid}, $1, $2, $5, $6, $7,
-    -- Hack to pass variable json struct on asyncio params
-    (SELECT array_agg(j) FROM jsonb_array_elements($8::jsonb) AS t(j)),
-    (SELECT array_agg(j) FROM jsonb_array_elements($9::jsonb) AS t(j)),
-    $10
-)
-ON CONFLICT (uuid) DO
-UPDATE SET
-    item = $5,
-    lat = $6,
-    lon = $7,
-    elems = (SELECT array_agg(j) FROM jsonb_array_elements($8::jsonb) AS t(j)),
-    fixes = (SELECT array_agg(j) FROM jsonb_array_elements($9::jsonb) AS t(j)),
-    subtitle = $10
-WHERE
-    markers.uuid = {uuid} AND
-    markers.source_id = $1 AND
-    markers.class = $2 AND
-    (
-        markers.item IS DISTINCT FROM $5 OR
-        markers.lat IS DISTINCT FROM $6 OR
-        markers.lon IS DISTINCT FROM $7 OR
-        markers.elems IS DISTINCT FROM (SELECT array_agg(j) FROM jsonb_array_elements($8::jsonb) AS t(j)) OR
-        markers.fixes IS DISTINCT FROM (SELECT array_agg(j) FROM jsonb_array_elements($9::jsonb) AS t(j)) OR
-        markers.subtitle IS DISTINCT FROM $10
+    sql_marker = (
+        "INSERT INTO markers_tmp VALUES ($1, $2, $3, $4, $5, $6, $7, (SELECT array_agg(j) FROM jsonb_array_elements($8::jsonb) AS t(j)), (SELECT array_agg(j) FROM jsonb_array_elements($9::jsonb) AS t(j)), $10)"
     )
-RETURNING uuid
-"""
 
     for location in _error_locations:
         lat = float(location["lat"])
@@ -327,10 +307,61 @@ RETURNING uuid
             fixes if fixes else None,  # $9 fixes
             _error_texts,  # $10 subtitle
         ]
-        r = await _db.fetchval(sql_marker, *params)
+        await _db.fetchval(sql_marker, *params)
 
-        if r and all_uuid is not None:
-            all_uuid[_class_id].append(r)
+
+async def table_merge_markers_tmp(
+    _db: Connection,
+    all_uuid: Optional[Dict[int, List[str]]],
+) -> None:
+    uuid = """('{' ||
+        encode(substring(digest(
+            source_id::int ||
+            '/' ||
+            class::int ||
+            '/' ||
+            class_sub::bigint ||
+            '/' ||
+            elems_sig, 'sha256'
+        ) from 1 for 16), 'hex') ||
+    '}')::uuid"""
+
+    sql_marker = f"""
+INSERT INTO markers (uuid, source_id, class, item, lat, lon, elems, fixes, subtitle)
+SELECT
+    {uuid} AS uuid,
+    source_id, class, item, lat, lon, elems, fixes, subtitle
+FROM
+    markers_tmp
+ON CONFLICT (uuid) DO
+UPDATE SET
+    item = excluded.item,
+    lat = excluded.lat,
+    lon = excluded.lon,
+    elems = excluded.elems,
+    fixes = excluded.fixes,
+    subtitle = excluded.subtitle
+WHERE
+    markers.uuid = excluded.uuid AND
+    markers.source_id = excluded.source_id AND
+    markers.class = excluded.class AND
+    (
+        markers.item IS DISTINCT FROM excluded.item OR
+        markers.lat IS DISTINCT FROM excluded.lat OR
+        markers.lon IS DISTINCT FROM excluded.lon OR
+        markers.elems IS DISTINCT FROM excluded.elems OR
+        markers.fixes IS DISTINCT FROM excluded.fixes OR
+        markers.subtitle IS DISTINCT FROM excluded.subtitle
+    )
+"""
+    await _db.execute(sql_marker)
+
+    r = await _db.fetch(f"SELECT class, {uuid} AS uuid FROM markers_tmp")
+    if r and all_uuid is not None:
+        for rr in r:
+            all_uuid[rr["class"]].append(rr["uuid"])
+
+    await _db.execute("DROP TABLE markers_tmp")
 
 
 class sync_update_parser:
@@ -424,11 +455,13 @@ class async_update_parser:
             self.all_uuid = {}
             self.mode = "analyser"
             await self.update_timestamp(attrs)
+            await table_create_markers_tmp(self._db)
 
         elif name == "analyserChange":
             self.all_uuid = None
             self.mode = "analyserChange"
             await self.update_timestamp(attrs)
+            await table_create_markers_tmp(self._db)
 
         elif name == "error":
             self._class_id = int(attrs["class"])
@@ -531,6 +564,7 @@ WHERE
         self.element_stack.pop()
 
         if name == "analyser" and self.all_uuid:
+            await table_merge_markers_tmp(self._db, self.all_uuid)
             for class_id, uuid in self.all_uuid.items():
                 await self._db.execute(
                     "DELETE FROM markers WHERE source_id = $1 AND class = $2 AND uuid != ALL ($3::uuid[])",
@@ -538,6 +572,9 @@ WHERE
                     class_id,
                     uuid,
                 )
+
+        elif name == "analyserChange":
+            await table_merge_markers_tmp(self._db, self.all_uuid)
 
         elif name == "error":
             #  add data at all location
@@ -606,7 +643,6 @@ WHERE
 
             await update_issue(
                 self._db,
-                self.all_uuid,
                 self._error_locations,
                 self._source_id,
                 self._class_id,
