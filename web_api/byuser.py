@@ -31,7 +31,7 @@ def byUser() -> RedirectResponse:
     return RedirectResponse("byuser/")
 
 
-@router.get("/byuser/{username}.{format}")
+@router.get("/byuser/{username}.{format}", response_model=None)
 async def user(
     username: str,
     format: str,

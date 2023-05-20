@@ -14,14 +14,14 @@ from .tool.session import SessionData, cookie, verifier
 router = APIRouter()
 
 
-@router.get("/map")
+@router.get("/map", response_model=None)
 def errors(
     request: Request,
 ) -> RedirectResponse:
     return RedirectResponse("map/?" + request.url.query)
 
 
-@router.get("/map/.json", dependencies=[Depends(cookie)])
+@router.get("/map/.json", dependencies=[Depends(cookie)], response_model=None)
 async def index(
     request: Request,
     db: Connection = Depends(database.db),

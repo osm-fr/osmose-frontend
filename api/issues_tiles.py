@@ -116,7 +116,10 @@ def _errors_geojson(
 
 
 @router.get(
-    "/0.3/issues/{z}/{x}/{y}.heat.mvt", response_class=MVTResponse, tags=["tiles"]
+    "/0.3/issues/{z}/{x}/{y}.heat.mvt",
+    response_class=MVTResponse,
+    response_model=None,
+    tags=["tiles"],
 )
 async def heat(
     request: Request,
