@@ -117,7 +117,7 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-SET default_with_oids = false;
+SET default_table_access_method = heap;
 
 --
 -- Name: backends; Type: TABLE; Schema: public; Owner: -
@@ -235,6 +235,25 @@ CREATE TABLE public.sources (
 
 
 --
+-- Name: sources_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sources_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sources_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sources_id_seq OWNED BY public.sources.id;
+
+
+--
 -- Name: sources_password; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -281,6 +300,13 @@ CREATE TABLE public.updates_last (
     remote_ip character varying(128) DEFAULT NULL::character varying,
     analyser_version text
 );
+
+
+--
+-- Name: sources id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sources ALTER COLUMN id SET DEFAULT nextval('public.sources_id_seq'::regclass);
 
 
 --
@@ -411,6 +437,13 @@ CREATE INDEX idx_dynpoi_class_source ON public.markers_counts USING btree (sourc
 
 
 --
+-- Name: idx_items_categorie_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_items_categorie_id ON public.items USING btree (categorie_id);
+
+
+--
 -- Name: idx_marker_elem_ids; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -467,10 +500,24 @@ CREATE INDEX idx_marker_z_order_curve_item ON public.markers USING btree (public
 
 
 --
+-- Name: idx_markers_counts_item_class; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_markers_counts_item_class ON public.markers_counts USING btree (item, class);
+
+
+--
 -- Name: idx_markers_status_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_markers_status_id ON public.markers_status USING btree (public.uuid_to_bigint(uuid));
+
+
+--
+-- Name: idx_markers_status_item_class; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_markers_status_item_class ON public.markers_status USING btree (item, class);
 
 
 --
