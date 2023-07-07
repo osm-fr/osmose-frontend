@@ -148,7 +148,7 @@ export default VueParent.extend({
     api_url_path(format: string, query: string): string {
       return `${this.website}/api/0.3/issues${format ? '.' + format : ''}?${
         this.query
-      }&usename=${this.username}${query ? '&' + query : ''}`
+      }&username=${this.username}${query ? '&' + query : ''}`
     },
 
     render(): void {
