@@ -17,7 +17,7 @@ def xml_header(
         users = ", ".join(params.users)
         title = f"Osmose - {users}"
         description = _("Statistics for user {}").format(users)
-        url = f"{website}/byuser/{users}"
+        url = f"{website}/{lang}/byuser/{users}"
     else:
         title = "Osmose - " + title
         description = None
