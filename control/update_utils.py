@@ -181,42 +181,8 @@ async def update_class(
     _class_resource: Optional[str],
     ts: float,
 ) -> None:
-    # Commit class update on its own transaction. Avoid lock the class table and block other updates.
-    # db_local: Connection = await database.db().__anext__()
-    db_local = _db
-    await db_local.execute(
-        """
-INSERT INTO class (class, item, title, level, tags, detail, fix, trap, example, source, resource, timestamp)
-VALUES
-    ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, to_timestamp($12))
-ON CONFLICT (item, class) DO
-UPDATE SET
-        title = $3,
-        level = $4,
-        tags = $5,
-        detail = $6,
-        fix = $7,
-        trap = $8,
-        example = $9,
-        source = $10,
-        resource = $11,
-        timestamp = to_timestamp($12)
-WHERE
-    class.class = $1 AND
-    class.item = $2 AND
-    class.timestamp < to_timestamp($12) AND
-    (
-        class.title IS DISTINCT FROM $3 OR
-        class.level IS DISTINCT FROM $4 OR
-        class.tags IS DISTINCT FROM $5::varchar[] OR
-        class.detail IS DISTINCT FROM $6 OR
-        class.fix IS DISTINCT FROM $7 OR
-        class.trap IS DISTINCT FROM $8 OR
-        class.example IS DISTINCT FROM $9 OR
-        class.source IS DISTINCT FROM $10 OR
-        class.resource IS DISTINCT FROM $11
-    )
-""",
+    await _db.execute(
+        "INSERT INTO class_tmp VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, to_timestamp($12))",
         _class_id,  # $1 class
         _class_item,  # $2 item
         _class_title,  # $3 title
@@ -231,27 +197,105 @@ WHERE
         ts,  # $12 timestamp
     )
 
-    sql = """
-INSERT INTO markers_counts (source_id, class, item)
-VALUES ($1, $2, $3)
-ON CONFLICT (source_id, class) DO
-UPDATE SET
-    item = $3
-WHERE
-    markers_counts.source_id = $1 AND
-    markers_counts.class = $2
-"""
     await _db.execute(
-        sql,
+        "INSERT INTO markers_counts_tmp VALUES ($1, $2, $3)",
         _source_id,  # $1 source
         _class_id,  # $2 class
         _class_item,  # $3 item
     )
 
 
-async def table_create_markers_tmp(
+async def table_merge_class_tmp(
     _db: Connection,
 ) -> None:
+    await _db.execute(
+        """
+INSERT INTO class (class, item, title, level, tags, detail, fix, trap, example, source, resource, timestamp)
+SELECT
+    *
+FROM
+    class_tmp
+ON CONFLICT (item, class) DO
+UPDATE SET
+        title = excluded.title,
+        level = excluded.level,
+        tags = excluded.tags,
+        detail = excluded.detail,
+        fix = excluded.fix,
+        trap = excluded.trap,
+        example = excluded.example,
+        source = excluded.source,
+        resource = excluded.resource,
+        timestamp = excluded.timestamp
+WHERE
+    class.class = excluded.class AND
+    class.item = excluded.item AND
+    class.timestamp < excluded.timestamp AND
+    (
+        class.title IS DISTINCT FROM excluded.title OR
+        class.level IS DISTINCT FROM excluded.level OR
+        class.tags IS DISTINCT FROM excluded.tags OR
+        class.detail IS DISTINCT FROM excluded.detail OR
+        class.fix IS DISTINCT FROM excluded.fix OR
+        class.trap IS DISTINCT FROM excluded.trap OR
+        class.example IS DISTINCT FROM excluded.example OR
+        class.source IS DISTINCT FROM excluded.source OR
+        class.resource IS DISTINCT FROM excluded.resource
+    )
+"""
+    )
+    await _db.execute("DROP TABLE class_tmp")
+
+    await _db.execute(
+        """
+INSERT INTO markers_counts (source_id, class, item)
+SELECT
+    *
+FROM
+    markers_counts_tmp
+ON CONFLICT (source_id, class) DO
+UPDATE SET
+    item = excluded.item
+WHERE
+    markers_counts.source_id = excluded.source_id AND
+    markers_counts.class = excluded.class
+"""
+    )
+    await _db.execute("DROP TABLE markers_counts_tmp")
+
+
+async def table_create_tmp(
+    _db: Connection,
+) -> None:
+    await _db.execute(
+        """
+CREATE TEMP TABLE class_tmp (
+    class integer NOT NULL,
+    item integer NOT NULL,
+    title jsonb,
+    level integer,
+    tags character varying(255)[],
+    detail jsonb,
+    fix jsonb,
+    trap jsonb,
+    example jsonb,
+    source text,
+    resource text,
+    timestamp timestamp without time zone
+)
+"""
+    )
+
+    await _db.execute(
+        """
+CREATE TEMP TABLE markers_counts_tmp (
+    source_id integer,
+    class integer NOT NULL,
+    item integer
+)
+"""
+    )
+
     await _db.execute(
         """
 CREATE TEMP TABLE markers_tmp (
@@ -283,9 +327,13 @@ async def update_issue(
     _error_texts: Optional[Dict[str, str]],
 ) -> None:
     #  sql template
-    sql_marker = (
-        "INSERT INTO markers_tmp VALUES ($1, $2, $3, $4, $5, $6, $7, (SELECT array_agg(j) FROM jsonb_array_elements($8::jsonb) AS t(j)), (SELECT array_agg(j) FROM jsonb_array_elements($9::jsonb) AS t(j)), $10)"
-    )
+    sql_marker = """
+INSERT INTO markers_tmp VALUES (
+    $1, $2, $3, $4, $5, $6, $7,
+    (SELECT array_agg(j) FROM jsonb_array_elements($8::jsonb) AS t(j)),
+    (SELECT array_agg(j) FROM jsonb_array_elements($9::jsonb) AS t(j)),
+    $10
+)"""
 
     for location in _error_locations:
         lat = float(location["lat"])
@@ -307,7 +355,7 @@ async def update_issue(
             fixes if fixes else None,  # $9 fixes
             _error_texts,  # $10 subtitle
         ]
-        await _db.fetchval(sql_marker, *params)
+        await _db.execute(sql_marker, *params)
 
 
 async def table_merge_markers_tmp(
@@ -455,13 +503,13 @@ class async_update_parser:
             self.all_uuid = {}
             self.mode = "analyser"
             await self.update_timestamp(attrs)
-            await table_create_markers_tmp(self._db)
+            await table_create_tmp(self._db)
 
         elif name == "analyserChange":
             self.all_uuid = None
             self.mode = "analyserChange"
             await self.update_timestamp(attrs)
-            await table_create_markers_tmp(self._db)
+            await table_create_tmp(self._db)
 
         elif name == "error":
             self._class_id = int(attrs["class"])
@@ -564,6 +612,7 @@ WHERE
         self.element_stack.pop()
 
         if name == "analyser" and self.all_uuid:
+            await table_merge_class_tmp(self._db)
             await table_merge_markers_tmp(self._db, self.all_uuid)
             for class_id, uuid in self.all_uuid.items():
                 await self._db.execute(
@@ -574,6 +623,7 @@ WHERE
                 )
 
         elif name == "analyserChange":
+            await table_merge_class_tmp(self._db)
             await table_merge_markers_tmp(self._db, self.all_uuid)
 
         elif name == "error":
