@@ -194,7 +194,7 @@ def kml_issue(
     )
     return E.Placemark(
         E.name(name),
-        E.url(map_url),
+        ElementMaker(namespace="http://www.w3.org/2005/Atom").link(href=map_url),
         E.description(desc),
         E.styleUrl("#placemark-purple"),
         E.Point(
@@ -224,18 +224,26 @@ def kml(
     title, _, url = xml_header(params, title, website, lang, query, i18n)
     if len(issues) > 0:
         title += " (" + issues[0]["timestamp"].strftime("%Y-%m-%dT%H:%M:%SZ") + ")"
-    return E.kml(
+    return ElementMaker(
+        nsmap={
+            "atom": "http://www.w3.org/2005/Atom",
+        }
+    ).kml(
         E.Document(
+            E.name(title),
             E.Style(
                 E.IconStyle(
-                    E.Icon(E.href("http://maps.me/placemarks/placemark-purple.png")),
+                    E.Icon(
+                        E.href(
+                            "https://osmose.openstreetmap.fr/images/markers/marker-b-1070.png"
+                        )
+                    ),
                 ),
                 id="placemark-purple",
             ),
-            E.name(title),
-            E.url(url),
+            ElementMaker(namespace="http://www.w3.org/2005/Atom").link(href=url),
+            *content,
         ),
-        *content,
         xmlns="http://www.opengis.net/kml/2.2",
     )
 
