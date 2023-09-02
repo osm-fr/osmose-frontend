@@ -449,7 +449,9 @@ async def issues_maproulette_jsonl(
                     for obj in properties["fixes"][0]
                 ],
             }
-            if len(properties["fixes"]) == 1
+            if "fixes" in properties
+            and properties["fixes"] is not None
+            and len(properties["fixes"]) == 1
             and properties["fixes"][0][0].get("id") is not None
             else None,
         }
