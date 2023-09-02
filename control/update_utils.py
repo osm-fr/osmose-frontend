@@ -803,7 +803,7 @@ def print_source(source: Dict[str, str]) -> None:
     for k in source:
         if k == "id":
             continue
-        if type(source[k]) == list:
+        if type(source[k]) is list:
             for e in source[k]:
                 show("   %-10s = %s" % (k, e))
         else:
