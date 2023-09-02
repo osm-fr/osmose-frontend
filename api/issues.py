@@ -1,3 +1,4 @@
+import json
 from collections import OrderedDict
 from itertools import groupby
 from typing import Any, Dict, List, Literal, Tuple
@@ -39,6 +40,15 @@ class RSSResponse(XMLResponse):
 
 class CSVResponse(Response):
     media_type = "text/csv; charset=utf-8"
+
+
+class NLJSONResponse(Response):
+    media_type = "application/x-ndjson; charset=utf-8"
+
+    def render(self, content: Any) -> bytes:
+        return ("\x1E" + "\n\x1E".join([json.dumps(line) for line in content])).encode(
+            "utf-8"
+        )
 
 
 @router.get("/0.2/errors", tags=["0.2"])
@@ -135,7 +145,7 @@ async def issues(
     langs: LangsNegociation = Depends(langs.langs),
     params=Depends(commons_params.params),
 ) -> Dict[Literal["issues"], List[Dict[str, Any]]]:
-    params.limit = min(params.limit, 10000)
+    params.limit = min(params.limit, 100000)
     results = await query._gets(db, params)
 
     out = []
@@ -190,7 +200,7 @@ async def issues_josm(
     params=Depends(commons_params.params),
 ) -> RedirectResponse:
     params.full = True
-    params.limit = min(params.limit, 10000)
+    params.limit = min(params.limit, 100000)
     results = await query._gets(db, params)
 
     objects = set(
@@ -233,7 +243,7 @@ async def _issues(
                 title += " - " + menu_auto
 
     params.full = True
-    params.limit = min(params.limit, 10000)
+    params.limit = min(params.limit, 100000)
     issues = await query._gets(db, params)
 
     for issue in issues:
@@ -365,3 +375,83 @@ async def issues_geojson(
             for properties in issues
         ],
     }
+
+
+@router.get(
+    "/0.3/issues.maproulette.geojson", response_class=NLJSONResponse, tags=["issues"]
+)
+async def issues_maproulette_jsonl(
+    request: Request,
+    db: Connection = Depends(database.db),
+    langs: LangsNegociation = Depends(langs.langs),
+    params=Depends(commons_params.params),
+    i18n: i18n.Translator = Depends(i18n.i18n),
+) -> List[Any]:
+    params.limit = 100000
+    title, issues = await _issues(db, langs, params, i18n)
+    type_map = {"N": "node", "W": "way", "R": "relation"}
+    return [
+        {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            properties["lon"],
+                            properties["lat"],
+                        ],
+                    },
+                    "properties": {
+                        k: v
+                        for k, v in properties.items()
+                        if k in ("title", "subtitle", "timestamp") and v != ""
+                    },
+                },
+            ],
+            "cooperativeWork": {
+                "meta": {"version": 2, "type": 1},
+                "operations": [
+                    {
+                        "operationType": "modifyElement",
+                        "data": {
+                            "id": f"{type_map[obj['type']]}/{obj['id']}",
+                            "operations": list(
+                                filter(
+                                    lambda a: a is not None,
+                                    [
+                                        {
+                                            "operation": "setTags",
+                                            "data": {
+                                                k: v
+                                                for k, v in {
+                                                    **obj.get("create", {}),
+                                                    **obj.get("modify", {}),
+                                                }.items()
+                                            },
+                                        }
+                                        if len(obj.get("create", {}))
+                                        + len(obj.get("modify", {}))
+                                        >= 1
+                                        else None,
+                                        {
+                                            "operation": "unsetTags",
+                                            "data": [k for k in obj["delete"]],
+                                        }
+                                        if "delete" in obj
+                                        else None,
+                                    ],
+                                )
+                            ),
+                        },
+                    }
+                    for obj in properties["fixes"][0]
+                ],
+            }
+            if len(properties["fixes"]) == 1
+            and properties["fixes"][0][0].get("id") is not None
+            else None,
+        }
+        for properties in issues
+    ]

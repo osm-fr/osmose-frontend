@@ -83,6 +83,14 @@
               GeoJson
             </a>
           </li>
+          <li>
+            <a
+              :href="`/api/0.3/issues.maproulette.geojson?${params}`"
+              target="_blank"
+            >
+              Maproulette
+            </a>
+          </li>
         </ul>
       </li>
 

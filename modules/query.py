@@ -287,6 +287,7 @@ async def _gets(db: Connection, params: Params) -> List[Dict[str, Any]]:
         sqlbase += """
         markers.source_id,
         markers.elems,
+        markers.fixes,
         markers.subtitle,
         sources.country,
         sources.analyser,

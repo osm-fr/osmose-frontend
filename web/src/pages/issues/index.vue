@@ -88,7 +88,13 @@
               :href="`${api_url}/api/0.3/issues.geojson?${query}&full=true`"
               class="badge badge-secondary"
             >
-              .geojson full
+              .geojson full </a
+            >&nbsp;
+            <a
+              :href="`${api_url}/api/0.3/issues.maproulette.geojson?${query}`"
+              class="badge badge-secondary"
+            >
+              Maproulette
             </a>
           </div>
         </div>
