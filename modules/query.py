@@ -287,7 +287,6 @@ async def _gets(db: Connection, params: Params) -> List[Dict[str, Any]]:
         sqlbase += """
         markers.source_id,
         markers.elems,
-        markers.fixes,
         markers.subtitle,
         sources.country,
         sources.analyser,
@@ -297,9 +296,11 @@ async def _gets(db: Connection, params: Params) -> List[Dict[str, Any]]:
         items.menu"""
         if params.status not in ("done", "false"):
             sqlbase += """,
+        markers.fixes,
         -1 AS date"""
         else:
             sqlbase += """,
+        NULL AS fixes,
         markers.date,"""
     sqlbase = (
         sqlbase[0:-1]
