@@ -214,7 +214,7 @@
     <src name="SIRET" country-code="FR">
         <rule>
             <condition k="ref:FR:SIRET" v="(\p{Digit}{9})([0-9-]{5})" />
-            <link name="Get identification card (pdf) for this establishment" href="https://avis-situation-sirene.insee.fr/ListeSiretToEtab.action?form.nic=%v.2%&amp;form.siren=%v.1%" />
+            <link name="Get identification card for this establishment" href="https://annuaire-entreprises.data.gouv.fr/etablissement/%v.1%%v.2%" />
         </rule>
     </src>
 
