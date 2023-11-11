@@ -5,10 +5,10 @@ import Mapillary from './Mapillary'
 import 'leaflet-plugins/layer/tile/Bing'
 
 const osmAttribution =
-  '&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+  '&copy <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 export const mapBases = {
   // OpenStreetMap
-  carto: L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  carto: L.tileLayer('//tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: osmAttribution,
   }),
   CyclOSM: L.tileLayer(
