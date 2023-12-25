@@ -391,17 +391,24 @@ CREATE INDEX idx_marker_id ON public.markers USING btree (public.uuid_to_bigint(
 
 
 --
--- Name: idx_marker_item; Type: INDEX; Schema: public; Owner: -
+-- Name: idx_marker_item_point; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX idx_marker_item ON public.markers USING btree (item);
+CREATE INDEX idx_marker_item_point ON public.markers USING gist (item, point((lon)::double precision, (lat)::double precision));
 
 
 --
--- Name: idx_marker_item_lat_lon; Type: INDEX; Schema: public; Owner: -
+-- Name: idx_marker_item_source_class_point; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX idx_marker_item_lat_lon ON public.markers USING btree (item, lat, lon);
+CREATE INDEX idx_marker_item_source_class_point ON public.markers USING gist (item, source_id, class, point((lon)::double precision, (lat)::double precision));
+
+
+--
+-- Name: idx_marker_point; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_marker_point ON public.markers USING gist (point((lon)::double precision, (lat)::double precision));
 
 
 --
@@ -409,6 +416,13 @@ CREATE INDEX idx_marker_item_lat_lon ON public.markers USING btree (item, lat, l
 --
 
 CREATE INDEX idx_marker_source_class ON public.markers USING btree (source_id, class);
+
+
+--
+-- Name: idx_marker_source_class_point; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_marker_source_class_point ON public.markers USING gist (source_id, class, point((lon)::double precision, (lat)::double precision));
 
 
 --
