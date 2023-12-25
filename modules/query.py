@@ -160,33 +160,19 @@ def _build_param(
         params.append(classs)
         where.append(f"markers.class = ANY (${len(params)})")
 
+    if tilex and tiley and zoom:
+        minlon, minlat = tiles.tile2lonlat(tilex, tiley, zoom)
+        maxlon, maxlat = tiles.tile2lonlat(tilex + 1, tiley + 1, zoom)
+        bbox = [minlon, minlat, maxlon, maxlat]
+
     if bbox:
-        params += [bbox[1], bbox[3], bbox[0], bbox[2]]
+        params += bbox
         where.append(
             f"""
-            markers.lat BETWEEN
-                ${len(params)-3} AND
-                ${len(params)-2} AND
-            markers.lon BETWEEN
-                ((${len(params)-1})::numeric + 180) % 360 - 180 AND
-                ((${len(params)})::numeric + 180) % 360 - 180"""
-        )
-        if item is None:
-            # Compute a tile to use index
-            tilex, tiley, zoom = tiles.bbox2tile(*bbox)
-            if zoom < 8:
-                zoom = 8
-                tilex, tiley = tiles.lonlat2tile(
-                    (bbox[0] + bbox[2]) / 2, (bbox[1] + bbox[3]) / 2, zoom
-                )
-
-    if tilex and tiley and zoom:
-        params += [tilex, tiley, zoom]
-        where.append(
-            f"""lonlat2z_order_curve(lon, lat) BETWEEN
-                    zoc18min(z_order_curve(${len(params)-2}, ${len(params)-1}), ${len(params)}) AND
-                    zoc18max(z_order_curve(${len(params)-2}, ${len(params)-1}), ${len(params)}) AND
-                lat > -90"""
+            point(markers.lon, markers.lat) <@ box(
+                point(${len(params)-3}, ((${len(params)-2})::numeric + 180) % 360 - 180),
+                point(${len(params)-1}, ((${len(params)})::numeric + 180) % 360 - 180)
+            )"""
         )
 
     if country is not None:

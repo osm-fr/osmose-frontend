@@ -1,70 +1,3 @@
-CREATE OR REPLACE FUNCTION public.lon2tile(lon double precision, zoom integer)
- RETURNS integer
- LANGUAGE sql
- IMMUTABLE
-AS $function$
-  SELECT FLOOR( (lon + 180) / 360 * (1 << zoom) )::integer;
-$function$;
-
-CREATE OR REPLACE FUNCTION public.lat2tile(lat double precision, zoom integer)
- RETURNS integer
- LANGUAGE sql
- IMMUTABLE
-AS $function$
-  SELECT floor( (1.0 - ln(tan(radians(lat)) + 1.0 / cos(radians(lat))) / pi()) / 2.0 * (1 << zoom) )::integer;
-$function$;
-
-CREATE OR REPLACE FUNCTION public.z_order_curve(xx integer, yy integer)
- RETURNS bigint
- LANGUAGE plpgsql
- IMMUTABLE
-AS $function$
-DECLARE
-  B bigint[] := ARRAY[x'5555555555555555'::bigint, x'3333333333333333'::bigint, x'0F0F0F0F0F0F0F0F'::bigint, x'00FF00FF00FF00FF'::bigint, x'0000FFFF0000FFFF'::bigint];
-  S integer[] := ARRAY[1, 2, 4, 8, 16];
-  x bigint := xx;
-  y bigint := yy;
-  z bigint;
-BEGIN
-  x := (x | (x << S[5])) & B[5];
-  x := (x | (x << S[4])) & B[4];
-  x := (x | (x << S[3])) & B[3];
-  x := (x | (x << S[2])) & B[2];
-  x := (x | (x << S[1])) & B[1];
-  y := (y | (y << S[5])) & B[5];
-  y := (y | (y << S[4])) & B[4];
-  y := (y | (y << S[3])) & B[3];
-  y := (y | (y << S[2])) & B[2];
-  y := (y | (y << S[1])) & B[1];
-  z := x | (y << 1);
-  return z::bigint;
-END;
-$function$;
-
-CREATE OR REPLACE FUNCTION public.lonlat2z_order_curve(lon double precision, lat double precision)
- RETURNS bigint
- LANGUAGE sql
- IMMUTABLE
-AS $function$
-  SELECT public.z_order_curve(public.lon2tile(lon, 18), public.lat2tile(lat, 18));
-$function$;
-
-CREATE OR REPLACE FUNCTION public.zoc18min(zoc bigint, z integer)
- RETURNS bigint
- LANGUAGE sql
- IMMUTABLE
-AS $function$
-  SELECT zoc << (2 * (18 - z));
-$function$;
-
-CREATE OR REPLACE FUNCTION public.zoc18max(zoc bigint, z integer)
- RETURNS bigint
- LANGUAGE sql
- IMMUTABLE
-AS $function$
-  SELECT public.zoc18min(zoc, z) + power(2, 2 * (18 - z))::bigint - 1;
-$function$;
-
 CREATE OR REPLACE FUNCTION public.marker_elem_ids(elems jsonb[])
  RETURNS bigint[]
  LANGUAGE sql
@@ -479,24 +412,10 @@ CREATE INDEX idx_marker_source_class ON public.markers USING btree (source_id, c
 
 
 --
--- Name: idx_marker_source_class_z_order_curve; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_marker_source_class_z_order_curve ON public.markers USING btree (source_id, class, public.lonlat2z_order_curve((lon)::double precision, (lat)::double precision)) WHERE (lat > ('-90'::integer)::numeric);
-
-
---
 -- Name: idx_marker_usernames; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_marker_usernames ON public.markers USING gin (public.marker_usernames(elems));
-
-
---
--- Name: idx_marker_z_order_curve_item; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_marker_z_order_curve_item ON public.markers USING btree (public.lonlat2z_order_curve((lon)::double precision, (lat)::double precision), item) WHERE (lat > ('-90'::integer)::numeric);
 
 
 --
