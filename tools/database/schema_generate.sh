@@ -17,17 +17,9 @@ WHERE
 -- Before Postgres 11:
 --  NOT p.proisagg AND
 
-  d.objid IS NULL
+  (d.objid IS NULL OR proname = 'marker_elem_ids')
 ORDER BY
-  CASE p.proname
-    WHEN 'lon2tile' THEN '1'
-    WHEN 'lat2tile' THEN '2'
-    WHEN 'z_order_curve' THEN '3'
-    WHEN 'lonlat2z_order_curve' THEN '4'
-    WHEN 'zoc18min' THEN '5'
-    WHEN 'zoc18max' THEN '6'
-    ELSE p.proname
-  END
+  p.proname
 " > schema.sql
 
 pg_dump --no-tablespaces -s -O -x -t "backends|markers|categories|markers_counts|class|items|sources|sources_password|stats|markers_status|updates|updates_last" -h "$DB_HOST" -U osmose osmose_frontend >> schema.sql
