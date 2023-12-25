@@ -28,7 +28,7 @@ def _build_where_item(table: str, item: str) -> str:
             except Exception:
                 pass
         if items != []:
-            where_list.append("%s.item IN (%s)" % (table, ",".join(items)))
+            where_list.append("%s.item = ANY(ARRAY[%s])" % (table, ",".join(items)))
         if where_list != []:
             where = "(%s)" % " OR ".join(where_list)
         else:
