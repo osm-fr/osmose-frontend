@@ -61,6 +61,34 @@
           <router-link target="_blank" :to="`../issues/open?item=${item.item}`">
             {{ item.title.auto }}
           </router-link>
+          <span v-if="item.class.length > 1">
+            <span
+              v-if="class_detail_open == item.item"
+              @click="class_detail_open = undefined"
+              class="class_detail"
+            >
+              -
+            </span>
+            <span
+              v-else
+              @click="class_detail_open = item.item"
+              class="class_detail"
+            >
+              +
+            </span>
+          </span>
+          <div v-if="class_detail_open == item.item">
+            <ul>
+              <li v-for="classs in item.class" :key="classs.class">
+                <a
+                  href=""
+                  @click.prevent="set_item_class(item.item, classs.class)"
+                >
+                  ⌖ {{ classs.class }} {{ classs.title.auto }}
+                </a>
+              </li>
+            </ul>
+          </div>
         </li>
       </ul>
     </div>
@@ -94,12 +122,14 @@ export default Vue.extend({
     total_items: { [category: number]: number }
     count_items: { [category: number]: number }
     state: ItemState
+    class_detail_open: number | undefined
   } {
     return {
       active_levels: ['1', '2', '3'],
       total_items: {},
       count_items: {},
       state: Object.assign({}, this.itemState),
+      class_detail_open: undefined,
     }
   },
 
@@ -204,6 +234,13 @@ export default Vue.extend({
       this._select_items_loop((item: Item) =>
         item.item === item_id ? selected : item.selected
       )
+      this.$forceUpdate()
+      this.itemsChanged()
+    },
+
+    set_item_class(item_id: number, class_id: number): void {
+      this._select_items_loop((item: Item) => item.item === item_id)
+      this.state.class = class_id
       this.$forceUpdate()
       this.itemsChanged()
     },
@@ -361,5 +398,9 @@ div.level-2.disabled {
 div.level-3.disabled {
   background: url('~../../../static/images/levels.png') no-repeat;
   background-position: -32px -16px;
+}
+
+.class_detail {
+  cursor: pointer;
 }
 </style>
