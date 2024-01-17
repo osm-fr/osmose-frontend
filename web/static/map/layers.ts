@@ -12,18 +12,18 @@ export const mapBases = {
     attribution: osmAttribution,
   }),
   CyclOSM: L.tileLayer(
-    '//{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
+    '//a.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
     { attribution: osmAttribution }
   ),
   'ÖPNV Karte': L.tileLayer('http://tile.memomaps.de/tilegen/{z}/{x}/{y}.png'),
   'White background': L.tileLayer('//tile.openstreetmap.org/3/4/7.png'),
-  'carto-de': L.tileLayer('//{s}.tile.openstreetmap.de/{z}/{x}/{y}.png', {
+  'carto-de': L.tileLayer('//tile.openstreetmap.de/{z}/{x}/{y}.png', {
     attribution: osmAttribution,
   }),
-  'carto-fr': L.tileLayer('//{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+  'carto-fr': L.tileLayer('//a.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
     attribution: osmAttribution,
   }),
-  HOT: L.tileLayer('//tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+  HOT: L.tileLayer('//tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
     attribution: osmAttribution,
   }),
   Bing: L.bingLayer(
@@ -31,7 +31,7 @@ export const mapBases = {
     { type: 'Aerial' }
   ),
   'MapBox Satellite': L.tileLayer(
-    '//{s}.tiles.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.jpg?access_token=pk.eyJ1IjoiZnJvZHJpZ28iLCJhIjoiY2tza2x2YWQxMGE2djJvcG51emw4a3lzdCJ9.0Uy0TXwxjwFaMwD9phimPQ'
+    '//a.tiles.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.jpg?access_token=pk.eyJ1IjoiZnJvZHJpZ28iLCJhIjoiY2tza2x2YWQxMGE2djJvcG51emw4a3lzdCJ9.0Uy0TXwxjwFaMwD9phimPQ'
   ),
   // OpenGeoFiction
   // 'Standard': L.tileLayer('http://opengeofiction.net/osm_tiles/{z}/{x}/{y}.png', {attribution: osmAttribution}),
@@ -40,7 +40,7 @@ export const mapBases = {
   // 'Roantra': L.tileLayer('http://opengeofiction.net/planet/Roantra/{z}/{x}/{y}.png', {attribution: osmAttribution}),
 }
 
-const urlOsmFr = 'http://{s}.layers.openstreetmap.fr/{layer}/{z}/{x}/{y}.png'
+const urlOsmFr = 'http://a.layers.openstreetmap.fr/{layer}/{z}/{x}/{y}.png'
 const attributionOsmFr = ''
 export const mapOverlay = {
   'No name': L.tileLayer(urlOsmFr, {
