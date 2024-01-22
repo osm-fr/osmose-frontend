@@ -32,6 +32,7 @@
         :item-state="itemState"
         :map-state="mapState"
         @set-map="setMap($event)"
+        @set-marker-layer="setMarkerLayer($event)"
       />
       <editor
         ref="editor"
@@ -83,7 +84,6 @@ export default VueParent.extend({
     remote_url_read: string
     map: Object
     markerLayer: Object
-    heatmapLayer: Object
     item_levels: {}
     itemState: ItemState
     mapState: MapState
@@ -101,7 +101,6 @@ export default VueParent.extend({
       remote_url_read: '',
       map: null,
       markerLayer: null,
-      heatmapLayer: null,
       item_levels: {},
       itemState: {
         item: 'xxxx',
@@ -292,10 +291,12 @@ export default VueParent.extend({
       this.$refs['items-list'].toggle_item(disabled_item, false)
     },
 
-    setMap(event: Object): void {
-      this.map = event.map
-      this.markerLayer = event.markerLayer
-      this.heatmapLayer = event.heatmapLayer
+    setMap(map): void {
+      this.map = map
+    },
+
+    setMarkerLayer(markerLayer): void {
+      this.markerLayer = markerLayer
     },
   },
 })

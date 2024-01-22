@@ -104,11 +104,8 @@ export default Vue.extend({
       })
     )
 
-    this.$emit('set-map', {
-      map,
-      markerLayer: this.markerLayer,
-      heatmapLayer: this.heatmapLayer,
-    })
+    this.$emit('set-map', map)
+    this.$emit('set-marker-layer', this.markerLayer)
 
     this.updateLayer()
   },
