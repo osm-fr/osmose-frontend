@@ -37,17 +37,8 @@ export default class SidebarToggle extends L.Control.Sidebar {
     }
   }
 
-  setStyleBorder(border): void {
-    const active_area = document.getElementsByClassName(
-      'leaflet-active-area'
-    )[0] as HTMLElement
-    const style = window.getComputedStyle(active_area)
-    active_area.style[this.options.position] = border
-  }
-
   show(): void {
     localStorage.setItem(this.sidebarToggleOptions.localStorageProperty, 'true')
-    this.setStyleBorder('')
     super.show()
   }
 
@@ -56,7 +47,6 @@ export default class SidebarToggle extends L.Control.Sidebar {
       this.sidebarToggleOptions.localStorageProperty,
       'false'
     )
-    this.setStyleBorder('0px')
     super.hide()
   }
 }

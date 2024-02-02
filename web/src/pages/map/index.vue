@@ -322,14 +322,6 @@ body {
   z-index: 1010;
 }
 
-.leaflet-active-area {
-  position: absolute;
-  top: 0px;
-  left: 300px;
-  right: 300px;
-  bottom: 0px;
-}
-
 @media (min-width: 768px) and (max-width: 991px) {
   .leaflet-sidebar {
     width: 270px;
@@ -340,11 +332,6 @@ body {
   }
 
   .leaflet-sidebar.right.visible ~ .leaflet-right {
-    right: 270px;
-  }
-
-  .leaflet-active-area {
-    left: 270px;
     right: 270px;
   }
 }
@@ -361,11 +348,6 @@ body {
   .leaflet-sidebar.right.visible ~ .leaflet-right {
     right: 285px;
   }
-
-  .leaflet-active-area {
-    left: 285px;
-    right: 285px;
-  }
 }
 
 @media (min-width: 1200px) {
@@ -378,11 +360,6 @@ body {
   }
 
   .leaflet-sidebar.right.visible ~ .leaflet-right {
-    right: 300px;
-  }
-
-  .leaflet-active-area {
-    left: 300px;
     right: 300px;
   }
 }

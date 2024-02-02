@@ -14,7 +14,6 @@
     "bootstrap": "^4.6.0",
     "geobuf": "^3.0.2",
     "leaflet": "=1.0.3",
-    "leaflet-active-area": "=1.1.0",
     "leaflet-control-geocoder": "^1.13.0",
     "leaflet-loading": "^0.1.24",
     "leaflet-plugins": "^3.4.0",

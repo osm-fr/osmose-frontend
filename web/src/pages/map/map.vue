@@ -10,7 +10,6 @@ import 'leaflet-plugins/control/Permalink'
 // Retro-compact hack for Leaflet.VectorGrid
 L.DomEvent.fakeStop = L.DomEvent._fakeStop
 
-import 'leaflet-active-area/src/leaflet.activearea'
 import '../../../static/map/Location'
 import 'leaflet-control-geocoder/src/index'
 import 'leaflet-control-geocoder/Control.Geocoder.css'
@@ -73,7 +72,7 @@ export default Vue.extend({
       zoom: this.mapState.zoom,
       layers: [mapBases['carto'], this.markerLayer],
       worldCopyJump: true,
-    }).setActiveArea('leaflet-active-area', true)
+    })
 
     // Control Layer
     map.addControl(L.control.layers(mapBases, mapOverlay))
