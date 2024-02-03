@@ -12,43 +12,75 @@
         :user_error_count="user_error_count"
         :timestamp="timestamp"
       />
-      <div id="map">
-        <items ref="items" :map-state="mapState" :map="map" :error="error">
-          <items-filters
-            :original_tags="tags"
-            :countries="countries"
-            :item-state="itemState"
-            @state-update="itemState = $event"
-          />
-          <items-list
-            ref="items-list"
-            :categories="categories"
-            :item_levels="item_levels"
-            :item-state="itemState"
-            @state-update="itemState = $event"
-          />
-        </items>
-        <doc :map="map" @hide-item-markers="onHideItemMarkers($event)" />
+      <div class="map-container">
+        <side-pannel
+          :map="map"
+          position="topleft"
+          menuText="☰"
+          menuTitle="Menu"
+          class="side-pannel"
+        >
+          <items ref="items" :map-state="mapState" :error="error">
+            <items-filters
+              :original_tags="tags"
+              :countries="countries"
+              :item-state="itemState"
+              @state-update="itemState = $event"
+            />
+            <items-list
+              ref="items-list"
+              :categories="categories"
+              :item_levels="item_levels"
+              :item-state="itemState"
+              @state-update="itemState = $event"
+            />
+          </items>
+        </side-pannel>
         <l-map
           :item-state="itemState"
           :map-state="mapState"
           @set-map="setMap($event)"
           @set-marker-layer="setMarkerLayer($event)"
+          class="map"
         />
-        <editor
+        <side-pannel
+          ref="doc"
+          :map="map"
+          position="topright"
+          menuText="ℹ"
+          menuTitle="Doc"
+          class="side-pannel"
+        >
+          <doc
+            :map="map"
+            :itemClass="doc"
+            @hide-item-markers="onHideItemMarkers($event)"
+          />
+        </side-pannel>
+        <side-pannel
           ref="editor"
           :map="map"
-          :main_website="main_website"
-          :user="user"
-          @issue-done="markerLayer.corrected()"
-        />
+          :showInitial="false"
+          class="side-pannel"
+        >
+          <editor
+            :main_website="main_website"
+            :user="user"
+            :issue="editor"
+            @issue-done="markerLayer.corrected()"
+          />
+        </side-pannel>
       </div>
       <iframe id="hiddenIframe" name="hiddenIframe"></iframe>
       <popup
         :main_website="main_website"
         :remote_url_read="remote_url_read"
         :marker-layer="markerLayer"
-        @fix-edit="$refs.editor.load($event.uuid, $event.fix)"
+        @fix-edit="
+          $refs.doc.hide()
+          $refs.editor.show()
+          editor = [$event.uuid, $event.fix]
+        "
       />
     </div>
   </div>
@@ -62,7 +94,9 @@ import ItemsList from './items-list.vue'
 import Items from './items.vue'
 import LMap from './map.vue'
 import Popup from './popup.vue'
+import SidePannel from './side-pannel.vue'
 import Top from './top.vue'
+import ExternalVueAppEvent from '../../ExternalVueAppEvent'
 import { ItemState, LanguagesName, Category } from '../../types'
 import VueParent from '../Parent.vue'
 
@@ -89,6 +123,8 @@ export default VueParent.extend({
     item_levels: {}
     itemState: ItemState
     mapState: MapState
+    editor: string[]
+    doc: string[]
   } {
     return {
       error: undefined,
@@ -122,11 +158,14 @@ export default VueParent.extend({
         lon: 2.75,
         zoom: 16,
       },
+      editor: null,
+      doc: null,
     }
   },
 
   components: {
     Top,
+    SidePannel,
     LMap,
     Items,
     ItemsFilters,
@@ -146,6 +185,14 @@ export default VueParent.extend({
 
   mounted(): void {
     this.setData()
+
+    ExternalVueAppEvent.$on('show-doc', (e) => {
+      this.$refs.doc?.show()
+      this.doc = [e.item, e.classs]
+    })
+    ExternalVueAppEvent.$on('load-doc', (e) => {
+      this.doc = [e.item, e.classs]
+    })
   },
 
   watch: {
@@ -319,52 +366,6 @@ body {
     display: none;
   }
 }
-
-.leaflet-sidebar {
-  z-index: 1010;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  .leaflet-sidebar {
-    width: 270px;
-  }
-
-  .leaflet-sidebar.left.visible ~ .leaflet-left {
-    left: 270px;
-  }
-
-  .leaflet-sidebar.right.visible ~ .leaflet-right {
-    right: 270px;
-  }
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-  .leaflet-sidebar {
-    width: 285px;
-  }
-
-  .leaflet-sidebar.left.visible ~ .leaflet-left {
-    left: 285px;
-  }
-
-  .leaflet-sidebar.right.visible ~ .leaflet-right {
-    right: 285px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .leaflet-sidebar {
-    width: 300px;
-  }
-
-  .leaflet-sidebar.left.visible ~ .leaflet-left {
-    left: 300px;
-  }
-
-  .leaflet-sidebar.right.visible ~ .leaflet-right {
-    right: 300px;
-  }
-}
 </style>
 
 <style scoped>
@@ -373,11 +374,22 @@ a:visited {
   color: rgb(0, 123, 255);
 }
 
-div#map {
+.map-container {
   position: absolute;
   top: 23px;
   bottom: 0px;
   left: 0px;
   right: 0px;
+
+  overflow: hidden;
+  display: flex;
+}
+
+.map-container .side-pannel {
+  flex: initial;
+}
+
+.map-container .map {
+  flex: auto;
 }
 </style>

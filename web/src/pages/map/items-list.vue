@@ -278,12 +278,7 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-div#tests {
-  overflow-y: auto;
-}
-
 div#action_links {
-  font-size: 10px;
   text-align: center;
 }
 .leaflet-touch div#action_links {
@@ -324,7 +319,6 @@ div.test_group ul {
 div.test_group li {
   padding-left: 2px;
   padding-right: 2px;
-  font-size: 11px;
 }
 
 div.test_group li div.marker-l {

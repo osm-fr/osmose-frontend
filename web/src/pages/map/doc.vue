@@ -110,14 +110,12 @@
 import Marked from 'marked'
 import { PropType } from 'vue'
 
-import SidebarToggle from '../../../static/map/SidebarToggle'
-import ExternalVueAppEvent from '../../ExternalVueAppEvent'
 import VueParent from '../Parent.vue'
 
 export default VueParent.extend({
   props: {
-    map: {
-      type: Object as PropType<Object | null>,
+    itemClass: {
+      type: Array as PropType<string[]>,
       default: null,
     },
   },
@@ -148,12 +146,6 @@ export default VueParent.extend({
     }
   },
 
-  mounted() {
-    ExternalVueAppEvent.$on('show-doc', (e) => this.showDoc(e.item, e.classs))
-    ExternalVueAppEvent.$on('hide-doc', (e) => this.hideDoc())
-    ExternalVueAppEvent.$on('load-doc', (e) => this.setDoc(e.item, e.classs))
-  },
-
   watch: {
     $route(to, from): void {
       if (
@@ -164,30 +156,20 @@ export default VueParent.extend({
       }
     },
 
-    map(): void {
-      this.leafletSideBar = new SidebarToggle('doc', {
-        position: 'right',
-        localStorageProperty: 'doc.show',
-        toggle: {
-          position: 'topright',
-          menuText: 'ℹ',
-          menuTitle: 'Doc',
-        },
-      })
-      this.map.addControl(this.leafletSideBar)
+    itemClass(): void {
+      if (this.itemClass) {
+        this.setDoc(this.itemClass[0], this.itemClass[1])
+      }
     },
   },
 
+  mounted(): void {
+    if (this.itemClass) {
+      this.setDoc(this.itemClass[0], this.itemClass[1])
+    }
+  },
+
   methods: {
-    showDoc(item: number, classs: number): void {
-      this.leafletSideBar.show()
-      this.setDoc(item, classs)
-    },
-
-    hideDoc(): void {
-      this.leafletSideBar.hide()
-    },
-
     basename(path: string): string {
       return path.split(/[\\/]/).pop()
     },
@@ -232,7 +214,6 @@ export default VueParent.extend({
           this.resource_title = resource_url
             ? `${resource_url.protocol}//${resource_url.host}`
             : data.resource
-          this.item = data.item
         }
       )
     },
@@ -241,8 +222,8 @@ export default VueParent.extend({
 </script>
 
 <style scoped>
-#doc ~ a.close {
-  z-index: 800;
+#doc {
+  padding: 8px 24px;
 }
 
 #doc > div {

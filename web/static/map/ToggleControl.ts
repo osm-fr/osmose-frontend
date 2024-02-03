@@ -12,13 +12,13 @@ export default class ToggleControl extends L.Control {
   }
 
   private _map: L.Map
-  private _menu: any
+  private _toggleFunction
   private _zoomInButton: HTMLElement
 
-  constructor(menu, options?: ToggleControlOptions & ControlOptions) {
+  constructor(toggleFunction, options?: ToggleControlOptions & ControlOptions) {
     super({ position: 'topleft', ...options })
     Object.assign(this.toggleControloptions, options)
-    this._menu = menu
+    this._toggleFunction = toggleFunction
   }
 
   onAdd(map): HTMLElement {
@@ -30,14 +30,10 @@ export default class ToggleControl extends L.Control {
       this.toggleControloptions.menuTitle,
       `${menuName}-in`,
       container,
-      this._menuToggle,
+      this._toggleFunction,
       this
     )
     return container
-  }
-
-  _menuToggle(): void {
-    this._menu.toggle()
   }
 
   _createButton(

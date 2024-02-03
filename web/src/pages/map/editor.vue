@@ -97,12 +97,12 @@ export default Vue.extend({
     EditorModal,
   },
   props: {
-    map: {
-      type: Object as PropType<Object | null>,
-      default: null,
-    },
     user: {
       type: String as PropType<string | undefined>,
+      default: undefined,
+    },
+    issue: {
+      type: Array as PropType<string[]>,
       default: undefined,
     },
     main_website: {
@@ -112,7 +112,6 @@ export default Vue.extend({
   },
 
   data(): {
-    leafletSideBar: Object
     status?: 'saving' | 'loading' | 'editor' | 'error'
     uuid: string
     elems: { [type_id: string]: Elem }
@@ -123,7 +122,6 @@ export default Vue.extend({
     elems_action_base: { [type_id: string]: { [key: string]: FixTagAction } }
   } {
     return {
-      leafletSideBar: null,
       status: null,
       uuid: null,
       elems: {},
@@ -136,12 +134,9 @@ export default Vue.extend({
   },
 
   watch: {
-    status(): void {
-      if (this.status) {
-        ExternalVueAppEvent.$emit('hide-doc')
-        this.leafletSideBar.show()
-      } else {
-        this.leafletSideBar.hide()
+    issue(): void {
+      if (this.issue) {
+        this.load(this.issue[0], this.issue[1])
       }
     },
 
@@ -154,15 +149,6 @@ export default Vue.extend({
 
     edition_stack(): void {
       ExternalVueAppEvent.$emit('editor-count', this.edition_stack.length)
-    },
-
-    map(): void {
-      this.leafletSideBar = L.control.sidebar('editor', {
-        closeButton: false,
-        autoPan: false,
-        position: 'right',
-      })
-      this.map.addControl(this.leafletSideBar)
     },
   },
 
@@ -178,6 +164,10 @@ export default Vue.extend({
     ExternalVueAppEvent.$on('editor-save', () => {
       this.status = 'saving'
     })
+
+    if (this.issue) {
+      this.load(this.issue[0], this.issue[1])
+    }
   },
 
   methods: {
