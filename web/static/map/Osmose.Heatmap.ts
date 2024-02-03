@@ -1,32 +1,24 @@
 import 'leaflet'
-import 'leaflet.vectorgrid/dist/Leaflet.VectorGrid'
+import { Map as MapGl } from 'maplibre-gl'
 
-export default class OsmoseHeatmap extends L.VectorGrid.Protobuf {
-  constructor(itemState: any, query: string, options?: LayerOptions) {
-    const vectorTileOptions: L.VectorGrid.ProtobufOptions = {
-      vectorTileLayerStyles: {
-        issues(properties, zoom: number) {
-          const color = `#${(properties.color + 0x1000000)
-            .toString(16)
-            .substr(-6)}`
-          return {
-            stroke: false,
-            fillColor: color,
-            fillOpacity: zoom < 13 ? 0.25 + (properties.count / 256) * 0.75 : 1,
-            fill: true,
-          }
-        },
-      },
-    }
-    super('fakeURL', vectorTileOptions)
+export default class OsmoseHeatmap extends L.Layer {
+  private _mapGl: MapGl
 
-    this.setURLQuery(query)
+  constructor(
+    mapGl: MapGl,
+    options?: LayerOptions
+  ) {
+    super(options)
+
+    L.Util.setOptions(this, options)
+    this._mapGl = mapGl
   }
 
   setURLQuery(query: string): void {
     const newUrl = API_URL + `/api/0.3/issues/{z}/{x}/{y}.heat.mvt?${query}`
-    if (this._url !== newUrl) {
-      this.setUrl(newUrl)
-    }
+    this._mapGl.getSource('heatmap').setTiles([newUrl])
+  }
+
+  onAdd(map): void {
   }
 }

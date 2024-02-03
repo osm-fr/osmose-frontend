@@ -6,9 +6,7 @@
 import 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-plugins/control/Permalink'
-
-// Retro-compact hack for Leaflet.VectorGrid
-L.DomEvent.fakeStop = L.DomEvent._fakeStop
+import '@maplibre/maplibre-gl-leaflet'
 
 import '../../../static/map/Location'
 import 'leaflet-control-geocoder/src/index'
@@ -18,9 +16,11 @@ import 'leaflet-loading/src/Control.Loading.css'
 
 import Vue from 'vue'
 
-import { mapBases, mapOverlay } from '../../../static/map/layers'
+import { mapBases, mapOverlay, glStyle } from '../../../static/map/layers'
 import OsmoseHeatmap from '../../../static/map/Osmose.Heatmap'
 import OsmoseMarker from '../../../static/map/Osmose.Marker'
+import { controlLayers } from '../../../static/map/ControlLayers'
+import { Map as MapGl } from 'maplibre-gl'
 
 export default Vue.extend({
   props: {
@@ -54,36 +54,17 @@ export default Vue.extend({
   },
 
   mounted(): void {
-    // Layers
-    this.markerLayer = new OsmoseMarker(
-      this.itemState,
-      'fakeURL',
-      // FIXME - Hardcode legacy to avoid waiting for JSON to init the map
-      'https://www.openstreetmap.org/'
-    )
-    mapOverlay['Osmose Issues'] = this.markerLayer
-
-    this.heatmapLayer = new OsmoseHeatmap(this.itemState, 'fakeURL')
-    mapOverlay['Osmose Issues Heatmap'] = this.heatmapLayer
-
     // Map
+    var gl = L.maplibreGL({style: glStyle, interactive: true})
     const map = L.map('map', {
       center: new L.LatLng(this.mapState.lat, this.mapState.lon),
       zoom: this.mapState.zoom,
-      layers: [mapBases['carto'], this.markerLayer],
+      layers: [gl],
       worldCopyJump: true,
     })
+    this.$emit('set-map', map)
 
-    // Control Layer
-    map.addControl(L.control.layers(mapBases, mapOverlay))
-
-    // Widgets
-
-    map.addControl(
-      L.control.scale({
-        position: 'bottomleft',
-      })
-    )
+    const mapGl: MapGl = gl.getMaplibreMap()
 
     map.addControl(L.control.location())
 
@@ -103,10 +84,34 @@ export default Vue.extend({
       })
     )
 
-    this.$emit('set-map', map)
-    this.$emit('set-marker-layer', this.markerLayer)
+    // Widgets
+    map.addControl(
+      L.control.scale({
+        position: 'bottomleft',
+      })
+    )
 
-    this.updateLayer()
+    mapGl.on('load', () => {
+      this.markerLayer = new OsmoseMarker(
+        mapGl,
+        this.itemState,
+        // FIXME - Hardcode legacy to avoid waiting for JSON to init the map
+        'https://www.openstreetmap.org/'
+      )
+      this.markerLayer.addTo(map)
+
+      this.heatmapLayer = new OsmoseHeatmap(
+        mapGl,
+      )
+      this.heatmapLayer.addTo(map)
+
+      // Control Layer
+      map.addControl(controlLayers(mapGl, mapBases, mapOverlay))
+
+      this.$emit('set-marker-layer', this.markerLayer)
+
+      this.updateLayer()
+    })
   },
 
   methods: {
