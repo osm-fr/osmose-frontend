@@ -139,13 +139,3 @@ ul.leaflet-control-geocoder-alternatives {
   background-color: inherit;
 }
 </style>
-
-<style scoped>
-div#map {
-  position: absolute;
-  top: 23px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-}
-</style>

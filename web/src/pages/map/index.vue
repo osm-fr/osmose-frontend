@@ -12,35 +12,37 @@
         :user_error_count="user_error_count"
         :timestamp="timestamp"
       />
-      <items ref="items" :map-state="mapState" :map="map" :error="error">
-        <items-filters
-          :original_tags="tags"
-          :countries="countries"
+      <div id="map">
+        <items ref="items" :map-state="mapState" :map="map" :error="error">
+          <items-filters
+            :original_tags="tags"
+            :countries="countries"
+            :item-state="itemState"
+            @state-update="itemState = $event"
+          />
+          <items-list
+            ref="items-list"
+            :categories="categories"
+            :item_levels="item_levels"
+            :item-state="itemState"
+            @state-update="itemState = $event"
+          />
+        </items>
+        <doc :map="map" @hide-item-markers="onHideItemMarkers($event)" />
+        <l-map
           :item-state="itemState"
-          @state-update="itemState = $event"
+          :map-state="mapState"
+          @set-map="setMap($event)"
+          @set-marker-layer="setMarkerLayer($event)"
         />
-        <items-list
-          ref="items-list"
-          :categories="categories"
-          :item_levels="item_levels"
-          :item-state="itemState"
-          @state-update="itemState = $event"
+        <editor
+          ref="editor"
+          :map="map"
+          :main_website="main_website"
+          :user="user"
+          @issue-done="markerLayer.corrected()"
         />
-      </items>
-      <doc :map="map" @hide-item-markers="onHideItemMarkers($event)" />
-      <l-map
-        :item-state="itemState"
-        :map-state="mapState"
-        @set-map="setMap($event)"
-        @set-marker-layer="setMarkerLayer($event)"
-      />
-      <editor
-        ref="editor"
-        :map="map"
-        :main_website="main_website"
-        :user="user"
-        @issue-done="markerLayer.corrected()"
-      />
+      </div>
       <iframe id="hiddenIframe" name="hiddenIframe"></iframe>
       <popup
         :main_website="main_website"
@@ -369,5 +371,13 @@ body {
 a:link,
 a:visited {
   color: rgb(0, 123, 255);
+}
+
+div#map {
+  position: absolute;
+  top: 23px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
 }
 </style>

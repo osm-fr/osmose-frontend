@@ -320,8 +320,6 @@ div#top_links {
   margin: 0;
   padding: 0;
   border: 0;
-  position: absolute;
-  top: 0;
 }
 #topmenu li {
   display: inline-block;
