@@ -62,11 +62,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ./src ./static --ext .js --ext .ts --ext .vue",
     "lint-fix": "eslint ./src ./static --ext .js --ext .ts --ext .vue --fix",
-    "build": "webpack --mode=production --env API_URL=//osmose.openstreetmap.fr",
+    "build": "webpack --mode=production --env API_URL=https://osmose.openstreetmap.fr",
     "build-dev": "webpack --mode=development --env API_URL=http://127.0.0.1:20009",
     "clean": "rm -fr public/assets/*",
     "dev-server": "webpack server --mode=development --env API_URL=http://127.0.0.1:20009 --env DEV_SERVER=1 --progress",
-    "dev-server-public": "webpack server --mode=development --env API_URL=//osmose.openstreetmap.fr --env DEV_SERVER=1 --progress"
+    "dev-server-public": "webpack server --mode=development --env API_URL=https://osmose.openstreetmap.fr --env DEV_SERVER=1 --progress"
   },
   "repository": {
     "type": "git",
