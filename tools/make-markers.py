@@ -230,7 +230,6 @@ async def main():
             i["item"]
         )
     open(os.path.join(marker_folder, "markers-l.css"), "w").write(css)
-    subprocess.getstatusoutput("rm " + os.path.join(marker_folder, "*.svg"))
 
 
 if __name__ == "__main__":

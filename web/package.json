@@ -25,6 +25,7 @@
     "maplibre-gl": "^3.6.2",
     "marked": "^0.8.2",
     "numeral": "^2.0.6",
+    "spritezero-webpack-plugin": "^0.1.1",
     "vue": "^2.6.12",
     "vue-filter-number-format": "^3.0.1",
     "vue-i18n": "^8.24.2",

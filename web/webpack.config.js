@@ -2,6 +2,7 @@ var webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const SpritezeroWebpackPlugin = require('spritezero-webpack-plugin');
 const path = require('path');
 
 
@@ -114,6 +115,10 @@ module.exports = (env, argv) => {
             new webpack.ProvidePlugin({
                 L: 'leaflet',
             }),
+            new SpritezeroWebpackPlugin({
+                source: '../web_api/static/images/**/*.svg',
+                output: 'marker-gl-',
+            })
         ],
         devServer: {
             historyApiFallback: true,
