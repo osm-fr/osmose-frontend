@@ -24,9 +24,11 @@ class Exact(xml.sax.handler.ContentHandler):
                 {
                     "kk": attrs["k"],
                     "k": re.compile("^" + self.unposix(attrs["k"]) + "$"),
-                    "v": re.compile("^" + self.unposix(attrs["v"]) + "$")
-                    if "v" in attrs
-                    else None,
+                    "v": (
+                        re.compile("^" + self.unposix(attrs["v"]) + "$")
+                        if "v" in attrs
+                        else None
+                    ),
                     "id": attrs["id"] if "id" in attrs else None,
                 }
             )

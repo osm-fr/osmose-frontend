@@ -412,50 +412,58 @@ async def issues_maproulette_jsonl(
                         },
                     },
                 ],
-                "cooperativeWork": {
-                    "meta": {"version": 2, "type": 1},
-                    "operations": [
-                        {
-                            "operationType": "modifyElement",
-                            "data": {
-                                "id": f"{type_map[obj['type']]}/{obj['id']}",
-                                "operations": list(
-                                    filter(
-                                        lambda a: a is not None,
-                                        [
-                                            {
-                                                "operation": "setTags",
-                                                "data": {
-                                                    k: v
-                                                    for k, v in {
-                                                        **obj.get("create", {}),
-                                                        **obj.get("modify", {}),
-                                                    }.items()
-                                                },
-                                            }
-                                            if len(obj.get("create", {}))
-                                            + len(obj.get("modify", {}))
-                                            >= 1
-                                            else None,
-                                            {
-                                                "operation": "unsetTags",
-                                                "data": [k for k in obj["delete"]],
-                                            }
-                                            if "delete" in obj
-                                            else None,
-                                        ],
-                                    )
-                                ),
-                            },
-                        }
-                        for obj in properties["fixes"][0]
-                    ],
-                }
-                if "fixes" in properties
-                and properties["fixes"] is not None
-                and len(properties["fixes"]) == 1
-                and properties["fixes"][0][0].get("id") is not None
-                else None,
+                "cooperativeWork": (
+                    {
+                        "meta": {"version": 2, "type": 1},
+                        "operations": [
+                            {
+                                "operationType": "modifyElement",
+                                "data": {
+                                    "id": f"{type_map[obj['type']]}/{obj['id']}",
+                                    "operations": list(
+                                        filter(
+                                            lambda a: a is not None,
+                                            [
+                                                (
+                                                    {
+                                                        "operation": "setTags",
+                                                        "data": {
+                                                            k: v
+                                                            for k, v in {
+                                                                **obj.get("create", {}),
+                                                                **obj.get("modify", {}),
+                                                            }.items()
+                                                        },
+                                                    }
+                                                    if len(obj.get("create", {}))
+                                                    + len(obj.get("modify", {}))
+                                                    >= 1
+                                                    else None
+                                                ),
+                                                (
+                                                    {
+                                                        "operation": "unsetTags",
+                                                        "data": [
+                                                            k for k in obj["delete"]
+                                                        ],
+                                                    }
+                                                    if "delete" in obj
+                                                    else None
+                                                ),
+                                            ],
+                                        )
+                                    ),
+                                },
+                            }
+                            for obj in properties["fixes"][0]
+                        ],
+                    }
+                    if "fixes" in properties
+                    and properties["fixes"] is not None
+                    and len(properties["fixes"]) == 1
+                    and properties["fixes"][0][0].get("id") is not None
+                    else None
+                ),
             }.items()
             if v is not None
         }

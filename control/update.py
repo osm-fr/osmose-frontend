@@ -137,15 +137,21 @@ WHERE
             "version": 1,
             "timestamp": str(r["timestamp"].replace(tzinfo=None)),
             "analyser_version": str(r["analyser_version"] or ""),
-            "nodes": await _status_object(db, "N", r["source_id"])
-            if objects is not False
-            else None,
-            "ways": await _status_object(db, "W", r["source_id"])
-            if objects is not False
-            else None,
-            "relations": await _status_object(db, "R", r["source_id"])
-            if objects is not False
-            else None,
+            "nodes": (
+                await _status_object(db, "N", r["source_id"])
+                if objects is not False
+                else None
+            ),
+            "ways": (
+                await _status_object(db, "W", r["source_id"])
+                if objects is not False
+                else None
+            ),
+            "relations": (
+                await _status_object(db, "R", r["source_id"])
+                if objects is not False
+                else None
+            ),
         }
     else:
         raise HTTPException(status_code=404)

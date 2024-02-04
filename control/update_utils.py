@@ -636,29 +636,33 @@ WHERE
                 filter(
                     lambda e: e,
                     map(
-                        lambda elem: dict(
-                            filter(
-                                lambda k_v: k_v[1],
-                                {
-                                    "type": elem["type"][0].upper(),
-                                    "id": int(elem["id"]),
-                                    "tags": elem["tag"],
-                                    "username": elem["user"],
-                                }.items(),
+                        lambda elem: (
+                            dict(
+                                filter(
+                                    lambda k_v: k_v[1],
+                                    {
+                                        "type": elem["type"][0].upper(),
+                                        "id": int(elem["id"]),
+                                        "tags": elem["tag"],
+                                        "username": elem["user"],
+                                    }.items(),
+                                )
                             )
-                        )
-                        if elem["type"] in ("node", "way", "relation")
-                        else dict(
-                            filter(
-                                lambda k_v: k_v[1],
-                                {
-                                    "tags": elem["tag"],
-                                    "username": elem["user"],
-                                }.items(),
+                            if elem["type"] in ("node", "way", "relation")
+                            else (
+                                dict(
+                                    filter(
+                                        lambda k_v: k_v[1],
+                                        {
+                                            "tags": elem["tag"],
+                                            "username": elem["user"],
+                                        }.items(),
+                                    )
+                                )
+                                if elem["type"] in ("infos")
+                                else None
                             )
-                        )
-                        if elem["type"] in ("infos")
-                        else None,
+                        ),
                         self._error_elements,
                     ),
                 )
