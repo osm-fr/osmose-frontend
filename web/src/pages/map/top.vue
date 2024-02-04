@@ -197,9 +197,9 @@
 import Vue, { PropType } from 'vue'
 import TimeAgo from 'vue2-timeago'
 
+import EditorMenu from './editor-menu.vue'
 import Delay from '../../components/delay.vue'
 import { ItemState, LanguagesName } from '../../types'
-import EditorMenu from './editor-menu.vue'
 
 export default Vue.extend({
   components: {

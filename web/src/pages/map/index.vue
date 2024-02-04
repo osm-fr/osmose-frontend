@@ -55,8 +55,6 @@
 </template>
 
 <script lang="ts">
-import { ItemState, LanguagesName, Category } from '../../types'
-import VueParent from '../Parent.vue'
 import Doc from './doc.vue'
 import Editor from './editor.vue'
 import ItemsFilters from './items-filters.vue'
@@ -65,6 +63,8 @@ import Items from './items.vue'
 import LMap from './map.vue'
 import Popup from './popup.vue'
 import Top from './top.vue'
+import { ItemState, LanguagesName, Category } from '../../types'
+import VueParent from '../Parent.vue'
 
 interface MapState {
   lat: number

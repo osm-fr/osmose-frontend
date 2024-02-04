@@ -84,10 +84,10 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue'
 
-import ExternalVueAppEvent from '../../ExternalVueAppEvent'
-import { Elem } from '../../types'
 import EditorModal from './editor-modal.vue'
 import EditorTag from './editor-tag.vue'
+import ExternalVueAppEvent from '../../ExternalVueAppEvent'
+import { Elem } from '../../types'
 
 type FixTagAction = 'add' | 'mod' | 'del'
 

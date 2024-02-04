@@ -191,8 +191,8 @@
 <script lang="ts">
 import { FeatureCollection, Feature, Point } from 'geojson'
 
-import VueParent from '../pages/Parent.vue'
 import confirmFalsePositive from './confirmFalsePositive.vue'
+import VueParent from '../pages/Parent.vue'
 
 interface Issue {
   uuid: string

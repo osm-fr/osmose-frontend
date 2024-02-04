@@ -5,9 +5,9 @@ import 'leaflet-responsive-popup'
 import 'leaflet-responsive-popup/leaflet.responsive.popup.css'
 import 'leaflet-responsive-popup/leaflet.responsive.popup.rtl.css'
 import 'leaflet-textpath'
+import OsmDataLayer from './leaflet-osm'
 import ExternalVueAppEvent from '../../src/ExternalVueAppEvent'
 import IconLimit from '../images/limit.png'
-import OsmDataLayer from './leaflet-osm'
 
 export default class OsmoseMarker extends L.VectorGrid.Protobuf {
   private _map: Map
