@@ -416,23 +416,16 @@ export default Vue.extend({
 </script>
 
 <style>
-#map svg.leaflet-tile g image[width='17px'][height='33px'] {
-  cursor: pointer;
+.maplibregl-popup-content {
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
 }
 
-/* Allow direction ltr in popup */
-.leaflet-popup {
-  text-align: inherit;
-}
-.leaflet-popup-content-wrapper {
-  text-align: inherit;
-}
-
-.leaflet-popup-content .btn {
+.maplibregl-popup-content .btn {
   color: #fff;
 }
-.leaflet-popup-content .bulle_msg a,
-.leaflet-popup-content .bulle_verif a {
+.maplibregl-popup-content .bulle_msg a,
+.maplibregl-popup-content .bulle_verif a {
   text-decoration: underline;
 }
 </style>

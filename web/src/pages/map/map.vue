@@ -3,24 +3,23 @@
 </template>
 
 <script lang="ts">
-import 'leaflet'
-import 'leaflet/dist/leaflet.css'
-import 'leaflet-plugins/control/Permalink'
-import '@maplibre/maplibre-gl-leaflet'
-
-import '../../../static/map/Location'
-import 'leaflet-control-geocoder/src/index'
-import 'leaflet-control-geocoder/Control.Geocoder.css'
-import 'leaflet-loading'
-import 'leaflet-loading/src/Control.Loading.css'
-
+import MaplibreGeocoder from '@maplibre/maplibre-gl-geocoder'
+import {
+  Map,
+  NavigationControl,
+  ScaleControl,
+  GeolocateControl,
+} from 'maplibre-gl'
 import Vue from 'vue'
 
+import ControlLayers from '../../../static/map/ControlLayers'
 import { mapBases, mapOverlay, glStyle } from '../../../static/map/layers'
 import OsmoseHeatmap from '../../../static/map/Osmose.Heatmap'
 import OsmoseMarker from '../../../static/map/Osmose.Marker'
-import { controlLayers } from '../../../static/map/ControlLayers'
-import { Map as MapGl } from 'maplibre-gl'
+
+import '../../../static/map/ControlLayers.css'
+import 'maplibre-gl/dist/maplibre-gl.css'
+import '@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css'
 
 export default Vue.extend({
   props: {
@@ -55,63 +54,99 @@ export default Vue.extend({
 
   mounted(): void {
     // Map
-    var gl = L.maplibreGL({style: glStyle, interactive: true})
-    const map = L.map('map', {
-      center: new L.LatLng(this.mapState.lat, this.mapState.lon),
+    const map = new Map({
+      container: 'map',
+      center: [this.mapState.lon, this.mapState.lat],
       zoom: this.mapState.zoom,
-      layers: [gl],
-      worldCopyJump: true,
+      style: glStyle,
+      hash: 'loc',
     })
     this.$emit('set-map', map)
+    map.addControl(new NavigationControl(), 'top-left')
+    map.addControl(new ScaleControl())
+    map.addControl(
+      new GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true,
+        },
+      }),
+      'top-left'
+    )
 
-    const mapGl: MapGl = gl.getMaplibreMap()
+    const geocoderApi = {
+      forwardGeocode: async (config) => {
+        const features = []
+        try {
+          const request = `https://nominatim.openstreetmap.org/search?q=${config.query}&format=geojson&polygon_geojson=1&addressdetails=1`
+          const response = await fetch(request)
+          const geojson = await response.json()
+          for (const feature of geojson.features) {
+            const center = [
+              feature.bbox[0] + (feature.bbox[2] - feature.bbox[0]) / 2,
+              feature.bbox[1] + (feature.bbox[3] - feature.bbox[1]) / 2,
+            ]
+            const point = {
+              type: 'Feature',
+              geometry: {
+                type: 'Point',
+                coordinates: center,
+              },
+              place_name: feature.properties.display_name,
+              properties: feature.properties,
+              text: feature.properties.display_name,
+              place_type: ['place'],
+              center,
+            }
+            features.push(point)
+          }
+        } catch (e) {
+          console.error(`Failed to forwardGeocode with error: ${e}`)
+        }
 
-    map.addControl(L.control.location())
-
-    const geocode = L.Control.geocoder({
-      position: 'topleft',
-      showResultIcons: true,
-    })
-    geocode.markGeocode = function (result) {
-      this._map.fitBounds(result.geocode.bbox)
-      return this
+        return {
+          features,
+        }
+      },
     }
-    map.addControl(geocode)
-
     map.addControl(
-      L.Control.loading({
-        separate: true,
-      })
+      new MaplibreGeocoder(geocoderApi, {
+        maplibregl: map,
+        collapsed: true,
+      }),
+      'top-left'
     )
 
-    // Widgets
-    map.addControl(
-      L.control.scale({
-        position: 'bottomleft',
-      })
-    )
+    // map.addControl(
+    //   L.Control.loading({
+    //     separate: true,
+    //   })
+    // )
 
-    mapGl.on('load', () => {
+    // Control Layer
+    map.addControl(new ControlLayers(mapBases, mapOverlay), 'top-right')
+
+    map.on('load', () => {
       this.markerLayer = new OsmoseMarker(
-        mapGl,
+        map,
         this.itemState,
         // FIXME - Hardcode legacy to avoid waiting for JSON to init the map
         'https://www.openstreetmap.org/'
       )
-      this.markerLayer.addTo(map)
-
-      this.heatmapLayer = new OsmoseHeatmap(
-        mapGl,
-      )
-      this.heatmapLayer.addTo(map)
-
-      // Control Layer
-      map.addControl(controlLayers(mapGl, mapBases, mapOverlay))
-
       this.$emit('set-marker-layer', this.markerLayer)
+
+      this.heatmapLayer = new OsmoseHeatmap(map)
 
       this.updateLayer()
     })
+
+    map.on('moveend', function () {
+      const zoom = Math.round(map.getZoom())
+      if (zoom !== map.getZoom()) {
+        map.setZoom(zoom)
+      }
+    })
+
+    map.scrollZoom.setWheelZoomRate(1)
   },
 
   methods: {
@@ -130,17 +165,3 @@ export default Vue.extend({
   },
 })
 </script>
-
-<style>
-.leaflet-control-layers label {
-  margin-bottom: 0px;
-}
-
-ul.leaflet-control-geocoder-alternatives {
-  width: 60vw;
-}
-.leaflet-control-geocoder-alternatives a:hover,
-.leaflet-control-geocoder-selected {
-  background-color: inherit;
-}
-</style>

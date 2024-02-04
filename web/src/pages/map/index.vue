@@ -15,7 +15,7 @@
       <div class="map-container">
         <side-pannel
           :map="map"
-          position="topleft"
+          position="top-left"
           menuText="☰"
           menuTitle="Menu"
           class="side-pannel"
@@ -46,7 +46,7 @@
         <side-pannel
           ref="doc"
           :map="map"
-          position="topright"
+          position="top-right"
           menuText="ℹ"
           menuTitle="Doc"
           class="side-pannel"
@@ -87,6 +87,8 @@
 </template>
 
 <script lang="ts">
+import { Map } from 'maplibre-gl'
+
 import Doc from './doc.vue'
 import Editor from './editor.vue'
 import ItemsFilters from './items-filters.vue'
@@ -118,7 +120,7 @@ export default VueParent.extend({
     categories: Category[]
     main_website: string
     remote_url_read: string
-    map: Object
+    map: Map
     markerLayer: Object
     item_levels: {}
     itemState: ItemState
@@ -202,30 +204,6 @@ export default VueParent.extend({
       }
     },
 
-    map(newMap: Object, oldMap: Object): void {
-      if (!oldMap && newMap) {
-        this.map.on('zoomend moveend', () => {
-          this.mapState.lat = this.map.getCenter().lat
-          this.mapState.lon = this.map.getCenter().lng
-          this.mapState.zoom = this.map.getZoom()
-        })
-
-        // Permalink
-        this.permalink = new L.Control.Permalink({
-          useLocation: true,
-          text: '',
-        })
-        this.map.addControl(this.permalink)
-        this.permalink.on('update', (e) => {
-          Object.keys(this.itemState).forEach((k) => {
-            if (this.itemState[k] != e.params[k]) {
-              this.itemState[k] = e.params[k]
-            }
-          })
-        })
-      }
-    },
-
     itemState: {
       deep: true,
       handler(): void {
@@ -255,6 +233,27 @@ export default VueParent.extend({
         }
       }
       return vars
+    },
+
+    setUrlVars(vars: Object): void {
+      const merge = {
+        ...this.getUrlVars(),
+        ...vars,
+      }
+      window.location.href =
+        '#' +
+        Object.entries(merge)
+          .map(
+            ([key, value]) =>
+              encodeURIComponent(key) +
+              '=' +
+              (key === undefined || key === null
+                ? ''
+                : key == 'loc'
+                ? value
+                : encodeURIComponent(value))
+          )
+          .join('&')
     },
 
     filter(keys: string[], state): void {
@@ -305,7 +304,7 @@ export default VueParent.extend({
 
     saveItemState(): void {
       localStorage.setItem('itemState', JSON.stringify(this.itemState))
-      this.permalink._update(this.itemState)
+      this.setUrlVars(this.itemState)
     },
 
     saveMapState(): void {
@@ -342,6 +341,23 @@ export default VueParent.extend({
 
     setMap(map): void {
       this.map = map
+      const callback = () => {
+        this.mapState.lat = this.map.getCenter().lat
+        this.mapState.lon = this.map.getCenter().lng
+        this.mapState.zoom = this.map.getZoom()
+      }
+      this.map.on('moveend', callback)
+      this.map.on('zoomend', callback)
+
+      // Permalink
+      window.addEventListener('hashchange', () => {
+        const vars = this.getUrlVars()
+        Object.keys(this.itemState).forEach((k) => {
+          if (this.itemState[k] != vars[k]) {
+            this.itemState[k] = vars[k] == null ? '' : vars[k]
+          }
+        })
+      })
     },
 
     setMarkerLayer(markerLayer): void {
@@ -361,8 +377,8 @@ body {
   font-weight: bold;
 }
 
-@media (max-width: 640px) {
-  .leaflet-touch .josm {
+@media (max-width: 640px) and (hover: none) {
+  .josm {
     display: none;
   }
 }

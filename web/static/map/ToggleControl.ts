@@ -1,63 +1,36 @@
-import { ControlOptions } from 'leaflet'
+import { IControl, Map } from 'maplibre-gl'
 
 export type ToggleControlOptions = {
   menuText: string
   menuTitle: string
 }
 
-export default class ToggleControl extends L.Control {
+export default class ToggleControl implements IControl {
   toggleControloptions: ToggleControlOptions = {
     menuText: 'x',
     menuTitle: 'toggle',
   }
 
-  private _map: L.Map
   private _toggleFunction
-  private _zoomInButton: HTMLElement
 
-  constructor(toggleFunction, options?: ToggleControlOptions & ControlOptions) {
-    super({ position: 'topleft', ...options })
-    Object.assign(this.toggleControloptions, options)
+  constructor(toggleFunction, options?: ToggleControlOptions) {
     this._toggleFunction = toggleFunction
+    Object.assign(this.toggleControloptions, options)
   }
 
-  onAdd(map): HTMLElement {
-    const menuName = 'leaflet-control-menu-toggle'
-    const container = L.DomUtil.create('div', `${menuName} leaflet-bar`)
-    this._map = map
-    this._zoomInButton = this._createButton(
-      this.toggleControloptions.menuText,
-      this.toggleControloptions.menuTitle,
-      `${menuName}-in`,
-      container,
-      this._toggleFunction,
-      this
-    )
-    return container
+  onAdd(map: Map): HTMLElement {
+    const controlContainer = document.createElement('div')
+    controlContainer.className = 'maplibregl-ctrl maplibregl-ctrl-group'
+    controlContainer.innerHTML = `
+      <button class='maplibregl-ctrl-toggle' title='${this.toggleControloptions.menuTitle}'>
+        <span class='maplibregl-ctrl-icon' aria-hidden='true' style="width: 30px; height: 30px; line-height: 30px;">${this.toggleControloptions.menuText}</span>
+      </button>
+    `
+    const button = controlContainer.childNodes[1]
+    button.addEventListener('click', this._toggleFunction)
+
+    return controlContainer
   }
 
-  _createButton(
-    html: string,
-    title: string,
-    className: string,
-    container: HTMLElement,
-    fn,
-    context
-  ): HTMLElement {
-    const link = L.DomUtil.create('a', className, container)
-    link.innerHTML = html
-    link.href = '#'
-    link.title = title
-
-    const stop = L.DomEvent.stopPropagation
-
-    L.DomEvent.on(link, 'click', stop)
-      .on(link, 'mousedown', stop)
-      .on(link, 'dblclick', stop)
-      .on(link, 'click', L.DomEvent.preventDefault)
-      .on(link, 'click', fn, context)
-      .on(link, 'click', this._refocusOnMap, context)
-
-    return link
-  }
+  onRemove(map: Map): void {}
 }

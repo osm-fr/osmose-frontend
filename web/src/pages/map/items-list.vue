@@ -281,8 +281,11 @@ export default Vue.extend({
 div#action_links {
   text-align: center;
 }
-.leaflet-touch div#action_links {
-  font-size: inherit;
+
+@media (hover: none) {
+  div#action_links {
+    font-size: inherit;
+  }
 }
 
 div.test_group img {
@@ -293,8 +296,10 @@ div.test_group h1 {
   margin: 0px;
   margin-top: 5px;
 }
-.leaflet-touch div.test_group h1 {
-  font-size: 100%;
+@media (hover: none) {
+  div.test_group h1 {
+    font-size: 100%;
+  }
 }
 div.test_group h1 i.toggleCategIco {
   display: inline-block;
@@ -327,8 +332,10 @@ div.test_group li div.marker-l {
   height: 12px;
 }
 
-.leaflet-touch div.test_group li {
-  font-size: inherit;
+@media (hover: none) {
+  div.test_group li {
+    font-size: inherit;
+  }
 }
 
 div.test_group li input {

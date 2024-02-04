@@ -1,0 +1,21 @@
+.maplibregl-ctrl-control-layers > button > span {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.maplibregl-ctrl-control-layers:hover > button {
+  display: none;
+}
+
+.maplibregl-ctrl-control-layers:hover > form {
+  display: block !important;
+}
+
+.maplibregl-ctrl-control-layers label {
+  margin-bottom: 0px;
+}
+
+.maplibregl-ctrl-control-layers hr {
+  margin: 5px 0 5px 0;
+}

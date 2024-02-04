@@ -1,4 +1,6 @@
-function tileSource(url, options?) {
+import { SourceSpecification } from 'maplibre-gl'
+
+function tileSource(url, options?): SourceSpecification {
   return {
     type: 'raster',
     tiles: [url + (options?.layer ? '?layer=' + options.layer : '')],
@@ -11,7 +13,7 @@ function tileSource(url, options?) {
 
 const osmAttribution =
   '&copy <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-export const mapBases = {
+export const mapBases: Record<string, SourceSpecification> = {
   // OpenStreetMap
   carto: tileSource('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: osmAttribution,
@@ -109,6 +111,13 @@ export const glStyle = {
       minzoom: mapBases['carto'].minzoom,
       maxzoom: mapBases['carto'].maxzoom,
     },
+    osm: {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: [],
+      },
+    },
     mapillary: {
       type: 'vector',
       tiles: [
@@ -135,7 +144,11 @@ export const glStyle = {
       .map(([id, source]) => ({ [id]: source }))
       .reduce((merged, current) => ({ ...merged, ...current }), {}),
   },
-  sprite: 'http://127.0.0.1:8080/marker-gl-sprite',
+  sprite:
+    window.location.protocol +
+    '//' +
+    window.location.host +
+    '/assets/marker-gl-sprite',
   layers: [
     {
       id: 'background-color',
@@ -156,6 +169,107 @@ export const glStyle = {
       source: id,
       layout: { visibility: 'none' },
     })),
+    {
+      id: 'osm-point',
+      type: 'circle',
+      source: 'osm',
+      filter: ['==', '$type', 'Point'],
+      paint: {
+        'circle-stroke-width': 3,
+        'circle-opacity': 0.3,
+        'circle-radius': 10,
+        'circle-color': [
+          'match',
+          ['%', ['get', 'index'], 3],
+          0,
+          '#ff3333',
+          1,
+          '#59b300',
+          2,
+          '#3388ff',
+          '#000',
+        ],
+        'circle-stroke-color': [
+          'match',
+          ['%', ['get', 'index'], 3],
+          0,
+          '#ff3333',
+          1,
+          '#59b300',
+          2,
+          '#3388ff',
+          '#000',
+        ],
+      },
+    },
+    {
+      id: 'osm-line',
+      type: 'line',
+      source: 'osm',
+      filter: ['==', '$type', 'LineString'],
+      paint: {
+        'line-width': 5,
+        'line-color': [
+          'match',
+          ['%', ['get', 'index'], 3],
+          0,
+          '#ff3333',
+          1,
+          '#59b300',
+          2,
+          '#3388ff',
+          '#000',
+        ],
+      },
+      layout: {
+        'line-cap': 'round',
+        'line-join': 'round',
+      },
+    },
+    {
+      id: 'osm-fill',
+      type: 'fill',
+      source: 'osm',
+      filter: ['==', '$type', 'Polygon'],
+      paint: {
+        'fill-opacity': 0.3,
+        'fill-color': [
+          'match',
+          ['%', ['get', 'index'], 3],
+          0,
+          '#ff3333',
+          1,
+          '#59b300',
+          2,
+          '#3388ff',
+          '#000',
+        ],
+      },
+    },
+    {
+      id: 'osm-fill-strock',
+      type: 'line',
+      source: 'osm',
+      filter: ['==', '$type', 'Polygon'],
+      paint: {
+        'line-width': 5,
+        'line-color': [
+          'match',
+          ['%', ['get', 'index'], 3],
+          0,
+          '#ff3333',
+          1,
+          '#59b300',
+          2,
+          '#3388ff',
+          '#000',
+        ],
+      },
+      layout: {
+        'line-cap': 'round',
+        'line-join': 'round',
+      },
+    },
     {
       id: 'mapillary-overview',
       type: 'circle',
@@ -280,6 +394,8 @@ export const glStyle = {
       layout: {
         'icon-image': 'limit',
         'icon-allow-overlap': true,
+        'icon-pitch-alignment': 'map',
+        'icon-rotation-alignment': 'map',
       },
     },
     {

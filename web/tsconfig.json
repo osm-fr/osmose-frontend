@@ -26,7 +26,6 @@
     },
     "types": [
       "@types/geojson",
-      "@types/leaflet",
       "types"
     ],
   },

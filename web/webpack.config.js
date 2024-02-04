@@ -112,9 +112,6 @@ module.exports = (env, argv) => {
                 API_URL: JSON.stringify(env.API_URL)
             }),
             new VueLoaderPlugin(),
-            new webpack.ProvidePlugin({
-                L: 'leaflet',
-            }),
             new SpritezeroWebpackPlugin({
                 source: '../web_api/static/images/**/*.svg',
                 output: 'marker-gl-',

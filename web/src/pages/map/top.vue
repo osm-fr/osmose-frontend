@@ -194,6 +194,7 @@
 </template>
 
 <script lang="ts">
+import { Map } from 'maplibre-gl'
 import Vue, { PropType } from 'vue'
 import TimeAgo from 'vue2-timeago'
 
@@ -209,7 +210,7 @@ export default Vue.extend({
   },
   props: {
     map: {
-      type: Object as PropType<Object | null>,
+      type: Object as PropType<Map | null>,
       default: null,
     },
     mapState: {
@@ -290,7 +291,7 @@ export default Vue.extend({
       delete params.lon
       delete params.issue_uuid
       params.limit = 500
-      params.bbox = this.map.getBounds().toBBoxString()
+      params.bbox = this.map.getBounds().toArray().flat().join(',')
       this.params = Object.entries(params)
         .filter(([, v]) => v !== undefined && v != null)
         .map(([k, v]) => encodeURIComponent(k) + '=' + encodeURIComponent(v))

@@ -1,113 +1,83 @@
-import { Map, Popup, LayerOptions } from 'leaflet'
+import { Map, Popup } from 'maplibre-gl'
 
-import 'leaflet-responsive-popup'
-import 'leaflet-responsive-popup/leaflet.responsive.popup.css'
-import 'leaflet-responsive-popup/leaflet.responsive.popup.rtl.css'
-import 'leaflet-textpath'
-import OsmDataLayer from './leaflet-osm'
+import osm2geojson from './osm2geojson'
 import ExternalVueAppEvent from '../../src/ExternalVueAppEvent'
-import IconLimit from '../images/limit.png'
-import { Map as MapGl } from 'maplibre-gl'
 
-export default class OsmoseMarker extends L.Layer {
+export default class OsmoseMarker {
   private _map: Map
-  private _mapGl: MapGl
   private _remoteUrlRead: string
   private popup: Popup
   private open_popup?: string // uuid
 
-  constructor(
-    mapGl: MapGl,
-    itemState,
-    remoteUrlRead: string,
-    options?: LayerOptions
-  ) {
-    super(options)
-
-    L.Util.setOptions(this, options)
-    this._mapGl = mapGl
+  constructor(map: Map, itemState, remoteUrlRead: string) {
+    this._map = map
     this._itemState = itemState
     this._remoteUrlRead = remoteUrlRead
 
-    this.on('add', (e) => {
-      if (itemState.issue_uuid) {
-        this._openPopup(itemState.issue_uuid, [0, 0], this)
-      }
+    this.popup = new Popup({ closeOnClick: false })
+      .setMaxWidth('280')
+      .setOffset([0, -24])
+      .setDOMContent(document.getElementById('popupTpl'))
+
+    if (this._itemState.issue_uuid) {
+      this._openPopup(this._itemState.issue_uuid, [0, 0], this)
+    }
+
+    map.on('mouseenter', 'markers', () => {
+      map.getCanvas().style.cursor = 'pointer'
     })
 
-    // this.popup = L.responsivePopup({
-    this.popup = L.popup({
-      maxWidth: 280,
-      minWidth: 240,
-      autoPan: false,
-      closeOnClick: false,
-    }).setContent(document.getElementById('popupTpl'))
-  }
-
-  onAdd(map): void {
-    this._map = map
-
-    this._featuresLayers = L.layerGroup()
-    map.addLayer(this._featuresLayers)
-
-    map.on("mouseenter", 'markers', () => {
-      map.getCanvas().style.cursor = "pointer"
+    map.on('mouseleave', 'markers', () => {
+      map.getCanvas().style.cursor = ''
     })
 
-    map.on("mouseleave", 'markers', () => {
-      map.getCanvas().style.cursor = ""
-    })
-
-    this._mapGl.on('click', 'markers', (e) => {
-      if (e.features[0].properties.limit) {
-        map.setZoomAround(e.latlng, map.getZoom() + 1)
-      } else if (e.features[0].properties.uuid) {
+    map.on('click', 'markers', (e) => {
+      e.preventDefault()
+      if (e.features[0].properties.uuid) {
         if (this.highlight === e.features[0].properties.uuid) {
           this._closePopup()
         } else {
           this.highlight = e.features[0].properties.uuid
           this._openPopup(
             e.features[0].properties.uuid,
-            [e.lngLat.lat, e.lngLat.lng],
+            e.features[0].geometry.coordinates.slice(),
             e.features[0]
           )
         }
       }
     })
 
-    this._map.on('popupclose', (e) => {
-      this._itemState.issue_uuid = null
-      this.open_popup = undefined
-      this._featuresLayers.clearLayers()
+    map.on('click', (e) => {
+      if (e.defaultPrevented === false) {
+        this._closePopup()
+      }
     })
 
-    const bindClosePopup = L.Util.bind(this._closePopup, this)
-    map.on('zoomstart', bindClosePopup)
+    this.popup.on('close', (e) => {
+      this._itemState.issue_uuid = null
+      this.open_popup = undefined
+      this.clearOsmLayer()
+    })
 
-    this.once(
-      'remove',
-      () => {
-        this.off('click', click)
-        map.off('zoomstart', bindClosePopup)
-      },
-      this
-    )
+    map.on('zoomstart', () => {
+      this.popup.remove()
+    })
   }
 
   setURLQuery(query: string): void {
     const newUrl = API_URL + `/api/0.3/issues/{z}/{x}/{y}.mvt?${query}`
-    this._mapGl.getSource('markers').setTiles([newUrl])
+    this._map.getSource('markers').setTiles([newUrl])
   }
 
   _closePopup(): void {
     this.highlight = undefined
     this.open_popup = undefined
     if (this.popup && this._map) {
-      this._map.closePopup(this.popup)
+      this.popup.remove()
     }
   }
 
-  _openPopup(uuid, initialLatlng, layer): void {
+  _openPopup(uuid, lngLat, layer): void {
     if (this.open_popup === uuid) {
       return
     }
@@ -115,8 +85,7 @@ export default class OsmoseMarker extends L.Layer {
     this._itemState.issue_uuid = uuid
 
     ExternalVueAppEvent.$emit('popup-status', 'loading')
-    delete this.popup.options.offset
-    this.popup.setLatLng(initialLatlng).openOn(this._map)
+    this.popup.setLngLat(lngLat).addTo(this._map)
 
     setTimeout(() => {
       if (this.popup.isOpen()) {
@@ -130,8 +99,6 @@ export default class OsmoseMarker extends L.Layer {
   }
 
   _setPopup(data): void {
-    this.popup.options.offset = L.point(0, -24)
-    this.popup.setLatLng([data.lat, data.lon])
     data.elems_id = data.elems.map((elem) => elem.type + elem.id).join(',')
 
     ExternalVueAppEvent.$emit('load-doc', {
@@ -141,11 +108,8 @@ export default class OsmoseMarker extends L.Layer {
     // Get the OSM objects
     if (data.elems_id) {
       let shift = -1
-      const palette = ['#ff3333', '#59b300', '#3388ff']
-      const colors = {}
-      this._featuresLayers.clearLayers()
+      this.clearOsmLayer()
       data.elems.forEach((elem) => {
-        colors[elem.type + elem.id] = palette[(shift += 1) % 3]
         fetch(
           elem.type === 'node'
             ? `${this._remoteUrlRead}api/0.6/node/${elem.id}`
@@ -156,19 +120,8 @@ export default class OsmoseMarker extends L.Layer {
             new window.DOMParser().parseFromString(str, 'text/xml')
           )
           .then((xml) => {
-            const layer = new OsmDataLayer(xml)
-            layer.setStyle({
-              color: colors[elem.type + elem.id],
-              fillColor: colors[elem.type + elem.id],
-            })
-            // Disable leaflet-textpath 1.1.0, not working with Leaflet 1.0.3
-            // layer.setText('  ►  ', {
-            //   repeat: true,
-            //   attributes: {
-            //     fill: colors[elem.type + elem.id],
-            //   },
-            // })
-            this._featuresLayers.addLayer(layer)
+            const geojson = osm2geojson(xml)
+            this._map.getSource('osm').setData(geojson)
           })
       })
     }
@@ -186,9 +139,12 @@ export default class OsmoseMarker extends L.Layer {
 
   corrected(): void {
     this._closePopup()
+  }
 
-    // Hack, removes the marker directly from the DOM since the style update of icon does not work with SVG renderer.
-    // this.setFeatureStyle(layer.properties.uuid, {})
-    this.layer._path.remove()
+  clearOsmLayer(): void {
+    this._map.getSource('osm').setData({
+      type: 'FeatureCollection',
+      features: [],
+    })
   }
 }
