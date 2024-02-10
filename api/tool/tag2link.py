@@ -3,6 +3,7 @@
 import re
 import xml.sax
 from typing import Any, Dict, List
+from xml.sax.xmlreader import AttributesImpl
 
 
 class Exact(xml.sax.handler.ContentHandler):
@@ -16,7 +17,7 @@ class Exact(xml.sax.handler.ContentHandler):
         regex = regex.replace("\p{Digit}", "[0-9]")  # noqa
         return regex
 
-    def startElement(self, name: str, attrs: Dict[str, str]) -> None:
+    def startElement(self, name: str, attrs: AttributesImpl) -> None:
         if name == "rule":
             self.rules.append({"conditions": [], "link": None})
         elif name == "condition":
