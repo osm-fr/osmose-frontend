@@ -162,6 +162,7 @@
  8141 | _("accommodation, could be integrated")
  8150 | _("cycle parking")
  8151 | _("cycle parking, could be integrated")
+ 8152 | _("cycle parking, need update")
  8160 | _("transport sharing")
  8161 | _("transport sharing, could be integrated")
  8162 | _("transport sharing, need update")
