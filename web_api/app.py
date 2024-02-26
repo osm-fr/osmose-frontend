@@ -10,7 +10,7 @@ from modules import utils
 from modules.dependencies import database
 
 from . import byuser, editor, false_positive, issue, issues, map
-from .tool import oauth, xmldict
+from .tool import oauth
 from .tool.session import SessionData, backend, cookie, verifier
 
 openapi_tags = [
@@ -72,10 +72,10 @@ async def oauth_(
             oauth_tokens = oauth.fetch_access_token(session_data.oauth_tokens)
             session_data.oauth_tokens = oauth_tokens
             user_request = oauth.get(
-                oauth_tokens, utils.remote_url + "api/0.6/user/details"
+                oauth_tokens, utils.remote_url + "api/0.6/user/details.json"
             )
             if user_request:
-                session_data.user = xmldict.xml_to_dict(user_request)
+                session_data.user = user_request.json()
             await backend.update(session_id, session_data)
         except Exception:
             pass
