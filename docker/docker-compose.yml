@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   postgres:
-    image: postgres:11-alpine
+    image: postgres:16-alpine
     volumes:
       - type: bind
         source: ../tools/database/schema.sql

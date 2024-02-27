@@ -1,4 +1,4 @@
-FROM python:3.11
+FROM python:3.12
 MAINTAINER Frédéric Rodrigo <fred.rodrigo@gmail.com>
 
 RUN mkdir -p /data/work/root/results/
