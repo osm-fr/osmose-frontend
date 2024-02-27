@@ -2,3 +2,4 @@
 .venv
 .mypy_cache
 web/node_modules
+web/public/assets
