@@ -11,7 +11,7 @@ Run the containers:
 docker-compose up
 ```
 
-The API server will be running at http://localhost:20009/
+The API server will be running at http://127.0.0.1:20009/
 The Web server will be at https://localhost:8080/en/map/
 
 
