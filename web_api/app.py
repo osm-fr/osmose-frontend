@@ -1,16 +1,21 @@
+import os
 from typing import Any, Dict, Optional
 from uuid import UUID, uuid4
 
-from fastapi import Depends, FastAPI, Response
+import requests
+from authlib.integrations.starlette_client import OAuth  # type: ignore
+from fastapi import Depends, FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
 from fastapi.responses import HTMLResponse, RedirectResponse
+from starlette.config import Config
+from starlette.middleware.sessions import SessionMiddleware
 
 from modules import utils
-from modules.dependencies import database
+from modules.dependencies import database, langs
+from modules.utils import LangsNegociation
 
 from . import byuser, editor, false_positive, issue, issues, map
-from .tool import oauth
 from .tool.session import SessionData, backend, cookie, verifier
 
 openapi_tags = [
@@ -37,17 +42,37 @@ def custom_openapi() -> Dict[str, Any]:
 
 app.openapi = custom_openapi  # type: ignore
 
+app.add_middleware(SessionMiddleware, secret_key=os.getenv("COOKIE_SIGN_KEY", ""))
+
+oauth = OAuth(
+    Config(
+        environ={
+            "OSM_CLIENT_ID": os.getenv("OSM_CLIENT_ID", ""),
+            "OSM_CLIENT_SECRET": os.getenv("OSM_CLIENT_SECRET", ""),
+        }
+    )
+)
+oauth.register(
+    name="osm",
+    server_metadata_url="https://www.openstreetmap.org/.well-known/oauth-authorization-server",
+    client_kwargs={"scope": "read_prefs write_api write_notes"},
+)
+
 
 @app.get("/login")
-async def login(session_id: Optional[UUID] = Depends(cookie)) -> RedirectResponse:
+async def login(
+    request: Request,
+    session_id: Optional[UUID] = Depends(cookie),
+    langs: LangsNegociation = Depends(langs.langs),
+) -> RedirectResponse:
     if session_id:
         await backend.delete(session_id)
 
-    (url, oauth_tokens) = oauth.fetch_request_token()
     session = uuid4()
-    await backend.create(session, SessionData(oauth_tokens=oauth_tokens))
+    await backend.create(session, SessionData())
 
-    response = RedirectResponse(url)
+    redirect_uri = utils.website + "/en/oauth2"
+    response = await oauth.osm.authorize_redirect(request, redirect_uri)
     cookie.attach_to_response(response, session)
     return response
 
@@ -62,19 +87,22 @@ async def logout(
     return RedirectResponse("map/")
 
 
-@app.get("/oauth")
-async def oauth_(
+@app.get("/oauth2")
+async def oauth2(
+    request: Request,
     session_id: UUID = Depends(cookie),
     session_data: Optional[SessionData] = Depends(verifier),
 ) -> RedirectResponse:
     if session_id and session_data:
         try:
-            oauth_tokens = oauth.fetch_access_token(session_data.oauth_tokens)
-            session_data.oauth_tokens = oauth_tokens
-            user_request = oauth.get(
-                oauth_tokens, utils.remote_url + "api/0.6/user/details.json"
+            oauth2_token = await oauth.osm.authorize_access_token(request)
+            session_data.oauth2_token = oauth2_token["access_token"]
+
+            user_request = requests.get(
+                utils.remote_url + "api/0.6/user/details.json",
+                headers={"Authorization": f"Bearer {session_data.oauth2_token}"},
             )
-            if user_request:
+            if user_request and user_request.status_code == 200:
                 session_data.user = user_request.json()
             await backend.update(session_id, session_data)
         except Exception:

@@ -3,3 +3,4 @@
 .mypy_cache
 web/node_modules
 web/public/assets
+docker/.env

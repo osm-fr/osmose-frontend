@@ -32,6 +32,9 @@ services:
       - postgres
     environment:
       - DB_HOST=postgres
+      - OSM_CLIENT_ID=${OSM_CLIENT_ID}
+      - OSM_CLIENT_SECRET=${OSM_CLIENT_SECRET}
+      - COOKIE_SIGN_KEY=${COOKIE_SIGN_KEY}
     ports:
       - 20009:20009
     networks:

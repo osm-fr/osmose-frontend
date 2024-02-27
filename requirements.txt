@@ -8,8 +8,6 @@ pyclipper
 fastapi
 fastapi-sessions
 python-multipart
-# Use a patch fork, for unmaintened rauth:
-#  - https://github.com/litl/rauth/issues/185 (data dict/bytes issue)
-#  - https://github.com/litl/rauth/pull/208  (python 3.8 compatibility)
-git+https://github.com/osm-fr/rauth.git
+Authlib
+httpx
 lxml

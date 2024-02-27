@@ -1,14 +1,14 @@
 import io
-from typing import Dict, Optional, Tuple
+from typing import Dict, Optional
 from uuid import UUID
 
+import requests
 from asyncpg import Connection
 from fastapi import APIRouter, Depends, HTTPException, Request
 
 from modules import OsmSax, utils
 from modules.dependencies import database
 
-from .tool import oauth
 from .tool.session import SessionData, backend, cookie, verifier
 
 router = APIRouter()
@@ -21,7 +21,7 @@ async def save(
     session_id: UUID = Depends(cookie),
     session_data: Optional[SessionData] = Depends(verifier),
 ) -> None:
-    if not session_data:
+    if not session_data or not session_data.oauth2_token:
         raise HTTPException(status_code=401)
 
     json = await request.json()
@@ -44,7 +44,7 @@ async def save(
     changeset = session_data.changeset
     if changeset and not reuse_changeset:
         try:
-            _changeset_close(session_data.oauth_tokens, changeset)
+            _changeset_close(session_data.oauth2_token, changeset)
         except Exception:
             pass
         changeset = None
@@ -52,14 +52,14 @@ async def save(
         await backend.update(session_id, session_data)
     elif changeset:
         try:
-            _changeset_update(session_data.oauth_tokens, changeset, tags)
+            _changeset_update(session_data.oauth2_token, changeset, tags)
         except Exception:
             changeset = None
             session_data.changeset = changeset
             await backend.update(session_id, session_data)
 
     if not changeset:
-        changeset = _changeset_create(session_data.oauth_tokens, tags)
+        changeset = _changeset_create(session_data.oauth2_token, tags)
         session_data.changeset = changeset
         await backend.update(session_id, session_data)
 
@@ -91,7 +91,7 @@ async def save(
     osmchange = out.getvalue()
 
     # Fire the changeset
-    _changeset_upload(session_data.oauth_tokens, changeset, osmchange)
+    _changeset_upload(session_data.oauth2_token, changeset, osmchange)
 
 
 def _osm_changeset(tags, id: str = "0") -> str:
@@ -108,35 +108,33 @@ def _osm_changeset(tags, id: str = "0") -> str:
     return out.getvalue()
 
 
-def _changeset_create(oauth_tokens: Tuple[str, str], tags: Dict[str, str]) -> str:
-    changeset = oauth.put(
-        oauth_tokens,
+def _changeset_create(oauth2_token: str, tags: Dict[str, str]) -> str:
+    request = requests.put(
         utils.remote_url_write + "api/0.6/changeset/create",
-        _osm_changeset(tags),
+        data=_osm_changeset(tags),
+        headers={"Authorization": f"Bearer {oauth2_token}"},
     )
-    return changeset
+    return request.text
 
 
-def _changeset_update(
-    oauth_tokens: Tuple[str, str], id: str, tags: Dict[str, str]
-) -> None:
-    oauth.put(
-        oauth_tokens,
+def _changeset_update(oauth2_token: str, id: str, tags: Dict[str, str]) -> None:
+    requests.put(
         utils.remote_url_write + "api/0.6/changeset/" + id,
-        _osm_changeset(tags, id=id),
+        data=_osm_changeset(tags, id=id),
+        headers={"Authorization": f"Bearer {oauth2_token}"},
     )
 
 
-def _changeset_close(oauth_tokens: Tuple[str, str], id: str) -> None:
-    oauth.put(
-        oauth_tokens,
+def _changeset_close(oauth2_token: str, id: str) -> None:
+    requests.put(
         utils.remote_url_write + "api/0.6/changeset/" + id + "/close",
+        headers={"Authorization": f"Bearer {oauth2_token}"},
     )
 
 
-def _changeset_upload(oauth_tokens: Tuple[str, str], id: str, osmchange) -> None:
-    oauth.post(
-        oauth_tokens,
+def _changeset_upload(oauth2_token: str, id: str, osmchange) -> None:
+    requests.post(
         utils.remote_url_write + "api/0.6/changeset/" + id + "/upload",
-        osmchange,
+        data=osmchange,
+        headers={"Authorization": f"Bearer {oauth2_token}"},
     )

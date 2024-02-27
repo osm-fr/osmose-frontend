@@ -67,7 +67,7 @@ OFFSET
     timestamp = await db.fetchval(sql)
 
     if session_data and session_data.user:
-        user = session_data.user["osm"]["user"]["@display_name"]
+        user = session_data.user["user"]["display_name"]
         user_error_count = await _user_count(params, db, user)
     else:
         user = None

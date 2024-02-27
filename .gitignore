@@ -21,3 +21,5 @@ osmose-frontend-venv
 web/public/assets
 
 .mypy_cache
+
+docker/.env
