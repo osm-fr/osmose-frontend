@@ -114,27 +114,31 @@ def _changeset_create(oauth2_token: str, tags: Dict[str, str]) -> str:
         data=_osm_changeset(tags),
         headers={"Authorization": f"Bearer {oauth2_token}"},
     )
+    request.raise_for_status()
     return request.text
 
 
 def _changeset_update(oauth2_token: str, id: str, tags: Dict[str, str]) -> None:
-    requests.put(
+    request = requests.put(
         utils.remote_url_write + "api/0.6/changeset/" + id,
         data=_osm_changeset(tags, id=id),
         headers={"Authorization": f"Bearer {oauth2_token}"},
     )
+    request.raise_for_status()
 
 
 def _changeset_close(oauth2_token: str, id: str) -> None:
-    requests.put(
+    request = requests.put(
         utils.remote_url_write + "api/0.6/changeset/" + id + "/close",
         headers={"Authorization": f"Bearer {oauth2_token}"},
     )
+    request.raise_for_status()
 
 
 def _changeset_upload(oauth2_token: str, id: str, osmchange) -> None:
-    requests.post(
+    request = requests.post(
         utils.remote_url_write + "api/0.6/changeset/" + id + "/upload",
         data=osmchange,
         headers={"Authorization": f"Bearer {oauth2_token}"},
     )
+    request.raise_for_status()
