@@ -137,8 +137,13 @@ export default Vue.extend({
           modify: this.edition_stack,
         }),
       })
-        .then(() => {
-          this.$emit('saved')
+        .then((response) => {
+          if (response.ok) {
+            this.$emit('saved')
+          } else {
+            this.status = 'error'
+            this.error = `${response.status} ${response.statusText}`
+          }
         })
         .catch((error) => {
           this.status = 'error'
