@@ -111,8 +111,11 @@ def _osm_changeset(tags, id: str = "0") -> str:
 def _changeset_create(oauth2_token: str, tags: Dict[str, str]) -> str:
     request = requests.put(
         utils.remote_url_write + "api/0.6/changeset/create",
-        data=_osm_changeset(tags),
-        headers={"Authorization": f"Bearer {oauth2_token}"},
+        data=_osm_changeset(tags).encode(),
+        headers={
+            "Authorization": f"Bearer {oauth2_token}",
+            "Content-Type": "application/xml; charset=utf-8",
+        },
     )
     request.raise_for_status()
     return request.text
@@ -121,8 +124,11 @@ def _changeset_create(oauth2_token: str, tags: Dict[str, str]) -> str:
 def _changeset_update(oauth2_token: str, id: str, tags: Dict[str, str]) -> None:
     request = requests.put(
         utils.remote_url_write + "api/0.6/changeset/" + id,
-        data=_osm_changeset(tags, id=id),
-        headers={"Authorization": f"Bearer {oauth2_token}"},
+        data=_osm_changeset(tags, id=id).encode(),
+        headers={
+            "Authorization": f"Bearer {oauth2_token}",
+            "Content-Type": "application/xml; charset=utf-8",
+        },
     )
     request.raise_for_status()
 
@@ -130,7 +136,9 @@ def _changeset_update(oauth2_token: str, id: str, tags: Dict[str, str]) -> None:
 def _changeset_close(oauth2_token: str, id: str) -> None:
     request = requests.put(
         utils.remote_url_write + "api/0.6/changeset/" + id + "/close",
-        headers={"Authorization": f"Bearer {oauth2_token}"},
+        headers={
+            "Authorization": f"Bearer {oauth2_token}",
+        },
     )
     request.raise_for_status()
 
@@ -138,7 +146,10 @@ def _changeset_close(oauth2_token: str, id: str) -> None:
 def _changeset_upload(oauth2_token: str, id: str, osmchange) -> None:
     request = requests.post(
         utils.remote_url_write + "api/0.6/changeset/" + id + "/upload",
-        data=osmchange,
-        headers={"Authorization": f"Bearer {oauth2_token}"},
+        data=osmchange.encode(),
+        headers={
+            "Authorization": f"Bearer {oauth2_token}",
+            "Content-Type": "application/xml; charset=utf-8",
+        },
     )
     request.raise_for_status()
