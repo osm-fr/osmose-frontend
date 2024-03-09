@@ -243,15 +243,12 @@ export default VueParent.extend({
       window.location.href =
         '#' +
         Object.entries(merge)
+          .filter(([key, value]) => !!value)
           .map(
             ([key, value]) =>
               encodeURIComponent(key) +
               '=' +
-              (key === undefined || key === null
-                ? ''
-                : key == 'loc'
-                ? value
-                : encodeURIComponent(value))
+              (key == 'loc' ? value : encodeURIComponent(value))
           )
           .join('&')
     },
