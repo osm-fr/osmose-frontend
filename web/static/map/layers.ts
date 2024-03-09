@@ -384,6 +384,7 @@ export const glStyle = {
         'icon-image': ['concat', 'marker-b-', ['get', 'item']],
         'icon-anchor': 'bottom',
         'icon-allow-overlap': true,
+        visibility: 'none',
       },
     },
     {
@@ -396,6 +397,7 @@ export const glStyle = {
         'icon-allow-overlap': true,
         'icon-pitch-alignment': 'map',
         'icon-rotation-alignment': 'map',
+        visibility: 'none',
       },
     },
     {

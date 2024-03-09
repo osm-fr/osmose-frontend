@@ -67,6 +67,8 @@ export default class ControlLayers implements IControl {
       inputs.forEach((input: HTMLInputElement) => {
         input.addEventListener('change', () => this._onInputChange(inputs))
       })
+
+      this._onInputChange(inputs)
     })
 
     return controlContainer
