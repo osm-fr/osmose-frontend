@@ -1,5 +1,10 @@
 from collections import defaultdict
-from typing import Any, Dict, List, Optional, TypedDict
+from typing import Any, Dict, List, Optional
+try:
+  # for python < 3.12
+  from typing_extensions import TypedDict
+except:
+  from typing import TypedDict
 
 from asyncpg import Connection
 
