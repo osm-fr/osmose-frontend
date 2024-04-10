@@ -92,7 +92,7 @@ async def _items(
     FROM
         items
     WHERE
-        1 = 1"""
+        1 = 1 """
         + ("AND item = $1" if item is not None else "")
         + """
     ORDER BY
@@ -137,11 +137,11 @@ async def _items(
     FROM
         class
     WHERE
-        1 = 1"""
+        1 = 1 """
     params = 0
     if item is not None:
         params += 1
-        sql += f"AND item = ${params}"
+        sql += f"AND item = ${params} "
     if classs is not None:
         params += 1
         sql += f"AND class = ${params}"
