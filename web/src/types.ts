@@ -32,7 +32,6 @@ export interface ItemState {
   source?: number
   username?: string
   country?: string
-  issue_uuid?: string
 }
 
 export interface LanguagesName {

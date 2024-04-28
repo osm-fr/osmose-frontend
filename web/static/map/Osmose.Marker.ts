@@ -5,22 +5,28 @@ import ExternalVueAppEvent from '../../src/ExternalVueAppEvent'
 
 export default class OsmoseMarker {
   private _map: Map
+  private setIssueUuid: Function
   private _remoteUrlRead: string
   private popup: Popup
   private open_popup?: string // uuid
 
-  constructor(map: Map, itemState, remoteUrlRead: string) {
+  constructor(
+    map: Map,
+    initialUuid,
+    setIssueUuidCallBack: Function,
+    remoteUrlRead: string
+  ) {
     this._map = map
-    this._itemState = itemState
     this._remoteUrlRead = remoteUrlRead
+    this.setIssueUuid = setIssueUuidCallBack
 
     this.popup = new Popup({ closeOnClick: false })
       .setMaxWidth('280')
       .setOffset([0, -24])
       .setDOMContent(document.getElementById('popupTpl'))
 
-    if (this._itemState.issue_uuid) {
-      this._openPopup(this._itemState.issue_uuid, [0, 0], this)
+    if (initialUuid) {
+      this._openPopup(initialUuid, [0, 0], this)
     }
 
     map.on('mouseenter', 'markers', () => {
@@ -54,8 +60,6 @@ export default class OsmoseMarker {
     })
 
     this.popup.on('close', (e) => {
-      this._itemState.issue_uuid = null
-      this.open_popup = undefined
       this.clearOsmLayer()
     })
 
@@ -71,6 +75,7 @@ export default class OsmoseMarker {
 
   _closePopup(): void {
     this.highlight = undefined
+    this.setIssueUuid(null)
     this.open_popup = undefined
     if (this.popup && this._map) {
       this.popup.remove()
@@ -82,7 +87,7 @@ export default class OsmoseMarker {
       return
     }
     this.open_popup = uuid
-    this._itemState.issue_uuid = uuid
+    this.setIssueUuid(uuid)
 
     ExternalVueAppEvent.$emit('popup-status', 'loading')
     this.popup.setLngLat(lngLat).addTo(this._map)
@@ -90,7 +95,7 @@ export default class OsmoseMarker {
     setTimeout(() => {
       if (this.popup.isOpen()) {
         // Popup still open, so download content
-        ExternalVueAppEvent.$emit('popup-load', uuid)
+        ExternalVueAppEvent.$emit('popup-load', { uuid, popup: this.popup })
         this.layer = layer
       } else {
         ExternalVueAppEvent.$emit('popup-status', 'clean')

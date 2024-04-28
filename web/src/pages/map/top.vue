@@ -289,7 +289,6 @@ export default Vue.extend({
       const params = { ...this.mapState, ...this.itemState }
       delete params.lat
       delete params.lon
-      delete params.issue_uuid
       params.limit = 500
       params.bbox = this.map.getBounds().toArray().flat().join(',')
       this.params = Object.entries(params)

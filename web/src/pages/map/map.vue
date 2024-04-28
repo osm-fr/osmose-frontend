@@ -27,6 +27,10 @@ export default Vue.extend({
       type: Object,
       required: true,
     },
+    issueUuid: {
+      type: String,
+      default: undefined,
+    },
     mapState: {
       type: Object,
       required: true,
@@ -128,7 +132,10 @@ export default Vue.extend({
     map.on('load', () => {
       this.markerLayer = new OsmoseMarker(
         map,
-        this.itemState,
+        this.issueUuid,
+        (uuid) => {
+          this.$emit('update-issue-uuid', uuid)
+        },
         // FIXME - Hardcode legacy to avoid waiting for JSON to init the map
         'https://www.openstreetmap.org/'
       )
@@ -152,7 +159,6 @@ export default Vue.extend({
   methods: {
     updateLayer(): void {
       const state = Object.assign({}, this.itemState)
-      delete state.issue_uuid
 
       const query = Object.entries(state)
         .filter(([, v]) => v !== undefined && v != null)

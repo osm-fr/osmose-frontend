@@ -291,6 +291,7 @@
 </template>
 
 <script lang="ts">
+import { Popup } from 'maplibre-gl'
 import Vue, { PropType } from 'vue'
 
 import confirmFalsePositive from '../../components/confirmFalsePositive.vue'
@@ -367,11 +368,13 @@ export default Vue.extend({
     ExternalVueAppEvent.$on('popup-status', (status) => {
       this.status = status
     })
-    ExternalVueAppEvent.$on('popup-load', this.load)
+    ExternalVueAppEvent.$on('popup-load', (event) =>
+      this.load(event.uuid, event.popup)
+    )
   },
 
   methods: {
-    load(uuid: string): void {
+    load(uuid: string, popop: Popup): void {
       fetch(API_URL + `/api/0.3/issue/${uuid}?langs=auto`, {
         headers: new Headers({
           'Accept-Language': this.$route.params.lang,
@@ -381,6 +384,7 @@ export default Vue.extend({
         .then((response) => {
           Object.assign(this, response)
           this.status = 'fill'
+          popop.setLngLat([this.lon, this.lat])
 
           this.$nextTick(() => {
             this.markerLayer._setPopup(response)

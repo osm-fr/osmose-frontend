@@ -38,9 +38,11 @@
         </side-pannel>
         <l-map
           :item-state="itemState"
+          :issue-uuid="issueUuid"
           :map-state="mapState"
           @set-map="setMap($event)"
           @set-marker-layer="setMarkerLayer($event)"
+          @update-issue-uuid="issueUuid = $event"
           class="map"
         />
         <side-pannel
@@ -124,6 +126,7 @@ export default VueParent.extend({
     markerLayer: Object
     item_levels: {}
     itemState: ItemState
+    issueUuid: string
     mapState: MapState
     editor: string[]
     doc: string[]
@@ -153,8 +156,8 @@ export default VueParent.extend({
         source: null,
         username: null,
         country: null,
-        issue_uuid: null,
       },
+      issueUuid: undefined,
       mapState: {
         lat: 46.97,
         lon: 2.75,
@@ -206,6 +209,12 @@ export default VueParent.extend({
 
     itemState: {
       deep: true,
+      handler(): void {
+        this.saveItemState()
+      },
+    },
+
+    issueUuid: {
       handler(): void {
         this.saveItemState()
       },
@@ -264,7 +273,9 @@ export default VueParent.extend({
     initializeItemState(): void {
       const keys = Object.keys(this.itemState)
 
-      const urlState = this.filter(keys, this.getUrlVars())
+      const vars = this.getUrlVars()
+      this.issueUuid = vars.issue_uuid
+      const urlState = this.filter(keys, vars)
 
       let localStorageState = {}
       if (
@@ -301,7 +312,9 @@ export default VueParent.extend({
 
     saveItemState(): void {
       localStorage.setItem('itemState', JSON.stringify(this.itemState))
-      this.setUrlVars(this.itemState)
+      this.setUrlVars(
+        Object.assign({}, this.itemState, { issue_uuid: this.issueUuid })
+      )
     },
 
     saveMapState(): void {
