@@ -420,6 +420,10 @@ export default Vue.extend({
 </script>
 
 <style>
+.maplibregl-popup {
+  will-change: unset; /* Overide MapLibre CSS to avoid blury popup text */
+}
+
 .maplibregl-popup-content {
   box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
   border-radius: 12px;
