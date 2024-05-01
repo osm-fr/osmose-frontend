@@ -1,9 +1,11 @@
 from typing import Any, Dict, List, Literal
+
 try:
-  # for python < 3.12
-  from typing_extensions import TypedDict
-except:
-  from typing import TypedDict
+    # for python < 3.12
+    from typing_extensions import TypedDict
+except ImportError:
+    from typing import TypedDict
+
 
 class GeoJSONFeature(TypedDict):
     type: Literal["Feature"]

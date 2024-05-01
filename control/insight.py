@@ -76,7 +76,7 @@ ORDER BY
     for analyser in matrix:
         min: Optional[float] = None
         max: Optional[float] = None
-        sum = 0
+        sum = 0.0
         for country in matrix[analyser]:
             v = matrix[analyser][country][0]
             min = v if not min or v < min else min
