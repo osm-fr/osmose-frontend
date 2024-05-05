@@ -44,6 +44,7 @@ export default class OsmoseMarker {
           this._closePopup()
         } else {
           this.highlight = e.features[0].properties.uuid
+          this.feature_id = e.features[0].id
           this._openPopup(
             e.features[0].properties.uuid,
             e.features[0].geometry.coordinates.slice(),
@@ -143,6 +144,11 @@ export default class OsmoseMarker {
   }
 
   corrected(): void {
+    this._map.setFeatureState(
+      {source: 'markers', sourceLayer: 'issues', id: this.feature_id},
+      {hidden: true}
+    )
+
     this._closePopup()
   }
 

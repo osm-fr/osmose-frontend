@@ -386,6 +386,9 @@ export const glStyle = {
         'icon-allow-overlap': true,
         visibility: 'none',
       },
+      paint: {
+        'icon-opacity': ['case', ['feature-state', 'hidden'], 0, 1],
+      },
     },
     {
       id: 'markers-limit',

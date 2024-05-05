@@ -63,6 +63,7 @@ def _errors_mvt(
         for res in sorted(results, key=lambda res: -res["lat"]):
             issues_features.append(
                 {
+                    "id": res["id"],
                     "geometry": Point(res["lon"], res["lat"]),
                     "properties": {
                         "uuid": str(res["uuid"]),
