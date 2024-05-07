@@ -145,8 +145,8 @@ export default class OsmoseMarker {
 
   corrected(): void {
     this._map.setFeatureState(
-      {source: 'markers', sourceLayer: 'issues', id: this.feature_id},
-      {hidden: true}
+      { source: 'markers', sourceLayer: 'issues', id: this.feature_id },
+      { hidden: true }
     )
 
     this._closePopup()
