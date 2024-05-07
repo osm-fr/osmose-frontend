@@ -104,7 +104,7 @@ export default class OsmoseMarker {
     }, 100)
   }
 
-  _setPopup(data): void {
+  async _setPopup(data): void {
     data.elems_id = data.elems.map((elem) => elem.type + elem.id).join(',')
 
     ExternalVueAppEvent.$emit('load-doc', {
@@ -115,20 +115,24 @@ export default class OsmoseMarker {
     if (data.elems_id) {
       let shift = -1
       this.clearOsmLayer()
-      data.elems.forEach((elem) => {
-        fetch(
-          elem.type === 'node'
-            ? `${this._remoteUrlRead}api/0.6/node/${elem.id}`
-            : `${this._remoteUrlRead}api/0.6/${elem.type}/${elem.id}/full`
-        )
-          .then((response) => response.text())
-          .then((str) =>
-            new window.DOMParser().parseFromString(str, 'text/xml')
+      const features = await Promise.all(
+        data.elems.map((elem) =>
+          fetch(
+            elem.type === 'node'
+              ? `${this._remoteUrlRead}api/0.6/node/${elem.id}`
+              : `${this._remoteUrlRead}api/0.6/${elem.type}/${elem.id}/full`
           )
-          .then((xml) => {
-            const geojson = osm2geojson(xml)
-            this._map.getSource('osm').setData(geojson)
-          })
+            .then((response) => response.text())
+            .then((str) =>
+              new window.DOMParser().parseFromString(str, 'text/xml')
+            )
+            .then((xml) => osm2geojson(xml).features)
+        )
+      )
+      console.error(features.flat())
+      this._map.getSource('osm').setData({
+        type: 'FeatureCollection',
+        features: features.flat(),
       })
     }
   }
