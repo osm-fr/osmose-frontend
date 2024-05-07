@@ -91,7 +91,7 @@ export default class ControlLayers implements IControl {
           source.minzoom = layer.minzoom
           source.maxzoom = layer.maxzoom
           source.setTiles(layer.tiles)
-          this.layerReadd('background')
+          this.layerReadd('background', 'visible')
         }
       })
 
@@ -104,16 +104,23 @@ export default class ControlLayers implements IControl {
     this._map.getLayersOrder().forEach((layerId) => {
       const layer = this._map.getLayer(layerId)
       if (layer?.source && layer.source in checkedOverlays) {
-        layer.visibility = checkedOverlays[layer.source] ? 'visible' : 'none'
-        this.layerReadd(layerId)
+        this.layerReadd(
+          layerId,
+          checkedOverlays[layer.source] ? 'visible' : 'none'
+        )
       }
     })
   }
 
-  layerReadd(layerId) {
+  layerReadd(layerId, visibility) {
     const oldLayers = this._map.getStyle().layers
     const layerIndex = oldLayers.findIndex((l) => l.id === layerId)
     const layerDef = oldLayers[layerIndex]
+    if (layerDef.layout) {
+      layerDef.layout.visibility = visibility
+    } else {
+      layerDef.layout = { visibility: visibility }
+    }
     const before = oldLayers[layerIndex + 1] && oldLayers[layerIndex + 1].id
     this._map.removeLayer(layerId)
     this._map.addLayer(layerDef, before)

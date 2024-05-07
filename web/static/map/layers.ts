@@ -69,7 +69,7 @@ const optionsOsmFr = {
   maxzoom: 19,
 }
 const mapOverlaySource = {
-  'No na': tileSource(urlOsmFr('noname'), optionsOsmFr),
+  'No name': tileSource(urlOsmFr('noname'), optionsOsmFr),
   'No Oneway': tileSource(urlOsmFr('nooneway'), optionsOsmFr),
   'No Ref on way': tileSource(urlOsmFr('noref'), optionsOsmFr),
   'Fixme tags': tileSource(urlOsmFr('fixme'), optionsOsmFr),
