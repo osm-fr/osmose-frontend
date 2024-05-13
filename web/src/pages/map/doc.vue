@@ -214,6 +214,7 @@ export default VueParent.extend({
           this.resource_title = resource_url
             ? `${resource_url.protocol}//${resource_url.host}`
             : data.resource
+          this.item = item
         }
       )
     },
