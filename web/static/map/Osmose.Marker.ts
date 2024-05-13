@@ -129,7 +129,6 @@ export default class OsmoseMarker {
             .then((xml) => osm2geojson(xml).features)
         )
       )
-      console.error(features.flat())
       this._map.getSource('osm').setData({
         type: 'FeatureCollection',
         features: features.flat(),
