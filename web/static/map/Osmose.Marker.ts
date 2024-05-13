@@ -69,11 +69,6 @@ export default class OsmoseMarker {
     })
   }
 
-  setURLQuery(query: string): void {
-    const newUrl = API_URL + `/api/0.3/issues/{z}/{x}/{y}.mvt?${query}`
-    this._map.getSource('markers').setTiles([newUrl])
-  }
-
   _closePopup(): void {
     this.highlight = undefined
     this.setIssueUuid(null)

@@ -14,7 +14,6 @@ import Vue from 'vue'
 
 import ControlLayers from '../../../static/map/ControlLayers'
 import { mapBases, mapOverlay, glStyle } from '../../../static/map/layers'
-import OsmoseHeatmap from '../../../static/map/Osmose.Heatmap'
 import OsmoseMarker from '../../../static/map/Osmose.Marker'
 
 import '../../../static/map/ControlLayers.css'
@@ -39,11 +38,11 @@ export default Vue.extend({
 
   data(): {
     markerLayer: Object
-    heatmapLayer: Object
+    map: Map | null
   } {
     return {
       markerLayer: null,
-      heatmapLayer: null,
+      map: null,
     }
   },
 
@@ -58,7 +57,7 @@ export default Vue.extend({
 
   mounted(): void {
     // Map
-    const map = new Map({
+    const map = this.map = new Map({
       container: 'map',
       center: [this.mapState.lon, this.mapState.lat],
       zoom: this.mapState.zoom,
@@ -141,8 +140,6 @@ export default Vue.extend({
       )
       this.$emit('set-marker-layer', this.markerLayer)
 
-      this.heatmapLayer = new OsmoseHeatmap(map)
-
       this.updateLayer()
     })
 
@@ -165,8 +162,8 @@ export default Vue.extend({
         .map(([k, v]) => encodeURIComponent(k) + '=' + encodeURIComponent(v))
         .join('&')
 
-      this.markerLayer.setURLQuery(query)
-      this.heatmapLayer.setURLQuery(query)
+      this.map.getSource('markers').setTiles([API_URL + `/api/0.3/issues/{z}/{x}/{y}.mvt?${query}`])
+      this.map.getSource('heatmap').setTiles([API_URL + `/api/0.3/issues/{z}/{x}/{y}.heat.mvt?${query}`])
     },
   },
 })
