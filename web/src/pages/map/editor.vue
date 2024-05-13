@@ -150,6 +150,12 @@ export default Vue.extend({
     edition_stack(): void {
       ExternalVueAppEvent.$emit('editor-count', this.edition_stack.length)
     },
+
+    status(): void {
+      if (!this.status) {
+        this.$emit('close')
+      }
+    },
   },
 
   beforeMount(): void {

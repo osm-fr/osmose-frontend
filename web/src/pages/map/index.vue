@@ -70,6 +70,7 @@
             :user="user"
             :issue="editor"
             @issue-done="markerLayer.corrected()"
+            @close="$refs.editor.hide()"
           />
         </side-pannel>
       </div>
