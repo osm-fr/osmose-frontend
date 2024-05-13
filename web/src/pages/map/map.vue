@@ -59,13 +59,13 @@ export default Vue.extend({
 
   mounted(): void {
     // Map
-    const map = this.map = new Map({
+    const map = (this.map = new Map({
       container: 'map',
       center: [this.mapState.lon, this.mapState.lat],
       zoom: this.mapState.zoom,
       style: glStyle,
       hash: 'loc',
-    })
+    }))
     this.$emit('set-map', map)
     map.addControl(new NavigationControl(), 'top-left')
     map.addControl(new ScaleControl())
@@ -168,8 +168,12 @@ export default Vue.extend({
         .map(([k, v]) => encodeURIComponent(k) + '=' + encodeURIComponent(v))
         .join('&')
 
-      this.map.getSource('markers').setTiles([API_URL + `/api/0.3/issues/{z}/{x}/{y}.mvt?${query}`])
-      this.map.getSource('heatmap').setTiles([API_URL + `/api/0.3/issues/{z}/{x}/{y}.heat.mvt?${query}`])
+      this.map
+        .getSource('markers')
+        .setTiles([API_URL + `/api/0.3/issues/{z}/{x}/{y}.mvt?${query}`])
+      this.map
+        .getSource('heatmap')
+        .setTiles([API_URL + `/api/0.3/issues/{z}/{x}/{y}.heat.mvt?${query}`])
     },
   },
 })
