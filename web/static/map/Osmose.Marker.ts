@@ -21,7 +21,7 @@ export default class OsmoseMarker {
     this.setIssueUuid = setIssueUuidCallBack
 
     this.popup = new Popup({ closeOnClick: false })
-      .setMaxWidth('280')
+      .setMaxWidth('280px')
       .setOffset([0, -24])
       .setDOMContent(document.getElementById('popupTpl'))
 
