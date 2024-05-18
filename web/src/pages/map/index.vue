@@ -41,7 +41,7 @@
           :issue-uuid="issueUuid"
           :map-state="mapState"
           @set-map="setMap($event)"
-          @set-marker-layer="setMarkerLayer($event)"
+          @set-marker-layer="markerLayer = $event"
           @update-issue-uuid="issueUuid = $event"
           class="map"
         />
@@ -369,10 +369,6 @@ export default VueParent.extend({
           }
         })
       })
-    },
-
-    setMarkerLayer(markerLayer): void {
-      this.markerLayer = markerLayer
     },
   },
 })
