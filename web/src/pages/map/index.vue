@@ -11,6 +11,13 @@
         :user="user"
         :user_error_count="user_error_count"
         :timestamp="timestamp"
+        :object_count="editionStack.length"
+        @editor-save="
+          $refs.editor.show()
+          $nextTick(() => {
+            $refs.editorEditor.save()
+          })
+        "
       />
       <div class="map-container">
         <side-pannel
@@ -70,10 +77,16 @@
           class="side-pannel"
         >
           <editor
+            ref="editorEditor"
             :main_website="main_website"
             :user="user"
-            :issue="editor"
-            @issue-done="$refs.popup.corrected()"
+            :edition_stack="editionStack"
+            @edition="editionStack = $event"
+            @issue-done="
+              $refs.popup.corrected()
+              $refs.editor.hide()
+            "
+            @cancel="$refs.editor.hide()"
           />
         </side-pannel>
       </div>
@@ -89,9 +102,10 @@
         @q="$refs.osmObject.select($event)"
         @remove-marker="$refs.markerLayer.remove($event)"
         @fix-edit="
-          $refs.doc.hide()
           $refs.editor.show()
-          editor = [$event.uuid, $event.fix]
+          $nextTick(() => {
+            $refs.editorEditor.load($event.uuid, $event.fix)
+          })
         "
         @show-doc="showDoc"
         @load-doc="loadDoc"
@@ -142,6 +156,7 @@ export default VueParent.extend({
     mapState: MapState
     editor: string[]
     doc: string[]
+    editionStack: string[]
   } {
     return {
       error: undefined,
@@ -176,6 +191,7 @@ export default VueParent.extend({
       },
       editor: null,
       doc: null,
+      editionStack: [],
     }
   },
 

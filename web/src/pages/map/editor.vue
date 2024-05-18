@@ -1,18 +1,26 @@
 <template>
   <div id="editor" :data-user="!!user">
-    <div v-if="!user">
+    <div v-if="status == 'error'">{{ error }}</div>
+    <div v-else-if="!user">
       <p>
         <translate>You must be logged in to use the tag editor</translate>
       </p>
-      <a href="../login"><translate>Login</translate></a>
+      <p>
+        <a href="../login"><translate>Login</translate></a>
+      </p>
+      <input
+        type="button"
+        class="btn btn-secondary"
+        :value="$t('Cancel')"
+        @click="cancel"
+      />
     </div>
-    <div v-if="status == 'error'">{{ error }}</div>
-    <div v-if="status == 'loading'">
+    <div v-else-if="status == 'loading'">
       <center>
         <img src="~../../../static/images/throbbler.gif" alt="downloading" />
       </center>
     </div>
-    <div v-if="status == 'editor'">
+    <div v-else-if="status == 'editor'">
       <h1><translate>Tags Editor</translate></h1>
       <form id="editor_form">
         <div
@@ -59,7 +67,7 @@
             type="button"
             class="btn btn-secondary"
             :value="$t('Cancel')"
-            @click="cancel()"
+            @click="cancel"
           />
           <input
             type="button"
@@ -71,10 +79,10 @@
       </form>
     </div>
 
-    <div v-if="status == 'saving'">
+    <div v-else-if="status == 'saving'">
       <editor-modal
         :edition_stack="edition_stack"
-        @cancel="status = null"
+        @cancel="cancel"
         @saved="saved"
       />
     </div>
@@ -86,7 +94,6 @@ import Vue, { PropType } from 'vue'
 
 import EditorModal from './editor-modal.vue'
 import EditorTag from './editor-tag.vue'
-import ExternalVueAppEvent from '../../ExternalVueAppEvent'
 import { Elem } from '../../types'
 
 type FixTagAction = 'add' | 'mod' | 'del'
@@ -101,12 +108,12 @@ export default Vue.extend({
       type: String as PropType<string | undefined>,
       default: undefined,
     },
-    issue: {
-      type: Array as PropType<string[]>,
-      default: undefined,
-    },
     main_website: {
       type: String,
+      required: true,
+    },
+    edition_stack: {
+      type: Array as PropType<string[]>,
       required: true,
     },
   },
@@ -117,7 +124,6 @@ export default Vue.extend({
     elems: { [type_id: string]: Elem }
     elems_action: { [type_id: string]: FixTagAction }
     elems_deleted: { [type_id: string]: string }
-    edition_stack: string[]
     elems_base: { [type_id: string]: Elem }
     elems_action_base: { [type_id: string]: { [key: string]: FixTagAction } }
   } {
@@ -127,19 +133,12 @@ export default Vue.extend({
       elems: {},
       elems_action: {},
       elems_deleted: {},
-      edition_stack: [],
       elems_base: {},
       elems_action_base: {},
     }
   },
 
   watch: {
-    issue(): void {
-      if (this.issue) {
-        this.load(this.issue[0], this.issue[1])
-      }
-    },
-
     elems: {
       deep: true,
       handler(): void {
@@ -147,8 +146,10 @@ export default Vue.extend({
       },
     },
 
-    edition_stack(): void {
-      ExternalVueAppEvent.$emit('editor-count', this.edition_stack.length)
+    status(): void {
+      if (!this.status) {
+        this.$emit('cancel')
+      }
     },
 
     status(): void {
@@ -166,17 +167,11 @@ export default Vue.extend({
     window.removeEventListener('beforeunload', this.beforeunload)
   },
 
-  mounted(): void {
-    ExternalVueAppEvent.$on('editor-save', () => {
-      this.status = 'saving'
-    })
-
-    if (this.issue) {
-      this.load(this.issue[0], this.issue[1])
-    }
-  },
-
   methods: {
+    save() {
+      this.status = 'saving'
+    },
+
     load(uuid: string, fix): void {
       this.status = 'loading'
 
@@ -205,6 +200,7 @@ export default Vue.extend({
     },
 
     validate(uuid: string): void {
+      const elems = []
       Object.entries(JSON.parse(JSON.stringify(this.elems))).forEach(
         ([type_id, elem]: [string, Elem]) => {
           const changed = elem.tags.some(
@@ -217,10 +213,11 @@ export default Vue.extend({
                 .filter((tag) => tag.key != '' && tag.value != '')
                 .map((tag) => [tag.key, tag.value])
             )
-            this.edition_stack.push(elem)
+            elems.push(elem)
           }
         }
       )
+      this.$emit('edition', [...this.edition_stack, ...elems])
 
       fetch(API_URL + `/api/0.3/issue/${uuid}/done`).then(() => {
         this.$emit('issue-done')
@@ -348,7 +345,7 @@ export default Vue.extend({
     },
 
     saved(): void {
-      this.edition_stack = []
+      this.$emit('edition', [])
       this.status = null
     },
   },

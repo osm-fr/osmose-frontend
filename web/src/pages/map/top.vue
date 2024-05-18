@@ -188,7 +188,10 @@
           <translate>Login</translate>
         </a>
       </li>
-      <editor-menu />
+      <editor-menu
+        :object_count="object_count"
+        @editor-save="$emit('editor-save')"
+      />
     </ul>
   </div>
 </template>
@@ -236,6 +239,10 @@ export default Vue.extend({
     timestamp: {
       type: String as PropType<string | undefined>,
       default: undefined,
+    },
+    object_count: {
+      type: Number,
+      default: null,
     },
   },
 
