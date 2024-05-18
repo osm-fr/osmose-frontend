@@ -40,6 +40,7 @@
           :item-state="itemState"
           :issue-uuid="issueUuid"
           :map-state="mapState"
+          :remote-url-read="remote_url_read"
           @set-map="setMap($event)"
           @set-marker-layer="markerLayer = $event"
           @update-issue-uuid="issueUuid = $event"

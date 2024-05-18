@@ -1,12 +1,11 @@
 <template>
   <div id="map">
-    <!-- FIXME - Hardcode remote-url-read legacy to avoid waiting for JSON to init the map -->
     <OsmoseMarker
       v-if="map"
       ref="osmoseMarker"
       :map="map"
       :initial-uuid="issueUuid"
-      remote-url-read="https://www.openstreetmap.org/"
+      :remote-url-read="remoteUrlRead"
       @update-issue-uuid="$emit('update-issue-uuid', $event)"
     />
   </div>
@@ -44,6 +43,10 @@ export default Vue.extend({
     },
     mapState: {
       type: Object,
+      required: true,
+    },
+    remoteUrlRead: {
+      type: String,
       required: true,
     },
   },
