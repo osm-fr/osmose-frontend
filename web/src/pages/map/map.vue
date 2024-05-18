@@ -1,5 +1,15 @@
 <template>
-  <div id="map"></div>
+  <div id="map">
+    <!-- FIXME - Hardcode remote-url-read legacy to avoid waiting for JSON to init the map -->
+    <OsmoseMarker
+      v-if="map"
+      ref="osmoseMarker"
+      :map="map"
+      :initial-uuid="issueUuid"
+      remote-url-read="https://www.openstreetmap.org/"
+      @update-issue-uuid="$emit('update-issue-uuid', $event)"
+    />
+  </div>
 </template>
 
 <script lang="ts">
@@ -14,9 +24,9 @@ import {
 } from 'maplibre-gl'
 import Vue from 'vue'
 
+import OsmoseMarker from './osmose-marker.vue'
 import ControlLayers from '../../../static/map/ControlLayers'
 import { mapBases, mapOverlay, glStyle } from '../../../static/map/layers'
-import OsmoseMarker from '../../../static/map/Osmose.Marker'
 
 import '../../../static/map/ControlLayers.css'
 import 'maplibre-gl/dist/maplibre-gl.css'
@@ -39,13 +49,15 @@ export default Vue.extend({
   },
 
   data(): {
-    markerLayer: Object
     map: Map | null
   } {
     return {
-      markerLayer: null,
       map: null,
     }
+  },
+
+  components: {
+    OsmoseMarker,
   },
 
   watch: {
@@ -135,17 +147,7 @@ export default Vue.extend({
     map.addControl(new ControlLayers(mapBases, mapOverlay), 'top-right')
 
     map.on('load', () => {
-      this.markerLayer = new OsmoseMarker(
-        map,
-        this.issueUuid,
-        (uuid) => {
-          this.$emit('update-issue-uuid', uuid)
-        },
-        // FIXME - Hardcode legacy to avoid waiting for JSON to init the map
-        'https://www.openstreetmap.org/'
-      )
-      this.$emit('set-marker-layer', this.markerLayer)
-
+      this.$emit('set-marker-layer', this.$refs.osmoseMarker)
       this.updateLayer()
     })
 
