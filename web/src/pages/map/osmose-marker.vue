@@ -154,10 +154,6 @@ export default Vue.extend({
       }, 200)
     },
 
-    _help(item, classs): void {
-      ExternalVueAppEvent.$emit('show-doc', { item, classs })
-    },
-
     corrected(): void {
       this.map.setFeatureState(
         { source: 'markers', sourceLayer: 'issues', id: this.feature_id },

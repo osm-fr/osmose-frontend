@@ -413,7 +413,7 @@ export default Vue.extend({
     },
 
     doc(item: number, classs: number): void {
-      this.markerLayer._help(item, classs)
+      ExternalVueAppEvent.$emit('show-doc', { item, classs })
     },
   },
 })
