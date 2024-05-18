@@ -38,13 +38,16 @@
         </side-pannel>
         <l-map
           :item-state="itemState"
-          :issue-uuid="issueUuid"
           :map-state="mapState"
-          :remote-url-read="remote_url_read"
           @set-map="setMap($event)"
-          @set-marker-layer="markerLayer = $event"
-          @update-issue-uuid="issueUuid = $event"
           class="map"
+        />
+        <MarkerLayer v-if="map" ref="markerLayer" :map="map" />
+        <OsmObject
+          v-if="map"
+          ref="osmObject"
+          :map="map"
+          :remote-url-read="remote_url_read"
         />
         <side-pannel
           ref="doc"
@@ -70,21 +73,28 @@
             :main_website="main_website"
             :user="user"
             :issue="editor"
-            @issue-done="markerLayer.corrected()"
-            @close="$refs.editor.hide()"
+            @issue-done="$refs.popup.corrected()"
           />
         </side-pannel>
       </div>
       <iframe id="hiddenIframe" name="hiddenIframe"></iframe>
       <popup
+        ref="popup"
+        v-if="map"
+        :map="map"
+        :initial-uuid="issueUuid"
         :main_website="main_website"
         :remote_url_read="remote_url_read"
-        :marker-layer="markerLayer"
+        @update-issue-uuid="issueUuid = $event"
+        @q="$refs.osmObject.select($event)"
+        @remove-marker="$refs.markerLayer.remove($event)"
         @fix-edit="
           $refs.doc.hide()
           $refs.editor.show()
           editor = [$event.uuid, $event.fix]
         "
+        @show-doc="showDoc"
+        @load-doc="loadDoc"
       />
     </div>
   </div>
@@ -99,10 +109,11 @@ import ItemsFilters from './items-filters.vue'
 import ItemsList from './items-list.vue'
 import Items from './items.vue'
 import LMap from './map.vue'
+import MarkerLayer from './marker-layer.vue'
+import OsmObject from './osm-object.vue'
 import Popup from './popup.vue'
 import SidePannel from './side-pannel.vue'
 import Top from './top.vue'
-import ExternalVueAppEvent from '../../ExternalVueAppEvent'
 import { ItemState, LanguagesName, Category } from '../../types'
 import VueParent from '../Parent.vue'
 
@@ -125,7 +136,6 @@ export default VueParent.extend({
     main_website: string
     remote_url_read: string
     map: Map
-    markerLayer: Object
     item_levels: {}
     itemState: ItemState
     issueUuid: string
@@ -145,7 +155,6 @@ export default VueParent.extend({
       main_website: '',
       remote_url_read: '',
       map: null,
-      markerLayer: null,
       item_levels: {},
       itemState: {
         item: 'xxxx',
@@ -180,6 +189,8 @@ export default VueParent.extend({
     Doc,
     Editor,
     Popup,
+    MarkerLayer,
+    OsmObject,
   },
 
   created(): void {
@@ -192,14 +203,6 @@ export default VueParent.extend({
 
   mounted(): void {
     this.setData()
-
-    ExternalVueAppEvent.$on('show-doc', (e) => {
-      this.$refs.doc?.show()
-      this.doc = [e.item, e.classs]
-    })
-    ExternalVueAppEvent.$on('load-doc', (e) => {
-      this.doc = [e.item, e.classs]
-    })
   },
 
   watch: {
@@ -370,6 +373,15 @@ export default VueParent.extend({
           }
         })
       })
+    },
+
+    showDoc(e) {
+      this.$refs.doc?.show()
+      this.doc = [e.item, e.classs]
+    },
+
+    loadDoc(e) {
+      this.doc = [e.item, e.classs]
     },
   },
 })

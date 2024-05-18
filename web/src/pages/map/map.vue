@@ -1,14 +1,5 @@
 <template>
-  <div id="map">
-    <OsmoseMarker
-      v-if="map"
-      ref="osmoseMarker"
-      :map="map"
-      :initial-uuid="issueUuid"
-      :remote-url-read="remoteUrlRead"
-      @update-issue-uuid="$emit('update-issue-uuid', $event)"
-    />
-  </div>
+  <div id="map"></div>
 </template>
 
 <script lang="ts">
@@ -23,7 +14,6 @@ import {
 } from 'maplibre-gl'
 import Vue from 'vue'
 
-import OsmoseMarker from './osmose-marker.vue'
 import ControlLayers from '../../../static/map/ControlLayers'
 import { mapBases, mapOverlay, glStyle } from '../../../static/map/layers'
 
@@ -37,16 +27,8 @@ export default Vue.extend({
       type: Object,
       required: true,
     },
-    issueUuid: {
-      type: String,
-      default: undefined,
-    },
     mapState: {
       type: Object,
-      required: true,
-    },
-    remoteUrlRead: {
-      type: String,
       required: true,
     },
   },
@@ -57,10 +39,6 @@ export default Vue.extend({
     return {
       map: null,
     }
-  },
-
-  components: {
-    OsmoseMarker,
   },
 
   watch: {
@@ -150,7 +128,6 @@ export default Vue.extend({
     map.addControl(new ControlLayers(mapBases, mapOverlay), 'top-right')
 
     map.on('load', () => {
-      this.$emit('set-marker-layer', this.$refs.osmoseMarker)
       this.updateLayer()
     })
 

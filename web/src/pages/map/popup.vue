@@ -291,17 +291,24 @@
 </template>
 
 <script lang="ts">
-import { Popup } from 'maplibre-gl'
+import { Popup, Map } from 'maplibre-gl'
 import Vue, { PropType } from 'vue'
 
 import confirmFalsePositive from '../../components/confirmFalsePositive.vue'
-import ExternalVueAppEvent from '../../ExternalVueAppEvent'
 import { Elem, Fix } from '../../types'
 
 export default Vue.extend({
   mixins: [confirmFalsePositive],
 
   props: {
+    map: {
+      type: Object as PropType<Map>,
+      required: true,
+    },
+    initialUuid: {
+      type: String,
+      default: undefined,
+    },
     main_website: {
       type: String,
       required: true,
@@ -310,13 +317,11 @@ export default Vue.extend({
       type: String,
       required: true,
     },
-    markerLayer: {
-      type: Object as PropType<Object | null>,
-      default: null,
-    },
   },
 
   data(): {
+    popup: Popup | null
+    open_popup?: string | null // uuid
     status: 'clean' | 'error' | 'loading' | 'fill'
     error?: string
     uuid?: string
@@ -335,6 +340,8 @@ export default Vue.extend({
     maxlon?: number
   } {
     return {
+      popup: null,
+      open_popup: null,
       status: 'clean',
       error: null,
       uuid: null,
@@ -365,15 +372,91 @@ export default Vue.extend({
   },
 
   mounted(): void {
-    ExternalVueAppEvent.$on('popup-status', (status) => {
-      this.status = status
+    this.map.on('load', () => {
+      this.popup = new Popup({ closeOnClick: false })
+        .setMaxWidth('280px')
+        .setOffset([0, -24])
+        .setDOMContent(document.getElementById('popupTpl'))
+
+      if (this.initialUuid) {
+        this._openPopup(this.initialUuid, [0, 0], this)
+      }
+
+      this.map.on('click', 'markers', (e) => {
+        e.preventDefault()
+        if (e.features[0].properties.uuid) {
+          if (this.open_popup === e.features[0].properties.uuid) {
+            this._closePopup()
+          } else {
+            this.feature_id = e.features[0].id
+            this._openPopup(
+              e.features[0].properties.uuid,
+              e.features[0].geometry.coordinates.slice(),
+              e.features[0]
+            )
+          }
+        }
+      })
+
+      this.popup.on('close', (e) => {
+        this._closePopup()
+      })
+
+      this.map.on('click', (e) => {
+        if (e.defaultPrevented === false) {
+          this._closePopup()
+        }
+      })
+
+      this.map.on('zoomstart', () => {
+        this._closePopup()
+      })
     })
-    ExternalVueAppEvent.$on('popup-load', (event) =>
-      this.load(event.uuid, event.popup)
-    )
   },
 
   methods: {
+    _closePopup(): void {
+      if (this.open_popup) {
+        this.$emit('update-issue-uuid', null)
+        this.open_popup = undefined
+        if (this.map) {
+          this.popup.remove()
+        }
+      }
+    },
+
+    _openPopup(uuid, lngLat, layer): void {
+      if (this.open_popup === uuid) {
+        return
+      }
+      this.open_popup = uuid
+      this.$emit('update-issue-uuid', uuid)
+
+      this.status = 'loading'
+      this.popup.setLngLat(lngLat).addTo(this.map)
+
+      setTimeout(() => {
+        if (this.popup.isOpen()) {
+          // Popup still open, so download content
+          this.load(uuid, this.popup)
+          this.layer = layer
+        } else {
+          this.status = 'clean'
+        }
+      }, 100)
+    },
+
+    _dismissMarker(): void {
+      setTimeout(() => {
+        this.corrected()
+      }, 200)
+    },
+
+    corrected(): void {
+      this.$emit('remove-marker', this.feature_id)
+      this._closePopup()
+    },
+
     load(uuid: string, popop: Popup): void {
       fetch(API_URL + `/api/0.3/issue/${uuid}?langs=auto`, {
         headers: new Headers({
@@ -386,8 +469,13 @@ export default Vue.extend({
           this.status = 'fill'
           popop.setLngLat([this.lon, this.lat])
 
+          this.$emit('issue-data', response)
+
           this.$nextTick(() => {
-            this.markerLayer._setPopup(response)
+            this.$emit('load-doc', {
+              item: response.item,
+              classs: response['class'],
+            })
           })
         })
         .catch((error) => {
@@ -398,13 +486,13 @@ export default Vue.extend({
 
     setDone(uuid: string): void {
       fetch(API_URL + `/api/0.3/issue/${uuid}/done`)
-      this.markerLayer._dismissMarker()
+      this._dismissMarker()
     },
 
     setFalsePositive(uuid: string): void {
       if (this.confirmeFalsePositive(uuid)) {
         fetch(API_URL + `/api/0.3/issue/${uuid}/false`)
-        this.markerLayer._dismissMarker()
+        this._dismissMarker()
       }
     },
 
@@ -413,7 +501,7 @@ export default Vue.extend({
     },
 
     doc(item: number, classs: number): void {
-      ExternalVueAppEvent.$emit('show-doc', { item, classs })
+      this.$emit('show-doc', { item, classs })
     },
   },
 })
