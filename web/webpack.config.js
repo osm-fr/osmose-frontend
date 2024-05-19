@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SpritezeroWebpackPlugin = require('spritezero-webpack-plugin');
 const path = require('path');
