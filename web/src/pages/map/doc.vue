@@ -107,7 +107,7 @@
 </template>
 
 <script lang="ts">
-import Marked from 'marked'
+import { marked } from 'marked'
 import { PropType } from 'vue'
 
 import VueParent from '../Parent.vue'
@@ -204,10 +204,10 @@ export default VueParent.extend({
           }
 
           this.title = data.title && data.title.auto
-          this.detail = data.detail && Marked(data.detail.auto)
-          this.fix = data.fix && Marked(data.fix.auto)
-          this.trap = data.trap && Marked(data.trap.auto)
-          this.example = data.example && Marked(data.example.auto)
+          this.detail = data.detail && marked.parse(data.detail.auto)
+          this.fix = data.fix && marked.parse(data.fix.auto)
+          this.trap = data.trap && marked.parse(data.trap.auto)
+          this.example = data.example && marked.parse(data.example.auto)
           this.source_link = data.source
           this.source_title = data.source && this.basename(data.source)
           this.resource_link = data.resource
