@@ -15,7 +15,7 @@
     "geobuf": "^3.0.2",
     "loader-utils": "^3.2.1",
     "lodash": "^4.17.21",
-    "maplibre-gl": "^4.0.0",
+    "maplibre-gl": "^4.3.2",
     "marked": "^0.8.2",
     "numeral": "^2.0.6",
     "spritezero-webpack-plugin": "^0.1.1",
@@ -28,8 +28,8 @@
     "vue2-timeago": "^1.2.10"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.2",
-    "@babel/preset-env": "^7.20.2",
+    "@babel/core": "^7.24.5",
+    "@babel/preset-env": "^7.24.5",
     "@typescript-eslint/eslint-plugin": "^5.46.0",
     "babel-loader": "^8.2.2",
     "base64-image-loader": "^1.2.1",
@@ -39,7 +39,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-vue": "^9.7.0",
+    "eslint-plugin-vue": "^9.26.0",
     "eslint-webpack-plugin": "^2.1.2",
     "html-webpack-plugin": "^5.5.0",
     "po-loader": "^0.5.0",
