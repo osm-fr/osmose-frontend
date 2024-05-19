@@ -24,11 +24,11 @@ declare type RelationObject = OsmObjectBase & {
 declare type OsmObject = NodeObject | WayObject | RelationObject
 
 function getNodes(xml: Document): Record<number, NodeObject> {
-  var result: Record<number, NodeObject> = {}
+  const result: Record<number, NodeObject> = {}
 
-  var nodes = xml.getElementsByTagName('node')
-  for (var i = 0; i < nodes.length; i++) {
-    var node = nodes[i],
+  const nodes = xml.getElementsByTagName('node')
+  for (const i = 0; i < nodes.length; i++) {
+    const node = nodes[i],
       id = node.getAttribute('id')
     if (node && id) {
       result[id] = {
@@ -50,13 +50,13 @@ function getWays(
   xml: Document,
   nodes: Record<number, NodeObject>
 ): WayObject[] {
-  var result: WayObject[] = []
+  const result: WayObject[] = []
 
-  var ways = xml.getElementsByTagName('way')
-  for (var i = 0; i < ways.length; i++) {
-    var way = ways[i],
+  const ways = xml.getElementsByTagName('way')
+  for (const i = 0; i < ways.length; i++) {
+    const way = ways[i],
       nds = [...way.getElementsByTagName('nd')]
-    var way_object: WayObject = {
+    const way_object: WayObject = {
       id: way.getAttribute('id') as unknown as number,
       type: 'way',
       nodes: nds.map(
@@ -76,13 +76,13 @@ function getRelations(
   nodes: Record<number, NodeObject>,
   ways: WayObject[]
 ): RelationObject[] {
-  var result: RelationObject[] = []
+  const result: RelationObject[] = []
 
-  var rels = xml.getElementsByTagName('relation')
-  for (var i = 0; i < rels.length; i++) {
-    var rel = rels[i],
+  const rels = xml.getElementsByTagName('relation')
+  for (const i = 0; i < rels.length; i++) {
+    const rel = rels[i],
       members = [...rel.getElementsByTagName('member')]
-    var rel_object: RelationObject = {
+    const rel_object: RelationObject = {
       id: rel.getAttribute('id') as unknown as number,
       type: 'relation',
       members: members.map((member) =>
@@ -100,11 +100,11 @@ function getRelations(
 }
 
 function getTags(xml: Element): Record<string, string> {
-  var result: Record<string, string> = {}
+  const result: Record<string, string> = {}
 
-  var tags = xml.getElementsByTagName('tag')
+  const tags = xml.getElementsByTagName('tag')
   if (tags) {
-    for (var j = 0; j < tags.length; j++) {
+    for (const j = 0; j < tags.length; j++) {
       const k = tags[j].getAttribute('k')
       const v = tags[j].getAttribute('v')
       if (k !== null && v !== null) {
@@ -150,7 +150,7 @@ export default function osm2geojson(xml: Document): GeoJSON.FeatureCollection {
     type: 'FeatureCollection',
     features: buildFeatures(xml)
       .map((feature, index) => {
-        var geom: GeoJSON.Feature | undefined = undefined
+        const geom: GeoJSON.Feature | undefined = undefined
 
         if (feature.type === 'node') {
           geom = {
@@ -159,9 +159,9 @@ export default function osm2geojson(xml: Document): GeoJSON.FeatureCollection {
             geometry: { type: 'Point', coordinates: feature.lngLat },
           }
         } else if (feature.type === 'way') {
-          var lngLats = new Array(feature.nodes.length)
+          const lngLats = new Array(feature.nodes.length)
 
-          for (var j = 0; j < feature.nodes.length; j++) {
+          for (const j = 0; j < feature.nodes.length; j++) {
             lngLats[j] = feature.nodes[j].lngLat
           }
 
@@ -187,20 +187,20 @@ export default function osm2geojson(xml: Document): GeoJSON.FeatureCollection {
 }
 
 function buildFeatures(xml: Document): OsmObject[] {
-  var features: OsmObject[] = [],
+  const features: OsmObject[] = [],
     nodes = getNodes(xml),
     ways = getWays(xml, nodes),
     relations = getRelations(xml, nodes, ways)
 
-  for (var node_id in nodes) {
-    var node = nodes[node_id]
+  for (const node_id in nodes) {
+    const node = nodes[node_id]
     if (interestingNode(node, ways, relations)) {
       features.push(node)
     }
   }
 
-  for (var i = 0; i < ways.length; i++) {
-    var way = ways[i]
+  for (const i = 0; i < ways.length; i++) {
+    const way = ways[i]
     features.push(way)
   }
 
@@ -212,7 +212,7 @@ function isWayArea(way: WayObject): boolean {
     return false
   }
 
-  for (var key in way.tags) {
+  for (const key in way.tags) {
     if (~options.areaTags.indexOf(key)) {
       return true
     }
@@ -226,9 +226,9 @@ function interestingNode(
   ways: WayObject[],
   relations: RelationObject[]
 ): boolean {
-  var used = false
+  const used = false
 
-  for (var i = 0; i < ways.length; i++) {
+  for (const i = 0; i < ways.length; i++) {
     if (ways[i].nodes.indexOf(node) >= 0) {
       used = true
       break
@@ -239,11 +239,11 @@ function interestingNode(
     return true
   }
 
-  for (var i = 0; i < relations.length; i++) {
+  for (const i = 0; i < relations.length; i++) {
     if (relations[i].members.indexOf(node) >= 0) return true
   }
 
-  for (var key in node.tags) {
+  for (const key in node.tags) {
     if (options.uninterestingTags.indexOf(key) < 0) {
       return true
     }

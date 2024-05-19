@@ -14,10 +14,6 @@ import Vue, { PropType } from 'vue'
 import ToggleControl from '../../../static/map/ToggleControl'
 
 export default Vue.extend({
-  components: {
-    ToggleControl,
-  },
-
   props: {
     map: {
       type: Object as PropType<Map | null>,

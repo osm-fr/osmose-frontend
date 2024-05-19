@@ -35,6 +35,8 @@ module.exports = tseslint.config(
       'vue/no-deprecated-slot-scope-attribute': 'off',
       'vue/valid-template-root': 'off',
       'vue/no-deprecated-filter': 'off',
+      'vue/require-slots-as-functions': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
       'import-x/order': [
         'error',
         {

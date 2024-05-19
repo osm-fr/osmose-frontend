@@ -150,7 +150,7 @@ export default VueParent.extend({
     main_website: string
     remote_url_read: string
     map: Map
-    item_levels: {}
+    item_levels: Object
     itemState: ItemState
     issueUuid: string
     mapState: MapState

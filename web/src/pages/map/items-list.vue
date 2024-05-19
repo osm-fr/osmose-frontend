@@ -197,7 +197,7 @@ export default Vue.extend({
       })
     },
 
-    set_item(newState: State): void {
+    set_item(newState): void {
       const itemRegex = newState.item
         .split(',')
         .filter((item) => item != '')
