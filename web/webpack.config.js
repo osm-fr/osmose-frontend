@@ -71,12 +71,8 @@ module.exports = (env, argv) => {
                     ]
                 },
                 {
-                    test: /\.png$/,
-                    loader: "base64-image-loader"
-                },
-                {
-                    test: /\.gif$/,
-                    loader: "base64-image-loader"
+                    test: /\.(png|gif)$/,
+                    type: 'asset/resource',
                 },
                 {
                     test: /\.po$/,
