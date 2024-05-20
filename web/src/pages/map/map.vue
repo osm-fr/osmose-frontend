@@ -5,10 +5,12 @@
 <script lang="ts">
 import MaplibreGeocoder from '@maplibre/maplibre-gl-geocoder'
 import {
+  GeolocateControl,
+  LngLatBounds,
   Map,
+  Marker,
   NavigationControl,
   ScaleControl,
-  GeolocateControl,
 } from 'maplibre-gl'
 import Vue from 'vue'
 
@@ -78,6 +80,10 @@ export default Vue.extend({
 
     const geocoderApi = {
       forwardGeocode: async (config) => {
+        // Hack to add missing properties for maplibre-gl-geocoder@1.5.0
+        this.map.LngLatBounds = LngLatBounds
+        this.map.Marker = Marker
+
         const features = []
         try {
           const request = `https://nominatim.openstreetmap.org/search?q=${config.query}&format=geojson&polygon_geojson=1&addressdetails=1`
