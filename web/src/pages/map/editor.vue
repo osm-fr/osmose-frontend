@@ -151,12 +151,6 @@ export default Vue.extend({
         this.$emit('cancel')
       }
     },
-
-    status(): void {
-      if (!this.status) {
-        this.$emit('close')
-      }
-    },
   },
 
   beforeMount(): void {
