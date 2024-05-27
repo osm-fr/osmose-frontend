@@ -215,9 +215,9 @@ export default Vue.extend({
 
       fetch(API_URL + `/api/0.3/issue/${uuid}/done`).then(() => {
         this.$emit('issue-done')
+        this.status = null
       })
 
-      this.status = null
     },
 
     cancel(): void {
