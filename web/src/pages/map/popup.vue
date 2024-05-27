@@ -407,10 +407,6 @@ export default Vue.extend({
           this._closePopup()
         }
       })
-
-      this.map.on('zoomstart', () => {
-        this._closePopup()
-      })
     })
   },
 
