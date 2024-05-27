@@ -412,12 +412,10 @@ export default Vue.extend({
 
   methods: {
     _closePopup(): void {
-      if (this.open_popup) {
-        this.$emit('update-issue-uuid', null)
-        this.open_popup = undefined
-        if (this.map) {
-          this.popup.remove()
-        }
+      this.$emit('update-issue-uuid', null)
+      this.open_popup = undefined
+      if (this.map) {
+        this.popup.remove()
       }
     },
 
