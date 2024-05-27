@@ -73,6 +73,10 @@ export default Vue.extend({
     hide(): void {
       this.showCurrent = false
     },
+
+    isShow(): boolean {
+      return this.showCurrent
+    },
   },
 })
 </script>

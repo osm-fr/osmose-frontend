@@ -13,6 +13,8 @@
         :timestamp="timestamp"
         :object_count="editionStack.length"
         @editor-save="
+          docWasOpen = $refs.doc.isShow()
+          $refs.doc.hide()
           $refs.editor.show()
           $nextTick(() => {
             $refs.editorEditor.save()
@@ -85,8 +87,16 @@
             @issue-done="
               $refs.popup.corrected()
               $refs.editor.hide()
+              if (docWasOpen) {
+                $refs.doc.show()
+              }
             "
-            @cancel="$refs.editor.hide()"
+            @cancel="
+              $refs.editor.hide()
+              if (docWasOpen) {
+                $refs.doc.show()
+              }
+            "
           />
         </side-pannel>
       </div>
@@ -102,6 +112,8 @@
         @q="$refs.osmObject.select($event)"
         @remove-marker="$refs.markerLayer.remove($event)"
         @fix-edit="
+          docWasOpen = $refs.doc.isShow()
+          $refs.doc.hide()
           $refs.editor.show()
           $nextTick(() => {
             $refs.editorEditor.load($event.uuid, $event.fix)
@@ -157,6 +169,7 @@ export default VueParent.extend({
     editor: string[]
     doc: string[]
     editionStack: string[]
+    docWasOpen: boolean
   } {
     return {
       error: undefined,
@@ -192,6 +205,7 @@ export default VueParent.extend({
       editor: null,
       doc: null,
       editionStack: [],
+      docWasOpen: false,
     }
   },
 
