@@ -13,12 +13,12 @@
         :timestamp="timestamp"
         :object_count="editionStack.length"
         @editor-save="
-          docWasOpen = $refs.doc.isShow()
-          $refs.doc.hide()
-          $refs.editor.show()
+          docWasOpen = $refs.doc.isShow();
+          $refs.doc.hide();
+          $refs.editor.show();
           $nextTick(() => {
             $refs.editorEditor.save()
-          })
+          });
         "
       />
       <div class="map-container">
@@ -85,14 +85,14 @@
             :edition_stack="editionStack"
             @edition="editionStack = $event"
             @issue-done="
-              $refs.popup.corrected()
-              $refs.editor.hide()
+              $refs.popup.corrected();
+              $refs.editor.hide();
               if (docWasOpen) {
                 $refs.doc.show()
               }
             "
             @cancel="
-              $refs.editor.hide()
+              $refs.editor.hide();
               if (docWasOpen) {
                 $refs.doc.show()
               }
@@ -112,12 +112,12 @@
         @q="$refs.osmObject.select($event)"
         @remove-marker="$refs.markerLayer.remove($event)"
         @fix-edit="
-          docWasOpen = $refs.doc.isShow()
-          $refs.doc.hide()
-          $refs.editor.show()
+          docWasOpen = $refs.doc.isShow();
+          $refs.doc.hide();
+          $refs.editor.show();
           $nextTick(() => {
             $refs.editorEditor.load($event.uuid, $event.fix)
-          })
+          });
         "
         @show-doc="showDoc"
         @load-doc="loadDoc"
