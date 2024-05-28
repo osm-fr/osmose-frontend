@@ -138,11 +138,11 @@ export default Vue.extend({
       return this.categories.map((categorie: Category) => {
         this.total_items[categorie.id] = categorie.items.length
         categorie.items = categorie.items.map((item: Item) => {
+          item.item_format = ('000' + item.item).slice(-4)
           item.class_format =
-            this.$t('Item #{item}', { item: item.item }) +
+            this.$t('Item #{item}', { item: item.item_format }) +
             '\n' +
             item.class.map((c) => c.class + '. ' + c.title.auto).join('\n')
-          item.item_format = ('000' + item.item).slice(-4)
           item.levels_format = {}
           item.levels.forEach((level) => {
             item.levels_format[level.level] = level.count
