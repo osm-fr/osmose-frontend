@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the osmose-frontend package.
 # 
 # Translators:
-# Jim Kats <jim-kats@hotmail.com>, 2022
+# Jim Kats <jim-kats@hotmail.com>, 2022-2023
 # Yannis Gyftomitros, 2014
 # Yannis Gyftomitros, 2014-2015
 msgid ""
@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
 "PO-Revision-Date: 2014-04-28 19:22+0000\n"
-"Last-Translator: Yannis Gyftomitros, 2014\n"
+"Last-Translator: Jim Kats <jim-kats@hotmail.com>, 2022-2023\n"
 "Language-Team: Greek (http://app.transifex.com/openstreetmap-france/osmose/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,10 +30,11 @@ msgid "Statistics"
 msgstr "Στατιστικά"
 
 #: ../src/pages/contact.vue ../src/pages/map/top.vue:78
+#: ../src/pages/map/top.vue:83
 msgid "Contact"
 msgstr "Επικοινωνία"
 
-#: ../src/pages/map/top.vue:83
+#: ../src/pages/map/top.vue:83 ../src/pages/map/top.vue:88
 msgid "Help on wiki"
 msgstr "Βοήθεια στο wiki"
 
@@ -41,15 +42,15 @@ msgstr "Βοήθεια στο wiki"
 msgid "http://wiki.openstreetmap.org/wiki/Osmose"
 msgstr "http://wiki.openstreetmap.org/wiki/Osmose"
 
-#: ../src/pages/map/top.vue:88
+#: ../src/pages/map/top.vue:88 ../src/pages/map/top.vue:93
 msgid "Copyright"
 msgstr "Πνευματικά δικαιώματα"
 
-#: ../src/pages/map/top.vue:93
+#: ../src/pages/map/top.vue:93 ../src/pages/map/top.vue:98
 msgid "Sources"
 msgstr "Πηγαίος κώδικας"
 
-#: ../src/pages/map/top.vue:98
+#: ../src/pages/map/top.vue:98 ../src/pages/map/top.vue:103
 msgid "Translation"
 msgstr "Μετάφραση"
 
@@ -85,7 +86,7 @@ msgstr "Ανάπτυξη"
 
 #: ../src/pages/contact.vue:70
 msgid "Contacting maintainers"
-msgstr ""
+msgstr "Επικοινωνία με συντηρητές"
 
 #: ../src/pages/control/update_matrix.vue
 msgid "Last updates"
@@ -93,6 +94,7 @@ msgstr "Τελευταίες ενημερώσεις"
 
 #: ../../tools/database/items_menu.txt:34 ../src/components/issues-list.vue:10
 #: ../src/pages/control/update.vue:7 ../src/pages/issues/index.vue:209
+#: ../../tools/database/items_menu.txt:35 ../src/pages/issues/index.vue:211
 msgid "source"
 msgstr "πηγή"
 
@@ -102,7 +104,7 @@ msgstr "Ενημέρωση"
 
 #: ../src/pages/control/update.vue:8
 msgid "remote url"
-msgstr ""
+msgstr "απομακρυσμένο url"
 
 #: ../src/pages/control/update.vue:9
 msgid "timestamp"
@@ -118,7 +120,7 @@ msgstr "Άδεια"
 
 #: ../src/pages/copyright.vue:20
 msgid "Authors"
-msgstr ""
+msgstr "Συγγραφείς"
 
 #: ../src/pages/copyright.vue:25
 msgid "And contributors"
@@ -162,27 +164,30 @@ msgstr "Χάρτης"
 
 #. #-#-#-#-#  osmose-frontend.pot.nofiles (PACKAGE VERSION)  #-#-#-#-#
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
-#: ../src/pages/issues/index.vue:389
+#: ../src/pages/issues/index.vue:389 ../src/pages/issues/index.vue:395
 msgid "Set"
-msgstr ""
+msgstr "Σύνολο"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
 msgid "class (abbreviation)"
 msgstr "κλάση (συντομογραφία)"
 
 #: ../src/components/issues-list.vue:21 ../src/pages/issues/index.vue:216
+#: ../src/pages/issues/index.vue:218
 msgid "item"
 msgstr "αντικείμενο"
 
-#: ../src/pages/issues/index.vue:226
+#: ../src/pages/issues/index.vue:226 ../src/pages/issues/index.vue:228
 msgid "title"
 msgstr "τίτλος"
 
 #: ../src/pages/byuser/byuser.vue:22 ../src/pages/issues/index.vue:229
+#: ../src/pages/issues/index.vue:231
 msgid "count"
-msgstr ""
+msgstr "πλήθος"
 
 #: ../src/pages/issues/index.vue:233 ../src/pages/issues/index.vue:285
+#: ../src/pages/issues/index.vue:235 ../src/pages/issues/index.vue:287
 msgid "Total"
 msgstr "Σύνολο"
 
@@ -191,6 +196,7 @@ msgid "subtitle"
 msgstr "υπότιτλος"
 
 #: ../../tools/database/items_menu.txt:57 ../src/components/issues-list.vue:47
+#: ../../tools/database/items_menu.txt:58
 msgid "date"
 msgstr "ημερομηνία"
 
@@ -204,22 +210,25 @@ msgstr "Λίστα εσφαλμένων σημάνσεων"
 
 #: ../src/pages/index.vue:25
 msgid "Last analysis updates"
-msgstr ""
+msgstr "Ενημέρωση τελευταάις ανάλυσης"
 
-#: ../src/pages/map/editor.vue:15
+#: ../src/pages/map/editor.vue:15 ../src/pages/map/editor.vue:18
 msgid "Tags Editor"
 msgstr "Επεξεργαστής Ετικετών"
 
 #: ../src/pages/map/editor-modal.vue:38 ../src/pages/map/editor-modal.vue:56
-#: ../src/pages/map/editor.vue:120
+#: ../src/pages/map/editor.vue:120 ../src/pages/map/editor.vue:60
+#: ../src/pages/map/editor.vue:126
 msgid "Cancel"
 msgstr "Ακύρωση"
 
 #: ../src/pages/issues/index.vue:90 ../src/pages/map/items-filters.vue:4
+#: ../src/pages/issues/index.vue:92
 msgid "Severity"
 msgstr "Σοβαρότητα"
 
 #: ../src/pages/issues/index.vue:190 ../src/pages/map/items-filters.vue:30
+#: ../src/pages/issues/index.vue:192
 msgid "Fixable"
 msgstr "Επισκευάσιμο"
 
@@ -228,6 +237,7 @@ msgid "Show only markers with correction suggestions"
 msgstr "Εμφάνιση μόνο των δεικτών με προτεινόμενες διορθώσεις"
 
 #: ../src/pages/issues/index.vue:194 ../src/pages/map/items-filters.vue:35
+#: ../src/pages/issues/index.vue:196
 msgid "Online"
 msgstr "Σε σύνδεση"
 
@@ -256,14 +266,17 @@ msgid "Change language"
 msgstr "Αλλαγή γλώσσας"
 
 #: ../src/pages/map/popup.vue:377 ../src/pages/map/top.vue:74
+#: ../src/pages/map/top.vue:79
 msgid "Help"
 msgstr "Βοήθεια"
 
 #: ../src/pages/map/top.vue:152 ../src/pages/map/top.vue:39
+#: ../src/pages/map/top.vue:157
 msgid "Logout"
 msgstr "Αποσύνδεση"
 
 #: ../src/pages/map/editor.vue:6 ../src/pages/map/top.vue:158
+#: ../src/pages/map/editor.vue:8 ../src/pages/map/top.vue:163
 msgid "Login"
 msgstr "Σύνδεση"
 
@@ -438,189 +451,238 @@ msgid "duplicate geometry"
 msgstr "διπλή γεωμετρία"
 
 #: ../../tools/database/items_menu.txt:31
+#: ../../tools/database/items_menu.txt:32
 msgid "junction=roundabout"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:32
+#: ../../tools/database/items_menu.txt:33
 msgid "elevation"
 msgstr "υψόμετρο"
 
 #: ../../tools/database/items_menu.txt:33
+#: ../../tools/database/items_menu.txt:34
 msgid "oneway"
 msgstr "μονόδρομος"
 
 #: ../../tools/database/items_menu.txt:35
+#: ../../tools/database/items_menu.txt:36
 msgid "parent tag"
 msgstr "γονική ετικέτα"
 
 #: ../../tools/database/items_menu.txt:36
+#: ../../tools/database/items_menu.txt:37
 msgid "street numbers"
 msgstr "αριθμοί δρόμων"
 
 #: ../../tools/database/items_menu.txt:37
 #: ../../tools/database/items_menu.txt:232
+#: ../../tools/database/items_menu.txt:38
+#: ../../tools/database/items_menu.txt:233
 msgid "highway"
 msgstr "δρόμος"
 
 #: ../../tools/database/items_menu.txt:38
+#: ../../tools/database/items_menu.txt:39
 msgid "highway crossing"
 msgstr "διασταύρωση δρόμου"
 
 #: ../../tools/database/items_menu.txt:39
 #: ../../tools/database/items_menu.txt:179
+#: ../../tools/database/items_menu.txt:40
+#: ../../tools/database/items_menu.txt:180
 msgid "pharmacy"
 msgstr "φαρμακείο"
 
 #: ../../tools/database/items_menu.txt:46
+#: ../../tools/database/items_menu.txt:47
 msgid "highway roundabout"
 msgstr "κυκλικός κόμβος δρόμου"
 
 #: ../../tools/database/items_menu.txt:47
+#: ../../tools/database/items_menu.txt:48
 msgid "bad source tag"
 msgstr "εσφαλμένη ετικέτα πηγής"
 
 #: ../../tools/database/items_menu.txt:48
+#: ../../tools/database/items_menu.txt:49
 msgid "tagwatch cleaner"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:49
 #: ../../tools/database/items_menu.txt:239
+#: ../../tools/database/items_menu.txt:50
+#: ../../tools/database/items_menu.txt:240
 msgid "wikipedia"
 msgstr "wikipedia"
 
 #: ../../tools/database/items_menu.txt:50
+#: ../../tools/database/items_menu.txt:51
 msgid "multiple tags"
 msgstr "πολλαπλές ετικέτες"
 
 #: ../../tools/database/items_menu.txt:51
+#: ../../tools/database/items_menu.txt:52
 msgid "saint hyphen"
 msgstr "παύλα για αγίους/αγίες"
 
 #: ../../tools/database/items_menu.txt:52
+#: ../../tools/database/items_menu.txt:53
 msgid "incorrect tag"
 msgstr "λανθασμένη ετικέτα"
 
 #: ../../tools/database/items_menu.txt:53
+#: ../../tools/database/items_menu.txt:54
 msgid "bad tag key"
 msgstr "εσφαλμένο κλειδί ετικέτας"
 
 #: ../../tools/database/items_menu.txt:54
+#: ../../tools/database/items_menu.txt:55
 msgid "similar values"
 msgstr "παρόμοιες τιμές"
 
 #: ../../tools/database/items_menu.txt:55
+#: ../../tools/database/items_menu.txt:56
 msgid "multiple values"
 msgstr "πολλαπλές τιμές"
 
 #: ../../tools/database/items_menu.txt:58
+#: ../../tools/database/items_menu.txt:59
 msgid "numeric value"
 msgstr "αριθμητική τιμή"
 
 #: ../../tools/database/items_menu.txt:62
+#: ../../tools/database/items_menu.txt:63
 msgid "note"
 msgstr "σημείωση"
 
 #: ../../tools/database/items_menu.txt:63
+#: ../../tools/database/items_menu.txt:64
 msgid "tree"
 msgstr "δένδρο"
 
 #: ../../tools/database/items_menu.txt:64
+#: ../../tools/database/items_menu.txt:65
 msgid "brand in name"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:65
+#: ../../tools/database/items_menu.txt:66
 msgid "typo in tag"
 msgstr "ανορθόγραφη ετικέτα"
 
 #: ../../tools/database/items_menu.txt:66
+#: ../../tools/database/items_menu.txt:67
 msgid "incorrect "
 msgstr "εσφαλμένο"
 
 #: ../../tools/database/items_menu.txt:67
+#: ../../tools/database/items_menu.txt:68
 msgid "parking lane"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:68
+#: ../../tools/database/items_menu.txt:69
 msgid "relation role"
 msgstr "ρόλος σχέσης"
 
 #: ../../tools/database/items_menu.txt:69
+#: ../../tools/database/items_menu.txt:70
 msgid "relation type=restriction"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:70
+#: ../../tools/database/items_menu.txt:71
 msgid "postcode"
 msgstr "ταχυδρομικός κώδικας"
 
 #: ../../tools/database/items_menu.txt:80
+#: ../../tools/database/items_menu.txt:81
 msgid "disused"
 msgstr "παροπλισμένο"
 
 #: ../../tools/database/items_menu.txt:81
+#: ../../tools/database/items_menu.txt:82
 msgid "on junction=roundabout"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:82
+#: ../../tools/database/items_menu.txt:83
 msgid "incompatible tags"
 msgstr "ασύμβατες ετικέτες"
 
 #: ../../tools/database/items_menu.txt:83
+#: ../../tools/database/items_menu.txt:84
 msgid "ref in name"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:86
+#: ../../tools/database/items_menu.txt:87
 msgid "construction"
 msgstr "κατασκευή"
 
 #: ../../tools/database/items_menu.txt:87
+#: ../../tools/database/items_menu.txt:88
 msgid "duplicate object"
 msgstr "διπλό αντικείμενο"
 
 #: ../../tools/database/items_menu.txt:88
+#: ../../tools/database/items_menu.txt:89
 msgid "unwanted tag on node"
 msgstr "αχρείαστη ετικέτα σε κόμβο"
 
 #: ../../tools/database/items_menu.txt:89
+#: ../../tools/database/items_menu.txt:90
 msgid "bad usage"
 msgstr "εσφαλμένη χρήση"
 
 #: ../../tools/database/items_menu.txt:93
+#: ../../tools/database/items_menu.txt:94
 msgid "orthograph"
 msgstr "ορθογραφία"
 
 #: ../../tools/database/items_menu.txt:94
+#: ../../tools/database/items_menu.txt:95
 msgid "way type"
 msgstr "τύπος διαδρομής"
 
 #: ../../tools/database/items_menu.txt:95
+#: ../../tools/database/items_menu.txt:96
 msgid "two names"
 msgstr "δύο ονόματα"
 
 #: ../../tools/database/items_menu.txt:96
+#: ../../tools/database/items_menu.txt:97
 msgid "toponymy"
 msgstr "τοπωνυμία"
 
 #: ../../tools/database/items_menu.txt:101
+#: ../../tools/database/items_menu.txt:102
 msgid "open polygon"
 msgstr "ανοικτό πολύγωνο"
 
 #: ../../tools/database/items_menu.txt:102
+#: ../../tools/database/items_menu.txt:103
 msgid "duplicated way"
 msgstr "διπλή διαδρομή"
 
 #: ../../tools/database/items_menu.txt:103
+#: ../../tools/database/items_menu.txt:104
 msgid "place without name"
 msgstr "μέρος χωρίς όνομα"
 
 #: ../../tools/database/items_menu.txt:104
+#: ../../tools/database/items_menu.txt:105
 msgid "INSEE code"
 msgstr "κωδικός INSEE"
 
 #: ../../tools/database/items_menu.txt:105
+#: ../../tools/database/items_menu.txt:106
 msgid "admin_level"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:106
+#: ../../tools/database/items_menu.txt:107
 msgid "erroneous boundary"
 msgstr "εσφαλμένο όριο"
 
@@ -696,6 +758,7 @@ msgstr "σχολείο, μπορεί να ενσωματωθεί"
 #: ../../tools/database/items_menu.txt:27
 #: ../../tools/database/items_menu.txt:143
 #: ../../tools/database/items_menu.txt:240
+#: ../../tools/database/items_menu.txt:241
 msgid "public transport"
 msgstr "δημόσιες μεταφορές"
 
@@ -713,7 +776,7 @@ msgstr "ισόπεδη διασταύρωση"
 
 #: ../../tools/database/items_menu.txt:149
 msgid "geodesic point"
-msgstr ""
+msgstr "γεωδαιτικό σημείο"
 
 #: ../../tools/database/items_menu.txt:150
 msgid "postal address"
@@ -756,18 +819,22 @@ msgid "cycle parking, could be integrated"
 msgstr "στάθμευση ποδηλάτων, μπορεί να ενσωματωθεί"
 
 #: ../../tools/database/items_menu.txt:165
+#: ../../tools/database/items_menu.txt:166
 msgid "transport sharing"
 msgstr "κοινή χρήση μεταφορών"
 
 #: ../../tools/database/items_menu.txt:166
+#: ../../tools/database/items_menu.txt:167
 msgid "transport sharing, could be integrated"
 msgstr "κοινή χρήση μεταφορών, μπορεί να ενσωματωθεί"
 
 #: ../../tools/database/items_menu.txt:168
+#: ../../tools/database/items_menu.txt:169
 msgid "sport"
 msgstr "άθλημα"
 
 #: ../../tools/database/items_menu.txt:169
+#: ../../tools/database/items_menu.txt:170
 msgid "sport, could be integrated"
 msgstr "άθλημα, μπορεί να ενσωματωθεί"
 
@@ -792,26 +859,31 @@ msgid "one-node way"
 msgstr "διαδρομή ενός κόμβου"
 
 #: ../../tools/database/items_menu.txt:170
+#: ../../tools/database/items_menu.txt:171
 msgid "toilets"
 msgstr "τουαλέτες"
 
 #: ../../tools/database/items_menu.txt:173
+#: ../../tools/database/items_menu.txt:174
 msgid "police"
 msgstr "αστυνομία"
 
 #: ../../tools/database/items_menu.txt:174
+#: ../../tools/database/items_menu.txt:175
 msgid "police, could be integrated"
 msgstr "αστυνομία, μπορεί να ενσωματωθεί"
 
 #: ../../tools/database/items_menu.txt:180
+#: ../../tools/database/items_menu.txt:181
 msgid "pharmacy, could be integrated"
 msgstr "φαρμακείο, μπορεί να ενσωματωθεί"
 
 #: ../../tools/database/items_menu.txt:176
+#: ../../tools/database/items_menu.txt:177
 msgid "gas station"
 msgstr "βενζινάδικο"
 
-#: ../src/pages/map/editor.vue:4
+#: ../src/pages/map/editor.vue:4 ../src/pages/map/editor.vue:5
 msgid "You must be logged in to use the tag editor"
 msgstr "Πρέπει να είστε συνδεδεμένος για να μπορέσετε να χρησιμοποιήσετε τον επεξεργαστή ετικετών"
 
@@ -824,14 +896,17 @@ msgid "Comment"
 msgstr "Σχόλιο"
 
 #: ../../tools/database/items_menu.txt:71
+#: ../../tools/database/items_menu.txt:72
 msgid "area"
 msgstr "περιοχή"
 
 #: ../../tools/database/items_menu.txt:72
+#: ../../tools/database/items_menu.txt:73
 msgid "noexit"
 msgstr "αδιέξοδο"
 
 #: ../../tools/database/items_menu.txt:90
+#: ../../tools/database/items_menu.txt:91
 msgid "incorrect layer"
 msgstr "λανθασμένο στρώμα"
 
@@ -841,47 +916,53 @@ msgid "Updates summary"
 msgstr "Σύνοψη ενημερώσεων"
 
 #: ../../tools/database/items_menu.txt:182
+#: ../../tools/database/items_menu.txt:183
 msgid "postal code, could be integrated"
 msgstr "ταχυδρομικός κώδικας, μπορεί να ενσωματωθεί"
 
 #: ../../tools/database/items_menu.txt:183
+#: ../../tools/database/items_menu.txt:184
 msgid "library"
 msgstr "βιβλιοθήκη"
 
 #: ../../tools/database/items_menu.txt:184
+#: ../../tools/database/items_menu.txt:185
 msgid "restaurant"
 msgstr "εστιατόριο"
 
 #: ../../tools/database/items_menu.txt:185
+#: ../../tools/database/items_menu.txt:186
 msgid "winery"
 msgstr "οινοποιείο"
 
 #: ../../tools/database/items_menu.txt:40
+#: ../../tools/database/items_menu.txt:41
 msgid "missing object kind"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:98
+#: ../../tools/database/items_menu.txt:99
 msgid "local language"
 msgstr "τοπική γλώσσα"
 
 #: ../src/pages/issues/index.vue
 msgid "Fixed issues"
-msgstr ""
+msgstr "Επιλυμένα ζητήματα"
 
 #. TRANSLATORS: link to help in appropriate language
 #: ../src/pages/map/top.vue:18
 msgid "Issues by user"
-msgstr ""
+msgstr "Ζητήματα από χρήστη"
 
 #: ../../web_api/byuser.py:69 ../../web_api/byuser.py:76
 #: ../../web_api/byuser.py:83
 #, python-brace-format
 msgid "Number of level {level} issues: {count}"
-msgstr ""
+msgstr "Αριθμός ζητημάτων επιπέδου {level}: {count}"
 
 #: ../src/pages/byuser/index.vue:3
 msgid "Osmose allows you to control your own issues."
-msgstr ""
+msgstr "Το Osmose σας επιτρέπει να ελέγχεται τα δικά σας ζητήματα."
 
 #: ../src/pages/byuser/index.vue:5
 msgid ""
@@ -891,31 +972,32 @@ msgid ""
 "contributor of the relevant erroneous elements."
 msgstr ""
 
-#: ../src/pages/issues/index.vue:295
+#: ../src/pages/issues/index.vue:295 ../src/pages/issues/index.vue:297
 msgid "Show more issues"
-msgstr ""
+msgstr "Εμφάνιση περισσότερων ζητημάτων"
 
 #: ../src/components/issues-list.vue:266
 msgid "information on issue"
-msgstr ""
+msgstr "Πληροφορίες για το ζήτημα"
 
 #: ../src/components/issues-list.vue:103
 msgid "issue n°"
-msgstr ""
+msgstr "Ζήτημα n°"
 
 #: ../src/pages/index.vue:6
 msgid "Map of issues"
-msgstr ""
+msgstr "Χάρτης ζητημάτων"
 
 #: ../src/pages/index.vue:16
 msgid "Information on issues database"
-msgstr ""
+msgstr "Πληροφορίες για την βάση δεδομένων ζητημάτων"
 
 #: ../src/pages/control/update.vue:10
 msgid "version"
-msgstr ""
+msgstr "έκδοση"
 
 #: ../../tools/database/items_menu.txt:186
+#: ../../tools/database/items_menu.txt:187
 msgid "geodesic"
 msgstr ""
 
@@ -928,10 +1010,12 @@ msgid "post box, could be integrated"
 msgstr "γραμματοκιβώτιο, μπορεί να ενσωματωθεί"
 
 #: ../../tools/database/items_menu.txt:41
+#: ../../tools/database/items_menu.txt:42
 msgid "indoor"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:91
+#: ../../tools/database/items_menu.txt:92
 msgid "roundabout as area"
 msgstr ""
 
@@ -952,6 +1036,7 @@ msgid "far from water"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:84
+#: ../../tools/database/items_menu.txt:85
 msgid "fixme import"
 msgstr ""
 
@@ -961,10 +1046,13 @@ msgstr ""
 
 #: ../../tools/database/items_menu.txt:42
 #: ../../tools/database/items_menu.txt:73
+#: ../../tools/database/items_menu.txt:43
+#: ../../tools/database/items_menu.txt:74
 msgid "access"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:85
+#: ../../tools/database/items_menu.txt:86
 msgid "fixme review"
 msgstr ""
 
@@ -985,54 +1073,61 @@ msgid "parking, need update"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:167
+#: ../../tools/database/items_menu.txt:168
 msgid "transport sharing, need update"
 msgstr ""
 
 #: ../src/pages/control/update_summary_by_analyser.vue:7
 msgid "Analyser"
-msgstr ""
+msgstr "Αναλυτής"
 
 #: ../src/pages/control/update_summary_by_analyser.vue:8
 msgid "Count"
-msgstr ""
+msgstr "Πλήθος"
 
 #: ../src/pages/control/update_summary_by_analyser.vue:9
 msgid "Age"
-msgstr ""
+msgstr "Ηλικία"
 
 #: ../src/pages/control/update_summary_by_analyser.vue:10
 msgid "Version"
-msgstr ""
+msgstr "Έκδοση"
 
 #: ../../tools/database/items_menu.txt:137
 msgid "post office, need update"
 msgstr ""
 
-#: ../src/pages/issues/index.vue:213
+#: ../src/pages/issues/index.vue:213 ../src/pages/issues/index.vue:215
 msgid "age"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:99
+#: ../../tools/database/items_menu.txt:100
 msgid "invalid character"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:178
+#: ../../tools/database/items_menu.txt:179
 msgid "gas station, could be integrated"
 msgstr "βενζινάδικο, μπορεί να ενσωματωθεί"
 
 #: ../../tools/database/items_menu.txt:188
+#: ../../tools/database/items_menu.txt:189
 msgid "power substation"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:189
+#: ../../tools/database/items_menu.txt:190
 msgid "power substation, could be integrated"
 msgstr "υποσταθμός ηλεκτρικής ενέργειας, μπορεί να ενσωματωθεί"
 
 #: ../../tools/database/items_menu.txt:191
+#: ../../tools/database/items_menu.txt:192
 msgid "power support"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:192
+#: ../../tools/database/items_menu.txt:193
 msgid "power support, could be integrated"
 msgstr "υποστήριξη ηλεκτρικής ενέργειας, μπορεί να ενσωματωθεί"
 
@@ -1041,126 +1136,152 @@ msgid "almost junction"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:43
+#: ../../tools/database/items_menu.txt:44
 msgid "public_transport route"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:74
+#: ../../tools/database/items_menu.txt:75
 msgid "recycling container"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:92
+#: ../../tools/database/items_menu.txt:93
 msgid "duplicate wikipedia"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:75
+#: ../../tools/database/items_menu.txt:76
 msgid "route access mismatch"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:100
+#: ../../tools/database/items_menu.txt:101
 msgid "similar name"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:177
+#: ../../tools/database/items_menu.txt:178
 msgid "gas station, need update"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:59
+#: ../../tools/database/items_menu.txt:60
 msgid "phone number"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:193
+#: ../../tools/database/items_menu.txt:194
 msgid "traffic signs"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:195
+#: ../../tools/database/items_menu.txt:196
 msgid "traffic sign limitation"
 msgstr ""
 
 #: ../src/pages/issues/index.vue:94 ../src/pages/map/items-filters.vue:9
+#: ../src/pages/issues/index.vue:96
 msgid "High"
 msgstr ""
 
 #: ../src/pages/issues/index.vue:97 ../src/pages/map/items-filters.vue:12
+#: ../src/pages/issues/index.vue:99
 msgid "Normal or higher"
 msgstr ""
 
 #: ../src/pages/issues/index.vue:100 ../src/pages/issues/index.vue:163
 #: ../src/pages/map/items-filters.vue:15
 #: ../src/pages/map/items-filters.vue:103
-#: ../src/pages/map/items-filters.vue:48
+#: ../src/pages/map/items-filters.vue:48 ../src/pages/issues/index.vue:102
+#: ../src/pages/issues/index.vue:165
 msgid "All"
-msgstr ""
+msgstr "Όλα"
 
 #: ../src/pages/issues/index.vue:104 ../src/pages/map/items-filters.vue:19
+#: ../src/pages/issues/index.vue:106
 msgid "Normal only"
 msgstr ""
 
 #: ../src/pages/issues/index.vue:107 ../src/pages/map/items-filters.vue:22
+#: ../src/pages/issues/index.vue:109
 msgid "Low only"
 msgstr ""
 
 #: ../src/pages/map/top.vue:285 ../src/pages/map/top.vue:298
-#: ../src/pages/map/top.vue:311
+#: ../src/pages/map/top.vue:311 ../src/pages/map/top.vue:292
+#: ../src/pages/map/top.vue:305 ../src/pages/map/top.vue:318
 #, python-brace-format
 msgid "Level {level} issues ({count})"
 msgstr ""
 
 #: ../../tools/database/categories_menu.txt:9
 msgid "JOSM validator"
-msgstr ""
+msgstr "Επαληθευτής JOSM"
 
 #: ../../tools/database/items_menu.txt:227
+#: ../../tools/database/items_menu.txt:228
 msgid "seamark"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:228
+#: ../../tools/database/items_menu.txt:229
 msgid "addresses"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:229
+#: ../../tools/database/items_menu.txt:230
 msgid "combinations"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:230
+#: ../../tools/database/items_menu.txt:231
 msgid "deprecated"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:231
+#: ../../tools/database/items_menu.txt:232
 msgid "geometry"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:233
+#: ../../tools/database/items_menu.txt:234
 msgid "multiple"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:234
+#: ../../tools/database/items_menu.txt:235
 msgid "numeric"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:235
+#: ../../tools/database/items_menu.txt:236
 msgid "relation"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:236
+#: ../../tools/database/items_menu.txt:237
 msgid "religion"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:237
+#: ../../tools/database/items_menu.txt:238
 msgid "territories"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:238
+#: ../../tools/database/items_menu.txt:239
 msgid "unnecessary"
 msgstr ""
 
 #: ../src/pages/issues/index.vue:66 ../src/pages/map/items-filters.vue:62
-#: ../src/pages/map/items-filters.vue:7
+#: ../src/pages/map/items-filters.vue:7 ../src/pages/issues/index.vue:68
 msgid "Country"
-msgstr ""
+msgstr "Χώρα"
 
-#: ../src/pages/issues/index.vue:78
+#: ../src/pages/issues/index.vue:78 ../src/pages/issues/index.vue:80
 msgid "Item"
-msgstr ""
+msgstr "Αντικείμενο"
 
 #: ../src/components/issues-list.vue:318
 msgid "False positive / Done"
@@ -1209,11 +1330,11 @@ msgstr ""
 
 #: ../src/pages/map/popup.vue:134
 msgid "details"
-msgstr ""
+msgstr "λεπτομέρειες"
 
 #: ../src/pages/map/popup.vue:139
 msgid "Issue reported on:"
-msgstr ""
+msgstr "Το ζήτημα αναφέρθηκε:"
 
 #: ../src/pages/map/popup.vue:388
 msgid ""
@@ -1228,50 +1349,62 @@ msgid ""
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:44
+#: ../../tools/database/items_menu.txt:45
 msgid "zone:maxspeed"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:246
+#: ../../tools/database/items_menu.txt:248
 msgid "power transformer"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:76
+#: ../../tools/database/items_menu.txt:77
 msgid "opening hours"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:196
+#: ../../tools/database/items_menu.txt:197
 msgid "hospital"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:198
+#: ../../tools/database/items_menu.txt:199
 msgid "social facility"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:200
+#: ../../tools/database/items_menu.txt:201
 msgid "medical lab"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:197
+#: ../../tools/database/items_menu.txt:198
 msgid "hospital, could be integrated"
 msgstr "νοσοκομείο, μπορεί να ενσωματωθεί"
 
 #: ../../tools/database/items_menu.txt:199
+#: ../../tools/database/items_menu.txt:200
 msgid "social facility, could be integrated"
 msgstr "κοινωνική εγκατάσταση, μπορεί να ενσωματωθεί"
 
 #: ../../tools/database/items_menu.txt:201
+#: ../../tools/database/items_menu.txt:202
 msgid "medical lab, could be integrated"
 msgstr "ιατρικό εργαστήριο, μπορεί να ενσωματωθεί"
 
 #: ../../tools/database/items_menu.txt:175
+#: ../../tools/database/items_menu.txt:176
 msgid "police, need update"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:56
+#: ../../tools/database/items_menu.txt:57
 msgid "swimming pool"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:97
+#: ../../tools/database/items_menu.txt:98
 msgid "potential misspelling"
 msgstr ""
 
@@ -1280,26 +1413,31 @@ msgid "enforcement"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:60
+#: ../../tools/database/items_menu.txt:61
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: ../../tools/database/items_menu.txt:202
+#: ../../tools/database/items_menu.txt:203
 msgid "street objects"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:241
+#: ../../tools/database/items_menu.txt:242
 msgid "openrailwaymap"
-msgstr ""
+msgstr "openrailwaymap"
 
 #: ../../tools/database/items_menu.txt:242
 msgid "openrailwaymap in germany"
-msgstr ""
+msgstr "openrailwaymap στη Γερμανία"
 
 #: ../../tools/database/items_menu.txt:45
+#: ../../tools/database/items_menu.txt:46
 msgid "railways"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:187
+#: ../../tools/database/items_menu.txt:188
 msgid "power plant"
 msgstr ""
 
@@ -1310,18 +1448,22 @@ msgid ""
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:203
+#: ../../tools/database/items_menu.txt:204
 msgid "defibrillator"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:207
+#: ../../tools/database/items_menu.txt:208
 msgid "radio support"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:208
+#: ../../tools/database/items_menu.txt:209
 msgid "radio support, could be integrated"
 msgstr "υποστήριξη ραδιοφώνου, μπορεί να ενσωματωθεί"
 
 #: ../../tools/database/items_menu.txt:209
+#: ../../tools/database/items_menu.txt:210
 msgid "radio support, need update"
 msgstr ""
 
@@ -1364,14 +1506,17 @@ msgid "You can find help on the wiki:"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:212
+#: ../../tools/database/items_menu.txt:213
 msgid "charging station"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:213
+#: ../../tools/database/items_menu.txt:214
 msgid "charging station, could be integrated"
 msgstr "σταθμός φόρτισης, μπορεί να ενσωματωθεί"
 
 #: ../../tools/database/items_menu.txt:214
+#: ../../tools/database/items_menu.txt:215
 msgid "charging station, need update"
 msgstr ""
 
@@ -1380,14 +1525,17 @@ msgid "related objects"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:204
+#: ../../tools/database/items_menu.txt:205
 msgid "wastewater"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:205
+#: ../../tools/database/items_menu.txt:206
 msgid "wastewater, could be integrated"
 msgstr "λύματα, μπορεί να ενσωματωθεί"
 
 #: ../../tools/database/items_menu.txt:206
+#: ../../tools/database/items_menu.txt:207
 msgid "wastewater, need update"
 msgstr ""
 
@@ -1404,14 +1552,17 @@ msgid "Report based on data from date"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:181
+#: ../../tools/database/items_menu.txt:182
 msgid "pharmacy, need update"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:190
+#: ../../tools/database/items_menu.txt:191
 msgid "power substation, need update"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:194
+#: ../../tools/database/items_menu.txt:195
 msgid "shop"
 msgstr ""
 
@@ -1429,11 +1580,11 @@ msgstr ""
 
 #: ../src/pages/map/editor-modal.vue
 msgid "Fixed with Osmose"
-msgstr ""
+msgstr "Διορθώθηκε μέσω Osmose"
 
-#: ../src/pages/map/editor.vue:126
+#: ../src/pages/map/editor.vue:126 ../src/pages/map/editor.vue:132
 msgid "Done"
-msgstr ""
+msgstr "Έγινε"
 
 #: ../src/pages/map/doc.vue:7
 msgid ""
@@ -1448,18 +1599,22 @@ msgid ""
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:77
+#: ../../tools/database/items_menu.txt:78
 msgid "VAT"
-msgstr ""
+msgstr "ΑΦΜ"
 
 #: ../../tools/database/items_menu.txt:210
+#: ../../tools/database/items_menu.txt:211
 msgid "health centre"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:211
+#: ../../tools/database/items_menu.txt:212
 msgid "health centre, could be integrated"
 msgstr "κέντρο υγείας, μπορεί να ενσωματωθεί"
 
 #: ../../tools/database/items_menu.txt:215
+#: ../../tools/database/items_menu.txt:216
 msgid "tourism"
 msgstr ""
 
@@ -1478,22 +1633,27 @@ msgid "fire hydrant, could be integrated"
 msgstr "πυροσβεστικός κρουνός, μπορεί να ενσωματωθεί"
 
 #: ../../tools/database/items_menu.txt:216
+#: ../../tools/database/items_menu.txt:217
 msgid "milestone"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:217
+#: ../../tools/database/items_menu.txt:218
 msgid "milestone, could be integrated"
 msgstr "ορόσημο, μπορεί να ενσωματωθεί"
 
 #: ../../tools/database/items_menu.txt:218
+#: ../../tools/database/items_menu.txt:219
 msgid "viewpoint"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:219
+#: ../../tools/database/items_menu.txt:220
 msgid "picnic"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:220
+#: ../../tools/database/items_menu.txt:221
 msgid "bicycle infrastructure"
 msgstr ""
 
@@ -1518,22 +1678,27 @@ msgid "place of worship"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:221
+#: ../../tools/database/items_menu.txt:222
 msgid "cemetery"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:222
+#: ../../tools/database/items_menu.txt:223
 msgid "man made"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:223
+#: ../../tools/database/items_menu.txt:224
 msgid "water infrastructure"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:224
+#: ../../tools/database/items_menu.txt:225
 msgid "water"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:225
+#: ../../tools/database/items_menu.txt:226
 msgid "fire station"
 msgstr ""
 
@@ -1609,7 +1774,7 @@ msgstr ""
 
 #: ../src/pages/translation.vue:21
 msgid "Translation is done on {Transifex}"
-msgstr ""
+msgstr "Η μετάφραση γίνεται στο {Transifex}"
 
 #: ../src/pages/contact.vue:73
 msgid "We can be contacted through a direct email to {email}."
@@ -1628,7 +1793,7 @@ msgstr ""
 
 #: ../src/pages/contact.vue:47 ../src/pages/contact.vue:2
 msgid "volunteers"
-msgstr ""
+msgstr "εθελοντές"
 
 #: ../../tools/database/items_menu.txt:113
 msgid "post office, ref not integrated"
@@ -1674,27 +1839,28 @@ msgstr ""
 msgid "gas station, ref not integrated"
 msgstr ""
 
-#: ../src/pages/issues/index.vue:183
+#: ../src/pages/issues/index.vue:183 ../src/pages/issues/index.vue:185
 msgid "BBox"
-msgstr ""
+msgstr "BBox"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for 'class'
 #: ../src/components/issues-list.vue:25 ../src/pages/issues/index.vue:220
+#: ../src/pages/issues/index.vue:222
 msgid "cl"
-msgstr ""
+msgstr "κλ"
 
 #: ../src/pages/issues/index.vue:137 ../src/pages/map/items-filters.vue:86
-#: ../src/pages/map/items-filters.vue:31
+#: ../src/pages/map/items-filters.vue:31 ../src/pages/issues/index.vue:139
 msgid "Class id"
-msgstr ""
+msgstr "ID κλάσης"
 
 #: ../src/pages/map/index.vue
 msgid "Control, verification and correction of {project} issues"
 msgstr ""
 
-#: ../src/pages/map/top.vue:254
+#: ../src/pages/map/top.vue:254 ../src/pages/map/top.vue:261
 msgid "Delay:"
-msgstr ""
+msgstr "Καθυστέρηση:"
 
 #: ../src/pages/map/doc.vue:64
 msgid "Do not want to see {title} markers?"
@@ -1703,11 +1869,11 @@ msgstr ""
 #. TRANSLATORS: this should be replaced by a abbreviation for 'elements'
 #: ../src/components/issues-list.vue:37
 msgid "elms"
-msgstr ""
+msgstr "στχ"
 
 #: ../src/pages/map/doc.vue:71
 msgid "Hide from map"
-msgstr ""
+msgstr "Απόκρυψη από χάρτη"
 
 #: ../src/pages/map/doc.vue:61
 msgid "Hide markers"
@@ -1715,103 +1881,111 @@ msgstr ""
 
 #: ../src/pages/map/items-list.vue
 msgid "Item #{item}"
-msgstr ""
+msgstr "Αντικείμενο #{item}"
 
 #: ../src/pages/issues/index.vue:121 ../src/pages/map/items-filters.vue:57
-#: ../src/pages/map/items-filters.vue:2
+#: ../src/pages/map/items-filters.vue:2 ../src/pages/issues/index.vue:123
 msgid "Less filters"
-msgstr ""
+msgstr "Λιγότερα φίλτρα"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for 'location'
 #: ../src/components/issues-list.vue:32
 msgid "loc"
-msgstr ""
+msgstr "τοπ"
 
 #: ../src/components/issues-list.vue:270
 msgid "location"
-msgstr ""
+msgstr "τοποθεσία"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for 'level'
 #: ../src/components/issues-list.vue:15
 msgid "lvl"
-msgstr ""
+msgstr "επ"
 
 #: ../src/pages/issues/index.vue:117 ../src/pages/map/items-filters.vue:122
+#: ../src/pages/issues/index.vue:119
 msgid "More filters"
-msgstr ""
+msgstr "Περισσότερα φίλτρα"
 
 #: ../src/pages/issues/index.vue:160 ../src/pages/map/items-filters.vue:100
-#: ../src/pages/map/items-filters.vue:45
+#: ../src/pages/map/items-filters.vue:45 ../src/pages/issues/index.vue:162
 msgid "No (Default)"
-msgstr ""
+msgstr "Όχι (προεπιλογή)"
 
 #: ../src/pages/issues/index.vue:166 ../src/pages/map/items-filters.vue:106
-#: ../src/pages/map/items-filters.vue:51
+#: ../src/pages/map/items-filters.vue:51 ../src/pages/issues/index.vue:168
 msgid "Only"
-msgstr ""
+msgstr "Μόνο"
 
 #: ../src/pages/issues/index.vue:13
 msgid "Open"
 msgstr ""
 
 #: ../src/pages/issues/index.vue:176 ../src/pages/map/items-filters.vue:113
-#: ../src/pages/map/items-filters.vue:58
+#: ../src/pages/map/items-filters.vue:58 ../src/pages/issues/index.vue:178
 msgid "OSM Username"
-msgstr ""
+msgstr "Όνομα χρήστη OSM"
 
 #: ../src/pages/issues/index.vue:156 ../src/pages/map/items-filters.vue:95
-#: ../src/pages/map/items-filters.vue:40
+#: ../src/pages/map/items-filters.vue:40 ../src/pages/issues/index.vue:158
 msgid "Show hidden items"
-msgstr ""
+msgstr "Εμφάνιση κρυφών αντικειμένων"
 
 #: ../src/pages/issues/index.vue:130 ../src/pages/map/items-filters.vue:77
-#: ../src/pages/map/items-filters.vue:22
+#: ../src/pages/map/items-filters.vue:22 ../src/pages/issues/index.vue:132
 msgid "Source id"
-msgstr ""
+msgstr "ID πηγής"
 
 #: ../src/pages/issues/index.vue:482 ../src/pages/map/items-filters.vue:201
+#: ../src/pages/issues/index.vue:488
 msgid "tag"
 msgstr ""
 
-#: ../src/pages/issues/index.vue:144
+#: ../src/pages/issues/index.vue:144 ../src/pages/issues/index.vue:146
 msgid "Tag"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:171
+#: ../../tools/database/items_menu.txt:172
 msgid "toilets, could be integrated"
 msgstr "τουαλέτες, μπορεί να ενσωματωθεί"
 
 #: ../../tools/database/items_menu.txt:172
+#: ../../tools/database/items_menu.txt:173
 msgid "toilets, need update"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:226
+#: ../../tools/database/items_menu.txt:227
 msgid "natural"
 msgstr ""
 
-#: ../src/pages/map/items.vue:6
+#: ../src/pages/map/items.vue:6 ../src/pages/map/items.vue:5
 msgid "Zoom in to see issues."
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:78
+#: ../../tools/database/items_menu.txt:79
 msgid "conditional restriction"
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:79
+#: ../../tools/database/items_menu.txt:80
 msgid "sideway"
 msgstr ""
 
 #: ../../web_api/byuser.py:96
 msgid "Statistics for user {}"
-msgstr ""
+msgstr "Στατιστικά για χρήστη {}"
 
-#: ../src/pages/issues/index.vue:279
+#: ../src/pages/issues/index.vue:279 ../src/pages/issues/index.vue:281
 msgid "{{ showAnalyserCount }} / {{ errors_groups.length }} rows. Show more."
 msgstr ""
 
 #: ../../tools/database/items_menu.txt:61
+#: ../../tools/database/items_menu.txt:62
 msgid "small land use"
-msgstr ""
+msgstr "χρήση μικρής γης"
 
 #: ../src/pages/contact.vue:99
 msgid "Chat with Osmose-QA developers and community at {matrix} on Matrix."
@@ -1832,4 +2006,32 @@ msgid ""
 "Warning: the issue will also no longer be displayed to other contributors. If you are unsure, let this Osmose issue open.\n"
 "\n"
 "If Osmose reports lots of issues similar to this one and you disagree with this, please fill a Github issue and let us try to fix it."
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:31
+msgid "building landuse"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:165
+msgid "cycle parking, need update"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:243
+msgid "openrailwaymap in Germany"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:244
+msgid "specific Russia"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:245
+msgid "specific Brazil"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:246
+msgid "specific France"
+msgstr ""
+
+#: ../../tools/database/items_menu.txt:247
+msgid "specific Netherlands"
 msgstr ""
