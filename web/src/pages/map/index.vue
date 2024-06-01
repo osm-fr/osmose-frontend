@@ -267,6 +267,16 @@ export default VueParent.extend({
         this.saveMapState()
       },
     },
+
+    closed_marker_count(): void {
+      if (this.closed_marker_count == 100) {
+        alert(this.$t(`You have made a large number of corrections. That great!
+
+That may not be your case, but note that Osmose-QA is not intended to be used for Mechanical Editing. Take a look about that at:
+- https://wiki.openstreetmap.org/wiki/Automated_edits
+- https://wiki.openstreetmap.org/wiki/What%27s_the_problem_with_mechanical_edits%3F`))
+      }
+    },
   },
 
   methods: {
