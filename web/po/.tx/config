@@ -1,0 +1,8 @@
+[main]
+host = https://www.transifex.com
+
+[o:openstreetmap-france:p:osmose:r:frontend]
+file_filter = <lang>.po
+source_file = osmose-frontend.pot
+source_lang = en
+type = PO
