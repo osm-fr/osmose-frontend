@@ -277,6 +277,12 @@ That may not be your case, but note that Osmose-QA is not intended to be used fo
 - https://wiki.openstreetmap.org/wiki/What%27s_the_problem_with_mechanical_edits%3F`))
       }
     },
+
+    editionStack(): void {
+      if (this.editionStack.length == 1) {
+        alert(this.$t(`You have made a large number changes with the tags editor. Think about saving your changes. You can save multiple times while keeping the same changeset.`))
+      }
+    },
   },
 
   methods: {
