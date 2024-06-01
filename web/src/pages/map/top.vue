@@ -188,6 +188,9 @@
           <translate>Login</translate>
         </a>
       </li>
+      <li id="closed_marker_count" v-if="closed_marker_count">
+        <span :title="$t('Number of closed makers in this session')">✔ {{ closed_marker_count }}</span>
+      </li>
       <editor-menu
         :object_count="object_count"
         @editor-save="$emit('editor-save')"
@@ -239,6 +242,10 @@ export default Vue.extend({
     timestamp: {
       type: String as PropType<string | undefined>,
       default: undefined,
+    },
+    closed_marker_count: {
+      type: Number,
+      default: null,
     },
     object_count: {
       type: Number,
@@ -385,6 +392,7 @@ div#top_links {
   #topmenu #menu-byuser,
   #topmenu #menu-relation_analyser,
   #topmenu #menu-statistics,
+  #topmenu #closed_marker_count,
   #topmenu #menu-help,
   #topmenu #menu-delay {
     display: none;
@@ -395,6 +403,7 @@ div#top_links {
   #topmenu #menu-byuser,
   #topmenu #menu-relation_analyser,
   #topmenu #menu-statistics,
+  #topmenu #closed_marker_count,
   #topmenu #menu-help,
   #topmenu #menu-delay {
     display: none;
@@ -404,7 +413,8 @@ div#top_links {
 @media (min-width: 768px) and (max-width: 991px) {
   #topmenu #menu-byuser,
   #topmenu #menu-relation_analyser,
-  #topmenu#menu-statistics,
+  #topmenu #menu-statistics,
+  #topmenu #closed_marker_count,
   #topmenu #menu-help {
     display: none;
   }

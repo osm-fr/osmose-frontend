@@ -11,6 +11,7 @@
         :user="user"
         :user_error_count="user_error_count"
         :timestamp="timestamp"
+        :closed_marker_count="closed_marker_count"
         :object_count="editionStack.length"
         @editor-save="
           docWasOpen = $refs.doc.isShow();
@@ -110,7 +111,10 @@
         :remote_url_read="remote_url_read"
         @update-issue-uuid="issueUuid = $event"
         @q="$refs.osmObject.select($event)"
-        @remove-marker="$refs.markerLayer.remove($event)"
+        @remove-marker="
+          $refs.markerLayer.remove($event)
+          closed_marker_count += 1
+        "
         @fix-edit="
           docWasOpen = $refs.doc.isShow();
           $refs.doc.hide();
@@ -168,6 +172,7 @@ export default VueParent.extend({
     mapState: MapState
     editor: string[]
     doc: string[]
+    closed_marker_count: number
     editionStack: string[]
     docWasOpen: boolean
   } {
@@ -204,6 +209,7 @@ export default VueParent.extend({
       },
       editor: null,
       doc: null,
+      closed_marker_count: null,
       editionStack: [],
       docWasOpen: false,
     }
