@@ -12,7 +12,7 @@ from modules.fastapi_utils import XMLResponse
 from modules.query import fixes_default
 from modules.utils import LangsNegociation
 
-from .issue_utils import _expand_tags, _get, t2l
+from .issue_utils import _get, _keys, t2l
 
 router = APIRouter()
 
@@ -218,7 +218,7 @@ def _error(
                 data_type[elem["type"]]: True,
                 "type": data_type[elem["type"]],
                 "id": elem["id"],
-                "tags": _expand_tags(tags, t2l.checkTags(tags)),
+                "tags": t2l.addLinks(tags),
                 "fixes": [],
             }
             for fix_index, fix_group in enumerate(marker["fixes"] or []):
@@ -231,13 +231,9 @@ def _error(
                         tmp_elem["fixes"].append(
                             {
                                 "num": fix_index,
-                                "add": _expand_tags(
-                                    fix["create"], t2l.checkTags(fix["create"])
-                                ),
-                                "mod": _expand_tags(
-                                    fix["modify"], t2l.checkTags(fix["modify"])
-                                ),
-                                "del": _expand_tags(fix["delete"], {}, True),
+                                "add": t2l.addLinks(fix["create"]),
+                                "mod": t2l.addLinks(fix["modify"]),
+                                "del": _keys(fix["delete"]),
                             }
                         )
             elems.append(tmp_elem)
@@ -255,13 +251,9 @@ def _error(
                     new_elems.append(
                         {
                             "num": fix_index,
-                            "add": _expand_tags(
-                                fix["create"], t2l.checkTags(fix["create"])
-                            ),
-                            "mod": _expand_tags(
-                                fix["modify"], t2l.checkTags(fix["modify"])
-                            ),
-                            "del": _expand_tags(fix["delete"], {}, True),
+                            "add": t2l.addLinks(fix["create"]),
+                            "mod": t2l.addLinks(fix["modify"]),
+                            "del": _keys(fix["delete"]),
                         }
                     )
 

@@ -9,7 +9,7 @@ from modules.query import fixes_default
 from .tool import tag2link
 
 t2l = tag2link.tag2link(
-    os.path.dirname(os.path.realpath(__file__)) + "/tool/tag2link_sources.xml"
+    os.path.dirname(os.path.realpath(__file__)) + "/tool/tag2link_sources.json"
 )
 
 
@@ -92,17 +92,5 @@ async def _get(
     }
 
 
-def _expand_tags(
-    tags: Dict[str, str], links: Dict[str, str], short: bool = False
-) -> List[Dict[str, str]]:
-    t = []
-    if short:
-        for k in tags:
-            t.append({"k": k})
-    else:
-        for k, v in sorted(tags.items()):
-            if links and k in links:
-                t.append({"k": k, "v": v, "vlink": links[k]})
-            else:
-                t.append({"k": k, "v": v})
-    return t
+def _keys(tags: List[str]) -> List[Dict[str, str]]:
+    return list(map(lambda k: {"k": k}, tags))
