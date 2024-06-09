@@ -279,7 +279,7 @@ That may not be your case, but note that Osmose-QA is not intended to be used fo
     },
 
     editionStack(): void {
-      if (this.editionStack.length == 1) {
+      if (this.editionStack.length == 30) {
         alert(this.$t(`You have made a large number changes with the tags editor. Think about saving your changes. You can save multiple times while keeping the same changeset.`))
       }
     },
