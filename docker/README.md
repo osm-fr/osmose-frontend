@@ -56,4 +56,4 @@ npm run dev-server
 ## Data from Osmose Backend
 To upload data to Osmose Frontend see the Osmose Backend.
 
-Show the results at: http://localhost:8080/en/errors?item=xxxx&useDevItem=true
+Show the results at: http://localhost:8080/en/issues/open?item=xxxx&useDevItem=all
