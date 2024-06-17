@@ -1,6 +1,7 @@
 .git
 .venv
 .mypy_cache
+venv
 web/node_modules
 web/public/assets
 docker/.env
