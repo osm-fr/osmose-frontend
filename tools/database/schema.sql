@@ -1,3 +1,5 @@
+CREATE EXTENSION btree_gist;
+
 CREATE OR REPLACE FUNCTION public.marker_elem_ids(elems jsonb[])
  RETURNS bigint[]
  LANGUAGE sql

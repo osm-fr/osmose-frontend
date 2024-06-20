@@ -1,5 +1,7 @@
 #! /bin/sh
 
+echo "CREATE EXTENSION btree_gist;" > schema.sql
+
 psql -h "$DB_HOST" -U osmose osmose_frontend -A --tuples-only -c "
 SELECT
   left(pg_get_functiondef(p.oid), -1) || E';\n'
@@ -20,6 +22,6 @@ WHERE
   (d.objid IS NULL OR proname = 'marker_elem_ids')
 ORDER BY
   p.proname
-" > schema.sql
+" >> schema.sql
 
 pg_dump --no-tablespaces -s -O -x -t "backends|markers|categories|markers_counts|class|items|sources|sources_password|stats|markers_status|updates|updates_last" -h "$DB_HOST" -U osmose osmose_frontend >> schema.sql
