@@ -5,3 +5,7 @@ services:
     environment:
       - OSMOSE_UNLOCKED_UPDATE=on
       - URL_FRONTEND=http://127.0.0.1:20009
+    volumes:
+      - type: bind
+        source: ..
+        target: /data/project/osmose/frontend

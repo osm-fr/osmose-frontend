@@ -7,11 +7,16 @@ RUN apt update && \
     apt install -y --no-install-recommends \
         bzip2 \
         gettext \
+        librsvg2-bin \
+        npm \
         postgresql-client && \
     apt-get clean
 
-ADD ./requirements.txt /data/project/osmose/frontend/requirements.txt
 WORKDIR /data/project/osmose/frontend
+ADD web_api/static/package.json web_api/static/package.json
+ADD web_api/static/package-lock.json web_api/static/package-lock.json
+RUN cd web_api/static && npm install && cd -
+ADD ./requirements.txt requirements.txt
 RUN pip install uvicorn && pip install -r requirements.txt
 
 ADD . /data/project/osmose/frontend

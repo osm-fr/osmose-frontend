@@ -144,11 +144,7 @@ export const glStyle = {
       .map(([id, source]) => ({ [id]: source }))
       .reduce((merged, current) => ({ ...merged, ...current }), {}),
   },
-  sprite:
-    window.location.protocol +
-    '//' +
-    window.location.host +
-    '/assets/marker-gl-sprite',
+  sprite: API_URL + '/assets/marker-gl-sprite',
   layers: [
     {
       id: 'background-color',
