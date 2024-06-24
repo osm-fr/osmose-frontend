@@ -27,7 +27,7 @@ function getNodes(xml: Document): Record<number, NodeObject> {
   const result: Record<number, NodeObject> = {}
 
   const nodes = xml.getElementsByTagName('node')
-  for (const i = 0; i < nodes.length; i++) {
+  for (let i = 0; i < nodes.length; i++) {
     const node = nodes[i],
       id = node.getAttribute('id')
     if (node && id) {
@@ -53,7 +53,7 @@ function getWays(
   const result: WayObject[] = []
 
   const ways = xml.getElementsByTagName('way')
-  for (const i = 0; i < ways.length; i++) {
+  for (let i = 0; i < ways.length; i++) {
     const way = ways[i],
       nds = [...way.getElementsByTagName('nd')]
     const way_object: WayObject = {
@@ -79,7 +79,7 @@ function getRelations(
   const result: RelationObject[] = []
 
   const rels = xml.getElementsByTagName('relation')
-  for (const i = 0; i < rels.length; i++) {
+  for (let i = 0; i < rels.length; i++) {
     const rel = rels[i],
       members = [...rel.getElementsByTagName('member')]
     const rel_object: RelationObject = {
@@ -104,7 +104,7 @@ function getTags(xml: Element): Record<string, string> {
 
   const tags = xml.getElementsByTagName('tag')
   if (tags) {
-    for (const j = 0; j < tags.length; j++) {
+    for (let j = 0; j < tags.length; j++) {
       const k = tags[j].getAttribute('k')
       const v = tags[j].getAttribute('v')
       if (k !== null && v !== null) {
@@ -150,7 +150,7 @@ export default function osm2geojson(xml: Document): GeoJSON.FeatureCollection {
     type: 'FeatureCollection',
     features: buildFeatures(xml)
       .map((feature, index) => {
-        const geom: GeoJSON.Feature | undefined = undefined
+        let geom: GeoJSON.Feature | undefined = undefined
 
         if (feature.type === 'node') {
           geom = {
@@ -161,7 +161,7 @@ export default function osm2geojson(xml: Document): GeoJSON.FeatureCollection {
         } else if (feature.type === 'way') {
           const lngLats = new Array(feature.nodes.length)
 
-          for (const j = 0; j < feature.nodes.length; j++) {
+          for (let j = 0; j < feature.nodes.length; j++) {
             lngLats[j] = feature.nodes[j].lngLat
           }
 
@@ -192,14 +192,15 @@ function buildFeatures(xml: Document): OsmObject[] {
     ways = getWays(xml, nodes),
     relations = getRelations(xml, nodes, ways)
 
-  for (const node_id in nodes) {
+  let node_id;
+  for (node_id in nodes) {
     const node = nodes[node_id]
     if (interestingNode(node, ways, relations)) {
       features.push(node)
     }
   }
 
-  for (const i = 0; i < ways.length; i++) {
+  for (let i = 0; i < ways.length; i++) {
     const way = ways[i]
     features.push(way)
   }
@@ -212,7 +213,8 @@ function isWayArea(way: WayObject): boolean {
     return false
   }
 
-  for (const key in way.tags) {
+  let key
+  for (key in way.tags) {
     if (~options.areaTags.indexOf(key)) {
       return true
     }
@@ -226,9 +228,9 @@ function interestingNode(
   ways: WayObject[],
   relations: RelationObject[]
 ): boolean {
-  const used = false
+  let used = false
 
-  for (const i = 0; i < ways.length; i++) {
+  for (let i = 0; i < ways.length; i++) {
     if (ways[i].nodes.indexOf(node) >= 0) {
       used = true
       break
@@ -239,11 +241,12 @@ function interestingNode(
     return true
   }
 
-  for (const i = 0; i < relations.length; i++) {
+  for (let i = 0; i < relations.length; i++) {
     if (relations[i].members.indexOf(node) >= 0) return true
   }
 
-  for (const key in node.tags) {
+  let key
+  for (key in node.tags) {
     if (options.uninterestingTags.indexOf(key) < 0) {
       return true
     }
