@@ -110,7 +110,7 @@
         :main_website="main_website"
         :remote_url_read="remote_url_read"
         @update-issue-uuid="issueUuid = $event"
-        @q="$refs.osmObject.select($event)"
+        @elems="$event ? $refs.osmObject.select($event) : $refs.osmObject.clear()"
         @remove-marker="
           $refs.markerLayer.remove($event)
           closed_marker_count += 1

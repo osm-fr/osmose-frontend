@@ -361,6 +361,12 @@ export default Vue.extend({
     }
   },
 
+  watch: {
+    elems() {
+      this.$emit('elems', this.elems)
+    },
+  },
+
   computed: {
     api_url(): string {
       return (API_URL.startsWith('http') ? '' : location.protocol) + API_URL

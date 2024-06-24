@@ -19,14 +19,14 @@ export default Vue.extend({
   },
 
   methods: {
-    async select(data) {
-      data.elems_id = data.elems.map((elem) => elem.type + elem.id).join(',')
+    async select(elems) {
+      const elems_id = elems.map((elem) => elem.type + elem.id).join(',')
 
       // Get the OSM objects
-      if (data.elems_id) {
+      if (elems_id) {
         this.clear()
         const features = await Promise.all(
-          data.elems.map((elem) =>
+          elems.map((elem) =>
             fetch(
               elem.type === 'node'
                 ? `${this.remoteUrlRead}api/0.6/node/${elem.id}`
