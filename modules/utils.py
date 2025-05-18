@@ -15,6 +15,7 @@ languages_name["en"] = {"name": "English"}
 
 # language names from http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 # _direction_rtl = ['fa', 'ar', 'he', 'ff', 'yi', 'ur', 'rgh', 'man', 'syc', 'mid', 'dv']
+languages_name["ar"] = {"name": "اَلْعَرَبِيَّةُ", "direction": "rtl"}
 languages_name["ca"] = {"name": "Català"}
 languages_name["cs"] = {"name": "Čeština"}
 languages_name["da"] = {"name": "Dansk"}
