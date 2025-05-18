@@ -3,7 +3,8 @@
 # This file is distributed under the same license as the osmose-frontend package.
 # 
 # Translators:
-# Gábor Babos <gabor.babos@gmail.com>, 2017-2021,2023
+# Balázs Úr, 2024
+# Gábor Babos <gabor.babos@gmail.com>, 2017-2021,2023-2024
 # kla <kl-o@freemail.hu>, 2014-2015
 # nagy_balint <nagy_balint@freemail.hu>, 2014
 # nagy_balint <nagy_balint@freemail.hu>, 2014
@@ -13,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
 "PO-Revision-Date: 2014-04-28 19:22+0000\n"
-"Last-Translator: Gábor Babos <gabor.babos@gmail.com>, 2017-2021,2023\n"
+"Last-Translator: Balázs Úr, 2024\n"
 "Language-Team: Hungarian (http://app.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -167,7 +168,7 @@ msgstr "Térkép"
 #. TRANSLATORS: 'Set' is used to choose a specific country/item on /errors
 #: ../src/pages/issues/index.vue:389 ../src/pages/issues/index.vue:395
 msgid "Set"
-msgstr "Készlet"
+msgstr "Beállítás"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for class
 msgid "class (abbreviation)"
@@ -1920,7 +1921,7 @@ msgstr "Kizárólag"
 
 #: ../src/pages/issues/index.vue:13
 msgid "Open"
-msgstr "Megnyitás"
+msgstr "Nyitott"
 
 #: ../src/pages/issues/index.vue:176 ../src/pages/map/items-filters.vue:113
 #: ../src/pages/map/items-filters.vue:58 ../src/pages/issues/index.vue:178
@@ -2011,28 +2012,28 @@ msgstr "Probléma bejelentése helytelenként.\n\nCsak akkor használja, ha az O
 
 #: ../../tools/database/items_menu.txt:31
 msgid "building landuse"
-msgstr ""
+msgstr "épület területhasználat"
 
 #: ../../tools/database/items_menu.txt:165
 msgid "cycle parking, need update"
-msgstr ""
+msgstr "kerékpártároló: frissítendő"
 
 #: ../../tools/database/items_menu.txt:243
 msgid "openrailwaymap in Germany"
-msgstr ""
+msgstr "OpenRailwayMap Németországban"
 
 #: ../../tools/database/items_menu.txt:244
 msgid "specific Russia"
-msgstr ""
+msgstr "Oroszország-specifikus"
 
 #: ../../tools/database/items_menu.txt:245
 msgid "specific Brazil"
-msgstr ""
+msgstr "Brazília-specifikus"
 
 #: ../../tools/database/items_menu.txt:246
 msgid "specific France"
-msgstr ""
+msgstr "Franciaország-specifikus"
 
 #: ../../tools/database/items_menu.txt:247
 msgid "specific Netherlands"
-msgstr ""
+msgstr "Hollandia-specifikus"

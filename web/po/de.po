@@ -20,7 +20,7 @@
 # Loo Nie <looniverse@gmail.com>, 2015
 # Lukas Sommer, 2014
 # Manfred Brandl <manfred@brandl.net>, 2020-2022
-# mcliquid <info@mcliquid.de>, 2023
+# mcliquid <info@mcliquid.de>, 2023-2024
 # operon, 2012
 # operon, 2012
 # osmtools <osm@haraldhartmann.de>, 2017
@@ -43,7 +43,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
 "PO-Revision-Date: 2014-04-28 19:22+0000\n"
-"Last-Translator: mcliquid <info@mcliquid.de>, 2023\n"
+"Last-Translator: mcliquid <info@mcliquid.de>, 2023-2024\n"
 "Language-Team: German (http://app.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2041,28 +2041,28 @@ msgstr "Melde das Problem als nicht angemessen.\n\nVerwende dies nur, wenn das v
 
 #: ../../tools/database/items_menu.txt:31
 msgid "building landuse"
-msgstr ""
+msgstr "Gebäudenutzung"
 
 #: ../../tools/database/items_menu.txt:165
 msgid "cycle parking, need update"
-msgstr ""
+msgstr "Fahrradparkplätze, müssen aktualisiert werden"
 
 #: ../../tools/database/items_menu.txt:243
 msgid "openrailwaymap in Germany"
-msgstr ""
+msgstr "OpenRailwayMap in Germany"
 
 #: ../../tools/database/items_menu.txt:244
 msgid "specific Russia"
-msgstr ""
+msgstr "speziell Russland"
 
 #: ../../tools/database/items_menu.txt:245
 msgid "specific Brazil"
-msgstr ""
+msgstr "speziell Brasilien"
 
 #: ../../tools/database/items_menu.txt:246
 msgid "specific France"
-msgstr ""
+msgstr "speziell Frankreich"
 
 #: ../../tools/database/items_menu.txt:247
 msgid "specific Netherlands"
-msgstr ""
+msgstr "speziell Niederlande"

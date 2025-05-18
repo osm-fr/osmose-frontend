@@ -6,23 +6,24 @@
 # Kit Tak <misc.takashi@gmail.com>, 2020
 # Lratz sc, 2023
 # Lratz sc, 2023
-# 藤本 理弘 <mfujimot@gmail.com>, 2014
+# 藤本理弘 <mfujimot@gmail.com>, 2014
 # Satoshi IIDA <nyampire@gmail.com>, 2016
 # OKADA Tsuneo, 2020
 # OKADA Tsuneo, 2020
 # Satoshi IIDA <nyampire@gmail.com>, 2016
 # Shu Higashi, 2020-2021
-# Tom Konda <tom.konda.dev@gmail.com>, 2020
+# Takanori MATSUURA <t.matsuu@gmail.com>, 2024
+# Tom Konda <tom.konda.dev@gmail.com>, 2020,2025
 # tomoya muramoto <muramototomoya@gmail.com>, 2016
-# 藤本 理弘 <mfujimot@gmail.com>, 2014
-# 藤本 理弘 <mfujimot@gmail.com>, 2014
+# 藤本理弘 <mfujimot@gmail.com>, 2014
+# 藤本理弘 <mfujimot@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 22:25+0100\n"
 "PO-Revision-Date: 2014-04-28 19:22+0000\n"
-"Last-Translator: 藤本 理弘 <mfujimot@gmail.com>, 2014\n"
+"Last-Translator: Tom Konda <tom.konda.dev@gmail.com>, 2020,2025\n"
 "Language-Team: Japanese (http://app.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -194,7 +195,7 @@ msgstr "件名"
 #: ../src/pages/byuser/byuser.vue:22 ../src/pages/issues/index.vue:229
 #: ../src/pages/issues/index.vue:231
 msgid "count"
-msgstr "回数"
+msgstr "頻度"
 
 #: ../src/pages/issues/index.vue:233 ../src/pages/issues/index.vue:285
 #: ../src/pages/issues/index.vue:235 ../src/pages/issues/index.vue:287
@@ -1093,11 +1094,11 @@ msgstr "アナライザー"
 
 #: ../src/pages/control/update_summary_by_analyser.vue:8
 msgid "Count"
-msgstr "回数"
+msgstr "頻度"
 
 #: ../src/pages/control/update_summary_by_analyser.vue:9
 msgid "Age"
-msgstr "年齢"
+msgstr "経過時間"
 
 #: ../src/pages/control/update_summary_by_analyser.vue:10
 msgid "Version"
@@ -1109,7 +1110,7 @@ msgstr "要更新・郵便局"
 
 #: ../src/pages/issues/index.vue:213 ../src/pages/issues/index.vue:215
 msgid "age"
-msgstr "年齢"
+msgstr "経過時間"
 
 #: ../../tools/database/items_menu.txt:99
 #: ../../tools/database/items_menu.txt:100
@@ -1206,7 +1207,7 @@ msgstr "中以上"
 #: ../src/pages/map/items-filters.vue:48 ../src/pages/issues/index.vue:102
 #: ../src/pages/issues/index.vue:165
 msgid "All"
-msgstr "すべて"
+msgstr "全て"
 
 #: ../src/pages/issues/index.vue:104 ../src/pages/map/items-filters.vue:19
 #: ../src/pages/issues/index.vue:106
@@ -1223,7 +1224,7 @@ msgstr "低"
 #: ../src/pages/map/top.vue:305 ../src/pages/map/top.vue:318
 #, python-brace-format
 msgid "Level {level} issues ({count})"
-msgstr "レベル{level}の課題({count}件)"
+msgstr "レベル{level}の課題 ({count}件)"
 
 #: ../../tools/database/categories_menu.txt:9
 msgid "JOSM validator"
@@ -1483,7 +1484,7 @@ msgstr "修正方法"
 
 #: ../src/pages/map/doc.vue:52 ../src/pages/map/doc.vue:1
 msgid "Trap to avoid"
-msgstr "誤った修正の回避"
+msgstr "誤修正を回避するには"
 
 #: ../src/pages/map/doc.vue:57 ../src/pages/map/doc.vue:1
 msgid "Example"
@@ -1857,7 +1858,7 @@ msgstr "境界ボックス"
 #: ../src/components/issues-list.vue:25 ../src/pages/issues/index.vue:220
 #: ../src/pages/issues/index.vue:222
 msgid "cl"
-msgstr "cl"
+msgstr "クラス"
 
 #: ../src/pages/issues/index.vue:137 ../src/pages/map/items-filters.vue:86
 #: ../src/pages/map/items-filters.vue:31 ../src/pages/issues/index.vue:139
@@ -1905,12 +1906,12 @@ msgstr "loc"
 
 #: ../src/components/issues-list.vue:270
 msgid "location"
-msgstr "場所"
+msgstr "位置"
 
 #. TRANSLATORS: this should be replaced by a abbreviation for 'level'
 #: ../src/components/issues-list.vue:15
 msgid "lvl"
-msgstr "lvl"
+msgstr "レベル"
 
 #: ../src/pages/issues/index.vue:117 ../src/pages/map/items-filters.vue:122
 #: ../src/pages/issues/index.vue:119

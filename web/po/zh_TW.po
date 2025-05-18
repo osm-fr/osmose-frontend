@@ -2013,28 +2013,28 @@ msgstr "以匯入者身份回報問題。\n\n只有在 Osmose 回報的問題事
 
 #: ../../tools/database/items_menu.txt:31
 msgid "building landuse"
-msgstr ""
+msgstr "建築土地利用"
 
 #: ../../tools/database/items_menu.txt:165
 msgid "cycle parking, need update"
-msgstr ""
+msgstr "需要更新單車停車"
 
 #: ../../tools/database/items_menu.txt:243
 msgid "openrailwaymap in Germany"
-msgstr ""
+msgstr "德國的 openrailwaymap"
 
 #: ../../tools/database/items_menu.txt:244
 msgid "specific Russia"
-msgstr ""
+msgstr "特別是俄羅斯"
 
 #: ../../tools/database/items_menu.txt:245
 msgid "specific Brazil"
-msgstr ""
+msgstr "特別是巴西"
 
 #: ../../tools/database/items_menu.txt:246
 msgid "specific France"
-msgstr ""
+msgstr "特別是法國"
 
 #: ../../tools/database/items_menu.txt:247
 msgid "specific Netherlands"
-msgstr ""
+msgstr "特別是荷蘭"
